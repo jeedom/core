@@ -1,30 +1,39 @@
 <?php
 if (!isConnect()) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception(__('401 - Accès non autorisé',__FILE__));
 }
 
-sendVarToJs('SEL_CATEGORY', init('category', 'all'));
-sendVarToJs('SEL_TAG', init('tag', 'all'));
-sendVarToJs('SEL_SUMMARY', init('summary'));
+sendVarToJS([
+  'SEL_CATEGORY' => init('category', 'all'),
+  'SEL_TAG' => init('tag', 'all'),
+  'SEL_SUMMARY' => init('summary')
+]);
 
 $DisplayByObject = true;
+if (init('summary') != '') {
+	$DisplayByObject = false;
+}
+
 if (init('object_id') == '') {
 	if (init('summary') != '') {
 		$object = jeeObject::rootObject();
-		$DisplayByObject = false;
 	} else {
-		sendVarToJs('SHOW_BY_SUMMARY', '');
 		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 	}
 } else {
 	sendVarToJs('SHOW_BY_SUMMARY', '');
 	$object = jeeObject::byId(init('object_id'));
 }
+
 if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
-}
-if ($DisplayByObject && !is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
+		if (!is_object($object)) {
+		$alert = '{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets}}.<br/>';
+		$alert .= '{{Documentation}} : <a href="https://doc.jeedom.com/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
+		$alert .= ' | <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
+		echo '<div class="alert alert-warning">'.$alert.'</div>';
+		return;
+	}
 }
 
 if ($DisplayByObject) {
@@ -35,12 +44,18 @@ if ($DisplayByObject) {
 		$allObject = array();
 	}
 } else {
-	sendVarToJs('rootObjectId', 'undefined');
 	sendVarToJs('SHOW_BY_SUMMARY', init('summary'));
-	$allObject = jeeObject::all(true);
+	if (init('object_id') == '') {
+		$allObject = jeeObject::all(true);
+		sendVarToJs('rootObjectId', 'undefined');
+	} else {
+		$allObject = [$object];
+		sendVarToJs('rootObjectId', $object->getId());
+	}
 }
 
 ?>
+
 <div class="row row-overflow">
 	<?php
 	if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
@@ -146,7 +161,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 			}
 		}
 	} else {
-		//show all objects for summaries:
+		//show object(s) for summaries:
 		foreach ($allObject as $object) {
 			$div =  '<div class="col-md-12">';
 			$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object hidden">';

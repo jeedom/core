@@ -1,5 +1,5 @@
 /*
- Highstock JS v8.1.0 (2020-05-05)
+ Highstock JS v8.1.2 (2020-06-16)
 
  All technical indicators for Highstock
 

@@ -966,6 +966,7 @@
         "Obligatoire": "Obrigatório",
         "Voulu par": "Procurado por",
         "Version": "Versão",
+        "Remarque": "Nota",
         "Commande": "Ordem",
         "Action": "Ação",
         "Mise à jour": "Update",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "Tema alternativo para celular",
         "Thème principal de": "Tema principal de",
         "à": "A",
+        "Cookie": "Biscoito",
         "Basculer le thème en fonction de l'heure": "Alternar tema com base no tempo",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Ative para alternar automaticamente para um tema alternativo nos horários selecionados",
         "Capteur de luminosité (mobile)": "Sensor de brilho (móvel)",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "Nenhum objeto raiz encontrado. Para criar um, vá em Ferramentas -> Objetos. <br\/> Se você não sabe o que fazer, não hesite em consultar esta <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">página<\/a> e este se você tiver um pack: <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">página<\/a>",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "Nenhum objeto raiz encontrado. Para criar um, vá para Ferramentas -> Objetos",
+        "Documentation": "Documentação",
+        "Concepts": "Conceitos",
+        "Premiers pas": "Primeiros passos",
         "Rechercher": "Pesquisar",
         "Afficher\/Masquer les objets": "Show \/ Hide Objects",
         "Retour à la Synthèse": "Voltar ao Resumo",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "Não existe design, clique <a id=\"bt_createNewDesign\" class=\"cursor\">aqui<\/a> para criar um"
+        "Aucun design n\\'existe, cliquez": "Não existe design, clique em",
+        "ici": "aqui",
+        "pour en créer un.": "para criar um"
     },
     "desktop\/php\/history.php": {
         "Aucun": "Nemhum",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuração do plugin",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Nom de la copie de l\\'équipement ?": "Nome da cópia do equipamento?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Tem certeza de que deseja excluir equipamentos \\ 's",
         "Veuillez d\\'abord sélectionner un": "Por favor \\ 's primeiro selecionar um",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "Detecção de fumaça",
         "Inondation": "Inundação",
         "Humidité": "Umidade",
+        "Thermostat humidité ambiante": "Termostato de umidade ambiente",
+        "Humidité consigne ": "Definir umidade",
+        "Humidité consigne": "Definir umidade",
         "UV": "UV",
         "Porte": "Porta",
         "Fenêtre": "Janela",

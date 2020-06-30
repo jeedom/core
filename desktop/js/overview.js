@@ -22,25 +22,8 @@ var modal = null
 var modalContent = null
 
 //infos/actions tile signals:
-$('body').off('mouseenter').off('mouseleave')
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
-  })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
-  })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
-  })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
-    $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
-  })
+var isEditing = false
+jeedomUI.setEqSignals()
 
 $(function() {
   //move to top summary:
@@ -88,7 +71,7 @@ function colorizeSummary() {
 function createSummaryObserver() {
   var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if ( mutation.type == 'childList' && mutation.target.className == 'resume') {
+      if (mutation.type == 'childList' && mutation.target.className == 'resume') {
         updateSummary(mutation.addedNodes[0].className)
       }
     })
@@ -122,20 +105,26 @@ function updateSummary(_className) {
 
 
 //buttons:
-$('#div_pageContainer').delegate('.objectPreview .bt_config', 'click', function () {
-  var objectId = $(this).closest('.objectPreview').data('object_id')
-  var url = 'index.php?v=d&p=object&id='+objectId+'#summarytab'
-  loadPage(url)
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var objectId = $(this).closest('.objectPreview').data('object_id')
+    var url = 'index.php?v=d&p=object&id='+objectId+'#summarytab'
+    loadPage(url)
+  }
+}, '.objectPreview .bt_config')
 
-$('#objectOverviewContainer .objectSummaryParent').off('click').on('click', function (event) {
-  event.stopPropagation()
-  event.preventDefault()
-  var objectId = $(this).closest('.objectPreview').attr('data-object_id')
-  var summaryType = $(this).attr('data-summary')
-  var title = $(this).get(0).firstChild.outerHTML + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
-  getSummaryHtml(objectId, summaryType, title)
-})
+$('#objectOverviewContainer').on({
+  'click': function(event) {
+    event.stopPropagation()
+    event.preventDefault()
+    var objectId = $(this).closest('.objectPreview').attr('data-object_id')
+    var summaryType = $(this).attr('data-summary')
+    var title = $(this).get(0).firstChild.outerHTML + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
+    getSummaryHtml(objectId, summaryType, title)
+  }
+}, '.objectSummaryParent')
+
+
 
 //Tile click or center-click
 $('.objectPreview').off('click').on('click', function (event) {
@@ -216,69 +205,101 @@ $(function() {
   })
 
   //history in summary modal:
-  modalContent.delegate('.eqLogic-widget .history', 'click', function (event) {
-    event.stopImmediatePropagation()
-    event.stopPropagation()
-    if (event.ctrlKey) {
-      var cmdIds = []
-      $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
-        cmdIds.push($(this).data('cmd_id'))
-      })
-      cmdIds = cmdIds.join('-')
-    } else {
-      var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+  modalContent.on({
+    'click': function(event) {
+      event.stopImmediatePropagation()
+      event.stopPropagation()
+      if (event.ctrlKey) {
+        var cmdIds = []
+        $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+          cmdIds.push($(this).data('cmd_id'))
+        })
+        cmdIds = cmdIds.join('-')
+      } else {
+        var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
+      }
+      $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
     }
-    $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
-  })
+  }, '.eqLogic-widget .history')
+
 })
 
+var summaryObjEqs = []
 function getSummaryHtml(_object_id, _summary, _title) {
-  jeedom.object.toHtml({
+  summaryObjEqs[_object_id] = []
+  jeedom.object.getEqLogicsFromSummary({
     id: _object_id,
+    onlyEnable: '1',
+    onlyVisible: '0',
     version: 'dashboard',
-    category : null,
     summary : _summary,
-    tag : null,
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (html) {
-      $summaryContainer.empty().packery('destroy')
-      $summaryContainer.append(html)
-
+    success: function(data) {
+      try {
+        $summaryContainer.empty().packery('destroy')
+      } catch(e) {}
       _title = $.parseHTML('<span>'+_title+'</span>')
       $('.ui-dialog[aria-describedby="md_overviewSummary"] span.ui-dialog-title').empty().append(_title)
       $('#md_overviewSummary').dialog('open')
 
-      //adapt modal size:
-      var brwSize = {
-        width: window.innerWidth || document.body.clientWidth,
-        height: window.innerHeight || document.body.clientHeight
-      }
-      var fullWidth = 0
-      var fullHeight = 0
-      var thisWidth = 0
-      var thisHeight = 0
-      $('.eqLogic-widget').each(function( index ) {
-        thisWidth = $(this).outerWidth(true)
-        thisHeight = $(this).outerHeight(true)
-        if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
-        if ( (fullWidth + thisWidth + 150) < brwSize.width ) {
-          fullWidth += thisWidth + 5
-        } else {
-          fullHeight += thisHeight + 5
+      var nbEqs = data.length
+      for (var i=0; i<nbEqs; i++) {
+        if (summaryObjEqs[_object_id].includes(data[i].id)) {
+          nbEqs--
+          return
         }
-      })
-      if (fullWidth == 0) {
-        fullWidth = 120
-        fullHeight = 120
+        summaryObjEqs[_object_id].push(data[i].id)
+
+        jeedom.eqLogic.toHtml({
+          id: data[i].id,
+          version: 'dashboard',
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(html) {
+            if (html.html != '') {
+              $summaryContainer.append(html.html)
+            }
+            nbEqs--
+
+            //is last ajax:
+            if (nbEqs == 0) {
+              //adapt modal size:
+              var brwSize = {
+                width: window.innerWidth || document.body.clientWidth,
+                height: window.innerHeight || document.body.clientHeight
+              }
+              var fullWidth = 0
+              var fullHeight = 0
+              var thisWidth = 0
+              var thisHeight = 0
+              $('#md_overviewSummary .eqLogic-widget').each(function( index ) {
+                thisWidth = $(this).outerWidth(true)
+                thisHeight = $(this).outerHeight(true)
+                if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
+                if ( (fullWidth + thisWidth + 150) < brwSize.width ) {
+                  fullWidth += thisWidth + 7
+                } else {
+                  fullHeight += thisHeight + 5
+                }
+              })
+              if (fullWidth == 0) {
+                fullWidth = 120
+                fullHeight = 120
+              }
+              fullWidth += 6
+              fullHeight += 6
+              modal.width(fullWidth + 26).height(fullHeight + 50)
+              modalContent.width(fullWidth).height(fullHeight)
+
+              $summaryContainer.packery({gutter: 10})
+              initTooltips($('#md_overviewSummary'))
+            }
+          }
+        })
       }
-      fullWidth += 5
-      fullHeight += 5
-      modal.width(fullWidth + 26).height(fullHeight + 50)
-      modalContent.width(fullWidth).height(fullHeight)
-      $summaryContainer.packery({gutter: 10})
-      initTooltips($('#md_overviewSummary'))
     }
   })
 }

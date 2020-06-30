@@ -103,9 +103,10 @@ if (view_id != '') {
         $('.eqLogicZone').disableSelection()
         $('input', 'textarea', 'select').click(function() { $(this).focus() })
 
+        var container, itemElems
         $('.eqLogicZone').each(function() {
-          var container = $(this).packery()
-          var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
+          container = $(this).packery()
+          itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
           container.packery('bindUIDraggableEvents', itemElems)
 
           //set viewOrder for editMode:
@@ -146,10 +147,12 @@ $('.bt_displayView').on('click', function () {
   }
 })
 
-$('#div_pageContainer').delegate('.editOptions', 'click', function () {
-  var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
-  $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var eqId = $(this).closest('.eqLogic-widget').attr('data-eqlogic_id')
+    $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
+  }
+}, '.editOptions')
 
 var isEditing = false
 var _draggingId = false
@@ -180,8 +183,9 @@ function editWidgetMode(_mode, _save) {
     $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
 
     //show orders:
+    var value
     $('.jeedomAlreadyPosition.ui-draggable').each(function() {
-      var value = $(this).attr('data-viewOrder')
+      value = $(this).attr('data-viewOrder')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
       } else {
@@ -192,8 +196,8 @@ function editWidgetMode(_mode, _save) {
     //set unique id whatever we have:
     divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
       $(this).addClass('editingMode')
-      $(this).attr('data-editId', index)
-      $(this).append('<span class="cmd editOptions cursor"></span>')
+        .attr('data-editId', index)
+        .append('<span class="cmd editOptions cursor"></span>')
     })
 
     //set draggables:

@@ -966,6 +966,7 @@
         "Obligatoire": "Mandatory",
         "Voulu par": "Need by",
         "Version": "Version",
+        "Remarque": "Note",
         "Commande": "Command",
         "Action": "Action",
         "Mise à jour": "Update",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "Alternative Mobile Theme",
         "Thème principal de": "Main theme from",
         "à": "to",
+        "Cookie": "Cookie",
         "Basculer le thème en fonction de l'heure": "Toggle theme based on time",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Activate to automatically switch to alternative theme at the selected times",
         "Capteur de luminosité (mobile)": "Brightness sensor (mobile)",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "No root object found. To create one, go to Tools -> Objects. <br\/> If you do not know what to do, do not hesitate to consult this <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> and this one if you have a pack: <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "No root object found. To create one, go to Tools -> Objects",
+        "Documentation": "Documentation",
+        "Concepts": "Concepts",
+        "Premiers pas": "First steps",
         "Rechercher": "Search",
         "Afficher\/Masquer les objets": "Display\/Hide objects",
         "Retour à la Synthèse": "Back to Synthesis",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "No design exists, click <a id=\"bt_createNewDesign\" class=\"cursor\">here<\/a> to create one"
+        "Aucun design n\\'existe, cliquez": "No design exists, click",
+        "ici": "here",
+        "pour en créer un.": "to create one"
     },
     "desktop\/php\/history.php": {
         "Aucun": "None",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin configuration",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
         "Nom de la copie de l\\'équipement ?": "Name of equipment copy?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Are you sure you want to delete the equipment",
         "Veuillez d\\'abord sélectionner un": "Please select a",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "Smoke detection",
         "Inondation": "Flood",
         "Humidité": "Humidity",
+        "Thermostat humidité ambiante": "Room humidity thermostat",
+        "Humidité consigne ": "Set humidity",
+        "Humidité consigne": "Set humidity",
         "UV": "UV",
         "Porte": "Door",
         "Fenêtre": "Window",

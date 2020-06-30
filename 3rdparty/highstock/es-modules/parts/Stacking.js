@@ -9,10 +9,11 @@
  * */
 'use strict';
 import Axis from './Axis.js';
+import Chart from './Chart.js';
 import H from './Globals.js';
 import StackingAxis from './StackingAxis.js';
 import U from './Utilities.js';
-var correctFloat = U.correctFloat, defined = U.defined, destroyObjectProperties = U.destroyObjectProperties, format = U.format, pick = U.pick;
+var correctFloat = U.correctFloat, defined = U.defined, destroyObjectProperties = U.destroyObjectProperties, format = U.format, isNumber = U.isNumber, pick = U.pick;
 /**
  * Stack of data points
  *
@@ -53,9 +54,8 @@ var correctFloat = U.correctFloat, defined = U.defined, destroyObjectProperties 
 * @type {number}
 */
 ''; // detached doclets above
-import './Chart.js';
 import './Series.js';
-var Chart = H.Chart, Series = H.Series;
+var Series = H.Series;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * The class for stacks. Each stack, on a specific X value and either negative
@@ -85,6 +85,7 @@ var StackItem = /** @class */ (function () {
         // This will keep each points' extremes stored by series.index and point
         // index
         this.points = {};
+        this.hasValidPoints = false;
         // Save the stack option on the series configuration object,
         // and whether to treat it as percent
         this.stack = stackOption;
@@ -222,8 +223,11 @@ var StackItem = /** @class */ (function () {
                 y: label.alignAttr.y
             });
             if (pick(!isJustify && stackItem.options.crop, true)) {
-                visible = chart.isInsidePlot(label.x - padding + label.width, label.y) &&
-                    chart.isInsidePlot(label.x + padding, label.y);
+                visible =
+                    isNumber(label.x) &&
+                        isNumber(label.y) &&
+                        chart.isInsidePlot(label.x - padding + label.width, label.y) &&
+                        chart.isInsidePlot(label.x + padding, label.y);
                 if (!visible) {
                     label.hide();
                 }
@@ -273,7 +277,6 @@ var StackItem = /** @class */ (function () {
  *
  * @private
  * @function Highcharts.Chart#getStacks
- * @return {void}
  */
 Chart.prototype.getStacks = function () {
     var chart = this, inverted = chart.inverted;
@@ -299,20 +302,41 @@ Chart.prototype.getStacks = function () {
 };
 // Stacking methods defined on the Axis prototype
 StackingAxis.compose(Axis);
-// Stacking methods defnied for Series prototype
+// Stacking methods defined for Series prototype
+/**
+ * Set grouped points in a stack-like object. When `centerInCategory` is true,
+ * and `stacking` is not enabled, we need a pseudo (horizontal) stack in order
+ * to handle grouping of points within the same category.
+ *
+ * @private
+ * @function Highcharts.Series#setStackedPoints
+ * @return {void}
+ */
+Series.prototype.setGroupedPoints = function () {
+    if (this.options.centerInCategory &&
+        (this.is('column') || this.is('columnrange')) &&
+        // With stacking enabled, we already have stacks that we can compute
+        // from
+        !this.options.stacking &&
+        // With only one series, we don't need to consider centerInCategory
+        this.chart.series.length > 1) {
+        Series.prototype.setStackedPoints.call(this, 'group');
+    }
+};
 /**
  * Adds series' points value to corresponding stack
  *
  * @private
  * @function Highcharts.Series#setStackedPoints
  */
-Series.prototype.setStackedPoints = function () {
-    if (!this.options.stacking ||
+Series.prototype.setStackedPoints = function (stackingParam) {
+    var stacking = stackingParam || this.options.stacking;
+    if (!stacking ||
         (this.visible !== true &&
             this.chart.options.chart.ignoreHiddenSeries !== false)) {
         return;
     }
-    var series = this, xData = series.processedXData, yData = series.processedYData, stackedYData = [], yDataLength = yData.length, seriesOptions = series.options, threshold = seriesOptions.threshold, stackThreshold = pick(seriesOptions.startFromThreshold && threshold, 0), stackOption = seriesOptions.stack, stacking = seriesOptions.stacking, stackKey = series.stackKey, negKey = '-' + stackKey, negStacks = series.negStacks, yAxis = series.yAxis, stacks = yAxis.stacking.stacks, oldStacks = yAxis.stacking.oldStacks, stackIndicator, isNegative, stack, other, key, pointKey, i, x, y;
+    var series = this, xData = series.processedXData, yData = series.processedYData, stackedYData = [], yDataLength = yData.length, seriesOptions = series.options, threshold = seriesOptions.threshold, stackThreshold = pick(seriesOptions.startFromThreshold && threshold, 0), stackOption = seriesOptions.stack, stackKey = stackingParam ? series.type + "," + stacking : series.stackKey, negKey = '-' + stackKey, negStacks = series.negStacks, yAxis = series.yAxis, stacks = yAxis.stacking.stacks, oldStacks = yAxis.stacking.oldStacks, stackIndicator, isNegative, stack, other, key, pointKey, i, x, y;
     yAxis.stacking.stacksTouched += 1;
     // loop over the non-null y values and read them into a local array
     for (i = 0; i < yDataLength; i++) {
@@ -381,20 +405,35 @@ Series.prototype.setStackedPoints = function () {
                     correctFloat(stack.total + (Math.abs(y) || 0));
             }
         }
+        else if (stacking === 'group') {
+            // In this stack, the total is the number of valid points
+            if (y !== null) {
+                stack.total = (stack.total || 0) + 1;
+            }
+        }
         else {
             stack.total = correctFloat(stack.total + (y || 0));
         }
-        stack.cumulative =
-            pick(stack.cumulative, stackThreshold) + (y || 0);
+        if (stacking === 'group') {
+            // This point's index within the stack, pushed to stack.points[1]
+            stack.cumulative = (stack.total || 1) - 1;
+        }
+        else {
+            stack.cumulative =
+                pick(stack.cumulative, stackThreshold) + (y || 0);
+        }
         if (y !== null) {
             stack.points[pointKey].push(stack.cumulative);
             stackedYData[i] = stack.cumulative;
+            stack.hasValidPoints = true;
         }
     }
     if (stacking === 'percent') {
         yAxis.stacking.usePercentage = true;
     }
-    this.stackedYData = stackedYData; // To be used in getExtremes
+    if (stacking !== 'group') {
+        this.stackedYData = stackedYData; // To be used in getExtremes
+    }
     // Reset old stacks
     yAxis.stacking.oldStacks = {};
 };

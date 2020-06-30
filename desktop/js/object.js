@@ -54,8 +54,7 @@ $('#in_searchObject').keyup(function() {
   $('.objectDisplayCard').hide()
   var text
   $('.objectDisplayCard .name').each(function() {
-    text = $(this).text()
-    text = normTextLower(text)
+    text = normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.objectDisplayCard').show()
     }
@@ -399,28 +398,32 @@ $('.addSummary').on('click',function() {
 
 $('.bt_checkAll').on('click',function() {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop( "checked", true )
+    $(this).prop("checked", true )
   })
 })
 
 $('.bt_checkNone').on('click',function() {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop( "checked", false )
+    $(this).prop("checked", false )
   })
 })
 
 //cmd info modal autoselect object:
-$('#div_pageContainer').delegate(".listCmdInfo", 'click', function() {
-  var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({object:{id:$('.objectAttr[data-l1key="id"]').val()},cmd:{type:'info'}}, function(result) {
-    el.value(result.human)
-  })
-  $('body').trigger('mod_insertCmdValue_Visible')
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({object:{id:$('.objectAttr[data-l1key="id"]').val()},cmd:{type:'info'}}, function(result) {
+      el.value(result.human)
+    })
+    $('body').trigger('mod_insertCmdValue_Visible')
+  }
+}, '.listCmdInfo')
 
-$('#div_pageContainer').delegate('.bt_removeSummary', 'click', function() {
-  $(this).closest('.summary').remove()
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    $(this).closest('.summary').remove()
+  }
+}, '.bt_removeSummary')
 
 function addSummaryInfo(_el, _summary) {
   if (!isset(_summary)) {

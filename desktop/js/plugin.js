@@ -18,7 +18,7 @@
 var alert_div_plugin_configuration = null;
 $(function() {
   $('sub.itemsNumber').html('('+$('.pluginDisplayCard').length+')')
-  
+
   if ($('#md_modal').is(':visible')) {
     $('#bt_returnToThumbnailDisplay').hide()
     $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8')
@@ -26,9 +26,10 @@ $(function() {
   } else {
     alert_div_plugin_configuration = $('#div_alert')
   }
-  
-  $('.pluginDisplayCard').show()
+
+
   setTimeout(function() {
+    $('.pluginDisplayCard').removeClass('hidden').show()
     $('.pluginListContainer').packery()
   }, 100)
 })
@@ -43,12 +44,11 @@ $('#in_searchPlugin').off('keyup').keyup(function() {
     return
   }
   search = normTextLower(search)
-  
+
   $('.pluginDisplayCard').hide()
   var text
   $('.pluginDisplayCard .name').each(function() {
-    text = $(this).text()
-    text = normTextLower(text)
+    text = normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.pluginDisplayCard').show()
     }
@@ -95,7 +95,7 @@ function displayPlugin(_pluginId) {
     success: function(data) {
       $('#span_plugin_id').html(data.id)
       $('#span_plugin_name').html(data.name)
-      
+
       if (isset(data.update) && isset(data.update.localVersion)) {
         var localVer = data.update.localVersion
         if (localVer.length > 20) localVer = localVer.substring(0,20) + '...'
@@ -103,20 +103,21 @@ function displayPlugin(_pluginId) {
       } else {
         $('#span_plugin_install_date').html('')
       }
-      
+
       $('#span_plugin_license').html(data.license)
       if ($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune') {
         $('#span_plugin_installation').closest('.panel').hide()
       } else {
         $('#span_plugin_installation').html(data.installation).closest('.panel').show()
       }
-      
+
       if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)) {
         $('#span_plugin_install_version').html(data.update.configuration.version)
       } else {
         $('#span_plugin_install_version').html('')
       }
-      
+
+      //dependencies and daemon divs:
       var $divPluginDependancy = $('#div_plugin_dependancy')
       var $divPluginDeamon = $('#div_plugin_deamon')
       $divPluginDependancy.closest('.panel').parent().addClass('col-md-6')
@@ -127,14 +128,20 @@ function displayPlugin(_pluginId) {
       } else {
         $divPluginDependancy.load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id).closest('.panel').show()
       }
-      
+
       if (data.hasOwnDeamon == 0 || data.activate != 1) {
         $divPluginDeamon.closest('.panel').hide()
         $divPluginDependancy.closest('.panel').parent().removeClass('col-md-6')
       } else {
         $divPluginDeamon.load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id).closest('.panel').show()
       }
-      
+
+      if ((data.hasDependency == 0 || data.activate != 1) && (data.hasOwnDeamon == 0 || data.activate != 1)) {
+        $divPluginDependancy.closest('.panel').parent().remove()
+        $divPluginDeamon.closest('.panel').parent().remove()
+      }
+
+      //top right buttons:
       var $spanRightButton = $('#span_right_button')
       $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
       if (isset(data.documentation) && data.documentation != '') {
@@ -152,9 +159,9 @@ function displayPlugin(_pluginId) {
       } else {
         $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>')
       }
-      
+
       $('#div_configPanel').hide()
-      $('#div_plugin_panel').empty()
+      $.clearDivContent('div_plugin_panel')
       if (isset(data.display) && data.display != '') {
         var config_panel_html = '<div class="form-group">'
         config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau desktop}}</label>'
@@ -165,7 +172,7 @@ function displayPlugin(_pluginId) {
         $('#div_configPanel').show()
         $('#div_plugin_panel').append(config_panel_html)
       }
-      
+
       if (isset(data.mobile) && data.mobile != '') {
         var config_panel_html = '<div class="form-group">'
         config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau mobile}}</label>'
@@ -176,8 +183,8 @@ function displayPlugin(_pluginId) {
         $('#div_configPanel').show()
         $('#div_plugin_panel').append(config_panel_html)
       }
-      
-      $('#div_plugin_functionality').empty()
+
+      $.clearDivContent('div_plugin_functionality')
       count = 0
       var config_panel_html = '<div class="row">'
       config_panel_html += '<div class="col-sm-6">'
@@ -208,8 +215,8 @@ function displayPlugin(_pluginId) {
       config_panel_html += '</div>'
       config_panel_html += '</div>'
       $('#div_plugin_functionality').append(config_panel_html)
-      
-      $('#div_plugin_toggleState').empty()
+
+      $.clearDivContent('div_plugin_toggleState')
       if (data.checkVersion != -1) {
         var html = '<form class="form-horizontal"><fieldset>'
         html += '<div class="form-group">'
@@ -262,7 +269,7 @@ function displayPlugin(_pluginId) {
         log_conf += '</div>'
         log_conf += '</form>'
       }
-      
+
       log_conf += '<form class="form-horizontal">'
       log_conf += '<div class="form-group">'
       log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>'
@@ -277,10 +284,11 @@ function displayPlugin(_pluginId) {
       }
       log_conf += '</div>'
       log_conf += '</form>'
-      
-      $('#div_plugin_log').empty().append(log_conf)
+      $.clearDivContent('div_plugin_log')
+      $('#div_plugin_log').append(log_conf)
+
       var $divPluginConfiguration = $('#div_plugin_configuration')
-      $divPluginConfiguration.empty()
+      $.clearDivContent('div_plugin_configuration')
       if (data.checkVersion != -1) {
         if (data.configurationPath != '' && data.activate == 1) {
           $divPluginConfiguration.load('index.php?v=d&plugin='+data.id+'&configure=1', function() {
@@ -351,41 +359,45 @@ function displayPlugin(_pluginId) {
   })
 }
 
-$('#span_right_button').delegate('.removePlugin','click', function() {
-  var _el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce plugin ?}}', function(result) {
-    if (result) {
-      $.hideAlert()
-      jeedom.update.remove({
-        id: _el.attr('data-market_logicalId'),
-        error: function(error) {
-          alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
-        },
-        success: function() {
-          loadPage('index.php?v=d&p=plugin')
-        }
-      })
-    }
-  })
-})
-
-$("#div_plugin_toggleState").delegate(".togglePlugin", 'click', function() {
-  var _el = $(this)
-  jeedom.plugin.toggle({
-    id: _el.attr('data-plugin_id'),
-    state: _el.attr('data-state'),
-    error: function(error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      if ($('#md_modal').is(':visible')) {
-        $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id=' + _el.attr('data-plugin_id')).dialog('open')
-      } else {
-        window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id')
+$('#span_right_button').on({
+  'click': function(event) {
+    var _el = $(this)
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce plugin ?}}', function(result) {
+      if (result) {
+        $.hideAlert()
+        jeedom.update.remove({
+          id: _el.attr('data-market_logicalId'),
+          error: function(error) {
+            alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
+          },
+          success: function() {
+            loadPage('index.php?v=d&p=plugin')
+          }
+        })
       }
-    }
-  })
-})
+    })
+  }
+}, '.removePlugin')
+
+$('#div_plugin_toggleState').on({
+  'click': function(event) {
+    var _el = $(this)
+    jeedom.plugin.toggle({
+      id: _el.attr('data-plugin_id'),
+      state: _el.attr('data-state'),
+      error: function(error) {
+        alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        if ($('#md_modal').is(':visible')) {
+          $("#md_modal").load('index.php?v=d&p=plugin&ajax=1&id=' + _el.attr('data-plugin_id')).dialog('open')
+        } else {
+          window.location.href = 'index.php?v=d&p=plugin&id=' + _el.attr('data-plugin_id')
+        }
+      }
+    })
+  }
+}, '.togglePlugin')
 
 if (typeof(sel_plugin_id) !== "undefined" && sel_plugin_id != -1) {
   if ($('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').length != 0) {

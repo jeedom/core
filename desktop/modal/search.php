@@ -625,56 +625,72 @@ function showNotesResult(_Notes, _empty=true) {
 }
 
 /* ------            Search results Tables Actions            -------*/
-$('#table_ScenarioSearch').delegate('.bt_openLog', 'click', function () {
-  var tr = $(this).closest('tr')
-  $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
-})
-
-$('#table_ScenarioSearch').delegate('.bt_openScenario', 'click', function () {
-  var tr = $(this).closest('tr')
-  var searchType = $('#sel_searchByType').find('option:selected').val()
-  var url = 'index.php?v=d&p=scenario&id=' + tr.attr('data-id')
-  if (searchType != 'plugin') {
-    var searchFor = $('#in_searchFor_'+searchType).val()
-    url += '&search=' + searchFor.replace('#', '')
+$('#table_ScenarioSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
   }
-  window.open(url).focus()
-})
+}, '.bt_openLog')
 
-$('#table_DesignSearch').delegate('.bt_openDesign', 'click', function () {
-  var tr = $(this).closest('tr')
-  var url = 'index.php?v=d&p=plan&plan_id=' + tr.attr('data-id')
-  window.open(url).focus()
-})
+$('#table_ScenarioSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    var searchType = $('#sel_searchByType').find('option:selected').val()
+    var url = 'index.php?v=d&p=scenario&id=' + tr.attr('data-id')
+    if (searchType != 'plugin') {
+      var searchFor = $('#in_searchFor_'+searchType).val()
+      url += '&search=' + searchFor.replace('#', '')
+    }
+    window.open(url).focus()
+  }
+}, '.bt_openScenario')
 
-$('#table_ViewSearch').delegate('.bt_openView', 'click', function () {
-  var tr = $(this).closest('tr')
-  var url = 'index.php?v=d&p=view&view_id=' + tr.attr('data-id')
-  window.open(url).focus()
-})
+$('#table_DesignSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    var url = 'index.php?v=d&p=plan&plan_id=' + tr.attr('data-id')
+    window.open(url).focus()
+  }
+}, '.bt_openDesign')
 
-$('#table_InteractSearch').delegate('.bt_openInteract', 'click', function () {
-  var tr = $(this).closest('tr')
-  var url = 'index.php?v=d&p=interact&id=' + tr.attr('data-id')
-  window.open(url).focus()
-})
+$('#table_ViewSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    var url = 'index.php?v=d&p=view&view_id=' + tr.attr('data-id')
+    window.open(url).focus()
+  }
+}, '.bt_openView')
 
-$('#table_EqlogicSearch').delegate('.bt_openEqlogic', 'click', function () {
-  var tr = $(this).closest('tr')
-  var url = tr.attr('data-id')
-  window.open(url).focus()
-})
+$('#table_InteractSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    var url = 'index.php?v=d&p=interact&id=' + tr.attr('data-id')
+    window.open(url).focus()
+  }
+}, '.bt_openInteract')
 
-$('#table_CmdSearch').delegate('.bt_openCmd', 'click', function () {
-  var tr = $(this).closest('tr')
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + tr.attr('data-id')).dialog('open')
-})
+$('#table_EqlogicSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    var url = tr.attr('data-id')
+    window.open(url).focus()
+  }
+}, '.bt_openEqlogic')
 
-$('#table_NoteSearch').delegate('.bt_openNote', 'click', function () {
-  var tr = $(this).closest('tr')
-  var url = 'index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=Notes&id='+tr.attr('data-id')
-  window.open(url).focus()
-})
+$('#table_CmdSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + tr.attr('data-id')).dialog('open')
+  }
+}, '.bt_openCmd')
+
+$('#table_NoteSearch').on({
+  'click': function(event) {
+    var tr = $(this).closest('tr')
+    var url = 'index.php?v=d&p=modaldisplay&loadmodal=note.manager&title=Notes&id='+tr.attr('data-id')
+    window.open(url).focus()
+  }
+}, '.bt_openNote')
 
 /* Help button */
 $('#bt_getHelpModal').on('click',function() {

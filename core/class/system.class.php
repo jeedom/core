@@ -204,6 +204,9 @@ class system {
 				if(!isset($infos[1])){
 					continue;
 				}
+				if(strpos($infos[1],':') !== false){
+					$infos[1] = explode(':',$infos[1])[0];
+				}
 				self::$_installPackage[$_type][$infos[1]] = array(
 					'version' => $infos[2]
 				);
@@ -279,7 +282,8 @@ class system {
 					'needVersion' => isset($info['version']) ? $info['version'] : '',
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
-					'fix' => ($found == 0) ?  self::installPackage($type,$package) : ''
+					'fix' => ($found == 0) ?  self::installPackage($type,$package) : '',
+					'remark' => isset($info['remark']) ? __($info['remark'],'install/packages.json') : '',
 				);
 			}
 		}

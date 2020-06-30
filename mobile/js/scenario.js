@@ -11,6 +11,7 @@ function initScenario() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(htmls) {
+      $.clearDivContent('div_displayScenario')
       //get groups
       var scenarioGroups = []
       var group
@@ -62,7 +63,7 @@ function initScenario() {
         fullDiv += '\n</div>'
       })
 
-      $('#div_displayScenario').empty().html(fullDiv).trigger('create')
+      $('#div_displayScenario').html(fullDiv).trigger('create')
 
       //size and pack:
       setTimeout(function() {
@@ -73,15 +74,17 @@ function initScenario() {
     }
   })
 
-  $('#div_displayScenario').delegate('.toggleShowGroup', 'click', function() {
-    var toggle = true
-    if ($(this).next(".groupContainer").is(":visible")) toggle = false
-    $('.groupContainer').hide()
-    if (toggle) $(this).next('.groupContainer').show()
-    setTimeout(function() {
-      $('#div_displayScenario').packery({gutter : 0})
-    }, 100)
-  })
+  $('#div_displayScenario').on({
+    'click': function(event) {
+      var toggle = true
+      if ($(this).next(".groupContainer").is(":visible")) toggle = false
+      $('.groupContainer').hide()
+      if (toggle) $(this).next('.groupContainer').show()
+      setTimeout(function() {
+        $('#div_displayScenario').packery({gutter : 0})
+      }, 100)
+    }
+  }, '.toggleShowGroup')
 
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()

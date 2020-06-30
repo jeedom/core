@@ -966,6 +966,7 @@
         "Obligatoire": "",
         "Voulu par": "",
         "Version": "Versiyon",
+        "Remarque": "",
         "Commande": "Komuta",
         "Action": "Eylem",
         "Mise à jour": "",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "",
         "Thème principal de": "",
         "à": "de",
+        "Cookie": "",
         "Basculer le thème en fonction de l'heure": "",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "",
         "Capteur de luminosité (mobile)": "",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "",
+        "Documentation": "Belgeleme",
+        "Concepts": "",
+        "Premiers pas": "",
         "Rechercher": "Arayın",
         "Afficher\/Masquer les objets": "Nesneleri Aç\/Gizle",
         "Retour à la Synthèse": "",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": ""
+        "Aucun design n\\'existe, cliquez": "",
+        "ici": "burada",
+        "pour en créer un.": ""
     },
     "desktop\/php\/history.php": {
         "Aucun": "Hiçbir",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Eklentinin ayarları",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Dikkat modifie verikeri bulunan bi sayfayı terk etmek uzerisiniz. Devam etmekden eminmisiniz?",
         "Nom de la copie de l\\'équipement ?": "",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
         "Veuillez d\\'abord sélectionner un": "Once bitane seçin",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "",
         "Inondation": "",
         "Humidité": "Nem",
+        "Thermostat humidité ambiante": "",
+        "Humidité consigne ": "",
+        "Humidité consigne": "",
         "UV": "",
         "Porte": "",
         "Fenêtre": "",

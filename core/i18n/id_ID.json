@@ -966,6 +966,7 @@
         "Obligatoire": "",
         "Voulu par": "",
         "Version": "Versi",
+        "Remarque": "",
         "Commande": "Pesanan",
         "Action": "Tindakan",
         "Mise à jour": "",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "",
         "Thème principal de": "",
         "à": "A",
+        "Cookie": "",
         "Basculer le thème en fonction de l'heure": "",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "",
         "Capteur de luminosité (mobile)": "",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "",
+        "Documentation": "Dokumentasi",
+        "Concepts": "",
+        "Premiers pas": "",
         "Rechercher": "Mencari",
         "Afficher\/Masquer les objets": "Tampilkan \/ Sembunyikan Objects",
         "Retour à la Synthèse": "",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": ""
+        "Aucun design n\\'existe, cliquez": "",
+        "ici": "disini",
+        "pour en créer un.": ""
     },
     "desktop\/php\/history.php": {
         "Aucun": "Tak ada",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Peringatan meninggalkan halaman dengan data yang dimodifikasi yang belum disimpan. Apakah Anda ingin melanjutkan?",
         "Nom de la copie de l\\'équipement ?": "",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
         "Veuillez d\\'abord sélectionner un": "Silakan \\ 's pertama memilih",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "",
         "Inondation": "",
         "Humidité": "Kelembaban",
+        "Thermostat humidité ambiante": "",
+        "Humidité consigne ": "",
+        "Humidité consigne": "",
         "UV": "",
         "Porte": "",
         "Fenêtre": "",

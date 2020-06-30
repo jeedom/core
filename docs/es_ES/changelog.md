@@ -72,8 +72,8 @@
 - **Aplicación web** : Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).<br/><br/>
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
-- **Lib** : Actualizar HighStock v7.1.2 a v8.1.0.
+- **Lib** : Actualizar HighStock v7.1.2 a v8.1.2.
 - **Lib** : Actualizar jQuery v3.4.1 a v3.5.1.
-- **Lib** : Actualizar Font Awesome 5.9.0 a 5.13.0.
+- **Lib** : Actualizar Font Awesome 5.9.0 a 5.13.1.
 - Asegurando solicitudes Ajax.
 - Corrección de errores y optimizaciones.

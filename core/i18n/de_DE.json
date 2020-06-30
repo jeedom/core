@@ -966,6 +966,7 @@
         "Obligatoire": "Obligatorisch",
         "Voulu par": "Gesucht von",
         "Version": "Version",
+        "Remarque": "Bemerkung",
         "Commande": "Befehl",
         "Action": "Aktion",
         "Mise à jour": "Update",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "Alternatives mobiles Thema",
         "Thème principal de": "Hauptthema von",
         "à": "bis",
+        "Cookie": "Plätzchen",
         "Basculer le thème en fonction de l'heure": "Thema basierend auf der Zeit umschalten",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Aktivieren Sie diese Option, um zu den ausgewählten Zeiten automatisch zu einem anderen Thema zu wechseln",
         "Capteur de luminosité (mobile)": "Helligkeitssensor (mobil)",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "Kein Stammobjekt gefunden. Um eine zu erstellen, gehen Sie zu Extras -> Objekte. <br\/> Wenn Sie nicht wissen, was Sie tun sollen, zögern Sie nicht, diese <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">Seite<\/a> und diese <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">Seite<\/a> zu konsultieren, wenn Sie eine pack: <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page haben<\/a>",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "Kein Stammobjekt gefunden. Um eine zu erstellen, gehen Sie zu Extras -> Objekte",
+        "Documentation": "Dokumentation",
+        "Concepts": "Konzepte",
+        "Premiers pas": "Erste Schritte",
         "Rechercher": "Suchen",
         "Afficher\/Masquer les objets": "Objekte anzeigen\/verbergen",
         "Retour à la Synthèse": "Zurück zur Zusammenfassung",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "Es ist kein Design vorhanden. Klicken Sie <a id=\"bt_createNewDesign\" class=\"cursor\">hier<\/a> , um eines zu erstellen"
+        "Aucun design n\\'existe, cliquez": "Es ist kein Design vorhanden. Klicken Sie auf",
+        "ici": "hier",
+        "pour en créer un.": "einen erstellen"
     },
     "desktop\/php\/history.php": {
         "Aucun": "Ohne",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
         "Nom de la copie de l\\'équipement ?": "Name der Gerätekopie?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?",
         "Veuillez d\\'abord sélectionner un": "Bitte wählen Sie a",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "Raucherkennung",
         "Inondation": "Hochwasser",
         "Humidité": "Luftfeuchtigkeit",
+        "Thermostat humidité ambiante": "Raumfeuchtigkeitsthermostat",
+        "Humidité consigne ": "Stellen Sie die Luftfeuchtigkeit ein",
+        "Humidité consigne": "Stellen Sie die Luftfeuchtigkeit ein",
         "UV": "UV",
         "Porte": "Tür",
         "Fenêtre": "Fenster",

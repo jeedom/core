@@ -52,7 +52,7 @@ $('#bt_scenarioLogEmpty').on('click', function() {
     },
     success: function() {
       $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'})
-      $('#pre_logScenarioDisplay').empty()
+      $.clearDivContent('pre_logScenarioDisplay')
     }
   })
 })

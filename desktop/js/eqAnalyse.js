@@ -54,9 +54,10 @@ $('#in_search').off('keyup').on('keyup', function() {
     return
   }
   search = normTextLower(search)
+  var match, text
   $('.batteryListContainer .eqLogic-widget').each(function() {
-    var match = false
-    var text = normTextLower($(this).find('.widget-name').text())
+    match = false
+    text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
     text = normTextLower($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true

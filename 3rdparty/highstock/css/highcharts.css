@@ -17,6 +17,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
   font-size: 12px;
+  user-select: none;
 }
 
 .highcharts-root {
@@ -184,6 +185,12 @@ div.highcharts-tooltip {
   stroke-linejoin: round;
 }
 
+.highcharts-empty-series {
+  stroke-width: 1px;
+  fill: none;
+  stroke: #cccccc;
+}
+
 .highcharts-state-hover .highcharts-graph {
   stroke-width: 3;
 }
@@ -285,6 +292,11 @@ g.highcharts-series,
 .highcharts-markers {
   stroke-width: 1px;
   stroke: #ffffff;
+}
+
+.highcharts-a11y-markers-hidden .highcharts-point:not(.highcharts-point-hover):not(.highcharts-a11y-marker-visible),
+.highcharts-a11y-marker-hidden {
+  opacity: 0;
 }
 
 .highcharts-point {

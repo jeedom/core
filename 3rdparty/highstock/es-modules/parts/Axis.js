@@ -66,25 +66,35 @@ var addEvent = U.addEvent, animObject = U.animObject, arrayMax = U.arrayMax, arr
  * @param {Highcharts.Axis} this
  */
 /**
- * @interface Highcharts.AxisLabelsFormatterContextObject
+ * @callback Highcharts.AxisLabelsFormatterCallbackFunction
+ *
+ * @param {Highcharts.AxisLabelsFormatterContextObject<number>} this
+ *
+ * @param {Highcharts.AxisLabelsFormatterContextObject<string>} that
+ *
+ * @return {string}
+ */
+/**
+ * @interface Highcharts.AxisLabelsFormatterContextObject<T>
  */ /**
-* @name Highcharts.AxisLabelsFormatterContextObject#axis
+* @name Highcharts.AxisLabelsFormatterContextObject<T>#axis
 * @type {Highcharts.Axis}
 */ /**
-* @name Highcharts.AxisLabelsFormatterContextObject#chart
+* @name Highcharts.AxisLabelsFormatterContextObject<T>#chart
 * @type {Highcharts.Chart}
 */ /**
-* @name Highcharts.AxisLabelsFormatterContextObject#isFirst
+* @name Highcharts.AxisLabelsFormatterContextObject<T>#isFirst
 * @type {boolean}
 */ /**
-* @name Highcharts.AxisLabelsFormatterContextObject#isLast
+* @name Highcharts.AxisLabelsFormatterContextObject<T>#isLast
 * @type {boolean}
 */ /**
-* @name Highcharts.AxisLabelsFormatterContextObject#pos
+* @name Highcharts.AxisLabelsFormatterContextObject<T>#pos
 * @type {number}
 */ /**
-* @name Highcharts.AxisLabelsFormatterContextObject#value
-* @type {number}
+* This can be either a numeric value or a category string.
+* @name Highcharts.AxisLabelsFormatterContextObject<T>#value
+* @type {T}
 */
 /**
  * Options for axes.
@@ -144,7 +154,7 @@ var addEvent = U.addEvent, animObject = U.animObject, arrayMax = U.arrayMax, arr
  *
  * @param {Highcharts.Axis} this
  *
- * @return {Array<number>}
+ * @return {Highcharts.AxisTickPositionsArray}
  */
 /**
  * @interface Highcharts.AxisTickPositionsArray
@@ -208,8 +218,9 @@ var addEvent = U.addEvent, animObject = U.animObject, arrayMax = U.arrayMax, arr
  *
  * @return {string}
  */
-import './Options.js';
-var defaultOptions = H.defaultOptions, deg2rad = H.deg2rad;
+import O from './Options.js';
+var defaultOptions = O.defaultOptions;
+var deg2rad = H.deg2rad;
 /**
  * Create a new axis object. Called internally when instanciating a new chart or
  * adding axes by {@link Highcharts.Chart#addAxis}.
@@ -542,14 +553,14 @@ var Axis = /** @class */ (function () {
      *
      * @function Highcharts.Axis#defaultLabelFormatter
      *
-     * @param {Highcharts.AxisLabelsFormatterContextObject} this
+     * @param {Highcharts.AxisLabelsFormatterContextObject<number>|Highcharts.AxisLabelsFormatterContextObject<string>} this
      * Formatter context of axis label.
      *
      * @return {string}
      * The formatted label content.
      */
     Axis.prototype.defaultLabelFormatter = function () {
-        var axis = this.axis, value = this.value, time = axis.chart.time, categories = axis.categories, dateTimeLabelFormat = this.dateTimeLabelFormat, lang = defaultOptions.lang, numericSymbols = lang.numericSymbols, numSymMagnitude = lang.numericSymbolMagnitude || 1000, i = numericSymbols && numericSymbols.length, multi, ret, formatOption = axis.options.labels.format, 
+        var axis = this.axis, value = isNumber(this.value) ? this.value : NaN, time = axis.chart.time, categories = axis.categories, dateTimeLabelFormat = this.dateTimeLabelFormat, lang = defaultOptions.lang, numericSymbols = lang.numericSymbols, numSymMagnitude = lang.numericSymbolMagnitude || 1000, i = numericSymbols && numericSymbols.length, multi, ret, formatOption = axis.options.labels.format, 
         // make sure the same symbol is added for all labels on a linear
         // axis
         numericSymbolDetector = axis.logarithmic ?
@@ -561,7 +572,7 @@ var Axis = /** @class */ (function () {
             ret = format(formatOption, this, chart);
         }
         else if (categories) {
-            ret = value;
+            ret = "" + this.value;
         }
         else if (dateTimeLabelFormat) { // datetime axis
             ret = time.dateFormat(dateTimeLabelFormat, value);
@@ -583,8 +594,7 @@ var Axis = /** @class */ (function () {
                     (value * 10) % multi === 0 &&
                     numericSymbols[i] !== null &&
                     value !== 0) { // #5480
-                    ret = numberFormatter(value / multi, -1) +
-                        numericSymbols[i];
+                    ret = numberFormatter(value / multi, -1) + numericSymbols[i];
                 }
             }
         }
@@ -1431,13 +1441,7 @@ var Axis = /** @class */ (function () {
         // set the translation factor used in translate function
         axis.setAxisTranslation(true);
         // hook for ordinal axes and radial axes
-        if (axis.beforeSetTickPositions) {
-            axis.beforeSetTickPositions();
-        }
-        // hook for extensions, used in Highstock ordinal axes
-        if (axis.ordinal) {
-            axis.tickInterval = axis.ordinal.postProcessTickInterval(axis.tickInterval);
-        }
+        fireEvent(this, 'initialAxisTranslation');
         // In column-like charts, don't cramp in more ticks than there are
         // points (#1943, #4184)
         if (axis.pointRange && !tickIntervalOption) {
@@ -1445,7 +1449,12 @@ var Axis = /** @class */ (function () {
         }
         // Before normalizing the tick interval, handle minimum tick interval.
         // This applies only if tickInterval is not defined.
-        minTickInterval = pick(options.minTickInterval, (axis.dateTime && axis.closestPointRange));
+        minTickInterval = pick(options.minTickInterval, 
+        // In datetime axes, don't go below the data interval, except when
+        // there are scatter-like series involved (#13369).
+        axis.dateTime &&
+            !axis.series.some(function (s) { return s.noSharedTooltip; }) ?
+            axis.closestPointRange : 0);
         if (!tickIntervalOption && axis.tickInterval < minTickInterval) {
             axis.tickInterval = minTickInterval;
         }
@@ -2737,7 +2746,8 @@ var Axis = /** @class */ (function () {
                         alternateBands[pos].options = {
                             from: log ? log.lin2log(from) : from,
                             to: log ? log.lin2log(to) : to,
-                            color: alternateGridColor
+                            color: alternateGridColor,
+                            className: 'highcharts-alternate-grid'
                         };
                         alternateBands[pos].render();
                         alternateBands[pos].isActive = true;
@@ -3099,7 +3109,7 @@ var Axis = /** @class */ (function () {
          * @sample {highstock} stock/xaxis/alternategridcolor/
          *         Alternate grid color on the Y axis
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @apioption xAxis.alternateGridColor
          */
         /**
@@ -3244,7 +3254,7 @@ var Axis = /** @class */ (function () {
          * @sample {highcharts|highstock|highmaps} highcharts/xaxis/crosshair-customized/
          *         Customized crosshairs
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @default   #cccccc
          * @since     4.1
          * @apioption xAxis.crosshair.color
@@ -3294,7 +3304,7 @@ var Axis = /** @class */ (function () {
          * The background color for the label. Defaults to the related series
          * color, or `#666666` if that is not available.
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @since     2.1
          * @product   highstock
          * @apioption xAxis.crosshair.label.backgroundColor
@@ -3302,7 +3312,7 @@ var Axis = /** @class */ (function () {
         /**
          * The border color for the crosshair label
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @since     2.1
          * @product   highstock
          * @apioption xAxis.crosshair.label.borderColor
@@ -3799,7 +3809,7 @@ var Axis = /** @class */ (function () {
              * @sample {highstock} stock/xaxis/labels-formatter/
              *         Added units on Y axis
              *
-             * @type      {Highcharts.FormatterCallbackFunction<Highcharts.AxisLabelsFormatterContextObject>}
+             * @type      {Highcharts.AxisLabelsFormatterCallbackFunction}
              * @apioption xAxis.labels.formatter
              */
             /**
@@ -4225,7 +4235,7 @@ var Axis = /** @class */ (function () {
          * So a minRange of 1 means that the axis can be zoomed to 10-100,
          * 100-1000, 1000-10000 etc.
          *
-         * Note that the `minPadding`, `maxPadding`, `startOnTick` and
+         * **Note**: The `minPadding`, `maxPadding`, `startOnTick` and
          * `endOnTick` settings also affect how the extremes of the axis
          * are computed.
          *
@@ -4929,7 +4939,7 @@ var Axis = /** @class */ (function () {
          * @sample {highstock} stock/xaxis/minorgridlinecolor/
          *         Bright grey lines from Y axis
          *
-         * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type    {Highcharts.ColorType}
          * @default #f2f2f2
          */
         minorGridLineColor: '#f2f2f2',
@@ -4955,7 +4965,7 @@ var Axis = /** @class */ (function () {
          * @sample {highstock} stock/xaxis/minorticks/
          *         Black tick marks on Y axis
          *
-         * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type    {Highcharts.ColorType}
          * @default #999999
          */
         minorTickColor: '#999999',
@@ -4976,7 +4986,7 @@ var Axis = /** @class */ (function () {
          * @sample {highstock} stock/xaxis/linecolor/
          *         A red line on X axis
          *
-         * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type    {Highcharts.ColorType}
          * @default #ccd6eb
          */
         lineColor: '#ccd6eb',
@@ -5013,7 +5023,7 @@ var Axis = /** @class */ (function () {
          * @sample {highstock} stock/xaxis/gridlinecolor/
          *         Green lines
          *
-         * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type    {Highcharts.ColorType}
          * @default #e6e6e6
          */
         gridLineColor: '#e6e6e6',
@@ -5071,7 +5081,7 @@ var Axis = /** @class */ (function () {
          * @sample {highstock} stock/xaxis/ticks/
          *         Formatted ticks on X axis
          *
-         * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type    {Highcharts.ColorType}
          * @default #ccd6eb
          */
         tickColor: '#ccd6eb'
@@ -5141,7 +5151,7 @@ var Axis = /** @class */ (function () {
          * @sample {highcharts} highcharts/yaxis/mincolor-maxcolor/
          *         Min and max colors
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @default   #003399
          * @since     4.0
          * @product   highcharts
@@ -5154,7 +5164,7 @@ var Axis = /** @class */ (function () {
          * @sample {highcharts} highcharts/yaxis/mincolor-maxcolor/
          *         Min and max color
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @default   #e6ebf5
          * @since     4.0
          * @product   highcharts
@@ -5377,7 +5387,7 @@ var Axis = /** @class */ (function () {
          * In Highmaps, the axis line is hidden by default, because the axis is
          * not visible by default.
          *
-         * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+         * @type      {Highcharts.ColorType}
          * @apioption yAxis.lineColor
          */
         /**
@@ -5714,7 +5724,7 @@ var Axis = /** @class */ (function () {
              *
              * @sample {highcharts} highcharts/yaxis/stacklabels-box/
              *          Stack labels box options
-             * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+             * @type      {Highcharts.ColorType}
              * @since 8.1.0
              * @apioption yAxis.stackLabels.backgroundColor
              */
@@ -5723,7 +5733,7 @@ var Axis = /** @class */ (function () {
              *
              * @sample {highcharts} highcharts/yaxis/stacklabels-box/
              *          Stack labels box options
-             * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
+             * @type      {Highcharts.ColorType}
              * @since 8.1.0
              * @apioption yAxis.stackLabels.borderColor
              */

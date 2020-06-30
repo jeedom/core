@@ -68,8 +68,8 @@ jeedom.object.getEqLogicsFromSummary = function(_params) {
     action: "getEqLogicsFromSummary",
     id: _params.id,
     summary: _params.summary,
-    onlyEnable: _params.onlyEnable || 1,
-    onlyVisible : _params.onlyVisible || 1
+    onlyEnable: _params.onlyEnable || '1',
+    onlyVisible : _params.onlyVisible || '0'
   };
   $.ajax(paramsAJAX);
 };

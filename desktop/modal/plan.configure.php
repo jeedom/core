@@ -447,21 +447,25 @@ $('.bt_planConfigurationAction').on('click', function() {
   addActionPlanConfigure({}, $(this).attr('data-type'))
 });
 
-$("body").delegate('.bt_removeAction', 'click', function() {
-  $(this).closest('.' +  $(this).attr('data-type')).remove()
-})
+$('#fd_planConfigure').on({
+  'click': function(event) {
+    $(this).closest('.' +  $(this).attr('data-type')).remove()
+  }
+}, '.bt_removeAction')
 
-$("body").delegate(".listCmdAction", 'click', function() {
-  var type = $(this).attr('data-type')
-  var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-  jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
-    el.value(result.human);
-    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-      el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
+$('#fd_planConfigure').on({
+  'click': function(event) {
+    var type = $(this).attr('data-type')
+    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
+      el.value(result.human);
+      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+        el.closest('.' + type).find('.actionOptions').html(html)
+        taAutosize()
+      })
     })
-  })
-})
+  }
+}, '.listCmdAction')
 
 $('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]', function(event) {
   var type = $(this).attr('data-type')

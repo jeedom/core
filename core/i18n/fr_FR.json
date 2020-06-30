@@ -966,6 +966,7 @@
         "Obligatoire": "Obligatoire",
         "Voulu par": "Voulu par",
         "Version": "Version",
+        "Remarque": "Remarque",
         "Commande": "Commande",
         "Action": "Action",
         "Mise à jour": "Mise à jour",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "Thème Mobile alternatif",
         "Thème principal de": "Thème principal de",
         "à": "à",
+        "Cookie": "Cookie",
         "Basculer le thème en fonction de l'heure": "Basculer le thème en fonction de l'heure",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Activer pour basculer automatiquement en thème alternatif aux heures choisies.",
         "Capteur de luminosité (mobile)": "Capteur de luminosité (mobile)",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets",
+        "Documentation": "Documentation",
+        "Concepts": "Concepts",
+        "Premiers pas": "Premiers pas",
         "Rechercher": "Rechercher",
         "Afficher\/Masquer les objets": "Afficher\/Masquer les objets",
         "Retour à la Synthèse": "Retour à la Synthèse",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une."
+        "Aucun design n\\'existe, cliquez": "Aucun design n\\'existe, cliquez",
+        "ici": "ici",
+        "pour en créer un.": "pour en créer un."
     },
     "desktop\/php\/history.php": {
         "Aucun": "Aucun",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuration du plugin",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Êtes-vous sûr de vouloir supprimer l\\'équipement",
         "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "Détection de fumée",
         "Inondation": "Inondation",
         "Humidité": "Humidité",
+        "Thermostat humidité ambiante": "Thermostat humidité ambiante",
+        "Humidité consigne ": "Humidité consigne ",
+        "Humidité consigne": "Humidité consigne",
         "UV": "UV",
         "Porte": "Porte",
         "Fenêtre": "Fenêtre",

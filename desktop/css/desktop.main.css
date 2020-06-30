@@ -88,6 +88,9 @@ a:hover {
 header a.navbar-brand {
   padding: 7px;
 }
+.nav .open > a {
+  background: none
+}
 
 #div_alert {
   width: 100%;
@@ -2060,9 +2063,6 @@ input.inputPassword  {
   margin-bottom: 3px;
   vertical-align: middle !important;
 }
-.form-group .form-control {
-  margin-bottom: 1.1px !important;
-}
 
 .form-control {
   color: var(--txt-color);
@@ -2872,6 +2872,9 @@ div[id^=__lpform_] { /*lastpass*/
   min-height: 62px;
   overflow: auto !important;
 }
+.element.elementCOM:not(.elementCollapse) textarea[data-l1key="expression"] {
+  display: block !important;
+}
 .element input.expressionAttr {
   font-weight: bold;
 }
@@ -3204,7 +3207,7 @@ textarea {
 .elementIN.elementCollapse .input-group-btn,
 .elementAT.elementCollapse .input-group-btn,
 .elementFOR.elementCollapse .input-group-btn {
-  z-index: -1;
+  opacity: 0;
 }
 
 .element .blocPreview {
@@ -3233,7 +3236,23 @@ textarea {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  backdrop-filter: blur(2px);
+}
+#div_jeedomLoading .loadingBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--eq-bg-color), 0.35);
+  }
+
+@supports (backdrop-filter: blur(2px)) {
+  #div_jeedomLoading {
+    backdrop-filter: blur(2px);
+  }
+  #div_jeedomLoading .loadingBack {
+    display: none;
+  }
 }
 #div_jeedomLoading .loadingSpinner {
   position: relative;

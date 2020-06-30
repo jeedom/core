@@ -23,7 +23,7 @@ $('#bt_downloadLog').click(function() {
 })
 
 $(".li_log").on('click', function() {
-  $('#pre_globallog').empty()
+  $.clearDivContent('pre_globallog')
   $(".li_log").removeClass('active')
   $(this).addClass('active')
   $btGlobalLogStopStart.removeClass('btn-success').addClass('btn-warning')

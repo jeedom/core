@@ -19,8 +19,9 @@
 printCron()
 printListener()
 initTableSorter(false)
+var $tableCron = $('#table_cron')
 setTimeout(function() {
-  $('#table_cron').find('th[data-column="0"]').trigger('sort')
+  $tableCron.find('th[data-column="0"]').trigger('sort')
 }, 100)
 
 jwerty.key('ctrl+s/⌘+s', function(event) {
@@ -68,47 +69,59 @@ $("#bt_changeCronState").on('click', function() {
   })
 })
 
-$("#table_cron").delegate(".remove", 'click', function() {
-  $(this).closest('tr').remove()
-})
-
-$("#table_cron").delegate(".stop", 'click', function() {
-  jeedom.cron.setState({
-    state: 'stop',
-    id: $(this).closest('tr').attr('id'),
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: printCron
-  })
-})
-
-$("#table_cron").delegate(".start", 'click', function() {
-  jeedom.cron.setState({
-    state: 'start',
-    id: $(this).closest('tr').attr('id'),
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: printCron
-  })
-})
-
-$("#table_cron").delegate(".display", 'click', function() {
-  $('#md_modal').dialog({title: "{{Détails du cron}}"}).load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open')
-})
-
-$("#table_listener").delegate(".display", 'click', function() {
-  $('#md_modal').dialog({title: "{{Détails du listener}}"}).load('index.php?v=d&modal=object.display&class=listener&id='+$(this).closest('tr').attr('id')).dialog('open')
-})
-
-$('#table_cron').delegate('.cronAttr[data-l1key=deamon]', 'change', function() {
-  if ($(this).value() == 1) {
-    $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show()
-  } else {
-    $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').hide()
+$tableCron.on({
+  'click': function(event) {
+    $(this).closest('tr').remove()
   }
-})
+}, '.remove')
+
+$tableCron.on({
+  'click': function(event) {
+    jeedom.cron.setState({
+      state: 'stop',
+      id: $(this).closest('tr').attr('id'),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: printCron
+    })
+  }
+}, '.stop')
+
+$tableCron.on({
+  'click': function(event) {
+    jeedom.cron.setState({
+      state: 'start',
+      id: $(this).closest('tr').attr('id'),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: printCron
+    })
+  }
+}, '.start')
+
+$tableCron.on({
+  'click': function(event) {
+    $('#md_modal').dialog({title: "{{Détails du cron}}"}).load('index.php?v=d&modal=object.display&class=cron&id='+$(this).closest('tr').attr('id')).dialog('open')
+  }
+}, '.display')
+
+$tableCron.on({
+  'change': function(event) {
+    if ($(this).value() == 1) {
+      $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show()
+    } else {
+      $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').hide()
+    }
+  }
+}, '.cronAttr[data-l1key=deamon]')
+
+$("#table_listener").on({
+  'click': function(event) {
+    $('#md_modal').dialog({title: "{{Détails du listener}}"}).load('index.php?v=d&modal=object.display&class=listener&id='+$(this).closest('tr').attr('id')).dialog('open')
+  }
+}, '.display')
 
 $('#div_pageContainer').off('change','.cronAttr').on('change','.cronAttr:visible',  function() {
   modifyWithoutSave = true
@@ -125,7 +138,7 @@ function printCron() {
         tr.push(addCron(data[i]))
       }
       $('#table_cron tbody').append(tr)
-      $("#table_cron").trigger("update")
+      $tableCron.trigger("update")
       modifyWithoutSave = false
       setTimeout(function() {
         modifyWithoutSave = false
@@ -209,7 +222,7 @@ function addCron(_cron) {
   tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>'
   tr += '</td>'
   tr += '</tr>'
-  $("#table_cron").trigger("update")
+  $tableCron.trigger("update")
   var result = $(tr)
   result.setValues(_cron, '.cronAttr')
   return result

@@ -18,8 +18,10 @@
 if (!isConnect('admin')) {
   throw new Exception('401 Unauthorized');
 }
-sendVarToJS('prerenderGraph', config::byKey('graphlink::prerender', 'core', 10));
-sendVarToJS('renderGraph', config::byKey('graphlink::render', 'core', 3000));
+sendVarToJS([
+  'prerenderGraph' => config::byKey('graphlink::prerender', 'core', 10),
+  'renderGraph' => config::byKey('graphlink::render', 'core', 3000)
+]);
 ?>
 
 <script type="text/javascript" src="3rdparty/vivagraph/vivagraph.min.js"></script>

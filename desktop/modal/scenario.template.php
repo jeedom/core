@@ -141,38 +141,41 @@ $('#bt_scenarioTemplateApply').on('click', function() {
   })
 })
 
-$('#ul_scenarioTemplateList').delegate('.li_scenarioTemplate','click', function() {
-  $('#div_listScenarioTemplate').show()
-  $('#div_marketScenarioTemplate').hide()
-  $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
-  $(this).addClass('active')
-  jeedom.scenario.loadTemplateDiff({
-    template: $(this).attr('data-template'),
-    id: scenario_template_id,
-    error: function(error) {
-      $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      var html = ''
-      for (var i in data) {
-        html += '<div class="form-group templateScenario">'
-        html += '<label class="col-xs-4 control-label">' + i + ' <i class="fas fa-arrow-right"></i></label>'
-        html += '<div class="col-xs-4">'
-        html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + i + '</span>'
-        html += '<div class="input-group">'
-        html += '<input class="form-control templateScenarioAttr" data-l1key="end" value="'+data[i]+'"/>'
-        html += '<span class="input-group-btn">'
-        html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fas fa-list-alt"></i></a>'
-        html += '</span>'
-        html += '</div>'
-        html += '</div>'
-        html += '</div>'
+$('#ul_scenarioTemplateList').on({
+  'click': function(event) {
+    $('#div_listScenarioTemplate').show()
+    $('#div_marketScenarioTemplate').hide()
+    $('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
+    $(this).addClass('active')
+    jeedom.scenario.loadTemplateDiff({
+      template: $(this).attr('data-template'),
+      id: scenario_template_id,
+      error: function(error) {
+        $('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(data) {
+        var html = ''
+        for (var i in data) {
+          html += '<div class="form-group templateScenario">'
+          html += '<label class="col-xs-4 control-label">' + i + ' <i class="fas fa-arrow-right"></i></label>'
+          html += '<div class="col-xs-4">'
+          html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + i + '</span>'
+          html += '<div class="input-group">'
+          html += '<input class="form-control templateScenarioAttr" data-l1key="end" value="'+data[i]+'"/>'
+          html += '<span class="input-group-btn">'
+          html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fas fa-list-alt"></i></a>'
+          html += '</span>'
+          html += '</div>'
+          html += '</div>'
+          html += '</div>'
+        }
+        $('#div_scenarioTemplateParametreList').empty().html(html)
+        $('#div_scenarioTemplateParametreConfiguration').show()
       }
-      $('#div_scenarioTemplateParametreList').empty().html(html)
-      $('#div_scenarioTemplateParametreConfiguration').show()
-    }
-  })
-})
+    })
+  }
+}, '.li_scenarioTemplate')
+
 
 $('#bt_scenarioTemplateDownload').on('click',function() {
   if ($('#ul_scenarioTemplateList li.active').attr('data-template') == undefined) {
@@ -183,12 +186,14 @@ $('#bt_scenarioTemplateDownload').on('click',function() {
   window.open('core/php/downloadFile.php?pathfile=' + path, "_blank", null)
 })
 
-$('#div_scenarioTemplate').delegate('.bt_scenarioTemplateSelectCmd', 'click', function() {
-  var el = $(this)
-  jeedom.cmd.getSelectModal({}, function(result) {
-    el.closest('.templateScenario').find('.templateScenarioAttr[data-l1key=end]').value(result.human)
-  })
-})
+$('#div_scenarioTemplate').on({
+  'click': function(event) {
+    var el = $(this)
+    jeedom.cmd.getSelectModal({}, function(result) {
+      el.closest('.templateScenario').find('.templateScenarioAttr[data-l1key=end]').value(result.human)
+    })
+  }
+}, '.bt_scenarioTemplateSelectCmd')
 
 $('#bt_uploadScenarioTemplate').fileupload({
   dataType: 'json',

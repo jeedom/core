@@ -189,16 +189,19 @@ if (is_numeric(getUrlVars('view_id'))) {
   $('#ul_view .li_view').first().click()
 }
 
-$("#div_viewZones").sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
+$('#div_viewZones').sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
 
-$('#div_pageContainer').delegate('#table_addViewData .enable','change', function() {
-  var selectTr = $(this).closest('tr')
-  if ($(this).value() == 1) {
-    selectTr.find('div.option').show()
-  } else {
-    selectTr.find('div.option').hide()
+$('#div_pageContainer').on({
+  'change': function(event) {
+    var selectTr = $(this).closest('tr')
+    if ($(this).value() == 1) {
+      selectTr.find('div.option').show()
+    } else {
+      selectTr.find('div.option').hide()
+    }
   }
-})
+}, '#table_addViewData .enable')
+
 
 /*****************************viewZone****************************************/
 $('#bt_addviewZone').on('click', function() {
@@ -218,23 +221,29 @@ $('#bt_addEditviewZoneSave').on('click', function() {
   }
 })
 
-$('#div_viewZones').delegate('.bt_removeviewZone', 'click', function() {
-  $(this).closest('.viewZone').remove()
-})
+$('#div_pageContainer').on({
+  'click': function(event) {
+    $(this).closest('.viewZone').remove()
+  }
+}, '.bt_removeviewZone')
 
-$('#div_viewZones').delegate('.bt_editviewZone', 'click', function() {
-  $('#md_addEditviewZone').modal('show')
-  $('#in_addEditviewZoneName').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html())
-  $('#sel_addEditviewZoneType').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=type]').val())
-  $('#sel_addEditviewZoneType').prop('disabled', true)
-  $('#in_addEditviewZoneEmplacement').val($(this).closest('.viewZone').attr('id'))
-})
+$('#div_viewZones').on({
+  'click': function(event) {
+    $('#md_addEditviewZone').modal('show')
+    $('#in_addEditviewZoneName').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=name]').html())
+    $('#sel_addEditviewZoneType').val($(this).closest('.viewZone').find('.viewZoneAttr[data-l1key=type]').val())
+    $('#sel_addEditviewZoneType').prop('disabled', true)
+    $('#in_addEditviewZoneEmplacement').val($(this).closest('.viewZone').attr('id'))
+  }
+}, '.bt_editviewZone')
+
 
 /*****************************DATA****************************************/
-$('#div_viewZones').delegate('.bt_removeViewData', 'click', function() {
-  $(this).closest('tr').remove()
-})
-
+$('#div_viewZones').on({
+  'click': function(event) {
+    $(this).closest('tr').remove()
+  }
+}, '.bt_removeViewData')
 
 $('#div_pageContainer').off('change', '.viewZoneAttr').on('change', '.viewZoneAttr:visible', function() {
   modifyWithoutSave = true
@@ -402,16 +411,20 @@ $('#div_viewZones').on('click','.bt_listEquipementInfo', function() {
   })
 })
 
-$('#div_viewZones').delegate('.bt_addViewGraph','click', function() {
-  var el = $(this)
-  jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function(result) {
-    el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({name : result.human.replace(/\#/g, ''),link_id : result.cmd.id,type : 'cmd'}))
-  })
-})
+$('#div_viewZones').on({
+  'click': function(event) {
+    var el = $(this)
+    jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function(result) {
+      el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({name : result.human.replace(/\#/g, ''),link_id : result.cmd.id,type : 'cmd'}))
+    })
+  }
+}, '.bt_addViewGraph')
 
-$('#div_viewZones').delegate('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]','change', function() {
-  $(this).css('background-color',$(this).value())
-})
+$('#div_viewZones').on({
+  'change': function(event) {
+    $(this).css('background-color',$(this).value())
+  }
+}, '.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]')
 
 function addGraphService(_viewData) {
   if (!isset(_viewData.configuration) || _viewData.configuration == '') {
@@ -498,19 +511,23 @@ function addGraphService(_viewData) {
   return result
 }
 
-$('#div_viewZones').delegate('.bt_addViewWidget','click', function() {
-  var el = $(this)
-  jeedom.eqLogic.getSelectModal({}, function(result) {
-    el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}))
-  })
-})
+$('#div_viewZones').on({
+  'click': function(event) {
+    var el = $(this)
+    jeedom.eqLogic.getSelectModal({}, function(result) {
+      el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}))
+    })
+  }
+}, '.bt_addViewWidget')
 
-$('#div_viewZones').delegate('.bt_addViewScenario','click', function() {
-  var el = $(this)
-  jeedom.scenario.getSelectModal({}, function(result) {
-    el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'scenario'}))
-  })
-})
+$('#div_viewZones').on({
+  'click': function(event) {
+    var el = $(this)
+    jeedom.scenario.getSelectModal({}, function(result) {
+      el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'scenario'}))
+    })
+  }
+}, '.bt_addViewScenario')
 
 function addWidgetService(_viewData) {
   if (!isset(_viewData.configuration) || _viewData.configuration == '') {

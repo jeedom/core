@@ -18,8 +18,10 @@
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('dataStore_type', init('type'));
-sendVarToJS('dataStore_link_id', init('link_id', -1));
+sendVarToJS([
+  'dataStore_type' => init('type'),
+  'dataStore_link_id' => init('link_id', -1)
+]);
 ?>
 
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
@@ -39,54 +41,63 @@ sendVarToJS('dataStore_link_id', init('link_id', -1));
 
 <script>
 $(function() {
+  var $tableDataStore = $('#table_dataStore')
   initTableSorter()
   refreshDataStoreMangementTable()
-  setTimeout(function(){$('#table_dataStore').find('th[data-column="0"]').trigger('sort')}, 100)
-  $('#table_dataStore').delegate('.bt_removeDataStore', 'click', function() {
-    var tr = $(this).closest('tr')
-    if (tr.attr('data-datastore_id') == '') {
-      tr.remove()
-      return
+  setTimeout(function() {
+    $tableDataStore.find('th[data-column="0"]').trigger('sort')
+  }, 100)
+
+  $tableDataStore.on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      if (tr.attr('data-datastore_id') == '') {
+        tr.remove()
+        return
+      }
+      bootbox.confirm('Êtes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
+        if (result) {
+          jeedom.dataStore.remove({
+            id: tr.attr('data-dataStore_id'),
+            error: function(error) {
+              $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'})
+            },
+            success: function(data) {
+              $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données supprimé}}', level: 'success'})
+              refreshDataStoreMangementTable()
+            }
+          })
+        }
+      })
     }
-    bootbox.confirm('Êtes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
-      if (result) {
-        jeedom.dataStore.remove({
-          id: tr.attr('data-dataStore_id'),
-          error: function(error) {
-            $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'})
-          },
-          success: function(data) {
-            $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données supprimé}}', level: 'success'})
-            refreshDataStoreMangementTable()
-          }
-        })
-      }
-    })
-  })
+  }, '.bt_removeDataStore')
 
-  $('#table_dataStore').delegate('.bt_saveDataStore', 'click', function() {
-    var tr = $(this).closest('tr');
-    jeedom.dataStore.save({
-      id: tr.attr('data-dataStore_id'),
-      value: tr.find('.value').value(),
-      type: dataStore_type,
-      key: tr.find('.key').value(),
-      link_id: dataStore_link_id,
-      error: function(error) {
-        $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function(data) {
-        $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données sauvegardé}}', level: 'success'})
-        refreshDataStoreMangementTable()
-      }
-    })
-  })
+  $tableDataStore.on({
+    'click': function(event) {
+      var tr = $(this).closest('tr');
+      jeedom.dataStore.save({
+        id: tr.attr('data-dataStore_id'),
+        value: tr.find('.value').value(),
+        type: dataStore_type,
+        key: tr.find('.key').value(),
+        link_id: dataStore_link_id,
+        error: function(error) {
+          $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          $('#div_dataStoreManagementAlert').showAlert({message: '{{Dépôt de données sauvegardé}}', level: 'success'})
+          refreshDataStoreMangementTable()
+        }
+      })
+    }
+  }, '.bt_saveDataStore')
 
-  $('#table_dataStore').delegate('.bt_graphDataStore', 'click', function() {
-    var tr = $(this).closest('tr')
-    $('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"})
-    $("#md_modal2").load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open')
-  })
+  $tableDataStore.on({
+    'click': function(event) {
+      var tr = $(this).closest('tr')
+      $('#md_modal2').dialog({title: "{{Graphique de lien(s)}}"}).load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id='+tr.attr('data-dataStore_id')).dialog('open')
+    }
+  }, '.bt_graphDataStore')
 
   $('#bt_dataStoreManagementAdd').on('click', function() {
     var tr = '<tr data-dataStore_id="">'
@@ -104,8 +115,8 @@ $(function() {
     tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>'
     tr += '</td>'
     tr += '</tr>'
-    $('#table_dataStore tbody').prepend(tr)
-    $("#table_dataStore").trigger("update")
+    $tableDataStore.find('tbody').prepend(tr)
+    $tableDataStore.trigger("update")
   })
 
   function refreshDataStoreMangementTable() {

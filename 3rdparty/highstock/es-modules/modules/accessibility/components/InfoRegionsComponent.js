@@ -11,7 +11,7 @@
  * */
 'use strict';
 import H from '../../../parts/Globals.js';
-var doc = H.win.document;
+var doc = H.doc;
 import U from '../../../parts/Utilities.js';
 var extend = U.extend, format = U.format, pick = U.pick;
 import AccessibilityComponent from '../AccessibilityComponent.js';
@@ -365,7 +365,7 @@ extend(InfoRegionsComponent.prototype, /** @lends Highcharts.InfoRegionsComponen
             if (this.viewDataTableButton) {
                 this.viewDataTableButton.setAttribute('aria-expanded', 'true');
             }
-            e.html = e.html.replace('<table ', '<table tabindex="0" summary="' + getTableSummary(chart) + '"');
+            e.html = e.html.replace('<table ', '<table tabindex="-1" summary="' + getTableSummary(chart) + '"');
         }
     },
     /**

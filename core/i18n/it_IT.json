@@ -966,6 +966,7 @@
         "Obligatoire": "",
         "Voulu par": "",
         "Version": "Versione",
+        "Remarque": "",
         "Commande": "Comando",
         "Action": "Azione",
         "Mise à jour": "",
@@ -1506,6 +1507,7 @@
         "Thème Mobile alternatif": "Tema mobile alternativo",
         "Thème principal de": "Tema principale di",
         "à": "a",
+        "Cookie": "",
         "Basculer le thème en fonction de l'heure": "Attiva \/ disattiva il tema in base al tempo",
         "Activer pour basculer automatiquement en thème alternatif aux heures choisies.": "Attiva per passare automaticamente a un tema alternativo negli orari selezionati",
         "Capteur de luminosité (mobile)": "Sensore di luminosità (mobile)",
@@ -1788,7 +1790,10 @@
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br\/> Si vous ne savez pas quoi faire, n\\'hésitez pas à consulter cette <a href=\"https:\/\/doc.jeedom.com\/fr_FR\/premiers-pas\/\" target=\"_blank\">page<\/a> et celle-là si vous avez un pack : <a href=\"https:\/\/jeedom.com\/start\" target=\"_blank\">page<\/a>": "",
+        "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "",
+        "Documentation": "Documentazione",
+        "Concepts": "",
+        "Premiers pas": "",
         "Rechercher": "Cerca",
         "Afficher\/Masquer les objets": "Mostra\/Nascondi oggetti",
         "Retour à la Synthèse": "Torna al sommario",
@@ -2240,7 +2245,9 @@
     },
     "desktop\/php\/plan.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Aucun design n\\'existe, cliquez <a id=\"bt_createNewDesign\" class=\"cursor\">ici<\/a> pour en créer une.": "Nessun disegno esiste, fai clic <a id=\"bt_createNewDesign\" class=\"cursor\">qui<\/a> per crearne uno"
+        "Aucun design n\\'existe, cliquez": "",
+        "ici": "qua",
+        "pour en créer un.": ""
     },
     "desktop\/php\/history.php": {
         "Aucun": "Nessuno",
@@ -2916,7 +2923,6 @@
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configurazione del plugin",
-        "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Hai modificato impostazioni che non sono state salvate. Sei sicuro di voler continuare?",
         "Nom de la copie de l\\'équipement ?": "Nome della copia dell'attrezzatura?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura",
         "Veuillez d\\'abord sélectionner un": "Si prega di selezionare a",
@@ -3114,6 +3120,9 @@
         "Détection de fumée": "",
         "Inondation": "",
         "Humidité": "Umidità",
+        "Thermostat humidité ambiante": "",
+        "Humidité consigne ": "",
+        "Humidité consigne": "",
         "UV": "",
         "Porte": "",
         "Fenêtre": "",
