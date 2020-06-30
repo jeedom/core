@@ -193,6 +193,7 @@ function initApplication(_reinit) {
         plugins = data.result.plugins;
         userProfils = data.result.userProfils;
         widget_margin =  data.result.widget_margin;
+        serverTZoffsetMin = data.result.serverTZoffsetMin
         jeedom.init();
         var include = [];
         
