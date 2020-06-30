@@ -267,8 +267,34 @@ class config {
 	
 	/*     * *********************Action sur config************************* */
 	
-	public static function postConfig_market_allowDNS($_value) {
+	public static function postConfig_market_allowDns($_value){
 		if ($_value == 1) {
+			if (!network::dns_run()) {
+				network::dns_start();
+			}
+		} else {
+			if (network::dns_run()) {
+				network::dns_stop();
+			}
+		}
+	}
+	
+	public static function postConfig_dns_mode($_value) {
+		try {
+			if ($_value == 'vpn') {
+				network::dns_http2_stop();
+			}
+			if ($_value == 'http2') {
+				$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+				if (!is_object($openvpn)) {
+					return;
+				}
+				network::dns_vpn_stop();
+				$openvpn->remove();
+			}
+		} catch (\Exception $e) {
+		}
+		if (config::byKey('market::allowDNS') == 1) {
 			if (!network::dns_run()) {
 				network::dns_start();
 			}

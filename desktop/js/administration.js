@@ -157,6 +157,14 @@ $divConfig.off('change','.enableRepository').on('change','.enableRepository', fu
 
 $divConfig.on({
   'change': function(event) {
+    $('.dnsMode').hide()
+    if ($(this).value() == '') return
+    $('.dnsMode.'+$(this).value()).show()
+  }
+}, '.configKey[data-l1key="dns::mode"]')
+
+$divConfig.on({
+  'change': function(event) {
     if ($(this).value() == 1) {
       $('#div_config_ldap').show()
     } else {
