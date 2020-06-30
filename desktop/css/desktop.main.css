@@ -3238,13 +3238,14 @@ textarea {
   z-index: 9999;
 }
 #div_jeedomLoading .loadingBack {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(var(--eq-bg-color), 0.35);
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--el-defaultColor) !important;
+  opacity: 0.6 !important;
+}
 
 @supports (backdrop-filter: blur(2px)) {
   #div_jeedomLoading {

@@ -230,8 +230,8 @@ function setTheme() {
 <body>
 	<div class="backgroundforJeedom"></div>
 	<div id="div_jeedomLoading" style="display:none;">
-		<div class="loadingSpinner"></div>
 		<div class="loadingBack"></div>
+		<div class="loadingSpinner"></div>
 	</div>
 	<?php
 	sendVarToJS([
