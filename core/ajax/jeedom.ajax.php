@@ -29,6 +29,7 @@ try {
 		$return['product_image'] = config::byKey('product_image');
 		$return['widget_margin'] = config::byKey('widget::margin');
 		$return['serverDatetime'] = getmicrotime();
+		$return['serverTZoffsetMin'] = getTZoffsetMin();
 		if (!isConnect()) {
 			$return['connected'] = false;
 			ajax::success($return);

@@ -6,6 +6,7 @@ Changelog
 ======
 
 - Corrigido um problema ao calcular o horário do estado nos widgets se o fuso horário do Jeedom não fosse o mesmo do navegador
+- Aumento do número de senhas ruins antes do banimento (evita problemas com o aplicativo da web ao girar chaves da API)
 
 3.3.50
 =====

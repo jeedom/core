@@ -6,6 +6,7 @@ Changelog
 ======
 
 - Es wurde ein Problem bei der Berechnung der Statuszeit für Widgets behoben, wenn die Jeedom-Zeitzone nicht mit der des Browsers übereinstimmt
+- Erhöhen Sie die Anzahl der fehlerhaften Kennwörter vor dem Verbannen (vermeidet Probleme mit der Webanwendung beim Drehen von API-Schlüsseln)
 
 3.3.50
 =====
