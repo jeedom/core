@@ -405,12 +405,12 @@ function getObjectHtml(_object_id) {
       }
       positionEqLogic()
       var container = $divDisplayEq.packery()
-      /*
+
       var packData = $divDisplayEq.data('packery')
       if (isset(packData) && packData.items.length == 1) {
         $divDisplayEq.packery('destroy').packery()
       }
-      */
+
       var itemElems = container.find('.eqLogic-widget, .scenario-widget')
       container.packery('bindUIDraggableEvents', itemElems)
 
