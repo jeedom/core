@@ -268,7 +268,7 @@ class network {
 	/*     * *********************DNS************************* */
 	
 	public static function dns_start(){
-		if(config::byKey('dns::mode') == 'http2'){
+		if(config::byKey('dns::mode','core','http2') == 'http2'){
 			return self::dns_http2_start();
 		}else if(config::byKey('dns::mode') == 'vpn'){
 			return self::dns_vpn_start();
@@ -276,7 +276,7 @@ class network {
 	}
 	
 	public static function dns_run(){
-		if(config::byKey('dns::mode') == 'http2'){
+		if(config::byKey('dns::mode','core','http2') == 'http2'){
 			return self::dns_http2_run();
 		}else if(config::byKey('dns::mode') == 'vpn'){
 			return self::dns_vpn_run();
@@ -284,7 +284,7 @@ class network {
 	}
 	
 	public static function dns_stop(){
-		if(config::byKey('dns::mode') == 'http2'){
+		if(config::byKey('dns::mode','core','http2') == 'http2'){
 			return self::dns_http2_stop();
 		}else if(config::byKey('dns::mode') == 'vpn'){
 			return self::dns_vpn_stop();
