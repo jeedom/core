@@ -681,7 +681,7 @@ class repo_market {
 		}
 	}
 	
-	public static function getJsonRpc() {
+		public static function getJsonRpc() {
 		$internalIp = '';
 		try {
 			$internalIp = network::getNetworkAccess('internal', 'ip');
@@ -689,48 +689,34 @@ class repo_market {
 			
 		}
 		$uname = shell_exec('uname -a');
-		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-			$params = array(
-				'username' => config::byKey('market::username'),
-				'password' => self::getPassword(),
-				'password_type' => 'sha1',
-				'jeedomversion' => jeedom::version(),
-				'hwkey' => jeedom::getHardwareKey(),
-				'information' => array(
-					'nbMessage' => message::nbMessage(),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-					'uname' => $uname,
-					'language' => config::byKey('language'),
-				),
-				'market_api_key' => jeedom::getApiKey('apimarket'),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
-			);
-			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
-				$params['url'] = network::getNetworkAccess('external');
-			}
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
-		} else {
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => jeedom::version(),
-				'hwkey' => jeedom::getHardwareKey(),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
-				'information' => array(
-					'nbMessage' => message::nbMessage(),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-					'uname' => $uname,
-					'language' => config::byKey('language'),
-				),
-			));
+		if (config::byKey('market::username') == '' || config::byKey('market::password') == '') {
+			throw new \Exception(__('Nom d\'utilisateur ou mot de passe pour market vide',__FILE__));
 		}
+		$params = array(
+			'username' => config::byKey('market::username'),
+			'password' => self::getPassword(),
+			'password_type' => 'sha1',
+			'jeedomversion' => jeedom::version(),
+			'hwkey' => jeedom::getHardwareKey(),
+			'information' => array(
+				'nbMessage' => message::nbMessage(),
+				'nbUpdate' => update::nbNeedUpdate(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+				'uname' => $uname,
+				'dns_mode' => config::byKey('dns::mode'),
+				'language' => config::byKey('language'),
+			),
+			'market_api_key' => jeedom::getApiKey('apimarket'),
+			'localIp' => $internalIp,
+			'jeedom_name' => config::byKey('name'),
+			'plugin_install_list' => plugin::listPlugin(false, false, false, true),
+		);
+		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+			$params['url'] = network::getNetworkAccess('external');
+		}
+		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
-		$jsonrpc->setNoSslCheck(true);
 		return $jsonrpc;
 	}
 	
