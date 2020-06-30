@@ -762,8 +762,12 @@ class repo_market {
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
-			if (config::byKey('market::allowDNS') == 1 && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != 'https://'.$_result['service::tunnel::host']) {
-				config::save('jeedom::url', 'https://'.$_result['service::tunnel::host']);
+			if (config::byKey('market::allowDNS') == 1) {
+				if(config::byKey('dns::mode','core','http2') == 'http2' && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != 'https://'.$_result['service::tunnel::host']){
+					config::save('jeedom::url', 'https://'.$_result['service::tunnel::host']);
+				}elseif(config::byKey('dns::mode','core','http2') == 'vpn' && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']){
+					config::save('jeedom::url', $_result['jeedom::url']);
+				}
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
