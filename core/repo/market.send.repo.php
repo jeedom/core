@@ -5,11 +5,13 @@ if (!isConnect('admin')) {
 if(init('type') == 'plugin'){
 	throw new Exception('{{Vous ne pouvez plus partager un plugin directement depuis Jeedom. Il faut le faire maintenant en synchronisation github depuis le market}}');
 }
-sendVarToJS('market_display_info', array(
-	'logicalId' => init('logicalId'),
-	'name' => init('name'),
-));
-sendVarToJS('market_type', init('type'));
+sendVarToJS([
+	'market_display_info' => array(
+								'logicalId' => init('logicalId'),
+								'name' => init('name'),
+							),
+	'market_type' => init('type')
+]);
 try {
 	if (init('logicalId') != '' && init('type') != '') {
 		$market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));

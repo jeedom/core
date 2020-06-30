@@ -6,8 +6,10 @@ $rootPath = __DIR__ . '/../../';
 if(init('type') == 'widget'){
 	$rootPath = __DIR__ . '/../../data/customTemplates/';
 }
-sendVarToJS('rootPath', $rootPath);
-sendVarToJS('editorType', init('type'));
+sendVarToJS([
+	'rootPath' => $rootPath,
+	'editorType' => init('type')
+]);
 global $JEEDOM_INTERNAL_CONFIG;
 ?>
 
