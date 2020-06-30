@@ -22,12 +22,6 @@ $eqLogic = eqLogic::byId(init('eqLogic_id'));
 if (!is_object($eqLogic)) {
   throw new Exception('{{EqLogic non trouvé : }}' . init('eqLogic_id'));
 }
-//eqLogic setter:
-sendVarToJS([
-  'eqLogicInfo' => utils::o2a($eqLogic),
-  'eqLogicWidgetPossibility' => $eqLogic->widgetPossibility('custom::optionalParameters')
-]);
-
 //cmds setters:
 $cmds = $eqLogic->getCmd();
 $allCmds = [];
@@ -35,7 +29,12 @@ foreach ($cmds as $cmd) {
   $allCmds[$cmd->getId()] = jeedom::toHumanReadable(utils::o2a($cmd));
   $allCmds[$cmd->getId()]['widgetPossibilityDashboard'] = $cmd->widgetPossibility('custom::widget::dashboard');
 }
-sendVarToJS('allCmdsInfo', $allCmds);
+//eqLogic setter:
+sendVarToJS([
+  'eqLogicInfo' => utils::o2a($eqLogic),
+  'eqLogicWidgetPossibility' => $eqLogic->widgetPossibility('custom::optionalParameters'),
+  'allCmdsInfo' => $allCmds
+]);
 
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 ?>

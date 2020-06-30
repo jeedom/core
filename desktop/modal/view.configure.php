@@ -23,8 +23,10 @@ $view = view::byId(init('view_id'));
 if (!is_object($view)) {
   throw new Exception('Impossible de trouver la vue');
 }
-sendVarToJS('id', $view->getId());
-sendVarToJS('view', utils::o2a($view));
+sendVarToJS([
+  'id' => $view->getId(),
+  'view' => utils::o2a($view)
+]);
 ?>
 <div id="div_alertViewConfigure"></div>
 

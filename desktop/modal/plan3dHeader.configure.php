@@ -23,8 +23,10 @@ $plan3dHeader = plan3dHeader::byId(init('plan3dHeader_id'));
 if (!is_object($plan3dHeader)) {
   throw new Exception('Impossible de trouver le plan');
 }
-sendVarToJS('id', $plan3dHeader->getId());
-sendVarToJS('plan3dHeader', utils::o2a($plan3dHeader));
+sendVarToJS([
+  'id' => $plan3dHeader->getId(),
+  'plan3dHeader' => utils::o2a($plan3dHeader)
+]);
 ?>
 
 <div id="div_alertplan3dHeaderConfigure"></div>
