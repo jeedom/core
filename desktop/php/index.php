@@ -231,6 +231,7 @@ function setTheme() {
 	<div class="backgroundforJeedom"></div>
 	<div id="div_jeedomLoading" style="display:none;">
 		<div class="loadingSpinner"></div>
+		<div class="loadingBack"></div>
 	</div>
 	<?php
 	sendVarToJS('jeedom_langage', $configs['language']);

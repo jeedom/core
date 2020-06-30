@@ -3236,7 +3236,23 @@ textarea {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  backdrop-filter: blur(2px);
+}
+#div_jeedomLoading .loadingBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--eq-bg-color), 0.35);
+  }
+
+@supports (backdrop-filter: blur(2px)) {
+  #div_jeedomLoading {
+    backdrop-filter: blur(2px);
+  }
+  #div_jeedomLoading .loadingBack {
+    display: none;
+  }
 }
 #div_jeedomLoading .loadingSpinner {
   position: relative;
