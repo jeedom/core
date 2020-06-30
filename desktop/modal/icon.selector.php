@@ -18,9 +18,11 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJs('tabimg',init('tabimg'));
-sendVarToJs('selectIcon', init('selectIcon', 0));
-sendVarToJs('colorIcon', init('colorIcon', 0));
+sendVarToJS([
+	'tabimg' => init('tabimg'),
+	'selectIcon' => init('selectIcon', 0),
+	'colorIcon' => init('colorIcon', 0)
+]);
 ?>
 
 <div style="display: none;" id="div_iconSelectorAlert"></div>

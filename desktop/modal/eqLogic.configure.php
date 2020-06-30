@@ -22,8 +22,10 @@ $eqLogic = eqLogic::byId(init('eqLogic_id'));
 if (!is_object($eqLogic)) {
   throw new Exception('{{EqLogic non trouvé : }}' . init('eqLogic_id'));
 }
-sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
-sendVarToJS('eqLogicInfoSearchString', urlencode(str_replace('#', '', $eqLogic->getHumanName())));
+sendVarToJS([
+  'eqLogicInfo' => utils::o2a($eqLogic),
+  'eqLogicInfoSearchString' => urlencode(str_replace('#', '', $eqLogic->getHumanName()))
+]);
 ?>
 
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>

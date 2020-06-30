@@ -18,8 +18,10 @@
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('dataStore_type', init('type'));
-sendVarToJS('dataStore_link_id', init('link_id', -1));
+sendVarToJS([
+  'dataStore_type' => init('type'),
+  'dataStore_link_id' => init('link_id', -1)
+]);
 ?>
 
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>

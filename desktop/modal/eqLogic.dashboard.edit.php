@@ -23,8 +23,10 @@ if (!is_object($eqLogic)) {
   throw new Exception('{{EqLogic non trouvé : }}' . init('eqLogic_id'));
 }
 //eqLogic setter:
-sendVarToJS('eqLogicInfo', utils::o2a($eqLogic));
-sendVarToJS('eqLogicWidgetPossibility', $eqLogic->widgetPossibility('custom::optionalParameters'));
+sendVarToJS([
+  'eqLogicInfo' => utils::o2a($eqLogic),
+  'eqLogicWidgetPossibility' => $eqLogic->widgetPossibility('custom::optionalParameters')
+]);
 
 //cmds setters:
 $cmds = $eqLogic->getCmd();
@@ -59,7 +61,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
       </fieldset>
     </form>
     <br/>
-    
+
     <!-- Optionnal parameters -->
     <div id="panel_optParams" class="panel panel-default" style="display:none">
       <div class="panel-heading">
@@ -105,7 +107,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
         </div>
       </div>
     </div>
-    
+
     <!-- Layout -->
     <div id="panel_layout" class="panel panel-default">
       <div class="panel-heading">
@@ -191,7 +193,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                     $tr .= $string_cmd . '</center>';
                     $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
                     $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
-                    
+
                     $tr .= '</td>';
                   }
                   $tr .= '</tr>';
@@ -204,7 +206,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
         </div>
       </div>
     </div>
-    
+
     <!-- Commands -->
     <div id="panel_cmds" class="panel panel-default">
       <div class="panel-heading">
@@ -223,15 +225,15 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
               $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="'.$thisclassAttrib.'" data-id="' . $cmd->getId() . '">';
               $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="id"></span>';
               $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="name"></span>';
-              
+
               $display .= '<a class="btn btn-default btn-xs cursor bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">'.$cmd->getName().' ('.$cmd->getType().' | '.$cmd->getSubType().')</a>';
-              
+
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
               $display .= '<table class="table table-bordered table-condensed">';
-              
+
               $display .= '<tr><td style="width:60%"><label class="control-label">{{Visible}}</label></td>';
               $display .= '<td style="width:40%"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" /></td></tr>';
-              
+
               $display .= '<tr class="widgetPossibilityDashboard" style="display: none;"><td><label class="control-label">{{Widget}}</label></td>';
               $display .= '<td><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
               $display .= '<option value="default">Défaut</option>';
@@ -269,25 +271,25 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                 }
               }
               $display .= '</select></td></tr>';
-              
+
               $display .= '<tr><td><label class="control-label">{{Afficher le nom}}</label></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOndashboard" checked></td></tr>';
-              
+
               $display .= '<tr><td><label class="control-label">{{Afficher le nom ET l\'icône}}</label></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td></tr>';
-              
+
               $display .= '<tr><td><label class="control-label">{{Afficher les statistiques}}</label></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOndashboard" checked></td></tr>';
-              
+
               $display .= '<tr><td><label class="control-label">{{Retour à la ligne avant le widget}}</label></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
-              
+
               $display .= '<tr><td><label class="control-label">{{Retour à la ligne après le widget}}</label></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
-              
+
               $display .= '<tr><td><label class="control-label">{{Paramètres optionnels sur le widget:}}</label></td>';
               $display .= '<td><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
-              
+
               if ($cmd->getDisplay('parameters') != '') {
                 foreach (($cmd->getDisplay('parameters')) as $key => $value) {
                   $display .= '<tr class="cmdoptparam">';
@@ -301,9 +303,9 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                   $display .= '</tr>';
                 }
               }
-              
+
               $display .= '</table>';
-              
+
               $display .= '</div>';
               $display .= '</div>';
             }
@@ -323,7 +325,7 @@ var modal
 
 $(function() {
   modal = $('#md_modal').parents('.ui-dialog.ui-resizable')
-  
+
   //add save buttons:
   var button = {
     "Save": {
@@ -332,32 +334,32 @@ $(function() {
     }
   }
   $('#md_modal').dialog('option', 'buttons', button)
-  
+
   //remove dialog buttons and bindings before closing:
   $('#md_modal').on('dialogbeforeclose', function(event, ui) {
     modal.find('.ui-dialog-buttonpane').remove()
     modal.find('.ui-draggable-handle').off('mouseup')
     $(this).off('dialogbeforeclose')
   })
-  
+
   setModal()
-  
+
   //display options:
   if (eqLogicWidgetPossibility == 1) $('#panel_optParams').show()
   $('#div_displayEqLogicConfigure').setValues(eqLogicInfo, '.eqLogicAttr')
-  
+
   var $panelCmds = $('#panel_cmds')
   $panelCmds.find('.cmdConfig').each(function() {
     var id = $(this).data('id')
     var cmdInfo = allCmdsInfo[id]
     if (cmdInfo.widgetPossibilityDashboard == true) $(this).find('.widgetPossibilityDashboard').show()
     $panelCmds.setValues(cmdInfo, '.cmdAttr'+id)
-    
+
     //widgets default if empty:
     var dashWidget = $(this).find('select[data-l2key="dashboard"]')
     if (dashWidget.val()==null) dashWidget.val($(this).find('select[data-l2key="dashboard"] option:first').val())
   })
-  
+
   setTableLayoutSortable()
   initTooltips()
   initPickers()
@@ -380,7 +382,7 @@ function setModal() {
     })
     $('#md_modal').height(height-100)
   }
-  
+
   //store size/pos:
   modal.find('.ui-draggable-handle').on('mouseup', function(event) {
     modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
@@ -413,16 +415,16 @@ function getNewLayoutTd(row, col) {
 function applyTableLayout() {
   var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
   var nbRow = $('input[data-l2key="layout::dashboard::table::nbLine"]').val()
-  
+
   var tableLayout = $('#tableCmdLayoutConfiguration')
   var tableRowCount = tableLayout.find('tr').length
   var tableColumnCount = tableLayout.find('tr').eq(0).find('td').length
-  
+
   if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
     //build new table:
     var newTableLayout = '<table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">'
     newTableLayout += '<tbody>'
-    
+
     for (i = 1; i <= nbRow; i++) {
       var newTr = '<tr>'
       for (j = 1; j <= nbColumn; j++) {
@@ -434,9 +436,9 @@ function applyTableLayout() {
     }
     newTableLayout += '</tbody>'
     newTableLayout += '</table>'
-    
+
     newTableLayout = $.parseHTML(newTableLayout)
-    
+
     //distribute back cmds into new table
     var firstTdLayout = $(newTableLayout).find('tr').eq(0).find('td').eq(0).find('.cmdLayoutContainer')
     var row, col, newTd, text, style
@@ -450,7 +452,7 @@ function applyTableLayout() {
         $(this).appendTo(firstTdLayout)
       }
     })
-    
+
     //get back tds texts and styles
     tableLayout.find('td').each(function() {
       row = $(this).data('line')
@@ -463,7 +465,7 @@ function applyTableLayout() {
         $(newTableLayout).find('input[data-l3key="style::td::'+row+'::'+col+'"]').val(style)
       }
     })
-    
+
     //replace by new table:
     tableLayout.replaceWith(newTableLayout)
     $('#tableCmdLayoutConfiguration td').css('width', 100/nbColumn + '%')

@@ -119,13 +119,21 @@ function init($_name, $_default = '') {
 	return $_default;
 }
 
-function sendVarToJS($_varName, $_value) {
-	$_value = (is_array($_value)) ? 'jQuery.parseJSON("' . addslashes(json_encode($_value, JSON_UNESCAPED_UNICODE)) . '")'	: '"' . $_value . '"';
-	if(strpos($_varName,'.') === false){
-		echo '<script>var ' . $_varName . ' = ' . $_value . ';</script>';
-	}else{
-		echo '<script>' . $_varName . ' = ' . $_value . ';</script>';
+function sendVarToJS($_varName, $_value='') {
+	if (!is_array($_varName)) {
+		$_varName = [$_varName => $_value];
 	}
+	$jsVar = '<script>';
+	foreach ($_varName as $name => $value) {
+		$value = (is_array($value)) ? 'jQuery.parseJSON("' . addslashes(json_encode($value, JSON_UNESCAPED_UNICODE)) . '")'	: '"' . $value . '"';
+		if (strpos($name,'.') === false) {
+			$jsVar .= 'var ' . $name . ' = ' . $value . "\n";
+		} else {
+			$jsVar .= $name . ' = ' . $value . "\n";
+		}
+	}
+	$jsVar .= '</script>';
+	echo $jsVar;
 }
 
 function resizeImage($contents, $width, $height) {

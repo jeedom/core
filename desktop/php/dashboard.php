@@ -3,9 +3,11 @@ if (!isConnect()) {
 	throw new Exception(__('401 - Accès non autorisé',__FILE__));
 }
 
-sendVarToJs('SEL_CATEGORY', init('category', 'all'));
-sendVarToJs('SEL_TAG', init('tag', 'all'));
-sendVarToJs('SEL_SUMMARY', init('summary'));
+sendVarToJS([
+  'SEL_CATEGORY' => init('category', 'all'),
+  'SEL_TAG' => init('tag', 'all'),
+  'SEL_SUMMARY' => init('summary')
+]);
 
 $DisplayByObject = true;
 if (init('summary') != '') {

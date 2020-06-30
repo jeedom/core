@@ -18,8 +18,11 @@
 if (!isConnect('admin')) {
   throw new Exception('401 Unauthorized');
 }
-sendVarToJS('log_display_name', init('log', 'event'));
-sendVarToJS('log_default_search', init('search', ''));
+sendVarToJS([
+  'log_display_name' => init('log', 'event'),
+  'log_default_search' => init('search', '')
+]);
+
 if(init('log','event') == 'event'){
   if(log::getLogLevel('event') > 200){
     $alert = '<div class="alert alert-danger">{{Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. }}';

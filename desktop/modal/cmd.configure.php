@@ -23,8 +23,10 @@ if (!is_object($cmd)) {
   throw new Exception('{{Commande non trouvé}}'.' : ' . init('cmd_id'));
 }
 global $JEEDOM_INTERNAL_CONFIG;
-sendVarToJS('cmdInfo', jeedom::toHumanReadable(utils::o2a($cmd)));
-sendVarToJS('cmdInfoSearchString', urlencode(str_replace('#', '', $cmd->getHumanName())));
+sendVarToJS([
+  'cmdInfo' => jeedom::toHumanReadable(utils::o2a($cmd)),
+  'cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName()))
+]);
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
 $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');

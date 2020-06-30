@@ -99,7 +99,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-	
+
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -210,9 +210,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-	
+
 	setTheme();
-	
+
 	if(init('report') == 1){
 		include_file('desktop', 'report', 'css');
 	}
@@ -234,16 +234,20 @@ function setTheme() {
 		<div class="loadingBack"></div>
 	</div>
 	<?php
-	sendVarToJS('jeedom_langage', $configs['language']);
-	sendVarToJS('jeedom.theme',$jeedom_theme);
+	sendVarToJS([
+		'jeedom_langage' => $configs['language'],
+		'jeedom.theme' => $jeedom_theme
+	]);
 	if (!isConnect()) {
 		include_file('desktop', 'connection', 'php');
 	} else {
-		sendVarToJS('userProfils', $_SESSION['user']->getOptions());
-		sendVarToJS('user_id', $_SESSION['user']->getId());
-		sendVarToJS('user_isAdmin', isConnect('admin'));
-		sendVarToJS('user_login', $_SESSION['user']->getLogin());
-		sendVarToJS('jeedom_firstUse', $configs['jeedom::firstUse']);
+		sendVarToJS([
+			'userProfils' => $_SESSION['user']->getOptions(),
+			'user_id' => $_SESSION['user']->getId(),
+			'user_isAdmin' => isConnect('admin'),
+			'user_login' => $_SESSION['user']->getLogin(),
+			'jeedom_firstUse' => $configs['jeedom::firstUse']
+		]);
 		if (isset($eventjs_plugin) && count($eventjs_plugin) > 0) {
 			foreach ($eventjs_plugin as $value) {
 				try {
@@ -525,4 +529,3 @@ function setTheme() {
 		<?php } ?>
 	</body>
 	</html>
-	
