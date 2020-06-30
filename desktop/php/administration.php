@@ -861,6 +861,16 @@ user::isBan();
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
 													$div .= '</div>';
 													$div .= '</div>';
+													if($key == 'market'){
+														$div .= '<div class="form-group col-xs-12">';
+														$div .= '<label class="col-xs-4 control-label">{{Mode}}</label>';
+														$div .= '<div class="col-xs-4">';
+														$div .= '<select class="configKey form-control"  data-l1key="dns::mode">';
+														$div .= '<option value="http2">{{HTTP/2}}</option>';
+														$div .= '<option value="vpn">{{Openvpn}}</option>';
+														$div .= '</select>';
+														$div .= '</div>';
+													}
 													$div .= '<div class="form-group col-xs-12">';
 													$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 													$div .= '<div class="col-xs-8">';
