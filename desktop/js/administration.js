@@ -162,6 +162,12 @@ $pageContainer.delegate('.configKey[data-l1key="cache::engine"]', 'change', func
   $('.cacheEngine.'+$(this).value()).show();
 });
 
+$pageContainer.delegate('.configKey[data-l1key="dns::mode"]', 'change', function () {
+    $('.dnsMode').hide()
+    if ($(this).value() == '') return
+    $('.dnsMode.'+$(this).value()).show()
+});
+
 $pageContainer.delegate('.configKey[data-l1key="log::engine"]', 'change', function () {
   $('.logEngine').hide();
   if($(this).value() == ''){
