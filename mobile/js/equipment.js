@@ -238,13 +238,15 @@ function displayObjectsBySummary(_objectsAll, _summary) {
   $('#div_displayEquipement').trigger('create')
 }
 
+var summaryObjEqs = []
 function displayEqsBySummary(_objectsAll, _objectId, _summary) {
+  summaryObjEqs[_objectId] = []
   jeedom.object.getEqLogicsFromSummary({
     id: _objectId,
     summary: _summary,
     version: 'mobile',
-    onlyEnable: 1,
-    onlyVisible: 1,
+    onlyEnable: '1',
+    onlyVisible: '0',
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
@@ -252,6 +254,11 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
       var nbEqs = eqLogics.length
       if (nbEqs == 0) return
       for (var j in eqLogics) {
+        if (summaryObjEqs[_objectId].includes(eqLogics[j].id)) {
+          nbEqs--
+          return
+        }
+        summaryObjEqs[_objectId].push(eqLogics[j].id)
         jeedom.eqLogic.toHtml({
           id: eqLogics[j].id,
           version: 'mobile',
