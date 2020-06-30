@@ -870,6 +870,7 @@ user::isBan();
 														$div .= '<option value="vpn">{{Openvpn}}</option>';
 														$div .= '</select>';
 														$div .= '</div>';
+														$div .= '</div>';
 													}
 													$div .= '<div class="form-group col-xs-12">';
 													$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
