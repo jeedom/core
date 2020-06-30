@@ -216,19 +216,11 @@ class network {
 			config::save($_mode . 'Complement', '');
 		}
 		if ($_mode == 'internal') {
-			foreach ((self::getInterfacesInfo()) as $interface) {
-				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info'])) {
+			foreach (self::getInterfaces() as $interface) {
+				if ($interface == 'lo') {
 					continue;
 				}
-				$ip = null;
-				foreach ($interface['addr_info'] as $addr_info) {
-					if(isset($addr_info['family']) && $addr_info['family'] == 'inet'){
-						$ip = $addr_info['local'];
-					}
-				}
-				if($ip == null){
-					continue;
-				}
+				$ip = self::getInterfaceIp($interface);
 				if (!netMatch('127.0.*.*', $ip) && $ip != '' && filter_var($ip, FILTER_VALIDATE_IP)) {
 					config::save('internalAddr', $ip);
 					break;
@@ -529,8 +521,32 @@ class network {
 		return true;
 	}
 	
-	public static function getInterfacesInfo() {
-		return json_decode(shell_exec(system::getCmdSudo() . "ip -j a"),true);
+	public static function getInterfaceIp($_interface) {
+		$ip = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " | grep \"inet .*" . $_interface . "\" | awk '{print $2}' | cut -d '/' -f 1"));
+		if (filter_var($ip, FILTER_VALIDATE_IP)) {
+			return $ip;
+		}
+		return false;
+	}
+	
+	public static function getInterfaceMac($_interface) {
+		$valid_mac = "([0-9A-F]{2}[:-]){5}([0-9A-F]{2})";
+		$mac = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " 2>&1 | grep ether | awk '{print $2}'"));
+		if (preg_match("/" . $valid_mac . "/i", $mac)) {
+			return $mac;
+		}
+		return false;
+	}
+	
+	public static function getInterfaces() {
+		$result = explode("\n", shell_exec(system::getCmdSudo() . "ip -o link show | awk -F': ' '{print $2}'"));
+		foreach ($result as $value) {
+			if (trim($value) == '') {
+				continue;
+			}
+			$return[] = explode('@',$value)[0];
+		}
+		return $return;
 	}
 	
 	public static function cron5() {
