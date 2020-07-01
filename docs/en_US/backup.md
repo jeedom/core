@@ -60,7 +60,7 @@ At the protocol level, only the Z-Wave (OpenZwave) is a little different because
 
 > **NOTE**
 >
-> The system on which Jeedom is installed is not backed up. If you have changed settings for this system (including via SSH), it&#39;s up to you to find a way to recover them if you have any concerns.
+> The system on which Jeedom is installed is not backed up. If you have changed settings for this system (including via SSH), it&#39;s up to you to find a way to recover them if you have any concerns. Similarly, the outbuildings are not either, so you will have to reinstall them after a restoration
 
 # Cloud backup
 

@@ -60,7 +60,7 @@ Auf Protokollebene unterscheidet sich nur die Z-Wave (OpenZwave) ein wenig, da d
 
 > **Notiz**
 >
-> Das System, auf dem Jeedom installiert ist, wird nicht gesichert. Wenn Sie die Einstellungen für dieses System geändert haben (auch über SSH), müssen Sie einen Weg finden, diese bei Problemen wiederherzustellen.
+> Das System, auf dem Jeedom installiert ist, wird nicht gesichert. Wenn Sie die Einstellungen für dieses System geändert haben (auch über SSH), müssen Sie einen Weg finden, diese bei Problemen wiederherzustellen. Ebenso sind die Nebengebäude nicht vorhanden, sodass Sie sie nach einer Restaurierung neu installieren müssen
 
 # Cloud-Backup
 
