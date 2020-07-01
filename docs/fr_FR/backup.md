@@ -60,7 +60,7 @@ Au niveau des protocoles, seul le Z-Wave (OpenZwave) est un peu différent car i
 
 > **Note**
 >
-> Le système sur lequel est installé Jeedom n’est pas sauvegardé. Si vous avez modifié des paramètres de ce système (notamment via SSH), c’est à vous de trouver un moyen de les récupérer en cas de soucis.
+> Le système sur lequel est installé Jeedom n’est pas sauvegardé. Si vous avez modifié des paramètres de ce système (notamment via SSH), c’est à vous de trouver un moyen de les récupérer en cas de soucis. De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration
 
 # Sauvegarde cloud
 
