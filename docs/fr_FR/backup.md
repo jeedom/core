@@ -108,7 +108,7 @@ garder le même contrôleur pour retrouver ses modules Zwave.
 >
 > Le système sur lequel est installé Jeedom n’est pas sauvegardé. Si
 > vous avez modifié des paramètres de ce système (notamment via SSH),
-> c’est à vous de trouver un moyen de les récupérer en cas de soucis.
+> c’est à vous de trouver un moyen de les récupérer en cas de soucis. De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration
 
 Sauvegarde cloud 
 ================
