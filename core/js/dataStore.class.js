@@ -16,11 +16,10 @@
  */
 
 
- jeedom.dataStore = function () {
- };
+jeedom.dataStore = function () {
+};
 
-
- jeedom.dataStore.save = function (_params) {
+jeedom.dataStore.save = function (_params) {
     var paramsRequired = ['id', 'value', 'type', 'key', 'link_id'];
     var paramsSpecifics = {};
     try {
@@ -41,6 +40,26 @@
         type: _params.type,
         key: _params.key,
         link_id: _params.link_id,
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.dataStore.varByKey = function (_params) {
+    var paramsRequired = ['key','usedBy'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
+    paramsAJAX.data = {
+        action: 'varByKey',
+        key: _params.key,
+        usedBy: _params.usedBy
     };
     $.ajax(paramsAJAX);
 }
@@ -100,7 +119,6 @@ jeedom.dataStore.getSelectModal = function (_options, callback) {
     });
     $('#mod_insertDataStoreValue').dialog('open');
 };
-
 
 jeedom.dataStore.remove = function(_params) {
     var paramsRequired = ['id'];
