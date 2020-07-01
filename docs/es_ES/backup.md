@@ -108,7 +108,7 @@ mantener el mismo controlador para encontrar sus módulos Zwave.
 >
 > El sistema en el que está instalado Jeedom no está respaldado. si
 > ha modificado los parámetros de este sistema (en particular a través de SSH),
-> depende de usted encontrar una manera de recuperarlos en caso de problemas.
+> depende de usted encontrar una manera de recuperarlos en caso de problemas. Del mismo modo, las dependencias tampoco lo son, por lo que deberá reinstalarlas después de una restauración
 
 Copia de seguridad en la nube 
 ================

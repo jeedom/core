@@ -1617,6 +1617,7 @@
         "Le système sur lequel est installé Jeedom n'est pas sauvegardé. Si": "O sistema no qual o Jeedom está instalado não é copiado. Se",
         "vous avez modifié des paramètres de ce système (notamment via SSH": "você modificou os parâmetros deste sistema (em particular via SSH",
         "c'est à vous de trouver un moyen de les récupérer en cas de soucis": "cabe a você encontrar uma maneira de recuperá-los em caso de problemas",
+        "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration": "Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração",
         "Sauvegarde cloud": "Backup em nuvem",
         "La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes": "O backup na nuvem permite que o Jeedom envie seus backups",
         "directement sur le Market": "diretamente no mercado",

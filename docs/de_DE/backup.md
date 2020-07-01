@@ -108,7 +108,7 @@ Behalten Sie den gleichen Controller bei, um die Zwave-Module zu finden.
 >
 > Das System, auf dem Jeedom installiert ist, wird nicht gesichert. wenn
 > Sie haben die Parameter dieses Systems geändert (insbesondere über SSH),
-> Es liegt an Ihnen, einen Weg zu finden, um sie bei Problemen wiederherzustellen.
+> Es liegt an Ihnen, einen Weg zu finden, um sie bei Problemen wiederherzustellen. Ebenso sind die Nebengebäude nicht vorhanden, sodass Sie sie nach einer Restaurierung neu installieren müssen
 
 Cloud-Backup 
 ================

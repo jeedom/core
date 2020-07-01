@@ -108,7 +108,7 @@ mantenha o mesmo controlador para encontrar seus módulos Zwave.
 >
 > O sistema no qual o Jeedom está instalado não é copiado. Se
 > você modificou os parâmetros deste sistema (em particular via SSH),
-> cabe a você encontrar uma maneira de recuperá-los em caso de problemas.
+> cabe a você encontrar uma maneira de recuperá-los em caso de problemas. Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração
 
 Backup em nuvem 
 ================

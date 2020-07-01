@@ -108,7 +108,7 @@ keep the same controller to find its Zwave modules.
 >
 > The system on which Jeedom is installed is not backed up. Yes
 > you have modified parameters of this system (in particular via SSH),
-> it&#39;s up to you to find a way to recover them in case of problems.
+> it&#39;s up to you to find a way to recover them in case of problems. Similarly, the outbuildings are not either, so you will have to reinstall them after a restoration
 
 Cloud backup 
 ================
