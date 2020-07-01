@@ -217,7 +217,7 @@ $(function(){
 
 /* ---------Scenario Management UI---------- */
 setTimeout(function(){
-  $('.scenarioListContainer').packery()
+  $('.scenarioListContainer').removeClass('hidden').packery()
 },100)
 
 var tab = null

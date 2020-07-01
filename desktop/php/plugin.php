@@ -12,7 +12,7 @@ $plugins_list = plugin::listPlugin(false, true);
 <div class="row row-overflow">
   <div class="col-xs-12" id="div_resumePluginList">
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
-    <div class="pluginListContainer">
+    <div class="pluginListContainer hidden">
       <div class="cursor success" id="bt_addPluginFromOtherSource">
         <center><i class="fas fa-plus"></i></center>
         <span class="txtColor"><center>{{Plugins}}</center></span>

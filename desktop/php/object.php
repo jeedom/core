@@ -10,7 +10,7 @@ $config_objSummary = config::byKey('object:summary');
 <div class="row row-overflow">
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-		<div class="objectListContainer">
+		<div class="objectListContainer hidden">
 			<div class="cursor logoPrimary" id="bt_addObject2">
 				<center>
 					<i class="fas fa-plus-circle"></i>

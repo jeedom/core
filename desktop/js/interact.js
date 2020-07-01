@@ -35,7 +35,7 @@ jwerty.key('ctrl+s/⌘+s', function(event) {
 $(function() {
   $('sub.itemsNumber').html('('+$('.interactDisplayCard').length+')')
   setTimeout(function() {
-    $interactListContainer.packery()
+    $interactListContainer.removeClass('hidden').packery()
   }, 100)
 })
 
