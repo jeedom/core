@@ -689,45 +689,32 @@ class repo_market {
 			
 		}
 		$uname = shell_exec('uname -a');
-		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-			$params = array(
-				'username' => config::byKey('market::username'),
-				'password' => self::getPassword(),
-				'password_type' => 'sha1',
-				'jeedomversion' => jeedom::version(),
-				'hwkey' => jeedom::getHardwareKey(),
-				'information' => array(
-					'nbMessage' => message::nbMessage(),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-					'uname' => $uname,
-					'language' => config::byKey('language'),
-				),
-				'market_api_key' => jeedom::getApiKey('apimarket'),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
-			);
-			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
-				$params['url'] = network::getNetworkAccess('external');
-			}
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
-		} else {
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => jeedom::version(),
-				'hwkey' => jeedom::getHardwareKey(),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
-				'information' => array(
-					'nbMessage' => message::nbMessage(),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-					'uname' => $uname,
-					'language' => config::byKey('language'),
-				),
-			));
+		if (config::byKey('market::username') == '' || config::byKey('market::password') == '') {
+			throw new \Exception(__('Nom d\'utilisateur ou mot de passe pour market vide',__FILE__));
 		}
+		$params = array(
+			'username' => config::byKey('market::username'),
+			'password' => self::getPassword(),
+			'password_type' => 'sha1',
+			'jeedomversion' => jeedom::version(),
+			'hwkey' => jeedom::getHardwareKey(),
+			'information' => array(
+				'nbMessage' => message::nbMessage(),
+				'nbUpdate' => update::nbNeedUpdate(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+				'uname' => $uname,
+				'dns_mode' => config::byKey('dns::mode'),
+				'language' => config::byKey('language'),
+			),
+			'market_api_key' => jeedom::getApiKey('apimarket'),
+			'localIp' => $internalIp,
+			'jeedom_name' => config::byKey('name'),
+			'plugin_install_list' => plugin::listPlugin(false, false, false, true),
+		);
+		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+			$params['url'] = network::getNetworkAccess('external');
+		}
+		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
 		return $jsonrpc;
@@ -775,8 +762,12 @@ class repo_market {
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
-			if (config::byKey('market::allowDNS') == 1 && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != 'https://'.$_result['service::tunnel::host']) {
-				config::save('jeedom::url', 'https://'.$_result['service::tunnel::host']);
+			if (config::byKey('market::allowDNS') == 1) {
+				if(config::byKey('dns::mode','core','http2') == 'http2' && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != 'https://'.$_result['service::tunnel::host']){
+					config::save('jeedom::url', 'https://'.$_result['service::tunnel::host']);
+				}elseif(config::byKey('dns::mode','core','http2') == 'vpn' && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']){
+					config::save('jeedom::url', $_result['jeedom::url']);
+				}
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');

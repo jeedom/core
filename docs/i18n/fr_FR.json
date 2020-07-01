@@ -716,6 +716,7 @@
         "Note": "Note",
         "Le système sur lequel est installé Jeedom n'est pas sauvegardé": "Le système sur lequel est installé Jeedom n'est pas sauvegardé",
         "Si vous avez modifié des paramètres de ce système (notamment via SSH), c'est à vous de trouver un moyen de les récupérer en cas de soucis": "Si vous avez modifié des paramètres de ce système (notamment via SSH), c'est à vous de trouver un moyen de les récupérer en cas de soucis",
+        "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration": "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration",
         "Sauvegarde cloud": "Sauvegarde cloud",
         "profil": "profil",
         "mes backups": "mes backups",
