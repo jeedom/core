@@ -1227,6 +1227,7 @@
         "Celles-ci sont directement incluses dans le contrôleur, il faut donc garder le même contrôleur pour retrouver ses modules Zwave": "Eles estão diretamente incluídos no controlador, portanto, você deve manter o mesmo controlador para encontrar seus módulos Zwave",
         "Le système sur lequel est installé Jeedom n'est pas sauvegardé": "Não é feito backup do sistema no qual o Jeedom está instalado",
         "Si vous avez modifié des paramètres de ce système (notamment via SSH), c'est à vous de trouver un moyen de les récupérer en cas de soucis": "Se você alterou as configurações deste sistema (inclusive via SSH), cabe a você encontrar uma maneira de recuperá-las se tiver alguma dúvida",
+        "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration": "Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração",
         "Sauvegarde cloud": "Backup em nuvem",
         "mes backups": "meus backups",
         "La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes directement sur le Market": "O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado",
