@@ -3268,6 +3268,7 @@
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Dépôt de données inconnu. Vérifiez l\\'ID : ": "不明なデータリポジトリ。 IDを確認します。",
+        "Dépôt de données inconnu.": "",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
     },
     "core\/ajax\/listener.ajax.php": {

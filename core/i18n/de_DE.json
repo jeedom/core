@@ -3268,6 +3268,7 @@
     "core\/ajax\/dataStore.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Dépôt de données inconnu. Vérifiez l\\'ID : ": "Unbekanntes Datenrepository. Überprüfen Sie die ID:",
+        "Dépôt de données inconnu.": "Unbekanntes Datenrepository",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/listener.ajax.php": {
