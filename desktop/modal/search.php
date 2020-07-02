@@ -288,13 +288,15 @@ function searchFor() {
 
 /* ------            Searching            -------*/
 function searchFor_variable(_searchFor) {
-  jeedom.dataStore.varByKey({
+  jeedom.dataStore.byTypeLinkIdKey({
+    type: 'scenario',
+    linkId: -1,
     key: _searchFor,
-    usedBy : 1,
-    error: function (error) {
+    usedBy: 1,
+    error: function(error) {
       $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
     },
-    success: function (result) {
+    success: function(result) {
       scenarioResult = []
       interactResult = []
       eqlogicResult = []

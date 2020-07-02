@@ -52,9 +52,9 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'varByKey') {
+	if (init('action') == 'byTypeLinkIdKey') {
 		$key = trim(init('key'));
-		$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $key);
+		$dataStore = dataStore::byTypeLinkIdKey(init('type'), init('linkId'), $key);
 		if (!is_object($dataStore)) {
 			throw new Exception(__('Dépôt de données inconnu.', __FILE__) . $key);
 		}
