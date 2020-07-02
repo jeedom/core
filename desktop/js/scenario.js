@@ -1302,7 +1302,7 @@ function printScenario(_id) {
   $.hideAlert()
   $.showLoading()
   $('#emptyModeWarning').hide()
-  jeedom.scenario.update[_id] =function(_options) {
+  jeedom.scenario.update[_id] = function(_options) {
     if (_options.scenario_id =! $divScenario.getValues('.scenarioAttr')[0]['id']) {
       return
     }
@@ -2258,15 +2258,15 @@ function resetUndo() {
 //Code Editors:
 var _EDITORS = []
 function setEditors() {
-  var expression, code, id
-  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
+  var expression, code
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
     expression = $(this).closest('.expression')
     code = expression.find('.expressionAttr[data-l1key=expression]')
     $(this).find('.blocPreview').html(code.val())
     if (code.attr('id') == undefined && code.is(':visible')) {
       code.uniqueId()
-      id = code.attr('id')
-      setTimeout(function() {
+      var id = code.attr('id')
+      setTimeout(function () {
         _EDITORS[id] = CodeMirror.fromTextArea(document.getElementById(id), {
           lineNumbers: true,
           lineWrapping: true,
