@@ -144,27 +144,28 @@ $(function(){
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function(scenarios) {
-        if(scenarios.length == 0){
-          return;
-        }
+        if (scenarios.length == 0) return
         var scenarioGroups = []
-        for(var i=0; i<scenarios.length; i++){
+        for (var i=0; i<scenarios.length; i++) {
           group = scenarios[i].group
           if (group == null) continue
           if (group == "") group = '{{Aucun}}'
           group = group[0].toUpperCase() + group.slice(1)
           scenarioGroups.push(group)
         }
+
         scenarioGroups = Array.from(new Set(scenarioGroups))
-        scenarioGroups.sort()
+        var first = '{{Aucun}}'
+        scenarioGroups.sort(function(x, y) { return x == first ? -1 : y == first ? 1 : 0 })
+
         var scenarioList = []
-        for(var i=0; i<scenarioGroups.length; i++){
+        for(var i=0; i<scenarioGroups.length; i++) {
           group = scenarioGroups[i]
           scenarioList[group] = []
-          for(var j=0; j<scenarios.length; j++)
-          {
-            var sc = scenarios[j]
-            var scGroup = sc.group
+          var sc, scGroup
+          for (var j=0; j<scenarios.length; j++) {
+            sc = scenarios[j]
+            scGroup = sc.group
             if (scGroup == null) continue
             if (scGroup == "") scGroup = '{{Aucun}}'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
@@ -2130,7 +2131,7 @@ function getAddButton(_caret) {
   return retour
 }
 
-$divScenario.on('click','.fromSubElement ', function(event) {
+$divScenario.on('click','.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
 
