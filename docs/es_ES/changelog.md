@@ -33,6 +33,7 @@
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - **Análisis / Historia** : Ahora podemos usar la opción *Area* con la opción *Escalera*.
+- **Análisis / Historia** : Posibilidad de comparar un historial durante varios períodos.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
 - **Vista** : Posibilidad de poner escenarios.
 - **Vista** : El modo de edición ahora inserta el mosaico movido.
@@ -76,4 +77,5 @@
 - **Lib** : Actualizar jQuery v3.4.1 a v3.5.1.
 - **Lib** : Actualizar Font Awesome 5.9.0 a 5.13.1.
 - Asegurando solicitudes Ajax.
-- Corrección de errores y optimizaciones.
+- Correcciones de errores.
+- Numerosas optimizaciones de rendimiento de escritorio / móvil.

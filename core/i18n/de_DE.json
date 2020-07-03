@@ -2266,8 +2266,6 @@
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
         "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden",
-        "Variation": "Wertänderung",
-        "Escalier": "Treppe",
         "Aucun groupement": "Keine Gruppe",
         "Somme par heure": "Mengen pro Stunde",
         "Moyenne par heure": "Durchschnitt pro Stunde",
@@ -2292,6 +2290,9 @@
         "Ligne": "Linie",
         "Aire": "Fläche",
         "Barre": "Balken",
+        "Variation": "Wertänderung",
+        "Escalier": "Treppe",
+        "Comparer": "Vergleichen Sie",
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
         "Affichage": "Anzeigen",
         "Principal": "Primär",
@@ -2969,6 +2970,7 @@
         "Sélectionner une variable": "Wählen Sie eine Variable aus"
     },
     "core\/js\/history.class.js": {
+        "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet",
         "Il n\\'existe encore aucun historique pour cette commande :": "Es ist noch keine Chronik für diesen Befehl vorhanden :",
         "du": "die",
         "au": "bis",
@@ -2984,8 +2986,7 @@
         "Jour": "Tag",
         "Semaine": "Woche",
         "Mois": "Monat",
-        "Année": "Jahr",
-        "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet"
+        "Année": "Jahr"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Heizung",

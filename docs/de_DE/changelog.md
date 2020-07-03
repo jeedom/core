@@ -33,6 +33,7 @@
 - **Analyse / Geschichte** : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Fläche* mit der Option *Treppe*.
+- **Analyse / Geschichte** : Möglichkeit, eine Historie über mehrere Zeiträume zu vergleichen.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
 - **Ansicht** : Möglichkeit, Szenarien zu setzen.
 - **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
@@ -76,4 +77,5 @@
 - **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 bis 5.13.1.
 - Sichern von Ajax-Anfragen.
-- Fehlerbehebungen und Optimierungen.
+- Fehlerbehebungen.
+- Zahlreiche Leistungsoptimierungen für Desktop / Mobile.

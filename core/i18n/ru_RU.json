@@ -2266,8 +2266,6 @@
         "Supprimer tout ou partie de cet historique.": "",
         "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Внимание: слишком большой диапазон дат могут занять много времени, чтобы быть вычислен или даже не появляется",
-        "Variation": "изменение",
-        "Escalier": "лестница",
         "Aucun groupement": "нет группы",
         "Somme par heure": "Сумма в час",
         "Moyenne par heure": "В среднем за час",
@@ -2292,6 +2290,9 @@
         "Ligne": "Линия",
         "Aire": "Площадь",
         "Barre": "",
+        "Variation": "изменение",
+        "Escalier": "лестница",
+        "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "Отображение",
         "Principal": "",
@@ -2969,6 +2970,7 @@
         "Sélectionner une variable": "Выберите переменную"
     },
     "core\/js\/history.class.js": {
+        "La valeur a été éditée avec succès": "Значение было успешно изменено",
         "Il n\\'existe encore aucun historique pour cette commande :": "Пока нет истории для этой команды:",
         "du": " ",
         "au": " ",
@@ -2984,8 +2986,7 @@
         "Jour": "день",
         "Semaine": "неделя",
         "Mois": "месяц",
-        "Année": "год",
-        "La valeur a été éditée avec succès": "Значение было успешно изменено"
+        "Année": "год"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Отопление",

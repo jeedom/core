@@ -2266,8 +2266,6 @@
         "Supprimer tout ou partie de cet historique.": "",
         "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul",
-        "Variation": "Perubahan",
-        "Escalier": "Tangga",
         "Aucun groupement": "Tidak ada kelompok",
         "Somme par heure": "Sum per jam",
         "Moyenne par heure": "Rata-rata jam per",
@@ -2292,6 +2290,9 @@
         "Ligne": "Baris",
         "Aire": "Daerah",
         "Barre": "Bar",
+        "Variation": "Perubahan",
+        "Escalier": "Tangga",
+        "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "Melihat",
         "Principal": "",
@@ -2969,6 +2970,7 @@
         "Sélectionner une variable": "Pilih variabel"
     },
     "core\/js\/history.class.js": {
+        "La valeur a été éditée avec succès": "Nilai telah berhasil diedit",
         "Il n\\'existe encore aucun historique pour cette commande :": "Ini \\ 's masih ada sejarah untuk perintah ini:",
         "du": "dari",
         "au": "itu",
@@ -2984,8 +2986,7 @@
         "Jour": "Hari",
         "Semaine": "Mingu",
         "Mois": "Bulan",
-        "Année": "Tahun",
-        "La valeur a été éditée avec succès": "Nilai telah berhasil diedit"
+        "Année": "Tahun"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Pemanasan",

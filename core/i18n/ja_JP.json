@@ -2266,8 +2266,6 @@
         "Supprimer tout ou partie de cet historique.": "",
         "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "警告：あまりにも大きな日付範囲を計算するのに長い時間がかかるかさえ表示されない場合があります。",
-        "Variation": "変更",
-        "Escalier": "階段",
         "Aucun groupement": "何のグループません",
         "Somme par heure": "時間あたり合計",
         "Moyenne par heure": "時間あたりの平均",
@@ -2292,6 +2290,9 @@
         "Ligne": "ライン",
         "Aire": "エリア",
         "Barre": "バー",
+        "Variation": "変更",
+        "Escalier": "階段",
+        "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "観覧",
         "Principal": "主要",
@@ -2969,6 +2970,7 @@
         "Sélectionner une variable": "変数を選択してください"
     },
     "core\/js\/history.class.js": {
+        "La valeur a été éditée avec succès": "値が正常に編集されています",
         "Il n\\'existe encore aucun historique pour cette commande :": "それ\\「sのこのコマンドのまだ歴史：",
         "du": "の",
         "au": "インクルード",
@@ -2984,8 +2986,7 @@
         "Jour": "日",
         "Semaine": "週",
         "Mois": "月",
-        "Année": "年",
-        "La valeur a été éditée avec succès": "値が正常に編集されています"
+        "Année": "年"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "加熱",

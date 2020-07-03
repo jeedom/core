@@ -2266,8 +2266,6 @@
         "Supprimer tout ou partie de cet historique.": "",
         "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno",
-        "Variation": "Variazione",
-        "Escalier": "Passi",
         "Aucun groupement": "Nessun gruppo",
         "Somme par heure": "Somma all'ora",
         "Moyenne par heure": "All'ora media",
@@ -2292,6 +2290,9 @@
         "Ligne": "Linea",
         "Aire": "Area",
         "Barre": "Bar",
+        "Variation": "Variazione",
+        "Escalier": "Passi",
+        "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
         "Affichage": "Mostra",
         "Principal": "Primario",
@@ -2969,6 +2970,7 @@
         "Sélectionner une variable": "Seleziona una variabile"
     },
     "core\/js\/history.class.js": {
+        "La valeur a été éditée avec succès": "Il valore è stato modificato con successo",
         "Il n\\'existe encore aucun historique pour cette commande :": "Non esiste alcuna storia per questo comando:",
         "du": "di",
         "au": "a",
@@ -2984,8 +2986,7 @@
         "Jour": "Giorno",
         "Semaine": "Settimana",
         "Mois": "Mese",
-        "Année": "Anno",
-        "La valeur a été éditée avec succès": "Il valore è stato modificato con successo"
+        "Année": "Anno"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Riscaldamento",

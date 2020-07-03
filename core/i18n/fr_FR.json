@@ -2266,8 +2266,6 @@
         "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
         "Exporter cet historique.": "Exporter cet historique.",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
-        "Variation": "Variation",
-        "Escalier": "Escalier",
         "Aucun groupement": "Aucun groupement",
         "Somme par heure": "Somme par heure",
         "Moyenne par heure": "Moyenne par heure",
@@ -2292,6 +2290,9 @@
         "Ligne": "Ligne",
         "Aire": "Aire",
         "Barre": "Barre",
+        "Variation": "Variation",
+        "Escalier": "Escalier",
+        "Comparer": "Comparer",
         "Vide l'affichage des courbes sur la zone.": "Vide l'affichage des courbes sur la zone.",
         "Affichage": "Affichage",
         "Principal": "Principal",
@@ -2969,6 +2970,7 @@
         "Sélectionner une variable": "Sélectionner une variable"
     },
     "core\/js\/history.class.js": {
+        "La valeur a été éditée avec succès": "La valeur a été éditée avec succès",
         "Il n\\'existe encore aucun historique pour cette commande :": "Il n\\'existe encore aucun historique pour cette commande :",
         "du": "du",
         "au": "au",
@@ -2984,8 +2986,7 @@
         "Jour": "Jour",
         "Semaine": "Semaine",
         "Mois": "Mois",
-        "Année": "Année",
-        "La valeur a été éditée avec succès": "La valeur a été éditée avec succès"
+        "Année": "Année"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Chauffage",
