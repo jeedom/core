@@ -98,7 +98,8 @@ $('#bt_findCmdCalculHistory').on('click', function() {
 })
 
 $('#bt_displayCalculHistory').on('click', function() {
-  addChart($('#in_calculHistory').value(), 1)
+  var calcul = $('#in_calculHistory').value()
+  if (calcul != '') addChart(calcul, 1)
 })
 
 $('#bt_configureCalculHistory').on('click', function() {
