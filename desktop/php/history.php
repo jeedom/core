@@ -89,9 +89,7 @@ $date = array(
 					<div class="col-lg-7 col-sm-12">
 						<center>
 							<div class="input-group input-group-sm">
-								<span>&nbsp;&nbsp;{{Variation}} <input type="checkbox" id="cb_derive" /></span>
-								<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
-								<select class="form-control roundedLeft" id="sel_groupingType" style="width: 180px;">
+								<select class="fullCorner" id="sel_groupingType" style="width: 180px;">
 									<option value="">{{Aucun groupement}}</option>
 									<option value="sum::hour">{{Somme par heure}}</option>
 									<option value="average::hour">{{Moyenne par heure}}</option>
@@ -114,10 +112,25 @@ $date = array(
 									<option value="low::year">{{Minimum par année}}</option>
 									<option value="high::year">{{Maximum par année}}</option>
 								</select>
-								<select class="form-control roundedRight" id="sel_chartType" style="width: 100px;">
+
+								<select class="fullCorner" id="sel_chartType" style="width: 100px;">
 									<option value="line">{{Ligne}}</option>
 									<option value="area">{{Aire}}</option>
 									<option value="column">{{Barre}}</option>
+								</select>
+
+								<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
+								<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
+
+								<span>{{Comparer}} </span>
+								<select class="fullCorner" id="sel_compare" style="width: 60px;">
+									<?php
+										$options = '<option>0</option>';
+										for ($o = 1; $o <= 12; $o++) {
+											$options .= '<option>-'.$o.'</option>';
+										}
+										echo $options;
+									?>
 								</select>
 							</div>
 						</center>
