@@ -106,6 +106,7 @@ $('#bt_configureCalculHistory').on('click', function() {
 })
 
 $('#bt_clearGraph').on('click', function() {
+  isComparing = false
   if (jeedom.history.chart['div_graph'] === undefined) return
   while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
     jeedom.history.chart['div_graph'].chart.series[0].remove(true)
