@@ -60,7 +60,7 @@ No nível do protocolo, apenas o Z-Wave (OpenZwave) é um pouco diferente porque
 
 > **NOTA**
 >
-> Não é feito backup do sistema no qual o Jeedom está instalado. Se você alterou as configurações deste sistema (inclusive via SSH), cabe a você encontrar uma maneira de recuperá-las se tiver alguma dúvida.
+> Não é feito backup do sistema no qual o Jeedom está instalado. Se você alterou as configurações deste sistema (inclusive via SSH), cabe a você encontrar uma maneira de recuperá-las se tiver alguma dúvida. Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração
 
 # Backup em nuvem
 

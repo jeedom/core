@@ -2,10 +2,16 @@
 Registro de cambios Jeedom V4
 =========
 
-4.0.58
+4.0.60
+=====
+
+- Eliminación del nuevo sistema DNS de eu.jeedom.enlace que sigue a demasiados operadores que prohíben flujos http2 permanentes
+
+4.0.59
 =====
 
 - Corrección de errores en widgets de tiempo
+- Aumento de la cantidad de contraseñas incorrectas antes del destierro (evita problemas con la aplicación web al rotar claves API))
 
 4.0.57
 =====

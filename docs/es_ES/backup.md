@@ -60,7 +60,7 @@ A nivel de protocolo, solo la Z-Wave (OpenZwave) es un poco diferente porque no 
 
 > **Nota**
 >
-> El sistema en el que está instalado Jeedom no está respaldado. Si ha cambiado la configuración de este sistema (incluso a través de SSH), depende de usted encontrar una manera de recuperarlos si tiene alguna inquietud.
+> El sistema en el que está instalado Jeedom no está respaldado. Si ha cambiado la configuración de este sistema (incluso a través de SSH), depende de usted encontrar una manera de recuperarlos si tiene alguna inquietud. Del mismo modo, las dependencias tampoco lo son, por lo que deberá reinstalarlas después de una restauración
 
 # Copia de seguridad en la nube
 

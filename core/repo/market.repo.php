@@ -656,15 +656,6 @@ class repo_market {
 		}
 	}
 	
-	public static function sendTunnelClientId($_client_id) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('service::tunnel::setClientId',array('client_id' => $_client_id))) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-	
 	public static function getPurchaseInfo() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('purchase::getInfo')) {
@@ -681,7 +672,7 @@ class repo_market {
 		}
 	}
 	
-	public static function getJsonRpc() {
+		public static function getJsonRpc() {
 		$internalIp = '';
 		try {
 			$internalIp = network::getNetworkAccess('internal', 'ip');
@@ -689,48 +680,34 @@ class repo_market {
 			
 		}
 		$uname = shell_exec('uname -a');
-		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
-			$params = array(
-				'username' => config::byKey('market::username'),
-				'password' => self::getPassword(),
-				'password_type' => 'sha1',
-				'jeedomversion' => jeedom::version(),
-				'hwkey' => jeedom::getHardwareKey(),
-				'information' => array(
-					'nbMessage' => message::nbMessage(),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-					'uname' => $uname,
-					'language' => config::byKey('language'),
-				),
-				'market_api_key' => jeedom::getApiKey('apimarket'),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
-			);
-			if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
-				$params['url'] = network::getNetworkAccess('external');
-			}
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
-		} else {
-			$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array(
-				'jeedomversion' => jeedom::version(),
-				'hwkey' => jeedom::getHardwareKey(),
-				'localIp' => $internalIp,
-				'jeedom_name' => config::byKey('name'),
-				'plugin_install_list' => plugin::listPlugin(false, false, false, true),
-				'information' => array(
-					'nbMessage' => message::nbMessage(),
-					'nbUpdate' => update::nbNeedUpdate(),
-					'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
-					'uname' => $uname,
-					'language' => config::byKey('language'),
-				),
-			));
+		if (config::byKey('market::username') == '' || config::byKey('market::password') == '') {
+			throw new \Exception(__('Nom d\'utilisateur ou mot de passe pour market vide',__FILE__));
 		}
+		$params = array(
+			'username' => config::byKey('market::username'),
+			'password' => self::getPassword(),
+			'password_type' => 'sha1',
+			'jeedomversion' => jeedom::version(),
+			'hwkey' => jeedom::getHardwareKey(),
+			'information' => array(
+				'nbMessage' => message::nbMessage(),
+				'nbUpdate' => update::nbNeedUpdate(),
+				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
+				'uname' => $uname,
+				'dns_mode' => config::byKey('dns::mode'),
+				'language' => config::byKey('language'),
+			),
+			'market_api_key' => jeedom::getApiKey('apimarket'),
+			'localIp' => $internalIp,
+			'jeedom_name' => config::byKey('name'),
+			'plugin_install_list' => plugin::listPlugin(false, false, false, true),
+		);
+		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+			$params['url'] = network::getNetworkAccess('external');
+		}
+		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
-		$jsonrpc->setNoSslCheck(true);
 		return $jsonrpc;
 	}
 	
@@ -761,12 +738,6 @@ class repo_market {
 			if (isset($_result['service::backup::enable']) && config::byKey('service::backup::enable') != $_result['service::backup::enable']) {
 				config::save('service::backup::enable', $_result['service::backup::enable']);
 			}
-			if (isset($_result['service::tunnel::enable']) && config::byKey('service::tunnel::enable') != $_result['service::tunnel::enable']) {
-				config::save('service::tunnel::enable', $_result['service::tunnel::enable']);
-			}
-			if (isset($_result['service::tunnel::host']) && config::byKey('service::tunnel::host') != $_result['service::tunnel::host']) {
-				config::save('service::tunnel::host', $_result['service::tunnel::host']);
-			}
 			if (isset($_result['register::id']) && config::byKey('register::id') != $_result['register::id']) {
 				config::save('register::id', $_result['register::id']);
 			}
@@ -776,8 +747,8 @@ class repo_market {
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
-			if (config::byKey('market::allowDNS') == 1 && isset($_result['service::tunnel::host']) && config::byKey('jeedom::url') != 'https://'.$_result['service::tunnel::host']) {
-				config::save('jeedom::url', 'https://'.$_result['service::tunnel::host']);
+			if (config::byKey('market::allowDNS') == 1 && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
+				config::save('jeedom::url', $_result['jeedom::url']);
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');

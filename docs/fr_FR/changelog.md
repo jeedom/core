@@ -2,6 +2,11 @@
 Changelog Jeedom V4
 =========
 
+4.0.60
+=====
+
+- Supression du nouveau systeme de DNS en eu.jeedom.link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant
+
 4.0.59
 =====
 

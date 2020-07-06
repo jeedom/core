@@ -2,10 +2,16 @@
 Changelog Jeedom V4
 =========
 
-4.0.58
+4.0.60
+=====
+
+- Removal of the new DNS system from eu.jeedom.link following too many operators who prohibit permanent http2 flows
+
+4.0.59
 =====
 
 - Bug fixes on time widgets
+- Increase in the number of bad passwords before banishment (avoids problems with the webapp when rotating API keys)
 
 4.0.57
 =====
