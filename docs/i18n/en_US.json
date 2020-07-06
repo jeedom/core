@@ -1617,6 +1617,7 @@
         "Le système sur lequel est installé Jeedom n'est pas sauvegardé. Si": "The system on which Jeedom is installed is not backed up. Yes",
         "vous avez modifié des paramètres de ce système (notamment via SSH": "you have modified parameters of this system (in particular via SSH",
         "c'est à vous de trouver un moyen de les récupérer en cas de soucis": "it&#39;s up to you to find a way to recover them in case of problems",
+        "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration": "Similarly, the outbuildings are not either, so you will have to reinstall them after a restoration",
         "Sauvegarde cloud": "Cloud backup",
         "La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes": "Cloud backup allows Jeedom to send your backups",
         "directement sur le Market": "directly on the Market",

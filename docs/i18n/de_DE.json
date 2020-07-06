@@ -1617,6 +1617,7 @@
         "Le système sur lequel est installé Jeedom n'est pas sauvegardé. Si": "Das System, auf dem Jeedom installiert ist, wird nicht gesichert. wenn",
         "vous avez modifié des paramètres de ce système (notamment via SSH": "Sie haben die Parameter dieses Systems geändert (insbesondere über SSH",
         "c'est à vous de trouver un moyen de les récupérer en cas de soucis": "Es liegt an Ihnen, einen Weg zu finden, um sie bei Problemen wiederherzustellen",
+        "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration": "Ebenso sind die Nebengebäude nicht vorhanden, sodass Sie sie nach einer Restaurierung neu installieren müssen",
         "Sauvegarde cloud": "Cloud-Backup",
         "La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes": "Mit Cloud-Backups kann Jeedom Ihre Backups senden",
         "directement sur le Market": "direkt auf dem Markt",

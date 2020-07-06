@@ -955,6 +955,7 @@
         "Le système sur lequel est installé Jeedom n'est pas sauvegardé. Si": "Le système sur lequel est installé Jeedom n'est pas sauvegardé. Si",
         "vous avez modifié des paramètres de ce système (notamment via SSH": "vous avez modifié des paramètres de ce système (notamment via SSH",
         "c'est à vous de trouver un moyen de les récupérer en cas de soucis": "c'est à vous de trouver un moyen de les récupérer en cas de soucis",
+        "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration": "De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration",
         "Sauvegarde cloud": "Sauvegarde cloud",
         "La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes": "La sauvegarde dans le cloud permet à Jeedom d'envoyer vos sauvegardes",
         "directement sur le Market": "directement sur le Market",

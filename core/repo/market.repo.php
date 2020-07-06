@@ -657,15 +657,6 @@ class repo_market {
 		}
 	}
 	
-	public static function sendTunnelClientId($_client_id) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('service::tunnel::setClientId',array('client_id' => $_client_id))) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-	}
-	
 	public static function getPurchaseInfo() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('purchase::getInfo')) {
