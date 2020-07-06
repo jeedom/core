@@ -627,7 +627,7 @@ class scenarioExpression {
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 		
-		$histories = $cmd->getHistory($_startTime,$_endTime);
+		$histories = $cmd->getHistory(date('Y-m-d H:i:s',strtotime($_startTime.' - 2 hours')),$_endTime);
 		if (count($histories) == 0) {
 			return '';
 		}
