@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.52
+======
+
+- Entfernung des neuen DNS-Systems aus eu.jeedom.Link folgt zu vielen Betreibern, die permanente http2-Flows verbieten
+
 3.3.51
 ======
 

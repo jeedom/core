@@ -1705,6 +1705,9 @@
         " Market*": " Mercado*"
     },
     "changelog.md": {
+        "3.3.52": "3.3.52",
+        "Supression du nouveau systeme de DNS en eu.jeedom": "Eliminación del nuevo sistema DNS de eu.jeedom",
+        "link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant": "enlace que sigue a demasiados operadores que prohíben flujos http2 permanentes",
         "3.3.51": "3.3.51",
         "Correction d'un souci de calcul de temps d'état sur les widgets si le fuseau horaire de Jeedom n'est pas le même que celui du navigateur": "Se corrigió un problema con el cálculo de la hora del estado en los widgets si la zona horaria de Jeedom no es la misma que la del navegador",
         "Augmentation du nombre de mauvais mot de passe avant bannissement (évite les soucis avec la webapp lors de la rotation des clefs api": "Aumento de la cantidad de contraseñas incorrectas antes del destierro (evita problemas con la aplicación web al rotar claves API)",

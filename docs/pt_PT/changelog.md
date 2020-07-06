@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.52
+======
+
+- Remoção do novo sistema DNS do eu.jeedom.link seguindo muitos operadores que proíbem fluxos http2 permanentes
+
 3.3.51
 ======
 

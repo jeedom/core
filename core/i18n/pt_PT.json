@@ -3251,11 +3251,6 @@
         "La commande de démarrage du DNS est introuvable": "Comando de inicialização do DNS não encontrado",
         "La commande de statut du DNS est introuvable": "Comando de status DNS não encontrado",
         "La commande d\\'arrêt du DNS est introuvable": "Comando de parada do DNS não encontrado",
-        "Impossible de télécharger : ": "Não foi possível fazer o download:",
-        "Taille invalide pour : ": "Tamanho inválido para:",
-        "Impossible de générer le certificat et la clef privé": "Não foi possível gerar o certificado e a chave privada",
-        "Redémarrage du tunnel jeedom (tunnel pas démarré)": "Reinicialização do túnel Jeedom (túnel não iniciado)",
-        "Redémarrage du tunnel jeedom (pas de handshake trouvé)": "Reinicialização do túnel Jeedom (nenhum aperto de mão encontrado)",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Problema de rede detectado, reinicialização da rede. Nenhum gateway encontrado",
         "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ": "Problema de rede detectado, reinicialização da rede. O gateway não responde ao ping:"
     },
