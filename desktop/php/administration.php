@@ -824,13 +824,13 @@ user::isBan();
 														<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 													</div>
 												</div>
-												<div class="form-group col-xs-12 dnsMode vpn">
+												<div class="form-group col-xs-12">
 													<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
 													<div class="col-xs-6">
 														<input type="checkbox" class="configKey" data-l1key="connection::4g" />
 													</div>
 												</div>
-												<div class="form-group col-xs-12 dnsMode vpn">
+												<div class="form-group col-xs-12">
 													<label class="col-xs-6 control-label">{{MTU spécifique (expert)}}</label>
 													<div class="col-xs-6">
 														<input class="configKey form-control" data-l1key="market::dns::mtu" />
@@ -861,17 +861,6 @@ user::isBan();
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
 													$div .= '</div>';
 													$div .= '</div>';
-													if($key == 'market'){
-														$div .= '<div class="form-group col-xs-12">';
-														$div .= '<label class="col-xs-4 control-label">{{Mode}}</label>';
-														$div .= '<div class="col-xs-6">';
-														$div .= '<select class="configKey form-control"  data-l1key="dns::mode">';
-														$div .= '<option value="http2">{{HTTP/2 (*.eu.jeedom.link) - conseillé}}</option>';
-														$div .= '<option value="vpn">{{Openvpn (*.dnsX.jeedom.com)}}</option>';
-														$div .= '</select>';
-														$div .= '</div>';
-														$div .= '</div>';
-													}
 													$div .= '<div class="form-group col-xs-12">';
 													$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 													$div .= '<div class="col-xs-8">';
