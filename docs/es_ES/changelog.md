@@ -5,7 +5,7 @@ Registro de cambios Jeedom V4
 4.0.60
 =====
 
-- Posibilidad de elegir su modo dns en la configuración de redes jeedom. IMPORTANTE : de manera predeterminada, el modo está en http2 (eu.jeedom.vincular el nuevo dns) si desea volver al anterior (dnsX.jeedom.com) DEBE ABSOLUTAMENTE cambiar el modo a openvpn. El 2 ya no puede estar activo al mismo tiempo.
+- Eliminación del nuevo sistema DNS de eu.jeedom.enlace que sigue a demasiados operadores que prohíben flujos http2 permanentes
 
 4.0.59
 =====
