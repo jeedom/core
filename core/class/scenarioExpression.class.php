@@ -842,7 +842,7 @@ class scenarioExpression {
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
-				return $_scenario->getRealTrigger();
+				return str_replace('#','',$_scenario->getRealTrigger());
 			}
 			if ($_name == $_scenario->getRealTrigger()) {
 				return 1;
