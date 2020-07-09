@@ -694,7 +694,6 @@ class repo_market {
 				'nbUpdate' => update::nbNeedUpdate(),
 				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				'uname' => $uname,
-				'dns_mode' => config::byKey('dns::mode'),
 				'language' => config::byKey('language'),
 			),
 			'market_api_key' => jeedom::getApiKey('apimarket'),
