@@ -16,7 +16,7 @@ $optionMaxSize = 15;
 <div class="row row-overflow">
 	<div id="interactThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
-		<div class="interactListContainer">
+		<div class="interactListContainer hidden">
 			<div class="cursor logoPrimary" id="bt_addInteract2">
 				<center>
 					<i class="fas fa-plus-circle"></i>

@@ -2893,6 +2893,9 @@ textarea {
 .ui-sortable-placeholder {
   display: none;
 }
+.ui-sortable-helper {
+  z-index: 2000;
+}
 .sortable-placeholder + div,
 .sortable-placeholder + .expression .element {
   background-color: var(--logo-primary-color) !important;

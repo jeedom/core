@@ -33,6 +33,7 @@
 - **Analysis / History** : Ctrl Click on a legend to display only this history, Alt Click to display them all.
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Steps*.
+- **Analysis / History** : Possibility to compare a history over several periods.
 - **Analysis / Logs** : New monospace type font for logs.
 - **View** : Possibility to put scenarios.
 - **View** : Edit mode now inserting the moved tile.
@@ -76,4 +77,5 @@
 - **Lib** : Update jQuery v3.4.1 to v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 to 5.13.1.
 - Securing Ajax requests.
-- Bug fixes and optimizations.
+- Bug fixes.
+- Numerous desktop / mobile performance optimizations.

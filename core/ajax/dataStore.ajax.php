@@ -52,6 +52,41 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'byTypeLinkIdKey') {
+		$key = trim(init('key'));
+		$dataStore = dataStore::byTypeLinkIdKey(init('type'), init('linkId'), $key);
+		if (!is_object($dataStore)) {
+			throw new Exception(__('Dépôt de données inconnu.', __FILE__) . $key);
+		}
+		$return = array();
+		if (init('usedBy') == 1) {
+			$info_datastore['usedBy'] = array(
+				'scenario' => array(),
+				'eqLogic' => array(),
+				'cmd' => array(),
+				'interactDef' => array(),
+			);
+			$usedBy = $dataStore->getUsedBy();
+
+			foreach ($usedBy['scenario'] as $scenario) {
+				$info_datastore['usedBy']['scenario'][] = ['humanName'=>$scenario->getHumanName(), 'link'=>$scenario->getLinkToConfiguration(), 'id'=>$scenario->getId()];
+			}
+			foreach ($usedBy['eqLogic'] as $eqLogic) {
+				$info_datastore['usedBy']['eqLogic'][] = ['humanName'=>$eqLogic->getHumanName(), 'link'=>$eqLogic->getLinkToConfiguration(), 'id'=>$eqLogic->getId()];
+			}
+			foreach ($usedBy['cmd'] as $cmd) {
+				$info_datastore['usedBy']['cmd'][] = ['humanName'=>$cmd->getHumanName(), 'link'=>$cmd->getEqLogic()->getLinkToConfiguration(), 'id'=>$cmd->getId()];
+			}
+			foreach ($usedBy['interactDef'] as $interactDef) {
+				$info_datastore['usedBy']['interactDef'][] = ['humanName'=>$interactDef->getHumanName(), 'link'=>$interactDef->getLinkToConfiguration(), 'id'=>$interactDef->getId()];
+			}
+			$return[] = $info_datastore;
+		} else {
+			$return = utils::o2a($dataStore);
+		}
+		ajax::success($return);
+	}
+
 	if (init('action') == 'all') {
 		$dataStores = dataStore::byTypeLinkId(init('type'));
 		$return = array();

@@ -627,7 +627,7 @@ class scenarioExpression {
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 		
-		$histories = $cmd->getHistory($_startTime,$_endTime);
+		$histories = $cmd->getHistory(date('Y-m-d H:i:s',strtotime($_startTime.' - 2 hours')),$_endTime);
 		if (count($histories) == 0) {
 			return '';
 		}
@@ -842,7 +842,7 @@ class scenarioExpression {
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
-				return $_scenario->getRealTrigger();
+				return str_replace('#','',$_scenario->getRealTrigger());
 			}
 			if ($_name == $_scenario->getRealTrigger()) {
 				return 1;

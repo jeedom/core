@@ -118,7 +118,7 @@ $('#bt_resetInsideScenarioSearch').on('click', function() {
       $(this).removeClass('elementCollapse')
       $(this).find('textarea[data-l1key="expression"]').show()
     })
-    setEditor()
+    setEditors()
     $('textarea[data-l1key="expression"]').hide()
     searchField.focus()
   } else {
@@ -144,27 +144,28 @@ $(function(){
         $('#div_alert').showAlert({message: error.message, level: 'danger'});
       },
       success: function(scenarios) {
-        if(scenarios.length == 0){
-          return;
-        }
+        if (scenarios.length == 0) return
         var scenarioGroups = []
-        for(var i=0; i<scenarios.length; i++){
+        for (var i=0; i<scenarios.length; i++) {
           group = scenarios[i].group
           if (group == null) continue
           if (group == "") group = '{{Aucun}}'
           group = group[0].toUpperCase() + group.slice(1)
           scenarioGroups.push(group)
         }
+
         scenarioGroups = Array.from(new Set(scenarioGroups))
-        scenarioGroups.sort()
+        var first = '{{Aucun}}'
+        scenarioGroups.sort(function(x, y) { return x == first ? -1 : y == first ? 1 : 0 })
+
         var scenarioList = []
-        for(var i=0; i<scenarioGroups.length; i++){
+        for(var i=0; i<scenarioGroups.length; i++) {
           group = scenarioGroups[i]
           scenarioList[group] = []
-          for(var j=0; j<scenarios.length; j++)
-          {
-            var sc = scenarios[j]
-            var scGroup = sc.group
+          var sc, scGroup
+          for (var j=0; j<scenarios.length; j++) {
+            sc = scenarios[j]
+            scGroup = sc.group
             if (scGroup == null) continue
             if (scGroup == "") scGroup = '{{Aucun}}'
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
@@ -217,7 +218,7 @@ $(function(){
 
 /* ---------Scenario Management UI---------- */
 setTimeout(function(){
-  $('.scenarioListContainer').packery()
+  $('.scenarioListContainer').removeClass('hidden').packery()
 },100)
 
 var tab = null
@@ -275,7 +276,7 @@ $('#bt_scenarioTab').on('click',function() {
   $('#bt_resetInsideScenarioSearch').removeClass('disabled')
   $('#in_searchInsideScenario').prop( "disabled", false )
   setTimeout(function() {
-    setEditor()
+    setEditors()
     taAutosize()
     updateElseToggle()
   }, 50)
@@ -339,7 +340,6 @@ $('#div_scenarioElement').on('focus', ':input', function() {
   PREV_FOCUS = $(this)
 })
 
-var editor = []
 var autoCompleteCondition = [
   '#rand(MIN,MAX)',
   '##minute#',
@@ -393,7 +393,18 @@ $(function() {
       }, 500)
     }, 200)
   }
+
+  //trigger:
+  setTimeout(function() { checkNoMode() }, 250)
 })
+
+function checkNoMode() {
+  if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length) {
+    $('#emptyModeWarning').hide()
+  } else {
+    $('#emptyModeWarning').show()
+  }
+}
 
 $('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(event) {
   $.hideAlert()
@@ -455,16 +466,6 @@ $('.scenarioAttr[data-l1key=group]').autocomplete({
   minLength: 1,
 })
 
-//trigger:
-setTimeout(function(){ checkNoMode() }, 600)
-function checkNoMode() {
-  if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length) {
-    $('#emptyModeWarning').hide()
-  } else {
-    $('#emptyModeWarning').show()
-  }
-}
-
 $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function() {
   $('#bt_addSchedule').removeClass('roundedRight')
   $('#bt_addTrigger').removeClass('roundedRight')
@@ -516,7 +517,7 @@ $divScenario.on('click','.bt_selectTrigger', function(event) {
   })
 })
 
-$divScenario.on( 'click','.bt_selectDataStoreTrigger', function(event) {
+$divScenario.on('click','.bt_selectDataStoreTrigger', function(event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({cmd: {type: 'info'}}, function(result) {
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
@@ -526,7 +527,7 @@ $divScenario.on( 'click','.bt_selectDataStoreTrigger', function(event) {
 //Scenario bar:
 var SC_CLIPBOARD = null
 
-$divScenario.on( 'click','.bt_addScenarioElement', function(event) {
+$divScenario.on('click','.bt_addScenarioElement', function(event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
   var expression = false
   var insertAfter = false
@@ -564,7 +565,7 @@ $divScenario.on( 'click','.bt_addScenarioElement', function(event) {
       elementDiv.append(newEL.addClass('disableElement'))
     }
 
-    setEditor()
+    setEditors()
     updateSortable()
     updateElseToggle()
     $('#md_addElement').modal('hide')
@@ -696,7 +697,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
 
 
 /*******************Element***********************/
-$divScenario.on('change','.subElementAttr[data-l1key=options][data-l2key=enable]',function() {
+$divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=enable]',function() {
   var checkbox = $(this)
   var element = checkbox.closest('.element')
   if (checkbox.value() == 1) {
@@ -712,7 +713,7 @@ $divScenario.on('change','.subElementAttr[data-l1key=options][data-l2key=enable]
   }
 })
 
-$divScenario.on('change','.expressionAttr[data-l1key=options][data-l2key=enable]',function() {
+$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable]',function() {
   var checkbox = $(this)
   var element = checkbox.closest('.expression')
   if (checkbox.value() == 1) {
@@ -722,7 +723,7 @@ $divScenario.on('change','.expressionAttr[data-l1key=options][data-l2key=enable]
   }
 })
 
-$divScenario.on('click','.bt_removeElement', function(event) {
+$divScenario.on('click', '.bt_removeElement', function(event) {
   var button = $(this)
   if (event.ctrlKey) {
     if (button.closest('.expression').length != 0) {
@@ -749,7 +750,7 @@ $divScenario.on('click','.bt_removeElement', function(event) {
   PREV_FOCUS = null
 })
 
-$divScenario.on( 'click','.bt_addAction', function(event) {
+$divScenario.on('click', '.bt_addAction', function(event) {
   setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}))
   setAutocomplete()
@@ -757,7 +758,7 @@ $divScenario.on( 'click','.bt_addAction', function(event) {
   updateTooltips()
 })
 
-$divScenario.on( 'click','.bt_showElse', function(event) {
+$divScenario.on('click', '.bt_showElse', function(event) {
   if ($(this).children('i').hasClass('fa-sort-down')) {
     $(this).children('i').removeClass('fa-sort-down').addClass('fa-sort-up')
     $(this).closest('.element').children('.subElementELSE').show()
@@ -771,10 +772,11 @@ $divScenario.on( 'click','.bt_showElse', function(event) {
   }
 })
 
-$divScenario.on( 'click', '.bt_collapse', function(event) {
+$divScenario.on('click', '.bt_collapse', function(event) {
   var changeThis = $(this)
   if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse')
   if ($(this).children('i').hasClass('fa-eye')) {
+    // -> Collapse!
     changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash')
     changeThis.closest('.element').addClass('elementCollapse')
     changeThis.attr('value',1)
@@ -789,7 +791,7 @@ $divScenario.on( 'click', '.bt_collapse', function(event) {
         if (!txt) txt = _el.find('.expression textarea').val()
       } else if (_el.hasClass('elementCODE')) {
         id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (isset(editor[id])) txt = editor[id].getValue()
+        if (isset(_EDITORS[id])) txt = _EDITORS[id].getValue()
       } else {
         //comment
         txt = _el.find('.expression textarea').val()
@@ -798,22 +800,25 @@ $divScenario.on( 'click', '.bt_collapse', function(event) {
       }
       if (txt) $(this).html(txt.substring(0, 200))
     })
+    updateTooltips()
   } else {
+    // -> Uncollapse!
     changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
     changeThis.closest('.element').removeClass('elementCollapse')
     changeThis.attr('value',0)
     changeThis.attr('title',"{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
-    setEditor()
+    setEditors()
+    updateTooltips()
   }
 })
 
-$divScenario.on('click','.bt_removeExpression', function(event) {
+$divScenario.on('click', '.bt_removeExpression', function(event) {
   setUndoStack()
   $(this).closest('.expression').remove()
   updateSortable()
 })
 
-$divScenario.on('click','.bt_selectCmdExpression', function(event) {
+$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
   var type = 'info'
@@ -965,7 +970,7 @@ $divScenario.on('click','.bt_selectCmdExpression', function(event) {
   })
 })
 
-$divScenario.on('click','.bt_selectOtherActionExpression', function(event) {
+$divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.getSelectActionModal({scenario : true}, function(result) {
     setUndoStack()
@@ -977,7 +982,7 @@ $divScenario.on('click','.bt_selectOtherActionExpression', function(event) {
   })
 })
 
-$divScenario.on('click','.bt_selectScenarioExpression', function(event) {
+$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.scenario.getSelectModal({}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -989,7 +994,7 @@ $divScenario.on('click','.bt_selectScenarioExpression', function(event) {
   })
 })
 
-$divScenario.on('click','.bt_selectEqLogicExpression', function(event) {
+$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.eqLogic.getSelectModal({}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -1001,7 +1006,7 @@ $divScenario.on('click','.bt_selectEqLogicExpression', function(event) {
   })
 })
 
-$divScenario.on('focusout','.expression .expressionAttr[data-l1key=expression]', function(event) {
+$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]', function(event) {
   var el = $(this)
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr')
@@ -1013,7 +1018,7 @@ $divScenario.on('focusout','.expression .expressionAttr[data-l1key=expression]',
   }
 })
 
-$divScenario.on('click','.bt_copyElement', function(event) {
+$divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   //If element in an expression, copy the entire expression:
   if (!clickedBloc.parent('#div_scenarioElement').length) {
@@ -1038,7 +1043,7 @@ $divScenario.on('click','.bt_copyElement', function(event) {
   modifyWithoutSave = true
 })
 
-$divScenario.on('click','.bt_pasteElement', function(event) {
+$divScenario.on('click', '.bt_pasteElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (localStorage.getItem('jeedomScCopy')) {
     SC_CLIPBOARD = $.parseHTML(localStorage.getItem('jeedomScCopy'))
@@ -1051,6 +1056,8 @@ $divScenario.on('click','.bt_pasteElement', function(event) {
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
   newBloc.find('.insideSearch').removeClass('insideSearch')
+  newBloc.find('.expressionAttr[data-l1key=expression]').removeAttr('id').show()
+  newBloc.find('.CodeMirror.CodeMirror-wrap').remove()
 
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
@@ -1063,7 +1070,7 @@ $divScenario.on('click','.bt_pasteElement', function(event) {
       newBloc.insertAfter(clickedBloc.parent().parent())
     } else {
       newDiv = '<div class="expression sortable col-xs-12">'
-      newDiv += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element">'
+      newDiv += '<input class="expressionAttr" data-l1key="type" style="display: none;" value="element">'
       newDiv += '<div class="col-xs-12" id="insertHere">'
       newDiv += '</div>'
       newDiv += '</div>'
@@ -1079,6 +1086,7 @@ $divScenario.on('click','.bt_pasteElement', function(event) {
   updateSortable()
   updateTooltips()
   setAutocomplete()
+  setEditors()
   modifyWithoutSave = true
 })
 
@@ -1169,15 +1177,15 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
   $("#div_scenarioElement").sortable("enable")
 })
 
-$divScenario.on('mousedown','.bt_sortable', function() {
+$divScenario.on('mousedown', '.bt_sortable', function() {
   setUndoStack()
 })
 
-$divScenario.on('mouseout','.bt_sortable', function() {
+$divScenario.on('mouseout', '.bt_sortable', function() {
   $("#div_scenarioElement").sortable("disable")
 })
 
-$divScenario.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function(){
+$divScenario.on('click', '.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function(){
   if ($(this).attr('value') == 0) {
     $(this).attr('value',1).html('<span><i class="fas fa-ban text-danger"></i></span>')
   } else {
@@ -1186,15 +1194,15 @@ $divScenario.on('click','.subElementAttr[data-l1key=options][data-l2key=allowRep
 })
 
 /**************** Initialisation **********************/
-$divScenario.on('change','.scenarioAttr:visible', function() {
+$divScenario.on('change', '.scenarioAttr:visible', function() {
   modifyWithoutSave = true
 })
 
-$divScenario.on('change','.expressionAttr:visible', function() {
+$divScenario.on('change', '.expressionAttr:visible', function() {
   modifyWithoutSave = true
 })
 
-$divScenario.on('change','.elementAttr:visible', function() {
+$divScenario.on('change', '.elementAttr:visible', function() {
   modifyWithoutSave = true
 })
 
@@ -1236,28 +1244,6 @@ function updateElementCollpase() {
       $(this).closest('.element').removeClass('elementCollapse')
     } else {
       $(this).closest('.element').addClass('elementCollapse')
-    }
-  })
-}
-
-function setEditor() {
-  var expression, code, id
-  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
-    expression = $(this).closest('.expression')
-    code = expression.find('.expressionAttr[data-l1key=expression]')
-    $(this).find('.blocPreview').html(code.val())
-    if (code.attr('id') == undefined && code.is(':visible')) {
-      code.uniqueId()
-      id = code.attr('id')
-      setTimeout(function() {
-        editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
-          lineNumbers: true,
-          lineWrapping: true,
-          mode: 'text/x-php',
-          matchBrackets: true,
-          viewportMargin : Infinity
-        })
-      }, 1)
     }
   })
 }
@@ -1317,7 +1303,7 @@ function printScenario(_id) {
   $.hideAlert()
   $.showLoading()
   $('#emptyModeWarning').hide()
-  jeedom.scenario.update[_id] =function(_options) {
+  jeedom.scenario.update[_id] = function(_options) {
     if (_options.scenario_id =! $divScenario.getValues('.scenarioAttr')[0]['id']) {
       return
     }
@@ -1449,7 +1435,7 @@ function printScenario(_id) {
         window.location.hash = hash
       }
       setTimeout(function() {
-        setEditor()
+        setEditors()
       }, 100)
       modifyWithoutSave = false
       resetUndo()
@@ -2086,8 +2072,8 @@ function getElement(_element) {
       }
       if (subElement.type == 'code') {
         id = $(this).find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (id != undefined && isset(editor[id])) {
-          expression.expression = editor[id].getValue()
+        if (id != undefined && isset(_EDITORS[id])) {
+          expression.expression = _EDITORS[id].getValue()
         }
       }
       subElement.expressions.push(expression)
@@ -2145,7 +2131,7 @@ function getAddButton(_caret) {
   return retour
 }
 
-$divScenario.on( 'click','.fromSubElement ', function(event) {
+$divScenario.on('click','.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
 
@@ -2153,7 +2139,7 @@ $divScenario.on( 'click','.fromSubElement ', function(event) {
   var newEL = $(addExpression({type: 'element', element: {type: elementType}}))
   elementDiv.append(newEL.addClass('disableElement'))
 
-  setEditor()
+  setEditors()
   updateSortable()
   updateElseToggle()
   modifyWithoutSave = true
@@ -2270,25 +2256,48 @@ function resetUndo() {
   bt_redo.addClass('disabled')
 }
 
+//Code Editors:
+var _EDITORS = []
+function setEditors() {
+  var expression, code
+  $('.expressionAttr[data-l1key=type][value=code]').each(function () {
+    expression = $(this).closest('.expression')
+    code = expression.find('.expressionAttr[data-l1key=expression]')
+    $(this).find('.blocPreview').html(code.val())
+    if (code.attr('id') == undefined && code.is(':visible')) {
+      code.uniqueId()
+      var id = code.attr('id')
+      setTimeout(function () {
+        _EDITORS[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+          lineNumbers: true,
+          lineWrapping: true,
+          mode: 'text/x-php',
+          matchBrackets: true,
+          viewportMargin : Infinity
+        })
+      }, 1)
+    }
+  })
+}
+
+function resetEditors() {
+  _EDITORS = []
+  var expression, code
+  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
+    expression = $(this).closest('.expression')
+    code = expression.find('.expressionAttr[data-l1key=expression]')
+    code.removeAttr('id').show()
+    expression.find('.CodeMirror.CodeMirror-wrap').remove()
+  })
+  setEditors()
+}
+
 function syncEditors() {
   var expression, code, id
   $('.expressionAttr[data-l1key=type][value=code]').each(function() {
     expression = $(this).closest('.expression')
     code = expression.find('.expressionAttr[data-l1key=expression]')
     id = code.attr('id')
-    if (isset(editor[id])) code.html(editor[id].getValue())
+    if (isset(_EDITORS[id])) code.html(_EDITORS[id].getValue())
   })
-}
-
-function resetEditors() {
-  editor = []
-  var expression, code, element
-  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
-    expression = $(this).closest('.expression')
-    code = expression.find('.expressionAttr[data-l1key=expression]')
-    element = expression.parents('elementCODE').first()
-    code.show().removeAttr('id')
-    expression.find('.CodeMirror-wrap').remove()
-  })
-  setEditor()
 }

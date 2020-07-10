@@ -288,19 +288,20 @@ function searchFor() {
 
 /* ------            Searching            -------*/
 function searchFor_variable(_searchFor) {
-  jeedom.dataStore.all({
+  jeedom.dataStore.byTypeLinkIdKey({
     type: 'scenario',
-    usedBy : 1,
-    error: function (error) {
+    linkId: -1,
+    key: _searchFor,
+    usedBy: 1,
+    error: function(error) {
       $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'});
     },
-    success: function (result) {
+    success: function(result) {
       scenarioResult = []
       interactResult = []
       eqlogicResult = []
       cmdResult = []
       for (var i in result) {
-        if (result[i].key.toLowerCase() != _searchFor) continue
         for (var sc in result[i].usedBy.scenario) {
           scenarioResult.push({'humanName':result[i].usedBy.scenario[sc]['humanName'], 'id':result[i].usedBy.scenario[sc]['id']})
         }

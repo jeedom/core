@@ -33,6 +33,7 @@
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
 - **Análise / História** : Agora podemos usar a opção *área* com a opção *Escada*.
+- **Análise / História** : Possibilidade de comparar um histórico ao longo de vários períodos.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Vista** : Possibilidade de colocar cenários.
 - **Vista** : Modo de edição agora inserindo o bloco movido.
@@ -76,4 +77,5 @@
 - **Lib** : Atualizar o jQuery v3.4.1 a v3.5.1.
 - **Lib** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
 - Protegendo solicitações Ajax.
-- Correções de bugs e otimizações.
+- Correções de bugs.
+- Inúmeras otimizações de desempenho de desktop / dispositivos móveis.

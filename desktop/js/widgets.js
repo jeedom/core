@@ -355,7 +355,7 @@ function loadTemplateConfiguration(_template,_data) {
 }
 
 setTimeout(function(){
-  $('.widgetsListContainer').packery()
+  $('.widgetsListContainer').removeClass('hidden').packery()
 }, 100)
 
 $('.accordion-toggle').off('click').on('click', function() {

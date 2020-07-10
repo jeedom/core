@@ -67,6 +67,70 @@ jeedom.history.copyHistoryToCmd = function(_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.history.generatePlotBand = function(_startTime, _endTime) {
+  var plotBands = [];
+  var day = 86400000
+  if ((_endTime - _startTime) > (9 * day)) {
+    return plotBands;
+  }
+  _startTime = Math.floor(_startTime / day) * day;
+  var plotBand
+  while (_startTime < _endTime) {
+    plotBand = {};
+    plotBand.from = _startTime;
+    plotBand.to = _startTime + day;
+    if (plotBand.to > _endTime) {
+      plotBand.to = _endTime;
+    }
+    plotBands.push(plotBand);
+    _startTime += 2 * day;
+  }
+  return plotBands;
+}
+
+jeedom.history.changePoint = function(_params) {
+  var paramsRequired = ['cmd_id','datetime','value','oldValue'];
+  var paramsSpecifics = {
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    },
+    success: function(result) {
+      $('#div_alert').showAlert({message: '{{La valeur a été éditée avec succès}}', level: 'success'});
+      var serie = null;
+      for (var i in jeedom.history.chart) {
+        serie = jeedom.history.chart[i].chart.get(_params.cmd_id);
+        if (serie != null && serie != undefined) {
+          serie.remove();
+          serie = null;
+          jeedom.history.drawChart({
+            cmd_id: _params.cmd_id,
+            el: i,
+            dateRange: jeedom.history.chart[i].cmd[_params.cmd_id].dateRange,
+            option: jeedom.history.chart[i].cmd[_params.cmd_id].option
+          });
+        }
+      }
+    }
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch(e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'changeHistoryPoint',
+    cmd_id: _params.cmd_id,
+    datetime: _params.datetime,
+    value: _params.value,
+    oldValue : _params.oldValue
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.history.drawChart = function(_params) {
   $.showLoading();
   if ($.type(_params.dateRange) == 'object') {
@@ -74,6 +138,7 @@ jeedom.history.drawChart = function(_params) {
   }
   _params.option = init(_params.option, {derive: ''});
   var _visible = (isset(_params.visible)) ? _params.visible : true
+
   //get command history
   $.ajax({
     type: "POST",
@@ -117,6 +182,23 @@ jeedom.history.drawChart = function(_params) {
           }
         }
         return;
+      }
+
+      //is comparing:
+      var delta = false
+      if (isset(_params.delta) && _params.delta > 0) {
+        delta = _params.delta
+        for (var i=0; i<data.result.data.length;i++) {
+          var x = data.result.data[i][0]
+          var y = data.result.data[i][1]
+          var dateTooltip = tsToDate(x - (serverTZoffsetMin*60000), true)
+          x += delta
+          data.result.data[i] = {
+            x: x,
+            y: y,
+            dateTooltip: dateTooltip
+          }
+        }
       }
 
       //set/check some params:
@@ -333,15 +415,11 @@ jeedom.history.drawChart = function(_params) {
               events: {
                 click: function(event) {
                   var deviceInfo = getDeviceType();
-                  if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                    return
-                  }
-                  if($('#md_modal2').is(':visible')){
-                    return;
-                  }
-                  if($('#md_modal1').is(':visible')){
-                    return;
-                  }
+                  if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
+                  if ($('#md_modal2').is(':visible')) return
+                  if ($('#md_modal1').is(':visible')) return
+                  if (isset(isComparing) && isComparing == true) return
+
                   var id = this.series.userOptions.id;
                   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
                   var value = this.y;
@@ -418,7 +496,7 @@ jeedom.history.drawChart = function(_params) {
             }
           };
 
-          if (init(_params.option.groupingType) == '') {
+          if (init(_params.option.groupingType) == '' && !delta) {
             //continue value to now, dotted if last value older than one minute (ts in millisecond):
             var dateEnd = new Date(data.result.dateEnd)
             dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
@@ -571,9 +649,18 @@ jeedom.history.drawChart = function(_params) {
           });
         } else {
           //add curve to existing graph:
-          jeedom.history.chart[_params.el].chart.addSeries(series);
+
+          //set tooltip for comparison:
+          if (delta) {
+            series.name = _params.compare
+            series.comparing = '1'
+            series.tooltip =  {
+              pointFormat: '{point.y} {series.userOptions.unite}<br/>{point.dateTooltip}'
+            }
+          }
+          jeedom.history.chart[_params.el].chart.addSeries(series)
         }
-        jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange};
+        jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange}
       }
 
       var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
@@ -581,74 +668,11 @@ jeedom.history.drawChart = function(_params) {
       for (var i in plotband) {
         jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);
       }
+
       $.hideLoading();
       if (typeof (init(_params.success)) == 'function') {
         _params.success(data.result);
       }
     }
   });
-}
-
-jeedom.history.generatePlotBand = function(_startTime, _endTime) {
-  var plotBands = [];
-  var day = 86400000
-  if ((_endTime - _startTime) > (9 * day)) {
-    return plotBands;
-  }
-  _startTime = Math.floor(_startTime / day) * day;
-  var plotBand
-  while (_startTime < _endTime) {
-    plotBand = {};
-    plotBand.from = _startTime;
-    plotBand.to = _startTime + day;
-    if (plotBand.to > _endTime) {
-      plotBand.to = _endTime;
-    }
-    plotBands.push(plotBand);
-    _startTime += 2 * day;
-  }
-  return plotBands;
-}
-
-jeedom.history.changePoint = function(_params) {
-  var paramsRequired = ['cmd_id','datetime','value','oldValue'];
-  var paramsSpecifics = {
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
-    },
-    success: function(result) {
-      $('#div_alert').showAlert({message: '{{La valeur a été éditée avec succès}}', level: 'success'});
-      var serie = null;
-      for (var i in jeedom.history.chart) {
-        serie = jeedom.history.chart[i].chart.get(_params.cmd_id);
-        if (serie != null && serie != undefined) {
-          serie.remove();
-          serie = null;
-          jeedom.history.drawChart({
-            cmd_id: _params.cmd_id,
-            el: i,
-            dateRange: jeedom.history.chart[i].cmd[_params.cmd_id].dateRange,
-            option: jeedom.history.chart[i].cmd[_params.cmd_id].option
-          });
-        }
-      }
-    }
-  };
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch(e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
-  paramsAJAX.data = {
-    action: 'changeHistoryPoint',
-    cmd_id: _params.cmd_id,
-    datetime: _params.datetime,
-    value: _params.value,
-    oldValue : _params.oldValue
-  };
-  $.ajax(paramsAJAX);
 }

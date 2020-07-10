@@ -30,7 +30,7 @@ $(function() {
 
   setTimeout(function() {
     $('.pluginDisplayCard').removeClass('hidden').show()
-    $('.pluginListContainer').packery()
+    $('.pluginListContainer').removeClass('hidden').packery()
   }, 100)
 })
 

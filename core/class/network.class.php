@@ -275,31 +275,7 @@ class network {
 	
 	/*     * *********************DNS************************* */
 	
-	public static function dns_start(){
-		if(config::byKey('dns::mode','core','http2') == 'http2'){
-			return self::dns_http2_start();
-		}else if(config::byKey('dns::mode','core','http2') == 'vpn'){
-			return self::dns_vpn_start();
-		}
-	}
-	
-	public static function dns_run(){
-		if(config::byKey('dns::mode','core','http2') == 'http2'){
-			return self::dns_http2_run();
-		}else if(config::byKey('dns::mode','core','http2') == 'vpn'){
-			return self::dns_vpn_run();
-		}
-	}
-	
-	public static function dns_stop(){
-		if(config::byKey('dns::mode','core','http2') == 'http2'){
-			return self::dns_http2_stop();
-		}else if(config::byKey('dns::mode','core','http2') == 'vpn'){
-			return self::dns_vpn_stop();
-		}
-	}
-	
-	public static function dns_vpn_create() {
+	public static function dns_create() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -382,14 +358,14 @@ class network {
 	}
 	
 	
-	public static function dns_vpn_start() {
+	public static function dns_start() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
 		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
-		$openvpn = self::dns_vpn_create();
+		$openvpn = self::dns_create();
 		$cmd = $openvpn->getCmd('action', 'start');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
@@ -397,7 +373,7 @@ class network {
 		$cmd->execCmd();
 	}
 	
-	public static function dns_vpn_run() {
+	public static function dns_run() {
 		if (config::byKey('dns::token') == '') {
 			return false;
 		}
@@ -405,7 +381,7 @@ class network {
 			return false;
 		}
 		try {
-			$openvpn = self::dns_vpn_create();
+			$openvpn = self::dns_create();
 		} catch (Exception $e) {
 			return false;
 		}
@@ -416,106 +392,16 @@ class network {
 		return $cmd->execCmd();
 	}
 	
-	public static function dns_vpn_stop() {
+	public static function dns_stop() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		$openvpn = self::dns_vpn_create();
+		$openvpn = self::dns_create();
 		$cmd = $openvpn->getCmd('action', 'stop');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
 		}
 		$cmd->execCmd();
-	}
-	
-	public static function dns_http2_start() {
-		if (config::byKey('service::tunnel::enable') != 1) {
-			return;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return;
-		}
-		try {
-			self::dns_http2_stop();
-		} catch (\Exception $e) {
-			
-		}
-		log::clear('tunnel');
-		$exec = 'tunnel-linux-'.system::getArch();
-		$dir = __DIR__.'/../../script/tunnel';
-		if(!file_exists($dir)){
-			return;
-		}
-		if(!file_exists($dir.'/'.$exec)){
-			echo shell_exec('cd '.$dir.';wget https://images.jeedom.com/resources/tunnel/'.$exec.' > '.log::getPathToLog('tunnel').' 2>&1');
-		}
-		if(!file_exists($dir.'/'.$exec)){
-			throw new \Exception(__('Impossible de télécharger : ',__FILE__).'https://images.jeedom.com/resources/tunnel/'.$exec);
-		}
-		if(filesize($dir.'/'.$exec) < 7000000){
-			unlink($dir.'/'.$exec);
-			throw new \Exception(__('Taille invalide pour : ',__FILE__).$dir.'/'.$exec);
-		}
-		shell_exec('chmod +x '.$dir.'/'.$exec);
-		if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
-			shell_exec('cd '.$dir.';openssl req -x509 -nodes -newkey rsa:2048 -sha256 -keyout client.key -out client.crt -subj "/C=EU/ST=FR/L=Paris/O=Jeedom, Inc./OU=IT/CN=jeedom.com"> '.log::getPathToLog('tunnel').' 2>&1');
-			if(!file_exists($dir.'/client.crt') || !file_exists($dir.'/client.key')){
-				throw new \Exception(__('Impossible de générer le certificat et la clef privé',__FILE__));
-			}
-		}
-		$replace = array(
-			'#URL#' => str_replace('https://','',config::byKey('service::tunnel::host')),
-			'#PORT#' =>80,
-			'#SERVER_ADDR#' => config::byKey('service::tunnel::eu::backend::1')
-		);
-		for($i=1;$i<3;$i++){
-			$infos = explode(':',config::byKey('service::tunnel::eu::backend::'.$i));
-			log::add('tunnel','debug','Test access to '.$infos[0].' on port '.$infos[1]);
-			if(count($infos) < 2){
-				break;
-			}
-			if(network::portOpen($infos[0],$infos[1])){
-				log::add('tunnel','debug','Access is open, used it');
-				$replace['#SERVER_ADDR#'] = config::byKey('service::tunnel::eu::backend::'.$i);
-				break;
-			}
-			log::add('tunnel','debug','Access is close test next');
-		}
-		if(file_exists($dir.'/tunnel.yml')){
-			unlink($dir.'/tunnel.yml');
-		}
-		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
-		$client_id = shell_exec('cd '.$dir.';./'.$exec.' id');
-		log::add('tunnel','debug','Client id is : '.$client_id);
-		try {
-			repo_market::sendTunnelClientId(trim($client_id));
-		} catch (\Exception $e) {
-			log::add('tunnel','debug','Error on on send tunnel id to market : '.$e->getMessage());
-		}
-		$replace['#URL#'] = str_replace('https://','',config::byKey('service::tunnel::host'));
-		if(file_exists($dir.'/tunnel.yml')){
-			unlink($dir.'/tunnel.yml');
-		}
-		file_put_contents($dir.'/tunnel.yml',str_replace(array_keys($replace),$replace,file_get_contents($dir.'/tunnel.tmpl.yml')));
-		shell_exec('cd '.$dir.';nohup ./'.$exec.' start-all >> '.log::getPathToLog('tunnel').' 2>&1 &');
-	}
-	
-	public static function dns_http2_run() {
-		if (config::byKey('service::tunnel::enable') != 1) {
-			return false;
-		}
-		if (config::byKey('market::allowDNS') != 1) {
-			return false;
-		}
-		$exec = 'tunnel-linux-'.system::getArch();
-		return (shell_exec('ps ax | grep '.$exec.' | grep  -c -v grep') > 0);
-	}
-	
-	public static function dns_http2_stop() {
-		if (config::byKey('service::tunnel::enable') != 1) {
-			return;
-		}
-		exec("(ps ax || ps w) | grep -ie 'tunnel-linux-".system::getArch()."' | grep -v grep | awk '{print $1}' | xargs sudo kill -9 > /dev/null 2>&1");
 	}
 	
 	/*     * *********************Network management************************* */
@@ -534,19 +420,6 @@ class network {
 	}
 	
 	public static function cron5() {
-		try {
-			if(config::byKey('dns::mode') == 'http2' && config::byKey('service::tunnel::enable') == 1 && config::byKey('market::allowDNS')){
-				if(!self::dns_http2_run()){
-					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (tunnel pas démarré)', __FILE__));
-					self::dns_http2_start();
-				}elseif(file_exists(log::getPathToLog('tunnel')) && shell_exec('tail -n 50 '.log::getPathToLog('tunnel').' | grep -c "action handshake"') < 1){
-					log::add('network', 'debug', __('Redémarrage du tunnel jeedom (pas de handshake trouvé)', __FILE__));
-					self::dns_http2_start();
-				}
-			}
-		} catch (\Exception $e) {
-			
-		}
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}

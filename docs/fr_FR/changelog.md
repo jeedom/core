@@ -33,6 +33,7 @@
 - **Analyse / Historique** : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - **Analyse / Historique** : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - **Analyse / Historique** : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
+- **Analyse / Historique** : Possibilité de comparer un historique sur plusieurs péridode.
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
 - **Vue** : Possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
@@ -76,4 +77,5 @@
 - **Lib** : Update jQuery v3.4.1 vers v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 vers 5.13.1.
 - Sécurisation des requêtes Ajax.
-- Corrections de bugs et optimisations.
+- Corrections de bugs.
+- Nombreuses optimisations de performance desktop / mobile.

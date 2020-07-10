@@ -22,7 +22,7 @@ foreach ((widgets::all()) as $widget) {
 <div class="row row-overflow">
   <div id="div_widgetsList" class="col-xs-12">
     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-    <div class="widgetsListContainer">
+    <div class="widgetsListContainer hidden">
       <div class="cursor logoPrimary" id="bt_addWidgets">
         <center>
           <i class="fas fa-plus-circle"></i>

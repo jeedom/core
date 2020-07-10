@@ -122,7 +122,7 @@ $('#bt_libraryBackgroundImage').on('click', function() {
 
 setTimeout(function() {
   $('.objectDisplayCard').show()
-  $('.objectListContainer').packery()
+  $('.objectListContainer').removeClass('hidden').packery()
 }, 100)
 
 $('#bt_returnToThumbnailDisplay').on('click',function() {

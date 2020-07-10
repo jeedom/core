@@ -17,7 +17,7 @@ sendVarToJs('initSearch', init('search', 0));
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-		<div class="scenarioListContainer">
+		<div class="scenarioListContainer hidden">
 			<div class="cursor logoPrimary" id="bt_addScenario">
 				<center><i class="fas fa-plus-circle"></i></center>
 				<span class="txtColor"><center>{{Ajouter}}</center></span>
