@@ -3238,6 +3238,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Ejecute el siguiente comando en SSH: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
+        "Pas de validation SSL (non recommandé)": "Sin validación SSL (no recomendado)",
         "Lancement de l\\'installation de ": "Lanzamiento de la instalación de",
         " en version ": "en versión",
         "Objet introuvable sur le market : ": "Objeto no encontrado en el mercado:",
