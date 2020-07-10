@@ -3261,7 +3261,7 @@
         "ou 127.0.0": "or 127.0.0",
         "1 sont reconnues comme locales": "1 are recognized as local",
         "Cela se configure dans l'administration de Jeedom partie sécurité puis IP \"blanche": "It is configured in the administration of Jeedom security part then IP \"white",
-        "Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto\/how to": "If, despite everything, you still cannot connect you must use the password reset procedure (see in the tutorials \/ how to",
+        "Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe, voir": "If, despite everything, you still cannot connect, you must use the password reset procedure, see",
         "Je ne vois pas tous mes équipements sur le Dashboard": "I do not see all my equipment on the Dashboard",
         "Souvent cela est dû au fait que les équipements sont affectés à un objet qui n'est pas le fils ou l'objet lui-même du premier objet sélectionné à gauche dans l'arbre (vous pouvez configurer celui-ci dans votre profil": "Often this is due to the fact that the equipment is assigned to an object which is not the son or the object itself of the first object selected on the left in the tree (you can configure this one in your profile",
         "L'interface de Jeedom a-t-elle des raccourcis": "Jeedom interface has shortcuts",
