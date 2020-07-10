@@ -721,6 +721,9 @@ class repo_market {
 		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
+		if(config::byKey('market::no_ssl_verify') == 1){
+			$this->setNoSslCheck(true):
+		}
 		return $jsonrpc;
 	}
 	
