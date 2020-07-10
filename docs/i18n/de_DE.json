@@ -3213,7 +3213,7 @@
         "ou 127.0.0": "oder 127.0.0",
         "1 sont reconnues comme locales": "1 werden als lokal anerkannt",
         "Cela se configure dans l'administration de Jeedom partie sécurité puis IP \"blanche": "Es wird in der Administration des Jeedom-Sicherheitsteils dann IP \"weiß konfiguriert",
-        "Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto\/how to": "Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe Tutorials \/ Vorgehensweise)",
+        "Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe, voir": "Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe)",
         "Je ne vois pas tous mes équipements sur le Dashboard": "Ich sehe nicht alle meine Geräte auf dem Armaturenbrett",
         "Souvent cela est dû au fait que les équipements sont affectés à un objet qui n'est pas le fils ou l'objet lui-même du premier objet sélectionné à gauche dans l'arbre (vous pouvez configurer celui-ci dans votre profil": "Dies liegt häufig daran, dass die Ausrüstung einem Objekt zugeordnet ist, das nicht der Sohn oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dieses in Ihrem Profil konfigurieren",
         "L'interface de Jeedom a-t-elle des raccourcis": "Die Jeedom-Schnittstelle verfügt über Verknüpfungen",
