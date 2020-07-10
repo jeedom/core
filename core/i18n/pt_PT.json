@@ -3437,6 +3437,7 @@
         "Adresse": "Morada",
         "Nom d\\'utilisateur": "Nome de usuário",
         "Mot de passe": "Senha",
+        "Pas de validation SSL (non recommandé)": "Sem validação SSL (não recomendado)",
         "[Backup cloud] Nom": "Nome da [nuvem de backup]",
         "[Backup cloud] Mot de passe": "Senha da [nuvem de backup]",
         "[Backup cloud] Fréquence backup full": "[Nuvem de backup] Backup completo de frequência",
