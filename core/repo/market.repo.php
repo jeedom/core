@@ -49,7 +49,10 @@ class repo_market {
 				'name' => 'Mot de passe',
 				'type' => 'password',
 			),
-			
+			'no_ssl_verify' => array(
+				'name' => __('Pas de validation SSL (non recommandé)',__FILE__),
+				'type' => 'checkbox',
+			),
 			'cloud::backup::name' => array(
 				'name' => '[Backup cloud] Nom',
 				'type' => 'input',
@@ -694,7 +697,6 @@ class repo_market {
 				'nbUpdate' => update::nbNeedUpdate(),
 				'hardware' => (method_exists('jeedom', 'getHardwareName')) ? jeedom::getHardwareName() : '',
 				'uname' => $uname,
-				'dns_mode' => config::byKey('dns::mode'),
 				'language' => config::byKey('language'),
 			),
 			'market_api_key' => jeedom::getApiKey('apimarket'),
@@ -708,6 +710,9 @@ class repo_market {
 		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', $params);
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
+		if(config::byKey('market::no_ssl_verify') == 1){
+			$this->setNoSslCheck(true);
+		}
 		return $jsonrpc;
 	}
 	
