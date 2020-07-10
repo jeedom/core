@@ -50,7 +50,7 @@ class repo_market {
 				'type' => 'password',
 			),
 			'no_ssl_verify' => array(
-				'name' => __('Pas de validation SSL (non recommandé)',__FILE__),
+				'name' =>'Pas de validation SSL (non recommandé)',
 				'type' => 'checkbox',
 			),
 			'cloud::backup::name' => array(
