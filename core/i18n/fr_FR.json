@@ -3437,6 +3437,7 @@
         "Adresse": "Adresse",
         "Nom d\\'utilisateur": "Nom d\\'utilisateur",
         "Mot de passe": "Mot de passe",
+        "Pas de validation SSL (non recommandé)": "Pas de validation SSL (non recommandé)",
         "[Backup cloud] Nom": "[Backup cloud] Nom",
         "[Backup cloud] Mot de passe": "[Backup cloud] Mot de passe",
         "[Backup cloud] Fréquence backup full": "[Backup cloud] Fréquence backup full",
