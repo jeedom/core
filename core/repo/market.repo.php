@@ -711,7 +711,7 @@ class repo_market {
 		$jsonrpc->setCb_class('repo_market');
 		$jsonrpc->setCb_function('postJsonRpc');
 		if(config::byKey('market::no_ssl_verify') == 1){
-			$this->setNoSslCheck(true):
+			$this->setNoSslCheck(true);
 		}
 		return $jsonrpc;
 	}
