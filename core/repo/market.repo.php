@@ -84,6 +84,10 @@ class repo_market {
 					'name' => __('Mot de passe',__FILE__),
 					'type' => 'password',
 				),
+				'no_ssl_verify' => array(
+					'name' => __('Pas de validation SSL (non recommandé)',__FILE__),
+					'type' => 'checkbox',
+				),
 				'cloud::backup::name' => array(
 					'name' => __('[Backup cloud] Nom',__FILE__),
 					'type' => 'input',
