@@ -217,7 +217,6 @@ try {
 				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
 				try {
-					shell_exec('rm -rf ' . __DIR__ . '/../tests');
 					shell_exec('rm -rf ' . __DIR__ . '/../.travis.yml');
 					shell_exec('rm -rf ' . __DIR__ . '/../phpunit.xml.dist');
 				} catch (Exception $e) {
