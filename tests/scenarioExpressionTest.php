@@ -3,11 +3,11 @@ class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		if (!extension_loaded('curl')) {
 			$this->markTestSkipped(
-					'L\'extension CURL n\'est pas disponible.'
+				'L\'extension CURL n\'est pas disponible.'
 			);
 		}
 	}
-
+	
 	public function testCalculCondition() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$tests = array(
@@ -20,17 +20,17 @@ class scenarioExpressionTest extends \PHPUnit_Framework_TestCase {
 		}
 		echo "\n";
 	}
-
+	
 	public function testVariable() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		scenarioExpression::createAndExec('action', 'variable', array('value' => 'plop', 'name' => 'test'));
 		$result = scenarioExpression::createAndExec('condition', 'variable(test)');
 		$this->assertEquals('plop', $result);
 	}
-
+	
 	/**
-	 * @depends testVariable
-	 */
+	* @depends testVariable
+	*/
 	public function testStringCondition() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$result = scenarioExpression::createAndExec('condition', 'variable(test) == "plop"');
