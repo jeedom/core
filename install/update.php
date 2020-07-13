@@ -159,6 +159,9 @@ try {
 					throw new Exception('Unable to unzip file : ' . $tmp);
 				}
 				echo "OK\n";
+				if(disk_free_space($cibDir) < 10){
+					throw new Exception('Error no more free space on ' . $cibDir . '. Free space : ' . disk_free_space($cibDir));
+				}
 				echo "[PROGRESS][40]\n";
 				if (!file_exists($cibDir . '/core')) {
 					$files = ls($cibDir, '*');
