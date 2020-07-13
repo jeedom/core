@@ -16,7 +16,9 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-class logTest extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+class logTest extends TestCase {
 	public function getEngins() {
 		return array(
 			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
@@ -32,7 +34,7 @@ class logTest extends \PHPUnit_Framework_TestCase {
 	
 	public function getReturnListe() {
 		return array(
-			array('StreamHandler', array()),
+			array('StreamHandler', array('http.error')),
 		);
 	}
 	
@@ -97,6 +99,7 @@ class logTest extends \PHPUnit_Framework_TestCase {
 		config::save('log::engine', $engin);
 		log::remove($engin);
 		$add = log::add($engin, $level, 'testLevel');
+		$this->assertTrue(true);
 	}
 	
 	/**

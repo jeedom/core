@@ -1,5 +1,24 @@
 <?php
-class pluginTest extends \PHPUnit_Framework_TestCase {
+
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+use PHPUnit\Framework\TestCase;
+
+class pluginTest extends TestCase {
 	public function getSources() {
 		return array(
 			//array('file'),
@@ -17,18 +36,6 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	* @dataProvider getSources
 	*/
 	public function testInstall($source, $config) {
-		// On passe le test si curl n'est pas installé
-		if (!extension_loaded('curl')) {
-			$this->markTestSkipped(
-				'L\'extension CURL n\'est pas disponible.'
-			);
-		}
-		if (!extension_loaded('zip')) {
-			$this->markTestSkipped(
-				'L\'extension zip n\'est pas disponible.'
-			);
-		}
-		
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		config::save('github::enable', 1);
 		config::save('market::enable', 1);
@@ -108,7 +115,7 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	public function testCmdVirtualNumeric($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$cmd = $virtual->getCmd(null, 'virtual_test_2');
-		$this->assertSame(2, $cmd->execCmd());
+		$this->assertSame(2.0, $cmd->execCmd());
 	}
 	
 	/**
@@ -278,7 +285,9 @@ class pluginTest extends \PHPUnit_Framework_TestCase {
 	*/
 	public function testRemove($virtual) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		$id = $virtual->getId();
 		$virtual->remove();
+		$this->assertEquals(null,virtual::byId($id));
 	}
 	
 }
