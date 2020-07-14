@@ -1,6 +1,11 @@
 
 <img align="right" src="https://www.jeedom.com/site/logo.png" width="100">
 
+[![GitHub license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/jeedom/core/blob/master/LICENSE)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/jeedom/core/graphs/commit-activity)
+[![GitHub contributors](https://img.shields.io/github/contributors/jeedom/core.svg)](https://github.com/jeedom/core/graphs/contributors/)
+[![Website www.jeedom.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://www.jeedom.com/)
+
 # Jeedom - La domotique innovante
 <p align="center">
 <a href="https://www.jeedom.com/">Site</a>  -
