@@ -58,7 +58,6 @@ class pluginTest extends TestCase {
 	*/
 	public function testCreateEqVirtual() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		echo "lancement";
 		require_once __DIR__ .'/../plugins/virtual/core/class/virtual.class.php';
 		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
 		if (is_object($virtual)) {
