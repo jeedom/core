@@ -61,17 +61,35 @@ function jeedomCoreAutoload($classname) {
 }
 
 function jeedomPluginAutoload($_classname) {
+	if($_classname == 'virtual'){
+		echo "Load virtual class needed";
+	}
 	if (strpos($_classname, '\\') !== false || strpos($_classname, 'com_') !== false || strpos($_classname, 'repo_') !== false || strpos($_classname, '/') !== false) {
 		return;
 	}
+	if($_classname == 'virtual'){
+		echo "2";
+	}
 	$classname = str_replace(array('Real', 'Cmd'), '', $_classname);
+	if($classname == 'virtual'){
+		echo "3";
+	}
 	$plugin_active = config::byKey('active', $classname, null);
+	if($classname == 'virtual'){
+		echo "Active : ".$plugin_active;
+	}
 	if (($plugin_active === null || $plugin_active == '' || $plugin_active == 0) && strpos($classname,'_') !== false) {
 		$classname = explode('_', $classname)[0];
 		$plugin_active = config::byKey('active', $classname, null);
 	}
+	if($classname == 'virtual'){
+		echo "Active : ".$plugin_active;
+	}
 	try {
 		if ($plugin_active == 1) {
+			if($classname == 'virtual'){
+				echo "Load virtual file";
+			}
 			include_file('core', $classname, 'class', $classname);
 		}
 	} catch (Exception $e) {
