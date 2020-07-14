@@ -917,7 +917,6 @@ class plugin {
 			config::save('log::level::' . $this->getId(), '{"100":"0","200":"0","300":"0","400":"0","1000":"0","default":"1"}');
 		}
 		self::$_enable = null;
-		self::$_cache = array();
 		return true;
 	}
 	
