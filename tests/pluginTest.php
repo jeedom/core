@@ -58,6 +58,7 @@ class pluginTest extends TestCase {
 	*/
 	public function testCreateEqVirtual() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		include_file('core', 'virtual', 'class', 'virtual');
 		$virtual = virtual::byLogicalId('virtual_test', 'virtual');
 		if (is_object($virtual)) {
 			$virtual->remove();
