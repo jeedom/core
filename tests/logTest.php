@@ -16,7 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 use PHPUnit\Framework\TestCase;
 
 class logTest extends TestCase {
