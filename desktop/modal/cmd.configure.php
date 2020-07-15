@@ -472,7 +472,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
               <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                 <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
-                  <option value="">{{Jamais}}</option>
                   <option value="-1 day">{{1 jour}}</option>
                   <option value="-7 days">{{7 jours}}</option>
                   <option value="-1 month">{{1 mois}}</option>
@@ -481,6 +480,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <option value="-1 year">{{1 an}}</option>
                   <option value="-2 years">{{2 ans}}</option>
                   <option value="-3 years">{{3 ans}}</option>
+                  <option value="" selected>{{Jamais}}</option>
                 </select>
               </div>
             </div>

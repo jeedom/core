@@ -379,7 +379,7 @@ function init(_value, _default) {
       } else {
         if ($(this).is('input')) {
           if ($(this).attr('type') == 'checkbox') {
-            if(init(_value) === ''){
+            if (init(_value) === '') {
               return;
             }
             $(this).prop('checked', (init(_value) == 1) ? true : false);
@@ -388,20 +388,20 @@ function init(_value, _default) {
           } else {
             $(this).val(init(_value));
           }
-        }else if ($(this).is('select')) {
-          if (init(_value) == '') {
+        } else if ($(this).is('select')) {
+          if (init(_value) == '' && $(this).attr("selectedIndex") == 0) {
             $(this).val('');
             $(this).find('option:first').prop('selected',true);
           } else {
             $(this).val(init(_value));
           }
-        }else if ($(this).is('textarea')) {
+        } else if ($(this).is('textarea')) {
           $(this).val(init(_value));
-        }else if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
+        } else if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
           $(this).html(init(_value));
-        }else  if ($(this).is('pre')) {
+        } else  if ($(this).is('pre')) {
           $(this).html(init(_value));
-        }else if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
+        } else if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
           var button = $(this);
           $(this).closest('div.dropdown').find('ul.dropdown-menu li a').each(function() {
             if ($(this).attr('data-value') == _value) {
