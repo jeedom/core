@@ -183,9 +183,10 @@ function setTableParser() {
   $.tablesorter.addParser({
     id: 'purges',
     is: function() {
-      return false;
+      return false
     },
     format: function(s) {
+      if (s == '') return '100000'
       return s.replace(/-3 years/, 1095)
         .replace(/-2 years/, 730)
         .replace(/-1 year/, 365)
