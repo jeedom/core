@@ -2,6 +2,12 @@
 Registro de Alterações Jeedom V4
 =========
 
+4.0.61
+=====
+
+- Corrigido um problema ao aplicar um modelo de cenário
+- Adição de uma opção que permite desativar a verificação SSL durante a comunicação com o mercado (não recomendado, mas útil em determinadas configurações de rede específicas))
+
 4.0.60
 =====
 

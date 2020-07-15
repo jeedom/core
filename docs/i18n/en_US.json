@@ -1283,6 +1283,9 @@
     },
     "changelog.md": {
         "Changelog Jeedom V4": "Changelog Jeedom V4",
+        "4.0.61": "4.0.61",
+        "Correction d'un soucis lors de l'application d'un template de scénario": "Fixed a problem when applying a scenario template",
+        "Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique": "Addition of an option allowing to deactivate the SSL verification during the communication with the market (not recommended but useful in certain specific network configuration",
         "4.0.60": "4.0.60",
         "Supression du nouveau systeme de DNS en eu.jeedom": "Removal of the new DNS system from eu.jeedom",
         "link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant": "link following too many operators who prohibit permanent http2 flows",

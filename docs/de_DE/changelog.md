@@ -2,6 +2,12 @@
 Changelog Jeedom V4
 =========
 
+4.0.61
+=====
+
+- Ein Problem beim Anwenden einer Szenariovorlage wurde behoben
+- Hinzufügen einer Option zum Deaktivieren der SSL-Überprüfung während der Kommunikation mit dem Markt (nicht empfohlen, aber in bestimmten Netzwerkkonfigurationen nützlich)
+
 4.0.60
 =====
 

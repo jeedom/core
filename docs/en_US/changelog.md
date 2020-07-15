@@ -2,6 +2,12 @@
 Changelog Jeedom V4
 =========
 
+4.0.61
+=====
+
+- Fixed a problem when applying a scenario template
+- Addition of an option allowing to deactivate the SSL verification during the communication with the market (not recommended but useful in certain specific network configuration)
+
 4.0.60
 =====
 
