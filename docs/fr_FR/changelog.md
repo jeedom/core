@@ -2,6 +2,12 @@
 Changelog Jeedom V4
 =========
 
+4.0.61
+=====
+
+- Correction d'un soucis lors de l'application d'un template de scénario
+- Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique)
+
 4.0.60
 =====
 
