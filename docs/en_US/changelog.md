@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Fixed a problem with archiving history if the smoothing mode was forever
+
 3.3.52
 ======
 

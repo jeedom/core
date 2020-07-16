@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Corrigido um problema com o histórico de arquivamento se o modo de suavização fosse para sempre
+
 3.3.52
 ======
 

@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Es wurde ein Problem mit dem Archivierungsverlauf behoben, wenn der Glättungsmodus für immer war
+
 3.3.52
 ======
 

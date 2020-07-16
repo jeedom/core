@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Se solucionó un problema con el historial de archivo si el modo de suavizado era para siempre
+
 3.3.52
 ======
 
