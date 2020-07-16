@@ -109,7 +109,7 @@ sendVarToJS([
 	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
 		$scanPaths = array('core/css/icon', 'data/fonts');
-		$echo = '';
+		$div = '';
 		foreach ($scanPaths as $root) {
 			$ls = ls($root, '*');
 			foreach ($ls as $dir) {

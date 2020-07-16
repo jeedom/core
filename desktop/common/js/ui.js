@@ -235,6 +235,7 @@ jeedomUI.setHistoryModalHandler = function() {
       $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
         cmdIds.push($(this).data('cmd_id'))
       })
+      cmdIds = [...new Set(cmdIds)]
       cmdIds = cmdIds.join('-')
     } else {
       var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
