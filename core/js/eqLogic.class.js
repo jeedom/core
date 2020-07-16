@@ -355,7 +355,7 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
   }
   if ($("#mod_insertEqLogicValue").length == 0) {
     $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
-    
+
     $("#mod_insertEqLogicValue").dialog({
       closeText: '',
       autoOpen: false,
@@ -369,10 +369,10 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
   }
   mod_insertEqLogic.setOptions(_options);
   $("#mod_insertEqLogicValue").dialog('option', 'buttons', {
-    "Annuler": function () {
+    "{{Annuler}}": function () {
       $(this).dialog("close");
     },
-    "Valider": function () {
+    "{{Valider}}": function () {
       var retour = {};
       retour.human = mod_insertEqLogic.getValue();
       retour.id = mod_insertEqLogic.getId();

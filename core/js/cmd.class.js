@@ -735,10 +735,10 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   }
   mod_insertCmd.setOptions(_options);
   $("#mod_insertCmdValue").dialog('option', 'buttons', {
-    "Annuler": function() {
+    "{{Annuler}}": function() {
       $(this).dialog("close");
     },
-    "Valider": function() {
+    "{{Valider}}": function() {
       var retour = {};
       retour.cmd = {};
       retour.human = mod_insertCmd.getValue();

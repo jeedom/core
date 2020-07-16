@@ -263,7 +263,7 @@ jeedom.scenario.refreshValue = function (_params) {
     version: _params.version || version
   };
   $.ajax(paramsAJAX);
-  
+
 };
 
 
@@ -385,13 +385,13 @@ jeedom.scenario.getSelectModal = function (_options, callback) {
   jQuery.ajaxSetup({async: false});
   $('#mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert');
   jQuery.ajaxSetup({async: true});
-  
+
   mod_insertScenario.setOptions(_options);
   $("#mod_insertScenarioValue").dialog('option', 'buttons', {
-    "Annuler": function () {
+    "{{Annuler}}": function () {
       $(this).dialog("close");
     },
-    "Valider": function () {
+    "{{Valider}}": function () {
       var retour = {};
       retour.human = mod_insertScenario.getValue();
       retour.id = mod_insertScenario.getId();
