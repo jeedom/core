@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Correction d'un soucis sur l'archivage des historique si le mode de lissage était à jamais
+
 3.3.52
 ======
 
