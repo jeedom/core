@@ -7,6 +7,7 @@ Changelog Jeedom V4
 
 - Ein Problem beim Anwenden einer Szenariovorlage wurde behoben
 - Hinzufügen einer Option zum Deaktivieren der SSL-Überprüfung während der Kommunikation mit dem Markt (nicht empfohlen, aber in bestimmten Netzwerkkonfigurationen nützlich)
+- Es wurde ein Problem mit dem Archivierungsverlauf behoben, wenn der Glättungsmodus für immer war
 
 4.0.60
 =====

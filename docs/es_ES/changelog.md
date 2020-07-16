@@ -7,6 +7,7 @@ Registro de cambios Jeedom V4
 
 - Se solucionó un problema al aplicar una plantilla de escenario
 - Adición de una opción que permite desactivar la verificación SSL durante la comunicación con el mercado (no recomendado pero útil en ciertas configuraciones de red específicas))
+- Se solucionó un problema con el historial de archivo si el modo de suavizado era para siempre
 
 4.0.60
 =====
