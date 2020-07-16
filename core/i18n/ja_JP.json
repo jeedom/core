@@ -2767,6 +2767,8 @@
         "Déclenché": "トリガー",
         "Au repos": "安静時",
         "Ajout d'une nouvelle condition": "新しい条件を追加する",
+        "Ne rien mettre": "",
+        "Valider": "検証",
         "Erreur": "エラー",
         "Actif": "財産",
         "Démarrage": "起動",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "これはコマンドのメッセージテストです",
         "Info": "インフォ",
         "Action": "アクション",
-        "Sélectionner la commande": "コマンドを選択"
+        "Sélectionner la commande": "コマンドを選択",
+        "Annuler": "キャンセル",
+        "Valider": "検証"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "シナリオを選択"
+        "Sélectionner le scénario": "シナリオを選択",
+        "Annuler": "キャンセル",
+        "Valider": "検証"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "機器を選択"
+        "Sélectionner un équipement": "機器を選択",
+        "Annuler": "キャンセル",
+        "Valider": "検証"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "プラグイン構成",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "コマンドを選択"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "変数を選択してください"
+        "Sélectionner une variable": "変数を選択してください",
+        "Annuler": "キャンセル",
+        "Valider": "検証"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "値が正常に編集されています",

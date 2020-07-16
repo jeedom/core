@@ -2767,6 +2767,8 @@
         "Déclenché": "Déclenché",
         "Au repos": "Au repos",
         "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "Valider",
         "Erreur": "Erreur",
         "Actif": "Actif",
         "Démarrage": "Démarrage",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Ceci est un test de message pour la commande",
         "Info": "Info",
         "Action": "Action",
-        "Sélectionner la commande": "Sélectionner la commande"
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Sélectionner le scénario"
+        "Sélectionner le scénario": "Sélectionner le scénario",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Sélectionner un équipement"
+        "Sélectionner un équipement": "Sélectionner un équipement",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Sélectionner la commande"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Sélectionner une variable"
+        "Sélectionner une variable": "Sélectionner une variable",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "La valeur a été éditée avec succès",

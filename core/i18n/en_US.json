@@ -2767,6 +2767,8 @@
         "Déclenché": "Triggered",
         "Au repos": "Idle",
         "Ajout d'une nouvelle condition": "Adding a new condition",
+        "Ne rien mettre": "Put nothing",
+        "Valider": "Validate",
         "Erreur": "Error",
         "Actif": "Active",
         "Démarrage": "Start-up",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "This is a test message for the command",
         "Info": "Info",
         "Action": "Action",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select command",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Select the scenario"
+        "Sélectionner le scénario": "Select the scenario",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Select equipment"
+        "Sélectionner un équipement": "Select equipment",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Select a variable"
+        "Sélectionner une variable": "Select a variable",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",

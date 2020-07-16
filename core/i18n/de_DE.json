@@ -2767,6 +2767,8 @@
         "Déclenché": "Ausgelöst",
         "Au repos": "In Ruhe",
         "Ajout d'une nouvelle condition": "Hinzufügen einer neuen Bedingung",
+        "Ne rien mettre": "Setzen Sie nichts",
+        "Valider": "Validate",
         "Erreur": "Fehler",
         "Actif": "Aktiva",
         "Démarrage": "Start-up",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Dies ist ein Nachrichtentest für den Befehl",
         "Info": "Info",
         "Action": "Aktion",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Befehl auswählen",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Wählen Sie das Szenario aus"
+        "Sélectionner le scénario": "Wählen Sie das Szenario aus",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Ausrüstung auswählen"
+        "Sélectionner un équipement": "Ausrüstung auswählen",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Wählen Sie eine Variable aus"
+        "Sélectionner une variable": "Wählen Sie eine Variable aus",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet",
