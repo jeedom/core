@@ -934,14 +934,14 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
         title: "{{Ajout d'une nouvelle condition}}",
         message: message,
         buttons: {
-          "Ne rien mettre": {
+          "{{Ne rien mettre}}": {
             className: "btn-default",
             callback: function() {
               expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
             }
           },
           success: {
-            label: "Valider",
+            label: "{{Valider}}",
             className: "btn-primary",
             callback: function() {
               setUndoStack()
