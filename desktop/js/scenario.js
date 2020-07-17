@@ -845,6 +845,11 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
+      var condType = el.closest('.subElement').get(0)
+      if (!$(condType).hasClass('subElementIF') && !$(condType).hasClass('subElementFOR')) {
+        expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+        return
+      }
       var message = '{{Aucun choix possible}}'
       if (result.cmd.subType == 'numeric') {
         message = '<div class="row">  ' +
