@@ -2421,6 +2421,9 @@ a.disabled > i {
 }
 
 /* __________________________________________________________________________________________________________TABS */
+#div_pageContainer > .row.row-overflow > .col-xs-12 {
+  margin-bottom: 0;
+}
 .tab-content {
   background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   padding-bottom: 12px !important;
@@ -4069,10 +4072,6 @@ ul.dropdown-menu {
     align-content: right !important;
   }
 
-  #div_editScenario ul.nav.nav-tabs {
-    margin-top: 30px !important;
-  }
-
   .form-control,
   .btn,
   .label {
@@ -4131,6 +4130,13 @@ ul.dropdown-menu {
   .eqLogicThumbnailContainer div.cursor > center > i,
   .eqLogicThumbnailContainer div.cursor > i {
     font-size: 2.5em !important;
+  }
+
+  #div_editScenario .tab-content {
+    max-height: calc(100% - 80px);
+  }
+  #div_editScenario ul.nav.nav-tabs {
+    margin-top: 30px !important;
   }
 }
 @media (min-width:1600px) {
