@@ -32,15 +32,15 @@ Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 
 ## Registerkarte &quot;Verlauf&quot;
 
-Wenn Sie auf der Verlaufsseite ein Diagramm anzeigen, haben Sie Zugriff auf mehrere Anzeigeoptionen :
+Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :
 
-Wir finden oben rechts den Anzeigezeitraum (hier in der letzten Woche, weil ich standardmäßig nur eine Woche haben möchte - siehe 2 Absätze oben), dann kommen die Parameter der Kurve (diese Parameter werden beibehalten von einem Display zum anderen, sodass Sie sie nur einmal konfigurieren müssen).
+- **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken* IN *Einstellungen → System → Konfiguration / Ausstattung*.
+- **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
+- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, oder *Balken*. Option in der Bestellung gespeichert und über das Dashboard verwendet. 
+- **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet. 
+- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet. 
+- **Vergleichen Sie** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden. Der Vergleich erfolgt nach dem angezeigten Zeitraum. Wenn der Zeitraum eine Woche beträgt, wird der Vergleich über -1 Woche, -2 Wochen usw. durchgeführt.
 
-- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
-- **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
-- **Linie** : Zeigt das Diagramm als Linien an.
-- **Bereich** : Zeigt das Diagramm als Fläche an.
-- **Spalte**\.* : Zeigt das Diagramm als Balken an.
 
 > **Spitze**
 >

@@ -32,15 +32,15 @@ Hay varias formas de acceder al historial :
 
 ## Pestaña Historial
 
-Si muestra un gráfico junto a la página del historial, tiene acceso a varias opciones de visualización :
+Si muestra un gráfico a través de la página del historial, tiene acceso a varias opciones de visualización, arriba del gráfico :
 
-Encontramos en la parte superior derecha el período de visualización (aquí en la última semana porque, por defecto, quiero que sea solo una semana, ver 2 párrafos anteriores), luego vienen los parámetros de la curva (estos parámetros se mantienen de una pantalla a otra, por lo que solo tiene que configurarlas una vez).
+- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* DENTRO DE *Configuración → Sistema → Configuración / Equipo*.
+- **Agrupar** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
+- **Tipo de visualización** : Mostrar en *Línea*, *área*, o *Bar*. Opción guardada en el pedido y utilizada desde el Tablero. 
+- **Cambio** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero. 
+- **Escalera** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero. 
+- **Comparar** : Compara la curva entre diferentes períodos. La comparación se realiza según el período mostrado. Si el período es de una semana, la comparación se realizará durante -1 semana, -2 semanas, etc.
 
-- **Escalera** : Muestra la curva como una escalera o una pantalla continua.
-- **Cambio** : Muestra la diferencia de valor del punto anterior.
-- **Línea** : Muestra el gráfico como líneas.
-- **área** : Muestra el gráfico como un área.
-- **Columna**\* : Muestra el gráfico como barras.
 
 > **Punta**
 >
