@@ -32,15 +32,15 @@ Il existe plusieurs moyens d’accéder à l’historique :
 
 ## Onglet Historique
 
-Si vous affichez un graphique par la page historique, vous avez accès à plusieurs options d’affichage :
+Si vous affichez un graphique par la page historique, vous avez accès à plusieurs options d’affichage, au dessus du graphique :
 
-On retrouve en haut à droite la période d’affichage (ici sur la dernière semaine car, par défaut je veux que ça soit seulement une semaine - voir 2 paragraphes au-dessus), ensuite viennent les paramètres de la courbe (ces paramètres sont gardés d’un affichage à l’autre ; vous n’avez donc qu’à les configurer une seule fois).
+- **Période** : La période d’affichage, comprenant les données historisées entre ces deux dates. Par défaut, en fonction du paramètre *Période d'affichage des graphiques par défaut* dans *Réglages → Système → Configuration / Equipements*.
+- **Groupement** : Propose plusieurs options de groupement (Somme par heure, etc.).
+- **Type d'affichage** : Affichage en *Ligne*, *Aire*, ou *Barre*. Option sauvegardée sur la commande et utilisée depuis le Dashboard. 
+- **Variation** : Affiche la différence de valeur par rapport au point précédent. Option sauvegardée sur la commande et utilisée depuis le Dashboard. 
+- **Escalier** : Permet d’afficher la courbe sous la forme d’un escalier ou d’un affichage continu. Option sauvegardée sur la commande et utilisée depuis le Dashboard. 
+- **Comparer** : Permet de comparer la courbe entre différentes périodes. La comparaison s'effectue en fonction de la période affichée. Si la période est d'une semaine, la comparaison se fera sur -1 semaine, -2 semaine, etc.
 
-- **Escalier** : Permet d’afficher la courbe sous la forme d’un escalier ou d’un affichage continu.
-- **Variation** : Affiche la différence de valeur par rapport au point précédent.
-- **Ligne** : Affiche le graphique sous forme de lignes.
-- **Aire** : Affiche le graphique sous forme d’une aire.
-- **Colonne**\* : Affiche le graphique sous forme de barres.
 
 > **Tip**
 >
