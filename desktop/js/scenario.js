@@ -513,7 +513,6 @@ $divScenario.on('click','.bt_removeSchedule', function(event) {
 $divScenario.on('click','.bt_selectTrigger', function(event) {
   var el = $(this)
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-    if (!isset(result.human)) return
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
   })
 })
@@ -836,7 +835,6 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
     type = 'action'
   }
   jeedom.cmd.getSelectModal({cmd: {type: type}}, function(result) {
-    if (!isset(result.human)) return
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
       setUndoStack()
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
