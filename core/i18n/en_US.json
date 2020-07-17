@@ -2749,6 +2749,7 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Else block cannot be deleted if it contains elements",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Show this block. <br> Ctrl + click: all",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Hide this block. <br> Ctrl + click: all",
+        "Aucun choix possible": "No choice possible",
         "est": "is",
         "égal": "equal",
         "supérieur": "above",

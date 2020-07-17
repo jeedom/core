@@ -2749,6 +2749,7 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Andernfalls kann der Block nicht gelöscht werden, wenn er Elemente enthält",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Zeige diesen Block. <br> Strg + Klick: alle",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Verstecke diesen Block. <br> Strg + Klick: alle",
+        "Aucun choix possible": "Keine Wahl möglich",
         "est": "ist",
         "égal": "gleich",
         "supérieur": "oben",

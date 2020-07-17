@@ -2749,6 +2749,7 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "В противном случае блок не может быть удален, если он содержит элементы",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Показать этот блок. <br> Ctrl + клик: все",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Скрыть этот блок <br> Ctrl + клик: все",
+        "Aucun choix possible": "",
         "est": "является",
         "égal": "равный",
         "supérieur": "высший",

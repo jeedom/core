@@ -2749,6 +2749,7 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Altrimenti il blocco non può essere cancellato se contiene elementi",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Mostra questo blocco. <br> Ctrl + clic: tutto",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Nascondi questo blocco. <br> Ctrl + clic: tutto",
+        "Aucun choix possible": "",
         "est": "è",
         "égal": "uguale",
         "supérieur": "sopra",

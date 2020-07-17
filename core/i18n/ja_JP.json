@@ -2749,6 +2749,7 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "そうしないと、ブロックに要素が含まれている場合、ブロックを削除できません。",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "このブロックを表示します。 <br> Ctrl +クリック：すべて。",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "このブロックを非表示にします。 <br> Ctrl +クリック：すべて。",
+        "Aucun choix possible": "",
         "est": "あります",
         "égal": "等しいです",
         "supérieur": "トップ",
