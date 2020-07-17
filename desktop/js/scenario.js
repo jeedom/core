@@ -513,6 +513,7 @@ $divScenario.on('click','.bt_removeSchedule', function(event) {
 $divScenario.on('click','.bt_selectTrigger', function(event) {
   var el = $(this)
   jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+    if (!isset(result.human)) return
     el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value(result.human)
   })
 })
@@ -818,6 +819,15 @@ $divScenario.on('click', '.bt_removeExpression', function(event) {
   updateSortable()
 })
 
+$('body').on('click', '.modal-body .bt_selectCmdFromModal', function(event) {
+  var modal = $(this).closest('.bootbox.modal')
+  modal.hide()
+  jeedom.cmd.getSelectModal({cmd: {type: 'info'}, returnCancel: 1}, function(result) {
+    modal.show()
+    if (isset(result.human)) modal.find('input[data-l1key="operande"]').val(result.human)
+  })
+})
+
 $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
@@ -826,6 +836,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
     type = 'action'
   }
   jeedom.cmd.getSelectModal({cmd: {type: type}}, function(result) {
+    if (!isset(result.human)) return
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
       setUndoStack()
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
@@ -836,7 +847,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
       });
     }
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      var message = 'Aucun choix possible'
+      var message = '{{Aucun choix possible}}'
       if (result.cmd.subType == 'numeric') {
         message = '<div class="row">  ' +
         '<div class="col-md-12"> ' +
@@ -845,21 +856,22 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
         '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
         '             <div class="col-xs-3">' +
         '                <select class="conditionAttr form-control" data-l1key="operator">' +
-        '                    <option value="==">{{égal}}</option>' +
+        '                  <option value="==">{{égal}}</option>' +
         '                  <option value=">">{{supérieur}}</option>' +
         '                  <option value="<">{{inférieur}}</option>' +
-        '                 <option value="!=">{{différent}}</option>' +
+        '                  <option value="!=">{{différent}}</option>' +
         '            </select>' +
-        '       </div>' +
-        '      <div class="col-xs-4">' +
-        '         <input type="number" class="conditionAttr form-control" data-l1key="operande" />' +
-        '    </div>' +
+        '             </div>' +
+        '             <div class="col-xs-4">' +
+        '                 <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />' +
+        '                 <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>' +
+        '             </div>' +
         '</div>' +
         '<div class="form-group"> ' +
         '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
         '             <div class="col-xs-3">' +
         '                <select class="conditionAttr form-control" data-l1key="next">' +
-        '                    <option value="">rien</option>' +
+        '                  <option value="">rien</option>' +
         '                  <option value="ET">{{et}}</option>' +
         '                  <option value="OU">{{ou}}</option>' +
         '            </select>' +
@@ -874,22 +886,23 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
         '<form class="form-horizontal" onsubmit="return false;"> ' +
         '<div class="form-group"> ' +
         '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-        '             <div class="col-xs-3">' +
+        '             <div class="col-xs-2">' +
         '                <select class="conditionAttr form-control" data-l1key="operator">' +
-        '                    <option value="==">{{égale}}</option>' +
+        '                  <option value="==">{{égale}}</option>' +
         '                  <option value="matches">{{contient}}</option>' +
-        '                 <option value="!=">{{différent}}</option>' +
-        '            </select>' +
-        '       </div>' +
-        '      <div class="col-xs-4">' +
-        '         <input class="conditionAttr form-control" data-l1key="operande" />' +
-        '    </div>' +
+        '                  <option value="!=">{{différent}}</option>' +
+        '                </select>' +
+        '             </div>' +
+        '             <div class="col-xs-4">' +
+        '                 <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />' +
+        '                 <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>' +
+        '             </div>' +
         '</div>' +
         '<div class="form-group"> ' +
         '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
         '             <div class="col-xs-3">' +
         '                <select class="conditionAttr form-control" data-l1key="next">' +
-        '                    <option value="">{{rien}}</option>' +
+        '                  <option value="">{{rien}}</option>' +
         '                  <option value="ET">{{et}}</option>' +
         '                  <option value="OU">{{ou}}</option>' +
         '            </select>' +
@@ -913,9 +926,9 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
         '                       <option value="0">{{Eteint}}</option>' +
         '                       <option value="1">{{Déclenché}}</option>' +
         '                       <option value="0">{{Au repos}}</option>' +
-        '                       </select>' +
-        '                    </div>' +
-        '                 </div>' +
+        '                  </select>' +
+        '             </div>' +
+        '</div>' +
         '<div class="form-group"> ' +
         '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
         '             <div class="col-xs-3">' +
@@ -933,6 +946,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
       bootbox.dialog({
         title: "{{Ajout d'une nouvelle condition}}",
         message: message,
+        size: 'large',
         buttons: {
           "{{Ne rien mettre}}": {
             className: "btn-default",
@@ -945,9 +959,9 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
             className: "btn-primary",
             callback: function() {
               setUndoStack()
-              modifyWithoutSave = true;
-              var condition = result.human;
-              condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
+              modifyWithoutSave = true
+              var condition = result.human
+              condition += ' ' + $('.conditionAttr[data-l1key=operator]').value()
               if (result.cmd.subType == 'string') {
                 if ($('.conditionAttr[data-l1key=operator]').value() == 'matches') {
                   condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"'
@@ -960,7 +974,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
               condition += ' ' + $('.conditionAttr[data-l1key=next]').value() + ' '
               expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition)
               if ($('.conditionAttr[data-l1key=next]').value() != '') {
-                el.click();
+                el.click()
               }
             }
           },
