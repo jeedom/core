@@ -2767,6 +2767,8 @@
         "Déclenché": "Innescato",
         "Au repos": "A riposo",
         "Ajout d'une nouvelle condition": "Aggiunta di una nuova condizione",
+        "Ne rien mettre": "",
+        "Valider": "Convalidare",
         "Erreur": "Errore",
         "Actif": "Beni",
         "Démarrage": "Start-up",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Questo è un test del messaggio per il comando",
         "Info": "",
         "Action": "Azione",
-        "Sélectionner la commande": "Seleziona comando"
+        "Sélectionner la commande": "Seleziona comando",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Seleziona lo scenario"
+        "Sélectionner le scénario": "Seleziona lo scenario",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Seleziona attrezzatura"
+        "Sélectionner un équipement": "Seleziona attrezzatura",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configurazione del plugin",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Seleziona comando"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Seleziona una variabile"
+        "Sélectionner une variable": "Seleziona una variabile",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo",

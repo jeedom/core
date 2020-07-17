@@ -2767,6 +2767,8 @@
         "Déclenché": "Tetiklendi",
         "Au repos": "İstirahatde",
         "Ajout d'une nouvelle condition": "",
+        "Ne rien mettre": "",
+        "Valider": "Onaylayın",
         "Erreur": "Hata",
         "Actif": "Varlıklar",
         "Démarrage": "",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Bu komuta için bi test mesajıdır",
         "Info": "Bilgi",
         "Action": "Eylem",
-        "Sélectionner la commande": "Komutayı seçin"
+        "Sélectionner la commande": "Komutayı seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Senaryoyu seçin"
+        "Sélectionner le scénario": "Senaryoyu seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Ekipman seçin"
+        "Sélectionner un équipement": "Ekipman seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Eklentinin ayarları",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Komutayı seçin"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Değişken seçin"
+        "Sélectionner une variable": "Değişken seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi",

@@ -2767,6 +2767,8 @@
         "Déclenché": "срабатывает",
         "Au repos": "В состоянии покоя",
         "Ajout d'une nouvelle condition": "Добавление нового условия",
+        "Ne rien mettre": "",
+        "Valider": "Validate",
         "Erreur": "Ошибка",
         "Actif": "активы",
         "Démarrage": "пуск в эксплуатацию",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Это тестовое сообщение для команды",
         "Info": "Информация",
         "Action": "Действие",
-        "Sélectionner la commande": "Выберите команду"
+        "Sélectionner la commande": "Выберите команду",
+        "Annuler": "Отменить",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Выберите сценарий"
+        "Sélectionner le scénario": "Выберите сценарий",
+        "Annuler": "Отменить",
+        "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Selectionner un équipement"
+        "Sélectionner un équipement": "Selectionner un équipement",
+        "Annuler": "Отменить",
+        "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Конфигурация плагина",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Выберите команду"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Выберите переменную"
+        "Sélectionner une variable": "Выберите переменную",
+        "Annuler": "Отменить",
+        "Valider": "Validate"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Значение было успешно изменено",

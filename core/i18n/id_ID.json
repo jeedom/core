@@ -2767,6 +2767,8 @@
         "Déclenché": "Dibesarkan",
         "Au repos": "Saat istirahat",
         "Ajout d'une nouvelle condition": "",
+        "Ne rien mettre": "",
+        "Valider": "Mengesahkan",
         "Erreur": "Error",
         "Actif": "Aktiva",
         "Démarrage": "",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Ini adalah pesan untuk mengendalikan uji",
         "Info": "",
         "Action": "Tindakan",
-        "Sélectionner la commande": "Pilih perintah"
+        "Sélectionner la commande": "Pilih perintah",
+        "Annuler": "Tidak jadi",
+        "Valider": "Mengesahkan"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Pilih skenario"
+        "Sélectionner le scénario": "Pilih skenario",
+        "Annuler": "Tidak jadi",
+        "Valider": "Mengesahkan"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Selectionner un équipement"
+        "Sélectionner un équipement": "Selectionner un équipement",
+        "Annuler": "Tidak jadi",
+        "Valider": "Mengesahkan"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Pilih perintah"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Pilih variabel"
+        "Sélectionner une variable": "Pilih variabel",
+        "Annuler": "Tidak jadi",
+        "Valider": "Mengesahkan"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Nilai telah berhasil diedit",
