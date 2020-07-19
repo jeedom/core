@@ -32,15 +32,15 @@ There are several ways to access the history :
 
 ## History tab
 
-If you display a graph by the history page, you have access to several display options :
+If you display a graph via the history page, you have access to several display options, above the graph :
 
-We find at the top right the display period (here on the last week because, by default I want it to be only one week - see 2 paragraphs above), then come the parameters of the curve (these parameters are kept from one display to another, so you only have to configure them once).
+- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* IN *Settings → System → Configuration / Equipment*.
+- **Group** : Offers several grouping options (Sum per hour, etc.).
+- **Display type** : Display in *Line*, *Area*, or *Bar*. Option saved on the order and used from the Dashboard. 
+- **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard. 
+- **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard. 
+- **Compare** : Compare the curve between different periods. The comparison is made according to the displayed period. If the period is one week, the comparison will be made over -1 week, -2 week, etc.
 
-- **Staircase** : Displays the curve as a staircase or a continuous display.
-- **Variation** : Displays the difference in value from the previous point.
-- **Line** : Displays the graph as lines.
-- **Area** : Displays the graph as an area.
-- **Column**\* : Displays the graph as bars.
 
 > **Tip**
 >

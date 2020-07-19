@@ -692,7 +692,6 @@
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Purger l'historique si plus vieux que ": "Die Chronik löschen, die älter ist wie",
-        "Jamais": "Noch nie",
         "1 jour": "1 Tag",
         "7 jours": "7 Tage",
         "1 mois": "1 Monat",
@@ -701,6 +700,7 @@
         "1 an": "1 Jahr",
         "2 ans": "2 Jahre",
         "3 ans": "3 Jahre",
+        "Jamais": "Noch nie",
         "Copie des données historisées": "Kopieren der Chronik Daten",
         "Copier l'historique de cette commande sur une autre commande": "Kopieren der Chronik von diesem Befehls auf einen anderen Befehl",
         "Gestion des valeurs": "Verwalten von Werten",
@@ -806,7 +806,6 @@
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Aucun": "Ohne",
-        "Jamais": "Noch nie",
         "1 jour": "1 Tag",
         "7 jours": "7 Tage",
         "1 mois": "1 Monat",
@@ -815,6 +814,7 @@
         "1 an": "1 Jahr",
         "2 ans": "2 Jahre",
         "3 ans": "3 Jahre",
+        "Jamais": "Noch nie",
         "Configuration de la commande": "Befehl Konfiguration",
         "Exporter la commande": "Exportieren Sie die Bestellung",
         "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
@@ -2749,24 +2749,26 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Andernfalls kann der Block nicht gelöscht werden, wenn er Elemente enthält",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Zeige diesen Block. <br> Strg + Klick: alle",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Verstecke diesen Block. <br> Strg + Klick: alle",
+        "Aucun choix possible": "Keine Wahl möglich",
         "est": "ist",
         "égal": "gleich",
         "supérieur": "oben",
         "inférieur": "niedriger",
         "différent": "unterschiedlich",
-        "Ensuite": "Dann",
-        "et": "und",
-        "ou": "oder",
         "égale": "gleich",
         "contient": "enthält",
-        "rien": "nichts",
         "Ouvert": "Offen",
         "Fermé": "Geschlossen",
         "Allumé": "Aussteigen",
         "Eteint": "Aus",
         "Déclenché": "Ausgelöst",
         "Au repos": "In Ruhe",
+        "Ensuite": "Dann",
+        "et": "und",
+        "ou": "oder",
         "Ajout d'une nouvelle condition": "Hinzufügen einer neuen Bedingung",
+        "Ne rien mettre": "Setzen Sie nichts",
+        "Valider": "Validate",
         "Erreur": "Fehler",
         "Actif": "Aktiva",
         "Démarrage": "Start-up",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Dies ist ein Nachrichtentest für den Befehl",
         "Info": "Info",
         "Action": "Aktion",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Befehl auswählen",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Wählen Sie das Szenario aus"
+        "Sélectionner le scénario": "Wählen Sie das Szenario aus",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Ausrüstung auswählen"
+        "Sélectionner un équipement": "Ausrüstung auswählen",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin Konfiguration",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Wählen Sie eine Variable aus"
+        "Sélectionner une variable": "Wählen Sie eine Variable aus",
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Der Wert wurde erfolgreich bearbeitet",

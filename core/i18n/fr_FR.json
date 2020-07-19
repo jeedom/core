@@ -692,7 +692,6 @@
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que ",
-        "Jamais": "Jamais",
         "1 jour": "1 jour",
         "7 jours": "7 jours",
         "1 mois": "1 mois",
@@ -701,6 +700,7 @@
         "1 an": "1 an",
         "2 ans": "2 ans",
         "3 ans": "3 ans",
+        "Jamais": "Jamais",
         "Copie des données historisées": "Copie des données historisées",
         "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande",
         "Gestion des valeurs": "Gestion des valeurs",
@@ -806,7 +806,6 @@
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Aucun": "Aucun",
-        "Jamais": "Jamais",
         "1 jour": "1 jour",
         "7 jours": "7 jours",
         "1 mois": "1 mois",
@@ -815,6 +814,7 @@
         "1 an": "1 an",
         "2 ans": "2 ans",
         "3 ans": "3 ans",
+        "Jamais": "Jamais",
         "Configuration de la commande": "Configuration de la commande",
         "Exporter la commande": "Exporter la commande",
         "Modifications sauvegardées avec succès": "Modifications sauvegardées avec succès"
@@ -2749,24 +2749,26 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Le bloc Sinon ne peut être supprimé s'il contient des éléments.",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Afficher ce bloc.<br>Ctrl+click: tous.",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Masquer ce bloc.<br>Ctrl+click: tous.",
+        "Aucun choix possible": "Aucun choix possible",
         "est": "est",
         "égal": "égal",
         "supérieur": "supérieur",
         "inférieur": "inférieur",
         "différent": "différent",
-        "Ensuite": "Ensuite",
-        "et": "et",
-        "ou": "ou",
         "égale": "égale",
         "contient": "contient",
-        "rien": "rien",
         "Ouvert": "Ouvert",
         "Fermé": "Fermé",
         "Allumé": "Allumé",
         "Eteint": "Eteint",
         "Déclenché": "Déclenché",
         "Au repos": "Au repos",
+        "Ensuite": "Ensuite",
+        "et": "et",
+        "ou": "ou",
         "Ajout d'une nouvelle condition": "Ajout d'une nouvelle condition",
+        "Ne rien mettre": "Ne rien mettre",
+        "Valider": "Valider",
         "Erreur": "Erreur",
         "Actif": "Actif",
         "Démarrage": "Démarrage",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Ceci est un test de message pour la commande",
         "Info": "Info",
         "Action": "Action",
-        "Sélectionner la commande": "Sélectionner la commande"
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Sélectionner le scénario"
+        "Sélectionner le scénario": "Sélectionner le scénario",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Sélectionner un équipement"
+        "Sélectionner un équipement": "Sélectionner un équipement",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Sélectionner la commande"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Sélectionner une variable"
+        "Sélectionner une variable": "Sélectionner une variable",
+        "Annuler": "Annuler",
+        "Valider": "Valider"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "La valeur a été éditée avec succès",

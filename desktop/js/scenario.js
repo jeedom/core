@@ -818,6 +818,85 @@ $divScenario.on('click', '.bt_removeExpression', function(event) {
   updateSortable()
 })
 
+$('body').on('click', '.modal-body .bt_selectCmdFromModal', function(event) {
+  var modal = $(this).closest('.bootbox.modal')
+  modal.hide()
+  jeedom.cmd.getSelectModal({cmd: {type: 'info'}, returnCancel: 1}, function(result) {
+    modal.show()
+    if (isset(result.human)) modal.find('input[data-l1key="operande"]').val(result.human)
+  })
+})
+
+function getSelectCmdExpressionMessage(subType, cmdHumanName) {
+  if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
+
+  var message =  '<div class="row">'
+  message += '<div class="col-md-12">'
+  message += '<form class="form-horizontal" onsubmit="return false;">'
+  message += '<div class="form-group">'
+  message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
+
+  if (subType == 'numeric') {
+    message += '<div class="col-xs-3">'
+    message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+    message += '    <option value="==">{{égal}}</option>'
+    message += '    <option value=">">{{supérieur}}</option>'
+    message += '    <option value="<">{{inférieur}}</option>'
+    message += '    <option value="!=">{{différent}}</option>'
+    message += '  </select>'
+    message += '</div>'
+    message += '<div class="col-xs-4">'
+    message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+    message += '  <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
+    message += '</div>'
+    message += '</div>'
+  }
+
+  if (subType == 'string') {
+    message += '<div class="col-xs-2">'
+    message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+    message += '    <option value="==">{{égale}}</option>'
+    message += '    <option value="matches">{{contient}}</option>'
+    message += '    <option value="!=">{{différent}}</option>'
+    message += '  </select>'
+    message += '</div>'
+    message += '<div class="col-xs-4">'
+    message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+    message += '  <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
+    message += '</div>'
+    message += '</div>'
+  }
+
+  if (subType == 'binary') {
+    message += '<div class="col-xs-7">'
+    message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
+    message += '  <select class="conditionAttr form-control" data-l1key="operande">'
+    message += '    <option value="1">{{Ouvert}}</option>'
+    message += '    <option value="0">{{Fermé}}</option>'
+    message += '    <option value="1">{{Allumé}}</option>'
+    message += '    <option value="0">{{Eteint}}</option>'
+    message += '    <option value="1">{{Déclenché}}</option>'
+    message += '    <option value="0">{{Au repos}}</option>'
+    message += '  </select>'
+    message += '</div>'
+    message += '</div>'
+  }
+
+  message += '<div class="form-group">'
+  message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
+  message += '<div class="col-xs-3">'
+  message += '  <select class="conditionAttr form-control" data-l1key="next">'
+  message += '    <option value="">rien</option>'
+  message += '    <option value="ET">{{et}}</option>'
+  message += '    <option value="OU">{{ou}}</option>'
+  message += '  </select>'
+  message += '</div>'
+  message += '</div>'
+  message += '</div></div>'
+  message += '</form></div></div>'
+  return message
+}
+
 $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
@@ -825,129 +904,45 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
     type = 'action'
   }
+
   jeedom.cmd.getSelectModal({cmd: {type: type}}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
       setUndoStack()
-      expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
+      expression.find('.expressionAttr[data-l1key=expression]').value(result.human)
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
-        expression.find('.expressionOptions').html(html);
-        taAutosize();
+        expression.find('.expressionOptions').html(html)
+        taAutosize()
         updateTooltips()
-      });
+      })
     }
+
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      var message = 'Aucun choix possible'
-      if (result.cmd.subType == 'numeric') {
-        message = '<div class="row">  ' +
-        '<div class="col-md-12"> ' +
-        '<form class="form-horizontal" onsubmit="return false;"> ' +
-        '<div class="form-group"> ' +
-        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-        '             <div class="col-xs-3">' +
-        '                <select class="conditionAttr form-control" data-l1key="operator">' +
-        '                    <option value="==">{{égal}}</option>' +
-        '                  <option value=">">{{supérieur}}</option>' +
-        '                  <option value="<">{{inférieur}}</option>' +
-        '                 <option value="!=">{{différent}}</option>' +
-        '            </select>' +
-        '       </div>' +
-        '      <div class="col-xs-4">' +
-        '         <input type="number" class="conditionAttr form-control" data-l1key="operande" />' +
-        '    </div>' +
-        '</div>' +
-        '<div class="form-group"> ' +
-        '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
-        '             <div class="col-xs-3">' +
-        '                <select class="conditionAttr form-control" data-l1key="next">' +
-        '                    <option value="">rien</option>' +
-        '                  <option value="ET">{{et}}</option>' +
-        '                  <option value="OU">{{ou}}</option>' +
-        '            </select>' +
-        '       </div>' +
-        '</div>' +
-        '</div> </div>' +
-        '</form> </div>  </div>';
-      }
-      if (result.cmd.subType == 'string') {
-        message = '<div class="row">  ' +
-        '<div class="col-md-12"> ' +
-        '<form class="form-horizontal" onsubmit="return false;"> ' +
-        '<div class="form-group"> ' +
-        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-        '             <div class="col-xs-3">' +
-        '                <select class="conditionAttr form-control" data-l1key="operator">' +
-        '                    <option value="==">{{égale}}</option>' +
-        '                  <option value="matches">{{contient}}</option>' +
-        '                 <option value="!=">{{différent}}</option>' +
-        '            </select>' +
-        '       </div>' +
-        '      <div class="col-xs-4">' +
-        '         <input class="conditionAttr form-control" data-l1key="operande" />' +
-        '    </div>' +
-        '</div>' +
-        '<div class="form-group"> ' +
-        '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
-        '             <div class="col-xs-3">' +
-        '                <select class="conditionAttr form-control" data-l1key="next">' +
-        '                    <option value="">{{rien}}</option>' +
-        '                  <option value="ET">{{et}}</option>' +
-        '                  <option value="OU">{{ou}}</option>' +
-        '            </select>' +
-        '       </div>' +
-        '</div>' +
-        '</div> </div>' +
-        '</form> </div>  </div>';
-      }
-      if (result.cmd.subType == 'binary') {
-        message = '<div class="row">  ' +
-        '<div class="col-md-12"> ' +
-        '<form class="form-horizontal" onsubmit="return false;"> ' +
-        '<div class="form-group"> ' +
-        '<label class="col-xs-5 control-label" >'+result.human+' {{est}}</label>' +
-        '            <div class="col-xs-7">' +
-        '                 <input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />' +
-        '                  <select class="conditionAttr form-control" data-l1key="operande">' +
-        '                       <option value="1">{{Ouvert}}</option>' +
-        '                       <option value="0">{{Fermé}}</option>' +
-        '                       <option value="1">{{Allumé}}</option>' +
-        '                       <option value="0">{{Eteint}}</option>' +
-        '                       <option value="1">{{Déclenché}}</option>' +
-        '                       <option value="0">{{Au repos}}</option>' +
-        '                       </select>' +
-        '                    </div>' +
-        '                 </div>' +
-        '<div class="form-group"> ' +
-        '<label class="col-xs-5 control-label" >{{Ensuite}}</label>' +
-        '             <div class="col-xs-3">' +
-        '                <select class="conditionAttr form-control" data-l1key="next">' +
-        '                  <option value="">{{rien}}</option>' +
-        '                  <option value="ET">{{et}}</option>' +
-        '                  <option value="OU">{{ou}}</option>' +
-        '            </select>' +
-        '       </div>' +
-        '</div>' +
-        '</div> </div>' +
-        '</form> </div>  </div>';
+      var condType = el.closest('.subElement').get(0)
+      if (!$(condType).hasClass('subElementIF') && !$(condType).hasClass('subElementFOR')) {
+        expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+        return
       }
 
+      var message = getSelectCmdExpressionMessage(result.cmd.subType, result.human)
       bootbox.dialog({
         title: "{{Ajout d'une nouvelle condition}}",
         message: message,
+        size: 'large',
         buttons: {
-          "Ne rien mettre": {
+          "{{Ne rien mettre}}": {
             className: "btn-default",
             callback: function() {
               expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
             }
           },
           success: {
-            label: "Valider",
+            label: "{{Valider}}",
             className: "btn-primary",
             callback: function() {
               setUndoStack()
-              modifyWithoutSave = true;
-              var condition = result.human;
-              condition += ' ' + $('.conditionAttr[data-l1key=operator]').value();
+              modifyWithoutSave = true
+              var condition = result.human
+              condition += ' ' + $('.conditionAttr[data-l1key=operator]').value()
               if (result.cmd.subType == 'string') {
                 if ($('.conditionAttr[data-l1key=operator]').value() == 'matches') {
                   condition += ' "/' + $('.conditionAttr[data-l1key=operande]').value()+'/"'
@@ -960,7 +955,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
               condition += ' ' + $('.conditionAttr[data-l1key=next]').value() + ' '
               expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', condition)
               if ($('.conditionAttr[data-l1key=next]').value() != '') {
-                el.click();
+                el.click()
               }
             }
           },

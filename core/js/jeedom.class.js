@@ -502,10 +502,10 @@ jeedom.getSelectActionModal = function(_options, _callback){
   }
   mod_insertAction.setOptions(_options);
   $("#mod_insertActionValue").dialog('option', 'buttons', {
-    "Annuler": function() {
+    "{{Annuler}}": function() {
       $(this).dialog("close");
     },
-    "Valider": function() {
+    "{{Valider}}": function() {
       var retour = {};
       retour.action = {};
       retour.human = mod_insertAction.getValue();

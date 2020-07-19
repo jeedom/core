@@ -100,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else if(data.code == -32006){
@@ -140,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else{
@@ -647,7 +647,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -685,7 +685,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
@@ -735,10 +735,13 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   }
   mod_insertCmd.setOptions(_options);
   $("#mod_insertCmdValue").dialog('option', 'buttons', {
-    "Annuler": function() {
+    "{{Annuler}}": function() {
+      if (isset(_options.returnCancel) && 'function' == typeof(_callback)) {
+        _callback({});
+      }
       $(this).dialog("close");
     },
-    "Valider": function() {
+    "{{Valider}}": function() {
       var retour = {};
       retour.cmd = {};
       retour.human = mod_insertCmd.getValue();

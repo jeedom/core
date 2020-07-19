@@ -138,10 +138,7 @@ $('#catFilterNone').on('click', function () {
   filterByCategory()
 })
 $('#catFilterAll').on('click', function() {
-  $('#categoryfilter .catFilterKey').each(function() {
-    $(this).prop('checked', true)
-  })
-  filterByCategory()
+  resetCategoryFilter()
 })
 $('#categoryfilter .catFilterKey').off('mouseup').on('mouseup', function(event) {
   event.preventDefault()
@@ -190,8 +187,11 @@ function filterByCategory() {
       cats.push($(this).attr('data-key'))
     }
   })
+  var eqCats, catFound
   $('.eqLogic-widget').each(function() {
-    if (cats.includes($(this).attr('data-category'))) $(this).show()
+    eqCats = $(this).attr('data-translate-category').split(',')
+    catFound = eqCats.some(r=> cats.includes(r))
+    if (catFound) $(this).show()
     else $(this).hide()
   })
   if (cats.includes('scenario')) {

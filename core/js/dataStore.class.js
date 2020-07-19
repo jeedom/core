@@ -105,10 +105,10 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
     jQuery.ajaxSetup({async: true});
     mod_insertDataStore.setOptions(_options);
     $("#mod_insertDataStoreValue").dialog('option', 'buttons', {
-        "Annuler": function() {
+        "{{Annuler}}": function() {
             $(this).dialog("close");
         },
-        "Valider": function() {
+        "{{Valider}}": function() {
             var retour = {};
             retour.human = mod_insertDataStore.getValue();
             retour.id = mod_insertDataStore.getId();

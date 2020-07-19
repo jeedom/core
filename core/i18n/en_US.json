@@ -692,7 +692,6 @@
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Purger l'historique si plus vieux que ": "Clear history older than",
-        "Jamais": "Never",
         "1 jour": "1 day",
         "7 jours": "7 days",
         "1 mois": "1 month",
@@ -701,6 +700,7 @@
         "1 an": "1 year",
         "2 ans": "2 years",
         "3 ans": "3 years",
+        "Jamais": "Never",
         "Copie des données historisées": "Copy of historized datas",
         "Copier l'historique de cette commande sur une autre commande": "Copy the history of this command on another command",
         "Gestion des valeurs": "Values management",
@@ -806,7 +806,6 @@
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Aucun": "None",
-        "Jamais": "Never",
         "1 jour": "1 day",
         "7 jours": "7 days",
         "1 mois": "1 month",
@@ -815,6 +814,7 @@
         "1 an": "1 year",
         "2 ans": "2 years",
         "3 ans": "3 years",
+        "Jamais": "Never",
         "Configuration de la commande": "Command setup",
         "Exporter la commande": "Export the command",
         "Modifications sauvegardées avec succès": "Changes successfully saved"
@@ -2749,24 +2749,26 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Else block cannot be deleted if it contains elements",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Show this block. <br> Ctrl + click: all",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Hide this block. <br> Ctrl + click: all",
+        "Aucun choix possible": "No choice possible",
         "est": "is",
         "égal": "equal",
         "supérieur": "above",
         "inférieur": "lower than",
         "différent": "different",
-        "Ensuite": "Then",
-        "et": "and",
-        "ou": "or",
         "égale": "equal",
         "contient": "contains",
-        "rien": "nothing",
         "Ouvert": "Open",
         "Fermé": "Closed",
         "Allumé": "On",
         "Eteint": "Off",
         "Déclenché": "Triggered",
         "Au repos": "Idle",
+        "Ensuite": "Then",
+        "et": "and",
+        "ou": "or",
         "Ajout d'une nouvelle condition": "Adding a new condition",
+        "Ne rien mettre": "Put nothing",
+        "Valider": "Validate",
         "Erreur": "Error",
         "Actif": "Active",
         "Démarrage": "Start-up",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "This is a test message for the command",
         "Info": "Info",
         "Action": "Action",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select command",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Select the scenario"
+        "Sélectionner le scénario": "Select the scenario",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Select equipment"
+        "Sélectionner un équipement": "Select equipment",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Select a variable"
+        "Sélectionner une variable": "Select a variable",
+        "Annuler": "Cancel",
+        "Valider": "Validate"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",

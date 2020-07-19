@@ -122,8 +122,8 @@ sendVarToJS([
           </thead>
           <tbody>
             <?php
+            $tr = '';
             foreach (($planHeader->getPlan()) as $plan) {
-              $tr = '';
               $tr .= '<tr  class="plan" data-id="'.$plan->getId().'">';
               $tr .= '<td>';
               $tr .= $plan->getId();
@@ -153,8 +153,8 @@ sendVarToJS([
               }
               $tr .= '</td>';
               $tr .= '</tr>';
-              echo tr;
             }
+            echo $tr;
             ?>
           </tbody>
         </table>

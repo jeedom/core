@@ -692,7 +692,6 @@
         "Minimum": "",
         "Maximum": "",
         "Purger l'historique si plus vieux que ": "Bundan daha eski ise geçmişi temizle",
-        "Jamais": "Hiçbir zaman",
         "1 jour": "1 gün",
         "7 jours": "7 gün",
         "1 mois": "1 ay",
@@ -701,6 +700,7 @@
         "1 an": "1 yıl",
         "2 ans": "",
         "3 ans": "",
+        "Jamais": "Hiçbir zaman",
         "Copie des données historisées": "Geçmiş verilerinin kopyası",
         "Copier l'historique de cette commande sur une autre commande": "Bu komutun geçmişini başka bir komuta kopyala",
         "Gestion des valeurs": "Değerlerin yönetimi",
@@ -806,7 +806,6 @@
         "Minimum": "",
         "Maximum": "",
         "Aucun": "Hiçbir",
-        "Jamais": "Hiçbir zaman",
         "1 jour": "1 gün",
         "7 jours": "7 gün",
         "1 mois": "1 ay",
@@ -815,6 +814,7 @@
         "1 an": "1 yıl",
         "2 ans": "",
         "3 ans": "",
+        "Jamais": "Hiçbir zaman",
         "Configuration de la commande": "Komutanın ayarları",
         "Exporter la commande": "",
         "Modifications sauvegardées avec succès": ""
@@ -2749,24 +2749,26 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "",
+        "Aucun choix possible": "",
         "est": "olduğu",
         "égal": "eşittir",
         "supérieur": "üstün",
         "inférieur": "düşük",
         "différent": "değişik",
-        "Ensuite": "Sonra",
-        "et": "ve",
-        "ou": "yada",
         "égale": "eşittir",
         "contient": "içeriyor",
-        "rien": "hiçbirşey",
         "Ouvert": "Açık",
         "Fermé": "Kapalı",
         "Allumé": "Açık",
         "Eteint": "Sönük",
         "Déclenché": "Tetiklendi",
         "Au repos": "İstirahatde",
+        "Ensuite": "Sonra",
+        "et": "ve",
+        "ou": "yada",
         "Ajout d'une nouvelle condition": "",
+        "Ne rien mettre": "",
+        "Valider": "Onaylayın",
         "Erreur": "Hata",
         "Actif": "Varlıklar",
         "Démarrage": "",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Bu komuta için bi test mesajıdır",
         "Info": "Bilgi",
         "Action": "Eylem",
-        "Sélectionner la commande": "Komutayı seçin"
+        "Sélectionner la commande": "Komutayı seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Senaryoyu seçin"
+        "Sélectionner le scénario": "Senaryoyu seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Ekipman seçin"
+        "Sélectionner un équipement": "Ekipman seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Eklentinin ayarları",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Komutayı seçin"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Değişken seçin"
+        "Sélectionner une variable": "Değişken seçin",
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Değer başarıyla düzenlendi",

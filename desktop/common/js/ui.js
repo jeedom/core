@@ -35,29 +35,29 @@ jeedomUI.orderItems = function(_container, _orderAttr='data-order') {
   })
   var _draggingNewOrder = _newOrders[_draggingId]
   //----->moved _draggingId from _draggingOrder to _draggingNewOrder
-  
+
   //rearrange that better:
   var _finalOrder = {}
   for (var [id, order] of Object.entries(_newOrders)) {
     if (order <= _draggingNewOrder) _finalOrder[id] = order
     if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
   }
-  
+
   //set dom positions:
   var arrKeys = Object.keys(_finalOrder)
   var arrLength = arrKeys.length
   var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
   $('.ui-draggable[data-editId="'+firstElId+'"]').parent().prepend($('.ui-draggable[data-editId="'+firstElId+'"]'))
-  
+
   for (var i = 2; i < arrLength + 1; i++) {
     var thisId = arrKeys.find(key => _finalOrder[key] === i)
     var prevId = arrKeys.find(key => _finalOrder[key] === i-1)
     $('.ui-draggable[data-editId="'+prevId+'"]').after($('.ui-draggable[data-editId="'+thisId+'"]'))
   }
-  
+
   //reload from dom positions:
   _container.packery('reloadItems').packery()
-  
+
   itemElems = _container.packery('getItemElements')
   $(itemElems).each(function(i, itemElem) {
     $(itemElem).attr(_orderAttr, i + 1)
@@ -200,22 +200,22 @@ infos/actions tile signals
 */
 jeedomUI.setEqSignals = function() {
   $('body').off('mouseenter').off('mouseleave')
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
     if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
   })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]',function (event) {
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
     if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
   })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+  .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
     if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
   })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]',function (event) {
+  .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
     if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
   })
-  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+  .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
     if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
   })
-  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd',function (event) {
+  .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
     if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
   })
 }
@@ -226,7 +226,7 @@ jeedomUI.setEqSignals = function() {
 Handle history modal openning on infos
 */
 jeedomUI.setHistoryModalHandler = function() {
-  $('#div_pageContainer').off('click','.cmd-widget.history').on('click','.cmd-widget.history', function (event) {
+  $('#div_pageContainer').off('click', '.cmd-widget.history, .timeCmd.history').on('click', '.cmd-widget.history, .timeCmd.history', function (event) {
     if (isEditing) return false
     event.stopImmediatePropagation()
     event.stopPropagation()
@@ -235,6 +235,7 @@ jeedomUI.setHistoryModalHandler = function() {
       $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
         cmdIds.push($(this).data('cmd_id'))
       })
+      cmdIds = [...new Set(cmdIds)]
       cmdIds = cmdIds.join('-')
     } else {
       var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')

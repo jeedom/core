@@ -63,7 +63,8 @@ function getReport(_type, _id, _report) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (data) {
-      $('#div_reportForm').setValues(data, '.reportAttr').show()
+      $('#div_reportForm').setValues(data, '.reportAttr')
+      $('#div_reportForm').show()
       $('#div_imgreport').empty()
       var type = $('#div_reportForm .reportAttr[data-l1key=type]').value()
       var id = $('#div_reportForm .reportAttr[data-l1key=id]').value()

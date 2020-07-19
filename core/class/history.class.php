@@ -915,8 +915,6 @@ class history {
 										return;
 									}
 								}
-							} else {
-								$this->setDatetime(date('Y-m-d H:00:00', strtotime($this->getDatetime())));
 							}
 						}
 						$values = array(

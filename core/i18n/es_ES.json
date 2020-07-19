@@ -692,7 +692,6 @@
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
         "Purger l'historique si plus vieux que ": "Vaciar el historial si es más antiguo de",
-        "Jamais": "Nunca",
         "1 jour": "1 día",
         "7 jours": "7 días",
         "1 mois": "1 mes",
@@ -701,6 +700,7 @@
         "1 an": "1 año",
         "2 ans": "2 años",
         "3 ans": "3 años",
+        "Jamais": "Nunca",
         "Copie des données historisées": "Copiar los datos históricos",
         "Copier l'historique de cette commande sur une autre commande": "Copiar el histórico de esta orden en otra orden",
         "Gestion des valeurs": "Gestión de valores",
@@ -806,7 +806,6 @@
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
         "Aucun": "Ninguno",
-        "Jamais": "Nunca",
         "1 jour": "1 día",
         "7 jours": "7 días",
         "1 mois": "1 mes",
@@ -815,6 +814,7 @@
         "1 an": "1 año",
         "2 ans": "2 años",
         "3 ans": "3 años",
+        "Jamais": "Nunca",
         "Configuration de la commande": "Configuración del comando",
         "Exporter la commande": "Exportar el pedido",
         "Modifications sauvegardées avec succès": "Cambios guardados exitosamente"
@@ -2749,24 +2749,26 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "De lo contrario, el bloque no se puede eliminar si contiene elementos",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Muestra este bloque. <br> Ctrl + clic: todo",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Esconde este bloque. <br> Ctrl + clic: todo",
+        "Aucun choix possible": "No hay elección posible",
         "est": "es",
         "égal": "Igual",
         "supérieur": "superior",
         "inférieur": "inferior",
         "différent": "diferente",
-        "Ensuite": "Después",
-        "et": "y",
-        "ou": "o",
         "égale": "iguales",
         "contient": "contiene",
-        "rien": "nada",
         "Ouvert": "Abierto",
         "Fermé": "Cerrado",
         "Allumé": "Encendido",
         "Eteint": "Apagado",
         "Déclenché": "Activado",
         "Au repos": "En espera",
+        "Ensuite": "Después",
+        "et": "y",
+        "ou": "o",
         "Ajout d'une nouvelle condition": "Agregar una nueva condición",
+        "Ne rien mettre": "No poner nada",
+        "Valider": "Validar",
         "Erreur": "Error",
         "Actif": "Activo",
         "Démarrage": "Inicia",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Este es un mensaje de prueba para el comando",
         "Info": "Información",
         "Action": "Acción",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el comando",
+        "Annuler": "Cancelar",
+        "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Seleccione el escenario"
+        "Sélectionner le scénario": "Seleccione el escenario",
+        "Annuler": "Cancelar",
+        "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Seleccione un dispositivo"
+        "Sélectionner un équipement": "Seleccione un dispositivo",
+        "Annuler": "Cancelar",
+        "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuración del plugin",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Seleccionar una variable"
+        "Sélectionner une variable": "Seleccionar una variable",
+        "Annuler": "Cancelar",
+        "Valider": "Validar"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "El valor ha sido editado correctamente",

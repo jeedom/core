@@ -692,7 +692,6 @@
         "Minimum": "Minimo",
         "Maximum": "Massimo",
         "Purger l'historique si plus vieux que ": "Eliminare la storia se di età superiore",
-        "Jamais": "Mai",
         "1 jour": "1 giorno",
         "7 jours": "7 giorni",
         "1 mois": "1 mese",
@@ -701,6 +700,7 @@
         "1 an": "1 anno",
         "2 ans": "2 anni",
         "3 ans": "3 anni",
+        "Jamais": "Mai",
         "Copie des données historisées": "Copiare i dati storici",
         "Copier l'historique de cette commande sur une autre commande": "Copiare la storia di questo comando a un altro comando",
         "Gestion des valeurs": "Gestione valori",
@@ -806,7 +806,6 @@
         "Minimum": "Minimo",
         "Maximum": "Massimo",
         "Aucun": "Nessuno",
-        "Jamais": "Mai",
         "1 jour": "1 giorno",
         "7 jours": "7 giorni",
         "1 mois": "1 mese",
@@ -815,6 +814,7 @@
         "1 an": "1 anno",
         "2 ans": "2 anni",
         "3 ans": "3 anni",
+        "Jamais": "Mai",
         "Configuration de la commande": "Impostazione comando",
         "Exporter la commande": "",
         "Modifications sauvegardées avec succès": ""
@@ -2749,24 +2749,26 @@
         "Le bloc Sinon ne peut être supprimé s'il contient des éléments.": "Altrimenti il blocco non può essere cancellato se contiene elementi",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Mostra questo blocco. <br> Ctrl + clic: tutto",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Nascondi questo blocco. <br> Ctrl + clic: tutto",
+        "Aucun choix possible": "",
         "est": "è",
         "égal": "uguale",
         "supérieur": "sopra",
         "inférieur": "minore di",
         "différent": "differente",
-        "Ensuite": "Poi",
-        "et": "e",
-        "ou": "o",
         "égale": "uguale",
         "contient": "contiene",
-        "rien": "niente",
         "Ouvert": "Aperto",
         "Fermé": "Chiuso",
         "Allumé": "Scendere",
         "Eteint": "Via",
         "Déclenché": "Innescato",
         "Au repos": "A riposo",
+        "Ensuite": "Poi",
+        "et": "e",
+        "ou": "o",
         "Ajout d'une nouvelle condition": "Aggiunta di una nuova condizione",
+        "Ne rien mettre": "",
+        "Valider": "Convalidare",
         "Erreur": "Errore",
         "Actif": "Beni",
         "Démarrage": "Start-up",
@@ -2914,13 +2916,19 @@
         "Ceci est un test de message pour la commande": "Questo è un test del messaggio per il comando",
         "Info": "",
         "Action": "Azione",
-        "Sélectionner la commande": "Seleziona comando"
+        "Sélectionner la commande": "Seleziona comando",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/scenario.class.js": {
-        "Sélectionner le scénario": "Seleziona lo scenario"
+        "Sélectionner le scénario": "Seleziona lo scenario",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/eqLogic.class.js": {
-        "Sélectionner un équipement": "Seleziona attrezzatura"
+        "Sélectionner un équipement": "Seleziona attrezzatura",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configurazione del plugin",
@@ -2964,7 +2972,9 @@
         "Sélectionner la commande": "Seleziona comando"
     },
     "core\/js\/dataStore.class.js": {
-        "Sélectionner une variable": "Seleziona una variabile"
+        "Sélectionner une variable": "Seleziona una variabile",
+        "Annuler": "Cancella",
+        "Valider": "Convalidare"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "Il valore è stato modificato con successo",

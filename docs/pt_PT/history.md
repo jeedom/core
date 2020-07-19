@@ -32,15 +32,15 @@ Existem várias maneiras de acessar o histórico :
 
 ## Guia Histórico
 
-Se você exibir um gráfico na página de histórico, terá acesso a várias opções de exibição :
+Se você exibir um gráfico na página de histórico, terá acesso a várias opções de exibição, acima do gráfico :
 
-Encontramos no canto superior direito o período de exibição (aqui na última semana, porque, por padrão, quero que seja apenas uma semana - veja 2 parágrafos acima), depois vêm os parâmetros da curva (esses parâmetros são mantidos de um monitor para outro, então você só precisa configurá-los uma vez).
+- **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* Dans *Configurações → Sistema → Configuração / Equipamento*.
+- **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
+- **Tipo de exibição** : Exibir em *Linha*, *área*, onde *Bar*. Opção salva no pedido e usada no Painel. 
+- **Mudança** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel. 
+- **Escada** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel. 
+- **Comparar** : Compare a curva entre diferentes períodos. A comparação é feita de acordo com o período exibido. Se o período for de uma semana, a comparação será feita em -1 semana, -2 semana etc.
 
-- **Escada** : Exibe a curva como uma escada ou uma exibição contínua.
-- **Mudança** : Exibe a diferença de valor do ponto anterior.
-- **Linha** : Exibe o gráfico como linhas.
-- **área** : Exibe o gráfico como uma área.
-- **Coluna**\* : Exibe o gráfico como barras.
 
 > **Dica**
 >
