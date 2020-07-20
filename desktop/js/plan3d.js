@@ -141,7 +141,7 @@ window.addEventListener('click', handleClick3d, false );
 window.addEventListener('touchend', handleClick3d, false );
 
 function handleClick3d(event){
-  if(event.path[0].nodeName != 'CANVAS'){
+  if(!event.path[0] || event.path[0].nodeName != 'CANVAS'){
     return;
   }
   $('#md_plan3dWidget').empty();
