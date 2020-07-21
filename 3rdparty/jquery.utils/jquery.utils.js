@@ -389,7 +389,7 @@ function init(_value, _default) {
             $(this).val(init(_value));
           }
         } else if ($(this).is('select')) {
-          if (init(_value) == '' && $(this).attr("selectedIndex") == 0) {
+          if (init(_value) == '' && !$(this).attr("selectedIndex")) {
             $(this).val('');
             $(this).find('option:first').prop('selected',true);
           } else {
