@@ -91,7 +91,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 <div id="dashTopBar" class="input-group">
 	<div class="input-group-btn">
 	<?php
-		if (init('childs', 1) == 1) {?>
+		if (init('btover', 0) == 0) {?>
 			<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i>
 		<?php } else { ?>
 			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
@@ -127,51 +127,45 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	<?php } ?>
 </div>
 
-<?php include_file('desktop', 'dashboard', 'js'); ?>
-<div class="row" >
-	<?php
-	if ($DisplayByObject) {
-		//show root object and all its childs:
+<?php
+	include_file('desktop', 'dashboard', 'js');
+
+	function formatJeedomObjectDiv($object, $toSummary=false) {
 		$div =  '<div class="col-md-12">';
 		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
-		$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
+		$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=dashboard&object_id=' . $object->getId() . '&childs=0"><i class="icon jeedomapp-fleche-bas-line"></i></a><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
 		$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
-		$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
+		if ($toSummary) {
+			$div .= '<script>getObjectHtmlFromSummary(' . $object->getId() . ')</script>';
+		} else {
+			$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
+		}
 		$div .= '</div>';
 		$div .= '</div>';
 		$div .= '</div>';
 		echo $div;
-		foreach ($allObject as $value) {
-			if ($value->getId() != $object->getId()) {
+	}
+?>
+<div class="row" >
+	<?php
+	if ($DisplayByObject) {
+		//show root object and all its childs:
+		formatJeedomObjectDiv($object);
+		foreach ($allObject as $thisObject) {
+			if ($thisObject->getId() != $object->getId()) {
 				continue;
 			}
-			foreach (($value->getChilds()) as $child) {
+			foreach (($thisObject->getChilds()) as $child) {
 				if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
 					continue;
 				}
-				$div = '<div class="col-md-12">';
-				$div .= '<div data-object_id="' . $child->getId() . '" data-father_id="' . $child->getFather_id() . '" class="div_object">';
-				$div .= '<legend><span class="objectDashLegend fullCorner"><a href="index.php?v=d&p=object&id=' . $child->getId() . '">' . $child->getDisplay('icon') . ' ' . $child->getName() . '</a><span>' . $child->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $child->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
-				$div .= '<div class="div_displayEquipement" id="div_ob' . $child->getId() . '">';
-				$div .= '<script>getObjectHtml(' . $child->getId() . ')</script>';
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
-				echo $div;
+				formatJeedomObjectDiv($child);
 			}
 		}
 	} else {
 		//show object(s) for summaries:
 		foreach ($allObject as $object) {
-			$div =  '<div class="col-md-12">';
-			$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object hidden">';
-			$div .= '<legend><span class="objectDashLegend fullCorner"><a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span> <i class="fas fa-expand pull-right cursor bt_editDashboardWidgetAutoResize" id="edit_object_' . $object->getId() . '" title="{{Clic: hauteur max<br>CtrlClic: hauteur min}}" data-mode="0" style="display: none;"></i></span></legend>';
-			$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
-			$div .= '<script>getObjectHtmlFromSummary(' . $object->getId() . ')</script>';
-			$div .= '</div>';
-			$div .= '</div>';
-			$div .= '</div>';
-			echo $div;
+			formatJeedomObjectDiv($object, true);
 		}
 	}
 
