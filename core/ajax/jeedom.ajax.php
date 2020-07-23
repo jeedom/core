@@ -71,8 +71,6 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
-	ajax::init(true);
-
 	if (init('action') == 'version') {
 		ajax::success(jeedom::version());
 	}
