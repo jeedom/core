@@ -735,6 +735,8 @@
         "Correction d'un soucis lors de l'application d'un template de scénario": "Correction d'un soucis lors de l'application d'un template de scénario",
         "Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique": "Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique",
         "Correction d'un soucis sur l'archivage des historique si le mode de lissage était à jamais": "Correction d'un soucis sur l'archivage des historique si le mode de lissage était à jamais",
+        "Corrections de bugs": "Corrections de bugs",
+        "Correction de la commande trigger() dans les scénarios pour qu'elle renvoi le nom du declencheur (sans les #) au lieu de la valeur, pour la valeur il faut utilise triggerValue": "Correction de la commande trigger() dans les scénarios pour qu'elle renvoi le nom du declencheur (sans les #) au lieu de la valeur, pour la valeur il faut utilise triggerValue",
         "4.0.60": "4.0.60",
         "Supression du nouveau systeme de DNS en eu.jeedom": "Supression du nouveau systeme de DNS en eu.jeedom",
         "link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant": "link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant",

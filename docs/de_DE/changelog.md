@@ -8,6 +8,8 @@ Changelog Jeedom V4
 - Ein Problem beim Anwenden einer Szenariovorlage wurde behoben
 - Hinzufügen einer Option zum Deaktivieren der SSL-Überprüfung während der Kommunikation mit dem Markt (nicht empfohlen, aber in bestimmten Netzwerkkonfigurationen nützlich)
 - Es wurde ein Problem mit dem Archivierungsverlauf behoben, wenn der Glättungsmodus für immer war
+- Fehlerbehebungen
+- Korrektur des Befehls trigger () in Szenarien, sodass der Name des Triggers (ohne das #) anstelle des Werts für den Wert zurückgegeben wird, den Sie triggerValue verwenden müssen()
 
 4.0.60
 =====
