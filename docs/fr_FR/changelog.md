@@ -8,6 +8,8 @@ Changelog Jeedom V4
 - Correction d'un soucis lors de l'application d'un template de scénario
 - Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique)
 - Correction d'un soucis sur l'archivage des historique si le mode de lissage était à jamais
+- Corrections de bugs
+- Correction de la commande trigger() dans les scénarios pour qu'elle renvoi le nom du declencheur (sans les #) au lieu de la valeur, pour la valeur il faut utilise triggerValue()
 
 4.0.60
 =====
