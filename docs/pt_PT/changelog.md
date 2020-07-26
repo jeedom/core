@@ -5,12 +5,12 @@ Changelog
 3.3.53
 ======
 
-- Corrigido um problema com o histórico de arquivamento se o modo de suavização fosse para sempre
+- Corrigido um problema com os logs de arquivamento se o modo de suavização fosse para sempre
 
 3.3.52
 ======
 
-- Remoção do novo sistema DNS do eu.jeedom.link seguindo muitos operadores que proíbem fluxos http2 permanentes
+- Remoção do novo sistema DNS em eu.jeedom.link seguindo muitos operadores que proíbem fluxos http2 permanentes
 
 3.3.51
 ======
@@ -49,9 +49,9 @@ Changelog
 =====
 
 - Rotação automática da chave API de usuários administrativos a cada 3 meses. Posso desativá-lo (mas não é recomendado) no gerenciamento de usuários. Observe que esta atualização lança uma rotação de chaves de API para usuários administradores.
-- Capacidade de inserir informações globais para sua casa na administração Jeedom (posição geográfica, altitude ...) para evitar a necessidade de digitá-las novamente em plug-ins ao criar equipamentos.
+- Possibilidade de inserir informações gerais sobre sua casa na administração de Jeedom (posição geográfica, altitude ...) para evitar ter que digitá-las novamente nos plugins ao criar equipamentos.
 - Atualizando o repositório no smart
-- Migração para o novo sistema de backup em nuvem (o sistema antigo permanecerá ativo por 1 semana e, se necessário, você poderá solicitar a disponibilidade dos backups antigos para suporte, passar esse período, o sistema antigo será excluído)
+- Migração para o novo sistema de backup em nuvem (o sistema antigo permanecerá ativo por 1 semana e, se necessário, você poderá solicitar o fornecimento de backups antigos para suporte, ignorando esse período, o sistema antigo será excluído)
 - Migração para o novo sistema de monitoramento (o sistema antigo permanecerá ativo por 1 semana, após o qual será excluído)
 
 3.3.39
@@ -65,7 +65,7 @@ Changelog
 
 >**IMPORTANTE**
 >
->Esta atualização corrige uma preocupação que pode impedir a gravação de qualquer histórico a partir de 1 de janeiro de 2020. É mais do que altamente recomendável
+>Esta atualização corrige um problema que pode impedir a gravação de qualquer histórico a partir de 1 de janeiro de 2020. É mais do que altamente recomendado
 
 3.3.38
 =====
@@ -179,7 +179,7 @@ Changelog
 =====
 
 - Correções de bugs
-- Substituição aprimorada de pedidos (em visualizações, plano e plano3d)
+- Substituição de comando aprimorada (em visualizações : plan e plan3d)
 - Corrigido um bug que poderia impedir a abertura de certos equipamentos de plug-ins (alarme ou tipo virtual))
 
 3.3.21
@@ -260,7 +260,7 @@ Changelog
 3.2.16
 =====
 
-- Correção de um bug durante a instalação de dependência de determinados plugins no smart
+- Corrigido um erro ao instalar a dependência de alguns plugins no Smart
 
 3.2.15
 =====
@@ -271,7 +271,7 @@ Changelog
 =====
 
 - Preparação para evitar um erro ao mudar para 3.3.X
-- Correção de um problema ao solicitar suporte para plug-ins de terceiros
+- Corrigido um problema ao solicitar suporte para plug-ins de terceiros
 
 3.2.12
 =====
@@ -316,15 +316,15 @@ Changelog
 =====
 
 - Correções de bugs
-- Atualização do Documentos
+- Atualização da documentação
 - Possibilidade de usar as tags nas condições dos blocos "A" e "IN"
-- Correção de erros de categorias de mercado para widgets / scripts / cenários...
+- Corrigido o erro das categorias de mercado para widgets / scripts / cenários...
 
 3.2.6.
 =====
 
 - Correções de bugs
-- Atualização do Documentos
+- Atualização da documentação
 - Padronização dos nomes de certas ordens nos cenários
 - Otimização de desempenho
 
@@ -338,7 +338,7 @@ Changelog
 =====
 
 - Correções de bugs
-- Correção de um bug em determinado modal em espanhol
+- Corrigido um bug em alguns modais em espanhol
 - Correção de um erro de cálculo no time_diff
 - Preparação para o futuro sistema de alerta
 
@@ -375,7 +375,7 @@ Changelog
 
 -   Interações automáticas aprimoradas
 
--   Correção de bug no gerenciamento de sinônimos de interações
+-   Correção de bug no gerenciamento de sinônimos para interações
 
 -   Adição de um campo de pesquisa do usuário para conexões LDAP / AD
     (torna o Jeedom AD compatível)
@@ -416,7 +416,7 @@ Changelog
 
 -   JEED-15 : Adicione bateria e alerta no aplicativo da web
 
--   Correção de bugs para mover objetos de design no Firefox
+-   Corrigido o erro ao mover objetos de design no Firefox
 
 -   JEED-19 : Durante uma atualização, agora é possível
     atualize o script de atualização antes de atualizar
@@ -524,7 +524,7 @@ Changelog
 
 -   Atualização de toda a documentação :
 
-    -   Todos os documentos foram revisados
+    -   Todas as documentações foram revisadas
 
     -   Exclusão de imagens para facilitar a atualização e
         multilingue
@@ -565,13 +565,13 @@ Changelog
     escolhendo para cada pedido a caixa ou colocá-lo
 
 -   Capacidade de reorganizar widgets de equipamentos de
-    painel (no modo de edição, clique com o botão direito do mouse no widget)
+    Painel (no modo de edição, clique com o botão direito do mouse no widget)
 
 -   Alterar o tom dos widgets (de 40 \*80 a 10 \*10) Tenha cuidado
     impactará o layout em seu painel / visualização / design
 
 -   Possibilidade de atribuir um tamanho de 1 a 12 a objetos no
-    dashboard
+    Dashboard
 
 -   Capacidade de lançar independentemente ações de cenário (e
     plug-in modo / alarme, se compatível) em paralelo com os outros
