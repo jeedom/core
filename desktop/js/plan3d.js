@@ -125,7 +125,7 @@ window.addEventListener( 'resize', function(){
 }, false );
 
 window.addEventListener('dblclick', function(){
-  if(!EDIT_MODE || event.path[0].nodeName != 'CANVAS'){
+  if(!EDIT_MODE || !event.path[0] || event.path[0].nodeName != 'CANVAS'){
     return;
   }
   offset = $('#div_display3d').offset();

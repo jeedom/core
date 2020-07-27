@@ -115,8 +115,9 @@ $('#bt_scenarioTemplateApply').on('click', function () {
 					$('#md_scenarioTemplate').showAlert({message: error.message, level: 'danger'});
 				},
 				success: function (data) {
-					$('#md_scenarioTemplate').showAlert({message: 'Template appliqué avec succès', level: 'success'});
-					$('.li_scenario[data-scenario_id='+scenario_template_id+']').click();
+					          $('#md_modal').dialog('close')
+						  printScenario(scenario_template_id)
+						  $('#div_alert').showAlert({message: 'Template appliqué avec succès.', level: 'success'})
 				}
 			});
 		}

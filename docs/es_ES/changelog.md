@@ -2,6 +2,15 @@
 Registro de cambios Jeedom V4
 =========
 
+4.0.61
+=====
+
+- Se solucionó un problema al aplicar una plantilla de escenario
+- Adición de una opción que permite desactivar la verificación SSL durante la comunicación con el mercado (no recomendado pero útil en ciertas configuraciones de red específicas))
+- Se solucionó un problema con el historial de archivo si el modo de suavizado era para siempre
+- Correcciones de errores
+- Corrección del comando trigger () en escenarios para que devuelva el nombre del activador (sin el #) en lugar del valor, para el valor debe usar triggerValue()
+
 4.0.60
 =====
 
