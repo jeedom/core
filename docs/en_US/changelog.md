@@ -2,6 +2,16 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Fixed an issue with archiving logs if the smoothing mode was forever
+
+3.3.52
+======
+
+- Removal of the new DNS system in eu.jeedom.link following too many operators who prohibit permanent http2 flows
+
 3.3.51
 ======
 
@@ -39,9 +49,9 @@ Changelog
 =====
 
 - Automatic rotation of the API key of admin users every 3 months. I can deactivate it (but it is not recommended) in the user management. Please note this update launches a rotation of API keys for admins users.
-- Ability to enter global information for your home in the Jeedom administration (geographic position, altitude ...) to avoid having to re-enter it in plugins when creating equipment.
+- Possibility of entering general information about your home in the administration of Jeedom (geographical position, altitude ...) to avoid having to re-enter them in the plugins when creating equipment.
 - Updating the repository on smart
-- Migration to the new cloud backup system (the old system will remain active for 1 week and if necessary you can request the availability of the old backups to support, pass this period the old system will be deleted)
+- Migration to the new cloud backup system (the old system will remain active for 1 week and you can, if necessary, request the provision of old backups to support, bypassing this period the old system will be deleted)
 - Migration to the new monitoring system (the old system will remain active for 1 week, after which it will be deleted)
 
 3.3.39
@@ -55,7 +65,7 @@ Changelog
 
 >**Important**
 >
->This update fixes a concern that may prevent any history recording as of January 1, 2020, it is more than highly recommended
+>This update fixes an issue that may prevent any history recording as of January 1, 2020, it is more than highly recommended
 
 3.3.38
 =====
@@ -169,7 +179,7 @@ Changelog
 =====
 
 - Bug fixes
-- Improved order replacement (in views, plan and plan3d)
+- Improved command replacement (in views : plan and plan3d)
 - Fixed a bug that could prevent opening certain plugin equipment (alarm or virtual type))
 
 3.3.21
@@ -250,7 +260,7 @@ Changelog
 3.2.16
 =====
 
-- Correction of a bug during the dependency installation of certain plugins on smart
+- Fixed a bug when installing dependency of some plugins on Smart
 
 3.2.15
 =====
@@ -261,7 +271,7 @@ Changelog
 =====
 
 - Preparation to avoid an error when switching to 3.3.X
-- Correction of a problem when requesting support for third-party plugins
+- Fixed an issue when requesting support for third-party plugins
 
 3.2.12
 =====
@@ -306,15 +316,15 @@ Changelog
 =====
 
 - Bugfix
-- Docs update
+- Documentation update
 - Ability to use tags in the conditions of the "A" and "IN blocks"
-- Bug correction of market categories for widgets / scripts / scenarios...
+- Fixed bug of Market categories for widgets / scripts / scenarios...
 
 3.2.6
 =====
 
 - Bugfix
-- Docs update
+- Documentation update
 - Standardization of the names of certain orders in the scenarios
 - Performance optimization
 
@@ -328,7 +338,7 @@ Changelog
 =====
 
 - Bugfix
-- Correction of a bug on certain modal in Spanish
+- Fixed a bug on some modal in Spanish
 - Correction of a calculation error on time_diff
 - Preparation for the future alerting system
 
@@ -350,7 +360,7 @@ Changelog
 
 -   Addition of a configurable delay before response on interactions (allows to wait for the return of status to take place for example)
 
--   JEED-365 : Removal of &quot;User information command&quot; to be replaced by actions on message. Allows you to launch several different commands, to launch a scenario ... Attention if you had a &quot;User information command&quot; it must be reconfigured.
+-   JEED-365 : Removal of &quot;User information command&quot; to be replaced by actions on message. Allows you to launch several different commands, to launch a scenario ... Attention if you had a "User information command", it must be reconfigured.
 
 -   Add an option to easily open an access for the support (on the user page and when opening a ticket)
 
@@ -365,7 +375,7 @@ Changelog
 
 -   Improved automatic interactions
 
--   Bug correction on the synonym management of interactions
+-   Bug correction on the management of synonyms for interactions
 
 -   Addition of a user search field for LDAP / AD connections
     (makes Jeedom AD compatible)
@@ -406,7 +416,7 @@ Changelog
 
 -   JEED-15 : Add battery and alert on webapp
 
--   Correction of bugs for moving design objects in Firefox
+-   Fixed bug when moving design objects in Firefox
 
 -   JEED-19 : During an update it is now possible to
     update the update script before updating
@@ -443,7 +453,7 @@ Changelog
     statistical functions)
 
 -   Improvement of the update system with a page of notes
-    version (which you must check yourself before each update
+    version (which you should check yourself before each update
     day !!!!)
 
 -   Correction of a bug which recovered the logs during restores
@@ -514,7 +524,7 @@ Changelog
 
 -   Updating of all documentation :
 
-    -   All the documents have been revised
+    -   All documentations have been reviewed
 
     -   Deletion of images to facilitate updating and
         multilingue
@@ -555,13 +565,13 @@ Changelog
     choosing for each order the box or put it
 
 -   Ability to rearrange equipment widgets from
-    dashboard (in edit mode right click on the widget)
+    Dashboard (in edit mode right click on the widget)
 
 -   Change the pitch of widgets (from 40 \*80 to 10 \*10). Be careful
     will impact the layout on your dashboard / view / design
 
 -   Possibility to give a size from 1 to 12 to objects on the
-    dashboard
+    Dashboard
 
 -   Ability to independently launch scenario actions (and
     plugin type mode / alarm if compatible) in parallel with the others

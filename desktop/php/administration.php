@@ -727,13 +727,7 @@ user::isBan();
 								</div>
 							</div>
 							<div class="form-group col-xs-12">
-								<label class="col-xs-6 control-label">{{Ma connexion internet est en 4g}}</label>
-								<div class="col-xs-6">
-									<input type="checkbox" class="configKey" data-l1key="connection::4g" />
-								</div>
-							</div>
-							<div class="form-group col-xs-12">
-								<label class="col-xs-6 control-label">{{MTU spécifique (expert)}}</label>
+								<label class="col-xs-6 control-label">{{MTU spécifique pour le DNS (expert)}}</label>
 								<div class="col-xs-6">
 									<input class="configKey form-control" data-l1key="market::dns::mtu" />
 								</div>

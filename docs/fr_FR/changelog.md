@@ -2,10 +2,15 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Correction d'un souci sur l'archivage des historiques si le mode de lissage était à jamais
+
 3.3.52
 ======
 
-- Supression du nouveau systeme de DNS en eu.jeedom.link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant
+- Suppression du nouveau système de DNS en eu.jeedom.link suite à un trop grand nombre d'opérateur qui interdisent les flux http2 permanant
 
 3.3.51
 ======
@@ -44,28 +49,28 @@ Changelog
 =====
 
 - Rotation automatique de la clé api des utilisateurs admin tous les 3 mois. I est possible de le désactiver (mais ce n'est pas recommandé) dans la gestion des utilisateurs. Attention cette mise à jour lance une rotation des clés api des utilisateurs admins.
-- Possibilité de renseigner des informations globales à votre maison dans l'administration de Jeedom (position géographique, altitude...) pour éviter d'avoir à les resaisir dans les plugins lors de la création d'équipement.
+- Possibilité de renseigner des informations globales à votre maison dans l'administration de Jeedom (position géographique, altitude...) pour éviter d'avoir à les ressaisir dans les plugins lors de la création d'équipement.
 - Mise à jour du repository sur smart
-- Migration sur le nouveau système de backup cloud (l'ancien système restera actif 1 semaine et vous pourrez en cas de besoin demander la mise à disposition des anciens backup au support, passer ce délai l'ancien système sera supprimé)
-- Migration sur le nouveau système de monitoring (l'ancien système restera actif 1 semaine, passé se delai il sera supprimé)
+- Migration sur le nouveau système de backup cloud (l'ancien système restera actif 1 semaine et vous pourrez en cas de besoin demander la mise à disposition des anciens backups au support, passer ce délai l'ancien système sera supprimé)
+- Migration sur le nouveau système de monitoring (l'ancien système restera actif 1 semaine, passé se délai il sera supprimé)
 
 3.3.39
 =====
 
 - Changement du nom de la variable $key en $key2 dans la class event
-- Nettoyage du code d'envoi de plugin/widget/scénario au market (permet de gagner plusieurs secondes sur l'affichage des plugins)
+- Nettoyage du code d'envoi de plugin/widget/scénario au Market (permet de gagner plusieurs secondes sur l'affichage des plugins)
 - Correction d'un warning sur la fonction lastBetween
 - Meilleure prise en compte des widgets des plugins
 - Optimisation du calcul de la santé sur le swap
 
 >**IMPORTANT**
 >
->Cette mise à jour corrige un soucis qui pourra empêcher tout enregistrement d'historique au 1er janvier 2020, elle est plus que vivement recommandée
+>Cette mise à jour corrige un souci qui pourra empêcher tout enregistrement d'historique au 1er janvier 2020, elle est plus que vivement recommandée
 
 3.3.38
 =====
 
-- Ajout de la compatibilité global du DNS Jeedom avec une connexion internet 4G. (Important si vous utilisez les DNS Jeedom est que vous avez une connexion 4g il faut bien cocher dans la configuration des dns Jeedom la case correspondante).
+- Ajout de la compatibilité global du DNS Jeedom avec une connexion internet 4G. (Important si vous utilisez les DNS Jeedom est que vous avez une connexion 4g il faut bien cocher dans la configuration des DNS Jeedom la case correspondante).
 - Corrections orthographiques.
 - Correction de sécurité
 
@@ -84,7 +89,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Possibilité d'installer les plugins directement depuis le market
+- Possibilité d'installer les plugins directement depuis le Market
 
 3.3.34
 =====
@@ -142,7 +147,7 @@ Changelog
 - Correction d'un bug sur la traduction des jours en français
 - Amélioration de la stabilité (redémarrage auto du service MySql et watchdog de vérification de l'heure au démarrage)
 - Correction de bugs
-- Désactivation des actions sur les commandes lors de l'édition des designs, vue ou dashboard
+- Désactivation des actions sur les commandes lors de l'édition des designs, vue ou Dashboard
 
 3.3.26
 =====
@@ -155,7 +160,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Passage de la timeline en mode tableau (du à des erreurs dans la lib independante de Jeedom)
+- Passage de la timeline en mode tableau (dû à des erreurs dans la lib indépendante de Jeedom)
 - Ajout des classes pour les supports de la couleur dans le plugin mode
 
 
@@ -168,13 +173,13 @@ Changelog
 -	Amélioration de la fenêtre de choix des icônes
 -	Mise à jour automatique de la date de changement de batterie si la batterie est à plus de 90% et supérieure de 10% à la valeur précédente
 -	Ajout de bouton sur l'administration pour remettre à plat les droits et lancer une vérification de Jeedom (droit, cron, base de données...)
--	Suppression des choix de visibilité avancée des équipements sur dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipement sur dashboard/mobile il suffit de cocher ou pas la case de visibilité générale. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
+-	Suppression des choix de visibilité avancée des équipements sur Dashboard/vue/design/mobile. Maintenant si vous voulez voir ou pas l'équipement sur Dashboard/mobile il suffit de cocher ou pas la case de visibilité générale. Pour les vues et design il suffit de mettre ou pas l'équipement dessus
 
 3.3.22
 =====
 
 - Corrections de bugs
-- Amélioration du remplacement des commandes (dans les vues, plan et plan3d)
+- Amélioration du remplacement des commandes (dans les vues : plan et plan3d)
 - Correction d'un bug pouvant empêcher d'ouvrir certains équipements de plugins (type alarme ou virtuel)
 
 3.3.21
@@ -235,27 +240,27 @@ Changelog
 -   Amélioration du support des () dans le calcul d'expressions
 -   Possibilité d'éditer les scénarios en mode text/json
 -   Ajout sur la page santé d'une vérification de l'espace libre pour le tmp Jeedom
--   Possibilitée d'ajouter des options dans les rapports
--   Ajout d'un heartbeat par plugin et de redemarrage automatique de démon en cas de soucis
+-   Possibilité d'ajouter des options dans les rapports
+-   Ajout d'un heartbeat par plugin et de redémarrage automatique de démon en cas de soucis
 -   Ajout des listeners sur la page de moteur de tâche
 -   Optimisations
 -   Possibilité de consulter les logs en version mobile (wepapp)
 -   Ajout d'une action tag dans les scénarios (voir documentation)
 -   Possibilité d'avoir une vue en pleine écran en ajoutant "&fullscreen=1" dans l'url
--   Ajout de lastCommunication dans les scénarios (pour avoir la date de derniere communication d'un équipement)
+-   Ajout de lastCommunication dans les scénarios (pour avoir la date de dernière communication d'un équipement)
 -   Mise à jour en temps réel des graphiques (simple, pas ceux calculé ou les timelines)
 -   Possibilité de supprimer un élément à partir de la configuration du design
 -   Possibilité d'avoir un rapport sur le niveau de batterie (rapport équipement)
--   Les widgets scénarios sont maintenant affiché par défaut sur le dashboard
+-   Les widgets scénarios sont maintenant affiché par défaut sur le Dashboard
 -   Changement du pas des widgets par horizontal 25 à 40, vertical 5 à 20 et marge 1 à 4 (vous pouvez remettre les anciennes valeurs dans la configuration de jeedom, onglet widget)
--   Possibilité de mettre une icone sur les sénarios
+-   Possibilité de mettre une icône sur les scénarios
 -   Ajout de la gestion des démons sur le moteur de tache
 -   Ajout de la fonction color_gradient dans les scénarios
 
 3.2.16
 =====
 
-- Correction d'un bug lors de l'installation de dépendance de certain plugins sur smart
+- Correction d'un bug lors de l'installation de dépendance de certains plugins sur Smart
 
 3.2.15
 =====
@@ -266,7 +271,7 @@ Changelog
 =====
 
 - Préparation pour éviter une erreur lors du passage en 3.3.X
-- Correction d'un soucis lors d'une demande de support pour les plugins tierces
+- Correction d'un souci lors d'une demande de support pour les plugins tierces
 
 3.2.12
 =====
@@ -283,7 +288,7 @@ Changelog
 =====
 
 - Correction de bugs.
-- Amélioration de la synchronisation avec le market.
+- Amélioration de la synchronisation avec le Market.
 - Amélioration du processus d'update en particulier au niveau de la copie des fichiers qui vérifie maintenant la taille du fichier copié.
 - Correction de bugs sur les fonctions stateDuration, lastStateDuration et lastChangeStateDuration (merci @kiboost).
 - Optimisation du calcul du graphique de liens et de l'utilisation des variables.
@@ -311,15 +316,15 @@ Changelog
 =====
 
 - Correction de bugs
-- Mise à jour de la docs
+- Mise à jour de la documentation
 - Possibilité d'utiliser les tags dans les conditions des blocs "A" et "DANS"
-- Correction du bugs des catégories market pour les widgets/scripts/scénarios...
+- Correction du bug des catégories Market pour les widgets/scripts/scénarios...
 
 3.2.6
 =====
 
 - Correction de bugs
-- Mise à jour de la docs
+- Mise à jour de la documentation
 - Uniformisation des noms de certaine commande dans les scénarios
 - Optimisation des performances
 
@@ -333,7 +338,7 @@ Changelog
 =====
 
 - Correction de bugs
-- Correction d'un bugs sur certaine modale en Espagnol
+- Correction d'un bug sur certaine modale en Espagnol
 - Correction d'une erreur de calcul sur time_diff
 - Préparation pour le futur système d'alerting
 
@@ -355,7 +360,7 @@ Changelog
 
 -   Ajout d'un délai configurable avant réponse sur les interactions (permet d'attendre que le retour d'état se fasse par exemple)
 
--   JEED-365 : Suppression de "Commande d’information utilisateur" pour être remplacé par des actions sur message. Permet de lancer plusieurs commande différentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
+-   JEED-365 : Suppression de "Commande d’information utilisateur" pour être remplacé par des actions sur message. Permet de lancer plusieurs commandes différentes, de lancer un scénario... Attention si vous aviez une "Commande d’information utilisateur" il faut la reconfigurer.
 
 -   Ajout d'une option permettant d'ouvrir facilement un accès pour le support (sur la page utilisateur et lors de l'ouverture d'un ticket)
 
@@ -370,9 +375,9 @@ Changelog
 
 -   Amélioration des interactions automatique
 
--   Correction de bug sur la gestion des synonyme des interactions
+-   Correction de bug sur la gestion des synonymes des interactions
 
--   Ajout d’un champs recherche utilisateur pour les connexion LDAP/AD
+-   Ajout d’un champs recherche utilisateur pour les connexions LDAP/AD
     (permet de rendre Jeedom compatible AD)
 
 -   Corrections d’orthographe (merci à dab0u pour son énorme travail)
@@ -400,7 +405,7 @@ Changelog
     l’édition
 
 -   Optimisation des modifications d’organisation (taille des widgets,
-    position des équipements, position des commandes) sur le dashboard
+    position des équipements, position des commandes) sur le Dashboard
     et les vue. Attention maintenant les modifications ne sont
     sauvegardées que lorsque l’on quitte le mode édition.
 
@@ -411,7 +416,7 @@ Changelog
 
 -   JEED-15 : Ajout des batterie et alerte sur la webapp
 
--   Correction du bugs de déplacement des objets du design sous Firefox
+-   Correction du bug de déplacement des objets du design sous Firefox
 
 -   JEED-19 : Lors d’une mise à jour il est maintenant possible de
     mettre à jour le script d’update avant la mise à jour
@@ -448,7 +453,7 @@ Changelog
     fonctions statistiques)
 
 -   Amélioration du système de mises à jour avec une page de notes de
-    version (que vous devez vérifier vous même avant chaque mise à
+    version (que vous devez vérifier vous-même avant chaque mise à
     jour !!!!)
 
 -   Correction d’un bug qui récupérait les logs lors des restaurations
@@ -475,10 +480,10 @@ Changelog
 -   Possibilité de mettre le texte à gauche/droit/au centre sur les
     designs pour les éléments de type texte/vue/design
 
--   Ajout des résumés d’objets sur le dashboard (liste des objets
+-   Ajout des résumés d’objets sur le Dashboard (liste des objets
     à gauche)
 
--   Ajout des interactions de type "previens-moi-si"
+-   Ajout des interactions de type "préviens-moi-si"
 
 -   Revue de la page d’accueil des scénarios
 
@@ -519,12 +524,12 @@ Changelog
 
 -   Remise à jour de toute la documentation :
 
-    -   Toute les docs ont été revues
+    -   Toute les documentations ont été revues
 
     -   Suppression des images pour faciliter la mise à jour et le
         multilingue
 
--   Plus de choix possibles sur les réglage des tailles de zone dans les
+-   Plus de choix possibles sur les réglages des tailles de zone dans les
     vues
 
 -   Possibilité de choisir la couleur du texte du résumé d’objet
@@ -560,13 +565,13 @@ Changelog
     choisissant pour chaque commande la case ou la mettre
 
 -   Possibilité de réorganiser les widgets des équipements depuis le
-    dashboard (en mode édition clic droit sur le widget)
+    Dashboard (en mode édition clic droit sur le widget)
 
 -   Changement du pas des widgets (de 40\*80 à 10\*10). Attention cela
     va impacter la disposition sur votre dashboard/vue/design
 
 -   Possibilité de donner une taille de 1 à 12 aux objets sur le
-    dashboard
+    Dashboard
 
 -   Possibilité de lancer indépendamment les actions des scénarios (et
     plugin type mode/alarm si compatible) en parallèle des autres

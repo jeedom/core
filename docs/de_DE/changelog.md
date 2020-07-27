@@ -2,6 +2,16 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Es wurde ein Problem mit der Archivierung von Protokollen behoben, wenn der Glättungsmodus für immer war
+
+3.3.52
+======
+
+- Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die permanente http2-Flows verbieten
+
 3.3.51
 ======
 
@@ -39,9 +49,9 @@ Changelog
 =====
 
 - Automatische Rotation des API-Schlüssels von Administratoren alle 3 Monate. Ich kann es in der Benutzerverwaltung deaktivieren (es wird jedoch nicht empfohlen). Bitte beachten Sie, dass dieses Update eine Rotation der API-Schlüssel für Administratoren startet.
-- Möglichkeit, globale Informationen für Ihr Zuhause in die Jeedom-Verwaltung einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in Plugins eingegeben werden müssen.
+- Möglichkeit, allgemeine Informationen über Ihr Zuhause in die Verwaltung von Jeedom einzugeben (geografische Position, Höhe ...), um zu vermeiden, dass diese beim Erstellen von Geräten erneut in die Plugins eingegeben werden müssen.
 - Aktualisieren des Repositorys auf smart
-- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv. Falls erforderlich, können Sie die Verfügbarkeit alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht)
+- Migration auf das neue Cloud-Backup-System (das alte System bleibt 1 Woche lang aktiv, und Sie können bei Bedarf die Bereitstellung alter Backups zur Unterstützung anfordern. In diesem Zeitraum wird das alte System gelöscht)
 - Migration auf das neue Überwachungssystem (das alte System bleibt 1 Woche lang aktiv, danach wird es gelöscht)
 
 3.3.39
@@ -169,7 +179,7 @@ Changelog
 =====
 
 - Fehlerbehebungen
-- Verbesserte Auftragsersetzung (in Ansichten, Plan und Plan3d)
+- Verbesserte Befehlsersetzung (in Ansichten : plan und plan3d)
 - Es wurde ein Fehler behoben, der das Öffnen bestimmter Plugin-Geräte (Alarm oder virtueller Typ) verhindern konnte)
 
 3.3.21
@@ -250,7 +260,7 @@ Changelog
 3.2.16
 =====
 
-- Behebung eines Fehlers während der Abhängigkeitsinstallation bestimmter Plugins auf smart
+- Ein Fehler beim Installieren der Abhängigkeit einiger Plugins von Smart wurde behoben
 
 3.2.15
 =====
@@ -261,7 +271,7 @@ Changelog
 =====
 
 - Vorbereitung zur Vermeidung eines Fehlers beim Umschalten auf 3.3.X
-- Behebung eines Problems beim Anfordern von Support für Plugins von Drittanbietern
+- Es wurde ein Problem behoben, durch das Support für Plugins von Drittanbietern angefordert wurde
 
 3.2.12
 =====
@@ -306,15 +316,15 @@ Changelog
 =====
 
 - Fehlerbehebungen
-- Docs Update
+- Aktualisierung der Dokumentation
 - Möglichkeit, die Tags unter den Bedingungen der Blöcke "A" und "IN" zu verwenden"
-- Fehlerkorrektur von Marktkategorien für Widgets / Skripte / Szenarien...
+- Fehler in Marktkategorien für Widgets / Skripte / Szenarien behoben...
 
 3.2.6
 =====
 
 - Fehlerbehebungen
-- Docs Update
+- Aktualisierung der Dokumentation
 - Standardisierung der Namen bestimmter Aufträge in den Szenarien
 - Leistungsoptimierung
 
@@ -328,7 +338,7 @@ Changelog
 =====
 
 - Fehlerbehebungen
-- Korrektur eines Fehlers auf einem bestimmten Modal in Spanisch
+- Ein Fehler in einem Modal auf Spanisch wurde behoben
 - Korrektur eines Berechnungsfehlers bei time_diff
 - Vorbereitung für das zukünftige Warnsystem
 
@@ -350,7 +360,7 @@ Changelog
 
 -   Hinzufügen einer konfigurierbaren Verzögerung vor der Reaktion auf Interaktionen (ermöglicht beispielsweise das Warten auf die Rückkehr des Status)
 
--   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen &quot;Benutzerinformationsbefehl&quot; hatten, muss dieser neu konfiguriert werden.
+-   Jeed-365 : Entfernen des &quot;Benutzerinformationsbefehls&quot;, der durch Aktionen in der Nachricht ersetzt werden soll. Ermöglicht das Starten mehrerer verschiedener Befehle, um ein Szenario zu starten ... Achtung, wenn Sie einen "Benutzerinformationsbefehl" hatten, muss dieser neu konfiguriert werden.
 
 -   Fügen Sie eine Option hinzu, um auf einfache Weise einen Zugriff für den Support zu öffnen (auf der Benutzerseite und beim Öffnen eines Tickets))
 
@@ -365,7 +375,7 @@ Changelog
 
 -   Verbesserte automatische Interaktionen
 
--   Fehlerkorrektur bei der Synonymverwaltung von Interaktionen
+-   Fehlerkorrektur bei der Verwaltung von Synonymen für Interaktionen
 
 -   Hinzufügen eines Benutzersuchfelds für LDAP / AD-Verbindungen
     (macht Jeedom AD kompatibel)
@@ -406,7 +416,7 @@ Changelog
 
 -   Jeed-15 : Batterie hinzufügen und Alarm auf Webapp
 
--   Korrektur von Fehlern beim Verschieben von Designobjekten in Firefox
+-   Fehler beim Verschieben von Designobjekten in Firefox behoben
 
 -   Jeed-19 : Während eines Updates ist es nun möglich
     Aktualisieren Sie das Aktualisierungsskript vor dem Aktualisieren
@@ -443,7 +453,7 @@ Changelog
     statistische Funktionen)
 
 -   Verbesserung des Update-Systems mit einer Seite mit Notizen
-    Version (die Sie vor jedem Update selbst überprüfen müssen
+    Version (die Sie vor jedem Update selbst überprüfen sollten
     Tag !!!!)
 
 -   Korrektur eines Fehlers, der die Protokolle während der Wiederherstellung wiederherstellte
@@ -514,7 +524,7 @@ Changelog
 
 -   Aktualisierung aller Dokumentationen :
 
-    -   Alle Dokumente wurden überarbeitet
+    -   Alle Dokumentationen wurden überprüft
 
     -   Löschen von Bildern zur Erleichterung der Aktualisierung und
         multilingue
@@ -561,7 +571,7 @@ Changelog
     wirkt sich auf das Layout Ihres Dashboards / Ihrer Ansicht / Ihres Designs aus
 
 -   Möglichkeit, Objekten auf dem eine Größe von 1 bis 12 zuzuweisen
-    dashboard
+    Dashboard
 
 -   Möglichkeit zum unabhängigen Starten von Szenarioaktionen (und
     Plugin-Modus / Alarm (falls kompatibel) parallel zu den anderen

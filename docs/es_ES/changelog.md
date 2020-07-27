@@ -2,6 +2,16 @@
 Changelog
 =========
 
+3.3.53
+======
+
+- Se solucionó un problema con el archivo de registros si el modo de suavizado era para siempre
+
+3.3.52
+======
+
+- Eliminación del nuevo sistema DNS en eu.jeedom.enlace que sigue a demasiados operadores que prohíben flujos http2 permanentes
+
 3.3.51
 ======
 
@@ -39,9 +49,9 @@ Changelog
 =====
 
 - Rotación automática de la clave API de los usuarios administradores cada 3 meses. Puedo desactivarlo (pero no es recomendable) en la gestión de usuarios. Tenga en cuenta que esta actualización lanza una rotación de claves API para usuarios administradores.
-- Capacidad para ingresar información global para su hogar en la administración Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarla en complementos al crear equipos.
+- Posibilidad de ingresar información general sobre su hogar en la administración de Jeedom (posición geográfica, altitud ...) para evitar tener que volver a ingresarlos en los complementos al crear equipos.
 - Actualización del repositorio en smart
-- Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 1 semana y, si es necesario, puede solicitar la disponibilidad de copias de seguridad antiguas para soportar, pasar este período, el sistema antiguo se eliminará)
+- Migración al nuevo sistema de copia de seguridad en la nube (el sistema antiguo permanecerá activo durante 1 semana y, si es necesario, puede solicitar la provisión de copias de seguridad antiguas para soportarlo, evitando este período, el sistema antiguo se eliminará)
 - Migración al nuevo sistema de monitoreo (el sistema anterior permanecerá activo durante 1 semana, luego de lo cual se eliminará)
 
 3.3.39
@@ -55,7 +65,7 @@ Changelog
 
 >**IMPORTANTE**
 >
->Esta actualización soluciona una inquietud que puede evitar cualquier registro de historial a partir del 1 de enero de 2020, es más que altamente recomendable
+>Esta actualización soluciona un problema que puede evitar cualquier registro de historial a partir del 1 de enero de 2020, es más que altamente recomendable
 
 3.3.38
 =====
@@ -169,7 +179,7 @@ Changelog
 =====
 
 - Correcciones de errores
-- Reemplazo de pedidos mejorado (en vistas, plan y plan3d)
+- Reemplazo de comando mejorado (en vistas : plan y plan3d)
 - Se corrigió un error que podía evitar abrir ciertos equipos de complemento (alarma o tipo virtual))
 
 3.3.21
@@ -250,7 +260,7 @@ Changelog
 3.2.16
 =====
 
-- Corrección de un error durante la instalación de dependencia de ciertos complementos en smart
+- Se corrigió un error al instalar la dependencia de algunos complementos en Smart
 
 3.2.15
 =====
@@ -261,7 +271,7 @@ Changelog
 =====
 
 - Preparación para evitar un error al cambiar a 3.3.X
-- Corrección de un problema al solicitar soporte para complementos de terceros
+- Se solucionó un problema al solicitar soporte para complementos de terceros
 
 3.2.12
 =====
@@ -306,15 +316,15 @@ Changelog
 =====
 
 - Correcciones de errores
-- Actualización de documentos
+- Actualización de la documentación
 - Posibilidad de usar las etiquetas en las condiciones de los bloques "A" e "IN""
-- Corrección de errores de categorías de mercado para widgets / scripts / escenarios...
+- Error corregido de las categorías de mercado para widgets / scripts / escenarios...
 
 3.2.6
 =====
 
 - Correcciones de errores
-- Actualización de documentos
+- Actualización de la documentación
 - Estandarización de los nombres de ciertos pedidos en los escenarios
 - Optimización del rendimiento
 
@@ -328,7 +338,7 @@ Changelog
 =====
 
 - Correcciones de errores
-- Corrección de un error en cierto modal en español
+- Se corrigió un error en algún modal en español
 - Corrección de un error de cálculo en time_diff
 - Preparación para el futuro sistema de alerta
 
@@ -350,7 +360,7 @@ Changelog
 
 -   Adición de un retraso configurable antes de la respuesta a las interacciones (permite esperar a que se produzca el retorno del estado, por ejemplo)
 
--   JEED-365 : Eliminación del &quot;comando de información del usuario&quot; para ser reemplazado por acciones en el mensaje. Le permite iniciar varios comandos diferentes, iniciar un escenario ... Atención, si tenía un &quot;comando de información del usuario&quot;, debe reconfigurarse.
+-   JEED-365 : Eliminación del &quot;comando de información del usuario&quot; para ser reemplazado por acciones en el mensaje. Le permite iniciar varios comandos diferentes, iniciar un escenario ... Atención, si tenía un "comando de información del usuario", debe reconfigurarse.
 
 -   Agregue una opción para abrir fácilmente un acceso al soporte (en la página del usuario y al abrir un ticket))
 
@@ -365,7 +375,7 @@ Changelog
 
 -   Interacciones automáticas mejoradas
 
--   Corrección de errores en el manejo de sinónimos de interacciones
+-   Corrección de errores en el manejo de sinónimos para interacciones
 
 -   Adición de un campo de búsqueda de usuario para conexiones LDAP / AD
     (hace que Jeedom AD sea compatible)
@@ -406,7 +416,7 @@ Changelog
 
 -   JEED-15 : Agregue batería y alerta en la aplicación web
 
--   Corrección de errores para mover objetos de diseño en Firefox
+-   Se corrigió el error al mover objetos de diseño en Firefox
 
 -   JEED-19 : Durante una actualización, ahora es posible
     actualizar el script de actualización antes de actualizar
@@ -443,7 +453,7 @@ Changelog
     funciones estadísticas)
 
 -   Mejora del sistema de actualización con una página de notas
-    versión (que debe verificar usted mismo antes de cada actualización
+    versión (que debe comprobar usted mismo antes de cada actualización
     día !!!!)
 
 -   Corrección de un error que recuperó los registros durante las restauraciones
@@ -514,7 +524,7 @@ Changelog
 
 -   Actualización de toda la documentación :
 
-    -   Todos los documentos han sido revisados
+    -   Todas las documentaciones han sido revisadas
 
     -   Eliminación de imágenes para facilitar la actualización y
         multilingue
@@ -555,13 +565,13 @@ Changelog
     elegir para cada pedido la caja o ponerla
 
 -   Capacidad para reorganizar widgets de equipos desde
-    tablero de instrumentos (en modo de edición, haga clic derecho en el widget)
+    Tablero de instrumentos (en modo de edición, haga clic derecho en el widget)
 
 -   Cambiar el tono de los widgets (de 40 \*80 a 10 \*10) Ten cuidado
     impactará el diseño en su tablero / vista / diseño
 
 -   Posibilidad de dar un tamaño de 1 a 12 a los objetos en el
-    dashboard
+    Dashboard
 
 -   Capacidad para iniciar independientemente acciones de escenario (y
     modo de tipo de complemento / alarma si es compatible) en paralelo con los demás
