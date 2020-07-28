@@ -185,16 +185,23 @@ class history {
 					$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 					$countHistory = count($history);
 					if($countHistory > 0){
-						if($countHistory > 1){
-							for ($i = 1; $i < $countHistory; $i++) {
-								if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
-									$history[$i]->setTableName('historyArch');
-									$history[$i]->save();
+						if($cmd->getConfiguration('historizeMode', 'avg') == 'none'){
+							for ($i = 0; $i < $countHistory; $i++) {
+								$history[$i]->setTableName('historyArch');
+								$history[$i]->save();
+							}
+						}else{
+							if($countHistory > 1){
+								for ($i = 1; $i < $countHistory; $i++) {
+									if ($history[$i]->getValue() != $history[$i - 1]->getValue()) {
+										$history[$i]->setTableName('historyArch');
+										$history[$i]->save();
+									}
 								}
 							}
+							$history[0]->setTableName('historyArch');
+							$history[0]->save();
 						}
-						$history[0]->setTableName('historyArch');
-						$history[0]->save();
 					}
 					$sql = 'DELETE FROM history
 					WHERE `datetime` <= :archiveTime

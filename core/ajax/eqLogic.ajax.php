@@ -140,7 +140,27 @@ try {
 
 	if (init('action') == 'listByObject') {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(utils::o2a(eqLogic::byObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false), is_json(init('onlyHasCmds', false),false))));
+		$getCmd = init('getCmd', false);
+		$return = eqLogic::byObjectId($object_id,
+													init('onlyEnable', true),
+													init('onlyVisible', false),
+													init('eqType_name', null),
+													init('logicalId', null),
+													init('orderByName', false),
+													is_json(init('onlyHasCmds', false), false)
+												);
+		if ($getCmd) {
+			$fullReturn = [];
+			for ($i=0; $i<count($return); $i++) {
+				$eqLogic = $return[$i];
+				$cmds = $eqLogic->getCmd();
+				$eq = utils::o2a($eqLogic);
+				$eq['cmds'] = utils::o2a($cmds);
+				$fullReturn[$i] = $eq;
+			}
+			ajax::success($fullReturn);
+		}
+		ajax::success(utils::o2a($return));
 	}
 
 	if (init('action') == 'listByTypeAndCmdType') {

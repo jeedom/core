@@ -105,6 +105,9 @@ jeedom.eqLogic.byObjectId = function (_params) {
   paramsAJAX.data = {
     action: 'listByObject',
     object_id: _params.object_id,
+    onlyVisible: _params.onlyVisible || 0,
+    onlyEnable: _params.onlyEnable || 1,
+    getCmd: _params.getCmd || 0
   };
   $.ajax(paramsAJAX);
 }
