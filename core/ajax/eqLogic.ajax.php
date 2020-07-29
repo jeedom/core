@@ -142,13 +142,13 @@ try {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
 		$getCmd = init('getCmd', false);
 		$return = eqLogic::byObjectId($object_id,
-													init('onlyEnable', true),
-													init('onlyVisible', false),
-													init('eqType_name', null),
-													init('logicalId', null),
-													init('orderByName', false),
-													is_json(init('onlyHasCmds', false), false)
-												);
+										init('onlyEnable', true),
+										init('onlyVisible', false),
+										init('eqType_name', null),
+										init('logicalId', null),
+										init('orderByName', false),
+										is_json(init('onlyHasCmds', false), false)
+									);
 		if ($getCmd) {
 			$fullReturn = [];
 			for ($i=0; $i<count($return); $i++) {
