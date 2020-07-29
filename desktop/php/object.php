@@ -2,9 +2,12 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('select_id', init('id', '-1'));
 $allObject = jeeObject::all();
 $config_objSummary = config::byKey('object:summary');
+sendVarToJS([
+  'select_id' => init('id', '-1'),
+  'config_objSummary' => $config_objSummary
+]);
 ?>
 
 <div class="row row-overflow">
@@ -65,6 +68,7 @@ $config_objSummary = config::byKey('object:summary');
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
+			<li role="presentation"><a href="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé par équipements}}</a></li>
 		</ul>
 
 		<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
@@ -183,6 +187,7 @@ $config_objSummary = config::byKey('object:summary');
 				</form>
 				<br>
 			</div>
+
 			<div role="tabpanel" class="tab-pane" id="summarytab">
 				<?php
 				if (count($config_objSummary) == 0) {
@@ -285,6 +290,18 @@ $config_objSummary = config::byKey('object:summary');
 					<?php
 				}
 				?>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="eqlogicsTab" style="margin-bottom: 200px;">
+				<div class="input-group" style="margin-bottom:5px;">
+					<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchCmds"/>
+					<div class="input-group-btn">
+						<a id="bt_resetCmdSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+						</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
+						</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+					</div>
+				</div>
+				<div id="eqLogicsCmds"></div>
 			</div>
 		</div>
 	</div>

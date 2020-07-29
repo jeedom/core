@@ -262,21 +262,28 @@ function loadObjectConfiguration(_id) {
       } else {
         $('.objectImg img').hide()
       }
-
+      //set summary tab:
       if (isset(data.configuration) && isset(data.configuration.summary)) {
         var el
-        for (var i in data.configuration.summary) {
+        var summary = data.configuration.summary
+        for (var i in summary) {
           el = $('.type'+i)
           if (el != undefined) {
-            for (var j in data.configuration.summary[i]) {
-              addSummaryInfo(el,data.configuration.summary[i][j])
+            for (var j in summary[i]) {
+              addSummaryInfo(el, summary[i][j])
             }
-            if (data.configuration.summary[i].length != 0) {
-              $('.summarytabnumber'+i).append('(' + data.configuration.summary[i].length + ')')
+            if (summary[i].length != 0) {
+              $('.summarytabnumber'+i).append('(' + summary[i].length + ')')
             }
           }
         }
+      } else {
+        var summary = {}
       }
+
+
+      //set eqlogics tab:
+      addEqlogicsInfo(_id, data.name, summary)
 
       var hash = window.location.hash
       addOrUpdateUrl('id',data.id)
@@ -293,7 +300,7 @@ function loadObjectConfiguration(_id) {
   })
 }
 
-$("#bt_addObject,#bt_addObject2").on('click', function(event) {
+$("#bt_addObject, #bt_addObject2").on('click', function(event) {
   bootbox.prompt("Nom de l'objet ?", function(result) {
     if (result !== null) {
       jeedom.object.save({
@@ -412,8 +419,11 @@ $('.bt_checkNone').on('click',function() {
 $('#div_pageContainer').on({
   'click': function(event) {
     var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
+    var type = $(this).closest('.div_summary').data('type')
     jeedom.cmd.getSelectModal({object:{id:$('.objectAttr[data-l1key="id"]').val()},cmd:{type:'info'}}, function(result) {
       el.value(result.human)
+      updateSummaryTabNbr(type)
+      updateSummaryButton(result.human, type, true)
     })
     $('body').trigger('mod_insertCmdValue_Visible')
   }
@@ -421,10 +431,15 @@ $('#div_pageContainer').on({
 
 $('#div_pageContainer').on({
   'click': function(event) {
+    var cmd = $(this).closest('.summary').find('input[data-l1key="cmd"]').val()
+    var type = $(this).closest('.div_summary').data('type')
     $(this).closest('.summary').remove()
+    updateSummaryTabNbr(type)
+    updateSummaryButton(cmd, type, false)
   }
 }, '.bt_removeSummary')
 
+//populate summary tab infos:
 function addSummaryInfo(_el, _summary) {
   if (!isset(_summary)) {
     _summary = {}
@@ -455,3 +470,180 @@ function addSummaryInfo(_el, _summary) {
 $('.bt_showObjectSummary').off('click').on('click', function() {
   $('#md_modal').dialog({title: "{{Résumé Objets}}"}).load('index.php?v=d&modal=object.summary').dialog('open')
 })
+
+//eqLogics tab searching
+$('#in_searchCmds').keyup(function() {
+  var search = $(this).value()
+  if (search == '') {
+    $('#eqLogicsCmds .panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
+    return
+  }
+  search = normTextLower(search)
+  $('#eqLogicsCmds .panel-collapse').attr('data-show', 0)
+  var text
+  $('#eqLogicsCmds .form-group').each(function() {
+    text = normTextLower($(this).attr('data-cmdname'))
+    if (text.indexOf(search) >= 0) {
+      $(this).closest('.panel-collapse').attr('data-show',1)
+    }
+  })
+  $('#eqLogicsCmds .panel-collapse[data-show=1]').collapse('show')
+  $('#eqLogicsCmds .panel-collapse[data-show=0]').collapse('hide')
+})
+$('#bt_openAll').off('click').on('click', function() {
+  $(".accordion-toggle[aria-expanded='false']").each(function(){
+    $(this).click()
+  })
+})
+$('#bt_closeAll').off('click').on('click', function() {
+  $(".accordion-toggle[aria-expanded='true']").each(function(){
+    $(this).click()
+  })
+})
+$('#bt_resetCmdSearch').on('click', function() {
+  $('#in_searchCmds').val('').keyup()
+})
+
+//populate eqLogics tab:
+function addEqlogicsInfo(_id, _objName, _summay) {
+  $('#eqLogicsCmds').empty()
+  jeedom.eqLogic.byObjectId({
+    object_id: _id,
+    onlyVisible: '0',
+    onlyEnable: '0',
+    getCmd: '1',
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(eqLogics) {
+      var summarySelect = '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">'
+      summarySelect += '<i class="fas fa-tags"></i>&nbsp;&nbsp;{{Résumé(s)}}&nbsp;&nbsp;<span class="caret"></span>'
+      summarySelect += '</button>'
+      summarySelect += '<ul class="dropdown-menu" role="menu" style="top:unset;left:unset;height: 190px;overflow: auto;">'
+      Object.keys(config_objSummary).forEach(function(key) {
+        summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + config_objSummary[key].key + '" data-name="'+config_objSummary[key].name+'" />&nbsp' + config_objSummary[key].name + '</a></li>'
+      })
+      summarySelect += '</ul>'
+
+      var nbEqs = eqLogics.length
+      for (var i=0; i<nbEqs; i++) {
+        var thisEq = eqLogics[i]
+        var thisId = thisEq.id
+        var thisEqName = thisEq.name
+        var panel = '<div class="panel-group" style="margin-bottom:5px;">'
+        panel += '<div class="panel panel-default">'
+        panel += '<div class="panel-heading">'
+        panel += '<h3 class="panel-title">'
+        panel += '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#eqlogicId-'+thisId+'">'+thisEqName+'</a>'
+        panel += '</h3>'
+        panel += '</div>'
+        panel += '<div id="eqlogicId-'+thisId+'" class="panel-collapse collapse">'
+        panel += '<div class="panel-body">'
+
+        var nbCmds = thisEq.cmds.length
+        for (var j=0; j<nbCmds; j++) {
+          if (thisEq.cmds[j].type != 'info') continue
+
+          var humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
+          panel += '<form class="form-horizontal">'
+          panel += '<div class="form-group" data-cmdname="'+humanName+'">'
+          panel += '<label class="col-sm-5 control-label">'+humanName+'</label>'
+          panel += '<div class="col-sm-2">'
+            panel += summarySelect
+          panel += '</div>'
+          panel += '<div class="col-sm-5 buttontext"></div>'
+          panel += '</div>'
+          panel += '</form>'
+        }
+        panel += '</div>'
+        panel += '</div>'
+        panel += '</div>'
+
+        $('#eqLogicsCmds').append(panel)
+      }
+
+      //set select values:
+      for (var i in _summay) {
+        for (var j in _summay[i]) {
+          updateSummaryButton(_summay[i][j].cmd, i, true)
+        }
+      }
+    }
+  })
+}
+
+function updateSummaryButton(_cmd, _key, _state) {
+  var cmdDiv = $('#eqlogicsTab div[data-cmdname="' + _cmd + '"]')
+  cmdDiv.find('ul input[data-value="' + _key + '"]').prop("checked", _state)
+  var txtDiv = cmdDiv.find('.buttontext')
+  var summaryName = config_objSummary[_key].name
+  if (_state) {
+    //add new summary:
+    cmdDiv.find('i').addClass('warning')
+    if (txtDiv.text() == '') {
+      txtDiv.text(summaryName)
+    } else {
+      txtDiv.text(txtDiv.text() + ' | ' + summaryName)
+    }
+  } else {
+    //remove summary:
+    var hasSummary = false
+    var newText = ''
+    txtDiv.text('')
+    cmdDiv.find('ul input').each(function() {
+      if ($(this).is(':checked')) {
+        hasSummary = true
+        if (newText == '') {
+          newText = $(this).data('name')
+        } else {
+          newText += ' | ' + $(this).data('name')
+        }
+      }
+    })
+
+    if (hasSummary) {
+      cmdDiv.find('i').addClass('warning')
+      txtDiv.text(newText)
+    } else {
+      cmdDiv.find('i').removeClass('warning')
+    }
+  }
+}
+
+//sync eqLogic cmd -> summaryInfo
+$('#eqlogicsTab').on({
+  'change': function(event) {
+    var type = $(this).data('value')
+    var cmd = $(this).closest('.form-group').data('cmdname')
+    var state = $(this).is(':checked')
+    updateSummaryButton(cmd, type, state)
+    modifyWithoutSave = true
+
+    var el = $('.type'+type)
+    var summary = {
+      cmd: cmd,
+      enable: "1",
+      invert: "0"
+    }
+    if (el != undefined) {
+      if (state) {
+        addSummaryInfo(el, summary)
+      } else {
+        el.find('input[data-l1key="cmd"]').each(function() {
+          if ($(this).val() == cmd) {
+            $(this).closest('.summary').remove()
+          }
+        })
+      }
+      updateSummaryTabNbr(type)
+    }
+  }
+}, 'input[type="checkbox"]')
+
+//update summary tab number:
+function updateSummaryTabNbr(type) {
+  var tab = $('.summarytabnumber'+type)
+  var nbr = $('#summarytab'+type).find('.summary').length
+  tab.empty()
+  if (nbr > 0) tab.append('(' + nbr + ')')
+}
