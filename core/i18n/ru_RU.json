@@ -2189,6 +2189,7 @@
         "Supprimer": "Удалить",
         "Objet": "Объект",
         "Résumé": "Резюме",
+        "Résumé par équipements": "",
         "Nom de l'objet": "Имя объекта",
         "Objet parent": "Родительский объект",
         "Aucun": "Нет",
@@ -2708,7 +2709,8 @@
         "Commande": "Команда",
         "Activer": "активировать",
         "Inverser": "Обратный",
-        "Résumé Objets": ""
+        "Résumé Objets": "",
+        "Résumé(s)": ""
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",

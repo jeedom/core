@@ -2189,6 +2189,7 @@
         "Supprimer": "Delete",
         "Objet": "Object",
         "Résumé": "Summary",
+        "Résumé par équipements": "Summary by equipment",
         "Nom de l'objet": "Object name",
         "Objet parent": "Parent object",
         "Aucun": "None",
@@ -2708,7 +2709,8 @@
         "Commande": "Command",
         "Activer": "Activate",
         "Inverser": "Invert",
-        "Résumé Objets": "Objects Summary"
+        "Résumé Objets": "Objects Summary",
+        "Résumé(s)": "Summary (s)"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Are you sure you want to run this command:",

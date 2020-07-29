@@ -2189,6 +2189,7 @@
         "Supprimer": "Menghapus",
         "Objet": "Item",
         "Résumé": "Ringkasan",
+        "Résumé par équipements": "",
         "Nom de l'objet": "Nama obyek",
         "Objet parent": "Objek induk",
         "Aucun": "Tak ada",
@@ -2708,7 +2709,8 @@
         "Commande": "Pesanan",
         "Activer": "Mengaktifkan",
         "Inverser": "Membalikkan",
-        "Résumé Objets": ""
+        "Résumé Objets": "",
+        "Résumé(s)": ""
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
