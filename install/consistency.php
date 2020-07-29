@@ -23,6 +23,14 @@ require_once dirname(__DIR__).'/core/php/console.php';
 
 set_time_limit(1800);
 
+try {
+	if(function_exists('opcache_reset')){
+		opcache_reset();
+	}
+} catch (\Exception $e) {
+	
+}
+
 echo "[START CONSISTENCY]\n";
 try {
 	if(file_exists(__DIR__.'/database.php')){
