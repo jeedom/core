@@ -26,6 +26,14 @@ if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SE
 }
 set_time_limit(1800);
 
+try {
+	if(function_exists('opcache_reset')){
+		opcache_reset();
+	}
+} catch (\Exception $e) {
+	
+}
+
 echo "[START CONSISTENCY]\n";
 if (isset($argv)) {
 	foreach ($argv as $arg) {
