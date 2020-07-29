@@ -2189,6 +2189,7 @@
         "Supprimer": "Löschen",
         "Objet": "Objekt",
         "Résumé": "Zusammenfassung",
+        "Résumé par équipements": "Zusammenfassung nach Ausrüstung",
         "Nom de l'objet": "Objektname",
         "Objet parent": "Übergeordnetes Objekt",
         "Aucun": "Ohne",
@@ -2708,7 +2709,8 @@
         "Commande": "Befehl",
         "Activer": "Aktivieren",
         "Inverser": "Umgekehrt",
-        "Résumé Objets": "Objekt Zusammenfassung"
+        "Résumé Objets": "Objekt Zusammenfassung",
+        "Résumé(s)": "Zusammenfassung (en)"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Sind Sie sicher, dass Sie diesen Befehl ausführen möchten:",

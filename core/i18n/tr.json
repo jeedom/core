@@ -2189,6 +2189,7 @@
         "Supprimer": "Sil",
         "Objet": "Konu",
         "Résumé": "Özet",
+        "Résumé par équipements": "",
         "Nom de l'objet": "Nesne ismi",
         "Objet parent": "Üst nesne",
         "Aucun": "Hiçbir",
@@ -2708,7 +2709,8 @@
         "Commande": "Komuta",
         "Activer": "Etkinleştir",
         "Inverser": "Ters çevir",
-        "Résumé Objets": ""
+        "Résumé Objets": "",
+        "Résumé(s)": ""
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Etes-vous sûr de vouloir exécuter cette commande :",
