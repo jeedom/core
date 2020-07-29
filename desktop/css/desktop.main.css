@@ -1953,6 +1953,7 @@ div.panel {
 }
 :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
   background-color: rgb(var(--defaultBkg-color)) !important;
+  border-bottom: 1px solid rgb(var(--bg-color), 1);
 }
 .panel-group .panel-heading {
   padding:0;

@@ -2189,6 +2189,7 @@
         "Supprimer": "Elimina",
         "Objet": "Oggetto",
         "Résumé": "Sommario",
+        "Résumé par équipements": "",
         "Nom de l'objet": "Nome oggetto",
         "Objet parent": "Oggetto padre",
         "Aucun": "Nessuno",
@@ -2708,7 +2709,8 @@
         "Commande": "Comando",
         "Activer": "Attivare",
         "Inverser": "Inverti",
-        "Résumé Objets": "Oggetti di riepilogo"
+        "Résumé Objets": "Oggetti di riepilogo",
+        "Résumé(s)": ""
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "Sei sicuro di voler eseguire questo comando:",

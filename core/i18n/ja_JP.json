@@ -2189,6 +2189,7 @@
         "Supprimer": "取り除きます",
         "Objet": "オブジェクト",
         "Résumé": "概要",
+        "Résumé par équipements": "",
         "Nom de l'objet": "オブジェクト名",
         "Objet parent": "親オブジェクト",
         "Aucun": "何でもありません",
@@ -2708,7 +2709,8 @@
         "Commande": "オーダー",
         "Activer": "アクティブ",
         "Inverser": "逆",
-        "Résumé Objets": "サマリーオブジェクト"
+        "Résumé Objets": "サマリーオブジェクト",
+        "Résumé(s)": ""
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "このコマンドを実行してよろしいですか：",

@@ -2189,6 +2189,7 @@
         "Supprimer": "Borrar",
         "Objet": "Objeto",
         "Résumé": "Resumen",
+        "Résumé par équipements": "Resumen por equipos",
         "Nom de l'objet": "Nombre del objeto",
         "Objet parent": "Objeto padre",
         "Aucun": "Ninguno",
@@ -2708,7 +2709,8 @@
         "Commande": "Comando",
         "Activer": "Activar",
         "Inverser": "Invertir",
-        "Résumé Objets": "Objetos de resumen"
+        "Résumé Objets": "Objetos de resumen",
+        "Résumé(s)": "Resumen (s)"
     },
     "desktop\/js\/system.js": {
         "Êtes-vous sûr de vouloir éxécuter cette commande : ": "¿Estás seguro de que quieres ejecutar este comando?",
