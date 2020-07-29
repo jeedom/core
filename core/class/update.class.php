@@ -449,6 +449,13 @@ class update {
 	
 	public function postInstallUpdate($_infos) {
 		log::add('update', 'alert', __('Post-installation de ', __FILE__) . $this->getLogicalId() . '...');
+		try {
+			if(function_exists('opcache_reset')){
+				opcache_reset();
+			}
+		} catch (\Exception $e) {
+			
+		}
 		switch ($this->getType()) {
 			case 'plugin':
 			try {
