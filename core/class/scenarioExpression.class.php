@@ -636,6 +636,7 @@ class scenarioExpression {
 		$lastValue = round($histories[0]->getValue(), $_decimal);
 		foreach ($histories as $history) {
 			if ($history->getDatetime() < $_startTime) {
+				$lastValue = round($history->getValue(), $_decimal);
 				continue;
 			}
 			if ($history->getDatetime() <= $_endTime) {
