@@ -73,6 +73,13 @@ class plugin {
 		$plugin->id = $data['id'];
 		$plugin->name = $data['name'];
 		$plugin->description = (isset($data['description'])) ? $data['description'] : '';
+		if(is_array($plugin->description)){
+			if(isset($plugin->description[translate::getLanguage()])){
+				$plugin->description = $plugin->description[translate::getLanguage()];
+			}else{
+				$plugin->description = $plugin->description['fr_FR'];
+			}
+		}
 		$plugin->license = (isset($data['licence'])) ? $data['licence'] : '';
 		$plugin->license = (isset($data['license'])) ? $data['license'] : $plugin->license;
 		$plugin->author = (isset($data['author'])) ? $data['author'] : '';
