@@ -9,7 +9,7 @@
     "homepage": "http://sabre.io/uri/",
     "license": "BSD-3-Clause",
     "require": {
-        "php": ">=5.4.7"
+        "php": ">=7"
     },
     "authors": [
         {
@@ -31,9 +31,13 @@
             "Sabre\\Uri\\" : "lib/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Sabre\\Uri\\": "tests/"
+        }
+    },
     "require-dev": {
-        "sabre/cs": "~1.0.0",
-        "phpunit/phpunit" : ">=4.0,<6.0"
+        "phpunit/phpunit" : "^6"
     },
     "config" : {
         "bin-dir" : "bin/"

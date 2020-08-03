@@ -18,7 +18,6 @@ $tmpDir = 'tmpdata';
 // You can override the baseUri here.
 // $baseUri = '/';
 
-
 // Files we need
 require_once 'vendor/autoload.php';
 
@@ -28,11 +27,12 @@ $root = new \Sabre\DAV\FS\Directory($publicDir);
 // The rootnode needs in turn to be passed to the server class
 $server = new \Sabre\DAV\Server($root);
 
-if (isset($baseUri))
+if (isset($baseUri)) {
     $server->setBaseUri($baseUri);
+}
 
 // Support for LOCK and UNLOCK
-$lockBackend = new \Sabre\DAV\Locks\Backend\File($tmpDir . '/locksdb');
+$lockBackend = new \Sabre\DAV\Locks\Backend\File($tmpDir.'/locksdb');
 $lockPlugin = new \Sabre\DAV\Locks\Plugin($lockBackend);
 $server->addPlugin($lockPlugin);
 
@@ -40,7 +40,7 @@ $server->addPlugin($lockPlugin);
 $browser = new \Sabre\DAV\Browser\Plugin();
 $server->addPlugin($browser);
 
-// Automatically guess (some) contenttypes, based on extesion
+// Automatically guess (some) contenttypes, based on extension
 $server->addPlugin(new \Sabre\DAV\Browser\GuessContentType());
 
 // Authentication backend
@@ -53,4 +53,4 @@ $tempFF = new \Sabre\DAV\TemporaryFileFilterPlugin($tmpDir);
 $server->addPlugin($tempFF);
 
 // And off we go!
-$server->exec();
+$server->start();

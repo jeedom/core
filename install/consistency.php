@@ -132,7 +132,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
+	$cron->setSchedule('00 00 * * *');
 	$cron->setTimeout(240);
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
@@ -158,7 +158,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule('00 * * * * *');
+	$cron->setSchedule('00 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -171,7 +171,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('scenario');
 	$cron->setFunction('check');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(30);
@@ -184,7 +184,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('scenario');
 	$cron->setFunction('control');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(30);
@@ -197,7 +197,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule(rand(0,59).' '.rand(0,3).' * * * *');
+	$cron->setSchedule(rand(0,59).' '.rand(0,3).' * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
@@ -210,7 +210,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule(rand(0,59).' * * * * *');
+	$cron->setSchedule(rand(0,59).' * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -223,7 +223,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron5');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
@@ -236,7 +236,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron10');
-	$cron->setSchedule('*/10 * * * * *');
+	$cron->setSchedule('*/10 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(10);
@@ -249,7 +249,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -261,7 +261,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -273,7 +273,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron5');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -285,7 +285,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron10');
-	$cron->setSchedule('*/10 * * * * *');
+	$cron->setSchedule('*/10 * * * *');
 	$cron->setTimeout(10);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -297,7 +297,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron15');
-	$cron->setSchedule('*/15 * * * * *');
+	$cron->setSchedule('*/15 * * * *');
 	$cron->setTimeout(15);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -309,7 +309,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron30');
-	$cron->setSchedule('*/30 * * * * *');
+	$cron->setSchedule('*/30 * * * *');
 	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -321,7 +321,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('checkDeamon');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -333,7 +333,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('cache');
 	$cron->setFunction('persist');
-	$cron->setSchedule('*/30 * * * * *');
+	$cron->setSchedule('*/30 * * * *');
 	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -345,7 +345,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('history');
 	$cron->setFunction('archive');
-	$cron->setSchedule('00 5 * * * *');
+	$cron->setSchedule('00 5 * * *');
 	$cron->setTimeout(240);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -357,7 +357,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('heartbeat');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(10);

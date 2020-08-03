@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\DAV\Xml\Request;
 
 use Sabre\DAV\Sharing\Plugin;
 use Sabre\DAV\Xml\Element\Sharee;
 use Sabre\DAV\Xml\XmlTest;
 
-class ShareResourceTest extends XmlTest {
-
-    function testDeserialize() {
-
+class ShareResourceTest extends XmlTest
+{
+    public function testDeserialize()
+    {
         $xml = <<<XML
 <?xml version="1.0" encoding="utf-8" ?>
 <D:share-resource xmlns:D="DAV:">
@@ -39,7 +41,7 @@ class ShareResourceTest extends XmlTest {
 XML;
 
         $result = $this->parse($xml, [
-            '{DAV:}share-resource' => 'Sabre\\DAV\\Xml\\Request\\ShareResource'
+            '{DAV:}share-resource' => 'Sabre\\DAV\\Xml\\Request\\ShareResource',
         ]);
 
         $this->assertInstanceOf(
@@ -68,8 +70,5 @@ XML;
             $expected,
             $result['value']->sharees
         );
-
     }
-
-
 }

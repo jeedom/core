@@ -1,34 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\DAV;
 
 use Sabre\HTTP;
 
 require_once 'Sabre/TestUtil.php';
 
-class Issue33Test extends \PHPUnit_Framework_TestCase {
-
-    function setUp() {
-
+class Issue33Test extends \PHPUnit\Framework\TestCase
+{
+    public function setUp()
+    {
         \Sabre\TestUtil::clearTempDir();
-
     }
 
-    function testCopyMoveInfo() {
-
+    public function testCopyMoveInfo()
+    {
         $bar = new SimpleCollection('bar');
         $root = new SimpleCollection('webdav', [$bar]);
 
         $server = new Server($root);
         $server->setBaseUri('/webdav/');
 
-        $serverVars = [
-            'REQUEST_URI'      => '/webdav/bar',
-            'HTTP_DESTINATION' => 'http://dev2.tribalos.com/webdav/%C3%A0fo%C3%B3',
-            'HTTP_OVERWRITE'   => 'F',
-        ];
-
-        $request = HTTP\Sapi::createFromServerArray($serverVars);
+        $request = new HTTP\Request('GET', '/webdav/bar', [
+            'Destination' => 'http://dev2.tribalos.com/webdav/%C3%A0fo%C3%B3',
+            'Overwrite' => 'F',
+        ]);
 
         $server->httpRequest = $request;
 
@@ -37,13 +35,12 @@ class Issue33Test extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('%C3%A0fo%C3%B3', urlencode($info['destination']));
         $this->assertFalse($info['destinationExists']);
         $this->assertFalse($info['destinationNode']);
-
     }
 
-    function testTreeMove() {
-
-        mkdir(SABRE_TEMPDIR . '/issue33');
-        $dir = new FS\Directory(SABRE_TEMPDIR . '/issue33');
+    public function testTreeMove()
+    {
+        mkdir(SABRE_TEMPDIR.'/issue33');
+        $dir = new FS\Directory(SABRE_TEMPDIR.'/issue33');
 
         $dir->createDirectory('bar');
 
@@ -52,40 +49,34 @@ class Issue33Test extends \PHPUnit_Framework_TestCase {
 
         $node = $tree->getNodeForPath(urldecode('%C3%A0fo%C3%B3'));
         $this->assertEquals(urldecode('%C3%A0fo%C3%B3'), $node->getName());
-
     }
 
-    function testDirName() {
-
+    public function testDirName()
+    {
         $dirname1 = 'bar';
         $dirname2 = urlencode('%C3%A0fo%C3%B3');
 
         $this->assertTrue(dirname($dirname1) == dirname($dirname2));
-
     }
 
     /**
      * @depends testTreeMove
      * @depends testCopyMoveInfo
      */
-    function testEverything() {
+    public function testEverything()
+    {
+        $request = new HTTP\Request('MOVE', '/webdav/bar', [
+            'Destination' => 'http://dev2.tribalos.com/webdav/%C3%A0fo%C3%B3',
+            'Overwrite' => 'F',
+        ]);
 
-        // Request object
-        $serverVars = [
-            'REQUEST_METHOD'   => 'MOVE',
-            'REQUEST_URI'      => '/webdav/bar',
-            'HTTP_DESTINATION' => 'http://dev2.tribalos.com/webdav/%C3%A0fo%C3%B3',
-            'HTTP_OVERWRITE'   => 'F',
-        ];
-
-        $request = HTTP\Sapi::createFromServerArray($serverVars);
         $request->setBody('');
 
         $response = new HTTP\ResponseMock();
 
         // Server setup
-        mkdir(SABRE_TEMPDIR . '/issue33');
-        $dir = new FS\Directory(SABRE_TEMPDIR . '/issue33');
+        mkdir(SABRE_TEMPDIR.'/issue33');
+        $dir = new FS\Directory(SABRE_TEMPDIR.'/issue33');
 
         $dir->createDirectory('bar');
 
@@ -99,8 +90,6 @@ class Issue33Test extends \PHPUnit_Framework_TestCase {
         $server->sapi = new HTTP\SapiMock();
         $server->exec();
 
-        $this->assertTrue(file_exists(SABRE_TEMPDIR . '/issue33/' . urldecode('%C3%A0fo%C3%B3')));
-
+        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/issue33/'.urldecode('%C3%A0fo%C3%B3')));
     }
-
 }

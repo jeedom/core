@@ -185,7 +185,7 @@ class cron {
 	}
 	
 	public static function convertDateToCron($_date) {
-		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' * ' . date('Y', $_date);
+		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' *';
 	}
 	
 	/*     * *********************Méthodes d'instance************************* */

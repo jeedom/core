@@ -1,48 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\HTTP;
 
-class ResponseTest extends \PHPUnit_Framework_TestCase {
-
-    function testConstruct() {
-
+class ResponseTest extends \PHPUnit\Framework\TestCase
+{
+    public function testConstruct()
+    {
         $response = new Response(200, ['Content-Type' => 'text/xml']);
         $this->assertEquals(200, $response->getStatus());
         $this->assertEquals('OK', $response->getStatusText());
-
     }
 
-    function testSetStatus() {
-
+    public function testSetStatus()
+    {
         $response = new Response();
         $response->setStatus('402 Where\'s my money?');
         $this->assertEquals(402, $response->getStatus());
         $this->assertEquals('Where\'s my money?', $response->getStatusText());
-
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
-    function testInvalidStatus() {
-
+    public function testInvalidStatus()
+    {
         $response = new Response(1000);
-
     }
 
-    function testToString() {
-
+    public function testToString()
+    {
         $response = new Response(200, ['Content-Type' => 'text/xml']);
         $response->setBody('foo');
 
-        $expected = <<<HI
-HTTP/1.1 200 OK\r
-Content-Type: text/xml\r
-\r
-foo
-HI;
-        $this->assertEquals($expected, (string)$response);
-
+        $expected = "HTTP/1.1 200 OK\r\n"
+                  ."Content-Type: text/xml\r\n"
+                  ."\r\n"
+                  .'foo';
+        $this->assertEquals($expected, (string) $response);
     }
-
 }

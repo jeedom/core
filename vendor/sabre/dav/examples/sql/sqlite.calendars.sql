@@ -9,8 +9,10 @@ CREATE TABLE calendarobjects (
     componenttype text,
     firstoccurence integer,
     lastoccurence integer,
-    uid text
+    uid text,
+    UNIQUE(calendarid,uri)
 );
+CREATE INDEX calendarid_time ON calendarobjects (calendarid, firstoccurence);
 
 CREATE TABLE calendars (
     id integer primary key asc NOT NULL,
@@ -60,7 +62,8 @@ CREATE TABLE calendarsubscriptions (
     striptodos bool,
     stripalarms bool,
     stripattachments bool,
-    lastmodified int
+    lastmodified int,
+    UNIQUE(principaluri, uri)
 );
 
 CREATE TABLE schedulingobjects (
@@ -70,7 +73,6 @@ CREATE TABLE schedulingobjects (
     uri text NOT NULL,
     lastmodified integer,
     etag text NOT NULL,
-    size integer NOT NULL
+    size integer NOT NULL,
+    UNIQUE(principaluri, uri)
 );
-
-CREATE INDEX principaluri_uri ON calendarsubscriptions (principaluri, uri);

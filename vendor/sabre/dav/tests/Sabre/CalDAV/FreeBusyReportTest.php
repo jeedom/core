@@ -1,15 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\CalDAV;
 
 use Sabre\DAV;
 use Sabre\HTTP;
 
-require_once 'Sabre/CalDAV/Backend/Mock.php';
-require_once 'Sabre/HTTP/ResponseMock.php';
-
-class FreeBusyReportTest extends \PHPUnit_Framework_TestCase {
-
+class FreeBusyReportTest extends \PHPUnit\Framework\TestCase
+{
     /**
      * @var Plugin
      */
@@ -19,8 +18,8 @@ class FreeBusyReportTest extends \PHPUnit_Framework_TestCase {
      */
     protected $server;
 
-    function setUp() {
-
+    public function setUp()
+    {
         $obj1 = <<<ics
 BEGIN:VCALENDAR
 BEGIN:VEVENT
@@ -54,48 +53,44 @@ ics;
         $calendarData = [
             1 => [
                 'obj1' => [
-                    'calendarid'   => 1,
-                    'uri'          => 'event1.ics',
+                    'calendarid' => 1,
+                    'uri' => 'event1.ics',
                     'calendardata' => $obj1,
                 ],
                 'obj2' => [
-                    'calendarid'   => 1,
-                    'uri'          => 'event2.ics',
-                    'calendardata' => $obj2
+                    'calendarid' => 1,
+                    'uri' => 'event2.ics',
+                    'calendardata' => $obj2,
                 ],
                 'obj3' => [
-                    'calendarid'   => 1,
-                    'uri'          => 'event3.ics',
-                    'calendardata' => $obj3
-                ]
+                    'calendarid' => 1,
+                    'uri' => 'event3.ics',
+                    'calendardata' => $obj3,
+                ],
             ],
         ];
-
 
         $caldavBackend = new Backend\Mock([], $calendarData);
 
         $calendar = new Calendar($caldavBackend, [
-            'id'                                           => 1,
-            'uri'                                          => 'calendar',
-            'principaluri'                                 => 'principals/user1',
-            '{' . Plugin::NS_CALDAV . '}calendar-timezone' => "BEGIN:VCALENDAR\r\nBEGIN:VTIMEZONE\r\nTZID:Europe/Berlin\r\nEND:VTIMEZONE\r\nEND:VCALENDAR",
+            'id' => 1,
+            'uri' => 'calendar',
+            'principaluri' => 'principals/user1',
+            '{'.Plugin::NS_CALDAV.'}calendar-timezone' => "BEGIN:VCALENDAR\r\nBEGIN:VTIMEZONE\r\nTZID:Europe/Berlin\r\nEND:VTIMEZONE\r\nEND:VCALENDAR",
         ]);
 
         $this->server = new DAV\Server([$calendar]);
 
-        $request = HTTP\Sapi::createFromServerArray([
-            'REQUEST_URI' => '/calendar',
-        ]);
+        $request = new HTTP\Request('GET', '/calendar');
         $this->server->httpRequest = $request;
         $this->server->httpResponse = new HTTP\ResponseMock();
 
         $this->plugin = new Plugin();
         $this->server->addPlugin($this->plugin);
-
     }
 
-    function testFreeBusyReport() {
-
+    public function testFreeBusyReport()
+    {
         $reportXML = <<<XML
 <?xml version="1.0"?>
 <c:free-busy-query xmlns:c="urn:ietf:params:xml:ns:caldav">
@@ -108,17 +103,16 @@ XML;
 
         $this->assertEquals(200, $this->server->httpResponse->status);
         $this->assertEquals('text/calendar', $this->server->httpResponse->getHeader('Content-Type'));
-        $this->assertTrue(strpos($this->server->httpResponse->body, 'BEGIN:VFREEBUSY') !== false);
-        $this->assertTrue(strpos($this->server->httpResponse->body, '20111005T120000Z/20111005T130000Z') !== false);
-        $this->assertTrue(strpos($this->server->httpResponse->body, '20111006T100000Z/20111006T110000Z') !== false);
-
+        $this->assertTrue(false !== strpos($this->server->httpResponse->body, 'BEGIN:VFREEBUSY'));
+        $this->assertTrue(false !== strpos($this->server->httpResponse->body, '20111005T120000Z/20111005T130000Z'));
+        $this->assertTrue(false !== strpos($this->server->httpResponse->body, '20111006T100000Z/20111006T110000Z'));
     }
 
     /**
-     * @expectedException Sabre\DAV\Exception\BadRequest
+     * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    function testFreeBusyReportNoTimeRange() {
-
+    public function testFreeBusyReportNoTimeRange()
+    {
         $reportXML = <<<XML
 <?xml version="1.0"?>
 <c:free-busy-query xmlns:c="urn:ietf:params:xml:ns:caldav">
@@ -126,17 +120,14 @@ XML;
 XML;
 
         $report = $this->server->xml->parse($reportXML, null, $rootElem);
-
     }
 
     /**
-     * @expectedException Sabre\DAV\Exception\NotImplemented
+     * @expectedException \Sabre\DAV\Exception\NotImplemented
      */
-    function testFreeBusyReportWrongNode() {
-
-        $request = HTTP\Sapi::createFromServerArray([
-            'REQUEST_URI' => '/',
-        ]);
+    public function testFreeBusyReportWrongNode()
+    {
+        $request = new HTTP\Request('REPORT', '/');
         $this->server->httpRequest = $request;
 
         $reportXML = <<<XML
@@ -148,15 +139,15 @@ XML;
 
         $report = $this->server->xml->parse($reportXML, null, $rootElem);
         $this->plugin->report($rootElem, $report, null);
-
     }
 
     /**
-     * @expectedException Sabre\DAV\Exception
+     * @expectedException \Sabre\DAV\Exception
      */
-    function testFreeBusyReportNoACLPlugin() {
-
+    public function testFreeBusyReportNoACLPlugin()
+    {
         $this->server = new DAV\Server();
+        $this->server->httpRequest = new HTTP\Request('REPORT', '/');
         $this->plugin = new Plugin();
         $this->server->addPlugin($this->plugin);
 
@@ -169,6 +160,5 @@ XML;
 
         $report = $this->server->xml->parse($reportXML, null, $rootElem);
         $this->plugin->report($rootElem, $report, null);
-
     }
 }
