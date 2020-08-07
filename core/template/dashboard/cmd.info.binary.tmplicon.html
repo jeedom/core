@@ -10,6 +10,9 @@
   </div>
   <script>
     jeedom.cmd.update['#id#'] =function(_options){
+      if ('#invert#' == '1') {
+        _options.display_value = 1 - _options.display_value
+      }
       var cmd = $('.cmd[data-cmd_id=#id#]');
       if('#_time_widget_#' == '1'){
         jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
