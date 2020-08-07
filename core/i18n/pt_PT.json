@@ -3632,7 +3632,7 @@
         "Configuration réseau externe": "Configuração de rede externa",
         "Persistance du cache": "Persistência cache",
         "Votre cache n\\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.": "Seu cache não está salvo. Ao reiniciar, algumas informações podem ser perdidas. Tente iniciar (a partir do mecanismo de tarefas) a tarefa cache :: persist",
-        "Apache private tmp": "Apache private tmp",
+        "Apache private tmp": "Tmp privado Apache",
         "Veuillez désactiver le private tmp d\\'Apache (Jeedom ne peut marcher avec). Voir ": "Desative o tmp privado do Apache (o Jeedom não pode trabalhar com ele). Veja",
         "ici": "aqui",
         "Connexion par API de l\\'utilisateur : ": "Conexão pela API do usuário:",
