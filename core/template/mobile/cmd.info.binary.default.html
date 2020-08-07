@@ -5,6 +5,9 @@
   </center>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
+      if ('#invert#' == '1') {
+        _options.display_value = 1 - _options.display_value
+      }
       if (_options.display_value == '1') {
        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fa fa-check"></i>');
      }else {
