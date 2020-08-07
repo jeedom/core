@@ -2,6 +2,9 @@
 	<center><span class="cmdName #hide_name#">#name_display#</span> <span class="iconCmdLine"></span></center>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
+			if ('#invert#' == '1') {
+        _options.display_value = 1 - _options.display_value
+      }
 			var cmd = $('.cmd[data-cmd_id=#id#]');
 			if (_options.display_value == '1') {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#")
