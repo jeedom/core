@@ -318,7 +318,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 					'unite' => array('visible' => true),
 					'isHistorized' => array('visible' => true, 'timelineOnly' => false, 'canBeSmooth' => true),
 					'display' => array(
-						'invertBinary' => array('visible' => false),
+						'invertBinary' => array('visible' => true, 'parentVisible' => true),
 						'icon' => array('visible' => true, 'parentVisible' => true),
 					),
 				),

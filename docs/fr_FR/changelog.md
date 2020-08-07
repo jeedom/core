@@ -79,3 +79,8 @@
 - Sécurisation des requêtes Ajax.
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
+- Possibilité d'inverser les commande de type curseur (info et action)
+
+>**IMPORTANT**
+>
+> L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé
