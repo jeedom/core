@@ -952,9 +952,7 @@ function addObjectSummary(_summary, _direction=1) {
   tr += '<td><select class="objectSummaryAttr input-sm" data-l1key="count">'
   tr += '<option value="">{{Aucun}}</option>'
   tr += '<option value="binary">{{Binaire}}</option>'
-  tr += '</select>'
-  tr += '<span style="margin-top:3px;margin-bottom:3px"><input type="checkbox" class="objectSummaryAttr" data-l1key="invert" /> {{Inverser}}</span>'
-  tr += '</td>'
+  tr += '</select></td>'
   
   tr += '<td><center><input type="checkbox" class="objectSummaryAttr" data-l1key="allowDisplayZero" /></center></td>'
   

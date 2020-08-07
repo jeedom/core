@@ -47,7 +47,7 @@ if (!isConnect()) {
         $html .= '&nbsp;&nbsp;&nbsp;';
       }
       $html .= '<input class="objectAttr hidden" data-l1key="id" value="'.$object->getId().'"/>';
-      $html .= '<span><a href="index.php?v=d&p=object&id='.$object->getId().'">'.$object->getHumanName(true, true).'<a></span>';
+      $html .= '<span>'.$object->getHumanName(true, true).'</span>';
       $html .= '</td>';
       $father = $object->getFather();
       if ($father) {
@@ -55,7 +55,7 @@ if (!isConnect()) {
       } else {
         $html .= '<td><span class="label label-info"></span></td>';
       }
-      
+
       if ($object->getIsVisible()) {
         $html .= '<td align="center" style="width:65px;"><input type="checkbox" class="objectAttr" checked data-l1key="isVisible" /></td>';
       } else {
