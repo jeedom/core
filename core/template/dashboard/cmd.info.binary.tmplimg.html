@@ -16,6 +16,9 @@
       }else{
         cmd.find('.timeCmd').parent().remove();
       }
+      if ('#invert#' == '1') {
+        _options.display_value = 1 - _options.display_value
+      }
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       if (_options.display_value == '1') {
         cmd.attr('data-state','on')

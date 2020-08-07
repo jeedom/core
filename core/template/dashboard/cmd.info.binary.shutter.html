@@ -23,6 +23,9 @@
       } else {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
       }
+      if ('#invert#' == '1') {
+        _options.display_value = 1 - _options.display_value
+      }
       $('.cmd[data-cmd_id=#id#] .state strong').first().text(_options.display_value)
     }
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
