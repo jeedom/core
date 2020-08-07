@@ -7,6 +7,9 @@
     </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
+        if ('#invert#' == '1') {
+        _options.display_value = 1 - _options.display_value
+      }
       $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
       if (_options.display_value == '0') {
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('100%')
