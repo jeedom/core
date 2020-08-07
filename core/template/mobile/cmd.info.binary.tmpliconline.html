@@ -3,6 +3,9 @@
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options){
 			var cmd = $('.cmd[data-cmd_id=#id#]');
+			if ('#invert#' == '1') {
+				_options.display_value = 1 - _options.display_value
+			}
 			if (_options.display_value == '1') {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#")
 			} else {
