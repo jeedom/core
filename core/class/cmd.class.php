@@ -1104,7 +1104,6 @@ class cmd {
 				$cmdValue = $this->getCmdValue();
 				if(is_object($cmdValue) && $cmdValue->getDisplay('invertBinary') == 1){
 					$options['slider'] = ($cmdValue->getConfiguration('maxValue') - $options['slider']) + $cmdValue->getConfiguration('minValue');
-					var_dump($value);
 				}
 			}
 			$value = $this->formatValue($this->execute($options), $_quote);

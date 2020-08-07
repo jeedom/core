@@ -716,14 +716,14 @@ class jeeObject {
 					continue;
 				}
 			}
-			if (isset($infos['invert']) && $infos['invert'] == 1) {
-				$value = !$value;
+			if (isset($def[$_key]['count']) && $def[$_key]['count'] == 'binary' && $value > 1) {
+				$value = 1;
 			}
 			if (isset($def[$_key]['invert']) && $def[$_key]['invert'] == 1) {
 				$value = !$value;
 			}
-			if (isset($def[$_key]['count']) && $def[$_key]['count'] == 'binary' && $value > 1) {
-				$value = 1;
+			if (isset($infos['invert']) && $infos['invert'] == 1) {
+				$value = !$value;
 			}
 			$values[] = $value;
 		}
