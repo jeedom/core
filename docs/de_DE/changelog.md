@@ -79,3 +79,8 @@
 - Sichern von Ajax-Anfragen.
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
+- Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
+
+>**Wichtig**
+>
+> Die Inversion der Binärbefehle invertiert nicht mehr nur das Widget, sondern auch den Wert des Befehls. Daher müssen die Szenarien und Zusammenfassungen, in denen Befehle vom invertierten Binärtyp verwendet werden, korrekt neu konfiguriert werden

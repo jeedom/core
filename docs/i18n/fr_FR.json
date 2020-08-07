@@ -886,7 +886,10 @@
         "0 vers 5.13.1": "0 vers 5.13.1",
         "Sécurisation des requêtes Ajax": "Sécurisation des requêtes Ajax",
         "Corrections de bugs": "Corrections de bugs",
-        "Nombreuses optimisations de performance desktop \/ mobile": "Nombreuses optimisations de performance desktop \/ mobile"
+        "Nombreuses optimisations de performance desktop \/ mobile": "Nombreuses optimisations de performance desktop \/ mobile",
+        "Possibilité d'inverser les commande de type curseur (info et action": "Possibilité d'inverser les commande de type curseur (info et action",
+        "IMPORTANT": "IMPORTANT",
+        "L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé": "L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé"
     },
     "cron.md": {
         "Moteur de tâches": "Moteur de tâches",

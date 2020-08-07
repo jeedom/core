@@ -79,3 +79,8 @@
 - Securing Ajax requests.
 - Bug fixes.
 - Numerous desktop / mobile performance optimizations.
+- Possibility of inverting cursor type commands (info and action)
+
+>**Important**
+>
+> The inversion of the binary commands no longer only inverts the widget but the value of the command, it will therefore be necessary to correctly reconfigure the scenarios and the summaries which use commands of the inverted binary type

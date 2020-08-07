@@ -79,3 +79,8 @@
 - Asegurando solicitudes Ajax.
 - Correcciones de errores.
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
+- Posibilidad de invertir comandos tipo cursor (info y acción)
+
+>**Importante**
+>
+> La inversión de los comandos binarios ya no solo invierte el widget sino el valor del comando, por lo que será necesario reconfigurar correctamente los escenarios y los resúmenes que utilizan comandos del tipo binario invertido
