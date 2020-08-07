@@ -1399,6 +1399,8 @@
         "Sécurisation des requêtes Ajax": "Protegendo solicitações Ajax",
         "Corrections de bugs": "Correções de bugs",
         "Nombreuses optimisations de performance desktop \/ mobile": "Inúmeras otimizações de desempenho de desktop \/ dispositivos móveis",
+        "Possibilité d'inverser les commande de type curseur (info et action": "Possibilidade de inverter comandos do tipo cursor (informação e ação",
+        "L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé": "A inversão dos comandos binários não inverte mais apenas o widget, mas o valor do comando, será necessário, portanto, reconfigurar corretamente os cenários e os resumos que utilizam comandos do tipo binário invertido",
         " Recherche.": " Pesquisa.",
         " Recherche?": " Pesquisa?",
         "Recherche ": "Pesquisa ",
@@ -1594,7 +1596,14 @@
         " Lib]": " Lib]",
         "[Lib]": "[Lib]",
         "*Lib*": "*Lib*",
-        " Lib*": " Lib*"
+        " Lib*": " Lib*",
+        " IMPORTANT.": " IMPORTANTE.",
+        " IMPORTANT?": " IMPORTANTE?",
+        "IMPORTANT ": "IMPORTANTE ",
+        " IMPORTANT]": " IMPORTANTE]",
+        "[IMPORTANT]": "[IMPORTANTE]",
+        "*IMPORTANT*": "*IMPORTANTE*",
+        " IMPORTANT*": " IMPORTANTE*"
     },
     "cron.md": {
         "Moteur de tâches": "Mecanismo de tarefas",

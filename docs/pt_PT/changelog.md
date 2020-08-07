@@ -79,3 +79,8 @@
 - Protegendo solicitações Ajax.
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
+- Possibilidade de inverter comandos do tipo cursor (informação e ação)
+
+>**IMPORTANTE**
+>
+> A inversão dos comandos binários não inverte mais apenas o widget, mas o valor do comando, será necessário, portanto, reconfigurar corretamente os cenários e os resumos que utilizam comandos do tipo binário invertido
