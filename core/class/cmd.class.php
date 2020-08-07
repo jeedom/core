@@ -1100,10 +1100,11 @@ class cmd {
 				$timeline->save();
 			}
 			$this->preExecCmd($options);
-			if($this->getType() == 'numeric' && $this->getValue() != ''){
+			if($this->getSubType() == 'slider' && $this->getValue() != ''){
 				$cmdValue = $this->getCmdValue();
-				if(is_object($cmdValue) && $cmdValue->getConfiguration('invertBinary') == 1){
-					$value = ($cmdValue->getConfiguration('maxValue') - $value) + $cmdValue->getConfiguration('minValue');
+				if(is_object($cmdValue) && $cmdValue->getDisplay('invertBinary') == 1){
+					$options['slider'] = ($cmdValue->getConfiguration('maxValue') - $options['slider']) + $cmdValue->getConfiguration('minValue');
+					var_dump($value);
 				}
 			}
 			$value = $this->formatValue($this->execute($options), $_quote);
