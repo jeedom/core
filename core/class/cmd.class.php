@@ -1241,9 +1241,36 @@ class cmd {
 		return $template;
 	}
 
+	public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
+		$_unit=str_replace ("\"","",$_unit);
+		$_unit=str_replace ("\'","",$_unit);
+		$exclude=array('°c','°k');
+		if(in_array($exclude,array(strtolower($_unit))) !== false){
+			return array(round($_value,$_decimal),$_unit);
+		}else{
+			$mod=($_unit =='o' ? 1024 : 1000);
+			$_unit=($_unit =='o' ? 'i'.$_unit : $_unit);
+			$prefix = [$_unit,'K'.$_unit, 'M'.$_unit, 'G'.$_unit, 'T'.$_unit];
+			$myval = self::autoValueFormat($_value, $mod, count($prefix)-1);
+			return array(round($myval[0],$_decimal),($_space ? ' ' : '') . $prefix[$myval[1]]);
+		}
+	}
+
+	private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10){
+		$val=floatval($_value);
+		$div=0;
+		while($val > $_mod && $div <$_maxdiv){
+			$val=floatval($val/$_mod);
+			$div++;
+		}
+		return array($val,$div);
+	}
+
+
 	public function toHtml($_version = 'dashboard', $_options = '') {
 		$_version = jeedom::versionAlias($_version);
 		$html = '';
+		
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -1300,6 +1327,7 @@ class cmd {
 				}
 			}
 		}
+		
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
@@ -1317,6 +1345,17 @@ class cmd {
 					}
 					if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
 						$replace['#state#'] = 0;
+					}
+					if ($this->getSubType() == 'numeric' && trim($replace['#unite#']) != ''){
+						if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+							$round=$this->getConfiguration('historizeRound');
+						}else{
+							$round=99;
+						}
+						
+						$valueInfo=self::autoValueArray($replace['#state#'],$round,$replace['#unite#']);
+						$replace['#state#']=$valueInfo[0];
+						$replace['#unite#']=$valueInfo[1];
 					}
 				}
 				if (method_exists($this, 'formatValueWidget')) {
