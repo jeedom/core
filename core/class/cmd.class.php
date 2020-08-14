@@ -1244,8 +1244,8 @@ class cmd {
 	public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
 		$_unit=str_replace ("\"","",$_unit);
 		$_unit=str_replace ("\'","",$_unit);
-		$exclude=array('°c','°k');
-		if(in_array($exclude,array(strtolower($_unit))) !== false){
+		$exclude=array('°C','°K','hPa','°');
+		if(in_array($_unit,$exclude) === false){
 			return array(round($_value,$_decimal),$_unit);
 		}else{
 			$mod=($_unit =='o' ? 1024 : 1000);
