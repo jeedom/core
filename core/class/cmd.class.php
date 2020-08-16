@@ -1244,16 +1244,18 @@ class cmd {
 	public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
 		$_unit=str_replace ("\"","",$_unit);
 		$_unit=str_replace ("\'","",$_unit);
-		$exclude=array('°C','°K','hPa','°');
-		if(in_array($_unit,$exclude) === false){
-			return array(round($_value,$_decimal),$_unit);
-		}else{
-			$mod=($_unit =='o' ? 1024 : 1000);
-			$_unit=($_unit =='o' ? 'i'.$_unit : $_unit);
-			$prefix = [$_unit,'K'.$_unit, 'M'.$_unit, 'G'.$_unit, 'T'.$_unit];
-			$myval = self::autoValueFormat($_value, $mod, count($prefix)-1);
+		$convertions=array( '*W' =>		array(1000,'W','KW','MW'),
+							'*Hz' =>	array(100,'Hz','KHz','MHz','GHz'),
+							'*io' =>	array(1024,'io','Kio','Mio','Gio','Tio'),
+							'*o' =>		array(1000,'o','Ko','Mo','Go','To'));
+		if(array_key_exists($_unit,$convertions)){
+			$mod=$convertions[$_unit][0];
+			$prefix = array_slice($convertions[$_unit],1);
+			$myval = self::autoValueFormat($_value, $mod, count($prefix)-2);
 			return array(round($myval[0],$_decimal),($_space ? ' ' : '') . $prefix[$myval[1]]);
-		}
+		 }else{
+			return array(round($_value,$_decimal),$_unit);
+		 }
 	}
 
 	private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10){
@@ -1266,11 +1268,9 @@ class cmd {
 		return array($val,$div);
 	}
 
-
 	public function toHtml($_version = 'dashboard', $_options = '') {
 		$_version = jeedom::versionAlias($_version);
 		$html = '';
-		
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -1327,7 +1327,6 @@ class cmd {
 				}
 			}
 		}
-		
 		if ($this->getType() == 'info') {
 			$replace['#state#'] = '';
 			$replace['#tendance#'] = '';
