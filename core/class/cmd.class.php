@@ -1245,13 +1245,15 @@ class cmd {
 		$_unit=str_replace ("\"","",$_unit);
 		$_unit=str_replace ("\'","",$_unit);
 		$convertions=array( '*W' =>		array(1000,'W','KW','MW'),
-							'*Hz' =>	array(100,'Hz','KHz','MHz','GHz'),
 							'*io' =>	array(1024,'io','Kio','Mio','Gio','Tio'),
-							'*o' =>		array(1000,'o','Ko','Mo','Go','To'));
+							'*o' =>		array(1000,'o','Ko','Mo','Go','To'),
+							'*l' =>		array(1000,'l','m3'),
+							'*s' =>		array(60,'s','min','h')
+							);
 		if(array_key_exists($_unit,$convertions)){
 			$mod=$convertions[$_unit][0];
 			$prefix = array_slice($convertions[$_unit],1);
-			$myval = self::autoValueFormat($_value, $mod, count($prefix)-2);
+			$myval = self::autoValueFormat($_value, $mod, count($prefix)-1);
 			return array(round($myval[0],$_decimal),($_space ? ' ' : '') . $prefix[$myval[1]]);
 		 }else{
 			return array(round($_value,$_decimal),$_unit);
