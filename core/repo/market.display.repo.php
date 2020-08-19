@@ -165,8 +165,8 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 <div class='row'>
 	<div class='col-sm-6'>
 		<legend>{{Description}}
-			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
-			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
+			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'),$market->getDoc()) ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
+			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'),$market->getChangelog()) ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
 			<br/>
 		</legend>
 		<span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
