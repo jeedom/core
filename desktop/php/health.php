@@ -68,7 +68,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</tr>';
 		}
 	} catch (Exception $e) {
-
+		
 	}
 	try {
 		if ($plugin->getHasOwnDeamon() == 1) {
@@ -119,9 +119,9 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</tr>';
 		}
 	} catch (Exception $e) {
-
+		
 	}
-
+	
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
 			foreach (($plugin_id::health()) as $result) {
@@ -144,7 +144,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			}
 		}
 	} catch (Exception $e) {
-
+		
 	}
 	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 		$html .= '</tbody>';
@@ -187,7 +187,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 		<div class="panel-heading">
 			<h3 class="panel-title cursor">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom">
-					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de Jeedom}}</span>
+					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de}} <?php echo config::byKey('product_name') ?></span>
 				</a>
 				<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="{{Benchmark Jeedom}}"></i>
 			</h3>
@@ -243,35 +243,35 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 		</div>
 	</div>
 	<div class="panel panel-default" style="border-left: 1px solid var(--logo-primary-color);border-color: var(--logo-primary-color)!important;">
-			<div class="panel-heading">
-				<h3 class="panel-title cursor">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_phpextension">
-						<i class="fab fa-php" style="font-size:22px;"></i> <span style="font-size:18px;">{{Extensions php}}</span>
-					</a>
-				</h3>
+		<div class="panel-heading">
+			<h3 class="panel-title cursor">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_phpextension">
+					<i class="fab fa-php" style="font-size:22px;"></i> <span style="font-size:18px;">{{Extensions php}}</span>
+				</a>
+			</h3>
+		</div>
+		<div id="health_phpextension" class="panel-collapse collapse" aria-expanded="true">
+			<div class="panel-body">
+				<table id="jeedomTable" class="table table-condensed table-bordered">
+					<tbody>
+						<?php
+						foreach ((get_loaded_extensions()) as $name) {
+							if ($count == 0) echo '<tr>';
+							echo '<td>';
+							echo $name;
+							echo '</td>';
+							$count ++;
+							if ($count == 10) $count = 0;
+							if ($count == 0) echo '</tr>';
+						}
+						?>
+					</tbody>
+				</table>
 			</div>
-			<div id="health_phpextension" class="panel-collapse collapse" aria-expanded="true">
-				<div class="panel-body">
-					<table id="jeedomTable" class="table table-condensed table-bordered">
-						<tbody>
-							<?php
-							foreach ((get_loaded_extensions()) as $name) {
-								if ($count == 0) echo '<tr>';
-								echo '<td>';
-								echo $name;
-								echo '</td>';
-								$count ++;
-								if ($count == 10) $count = 0;
-								if ($count == 0) echo '</tr>';
-							}
-							?>
-						</tbody>
-					</table>
-				</div>
-			</div>
+		</div>
 	</div>
 	<?php
-		echo $globalhtml;
+	echo $globalhtml;
 	?>
 </div>
 
