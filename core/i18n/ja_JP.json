@@ -479,6 +479,7 @@
         "Masqué si": "非表示の場合"
     },
     "desktop\/modal\/report.bug.php": {
+        "Attention nous avons detecté les soucis suivant : ": "",
         "401 - Accès non autorisé": "401  - 不正アクセス",
         "Aucune adresse pour le market n\\'est renseignée": "市場の住所が入力されていません",
         "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "マーケットアカウントが入力されていません。市場で登録してから、資格情報を入力してください",

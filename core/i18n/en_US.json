@@ -479,6 +479,7 @@
         "Masqué si": "Hidden if"
     },
     "desktop\/modal\/report.bug.php": {
+        "Attention nous avons detecté les soucis suivant : ": "Attention we have detected the following concerns:",
         "401 - Accès non autorisé": "401 - Access not allowed",
         "Aucune adresse pour le market n\\'est renseignée": "No address for the market is entered",
         "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "No market account is entered. Please register on the market, then enter your credentials in",

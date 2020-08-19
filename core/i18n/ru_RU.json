@@ -479,6 +479,7 @@
         "Masqué si": "Скрыто, если"
     },
     "desktop\/modal\/report.bug.php": {
+        "Attention nous avons detecté les soucis suivant : ": "",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aucune adresse pour le market n\\'est renseignée": "Адрес для рынка не введен",
         "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "Рыночный счет не введен. Пожалуйста, зарегистрируйтесь на рынке, затем введите свои учетные данные в",
