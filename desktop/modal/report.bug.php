@@ -8,6 +8,26 @@ if (config::byKey('market::address') == '') {
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
 	throw new Exception('{{Aucun compte market n\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans}} ' . config::byKey('product_name') . ' {{avant d\'ouvrir un ticket}}');
 }
+$healths = jeedom::health();
+$first = true;
+foreach ($healths as $health) {
+  if($health['state']){
+    continue;
+  }
+  if($first){
+    echo '<div class="alert alert-danger">';
+    echo __('Attention nous avons detecté les soucis suivant : ',__FILE__).'<br/>';
+  }
+  $first = false;
+  echo '- '.$health['name'].'  : '.$health['result'];
+  if($health['comment'] != ''){
+    echo '('.$health['name'].')';
+  }
+  echo '<br/>';
+}
+if(!$first){
+  echo '</div>';
+}
 ?>
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
