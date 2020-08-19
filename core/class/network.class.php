@@ -229,7 +229,7 @@ class network {
 	}
 	
 	public static function test($_mode = 'external', $_timeout = 5) {
-		if (config::byKey('network::disableMangement') == 1) {
+		if (config::byKey('network::disableMangement') == 1 && $_mode == 'external') {
 			return true;
 		}
 		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
