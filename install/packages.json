@@ -13,6 +13,7 @@
     "software-properties-common" : {},
     "ssl-cert" : {},
     "apt-transport-https" : {},
+    "libcurl3-gnutls" : {"optional" : true,"remark":"{{Utilisé pour chromium}}"},
     "chromium" : {"optional" : true,"remark":"{{Utilisé pour les rapports}}"},
     "at" : {},
     "mariadb-client" : {"alternative" : ["/mariadb-client-(.*?)/"]},
