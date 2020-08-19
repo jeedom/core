@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 $starttime = getmicrotime();
 ?>
 <br/>
-<legend style=""><i class="icon divers-caduceus3" style=""></i> {{Santé de Jeedom}}
+<legend style=""><i class="icon divers-caduceus3" style=""></i> {{Santé de}} <?php echo config::byKey('product_name') ?>
 	<i class="fas fa-tachometer-alt pull-right cursor" id="bt_benchmarkJeedom"></i>
 </legend>
 <table class="table table-condensed table-bordered">
