@@ -1117,7 +1117,7 @@
     },
     "desktop\/php\/health.php": {
         "401 - Accès non autorisé": "401 - unberechtigter Zugriff",
-        "Santé de Jeedom": "Gesundheit von Jeedom",
+        "Santé de": "Gesundheit von",
         "Résultat": "Ergebnis",
         "Conseil": "Ratschlag",
         "Démon en mode automatique": "Dämon im Automatik-Modus",

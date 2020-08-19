@@ -1117,7 +1117,7 @@
     },
     "desktop\/php\/health.php": {
         "401 - Accès non autorisé": "401  - 不正アクセス",
-        "Santé de Jeedom": "健康Jeedom",
+        "Santé de": "",
         "Résultat": "結果",
         "Conseil": "協議会",
         "Démon en mode automatique": "自動モードでの悪魔",
