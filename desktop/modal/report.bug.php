@@ -24,6 +24,26 @@ if (config::byKey('market::address') == '') {
 if (config::byKey('market::apikey') == '' && config::byKey('market::username') == '') {
   throw new Exception('{{Aucun compte market n\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans}} ' . config::byKey('product_name') . ' {{avant d\'ouvrir un ticket}}');
 }
+$healths = jeedom::health();
+$first = true;
+foreach ($healths as $health) {
+  if($health['state']){
+    continue;
+  }
+  if($first){
+    echo '<div class="alert alert-danger">';
+    echo __('Attention nous avons detecté les soucis suivant : ',__FILE__).'<br/>';
+  }
+  $first = false;
+  echo '- '.$health['name'].'  : '.$health['result'];
+  if($health['comment'] != ''){
+    echo '('.$health['name'].')';
+  }
+  echo '<br/>';
+}
+if(!$first){
+  echo '</div>';
+}
 ?>
 
 <div id='div_alertReportBug'></div>
@@ -49,7 +69,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
       </center>
     </div>
   </div>
-
+  
   <div class="panel panel-primary">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
     <div class="panel-body">
@@ -89,7 +109,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
           <input class="form-control ticketAttr" data-l1key="title"/>
         </div>
       </div>
-
+      
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
         <div class="col-sm-9">
@@ -103,7 +123,7 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
       </div>
     </div>
   </div>
-
+  
   <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">
