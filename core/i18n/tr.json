@@ -4046,7 +4046,7 @@
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "Klasör oluşturulamıyor: '. $ cibDir. . Hak sorunu?",
         "Action de pré-update...": "Ön güncelleme eylemi",
         "Post-installation de ": "Kurulum sonrası",
-        "Supression des fichiers inutiles...": "",
+        "Suppression des fichiers inutiles...": "",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Eklenti yüklenemedi. Eklenti adı kimlik numarasından farklı veya eklenti düzgün oluşturulmamış. Lütfen yazara başvurun",
         "END UPDATE SUCCESS\\n": "",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "",
