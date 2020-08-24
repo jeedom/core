@@ -461,7 +461,7 @@ class update {
 			try {
 				$plugin = plugin::byId($this->getLogicalId());
 				$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
-				log::add('update', 'alert',  __('Supression des fichiers inutiles...', __FILE__));
+				log::add('update', 'alert',  __('Suppression des fichiers inutiles...', __FILE__));
 				foreach (array('3rdparty','3rparty','desktop','mobile','core','docs','install','script','vendor','plugin_info') as $folder) {
 					if(!file_exists($cibDir. '/'.$folder)){
 						continue;
