@@ -4046,7 +4046,7 @@
         "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "No se puede crear la carpeta: '. $ cibDir. . Cuestión de derechos?",
         "Action de pré-update...": "Acción previa a la actualización",
         "Post-installation de ": "Post instalación",
-        "Supression des fichiers inutiles...": "Eliminar archivos innecesarios",
+        "Suppression des fichiers inutiles...": "Eliminando archivos innecesarios",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el plugin. El nombre del plugin es diferente de la ID o el plugin no está formado correctamente. Por favor contacte al autor",
         "END UPDATE SUCCESS\\n": "ACTUALIZACIÓN FINALIZADA CON ÉXITO\\n",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Compruebe si hay actualizaciones, actualícelas y vuelva a instalarlas desactivadas en",
