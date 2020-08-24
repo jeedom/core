@@ -28,6 +28,7 @@
 - **Guión** : Corrección de errores de seleccionar en el bloque copiar / pegar.
 - **Guión** : Copiar / pegar bloque entre diferentes escenarios.
 - **Guión** : Las funciones de deshacer / rehacer ahora están disponibles como botones (al lado del botón de creación de bloque).
+- **Guión** :  adición de "Exportación histórica" (exportHistory)
 - **Ventana de variables de escenario** : Clasificación alfabética en la apertura.
 - **Ventana de variables de escenario** : Ahora se puede hacer clic en los escenarios utilizados por las variables, con la apertura de la búsqueda en la variable.
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.

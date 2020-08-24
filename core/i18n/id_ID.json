@@ -412,6 +412,7 @@
         "Alerte": "Peringatan",
         "Pop-up": "",
         "Rapport": "Laporan",
+        "Export historique": "",
         "Supprimer bloc DANS\/A programmé": "Hapus blok IN \/ A dijadwalkan",
         "Evènement": "Peristiwa",
         "Tag": "",
@@ -3931,6 +3932,11 @@
         "Lancement du reboot de jeedom": "",
         "Demande de retour d\\'information : ": "",
         "Suppression des blocs DANS et A programmés du scénario ": "",
+        "Export historique": "",
+        "Export de l\\'historique du ": "",
+        " au ": "",
+        "Commande introuvable veuillez vérifiez l\\'id : ": "",
+        "Envoi de l\\'export d\\'historique sur ": "",
         "Génération d\\'un rapport de type ": "",
         "Vue introuvable - Vérifiez l\\'id : ": "",
         "Génération du rapport ": "Laporan generasi",
@@ -3946,7 +3952,6 @@
         "[' . config::byKey('name') . '] Rapport url du ": "",
         "Veuillez trouver ci-joint le rapport url généré le ": "",
         "Erreur : Aucun rapport généré": "Kesalahan: Laporan No dihasilkan",
-        "Commande introuvable veuillez vérifiez l\\'id : ": "",
         "Envoi du rapport généré sur ": "Laporan pengiriman dihasilkan pada",
         "Mise à jour du tag ": "",
         "Exécution de la commande ": "Jalankan perintah",
@@ -4185,6 +4190,16 @@
     "core\/template\/scenario\/say.default.html": {
         "Message": "Pesan",
         "Sélectionner la commande": "Pilih perintah"
+    },
+    "core\/template\/scenario\/exportHistory.default.html": {
+        "Historique à exporter": "",
+        "Sélectionner la commande": "Pilih perintah",
+        "De": "",
+        "à": "à",
+        "Nom": "Nama",
+        "Exporter en": "Ekspor",
+        "CSV": "",
+        "Commandes": "Perintah"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Ekspor",

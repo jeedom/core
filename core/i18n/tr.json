@@ -412,6 +412,7 @@
         "Alerte": "Uyarı",
         "Pop-up": "Pop-up(açılır pencere)",
         "Rapport": "Rapor",
+        "Export historique": "",
         "Supprimer bloc DANS\/A programmé": "IN \/ A blok Sil planlanan",
         "Evènement": "Olay",
         "Tag": "",
@@ -3931,6 +3932,11 @@
         "Lancement du reboot de jeedom": "Jeedom yeniden başlatıldı",
         "Demande de retour d\\'information : ": "Geri bildirim talebi:",
         "Suppression des blocs DANS et A programmés du scénario ": "Senaryodan programlanmış IN ve A bloklarının silinmesi",
+        "Export historique": "",
+        "Export de l\\'historique du ": "",
+        " au ": "",
+        "Commande introuvable veuillez vérifiez l\\'id : ": "Sipariş bulunamadı, lütfen kimliği kontrol edin:",
+        "Envoi de l\\'export d\\'historique sur ": "",
         "Génération d\\'un rapport de type ": "Tür raporu oluşturma",
         "Vue introuvable - Vérifiez l\\'id : ": "Görünüm bulunamadı - Kimliği kontrol edin:",
         "Génération du rapport ": "Rapor oluşturma",
@@ -3946,7 +3952,6 @@
         "[' . config::byKey('name') . '] Rapport url du ": "['. config :: byKey ('ad'). '] URL raporu",
         "Veuillez trouver ci-joint le rapport url généré le ": "Lütfen üzerinde oluşturulan url raporunu ekte bulabilirsiniz",
         "Erreur : Aucun rapport généré": "Hata: Rapor oluşturulmadı",
-        "Commande introuvable veuillez vérifiez l\\'id : ": "Sipariş bulunamadı, lütfen kimliği kontrol edin:",
         "Envoi du rapport généré sur ": "Oluşturulan raporu şu adrese gönderme:",
         "Mise à jour du tag ": "Etiket güncelleme",
         "Exécution de la commande ": "Komutanın uygulanması",
@@ -4185,6 +4190,16 @@
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mesaj",
         "Sélectionner la commande": "Komutayı seçin"
+    },
+    "core\/template\/scenario\/exportHistory.default.html": {
+        "Historique à exporter": "",
+        "Sélectionner la commande": "Komutayı seçin",
+        "De": "",
+        "à": "Bir",
+        "Nom": "İsim",
+        "Exporter en": "Dışa aktar",
+        "CSV": "",
+        "Commandes": "Komutalar"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Ihracat",

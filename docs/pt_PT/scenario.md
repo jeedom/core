@@ -475,6 +475,15 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
 - **Coloração de ícones do painel** (setColoredIcon) : permite ativar ou não a coloração de ícones no painel.
+- **Exportação histórica** (exportHistory) : permite exportar o histórico em csv de uma encomenda sob a forma de ficheiro (envio por correio por exemplo). Você pode fazer mais de um pedido (separado por &&). A seleção do período é feita no formulário :
+  - "-1 mês "=> -1 mês
+  - "-1 dia à meia-noite "=> -1 dia à meia-noite
+  - "agora "=> agora
+  - "segunda-feira desta semana meia-noite "=> segunda-feira desta semana à meia-noite
+  - "último domingo 23:59 "=> domingo anterior às 23h59
+  - "último dia do mês anterior 23:59 "=> último dia do mês anterior às 23h59
+  - "primeiro dia de janeiro deste ano meia-noite "=> primeiro dia de janeiro à meia-noite
+  - ...
 
 ### Template cenário
 

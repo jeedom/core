@@ -28,6 +28,7 @@
 - **Szenario** : Bugfix von Select auf Copy / Paste Block.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
 - **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt als Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)).
+- **Szenario** :  Hinzufügung von "Historischer Export" (exportHistory)
 - **Fenster &quot;Szenariovariablen&quot;** : Alphabetische Sortierung beim Öffnen.
 - **Fenster &quot;Szenariovariablen&quot;** : Die von den Variablen verwendeten Szenarien können jetzt angeklickt werden, wobei die Suche für die Variable geöffnet wird.
 - **Analyse / Geschichte** : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.

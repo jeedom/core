@@ -412,6 +412,7 @@
         "Alerte": "предупреждение",
         "Pop-up": "Всплывающие",
         "Rapport": "доклад",
+        "Export historique": "",
         "Supprimer bloc DANS\/A programmé": "Удалить запрограммированный блок IN \/ A",
         "Evènement": "событие",
         "Tag": "тег",
@@ -3931,6 +3932,11 @@
         "Lancement du reboot de jeedom": "",
         "Demande de retour d\\'information : ": "",
         "Suppression des blocs DANS et A programmés du scénario ": "",
+        "Export historique": "",
+        "Export de l\\'historique du ": "",
+        " au ": "",
+        "Commande introuvable veuillez vérifiez l\\'id : ": "",
+        "Envoi de l\\'export d\\'historique sur ": "",
         "Génération d\\'un rapport de type ": "",
         "Vue introuvable - Vérifiez l\\'id : ": "",
         "Génération du rapport ": "генерация отчетов",
@@ -3946,7 +3952,6 @@
         "[' . config::byKey('name') . '] Rapport url du ": "",
         "Veuillez trouver ci-joint le rapport url généré le ": "",
         "Erreur : Aucun rapport généré": "Ошибка: Нет сгенерированный отчет",
-        "Commande introuvable veuillez vérifiez l\\'id : ": "",
         "Envoi du rapport généré sur ": "Отчет о доставке генерируется",
         "Mise à jour du tag ": "",
         "Exécution de la commande ": "Выполнение команды",
@@ -4185,6 +4190,16 @@
     "core\/template\/scenario\/say.default.html": {
         "Message": "Сообщение",
         "Sélectionner la commande": "Выберите команду"
+    },
+    "core\/template\/scenario\/exportHistory.default.html": {
+        "Historique à exporter": "",
+        "Sélectionner la commande": "Выберите команду",
+        "De": "",
+        "à": "В определенное время",
+        "Nom": "Имя",
+        "Exporter en": "экспорт",
+        "CSV": "",
+        "Commandes": "Команды"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "экспорт",

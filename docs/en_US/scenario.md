@@ -475,6 +475,15 @@ In addition to home automation commands, you have access to the following action
 - **Event** (event) : Allows you to push a value in an information type command arbitrarily.
 - **Tag** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
 - **Coloring of dashboard icons** (setColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
+- **Historical export** (exportHistory) : allows to export the history in csv of an order in the form of a file (sending by mail for example). You can place more than one order (separated by &&). The selection of the period is made in the form :
+  - "-1 month "=> -1 month
+  - "-1 day midnight "=> -1 day at midnight
+  - "now "=> now
+  - "monday this week midnight "=> Monday of this week at midnight
+  - "last sunday 23:59 "=> previous Sunday at 11:59 p.m
+  - "last day of previous month 23:59 "=> last day of the previous month at 11:59 p.m
+  - "first day of january this year midnight "=> first day of january at midnight
+  - ...
 
 ### Scenario template
 

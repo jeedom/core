@@ -475,6 +475,15 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **Etikett** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
 - **Färbung von Dashboard-Symbolen** (setColoredIcon) : Ermöglicht das Aktivieren oder Nicht-Aktivieren der Farbgebung von Symbolen im Dashboard.
+- **Historischer Export** (exportHistory) : Ermöglicht den Export des Verlaufs einer Bestellung in CSV in Form einer Datei (z. B. per Post)). Sie können mehr als eine Bestellung aufgeben (getrennt durch &&). Die Auswahl des Zeitraums erfolgt im Formular :
+  - "-1 Monat "=> -1 Monat
+  - "-1 Tag Mitternacht "=> -1 Tag um Mitternacht
+  - "jetzt "=> jetzt
+  - "Montag diese Woche Mitternacht "=> Montag dieser Woche um Mitternacht
+  - "letzten Sonntag 23:59 "=> vorheriger Sonntag um 23:59 Uhr
+  - "letzter Tag des Vormonats 23:59 "=> letzter Tag des Vormonats um 23:59 Uhr
+  - "erster Tag im Januar dieses Jahres Mitternacht "=> erster Tag im Januar um Mitternacht
+  - ...
 
 ### Szenariovorlage
 

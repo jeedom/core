@@ -475,6 +475,15 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Evento** (event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
 - **Etiqueta** (tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
 - **Coloración de los iconos del tablero** (setColoredIcon) : permite activar o no la coloración de iconos en el tablero.
+- **Exportación histórica** (exportHistory) : permite exportar el historial en csv de un pedido en forma de archivo (envío por correo por ejemplo). Puede realizar más de un pedido (separados por &&). La selección del período se realiza en el formulario :
+  - "-1 mes "=> -1 mes
+  - "-1 día medianoche "=> -1 día a medianoche
+  - "ahora "=> ahora
+  - "lunes de esta semana medianoche "=> Lunes de esta semana a medianoche
+  - "último domingo 23:59 "=> domingo anterior a las 11:59 p.m
+  - "último día del mes anterior 23:59 "=> último día del mes anterior a las 11:59 p.m
+  - "primer día de enero de este año medianoche "=> primer día de enero a medianoche
+  - ...
 
 ### Plantilla de escenario
 

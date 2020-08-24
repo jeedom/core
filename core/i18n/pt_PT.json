@@ -412,6 +412,7 @@
         "Alerte": "Aviso",
         "Pop-up": "Pop-up",
         "Rapport": "Relatório",
+        "Export historique": "Exportação histórica",
         "Supprimer bloc DANS\/A programmé": "Excluir bloco IN \/ A agendado",
         "Evènement": "Evento",
         "Tag": "Tag",
@@ -3931,6 +3932,11 @@
         "Lancement du reboot de jeedom": "Reinicialização do Jeedom lançada",
         "Demande de retour d\\'information : ": "Pedido de feedback:",
         "Suppression des blocs DANS et A programmés du scénario ": "Exclusão dos blocos IN e A programados do cenário",
+        "Export historique": "Exportação histórica",
+        "Export de l\\'historique du ": "Exportação da história de",
+        " au ": "em",
+        "Commande introuvable veuillez vérifiez l\\'id : ": "Pedido não encontrado, verifique o ID:",
+        "Envoi de l\\'export d\\'historique sur ": "Enviando a exportação de histórico para",
         "Génération d\\'un rapport de type ": "Gerando um relatório de tipo",
         "Vue introuvable - Vérifiez l\\'id : ": "Vista não encontrada - Verifique o ID:",
         "Génération du rapport ": "Geração de relatórios",
@@ -3946,7 +3952,6 @@
         "[' . config::byKey('name') . '] Rapport url du ": "['. config :: byKey ('nome'). '] Relatório de URL de",
         "Veuillez trouver ci-joint le rapport url généré le ": "Em anexo, encontre o relatório de URL gerado em",
         "Erreur : Aucun rapport généré": "Erro: relatório Sem gerado",
-        "Commande introuvable veuillez vérifiez l\\'id : ": "Pedido não encontrado, verifique o ID:",
         "Envoi du rapport généré sur ": "Relatório de entrega gerado em",
         "Mise à jour du tag ": "Atualização de tag",
         "Exécution de la commande ": "Execução da ordem",
@@ -4185,6 +4190,16 @@
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensagem",
         "Sélectionner la commande": "Selecione o comando"
+    },
+    "core\/template\/scenario\/exportHistory.default.html": {
+        "Historique à exporter": "História para exportar",
+        "Sélectionner la commande": "Selecione o comando",
+        "De": "De",
+        "à": "à",
+        "Nom": "Nome",
+        "Exporter en": "Exportação",
+        "CSV": "CSV",
+        "Commandes": "Comandos"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportação",

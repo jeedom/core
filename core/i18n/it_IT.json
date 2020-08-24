@@ -412,6 +412,7 @@
         "Alerte": "Avvertimento",
         "Pop-up": "",
         "Rapport": "Rapporto",
+        "Export historique": "",
         "Supprimer bloc DANS\/A programmé": "Cancellare blocco IN \/ A in programma",
         "Evènement": "Evento",
         "Tag": "",
@@ -3931,6 +3932,11 @@
         "Lancement du reboot de jeedom": "Lancio del riavvio di Jeedom",
         "Demande de retour d\\'information : ": "Richiesta di feedback:",
         "Suppression des blocs DANS et A programmés du scénario ": "Cancellazione dei blocchi IN e A programmati dallo scenario",
+        "Export historique": "",
+        "Export de l\\'historique du ": "",
+        " au ": "",
+        "Commande introuvable veuillez vérifiez l\\'id : ": "Ordine non trovato, controlla l'id:",
+        "Envoi de l\\'export d\\'historique sur ": "",
         "Génération d\\'un rapport de type ": "Generazione di un rapporto di tipo",
         "Vue introuvable - Vérifiez l\\'id : ": "Visualizza non trovato - Controlla l'id:",
         "Génération du rapport ": "Generazione di report",
@@ -3946,7 +3952,6 @@
         "[' . config::byKey('name') . '] Rapport url du ": "['. config :: byKey ('nome'). '] Rapporto URL di",
         "Veuillez trouver ci-joint le rapport url généré le ": "In allegato il rapporto sull'url generato su",
         "Erreur : Aucun rapport généré": "Errore: nessun rapporto generato",
-        "Commande introuvable veuillez vérifiez l\\'id : ": "Ordine non trovato, controlla l'id:",
         "Envoi du rapport généré sur ": "Invio del rapporto generato su",
         "Mise à jour du tag ": "Aggiornamento tag",
         "Exécution de la commande ": "Esecuzione del comando",
@@ -4185,6 +4190,16 @@
     "core\/template\/scenario\/say.default.html": {
         "Message": "Messaggio",
         "Sélectionner la commande": "Seleziona comando"
+    },
+    "core\/template\/scenario\/exportHistory.default.html": {
+        "Historique à exporter": "",
+        "Sélectionner la commande": "Seleziona comando",
+        "De": "",
+        "à": "La",
+        "Nom": "Nome",
+        "Exporter en": "Esporta in",
+        "CSV": "",
+        "Commandes": "Comandi"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Esportazione",

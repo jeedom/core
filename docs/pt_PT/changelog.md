@@ -28,6 +28,7 @@
 - **Cenas** : Correção de bug no bloco copiar / colar.
 - **Cenas** : Copiar / colar do bloco entre diferentes cenários.
 - **Cenas** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
+- **Cenas** :  adição de "Exportação histórica" (exportHistory)
 - **Janela Variáveis de Cenário** : Ordenação alfabética na abertura.
 - **Janela Variáveis de Cenário** : Os cenários usados pelas variáveis agora são clicáveis, com a abertura da pesquisa na variável.
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.

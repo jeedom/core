@@ -28,6 +28,7 @@
 - **Scenario** : Bugfix of select on block copy / paste.
 - **Scenario** : Copy / paste of block between different scenarios.
 - **Scenario** : The undo / redo functions are now available as buttons (next to the block creation button).
+- **Scenario** :  addition of "Historical export" (exportHistory)
 - **Scenario variables window** : Alphabetical sort at opening.
 - **Scenario variables window** : The scenarios used by the variables are now clickable, with opening of the search on the variable.
 - **Analysis / History** : Ctrl Click on a legend to display only this history, Alt Click to display them all.
