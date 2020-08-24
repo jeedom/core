@@ -582,6 +582,7 @@
         "Configuration de la commande": "Set Kontrol"
     },
     "desktop\/modal\/report.bug.php": {
+        "Attention nous avons detecté les soucis suivant : ": "",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Aucune adresse pour le market n\\'est renseignée": "",
         "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "",
@@ -1241,7 +1242,7 @@
         "en cours": "Sedang berlangsung",
         "Santé ": "Bidang Kesehatan",
         "Configuration du plugin": "Konfigurasi Plugin",
-        "Santé de Jeedom": "Kesehatan Jeedom",
+        "Santé de": "",
         "Benchmark Jeedom": "",
         "Plugins": "",
         "Vous pouvez voir les détails des plugins sur la partie basse de cette page": "",
@@ -3700,6 +3701,9 @@
         "aucune valeur": "tak berguna"
     },
     "core\/class\/history.class.php": {
+        "Commande": "Pesanan",
+        "Date": "Kencan",
+        "Valeur": "Nilai",
         "La commande source n\\'existe pas :": "",
         "La commande source n\\'est pas historisée": "",
         "La commande source n\\'est pas de type info": "",
