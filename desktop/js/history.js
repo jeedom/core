@@ -344,16 +344,22 @@ function compareChart(_cmd_id, _options) {
   if (compare < 0) {
     var dateStart = $('#in_startDate').value()
     var dateEnd = $('#in_endDate').value()
-    var rangeTs = Date.parse(dateEnd) - Date.parse(dateStart)
-    var delta = rangeTs * Math.abs(compare)
-    var compare_dateStart = Date.parse(dateStart) - delta
-    var compare_dateEnd = Date.parse(dateEnd) - delta
+
+    dateStart = Date.parse(dateStart)
+    dateEnd = Date.parse(dateEnd)
+
+    var rangeTs = dateEnd - dateStart
+    var delta = (rangeTs * Math.abs(compare)) + 86400000
+    var compare_dateStart = dateStart - delta
+    var compare_dateEnd = dateEnd - delta
+
     var thisTime = new Date
     thisTime.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime)
     thisTime = ("0" + thisTime.getHours()).slice(-2) + ':' + ("0" + thisTime.getMinutes()).slice(-2) + ':' + ("0" + thisTime.getSeconds()).slice(-2)
 
     compare_dateStart = tsToDate(compare_dateStart)
     compare_dateEnd = tsToDate(compare_dateEnd) + ' ' + thisTime
+
     jeedom.history.drawChart({
       cmd_id: _cmd_id,
       el: 'div_graph',
