@@ -475,6 +475,15 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de manière arbitraire.
 - **Tag** (tag) : Permet d'ajouter/modifier un tag (le tag n'existe que pendant l'exécution en cours du scénario à la différence des variables qui survivent à la fin du scénario).
 - **Coloration des icônes du dashboard** (setColoredIcon) : permet d'activer ou non la coloration des icônes sur le dashboard.
+- **Export historique** (exportHistory) : permet d'exporter l'historique en csv d'une commande sous forme d'un fichier (envoi par mail par exemple). Vous pouvez mettre plusieures commande (séparé par des &&). La selection de la periode se fait sous la forme :
+  - "-1 month" => -1 mois
+  - "-1 day midnight" => -1 jour à minuit
+  - "now" => maintenant
+  - "monday this week midnight" => lundi de cette semaine à minuit
+  - "last sunday 23:59" => dimanche précedent à 23h59
+  - "last day of previous month 23:59" => dernier jour du mois précedent à 23h59
+  - "first day of january this year midnight" => premier jour de janvier à minuit
+  - ...
 
 ### Template de scénario
 

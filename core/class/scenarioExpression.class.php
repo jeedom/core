@@ -1566,6 +1566,42 @@ class scenarioExpression {
 						}
 					}
 					return;
+				} elseif ($this->getExpression() == 'exportHistory') {
+					if(!isset($options['name']) || trim($options['name']) == ''){
+						$options['name'] = __('Export historique',__FILE__);
+					}
+					$options['name'] = str_replace(array('/'),array(''),$options['name']);
+					$tmp_file = jeedom::getTmpFolder('history_export').'/'.$options['name'].'.csv';
+					$cmd_parameters = array('files' => $tmp_file,'title' => $options['name'],'message' => $options['name']);
+					
+					$start = date('Y-m-d H:i:s',strtotime($options['start']));
+					$end = date('Y-m-d H:i:s',strtotime($options['end']));
+					$this->setLog($scenario, __('Export de l\'historique du ', __FILE__).$start.__(' au ', __FILE__).$end);
+					
+					$histories = array();
+					$cmdExportArray = explode('&&',$this->getOptions('cmd_export'));
+					foreach ($cmdExportArray as $cmdExport){
+						$cmd = cmd::byId(str_replace('#', '', $cmdExport));
+						if (!is_object($cmd) || $cmd->getIsHistorized() != true) {
+							continue;
+						}
+						$histories += $cmd->getHistory($start,$end);
+					}
+					
+					file_put_contents($tmp_file,history::exportToCSV($histories));
+					
+					$cmdArray = explode('&&',$this->getOptions('cmd'));
+					foreach ($cmdArray as $cmdname){
+						$cmd = cmd::byId(str_replace('#', '', $cmdname));
+						if (!is_object($cmd)) {
+							throw new Exception(__('Commande introuvable veuillez vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
+						}
+						$this->setLog($scenario, __('Envoi de l\'export d\'historique sur ', __FILE__) . $cmd->getHumanName());
+						$cmd->execCmd($cmd_parameters);
+					}
+					if(file_exists($tmp_file)){
+						unlink($tmp_file);
+					}
 				} elseif ($this->getExpression() == 'report') {
 					$cmd_parameters = array('files' => null);
 					$this->setLog($scenario, __('Génération d\'un rapport de type ', __FILE__) . $options['type']);

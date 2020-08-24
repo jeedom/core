@@ -137,7 +137,7 @@
   }
   $('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').value(result.human);
+      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert',result.human);
     });
   });
   if ('#url#' != '') {

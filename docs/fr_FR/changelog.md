@@ -28,6 +28,7 @@
 - **Scénario** : Bugfix des select sur les copier/coller de bloc.
 - **Scénario** : Copier/coller de bloc entre différents scénarios.
 - **Scénario** : Les fonctions undo/redo sont maintenant disponible sous forme de boutons (à coté du bouton de création de bloc).
+- **Scénario** :  ajout de "Export historique" (exportHistory)
 - **Fenêtre des variables de scénarios** : Tri alphabétique à l'ouverture.
 - **Fenêtre des variables de scénarios** : Les scénarios utilisés par les variables sont maintenant clickable, avec ouverture de la recherche sur la variable.
 - **Analyse / Historique** : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.

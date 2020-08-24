@@ -36,7 +36,7 @@ class history {
 		}
 		$return = '"'.__('Commande',__FILE__).'";"'.'"'.__('Date',__FILE__).'";"'.__('Valeur',__FILE__).'"'."\n";
 		foreach ($histories as $history) {
-			$return .=	'"'.$this->getCmd()->getHumanName().'";"'.'"'.$this->getDatetime().'";"'.$this->getValue().'"'."\n";
+			$return .=	'"'.$history->getCmd()->getHumanName().'";"'.'"'.$history->getDatetime().'";"'.$history->getValue().'"'."\n";
 		}
 		return $return;
 	}
