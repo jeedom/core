@@ -201,7 +201,7 @@ try {
 				echo "Moving files...";
 				$update_begin = true;
 				$file_copy = array();
-				rmove($cibDir . '/', __DIR__ . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1),$file_copy);
+				rmove($cibDir . '/', __DIR__ . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1));
 				echo "OK\n";
 				echo "[PROGRESS][50]\n";
 				echo "Remove temporary files...";
