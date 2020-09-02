@@ -63,6 +63,8 @@ step_2_mainpackage() {
   apt-get -y remove brltty
   apt-get -y remove net-tools
   apt-get -y install nmap
+  apt-get -y install avconv
+  apt-get -y install ffmpeg
   echo "${VERT}étape 2 paquet principal réussie${NORMAL}"
 }
 
