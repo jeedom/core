@@ -62,8 +62,8 @@ sendVarToJS([
 					$echo = '';
 					$ls = ls(__DIR__.'/../../data/img/','*');
 					foreach ($ls as $file) {
-						$echo .= '<div class="col-lg-1 divIconSel divImgSel">';
-						$echo .= '<span class="iconSel"><img src="data/img/'.$file.'" /></span>';
+						$echo .= '<div class="col-lg-2 divIconSel divImgSel">';
+						$echo .= '<span class="iconSel"><img class="img-responsive" src="data/img/'.$file.'" /></span>';
 						$echo .= '<center>'.substr(basename($file),0,12).'</center>';
 						$echo .= '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 						$echo .= '</div>';
