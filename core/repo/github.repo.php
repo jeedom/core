@@ -54,17 +54,17 @@ class repo_github {
 				'type' => 'input',
 			),
 			'core::user' => array(
-				'name' => 'Utilisateur ou organisation du dépôt pour le core Jeedom',
+				'name' => 'Utilisateur ou organisation du dépôt pour le core',
 				'type' => 'input',
 				'default' => 'jeedom',
 			),
 			'core::repository' => array(
-				'name' => 'Nom du dépôt pour le core Jeedom',
+				'name' => 'Nom du dépôt pour le core',
 				'type' => 'input',
 				'default' => 'core',
 			),
 			'core::branch' => array(
-				'name' => 'Branche pour le core Jeedom',
+				'name' => 'Branche pour le core',
 				'type' => 'input',
 				'default' => 'stable',
 			),
