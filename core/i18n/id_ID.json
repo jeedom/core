@@ -3122,7 +3122,7 @@
         "Si la derniere heure enregistrée est fausse, il faut la remettre à zéro <a href=\"index.php?v=d&p=administration\">ici<\/a>": "",
         "Droits sudo": "Hak sudo",
         "Appliquez les droits root à Jeedom": "",
-        "Version Jeedom": "Versi Jeedom",
+        "Version": "Versi",
         "Version PHP": "Versi PHP",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "",
         "Version OS": "Versi OS",
