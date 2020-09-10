@@ -3122,7 +3122,7 @@
         "Si la derniere heure enregistrée est fausse, il faut la remettre à zéro <a href=\"index.php?v=d&p=administration\">ici<\/a>": "",
         "Droits sudo": "Diritti sudo",
         "Appliquez les droits root à Jeedom": "Applica i diritti di root a Jeedom",
-        "Version": "Versione",
+        "Version ": "Versione",
         "Version PHP": "Versione PHP",
         "Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire": "Se sei nella versione 5.4.x ti diremo quando la versione 5.5 sarà obbligatoria",
         "Version OS": "Versione del sistema operativo",
