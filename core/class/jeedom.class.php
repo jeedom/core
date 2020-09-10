@@ -174,7 +174,7 @@ class jeedom {
 		);
 		
 		$return[] = array(
-			'name' => __('Version', __FILE__),
+			'name' => __('Version ', __FILE__) . config::byKey('product_name'),
 			'state' => true,
 			'result' => self::version(),
 			'comment' => '',
