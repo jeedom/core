@@ -398,8 +398,11 @@ if (init('rescue', 0) == 0) {
 											</li>
 										<?php } ?>
 										<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
+								<?php if( config::byKey('product_name') == 'Jeedom'){  ?>
+							
 										<li><a href="#" id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} v<?php echo jeedom::version(); ?></a></li>
-									</ul>
+						<?php }	?>		
+						</ul>
 								</li>
 								<li>
 									<a href="#" style="cursor:default;" class="hidden-xs">
