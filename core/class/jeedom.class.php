@@ -174,7 +174,7 @@ class jeedom {
 		);
 		
 		$return[] = array(
-			'name' => __('Version Jeedom', __FILE__),
+			'name' => __('Version', __FILE__),
 			'state' => true,
 			'result' => self::version(),
 			'comment' => '',
