@@ -178,6 +178,7 @@ function resetCategoryFilter() {
     $(this).show()
   })
   $('.div_displayEquipement').packery()
+  $('#dashTopBar button.dropdown-toggle').removeClass('warning')
 }
 
 function filterByCategory() {
@@ -189,8 +190,13 @@ function filterByCategory() {
   })
   var eqCats, catFound
   $('.eqLogic-widget').each(function() {
-    eqCats = $(this).attr('data-translate-category').split(',')
-    catFound = eqCats.some(r=> cats.includes(r))
+    if ($(this).hasAttr('data-translate-category')) {
+      eqCats = $(this).attr('data-translate-category').split(',')
+      catFound = eqCats.some(r=> cats.includes(r))
+    } else {
+      eqCats = $(this).attr('data-category')
+      if (cats.findIndex(item => eqCats.toLowerCase() === item.toLowerCase()) >= 0) catFound = true
+    }
     if (catFound) $(this).show()
     else $(this).hide()
   })
