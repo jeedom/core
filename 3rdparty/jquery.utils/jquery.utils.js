@@ -701,4 +701,8 @@ function init(_value, _default) {
       return style;
     }
   };
+
+  $.fn.hasAttr = function(name) {
+    return this.attr(name) !== undefined;
+  }
 })(jQuery);
