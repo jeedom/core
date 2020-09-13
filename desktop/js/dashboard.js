@@ -62,7 +62,7 @@ $(function() {
 
 var isEditing = false
 //searching
-$('#in_searchWidget').off('keyup').on('keyup',function() {
+$('#in_searchDashboard').off('keyup').on('keyup',function() {
   if (isEditing) return
   var search = $(this).value()
   $('.div_object:not(.hideByObjectSel)').show()
@@ -124,7 +124,7 @@ $('#bt_resetDashboardSearch').on('click', function () {
   if (isEditing) return
   $('#categoryfilter li .catFilterKey').prop("checked", true)
   $('#dashTopBar button.dropdown-toggle').removeClass('warning')
-  $('#in_searchWidget').val('').keyup()
+  $('#in_searchDashboard').val('').keyup()
 })
 
 //category filters
@@ -262,7 +262,7 @@ function editWidgetMode(_mode,_save) {
 
     $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
-    $('#in_searchWidget').removeAttr('style').val('').prop('readonly', false)
+    $('#in_searchDashboard').removeAttr('style').val('').prop('readonly', false)
   } else {
     jeedom.cmd.disableExecute = true
     isEditing = true
@@ -322,10 +322,11 @@ function editWidgetMode(_mode,_save) {
 
     $('#div_displayObject .row').css('margin-top', '27px')
     $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"500","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'})
-    $('#in_searchWidget').style("background-color", "var(--al-info-color)", "important")
-    .style("color", "var(--linkHoverLight-color)", "important")
-    .val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
-    .prop('readonly', true)
+    $('#in_searchDashboard')
+      .style("background-color", "var(--al-info-color)", "important")
+      .style("color", "var(--linkHoverLight-color)", "important")
+      .val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
+      .prop('readonly', true)
   }
 }
 

@@ -92,13 +92,12 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	<div class="input-group-btn">
 	<?php
 		if (init('btover', 0) == 0) {?>
-			<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i>
+			<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i></a>
 		<?php } else { ?>
-			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i>
+			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i></a>
 		<?php } ?>
-		</a>
 	</div>
-	<input class="form-control" id="in_searchWidget" placeholder="Rechercher">
+	<input class="form-control" id="in_searchDashboard" placeholder="Rechercher" autocomplete="off">
 	<div class="input-group-btn">
 		<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
 		</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
