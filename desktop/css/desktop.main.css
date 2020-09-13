@@ -1224,7 +1224,7 @@ div[data-market_type=script]:hover {
   font-weight: 500;
 }
 .form-horizontal .control-label {
-  padding-top: 4px;
+  /*! padding-top: 4px; */
 }
 
 pre {
@@ -2101,7 +2101,7 @@ fieldset > div {
 
 [class*="col-"] {
   position: relative;
-  min-height: 28px !important;
+  /*! min-height: 28px !important; */
   padding-left: 1em !important;
   padding-right: 1em !important;
 }
