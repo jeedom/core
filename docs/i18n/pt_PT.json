@@ -7728,6 +7728,7 @@
         "Généralement utilisé sur demande du support": "Geralmente usado a pedido do suporte",
         "Sauvegarder avant": "Salvar antes",
         "Effectue une sauvegarde de Jeedom avant d'effectuer la mise à jour": "Faça backup do Jeedom antes de atualizar",
+        "La sauvegarde est effectuée localement uniquement (ni Market ni Samba": "O backup é executado apenas localmente (nem Market nem Samba",
         "Mettre à jour les plugins": "Plugins de atualização",
         "Permet d'inclure les plugins dans la mise à jour": "Permite incluir plugins na atualização",
         "Mettre à jour le core": "Atualizar o núcleo",

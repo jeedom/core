@@ -7728,6 +7728,7 @@
         "Généralement utilisé sur demande du support": "Wird in der Regel auf Anfrage des Supports verwendet",
         "Sauvegarder avant": "Vorher speichern",
         "Effectue une sauvegarde de Jeedom avant d'effectuer la mise à jour": "Sichern Sie Jeedom vor dem Update",
+        "La sauvegarde est effectuée localement uniquement (ni Market ni Samba": "Die Sicherung wird nur lokal durchgeführt (weder Market noch Samba",
         "Mettre à jour les plugins": "Plugins aktualisieren",
         "Permet d'inclure les plugins dans la mise à jour": "Ermöglicht das Einfügen von Plugins in das Update",
         "Mettre à jour le core": "Aktualisieren Sie den Core",

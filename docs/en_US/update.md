@@ -23,7 +23,7 @@ The button **Save** is to be used when you change the options in the table below
 The button **Update** allows you to update the Core, plugins, or both.
 Once you click on it, you get these different options :
 - **Pre-update** : Allows you to update the update script before applying the new updates. Generally used at the request of the support.
-- **Save before** : Back up Jeedom before updating.
+- **Save before** : Back up Jeedom before updating. The backup is performed locally only (neither Market nor Samba).
 - **Update plugins** : Allows you to include plugins in the update.
 - **Update the Core** : Allows you to include the Jeedom kernel (the Core) in the update.
 

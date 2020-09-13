@@ -23,7 +23,7 @@ Die Schaltfläche **Speichern** wird verwendet, wenn Sie die Optionen in der fol
 Die Schaltfläche **Update** Mit dieser Option können Sie den Core, die Plugins oder beides aktualisieren.
 Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 - **Pre-Update** : Ermöglicht das Aktualisieren des Aktualisierungsskripts, bevor die neuen Aktualisierungen angewendet werden. Wird in der Regel auf Anfrage des Supports verwendet.
-- **Vorher speichern** : Sichern Sie Jeedom vor dem Update.
+- **Vorher speichern** : Sichern Sie Jeedom vor dem Update. Die Sicherung wird nur lokal durchgeführt (weder Market noch Samba).
 - **Plugins aktualisieren** : Ermöglicht das Einfügen von Plugins in das Update.
 - **Aktualisieren Sie den Core** : Ermöglicht es Ihnen, den Jeedom-Kernel (den Kern) in das Update aufzunehmen.
 
