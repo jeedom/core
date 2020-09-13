@@ -23,7 +23,7 @@ Le bouton **Sauvegarder** est à utiliser quand vous changez les options dans le
 Le bouton **Mettre à jour** permet de mettre à jour le Core, les plugins, ou les deux.
 Une fois que vous avez cliqué dessus, on obtient ces différentes options :
 - **Pré-update** : Permet de mettre à jour le script de mise à jour avant l'application des nouvelles mises à jour. Généralement utilisé sur demande du support.
-- **Sauvegarder avant** : Effectue une sauvegarde de Jeedom avant d’effectuer la mise à jour.
+- **Sauvegarder avant** : Effectue une sauvegarde de Jeedom avant d’effectuer la mise à jour. La sauvegarde est effectuée localement uniquement (ni Market ni Samba).
 - **Mettre à jour les plugins** : Permet d’inclure les plugins dans la mise à jour.
 - **Mettre à jour le core** : Permet d’inclure le noyau de Jeedom (le Core) dans la mise à jour.
 
