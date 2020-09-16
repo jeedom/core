@@ -1,5 +1,5 @@
 # Gerenciamento de plug-in
-Plugins → Gerenciamento de plugins
+**Plugins → Gerenciamento de plugins**
 
 Esta página fornece acesso às configurações de plugins.
 Você também pode manipular os plugins, a saber : baixar, atualizar e ativá-los,…
@@ -14,11 +14,74 @@ Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, voc
 >
 > Ao baixar um plug-in, ele é desativado por padrão. Então você tem que ativá-lo sozinho.
 
+## Gestion
+
+Aqui você tem três botões :
+
+- Plugins : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
+- Mercado : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
+- Sincronizar mercado : Se você instalar um plugin de um navegador da web em sua conta do Market (além do Jeedom), você pode forçar uma sincronização para instalá-lo.
+
+### Plugins
+
+Você pode adicionar um plugin ao Jeedom a partir de um arquivo ou de um repositório Github. Para fazer isso, você deve, na configuração do Jeedom, ativar a função apropriada na seção "Atualizações / Mercado"".
+
+Atenção, no caso de adicionar por um arquivo zip, o nome do zip deve ser o mesmo que o ID do plug-in e, ao abrir o ZIP, uma pasta\_info do plugin deve estar presente.
+
+### Market
+
+Para instalar um novo plugin, basta clicar no botão "Mercado" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
+
+> **Dica**
+>
+> Você deve inserir as informações da sua conta do Market na administração (Configuração → Atualizações / Market → guia Market) para encontrar os plug-ins que você já comprou, por exemplo.
+
+No topo da janela você tem filtros :
+- **Gratuito / Pago** : exibe apenas gratuito ou pago.
+- **Oficial / Recomendado** : exibe apenas plugins oficiais ou recomendados.
+- **Menu suspenso Categoria** : exibe apenas determinadas categorias de plugins.
+- **Pesquisa** : permite procurar um plugin (no nome ou na descrição dele)).
+- **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
+
+> **Dica**
+>
+> A cruz pequena redefine o filtro em questão
+
+Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. Esta folha fornece muitas informações sobre o plug-in, em particular :
+
+- Se for oficial / recomendado ou se for obsoleto (você definitivamente deve evitar instalar plug-ins obsoletos).
+- 4 ações :
+    - **Instale estável** : permite instalar o plugin em sua versão estável.
+    - **Instalar beta** : permite instalar o plugin em sua versão beta (apenas para betatesters).
+    - **Instalar pro** : permite instalar a versão pro (muito pouco usado).
+    - **Remover** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
+
+Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
+
+> **IMPORTANTE**
+>
+> Não é realmente recomendável colocar um plug-in beta em um Jeedom não beta, pois muitos problemas operacionais podem resultar.
+
+> **IMPORTANTE**
+>
+> Alguns plugins são cobrados; nesse caso, o plug-in oferecerá que você o compre. Depois de concluído, é necessário aguardar cerca de dez minutos (tempo de validação do pagamento) e retornar ao arquivo do plug-in para instalá-lo normalmente.
+
+### Sincronizar mercado
+
+Em um navegador, vá para o [Mercado](https://market.jeedom.com).
+Faça login em sua conta.
+Clique em um plug-in e escolha *Instale estável* onde *Instalar beta* (se sua conta do Market permitir).
+
+Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
+
+
+## Meus plugins
+
+Ao clicar no ícone de um plugin, você abre sua página de configuração.
+
 > **Dica**
 >
 > Você pode pressionar Ctrl ou Click Center para abrir sua configuração em uma nova guia do navegador.
-
-## Configuração de plugins
 
 ### No canto superior direito, alguns botões :
 
@@ -88,44 +151,4 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 
 Podemos encontrar uma seção Painel que habilitará ou desabilitará a exibição do painel no painel ou no celular, se o plug-in oferecer um.
 
-## Instalação de plugins
 
-Para instalar um novo plugin, basta clicar no botão "Mercado" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
-
-> **Dica**
->
-> Você deve ter inserido as informações da sua conta do Market na administração (Configuração → Atualizações → guia Market) para encontrar os plug-ins que você já comprou, por exemplo.
-
-No topo da janela você tem filtros :
-- **Gratuito / Pago** : exibe apenas gratuito ou pago.
-- **Oficial / Recomendado** : exibe apenas plugins oficiais ou recomendados.
-- **Menu suspenso Categoria** : exibe apenas determinadas categorias de plugins.
-- **Pesquisa** : permite procurar um plugin (no nome ou na descrição dele)).
-- **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
-
-> **Dica**
->
-> A cruz pequena redefine o filtro em questão
-
-Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. Esta folha fornece muitas informações sobre o plug-in, em particular :
-
-- Se for oficial / recomendado ou se for obsoleto (você definitivamente deve evitar instalar plug-ins obsoletos).
-- 4 ações :
-    - **Instale estável** : permite instalar o plugin em sua versão estável.
-    - **Instalar beta** : permite instalar o plugin em sua versão beta (apenas para betatesters).
-    - **Instalar pro** : permite instalar a versão pro (muito pouco usado).
-    - **Remover** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
-
-Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
-
-> **IMPORTANTE**
->
-> Não é realmente recomendável colocar um plug-in beta em um Jeedom não beta, pois muitos problemas operacionais podem resultar.
-
-> **IMPORTANTE**
->
-> Alguns plugins são cobrados; nesse caso, o plug-in oferecerá que você o compre. Depois de concluído, é necessário aguardar cerca de dez minutos (tempo de validação do pagamento) e retornar ao arquivo do plug-in para instalá-lo normalmente.
-
-> **Dica**
->
-> Você também pode adicionar um plugin ao Jeedom a partir de um arquivo ou de um repositório do Github. Para fazer isso, na configuração do Jeedom, ative a função apropriada na seção "Atualizações e arquivos"". Será possível, colocando o mouse na extrema esquerda e fazendo aparecer o menu da página do plug-in, clicar em "Adicionar de outra fonte". Você pode então escolher a fonte "Arquivo". Atenção, no caso de adicionar por um arquivo zip, o nome do zip deve ser o mesmo que o ID do plug-in e, ao abrir o ZIP, uma pasta\_info do plugin deve estar presente.

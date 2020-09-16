@@ -3513,6 +3513,7 @@
         "Téléchargement de ": "のダウンロード"
     },
     "core\/repo\/file.repo.php": {
+        "Fichier": "ファイル",
         "Chemin": "パス"
     },
     "core\/repo\/url.repo.php": {
