@@ -45,7 +45,8 @@ $repos = update::listRepo();
             if (config::byKey($key . '::enable') == 0) {
               continue;
             }
-            echo '<option value="' . $key . '">' . $value['name'] . '</option>';
+            $name = (isset($value['configuration']['translate_name'])) ? $value['configuration']['translate_name'] : $value['name'];
+            echo '<option value="' . $key . '">' . $name . '</option>';
           }
           ?>
         </select>
