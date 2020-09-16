@@ -22,19 +22,20 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_file {
 	/*     * *************************Attributs****************************** */
-	
+
 	public static $_name = 'Fichier';
-	
+
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
 		'hasConfiguration' => false,
 	);
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function getConfigurationOption(){
 		return array(
+          	'translate_name' => __('Fichier',__FILE__),
 			'parameters_for_add' => array(
 				'path' => array(
 					'name' =>  __('Chemin',__FILE__),
@@ -43,28 +44,28 @@ class repo_file {
 			),
 		);
 	}
-	
+
 	public static function checkUpdate($_update) {
-		
+
 	}
-	
+
 	public static function downloadObject($_update) {
 		return array('localVersion' => date('Y-m-d H:i:s'), 'path' => $_update->getConfiguration('path'));
 	}
-	
+
 	public static function deleteObjet($_update) {
-		
+
 	}
-	
+
 	public static function objectInfo($_update) {
 		return array(
 			'doc' => '',
 			'changelog' => '',
 		);
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
+
 }

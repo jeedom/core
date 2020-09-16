@@ -3513,7 +3513,8 @@
         "Téléchargement de ": "Téléchargement de "
     },
     "core\/repo\/file.repo.php": {
-        "Chemin": "Chemin"
+        "Chemin": "Chemin",
+        "Fichier": "Fichier"
     },
     "core\/repo\/url.repo.php": {
         "URL du fichier ZIP": "URL du fichier ZIP",
