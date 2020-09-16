@@ -1340,8 +1340,8 @@
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Gestion": "管理",
-        "Plugins": "プラグイン",
         "Synchroniser": "同期",
+        "Plugins": "プラグイン",
         "Mes plugins": "私のプラグイン",
         "Rechercher": "検索",
         "Etat": "状態",
@@ -3513,6 +3513,7 @@
         "Téléchargement de ": "のダウンロード"
     },
     "core\/repo\/file.repo.php": {
+        "Fichier": "ファイル",
         "Chemin": "パス"
     },
     "core\/repo\/url.repo.php": {

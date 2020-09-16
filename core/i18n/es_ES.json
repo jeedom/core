@@ -1340,8 +1340,8 @@
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Plugins": "Plugins",
         "Synchroniser": "Sincronizar",
+        "Plugins": "Plugins",
         "Mes plugins": "Mis plugins",
         "Rechercher": "Buscar",
         "Etat": "Estado",
@@ -3513,6 +3513,7 @@
         "Téléchargement de ": "Descarga de"
     },
     "core\/repo\/file.repo.php": {
+        "Fichier": "Expediente",
         "Chemin": "Ruta"
     },
     "core\/repo\/url.repo.php": {

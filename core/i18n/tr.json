@@ -1340,8 +1340,8 @@
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Gestion": "Idare",
-        "Plugins": "Ekler",
         "Synchroniser": "Senkeronize et",
+        "Plugins": "Ekler",
         "Mes plugins": "Eklerim",
         "Rechercher": "Arayın",
         "Etat": "Durum",
@@ -3513,6 +3513,7 @@
         "Téléchargement de ": "İndirme"
     },
     "core\/repo\/file.repo.php": {
+        "Fichier": "",
         "Chemin": "Yol"
     },
     "core\/repo\/url.repo.php": {
