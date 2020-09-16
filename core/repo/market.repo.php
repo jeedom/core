@@ -230,7 +230,7 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
-	public static function backup_flysytem(){
+	public static function backup_flysystem(){
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => config::byKey('service::backup::url'),
 			'userName' => config::byKey('market::username'),
@@ -239,10 +239,6 @@ class repo_market {
 		));
 		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
 		return new League\Flysystem\Filesystem($adapter);
-	}
-	
-	public static function backup_serverPath(){
-		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
 	}
 	
 	public static function backup_install(){
@@ -256,7 +252,7 @@ class repo_market {
 	}
 	
 	public static function backup_createFolderIsNotExist() {
-		$filesystem =self::backup_flysytem();
+		$filesystem =self::backup_flysystem();
 		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username'));
 		$found = false;
 		if (count($folders) > 0) {
@@ -284,7 +280,7 @@ class repo_market {
 		try {
 			$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 -c '.$_path;
 			com_shell::execute($cmd);
-			$filesystem =self::backup_flysytem();
+			$filesystem =self::backup_flysystem();
 			$stream = fopen($_path.'.gpg', 'r+');
 			$response = $filesystem->writeStream('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')).'/'.basename($_path).'.gpg', $stream);
 			unlink($_path.'.gpg');
@@ -294,20 +290,13 @@ class repo_market {
 		}
 	}
 	
-	public static function backup_errorAnalyzed($_error) {
-		if (strpos($_error, 'decryption failed: Bad session key') !== false) {
-			return __('Clef de chiffrement invalide. Si vous oubliez votre mot de passe aucune récupération n\'est possible. Veuillez supprimer le backup à partir de votre page profil sur le market', __FILE__);
-		}
-		return null;
-	}
-	
 	public static function backup_clean($_path) {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
 		$limit = 3900;
 		self::backup_createFolderIsNotExist();
-		$filesystem =self::backup_flysytem();
+		$filesystem =self::backup_flysystem();
 		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username'));
 		$files = array();
 		foreach ($folders as $folder) {
@@ -351,7 +340,7 @@ class repo_market {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
-		$filesystem =self::backup_flysytem();
+		$filesystem =self::backup_flysystem();
 		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')));
 		$result = array();
 		foreach ($folders as $folder) {
