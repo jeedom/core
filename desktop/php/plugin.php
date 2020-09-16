@@ -13,23 +13,12 @@ $plugins_list = plugin::listPlugin(false, true);
   <div class="col-xs-12" id="div_resumePluginList">
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
     <div class="pluginListContainer hidden">
-      <div class="cursor success" id="bt_addPluginFromOtherSource">
-        <center><i class="fas fa-plus"></i></center>
-        <span class="txtColor"><center>{{Plugins}}</center></span>
-      </div>
       <?php
       $div = '';
       foreach ((update::listRepo()) as $key => $value) {
         if (!$value['enable']) {
           continue;
         }
-        if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
-          continue;
-        }
-        $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
-        $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
-        $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
-        $div .= '</div>';
         if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
           continue;
         }
@@ -37,9 +26,20 @@ $plugins_list = plugin::listPlugin(false, true);
         $div .= '<center><i class="fas fa-sync"></i></center>';
         $div .= '<span class="txtColor"><center>{{Synchroniser}} ' . $value['name'] . '</center></span>';
         $div .= '</div>';
+        if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
+          continue;
+        }
+        $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
+        $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
+        $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
+        $div .= '</div>';
       }
       echo $div;
       ?>
+      <div class="cursor success" id="bt_addPluginFromOtherSource">
+        <center><i class="fas fa-plus"></i></center>
+        <span class="txtColor"><center>{{Plugins}}</center></span>
+      </div>
     </div>
     <legend><i class="fas fa-list-alt"></i> {{Mes plugins}} <sub class="itemsNumber"></sub></legend>
     <div class="input-group" style="margin-bottom:5px;">
