@@ -15,7 +15,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-use PragmaRX\Google2FA\Google2FA;
+use PragmaRX\Google2FAQRCode\Google2FA;
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -27,7 +27,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentificationSecret') == '' || $_
   $_SESSION['user']->save();
 }
 @session_write_close();
-$google2fa_url = $google2fa->getQRCodeGoogleUrl(
+$google2fa_url = $google2fa->getQRCodeInline(
   'Jeedom',
   $_SESSION['user']->getLogin(),
   $_SESSION['user']->getOptions('twoFactorAuthentificationSecret')
@@ -44,7 +44,7 @@ $google2fa_url = $google2fa->getQRCodeGoogleUrl(
     <hr/>
     {{A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.}}
   </div>
-
+  
 </div>
 
 <div class="panel panel-primary">

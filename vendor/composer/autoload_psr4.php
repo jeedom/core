@@ -30,6 +30,8 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'PragmaRX\\Google2FA\\Tests\\' => array($vendorDir . '/pragmarx/google2fa/tests'),
     'PragmaRX\\Google2FA\\' => array($vendorDir . '/pragmarx/google2fa/src'),
+    'PragmaRX\\Google2FAQRCode\\Tests\\' => array($vendorDir . '/pragmarx/google2fa-qrcode/tests'),
+    'PragmaRX\\Google2FAQRCode\\' => array($vendorDir . '/pragmarx/google2fa-qrcode/src'),
     'ParagonIE\\ConstantTime\\' => array($vendorDir . '/paragonie/constant_time_encoding/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'MatthiasMullie\\PathConverter\\' => array($vendorDir . '/matthiasmullie/path-converter/src'),

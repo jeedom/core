@@ -9,4 +9,5 @@ return array(
     'Touki\\FTP' => array($vendorDir . '/touki/ftp/lib', $vendorDir . '/touki/ftp/tests'),
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
+    'BaconQrCode' => array($vendorDir . '/bacon/bacon-qr-code/src'),
 );
