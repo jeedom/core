@@ -3513,6 +3513,7 @@
         "Téléchargement de ": "Baixar"
     },
     "core\/repo\/file.repo.php": {
+        "Fichier": "Ficheiro",
         "Chemin": "Caminho"
     },
     "core\/repo\/url.repo.php": {

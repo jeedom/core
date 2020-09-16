@@ -1,5 +1,5 @@
 # Gestión de complementos
-Complementos → Gestión de complementos
+**Complementos → Gestión de complementos**
 
 Esta página proporciona acceso a configuraciones de complementos.
 También puede manipular los complementos, a saber : descárguelos, actualícelos y actívelos,
@@ -14,11 +14,74 @@ Al hacer clic en un complemento, accede a su configuración. En la parte superio
 >
 > Al descargar un complemento, está deshabilitado de forma predeterminada. Entonces tienes que activarlo tú mismo.
 
+## Gestion
+
+Aquí tienes tres botones :
+
+- Plugins : Puede instalar un complemento aquí desde una fuente de Github, Samba, ...
+- Mercado : Abra Jeedom Market para seleccionar un complemento e instalarlo en su Jeedom.
+- Sincronizar mercado : Si instala un complemento desde un navegador web en su cuenta de Market (aparte de Jeedom), puede forzar una sincronización para instalarlo.
+
+### Plugins
+
+Puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de Github. Para ello, debe, en la configuración de Jeedom, activar la función correspondiente en la sección "Actualizaciones / Mercado"".
+
+Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin\_info.
+
+### Market
+
+Para instalar un nuevo complemento, simplemente haga clic en el botón "Market" (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
+
+> **Punta**
+>
+> Debe haber ingresado la información de su cuenta de Market en la administración (Configuración → Actualizaciones / Market → pestaña Market) para encontrar los complementos que ya ha comprado, por ejemplo.
+
+En la parte superior de la ventana tienes filtros :
+- **Abierto / De pago** : muestra solo gratis o de pago.
+- **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
+- **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
+- **Buscar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
+- **Nombre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
+
+> **Punta**
+>
+> La pequeña cruz restablece el filtro en cuestión
+
+Una vez que haya encontrado el complemento que desea, simplemente haga clic en él para que aparezca su archivo. Esta hoja le brinda mucha información sobre el complemento, en particular :
+
+- Si es oficial / recomendado o si está obsoleto (definitivamente debe evitar instalar complementos obsoletos).
+- 4 acciones :
+    - **Instalar estable** : permite instalar el complemento en su versión estable.
+    - **Instalar beta** : permite instalar el complemento en su versión beta (solo para betatesters).
+    - **Instalar pro** : permite instalar la versión pro (muy poco utilizada).
+    - **Remove** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
+
+A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, la cantidad de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
+
+> **Importante**
+>
+> Realmente no se recomienda poner un complemento beta en un Jeedom no beta, pueden resultar muchos problemas operativos.
+
+> **Importante**
+>
+> Algunos complementos son de pago, en este caso el complemento le ofrecerá comprarlo. Una vez hecho esto, debe esperar unos diez minutos (tiempo de validación del pago), luego regresar al archivo del complemento para instalarlo normalmente.
+
+### Sincronizar mercado
+
+Desde un navegador, vaya al [Mercado](https://market.jeedom.com).
+Iniciar sesión en su cuenta.
+Haga clic en un complemento, luego elija *Instalar estable* o *Instalar beta* (si su cuenta de Market lo permite).
+
+Si su cuenta de Market está configurada correctamente en su Jeedom (Configuración → Actualizaciones / Market → pestaña Market), puede hacer clic en *Sincronizar mercado* o esperar a que se calme por sí solo.
+
+
+## Mis plugins
+
+Al hacer clic en el icono de un complemento, abre su página de configuración.
+
 > **Punta**
 >
 > Puede hacer Ctrl-clic o hacer clic en Centro para abrir su configuración en una nueva pestaña del navegador.
-
-## Configuración del complemento
 
 ### Arriba a la derecha, algunos botones :
 
@@ -88,44 +151,4 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 Podemos encontrar una sección de Panel que habilitará o deshabilitará la visualización del panel en el tablero o en el dispositivo móvil si el complemento ofrece uno.
 
-## Instalación de complementos
 
-Para instalar un nuevo complemento, simplemente haga clic en el botón "Market" (y Jeedom está conectado a Internet). Después de un breve tiempo de carga, obtendrá la página.
-
-> **Punta**
->
-> Debe haber ingresado la información de su cuenta Market en la administración (Configuración → Actualizaciones → pestaña Market) para encontrar los complementos que ya compró, por ejemplo.
-
-En la parte superior de la ventana tienes filtros :
-- **Abierto / De pago** : muestra solo gratis o de pago.
-- **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
-- **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
-- **Buscar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
-- **Nombre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
-
-> **Punta**
->
-> La pequeña cruz restablece el filtro en cuestión
-
-Una vez que haya encontrado el complemento que desea, simplemente haga clic en él para que aparezca su archivo. Esta hoja le brinda mucha información sobre el complemento, en particular :
-
-- Si es oficial / recomendado o si está obsoleto (definitivamente debe evitar instalar complementos obsoletos).
-- 4 acciones :
-    - **Instalar estable** : permite instalar el complemento en su versión estable.
-    - **Instalar beta** : permite instalar el complemento en su versión beta (solo para betatesters).
-    - **Instalar pro** : permite instalar la versión pro (muy poco utilizada).
-    - **Remove** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
-
-A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, la cantidad de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
-
-> **Importante**
->
-> Realmente no se recomienda poner un complemento beta en un Jeedom no beta, pueden resultar muchos problemas operativos.
-
-> **Importante**
->
-> Algunos complementos son de pago, en este caso el complemento le ofrecerá comprarlo. Una vez hecho esto, debe esperar unos diez minutos (tiempo de validación del pago), luego regresar al archivo del complemento para instalarlo normalmente.
-
-> **Punta**
->
-> También puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de Github. Para hacer esto, en la configuración de Jeedom, active la función apropiada en la sección "Actualizaciones y archivos"". Entonces será posible, colocando el mouse en el extremo izquierdo y haciendo que aparezca el menú de la página del complemento, hacer clic en "Agregar desde otra fuente". Luego puede elegir la fuente "Archivo". Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin\_info.
