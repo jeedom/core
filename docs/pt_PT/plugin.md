@@ -18,15 +18,17 @@ Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, voc
 
 Aqui você tem três botões :
 
-- Plugins : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
-- Mercado : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
-- Sincronizar mercado : Se você instalar um plugin de um navegador da web em sua conta do Market (além do Jeedom), você pode forçar uma sincronização para instalá-lo.
+- **Sincronizar mercado** : Se você instalar um plugin de um navegador da web em sua conta do Market (além do Jeedom), você pode forçar uma sincronização para instalá-lo.
+- **Mercado** : Abra o Jeedom Market, para selecionar um plugin e instalá-lo em seu Jeedom.
+- **Plugins** : Você pode instalar um plugin aqui a partir de uma fonte Github, Samba, ...
 
-### Plugins
+### Sincronizar mercado
 
-Você pode adicionar um plugin ao Jeedom a partir de um arquivo ou de um repositório Github. Para fazer isso, você deve, na configuração do Jeedom, ativar a função apropriada na seção "Atualizações / Mercado"".
+Em um navegador, vá para o [Mercado](https://market.jeedom.com).
+Faça login em sua conta.
+Clique em um plug-in e escolha *Instale estável* onde *Instalar beta* (se sua conta do Market permitir).
 
-Atenção, no caso de adicionar por um arquivo zip, o nome do zip deve ser o mesmo que o ID do plug-in e, ao abrir o ZIP, uma pasta\_info do plugin deve estar presente.
+Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
 
 ### Market
 
@@ -66,13 +68,12 @@ Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeed
 >
 > Alguns plugins são cobrados; nesse caso, o plug-in oferecerá que você o compre. Depois de concluído, é necessário aguardar cerca de dez minutos (tempo de validação do pagamento) e retornar ao arquivo do plug-in para instalá-lo normalmente.
 
-### Sincronizar mercado
+### Plugins
 
-Em um navegador, vá para o [Mercado](https://market.jeedom.com).
-Faça login em sua conta.
-Clique em um plug-in e escolha *Instale estável* onde *Instalar beta* (se sua conta do Market permitir).
+Você pode adicionar um plugin ao Jeedom a partir de um arquivo ou de um repositório Github. Para fazer isso, você deve, na configuração do Jeedom, ativar a função apropriada na seção "Atualizações / Mercado"".
 
-Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
+Atenção, no caso de adicionar por um arquivo zip, o nome do zip deve ser o mesmo que o ID do plug-in e, ao abrir o ZIP, uma pasta\_info do plugin deve estar presente.
+
 
 
 ## Meus plugins

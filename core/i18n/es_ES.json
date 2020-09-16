@@ -1340,8 +1340,8 @@
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Plugins": "Plugins",
         "Synchroniser": "Sincronizar",
+        "Plugins": "Plugins",
         "Mes plugins": "Mis plugins",
         "Rechercher": "Buscar",
         "Etat": "Estado",

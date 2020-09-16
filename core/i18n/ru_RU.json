@@ -1340,8 +1340,8 @@
     "desktop\/php\/plugin.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Gestion": "Управление",
-        "Plugins": "Плагины",
         "Synchroniser": "Синхронизировать",
+        "Plugins": "Плагины",
         "Mes plugins": "Мои плагины",
         "Rechercher": "поиск",
         "Etat": "состояние",

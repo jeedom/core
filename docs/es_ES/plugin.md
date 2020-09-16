@@ -18,15 +18,17 @@ Al hacer clic en un complemento, accede a su configuración. En la parte superio
 
 Aquí tienes tres botones :
 
-- Plugins : Puede instalar un complemento aquí desde una fuente de Github, Samba, ...
-- Mercado : Abra Jeedom Market para seleccionar un complemento e instalarlo en su Jeedom.
-- Sincronizar mercado : Si instala un complemento desde un navegador web en su cuenta de Market (aparte de Jeedom), puede forzar una sincronización para instalarlo.
+- **Sincronizar mercado** : Si instala un complemento desde un navegador web en su cuenta de Market (aparte de Jeedom), puede forzar una sincronización para instalarlo.
+- **Mercado** : Abra Jeedom Market para seleccionar un complemento e instalarlo en su Jeedom.
+- **Plugins** : Puede instalar un complemento aquí desde una fuente de Github, Samba, ...
 
-### Plugins
+### Sincronizar mercado
 
-Puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de Github. Para ello, debe, en la configuración de Jeedom, activar la función correspondiente en la sección "Actualizaciones / Mercado"".
+Desde un navegador, vaya al [Mercado](https://market.jeedom.com).
+Iniciar sesión en su cuenta.
+Haga clic en un complemento, luego elija *Instalar estable* o *Instalar beta* (si su cuenta de Market lo permite).
 
-Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin\_info.
+Si su cuenta de Market está configurada correctamente en su Jeedom (Configuración → Actualizaciones / Market → pestaña Market), puede hacer clic en *Sincronizar mercado* o esperar a que se calme por sí solo.
 
 ### Market
 
@@ -66,13 +68,12 @@ A continuación, encontrará la descripción del complemento, la compatibilidad 
 >
 > Algunos complementos son de pago, en este caso el complemento le ofrecerá comprarlo. Una vez hecho esto, debe esperar unos diez minutos (tiempo de validación del pago), luego regresar al archivo del complemento para instalarlo normalmente.
 
-### Sincronizar mercado
+### Plugins
 
-Desde un navegador, vaya al [Mercado](https://market.jeedom.com).
-Iniciar sesión en su cuenta.
-Haga clic en un complemento, luego elija *Instalar estable* o *Instalar beta* (si su cuenta de Market lo permite).
+Puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de Github. Para ello, debe, en la configuración de Jeedom, activar la función correspondiente en la sección "Actualizaciones / Mercado"".
 
-Si su cuenta de Market está configurada correctamente en su Jeedom (Configuración → Actualizaciones / Market → pestaña Market), puede hacer clic en *Sincronizar mercado* o esperar a que se calme por sí solo.
+Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin\_info.
+
 
 
 ## Mis plugins
