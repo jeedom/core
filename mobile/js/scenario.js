@@ -93,7 +93,7 @@ function initScenario() {
   })
 
   //searching:
-  $('#in_searchWidget').off('keyup').on('keyup',function() {
+  $('#in_searchDashboard').off('keyup').on('keyup',function() {
     $('.groupContainer').hide()
     var search = $(this).value()
     search = normTextLower(search)
@@ -120,6 +120,6 @@ function initScenario() {
   })
 
   $('#bt_eraseSearchInput').off('click').on('click',function() {
-    $('#in_searchWidget').val('').keyup()
+    $('#in_searchDashboard').val('').keyup()
   })
 }

@@ -91,7 +91,7 @@ function initEquipment(_object_id) {
     $('.div_displayEquipement .objectHtml').packery({gutter :0})
   })
 
-  $('#in_searchWidget').off('keyup').on('keyup',function() {
+  $('#in_searchDashboard').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
     var search = $(this).value()
@@ -148,7 +148,7 @@ function initEquipment(_object_id) {
   })
 
   $('#bt_eraseSearchInput').off('click').on('click',function() {
-    $('#in_searchWidget').val('').keyup()
+    $('#in_searchDashboard').val('').keyup()
   })
 }
 

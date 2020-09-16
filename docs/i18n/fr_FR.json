@@ -4052,6 +4052,7 @@
         "Généralement utilisé sur demande du support": "Généralement utilisé sur demande du support",
         "Sauvegarder avant": "Sauvegarder avant",
         "Effectue une sauvegarde de Jeedom avant d'effectuer la mise à jour": "Effectue une sauvegarde de Jeedom avant d'effectuer la mise à jour",
+        "La sauvegarde est effectuée localement uniquement (ni Market ni Samba": "La sauvegarde est effectuée localement uniquement (ni Market ni Samba",
         "Mettre à jour les plugins": "Mettre à jour les plugins",
         "Permet d'inclure les plugins dans la mise à jour": "Permet d'inclure les plugins dans la mise à jour",
         "Mettre à jour le core": "Mettre à jour le core",
