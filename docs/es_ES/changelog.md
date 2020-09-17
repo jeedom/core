@@ -55,6 +55,7 @@
 - **Configuración** : La pestaña *Comandos* ahora está en la pestaña *Dispositivos*.
 - **Ventana de configuración avanzada del equipo** : Cambio dinámico de la configuración de la centralita.
 - **Dispositivos** : Nueva categoría *Apertura*.
+- **Dispositivos** : Posibilidad de invertir comandos tipo cursor (info y acción)
 - **Sobre ventana** : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Widgets / Objetos / Escenarios / Interacciones / Páginas de complementos :
 	- Ctrl Clic / Clic Center en un widget, objeto, escenarios, interacción, equipo de complemento : Se abre en una pestaña nueva.
@@ -80,7 +81,7 @@
 - Asegurando solicitudes Ajax.
 - Correcciones de errores.
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
-- Posibilidad de invertir comandos tipo cursor (info y acción)
+
 
 >**Importante**
 >
