@@ -152,6 +152,7 @@ function initEquipment(_object_id) {
   })
 }
 
+//objects:
 function displayEqsByObject(objects_info, _objectId, _summary) {
   jeedom.object.toHtml({
     id: _objectId,
@@ -210,6 +211,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
   })
 }
 
+//summary:
 function displayObjectsBySummary(_objectsAll, _summary) {
   $('#div_displayEquipement').empty()
   //show objects hidden:
@@ -235,7 +237,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     displayEqsBySummary(_objectsAll, thisObject.id, _summary)
     jeedom.object.summaryUpdate([{object_id: thisObject.id}])
   }
-  $('#div_displayEquipement').trigger('create')
+  $('*').trigger('create')
 }
 
 var summaryObjEqs = []
@@ -272,6 +274,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             //is last ajax:
             if (nbEqs == 0) {
               setTileSize('.eqLogic')
+              $('#div_displayEquipement').trigger('create')
               setTimeout(function() {
                 $('#div_displayEquipement .objectHtml').packery({gutter :0})
               }, 250)
