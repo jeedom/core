@@ -38,6 +38,10 @@ $('#bt_updateJeedom').off('click').on('click', function () {
   $("#md_specifyUpdate").dialog('open');
 });
 
+$('#bt_upgradeV4').on('click', function () {
+$('#md_modal').dialog({title: "{{Mise à niveau V4}}"});
+$('#md_modal').load('index.php?v=d&modal=update.upgrade').dialog('open');
+});
 
 $('.updateOption[data-l1key=force]').off('click').on('click',function(){
   if($(this).value() == 1){
@@ -76,7 +80,6 @@ $('#bt_checkAllUpdate').off('click').on('click', function () {
     }
   });
 });
-
 
 $('#table_update,#table_updateOther').delegate('.update', 'click', function () {
   var id = $(this).closest('tr').attr('data-id');
@@ -127,7 +130,7 @@ $('#table_update,#table_updateOther').delegate('.checkUpdate', 'click', function
       printUpdate();
     }
   });
-  
+
 });
 
 function getJeedomLog(_autoUpdate, _log) {
@@ -142,13 +145,13 @@ function getJeedomLog(_autoUpdate, _log) {
     global: false,
     error: function (request, status, error) {
       setTimeout(function () {
-        getJeedomLog(_autoUpdate, _log)
+        getJeedomLog(_autoUpdate, _log);
       }, 1000);
     },
     success: function (data) {
       if (data.state != 'ok') {
         setTimeout(function () {
-          getJeedomLog(_autoUpdate, _log)
+          getJeedomLog(_autoUpdate, _log);
         }, 1000);
         return;
       }
@@ -172,7 +175,7 @@ function getJeedomLog(_autoUpdate, _log) {
       $('#pre_updateInfo').parent().scrollTop($('#pre_updateInfo').parent().height() + 200000);
       if (init(_autoUpdate, 0) == 1) {
         setTimeout(function () {
-          getJeedomLog(_autoUpdate, _log)
+          getJeedomLog(_autoUpdate, _log);
         }, 1000);
       } else {
         $('#bt_' + _log + 'Jeedom .fa-refresh').hide();
@@ -188,10 +191,10 @@ function printUpdate() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (data) {
-      var tr_update = []
+      var tr_update = [];
       var tr_update_other = [];
       for (var i in data) {
-        if (!isset(data[i].status)) continue
+        if (!isset(data[i].status)) continue;
         if (data[i].type == 'core' || data[i].type == 'plugin') {
           tr_update.push(addUpdate(data[i]));
         } else {
@@ -226,7 +229,7 @@ function addUpdate(_update) {
   tr += '<td style="width:40px;cursor:default;"><span class="updateAttr label ' + labelClass +'" data-l1key="status" style="font-size:0.8em;text-transform: uppercase;"></span>';
   tr += '</td>';
   tr += '<td style="cursor:default;"><span class="updateAttr" data-l1key="id" style="display:none;"></span><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name" style="font-size:0.8em;"></span>';
- 
+
   if(_update.configuration && _update.configuration.version){
     tr += ' <span class="label label-warning">'+_update.configuration.version+'</span>';
   }

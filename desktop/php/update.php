@@ -7,6 +7,7 @@ if (!isConnect('admin')) {
 <i class="fas fa-clock-o" style="cursor:default;"></i> <span style="cursor:default;">{{Dernière vérification : }}</span><span class="label label-info" id="span_lastUpdateCheck" style="margin-bottom: 5px;font-size:1em;cursor:default;"></span>
 <a class="btn btn-success pull-right" id="bt_saveUpdate" style="margin-top:5px;"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
 <a class="btn btn-info pull-right" id="bt_checkAllUpdate" style="margin-top:5px;"><i class="fas fa-refresh"></i> {{Vérifier les mises à jour}}</a>
+<a class="btn btn-warning pull-right" id="bt_upgradeV4" style="margin-top:5px;"><i class="fas fa-level-up-alt"></i> {{Mettre à niveau V4}}</a>
 <a href="#" class="btn btn-default pull-right" id="bt_updateJeedom" style="margin-top:5px;"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 <br/><br/>
 
@@ -58,9 +59,7 @@ if (!isConnect('admin')) {
 <div id="md_specifyUpdate">
 	<form class="form-horizontal">
 		<fieldset>
-			<div class="alert alert-warning">
-				{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
-			</div>
+			<div class="alert alert-danger">{{Avant toute mise à jour, merci de consulter la note de version du core de Jeedom}} <a target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{ici}}</a></div>
 			<div class="form-group">
 				<div class="form-group">
 					<label class="col-xs-6 control-label">{{Pré-update (mettre à jour le script d'update avant)}}</label>
