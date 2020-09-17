@@ -2635,7 +2635,7 @@
     },
     "desktop\/js\/widgets.js": {
         "Largeur desktop": "Desktop width",
-        "Largeur mobile": "Movable width",
+        "Largeur mobile": "Mobile width",
         "Time widget": "Time widget",
         "Remplacement de widget": "Widget replacement",
         "Appliquer ce widget à": "Apply this widget to",
