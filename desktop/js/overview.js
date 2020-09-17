@@ -211,7 +211,7 @@ $(function() {
       event.stopPropagation()
       if (event.ctrlKey) {
         var cmdIds = []
-        $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+        $(this).closest('div.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
           cmdIds.push($(this).data('cmd_id'))
         })
         cmdIds = cmdIds.join('-')
@@ -220,7 +220,7 @@ $(function() {
       }
       $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
     }
-  }, '.eqLogic-widget .history')
+  }, 'div.eqLogic-widget .history')
 
 })
 
@@ -275,7 +275,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
               var fullHeight = 0
               var thisWidth = 0
               var thisHeight = 0
-              $('#md_overviewSummary .eqLogic-widget').each(function( index ) {
+              $('#md_overviewSummary div.eqLogic-widget').each(function( index ) {
                 thisWidth = $(this).outerWidth(true)
                 thisHeight = $(this).outerHeight(true)
                 if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5

@@ -85,25 +85,22 @@ function initEquipment(_object_id) {
 
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
-    setTileSize('.eqLogic')
-    setTileSize('.scenario')
-    $('#div_displayEquipement > .objectHtml').packery({gutter :0})
-    $('.div_displayEquipement .objectHtml').packery({gutter :0})
+    setTileSize('.eqLogic, .scenario')
+    $('#div_displayEquipement > .objectHtml, .div_displayEquipement .objectHtml').packery({gutter :0})
   })
 
   $('#in_searchDashboard').off('keyup').on('keyup',function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
     var search = $(this).value()
-    if(search == ''){
-      $('.eqLogic-widget').show()
-      $('.scenario-widget').show()
+    if(search == '') {
+      $('div.eqLogic-widget, div.scenario-widget').show()
       $('.objectHtml').packery()
       return
     }
     search = normTextLower(search)
     var match
-    $('.eqLogic-widget').each(function() {
+    $('div.eqLogic-widget').each(function() {
       match = false
       if (match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
@@ -126,7 +123,7 @@ function initEquipment(_object_id) {
         $(this).hide()
       }
     })
-    $('.scenario-widget').each(function(){
+    $('.scenario-widget').each(function() {
       match = false
       if (match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
@@ -139,7 +136,7 @@ function initEquipment(_object_id) {
     })
     $('.objectHtml').packery()
     var count
-    $('.objectHtml').each(function(){
+    $('.objectHtml').each(function() {
       count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
       if (count == 0) {
         $(this).closest('.div_displayEquipement').hide()

@@ -47,7 +47,6 @@ function initEqanalyse() {
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.eqLogic')
-    $('#div_displayAlert').packery({gutter : 0})
-    $('#div_displayBattery').packery({gutter : 0})
+    $('#div_displayAlert, #div_displayBattery').packery({gutter : 0})
   })
 }

@@ -1,12 +1,12 @@
 "use strict"
 
 var nbActiveAjaxRequest = 0
-$(document).ajaxStart(function () {
+$(document).ajaxStart(function() {
   nbActiveAjaxRequest++
   $.showLoading()
 })
 
-$(document).ajaxStop(function () {
+$(document).ajaxStop(function() {
   nbActiveAjaxRequest--
   if (nbActiveAjaxRequest <= 0) {
     nbActiveAjaxRequest = 0
@@ -274,7 +274,7 @@ function changeThemeAuto(_ambiantLight){
     }
     sensor.start()
   } else if (jeedom.theme.theme_changeAccordingTime == "1") {
-    setInterval(function () {
+    setInterval(function() {
       checkThemechange()
     }, 60000)
   }
@@ -454,7 +454,7 @@ function initApplication(_reinit) {
 
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data)
-          $.include(include, function () {
+          $.include(include, function() {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
 
@@ -539,7 +539,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
   }
   if (_page == 'connection') {
     var page = 'index.php?v=m&ajax=1&p=' + _page
-    $('#page').load(page, function () {
+    $('#page').load(page, function() {
       $('body').attr('data-page', 'connection')
       $('#page').trigger('create')
       if (APP_MODE) {
@@ -574,7 +574,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
 
 
   if (isset(_dialog) && _dialog) {
-    $('#popupDialog .content').load(page, function () {
+    $('#popupDialog .content').load(page, function() {
       var functionName = ''
       if (init(_plugin) != '') {
         functionName = 'init' + _plugin.charAt(0).toUpperCase() + _plugin.substring(1).toLowerCase() + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
@@ -590,7 +590,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
       }
       Waves.init()
       $("#popupDialog").popup({
-        beforeposition: function () {
+        beforeposition: function() {
           $(this).css({
             width: window.innerWidth - 40,
           })
@@ -601,7 +601,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
       $('#popupDialog').trigger('create').popup('open')
     })
   } else {
-    $('#page').hide().load(page, function () {
+    $('#page').hide().load(page, function() {
       $('body').attr('data-page', _page)
       $('#page').trigger('create')
       window.history.pushState('', '', 'index.php?v=m&p=home')
@@ -640,7 +640,7 @@ function modal(_name) {
       $('#div_popup').empty().popup("close")
       $("[data-role=popup]").popup("close")
     } else {
-      $('#div_popup').empty().load(_name, function () {
+      $('#div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
       });
     }
@@ -699,7 +699,7 @@ function setTileSize(_filter) {
     jeedom.theme['widget::margin'] = 4
   }
   var bsize = deviceInfo.bSize
-  $(_filter).each(function () {
+  $(_filter).each(function() {
     $(this).css({'margin':'0px', 'padding':'0px'})
     if ($(this).hasClass('col2')) {
       $(this).width(bsize * 2)

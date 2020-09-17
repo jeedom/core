@@ -22,9 +22,9 @@ jeedom.eqLogic.cache = Array();
 
 jeedom.eqLogic.changeDisplayObjectName = function(_display){
   if(_display){
-    $('.eqLogic-widget').addClass('displayObjectName');
+    $('div.eqLogic-widget').addClass('displayObjectName');
   }else{
-    $('.eqLogic-widget').removeClass('displayObjectName');
+    $('div.eqLogic-widget').removeClass('displayObjectName');
   }
 }
 

@@ -84,7 +84,7 @@ jeedomUI.saveWidgetDisplay = function(_params) {
   var cmds = []
   var eqLogics = []
   var scenarios = []
-  $('.eqLogic-widget:not(.eqLogic_layout_table)').each(function() {
+  $('div.eqLogic-widget:not(div.eqLogic_layout_table)').each(function() {
     var eqLogic = $(this)
     var order = 1
     eqLogic.find('.cmd').each(function() {
@@ -95,7 +95,7 @@ jeedomUI.saveWidgetDisplay = function(_params) {
       order++
     })
   })
-  $('.eqLogic-widget.eqLogic_layout_table').each(function() {
+  $('div.eqLogic-widget.eqLogic_layout_table').each(function() {
     var eqLogic = $(this)
     var order = 1
     eqLogic.find('.cmd').each(function() {
@@ -111,7 +111,7 @@ jeedomUI.saveWidgetDisplay = function(_params) {
   if (init(_params['dashboard']) == 1) {
     $('.div_displayEquipement').each(function() {
       var order = 1
-      $(this).find('.eqLogic-widget,.scenario-widget').each(function() {
+      $(this).find('div.eqLogic-widget, div.scenario-widget').each(function() {
         if ($(this).hasClass('eqLogic-widget')) {
           var eqLogic = {id :$(this).attr('data-eqlogic_id')}
           eqLogic.display = {}
@@ -201,22 +201,22 @@ infos/actions tile signals
 jeedomUI.setEqSignals = function() {
   $('body').off('mouseenter').off('mouseleave')
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
-    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalAction')
+    if(!isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalAction')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
-    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction')
+    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction')
   })
   .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
-    if(!isEditing) $(this).closest('.eqLogic-widget').addClass('eqSignalInfo')
+    if(!isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalInfo')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
-    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo')
+    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo')
   })
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
-    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
-    if(!isEditing) $(this).closest('.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
   })
 }
 
@@ -230,9 +230,9 @@ jeedomUI.setHistoryModalHandler = function() {
     if (isEditing) return false
     event.stopImmediatePropagation()
     event.stopPropagation()
-    if (event.ctrlKey && $(this).closest('.eqLogic.eqLogic-widget').html() != undefined) {
+    if (event.ctrlKey && $(this).closest('div.eqLogic.eqLogic-widget').html() != undefined) {
       var cmdIds = []
-      $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
+      $(this).closest('div.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
         cmdIds.push($(this).data('cmd_id'))
       })
       cmdIds = [...new Set(cmdIds)]

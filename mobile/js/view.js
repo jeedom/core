@@ -45,8 +45,7 @@ function initView(_view_id) {
       } else {
         $('.chartContainer').width(((deviceInfo.width / 2) - 20))
       }
-      setTileSize('.eqLogic')
-      setTileSize('.scenario')
+      setTileSize('.eqLogic, .scenario')
       $('.eqLogicZone').packery({gutter : 0})
       var screenWidth = $(window).width() - 5
       $('.div_viewZone .table-responsive').each(function(){
