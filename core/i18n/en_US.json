@@ -892,6 +892,12 @@
         "Beta-testeur(s)": "Beta-tester (s)",
         "Remerciements": "Thanks"
     },
+    "desktop\/modal\/update.upgrade.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Mettre à niveau V4": "Upgrade to V4",
+        "Etes vous certain de vouloir mettre à niveau Jeedom en V4 ?": "Are you sure you want to upgrade Jeedom to V4?",
+        "Votre version actuelle de Jeedom ainsi que vos plugins seront sauvegardés avant migration. En cas de besoin il suffit de restaurer la dernière sauvegarde pour revenir en V3.": "Your current version of Jeedom as well as your plugins will be saved before migration. If necessary, simply restore the last backup to return to V3"
+    },
     "desktop\/modal\/scenario.summary.php": {
         "401 - Accès non autorisé": "401 - Access not allowed",
         "Enregistrer": "Save",
@@ -1273,6 +1279,7 @@
         "Dernière vérification : ": "Last check:",
         "Sauvegarder": "Save",
         "Vérifier les mises à jour": "Check updates",
+        "Mettre à niveau V4": "Upgrade to V4",
         "Mettre à jour": "Update",
         "Core et plugins": "Core and plugins",
         "Autre": "Other",
@@ -2022,6 +2029,7 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Options",
+        "Mise à niveau V4": "V4 upgrade",
         "Etes vous sur de vouloir mettre à jour cet objet ?": "Do you really want to update this object?",
         "Etes vous sur de vouloir supprimer cet objet ?": "Do you really want to delete this object?",
         "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "The operation is successful. Thanks for doing F5 for the latest news",

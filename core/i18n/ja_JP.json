@@ -892,6 +892,12 @@
         "Beta-testeur(s)": "",
         "Remerciements": ""
     },
+    "desktop\/modal\/update.upgrade.php": {
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Mettre à niveau V4": "",
+        "Etes vous certain de vouloir mettre à niveau Jeedom en V4 ?": "",
+        "Votre version actuelle de Jeedom ainsi que vos plugins seront sauvegardés avant migration. En cas de besoin il suffit de restaurer la dernière sauvegarde pour revenir en V3.": ""
+    },
     "desktop\/modal\/scenario.summary.php": {
         "401 - Accès non autorisé": "401  - 不正アクセス",
         "Enregistrer": "記録",
@@ -1273,6 +1279,7 @@
         "Dernière vérification : ": "最終口コミ：",
         "Sauvegarder": "セーブ",
         "Vérifier les mises à jour": "アップデートの確認",
+        "Mettre à niveau V4": "",
         "Mettre à jour": "更新",
         "Core et plugins": "コアとプラグイン",
         "Autre": "他の",
@@ -2022,6 +2029,7 @@
     },
     "desktop\/js\/update.js": {
         "Options": "オプション",
+        "Mise à niveau V4": "",
         "Etes vous sur de vouloir mettre à jour cet objet ?": "あなたはこのアイテムを更新してもよろしいですか？",
         "Etes vous sur de vouloir supprimer cet objet ?": "あなたは、この項目を削除してもよろしいですか？",
         "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "L \\「操作は成功です。最新ニュースをF5に感謝",

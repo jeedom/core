@@ -892,6 +892,12 @@
         "Beta-testeur(s)": "",
         "Remerciements": ""
     },
+    "desktop\/modal\/update.upgrade.php": {
+        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Mettre à niveau V4": "",
+        "Etes vous certain de vouloir mettre à niveau Jeedom en V4 ?": "",
+        "Votre version actuelle de Jeedom ainsi que vos plugins seront sauvegardés avant migration. En cas de besoin il suffit de restaurer la dernière sauvegarde pour revenir en V3.": ""
+    },
     "desktop\/modal\/scenario.summary.php": {
         "401 - Accès non autorisé": "401 - Ulaşım yetkisiz",
         "Enregistrer": "Kaydet",
@@ -1273,6 +1279,7 @@
         "Dernière vérification : ": "Son kontrol :",
         "Sauvegarder": "Kaydet",
         "Vérifier les mises à jour": "Güncellemeleri kontrol et",
+        "Mettre à niveau V4": "",
         "Mettre à jour": "Güncelle",
         "Core et plugins": "Çekirdek ve ekler",
         "Autre": "Başka",
@@ -2022,6 +2029,7 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Opsiyonlar",
+        "Mise à niveau V4": "",
         "Etes vous sur de vouloir mettre à jour cet objet ?": "Bu nesneyi güncellemeye emin misiniz ?",
         "Etes vous sur de vouloir supprimer cet objet ?": "Bu nesneyi silmekden eminmisiniz ?",
         "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "L \\ 'işlemi başarılı olur. En son haberler için F5 için teşekkür ederiz",

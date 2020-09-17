@@ -892,6 +892,12 @@
         "Beta-testeur(s)": "Beta-tester (s)",
         "Remerciements": "Gracias"
     },
+    "desktop\/modal\/update.upgrade.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Mettre à niveau V4": "Actualice a V4",
+        "Etes vous certain de vouloir mettre à niveau Jeedom en V4 ?": "¿Está seguro de que desea actualizar Jeedom a V4?",
+        "Votre version actuelle de Jeedom ainsi que vos plugins seront sauvegardés avant migration. En cas de besoin il suffit de restaurer la dernière sauvegarde pour revenir en V3.": "Su versión actual de Jeedom, así como sus complementos, se guardarán antes de la migración. Si es necesario, simplemente restaure la última copia de seguridad para volver a V3"
+    },
     "desktop\/modal\/scenario.summary.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Enregistrer": "Guardar",
@@ -1273,6 +1279,7 @@
         "Dernière vérification : ": "Ultima verificación :",
         "Sauvegarder": "Guardar",
         "Vérifier les mises à jour": "Verifique las actualizaciones",
+        "Mettre à niveau V4": "Actualice a V4",
         "Mettre à jour": "Actualizar",
         "Core et plugins": "Core y plugins",
         "Autre": "Otro",
@@ -2022,6 +2029,7 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Opciones",
+        "Mise à niveau V4": "Actualización V4",
         "Etes vous sur de vouloir mettre à jour cet objet ?": "¿Está seguro de que desea actualizar este objeto?",
         "Etes vous sur de vouloir supprimer cet objet ?": "¿Está seguro de que desea borrar este objeto?",
         "L\\'opération est réussie. Merci de faire F5 pour avoir les dernières nouveautés": "La operación fue exitosa. Gracias por pulsar F5 para refrescar las novedades",
