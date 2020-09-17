@@ -55,6 +55,7 @@
 - **Configuration** : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - **Fenêtre de configuration avancée d'équipement** : Changement dynamique de la configuration tableau.
 - **Equipements** : Nouvelle catégorie *Ouvrant*.
+- **Equipements** : Possibilité d'inverser les commande de type curseur (info et action)
 - **Fenêtre A propos** : Ajout de raccourcis vers le Changelog et la FAQ.
 - Pages Widgets / Objets / Scénarios / Interactions / Plugins :
 	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouvel onglet.
@@ -80,7 +81,7 @@
 - Sécurisation des requêtes Ajax.
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
-- Possibilité d'inverser les commande de type curseur (info et action)
+
 
 >**IMPORTANT**
 >
