@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 ?>
 
-<a class="btn btn-warning pull-right" id="bt_goUpgradeV4" style="margin-top:5px;" disabled="true" title="Veuillez lire toute la page avant de lancer la migration V4.">
+<a class="btn btn-warning pull-right" id="bt_goUpgradeV4" disabled="true" title="Veuillez lire toute la page avant de lancer la migration V4.">
   <i class="fas fa-level-up-alt"></i> {{Mettre à niveau V4}}
 </a>
 
@@ -88,6 +88,7 @@ if (!isConnect('admin')) {
       </div>
     </div>
 </div>
+
 <div class="row" id="v4Compatibility_div">
 <h4 class="text-center">Compatibilité des plugins installés
 <img src="core/img/logo_v4Compatible.png" alt="" height=30px>
@@ -109,6 +110,7 @@ if (!isConnect('admin')) {
        </table>
 </div>
 </div>
+
 <style>
   .certif-badge {
     color:white;
@@ -160,11 +162,11 @@ function countIncompatible() {
   let count_incompatible = $('#plugins_upgrade >tbody >tr >td .fa-times').length;
   if (count_incompatible == 0) {
     let count_plugins = $('#plugins_upgrade >tbody >tr').length;
-    $('#div_alert_upgrade').showAlert({message: '<strong>Les ' + count_plugins + ' plugins installés sur votre box Jeedom ont tous confirmé leur compatibilité avec Jeedom V4.</strong> Tous vos plugins resteront pleinement fonctionnels après la migration vers Jeedom en version 4.<br>Consulter la section <a href="#v4Compatibility_div"><strong>Compatibilité des plugins</strong></a> pour procéder à la mise à niveau V4.' , level: 'success'})
+    $('#div_alert_upgrade').showAlert({message: '<strong>Les ' + count_plugins + ' plugins installés sur votre box Jeedom ont tous confirmé leur compatibilité avec Jeedom V4.</strong> Tous vos plugins resteront pleinement fonctionnels après la migration vers Jeedom en version 4.<br>Consulter la section <a href="#"><strong>Compatibilité des plugins</strong></a> pour procéder à la mise à niveau V4.' , level: 'success'})
   } else if (count_incompatible == 1) {
-    $('#div_alert_upgrade').showAlert({message: '<strong>1 seul plugin n\'a pas confirmé sa compatibilité avec Jeedom V4.</strong> Nous ne pouvons garantir le bon fonctionnement de ce plugin suite à la migration vers Jeedom en version 4.<br>Consulter la section <a href="#v4Compatibility_div"><strong>Compatibilité des plugins</strong></a> avant de procéder à la mise à niveau V4.', level: 'warning'})
+    $('#div_alert_upgrade').showAlert({message: '<strong>1 seul plugin n\'a pas confirmé sa compatibilité avec Jeedom V4.</strong> Nous ne pouvons garantir le bon fonctionnement de ce plugin suite à la migration vers Jeedom en version 4.<br>Consulter la section <a href="#"><strong>Compatibilité des plugins</strong></a> avant de procéder à la mise à niveau V4.', level: 'warning'})
   } else if (count_incompatible > 1) {
-    $('#div_alert_upgrade').showAlert({message: '<strong>'+ count_incompatible + ' plugins n\'ont pas confirmé leur compatibilité avec Jeedom V4.</strong> Nous ne pouvons garantir le bon fonctionnement de ces plugins suite à la migration vers Jeedom en version 4.<br>Consulter la section <a href="#v4Compatibility_div"><strong>Compatibilité des plugins</strong></a> pour en apprendre davantage.', level: 'danger'})
+    $('#div_alert_upgrade').showAlert({message: '<strong>'+ count_incompatible + ' plugins n\'ont pas confirmé leur compatibilité avec Jeedom V4.</strong> Nous ne pouvons garantir le bon fonctionnement de ces plugins suite à la migration vers Jeedom en version 4.<br>Consulter la section <a href="#"><strong>Compatibilité des plugins</strong></a> pour en apprendre davantage.', level: 'danger'})
   }
 }
 
@@ -193,6 +195,10 @@ function getBadgeCertification(certifLevel) {
       break;
   }
 }
+
+$('#div_alert_upgrade').off('click').on('click', function() {
+  $('#md_modal')[0].scrollTop = $('#md_modal')[0].scrollHeight;
+});
 
 $('#bt_goUpgradeV4').off('click').on('click', function() {
   if($(this).attr('disabled') != 'disabled') {
