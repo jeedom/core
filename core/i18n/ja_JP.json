@@ -1804,7 +1804,8 @@
         "Aucune": "いいえ",
         "Scenario": "シナリオ",
         "Édition du Dashboard": "ダッシュボード版",
-        "Clic: hauteur max<br>CtrlClic: hauteur min": "クリック：最大高さ<br> CtrlClick：最小の高さ"
+        "Régler toutes les tuiles à la hauteur de la moins haute.": "",
+        "Régler toutes les tuiles à la hauteur de la plus haute.": ""
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

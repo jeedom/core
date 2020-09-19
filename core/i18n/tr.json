@@ -1804,7 +1804,8 @@
         "Aucune": "Hayır",
         "Scenario": "Senaryo",
         "Édition du Dashboard": "",
-        "Clic: hauteur max<br>CtrlClic: hauteur min": ""
+        "Régler toutes les tuiles à la hauteur de la moins haute.": "",
+        "Régler toutes les tuiles à la hauteur de la plus haute.": ""
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

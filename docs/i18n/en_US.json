@@ -1847,10 +1847,7 @@
         "vous pouvez changer la taille des tuiles et leur disposition sur le Dashboard": "you can change the size of the tiles and their arrangement on the Dashboard",
         "les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration": "the equipment refresh icons are replaced by an icon allowing access to their configuration",
         "Cette icône ouvre une fenêtre d'édition comportant les paramètres d'affichage de l'équipement et de ses commandes": "This icon opens an editing window with the display parameters of the equipment and its controls",
-        "A droite de chaque objet, une icône permet de": "To the right of each object, an icon allows you to",
-        "Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la plus haute": "All the tiles of this object will adopt a height equal to the highest tile",
-        "Ctrl Clic": "Ctrl Click",
-        "Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la moins haute": "All the tiles of this object will adopt a height equal to the lowest tile",
+        "Sur chaque objet, à droite de son nom et résumé, deux icônes permettent d'aligner la hauteur de toutes les tuiles de l'objet sur la plus haute ou la moins haute": "On each object, to the right of its name and summary, two icons allow you to align the height of all the tiles of the object on the highest or lowest",
         "Barre de menu de Jeedom": "Jeedom menu bar",
         "Clic sur l'horloge (barre de menu": "Click on the clock (menu bar",
         "Ouvre la Timeline": "Open the Timeline",
@@ -1888,14 +1885,7 @@
         " time]": " time]",
         "[time]": "[time]",
         "*time*": "*time*",
-        " time*": " time*",
-        " Clic.": " Click.",
-        " Clic?": " Click?",
-        "Clic ": "Click ",
-        " Clic]": " Click]",
-        "[Clic]": "[Click]",
-        "*Clic*": "*Click*",
-        " Clic*": " Click*"
+        " time*": " time*"
     },
     "design.md": {
         "Accueil → Design": "Home → Design",

@@ -1804,7 +1804,8 @@
         "Aucune": "Ninguna",
         "Scenario": "Escenario",
         "Édition du Dashboard": "Edición del tablero",
-        "Clic: hauteur max<br>CtrlClic: hauteur min": "Click: altura máxima <br> CtrlClick: altura mínima"
+        "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todas las baldosas a la altura de la más baja",
+        "Régler toutes les tuiles à la hauteur de la plus haute.": "Coloca todas las fichas a la altura de la más alta"
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",

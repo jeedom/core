@@ -1804,7 +1804,8 @@
         "Aucune": "None",
         "Scenario": "Scenario",
         "Édition du Dashboard": "Dashboard edition",
-        "Clic: hauteur max<br>CtrlClic: hauteur min": "Click: max height <br> CtrlClick: min height"
+        "Régler toutes les tuiles à la hauteur de la moins haute.": "Adjust all the tiles to the height of the lowest",
+        "Régler toutes les tuiles à la hauteur de la plus haute.": "Set all the tiles to the height of the tallest"
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",

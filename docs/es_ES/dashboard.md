@@ -68,10 +68,7 @@ En modo edición (*el lápiz en la esquina superior derecha*), puede cambiar el 
 
 los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración. Este icono abre una ventana de edición con los parámetros de visualización del equipo y sus controles.
 
-A la derecha de cada objeto, un icono le permite :
-
-- Clic : Todas las fichas de este objeto adoptarán una altura igual a la ficha más alta.
-- Ctrl Click : Todos los mosaicos de este objeto adoptarán una altura igual al mosaico más bajo.
+En cada objeto, a la derecha de su nombre y resumen, dos iconos le permiten alinear la altura de todos los mosaicos del objeto en el más alto o más bajo.
 
 ## Barra de menú Jeedom
 

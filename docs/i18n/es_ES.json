@@ -1847,10 +1847,7 @@
         "vous pouvez changer la taille des tuiles et leur disposition sur le Dashboard": "puede cambiar el tamaño de los mosaicos y su disposición en el Tablero",
         "les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration": "los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración",
         "Cette icône ouvre une fenêtre d'édition comportant les paramètres d'affichage de l'équipement et de ses commandes": "Este icono abre una ventana de edición con los parámetros de visualización del equipo y sus controles",
-        "A droite de chaque objet, une icône permet de": "A la derecha de cada objeto, un icono le permite",
-        "Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la plus haute": "Todas las fichas de este objeto adoptarán una altura igual a la ficha más alta",
-        "Ctrl Clic": "Ctrl Click",
-        "Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la moins haute": "Todos los mosaicos de este objeto adoptarán una altura igual al mosaico más bajo",
+        "Sur chaque objet, à droite de son nom et résumé, deux icônes permettent d'aligner la hauteur de toutes les tuiles de l'objet sur la plus haute ou la moins haute": "En cada objeto, a la derecha de su nombre y resumen, dos iconos le permiten alinear la altura de todos los mosaicos del objeto en el más alto o más bajo",
         "Barre de menu de Jeedom": "Barra de menú Jeedom",
         "Clic sur l'horloge (barre de menu": "Haga clic en el reloj (barra de menú",
         "Ouvre la Timeline": "Abre la línea de tiempo",
@@ -1888,14 +1885,7 @@
         " time]": " tiempo]",
         "[time]": "[tiempo]",
         "*time*": "*tiempo*",
-        " time*": " tiempo*",
-        " Clic.": " Clic.",
-        " Clic?": " Clic?",
-        "Clic ": "Clic ",
-        " Clic]": " Clic]",
-        "[Clic]": "[Clic]",
-        "*Clic*": "*Clic*",
-        " Clic*": " Clic*"
+        " time*": " tiempo*"
     },
     "design.md": {
         "Accueil → Design": "Inicio → Diseño",

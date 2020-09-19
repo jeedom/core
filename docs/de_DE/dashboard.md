@@ -68,10 +68,7 @@ Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der 
 
 Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf ihre Konfiguration ermöglicht. Dieses Symbol öffnet ein Bearbeitungsfenster mit den Anzeigeparametern des Geräts und seiner Steuerelemente.
 
-Rechts von jedem Objekt können Sie ein Symbol verwenden :
-
-- Klicken : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der höchsten Kachel entspricht.
-- Strg Klicken Sie auf : Alle Kacheln dieses Objekts nehmen eine Höhe an, die der niedrigsten Kachel entspricht.
+Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Sie mit zwei Symbolen die Höhe aller Kacheln des Objekts am höchsten oder niedrigsten ausrichten.
 
 ## Jeedom Menüleiste
 
