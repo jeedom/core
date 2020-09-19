@@ -55,6 +55,7 @@
 - **Konfiguration** : Die Registerkarte *Befehle* ist jetzt in der Registerkarte *Geräte*.
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
 - **Geräte** : Neue Kategorie *Öffnen*.
+- **Geräte** : Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
 - Widgets / Objekte / Szenarien / Interaktionen / Plugins Seiten :
 	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
@@ -80,7 +81,7 @@
 - Sichern von Ajax-Anfragen.
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
-- Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
+
 
 >**Wichtig**
 >

@@ -55,6 +55,7 @@
 - **Configuração** : A guia *Comandos* agora está na guia *Instalações*.
 - **Janela de configuração avançada de equipamentos** : Alteração dinâmica da configuração do quadro de distribuição.
 - **Instalações** : Nova categoria *Abertura*.
+- **Instalações** : Possibilidade de inverter comandos do tipo cursor (informação e ação)
 - **Sobre a janela** : Adição de atalhos ao Changelog e FAQ.
 - Páginas de Widgets / Objetos / Cenários / Interações / Plugins :
 	- Ctrl Clic / Clic Center em um equipamento de widget, objeto, cenário, interação, plug-in : Abre em uma nova guia.
@@ -80,7 +81,7 @@
 - Protegendo solicitações Ajax.
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
-- Possibilidade de inverter comandos do tipo cursor (informação e ação)
+
 
 >**IMPORTANTE**
 >

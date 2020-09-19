@@ -846,6 +846,7 @@
         "Changement dynamique de la configuration tableau": "Changement dynamique de la configuration tableau",
         "Ouvrant": "Ouvrant",
         "Nouvelle catégorie": "Nouvelle catégorie",
+        "Possibilité d'inverser les commande de type curseur (info et action": "Possibilité d'inverser les commande de type curseur (info et action",
         "Fenêtre A propos": "Fenêtre A propos",
         "Ajout de raccourcis vers le Changelog et la FAQ": "Ajout de raccourcis vers le Changelog et la FAQ",
         "Pages Widgets \/ Objets \/ Scénarios \/ Interactions \/ Plugins": "Pages Widgets \/ Objets \/ Scénarios \/ Interactions \/ Plugins",
@@ -888,7 +889,6 @@
         "Sécurisation des requêtes Ajax": "Sécurisation des requêtes Ajax",
         "Corrections de bugs": "Corrections de bugs",
         "Nombreuses optimisations de performance desktop \/ mobile": "Nombreuses optimisations de performance desktop \/ mobile",
-        "Possibilité d'inverser les commande de type curseur (info et action": "Possibilité d'inverser les commande de type curseur (info et action",
         "IMPORTANT": "IMPORTANT",
         "L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé": "L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé"
     },

@@ -55,6 +55,7 @@
 - **Configuration** : The tab *Commands* is now in the tab *Equipments*.
 - **Advanced equipment configuration window** : Dynamic change of table configuration.
 - **Equipments** : New Category *Opening*.
+- **Equipments** : Possibility of inverting cursor type commands (info and action)
 - **About window** : Addition of links to Changelog and FAQ.
 - Widgets / Objects / Scenarios / Interactions / Plugins Pages :
 	- Ctrl Clic / Clic Center on a Widget, Object, Scenarios, Interaction, plugin equipment : Opens in a new tab.
@@ -80,7 +81,7 @@
 - Securing Ajax requests.
 - Bug fixes.
 - Numerous desktop / mobile performance optimizations.
-- Possibility of inverting cursor type commands (info and action)
+
 
 >**Important**
 >
