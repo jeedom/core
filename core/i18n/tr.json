@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": "Anahtar ile kullanıcı girişi:"
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Hata",
+        "[Erreur master] ": "[Ana hata]",
         "Tous les crons sont actuellement désactivés": "Tüm crons şu anda devre dışı",
         "[Erreur] Classe ou fonction non trouvée ": "[Hata] Sınıf veya işlev bulunamadı",
-        "[Erreur] Non trouvée ": "[Hata] Bulunamadı",
-        "Erreur sur ": "Hata",
-        "[Erreur master] ": "[Ana hata]"
+        "[Erreur] Non trouvée ": "[Hata] Bulunamadı"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "Senaryo:",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "Komut alt türü boş bırakılamaz:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Bir cihaza eklemeden sipariş oluşturamazsınız",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
-        "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
         ". Sur preExec de la commande": "Sipariş öncesi",
+        ". Sur postExec de la commande": "",
+        "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
         ". Détails : ": "Detaylar:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Ekipman devre dışı - komut çalıştırılamıyor:",
         "Exécution de la commande ": "Komuta nın uygulanması",

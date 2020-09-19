@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": "Connexion de l\\'utilisateur par clef : "
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Erreur sur ",
+        "[Erreur master] ": "[Erreur master] ",
         "Tous les crons sont actuellement désactivés": "Tous les crons sont actuellement désactivés",
         "[Erreur] Classe ou fonction non trouvée ": "[Erreur] Classe ou fonction non trouvée ",
-        "[Erreur] Non trouvée ": "[Erreur] Non trouvée ",
-        "Erreur sur ": "Erreur sur ",
-        "[Erreur master] ": "[Erreur master] "
+        "[Erreur] Non trouvée ": "[Erreur] Non trouvée "
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "Scenario  : ",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Vous ne pouvez pas créer une commande sans la rattacher à un équipement",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut être supérieure à la valeur maximum",
-        "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de ",
         ". Sur preExec de la commande": ". Sur preExec de la commande",
+        ". Sur postExec de la commande": ". Sur postExec de la commande",
+        "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de ",
         ". Détails : ": ". Détails : ",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Equipement désactivé - impossible d\\'exécuter la commande : ",
         "Exécution de la commande ": "Exécution de la commande ",

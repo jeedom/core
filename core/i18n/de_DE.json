@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": "Benutzeranmeldung per Schlüssel:"
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Fehler ein",
+        "[Erreur master] ": "[Master-Fehler]",
         "Tous les crons sont actuellement désactivés": "Alle Crones sind derzeit deaktiviert",
         "[Erreur] Classe ou fonction non trouvée ": "[Fehler] Klasse oder Funktion nicht gefunden",
-        "[Erreur] Non trouvée ": "[Fehler] Nicht gefunden",
-        "Erreur sur ": "Fehler ein",
-        "[Erreur master] ": "[Master-Fehler]"
+        "[Erreur] Non trouvée ": "[Fehler] Nicht gefunden"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "Szenario:",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "Der Befehlssubtyp darf nicht leer sein:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Sie können keine Bestellung erstellen, ohne sie an ein Gerät anzuhängen",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "Der Mindestwert der Bestellung darf nicht größer als der Höchstwert sein",
-        "Erreur lors de l\\'exécution de ": "Fehler beim Ausführen",
         ". Sur preExec de la commande": "Auf PreExec der Bestellung",
+        ". Sur postExec de la commande": "Auf postExec der Bestellung",
+        "Erreur lors de l\\'exécution de ": "Fehler beim Ausführen",
         ". Détails : ": "Details:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Gerät deaktiviert - Befehl kann nicht ausgeführt werden:",
         "Exécution de la commande ": "Ausführen eines Befehls",

@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": "キーによるユーザーログイン："
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "エラーオン",
+        "[Erreur master] ": "[マスターエラー]",
         "Tous les crons sont actuellement désactivés": "すべてのcronは現在無効になっています",
         "[Erreur] Classe ou fonction non trouvée ": "[エラー]クラスまたは関数が見つかりません",
-        "[Erreur] Non trouvée ": "[エラー]見つかりません",
-        "Erreur sur ": "エラーオン",
-        "[Erreur master] ": "[マスターエラー]"
+        "[Erreur] Non trouvée ": "[エラー]見つかりません"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "シナリオ：",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
-        "Erreur lors de l\\'exécution de ": "",
         ". Sur preExec de la commande": "",
+        ". Sur postExec de la commande": "",
+        "Erreur lors de l\\'exécution de ": "",
         ". Détails : ": "",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "",
         "Exécution de la commande ": "オーダーの実行",

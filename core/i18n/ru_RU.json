@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": ""
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Ошибка",
+        "[Erreur master] ": "",
         "Tous les crons sont actuellement désactivés": "Все хроны в настоящее время отключены",
         "[Erreur] Classe ou fonction non trouvée ": "",
-        "[Erreur] Non trouvée ": "",
-        "Erreur sur ": "Ошибка",
-        "[Erreur master] ": ""
+        "[Erreur] Non trouvée ": ""
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
-        "Erreur lors de l\\'exécution de ": "",
         ". Sur preExec de la commande": "",
+        ". Sur postExec de la commande": "",
+        "Erreur lors de l\\'exécution de ": "",
         ". Détails : ": "",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "",
         "Exécution de la commande ": "Выполнение команды",

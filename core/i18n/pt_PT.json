@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": "Login do usuário por chave:"
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Erro",
+        "[Erreur master] ": "[Erro mestre]",
         "Tous les crons sont actuellement désactivés": "Todos os cron estão desativadas",
         "[Erreur] Classe ou fonction non trouvée ": "[Erro] Classe ou função não encontrada",
-        "[Erreur] Non trouvée ": "[Erro] Não encontrado",
-        "Erreur sur ": "Erro",
-        "[Erreur master] ": "[Erro mestre]"
+        "[Erreur] Non trouvée ": "[Erro] Não encontrado"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "Cenário:",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "O subtipo de comando não pode estar vazio:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Você não pode criar um pedido sem anexá-lo a um dispositivo",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
-        "Erreur lors de l\\'exécution de ": "Erro ao executar",
         ". Sur preExec de la commande": "No preExec do pedido",
+        ". Sur postExec de la commande": "No postExec do pedido",
+        "Erreur lors de l\\'exécution de ": "Erro ao executar",
         ". Détails : ": "Detalhes:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Equipamento desativado - não é possível executar o comando:",
         "Exécution de la commande ": "Execução da ordem",

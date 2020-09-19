@@ -2900,11 +2900,11 @@
         "Connexion de l\\'utilisateur par clef : ": "Accesso utente tramite chiave:"
     },
     "core\/php\/jeeCron.php": {
+        "Erreur sur ": "Errore acceso",
+        "[Erreur master] ": "[Errore principale]",
         "Tous les crons sont actuellement désactivés": "Tutti i croni sono attualmente disabilitati",
         "[Erreur] Classe ou fonction non trouvée ": "[Errore] Classe o funzione non trovata",
-        "[Erreur] Non trouvée ": "[Errore] Non trovato",
-        "Erreur sur ": "Errore acceso",
-        "[Erreur master] ": "[Errore principale]"
+        "[Erreur] Non trouvée ": "[Errore] Non trovato"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  : ": "Scenario:",
@@ -3571,8 +3571,9 @@
         "Le sous-type de la commande ne peut pas être vide :": "Il sottotipo di comando non può essere vuoto:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Non è possibile creare un ordine senza collegarlo a un dispositivo",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
-        "Erreur lors de l\\'exécution de ": "Errore durante l'esecuzione",
         ". Sur preExec de la commande": "Su preExec dell'ordine",
+        ". Sur postExec de la commande": "",
+        "Erreur lors de l\\'exécution de ": "Errore durante l'esecuzione",
         ". Détails : ": "Dettagli:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Apparecchiatura disattivata - impossibile eseguire il comando:",
         "Exécution de la commande ": "Esecuzione del comando",
