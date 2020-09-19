@@ -12,7 +12,6 @@
 - **Dashboard** : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - **Dashboard** : Possibilité de flouter les arrières plan des images de fond (Configuration -> Interface).
 - **Outils / Widgets** : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
-- **Widgets** : Possibilité d'ajouter des class css à un widget (voir documentation widget).
 - **Widgets** : Ajout d'un widget core *sliderVertical*.
 - **Centre de mise à jour** : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120 mins.
 - **Centre de mise à jour** : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
@@ -56,6 +55,7 @@
 - **Fenêtre de configuration avancée d'équipement** : Changement dynamique de la configuration tableau.
 - **Equipements** : Nouvelle catégorie *Ouvrant*.
 - **Equipements** : Possibilité d'inverser les commande de type curseur (info et action)
+- **Equipements** : Possibilité d'ajouter des class css à une tuile (voir documentation widget).
 - **Fenêtre A propos** : Ajout de raccourcis vers le Changelog et la FAQ.
 - Pages Widgets / Objets / Scénarios / Interactions / Plugins :
 	- Ctrl Clic / Clic Centre sur un Widget, Objet, Scénarios, Interaction, équipement de plugin : Ouvre dans un nouvel onglet.
