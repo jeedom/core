@@ -1804,7 +1804,8 @@
         "Aucune": "Não",
         "Scenario": "Cenas",
         "Édition du Dashboard": "Dashboard Edition",
-        "Clic: hauteur max<br>CtrlClic: hauteur min": "Clique: altura máxima <br> CtrlClick: altura mínima"
+        "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todos os ladrilhos para a altura do mais baixo",
+        "Régler toutes les tuiles à la hauteur de la plus haute.": "Defina todos os ladrilhos com a altura do mais alto"
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",

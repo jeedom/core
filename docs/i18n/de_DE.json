@@ -1847,10 +1847,7 @@
         "vous pouvez changer la taille des tuiles et leur disposition sur le Dashboard": "Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern",
         "les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration": "Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf ihre Konfiguration ermöglicht",
         "Cette icône ouvre une fenêtre d'édition comportant les paramètres d'affichage de l'équipement et de ses commandes": "Dieses Symbol öffnet ein Bearbeitungsfenster mit den Anzeigeparametern des Geräts und seiner Steuerelemente",
-        "A droite de chaque objet, une icône permet de": "Rechts von jedem Objekt können Sie ein Symbol verwenden",
-        "Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la plus haute": "Alle Kacheln dieses Objekts nehmen eine Höhe an, die der höchsten Kachel entspricht",
-        "Ctrl Clic": "Strg Klicken Sie auf",
-        "Toutes les tuiles de cet objet adopterons une hauteur égale à la tuile la moins haute": "Alle Kacheln dieses Objekts nehmen eine Höhe an, die der niedrigsten Kachel entspricht",
+        "Sur chaque objet, à droite de son nom et résumé, deux icônes permettent d'aligner la hauteur de toutes les tuiles de l'objet sur la plus haute ou la moins haute": "Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Sie mit zwei Symbolen die Höhe aller Kacheln des Objekts am höchsten oder niedrigsten ausrichten",
         "Barre de menu de Jeedom": "Jeedom Menüleiste",
         "Clic sur l'horloge (barre de menu": "Klicken Sie auf die Uhr (Menüleiste",
         "Ouvre la Timeline": "Öffnen Sie die Timeline",
@@ -1888,14 +1885,7 @@
         " time]": " Zeit]",
         "[time]": "[Zeit]",
         "*time*": "*Zeit*",
-        " time*": " Zeit*",
-        " Clic.": " Klicken.",
-        " Clic?": " Klicken?",
-        "Clic ": "Klicken ",
-        " Clic]": " Klicken]",
-        "[Clic]": "[Klicken]",
-        "*Clic*": "*Klicken*",
-        " Clic*": " Klicken*"
+        " time*": " Zeit*"
     },
     "design.md": {
         "Accueil → Design": "Startseite → Design",

@@ -1804,7 +1804,8 @@
         "Aucune": "Keine",
         "Scenario": "Szenario",
         "Édition du Dashboard": "Dashboard Edition",
-        "Clic: hauteur max<br>CtrlClic: hauteur min": "Klicken Sie auf: maximale Höhe <br> CtrlClick: min Höhe"
+        "Régler toutes les tuiles à la hauteur de la moins haute.": "Stellen Sie alle Kacheln auf die Höhe der niedrigsten ein",
+        "Régler toutes les tuiles à la hauteur de la plus haute.": "Stellen Sie alle Kacheln auf die höchste Höhe"
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
