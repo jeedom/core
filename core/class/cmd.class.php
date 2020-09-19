@@ -983,11 +983,21 @@ class cmd {
 		return false;
 	}
 
-	public function preExecCmd($_values = array()) {
-		if (!is_array($this->getConfiguration('jeedomPreExecCmd')) || count($this->getConfiguration('jeedomPreExecCmd')) == 0) {
+	private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
+		if (!is_array($this->getConfiguration($_type)) || count($this->getConfiguration($_type)) == 0) {
 			return;
 		}
-		foreach ($this->getConfiguration('jeedomPreExecCmd') as $action) {
+		$message = '';
+		switch ($_type) {
+		    case 'jeedomPreExecCmd':
+		        $message = __('. Sur preExec de la commande', __FILE__);
+		        break;
+		    case 'jeedomPostExecCmd':
+		        $message = __('. Sur postExec de la commande', __FILE__);
+		        break;
+		}
+
+		foreach ($this->getConfiguration($_type) as $action) {
 			try {
 				$options = array();
 				if (isset($action['options'])) {
@@ -1004,35 +1014,17 @@ class cmd {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Sur preExec de la commande', __FILE__) . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . $message . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 	}
 
+	public function preExecCmd($_values = array()) {
+		$this->pre_postExecCmd($_values, 'jeedomPreExecCmd');
+	}
+
 	public function postExecCmd($_values = array()) {
-		if (!is_array($this->getConfiguration('jeedomPostExecCmd'))) {
-			return;
-		}
-		foreach ($this->getConfiguration('jeedomPostExecCmd') as $action) {
-			try {
-				$options = array();
-				if (isset($action['options'])) {
-					$options = $action['options'];
-				}
-				if (is_array($_values) && count($_values) > 0) {
-					foreach ($_values as $key => $value) {
-						foreach ($options as &$option) {
-							if (!is_array($option)) {
-								$option = str_replace('#' . $key . '#', $value, $option);
-							}
-						}
-					}
-				}
-				scenarioExpression::createAndExec('action', $action['cmd'], $options);
-			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Sur preExec de la commande', __FILE__) . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
-			}
-		}
+		$this->pre_postExecCmd($_values, 'jeedomPostExecCmd');
 	}
 
 	/**

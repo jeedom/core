@@ -23,12 +23,41 @@ require_once __DIR__ . '/console.php';
 
 require_once __DIR__ . "/core.inc.php";
 
+function jeeCron_errorHandler($cron, $class=null, $function=null, $e) {
+	$cron->setState('error');
+	$cron->setPID('');
+	$cron->setCache('runtime', strtotime('now') - $datetimeStart);
+	$logicalId = config::genKey();
+	if ($e->getCode() != 0) {
+		$logicalId = $cron->getName() . '::' . $e->getCode();
+	}
+	echo '[Erreur] ' . $cron->getName() . ' : ' . log::exception($e);
+	if (isset($class) && $class != '') {
+		log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
+	} else if (isset($function) && $function != '') {
+		log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
+	} else {
+		log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
+	}
+}
+
+function jeeCronAll_errorHandler($cron, $e) {
+	if ($cron->getOnce() != 1) {
+		$cron->setState('error');
+		$cron->setPID('');
+		echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
+		log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
+	}
+}
+
 if (init('cron_id') != '') {
 	if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
 	$datetime = date('Y-m-d H:i:s');
 	$datetimeStart = strtotime('now');
+	$class = null;
+	$function = null;
 	$cron = cron::byId(init('cron_id'));
 	if (!is_object($cron)) {
 		die();
@@ -132,48 +161,19 @@ if (init('cron_id') != '') {
 		}
 		die();
 	} catch (Exception $e) {
-		$cron->setState('error');
-		$cron->setPID('');
-		$cron->setCache('runtime', strtotime('now') - $datetimeStart);
-		$logicalId = config::genKey();
-		if ($e->getCode() != 0) {
-			$logicalId = $cron->getName() . '::' . $e->getCode();
-		}
-		echo '[Erreur] ' . $cron->getName() . ' : ' . log::exception($e);
-		
-		if (isset($class) && $class != '') {
-			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
-		} else if (isset($function) && $function != '') {
-			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
-		} else {
-			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
-		}
+		jeeCron_errorHandler($cron, $class, $function, $e);
 	} catch (Error $e) {
-		$cron->setState('error');
-		$cron->setPID('');
-		$cron->setCache('runtime', strtotime('now') - $datetimeStart);
-		$logicalId = config::genKey();
-		if ($e->getCode() != 0) {
-			$logicalId = $cron->getName() . '::' . $e->getCode();
-		}
-		echo '[Erreur] ' . $cron->getName() . ' : ' . log::exception($e);
-		if (isset($class) && $class != '') {
-			log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
-		} else if (isset($function) && $function != '') {
-			log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
-		} else {
-			log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
-		}
+		jeeCron_errorHandler($cron, $class, $function, $e);
 	}
 } else {
 	if (cron::jeeCronRun()) {
 		die();
 	}
 	$started = jeedom::isStarted();
-	
+
 	set_time_limit(59);
 	cron::setPidFile();
-	
+
 	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
@@ -207,19 +207,9 @@ if (init('cron_id') != '') {
 				break;
 			}
 		} catch (Exception $e) {
-			if ($cron->getOnce() != 1) {
-				$cron->setState('error');
-				$cron->setPID('');
-				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
-				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
-			}
+			jeeCronAll_errorHandler($cron, $e);
 		} catch (Error $e) {
-			if ($cron->getOnce() != 1) {
-				$cron->setState('error');
-				$cron->setPID('');
-				echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
-				log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
-			}
+			jeeCronAll_errorHandler($cron, $e);
 		}
 	}
 }

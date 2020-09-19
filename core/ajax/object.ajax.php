@@ -102,6 +102,44 @@ try {
 		ajax::success($return);
 	}
 
+	function jeeAjax_objectToHtml($_id=-1, $_version='dashboard', $_category='all', $_tag='all', $_summary='') {
+		$html = array();
+		if ($_summary == '') {
+			$eqLogics = eqLogic::byObjectId($_id, true, true);
+		} else {
+			$object = jeeObject::byId($_id);
+			$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+		}
+		if (count($eqLogics) > 0) {
+			foreach ($eqLogics as $eqLogic) {
+				if ($_category != 'all' && $eqLogic->getCategory(init('category')) != 1) {
+					continue;
+				}
+				if ($_tag != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+					continue;
+				}
+				$order = $eqLogic->getOrder();
+				while(isset($html[$order])){
+					$order++;
+				}
+				$html[$order] = $eqLogic->toHtml($_version);
+			}
+		}
+		if ($_summary == '') {
+			$scenarios = scenario::byObjectId($_id,false,true);
+			if(count($scenarios) > 0){
+				foreach ($scenarios as $scenario) {
+					$order = $scenario->getOrder();
+					while(isset($html[$order])){
+						$order++;
+					}
+					$html[$order] = $scenario->toHtml($_version);
+				}
+			}
+		}
+		ksort($html);
+		return implode($html);
+	}
 	if (init('action') == 'toHtml') {
 		if (init('id') == '' || init('id') == 'all' || is_json(init('id'))) {
 			if (is_json(init('id'))) {
@@ -115,7 +153,7 @@ try {
 						}
 						$objects[] = $object->getId();
 					}
-				}else{
+				} else {
 					foreach((jeeObject::all()) as $object) {
 						$objects[] = $object->getId();
 					}
@@ -124,82 +162,15 @@ try {
 			$return = array();
 			$i = 0;
 			foreach ($objects as $id) {
-				$html = array();
-				if (init('summary') == '') {
-					$eqLogics = eqLogic::byObjectId($id, true, true);
-				} else {
-					$object = jeeObject::byId($id);
-					$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
-				}
-				if(count($eqLogics) > 0){
-					foreach ($eqLogics as $eqLogic) {
-						if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
-							continue;
-						}
-						if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
-							continue;
-						}
-						$order = $eqLogic->getOrder();
-						while(isset($html[$order])){
-							$order++;
-						}
-						$html[$order] = $eqLogic->toHtml(init('version'));
-					}
-				}
-				if (init('summary') == '') {
-					$scenarios = scenario::byObjectId($id,false,true);
-					if(count($scenarios) > 0){
-						foreach ($scenarios as $scenario) {
-							$order = $scenario->getOrder();
-							while(isset($html[$order])){
-								$order++;
-							}
-							$html[$order] = $scenario->toHtml(init('version'));
-						}
-					}
-				}
-				ksort($html);
-				$return[$i . '::' . $id] = implode($html);
+				$html = jeeAjax_objectToHtml($id, init('version'), init('category', 'all'), init('tag', 'all'), init('summary'));
+				$return[$i . '::' . $id] = $html;
 				$i++;
 			}
 			ajax::success($return);
-		}
-		$html = array();
-		if (init('summary') == '') {
-			$eqLogics = eqLogic::byObjectId(init('id'), true, true);
 		} else {
-			$object = jeeObject::byId(init('id'));
-			$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
+			$html = jeeAjax_objectToHtml(init('id'), init('version'), init('category', 'all'), init('tag', 'all'), init('summary'));
+			ajax::success($html);
 		}
-		if(count($eqLogics) > 0){
-			foreach ($eqLogics as $eqLogic) {
-				if (init('category', 'all') != 'all' && $eqLogic->getCategory(init('category')) != 1) {
-					continue;
-				}
-				if (init('tag', 'all') != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
-					continue;
-				}
-				$order = $eqLogic->getOrder();
-				while(isset($html[$order])){
-					$order++;
-				}
-				$html[$order] = $eqLogic->toHtml(init('version'));
-			}
-		}
-		if (init('summary') == '') {
-			$scenarios = scenario::byObjectId(init('id'),false,true);
-			if(count($scenarios) > 0){
-				foreach ($scenarios as $scenario) {
-					$order = $scenario->getOrder();
-					while(isset($html[$order])){
-						$order++;
-					}
-					$html[$order] = $scenario->toHtml(init('version'));
-				}
-			}
-		}
-		ksort($html);
-		ajax::success(implode($html));
 	}
 
 	if (init('action') == 'setOrder') {
