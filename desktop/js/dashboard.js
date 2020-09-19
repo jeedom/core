@@ -437,28 +437,36 @@ $('#bt_editDashboardWidgetOrder').on('click',function() {
     $(this).attr('data-mode', 0)
     editWidgetMode(0)
     $(this).css('color','black')
-    $('.bt_editDashboardWidgetAutoResize').hide()
+    $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').hide()
     $('.counterReorderJeedom').remove()
     $('.div_displayEquipement').packery()
   } else {
     $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('disable')
     $(this).attr('data-mode',1)
-    $('.bt_editDashboardWidgetAutoResize').show()
-    $('.bt_editDashboardWidgetAutoResize').off('click').on('click', function() {
-      var doesMin = false
-      if (event.ctrlKey) doesMin = true
-      var id_object = $(this).attr('id').replace('edit_object_','')
+    $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').show()
+    $('div.div_object  .bt_editDashboardTilesAutoResizeUp').off('click').on('click', function() {
+      var id_object = $(this).attr('id').replace('expandTiles_object_', '')
       var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
       var arHeights = []
       objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
         var h = $(this).height()
         arHeights.push(h)
       })
-      if (doesMin) {
-        var maxHeight = Math.min(...arHeights)
-      } else {
-        var maxHeight = Math.max(...arHeights)
-      }
+      var maxHeight = Math.max(...arHeights)
+      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
+        $(this).height(maxHeight)
+      })
+      objectContainer.packery()
+    })
+    $('div.div_object  .bt_editDashboardTilesAutoResizeDown').off('click').on('click', function() {
+      var id_object = $(this).attr('id').replace('compressTiles_object_', '')
+      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
+      var arHeights = []
+      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
+        var h = $(this).height()
+        arHeights.push(h)
+      })
+      var maxHeight = Math.min(...arHeights)
       objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
         $(this).height(maxHeight)
       })
