@@ -12,7 +12,6 @@
 - **Dashboard** : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
 - **Dashboard** : Ability to blur background images (Configuration -> Interface).
 - **Tools / Widgets** : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
-- **Widget** : Ability to add class css to a widget (see widget documentation).
 - **Widget** : Adding a core widget *sliderVertical*.
 - **Update Center** : Updates are checked automatically when opening this page and update check is older than 120mins.
 - **Update Center** : The progress bar is now on the tab *Core and plugins*, and the log open by default on the tab *Information*.
@@ -56,6 +55,7 @@
 - **Advanced equipment configuration window** : Dynamic change of table configuration.
 - **Equipments** : New Category *Opening*.
 - **Equipments** : Possibility of inverting cursor type commands (info and action)
+- **Equipments** : Possibility to add class css to a tile (see widget documentation).
 - **About window** : Addition of links to Changelog and FAQ.
 - Widgets / Objects / Scenarios / Interactions / Plugins Pages :
 	- Ctrl Clic / Clic Center on a Widget, Object, Scenarios, Interaction, plugin equipment : Opens in a new tab.

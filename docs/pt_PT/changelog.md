@@ -12,7 +12,6 @@
 - **Painel de instrumentos** : Ctrl Clique em uma informação para abrir a janela do histórico com todos os comandos históricos do equipamento visíveis no bloco. Ctrl Clique em uma legenda para exibir apenas esta, Alt Clique para exibir todas.
 - **Painel de instrumentos** : Capacidade de desfocar imagens de fundo (Configuração -> Interface).
 - **Ferramentas / Widgets** : A função *Aplicar em* mostra os comandos vinculados marcados, desmarcando um aplicará o widget principal padrão a este comando.
-- **Widgets** : Capacidade de adicionar classe css a um widget (consulte a documentação do widget).
 - **Widgets** : Adicionando um widget principal *sliderVertical*.
 - **Update Center** : As atualizações são verificadas automaticamente quando a página é aberta, se for 120 minutos mais antiga.
 - **Update Center** : A barra de progresso está agora na guia *Núcleo e plugins*, e o log aberto por padrão na guia *Informação*.
@@ -56,6 +55,7 @@
 - **Janela de configuração avançada de equipamentos** : Alteração dinâmica da configuração do quadro de distribuição.
 - **Instalações** : Nova categoria *Abertura*.
 - **Instalações** : Possibilidade de inverter comandos do tipo cursor (informação e ação)
+- **Instalações** : Possibilidade de adicionar css de classe a um bloco (consulte a documentação do widget).
 - **Sobre a janela** : Adição de atalhos ao Changelog e FAQ.
 - Páginas de Widgets / Objetos / Cenários / Interações / Plugins :
 	- Ctrl Clic / Clic Center em um equipamento de widget, objeto, cenário, interação, plug-in : Abre em uma nova guia.

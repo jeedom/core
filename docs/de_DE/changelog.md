@@ -12,7 +12,6 @@
 - **Armaturenbrett** : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - **Armaturenbrett** : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche)).
 - **Tools / Widgets** : Die Funktion *Bewerben Sie sich am* Zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
-- **Widgets** : Möglichkeit, einem Widget Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Widgets** : Hinzufügen eines Kern-Widgets *sliderVertical*.
 - **Update Center** : Aktualisierungen werden beim Öffnen der Seite automatisch überprüft, wenn sie 120 Minuten älter ist.
 - **Update Center** : Der Fortschrittsbalken befindet sich jetzt auf der Registerkarte *Core und Plugins*, und das Protokoll wird standardmäßig auf der Registerkarte geöffnet *Information*.
@@ -56,6 +55,7 @@
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
 - **Geräte** : Neue Kategorie *Öffnen*.
 - **Geräte** : Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
+- **Geräte** : Möglichkeit, einer Kachel Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
 - Widgets / Objekte / Szenarien / Interaktionen / Plugins Seiten :
 	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.

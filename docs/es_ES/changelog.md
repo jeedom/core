@@ -12,7 +12,6 @@
 - **Salpicadero** : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
 - **Salpicadero** : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - **Herramientas / widgets** : La funcion *Aplicar en* muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado a este comando.
-- **Reproductores** : Posibilidad de agregar la clase CSS a un widget (consulte la documentación del widget).
 - **Reproductores** : Agregar un widget principal *deslizador vertical*.
 - **Centro de actualizaciones** : Las actualizaciones se verifican automáticamente cuando se abre la página si tiene 120 minutos de antigüedad.
 - **Centro de actualizaciones** : La barra de progreso ahora está en la pestaña *Core y plugins*, y el registro se abre por defecto en la pestaña *Información*.
@@ -56,6 +55,7 @@
 - **Ventana de configuración avanzada del equipo** : Cambio dinámico de la configuración de la centralita.
 - **Dispositivos** : Nueva categoría *Apertura*.
 - **Dispositivos** : Posibilidad de invertir comandos tipo cursor (info y acción)
+- **Dispositivos** : Posibilidad de agregar clase css a un mosaico (consulte la documentación del widget).
 - **Sobre ventana** : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Widgets / Objetos / Escenarios / Interacciones / Páginas de complementos :
 	- Ctrl Clic / Clic Center en un widget, objeto, escenarios, interacción, equipo de complemento : Se abre en una pestaña nueva.
