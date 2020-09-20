@@ -14,23 +14,21 @@
 var options = {
     sonification: {
         enabled: false,
-        duration: 2000,
-        afterSeriesWait: 1000,
+        duration: 2500,
+        afterSeriesWait: 700,
+        masterVolume: 1,
         order: 'sequential',
-        pointPlayTime: 'x',
-        instruments: [{
-                instrument: 'sineMusical',
-                instrumentMapping: {
-                    duration: 400,
-                    frequency: 'y',
-                    volume: 0.7
-                },
-                // Start at G4 note, end at C6
-                instrumentOptions: {
-                    minFrequency: 392,
-                    maxFrequency: 1046
-                }
-            }]
+        defaultInstrumentOptions: {
+            instrument: 'sineMusical',
+            // Start at G4 note, end at C6
+            minFrequency: 392,
+            maxFrequency: 1046,
+            mapping: {
+                pointPlayTime: 'x',
+                duration: 200,
+                frequency: 'y'
+            }
+        }
     }
 };
 export default options;

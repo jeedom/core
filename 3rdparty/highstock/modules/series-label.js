@@ -1,11 +1,11 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.2.0 (2020-08-20)
 
  (c) 2009-2019 Torstein Honsi
 
  License: www.highcharts.com/license
 */
-(function(m){"object"===typeof module&&module.exports?(m["default"]=m,module.exports=m):"function"===typeof define&&define.amd?define("highcharts/modules/series-label",["highcharts"],function(w){m(w);m.Highcharts=w;return m}):m("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(m){function w(m,x,w,u){m.hasOwnProperty(x)||(m[x]=u.apply(null,w))}m=m?m._modules:{};w(m,"modules/series-label.src.js",[m["parts/Chart.js"],m["parts/Globals.js"],m["parts/SVGRenderer.js"],m["parts/Utilities.js"]],
+(function(m){"object"===typeof module&&module.exports?(m["default"]=m,module.exports=m):"function"===typeof define&&define.amd?define("highcharts/modules/series-label",["highcharts"],function(w){m(w);m.Highcharts=w;return m}):m("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(m){function w(m,x,w,u){m.hasOwnProperty(x)||(m[x]=u.apply(null,w))}m=m?m._modules:{};w(m,"Extensions/SeriesLabel.js",[m["Core/Chart/Chart.js"],m["Core/Globals.js"],m["Core/Renderer/SVG/SVGRenderer.js"],m["Core/Utilities.js"]],
 function(m,x,w,u){function A(e,d,a,l,f,g){e=(g-d)*(a-e)-(l-d)*(f-e);return 0<e?!0:!(0>e)}function B(e,d,a,l,f,g,b,k){return A(e,d,f,g,b,k)!==A(a,l,f,g,b,k)&&A(e,d,a,l,f,g)!==A(e,d,a,l,b,k)}function E(e,d,a,l,f,g,b,k){return B(e,d,e+a,d,f,g,b,k)||B(e+a,d,e+a,d+l,f,g,b,k)||B(e,d+l,e+a,d+l,f,g,b,k)||B(e,d,e,d+l,f,g,b,k)}function F(e){if(this.renderer){var d=this,a=C(d.renderer.globalAnimation).duration;d.labelSeries=[];d.labelSeriesMaxSum=0;u.clearTimeout(d.seriesLabelTimer);d.series.forEach(function(l){var f=
 l.options.label,g=l.labelBySeries,b=g&&g.closest;f.enabled&&l.visible&&(l.graph||l.area)&&!l.isSeriesBoosting&&(d.labelSeries.push(l),f.minFontSize&&f.maxFontSize&&(l.sum=l.yData.reduce(function(a,b){return(a||0)+(b||0)},0),d.labelSeriesMaxSum=Math.max(d.labelSeriesMaxSum,l.sum)),"load"===e.type&&(a=Math.max(a,C(l.options.animation).duration)),b&&("undefined"!==typeof b[0].plotX?g.animate({x:b[0].plotX+b[1],y:b[0].plotY+b[2]}):g.attr({opacity:0})))});d.seriesLabelTimer=I(function(){d.series&&d.labelSeries&&
 d.drawSeriesLabels()},d.renderer.forExport||!a?0:a)}}var G=u.addEvent,C=u.animObject,H=u.extend,J=u.fireEvent,K=u.format,D=u.isNumber,z=u.pick,L=u.setOptions,I=u.syncTimeout;"";x=x.Series;L({plotOptions:{series:{label:{enabled:!0,connectorAllowed:!1,connectorNeighbourDistance:24,format:void 0,formatter:void 0,minFontSize:null,maxFontSize:null,onArea:null,style:{fontWeight:"bold"},boxesToAvoid:[]}}}});w.prototype.symbols.connector=function(e,d,a,l,f){var g=f&&f.anchorX;f=f&&f.anchorY;var b=a/2;if(D(g)&&

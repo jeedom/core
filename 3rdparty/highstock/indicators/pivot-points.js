@@ -1,5 +1,5 @@
 /*
- Highstock JS v8.1.2 (2020-06-16)
+ Highstock JS v8.2.0 (2020-08-20)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/indicators/pivot-points",["highcharts","highcharts/modules/stock"],function(e){c(e);c.Highcharts=e;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function e(c,h,e,p){c.hasOwnProperty(h)||(c[h]=p.apply(null,e))}c=c?c._modules:{};e(c,"indicators/pivot-points.src.js",[c["parts/Globals.js"],c["parts/Utilities.js"]],function(c,
+(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/indicators/pivot-points",["highcharts","highcharts/modules/stock"],function(e){c(e);c.Highcharts=e;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function e(c,h,e,p){c.hasOwnProperty(h)||(c[h]=p.apply(null,e))}c=c?c._modules:{};e(c,"Stock/Indicators/PivotPointsIndicator.js",[c["Core/Globals.js"],c["Core/Utilities.js"]],function(c,
 h){function e(a,b){var f=a.series.pointArrayMap,d=f.length;for(n.prototype.pointClass.prototype[b].call(a);d--;)b="dataLabel"+f[d],a[b]&&a[b].element&&a[b].destroy(),a[b]=null}var p=h.defined,r=h.isArray;h=h.seriesType;var n=c.seriesTypes.sma;h("pivotpoints","sma",{params:{period:28,algorithm:"standard"},marker:{enabled:!1},enableMouseTracking:!1,dataLabels:{enabled:!0,format:"{point.pivotLine}"},dataGrouping:{approximation:"averages"}},{nameBase:"Pivot Points",pointArrayMap:"R4 R3 R2 R1 P S1 S2 S3 S4".split(" "),
 pointValKey:"P",toYData:function(a){return[a.P]},translate:function(){var a=this;n.prototype.translate.apply(a);a.points.forEach(function(b){a.pointArrayMap.forEach(function(f){p(b[f])&&(b["plot"+f]=a.yAxis.toPixels(b[f],!0))})});a.plotEndPoint=a.xAxis.toPixels(a.endPoint,!0)},getGraphPath:function(a){for(var b=this,f=a.length,d=[[],[],[],[],[],[],[],[],[]],c=[],e=b.plotEndPoint,l=b.pointArrayMap.length,k,g,m;f--;){g=a[f];for(m=0;m<l;m++)k=b.pointArrayMap[m],p(g[k])&&d[m].push({plotX:g.plotX,plotY:g["plot"+
 k],isNull:!1},{plotX:e,plotY:g["plot"+k],isNull:!1},{plotX:e,plotY:null,isNull:!0});e=g.plotX}d.forEach(function(a){c=c.concat(n.prototype.getGraphPath.call(b,a))});return c},drawDataLabels:function(){var a=this,b=a.pointArrayMap,f,d,c;if(a.options.dataLabels.enabled){var e=a.points.length;b.concat([!1]).forEach(function(l,k){for(c=e;c--;)d=a.points[c],l?(d.y=d[l],d.pivotLine=l,d.plotY=d["plot"+l],f=d["dataLabel"+l],k&&(d["dataLabel"+b[k-1]]=d.dataLabel),d.dataLabels||(d.dataLabels=[]),d.dataLabels[0]=

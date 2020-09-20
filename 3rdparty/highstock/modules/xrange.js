@@ -1,5 +1,5 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.2.0 (2020-08-20)
 
  X-range series
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/xrange",["highcharts"],function(h){b(h);b.Highcharts=h;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function h(b,l,h,p){b.hasOwnProperty(l)||(b[l]=p.apply(null,h))}b=b?b._modules:{};h(b,"modules/xrange.src.js",[b["parts/Axis.js"],b["parts/Globals.js"],b["parts/Color.js"],b["parts/Point.js"],b["parts/Utilities.js"]],
+(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/xrange",["highcharts"],function(h){b(h);b.Highcharts=h;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function h(b,l,h,p){b.hasOwnProperty(l)||(b[l]=p.apply(null,h))}b=b?b._modules:{};h(b,"Series/XRangeSeries.js",[b["Core/Axis/Axis.js"],b["Core/Globals.js"],b["Core/Color.js"],b["Core/Series/Point.js"],b["Core/Utilities.js"]],
 function(b,l,h,p,g){var x=h.parse;h=g.addEvent;var r=g.clamp,B=g.correctFloat,C=g.defined,y=g.find,t=g.isNumber,v=g.isObject,u=g.merge,w=g.pick;g=g.seriesType;var z=l.seriesTypes.column,A=l.seriesTypes,D=l.Series;g("xrange","column",{colorByPoint:!0,dataLabels:{formatter:function(){var a=this.point.partialFill;v(a)&&(a=a.amount);if(t(a)&&0<a)return B(100*a)+"%"},inside:!0,verticalAlign:"middle"},tooltip:{headerFormat:'<span style="font-size: 10px">{point.x} - {point.x2}</span><br/>',pointFormat:'<span style="color:{point.color}">\u25cf</span> {series.name}: <b>{point.yCategory}</b><br/>'},
 borderRadius:3,pointRange:0},{type:"xrange",parallelArrays:["x","x2","y"],requireSorting:!1,animate:A.line.prototype.animate,cropShoulder:1,getExtremesFromAll:!0,autoIncrement:l.noop,buildKDTree:l.noop,init:function(){A.column.prototype.init.apply(this,arguments);this.options.stacking=void 0},getColumnMetrics:function(){function a(){f.series.forEach(function(a){var c=a.xAxis;a.xAxis=a.yAxis;a.yAxis=c})}var f=this.chart;a();var d=z.prototype.getColumnMetrics.call(this);a();return d},cropData:function(a,
 f,d,m){f=D.prototype.cropData.call(this,this.x2Data,f,d,m);f.xData=a.slice(f.start,f.end);return f},findPointIndex:function(a){var f=this.cropped,d=this.cropStart,m=this.points,c=a.id;if(c)var e=(e=y(m,function(a){return a.id===c}))?e.index:void 0;"undefined"===typeof e&&(e=(e=y(m,function(c){return c.x===a.x&&c.x2===a.x2&&!c.touched}))?e.index:void 0);f&&t(e)&&t(d)&&e>=d&&(e-=d);return e},translatePoint:function(a){var f=this.xAxis,d=this.yAxis,m=this.columnMetrics,c=this.options,e=c.minPointLength||

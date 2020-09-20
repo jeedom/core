@@ -3,11 +3,12 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import H from '../parts/Globals.js';
-import Point from '../parts/Point.js';
-import U from '../parts/Utilities.js';
+import H from '../Core/Globals.js';
+import Point from '../Core/Series/Point.js';
+import U from '../Core/Utilities.js';
 var defined = U.defined, extend = U.extend, find = U.find, pick = U.pick;
-H.NodesMixin = {
+import '../Core/Series/Series.js';
+var NodesMixin = H.NodesMixin = {
     /* eslint-disable valid-jsdoc */
     /**
      * Create a single node that holds information on incoming and outgoing
@@ -176,3 +177,4 @@ H.NodesMixin = {
     }
     /* eslint-enable valid-jsdoc */
 };
+export default NodesMixin;

@@ -1,5 +1,5 @@
 /*
- Highstock JS v8.1.2 (2020-06-16)
+ Highstock JS v8.2.0 (2020-08-20)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(e){"object"===typeof module&&module.exports?(e["default"]=e,module.exports=e):"function"===typeof define&&define.amd?define("highcharts/indicators/ichimoku-kinko-hyo",["highcharts","highcharts/modules/stock"],function(l){e(l);e.Highcharts=l;return e}):e("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(e){function l(e,x,m,l){e.hasOwnProperty(x)||(e[x]=l.apply(null,m))}e=e?e._modules:{};l(e,"indicators/ichimoku-kinko-hyo.src.js",[e["parts/Globals.js"],e["parts/Color.js"],e["parts/Utilities.js"]],
+(function(e){"object"===typeof module&&module.exports?(e["default"]=e,module.exports=e):"function"===typeof define&&define.amd?define("highcharts/indicators/ichimoku-kinko-hyo",["highcharts","highcharts/modules/stock"],function(l){e(l);e.Highcharts=l;return e}):e("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(e){function l(e,x,m,l){e.hasOwnProperty(x)||(e[x]=l.apply(null,m))}e=e?e._modules:{};l(e,"Stock/Indicators/IKHIndicator.js",[e["Core/Globals.js"],e["Core/Color.js"],e["Core/Utilities.js"]],
 function(e,l,m){function x(a){return a.reduce(function(a,b){return Math.max(a,b[1])},-Infinity)}function F(a){return a.reduce(function(a,b){return Math.min(a,b[2])},Infinity)}function y(a){return{high:x(a),low:F(a)}}function G(a){var d,b,t,e,h;a.series.forEach(function(a){if(a.xData)for(e=a.xData,h=b=a.xIncrement?1:e.length-1;0<h;h--)if(t=e[h]-e[h-1],d===p||t<d)d=t});return d}function H(a,d,b,e){if(a&&d&&b&&e){var t=d.plotX-a.plotX;d=d.plotY-a.plotY;var h=e.plotX-b.plotX;e=e.plotY-b.plotY;var l=a.plotX-
 b.plotX,g=a.plotY-b.plotY;b=(-d*l+t*g)/(-h*d+t*e);h=(h*g-e*l)/(-h*d+t*e);if(0<=b&&1>=b&&0<=h&&1>=h)return{plotX:a.plotX+h*t,plotY:a.plotY+h*d}}return!1}function D(a){var d=a.indicator;d.points=a.points;d.nextPoints=a.nextPoints;d.color=a.color;d.options=B(a.options.senkouSpan.styles,a.gap);d.graph=a.graph;d.fillGraph=!0;u.prototype.drawGraph.call(d)}var C=l.parse,E=m.defined,I=m.isArray,B=m.merge,J=m.objectEach;l=m.seriesType;var p,u=e.seriesTypes.sma;e.approximations["ichimoku-averages"]=function(){var a=
 [],d;[].forEach.call(arguments,function(b,t){a.push(e.approximations.average(b));d=!d&&"undefined"===typeof a[t]});return d?void 0:a};l("ikh","sma",{params:{period:26,periodTenkan:9,periodSenkouSpanB:52},marker:{enabled:!1},tooltip:{pointFormat:'<span style="color:{point.color}">\u25cf</span> <b> {series.name}</b><br/>TENKAN SEN: {point.tenkanSen:.3f}<br/>KIJUN SEN: {point.kijunSen:.3f}<br/>CHIKOU SPAN: {point.chikouSpan:.3f}<br/>SENKOU SPAN A: {point.senkouSpanA:.3f}<br/>SENKOU SPAN B: {point.senkouSpanB:.3f}<br/>'},

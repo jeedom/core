@@ -1,5 +1,5 @@
 /*
- Highstock JS v8.1.2 (2020-06-16)
+ Highstock JS v8.2.0 (2020-08-20)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/indicators/volume-by-price",["highcharts","highcharts/modules/stock"],function(p){c(p);c.Highcharts=p;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function p(c,p,m,t){c.hasOwnProperty(p)||(c[p]=t.apply(null,m))}c=c?c._modules:{};p(c,"indicators/volume-by-price.src.js",[c["parts/Globals.js"],c["parts/Point.js"],c["parts/Utilities.js"]],
+(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/indicators/volume-by-price",["highcharts","highcharts/modules/stock"],function(p){c(p);c.Highcharts=p;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function p(c,p,m,t){c.hasOwnProperty(p)||(c[p]=t.apply(null,m))}c=c?c._modules:{};p(c,"Stock/Indicators/VBPIndicator.js",[c["Core/Globals.js"],c["Core/Series/Point.js"],c["Core/Utilities.js"]],
 function(c,p,m){var t=m.addEvent,D=m.animObject,A=m.arrayMax,E=m.arrayMin,y=m.correctFloat,z=m.error,F=m.extend,G=m.isArray;m=m.seriesType;var u=Math.abs,B=c.noop,x=c.seriesTypes.column.prototype;m("vbp","sma",{params:{ranges:12,volumeSeriesID:"volume"},zoneLines:{enabled:!0,styles:{color:"#0A9AC9",dashStyle:"LongDash",lineWidth:1}},volumeDivision:{enabled:!0,styles:{positiveColor:"rgba(144, 237, 125, 0.8)",negativeColor:"rgba(244, 91, 91, 0.8)"}},animationLimit:1E3,enableMouseTracking:!1,pointPadding:0,
 zIndex:-1,crisp:!0,dataGrouping:{enabled:!1},dataLabels:{allowOverlap:!0,enabled:!0,format:"P: {point.volumePos:.2f} | N: {point.volumeNeg:.2f}",padding:0,style:{fontSize:"7px"},verticalAlign:"top"}},{nameBase:"Volume by Price",bindTo:{series:!1,eventName:"afterSetExtremes"},calculateOn:"render",markerAttribs:B,drawGraph:B,getColumnMetrics:x.getColumnMetrics,crispCol:x.crispCol,init:function(d){c.seriesTypes.sma.prototype.init.apply(this,arguments);var a=this.options.params;var f=this.linkedParent;
 a=d.get(a.volumeSeriesID);this.addCustomEvents(f,a);return this},addCustomEvents:function(d,a){function f(){b.chart.redraw();b.setData([]);b.zoneStarts=[];b.zoneLinesSVG&&(b.zoneLinesSVG.destroy(),delete b.zoneLinesSVG)}var b=this;b.dataEventsToUnbind.push(t(d,"remove",function(){f()}));a&&b.dataEventsToUnbind.push(t(a,"remove",function(){f()}));return b},animate:function(d){var a=this,f=a.chart.inverted,b=a.group,n={};!d&&b&&(d=f?"translateY":"translateX",f=f?a.yAxis.top:a.xAxis.left,b["forceAnimate:"+

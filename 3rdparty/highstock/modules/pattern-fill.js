@@ -1,5 +1,5 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.2.0 (2020-08-20)
 
  Module for adding patterns and images as point fills.
 
@@ -8,7 +8,7 @@
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/pattern-fill",["highcharts"],function(g){c(g);c.Highcharts=g;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function g(c,p,g,e){c.hasOwnProperty(p)||(c[p]=e.apply(null,g))}c=c?c._modules:{};g(c,"modules/pattern-fill.src.js",[c["parts/Globals.js"],c["parts/Point.js"],c["parts/SVGRenderer.js"],c["parts/Utilities.js"]],
+(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/pattern-fill",["highcharts"],function(g){c(g);c.Highcharts=g;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function g(c,p,g,e){c.hasOwnProperty(p)||(c[p]=e.apply(null,g))}c=c?c._modules:{};g(c,"Extensions/PatternFill.js",[c["Core/Globals.js"],c["Core/Series/Point.js"],c["Core/Renderer/SVG/SVGRenderer.js"],c["Core/Utilities.js"]],
 function(c,g,r,e){function p(a,b){a=JSON.stringify(a);var c=a.length||0,f=0,d=0;if(b){b=Math.max(Math.floor(c/500),1);for(var e=0;e<c;e+=b)f+=a.charCodeAt(e);f&=f}for(;d<c;++d)b=a.charCodeAt(d),f=(f<<5)-f+b,f&=f;return f.toString(16).replace("-","1")}var k=e.addEvent,u=e.animObject,v=e.erase,w=e.getOptions,t=e.merge,q=e.pick,x=e.removeEvent;e=e.wrap;"";c.patterns=function(){var a=[],b=w().colors;"M 0 0 L 10 10 M 9 -1 L 11 1 M -1 9 L 1 11;M 0 10 L 10 0 M -1 1 L 1 -1 M 9 11 L 11 9;M 3 0 L 3 10 M 8 0 L 8 10;M 0 3 L 10 3 M 0 8 L 10 8;M 0 3 L 5 3 L 5 0 M 5 10 L 5 7 L 10 7;M 3 3 L 8 3 L 8 8 L 3 8 Z;M 5 5 m -4 0 a 4 4 0 1 1 8 0 a 4 4 0 1 1 -8 0;M 10 3 L 5 3 L 5 0 M 5 10 L 5 7 L 0 7;M 2 5 L 5 2 L 8 5 L 5 8 Z;M 0 0 L 5 10 L 10 0".split(";").forEach(function(c,
 f){a.push({path:c,color:b[f],width:10,height:10})});return a}();g.prototype.calculatePatternDimensions=function(a){if(!a.width||!a.height){var b=this.graphic&&(this.graphic.getBBox&&this.graphic.getBBox(!0)||this.graphic.element&&this.graphic.element.getBBox())||{},c=this.shapeArgs;c&&(b.width=c.width||b.width,b.height=c.height||b.height,b.x=c.x||b.x,b.y=c.y||b.y);if(a.image){if(!b.width||!b.height){a._width="defer";a._height="defer";return}a.aspectRatio&&(b.aspectRatio=b.width/b.height,a.aspectRatio>
 b.aspectRatio?b.aspectWidth=b.height*a.aspectRatio:b.aspectHeight=b.width/a.aspectRatio);a._width=a.width||Math.ceil(b.aspectWidth||b.width);a._height=a.height||Math.ceil(b.aspectHeight||b.height)}a.width||(a._x=a.x||0,a._x+=b.x-Math.round(b.aspectWidth?Math.abs(b.aspectWidth-b.width)/2:0));a.height||(a._y=a.y||0,a._y+=b.y-Math.round(b.aspectHeight?Math.abs(b.aspectHeight-b.height)/2:0))}};r.prototype.addPattern=function(a,b){b=q(b,!0);var c=u(b),f=a.width||a._width||32,d=a.height||a._height||32,

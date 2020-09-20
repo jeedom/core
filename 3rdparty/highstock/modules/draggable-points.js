@@ -1,11 +1,11 @@
 /*
- Highcharts JS v8.1.2 (2020-06-16)
+ Highcharts JS v8.2.0 (2020-08-20)
 
  (c) 2009-2019 Torstein Honsi
 
  License: www.highcharts.com/license
 */
-(function(e){"object"===typeof module&&module.exports?(e["default"]=e,module.exports=e):"function"===typeof define&&define.amd?define("highcharts/modules/draggable-points",["highcharts"],function(r){e(r);e.Highcharts=r;return e}):e("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(e){function r(e,q,l,r){e.hasOwnProperty(q)||(e[q]=r.apply(null,l))}e=e?e._modules:{};r(e,"modules/draggable-points.src.js",[e["parts/Globals.js"],e["parts/Point.js"],e["parts/Utilities.js"]],function(e,q,l){function r(a){return{left:"right",
+(function(e){"object"===typeof module&&module.exports?(e["default"]=e,module.exports=e):"function"===typeof define&&define.amd?define("highcharts/modules/draggable-points",["highcharts"],function(r){e(r);e.Highcharts=r;return e}):e("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(e){function r(e,q,l,r){e.hasOwnProperty(q)||(e[q]=r.apply(null,l))}e=e?e._modules:{};r(e,"Extensions/DraggablePoints.js",[e["Core/Globals.js"],e["Core/Series/Point.js"],e["Core/Utilities.js"]],function(e,q,l){function r(a){return{left:"right",
 right:"left",top:"bottom",bottom:"top"}[a]}function K(a){var b=["draggableX","draggableY"],c;m(a.dragDropProps,function(a){a.optionName&&b.push(a.optionName)});for(c=b.length;c--;)if(a.options.dragDrop[b[c]])return!0}function L(a){var b=a.series?a.series.length:0;if(a.hasCartesianSeries&&!a.polar)for(;b--;)if(a.series[b].options.dragDrop&&K(a.series[b]))return!0}function M(a){var b=a.series,c=b.options.dragDrop||{};a=a.options&&a.options.dragDrop;var d,f;m(b.dragDropProps,function(a){"x"===a.axis&&
 a.move?d=!0:"y"===a.axis&&a.move&&(f=!0)});return(c.draggableX&&d||c.draggableY&&f)&&!(a&&!1===a.draggableX&&!1===a.draggableY)&&b.yAxis&&b.xAxis}function w(a,b){return"undefined"===typeof a.chartX||"undefined"===typeof a.chartY?b.pointer.normalize(a):a}function x(a,b,c,d){var f=b.map(function(b){return t(a,b,c,d)});return function(){f.forEach(function(a){a()})}}function N(a,b,c){var d=b.dragDropData.origin;b=d.chartX;d=d.chartY;var f=a.chartX;a=a.chartY;return Math.sqrt((f-b)*(f-b)+(a-d)*(a-d))>
 c}function O(a,b,c){var d={chartX:a.chartX,chartY:a.chartY,guideBox:c&&{x:c.attr("x"),y:c.attr("y"),width:c.attr("width"),height:c.attr("height")},points:{}};b.forEach(function(b){var c={};m(b.series.dragDropProps,function(d,f){d=b.series[d.axis+"Axis"];c[f]=b[f];c[f+"Offset"]=d.toPixels(b[f])-(d.horiz?a.chartX:a.chartY)});c.point=b;d.points[b.id]=c});return d}function P(a){var b=a.series,c=[],d=b.options.dragDrop.groupBy;b.isSeriesBoosting?b.options.data.forEach(function(a,d){c.push((new b.pointClass).init(b,
