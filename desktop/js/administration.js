@@ -292,7 +292,7 @@ $("#bt_cleanCache").on('click', function(event) {
 
 $("#bt_flushCache").on('click', function(event) {
   $.hideAlert()
-  bootbox.confirm('{{Attention ceci est une opération risquée de vidage de cahce est risquée, Confirmez vous vouloir la faire ?}}', function(result) {
+  bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
     if (result) {
       flushCache()
     }
