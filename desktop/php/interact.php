@@ -18,29 +18,29 @@ $optionMaxSize = 15;
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="interactListContainer hidden">
 			<div class="cursor logoPrimary" id="bt_addInteract2">
-				<center>
+				<div class="center">
 					<i class="fas fa-plus-circle"></i>
-				</center>
-				<span class="txtColor"><center>{{Ajouter}}</center></span>
+				</div>
+				<span class="txtColor">{{Ajouter}}</span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_regenerateInteract2">
-				<center>
+				<div class="center">
 					<i class="fas fa-sync"></i>
-				</center>
-				<span class="txtColor"><center>{{Regénérer}}</center></span>
+				</div>
+				<span class="txtColor">{{Regénérer}}</span>
 			</div>
 			<div class="cursor logoSecondary" id="bt_testInteract2">
-				<center>
+				<div class="center">
 					<i class="fas fa-comment"></i>
-				</center>
-				<span class="txtColor"><center>{{Tester}}</center></span>
+				</div>
+				<span class="txtColor">{{Tester}}</span>
 			</div>
 		</div>
 
 		<legend><i class="far fa-comments"></i> {{Mes interactions}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalInteract) == 0) {
-			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></center>";
+			echo "<br/><br/><br/><div class="center"><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
 			$div .= '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';

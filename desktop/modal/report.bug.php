@@ -63,13 +63,13 @@ if(!$first){
       <strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
       <strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br/><br/>
       <strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
-      <center>
+      <div class="center">
         <a href="https://community.jeedom.com/tags/bug" target="_blank" style="font-weight:bold;">{{Voir les bugs}}</a><br/>
         <a href="https://community.jeedom.com/tags/amelioration" target="_blank" style="font-weight:bold;">{{Voir les propositions d'amélioration}}</a>
-      </center>
+      </div>
     </div>
   </div>
-  
+
   <div class="panel panel-primary">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
     <div class="panel-body">
@@ -109,7 +109,7 @@ if(!$first){
           <input class="form-control ticketAttr" data-l1key="title"/>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
         <div class="col-sm-9">
@@ -123,7 +123,7 @@ if(!$first){
       </div>
     </div>
   </div>
-  
+
   <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">

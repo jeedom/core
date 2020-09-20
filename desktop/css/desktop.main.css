@@ -165,9 +165,16 @@ a > img:hover {
   opacity: 0.75;
 }
 
+/* center tag replacement */
 .center {
   text-align: center;
 }
+.center > div,
+.center > table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 h1,h2,h3,h4,h5,h6,
 h3 a:visited {
@@ -443,6 +450,7 @@ div.eqLogic.eqLogic-widget:empty {
 
 /* dashboard equipments text color */
 .tableCmd,
+.cmd-widget > .center,
 .cmd-widget > center {
   color: var(--txt-color);
   font-weight: 700;
@@ -901,6 +909,8 @@ div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) 
 }
 div[class*="ListContainer"] div.cursor > center > i,
 .eqLogicThumbnailContainer div.cursor > center > i,
+div[class*="ListContainer"] div.cursor > .center > i,
+.eqLogicThumbnailContainer div.cursor > .center > i,
 .eqLogicThumbnailContainer div.cursor > i {
   margin-bottom: 20px;
 }
@@ -943,6 +953,7 @@ div[class*="DisplayCard"] .name {
   border-radius: var(--border-radius) !important;
 }
 .pluginListContainer div.cursor > center > img,
+.pluginListContainer div.cursor > .center > img,
 .interactListContainer div.cursor > img {
   width: 75px !important;
   padding-top: 5px;

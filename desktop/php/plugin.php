@@ -23,22 +23,22 @@ $plugins_list = plugin::listPlugin(false, true);
           continue;
         }
         $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
-        $div .= '<center><i class="fas fa-sync"></i></center>';
-        $div .= '<span class="txtColor"><center>{{Synchroniser}} ' . $value['name'] . '</center></span>';
+        $div .= '<div class="center"><i class="fas fa-sync"></i></div>';
+        $div .= '<span class="txtColor">{{Synchroniser}} ' . $value['name'] . '</span>';
         $div .= '</div>';
         if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
           continue;
         }
         $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
-        $div .= '<center><i class="fas fa-shopping-cart"></i></center>';
-        $div .= '<span class="txtColor"><center>' . $value['name'] . '</center></span>';
+        $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
+        $div .= '<span class="txtColor">' . $value['name'] . '</span>';
         $div .= '</div>';
       }
       echo $div;
       ?>
       <div class="cursor success" id="bt_addPluginFromOtherSource">
-        <center><i class="fas fa-plus"></i></center>
-        <span class="txtColor"><center>{{Plugins}}</center></span>
+        <div class="center"><i class="fas fa-plus"></i></div>
+        <span class="txtColor">{{Plugins}}</span>
       </div>
     </div>
     <legend><i class="fas fa-list-alt"></i> {{Mes plugins}} <sub class="itemsNumber"></sub></legend>
@@ -55,9 +55,9 @@ $plugins_list = plugin::listPlugin(false, true);
           foreach ((plugin::listPlugin()) as $plugin) {
             $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
             $div = '<div class="pluginDisplayCard hidden cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'; display: none;">';
-            $div .= '<center>';
+            $div .= '<div class="center">';
             $div .= '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
-            $div .= '</center>';
+            $div .= '</div>';
             $lbl_version = false;
             $update = $plugin->getUpdate();
             if (is_object($update)) {

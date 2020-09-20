@@ -24,7 +24,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 <div class="col-lg-12">
   <form class="form-horizontal col-lg-12">
     <br/>
-    <center>
+    <div class="center">
       <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="40">
       <br>
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
@@ -45,34 +45,34 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <a class="btn btn-xs" id="bt_faq" target="_blank"><i class="fas fa-question-circle"></i> {{FAQ}}</a>
       <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-image"></i> {{Guide de démarrage}}</a>
       <br><br>
-    </center>
+    </div>
 
     <div class="form-group">
-      <center class="label-info">
+      <div class="center label-info">
         <span class="label">{{Auteur(s)}}</span>
-      </center>
-      <center>
+      </div>
+      <div class="center">
         <br>
         <span>Jeedom SAS</span>
         <br><br>
-      </center>
+      </div>
     </div>
 
     <div class="form-group">
-      <center class="label-info">
+      <div class="center label-info">
         <span class="label">Licence</span>
-      </center>
-      <center>
+      </div>
+      <div class="center">
         <textarea readonly class="form-control" style="resize:none!important; min-height:15em; padding:5px; height:15em;"><?php echo $licenceText ?></textarea>
-      </center>
+      </div>
     </div>
 
     <div class="form-group">
-      <center>
+      <div class="center">
         <br>
         <a class="cursor" href="https://www.jeedom.com" target="_blank">www.jeedom.com</a>
         <br>
-      </center>
+      </div>
     </div>
   </form>
 </div>

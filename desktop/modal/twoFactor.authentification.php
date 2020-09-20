@@ -44,17 +44,17 @@ $google2fa_url = $google2fa->getQRCodeInline(
     <hr/>
     {{A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.}}
   </div>
-  
+
 </div>
 
 <div class="panel panel-primary">
   <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 2 : Configuration}}</h3></div>
   <div class="panel-body">
-    <center>
+    <div class="center">
       {{Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.}}<br/>
       <img src="<?php echo $google2fa_url; ?>" /><br/>
       {{Vous pouvez aussi entrer manuellement le code suivant : }}<strong><?php echo $_SESSION['user']->getOptions('twoFactorAuthentificationSecret'); ?></strong>
-    </center>
+    </div>
   </div>
 </div>
 

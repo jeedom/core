@@ -24,36 +24,30 @@ foreach ((widgets::all()) as $widget) {
     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
     <div class="widgetsListContainer hidden">
       <div class="cursor logoPrimary" id="bt_addWidgets">
-        <center>
-          <i class="fas fa-plus-circle"></i>
-        </center>
-        <span class="txtColor"><center>{{Ajouter}}</center></span>
+        <div class="center"><i class="fas fa-plus-circle"></i></div>
+        <span class="txtColor">{{Ajouter}}</span>
       </div>
       <div class="cursor logoSecondary" id="bt_mainImportWidgets" style="cursor: default !important;">
-        <center style="cursor: default !important;">
+        <div class="center" style="cursor: default !important;">
           <span class="btn-file"><i class="fas fa-file-import" style="margin-bottom: 20px;"></i>
             <input type="file" name="file">
           </span>
-        </center>
-        <span class="txtColor"><center style="cursor: default !important;">{{Importer}}</center></span>
+        </div>
+        <span class="txtColor"><span style="cursor: default !important;">{{Importer}}</span></span>
       </div>
       <div class="cursor logoSecondary" id="bt_editCode">
-        <center>
-          <i class="far fa-file-code"></i>
-        </center>
-        <span class="txtColor"><center>{{Code}}</center></span>
+        <div class="center"><i class="far fa-file-code"></i></div>
+        <span class="txtColor">{{Code}}</span>
       </div>
       <div class="cursor logoSecondary" id="bt_replaceWidget">
-        <center>
-          <i class="fab fa-replyd"></i>
-        </center>
-        <span class="txtColor"><center>{{Remplacement}}</center></span>
+        <div class="center"><i class="fab fa-replyd"></i></div>
+        <span class="txtColor">{{Remplacement}}</span>
       </div>
     </div>
     <legend><i class="fas fa-image"></i> {{Mes widgets}} <sub class="itemsNumber"></sub></legend>
     <?php
     if (count($widgets['info']) == 0 && count($widgets['action']) == 0) {
-      echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></center>";
+      echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></div>";
     } else {
       $div = '<div class="input-group" style="margin-bottom:5px;">';
       $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>';
@@ -218,9 +212,7 @@ foreach ((widgets::all()) as $widget) {
             </div>
             <div class="col-md-6 col-sm-12">
               <legend><i class="fas fa-search"></i> {{Prévisualisation}}</legend>
-              <center>
-                <div id="div_widgetPreview"></div>
-              </center>
+              <div id="div_widgetPreview"></div>
             </div>
           </div>
         </fieldset>

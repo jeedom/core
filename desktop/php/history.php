@@ -86,8 +86,7 @@ $date = array(
 							</a>
 						</div>
 					</div>
-					<div class="col-lg-7 col-sm-12">
-						<center>
+					<div class="col-lg-7 col-sm-12 center">
 							<div class="input-group input-group-sm">
 								<select class="fullCorner" id="sel_groupingType" style="width: 180px;">
 									<option value="">{{Aucun groupement}}</option>
@@ -133,7 +132,6 @@ $date = array(
 									?>
 								</select>
 							</div>
-						</center>
 					</div>
 					<div class="col-lg-2 col-sm-12">
 						<a class="btn btn-warning pull-right" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >

@@ -44,7 +44,7 @@ if ($selectPlugin != '') {
 		$trs = '';
 		foreach ($listMessage as $message) {
 			$trs .= '<tr data-message_id="' . $message->getId() . '">';
-			$trs .= '<td><center><i class="far fa-trash-alt cursor removeMessage"></i></center></td>';
+			$trs .= '<td><div class="center"><i class="far fa-trash-alt cursor removeMessage"></i></div></td>';
 			$trs .= '<td class="datetime">' . $message->getDate() . '</td>';
 			$trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
 			$trs .= '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';

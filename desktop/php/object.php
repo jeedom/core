@@ -15,15 +15,15 @@ sendVarToJS([
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="objectListContainer hidden">
 			<div class="cursor logoPrimary" id="bt_addObject2">
-				<center>
+				<div class="center">
 					<i class="fas fa-plus-circle"></i>
-				</center>
-				<span class="txtColor"><center>{{Ajouter}}</center></span>
+				</div>
+				<span class="txtColor">{{Ajouter}}</span>
 			</div>
 			<div class="cursor bt_showObjectSummary logoSecondary" >
-				<center>
+				<div class="center">
 					<i class="fas fa-list"></i>
-				</center>
+				</div>
 				<span class="txtColor">{{Vue d'ensemble}}</span>
 			</div>
 		</div>

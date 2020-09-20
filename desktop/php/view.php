@@ -58,7 +58,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
-<legend class="no-bordered">
+<legend class="no-bordered center">
 	<i class='far fa-image cursor pull-left bt_displayView reportModeHidden hidden-xs' data-display='<?php echo $_SESSION['user']->getOptions('displayViewByDefault') ?>' title="{{Afficher/Masquer les vues}}"></i>
 	<?php
 	if (init('noControl') == '') {
@@ -66,11 +66,9 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 			?> <a href="index.php?v=d&p=view_edit&view_id=<?php echo $view->getId(); ?>" class="btn btn-warning btn-xs pull-right reportModeHidden bt_hideFullScreen hidden-xs"><i class="fas fa-pencil-alt"></i> {{Edition complète}}</a><?php }	?>
 			<i class="fas fa-pencil-alt pull-right cursor reportModeHidden bt_hideFullScreen hidden-xs" id="bt_editViewWidgetOrder" data-mode="0" title="{{Mode édition}}"></i>
 		<?php } ?>
-		<center><h3>
-			<?php
-				echo trim($view->getDisplay('icon')).' '.$view->getName();
-			?>
-		</h3></center>
+			<h3>
+			<?php echo trim($view->getDisplay('icon')).' '.$view->getName(); ?>
+			</h3>
 	</legend>
 	<div class="row div_displayView"></div>
 </div>

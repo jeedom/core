@@ -32,9 +32,9 @@ foreach ($cmds as $cmd) {
 
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
 <a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
-<center>
+<div class="center">
   <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
-</center>
+</div>
 <br/>
 <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory">
   <thead>
@@ -57,9 +57,9 @@ foreach ($cmds as $cmd) {
     $tr = '';
     foreach ($cmds as $cmd) {
       $tr .= '<tr data-cmd_id="'.$cmd->getId(). '">';
-      $tr .= '<td style="width:95px;">';
+      $tr .= '<td class="center" style="width:95px;">';
       if ($cmd->getType() == 'info') {
-        $tr .= '<center><input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized()) ? 'checked' : '').' /></center>';
+        $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized()) ? 'checked' : '').' />';
       }
       $tr .= '</td>';
       $tr .= '<td style="width:155px;">';

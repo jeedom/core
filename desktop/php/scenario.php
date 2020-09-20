@@ -19,30 +19,30 @@ sendVarToJs('initSearch', init('search', 0));
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="scenarioListContainer hidden">
 			<div class="cursor logoPrimary" id="bt_addScenario">
-				<center><i class="fas fa-plus-circle"></i></center>
-				<span class="txtColor"><center>{{Ajouter}}</center></span>
+				<div class="center"><i class="fas fa-plus-circle"></i></div>
+				<span class="txtColor">{{Ajouter}}</span>
 			</div>
 			<?php if (config::byKey('enableScenario') == 0) {?>
 				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
-					<center><i class="fas fa-check"></i></center>
-					<span class="txtColor"><center>{{Activer scénarios}}</center></span>
+					<div class="center"><i class="fas fa-check"></i></div>
+					<span class="txtColor">{{Activer scénarios}}</span>
 				</div>
 			<?php } else {?>
 				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
-					<center><i class="fas fa-times"></i></center>
-					<span class="txtColor"><center>{{Désactiver scénarios}}</center></span>
+					<div class="center"><i class="fas fa-times"></i></div>
+					<span class="txtColor">{{Désactiver scénarios}}</span>
 				</div>
 			<?php } ?>
 			<div class="cursor logoSecondary  bt_showScenarioSummary">
-				<center><i class="fas fa-list"></i></center>
-				<span class="txtColor"><center>{{Vue d'ensemble}}</center></span>
+				<div class="center"><i class="fas fa-list"></i></div>
+				<span class="txtColor">{{Vue d'ensemble}}</span>
 			</div>
 		</div>
 
 		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalScenario) == 0) {
-			echo "<br/><br/><br/><center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></center>";
+			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
 			$div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchScenario"/>';
@@ -339,17 +339,15 @@ sendVarToJs('initSearch', init('search', 0));
 				<h4>{{Ajouter un bloc}}</h4>
 			</div>
 			<div class="modal-body">
-				<center>
-					<select id="in_addElementType" class="form-control">
-						<option value="if">{{Si/Alors/Sinon}}</option>
-						<option value="action">{{Action}}</option>
-						<option value="for">{{Boucle}}</option>
-						<option value="in">{{Dans}}</option>
-						<option value="at">{{A}}</option>
-						<option value="code">{{Code}}</option>
-						<option value="comment">{{Commentaire}}</option>
-					</select>
-				</center>
+				<select id="in_addElementType" class="form-control">
+					<option value="if">{{Si/Alors/Sinon}}</option>
+					<option value="action">{{Action}}</option>
+					<option value="for">{{Boucle}}</option>
+					<option value="in">{{Dans}}</option>
+					<option value="at">{{A}}</option>
+					<option value="code">{{Code}}</option>
+					<option value="comment">{{Commentaire}}</option>
+				</select>
 				<br/>
 				<div class="alert alert-info addElementTypeDescription if">
 					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.

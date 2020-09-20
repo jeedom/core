@@ -20,33 +20,31 @@ if (!isConnect()) {
 }
 ?>
 
-<center>
-  <select id="mod_actionValue_sel" class="form-control">
-    <option value="sleep">{{Pause}}</option>
-    <option value="variable">{{Variable}}</option>
-    <option value="delete_variable">{{Supprimer une variable}}</option>
-    <option value="scenario">{{Scénario}}</option>
-    <option value="stop" class="scenarioOnly">{{Stop}}</option>
-    <option value="wait">{{Attendre}}</option>
-    <option value="gotodesign">{{Aller au design}}</option>
-    <option value="log" class="scenarioOnly">{{Ajouter un log}}</option>
-    <option value="message">{{Créer un message}}</option>
-    <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
-    <option value="ask">{{Faire une demande}}</option>
-    <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
-    <option value="jeedom_reboot">{{Redémarrer}} <?php echo config::byKey('product_name'); ?></option>
-    <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
-    <option value="icon" class="scenarioOnly">{{Icône}}</option>
-    <option value="alert">{{Alerte}}</option>
-    <option value="popup">{{Pop-up}}</option>
-    <option value="report">{{Rapport}}</option>
-    <option value="exportHistory">{{Export historique}}</option>
-    <option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
-    <option value="event">{{Evènement}}</option>
-    <option value="tag">{{Tag}}</option>
-    <option value="setColoredIcon">{{Coloration des icones}}</option>
-  </select>
-</center>
+<select id="mod_actionValue_sel" class="form-control">
+  <option value="sleep">{{Pause}}</option>
+  <option value="variable">{{Variable}}</option>
+  <option value="delete_variable">{{Supprimer une variable}}</option>
+  <option value="scenario">{{Scénario}}</option>
+  <option value="stop" class="scenarioOnly">{{Stop}}</option>
+  <option value="wait">{{Attendre}}</option>
+  <option value="gotodesign">{{Aller au design}}</option>
+  <option value="log" class="scenarioOnly">{{Ajouter un log}}</option>
+  <option value="message">{{Créer un message}}</option>
+  <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
+  <option value="ask">{{Faire une demande}}</option>
+  <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
+  <option value="jeedom_reboot">{{Redémarrer}} <?php echo config::byKey('product_name'); ?></option>
+  <option value="scenario_return" class="scenarioOnly">{{Retourner un texte/une donnée}}</option>
+  <option value="icon" class="scenarioOnly">{{Icône}}</option>
+  <option value="alert">{{Alerte}}</option>
+  <option value="popup">{{Pop-up}}</option>
+  <option value="report">{{Rapport}}</option>
+  <option value="exportHistory">{{Export historique}}</option>
+  <option value="remove_inat">{{Supprimer bloc DANS/A programmé}}</option>
+  <option value="event">{{Evènement}}</option>
+  <option value="tag">{{Tag}}</option>
+  <option value="setColoredIcon">{{Coloration des icones}}</option>
+</select>
 <br/>
 <div class="alert alert-info mod_actionValue_selDescription sleep">
   {{Pause de x seconde(s)}}

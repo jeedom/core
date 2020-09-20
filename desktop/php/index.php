@@ -269,7 +269,7 @@ function setTheme() {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<center><span class="visible-xs-inline-block" style="margin-top:10px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></center>
+						<div class="center"><span class="visible-xs-inline-block" style="margin-top:10px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></div>
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
