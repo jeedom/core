@@ -1124,10 +1124,7 @@ div[data-market_type=script]:hover {
 .glyphicon-star-empty::before {
   content: "☆";
 }
-[data-page="plugin"] .rating-symbol-foreground {
-  top: 0;
-  cursor: pointer;
-}
+
 
 /* analyse equipment */
 #table_Action thead th[data-column="2"] {

@@ -12,7 +12,6 @@ if (init('logicalId') != '' && init('type') != '') {
 if (!isset($market)) {
 	throw new Exception('404 not found');
 }
-include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
 include_file('3rdparty', 'slick/slick.min', 'js');
 include_file('3rdparty', 'slick/slick', 'css');
 include_file('3rdparty', 'slick/slick-theme', 'css');
@@ -215,7 +214,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-			
+
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -235,7 +234,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-			
+
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -267,7 +266,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 
 <style>
@@ -333,7 +332,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-	
+
 });
 
 $('#bt_removeFromMarket').on('click', function () {
