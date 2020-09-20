@@ -1,5 +1,5 @@
 /**
- * tooltipster http://iamceege.github.io/tooltipster/
+ * tooltipster http://calebjacob.github.io/tooltipster/
  * A rockin' custom tooltip jQuery plugin
  * Developed by Caleb Jacob and Louis Ameline
  * MIT license
@@ -89,7 +89,7 @@ var defaults = {
 		hasTransitions: transitionSupport(),
 		IE: false,
 		// don't set manually, it will be updated by a build task after the manifest
-		semVer: '4.2.6',
+		semVer: '4.2.8',
 		window: win
 	},
 	core = function() {
@@ -1411,7 +1411,7 @@ $.Tooltipster.prototype = {
 					if (!identical) {
 						
 						// close the tooltip when using the mouseleave close trigger
-						// (see https://github.com/iamceege/tooltipster/pull/253)
+						// (see https://github.com/calebjacob/tooltipster/pull/253)
 						if (self.__options.triggerClose.mouseleave) {
 							self._close();
 						}
@@ -3526,18 +3526,17 @@ $.tooltipster._plugin({
 				self.__options.distance = [self.__options.distance];
 			}
 			if (self.__options.distance.length < 4) {
-				
 				if (self.__options.distance[1] === undefined) self.__options.distance[1] = self.__options.distance[0];
 				if (self.__options.distance[2] === undefined) self.__options.distance[2] = self.__options.distance[0];
 				if (self.__options.distance[3] === undefined) self.__options.distance[3] = self.__options.distance[1];
-				
-				self.__options.distance = {
-					top: self.__options.distance[0],
-					right: self.__options.distance[1],
-					bottom: self.__options.distance[2],
-					left: self.__options.distance[3]
-				};
 			}
+			
+			self.__options.distance = {
+				top: self.__options.distance[0],
+				right: self.__options.distance[1],
+				bottom: self.__options.distance[2],
+				left: self.__options.distance[3]
+			};
 			
 			// let's transform:
 			// 'top' into ['top', 'bottom', 'right', 'left']
