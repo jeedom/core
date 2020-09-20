@@ -196,7 +196,7 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap', 'css');
+	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
 	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
