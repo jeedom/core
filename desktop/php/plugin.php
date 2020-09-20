@@ -56,7 +56,7 @@ $plugins_list = plugin::listPlugin(false, true);
             $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
             $div = '<div class="pluginDisplayCard hidden cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'; display: none;">';
             $div .= '<div class="center">';
-            $div .= '<img class="img-responsive" src="' . $plugin->getPathImgIcon() . '" />';
+            $div .= '<img src="' . $plugin->getPathImgIcon() . '" />';
             $div .= '</div>';
             $lbl_version = false;
             $update = $plugin->getUpdate();

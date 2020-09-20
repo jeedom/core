@@ -40,7 +40,7 @@ $optionMaxSize = 15;
 		<legend><i class="far fa-comments"></i> {{Mes interactions}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalInteract) == 0) {
-			echo "<br/><br/><br/><div class="center"><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></div>";
+			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
 			$div .= '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
