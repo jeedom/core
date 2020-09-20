@@ -2661,7 +2661,7 @@
     "desktop\/js\/administration.js": {
         "Êtes-vous sûr de vouloir réinitialiser la clé API de ": "Sind Sie sicher, dass Sie den API-Schlüssel zurücksetzen möchten",
         "Commande réalisée avec succès": "Befehl erfolgreich durchgeführt",
-        "Attention ceci est une opération risquée de vidage de cahce est risquée, Confirmez vous vouloir la faire ?": "Achtung, dies ist eine riskante Operation, bei der das Entleeren von Cahce riskant ist. Bestätigen Sie, dass Sie dies tun möchten?",
+        "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "Achtung, dies ist eine riskante Operation (Leeren des Caches). Bestätigen Sie, dass Sie dies tun möchten?",
         "Sauvegarde réussie": "Speichern erfolgreich",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "Achtung, diese Operation ist riskant",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "nicht mehr funktioniert wird kein Support Anfrage akzeptiert werden? (der Zugangsversuch wird aufgezeichnet)",

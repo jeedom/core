@@ -75,7 +75,7 @@
 - **WebApp** : Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).<br/><br/>
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
-- **Lib** : Atualizar o HighStock v7.1.2 a v8.1.2.
+- **Lib** : Atualizar o HighStock v7.1.2 a v8.2.0.
 - **Lib** : Atualizar o jQuery v3.4.1 a v3.5.1.
 - **Lib** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
 - Protegendo solicitações Ajax.

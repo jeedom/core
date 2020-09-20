@@ -2661,7 +2661,7 @@
     "desktop\/js\/administration.js": {
         "Êtes-vous sûr de vouloir réinitialiser la clé API de ": "Êtes-vous sûr de vouloir réinitialiser la clé API de",
         "Commande réalisée avec succès": "成功裏に実施し運用",
-        "Attention ceci est une opération risquée de vidage de cahce est risquée, Confirmez vous vouloir la faire ?": "これは危険な操作であることに注意してください。",
+        "Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?": "",
         "Sauvegarde réussie": "成功したバックアップ",
         "Attention ceci est une opération risquée. Confirmez-vous que vous comprennez bien les risques et qu\\'en cas de": "これは危険な操作であることに注意してください。リスクを理解し、次の場合",
         "non fonctionel par la suite aucune demande de support ne sera acceptée (cette tentative d\\'accès est enregistrée) ?": "その後機能しない場合、サポートリクエストは受け付けられません（このアクセス試行は記録されます）？",
