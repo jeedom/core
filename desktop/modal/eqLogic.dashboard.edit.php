@@ -362,6 +362,18 @@ $(function() {
   setTableLayoutSortable()
   initTooltips()
   initPickers()
+
+  if ($('select[data-l2key="layout::dashboard"]').val() != 'default') {
+    $('#panel_cmds').hide()
+  }
+})
+
+$('select[data-l2key="layout::dashboard"]').off().on('change', function() {
+  if ($(this).val() == 'default') {
+    $('#panel_cmds').show()
+  } else {
+    $('#panel_cmds').hide()
+  }
 })
 
 function setModal() {
@@ -566,15 +578,26 @@ function editSaveEqlogic() {
   })
   var cmds = []
   var order = 1
-  $('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function() {
-    cmd = {}
-    cmd.id = $(this).attr('data-cmd_id')
-    cmd.line = $(this).closest('td').attr('data-line')
-    cmd.column = $(this).closest('td').attr('data-column')
-    cmd.order = order
-    cmds.push(cmd)
-    order++
-  })
+  if ($('select[data-l2key="layout::dashboard"]').val() != 'default') {
+    $('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function() {
+      cmd = {}
+      cmd.id = $(this).attr('data-cmd_id')
+      cmd.line = $(this).closest('td').attr('data-line')
+      cmd.column = $(this).closest('td').attr('data-column')
+      cmd.order = order
+      cmds.push(cmd)
+      order++
+    })
+  } else {
+    $('#div_eqLogicCmds .cmdConfig').each(function() {
+      cmd = {}
+      cmd.id = $(this).attr('data-id')
+      cmd.order = order
+      cmds.push(cmd)
+      order++
+    })
+  }
+
   jeedom.cmd.setOrder({
     version : 'dashboard',
     cmds: cmds,
