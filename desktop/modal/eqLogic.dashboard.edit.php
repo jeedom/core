@@ -364,11 +364,8 @@ $(function() {
   initPickers()
 
   //layout default or table for cmd order:
-  if ($('.sel_layout').val() != 'default') {
-    $('#panel_cmds').hide()
-  } else {
-    $('input[data-l2key="layout::dashboard::table::nbLine"]').val(1)
-    $('input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
+  if ($('.sel_layout').val() == 'default') {
+    $('input[data-l2key="layout::dashboard::table::nbLine"], input[data-l2key="layout::dashboard::table::nbColumn"]').val(1)
   }
 })
 
@@ -505,11 +502,6 @@ $('#table_widgetParameters').on('click', '.removeTileParameter', function() {
 })
 
 $('.sel_layout').on('change',function() {
-  if ($(this).val() == 'default') {
-    $('#panel_cmds').show()
-  } else {
-    $('#panel_cmds').hide()
-  }
   var type = $(this).attr('data-type')
   $('.widget_layout').hide()
   $('.widget_layout.'+$(this).value()).show()
