@@ -68,6 +68,8 @@ En mode édition (*le crayon tout en haut à droite*), vous pouvez changer la ta
 
 les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration. Cette icône ouvre une fenêtre d'édition comportant les paramètres d'affichage de l'équipement et de ses commandes.
 
+![Mode édition](./images/EditDashboardModal.gif)
+
 Sur chaque objet, à droite de son nom et résumé, deux icônes permettent d'aligner la hauteur de toutes les tuiles de l'objet sur la plus haute ou la moins haute.
 
 ## Barre de menu de Jeedom
