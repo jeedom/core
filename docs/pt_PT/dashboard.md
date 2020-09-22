@@ -68,6 +68,8 @@ No modo de edição (*o lápis no canto superior direito*), você pode alterar o
 
 os ícones de atualização do equipamento são substituídos por um ícone que permite acessar suas configurações. Este ícone abre uma janela de edição com os parâmetros de exibição do equipamento e seus controles.
 
+![Modo de edição](./images/EditDashboardModal.gif)
+
 Em cada objeto, à direita de seu nome e resumo, dois ícones permitem que você alinhe a altura de todos os ladrilhos do objeto na parte superior ou inferior.
 
 ## Barra de menus do Jeedom
