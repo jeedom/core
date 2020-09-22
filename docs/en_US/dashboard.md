@@ -68,6 +68,8 @@ In edit mode (*the pencil at the top right*), you can change the size of the til
 
 the equipment refresh icons are replaced by an icon allowing access to their configuration. This icon opens an editing window with the display parameters of the equipment and its controls.
 
+![Edit mode](./images/EditDashboardModal.gif)
+
 On each object, to the right of its name and summary, two icons allow you to align the height of all the tiles of the object on the highest or lowest.
 
 ## Jeedom menu bar
