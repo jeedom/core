@@ -548,7 +548,7 @@ function editSaveEqlogic() {
     eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
   })
   //save cmds:
-  eqLogic.cmd = []
+  eqLogic.cmds = []
   var cmd, attribClass
   $('#div_eqLogicCmds .cmdConfig').each(function() {
     attribClass = $(this).data('attribclass')
@@ -559,7 +559,7 @@ function editSaveEqlogic() {
     $(this).find('tr.cmdoptparam').each(function() {
       cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
     })
-    eqLogic.cmd.push(cmd);
+    eqLogic.cmds.push(cmd);
   })
   jeedom.eqLogic.save({
     eqLogics: [eqLogic],
@@ -567,37 +567,39 @@ function editSaveEqlogic() {
     error: function(error) {
       $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
     },
-    success: function() {}
-  })
-  var cmds = []
-  var order = 1
-  if ($('.sel_layout').val() != 'default') {
-    $('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function() {
-      cmd = {}
-      cmd.id = $(this).attr('data-cmd_id')
-      cmd.line = $(this).closest('td').attr('data-line')
-      cmd.column = $(this).closest('td').attr('data-column')
-      cmd.order = order
-      cmds.push(cmd)
-      order++
-    })
-  } else {
-    $('#div_eqLogicCmds .cmdConfig').each(function() {
-      cmd = {}
-      cmd.id = $(this).attr('data-id')
-      cmd.order = order
-      cmds.push(cmd)
-      order++
-    })
-  }
+    success: function() {
+      //save commands order, dependings on default/table setting:
+      var cmds = []
+      var order = 1
+      if ($('.sel_layout').val() != 'default') {
+        $('#tableCmdLayoutConfiguration tbody td').find('.cmdLayout').each(function() {
+          cmd = {}
+          cmd.id = $(this).attr('data-cmd_id')
+          cmd.line = $(this).closest('td').attr('data-line')
+          cmd.column = $(this).closest('td').attr('data-column')
+          cmd.order = order
+          cmds.push(cmd)
+          order++
+        })
+      } else {
+        $('#div_eqLogicCmds .cmdConfig').each(function() {
+          cmd = {}
+          cmd.id = $(this).attr('data-id')
+          cmd.order = order
+          cmds.push(cmd)
+          order++
+        })
+      }
 
-  jeedom.cmd.setOrder({
-    version : 'dashboard',
-    cmds: cmds,
-    error: function(error) {
-      $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(){}
+      jeedom.cmd.setOrder({
+        version : 'dashboard',
+        cmds: cmds,
+        error: function(error) {
+          $('#md_displayEqLogicConfigure').showAlert({message: error.message, level: 'danger'})
+        },
+        success : function(){}
+      })
+    }
   })
 }
 </script>
