@@ -19,7 +19,7 @@ if (!is_object($object)) {
 	$object = jeeObject::rootObject();
 }
 if (!is_object($object)) {
-	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Si vous ne savez pas quoi faire, n\'hésitez pas à consulter cette <a href="https://jeedom.github.io/documentation/premiers-pas/fr_FR/index" target="_blank">page</a> et celle-là si vous avez un pack : <a href="https://jeedom.com/start" target="_blank">page</a>}}');
+	throw new Exception('{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets.<br/> Pour plus d\'informations, n\'hésitez pas à consulter cette <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">documentation</a>. Si vous avez un Pack Jeedom Smart : <a href="https://start.jeedom.com/" target="_blank">Guide démarrage Smart</a>}}');
 }
 $allObject = jeeObject::buildTree(null, true);
 foreach ($allObject as $value) {
