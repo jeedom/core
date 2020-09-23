@@ -1284,6 +1284,7 @@
         "Temps réel": "Temps réel",
         "Equipements": "Equipements",
         "Résumé domotique": "Résumé domotique",
+        "Timeline": "Timeline",
         "Historique": "Historique",
         "Rapport": "Rapport",
         "Santé": "Santé",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "Sauvegarde",
         "Log": "Log",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé."
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Principal": "Principal",
+        "Rafraîchir": "Rafraîchir",
+        "Configuration": "Configuration"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Historique": "Historique",
-        "Timeline": "Timeline",
         "Historique calculé": "Historique calculé",
         "Sélectionner la commande": "Sélectionner la commande",
         "Afficher le graphique calculé": "Afficher le graphique calculé",
         "Configuration des formules de calcul": "Configuration des formules de calcul",
+        "Historique": "Historique",
         "Configuration": "Configuration",
         "Rechercher": "Rechercher",
         "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
@@ -2294,9 +2300,7 @@
         "Escalier": "Escalier",
         "Comparer": "Comparer",
         "Vide l'affichage des courbes sur la zone.": "Vide l'affichage des courbes sur la zone.",
-        "Affichage": "Affichage",
-        "Principal": "Principal",
-        "Rafraîchir": "Rafraîchir"
+        "Affichage": "Affichage"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Configuration des formules de calcul",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ",
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
-        "Historique supprimé avec succès": "Historique supprimé avec succès",
-        "Log d'exécution du scénario": "Log d'exécution du scénario",
-        "Configuration de la commande": "Configuration de la commande"
+        "Historique supprimé avec succès": "Historique supprimé avec succès"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Commande : ",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Êtes-vous sûr de vouloir supprimer l\\'interaction",
         "Action": "Action",
         "Sélectionner un mot-clé": "Sélectionner un mot-clé"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
+        "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Aucun aperçu possible en pdf"
@@ -2853,6 +2860,7 @@
         "Equipements": "Equipements",
         "Résumé": "Résumé",
         "Historique": "Historique",
+        "Timeline": "Timeline",
         "Rapports": "Rapports",
         "Santé": "Santé",
         "Objets": "Objets",

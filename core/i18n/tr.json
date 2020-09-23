@@ -1284,6 +1284,7 @@
         "Temps réel": "Gerçek zaman",
         "Equipements": "Cihazlar",
         "Résumé domotique": "Akıllı ev özeti",
+        "Timeline": "Zaman çizelgesi",
         "Historique": "Geçmiş",
         "Rapport": "Rapor",
         "Santé": "Sağlık",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "",
         "Log": "",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": ""
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Principal": "Birincil",
+        "Rafraîchir": "Yenile",
+        "Configuration": "Ayar"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "Hiçbir",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Historique": "Geçmiş",
-        "Timeline": "Zaman çizelgesi",
         "Historique calculé": "Tarih hesaplanmış",
         "Sélectionner la commande": "Komutayı seçin",
         "Afficher le graphique calculé": "",
         "Configuration des formules de calcul": "Formüller yapılandırılması",
+        "Historique": "Geçmiş",
         "Configuration": "Ayar",
         "Rechercher": "Arayın",
         "Supprimer tout ou partie de cet historique.": "",
@@ -2294,9 +2300,7 @@
         "Escalier": "Merdiven",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Gösterim",
-        "Principal": "Birincil",
-        "Rafraîchir": "Yenile"
+        "Affichage": "Gösterim"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Değer [ 'name']",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
-        "Historique supprimé avec succès": "Geçmiş başarıyla silindi",
-        "Log d'exécution du scénario": "Senaryonun çalışma logu",
-        "Configuration de la commande": "Komutanın ayarları"
+        "Historique supprimé avec succès": "Geçmiş başarıyla silindi"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Komuta :",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz",
         "Action": "Eylem",
         "Sélectionner un mot-clé": "Anahtar kelime seçin"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
+        "Log d'exécution du scénario": "Senaryonun çalışma logu",
+        "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Pdf olarak önizlenim mevcut değil"
@@ -2853,6 +2860,7 @@
         "Equipements": "Cihazlar",
         "Résumé": "Özet",
         "Historique": "Geçmiş",
+        "Timeline": "Zaman çizelgesi",
         "Rapports": "Ilişkiler",
         "Santé": "Sağlık",
         "Objets": "Nesneler",

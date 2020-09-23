@@ -39,9 +39,10 @@
 - **Vista** : El modo de edición ahora inserta el mosaico movido.
 - **Vista** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
 - **Vista** : El orden de visualización ahora es independiente del que se muestra en el Panel de control.
-- **Historial** : Integración de la línea de tiempo en DB por razones de confiabilidad.
-- **Historial** : Gestión de múltiples líneas de tiempo.
-- **Historial** : Revisión gráfica del cronograma.
+- **Línea de tiempo** : Separación de páginas de historia y cronología.
+- **Línea de tiempo** : Integración de la línea de tiempo en DB por razones de confiabilidad.
+- **Línea de tiempo** : Gestión de múltiples líneas de tiempo.
+- **Línea de tiempo** : Rediseño gráfico completo de la línea de tiempo (Escritorio / Móvil).
 - **Resumen global** : Vista de resumen, soporte para resúmenes de un objeto diferente o con un objeto raíz vacío (escritorio y aplicación web).
 - **Resumen de domótica** : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
 - **Resumen de domótica** : Posibilidad de buscar en categorías de equipos.

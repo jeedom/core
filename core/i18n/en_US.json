@@ -1284,6 +1284,7 @@
         "Temps réel": "Real time",
         "Equipements": "Equipments",
         "Résumé domotique": "Domotic overview",
+        "Timeline": "Timeline",
         "Historique": "History",
         "Rapport": "Report",
         "Santé": "Health",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "Backups",
         "Log": "Log",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "is starting up, please wait. The page will reload automatically when the startup is complete"
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Principal": "Main",
+        "Rafraîchir": "Refresh",
+        "Configuration": "Configuration"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Historique": "History",
-        "Timeline": "Timeline",
         "Historique calculé": "Calculated history",
         "Sélectionner la commande": "Select command",
         "Afficher le graphique calculé": "Show calculated graph",
         "Configuration des formules de calcul": "Configuration of calculation formulas",
+        "Historique": "History",
         "Configuration": "Configuration",
         "Rechercher": "Search",
         "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
@@ -2294,9 +2300,7 @@
         "Escalier": "Steps",
         "Comparer": "Compare",
         "Vide l'affichage des courbes sur la zone.": "Clear the display of curves on the area",
-        "Affichage": "Viewing",
-        "Principal": "Main",
-        "Rafraîchir": "Refresh"
+        "Affichage": "Viewing"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Please provide the date (Y-m-d H:m:s) which must be removed before history",
         "Configuration de l'historique des commandes": "Commands history setup",
-        "Historique supprimé avec succès": "History deleted successfully",
-        "Log d'exécution du scénario": "Scenario execution log",
-        "Configuration de la commande": "Command setup"
+        "Historique supprimé avec succès": "History deleted successfully"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Command : ",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Are you sure you want to delete the interaction",
         "Action": "Action",
         "Sélectionner un mot-clé": "Select a keyword"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Commands history setup",
+        "Log d'exécution du scénario": "Scenario execution log",
+        "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "No preview possible in pdf"
@@ -2853,6 +2860,7 @@
         "Equipements": "Equipments",
         "Résumé": "Summary",
         "Historique": "History",
+        "Timeline": "Timeline",
         "Rapports": "Reports",
         "Santé": "Health",
         "Objets": "Objects",

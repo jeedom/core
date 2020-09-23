@@ -30,15 +30,15 @@ Existem várias maneiras de acessar o histórico :
 - No celular, enquanto permanece pressionado no widget em questão,
 - Colocando uma área gráfica em uma visualização (veja abaixo).
 
-## Guia Histórico
+## Historique
 
 Se você exibir um gráfico na página de histórico, terá acesso a várias opções de exibição, acima do gráfico :
 
 - **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* Dans *Configurações → Sistema → Configuração / Equipamento*.
 - **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em *Linha*, *área*, onde *Bar*. Opção salva no pedido e usada no Painel. 
-- **Mudança** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel. 
-- **Escada** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel. 
+- **Tipo de exibição** : Exibir em *Linha*, *área*, onde *Bar*. Opção salva no pedido e usada no Painel.
+- **Mudança** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
+- **Escada** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
 - **Comparar** : Compare a curva entre diferentes períodos. A comparação é feita de acordo com o período exibido. Se o período for de uma semana, a comparação será feita em -1 semana, -2 semana etc.
 
 
@@ -89,43 +89,4 @@ Na frente de cada dado que pode ser exibido, você encontrará dois ícones :
 
 Às vezes você pode ter valores inconsistentes nos gráficos. Isso geralmente ocorre devido à preocupação em interpretar o valor. É possível excluir ou alterar o valor do ponto em questão, clicando nele diretamente no gráfico; Além disso, você pode ajustar o mínimo e o máximo permitido para evitar problemas futuros.
 
-## Guia Linha do tempo
 
-A linha do tempo exibe certos eventos em sua automação residencial em forma cronológica.
-
-Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo dos comandos ou cenários desejados, para que esses eventos ocorram.
-
-- **Cenas** : Diretamente na página do cenário ou na página de resumo do cenário para fazê-lo em massa".
-- **Ordem** : Na configuração avançada do comando ou na configuração do histórico para fazê-lo em "massa".
-
-A linha do tempo *Principal* sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo *Ficheiro*. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
-Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do botão *Legal*.
-
-> **NOTA**
->
-> Se você não usar mais uma pasta, ela aparecerá na lista enquanto existirem eventos vinculados a essa pasta. Ele desaparecerá da lista por si só.
-
-> **Dica**
->
-> Você tem acesso às janelas de resumo do cenário ou de configuração do histórico diretamente da página da linha do tempo.
-
-Depois de ativar o rastreamento na linha do tempo dos comandos e cenários desejados, você poderá vê-los aparecer na linha do tempo.
-
-> **IMPORTANTE**
->
-> Você precisa aguardar novos eventos após ativar o rastreamento na linha do tempo antes de vê-los aparecer.
-
-### Affichage
-
-A linha do tempo exibe os eventos gravados, escalonados dia a dia verticalmente.
-
-Para cada evento, você tem:
-
-- A data e hora do evento,
-- O tipo de evento: Um comando de informação ou ação, ou um cenário, com o plug-in de comando para comandos.
-- O nome do objeto pai, o nome e, dependendo do tipo, estado ou gatilho.
-
-- Um evento do tipo de comando exibe um ícone à direita para abrir a configuração do comando.
-- Um evento do tipo cenário exibe dois ícones à direita para ir para o cenário ou abrir o log do cenário.
-
-No canto superior direito, você pode selecionar uma pasta da linha do tempo. Isso deve ser criado antes e deve conter eventos.

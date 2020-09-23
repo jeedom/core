@@ -1284,6 +1284,7 @@
         "Temps réel": "Tempo reale",
         "Equipements": "Dispositivi",
         "Résumé domotique": "Sommario Automazioni Domestiche",
+        "Timeline": "Cronologia",
         "Historique": "Storico",
         "Rapport": "Rapporto",
         "Santé": "Salute",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "Salvaguardia",
         "Log": "Registro",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": ""
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Principal": "Primario",
+        "Rafraîchir": "Aggiorna",
+        "Configuration": "Configurazione"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "Nessuno",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Historique": "Storico",
-        "Timeline": "Cronologia",
         "Historique calculé": "Storia calcolato",
         "Sélectionner la commande": "Seleziona comando",
         "Afficher le graphique calculé": "Mostra grafico calcolato",
         "Configuration des formules de calcul": "Configurazione di formule",
+        "Historique": "Storico",
         "Configuration": "Configurazione",
         "Rechercher": "Cerca",
         "Supprimer tout ou partie de cet historique.": "",
@@ -2294,9 +2300,7 @@
         "Escalier": "Passi",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Mostra",
-        "Principal": "Primario",
-        "Rafraîchir": "Aggiorna"
+        "Affichage": "Mostra"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Valore [ 'name']",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Configurazione di formule",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
-        "Historique supprimé avec succès": "Storico cancellato con successo",
-        "Log d'exécution du scénario": "Registro di esecuzione della scena",
-        "Configuration de la commande": "Impostazione comando"
+        "Historique supprimé avec succès": "Storico cancellato con successo"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Comando:",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Sei sicuro di voler eliminare l\\'interazione",
         "Action": "Azione",
         "Sélectionner un mot-clé": "Seleziona una parola chiave"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
+        "Log d'exécution du scénario": "Registro di esecuzione della scena",
+        "Configuration de la commande": "Impostazione comando"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Nessuna anteprima possibile in pdf"
@@ -2853,6 +2860,7 @@
         "Equipements": "Dispositivi",
         "Résumé": "Sommario",
         "Historique": "Storico",
+        "Timeline": "Cronologia",
         "Rapports": "Relazioni",
         "Santé": "Salute",
         "Objets": "Oggetti",

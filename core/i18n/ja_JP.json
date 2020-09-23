@@ -1284,6 +1284,7 @@
         "Temps réel": "実時間",
         "Equipements": "施設",
         "Résumé domotique": "オートメーションの概要",
+        "Timeline": "タイムライン",
         "Historique": "歴史的",
         "Rapport": "レポート",
         "Santé": "健康",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "安全対策",
         "Log": "ログ",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": ""
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Principal": "主要",
+        "Rafraîchir": "クール",
+        "Configuration": "コンフィギュレーション"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "何でもありません",
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Historique": "歴史的",
-        "Timeline": "タイムライン",
         "Historique calculé": "歴史計算",
         "Sélectionner la commande": "コマンドを選択",
         "Afficher le graphique calculé": "計算されたグラフを表示",
         "Configuration des formules de calcul": "式の設定",
+        "Historique": "歴史的",
         "Configuration": "コンフィギュレーション",
         "Rechercher": "検索する",
         "Supprimer tout ou partie de cet historique.": "",
@@ -2294,9 +2300,7 @@
         "Escalier": "階段",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "観覧",
-        "Principal": "主要",
-        "Rafraîchir": "クール"
+        "Affichage": "観覧"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "式の設定",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
-        "Historique supprimé avec succès": "歴史は正常に削除しました",
-        "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
-        "Configuration de la commande": "設定された制御"
+        "Historique supprimé avec succès": "歴史は正常に削除しました"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "注文：",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "インタラクションを削除してもよろしいですか",
         "Action": "アクション",
         "Sélectionner un mot-clé": "キーワードを選択"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
+        "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
+        "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "PDFではプレビューできません"
@@ -2853,6 +2860,7 @@
         "Equipements": "施設",
         "Résumé": "概要",
         "Historique": "歴史的",
+        "Timeline": "タイムライン",
         "Rapports": "関係",
         "Santé": "健康",
         "Objets": "オブジェクト",

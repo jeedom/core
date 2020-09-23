@@ -1284,6 +1284,7 @@
         "Temps réel": "Tiempo real",
         "Equipements": "Dispositivos",
         "Résumé domotique": "Resumen de domótica",
+        "Timeline": "Línea de tiempo",
         "Historique": "Historial",
         "Rapport": "Informe",
         "Santé": "Salud",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "Salvaguardia",
         "Log": "Registro",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "se está iniciando, por favor espere. La página se volverá a cargar automáticamente cuando se complete el inicio"
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Principal": "Primario",
+        "Rafraîchir": "Refrescar",
+        "Configuration": "Configuración"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "Ninguno",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Historique": "Historial",
-        "Timeline": "Línea de tiempo",
         "Historique calculé": "Historia calculada",
         "Sélectionner la commande": "Seleccione el comando",
         "Afficher le graphique calculé": "Mostrar gráfico calculado",
         "Configuration des formules de calcul": "Configuración de fórmulas",
+        "Historique": "Historial",
         "Configuration": "Configuración ",
         "Rechercher": "Buscar",
         "Supprimer tout ou partie de cet historique.": "Eliminar todo o parte de este historial",
@@ -2294,9 +2300,7 @@
         "Escalier": "Escalera",
         "Comparer": "Comparar",
         "Vide l'affichage des courbes sur la zone.": "Borre la visualización de curvas en el área",
-        "Affichage": "Visualización",
-        "Principal": "Primario",
-        "Rafraîchir": "Refrescar"
+        "Affichage": "Visualización"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "Valor $ [ 'nombre']",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
-        "Historique supprimé avec succès": "Historial eliminado correctamente",
-        "Log d'exécution du scénario": "Log de ejecución del escenario",
-        "Configuration de la commande": "Configuración del comando"
+        "Historique supprimé avec succès": "Historial eliminado correctamente"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Comando :",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?",
         "Action": "Acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Configuración del historial de comandos",
+        "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Sin vista previa disponible en pdf"
@@ -2853,6 +2860,7 @@
         "Equipements": "Dispositivos",
         "Résumé": "Resumen",
         "Historique": "Guardar historial",
+        "Timeline": "Línea de tiempo",
         "Rapports": "Relaciones",
         "Santé": "Salud",
         "Objets": "Objetos",

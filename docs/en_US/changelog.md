@@ -39,9 +39,10 @@
 - **View** : Edit mode now inserting the moved tile.
 - **View** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
 - **View** : The display order is now independent of that on the Dashboard.
-- **History** : Integration of the Timeline in DB for reliability reasons.
-- **History** : Management of multiple timelines.
-- **History** : Timeline graphic overhaul.
+- **Timeline** : Separation of History and Timeline pages.
+- **Timeline** : Integration of the Timeline in DB for reliability reasons.
+- **Timeline** : Management of multiple timelines.
+- **Timeline** : Complete graphic redesign of the timeline (Desktop / Mobile).
 - **Global Summary** : Summary view, support for summaries from a different object or with an empty root object (Desktop and WebApp).
 - **Domotic overview** : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
 - **Domotic overview** : Ability to search on equipment categories.

@@ -39,9 +39,10 @@
 - **Vista** : Modo de edição agora inserindo o bloco movido.
 - **Vista** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
 - **Vista** : A ordem de exibição agora é independente da ordem no painel.
-- **Histórico** : Integração da linha do tempo no DB por motivos de confiabilidade.
-- **Histórico** : Gerenciamento de várias linhas do tempo.
-- **Histórico** : Revisão gráfica do cronograma.
+- **Cronograma** : Separação das páginas de histórico e cronograma.
+- **Cronograma** : Integração da linha do tempo no DB por motivos de confiabilidade.
+- **Cronograma** : Gerenciamento de várias linhas do tempo.
+- **Cronograma** : Completo redesenho gráfico da linha do tempo (Desktop / Mobile).
 - **Resumo Global** : Visualização Resumo, suporte para resumos de um objeto diferente ou com um objeto raiz vazio (Desktop e WebApp).
 - **Resumo Automation** : Equipamentos de plug-in desativados e seus controles não têm mais os ícones à direita (configuração do equipamento e configuração avançada).
 - **Resumo Automation** : Capacidade de pesquisar nas categorias de equipamentos.

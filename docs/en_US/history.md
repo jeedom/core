@@ -30,15 +30,15 @@ There are several ways to access the history :
 - On mobile while remaining pressed on the widget in question,
 - By putting a graph area in a view (see below).
 
-## History tab
+## Historique
 
 If you display a graph via the history page, you have access to several display options, above the graph :
 
 - **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* IN *Settings → System → Configuration / Equipment*.
 - **Group** : Offers several grouping options (Sum per hour, etc.).
-- **Display type** : Display in *Line*, *Area*, or *Bar*. Option saved on the order and used from the Dashboard. 
-- **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard. 
-- **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard. 
+- **Display type** : Display in *Line*, *Area*, or *Bar*. Option saved on the order and used from the Dashboard.
+- **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
+- **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
 - **Compare** : Compare the curve between different periods. The comparison is made according to the displayed period. If the period is one week, the comparison will be made over -1 week, -2 week, etc.
 
 
@@ -89,43 +89,4 @@ In front of each data that can be displayed, you will find two icons :
 
 Sometimes you may have inconsistent values on the graphs. This is often due to a concern with interpreting the value. It is possible to delete or change the value of the point in question, by clicking on it directly on the graph; in addition, you can adjust the minimum and maximum allowed to avoid future problems.
 
-## Timeline tab
 
-The timeline displays certain events in your home automation in chronological form.
-
-To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
-
-- **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
-- **Command** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
-
-The timeline *Main* always contains all the events. However, you can filter the timeline by *Folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
-You can then filter the timeline by this folder by selecting it to the left of the button *Refresh*.
-
-> **NOTE**
->
-> If you no longer use a folder, it will appear in the list as long as events linked to this folder exist. It will disappear from the list by itself.
-
-> **Tip**
->
-> You have access to the scenario summary or history configuration windows directly from the timeline page.
-
-Once you have activated tracking in the timeline of the commands and scenarios you want, you will be able to see them appear on the timeline.
-
-> **IMPORTANT**
->
-> You have to wait for new events after activating the tracking on the timeline before seeing them appear.
-
-### Affichage
-
-The timeline displays the recorded events, staggered day by day vertically.
-
-For each event, you have:
-
-- The date and time of the event,
-- The type of event: An info or action command, or a scenario, with the command plugin for commands.
-- The name of the parent object, the name, and depending on the type, state or trigger.
-
-- A command type event displays an icon on the right to open the command configuration.
-- A scenario type event displays two icons on the right to go to the scenario, or open the scenario log.
-
-At the top right, you can select a timeline folder. This must be created before and must contain events.

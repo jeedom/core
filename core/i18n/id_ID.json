@@ -1284,6 +1284,7 @@
         "Temps réel": "Real time",
         "Equipements": "Peralatan",
         "Résumé domotique": "Otomatisasi Ringkasan",
+        "Timeline": "Waktu",
         "Historique": "Historis",
         "Rapport": "Laporan",
         "Santé": "Bidang Kesehatan",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "",
         "Log": "",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": ""
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Principal": "",
+        "Rafraîchir": "Dingin",
+        "Configuration": "Konfigurasi"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Historique": "Historis",
-        "Timeline": "Waktu",
         "Historique calculé": "Sejarah dihitung",
         "Sélectionner la commande": "Pilih perintah",
         "Afficher le graphique calculé": "",
         "Configuration des formules de calcul": "Konfigurasi rumus",
+        "Historique": "Historis",
         "Configuration": "Konfigurasi",
         "Rechercher": "Mencari",
         "Supprimer tout ou partie de cet historique.": "",
@@ -2294,9 +2300,7 @@
         "Escalier": "Tangga",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Melihat",
-        "Principal": "",
-        "Rafraîchir": "Dingin"
+        "Affichage": "Melihat"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
-        "Historique supprimé avec succès": "Sejarah berhasil dihapus",
-        "Log d'exécution du scénario": "Log eksekusi script",
-        "Configuration de la commande": "Set Kontrol"
+        "Historique supprimé avec succès": "Sejarah berhasil dihapus"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Perintah:",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Apakah Anda yakin ingin menghapus \\ 's interaksi",
         "Action": "Tindakan",
         "Sélectionner un mot-clé": "Pilih kata kunci"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
+        "Log d'exécution du scénario": "Log eksekusi script",
+        "Configuration de la commande": "Set Kontrol"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Tidak ada dapat melihat pdf"
@@ -2853,6 +2860,7 @@
         "Equipements": "Peralatan",
         "Résumé": "Ringkasan",
         "Historique": "Historis",
+        "Timeline": "Waktu",
         "Rapports": "Hubungan",
         "Santé": "Bidang Kesehatan",
         "Objets": "Item",

@@ -39,9 +39,10 @@
 - **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - **Ansicht** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
 - **Ansicht** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
-- **Chronik** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
-- **Chronik** : Verwaltung mehrerer Zeitleisten.
-- **Chronik** : Überarbeitung der Timeline-Grafik.
+- **Zeitleiste** : Trennung von Verlaufs- und Zeitleisten-Seiten.
+- **Zeitleiste** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
+- **Zeitleiste** : Verwaltung mehrerer Zeitleisten.
+- **Zeitleiste** : Komplette grafische Neugestaltung der Timeline (Desktop / Mobile).
 - **Globale Zusammenfassung** : Zusammenfassungsansicht, Unterstützung für Zusammenfassungen von einem anderen Objekt oder mit einem leeren Stammobjekt (Desktop und WebApp)).
 - **Zusammenfassung der Hausautomation** : Plugin-Geräte sind deaktiviert und ihre Steuerelemente haben nicht mehr die Symbole auf der rechten Seite (Gerätekonfiguration und erweiterte Konfiguration)).
 - **Zusammenfassung der Hausautomation** : Möglichkeit zur Suche nach Gerätekategorien.

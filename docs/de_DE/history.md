@@ -30,15 +30,15 @@ Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 - Auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben,
 - Indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten)).
 
-## Registerkarte &quot;Verlauf&quot;
+## Historique
 
 Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :
 
 - **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken* IN *Einstellungen → System → Konfiguration / Ausstattung*.
 - **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
-- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, oder *Balken*. Option in der Bestellung gespeichert und über das Dashboard verwendet. 
-- **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet. 
-- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet. 
+- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, oder *Balken*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Vergleichen Sie** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden. Der Vergleich erfolgt nach dem angezeigten Zeitraum. Wenn der Zeitraum eine Woche beträgt, wird der Vergleich über -1 Woche, -2 Wochen usw. durchgeführt.
 
 
@@ -89,43 +89,4 @@ Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
 
 Manchmal haben Sie inkonsistente Werte in den Diagrammen. Dies ist häufig auf Bedenken hinsichtlich der Interpretation des Werts zurückzuführen. Sie können den Wert des betreffenden Punkts löschen oder ändern, indem Sie direkt in der Grafik darauf klicken. Darüber hinaus können Sie das zulässige Minimum und Maximum anpassen, um zukünftige Probleme zu vermeiden.
 
-## Registerkarte &quot;Zeitleiste&quot;
 
-In der Zeitleiste werden bestimmte Ereignisse in Ihrer Hausautomation in chronologischer Form angezeigt.
-
-Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle oder Szenarien auf der Zeitachse aktivieren. Anschließend treten diese Ereignisse auf.
-
-- **Szenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies in großen Mengen zu tun".
-- **Bestellen** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in "Masse" zu tun".
-
-Die Zeitleiste *Primär* enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach filtern *Rekord*. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
-Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche auswählen *Aktualisieren*.
-
-> **Notiz**
->
-> Wenn Sie keinen Ordner mehr verwenden, wird dieser in der Liste angezeigt, solange Ereignisse vorhanden sind, die mit diesem Ordner verknüpft sind. Es wird von selbst aus der Liste verschwinden.
-
-> **Spitze**
->
-> Sie haben Zugriff auf die Fenster &quot;Szenarioübersicht&quot; oder &quot;Verlaufskonfiguration&quot; direkt über die Timeline-Seite.
-
-Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenarien aktiviert haben, können Sie sie in der Zeitleiste anzeigen.
-
-> **Wichtig**
->
-> Sie müssen auf neue Ereignisse warten, nachdem Sie das Tracking auf der Timeline aktiviert haben, bevor sie angezeigt werden.
-
-### Affichage
-
-Die Zeitleiste zeigt die aufgezeichneten Ereignisse an, die Tag für Tag vertikal versetzt sind.
-
-Für jede Veranstaltung haben Sie:
-
-- Datum und Uhrzeit der Veranstaltung,
-- Die Art des Ereignisses: Ein Info- oder Aktionsbefehl oder ein Szenario mit dem Befehls-Plugin für Befehle.
-- Der Name des übergeordneten Objekts, der Name und je nach Typ, Status oder Auslöser.
-
-- Ein Befehlstypereignis zeigt rechts ein Symbol zum Öffnen der Befehlskonfiguration an.
-- Bei einem Ereignis vom Typ Szenario werden rechts zwei Symbole angezeigt, mit denen Sie zum Szenario wechseln oder das Szenarioprotokoll öffnen können.
-
-Oben rechts können Sie einen Zeitleistenordner auswählen. Dies muss vorher erstellt werden und Ereignisse enthalten.

@@ -1284,6 +1284,7 @@
         "Temps réel": "Echtzeit",
         "Equipements": "Geräte",
         "Résumé domotique": "Übersicht Haus-Automatisierung",
+        "Timeline": "Zeitleiste",
         "Historique": "Chronik",
         "Rapport": "Bericht",
         "Santé": "Gesundheit",
@@ -1326,6 +1327,12 @@
         "Sauvegarde": "Schutz",
         "Log": "Log",
         "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "startet, bitte warten. Die Seite wird nach Abschluss des Startvorgangs automatisch neu geladen"
+    },
+    "desktop\/php\/timeline.php": {
+        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Principal": "Primär",
+        "Rafraîchir": "Aktualisieren",
+        "Configuration": "Konfiguration"
     },
     "desktop\/php\/reboot.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2255,12 +2262,11 @@
     "desktop\/php\/history.php": {
         "Aucun": "Ohne",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Historique": "Chronik",
-        "Timeline": "Zeitleiste",
         "Historique calculé": "Berechnete Historie",
         "Sélectionner la commande": "Befehl auswählen",
         "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
+        "Historique": "Chronik",
         "Configuration": "Konfiguration",
         "Rechercher": "Suchen",
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
@@ -2294,9 +2300,7 @@
         "Escalier": "Treppe",
         "Comparer": "Vergleichen Sie",
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
-        "Affichage": "Anzeigen",
-        "Principal": "Primär",
-        "Rafraîchir": "Aktualisieren"
+        "Affichage": "Anzeigen"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",
@@ -2514,9 +2518,7 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
-        "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
-        "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
-        "Configuration de la commande": "Befehl Konfiguration"
+        "Historique supprimé avec succès": "Chronik erfolgreich gelöscht"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Bestellung:",
@@ -2602,6 +2604,11 @@
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?",
         "Action": "Aktion",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen"
+    },
+    "desktop\/js\/timeline.js": {
+        "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
+        "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
+        "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Keine Vorschau im PDF möglich"
@@ -2853,6 +2860,7 @@
         "Equipements": "Geräte",
         "Résumé": "Zusammenfassung",
         "Historique": "Chronik",
+        "Timeline": "Zeitleiste",
         "Rapports": "Verhältnis",
         "Santé": "Gesundheit",
         "Objets": "Objekte",
