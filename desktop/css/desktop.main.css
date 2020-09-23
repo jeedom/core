@@ -1609,10 +1609,6 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding-bottom: 0 !important;
 }
 
-#timelineContainer {
-  padding-top: 40px;
-}
-
 #timelineContainer .html .tml-cmd > span >span i {
   color: var(--linkHoverLight-color) !important;
 }
@@ -1717,11 +1713,12 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineOptions {
   position: fixed;
   text-align: right;
-  right: 25px;
+  top: 55px;
+  right: 10px;
+  padding: 5px;
+  height: 40px !important;
   z-index: 10;
   background: rgba(var(--panel-bg-color), var(--opacity));
-  padding: 5px;
-  height: 36px !important;
 }
 
 body[data-page="history"] .label.displayObject {
