@@ -851,12 +851,14 @@ $divConfig.on({
     chooseIcon(function(_icon) {
       objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon)
     },{icon:icon,color:color})
+    modifyWithoutSave = true
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=chooseIcon]')
 
 $divConfig.on({
   'click': function(event) {
     $(this).closest('.objectSummary').remove()
+    modifyWithoutSave = true
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=remove]')
 
@@ -888,6 +890,12 @@ $divConfig.on({
 $("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
 
 printObjectSummary()
+
+$divConfig.on({
+  'change': function(event) {
+    modifyWithoutSave = true
+  }
+}, '.objectSummaryAttr')
 
 function printObjectSummary() {
   $.ajax({
