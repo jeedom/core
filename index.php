@@ -34,9 +34,10 @@ try {
 		}
 		$url = 'index.php?v=' . trim($getParams, '&');
 		if (headers_sent()) {
-			echo '<script type="text/javascript">';
-			echo "window.location.href='$url';";
-			echo '</script>';
+			$_script = '<script type="text/javascript">';
+			$_script .= "window.location.href='$url';";
+			$_script .= '</script>';
+			echo $_script;
 		} else {
 			exit(header('Location: ' . $url));
 		}
@@ -54,14 +55,16 @@ try {
 				include_file('desktop', init('modal'), 'modal', init('plugin'));
 			} catch (Exception $e) {
 				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
+				$_div = '<div class="alert alert-danger div_alert">';
+				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				$_div .= '</div>';
+				echo $_div;
 			} catch (Error $e) {
 				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
+				$_div = '<div class="alert alert-danger div_alert">';
+				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				$_div .= '</div>';
+				echo $_div;
 			}
 		} elseif (isset($_GET['configure'])) {
 			include_file('core', 'authentification', 'php');
@@ -85,14 +88,16 @@ try {
 				include_file('desktop', init('p'), 'php', init('m'));
 			} catch (Exception $e) {
 				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
+				$_div = '<div class="alert alert-danger div_alert">';
+				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				$_div .= '</div>';
+				echo $_div;
 			} catch (Error $e) {
 				ob_end_clean();
-				echo '<div class="alert alert-danger div_alert">';
-				echo translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				echo '</div>';
+				$_div = '<div class="alert alert-danger div_alert">';
+				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
+				$_div .= '</div>';
+				echo $_div;
 			}
 		} else {
 			include_file('desktop', 'index', 'php');
