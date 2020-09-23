@@ -340,6 +340,7 @@ function setTheme() {
 										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
 									<?php } ?>
 									<li class="divider"></li>
+									<li><a href="index.php?v=d&p=timeline"><i class="far fa-clock"></i> {{Timeline}}</a></li>
 									<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
 									<?php if (isConnect('admin')) { ?>
 										<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
@@ -447,7 +448,7 @@ function setTheme() {
 								<?php } ?>
 								<li class="hidden-sm"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
 								<li class="hidden-sm navTime">
-									<a href="index.php?v=d&p=history#timelinetab">
+									<a href="index.php?v=d&p=timeline">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
 									<a href="index.php?v=d&p=administration#generaltab">

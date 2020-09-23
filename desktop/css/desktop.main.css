@@ -1608,9 +1608,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   height: 100% !important;
   padding-bottom: 0 !important;
 }
-#timelinetab {
-  height: 100% !important;
-}
+
 #timelineContainer {
   padding-top: 40px;
 }
@@ -1723,19 +1721,19 @@ body[data-page="history"] #div_pageContainer .tab-content {
   z-index: 10;
   background: rgba(var(--panel-bg-color), var(--opacity));
   padding: 5px;
+  height: 36px !important;
 }
 
-
-#historytab .label.displayObject {
+body[data-page="history"] .label.displayObject {
   margin-top: 2.2px;
 }
-#historytab .label.displayObject:hover {
+body[data-page="history"] .label.displayObject:hover {
   opacity: 0.65;
 }
-#historytab .label.displayObject i:hover {
+body[data-page="history"] .label.displayObject i:hover {
   color: inherit !important;
 }
-#historytab .history.disabled {
+body[data-page="history"] .history.disabled {
   color: var(--placeholder-color) !important;
 }
 #ul_expressionHistory li a {

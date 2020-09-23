@@ -39,9 +39,10 @@
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
 - **Vue** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
 - **Vue** : L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard.
-- **Historique** : Intégration de la Timeline en DB pour des raisons de fiabilité.
-- **Historique** : Gestion de Timelines multiples.
-- **Historique** : Refonte graphique de la timeline.
+- **Timeline** : Séparation des pages Historique et Timeline.
+- **Timeline** : Intégration de la Timeline en DB pour des raisons de fiabilité.
+- **Timeline** : Gestion de Timelines multiples.
+- **Timeline** : Refonte graphique complète de la timeline (Desktop / Mobile).
 - **Résumé global** : Affichage par résumé, support des résumés depuis un objet différent ou avec un objet racine vide (Desktop et WebApp).
 - **Résumé domotique** : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
 - **Résumé domotique** : Possibilité de chercher sur les catégories d'équipements.
