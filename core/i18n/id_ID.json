@@ -2608,6 +2608,7 @@
     "desktop\/js\/timeline.js": {
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Log d'exécution du scénario": "Log eksekusi script",
+        "Historique": "Historis",
         "Configuration de la commande": "Set Kontrol"
     },
     "desktop\/js\/report.js": {
@@ -4043,9 +4044,11 @@
         "Message de ": "Pesan dari"
     },
     "core\/class\/timeline.class.php": {
+        "Configuration de la commande": "Set Kontrol",
+        "Historique": "Historis",
         "Scénario déclenché par": "",
-        "Log du scénario": "",
-        "Aller au scénario": ""
+        "Aller au scénario": "",
+        "Log du scénario": ""
     },
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",

@@ -2608,6 +2608,7 @@
     "desktop\/js\/timeline.js": {
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
+        "Historique": "歴史的",
         "Configuration de la commande": "設定された制御"
     },
     "desktop\/js\/report.js": {
@@ -4043,9 +4044,11 @@
         "Message de ": "メッセージ"
     },
     "core\/class\/timeline.class.php": {
+        "Configuration de la commande": "設定された制御",
+        "Historique": "歴史的",
         "Scénario déclenché par": "",
-        "Log du scénario": "",
-        "Aller au scénario": ""
+        "Aller au scénario": "",
+        "Log du scénario": ""
     },
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",

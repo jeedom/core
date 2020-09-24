@@ -2608,6 +2608,7 @@
     "desktop\/js\/timeline.js": {
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
         "Log d'exécution du scénario": "Log d'exécution du scénario",
+        "Historique": "Historique",
         "Configuration de la commande": "Configuration de la commande"
     },
     "desktop\/js\/report.js": {
@@ -4043,9 +4044,11 @@
         "Message de ": "Message de "
     },
     "core\/class\/timeline.class.php": {
+        "Configuration de la commande": "Configuration de la commande",
+        "Historique": "Historique",
         "Scénario déclenché par": "Scénario déclenché par",
-        "Log du scénario": "Log du scénario",
-        "Aller au scénario": "Aller au scénario"
+        "Aller au scénario": "Aller au scénario",
+        "Log du scénario": "Log du scénario"
     },
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ",

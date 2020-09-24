@@ -2608,6 +2608,7 @@
     "desktop\/js\/timeline.js": {
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
+        "Historique": "Geçmiş",
         "Configuration de la commande": "Komutanın ayarları"
     },
     "desktop\/js\/report.js": {
@@ -4043,9 +4044,11 @@
         "Message de ": "Dan mesaj"
     },
     "core\/class\/timeline.class.php": {
+        "Configuration de la commande": "Komutanın ayarları",
+        "Historique": "Geçmiş",
         "Scénario déclenché par": "Tarafından tetiklenen senaryo",
-        "Log du scénario": "Senaryo günlüğü",
-        "Aller au scénario": "Senaryoya git"
+        "Aller au scénario": "Senaryoya git",
+        "Log du scénario": "Senaryo günlüğü"
     },
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "",

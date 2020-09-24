@@ -2608,6 +2608,7 @@
     "desktop\/js\/timeline.js": {
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
+        "Historique": "Chronik",
         "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/report.js": {
@@ -4043,9 +4044,11 @@
         "Message de ": "Nachricht"
     },
     "core\/class\/timeline.class.php": {
+        "Configuration de la commande": "Befehl Konfiguration",
+        "Historique": "Chronik",
         "Scénario déclenché par": "Szenario ausgelöst durch",
-        "Log du scénario": "Szenario-Protokoll",
-        "Aller au scénario": "Gehe zum Szenario"
+        "Aller au scénario": "Gehe zum Szenario",
+        "Log du scénario": "Szenario-Protokoll"
     },
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "Nach deaktivierten Updates, Updates und Neuinstallationen suchen",
