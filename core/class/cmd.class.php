@@ -1422,14 +1422,24 @@ class cmd {
 			if (!isset($replace['#color#'])) {
 				$replace['#color#'] = '';
 			}
-			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
-			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+			if (!isset($replace['#title_placeholder#'])) {
+				$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
+			}
+			if (!isset($replace['#message_placeholder#'])) {
+				$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+			}
 			$replace['#message_cmd_type#'] = $this->getDisplay('message_cmd_type', 'info');
 			$replace['#message_cmd_subtype#'] = $this->getDisplay('message_cmd_subtype', '');
-			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
-			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
+			if (!isset($replace['#message_disable#'])) {
+				$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
+			}
+			if (!isset($replace['#title_disable#'])) {
+				$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
+			}
 			$replace['#title_color#'] = $this->getDisplay('title_color', 0);
-			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
+			if (!isset($replace['#title_possibility_list#'])) {
+				$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
+			}
 			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
 			$replace['#other_tooltips#'] = ($replace['#name#'] != $this->getName()) ? $this->getName() : '';
 			return translate::exec(template_replace($replace, $template), 'core/template/widgets.html');
