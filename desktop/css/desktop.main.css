@@ -1601,14 +1601,6 @@ button .fas.fa-plus-circle {
 
 
 /*______Timeline cards */
-body[data-page="history"] #div_pageContainer {
-  height: 100%;
-}
-body[data-page="history"] #div_pageContainer .tab-content {
-  height: 100% !important;
-  padding-bottom: 0 !important;
-}
-
 #timelineContainer .html .tml-cmd > span >span i {
   color: var(--linkHoverLight-color) !important;
 }
@@ -1673,7 +1665,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   border: 3px solid var(--al-info-color);
   position: absolute;
   background: rgb(var(--eq-bg-color)) !important;
-  left: 65px;
+  left: 115px;
   top: 5px;
   z-index: 5;
 }
@@ -1684,14 +1676,21 @@ body[data-page="history"] #div_pageContainer .tab-content {
   border: 3px solid var(--bt-success-color);
 }
 
+#timelineContainer li:not(:first-of-type):hover,
+#timelineContainer li:not(:first-of-type):hover .time {
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
 #timelineContainer div.time {
   position: absolute;
   font-size: 14px;
   font-weight: 700;
-  left: -100px;
+  left: -150px;
   margin-top: -5px;
   height: 100%;
   top: 0;
+  padding-left: 50px;
 }
 #timelineContainer div.date {
   position: absolute;
