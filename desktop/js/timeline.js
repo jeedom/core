@@ -41,6 +41,10 @@ $('#timelineContainer ul').on('click','.bt_gotoScenario', function() {
   loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'))
 })
 
+$('#timelineContainer ul').on('click','.bt_historicCmd', function() {
+  $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
+})
+
 $('#timelineContainer ul').on('click','.bt_configureCmd', function() {
   $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
 })

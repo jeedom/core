@@ -998,20 +998,6 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 
 
 /*______Timeline cards */
-body[data-page="history"] #div_pageContainer {
-  height: 100%;
-}
-body[data-page="history"] #div_pageContainer .tab-content {
-  height: 100% !important;
-  padding-bottom: 0 !important;
-}
-#timelinetab {
-  height: 100% !important;
-}
-#timelineContainer {
-  padding-top: 40px;
-}
-
 #timelineContainer .html .tml-cmd > span >span i {
   color: var(--linkHoverLight-color) !important;
 }
@@ -1026,11 +1012,11 @@ body[data-page="history"] #div_pageContainer .tab-content {
 #timelineContainer ul:before {
   content: '';
   width: 1px;
-  height: calc(100% - 200px);
+  height: calc(100% - 80px);
   position: absolute;
   border-left: 3px dotted var(--al-info-color);
 }
-#timelineContainer ul li  {
+#timelineContainer ul li {
   position: relative;
   margin-top: 5px;
   min-height: 22px;
@@ -1063,7 +1049,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   margin-bottom: 40px;
   margin-left: -115px ;
   width: 150px;
-  z-index: 200 !important;
+  z-index: 9 !important;
   border-radius: var(--border-radius);
 }
 
@@ -1076,7 +1062,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   border: 3px solid var(--al-info-color);
   position: absolute;
   background: rgb(var(--eq-bg-color)) !important;
-  left: 65px;
+  left: 115px;
   top: 5px;
   z-index: 5;
 }
@@ -1087,14 +1073,23 @@ body[data-page="history"] #div_pageContainer .tab-content {
   border: 3px solid var(--bt-success-color);
 }
 
+#timelineContainer li:not(:first-of-type):hover,
+#timelineContainer li:not(:first-of-type):hover .time {
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
 #timelineContainer div.time {
   position: absolute;
   font-size: 14px;
   font-weight: 700;
-  left: -100px;
+  left: -150px;
   margin-top: -5px;
   height: 100%;
-  top: 0;
+  top: 4px;
+  padding-left: 50px;
+  padding-right: 5px;
+  border-radius: var(--border-radius) !important;
 }
 #timelineContainer div.date {
   position: absolute;
@@ -1113,12 +1108,24 @@ body[data-page="history"] #div_pageContainer .tab-content {
   display: inline-block
 }
 
+#timelineOptions {
+  position: fixed;
+  text-align: right;
+  top: 55px;
+  right: 10px;
+  padding: 5px;
+  height: 40px !important;
+  z-index: 10;
+  background: rgba(var(--panel-bg-color), var(--opacity));
+}
+
 /* timeline special mobile */
 #timelineContainer {
   padding-top: 0;
 }
 #timelineContainer ul:before {
   left: 78px;
+  height: unset;
 }
 #timelineContainer ul {
   padding-left: 105px;
@@ -1135,16 +1142,17 @@ body[data-page="history"] #div_pageContainer .tab-content {
   font-size: 12px;
 }
 #timelineContainer div.time {
-  left: -88px;
+  left: -132px;
 }
 #timelineContainer ul li .time:after {
   width: 11px;
   height: 11px;
-  left: 64px;
-  top: 2px;
+  left: 108px;
+  top: 1px;
 }
 #timelineContainer ul .html .bt_scenarioLog,
 #timelineContainer ul .html .bt_gotoScenario,
+#timelineContainer ul .html .bt_historicCmd,
 #timelineContainer ul .html .bt_configureCmd {
   display: none;
 }
@@ -1152,6 +1160,7 @@ body[data-page="history"] #div_pageContainer .tab-content {
   padding: 1px 5px;
 }
 #timelineContainer div.date {
+  top: 3px;
   left: -85px;
 }
 @media screen and (max-width: 780px) and (orientation: portrait) {

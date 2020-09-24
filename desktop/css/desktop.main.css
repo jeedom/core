@@ -1689,8 +1689,10 @@ button .fas.fa-plus-circle {
   left: -150px;
   margin-top: -5px;
   height: 100%;
-  top: 0;
+  top: 4px;
   padding-left: 50px;
+  padding-right: 5px;
+  border-radius: var(--border-radius) !important;
 }
 #timelineContainer div.date {
   position: absolute;
@@ -4036,15 +4038,15 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   .navbar-nav.navbar-right .objectSummaryglobal {
     max-width: 340px;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -4061,12 +4063,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -4074,7 +4076,7 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -4134,7 +4136,7 @@ ul.dropdown-menu {
   .eqLogicThumbnailContainer div.cursor > i {
     font-size: 2.5em !important;
   }
-  
+
   #div_editScenario .tab-content {
     max-height: calc(100% - 80px);
   }
