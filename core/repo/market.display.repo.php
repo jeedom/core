@@ -242,21 +242,21 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			<div class='col-sm-2'>
 				<label class="control-label">{{Langue disponible}}</label><br/>
 				<?php
-				echo '<img src="core/img/francais.png" width="30" />';
+				echo '<img src="core/img/langFlags/francais.png" width="30" />';
 				if ($market->getLanguage('en_US') == 1) {
-					echo '<img src="core/img/anglais.png" width="30" />';
+					echo '<img src="core/img/langFlags/anglais.png" width="30" />';
 				}
 				if ($market->getLanguage('de_DE') == 1) {
-					echo '<img src="core/img/allemand.png" width="30" />';
+					echo '<img src="core/img/langFlags/allemand.png" width="30" />';
 				}
 				if ($market->getLanguage('sp_SP') == 1) {
-					echo '<img src="core/img/espagnol.png" width="30" />';
+					echo '<img src="core/img/langFlags/espagnol.png" width="30" />';
 				}
 				if ($market->getLanguage('ru_RU') == 1) {
-					echo '<img src="core/img/russe.png" width="30" />';
+					echo '<img src="core/img/langFlags/russe.png" width="30" />';
 				}
 				if ($market->getLanguage('it_IT') == 1) {
-					echo '<img src="core/img/italien.png" width="30" />';
+					echo '<img src="core/img/langFlags/italien.png" width="30" />';
 				}
 				?>
 			</div>
