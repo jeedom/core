@@ -18,6 +18,7 @@
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
+require_once __DIR__ . '/../../data/php/conversionUnits.class.php';
 
 class cmd {
 	/*     * *************************Attributs****************************** */
@@ -1233,6 +1234,30 @@ class cmd {
 		return $template;
 	}
 
+    public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
+        $_unit=str_replace ("\"","",$_unit);
+        $_unit=str_replace ("\'","",$_unit);
+        $conv = conversionUnits::$conversions;
+        if(array_keys($conv) > 0 && array_key_exists($_unit,$conv)){
+            $mod=$conv[$_unit][0];
+            $prefix = array_slice($conv[$_unit],1);
+            $myval = self::autoValueFormat($_value, $mod, count($prefix)-1);
+            return array(round($myval[0],$_decimal),($_space ? ' ' : '') . $prefix[$myval[1]]);
+        }else{
+            return array(round($_value,$_decimal),$_unit);
+        }
+    }
+
+	private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10){
+		$val=floatval($_value);
+		$div=0;
+		while($val > $_mod && $div <$_maxdiv){
+			$val=floatval($val/$_mod);
+			$div++;
+		}
+		return array($val,$div);
+	}
+
 	public function toHtml($_version = 'dashboard', $_options = '') {
 		$_version = jeedom::versionAlias($_version);
 		$html = '';
@@ -1309,6 +1334,17 @@ class cmd {
 					}
 					if ($this->getSubType() == 'numeric' && trim($replace['#state#']) === '') {
 						$replace['#state#'] = 0;
+					}
+					if ($this->getSubType() == 'numeric' && trim($replace['#unite#']) != ''){
+						if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+							$round=$this->getConfiguration('historizeRound');
+						}else{
+							$round=99;
+						}
+						
+						$valueInfo=self::autoValueArray($replace['#state#'],$round,$replace['#unite#']);
+						$replace['#state#']=$valueInfo[0];
+						$replace['#unite#']=$valueInfo[1];
 					}
 				}
 				if (method_exists($this, 'formatValueWidget')) {
