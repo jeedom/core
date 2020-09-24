@@ -1615,7 +1615,7 @@ button .fas.fa-plus-circle {
 #timelineContainer ul:before {
   content: '';
   width: 1px;
-  height: calc(100% - 50px);
+  height: calc(100% - 80px);
   position: absolute;
   border-left: 3px dotted var(--al-info-color);
 }
