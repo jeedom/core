@@ -121,6 +121,14 @@ ul[role="tablist"] li:not(.active) a {
   opacity: 0.45 !important;
 }
 
+/* timeline */
+#timelineContainer li:not(:first-of-type):hover,
+#timelineContainer li:not(:first-of-type):hover .time {
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+  z-index: 10;
+  outline: 1px solid var(--btnEq-default-color);
+}
+
 /* __________________________________________________________________________________________________________CodeMirror */
 
 div.CodeMirror { background: #272822 !important; color: #f8f8f2; }
