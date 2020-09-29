@@ -1364,7 +1364,7 @@ function addExpression(_expression) {
     retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />';
     retour += '<span class="input-group-btn">';
     retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression"  tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>';
-    retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression"  tooltip="{{Rechercher un scenario}}"><i class="fas fa-history"></i></button>';
+    retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression"  tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>';
     retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>';
     retour += '</span>';
     retour += '</div>';
