@@ -55,7 +55,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     <?php }
     ?>
   </ul>
-
+  
   <div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
     <div role="tabpanel" class="tab-pane active" id="cmd_information">
       <br/>
@@ -213,7 +213,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           </form>
         </div>
       </div>
-
+      
       <form class="form-horizontal">
         <fieldset id="fd_cmdUsedBy">
           <legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
@@ -339,7 +339,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         </fieldset>
       </form>
       <?php if ($cmd->getType() == 'action') {?>
-
+        
         <form class="form-horizontal">
           <fieldset>
             <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
@@ -382,7 +382,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
               </div>
             </div>
-
+            
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -390,10 +390,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div id="div_actionCheckCmd"></div>
-
+            
             <script type="text/javascript">
             $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-
+            
             $('#bt_addActionCheckCmd').off('click').on('click',function(){
               addActionCmd({}, 'actionCheckCmd','{{Action}}');
             });
@@ -432,7 +432,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div id="div_actionPostExecCmd"></div>
-
+            
             <script type="text/javascript">
             $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
             $('#bt_addActionPostExecCmd').off('click').on('click',function(){
@@ -442,7 +442,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           </fieldset>
         </form>
       <?php }?>
-
+      
       <?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
         ?>
         <form class="form-horizontal">
@@ -472,6 +472,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
               <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                 <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
+                  <option value="" selected>{{Jamais}}</option>
                   <option value="-1 day">{{1 jour}}</option>
                   <option value="-7 days">{{7 jours}}</option>
                   <option value="-1 month">{{1 mois}}</option>
@@ -480,7 +481,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <option value="-1 year">{{1 an}}</option>
                   <option value="-2 years">{{2 ans}}</option>
                   <option value="-3 years">{{3 ans}}</option>
-                  <option value="" selected>{{Jamais}}</option>
                 </select>
               </div>
             </div>
@@ -584,7 +584,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       </div>
     <?php }
     ?>
-
+    
     <?php if ($cmd->widgetPossibility('custom')) {
       ?>
       <div role="tabpanel" class="tab-pane" id="cmd_display">
@@ -614,7 +614,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
                       <option value="default">Défaut</option>
                       <?php
-
+                      
                       if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
                         $types = array();
                         foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
@@ -679,7 +679,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                           usort($type, function($a, $b) {
                             return strcmp($a['name'], $b['name']);
                           });
-
+                          
                           foreach ($type as $key => $widget) {
                             if ($widget['name'] == 'default') {
                               continue;
@@ -764,7 +764,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             ?>
           </tbody>
         </table>
-
+        
         <div class="form-group">
           <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
           <div class="col-xs-1">
@@ -775,7 +775,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
           </div>
         </div>
-
+        
         <br/><br/>
         <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
           ?>
@@ -819,7 +819,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     <?php }
     ?>
   </div>
-
+  
   <div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 </div>
 
@@ -833,7 +833,7 @@ $(function() {
   if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
   var mobileWidget = $('select[data-l2key="mobile"]')
   if (mobileWidget.val()==null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
-
+  
   //format update linked cmds:
   var spanValues = $('#cmd_information .cmdAttr[data-l1key="value"]')
   var values = spanValues.html()
@@ -862,7 +862,7 @@ $(function() {
       }
     })
   }
-
+  
   jeedom.timeline.autocompleteFolder()
 })
 
@@ -1201,7 +1201,7 @@ $('#bt_cmdConfigureSaveOn').on('click',function() {
         $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0)
       }
     });
-
+    
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
       $('#table_cmdConfigureSelectMultiple tbody tr').each(function() {
         if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
