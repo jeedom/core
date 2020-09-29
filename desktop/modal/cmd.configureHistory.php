@@ -94,6 +94,7 @@ foreach ($cmds as $cmd) {
       if ($cmd->getType() == 'info') {
         $confHistoryPurge = $cmd->getConfiguration('historyPurge');
         $tr .= '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historyPurge">';
+        $tr .= '<option value="" '.(($confHistoryPurge == '') ? 'selected' : '').'>{{Jamais}}</option>';
         $tr .= '<option value="-1 day" '.(($confHistoryPurge == '-1 day') ? 'selected' : '').'>{{1 jour}}</option>';
         $tr .= '<option value="-7 days" '.(($confHistoryPurge == '-7 days') ? 'selected' : '').'>{{7 jours}}</option>';
         $tr .= '<option value="-1 month" '.(($confHistoryPurge == '-1 month') ? 'selected' : '').'>{{1 mois}}</option>';
@@ -102,7 +103,6 @@ foreach ($cmds as $cmd) {
         $tr .= '<option value="-1 year" '.(($confHistoryPurge == '-1 year') ? 'selected' : '').'>{{1 an}}</option>';
         $tr .= '<option value="-2 years" '.(($confHistoryPurge == '-2 years') ? 'selected' : '').'>{{2 ans}}</option>';
         $tr .= '<option value="-3 years" '.(($confHistoryPurge == '-3 years') ? 'selected' : '').'>{{3 ans}}</option>';
-        $tr .= '<option value="" '.(($confHistoryPurge == '') ? 'selected' : '').'>{{Jamais}}</option>';
         $tr .= '</select>';
       }
       $tr .= '</td>';
@@ -148,7 +148,7 @@ $('#bt_cmdConfigureCmdHistoryApply').on('click',function() {
       cmds.push($(this).getValues('.cmdAttr')[0])
     }
   })
-
+  
   jeedom.cmd.multiSave({
     cmds : cmds,
     error: function(error) {
@@ -188,13 +188,13 @@ function setTableParser() {
     format: function(s) {
       if (s == '') return '100000'
       return s.replace(/-3 years/, 1095)
-        .replace(/-2 years/, 730)
-        .replace(/-1 year/, 365)
-        .replace(/-6 month/, 180)
-        .replace(/-3 month/, 90)
-        .replace(/-1 month/, 30)
-        .replace(/-7 days/, 7)
-        .replace(/-1 day/, 1)
+      .replace(/-2 years/, 730)
+      .replace(/-1 year/, 365)
+      .replace(/-6 month/, 180)
+      .replace(/-3 month/, 90)
+      .replace(/-1 month/, 30)
+      .replace(/-7 days/, 7)
+      .replace(/-1 day/, 1)
     },
     type: 'numeric'
   })
