@@ -13,6 +13,10 @@ global $CONFIG;
         <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SHOW TABLES;">{{Tables}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `MB`,table_rows as `Ligne` FROM information_schema.TABLES WHERE table_schema='<?php  echo $CONFIG['db']['dbname'];?>' ORDER BY (data_length + index_length) DESC;">{{Taille}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM dataStore WHERE type='scenario';">{{Select Variables}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM eqLogic;">{{Select eqLogics}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT id, name, configuration FROM eqLogic;">{{Select eqLogics configuration}}</a></li>
+        <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM cmd WHERE id=1;">{{Select cmd id 1}}</a></li>
       </ul>
     </div>
   </div>
