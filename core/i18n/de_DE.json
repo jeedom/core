@@ -2156,6 +2156,10 @@
         "Rechercher": "Suchen nach",
         "Tables": "Tische",
         "Taille": "Größe",
+        "Select Variables": "Wählen Sie Variablen",
+        "Select eqLogics": "Wählen Sie eqLogics",
+        "Select eqLogics configuration": "Wählen Sie die eqLogics-Konfiguration",
+        "Select cmd id 1": "Wählen Sie cmd id 1",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
         "OK": "Ok"
     },

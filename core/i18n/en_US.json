@@ -2156,6 +2156,10 @@
         "Rechercher": "Search",
         "Tables": "Tables",
         "Taille": "Size",
+        "Select Variables": "Select Variables",
+        "Select eqLogics": "Select eqLogics",
+        "Select eqLogics configuration": "Select eqLogics configuration",
+        "Select cmd id 1": "Select cmd id 1",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "Ok"
     },

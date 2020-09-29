@@ -2156,6 +2156,10 @@
         "Rechercher": "Pesquisa",
         "Tables": "Tabelas",
         "Taille": "Tamanho",
+        "Select Variables": "Selecionar Variáveis",
+        "Select eqLogics": "Selecione eqLogics",
+        "Select eqLogics configuration": "Selecione a configuração eqLogics",
+        "Select cmd id 1": "Selecione cmd id 1",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Clique em um pedido à esquerda ou digite um pedido personalizado abaixo",
         "OK": "Ok"
     },
