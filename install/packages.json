@@ -33,6 +33,7 @@
     "php-ssh2" : {"alternative" : ["/php(.*?)-ssh2/"]},
     "php-mbstring" : {"alternative" : ["/php(.*?)-mbstring/"]},
     "php-ldap" : {"alternative" : ["/php(.*?)-ldap/"],"optional" : true},
+    "usbutils" : {"optional" : true},
     "gettext" : {},
     "librsync-dev" : {},
     "python-dev" : {}
