@@ -1567,7 +1567,7 @@
         "Beta (Plus d'accès au support)": "Beta (no more access to support)",
         "Release (Plus d'accès au support)": "Release (More access to support)",
         "Stable": "Stable",
-        "Release Candidate V4": "",
+        "Release Candidate V4": "Release Candidate V4",
         "Vérifier automatiquement si il y a des mises à jour": "Check for updates automatically",
         "Activer": "Activate",
         "Tester\/Synchroniser": "Test \/ Synchronize",
@@ -2725,7 +2725,7 @@
         "Redémarrage": "Restart",
         "Rotation": "Rotation",
         "Sur sa base": "On its basis",
-        "Robot": "",
+        "Robot": "Robot",
         "Ne pas tenir compte de cette commande": "Ignore this command"
     },
     "core\/com\/http.com.php": {
