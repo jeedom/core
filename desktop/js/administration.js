@@ -32,17 +32,16 @@ if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _ur
 
 $(function() {
   $.showLoading()
-  setTimeout(function() {
-    modifyWithoutSave = false
-  }, 1000)
-  updateTooltips()
-  initPickers()
-
   if (getUrlVars('panel') != false) {
     $('a[href="#'+getUrlVars('panel')+'"]').click()
   }
 
+  initPickers()
   printConvertColor()
+  setTimeout(function() {
+    updateTooltips()
+    modifyWithoutSave = false
+  }, 500)
 })
 
 //searching
@@ -126,6 +125,22 @@ function initPickers() {
     icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"}
   })
 }
+
+//load configuration settings
+jeedom.config.load({
+  configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
+  error: function(error) {
+    $('#div_alert').showAlert({message: error.message, level: 'danger'})
+  },
+  success: function(data) {
+    $('#config').setValues(data, '.configKey')
+    $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
+    $('.configKey[data-l1key="ldap:enable"]').trigger('change')
+    loadAactionOnMessage()
+    modifyWithoutSave = false
+  }
+})
+
 
 $("#bt_resetThemeCookie").on('click', function(event) {
   document.cookie = "currentTheme= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
@@ -513,20 +528,6 @@ $('.bt_selectWarnMeCmd').on('click', function() {
   })
 })
 
-
-jeedom.config.load({
-  configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
-  error: function(error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'})
-  },
-  success: function(data) {
-    $('#config').setValues(data, '.configKey')
-    $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
-    $('.configKey[data-l1key="ldap:enable"]').trigger('change')
-    loadAactionOnMessage()
-    modifyWithoutSave = false
-  }
-})
 
 $divConfig.off('change','.configKey').on('change','.configKey:visible',  function() {
   modifyWithoutSave = true
