@@ -1940,7 +1940,7 @@
         "Ajouter\/Editer viewZone": "Adicionar \/ Editar Viewzone",
         "Nom": "Nome",
         "Type": "Tipo",
-        "Widget": "Widget",
+        "Equipement": "Equipamento",
         "Graphique": "Gráfico",
         "Tableau": "Mesa",
         "Annuler": "Cancelar"
@@ -2421,7 +2421,7 @@
         "Configuration de l\\'objet": "Objeto de configuração \\ 's"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Você está editando você pode moda widgets de mover, redimensionar e alterar a ordem dos comandos widgets",
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "Você está no modo de edição. Você pode mover os blocos, redimensioná-los e editar os comandos (ordem, widget) com o botão à direita do título",
         "Configuration Affichage": "Configuração de exibição"
     },
     "desktop\/js\/view_edit.js": {
@@ -2441,7 +2441,7 @@
         "Ajouter courbe": "Adicionar curva",
         "Ajouter colonne": "Adicionar coluna",
         "Ajouter ligne": "Adicionar linha",
-        "Ajouter Widget": "Adicionar Widget",
+        "Ajouter Equipement": "Adicionar equipamento",
         "Ajouter Scénario": "Ajouter Scénario",
         "Editer": "Editar",
         "Supprimer": "Remover",
@@ -2560,7 +2560,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Configuration Affichage": "Configuração de exibição",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Você está em modo de edição você pode mover widgets, redimensionar e alterar a ordem dos comandos em widgets. Lembre-se de deixar o modo de edição para salvar"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Você está no modo de edição. Você pode mover os blocos, redimensioná-los e editar os comandos (ordem, widget) com o botão à direita do título. Não se esqueça de sair do modo de edição para salvar"
     },
     "desktop\/js\/plan.js": {
         "Designs": "Projetos",

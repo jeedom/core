@@ -1940,7 +1940,7 @@
         "Ajouter\/Editer viewZone": "ViewZoneの追加\/編集",
         "Nom": "表題",
         "Type": "タイプ",
-        "Widget": "ウィジェット",
+        "Equipement": "設備",
         "Graphique": "グラフィック",
         "Tableau": "テーブル",
         "Annuler": "キャンセル"
@@ -2421,7 +2421,7 @@
         "Configuration de l\\'objet": "オブジェクトの構成"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "編集モードで、ウィジェットを移動、サイズ変更、ウィジェット内のコマンドの順序を変更できます",
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "",
         "Configuration Affichage": ""
     },
     "desktop\/js\/view_edit.js": {
@@ -2441,7 +2441,7 @@
         "Ajouter courbe": "曲線を追加",
         "Ajouter colonne": "列を追加",
         "Ajouter ligne": "行を追加",
-        "Ajouter Widget": "ウィジェットを追加",
+        "Ajouter Equipement": "機器を追加する",
         "Ajouter Scénario": "シナリオを追加",
         "Editer": "編集します",
         "Supprimer": "取り除きます",
@@ -2560,7 +2560,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Configuration Affichage": "",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "編集モードでは、ウィジェットを移動したり、ウィジェットのサイズを変更したり、ウィジェット内のコマンドの順序を変更したりできます。編集モードを終了して保存することを忘れないでください"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": ""
     },
     "desktop\/js\/plan.js": {
         "Designs": "デザイン",
