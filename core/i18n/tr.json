@@ -1940,7 +1940,7 @@
         "Ajouter\/Editer viewZone": "Ekle\/düzenle viewZone",
         "Nom": "İsim",
         "Type": "Çeşit",
-        "Widget": "Widget'ı",
+        "Equipement": "Cihaz",
         "Graphique": "Grafik",
         "Tableau": "Tablo",
         "Annuler": "Iptal et"
@@ -2421,7 +2421,7 @@
         "Configuration de l\\'objet": "Yapılandırma \\ 'in nesne"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Düzenleme modundasınız widgetlerin yerlerini, boylarını değiştirebilir ve widgetler içinde komutaların sıralarını değiştirebilirsiniz",
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "",
         "Configuration Affichage": ""
     },
     "desktop\/js\/view_edit.js": {
@@ -2441,7 +2441,7 @@
         "Ajouter courbe": "",
         "Ajouter colonne": "Sütun ekle",
         "Ajouter ligne": "Satır ekle",
-        "Ajouter Widget": "",
+        "Ajouter Equipement": "Cihaz ekle",
         "Ajouter Scénario": "Ajouter Scénario",
         "Editer": "Düzenle",
         "Supprimer": "Sil",
@@ -2560,7 +2560,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Configuration Affichage": "",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Sen widget'lar taşımak, yeniden boyutlandırmak ve widget'larda komutların sırasını değiştirebilirsiniz düzenleme modunda bulunmaktadır. kaydetmek için düzenleme modundan çıkmak için unutmayın"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": ""
     },
     "desktop\/js\/plan.js": {
         "Designs": "Tasarımlar",
