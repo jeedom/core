@@ -294,7 +294,7 @@ function addEditviewZone(_viewZone) {
       div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="col"><i class="fas fa-plus-circle"></i> {{Ajouter colonne}}</a>'
       div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="line"><i class="fas fa-plus-circle"></i> {{Ajouter ligne}}</a>'
     } else {
-      div += '<a class="btn btn-primary btn-sm bt_addViewWidget"><i class="fas fa-plus-circle"></i> {{Ajouter Widget}}</a>'
+      div += '<a class="btn btn-primary btn-sm bt_addViewWidget"><i class="fas fa-plus-circle"></i> {{Ajouter Equipement}}</a>'
       div += '<a class="btn btn-primary btn-sm bt_addViewScenario"><i class="fas fa-plus-circle"></i> {{Ajouter Scénario}}</a>'
     }
     div += '<a class="btn btn-warning btn-sm bt_editviewZone"><i class="fas fa-pencil-alt"></i> {{Editer}}</a>'

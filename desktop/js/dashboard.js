@@ -323,7 +323,7 @@ function editWidgetMode(_mode,_save) {
     $('#in_searchDashboard')
       .style("background-color", "var(--al-info-color)", "important")
       .style("color", "var(--linkHoverLight-color)", "important")
-      .val("{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
+      .val("{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
       .prop('readonly', true)
   }
 }

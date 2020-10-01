@@ -63,7 +63,7 @@ if (!isConnect('admin')) {
 						<label class="col-sm-2 control-label">{{Type}}</label>
 						<div class="col-sm-5">
 							<select class="form-control" id="sel_addEditviewZoneType">
-								<option value="widget">{{Widget}}</option>
+								<option value="widget">{{Equipement}}</option>
 								<option value="graph">{{Graphique}}</option>
 								<option value="table">{{Tableau}}</option>
 							</select>

@@ -44,19 +44,19 @@ Sur chaque zone vous avez les options générales suivantes :
 - **Editer** : Permet de changer le nom de la zone.
 - **Supprimer** : Permet de supprimer la zone.
 
-### Zone de type widget
+### Zone de type equipement
 
-Une zone de type widget permet d’ajouter des équipements :
+Une zone de type equipement permet d’ajouter des équipements :
 
-- **Ajouter widget** : Permet d’ajouter/modifier des équipements à afficher dans la zone.
-
-> **Tip**
->
-> Vous pouvez supprimer un widget directement en cliquant sur la poubelle à gauche de celui-ci.
+- **Ajouter equipement** : Permet d’ajouter/modifier des équipements à afficher dans la zone.
 
 > **Tip**
 >
-> Il est possible de modifier l’ordre des widgets dans la zone par glisser/déposer.
+> Vous pouvez supprimer un equipement directement en cliquant sur la poubelle à gauche de celui-ci.
+
+> **Tip**
+>
+> Il est possible de modifier l’ordre des tuiles dans la zone par glisser/déposer.
 
 
 ### Zone de type graphique
