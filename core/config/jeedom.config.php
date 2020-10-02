@@ -190,7 +190,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'SIREN_ON' => array('name' => __('Sirène Bouton On',__FILE__), 'family' => __('Sécurité',__FILE__), 'type' => 'Action'),
 		'THERMOSTAT_STATE' => array('name' => __('Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Info'),
 		'THERMOSTAT_TEMPERATURE' => array('name' => __('Thermostat Température ambiante',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Info'),
-		'THERMOSTAT_SET_SETPOINT' => array('name' => __('Thermostat consigne ',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Action'),
+		'THERMOSTAT_SET_SETPOINT' => array('name' => __('Thermostat consigne',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Action'),
 		'THERMOSTAT_SETPOINT' => array('name' => __('Thermostat consigne',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Info'),
 		'THERMOSTAT_SET_MODE' => array('name' => __('Thermostat Mode (pour Plugin Thermostat uniquement)',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Action'),
 		'THERMOSTAT_MODE' => array('name' => __('Thermostat Mode (pour Plugin Thermostat uniquement)',__FILE__), 'family' => __('Thermostat',__FILE__), 'type' => 'Info'),
