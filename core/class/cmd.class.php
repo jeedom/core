@@ -18,7 +18,6 @@
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
-require_once __DIR__ . '/../../data/php/conversionUnits.class.php';
 
 class cmd {
 	/*     * *************************Attributs****************************** */
@@ -47,6 +46,15 @@ class cmd {
 	protected $_needRefreshAlert;
 	protected $_changed = false;
 	private static $_templateArray = array();
+	
+	private static $_unite_conversion = array(
+		'*W'=> array(1000,'W','KW','MW'),
+		'*io'=> array(1024,'io','Kio','Mio','Gio','Tio'),
+		'*o'=> array(1000,'o','Ko','Mo','Go','To'),
+		'*Hz'=> array(1000,'Hz','KHz','MHz','GHz'),
+		'*l'=> array(1000,'l','m<sup>3</sup>'),
+		'*s'=> array(60,'s','min','h')
+	);
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
@@ -1237,10 +1245,9 @@ class cmd {
 	public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
 		$_unit=str_replace ("\"","",$_unit);
 		$_unit=str_replace ("\'","",$_unit);
-		$conv = conversionUnits::$conversions;
-		if(array_keys($conv) > 0 && array_key_exists($_unit,$conv)){
-			$mod=$conv[$_unit][0];
-			$prefix = array_slice($conv[$_unit],1);
+		if(array_keys(self::$_unite_conversion) > 0 && array_key_exists($_unit,self::$_unite_conversion)){
+			$mod=self::$_unite_conversion[$_unit][0];
+			$prefix = array_slice(self::$_unite_conversion[$_unit],1);
 			$myval = self::autoValueFormat($_value, $mod, count($prefix)-1);
 			return array(round($myval[0],$_decimal),($_space ? ' ' : '') . $prefix[$myval[1]]);
 		}else{
