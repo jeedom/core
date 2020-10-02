@@ -1940,7 +1940,7 @@
         "Ajouter\/Editer viewZone": "Добавить\/Редактировать viewZone",
         "Nom": "Имя",
         "Type": "Тип",
-        "Widget": "Виджет",
+        "Equipement": "Оборудование",
         "Graphique": "Графический",
         "Tableau": "стол",
         "Annuler": "Отменить"
@@ -2421,7 +2421,7 @@
         "Configuration de l\\'objet": "Объект конфигурации \\ «s"
     },
     "desktop\/js\/view.js": {
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets": "Вы находитесь в режиме редактирования, вы можете перемещать виджеты, изменять их размер и изменять порядок команд в виджетах",
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.": "",
         "Configuration Affichage": ""
     },
     "desktop\/js\/view_edit.js": {
@@ -2441,7 +2441,7 @@
         "Ajouter courbe": "",
         "Ajouter colonne": "Добавить столбец",
         "Ajouter ligne": "Добавить строку",
-        "Ajouter Widget": "",
+        "Ajouter Equipement": "Добавить оборудование",
         "Ajouter Scénario": "Ajouter Scénario",
         "Editer": "Редактировать",
         "Supprimer": "удаление",
@@ -2560,7 +2560,7 @@
     },
     "desktop\/js\/dashboard.js": {
         "Configuration Affichage": "",
-        "Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets. N'oubliez pas de quitter le mode édition pour sauvegarder": "Вы находитесь в режиме редактирования вы можете перемещать виджеты, изменять размер и изменить порядок команд в виджетах. Не забудьте выйти из режима редактирования, чтобы сохранить"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": ""
     },
     "desktop\/js\/plan.js": {
         "Designs": "конструкции",
@@ -2797,7 +2797,7 @@
         "Choisir une variable": "Выберите переменную",
         "Programmation": "программирование",
         "Rechercher une commande": "порядок поиска",
-        "Rechercher un scenario": "Поиск сценария",
+        "Rechercher un scénario": "Поиск сценария",
         "Rechercher un équipement": "Поиск оборудования",
         "Décocher pour désactiver l\\'action": "Снимите флажок, чтобы отключить \\ Action",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Проверьте, команда \\ «ы работает параллельно другие действия",

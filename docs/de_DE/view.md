@@ -44,19 +44,19 @@ In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 - **Bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
 - **Entfernen** : Löschen Sie die Zone.
 
-### Widget-Typ-Bereich
+### Gerätetypzone
 
-In einem Widget-Bereich können Sie Geräte hinzufügen :
+In einer Zone für Gerätetypen können Sie Geräte hinzufügen :
 
-- **Widget hinzufügen** : Ermöglicht das Hinzufügen / Ändern von Geräten, die im Bereich angezeigt werden sollen.
-
-> **Spitze**
->
-> Sie können ein Widget direkt löschen, indem Sie auf den Papierkorb links davon klicken.
+- **Ausrüstung hinzufügen** : Ermöglicht das Hinzufügen / Ändern von Geräten, die im Bereich angezeigt werden sollen.
 
 > **Spitze**
 >
-> Sie können die Reihenfolge der Widgets im Bereich durch Ziehen und Ablegen ändern.
+> Sie können ein Gerät direkt löschen, indem Sie auf den Papierkorb links davon klicken.
+
+> **Spitze**
+>
+> Es ist möglich, die Reihenfolge der Kacheln im Bereich durch Ziehen und Ablegen zu ändern.
 
 
 ### Grafiktypbereich

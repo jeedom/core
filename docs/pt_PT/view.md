@@ -44,19 +44,19 @@ Em cada zona, você tem as seguintes opções gerais :
 - **Editar** : Permite alterar o nome da zona.
 - **Remover** : Excluir a zona.
 
-### Área do tipo de widget
+### Zona de tipo de equipamento
 
-Uma área de tipo de widget permite adicionar equipamentos :
+Uma zona de tipo de equipamento permite que você adicione equipamentos :
 
-- **Adicionar Widget** : Permite adicionar / modificar equipamentos a serem exibidos na área.
-
-> **Dica**
->
-> Você pode excluir um widget diretamente clicando na lixeira à esquerda dele.
+- **Adicionar equipamento** : Permite adicionar / modificar equipamentos a serem exibidos na área.
 
 > **Dica**
 >
-> Você pode alterar a ordem dos widgets na área, arrastando e soltando.
+> Você pode excluir um item de equipamento diretamente clicando na lata de lixo à esquerda dele.
+
+> **Dica**
+>
+> É possível alterar a ordem das peças na área arrastando e soltando.
 
 
 ### Área do tipo gráfico

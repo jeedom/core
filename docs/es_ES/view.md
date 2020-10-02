@@ -44,19 +44,19 @@ En cada zona tienes las siguientes opciones generales :
 - **Editar** : Le permite cambiar el nombre de la zona.
 - **Remove** : Eliminar la zona.
 
-### Área de tipo de widget
+### Zona de tipo de equipo
 
-Un área de tipo de widget le permite agregar equipo :
+Una zona de tipo de equipo le permite agregar equipo :
 
-- **Agregar widget** : Le permite agregar / modificar equipos para mostrar en el área.
-
-> **Punta**
->
-> Puede eliminar un widget directamente haciendo clic en el bote de basura a la izquierda del mismo.
+- **Agregar dispositivo** : Le permite agregar / modificar equipos para mostrar en el área.
 
 > **Punta**
 >
-> Puede cambiar el orden de los widgets en el área arrastrando y soltando.
+> Puede eliminar un elemento del equipo directamente haciendo clic en el bote de basura a la izquierda.
+
+> **Punta**
+>
+> Es posible cambiar el orden de los mosaicos en el área arrastrando y soltando.
 
 
 ### Área de tipo gráfico

@@ -60,7 +60,7 @@ $('#bt_editViewWidgetOrder').off('click').on('click',function() {
     $('.counterReorderJeedom').remove()
     editWidgetMode(0)
   } else {
-    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition vous pouvez déplacer les widgets, les redimensionner et changer l'ordre des commandes dans les widgets}}", level: 'info'})
+    $('#div_alert').showAlert({message: "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.}}", level: 'info'})
     $(this).attr('data-mode',1)
     editWidgetMode(1)
   }
@@ -103,18 +103,17 @@ if (view_id != '') {
         $('.eqLogicZone').disableSelection()
         $('input', 'textarea', 'select').click(function() { $(this).focus() })
 
-        var container, itemElems
         $('.eqLogicZone').each(function() {
-          container = $(this).packery()
-          itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
+          var container = $(this).packery()
+          var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
           container.packery('bindUIDraggableEvents', itemElems)
 
-          //set viewOrder for editMode:
+          //set vieworder for editMode:
           $(itemElems).each( function(i, itemElem ) {
-            $(itemElem).attr('data-viewOrder', i + 1 )
+            $(itemElem).attr('data-vieworder', i + 1 )
           })
           container.on('dragItemPositioned', function() {
-            jeedomUI.orderItems(container, 'data-viewOrder')
+            jeedomUI.orderItems(container, 'data-vieworder')
           })
 
           itemElems.draggable('disable')
@@ -185,7 +184,7 @@ function editWidgetMode(_mode, _save) {
     //show orders:
     var value
     $('.jeedomAlreadyPosition.ui-draggable').each(function() {
-      value = $(this).attr('data-viewOrder')
+      value = $(this).attr('data-vieworder')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
       } else {
@@ -208,11 +207,11 @@ function editWidgetMode(_mode, _save) {
         _draggingId = $(this).attr('data-editId')
         _orders = {}
         $(this).parent().find('.ui-draggable').each( function(i, itemElem ) {
-          _orders[_draggingId] = parseInt($(this).attr('data-viewOrder'))
+          _orders[_draggingId] = parseInt($(this).attr('data-vieworder'))
         })
       }
     })
-
+    //set resizables:
     $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
       grid: [ 2, 2 ],
       resize: function(event, ui) {

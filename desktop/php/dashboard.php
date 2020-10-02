@@ -130,8 +130,10 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 	include_file('desktop', 'dashboard', 'js');
 
 	function formatJeedomObjectDiv($object, $toSummary=false) {
+		$divClass = 'div_object';
+		if ($toSummary) $divClass .= ' hidden';
 		$div =  '<div class="col-md-12">';
-		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="div_object">';
+		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
 		$div .= '<legend><span class="objectDashLegend fullCorner">
 				<a href="index.php?v=d&p=dashboard&object_id=' . $object->getId() . '&childs=0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
 				<a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span>

@@ -44,19 +44,19 @@ On each zone you have the following general options :
 - **Edit** : Allows you to change the name of the zone.
 - **Remove** : Delete the zone.
 
-### Widget type area
+### Equipment type zone
 
-A widget type area allows you to add equipment :
+An equipment type zone allows you to add equipment :
 
-- **Add widget** : Allows you to add / modify equipment to display in the area.
-
-> **Tip**
->
-> You can delete a widget directly by clicking on the trash can to the left of it.
+- **Add equipment** : Allows you to add / modify equipment to display in the area.
 
 > **Tip**
 >
-> You can change the order of widgets in the area by dragging and dropping.
+> You can delete an item of equipment directly by clicking on the trash can to the left of it.
+
+> **Tip**
+>
+> It is possible to change the order of the tiles in the area by dragging and dropping.
 
 
 ### Graphic type area
