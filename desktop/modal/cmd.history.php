@@ -163,14 +163,17 @@ function setModal() {
       modal.data( {'width':modal.width(), 'height':modal.height(), 'top':modal.css('top'), 'left':modal.css('left')} )
     })
 
-    //highstock v8.0.4 crosshair positionning bug after modal moved:
-    $('#div_graph').on('mouseenter', function(event) {
-      chart.pointer.chartPosition = void 0
-    })
-
     //only one history loaded:
     if (cmdIds.length == 1) {
       if (chart) {
+        //set yAxis zoom:
+      try {
+        var yExtremes = chart.yAxis[0].getExtremes()
+        var min = yExtremes.dataMin / 1.005
+        var max = yExtremes.dataMax * 1.005
+        chart.yAxis[0].setExtremes(min, max, true, true)
+      } catch(error) {}
+
         modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
       }
     }
