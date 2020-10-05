@@ -30,6 +30,8 @@ Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 - Auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben,
 - Indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten)).
 
+![Historisch](./images/history.gif)
+
 ## Historique
 
 Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :

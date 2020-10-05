@@ -30,6 +30,8 @@ Existem várias maneiras de acessar o histórico :
 - No celular, enquanto permanece pressionado no widget em questão,
 - Colocando uma área gráfica em uma visualização (veja abaixo).
 
+![Histórico](./images/history.gif)
+
 ## Historique
 
 Se você exibir um gráfico na página de histórico, terá acesso a várias opções de exibição, acima do gráfico :

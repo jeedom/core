@@ -30,6 +30,8 @@ There are several ways to access the history :
 - On mobile while remaining pressed on the widget in question,
 - By putting a graph area in a view (see below).
 
+![Historical](./images/history.gif)
+
 ## Historique
 
 If you display a graph via the history page, you have access to several display options, above the graph :
