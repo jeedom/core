@@ -3538,7 +3538,7 @@
         "Partie importante dans un logiciel": "Important part in software",
         "la partie historisation, véritable mémoire de celui-ci": "the historization part, a true memory of it",
         "Il est possible dans Jeedom d'historiser n'importe quelle commande de type information (binaire ou numérique": "It is possible in Jeedom to log any information type command (binary or digital",
-        "Cela vous permettra donc par exemple d'historiser une courbe de température, de consommation ou les ouvertures d'une porte, etc.​": "This will allow you, for example, to log a temperature, consumption or door opening curve, etc",
+        "Cela vous permettra donc par exemple d'historiser une courbe de température, de consommation,  les ouvertures d'une porte, etc.​": "This will allow you for example to log a temperature curve, consumption, door openings, etc",
         "Ici est décrit le principe d'historisation de Jeedom": "Here is described the principle of historicization of Jeedom",
         "Il n'est nécessaire de le comprendre que si vous rencontrez des soucis d'historisation ou que vous voulez modifier les réglages de l'historisation": "You only need to understand this if you are having historization issues or want to change the historization settings",
         "Les réglages par défaut conviennent dans la plupart des cas": "Default settings are fine in most cases",

@@ -1,7 +1,9 @@
 # Historique
 **Análise → História**
 
-Parte importante no software : a parte da historização, uma lembrança verdadeira. É possível no Jeedom registrar qualquer comando do tipo de informação (binário ou digital). Isso permitirá, por exemplo, registrar uma curva de temperatura, consumo ou abertura de porta, etc
+Parte importante no software : a parte da historização, uma lembrança verdadeira. É possível no Jeedom registrar qualquer comando do tipo de informação (binário ou digital). Isso permitirá que você, por exemplo, registre uma curva de temperatura, consumo, aberturas de portas, etc
+
+![Histórico](./images/history.gif)
 
 ### Principe
 
@@ -29,8 +31,6 @@ Existem várias maneiras de acessar o histórico :
 - Ao acessar a página de histórico, que permite sobrepor diferentes curvas e combinar estilos (área, curva, barra),
 - No celular, enquanto permanece pressionado no widget em questão,
 - Colocando uma área gráfica em uma visualização (veja abaixo).
-
-![Histórico](./images/history.gif)
 
 ## Historique
 

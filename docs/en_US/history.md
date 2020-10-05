@@ -1,7 +1,9 @@
 # Historique
 **Analysis → History**
 
-Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature, consumption or door opening curve, etc
+Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you for example to log a temperature curve, consumption, door openings, etc
+
+![Historical](./images/history.gif)
 
 ### Principe
 
@@ -29,8 +31,6 @@ There are several ways to access the history :
 - By going to the history page which allows to superimpose different curves and to combine styles (area, curve, bar),
 - On mobile while remaining pressed on the widget in question,
 - By putting a graph area in a view (see below).
-
-![Historical](./images/history.gif)
 
 ## Historique
 

@@ -1,7 +1,9 @@
 # Historique
 **Analyse → Geschichte**
 
-Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). Auf diese Weise können Sie beispielsweise eine Temperatur-, Verbrauchs- oder Türöffnungskurve usw. protokollieren
+Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). Auf diese Weise können Sie beispielsweise eine Temperaturkurve, einen Verbrauch, Türöffnungen usw. protokollieren
+
+![Historisch](./images/history.gif)
 
 ### Principe
 
@@ -29,8 +31,6 @@ Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
 - Gehen Sie zur Verlaufsseite, auf der Sie verschiedene Kurven überlagern und Stile (Fläche, Kurve, Balken) kombinieren können),
 - Auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben,
 - Indem Sie einen Grafikbereich in eine Ansicht einfügen (siehe unten)).
-
-![Historisch](./images/history.gif)
 
 ## Historique
 
