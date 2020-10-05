@@ -731,7 +731,9 @@ function draggableDragFix(event, ui) {
 }
 
 function initEditOption(_state) {
-  var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH
+  var $container = $('.container-fluid.div_displayObject')
+  var $editItems = $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget')
+
   if (_state) {
     if (!$pageContainer.data('editOption.state')) {
       $pageContainer.data('editOption.state',true)
@@ -742,7 +744,7 @@ function initEditOption(_state) {
     jeedom.cmd.disableExecute = true
 
     //drag item:
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
+    $editItems.draggable({
       cancel: '.locked',
       containment: 'parent',
       cursor: 'move',
@@ -754,15 +756,15 @@ function initEditOption(_state) {
     })
 
     if (editOption.highlight) {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('editingMode')
+      $editItems.addClass('editingMode')
     } else {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('editingMode').removeClass('contextMenu_select')
+      $editItems.removeClass('editingMode contextMenu_select')
     }
 
     if (editOption.gridSize) {
-      $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px')
+      $('#div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px')
     } else {
-      $('.div_grid').hide()
+      $('#div_grid').hide()
     }
 
     //resize item:
@@ -803,7 +805,7 @@ function initEditOption(_state) {
     })
 
     try {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true)
+      $editItems.contextMenu(true)
      }catch(e) {}
   } else {
     if ($pageContainer.data('editOption.state')) {
@@ -812,18 +814,17 @@ function initEditOption(_state) {
     editOption.state = false
     jeedom.cmd.disableExecute = false
     $('.div_displayObject').removeClass('editingMode')
-    try{
+    try {
       $('.tooltipstered').tooltipster('enable')
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable("destroy")
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('editingMode')
+      $editItems.draggable('destroy').removeClass('editingMode')
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable("destroy")
       $('.div_displayObject a').each(function() {
         $(this).attr('href', $(this).attr('data-href'))
       })
     } catch(e) {}
-    $('.div_grid').hide()
+    $('#div_grid').hide()
     try {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false)
+      $editItems.contextMenu(false)
     } catch(e) {}
   }
 }
@@ -870,7 +871,7 @@ function displayPlan(_code) {
     success: function(data) {
       var $divDisplayObject = $('.div_displayObject')
       $divDisplayObject.empty()
-        .append('<div class="container-fluid div_grid" style="display:none;"></div>')
+        .append('<div id="div_grid" class="container-fluid" style="display:none;"></div>')
         .height('auto').width('auto')
       if (isset(data.image)) {
         $divDisplayObject.append(data.image)
@@ -896,7 +897,7 @@ function displayPlan(_code) {
         $('.div_backgroundPlan').height($divDisplayObject.height())
       }
 
-      $('.div_grid').width($divDisplayObject.width()).height($divDisplayObject.height())
+      $('#div_grid').width($divDisplayObject.width()).height($divDisplayObject.height())
       if (deviceInfo.type != 'desktop') {
         $('meta[name="viewport"]').prop('content', 'width=' + $divDisplayObject.width() + ',height=' + $divDisplayObject.height())
         fullScreen(true)
