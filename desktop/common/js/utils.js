@@ -78,9 +78,15 @@ function loadPage(_url, _noPushHistory) {
     document.location.href = _url
     return
   }
-  if (typeof unload_page !== "undefined") {
-    unload_page()
+
+  if ($('.context-menu-root').length > 0) {
+    try {
+      $.contextMenu('destroy')
+    } catch(e) {
+      $('.context-menu-root').remove()
+    }
   }
+
   try {
     $(".ui-dialog-content").dialog("close")
   } catch(e) {}
@@ -96,14 +102,6 @@ function loadPage(_url, _noPushHistory) {
         PREVIOUS_PAGE = _url
       }
     } catch(e) {}
-  }
-
-  if ($('.context-menu-root').length > 0) {
-    try {
-      $.contextMenu('destroy')
-    } catch(e) {
-      $('.context-menu-root').remove()
-    }
   }
 
   if (isset(bootbox)) bootbox.hideAll()
