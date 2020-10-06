@@ -7,6 +7,8 @@ Tous les équipements que vous créez doivent appartenir à un objet et sont ain
 
 Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Usuellement, on y définira les différentes parties de sa maison, comme le nom des pièces (c’est d’ailleurs la configuration recommandée).
 
+![Objets](./images/object_intro.gif)
+
 ## Gestion
 
 Deux options s’offrent à vous :
