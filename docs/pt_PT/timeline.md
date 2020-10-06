@@ -10,6 +10,8 @@ Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo dos co
 - **Cenas** : Diretamente na página do cenário ou na página de resumo do cenário para fazê-lo em massa".
 - **Ordem** : Na configuração avançada do comando ou na configuração do histórico para fazê-lo em "massa".
 
+![Cronograma](images/timeline_intro.jpg)
+
 A linha do tempo *Principal* sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo *Ficheiro*. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
 Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do botão *Legal*.
 

@@ -7,6 +7,8 @@ All the equipment you create must belong to an object and are therefore more eas
 
 To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
 
+![Objects](./images/object_intro.gif)
+
 ## Gestion
 
 You have two options :

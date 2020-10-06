@@ -10,6 +10,8 @@ To see them, you must first activate the tracking on the timeline of the desired
 - **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
 - **Command** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
+![Timeline](images/timeline_intro.jpg)
+
 The timeline *Main* always contains all the events. However, you can filter the timeline by *Folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
 You can then filter the timeline by this folder by selecting it to the left of the button *Refresh*.
 
