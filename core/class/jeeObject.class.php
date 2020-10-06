@@ -65,7 +65,7 @@ class jeeObject {
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
-		$sql .= ' ORDER BY position,name,father_id';
+		$sql .= ' ORDER BY father_id,position,name';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
