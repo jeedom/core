@@ -161,6 +161,9 @@ class DB {
 			if (!$_direct && method_exists($object, 'preInsert')) {
 				$object->preInsert();
 			}
+			if(method_exists($object,'encrypt')){
+				$object->encrypt();
+			}
 			list($sql, $parameters) = self::buildQuery($object);
 			if ($_replace) {
 				$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
@@ -194,6 +197,9 @@ class DB {
 				$changed = $object->getChanged();
 			}
 			if($changed){
+				if(method_exists($object,'encrypt')){
+					$object->encrypt();
+				}
 				list($sql, $parameters) = self::buildQuery($object);
 				if (!$_direct && method_exists($object, 'getId')) {
 					$parameters['id'] = $object->getId(); //override if necessary
