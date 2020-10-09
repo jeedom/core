@@ -56,46 +56,40 @@ class user {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
-			$ad = self::connectToLDAP();
-			if ($ad !== false) {
-				log::add("connection", "debug", __('Connection au LDAP OK', __FILE__));
-				$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
-				ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
-				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
-					return false;
-				}
-				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
-				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
-				if ($result) {
-					$entries = ldap_get_entries($ad, $result);
-					if ($entries['count'] > 0) {
-						$user = self::byLogin($_login);
-						if (is_object($user)) {
-							$user->setPassword($sMdp)
-							->setOptions('lastConnection', date('Y-m-d H:i:s'));
-							$user->save();
-							return $user;
-						}
-						$user = (new user)
-						->setLogin($_login)
-						->setPassword($sMdp)
+			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
+			if(!$ad){
+				log::add("connection", "debug", __('Connection au LDAP KO', __FILE__));
+				return false;
+			}
+			log::add("connection", "debug", __('Connection au LDAP OK', __FILE__));
+			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
+			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+			if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+				log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
+				return false;
+			}
+			log::add("connection", "debug", __('Bind user OK', __FILE__));
+			$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+			log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
+			if ($result) {
+				$entries = ldap_get_entries($ad, $result);
+				if ($entries['count'] > 0) {
+					$user = self::byLogin($_login);
+					if (is_object($user)) {
+						$user->setPassword($sMdp)
 						->setOptions('lastConnection', date('Y-m-d H:i:s'));
 						$user->save();
-						log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
-						jeedom::event('user_connect');
-						log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
 						return $user;
-					} else {
-						$user = self::byLogin($_login);
-						if (is_object($user)) {
-							$user->remove();
-						}
-						log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
-						return false;
 					}
+					$user = (new user)
+					->setLogin($_login)
+					->setPassword($sMdp)
+					->setOptions('lastConnection', date('Y-m-d H:i:s'));
+					$user->save();
+					log::add("connection", "info", __('Utilisateur créé depuis le LDAP : ', __FILE__) . $_login);
+					jeedom::event('user_connect');
+					log::add('event', 'info', __('Connexion de l\'utilisateur ', __FILE__) . $_login);
+					return $user;
 				} else {
 					$user = self::byLogin($_login);
 					if (is_object($user)) {
@@ -104,10 +98,15 @@ class user {
 					log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
 					return false;
 				}
-				return false;
 			} else {
-				log::add("connection", "info", __('Impossible de se connecter au LDAP', __FILE__));
+				$user = self::byLogin($_login);
+				if (is_object($user)) {
+					$user->remove();
+				}
+				log::add("connection", "info", __('Utilisateur non autorisé à accéder à Jeedom (', __FILE__) . $_login . ')');
+				return false;
 			}
+			return false;
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
 		if (!is_object($user)) {
