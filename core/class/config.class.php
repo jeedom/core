@@ -24,6 +24,7 @@ class config {
 	
 	private static $defaultConfiguration = array();
 	private static $cache = array();
+	private static $encryptKey = array();
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -79,6 +80,11 @@ class config {
 		$function = 'preConfig_' . str_replace(array('::', ':','-'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
+		}
+		if($_plugin == 'core' && in_array($_key,self::$encryptKey)){
+			$_value = utils::encrypt($_value);
+		}else if($_plugin != 'core' && class_exists($class) && property_exists($class, '_encryptConfigKey') && in_array($_key,$class::$_encryptConfigKey)){
+			$_value = utils::encrypt($_value);
 		}
 		$values = array(
 			'plugin' => $_plugin,
@@ -151,6 +157,11 @@ class config {
 				self::$cache[$_plugin . '::' . $_key] = $_default;
 			}
 		} else {
+			if($_plugin == 'core' && in_array($_key,self::$encryptKey)){
+				$value['value'] = utils::decrypt($value['value']);
+			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key,$_plugin::$_encryptConfigKey)){
+				$value['value'] = utils::decrypt($value['value']);
+			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
 		}
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
@@ -171,6 +182,11 @@ class config {
 		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
+			if($_plugin == 'core' && in_array($value['key'],self::$encryptKey)){
+				$value['value'] = utils::decrypt($value['value']);
+			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'],$_plugin::$_encryptConfigKey)){
+				$value['value'] = utils::decrypt($value['value']);
+			}
 			$return[$value['key']] = $value['value'];
 		}
 		$defaultConfiguration = self::getDefaultConfiguration($_plugin);
@@ -206,6 +222,11 @@ class config {
 		AND plugin=:plugin';
 		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($results as &$result) {
+			if($_plugin == 'core' && in_array($result['key'],self::$encryptKey)){
+				$result['value'] = utils::decrypt($result['value']);
+			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($result['key'],$_plugin::$_encryptConfigKey)){
+				$result['value'] = utils::decrypt($result['value']);
+			}
 			$result['value'] = is_json($result['value'], $result['value']);
 		}
 		return $results;
