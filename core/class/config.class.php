@@ -312,7 +312,7 @@ class config {
 	
 	public static function postConfig_object_summary($_value){
 		try {
-			foreach((jeeObject::all()) as $object) {
+			foreach(jeeObject::all() as $object) {
 				$object->cleanSummary();
 			}
 		} catch (\Exception $e) {
