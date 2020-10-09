@@ -21,11 +21,11 @@ require_once __DIR__ . '/../php/core.inc.php';
 
 class utils {
 	/*     * *************************Attributs****************************** */
-
+	
 	private static $properties = array();
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function attrChanged($_changed,$_old,$_new){
 		if($_changed){
 			return true;
@@ -38,7 +38,7 @@ class utils {
 		}
 		return ($_old != $_new);
 	}
-
+	
 	public static function o2a($_object, $_noToArray = false) {
 		if (is_array($_object)) {
 			$return = array();
@@ -74,7 +74,7 @@ class utils {
 		}
 		return $array;
 	}
-
+	
 	public static function a2o(&$_object, $_data) {
 		if (is_array($_data)) {
 			foreach ($_data as $key => $value) {
@@ -107,7 +107,7 @@ class utils {
 			}
 		}
 	}
-
+	
 	public static function processJsonObject($_class, $_ajaxList, $_dbList = null) {
 		if (!is_array($_ajaxList)) {
 			if (is_json($_ajaxList)) {
@@ -122,7 +122,7 @@ class utils {
 			}
 			$_dbList = $_class::all();
 		}
-
+		
 		$enableList = array();
 		foreach ($_ajaxList as $ajaxObject) {
 			$object = $_class::byId($ajaxObject['id']);
@@ -139,7 +139,7 @@ class utils {
 			}
 		}
 	}
-
+	
 	public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
 			if (!is_array($_attr)) {
@@ -158,7 +158,7 @@ class utils {
 		}
 		return $_attr;
 	}
-
+	
 	public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
 		if (is_array($_attr)) {
 			if ($_key == '') {
@@ -188,8 +188,41 @@ class utils {
 		}
 		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
-
+	
+	/*     * ******************Encrypt/decrypt*************************** */
+	public static function getEncryptionPassword(){
+		if(self::$jeedom_encryption == null){
+			if(!file_exists(__DIR__.'/../../data/jeedom_encryption.key')){
+				file_put_contents(config::genKey(),__DIR__.'/../../data/jeedom_encryption.key');
+			}
+			self::$jeedom_encryption = file_get_contents(__DIR__.'/../../data/jeedom_encryption.key');
+		}
+		return self::$jeedom_encryption;
+	}
+	
+	public static function encrypt($plaintext, $password = null) {
+		if($password == null){
+			$password = self::getEncryptionPassword();
+		}
+		$iv = openssl_random_pseudo_bytes(16);
+		$ciphertext = openssl_encrypt($plaintext, "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, $iv);
+		$hmac = hash_hmac('sha256', $ciphertext.$iv, hash('sha256', $password, true), true);
+		return 'crypt:'.base64_encode($iv.$hmac.$ciphertext);
+	}
+	
+	public static function decrypt($ciphertext, $password = null) {
+		if($password == null){
+			$password = self::getEncryptionPassword();
+		}
+		if(strpos($ciphertext,'crypt:') === false){
+			return $ciphertext;
+		}
+		$ciphertext = base64_decode(str_replace('crypt:','',$ciphertext));
+		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48).substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
+		return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
+	}
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	/*     * **********************Getteur Setteur*************************** */
 }
