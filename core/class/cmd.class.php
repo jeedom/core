@@ -63,7 +63,11 @@ class cmd {
 			if ($_eqLogic !== null) {
 				$_inputs->_eqLogic = $_eqLogic;
 			}
-			return cast($_inputs, $_inputs->getEqType() . 'Cmd');
+			$return = cast($_inputs, $_inputs->getEqType() . 'Cmd');
+			if(method_exists($return,'decrypt')){
+				$return->decrypt();
+			}
+			return $return;
 		}
 		if (is_array($_inputs)) {
 			$return = array();
