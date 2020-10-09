@@ -59,6 +59,8 @@ step_2_mainpackage() {
   echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
+  apt-get -y install usermod
+  apt-get -y install visudo
   apt-get -y install git python python-pip
   apt-get -y install python3 python3-pip
   apt-get -y install software-properties-common
