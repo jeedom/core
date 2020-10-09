@@ -24,7 +24,7 @@ class config {
 	
 	private static $defaultConfiguration = array();
 	private static $cache = array();
-	private static $encryptKey = array();
+	private static $encryptKey = array('apipro','apimarket');
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -84,6 +84,8 @@ class config {
 		if($_plugin == 'core' && in_array($_key,self::$encryptKey)){
 			$_value = utils::encrypt($_value);
 		}else if($_plugin != 'core' && class_exists($class) && property_exists($class, '_encryptConfigKey') && in_array($_key,$class::$_encryptConfigKey)){
+			$_value = utils::encrypt($_value);
+		}else if($_key == 'api'){
 			$_value = utils::encrypt($_value);
 		}
 		$values = array(
@@ -161,6 +163,8 @@ class config {
 				$value['value'] = utils::decrypt($value['value']);
 			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key,$_plugin::$_encryptConfigKey)){
 				$value['value'] = utils::decrypt($value['value']);
+			}else if($_key == 'api'){
+				$_value = utils::decrypt($_value);
 			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
 		}
@@ -186,6 +190,8 @@ class config {
 				$value['value'] = utils::decrypt($value['value']);
 			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'],$_plugin::$_encryptConfigKey)){
 				$value['value'] = utils::decrypt($value['value']);
+			}else if($value['key'] == 'api'){
+				$value['key'] = utils::decrypt($value['key']);
 			}
 			$return[$value['key']] = $value['value'];
 		}
@@ -225,6 +231,8 @@ class config {
 			if($_plugin == 'core' && in_array($result['key'],self::$encryptKey)){
 				$result['value'] = utils::decrypt($result['value']);
 			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($result['key'],$_plugin::$_encryptConfigKey)){
+				$result['value'] = utils::decrypt($result['value']);
+			}else if($result['key'] == 'api'){
 				$result['value'] = utils::decrypt($result['value']);
 			}
 			$result['value'] = is_json($result['value'], $result['value']);
