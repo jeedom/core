@@ -24,7 +24,7 @@ class config {
 	
 	private static $defaultConfiguration = array();
 	private static $cache = array();
-	private static $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username');
+	private static $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username','ldap:password','ldap:host','ldap:username','dns::token');
 	
 	/*     * ***********************Methode static*************************** */
 	
