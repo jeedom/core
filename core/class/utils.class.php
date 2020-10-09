@@ -23,6 +23,7 @@ class utils {
 	/*     * *************************Attributs****************************** */
 	
 	private static $properties = array();
+	private static $jeedom_encryption = null;
 	
 	/*     * ***********************Methode static*************************** */
 	
