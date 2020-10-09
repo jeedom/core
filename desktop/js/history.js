@@ -51,10 +51,10 @@ $(window).resize(function() {
 function setChartOptions() {
   var _prop = 'disabled'
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
+    //only one graph:
     lastId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr('data-cmd_id')
     _prop = false
     chart = $('#div_graph').highcharts()
-
     var grouping, groupingType, type
     $(chart.series).each(function(idx, serie) {
       if (serie.userOptions.id == lastId) {
@@ -76,6 +76,14 @@ function setChartOptions() {
         return false
       }
     })
+
+    //set yAxis zoom:
+    try {
+      var yExtremes = chart.yAxis[0].getExtremes()
+      var min = yExtremes.dataMin / 1.005
+      var max = yExtremes.dataMax * 1.005
+      chart.yAxis[0].setExtremes(min, max, true, true)
+    } catch(error) {}
   } else {
     lastId = null
     $('#sel_groupingType').val($('#sel_groupingType option:first').val())
@@ -274,6 +282,7 @@ function initHistoryTrigger() {
 }
 
 function addChart(_cmd_id, _action, _options) {
+  //_action: 0=remove 1=add
   if (_action == 0) {
     //remove serie:
     if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
@@ -285,16 +294,6 @@ function addChart(_cmd_id, _action, _options) {
           }
         } catch(error) {}
       })
-      //Reset yAxis scale if only one curve:
-      var isEmpty = $('.cmdList .li_history.active').length
-      if (isEmpty == 1) {
-        try {
-          var chart = jeedom.history.chart['div_graph'].chart
-          var min = chart.series[0].dataMin / 1.1
-          var max = chart.series[0].dataMax * 1.1
-          chart.yAxis[0].setExtremes(min, max, true, true)
-        } catch(error) {}
-      }
     }
     return
   }

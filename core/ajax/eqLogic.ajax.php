@@ -302,6 +302,9 @@ try {
 	if (init('action') == 'getUseBeforeRemove') {
 		$used = array();
 		$eqLogic = eqLogic::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__));
+		}
 		$data = array('node' => array(), 'link' => array());
 		$data = $eqLogic->getLinkData($data, 0, 2);
 		$used = $data['node'];

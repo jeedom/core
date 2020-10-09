@@ -3536,14 +3536,7 @@ path.highcharts-graph {
   user-select: none;
 }
 
-.div_grid {
-  z-index : 998;
-  background-size: 15px 15px;
-  background-image:
-  repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px),
-  repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
-}
-.div_backgroundPlan .div_grid {
+.div_backgroundPlan #div_grid {
   position: absolute;
   padding: 0;
   width: 100%;
@@ -3552,6 +3545,9 @@ path.highcharts-graph {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  z-index : 998;
+  background-size: 15px 15px;
+  background-image: repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
 }
 
 .div_backgroundPlan .text-widget {

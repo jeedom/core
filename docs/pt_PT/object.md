@@ -7,6 +7,8 @@ Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mai
 
 Para dar livre escolha à personalização, você pode nomear esses objetos como desejar. Normalmente, definiremos as diferentes partes de sua casa, como o nome dos quartos (esta também é a configuração recomendada).
 
+![Objetos](./images/object_intro.gif)
+
 ## Gestion
 
 Você tem duas opções :

@@ -631,7 +631,7 @@
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Commande non trouvé": "Order not found",
+        "Commande non trouvé": "Command not found",
         "Tester": "Test",
         "Liens": "Links",
         "Informations": "Information",
@@ -715,7 +715,7 @@
         "Toujours répéter": "Always repeat",
         "Jamais répéter": "Never repeat",
         "Push URL": "Push URL",
-        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call in an update of the value of the order. You can use the following tags: #value# (order value) #cmd_id# (id Command) and #cmd_name # (command name)",
+        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call in an update of the value of the command. You can use the following tags: #value# (command value) #cmd_id# (command id) and #cmd_name # (command name)",
         "Niveau": "Level",
         "En": "In",
         "si (#value# pour la valeur)": "if (#value# for value)",
@@ -1082,7 +1082,7 @@
         "La demande ne peut être vide": "The request cannot be empty"
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
-        "Aucune commande trouvées": "No orders found",
+        "Aucune commande trouvées": "No command found",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Inverser": "Invert",
         "Valider": "Validate",
@@ -1683,6 +1683,9 @@
         "Synonyme commande slider minimum": "Synonym minimum slider command",
         "Couleurs": "Colors",
         "Code HTML": "HTML Code",
+        "Dépendance et démon": "Dependency and daemon",
+        "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles": "Allow same plugin dependencies installation at less than 45s intervals",
+        "Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles": "Allow same plugin daemon start at less than 30s intervals",
         "LDAP": "LDAP",
         "Activer l'authentification LDAP": "Enable LDAP authentication",
         "Hôte": "Host",
@@ -2341,7 +2344,7 @@
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Rechercher": "Search",
-        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom order below",
+        "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "Ok"
     },
     "desktop\/js\/update.js": {
@@ -3074,7 +3077,6 @@
         "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Thermostat State (Binary) (Thermostat Plugin only)",
         "Thermostat": "Thermostat",
         "Thermostat Température ambiante": "Thermostat Room temperature",
-        "Thermostat consigne ": "Thermostat Order",
         "Thermostat consigne": "Thermostat Order",
         "Thermostat Mode (pour Plugin Thermostat uniquement)": "Thermostat Mode (Thermostat Plugin only)",
         "Thermostat Verrouillage (pour Plugin Thermostat uniquement)": "Thermostat Lock (Thermostat Plugin only)",
@@ -3439,7 +3441,7 @@
         "Equipement inconnu : ": "Unknown equipment:",
         "Type incorrect (classe équipement inexistante) : ": "Incorrect type (non-existent equipment class):",
         "Informations reçues incorrectes": "Incorrect information received",
-        "Type incorrect, (classe commande inexistante)": "Invalid type, (non-existent order class)",
+        "Type incorrect, (classe commande inexistante)": "Invalid type, (non-existent command class)",
         "Un équipement portant ce nom (": "Equipment bearing this name (",
         ") existe déjà pour cet objet": ") already exists for this object",
         "Une commande portant ce nom (": "A command with this name (",
@@ -3582,10 +3584,10 @@
         "Le nom de la commande ne peut pas être vide :": "The name of the command cannot be empty:",
         "Le type de la commande ne peut pas être vide :": "The type of the command cannot be empty:",
         "Le sous-type de la commande ne peut pas être vide :": "The command subtype cannot be empty:",
-        "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "You cannot create an order without attaching it to a device",
-        "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "The minimum value of the order cannot be greater than the maximum value",
+        "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "You cannot create a command without attaching it to a device",
+        "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "The minimum value of the command cannot be greater than the maximum value",
         ". Sur preExec de la commande": "On preExec of the command",
-        ". Sur postExec de la commande": "On postExec of the order",
+        ". Sur postExec de la commande": "On postExec of the command",
         "Erreur lors de l\\'exécution de ": "Error while executing",
         ". Détails : ": "Details:",
         "Equipement désactivé - impossible d\\'exécuter la commande : ": "Equipment disable - cannot execute command:",
@@ -3603,7 +3605,7 @@
         "pendant plus de ": "for more than",
         " minute(s)": "minutes)",
         "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('name', 'core', 'JEEDOM'). ']",
-        "Appels de l\\'URL de push pour la commande ": "Push URL calls for order",
+        "Appels de l\\'URL de push pour la commande ": "Push URL calls for command",
         "Erreur push sur : ": "Push error on:",
         "Commande": "Command"
     },
@@ -3879,7 +3881,7 @@
         "Equipement": "Equipement"
     },
     "core\/class\/interactDef.class.php": {
-        "La commande (demande) ne peut pas être vide": "The order (request) cannot be empty",
+        "La commande (demande) ne peut pas être vide": "The command (request) cannot be empty",
         "Intéraction": "Interaction"
     },
     "core\/class\/planHeader.class.php": {
@@ -3942,7 +3944,7 @@
         "Affectation de la variable ": "Set a variable",
         " => ": "=> ",
         "Suppression de la variable ": "Delete variable",
-        "Commande introuvable - Vérifiez l\\'id : ": "Order not found - Check the id:",
+        "Commande introuvable - Vérifiez l\\'id : ": "Command not found - Check the id:",
         "Demande ": "Request ",
         "Aucune réponse": "No answer",
         "Réponse ": "Reply",
@@ -4253,7 +4255,7 @@
         "Si vous êtes en version 5.4.x, on vous indiquera quand la version 5.5 sera obligatoire": "If you are in version 5.4.x, we will tell you when version 5.5 will be mandatory",
         "Allez sur Administration -> Configuration -> Réseaux, puis configurez correctement la partie réseau": "Go to Administration -> Configuration -> Networks, then configure the network part correctly",
         "Votre cache n\\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.": "Your cache is not saved. When restarting, some information may be lost. Try to start (from the task engine) the cache :: persist task",
-        "Type incorrect (classe commande inexistante)": "Invalid type (non-existent order class)",
+        "Type incorrect (classe commande inexistante)": "Invalid type (non-existent command class)",
         "Commande introuvable : ": "Command not found:",
         "Scénario exécuté sur appel API": "Scenario executed on API call",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "The \"state\" parameter cannot be empty and must have the value [run, stop, enable, disable]",

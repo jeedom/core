@@ -65,7 +65,7 @@ class jeeObject {
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
-		$sql .= ' ORDER BY position,name,father_id';
+		$sql .= ' ORDER BY father_id,position,name';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -559,6 +559,7 @@ class jeeObject {
 		}
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$return = array();
+		$ids = array();
 		foreach ($summaries[$_summary] as $infos) {
 			if (isset($infos['enable']) && $infos['enable'] != 1) {
 				continue;
@@ -566,6 +567,9 @@ class jeeObject {
 			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
 			if (is_object($cmd)) {
 				$id = $cmd->getEqLogic_id();
+				//no duplicate:
+				if (in_array($id, $ids)) continue;
+				array_push($ids, $id);
 				$eqLogic = eqLogic::byId($id);
 				if (is_object($eqLogic)) {
 					if ($_onlyEnable && $eqLogic->getIsEnable() == 0) continue;

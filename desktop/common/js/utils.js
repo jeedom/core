@@ -74,13 +74,19 @@ var printEqLogic = undefined
 var jeedomBackgroundImg = null
 function loadPage(_url, _noPushHistory) {
   if (checkPageModified()) return
-  if(JS_ERROR.length > 0) {
+  if (JS_ERROR.length > 0) {
     document.location.href = _url
     return
   }
-  if (typeof unload_page !== "undefined") {
-    unload_page()
+
+  if ($('.context-menu-root').length > 0) {
+    try {
+      $.contextMenu('destroy')
+    } catch(e) {
+      $('.context-menu-root').remove()
+    }
   }
+
   try {
     $(".ui-dialog-content").dialog("close")
   } catch(e) {}
@@ -95,9 +101,7 @@ function loadPage(_url, _noPushHistory) {
         window.history.pushState('','', _url)
         PREVIOUS_PAGE = _url
       }
-    } catch(e) {
-
-    }
+    } catch(e) {}
   }
 
   if (isset(bootbox)) bootbox.hideAll()

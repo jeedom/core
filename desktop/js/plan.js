@@ -17,15 +17,10 @@
 "use strict"
 
 var deviceInfo = getDeviceType()
-var editOption = {state : false, snap : false, grid : false, gridSize : false, highlight : true}
+var editOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
 var clickedOpen = false
 var $pageContainer = $('#div_pageContainer')
 var style_css = ''
-
-function unload_page() {
-  if (getUrlVars('p') != 'plan') return
-  $.contextMenu('destroy', '#div_pageContainer' )
-}
 
 $('main').css({
   'padding-right':'0px',
@@ -40,7 +35,6 @@ for (var i in planHeader) {
     name:planHeader[i].name,
     callback: function(key, opt) {
       planHeader_id = key
-      editOption = {state : false, snap : false, grid : false, gridSize : false, highlight : true}
       displayPlan()
     }
   }
@@ -49,7 +43,7 @@ for (var i in planHeader) {
 if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   jwerty.key('ctrl+shift+e/⌘+shift+e', function(event) {
     event.preventDefault()
-    editOption.state = !editOption.state;
+    editOption.state = !editOption.state
     $pageContainer.data('editOption.state', editOption.state)
     initEditOption(editOption.state)
   })
@@ -96,7 +90,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter Graphique}}",
         icon : 'fas fa-chart-line',
         disabled:function(key, opt) {
-          return !this.data('editOption.state');
+          return !this.data('editOption.state')
         },
         callback: function(key, opt) {
           addObject({link_type : 'graph',link_id:Math.round(Math.random() * 99999999) + 9999})
@@ -376,13 +370,13 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
     zIndex: 9999,
     events: {
       show : function(opt) {
-        $.contextMenu.setInputValues(opt, this.data());
+        $.contextMenu.setInputValues(opt, this.data())
         if (editOption.highlight) {
           $(this).removeClass('editingMode').addClass('contextMenu_select')
         }
       },
       hide : function(opt) {
-        $.contextMenu.getInputValues(opt, this.data());
+        $.contextMenu.getInputValues(opt, this.data())
         if (editOption.highlight) {
           $(this).removeClass('contextMenu_select').addClass('editingMode')
         }
@@ -409,7 +403,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           var info = getObjectInfo($(this))
           if (info.type == 'graph') {
             var el = $(this)
-            $("#md_modal").load('index.php?v=d&modal=cmd.graph.select', function() {
+            $('#md_modal').load('index.php?v=d&modal=cmd.graph.select', function() {
               $('#table_addViewData tbody tr .enable').prop('checked', false)
               var options = json_decode(el.find('.graphOptions').value())
               for (var i in options) {
@@ -418,7 +412,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 tr.setValues(options[i], '.graphDataOption')
                 setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'))
               }
-              $("#md_modal").dialog('option', 'buttons', {
+              $('#md_modal').dialog('option', 'buttons', {
                 "Annuler": function() {
                   $(this).dialog("close")
                 },
@@ -449,7 +443,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Supprimer}}',
         icon:'fas fa-trash',
         callback: function(key, opt) {
-          savePlan(false,false);
+          savePlan(false,false)
           jeedom.plan.remove({
             id:  $(this).attr('data-plan_id'),
             error: function(error) {
@@ -507,25 +501,25 @@ $('#bt_createNewDesign').on('click',function() {
   createNewDesign()
 })
 
-$pageContainer.off('click','.plan-link-widget').on('click','.plan-link-widget', function() {
+$pageContainer.off('click', '.plan-link-widget').on('click', '.plan-link-widget', function() {
   if (!editOption.state) {
     if ($(this).attr('data-link_id') == undefined) {
       return
     }
     planHeader_id = $(this).attr('data-link_id')
-    editOption = {state : false, snap : false,grid : false,gridSize:false,highlight:true}
+    editOption = {state:false, snap:false, grid:false, gridSize:editOption.gridSize, highlight:true}
     displayPlan()
   }
 })
 
-$pageContainer.on( 'click','.zone-widget:not(.zoneEqLogic)', function() {
-  var el = $(this);
+$pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
+  var el = $(this)
   if (!editOption.state) {
     el.append('<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
     jeedom.plan.execute({
       id: el.attr('data-plan_id'),
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
         el.empty().append('<center class="loading"><i class="fas fa-times fa-4x"></i></center>')
         setTimeout(function() {
           el.empty()
@@ -533,8 +527,8 @@ $pageContainer.on( 'click','.zone-widget:not(.zoneEqLogic)', function() {
         }, 3000)
       },
       success: function() {
-        el.empty();
-        clickedOpen = false;
+        el.empty()
+        clickedOpen = false
       },
     })
   }
@@ -548,7 +542,7 @@ $pageContainer.on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly', func
       id : el.attr('data-eqLogic_id'),
       version : 'dashboard',
       global:false,
-      success:function(data){
+      success:function(data) {
         var html = $(data.html).css('position','absolute')
         html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
         el.empty().append(html)
@@ -589,7 +583,7 @@ $pageContainer.on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function
 $(document).click(function(event) {
   if (!editOption.state) {
     if ( (!$(event.target).hasClass('.zone-widget.zoneEqLogic') && $(event.target).closest('.zone-widget.zoneEqLogic').html() == undefined) && (!$(event.target).hasClass('.zone-widget.zoneEqLogicOnFly') && $(event.target).closest('.zone-widget.zoneEqLogicOnFly').html() == undefined)) {
-      $('.zone-widget.zoneEqLogic').each(function(){
+      $('.zone-widget.zoneEqLogic').each(function() {
         if ($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')) {
           $(this).empty()
           clickedOpen = false
@@ -737,7 +731,9 @@ function draggableDragFix(event, ui) {
 }
 
 function initEditOption(_state) {
-  var $container = $('.container-fluid.div_displayObject'), _zoom, containmentW, containmentH, objW, objH
+  var $container = $('.container-fluid.div_displayObject')
+  var $editItems = $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget')
+
   if (_state) {
     if (!$pageContainer.data('editOption.state')) {
       $pageContainer.data('editOption.state',true)
@@ -745,10 +741,10 @@ function initEditOption(_state) {
     editOption.state = true
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
-    jeedom.cmd.disableExecute = true;
+    jeedom.cmd.disableExecute = true
 
     //drag item:
-    $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable({
+    $editItems.draggable({
       cancel: '.locked',
       containment: 'parent',
       cursor: 'move',
@@ -757,16 +753,18 @@ function initEditOption(_state) {
       stop: function( event, ui ) {
         savePlan(false, false)
       }
-    });
+    })
+
     if (editOption.highlight) {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').addClass('editingMode')
+      $editItems.addClass('editingMode')
     } else {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('editingMode').removeClass('contextMenu_select')
+      $editItems.removeClass('editingMode contextMenu_select')
     }
+
     if (editOption.gridSize) {
-      $('.div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px')
+      $('#div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px')
     } else {
-      $('.div_grid').hide()
+      $('#div_grid').hide()
     }
 
     //resize item:
@@ -793,19 +791,21 @@ function initEditOption(_state) {
           ui.element.width(newWidth)
           ui.element.height(newHeight)
         }
-        ui.element.find('.camera').trigger('resize');
+        ui.element.find('.camera').trigger('resize')
       },
       stop: function(event, ui ) {
         savePlan(false,false)
       },
-    });
+    })
+
     $('.div_displayObject a').each(function() {
       if ($(this).attr('href') != '#') {
         $(this).attr('data-href', $(this).attr('href')).removeAttr('href')
       }
     })
+
     try {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(true)
+      $editItems.contextMenu(true)
      }catch(e) {}
   } else {
     if ($pageContainer.data('editOption.state')) {
@@ -814,18 +814,17 @@ function initEditOption(_state) {
     editOption.state = false
     jeedom.cmd.disableExecute = false
     $('.div_displayObject').removeClass('editingMode')
-    try{
+    try {
       $('.tooltipstered').tooltipster('enable')
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').draggable("destroy")
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').removeClass('editingMode')
+      $editItems.draggable('destroy').removeClass('editingMode')
       $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable("destroy")
       $('.div_displayObject a').each(function() {
         $(this).attr('href', $(this).attr('data-href'))
-      });
+      })
     } catch(e) {}
-    $('.div_grid').hide()
+    $('#div_grid').hide()
     try {
-      $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').contextMenu(false)
+      $editItems.contextMenu(false)
     } catch(e) {}
   }
 }
@@ -872,7 +871,7 @@ function displayPlan(_code) {
     success: function(data) {
       var $divDisplayObject = $('.div_displayObject')
       $divDisplayObject.empty()
-        .append('<div class="container-fluid div_grid" style="display:none;"></div>')
+        .append('<div id="div_grid" class="container-fluid" style="display:none;"></div>')
         .height('auto').width('auto')
       if (isset(data.image)) {
         $divDisplayObject.append(data.image)
@@ -898,7 +897,7 @@ function displayPlan(_code) {
         $('.div_backgroundPlan').height($divDisplayObject.height())
       }
 
-      $('.div_grid').width($divDisplayObject.width()).height($divDisplayObject.height())
+      $('#div_grid').width($divDisplayObject.width()).height($divDisplayObject.height())
       if (deviceInfo.type != 'desktop') {
         $('meta[name="viewport"]').prop('content', 'width=' + $divDisplayObject.width() + ',height=' + $divDisplayObject.height())
         fullScreen(true)
@@ -910,7 +909,7 @@ function displayPlan(_code) {
         })
       }
 
-      $divDisplayObject.find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove();
+      $divDisplayObject.find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove()
       jeedom.plan.byPlanHeader({
         id: planHeader_id,
         error: function(error) {
@@ -1047,7 +1046,7 @@ function displayObject(_plan, _html, _noRender) {
   html.attr('data-plan_id',_plan.id)
     .addClass('jeedomAlreadyPosition')
     .attr('data-zoom', init(_plan.css.zoom, 1))
-    .addClass('noResize');
+    .addClass('noResize')
 
   //set widget style:
   var style = {}
@@ -1117,85 +1116,85 @@ function displayObject(_plan, _html, _noRender) {
   }
 
   if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && style['background-color'] && style['background-color'] != 'transparent') {
-    if(style['background-color'].indexOf('#') != -1){
-      var rgb = hexToRgb(style['background-color']);
-      style['background-color'] = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+_plan.css['opacity']+')';
+    if (style['background-color'].indexOf('#') != -1) {
+      var rgb = hexToRgb(style['background-color'])
+      style['background-color'] = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+_plan.css['opacity']+')'
     }else{
-      style['background-color'] = style['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba');
+      style['background-color'] = style['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba')
     }
   }
 
-  if(_plan.link_type == 'eqLogic'){
-    if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
+  if (_plan.link_type == 'eqLogic') {
+    if (isset(_plan.display.hideName) && _plan.display.hideName == 1) {
       html.addClass('hideEqLogicName')
       another_css += css_selector+' .verticalAlign{top: 50% !important;\n}'
     }
-    if(isset(_plan.display.showObjectName) && _plan.display.showObjectName == 1){
+    if (isset(_plan.display.showObjectName) && _plan.display.showObjectName == 1) {
       html.addClass('displayObjectName')
     }
-    if(isset(_plan.display.cmdHide)){
-      for(var i in _plan.display.cmdHide){
-        if(_plan.display.cmdHide[i] == 0){
-          continue;
+    if (isset(_plan.display.cmdHide)) {
+      for (var i in _plan.display.cmdHide) {
+        if (_plan.display.cmdHide[i] == 0) {
+          continue
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{display : none !important;}'
       }
     }
-    if(isset(_plan.display.cmdHideName)){
-      for(var i in _plan.display.cmdHideName){
-        if(_plan.display.cmdHideName[i] == 0){
-          continue;
+    if (isset(_plan.display.cmdHideName)) {
+      for (var i in _plan.display.cmdHideName) {
+        if (_plan.display.cmdHideName[i] == 0) {
+          continue
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;}';
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;}';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .cmdName{display : none !important;}'
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"] .title{display : none !important;}'
       }
     }
-    if(isset(_plan.display.cmdTransparentBackground)){
-      for(var i in _plan.display.cmdTransparentBackground){
-        if(_plan.display.cmdTransparentBackground[i] == 0){
-          continue;
+    if (isset(_plan.display.cmdTransparentBackground)) {
+      for (var i in _plan.display.cmdTransparentBackground) {
+        if (_plan.display.cmdTransparentBackground[i] == 0) {
+          continue
         }
-        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{';
-        another_css += 'background-color: transparent !important';
-        another_css += 'border-radius: 0px !important';
-        another_css += 'box-shadow: none !important';
+        another_css += css_selector+' .cmd[data-cmd_id="'+i+'"]{'
+        another_css += 'background-color: transparent !important'
+        another_css += 'border-radius: 0px !important'
+        another_css += 'box-shadow: none !important'
         another_css += '\n}'
       }
     }
     style['min-width'] = '0px'
     style['min-height'] = '0px'
-    another_css += css_selector+' *:not([class^="content"]:not(.cmd-widget) {';
+    another_css += css_selector+' *:not([class^="content"]:not(.cmd-widget) {'
     another_css += 'min-width:0px !important;'
     another_css += 'min-height:0px !important;'
     another_css += '\n}'
   }
-  if(_plan.link_type == 'cmd'){
-    var insideHtml = html.html();
-    html = html.empty().append('<center>'+insideHtml+'</center>');
+  if (_plan.link_type == 'cmd') {
+    var insideHtml = html.html()
+    html = html.empty().append('<center>'+insideHtml+'</center>')
     delete style['height']
-    style['min-height'] = '0px';
+    style['min-height'] = '0px'
     delete style['width']
-    style['min-width'] = '0px';
+    style['min-width'] = '0px'
     html.css({
       'width':'',
       'height':'',
-    });
-    if(isset(_plan.display.hideName) && _plan.display.hideName == 1){
-      another_css += css_selector+' .cmdName{\ndisplay : none !important;\n}';
-      another_css += css_selector+' .title{\ndisplay : none !important;\n}';
+    })
+    if (isset(_plan.display.hideName) && _plan.display.hideName == 1) {
+      another_css += css_selector+' .cmdName{\ndisplay : none !important;\n}'
+      another_css += css_selector+' .title{\ndisplay : none !important;\n}'
     }
   }
-  if(_plan.link_type == 'image'){
-    if(isset(_plan.display.allowZoom) && _plan.display.allowZoom == 1){
-      html.find('.directDisplay').addClass('zoom cursor');
+  if (_plan.link_type == 'image') {
+    if (isset(_plan.display.allowZoom) && _plan.display.allowZoom == 1) {
+      html.find('.directDisplay').addClass('zoom cursor')
     }
   }
 
-  $('#style_'+_plan.link_type+'_'+_plan.link_id).remove();
-  var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">';
+  $('#style_'+_plan.link_type+'_'+_plan.link_id).remove()
+  var style_el = '<style id="style_'+_plan.link_type+'_'+_plan.link_id+'">'
   if (_plan.display.css && _plan.display.css != '') {
     if (_plan.display.cssApplyOn && _plan.display.cssApplyOn != '') {
-      var cssApplyOn = _plan.display.cssApplyOn.split(',');
+      var cssApplyOn = _plan.display.cssApplyOn.split(',')
       for (var i in cssApplyOn) {
         style_el += css_selector+' '+cssApplyOn[i]+'{'+_plan.display.css+'}'
       }
@@ -1218,9 +1217,9 @@ function displayObject(_plan, _html, _noRender) {
   style_el +='</style>'
 
   if (_plan.link_type == 'graph') {
-    $pageContainer.append(style_el);
-    $('.div_displayObject').append(html);
-    if(isset(_plan.display) && isset(_plan.display.graph)){
+    $pageContainer.append(style_el)
+    $('.div_displayObject').append(html)
+    if (isset(_plan.display) && isset(_plan.display.graph)) {
       for (var i in _plan.display.graph) {
         if (init(_plan.display.graph[i].link_id) != '') {
           jeedom.history.drawChart({
@@ -1235,8 +1234,8 @@ function displayObject(_plan, _html, _noRender) {
             showNavigator : init(_plan.display.showNavigator, true),
             enableExport : false,
             global: false,
-            success : function(){
-              if(init(_plan.display.transparentBackground, false)){
+            success : function() {
+              if (init(_plan.display.transparentBackground, false)) {
                 $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
               }
             }

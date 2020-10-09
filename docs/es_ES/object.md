@@ -7,6 +7,8 @@ Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fá
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como el nombre de las habitaciones (esta también es la configuración recomendada).
 
+![Objetos](./images/object_intro.gif)
+
 ## Gestion
 
 Tienes dos opciones :

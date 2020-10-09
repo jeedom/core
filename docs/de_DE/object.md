@@ -7,6 +7,8 @@ Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind dahe
 
 Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihren Wünschen benennen. Normalerweise definieren wir die verschiedenen Teile seines Hauses, wie den Namen der Räume (dies ist auch die empfohlene Konfiguration).
 
+![Objekte](./images/object_intro.gif)
+
 ## Gestion
 
 Sie haben zwei Möglichkeiten :

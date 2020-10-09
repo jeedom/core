@@ -10,6 +10,8 @@ Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle od
 - **Szenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies in großen Mengen zu tun".
 - **Befehl** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in "Masse" zu tun".
 
+![Zeitleiste](images/timeline_intro.jpg)
+
 Die Zeitleiste *Primär* enthält immer alle Ereignisse. Sie können die Zeitleiste jedoch nach filtern *Rekord*. An jeder Stelle, an der Sie die Zeitleiste aktivieren, haben Sie ein Feld, in das Sie den Namen eines Ordners eingeben können, ob vorhanden oder nicht.
 Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links neben der Schaltfläche auswählen *Aktualisieren*.
 

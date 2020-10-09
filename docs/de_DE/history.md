@@ -1,7 +1,9 @@
 # Historique
 **Analyse → Geschichte**
 
-Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). Auf diese Weise können Sie beispielsweise eine Temperatur-, Verbrauchs- oder Türöffnungskurve usw. protokollieren
+Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). Auf diese Weise können Sie beispielsweise eine Temperaturkurve, einen Verbrauch, Türöffnungen usw. protokollieren
+
+![Historisch](./images/history.gif)
 
 ### Principe
 

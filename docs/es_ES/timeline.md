@@ -10,6 +10,8 @@ Para verlos, primero debe activar el seguimiento en la línea de tiempo de los c
 - **Escenario** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
 - **Comando** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
+![Línea de tiempo](images/timeline_intro.jpg)
+
 La linea de tiempo *Primario* siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por *Carpetas*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
 Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón *Refrescar*.
 

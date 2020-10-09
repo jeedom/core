@@ -270,23 +270,30 @@ jeedom.history.drawChart = function(_params) {
         style: {fontFamily: 'Roboto'},
         events : {
           load: function() {
-            var min = this.series[0].dataMin / 1.1
-            var max = this.series[0].dataMax * 1.1
+            var min = this.series[0].dataMin / 1.005
+            var max = this.series[0].dataMax * 1.005
             this.yAxis[0].setExtremes(min, max, true, false)
           },
-          addSeries: function(event) {
-            if (this.series.length == 0) {
-              var values = event.options.data.map(function(elt) {
-                return elt[1]
-              })
-              var valueMax = Math.max.apply(null, values)
-              var valueMin = Math.min.apply(null, values)
-              this.yAxis[0].setExtremes(valueMin / 1.1, valueMax * 1.1, true, false)
+          selection: function(event) {
+            //zoom back after reset zoom button. allways play with immutables!
+            if (event.resetSelection) {
+              var min = this.fullMin
+              var max = this.fullMax
+              if (this.series.length <= 2) {
+                chart = $('#div_graph').highcharts()
+                setTimeout(function() {
+                  event.target.yAxis[0].setExtremes(min, max, true, true)
+                }, 10)
+              }
             } else {
-              this.yAxis[0].setExtremes()
+              this.fullMin = this.yAxis[0].dataMin / 1.005
+              this.fullMax = this.yAxis[0].dataMax * 1.005
             }
           },
-           render: function() {
+          addSeries: function(event) {
+            this.yAxis[0].setExtremes()
+          },
+          render: function() {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
             $('.highcharts-zone-graph-0.customSolidZone').each(function() {
@@ -477,24 +484,24 @@ jeedom.history.drawChart = function(_params) {
                   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
                     return
                   }
-                  if($('#md_modal2').is(':visible')){
-                    return;
+                  if ($('#md_modal2').is(':visible')) {
+                    return
                   }
-                  if($('#md_modal1').is(':visible')){
-                    return;
+                  if ($('#md_modal1').is(':visible')) {
+                    return
                   }
                   var id = this.series.userOptions.id;
-                  var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
-                  var value = this.y;
+                  var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x)
+                  var value = this.y
                   bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
                     if (result !== null) {
-                      jeedom.history.changePoint({cmd_id: id, datetime: datetime,oldValue:value, value: result});
+                      jeedom.history.changePoint({cmd_id: id, datetime: datetime,oldValue:value, value: result})
                     }
-                  });
+                  })
                 }
               }
             }
-          };
+          }
 
           if (init(_params.option.groupingType) == '' && !delta) {
             //continue value to now, dotted if last value older than one minute (ts in millisecond):
@@ -519,10 +526,10 @@ jeedom.history.drawChart = function(_params) {
 
         //new first curve:
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
-          jeedom.history.chart[_params.el] = {};
-          jeedom.history.chart[_params.el].cmd = new Array();
-          jeedom.history.chart[_params.el].color = seriesNumber - 1;
-          jeedom.history.chart[_params.el].nbTimeline = 1;
+          jeedom.history.chart[_params.el] = {}
+          jeedom.history.chart[_params.el].cmd = new Array()
+          jeedom.history.chart[_params.el].color = seriesNumber - 1
+          jeedom.history.chart[_params.el].nbTimeline = 1
 
           if (_params.dateRange == '30 min') {
             var dateRange = 1
@@ -539,7 +546,7 @@ jeedom.history.drawChart = function(_params) {
           } else  if (_params.dateRange == 'all') {
             var dateRange = 0
           } else {
-            var dateRange = 4;
+            var dateRange = 4
           }
 
           jeedom.history.chart[_params.el].type = _params.option.graphType;
@@ -646,7 +653,7 @@ jeedom.history.drawChart = function(_params) {
               enabled: _params.showScrollbar
             },
             series: [series]
-          });
+          })
         } else {
           //add curve to existing graph:
 
@@ -663,16 +670,17 @@ jeedom.history.drawChart = function(_params) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange}
       }
 
-      var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes();
-      var plotband = jeedom.history.generatePlotBand(extremes.min, extremes.max);
+      //set plotband:
+      var extremes = jeedom.history.chart[_params.el].chart.xAxis[0].getExtremes()
+      var plotband = jeedom.history.generatePlotBand(extremes.min, extremes.max)
       for (var i in plotband) {
-        jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i]);
+        jeedom.history.chart[_params.el].chart.xAxis[0].addPlotBand(plotband[i])
       }
 
-      $.hideLoading();
+      $.hideLoading()
       if (typeof (init(_params.success)) == 'function') {
-        _params.success(data.result);
+        _params.success(data.result)
       }
     }
-  });
+  })
 }

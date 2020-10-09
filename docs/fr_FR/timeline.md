@@ -10,6 +10,8 @@ Pour les voir, il vous faut d’abord activer le suivi sur la timeline des comma
 - **Scenario** : Soit directement sur la page de scénario, soit sur la page de résumé des scénarios pour le faire en "masse".
 - **Commande** : Soit dans la configuration avancée de la commande, soit dans la configuration de l’historique pour le faire en "masse".
 
+![Timeline](images/timeline_intro.jpg)
+
 La timeline *Principal* contient toujours l'ensemble des évènements. Toutefois, vous pouvez filtrer la timeline par *dossier*. A chaque endroit où vous activerez la timeline, vous disposerez d'un champ pour entrer le nom d'un dossier, existant ou non.
 Vous pourrez alors filtrer la timeline par ce dossier en le sélectionnant à gauche du bouton *Rafraichir*.
 

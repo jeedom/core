@@ -1,7 +1,9 @@
 # Historique
 **Análisis → Historia**
 
-Parte importante en el software : la parte de la historización, un verdadero recuerdo de ella. En Jeedom es posible registrar cualquier comando de tipo de información (binario o digital). Esto le permitirá, por ejemplo, registrar una temperatura, consumo o curva de apertura de puerta, etc
+Parte importante en el software : la parte de la historización, un verdadero recuerdo de ella. En Jeedom es posible registrar cualquier comando de tipo de información (binario o digital). Esto le permitirá, por ejemplo, registrar una curva de temperatura, consumos, aperturas de puertas, etc
+
+![Histórico](./images/history.gif)
 
 ### Principe
 
