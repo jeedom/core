@@ -194,7 +194,7 @@ class utils {
 	public static function getEncryptionPassword(){
 		if(self::$jeedom_encryption == null){
 			if(!file_exists(__DIR__.'/../../data/jeedom_encryption.key')){
-				file_put_contents(config::genKey(),__DIR__.'/../../data/jeedom_encryption.key');
+				file_put_contents(__DIR__.'/../../data/jeedom_encryption.key',config::genKey());
 			}
 			self::$jeedom_encryption = file_get_contents(__DIR__.'/../../data/jeedom_encryption.key');
 		}
