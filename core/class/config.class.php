@@ -164,7 +164,7 @@ class config {
 			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key,$_plugin::$_encryptConfigKey)){
 				$value['value'] = utils::decrypt($value['value']);
 			}else if($_key == 'api'){
-				$_value = utils::decrypt($_value);
+				$value['value'] = utils::decrypt($value['value']);
 			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
 		}
