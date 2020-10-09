@@ -64,6 +64,13 @@ class user {
 			log::add("connection", "debug", __('Connection au LDAP OK', __FILE__));
 			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+			if (config::byKey('ldap:tls')){
+				if (!ldap_start_tls($ad)) {
+					log::add("connection", "debug", __('start TLS KO', __FILE__));
+					return false;
+				}
+				else log::add("connection", "debug", __('start TLS OK', __FILE__));
+			}
 			if(config::byKey('ldap:samba4')){
 				if (config::byKey('ldap:filter') == "" or config::byKey('ldap:filter') == null)
 					$ldapfilter="(objectclass=*)";
@@ -142,6 +149,8 @@ class user {
 		$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 		ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+		if ((config::byKey('ldap:tls') == 1) && (!ldap_start_tls($ad)))
+			return false;
 		if(config::byKey('ldap:samba4'))
 			if(ldap_bind($ad, config::byKey('ldap:username')."@".config::byKey('ldap:domain'), config::byKey('ldap:password'))){
 				return $ad;
