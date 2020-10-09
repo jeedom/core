@@ -201,6 +201,12 @@ class utils {
 	}
 	
 	public static function encrypt($plaintext, $password = null) {
+		if($plaintext == ''){
+			return $plaintext;
+		}
+		if(strpos($plaintext,'crypt:') !== false){
+			return $plaintext;
+		}
 		if($password == null){
 			$password = self::getEncryptionPassword();
 		}

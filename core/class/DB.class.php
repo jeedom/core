@@ -100,6 +100,19 @@ class DB {
 		if ($errorInfo[0] != 0000) {
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
 		}
+		if ($_fetch_param == PDO::FETCH_CLASS) {
+			if(is_array($res) && count($res) > 0){
+				foreach ($res as &$obj) {
+					if(method_exists($obj,'decrypt')){
+						$obj->decrypt();
+					}
+				}
+			}else{
+				if(method_exists($res,'decrypt')){
+					$res->decrypt();
+				}
+			}
+		}
 		return $res;
 	}
 	
@@ -165,6 +178,9 @@ class DB {
 					trigger_error($ex->getMessage(), E_USER_NOTICE);
 				}
 			}
+			if(method_exists($object,'decrypt')){
+				$object->decrypt();
+			}
 			if (!$_direct && method_exists($object, 'postInsert')) {
 				$object->postInsert();
 			}
@@ -190,6 +206,9 @@ class DB {
 				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			}else{
 				$res = true;
+			}
+			if(method_exists($object,'decrypt')){
+				$object->decrypt();
 			}
 			if (!$_direct && method_exists($object, 'postUpdate')) {
 				$object->postUpdate();
