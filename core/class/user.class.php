@@ -57,19 +57,35 @@ class user {
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "debug", __('Authentification par LDAP', __FILE__));
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
-			if(!$ad){
+			if(!$ad) {
 				log::add("connection", "debug", __('Connection au LDAP KO', __FILE__));
 				return false;
 			}
 			log::add("connection", "debug", __('Connection au LDAP OK', __FILE__));
 			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-			if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-				log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
-				return false;
+			if(config::byKey('ldap:samba4')) {
+				if (config::byKey('ldap:filter') == "" or config::byKey('ldap:filter') == null) {
+					$ldapfilter="(objectclass=*)";
+				}
+				else {
+					$ldapfilter=config::byKey('ldap:filter');
+				}
+				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_mdp)) {
+					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
+					return false;
+				}
+				log::add("connection", "debug", __('Bind user OK', __FILE__));
+				$result = ldap_search($ad, config::byKey('ldap:basedn'), $ldapfilter);
 			}
-			log::add("connection", "debug", __('Bind user OK', __FILE__));
-			$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+			else {
+				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+					log::add("connection", "info", __('Mot de passe erroné (', __FILE__) . $_login . ')');
+					return false;
+				}
+				log::add("connection", "debug", __('Bind user OK', __FILE__));
+				$result = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter'));
+			}
 			log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ')');
 			if ($result) {
 				$entries = ldap_get_entries($ad, $result);
@@ -128,8 +144,15 @@ class user {
 		$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 		ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-		if (ldap_bind($ad, config::byKey('ldap:username'), config::byKey('ldap:password'))) {
-			return $ad;
+		if(config::byKey('ldap:samba4')) {
+			if(ldap_bind($ad, config::byKey('ldap:username')."@".config::byKey('ldap:domain'), config::byKey('ldap:password'))) {
+				return $ad;
+			}
+		}
+		else {
+			if (ldap_bind($ad, config::byKey('ldap:username'), config::byKey('ldap:password'))) {
+				return $ad;
+			}
 		}
 		return false;
 	}

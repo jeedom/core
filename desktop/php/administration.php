@@ -510,6 +510,12 @@ user::isBan();
 						</div>
 						<div id="div_config_ldap">
 							<div class="form-group">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Samba4}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
+									<input type="checkbox"  class="configKey form-control" data-l1key="ldap:samba4" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hôte}}</label>
 								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 									<input type="text"  class="configKey form-control" data-l1key="ldap:host" />
