@@ -56,76 +56,75 @@ class user {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", __('LDAP Authentification', __FILE__));
-			$ad = self::connectToLDAP();
-			if ($ad !== false) {
-				log::add("connection", "debug", __('LDAP Connection OK', __FILE__));
-				$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
-				ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
-				ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-					log::add("connection", "info", __('LDAP connection impossible', __FILE__));
-					return false;
-				}
-				log::add("connection", "debug", __('Bind user OK', __FILE__));
-				$all_profiles = array('restrict', 'user', 'admin');
-				$profiles = 'none'; # default
-				foreach ($all_profiles as $p) {
-					if (config::byKey('ldap:filter:'.$p)!="" && $result_profile = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter:'.$p))) {
-						$entries = ldap_get_entries($ad, $result_profile);
-						if ($entries['count'] > 0) {
-							$profiles = $p;
-							log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__).$p.__('" profile was FOUND for the user "', __FILE__).$_login.__('" in the LDAP', __FILE__));
-						} else {
-							log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" has no "', __FILE__).$p.__('" profile in the LDAP', __FILE__));
-						}
-					}
-					else {
-						log::add("connection", "info", __('LDAP Profile Check - No filter or bad search filter applied for the profile "', __FILE__).$p.'" ');
-					}
-				}
-				# If the profile is always 'none' and there is no filter, then try to access as admin (default)
-				if ($profiles == 'none' && config::bykey('ldap:filter:admin')=="") {
-					log::add("connection", "info", __('LDAP Profile Check - [WARNING] None filter was set for administrators and no profile was found, try to authenticate "'.$_login.'" as an administrator if the user is in the LDAP', __FILE__));
-					if ($result_profile = ldap_search($ad, config::byKey('ldap:basedn'), config::byKey('ldap::usersearch') . '=' . $_login )) {
-						$entries = ldap_get_entries($ad, $result_profile);
-						if ($entries['count'] > 0) {
-							$profiles = 'admin';
-							log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" exists in the LDAP, authentication OK as administrator', __FILE__));
-						} else {
-							log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" doesn\'t exist in the LDAP', __FILE__));
-						}
+			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
+			if(!$ad) {
+				log::add("connection", "info", __('Connection LDAP Error', __FILE__));
+				return false;
+			}
+			log::add("connection", "info", __('LDAP Connection OK', __FILE__));
+			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
+			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
+			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+			if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+				log::add("connection", "info", __('LDAP connection impossible', __FILE__));
+				return false;
+			}
+			log::add("connection", "debug", __('Bind user OK', __FILE__));
+			$all_profiles = array('restrict', 'user', 'admin');
+			$profiles = 'none'; # default
+			foreach ($all_profiles as $p) {
+				if (config::byKey('ldap:filter:'.$p)!="" && $result_profile = ldap_search($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), config::byKey('ldap:filter:'.$p))) {
+					$entries = ldap_get_entries($ad, $result_profile);
+					if ($entries['count'] > 0) {
+						$profiles = $p;
+						log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__).$p.__('" profile was FOUND for the user "', __FILE__).$_login.__('" in the LDAP', __FILE__));
+					} else {
+						log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" has no "', __FILE__).$p.__('" profile in the LDAP', __FILE__));
 					}
 				}
-				log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ' - "' . $profiles . __('" profile selected)', __FILE__));
-				if ($profiles != 'none') {
-					$user = self::byLogin($_login);
-					if (is_object($user)) {
-						$user->setPassword($sMdp)
-						->setOptions('lastConnection', date('Y-m-d H:i:s'))
-						->setProfils($profiles);
-						$user->save();
-						return $user;
+				else {
+					log::add("connection", "info", __('LDAP Profile Check - No filter or bad search filter applied for the profile "', __FILE__).$p.'" ');
+				}
+			}
+			# If the profile is always 'none' and there is no filter, then try to access as admin (default)
+			if ($profiles == 'none' && config::bykey('ldap:filter:admin')=="") {
+				log::add("connection", "info", __('LDAP Profile Check - [WARNING] None filter was set for administrators and no profile was found, try to authenticate "'.$_login.'" as an administrator if the user is in the LDAP', __FILE__));
+				if ($result_profile = ldap_search($ad, config::byKey('ldap:basedn'), config::byKey('ldap::usersearch') . '=' . $_login )) {
+					$entries = ldap_get_entries($ad, $result_profile);
+					if ($entries['count'] > 0) {
+						$profiles = 'admin';
+						log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" exists in the LDAP, authentication OK as administrator', __FILE__));
+					} else {
+						log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" doesn\'t exist in the LDAP', __FILE__));
 					}
-					$user = (new user)
-					->setLogin($_login)
-					->setPassword($sMdp)
+				}
+			}
+			log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ' - "' . $profiles . __('" profile selected)', __FILE__));
+			if ($profiles != 'none') {
+				$user = self::byLogin($_login);
+				if (is_object($user)) {
+					$user->setPassword($sMdp)
 					->setOptions('lastConnection', date('Y-m-d H:i:s'))
 					->setProfils($profiles);
 					$user->save();
-					log::add("connection", "info", __('User created from the LDAP : ', __FILE__) . $_login);
-					jeedom::event('user_connect');
-					log::add('event', 'info', __('User connection accepted ', __FILE__) . $_login);
 					return $user;
-				} else {
-					$user = self::byLogin($_login);
-					if (is_object($user)) {
-						$user->remove();
-					}
-					log::add("connection", "info", __('User not allowed to access to Jeedom according to the LDAP (', __FILE__) . $_login . ')');
 				}
-
+				$user = (new user)
+				->setLogin($_login)
+				->setPassword($sMdp)
+				->setOptions('lastConnection', date('Y-m-d H:i:s'))
+				->setProfils($profiles);
+				$user->save();
+				log::add("connection", "info", __('User created from the LDAP : ', __FILE__) . $_login);
+				jeedom::event('user_connect');
+				log::add('event', 'info', __('User connection accepted ', __FILE__) . $_login);
+				return $user;
 			} else {
-				log::add("connection", "info", __('LDAP connection impossible', __FILE__));
+				$user = self::byLogin($_login);
+				if (is_object($user)) {
+					$user->remove();
+				}
+				log::add("connection", "info", __('User not allowed to access to Jeedom according to the LDAP (', __FILE__) . $_login . ')');
 			}
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
