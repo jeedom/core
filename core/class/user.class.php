@@ -64,11 +64,19 @@ class user {
 			log::add("connection", "info", __('LDAP Connection OK', __FILE__));
 			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-			if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-				log::add("connection", "info", __('LDAP bind user KO', __FILE__));
-				return false;
+			if(config::byKey('ldap:samba4')) {
+				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_mdp)) {
+					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
+					return false;
+				}
 			}
-			log::add("connection", "debug", __('Bind user OK', __FILE__));
+			else {
+				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
+					return false;
+				}
+			}
+			log::add("connection", "debug", __('LDAP Bind user - OK', __FILE__));
 			if (config::bykey('ldap:filter:admin')=="" && config::bykey('ldap:filter:user')=="" && config::bykey('ldap:filter:restrict')=="") {
 				log::add("connection", "warning", __('LDAP Profile Check - [WARNING] None filter was set, "'.$_login.'"  authenticated as an administrator', __FILE__));
 				$profile='admin';
@@ -80,7 +88,7 @@ class user {
 						break;
 					}
 					if (config::bykey('ldap:filter:'.$profile)!="") {
-						$filters='(&(uid=' . $_login . ')'.config::bykey('ldap:filter:'.$profile).')';
+						$filters='(&('.config::bykey('ldap::usersearch').'=' . $_login . ')'.config::bykey('ldap:filter:'.$profile).')';
 						log::add("connection", "debug", __('LDAP Profile Check - filter:, "'.$filters.'"', __FILE__));
 						$result = ldap_search($ad, config::byKey('ldap:basedn'), $filters);
 						$entries = ldap_get_entries($ad, $result);
@@ -141,8 +149,15 @@ class user {
 		$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 		ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
-		if (ldap_bind($ad, config::byKey('ldap:username'), config::byKey('ldap:password'))) {
-			return $ad;
+		if(config::byKey('ldap:samba4')) {
+			if(ldap_bind($ad, config::byKey('ldap:username')."@".config::byKey('ldap:domain'), config::byKey('ldap:password'))) {
+				return $ad;
+			}
+		}
+		else {
+			if (ldap_bind($ad, config::byKey('ldap:username'), config::byKey('ldap:password'))) {
+				return $ad;
+			}
 		}
 		return false;
 	}
