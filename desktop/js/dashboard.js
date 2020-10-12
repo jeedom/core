@@ -17,7 +17,7 @@
 "use strict"
 
 if (SEL_SUMMARY != '') {
-  $('#bt_displayObject, #bt_editDashboardWidgetOrder').hide()
+  $('#bt_displayObject, #bt_editDashboardWidgetOrder').parent().remove()
 }
 
 $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
