@@ -923,6 +923,19 @@ try {
 		$jsonrpc->makeSuccess(utils::o2a($scenario));
 	}
 	
+	if ($jsonrpc->getMethod() == 'scenario::save') {
+		unautorizedInDemo();
+		if (isset($params['id'])) {
+			$scenario = scenario::byId($params['id']);
+		}
+		if (!is_object($scenario)) {
+			$scenario = new scenario();
+		}
+		utils::a2o($scenario, jeedom::fromHumanReadable($params));
+		$scenario->save();
+		$jsonrpc->makeSuccess(utils::o2a($scenario));
+	}
+	
 	/*             * ************************Log*************************** */
 	if ($jsonrpc->getMethod() == 'log::get') {
 		$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
