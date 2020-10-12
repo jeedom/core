@@ -233,7 +233,7 @@ $('#div_pageContainer').on({
   'mouseenter': function(event) {
     if(!isEditing) {
       btOverviewTimer = setTimeout(function() {
-        $('#dashOverviewPrev').css('display', 'block')
+        $('#dashOverviewPrev').show(350)
       }, 300)
 
     }
@@ -246,7 +246,7 @@ $('#div_pageContainer').on({
 }, '#bt_overview')
 $('#div_pageContainer').on({
   'mouseleave': function(event) {
-    $('#dashOverviewPrev').css('display', 'none')
+    $('#dashOverviewPrev').hide(350)
   }
 }, '#dashOverviewPrev')
 
