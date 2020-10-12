@@ -95,12 +95,7 @@ class repo_market {
 				'cloud::backup::password' => array(
 					'name' => __('[Backup cloud] Mot de passe',__FILE__),
 					'type' => 'password',
-				),
-				'cloud::backup::fullfrequency' => array(
-					'name' => __('[Backup cloud] Fréquence backup full',__FILE__),
-					'type' => 'select',
-					'values' => array('1D' => __('Chaque jour',__FILE__), '1W' => __('Chaque semaine',__FILE__), '1M' => __('Chaque mois',__FILE__)),
-				),
+				)
 			),
 			'parameters_for_add' => array(
 				'version' => array(
@@ -239,16 +234,6 @@ class repo_market {
 		));
 		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
 		return new League\Flysystem\Filesystem($adapter);
-	}
-	
-	public static function backup_install(){
-		if (exec('which duplicity | wc -l') == 0) {
-			try {
-				com_shell::execute('sudo apt-get -y install duplicity');
-			} catch (\Exception $e) {
-				
-			}
-		}
 	}
 	
 	public static function backup_createFolderIsNotExist() {
