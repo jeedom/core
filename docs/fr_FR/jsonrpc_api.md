@@ -1,4 +1,4 @@
-Voici une documentation sur les méthodes de l’API. 
+Voici une documentation sur les méthodes de l’API.
 
 Tout d’abord voici les spécifications (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
@@ -205,7 +205,7 @@ Paramètres:
 eqLogic::byTypeAndId
 --------------------
 
-Renvoi un tableau d’équipement en fonction des paramètres. 
+Renvoi un tableau d’équipement en fonction des paramètres.
 
 Le retour sera de la forme array('eqType1' ⇒array( 'id'⇒…​,'cmds' ⇒
 array(…​.)),'eqType2' ⇒array( 'id'⇒…​,'cmds' ⇒ array(…​.))…​.,id1 ⇒
@@ -281,7 +281,7 @@ Exécute la commande spécifiée
 Paramètres:
 
 -   int id : id d’une commande ou tableau d’id si vous voulez executer plusieurs commandes d’un coup
-    
+
 -   \[options\] Liste des options de la commande (dépend du type et du sous-type de la commande)
 
 cmd::getStatistique
@@ -437,11 +437,11 @@ Permet de récupérer un log
 
 Paramètres:
 
--   string log : nom du log à récupérer 
+-   string log : nom du log à récupérer
 
 -   string start : numéro de ligne sur laquelle commencer la lecture
 
--   string nbLine : nombre de lignes à récupérer 
+-   string nbLine : nombre de lignes à récupérer
 
 log::add
 --------
@@ -450,7 +450,7 @@ Permet d'écrire dans un log
 
 Paramètres:
 
--   string log : nom du log à récupérer 
+-   string log : nom du log à récupérer
 
 -   string type : type de log (debug, info, warning, error)
 
@@ -466,7 +466,7 @@ Permet de récupérer la list des logs de Jeedom
 
 Paramètres:
 
--   string filtre : (optionnel) filtre sur le nom des logs à récupérer 
+-   string filtre : (optionnel) filtre sur le nom des logs à récupérer
 
 log::empty
 ----------
@@ -497,9 +497,9 @@ Récupère la valeur d’une variable stockée dans le datastore
 Paramètres:
 
 -   string type : type de la valeur stockée (pour les scénarios c’est scenario)
-    
+
 -   id linkId : -1 pour le global (valeur pour les scénarios par défaut, ou l’id du scénario)
-    
+
 -   string key : nom de la valeur
 
 datastore::save
@@ -690,7 +690,7 @@ API JSON update
 update::all
 -----------
 
-Retour la liste de tous les composants installés, leurs versions et les informations associées
+Retourne la liste de tous les composants installés, leurs versions et les informations associées
 
 update::checkUpdate
 -------------------
@@ -725,6 +725,28 @@ Force l’arret du DNS Jeedom
 
 network::dnsRun
 ---------------
+
+API JSON timeline
+===============
+
+timeline::all
+-----------
+
+Retourne tous les éléments de la timeline
+
+timeline::listFolder
+-----------
+
+Retourne tous les dossier (catégorie) de la timeline
+
+timeline::byFolder
+-----------
+
+Retourne tous les éléments du dossier demandé
+
+Paramètres:
+
+-   string folder : nom du dossier
 
 Renvoi le status du DNS Jeedom
 
