@@ -94,7 +94,8 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		if (init('btover', 0) == 0) {?>
 			<a id="bt_displayObject" class="btn roundedLeft" data-display='<?php echo $_SESSION['user']->getOptions('displayObjetByDefault') ?>' title="{{Afficher/Masquer les objets}}"><i class="far fa-image"></i></a>
 		<?php } else { ?>
-			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>&nbsp;<i class="fab fa-hubspot"></i></a>
+			<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>
+			</a><a id="bt_overview" class="btn" style="width:35px"><i class="icon jeedomapp-fleche-bas-line"></i></a>
 		<?php } ?>
 	</div>
 	<input class="form-control" id="in_searchDashboard" placeholder="Rechercher" autocomplete="off">
@@ -127,6 +128,26 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 </div>
 
 <?php
+	//display overview previews:
+	if (init('btover', 0) != 0) {
+		$allOverviewObj = jeeObject::all(true);
+	    $div = '<div id="dashOverviewPrev" style="display:none;">';
+	    foreach ($allOverviewObj as $_object) {
+	      if ($_object->getConfiguration('hideOnOverview') == 1) continue;
+	      $backUrl = $_object->getImgLink();
+	      if ($backUrl == '') {
+	        $backUrl = 'core/img/background/jeedom_abstract_04_light.jpg';
+	      }
+	      $div .= '<div class="objectPreview cursor shadowed fullCorner" style="background:url('.$backUrl.')" data-object_id="'.$_object->getId().'">';
+	      $div .= '<div class="topPreview topCorner nocursor">';
+	      $div .= '<span class="name cursor">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
+	      $div .= '</div>';
+	      $div .= '</div>';
+	    }
+	    $div .= '</div>';
+	    echo $div;
+	}
+
 	include_file('desktop', 'dashboard', 'js');
 
 	function formatJeedomObjectDiv($object, $toSummary=false) {
@@ -135,7 +156,7 @@ if ($_SESSION['user']->getOptions('displayObjetByDefault') == 1) {
 		$div =  '<div class="col-md-12">';
 		$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
 		$div .= '<legend><span class="objectDashLegend fullCorner">
-				<a href="index.php?v=d&p=dashboard&object_id=' . $object->getId() . '&childs=0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
+				<a href="index.php?v=d&p=dashboard&object_id=' . $object->getId() . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>
 				<a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span>
 				 <i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $object->getId() . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
 				 <i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $object->getId() . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>

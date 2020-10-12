@@ -81,6 +81,21 @@ a:hover {
   filter: blur(var(--objectBackgroundBlur));
 }
 
+
+/* overview preview on dashboard */
+[data-page="dashboard"] #dashOverviewPrev {
+  width: calc(100% - 3px);
+  overflow: hidden;
+  border-radius: var(--border-radius) !important;
+  background: rgba(var(--bg-color), var(--opacity));
+}
+[data-page="dashboard"] #dashOverviewPrev .objectPreview {
+  display: inline-block;
+  height: 110px;
+  width: 160px;
+}
+
+
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
 }

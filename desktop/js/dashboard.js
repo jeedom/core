@@ -211,6 +211,47 @@ function filterByCategory() {
   }
 }
 
+//Overview preview click or center-click
+$('.objectPreview, .objectPreview .name').off('click').on('click', function (event) {
+  var url = 'index.php?v=d&p=dashboard&object_id='+$(this).closest('.objectPreview').attr('data-object_id')+'&childs=0'+'&btover=1'
+  if (event.ctrlKey) {
+    window.open(url).focus()
+  } else {
+    loadPage(url)
+  }
+  return false
+})
+$('.objectPreview, .objectPreview .name').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).closest('.objectPreview').attr('data-object_id')
+    $('.objectPreview[data-object_id="'+id+'"] .name').trigger(jQuery.Event('click', {ctrlKey: true}))
+  }
+})
+var btOverviewTimer
+$('#div_pageContainer').on({
+  'mouseenter': function(event) {
+    if(!isEditing) {
+      btOverviewTimer = setTimeout(function() {
+        $('#dashOverviewPrev').css('display', 'block')
+      }, 300)
+
+    }
+  }
+}, '#bt_overview')
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    clearTimeout(btOverviewTimer)
+  }
+}, '#bt_overview')
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    $('#dashOverviewPrev').css('display', 'none')
+  }
+}, '#dashOverviewPrev')
+
+
+
 $('#bt_displayObject').on('click', function () {
   if (isEditing) return
   if ($(this).attr('data-display') == 1) {
