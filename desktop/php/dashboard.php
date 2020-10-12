@@ -36,10 +36,11 @@ if ($DisplayByObject && !is_object($object)) {
 	}
 }
 
+$objectTree = jeeObject::buildTree(null, true);
 if ($DisplayByObject) {
 	sendVarToJs('rootObjectId', $object->getId());
 	if (init('childs', 1) == 1) {
-		$allObject = jeeObject::buildTree(null, true);
+		$allObject = $objectTree;
 	} else {
 		$allObject = array();
 	}
@@ -53,6 +54,8 @@ if ($DisplayByObject) {
 		sendVarToJs('rootObjectId', $object->getId());
 	}
 }
+
+
 
 ?>
 
@@ -69,7 +72,7 @@ if ($DisplayByObject) {
 			<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 			<?php
 			if ($DisplayByObject) {
-				foreach ($allObject as $object_li) {
+				foreach ($objectTree as $object_li) {
 					$margin = 5 * $object_li->getConfiguration('parentNumber');
 					$liobject = '<li class="cursor li_object" ><a data-object_id="' . $object_li->getId() . '" data-href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '&category=' . init('category', 'all') . '" style="padding: 2px 0px;"><span style="position:relative;left:' . $margin . 'px;">' . $object_li->getHumanName(true, true) . '</span></a></li>';
 					if ($object_li->getId() == $object->getId()) $liobject = str_replace('class="cursor li_object"', 'class="cursor li_object active"', $liobject);
