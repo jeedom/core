@@ -1,4 +1,4 @@
-Aqui está a documentação sobre métodos de API. 
+Aqui está a documentação sobre métodos de API.
 
 Primeiro, aqui estão as especificações (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
@@ -205,7 +205,7 @@ Configurações:
 eqLogic::byTypeAndId
 --------------------
 
-Retorna uma tabela de equipamentos de acordo com os parâmetros. 
+Retorna uma tabela de equipamentos de acordo com os parâmetros.
 
 O retorno será da matriz do formulário ('eqType1' ⇒ matriz ('id'⇒…,' cmds '⇒
 matriz (….)), 'eqType2' ⇒ matriz ('id'⇒…,' cmds '⇒ matriz (….))….,id1 ⇒
@@ -281,7 +281,7 @@ Execute o comando especificado
 Configurações:
 
 -   int id : id de comando ou array de id se você deseja executar vários comandos de uma só vez
-    
+
 -   \ [options \] Lista de opções de comando (depende do tipo e subtipo do comando)
 
 cmd::getStatistique
@@ -437,11 +437,11 @@ Permite recuperar um log
 
 Configurações:
 
--   log de string : nome do log a recuperar 
+-   log de string : nome do log a recuperar
 
 -   início da corda : número da linha na qual começar a ler
 
--   string nbLine : número de linhas para recuperar 
+-   string nbLine : número de linhas para recuperar
 
 log::add
 --------
@@ -450,7 +450,7 @@ Permite escrever em um log
 
 Configurações:
 
--   log de string : nome do log a recuperar 
+-   log de string : nome do log a recuperar
 
 -   tipo de string : tipo de log (depuração, informações, aviso, erro)
 
@@ -466,7 +466,7 @@ Obtenha a lista de logs do Jeedom
 
 Configurações:
 
--   filtro de string : (opcional) filtro no nome dos logs para recuperar 
+-   filtro de string : (opcional) filtro no nome dos logs para recuperar
 
 log::empty
 ----------
@@ -497,9 +497,9 @@ Obter o valor de uma variável armazenada no armazenamento de dados
 Configurações:
 
 -   tipo de string : tipo de valor armazenado (para cenários, é cenário)
-    
+
 -   id linkId : -1 para o global (valor para os cenários padrão ou o ID do cenário)
-    
+
 -   chave de cadeia : nome do valor
 
 datastore::save
@@ -690,7 +690,7 @@ API de atualização JSON
 update::all
 -----------
 
-Voltar à lista de todos os componentes instalados, suas versões e informações associadas
+Retorna uma lista de todos os componentes instalados, suas versões e informações associadas
 
 update::checkUpdate
 -------------------
@@ -725,6 +725,28 @@ Força o DNS Jeedom a parar
 
 network::dnsRun
 ---------------
+
+API JSON timeline
+===============
+
+timeline::all
+-----------
+
+Retorna todos os elementos da linha do tempo
+
+timeline::listFolder
+-----------
+
+Retorna todas as pastas (categoria) da linha do tempo
+
+timeline::byFolder
+-----------
+
+Retorna todos os elementos da pasta solicitada
+
+Configurações:
+
+-   pasta de corda : nome da pasta
 
 Retornar o status DNS do Jeedom
 

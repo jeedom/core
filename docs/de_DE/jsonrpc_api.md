@@ -1,4 +1,4 @@
-Hier finden Sie eine Dokumentation zu API-Methoden. 
+Hier finden Sie eine Dokumentation zu API-Methoden.
 
 Hier sind zunächst die Spezifikationen (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
@@ -205,7 +205,7 @@ Einstellungen:
 eqLogic::byTypeAndId
 --------------------
 
-Gibt eine Gerätetabelle gemäß den Parametern zurück. 
+Gibt eine Gerätetabelle gemäß den Parametern zurück.
 
 Die Rückgabe erfolgt vom Formulararray (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒)
 Array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds &#39;⇒ Array (….))….,id1 ⇒
@@ -281,7 +281,7 @@ Führen Sie den angegebenen Befehl aus
 Einstellungen:
 
 -   int id : Befehls-ID oder ID-Array, wenn Sie mehrere Befehle gleichzeitig ausführen möchten
-    
+
 -   \ [Optionen \] Liste der Befehlsoptionen (abhängig von Typ und Untertyp des Befehls)
 
 cmd::getStatistique
@@ -437,11 +437,11 @@ Ermöglicht das Abrufen eines Protokolls
 
 Einstellungen:
 
--   Zeichenfolgenprotokoll : Name des abzurufenden Protokolls 
+-   Zeichenfolgenprotokoll : Name des abzurufenden Protokolls
 
 -   String-Start : Zeilennummer, auf der mit dem Lesen begonnen werden soll
 
--   Zeichenfolge nbLine : Anzahl der wiederherzustellenden Zeilen 
+-   Zeichenfolge nbLine : Anzahl der wiederherzustellenden Zeilen
 
 log::add
 --------
@@ -450,7 +450,7 @@ Ermöglicht das Schreiben in ein Protokoll
 
 Einstellungen:
 
--   Zeichenfolgenprotokoll : Name des abzurufenden Protokolls 
+-   Zeichenfolgenprotokoll : Name des abzurufenden Protokolls
 
 -   Zeichenfolgentyp : Protokolltyp (Debug, Info, Warnung, Fehler)
 
@@ -466,7 +466,7 @@ Holen Sie sich die Jeedom-Protokollliste
 
 Einstellungen:
 
--   String-Filter : (optional) Filtern Sie nach dem Namen der abzurufenden Protokolle 
+-   String-Filter : (optional) Filtern Sie nach dem Namen der abzurufenden Protokolle
 
 log::empty
 ----------
@@ -497,9 +497,9 @@ Ruft den Wert einer im Datenspeicher gespeicherten Variablen ab
 Einstellungen:
 
 -   Zeichenfolgentyp : Art des gespeicherten Werts (für Szenarien ist es Szenario)
-    
+
 -   id linkId : -1 für das globale (Wert für die Standardszenarien oder die Szenario-ID)
-    
+
 -   String-Schlüssel : Wertname
 
 datastore::save
@@ -690,7 +690,7 @@ JSON-Update-API
 update::all
 -----------
 
-Zurück zur Liste aller installierten Komponenten, ihrer Versionen und der zugehörigen Informationen
+Gibt eine Liste aller installierten Komponenten, ihrer Versionen und der zugehörigen Informationen zurück
 
 update::checkUpdate
 -------------------
@@ -725,6 +725,28 @@ Erzwingt das Anhalten des DNS Jeedom
 
 network::dnsRun
 ---------------
+
+JSON-Timeline-API
+===============
+
+timeline::all
+-----------
+
+Gibt alle Elemente der Timeline zurück
+
+timeline::listFolder
+-----------
+
+Gibt alle Ordner (Kategorie) der Timeline zurück
+
+timeline::byFolder
+-----------
+
+Gibt alle Elemente des angeforderten Ordners zurück
+
+Einstellungen:
+
+-   String-Ordner : Ordnernamen
 
 Gibt den Jeedom DNS-Status zurück
 

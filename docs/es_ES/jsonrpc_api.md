@@ -1,4 +1,4 @@
-Aquí hay documentación sobre métodos API. 
+Aquí hay documentación sobre métodos API.
 
 Primero, aquí están las especificaciones (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
@@ -205,7 +205,7 @@ Configuraciones:
 eqLogic::byTypeAndId
 --------------------
 
-Devuelve una tabla de equipos según los parámetros. 
+Devuelve una tabla de equipos según los parámetros.
 
 El retorno será de la matriz de forma (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒
 array (....)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒ ...,&#39; cmds &#39;⇒ array (....)).,id1 ⇒
@@ -281,7 +281,7 @@ Ejecuta el comando especificado
 Configuraciones:
 
 -   int id : ID de comando o matriz de ID si desea ejecutar múltiples comandos a la vez
-    
+
 -   \ [opciones \] Lista de opciones de comando (depende del tipo y subtipo del comando)
 
 cmd::getStatistique
@@ -437,11 +437,11 @@ Le permite recuperar un registro
 
 Configuraciones:
 
--   registro de cadena : nombre del registro a recuperar 
+-   registro de cadena : nombre del registro a recuperar
 
 -   inicio de cadena : número de línea en el que comenzar a leer
 
--   string nbLine : cantidad de líneas para recuperar 
+-   string nbLine : cantidad de líneas para recuperar
 
 log::add
 --------
@@ -450,7 +450,7 @@ Permite escribir en un registro
 
 Configuraciones:
 
--   registro de cadena : nombre del registro a recuperar 
+-   registro de cadena : nombre del registro a recuperar
 
 -   tipo de cadena : tipo de registro (depuración, información, advertencia, error)
 
@@ -466,7 +466,7 @@ Obtenga la lista de registros de Jeedom
 
 Configuraciones:
 
--   filtro de cadena : (opcional) filtrar en el nombre de los registros para recuperar 
+-   filtro de cadena : (opcional) filtrar en el nombre de los registros para recuperar
 
 log::empty
 ----------
@@ -497,9 +497,9 @@ Obtener el valor de una variable almacenada en el almacén de datos
 Configuraciones:
 
 -   tipo de cadena : tipo de valor almacenado (para escenarios es escenario)
-    
+
 -   id linkId : -1 para el global (valor para los escenarios predeterminados o el id del escenario)
-    
+
 -   clave de cuerda : nombre del valor
 
 datastore::save
@@ -690,7 +690,7 @@ API de actualización de JSON
 update::all
 -----------
 
-Volver a la lista de todos los componentes instalados, sus versiones y la información asociada
+Devuelve una lista de todos los componentes instalados, sus versiones e información asociada
 
 update::checkUpdate
 -------------------
@@ -725,6 +725,28 @@ Obliga al DNS Jeedom a detenerse
 
 network::dnsRun
 ---------------
+
+API de línea de tiempo JSON
+===============
+
+timeline::all
+-----------
+
+Devuelve todos los elementos de la línea de tiempo
+
+timeline::listFolder
+-----------
+
+Devuelve todas las carpetas (categoría) de la línea de tiempo
+
+timeline::byFolder
+-----------
+
+Devuelve todos los elementos de la carpeta solicitada
+
+Configuraciones:
+
+-   carpeta de cadena : nombre de la carpeta
 
 Devolver el estado DNS de Jeedom
 

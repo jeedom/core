@@ -1,4 +1,4 @@
-Here is documentation on API methods. 
+Here is documentation on API methods.
 
 First here are the specifications (JSON RPC 2.0) :
 <http://www.jsonrpc.org/specification>
@@ -205,7 +205,7 @@ Settings:
 eqLogic::byTypeAndId
 --------------------
 
-Returns an equipment table according to the parameters. 
+Returns an equipment table according to the parameters.
 
 The return will be of the form array (&#39;eqType1&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒
 array (….)), &#39;eqType2&#39; ⇒array (&#39;id&#39;⇒…,&#39; cmds&#39; ⇒ array (….))….,id1 ⇒
@@ -281,7 +281,7 @@ Execute the specified command
 Settings:
 
 -   int id : command id or id array if you want to execute multiple commands at once
-    
+
 -   \ [options \] List of command options (depends on the type and subtype of the command)
 
 cmd::getStatistique
@@ -437,11 +437,11 @@ Allows you to retrieve a log
 
 Settings:
 
--   string log : name of the log to retrieve 
+-   string log : name of the log to retrieve
 
 -   string start : line number on which to start reading
 
--   string nbLine : number of lines to recover 
+-   string nbLine : number of lines to recover
 
 log::add
 --------
@@ -450,7 +450,7 @@ Allows to write in a log
 
 Settings:
 
--   string log : name of the log to retrieve 
+-   string log : name of the log to retrieve
 
 -   string type : log type (debug, info, warning, error)
 
@@ -466,7 +466,7 @@ Get the Jeedom logs list
 
 Settings:
 
--   string filter : (optional) filter on the name of the logs to retrieve 
+-   string filter : (optional) filter on the name of the logs to retrieve
 
 log::empty
 ----------
@@ -497,9 +497,9 @@ Get the value of a variable stored in the datastore
 Settings:
 
 -   string type : type of stored value (for scenarios it is scenario)
-    
+
 -   id linkId : -1 for the global (value for the default scenarios, or the scenario id)
-    
+
 -   string key : value name
 
 datastore::save
@@ -690,7 +690,7 @@ JSON update API
 update::all
 -----------
 
-Back to the list of all installed components, their versions and associated information
+Returns a list of all installed components, their versions and associated information
 
 update::checkUpdate
 -------------------
@@ -725,6 +725,28 @@ Forces the DNS Jeedom to stop
 
 network::dnsRun
 ---------------
+
+JSON timeline API
+===============
+
+timeline::all
+-----------
+
+Returns all elements of the timeline
+
+timeline::listFolder
+-----------
+
+Returns all the folders (category) of the timeline
+
+timeline::byFolder
+-----------
+
+Returns all the elements of the requested folder
+
+Settings:
+
+-   string folder : folder name
 
 Return Jeedom DNS status
 
