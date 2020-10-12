@@ -22,7 +22,7 @@ use PragmaRX\Google2FA\Google2FA;
 
 class user {
 	/*     * *************************Attributs****************************** */
-
+	
 	private $id;
 	private $login;
 	private $profils = 'admin';
@@ -32,10 +32,10 @@ class user {
 	private $enable = 1;
 	private $hash;
 	private $_changed = false;
-
-
+	
+	
 	/*     * ***********************Méthodes statiques*************************** */
-
+	
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -45,7 +45,7 @@ class user {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	/**
 	* Retourne un object utilisateur (si les information de connection sont valide)
 	* @param string $_login nom d'utilisateur
@@ -92,7 +92,7 @@ class user {
 								log::add("connection", "info", __('LDAP Profile Check - User "', __FILE__).$_login.__('" doesn\'t exist in the LDAP', __FILE__));
 							}
 						}
-
+						
 					}
 					log::add("connection", "info", __('Recherche LDAP (', __FILE__) . $_login . ' - "' . $profiles . __('" profile selected)', __FILE__));
 					if ($profiles != 'none') {
@@ -145,7 +145,7 @@ class user {
 		}
 		return $user;
 	}
-
+	
 	public static function connectToLDAP() {
 		$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 		ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -155,7 +155,7 @@ class user {
 		}
 		return false;
 	}
-
+	
 	public static function byLogin($_login) {
 		$values = array(
 			'login' => $_login,
@@ -165,7 +165,7 @@ class user {
 		WHERE login=:login';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byHash($_hash) {
 		$values = array(
 			'hash' => $_hash,
@@ -175,7 +175,7 @@ class user {
 		WHERE hash=:hash';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byLoginAndHash($_login, $_hash) {
 		$values = array(
 			'login' => $_login,
@@ -187,7 +187,7 @@ class user {
 		AND hash=:hash';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byLoginAndPassword($_login, $_password) {
 		$values = array(
 			'login' => $_login,
@@ -199,7 +199,7 @@ class user {
 		AND password=:password';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	/**
 	*
 	* @return array de tous les utilisateurs
@@ -209,7 +209,7 @@ class user {
 		FROM user';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function searchByRight($_rights) {
 		$values = array(
 			'rights' => '%"' . $_rights . '":1%',
@@ -221,7 +221,7 @@ class user {
 		OR rights LIKE :rights2';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byProfils($_profils, $_enable = false) {
 		$values = array(
 			'profils' => $_profils,
@@ -234,7 +234,7 @@ class user {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byEnable($_enable) {
 		$values = array(
 			'enable' => $_enable,
@@ -244,19 +244,19 @@ class user {
 		WHERE enable=:enable';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function failedLogin() {
 		@session_start();
 		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
 		$_SESSION['failed_datetime'] = strtotime('now');
 		@session_write_close();
 	}
-
+	
 	public static function removeBanIp() {
 		$cache = cache::byKey('security::banip');
 		$cache->remove();
 	}
-
+	
 	public static function isBan() {
 		$ip = getClientIp();
 		if ($ip == '') {
@@ -318,7 +318,7 @@ class user {
 		}
 		return false;
 	}
-
+	
 	public static function getAccessKeyForReport() {
 		$user = user::byLogin('internal_report');
 		if (!is_object($user)) {
@@ -350,11 +350,11 @@ class user {
 				}
 			}
 		} catch (\Exception $e) {
-
+			
 		}
 		return $user->getHash() . '-' . $key;
 	}
-
+	
 	public static function supportAccess($_enable = true) {
 		if ($_enable) {
 			$user = user::byLogin('jeedom_support');
@@ -384,7 +384,7 @@ class user {
 			repo_market::supportAccess(false);
 		}
 	}
-
+	
 	public static function deadCmd() {
 		$return = array();
 		foreach((user::all()) as $user) {
@@ -397,7 +397,7 @@ class user {
 		}
 		return $return;
 	}
-
+	
 	public static function regenerateHash(){
 		foreach((user::all()) as $user) {
 			if($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash',0) == 1 || $user->getEnable() == 0){
@@ -410,15 +410,15 @@ class user {
 			$user->getHash();
 		}
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	public function preInsert() {
 		if (is_object(self::byLogin($this->getLogin()))) {
 			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
 		}
 	}
-
+	
 	public function preSave() {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
@@ -433,26 +433,34 @@ class user {
 			}
 		}
 	}
-
+	
+	public function encrypt(){
+		$this->getOptions('twoFactorAuthentification', utils::encrypt($this->getOptions('twoFactorAuthentification')));
+	}
+	
+	public function decrypt(){
+		$this->getOptions('twoFactorAuthentification', utils::decrypt($this->getOptions('twoFactorAuthentification')));
+	}
+	
 	public function save() {
 		return DB::save($this);
 	}
-
+	
 	public function preRemove() {
 		if (count(user::byProfils('admin', true)) == 1 && $this->getProfils() == 'admin') {
 			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
 		}
 	}
-
+	
 	public function remove() {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getLogin(), 'date' => date('Y-m-d H:i:s'), 'type' => 'user'));
 		return DB::remove($this);
 	}
-
+	
 	public function refresh() {
 		DB::refresh($this);
 	}
-
+	
 	/**
 	*
 	* @return boolean vrai si l'utilisateur est valide
@@ -460,77 +468,77 @@ class user {
 	public function is_Connected() {
 		return (is_numeric($this->id) && $this->login != '');
 	}
-
+	
 	public function validateTwoFactorCode($_code) {
 		$google2fa = new Google2FA();
 		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 	public function getId() {
 		return $this->id;
 	}
-
+	
 	public function getLogin() {
 		return $this->login;
 	}
-
+	
 	public function getPassword() {
 		return $this->password;
 	}
-
+	
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-
+	
 	public function setLogin($_login) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->login,$_login);
 		$this->login = $_login;
 		return $this;
 	}
-
+	
 	public function setPassword($_password) {
 		$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
 		$this->_changed = utils::attrChanged($this->_changed,$this->password,$_password);
 		$this->password = $_password;
 		return $this;
 	}
-
+	
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-
+	
 	public function setOptions($_key, $_value) {
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
 		$this->options = $options;
 		return $this;
 	}
-
+	
 	public function getRights($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->rights, $_key, $_default);
 	}
-
+	
 	public function setRights($_key, $_value) {
 		$rights = utils::setJsonAttr($this->rights, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->rights,$rights);
 		$this->rights = $rights;
 		return $this;
 	}
-
+	
 	public function getEnable() {
 		return $this->enable;
 	}
-
+	
 	public function setEnable($_enable) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
 		$this->enable = $_enable;
 		return $this;
 	}
-
+	
 	public function getHash() {
 		if ($this->hash == '' && $this->id != '') {
 			$hash = config::genKey();
@@ -543,30 +551,30 @@ class user {
 		}
 		return $this->hash;
 	}
-
+	
 	public function setHash($_hash) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->hash,$_hash);
 		$this->hash = $_hash;
 		return $this;
 	}
-
+	
 	public function getProfils() {
 		return $this->profils;
 	}
-
+	
 	public function setProfils($_profils) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->profils,$_profils);
 		$this->profils = $_profils;
 		return $this;
 	}
-
+	
 	public function getChanged() {
 		return $this->_changed;
 	}
-
+	
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
+	
 }
