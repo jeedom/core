@@ -46,5 +46,5 @@ Pour chaque objet, vous pouvez cliquer :
 >
 > Ctrl Clic ou Clic Centre sur l'objet ou un élément de résumé ouvre un autre onglet de votre navigateur.
 
-Quand vous cliquez sur un objet à partir de la synthèse, le bouton à gauche de la barre de recherche est remplacé par un bouton permettant de revenir à la synthèse.
+Quand vous cliquez sur un objet à partir de la synthèse, le bouton à gauche de la barre de recherche est remplacé par un bouton permettant d'afficher un aperçu des pièces pour s'y rendre plus rapidement.
 
