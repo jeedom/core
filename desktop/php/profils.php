@@ -43,14 +43,6 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 				<fieldset>
 					<legend><i class="fas fa-laptop"></i> {{Interface}}</legend>
 					<div class="form-group">
-						<label class="col-sm-4 col-xs-6 control-label"><i class="fas fa-home"></i> {{Panneau des objets sur le Dashboard}}
-							<sup><i class="fas fa-question-circle tooltips" title="{{Affiche le panneau des objets sur le dashboard}}"></i></sup>
-						</label>
-						<div class="col-sm-1 col-xs-6">
-							<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="displayObjetByDefault"/>
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-sm-4 col-xs-12 control-label"><i class="far fa-file"></i> {{Page par défaut}}
 							<sup><i class="fas fa-question-circle tooltips" title="{{Page affichée après connexion}}"></i></sup>
 						</label>

@@ -527,10 +527,10 @@ $('.li_object').on('click',function() {
         setBackgroundImg(_path)
       }
     })
-    $('.li_object').removeClass('active')
+    $('#dashOverviewPrev .li_object').removeClass('active')
     $(this).addClass('active')
-    displayChildObject(object_id,false)
-    addOrUpdateUrl('object_id',object_id)
+    displayChildObject(object_id, false)
+    addOrUpdateUrl('object_id', object_id)
   } else {
     loadPage($(this).find('a').attr('data-href'))
   }
@@ -538,9 +538,9 @@ $('.li_object').on('click',function() {
 
 function displayChildObject(_object_id, _recursion) {
   if (_recursion === false) {
-    $('.div_object').parent().addClass('hideByObjectSel').hide()
+    $('.div_object').parent('.col-md-12').addClass('hideByObjectSel').hide()
   }
-  $('.div_object[data-object_id='+_object_id+']').parent().removeClass('hideByObjectSel').show({effect: 'drop', queue: false})
+  $('.div_object[data-object_id='+_object_id+']').parent('.col-md-12').removeClass('hideByObjectSel').show({effect: 'drop', queue: false})
   $('.div_object[data-father_id='+_object_id+']').each(function() {
     $(this).parent().show({effect: 'drop', queue: false}).find('.div_displayEquipement').packery()
     displayChildObject($(this).attr('data-object_id'), true)

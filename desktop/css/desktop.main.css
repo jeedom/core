@@ -80,10 +80,13 @@ a:hover {
 [data-page="dashboard"] .backgroundforJeedom {
   filter: blur(var(--objectBackgroundBlur));
 }
-
+#dashTopBar {
+  margin-top: 5px;
+}
 
 /* overview preview on dashboard */
 [data-page="dashboard"] #dashOverviewPrev {
+  padding: 5px;
   width: calc(100% - 3px);
   overflow: hidden;
   border-radius: var(--border-radius) !important;
@@ -93,6 +96,26 @@ a:hover {
   display: inline-block;
   height: 110px;
   width: 160px;
+}
+[data-page="dashboard"] #dashOverviewPrev.dashboard {
+  position: absolute;
+  top: 88px;
+  width: auto;
+  padding-right: 35px;
+  z-index: 50;
+}
+
+[data-page="dashboard"] #dashOverviewPrev.dashboard .li_object {
+  padding: 1px;
+}
+[data-page="dashboard"] #dashOverviewPrev.dashboard .li_object span {
+  cursor: pointer !important;
+}
+[data-page="dashboard"] #dashOverviewPrev .objectSummaryglobal {
+  padding-left: 25px;
+}
+[data-page="dashboard"] #dashOverviewPrev.dashboard .li_object:hover {
+  background-color: var(--form-bg-color);
 }
 
 
@@ -3361,13 +3384,13 @@ textarea {
 .bs-sidenav > br {
   display: inline;
 }
-.div_smallSideBar,
-.bs-sidebar > ul {
-  /*background-color: rgba(var(--bg-color), var(--opacity)) !important;*/
-}
-.bs-sidebar li.active,
-#ul_object li.li_object.active {
+
+
+.bs-sidebar li.active {
   border-right: 3px solid var(--logo-primary-color) !important;
+}
+#dashOverviewPrev .li_object.active {
+  border-left: 3px solid var(--logo-primary-color) !important;
 }
 .bs-sidebar .nav > li > a:not(.btn) {
   width: 100% !important;
