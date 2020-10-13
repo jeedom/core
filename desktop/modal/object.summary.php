@@ -34,6 +34,7 @@ if (!isConnect()) {
       <th data-sorter="false" data-filter="false">{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="{{Si grisé, alors il n'est pas remonté en résumé global}}"></i></sup></th>
       <th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Dashboard masqué}}</th>
       <th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Mobile masqué}}</th>
+      <th data-sorter="false" data-filter="false">{{Options}}</th>
     </tr>
   </thead>
   <tbody>
@@ -107,6 +108,9 @@ if (!isConnect()) {
         }
       }
       $html .= '</td>';
+      $html .= '<td>';
+      $html .= '<a class="btn btn-danger pull-right btn-xs bt_removeObject"><i class="far fa-trash-alt"></i></a>';
+      $html .= '</td>';
       echo $html;
     }
     ?>
@@ -115,6 +119,25 @@ if (!isConnect()) {
 
 <script>
 initTableSorter()
+
+$('#table_ObjectSummary .bt_removeObject').on('click', function(event) {
+  $.hideAlert()
+  var id = $(this).closest('tr.tr_object').attr('data-object_id')
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text() + '</span> ?', function(result) {
+    if (result) {
+      jeedom.object.remove({
+        id: id,
+        error: function(error) {
+          $('#div_alertObjectSummary').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function() {
+          $('#table_ObjectSummary tr.tr_object[data-object_id="'+id+'"]').remove()
+        }
+      })
+    }
+  })
+  return false
+})
 
 $("#table_ObjectSummary").sortable({
   axis: "y",

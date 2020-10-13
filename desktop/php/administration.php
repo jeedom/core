@@ -1304,6 +1304,18 @@ user::isBan();
 						</div>
 						<div id="div_config_ldap">
 							<div class="form-group">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Samba4}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
+									<input type="checkbox"  class="configKey form-control" data-l1key="ldap:samba4" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{tls}}</label>
+								<div class="col-md-3 col-sm-4 col-xs-12">
+									<input type="checkbox"  class="configKey form-control" data-l1key="ldap:tls" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Hôte}}
 									<sup><i class="fas fa-question-circle" tooltip="{{URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s)://URL)}}"></i></sup>
 								</label>

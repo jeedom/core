@@ -7,11 +7,11 @@
     "doctrine/cache": "*",
     "monolog/monolog": "*",
     "knplabs/github-api": "*",
-    "pragmarx/google2fa": "*",
     "touki/ftp": "*",
     "league/flysystem-webdav": "*",
     "league/oauth2-client": "*",
-    "matthiasmullie/minify": "*"
+    "matthiasmullie/minify": "*",
+    "pragmarx/google2fa-qrcode": "^1.0"
   },
   "license": "GPL",
   "config": {

@@ -3,7 +3,7 @@ if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$allObject = jeeObject::all(true);
+$allObject = jeeObject::buildTree(null, true);
 ?>
 
 <div class="row" >

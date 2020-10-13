@@ -17,7 +17,7 @@
 "use strict"
 
 if (SEL_SUMMARY != '') {
-  $('#bt_displayObject, #bt_editDashboardWidgetOrder').hide()
+  $('#bt_displayObject, #bt_editDashboardWidgetOrder').parent().remove()
 }
 
 $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
@@ -210,6 +210,47 @@ function filterByCategory() {
     $('#dashTopBar button.dropdown-toggle').addClass('warning')
   }
 }
+
+//Overview preview click or center-click
+$('.objectPreview, .objectPreview .name').off('click').on('click', function (event) {
+  var url = 'index.php?v=d&p=dashboard&object_id='+$(this).closest('.objectPreview').attr('data-object_id')+'&childs=0'+'&btover=1'
+  if (event.ctrlKey) {
+    window.open(url).focus()
+  } else {
+    loadPage(url)
+  }
+  return false
+})
+$('.objectPreview, .objectPreview .name').off('mouseup').on('mouseup', function (event) {
+  if( event.which == 2 ) {
+    event.preventDefault()
+    var id = $(this).closest('.objectPreview').attr('data-object_id')
+    $('.objectPreview[data-object_id="'+id+'"] .name').trigger(jQuery.Event('click', {ctrlKey: true}))
+  }
+})
+var btOverviewTimer
+$('#div_pageContainer').on({
+  'mouseenter': function(event) {
+    if(!isEditing) {
+      btOverviewTimer = setTimeout(function() {
+        $('#dashOverviewPrev').show(350)
+      }, 300)
+
+    }
+  }
+}, '#bt_overview')
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    clearTimeout(btOverviewTimer)
+  }
+}, '#bt_overview')
+$('#div_pageContainer').on({
+  'mouseleave': function(event) {
+    $('#dashOverviewPrev').hide(350)
+  }
+}, '#dashOverviewPrev')
+
+
 
 $('#bt_displayObject').on('click', function () {
   if (isEditing) return
@@ -486,10 +527,10 @@ $('.li_object').on('click',function() {
         setBackgroundImg(_path)
       }
     })
-    $('.li_object').removeClass('active')
+    $('#dashOverviewPrev .li_object').removeClass('active')
     $(this).addClass('active')
-    displayChildObject(object_id,false)
-    addOrUpdateUrl('object_id',object_id)
+    displayChildObject(object_id, false)
+    addOrUpdateUrl('object_id', object_id)
   } else {
     loadPage($(this).find('a').attr('data-href'))
   }
@@ -497,9 +538,9 @@ $('.li_object').on('click',function() {
 
 function displayChildObject(_object_id, _recursion) {
   if (_recursion === false) {
-    $('.div_object').parent().addClass('hideByObjectSel').hide()
+    $('.div_object').parent('.col-md-12').addClass('hideByObjectSel').hide()
   }
-  $('.div_object[data-object_id='+_object_id+']').parent().removeClass('hideByObjectSel').show({effect: 'drop', queue: false})
+  $('.div_object[data-object_id='+_object_id+']').parent('.col-md-12').removeClass('hideByObjectSel').show({effect: 'drop', queue: false})
   $('.div_object[data-father_id='+_object_id+']').each(function() {
     $(this).parent().show({effect: 'drop', queue: false}).find('.div_displayEquipement').packery()
     displayChildObject($(this).attr('data-object_id'), true)

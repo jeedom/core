@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$allObject = jeeObject::all();
+$allObject = jeeObject::buildTree(null, false);
 $config_objSummary = config::byKey('object:summary');
 sendVarToJS([
   'select_id' => init('id', '-1'),
