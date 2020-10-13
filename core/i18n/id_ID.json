@@ -192,6 +192,8 @@
         "Résumé": "Ringkasan",
         "Dashboard masqué": "",
         "Mobile masqué": "",
+        "Options": "Pilihan",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Apakah Anda yakin ingin menghapus \\ 's objek",
         "Modification sauvegardées avec succès": ""
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Dokumentasi",
         "Concepts": "",
         "Premiers pas": "",
-        "Rechercher": "Mencari",
-        "Afficher\/Masquer les objets": "Tampilkan \/ Sembunyikan Objects",
         "Retour à la Synthèse": "",
         "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
@@ -1838,8 +1838,6 @@
         "Préférences": "",
         "Sécurité": "Keamanan",
         "Interface": "Antarmuka",
-        "Panneau des objets sur le Dashboard": "",
-        "Affiche le panneau des objets sur le dashboard": "",
         "Page par défaut": "Halaman default",
         "Page affichée après connexion": "",
         "Desktop": "",

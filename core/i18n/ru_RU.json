@@ -192,6 +192,8 @@
         "Résumé": "Резюме",
         "Dashboard masqué": "Скрытая панель",
         "Mobile masqué": "Скрытый мобильный",
+        "Options": "Опции",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Вы уверены, что хотите удалить этот объект",
         "Modification sauvegardées avec succès": "Изменения успешно сохранены"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "документация",
         "Concepts": "",
         "Premiers pas": "",
-        "Rechercher": "Искать",
-        "Afficher\/Masquer les objets": "Показать \/ скрыть объекты",
         "Retour à la Synthèse": "",
         "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
@@ -1838,8 +1838,6 @@
         "Préférences": "",
         "Sécurité": "безопасности",
         "Interface": "интерфейс",
-        "Panneau des objets sur le Dashboard": "",
-        "Affiche le panneau des objets sur le dashboard": "",
         "Page par défaut": "По умолчанию Страница",
         "Page affichée après connexion": "",
         "Desktop": "Десктоп",

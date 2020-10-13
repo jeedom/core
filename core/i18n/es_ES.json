@@ -192,6 +192,8 @@
         "Résumé": "Resumen",
         "Dashboard masqué": "Tablero oculto",
         "Mobile masqué": "Móvil oculto",
+        "Options": "Opciones",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "¿Está seguro de que desea eliminar el objeto?",
         "Modification sauvegardées avec succès": "Cambios guardados exitosamente"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Documentación",
         "Concepts": "Conceptos",
         "Premiers pas": "Primeros pasos",
-        "Rechercher": "Buscar",
-        "Afficher\/Masquer les objets": "Mostrar \/ Ocultar los objetos",
         "Retour à la Synthèse": "Regresar al resumen",
         "Vider le champ de recherche": "Borrar el campo de búsqueda",
         "Filtre par catégorie": "Filtrar por categoría",
@@ -1838,8 +1838,6 @@
         "Préférences": "Preferencias",
         "Sécurité": "Seguridad",
         "Interface": "Interfaz",
-        "Panneau des objets sur le Dashboard": "Panel de objetos en el tablero",
-        "Affiche le panneau des objets sur le dashboard": "Muestra el panel de objetos en el tablero",
         "Page par défaut": "Página predeterminada",
         "Page affichée après connexion": "Página mostrada después de iniciar sesión",
         "Desktop": "Escritorio",

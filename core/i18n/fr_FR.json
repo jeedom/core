@@ -192,6 +192,8 @@
         "Résumé": "Résumé",
         "Dashboard masqué": "Dashboard masqué",
         "Mobile masqué": "Mobile masqué",
+        "Options": "Options",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Êtes-vous sûr de vouloir supprimer l\\'objet",
         "Modification sauvegardées avec succès": "Modification sauvegardées avec succès"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Documentation",
         "Concepts": "Concepts",
         "Premiers pas": "Premiers pas",
-        "Rechercher": "Rechercher",
-        "Afficher\/Masquer les objets": "Afficher\/Masquer les objets",
         "Retour à la Synthèse": "Retour à la Synthèse",
         "Vider le champ de recherche": "Vider le champ de recherche",
         "Filtre par catégorie": "Filtre par catégorie",
@@ -1838,8 +1838,6 @@
         "Préférences": "Préférences",
         "Sécurité": "Sécurité",
         "Interface": "Interface",
-        "Panneau des objets sur le Dashboard": "Panneau des objets sur le Dashboard",
-        "Affiche le panneau des objets sur le dashboard": "Affiche le panneau des objets sur le dashboard",
         "Page par défaut": "Page par défaut",
         "Page affichée après connexion": "Page affichée après connexion",
         "Desktop": "Desktop",

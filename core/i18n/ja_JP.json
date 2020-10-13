@@ -192,6 +192,8 @@
         "Résumé": "概要",
         "Dashboard masqué": "非表示のダッシュボード",
         "Mobile masqué": "非表示のモバイル",
+        "Options": "オプション",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "オブジェクトを削除してもよろしいですか",
         "Modification sauvegardées avec succès": "変更が保存されました"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "ドキュメンテーション",
         "Concepts": "",
         "Premiers pas": "",
-        "Rechercher": "検索する",
-        "Afficher\/Masquer les objets": "表示\/非表示のオブジェクト",
         "Retour à la Synthèse": "概要に戻る",
         "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
@@ -1838,8 +1838,6 @@
         "Préférences": "好み",
         "Sécurité": "セキュリティ",
         "Interface": "インターフェース",
-        "Panneau des objets sur le Dashboard": "ダッシュボードのオブジェクトパネル",
-        "Affiche le panneau des objets sur le dashboard": "",
         "Page par défaut": "デフォルトページ",
         "Page affichée après connexion": "",
         "Desktop": "デスクトップ",

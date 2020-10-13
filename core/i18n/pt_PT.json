@@ -192,6 +192,8 @@
         "Résumé": "Resumo",
         "Dashboard masqué": "Painel oculto",
         "Mobile masqué": "Celular oculto",
+        "Options": "Opções",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Tem certeza de que deseja excluir o objeto 's \\",
         "Modification sauvegardées avec succès": "Alterações salvas com sucesso"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Documentação",
         "Concepts": "Conceitos",
         "Premiers pas": "Primeiros passos",
-        "Rechercher": "Pesquisar",
-        "Afficher\/Masquer les objets": "Show \/ Hide Objects",
         "Retour à la Synthèse": "Voltar ao Resumo",
         "Vider le champ de recherche": "Limpe o campo de pesquisa",
         "Filtre par catégorie": "Filtrar por categoria",
@@ -1838,8 +1838,6 @@
         "Préférences": "Preferências",
         "Sécurité": "Segurança",
         "Interface": "Interface",
-        "Panneau des objets sur le Dashboard": "Painel Objetos no Painel",
-        "Affiche le panneau des objets sur le dashboard": "Exibe o painel de objetos no painel",
         "Page par défaut": "Página padrão",
         "Page affichée après connexion": "Página exibida após o login",
         "Desktop": "Área de Trabalho",

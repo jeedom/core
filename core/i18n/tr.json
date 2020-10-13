@@ -192,6 +192,8 @@
         "Résumé": "Özet",
         "Dashboard masqué": "",
         "Mobile masqué": "",
+        "Options": "Opsiyonlar",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Nesneyi silmek istediğinizden eminmisiniz",
         "Modification sauvegardées avec succès": ""
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Belgeleme",
         "Concepts": "",
         "Premiers pas": "",
-        "Rechercher": "Arayın",
-        "Afficher\/Masquer les objets": "Nesneleri Aç\/Gizle",
         "Retour à la Synthèse": "",
         "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
@@ -1838,8 +1838,6 @@
         "Préférences": "Tercihleri",
         "Sécurité": "Güvenlik",
         "Interface": "Arayüz",
-        "Panneau des objets sur le Dashboard": "",
-        "Affiche le panneau des objets sur le dashboard": "",
         "Page par défaut": "Varsayılan sayfa",
         "Page affichée après connexion": "",
         "Desktop": "Masaüstü",

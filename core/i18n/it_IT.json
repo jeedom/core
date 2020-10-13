@@ -192,6 +192,8 @@
         "Résumé": "Sommario",
         "Dashboard masqué": "",
         "Mobile masqué": "",
+        "Options": "Opzioni",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Sei sicuro di voler eliminare l'oggetto",
         "Modification sauvegardées avec succès": ""
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Documentazione",
         "Concepts": "",
         "Premiers pas": "",
-        "Rechercher": "Cerca",
-        "Afficher\/Masquer les objets": "Mostra\/Nascondi oggetti",
         "Retour à la Synthèse": "Torna al sommario",
         "Vider le champ de recherche": "",
         "Filtre par catégorie": "",
@@ -1838,8 +1838,6 @@
         "Préférences": "Preferenze",
         "Sécurité": "Sicurezza",
         "Interface": "Interfaccia",
-        "Panneau des objets sur le Dashboard": "Pannello Oggetti sulla Dashboard",
-        "Affiche le panneau des objets sur le dashboard": "",
         "Page par défaut": "Pagina predefinita",
         "Page affichée après connexion": "",
         "Desktop": "",

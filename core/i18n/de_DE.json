@@ -192,6 +192,8 @@
         "Résumé": "Zusammenfassung",
         "Dashboard masqué": "Verstecktes Dashboard",
         "Mobile masqué": "Verstecktes Handy",
+        "Options": "Optionen",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Möchten Sie das Objekt wirklich löschen?",
         "Modification sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Dokumentation",
         "Concepts": "Konzepte",
         "Premiers pas": "Erste Schritte",
-        "Rechercher": "Suchen",
-        "Afficher\/Masquer les objets": "Objekte anzeigen\/verbergen",
         "Retour à la Synthèse": "Zurück zur Zusammenfassung",
         "Vider le champ de recherche": "Deaktivieren Sie das Suchfeld",
         "Filtre par catégorie": "Nach Kategorie filtern",
@@ -1838,8 +1838,6 @@
         "Préférences": "Vorlieben",
         "Sécurité": "Sicherheit",
         "Interface": "Schnittstelle",
-        "Panneau des objets sur le Dashboard": "Objektbedienfeld im Dashboard",
-        "Affiche le panneau des objets sur le dashboard": "Zeigt das Objektfenster im Dashboard an",
         "Page par défaut": "Standardseite",
         "Page affichée après connexion": "Seite nach dem Login angezeigt",
         "Desktop": "Desktop",

@@ -192,6 +192,8 @@
         "Résumé": "Summary",
         "Dashboard masqué": "Hidden dashboard",
         "Mobile masqué": "Hidden mobile",
+        "Options": "Options",
+        "Êtes-vous sûr de vouloir supprimer l\\'objet": "Are you sure you want to delete the object",
         "Modification sauvegardées avec succès": "Changes successfully saved"
     },
     "desktop\/modal\/planHeader.configure.php": {
@@ -1807,8 +1809,6 @@
         "Documentation": "Documentation",
         "Concepts": "Concepts",
         "Premiers pas": "First steps",
-        "Rechercher": "Search",
-        "Afficher\/Masquer les objets": "Display\/Hide objects",
         "Retour à la Synthèse": "Back to Synthesis",
         "Vider le champ de recherche": "Clear the search field",
         "Filtre par catégorie": "Filter by category",
@@ -1838,8 +1838,6 @@
         "Préférences": "Preferences",
         "Sécurité": "Security",
         "Interface": "Interface",
-        "Panneau des objets sur le Dashboard": "Objects panel on the Dashboard",
-        "Affiche le panneau des objets sur le dashboard": "Displays the objects panel on the dashboard",
         "Page par défaut": "Default page",
         "Page affichée après connexion": "Page displayed after login",
         "Desktop": "Desktop",
