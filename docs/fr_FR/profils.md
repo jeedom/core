@@ -9,7 +9,6 @@ La page Préférences vous permet de configurer certains comportements de Jeedom
 
 Définit certains comportements de l’interface
 
-- **Panneau des objets sur le Dashboard** : Affiche le panneau des objets (à gauche) sur le Dashboard, sans avoir à cliquer sur le bouton dédié.
 - **Page par défaut** : Page à afficher par défaut à afficher lors de la connexion en desktop ou mobile.
 - **Objet par défaut** : Objet à afficher par défaut lors de l’arrivée sur le Dashboard / mobile.
 

@@ -42,24 +42,16 @@ De plus, vous pouvez cliquer sur le titre de la tuile (le nom de l'équipement) 
 > Il est possible d’aller directement sur un seul objet de votre domotique, par le menu **Accueil → Dashboard → Nom de l'objet**.
 > Cela permet de n’avoir que les équipements qui vous intéressent, et de charger la page plus rapidement.
 
-- Vous avez en haut à gauche une petite icône pour faire afficher/masquer l’arbre des objets.
+- Vous avez en haut à gauche une petite icône pour afficher l’arbre des objets au survol.
 - Un champ de recherche permet de rechercher un équipement par son nom, sa catégorie, son plugin, un tag, etc.
-- L'icône à gauche du champ de recherche permet de filtrer les équipements affichés en fonction de leur catégorie. Un clic centre permet de rapidement sélectionner une seule catégorie.
-- A droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile.
+- L'icône à droite du champ de recherche permet de filtrer les équipements affichés en fonction de leur catégorie. Un clic centre permet de rapidement sélectionner une seule catégorie.
+- Tout à droite, un bouton permet de passer en mode édition, pour modifier l’ordre des tuiles (cliquer - déposer sur le widget), ou les redimensionner. Vous pouvez également réorganiser l’ordre des commandes dans une tuile.
 
 - En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que les équipements ayant pour parent cet objet et qui concernent ce résumé d’objet.
 
 - Un clic sur une commande de type information permet d’afficher l’historique de la commande (si elle est historisée).
 - Un Ctrl+Clic sur une commande de type information permet d’afficher l’historique de toutes les commandes (historisées) de cette tuile.
 - Un clic sur l'information *time* d'une commande action permet d’afficher l’historique de la commande (si elle est historisée).
-
-> **Tip**
->
-> Il est possible, à partir de votre profil, de configurer Jeedom pour que l’arbre des objets et/ou les scénarios soient visibles par défaut lorsque vous arrivez sur le Dashboard.
-
-> **Tip**
->
-> En mobile, un appui sur une commande de type info permet d’afficher un menu vous proposant soit d’afficher l’historique de la commande, ou de mettre une alerte sur celle-ci pour que Jeedom vous prévienne (une seule fois) dès que la valeur passe un certain seuil.
 
 
 ## Mode édition
