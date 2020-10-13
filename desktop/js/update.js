@@ -308,6 +308,9 @@ function addUpdate(_update) {
     if (_update.configuration.version.toLowerCase() != 'stable' && _update.configuration.version.toLowerCase() != 'beta') updClass = 'label-danger'
     tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
   }
+  if (_update.type == 'core' && _update.branch) {
+    tr += ' <span class="label">' + _update.branch + '</span>'
+  }
 
   var _localVersion = _update.localVersion
   if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
