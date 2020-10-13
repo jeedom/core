@@ -804,15 +804,16 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'cmd::save') {
 		unautorizedInDemo();
-		$typeEqLogic = $params['eqType_name'];
-		$typeCmd = $typeEqLogic . 'Cmd';
-		if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
-			throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . secureXSS($typeCmd));
-		}
 		if (isset($params['id'])) {
 			$cmd = cmd::byId($params['id']);
 			if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
 				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+			}
+		} else {
+			$typeEqLogic = $params['eqType_name'];
+			$typeCmd = $typeEqLogic . 'Cmd';
+			if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
+				throw new Exception(__('Type incorrect (classe commande inexistante)', __FILE__) . secureXSS($typeCmd));
 			}
 		}
 		if (!is_object($cmd)) {
