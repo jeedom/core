@@ -9,11 +9,13 @@ sendVarToJS([
   'SEL_SUMMARY' => init('summary')
 ]);
 
+//DisplayByObject or display by summaries:
 $DisplayByObject = true;
 if (init('summary') != '') {
 	$DisplayByObject = false;
 }
 
+//Get higher object to show:
 if (init('object_id') == '') {
 	if (init('summary') != '') {
 		$object = jeeObject::rootObject();
@@ -25,6 +27,7 @@ if (init('object_id') == '') {
 	$object = jeeObject::byId(init('object_id'));
 }
 
+//Check for object found:
 if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
 		if (!is_object($object)) {
@@ -36,6 +39,7 @@ if ($DisplayByObject && !is_object($object)) {
 	}
 }
 
+//Get all object in right order, coming from Dashboard or Synthesis, showing childs or not, or by summaries:
 $objectTree = jeeObject::buildTree(null, true);
 if ($DisplayByObject) {
 	sendVarToJs('rootObjectId', $object->getId());
@@ -55,8 +59,12 @@ if ($DisplayByObject) {
 	}
 }
 
-
-
+//cache object summaries to not duplicate calls:
+global $summaryCache;
+$summaryCache = [];
+foreach ($objectTree as $_object) {
+	$summaryCache[$_object->getId()] = $_object->getHtmlSummary();
+}
 ?>
 
 <div class="row row-overflow">
@@ -102,7 +110,7 @@ if ($DisplayByObject) {
 	</div>
 
 	<?php
-		//display overview previews:
+		//display previews:
 		if (init('btover', 0) != 0) { //overview
 			$div = '<div id="dashOverviewPrev" class="overview" style="display:none;">';
 			foreach ($objectTree as $_object) {
@@ -129,7 +137,7 @@ if ($DisplayByObject) {
 
 				//summary:
 				$html = '<span class="objectSummaryglobal">';
-				$html .= $_object->getHtmlSummary();
+				$html .= $summaryCache[$_object->getId()];
 				$html .= '</span>';
 				$div .= $html;
 				$div .= '</div>';
@@ -141,25 +149,28 @@ if ($DisplayByObject) {
 		include_file('desktop', 'dashboard', 'js');
 
 		function formatJeedomObjectDiv($object, $toSummary=false) {
+			global $summaryCache;
+			$objectId =  $object->getId();
 			$divClass = 'div_object';
 			if ($toSummary) $divClass .= ' hidden';
 			$div =  '<div class="col-md-12">';
-			$div .= '<div data-object_id="' . $object->getId() . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
+			$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
 			$div .= '<legend><span class="objectDashLegend fullCorner">
-					<a href="index.php?v=d&p=dashboard&object_id=' . $object->getId() . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>
-					<a class="div_object" href="index.php?v=d&p=object&id=' . $object->getId() . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a><span>' . $object->getHtmlSummary() . '</span>
-					 <i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $object->getId() . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
-					 <i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $object->getId() . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
-					 </span></legend>';
-			$div .= '<div class="div_displayEquipement" id="div_ob' . $object->getId() . '">';
+					<a href="index.php?v=d&p=dashboard&object_id=' . $objectId . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>
+					<a class="div_object" href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a>
+					<span>' . $summaryCache[$objectId] . '</span>
+					 <i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
+					 <i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
+					 </span>
+					 </legend>';
+			$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
+
 			if ($toSummary) {
-				$div .= '<script>getObjectHtmlFromSummary(' . $object->getId() . ')</script>';
+				$div .= '<script>getObjectHtmlFromSummary(' . $objectId . ')</script>';
 			} else {
-				$div .= '<script>getObjectHtml(' . $object->getId() . ')</script>';
+				$div .= '<script>getObjectHtml(' . $objectId . ')</script>';
 			}
-			$div .= '</div>';
-			$div .= '</div>';
-			$div .= '</div>';
+			$div .= '</div></div></div>';
 			echo $div;
 		}
 	?>
@@ -188,7 +199,6 @@ if ($DisplayByObject) {
 
 		?>
 	</div>
-
 </div>
 </div>
 
