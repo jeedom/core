@@ -42,24 +42,16 @@ Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, 
 > Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Dashboard → Objektname**.
 > Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
 
-- Oben links befindet sich ein kleines Symbol zum Ein- und Ausblenden des Objektbaums.
+- Oben links befindet sich ein kleines Symbol, mit dem der Baum der Objekte beim Schweben angezeigt wird.
 - In einem Suchfeld können Sie nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen.
-- Mit dem Symbol links neben dem Suchfeld können Sie die angezeigten Geräte nach ihrer Kategorie filtern. Mit einem mittleren Klick können Sie schnell eine einzelne Kategorie auswählen.
-- Auf der rechten Seite können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen.
+- Das Symbol rechts neben dem Suchfeld wird verwendet, um die angezeigten Geräte nach ihrer Kategorie zu filtern. Mit einem mittleren Klick können Sie schnell eine einzelne Kategorie auswählen.
+- Ganz rechts können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen.
 
 - Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
 
 - Ein Klick auf eine Bestellung vom Informationstyp zeigt den Verlauf der Bestellung an (sofern er historisch ist).
 - Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
 - Ein Klick auf die Informationen *Zeit* eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
-
-> **Spitze**
->
-> In Ihrem Profil können Sie Jeedom so konfigurieren, dass der Baum der Objekte und / oder die Szenarien standardmäßig sichtbar sind, wenn Sie im Dashboard ankommen.
-
-> **Spitze**
->
-> Wenn Sie auf Mobilgeräten einen Befehl vom Typ &quot;Info&quot; drücken, wird ein Menü angezeigt, in dem Sie entweder den Verlauf der Bestellung anzeigen oder eine Warnung darauf setzen können, damit Jeedom Sie (einmal) benachrichtigt, sobald dass der Wert einen bestimmten Schwellenwert überschreitet.
 
 
 ## Bearbeitungsmodus

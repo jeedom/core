@@ -46,5 +46,5 @@ Para cada objeto, você pode clicar em :
 >
 > Ctrl Clique ou Clique Central no objeto ou um elemento de resumo abre outra guia do seu navegador.
 
-Quando você clica em um objeto do resumo, o botão à esquerda da barra de pesquisa é substituído por um botão que permite retornar ao resumo.
+Quando você clica em um objeto da síntese, o botão à esquerda da barra de pesquisa é substituído por um botão que permite mostrar uma antevisão das peças para chegar lá mais rapidamente.
 

@@ -42,24 +42,16 @@ In addition, you can click on the title of the tile (the name of the equipment) 
 > It is possible to go directly to a single object in your home automation, via the menu **Home → Dashboard → Object name**.
 > This allows you to have only the equipment that interests you, and to load the page faster.
 
-- You have at the top left a small icon to show / hide the tree of objects.
+- You have at the top left a small icon to display the tree of objects on hover.
 - A search field allows you to search for equipment by name, category, plugin, tag, etc.
-- The icon to the left of the search field allows you to filter the displayed equipment according to their category. A center click allows you to quickly select a single category.
-- On the right, a button allows you to switch to edit mode, to modify the order of the tiles (click - drop on the widget), or resize them. You can also rearrange the order of commands in a tile.
+- The icon to the right of the search field is used to filter the equipment displayed according to their category. A center click allows you to quickly select a single category.
+- On the far right, a button allows you to switch to edit mode, to modify the order of the tiles (click - drop on the widget), or resize them. You can also rearrange the order of commands in a tile.
 
 - By clicking on an object summary, you filter to display only the equipment related to this object and which relate to this object summary.
 
 - A click on an information type order displays the history of the order (if it is historical).
 - A Ctrl + Click on an information type command displays the history of all (historical) commands for this tile.
 - One click on the information *time* of an action command displays the history of the command (if it is historized).
-
-> **Tip**
->
-> It is possible, from your profile, to configure Jeedom so that the tree of objects and / or the scenarios are visible by default when you arrive on the Dashboard.
-
-> **Tip**
->
-> In mobile, pressing an info type command displays a menu offering you either to display the history of the command, or to put an alert on it so that Jeedom alerts you (once) as soon as that the value passes a certain threshold.
 
 
 ## Edit mode

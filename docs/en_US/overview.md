@@ -46,5 +46,5 @@ For each object, you can click :
 >
 > Ctrl Click or Center Click on the object or a summary element opens another tab of your browser.
 
-When you click on an object from the summary, the button on the left of the search bar is replaced by a button allowing to return to the summary.
+When you click on an object from the synthesis, the button to the left of the search bar is replaced by a button allowing to display a preview of the parts to get there more quickly.
 

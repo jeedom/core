@@ -42,24 +42,16 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 > Es posible ir directamente a un solo objeto en su domótica, a través del menú **Inicio → Panel de control → Nombre del objeto**.
 > Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
 
-- Tienes en la parte superior izquierda un pequeño icono para mostrar / ocultar el árbol de objetos.
+- Tiene en la parte superior izquierda un pequeño icono para mostrar el árbol de objetos al pasar el mouse.
 - Un campo de búsqueda le permite buscar equipos por nombre, categoría, complemento, etiqueta, etc.
-- El icono a la izquierda del campo de búsqueda le permite filtrar el equipo que se muestra según su categoría. Un clic central permite seleccionar rápidamente una sola categoría.
-- A la derecha, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic - soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
+- El icono a la derecha del campo de búsqueda se utiliza para filtrar los equipos mostrados según su categoría. Un clic central permite seleccionar rápidamente una sola categoría.
+- En el extremo derecho, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic y soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
 
 - Al hacer clic en el resumen de un objeto, filtra para mostrar solo el equipo relacionado con este objeto y que está relacionado con este resumen de objeto.
 
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
 - Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
 - Un clic en la información *tiempo* de un comando de acción muestra el historial del comando (si está historizado).
-
-> **Punta**
->
-> Es posible, desde su perfil, configurar Jeedom para que el árbol de objetos y / o los escenarios sean visibles de forma predeterminada cuando llegue al Tablero.
-
-> **Punta**
->
-> En dispositivos móviles, al presionar un comando de tipo de información se muestra un menú que le ofrece mostrar el historial del pedido o poner una alerta en él para que Jeedom le avise (una vez) tan pronto como sea posible. que el valor pasa un cierto umbral.
 
 
 ## Modo de edición

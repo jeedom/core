@@ -42,24 +42,16 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 > É possível ir diretamente para um único objeto na sua automação residencial, através do menu **Página inicial → Painel de controle → Nome do objeto**.
 > Isso permite que você tenha apenas o equipamento que lhe interessa e carregue a página mais rapidamente.
 
-- Você tem no topo um pequeno ícone para mostrar / ocultar a árvore de objetos.
+- Você tem no canto superior esquerdo um pequeno ícone para exibir a árvore de objetos ao pairar.
 - Um campo de pesquisa permite procurar equipamentos por nome, categoria, plug-in, tag, etc.
-- O ícone à esquerda do campo de pesquisa permite filtrar o equipamento exibido de acordo com sua categoria. Um clique no centro permite selecionar rapidamente uma única categoria.
-- À direita, um botão permite alternar para o modo de edição, modificar a ordem dos blocos (clicar e soltar no widget) ou redimensioná-los. Você também pode reorganizar a ordem dos pedidos em um bloco.
+- O ícone à direita do campo de pesquisa é usado para filtrar os equipamentos exibidos de acordo com sua categoria. Um clique no centro permite selecionar rapidamente uma única categoria.
+- Na extrema direita, um botão permite que você alterne para o modo de edição, para modificar a ordem dos blocos (clique e solte no widget) ou redimensioná-los. Você também pode reorganizar a ordem dos pedidos em um bloco.
 
 - Ao clicar no resumo de um objeto, você filtra para exibir apenas o equipamento relacionado a esse objeto e relacionado a esse resumo.
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
 - Um clique na informação *Tempo* de um comando de ação exibe o histórico do comando (se for historizado).
-
-> **Dica**
->
-> É possível, a partir do seu perfil, configurar o Jeedom para que a árvore de objetos e / ou os cenários fiquem visíveis por padrão quando você chegar ao Painel.
-
-> **Dica**
->
-> No celular, pressionar um comando de tipo de informação exibe um menu que permite exibir o histórico do pedido ou colocar um alerta nele para que o Jeedom o avise (uma vez) assim que que o valor passa um certo limite.
 
 
 ## Modo de edição

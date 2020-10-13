@@ -9,7 +9,6 @@ Auf der Seite &quot;Einstellungen&quot; können Sie bestimmte benutzerspezifisch
 
 Definiert bestimmte Schnittstellenverhalten
 
-- **Objektbedienfeld im Dashboard** : Zeigt das Objektfenster (links) im Dashboard an, ohne auf die entsprechende Schaltfläche klicken zu müssen.
 - **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
 - **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
 

@@ -9,7 +9,6 @@ The Preferences page allows you to configure certain user-specific Jeedom behavi
 
 Defines certain interface behaviors
 
-- **Objects panel on the Dashboard** : Displays the objects panel (on the left) on the Dashboard, without having to click on the dedicated button.
 - **Default page** : Page to display by default to display when connecting to desktop or mobile.
 - **Default object** : Object to display by default upon arrival on the Dashboard / mobile.
 

@@ -46,5 +46,5 @@ Para cada objeto, puede hacer clic :
 >
 > Ctrl Click o Center Click en el objeto o un elemento de resumen abre otra pestaña de su navegador.
 
-Cuando hace clic en un objeto del resumen, el botón a la izquierda de la barra de búsqueda se reemplaza por un botón que permite volver al resumen.
+Al hacer clic en un objeto de la síntesis, el botón a la izquierda de la barra de búsqueda se reemplaza por un botón que permite mostrar una vista previa de las partes para llegar más rápidamente.
 

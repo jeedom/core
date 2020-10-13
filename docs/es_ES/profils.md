@@ -9,7 +9,6 @@ La página de Preferencias le permite configurar ciertos comportamientos de Jeed
 
 Define ciertos comportamientos de interfaz
 
-- **Panel de objetos en el tablero** : Muestra el panel de objetos (a la izquierda) en el Panel, sin tener que hacer clic en el botón dedicado.
 - **Página predeterminada** : Página para mostrar de forma predeterminada para mostrar cuando se conecta a una computadora de escritorio o móvil.
 - **Objeto predeterminado** : Objeto para mostrar por defecto al llegar al Tablero / móvil.
 

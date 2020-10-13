@@ -9,7 +9,6 @@ A página Preferências permite configurar determinados comportamentos Jeedom es
 
 Define certos comportamentos da interface
 
-- **Painel Objetos no Painel** : Exibe o painel de objetos (à esquerda) no Painel, sem precisar clicar no botão dedicado.
 - **Página padrão** : Página a ser exibida por padrão para exibição ao conectar-se a computadores ou dispositivos móveis.
 - **Objeto padrão** : Objeto a ser exibido por padrão na chegada ao Painel / dispositivo móvel.
 

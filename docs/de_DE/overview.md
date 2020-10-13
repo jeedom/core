@@ -46,5 +46,5 @@ Für jedes Objekt können Sie klicken :
 >
 > Strg Klicken oder Mitte Klicken Sie auf das Objekt oder ein Zusammenfassungselement öffnet eine weitere Registerkarte Ihres Browsers.
 
-Wenn Sie in der Zusammenfassung auf ein Objekt klicken, wird die Schaltfläche links in der Suchleiste durch eine Schaltfläche ersetzt, mit der Sie zur Zusammenfassung zurückkehren können.
+Wenn Sie in der Synthese auf ein Objekt klicken, wird die Schaltfläche links neben der Suchleiste durch eine Schaltfläche ersetzt, mit der eine Vorschau der Teile angezeigt werden kann, um schneller dorthin zu gelangen.
 
