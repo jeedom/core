@@ -429,7 +429,7 @@ function getObjectHtml(_object_id) {
   jeedom.object.toHtml({
     id: _object_id,
     version: 'dashboard',
-    category : SEL_CATEGORY,
+    category : 'all',
     summary : SEL_SUMMARY,
     tag : SEL_TAG,
     error: function(error) {
@@ -455,6 +455,17 @@ function getObjectHtml(_object_id) {
       var packData = $divDisplayEq.data('packery')
       if (isset(packData) && packData.items.length == 1) {
         $divDisplayEq.packery('destroy').packery()
+      }
+
+      //synch category filter:
+      if (SEL_CATEGORY != 'all') {
+        var cat = SEL_CATEGORY.charAt(0).toUpperCase() + SEL_CATEGORY.slice(1)
+        $('#dashTopBar button.dropdown-toggle').addClass('warning')
+        $('#categoryfilter .catFilterKey').each(function() {
+          $(this).prop('checked', false)
+        })
+        $('#categoryfilter .catFilterKey[data-key="'+cat+'"]').prop('checked', true)
+        filterByCategory()
       }
 
       var itemElems = container.find('div.eqLogic-widget, div.scenario-widget')
