@@ -4,9 +4,9 @@ if (!isConnect()) {
 }
 
 sendVarToJS([
-  'SEL_CATEGORY' => init('category', 'all'),
-  'SEL_TAG' => init('tag', 'all'),
-  'SEL_SUMMARY' => init('summary')
+	'SEL_CATEGORY' => init('category', 'all'),
+	'SEL_TAG' => init('tag', 'all'),
+	'SEL_SUMMARY' => init('summary')
 ]);
 
 //DisplayByObject or display by summaries:
@@ -30,7 +30,7 @@ if (init('object_id') == '') {
 //Check for object found:
 if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
-		if (!is_object($object)) {
+	if (!is_object($object)) {
 		$alert = '{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets}}.<br/>';
 		$alert .= '{{Documentation}} : <a href="https://doc.jeedom.com/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
 		$alert .= ' | <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
@@ -72,7 +72,7 @@ foreach ($objectTree as $_object) {
 <div id="div_displayObject">
 	<div id="dashTopBar" class="input-group">
 		<div class="input-group-btn">
-		<?php
+			<?php
 			if (init('btover', 0) == 0) {?>
 				<a id="bt_overview" class="btn" style="width:35px"><i class="icon jeedomapp-fleche-bas-line"></i></a>
 			<?php } else { ?>
@@ -91,12 +91,12 @@ foreach ($objectTree as $_object) {
 					<a id="catFilterAll"> {{Toutes}}</a>
 					<a id="catFilterNone"> {{Aucune}}</a>
 				</li>
-				 <li class="divider"></li>
+				<li class="divider"></li>
 				<?php
-					foreach ((jeedom::getConfiguration('eqLogic:category')) as $key => $value) {
-						if ($key=='default') $key = '';
-						echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$value['name'].'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
-					}
+				foreach ((jeedom::getConfiguration('eqLogic:category')) as $key => $value) {
+					if ($key=='default') $key = '';
+					echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$value['name'].'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
+				}
 				?>
 				<li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
 			</ul>
@@ -108,71 +108,71 @@ foreach ($objectTree as $_object) {
 			</div>
 		<?php } ?>
 	</div>
-
+	
 	<?php
-		//display previews:
-		if (init('btover', 0) != 0) { //overview
-			$div = '<div id="dashOverviewPrev" class="overview" style="display:none;">';
-			foreach ($objectTree as $_object) {
-			  if ($_object->getConfiguration('hideOnOverview') == 1) continue;
-			  $backUrl = $_object->getImgLink();
-			  if ($backUrl == '') {
+	//display previews:
+	if (init('btover', 0) != 0) { //overview
+		$div = '<div id="dashOverviewPrev" class="overview" style="display:none;">';
+		foreach ($objectTree as $_object) {
+			if ($_object->getConfiguration('hideOnOverview') == 1) continue;
+			$backUrl = $_object->getImgLink();
+			if ($backUrl == '') {
 				$backUrl = 'core/img/background/jeedom_abstract_04_light.jpg';
-			  }
-			  $div .= '<div class="objectPreview cursor shadowed fullCorner" style="background:url('.$backUrl.')" data-object_id="'.$_object->getId().'">';
-			  $div .= '<div class="topPreview topCorner nocursor">';
-			  $div .= '<span class="name cursor">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
-			  $div .= '</div>';
-			  $div .= '</div>';
 			}
+			$div .= '<div class="objectPreview cursor shadowed fullCorner" style="background:url('.$backUrl.')" data-object_id="'.$_object->getId().'">';
+			$div .= '<div class="topPreview topCorner nocursor">';
+			$div .= '<span class="name cursor">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
 			$div .= '</div>';
-			echo $div;
-		} else { //dashboard
-		  $div = '<div id="dashOverviewPrev" class="dashboard" style="display:none;">';
-		  foreach ($objectTree as $_object) {
-				$margin = 8 * $_object->getConfiguration('parentNumber');
-				$dataHref = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId();
-				$div .= '<div class="'.$class.'cursor li_object"><a data-object_id="' . $_object->getId() . '" data-href="'.$dataHref.'">';
-				$div .= '<span style="position:relative;left:' . $margin . 'px;">'.$_object->getHumanName(true, true) . '</a></span>';
-
-				//summary:
-				$html = '<span class="objectSummaryglobal">';
-				$html .= $summaryCache[$_object->getId()];
-				$html .= '</span>';
-				$div .= $html;
-				$div .= '</div>';
-			}
-		  $div .= '</div>';
-		  echo $div;
+			$div .= '</div>';
 		}
-
-		include_file('desktop', 'dashboard', 'js');
-
-		function formatJeedomObjectDiv($object, $toSummary=false) {
-			global $summaryCache;
-			$objectId =  $object->getId();
-			$divClass = 'div_object';
-			if ($toSummary) $divClass .= ' hidden';
-			$div =  '<div class="col-md-12">';
-			$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
-			$div .= '<legend><span class="objectDashLegend fullCorner">
-					<a href="index.php?v=d&p=dashboard&object_id=' . $objectId . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>
-					<a class="div_object" href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a>
-					<span>' . $summaryCache[$objectId] . '</span>
-					 <i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
-					 <i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
-					 </span>
-					 </legend>';
-			$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
-
-			if ($toSummary) {
-				$div .= '<script>getObjectHtmlFromSummary(' . $objectId . ')</script>';
-			} else {
-				$div .= '<script>getObjectHtml(' . $objectId . ')</script>';
-			}
-			$div .= '</div></div></div>';
-			echo $div;
+		$div .= '</div>';
+		echo $div;
+	} else { //dashboard
+		$div = '<div id="dashOverviewPrev" class="dashboard" style="display:none;">';
+		foreach ($objectTree as $_object) {
+			$margin = 8 * $_object->getConfiguration('parentNumber');
+			$dataHref = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId();
+			$div .= '<div class="cursor li_object"><a data-object_id="' . $_object->getId() . '" data-href="'.$dataHref.'">';
+			$div .= '<span style="position:relative;left:' . $margin . 'px;">'.$_object->getHumanName(true, true) . '</a></span>';
+			
+			//summary:
+			$html = '<span class="objectSummaryglobal">';
+			$html .= $summaryCache[$_object->getId()];
+			$html .= '</span>';
+			$div .= $html;
+			$div .= '</div>';
 		}
+		$div .= '</div>';
+		echo $div;
+	}
+	
+	include_file('desktop', 'dashboard', 'js');
+	
+	function formatJeedomObjectDiv($object, $toSummary=false) {
+		global $summaryCache;
+		$objectId =  $object->getId();
+		$divClass = 'div_object';
+		if ($toSummary) $divClass .= ' hidden';
+		$div =  '<div class="col-md-12">';
+		$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
+		$div .= '<legend><span class="objectDashLegend fullCorner">
+		<a href="index.php?v=d&p=dashboard&object_id=' . $objectId . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>
+		<a class="div_object" href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a>
+		<span>' . $summaryCache[$objectId] . '</span>
+		<i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
+		<i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
+		</span>
+		</legend>';
+		$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
+		
+		if ($toSummary) {
+			$div .= '<script>getObjectHtmlFromSummary(' . $objectId . ')</script>';
+		} else {
+			$div .= '<script>getObjectHtml(' . $objectId . ')</script>';
+		}
+		$div .= '</div></div></div>';
+		echo $div;
+	}
 	?>
 	<div class="row" >
 		<?php
@@ -196,12 +196,12 @@ foreach ($objectTree as $_object) {
 				formatJeedomObjectDiv($object, true);
 			}
 		}
-
+		
 		?>
 	</div>
 </div>
 </div>
 
 <?php
-	include_file('desktop/common', 'ui', 'js');
+include_file('desktop/common', 'ui', 'js');
 ?>
