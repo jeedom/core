@@ -1,6 +1,6 @@
 # Jeedom V4 - Tastatur- / Mausverknüpfungen
 
-## General
+### General
 
 Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können daher ohne weitere Aktion direkt eine Suche eingeben.
 
@@ -9,7 +9,7 @@ Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suc
 - Klicken Sie auf ?  (Menüleiste)  : Öffnet die Hilfe auf der aktuellen Seite.
 - Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.
 
-## Dashboard
+### Dashboard
 Im Bearbeitungsmodus:
 	- Ziehen Sie n Drop auf Kacheln, um sie neu anzuordnen.
 	- Ändern Sie die Größe der Kachelränder, um deren Größe zu ändern.
@@ -18,37 +18,37 @@ Im Bearbeitungsmodus:
 
 - Strg Klicken Sie auf einen Info-Befehl : Öffnet alle Verlaufsinformationen der Kachel im Verlaufsfenster.
 
-## Einstellungen / System / Konfiguration
+### Einstellungen / System / Konfiguration
 - Strg S : Speichern.
 
-## Einstellungen / System / Backups
+### Einstellungen / System / Backups
 - Strg S : Speichern.
 
-## Einstellungen / System / Task-Engine
+### Einstellungen / System / Task-Engine
 - Strg S : Speichern.
 
-## Einstellungen / System / Benutzer
+### Einstellungen / System / Benutzer
 - Strg S : Speichern.
 
-## Einstellungen / Einstellungen
+### Einstellungen / Einstellungen
 - Strg S : Speichern.
 
-## Tools / Interaktionen
+### Tools / Interaktionen
 - Bei einer Interaktion wird Strg S gedrückt : Speichern.
 - Klicken Sie bei einer Interaktion mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einer anderen Interaktion zu gelangen.
 - Strg Klicken oder Zentrieren Klicken Sie auf eine Interaktion oder im Kontextmenü : Öffnen Sie die Interaktion in einem neuen Browser-Tab.
 
-## Werkzeuge / Objekte
+### Werkzeuge / Objekte
 - Auf einem Objekt wird Strg S gedrückt : Speichern.
 - Klicken Sie auf ein Objekt mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Objekt zu gelangen.
 - Strg Klicken oder Zentrieren Klicken Sie auf ein Objekt oder in das Kontextmenü : Öffnen Sie das Objekt in einem neuen Browser-Tab.
 
-## Tools / Widgets
+### Tools / Widgets
 - In einem Widget wird Strg S gedrückt : Speichern.
 - Klicken Sie in einem Widget mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Widget zu gelangen.
 - Strg Klicken oder Klicken Sie in einem Widget oder im Kontextmenü auf Mitte : Öffnen Sie das Widget in einem neuen Browser-Tab.
 
-## Tools / Szenarien
+### Tools / Szenarien
 - Strg Klicken oder Mitte Klicken Sie auf ein Szenario oder in das Kontextmenü : Öffnen Sie das Szenario in einem neuen Browser-Tab.
 
 In einem Szenario :
@@ -68,38 +68,38 @@ In einem Codeblock :
 - Strg F : Suche im Code.
 - Strg G : Nächstes Suchereignis.
 
-## Plugins / Plugins-Verwaltung
+### Plugins / Plugins-Verwaltung
 - Strg + S bei einer Plugin-Konfiguration : Speichern.
 - Strg Klicken oder Klicken Sie in einem Plugin auf Mitte : Öffnen Sie die Plugin-Verwaltung in einem neuen Browser-Tab.
 
-## Plugins / *Plugin*
+### Plugins / *Plugin*
 - Auf einem Gerät wird Strg S gedrückt  : Speichern.
 - Klicken Sie auf einem Gerät mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Gerät zu gelangen.
 - Strg Klicken oder Mitte Klicken Sie auf ein Gerät: Öffnen Sie das Plugin-Gerät in einem neuen Browser-Tab.
 
-## Startseite / Ansicht
+### Startseite / Ansicht
 - Strg + S beim Bearbeiten einer Ansicht : Speichern.
 
-## Zuhause / Design
+### Zuhause / Design
 - Strg + S auf einem Design : Speichern.
 - Strg-Umschalttaste E für ein Design : Aktivieren oder Verlassen des Bearbeitungsmodus.
 
-## Analyse / Zusammenfassung der Hausautomation
+### Analyse / Zusammenfassung der Hausautomation
 - Strg Klicken Sie auf das Symbol *Öffnen* (recherche) : Öffnen Sie alle Gegenstände und Geräte.
 - Strg Klicken Sie auf das Symbol *Schließen* (recherche) : Schließt alle Objekte und Geräte.
 
-## Analyse / Geschichte
+### Analyse / Geschichte
 Wenn mehrere Kurven angezeigt werden :
 - Strg Klicken Sie auf eine Legende : Nur diese Geschichte anzeigen.
 - Alt Klicken Sie auf eine Legende : Zeige die gesamte Geschichte.
 
-## Verlaufsfenster
+### Verlaufsfenster
 Wenn mehrere Kurven angezeigt werden :
 - Strg Klicken Sie auf eine Legende : Nur diese Geschichte anzeigen.
 - Alt Klicken Sie auf eine Legende : Zeige die gesamte Geschichte.
 
-## Fenster Gerätekonfiguration
+### Fenster Gerätekonfiguration
 - Strg Klicken Sie auf Speichern : Fenster speichern und schließen.
 
-## Befehlskonfigurationsfenster
+### Befehlskonfigurationsfenster
 - Strg Klicken Sie auf Speichern : Fenster speichern und schließen.

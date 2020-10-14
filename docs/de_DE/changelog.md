@@ -2,7 +2,7 @@
 
 ## 4.1.0
 
-- **Synthese** : Neue Seite hinzufügen **Home → Zusammenfassung** bietet eine globale visuelle Synthese der Teile.
+- **Synthese** : Neue Seite hinzufügen **Home → Zusammenfassung** Bietet eine globale visuelle Zusammenfassung der Teile mit schnellem Zugriff auf Zusammenfassungen.
 - **Suche** : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
 - **Armaturenbrett** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
 - **Armaturenbrett** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
@@ -10,6 +10,7 @@
 - **Armaturenbrett** : Die Größe der Kachel eines neuen Geräts passt sich dem Inhalt an.
 - **Armaturenbrett** : Hinzufügen (zurück!) Eine Schaltfläche zum Filtern der angezeigten Elemente nach Kategorie.
 - **Armaturenbrett** : Strg Klicken Sie auf eine Info, um das Verlaufsfenster mit allen historisierten Befehlen der auf der Kachel sichtbaren Ausrüstung zu öffnen. Strg Klicken Sie auf eine Legende, um nur diese anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
+- **Armaturenbrett** : Neugestaltung der Anzeige des Objektbaums (Pfeil links neben der Suche).
 - **Armaturenbrett** : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche)).
 - **Tools / Widgets** : Die Funktion *Bewerben Sie sich am* Zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
 - **Widgets** : Hinzufügen eines Kern-Widgets *sliderVertical*.
@@ -24,7 +25,7 @@
 - **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum *gestern*, und jetzt akzeptieren *Tag* (für 1 Tag).
 - **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Commandes).
 - **Szenario** : Anzeigen a *Warnung* wenn kein Trigger konfiguriert ist.
-- **Szenario** : Bugfix von Select auf Copy / Paste Block.
+- **Szenario** : Bugfix von *wählen* auf Block kopieren / einfügen.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
 - **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt als Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)).
 - **Szenario** :  Hinzufügung von "Historischer Export" (exportHistory)
@@ -33,7 +34,7 @@
 - **Analyse / Geschichte** : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Fläche* mit der Option *Treppe*.
-- **Analyse / Geschichte** : Möglichkeit, eine Historie über mehrere Zeiträume zu vergleichen.
+- **Analyse / Geschichte** : Möglichkeit, eine Historie nach dem aktuellen Zeitraum zu vergleichen.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
 - **Ansicht** : Möglichkeit, Szenarien zu setzen.
 - **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
@@ -49,7 +50,7 @@
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, alle Geräte eines Objekts auszuwählen.
 - **Task-Engine** : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
-- **Bericht** : Verwendung von Chronium, falls verfügbar.
+- **Bericht** : Die Verwendung von *Chrom* wenn verfügbar.
 - **Bericht** : Möglichkeit zum Exportieren von Zeitleisten.
 - **Konfiguration** : Die Registerkarte *Information* ist jetzt in der Registerkarte *Allgemein*.
 - **Konfiguration** : Die Registerkarte *Befehle* ist jetzt in der Registerkarte *Geräte*.
@@ -87,3 +88,7 @@
 >**Wichtig**
 >
 > Die Inversion der Binärbefehle invertiert nicht mehr nur das Widget, sondern auch den Wert des Befehls. Daher müssen die Szenarien und Zusammenfassungen, in denen Befehle vom invertierten Binärtyp verwendet werden, korrekt neu konfiguriert werden
+
+[Changelog v4.0](/de_DE/core/4.0/changelog)
+
+

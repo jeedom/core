@@ -2,7 +2,7 @@
 
 ## 4.1.0
 
-- **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo uma síntese visual global das peças.
+- **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **Painel de instrumentos** : Modo de edição agora inserindo o bloco movido.
 - **Painel de instrumentos** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
@@ -10,6 +10,7 @@
 - **Painel de instrumentos** : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
 - **Painel de instrumentos** : Adicionar (voltar!) Um botão para filtrar os itens exibidos por categoria.
 - **Painel de instrumentos** : Ctrl Clique em uma informação para abrir a janela do histórico com todos os comandos históricos do equipamento visíveis no bloco. Ctrl Clique em uma legenda para exibir apenas esta, Alt Clique para exibir todas.
+- **Painel de instrumentos** : Redesenho da exibição da árvore de objetos (seta à esquerda da pesquisa).
 - **Painel de instrumentos** : Capacidade de desfocar imagens de fundo (Configuração -> Interface).
 - **Ferramentas / Widgets** : A função *Aplicar em* mostra os comandos vinculados marcados, desmarcando um aplicará o widget principal padrão a este comando.
 - **Widgets** : Adicionando um widget principal *sliderVertical*.
@@ -24,7 +25,7 @@
 - **Cenas** : FUNÇÕES *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
 - **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Commandes).
 - **Cenas** : Visualizando um *Aviso* se nenhum gatilho estiver configurado.
-- **Cenas** : Correção de bug no bloco copiar / colar.
+- **Cenas** : Correção de bug de *selecionar* em bloco copiar / colar.
 - **Cenas** : Copiar / colar do bloco entre diferentes cenários.
 - **Cenas** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
 - **Cenas** :  adição de "Exportação histórica" (exportHistory)
@@ -33,7 +34,7 @@
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
 - **Análise / História** : Agora podemos usar a opção *área* com a opção *Escada*.
-- **Análise / História** : Possibilidade de comparar um histórico ao longo de vários períodos.
+- **Análise / História** : Possibilidade de comparar um histórico de acordo com o período atual.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Vista** : Possibilidade de colocar cenários.
 - **Vista** : Modo de edição agora inserindo o bloco movido.
@@ -49,7 +50,7 @@
 - **Resumo Automation** : Possibilidade de mover várias peças de equipamento de um objeto para outro.
 - **Resumo Automation** : Possibilidade de selecionar todo o equipamento de um objeto.
 - **Mecanismo de tarefas** : Na guia *Demônio*, plugins desativados não aparecem mais.
-- **Relatório** : Uso de crônio, se disponível.
+- **Relatório** : O uso de *cromo* se disponível.
 - **Relatório** : Possibilidade de exportar cronogramas.
 - **Configuração** : A guia *Informação* agora está na guia *Geral*.
 - **Configuração** : A guia *Comandos* agora está na guia *Instalações*.
@@ -87,3 +88,7 @@
 >**IMPORTANTE**
 >
 > A inversão dos comandos binários não inverte mais apenas o widget, mas o valor do comando, será necessário, portanto, reconfigurar corretamente os cenários e os resumos que utilizam comandos do tipo binário invertido
+
+[Changelog v4.0](/pt_PT/core/4.0/changelog)
+
+

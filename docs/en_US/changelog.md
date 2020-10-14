@@ -2,7 +2,7 @@
 
 ## 4.1.0
 
-- **Synthesis** : New page **Home → Synthesis** offering a global visual synthesis of objects (rooms).
+- **Synthesis** : New page **Home → Synthesis** offering a global visual summary of the parts, with quick access to summaries.
 - **Research** : Add of a search engine in **Tools → Search**.
 - **Dashboard** : Edit mode now inserting the moved tile.
 - **Dashboard** : Edit mode: the equipment refresh icons are replaced by an icon allowing access to their configuration, thanks to a new simplified modal.
@@ -10,6 +10,7 @@
 - **Dashboard** : The size of a new equipment&#39;s tile adapts to its content.
 - **Dashboard** : Add (back!) A button to filter the displayed items by category.
 - **Dashboard** : Ctrl Click on an info opens the history window with all the historicized commands of the equipment visible on the tile. Ctrl Click on a legend to display only this one, Alt Click to display them all.
+- **Dashboard** : Redesign of the display of the object tree (arrow to the left of the search).
 - **Dashboard** : Ability to blur background images (Configuration -> Interface).
 - **Tools / Widgets** : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
 - **Widget** : Adding a core widget *sliderVertical*.
@@ -24,7 +25,7 @@
 - **Scenario** : Functions *statistics (), average (), max (), min (), trend (), duration()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
 - **Scenario** : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commandes).
 - **Scenario** : Viewing a *Warning* if no trigger is configured.
-- **Scenario** : Bugfix of select on block copy / paste.
+- **Scenario** : Bugfix of *select* on block copy / paste.
 - **Scenario** : Copy / paste of block between different scenarios.
 - **Scenario** : The undo / redo functions are now available as buttons (next to the block creation button).
 - **Scenario** :  addition of "Historical export" (exportHistory)
@@ -33,7 +34,7 @@
 - **Analysis / History** : Ctrl Click on a legend to display only this history, Alt Click to display them all.
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Steps*.
-- **Analysis / History** : Possibility to compare a history over several periods.
+- **Analysis / History** : Possibility to compare a history according to the current period.
 - **Analysis / Logs** : New monospace type font for logs.
 - **View** : Possibility to put scenarios.
 - **View** : Edit mode now inserting the moved tile.
@@ -49,7 +50,7 @@
 - **Domotic overview** : Possibility to move several pieces of equipment from one object to another.
 - **Domotic overview** : Possibility to select all the equipment of an object.
 - **Task engine** : On the tab *Daemon*, disabled plugins no longer appear.
-- **Report** : Use of chronium if available.
+- **Report** : The use of *chromium* if available.
 - **Report** : Possibility to export timelines.
 - **Configuration** : The tab *Information* is now in the tab *Main*.
 - **Configuration** : The tab *Commands* is now in the tab *Equipments*.
@@ -87,3 +88,7 @@
 >**Important**
 >
 > The inversion of the binary commands no longer only inverts the widget but the value of the command, it will therefore be necessary to correctly reconfigure the scenarios and the summaries which use commands of the inverted binary type
+
+[Changelog v4.0](/en_US/core/4.0/changelog)
+
+

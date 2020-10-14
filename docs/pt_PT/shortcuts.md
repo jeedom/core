@@ -1,6 +1,6 @@
 # Jeedom V4 - Atalhos de teclado / mouse
 
-## Geral
+### Geral
 
 Ao abrir uma página (painel, cenários, etc.), o foco está no campo de pesquisa. Portanto, você pode digitar diretamente uma pesquisa sem ação adicional.
 
@@ -9,7 +9,7 @@ Ao abrir uma página (painel, cenários, etc.), o foco está no campo de pesquis
 - Clique em ?  (Barra de menus)  : Abre a ajuda na página atual.
 - Escape em um campo de pesquisa : Esvazie o campo de pesquisa e cancele-o.
 
-## Dashboard
+### Dashboard
 No modo de edição:
 	- Arraste e solte nos ladrilhos para reorganizá-los.
 	- Redimensionar nas bordas do bloco para redimensioná-las.
@@ -18,37 +18,37 @@ No modo de edição:
 
 - Ctrl Clique em um comando de informações : Abre todas as informações do histórico do bloco na janela do histórico.
 
-## Configurações / Sistema / Configuração
+### Configurações / Sistema / Configuração
 - Ctrl S : Salvar.
 
-## Configurações / Sistema / Backups
+### Configurações / Sistema / Backups
 - Ctrl S : Salvar.
 
-## Configurações / Sistema / Mecanismo de tarefas
+### Configurações / Sistema / Mecanismo de tarefas
 - Ctrl S : Salvar.
 
-## Configurações / Sistema / Usuários
+### Configurações / Sistema / Usuários
 - Ctrl S : Salvar.
 
-## Configurações / Preferências
+### Configurações / Preferências
 - Ctrl S : Salvar.
 
-## Ferramentas / Interações
+### Ferramentas / Interações
 - Em uma interação, Ctrl S : Salvar.
 - Em uma interação, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outra interação.
 - Ctrl Clique ou Clique Central em uma interação ou no menu de contexto : Abra a interação em uma nova guia do navegador.
 
-## Ferramentas / Objetos
+### Ferramentas / Objetos
 - Em um objeto, Ctrl S : Salvar.
 - Em um objeto, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro objeto.
 - Ctrl Clique ou Clique Central em um objeto ou no menu contextual : Abra o objeto em uma nova guia do navegador.
 
-## Ferramentas / Widgets
+### Ferramentas / Widgets
 - Em um widget, Ctrl S : Salvar.
 - Em um widget, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro widget.
 - Ctrl Clique ou Clique em Central em um widget ou no menu de contexto : Abra o widget em uma nova guia do navegador.
 
-## Ferramentas / cenários
+### Ferramentas / cenários
 - Ctrl Clique ou Clique Central em um cenário ou no menu de contexto : Abra o cenário em uma nova guia do navegador.
 
 Em um cenário :
@@ -68,38 +68,38 @@ Em um bloco de código :
 - Ctrl F : Pesquise no código.
 - Ctrl G : Próxima ocorrência de pesquisa.
 
-## Plugins / Gerenciamento de Plugins
+### Plugins / Gerenciamento de Plugins
 - Ctrl S em uma configuração de plug-in : Salvar.
 - Ctrl Clique ou Clique Central em um plug-in : Abra o gerenciamento de plug-ins em uma nova guia do navegador.
 
-## Plugins / *plugin*
+### Plugins / *plugin*
 - Em um dispositivo, Ctrl S  : Salvar.
 - Em um dispositivo, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro dispositivo.
 - Ctrl Clique ou Clique Central em um dispositivo: Abra o equipamento do plug-in em uma nova guia do navegador.
 
-## Início / Ver
+### Início / Ver
 - Ctrl S na edição de uma vista : Salvar.
 
-## Home / Design
+### Home / Design
 - Ctrl S em um design : Salvar.
 - Ctrl Shift E em um design : Entrando ou saindo do modo de edição.
 
-## Análise / resumo de automação residencial
+### Análise / resumo de automação residencial
 - Ctrl Clique no ícone *Aberto* (recherche) : Abra todos os objetos e equipamentos.
 - Ctrl Clique no ícone *Fechar* (recherche) : Fecha todos os objetos e equipamentos.
 
-## Análise / História
+### Análise / História
 Se várias curvas forem exibidas :
 - Ctrl Clique em uma legenda : Mostrar apenas este histórico.
 - Alt Clique em uma legenda : Mostrar todo o histórico.
 
-## Janela Histórico
+### Janela Histórico
 Se várias curvas forem exibidas :
 - Ctrl Clique em uma legenda : Mostrar apenas este histórico.
 - Alt Clique em uma legenda : Mostrar todo o histórico.
 
-## Janela Configuração do equipamento
+### Janela Configuração do equipamento
 - Ctrl Clique em Salvar : Salvar e fechar janela.
 
-## Janela Configuração de Comando
+### Janela Configuração de Comando
 - Ctrl Clique em Salvar : Salvar e fechar janela.

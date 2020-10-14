@@ -2,7 +2,7 @@
 
 ## 4.1.0
 
-- **Síntesis** : Agregar una nueva página **Inicio → Resumen** ofreciendo una síntesis visual global de las partes.
+- **Síntesis** : Agregar una nueva página **Inicio → Resumen** Ofrece un resumen visual global de las partes, con acceso rápido a resúmenes.
 - **Buscar** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
 - **Salpicadero** : El modo de edición ahora inserta el mosaico movido.
 - **Salpicadero** : Modo de edición: Los iconos de actualización del equipo se reemplazan por un icono que permite acceder a su configuración, gracias a un nuevo modal simplificado.
@@ -10,6 +10,7 @@
 - **Salpicadero** : El tamaño del mosaico de un equipo nuevo se adapta a su contenido.
 - **Salpicadero** : Agregar (¡atrás!) Un botón para filtrar los elementos mostrados por categoría.
 - **Salpicadero** : Ctrl Click en una información abre la ventana de historial con todos los comandos historizados del equipo visibles en el mosaico. Ctrl Haga clic en una leyenda para mostrar solo esta, Alt Haga clic para mostrarlas todas.
+- **Salpicadero** : Rediseño de la visualización del árbol de objetos (flecha a la izquierda de la búsqueda).
 - **Salpicadero** : Posibilidad de desenfocar imágenes de fondo (Configuración -> Interfaz).
 - **Herramientas / widgets** : La funcion *Aplicar en* muestra los comandos vinculados marcados, al desmarcar uno se aplicará el widget principal predeterminado a este comando.
 - **Reproductores** : Agregar un widget principal *deslizador vertical*.
@@ -24,7 +25,7 @@
 - **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *ayer*, y acepta ahora *dia* (por 1 día).
 - **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Commandes).
 - **Guión** : Viendo un *Advertencia* si no se configura ningún activador.
-- **Guión** : Corrección de errores de seleccionar en el bloque copiar / pegar.
+- **Guión** : Corrección de errores de *Seleccione* en el bloque copiar / pegar.
 - **Guión** : Copiar / pegar bloque entre diferentes escenarios.
 - **Guión** : Las funciones de deshacer / rehacer ahora están disponibles como botones (al lado del botón de creación de bloque).
 - **Guión** :  adición de "Exportación histórica" (exportHistory)
@@ -33,7 +34,7 @@
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - **Análisis / Historia** : Ahora podemos usar la opción *Area* con la opción *Escalera*.
-- **Análisis / Historia** : Posibilidad de comparar un historial durante varios períodos.
+- **Análisis / Historia** : Posibilidad de comparar un historial según el período actual.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
 - **Vista** : Posibilidad de poner escenarios.
 - **Vista** : El modo de edición ahora inserta el mosaico movido.
@@ -49,7 +50,7 @@
 - **Resumen de domótica** : Posibilidad de mover varios equipos de un objeto a otro.
 - **Resumen de domótica** : Posibilidad de seleccionar todo el equipo de un objeto.
 - **Motor de tareas** : En la pestaña *Demonio*, los complementos deshabilitados ya no aparecen.
-- **Reporte** : Uso de chronium si está disponible.
+- **Reporte** : El uso de *cromo* si está disponible.
 - **Reporte** : Posibilidad de exportar cronogramas.
 - **Configuración** : La pestaña *Información* ahora está en la pestaña *Principal*.
 - **Configuración** : La pestaña *Comandos* ahora está en la pestaña *Dispositivos*.
@@ -87,3 +88,7 @@
 >**Importante**
 >
 > La inversión de los comandos binarios ya no solo invierte el widget sino el valor del comando, por lo que será necesario reconfigurar correctamente los escenarios y los resúmenes que utilizan comandos del tipo binario invertido
+
+[Registro de cambios v4.0](/es_ES/core/4.0/changelog)
+
+
