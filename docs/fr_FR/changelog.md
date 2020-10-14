@@ -2,7 +2,7 @@
 
 ## 4.1.0
 
-- **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces.
+- **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces, avec accès rapide aux résumés.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
 - **Dashboard** : Mode Édition maintenant en insertion de la tuile déplacée.
 - **Dashboard** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
@@ -10,6 +10,7 @@
 - **Dashboard** : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - **Dashboard** : Ajout (retour !) d'un bouton pour filtrer les éléments affichés par catégorie.
 - **Dashboard** : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
+- **Dashboard** : Refonte de l'affichage de l'arbre des objets (flèche à gauche de la recherche).
 - **Dashboard** : Possibilité de flouter les arrières plan des images de fond (Configuration -> Interface).
 - **Outils / Widgets** : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - **Widgets** : Ajout d'un widget core *sliderVertical*.
@@ -24,7 +25,7 @@
 - **Scénario** : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
 - **Scénario** : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
 - **Scénario** : Affichage d'un *warning* si aucun déclencheur n'est configuré.
-- **Scénario** : Bugfix des select sur les copier/coller de bloc.
+- **Scénario** : Bugfix des *select* sur les copier/coller de bloc.
 - **Scénario** : Copier/coller de bloc entre différents scénarios.
 - **Scénario** : Les fonctions undo/redo sont maintenant disponible sous forme de boutons (à coté du bouton de création de bloc).
 - **Scénario** :  ajout de "Export historique" (exportHistory)
@@ -33,7 +34,7 @@
 - **Analyse / Historique** : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - **Analyse / Historique** : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - **Analyse / Historique** : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
-- **Analyse / Historique** : Possibilité de comparer un historique sur plusieurs péridode.
+- **Analyse / Historique** : Possibilité de comparer un historique selon la période en cours.
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
 - **Vue** : Possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
@@ -49,7 +50,7 @@
 - **Résumé domotique** : Possibilité de déplacer plusieurs équipements d'un objet dans un autre.
 - **Résumé domotique** : Possibilité de sélectionner tous les équipements d'un objet.
 - **Moteur de tâches** : Sur l'onglet *Démon*, les plugins désactivés n’apparaissent plus.
-- **Rapport** : Utilisation de chronium si disponible.
+- **Rapport** : Utilisation de *chromium* si disponible.
 - **Rapport** : Possibilité d'exporter les timelines.
 - **Configuration** : L'onglet *Informations* est maintenant dans l'onglet *Général*.
 - **Configuration** : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
@@ -87,3 +88,7 @@
 >**IMPORTANT**
 >
 > L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé
+
+[Changelog v4.0](/fr_FR/core/4.0/changelog)
+
+
