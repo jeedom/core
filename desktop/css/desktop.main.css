@@ -118,6 +118,10 @@ a:hover {
   background-color: var(--form-bg-color);
 }
 
+#in_searchDashboard.editing {
+  background-color: var(--al-info-color) !important;
+  color: var(--linkHoverLight-color) !important;
+}
 
 [data-theme*="Dark"] .backgroundforJeedom {
   opacity : 0.6;
