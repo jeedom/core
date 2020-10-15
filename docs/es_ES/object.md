@@ -66,7 +66,8 @@ Aquí están las diferentes características para configurar un objeto :
 
 ## Pestaña Resumen
 
-Los resúmenes son información global, asignada a un objeto, que se muestra en particular en el Tablero junto a su nombre.
+Los resúmenes son información global, asignada a un objeto, que se muestra en particular en el Panel de control (junto al nombre del objeto) y en el resumen (en la miniatura del objeto).
+
 
 ### Tablero de anuncios
 
@@ -83,6 +84,12 @@ Cada pestaña representa un tipo de resumen definido en la configuración de Jee
 > **Punta**
 >
 > Si desea agregar un tipo de resumen o configurar el método de cálculo del resultado, la unidad, el icono y el nombre de un resumen, debe ir a la configuración general de Jeedom : **Preferencias → Sistema → Configuración : Pestaña Resúmenes**.
+
+## Pestaña Resumen por dispositivo
+
+Esta página muestra todo el equipo que tiene el objeto como padre. En cada dispositivo, al hacer clic en él, se presenta la lista de comandos de información del dispositivo, con a la derecha los medios para asignar este comando a uno o más resúmenes del objeto.
+
+Si uno o más resúmenes ya están definidos, el selector aparece en naranja, con los tipos de resúmenes marcados a la derecha.
 
 ## Resumen
 

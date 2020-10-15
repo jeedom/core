@@ -66,7 +66,8 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 ## Registerkarte &quot;Zusammenfassung&quot;
 
-Zusammenfassungen sind globale Informationen, die einem Objekt zugewiesen sind und insbesondere im Dashboard neben seinem Namen angezeigt werden.
+Zusammenfassungen sind globale Informationen, die einem Objekt zugewiesen sind und insbesondere im Dashboard (neben dem Namen des Objekts) und in der Zusammenfassung (auf der Miniaturansicht des Objekts) angezeigt werden).
+
 
 ### Schwarzes Brett
 
@@ -83,6 +84,12 @@ Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration
 > **Spitze**
 >
 > Wenn Sie eine Art von Zusammenfassung hinzufügen oder die Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung konfigurieren möchten, müssen Sie zur allgemeinen Konfiguration von Jeedom wechseln : **Einstellungen → System → Konfiguration : Registerkarte &quot;Zusammenfassungen&quot;**.
+
+## Registerkarte "Zusammenfassung" nach Gerät
+
+Auf dieser Seite werden alle Geräte angezeigt, bei denen das Objekt übergeordnet ist. Wenn Sie auf jedes Gerät klicken, wird die Liste der Geräteinfobefehle angezeigt. Rechts können Sie diesen Befehl einer oder mehreren Zusammenfassungen des Objekts zuweisen.
+
+Wenn bereits eine oder mehrere Zusammenfassungen definiert sind, wird der Selektor orange angezeigt, wobei die Arten von Zusammenfassungen rechts aktiviert sind.
 
 ## Übersicht
 
