@@ -66,7 +66,8 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 
 ## Onglet Résumé
 
-Les résumés sont des informations globales, affectées à un objet, qui s’affichent notamment sur le Dashboard à côté du nom de ce dernier.
+Les résumés sont des informations globales, affectées à un objet, qui s’affichent notamment sur le Dashboard (à côté du nom de l'objet), et sur la synthèse (sur la vignette de l'objet).
+
 
 ### Tableau d’affichage
 
@@ -83,6 +84,12 @@ Chaque onglet représente un type de résumé défini dans la configuration de J
 > **Tip**
 >
 > Si vous souhaitez ajouter un type de résumé ou pour configurer la méthode de calcul du résultat, l’unité, l’icône et le nom d’un résumé, vous devez aller dans la configuration générale de Jeedom : **Réglages → Système → Configuration : Onglet Résumés**.
+
+## Onglet Résumé par équipement
+
+Cette page affiche tout les équipements ayant l'objet comme parent. Sur chaque équipement, en cliquant dessus, la liste des commandes info de l'équipement est présentée, avec sur la droite le moyen d'attribuer cette commande à un ou plusieurs résumés de l'objet.
+
+Si un ou des résumé(s) sont déjà définis, le sélecteur apparait en orange, avec les types de résumés cochés sur la droite.
 
 ## Vue d’ensemble
 
