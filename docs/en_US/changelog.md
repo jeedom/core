@@ -45,6 +45,7 @@
 - **Timeline** : Management of multiple timelines.
 - **Timeline** : Complete graphic redesign of the timeline (Desktop / Mobile).
 - **Global Summary** : Summary view, support for summaries from a different object or with an empty root object (Desktop and WebApp).
+- **Tools / Objects** : New tab *Summary by equipment*.
 - **Domotic overview** : Plugin equipments deactivated and their controls no longer have the icons on the right (equipment configuration and advanced configuration).
 - **Domotic overview** : Ability to search on equipment categories.
 - **Domotic overview** : Possibility to move several pieces of equipment from one object to another.
