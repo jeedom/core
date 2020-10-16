@@ -390,9 +390,9 @@ function init(_value, _default) {
           }
         } else if ($(this).is('select')) {
           if (init(_value) == '') {
-            if (!$(this).prop('', true).length) {
-            $(this).find('option:first').prop('selected',true);
-        }
+            if ($(this).prop('', true).length) {
+              $(this).find('[value=""]').prop('selected', true)
+            }
           } else {
             $(this).val(init(_value));
           }
