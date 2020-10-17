@@ -132,7 +132,7 @@ $date = array(
 				</a>
 			</div>
 		</div>
-		<div id="div_graph" style="margin-top: 10px;height:calc(100% - 45px)"></div>
+		<div id="div_graph" style="margin-top: 10px;height:calc(100% - 50px)"></div>
 </div>
 
 <?php

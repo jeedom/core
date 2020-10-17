@@ -53,9 +53,9 @@ sendVarToJS('view_id', $view->getId());
 </div>
 <?php
 if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report') != 1) {
-	echo '<div class="col-lg-10 col-md-9 col-sm-8 div_displayViewContainer">';
+	echo '<div id="div_displayViewContainer" class="col-lg-10 col-md-9 col-sm-8 div_displayViewContainer">';
 } else {
-	echo '<div class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
+	echo '<div id="div_displayViewContainer" class="col-lg-12 col-md-12 col-sm-12 div_displayViewContainer">';
 }
 ?>
 <legend class="no-bordered center">

@@ -45,6 +45,7 @@
 - **Timeline** : Gestion de Timelines multiples.
 - **Timeline** : Refonte graphique complète de la timeline (Desktop / Mobile).
 - **Résumé global** : Affichage par résumé, support des résumés depuis un objet différent ou avec un objet racine vide (Desktop et WebApp).
+- **Outils / Objets** : Nouvel onglet *Résumé par équipements*.
 - **Résumé domotique** : Les équipements de plugins désactivés et leurs commandes n'ont plus les icônes de droite (configuration de l'équipement et configuration avancée).
 - **Résumé domotique** : Possibilité de chercher sur les catégories d'équipements.
 - **Résumé domotique** : Possibilité de déplacer plusieurs équipements d'un objet dans un autre.

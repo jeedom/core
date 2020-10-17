@@ -45,6 +45,7 @@
 - **Cronograma** : Gerenciamento de várias linhas do tempo.
 - **Cronograma** : Completo redesenho gráfico da linha do tempo (Desktop / Mobile).
 - **Resumo Global** : Visualização Resumo, suporte para resumos de um objeto diferente ou com um objeto raiz vazio (Desktop e WebApp).
+- **Ferramentas / Objetos** : Nova aba *Resumo por equipamento*.
 - **Resumo Automation** : Equipamentos de plug-in desativados e seus controles não têm mais os ícones à direita (configuração do equipamento e configuração avançada).
 - **Resumo Automation** : Capacidade de pesquisar nas categorias de equipamentos.
 - **Resumo Automation** : Possibilidade de mover várias peças de equipamento de um objeto para outro.

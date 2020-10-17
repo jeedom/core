@@ -66,7 +66,8 @@ Here are the different characteristics to configure an object :
 
 ## Summary tab
 
-Summaries are global information, assigned to an object, which are displayed in particular on the Dashboard next to its name.
+Summaries are global information, assigned to an object, which is displayed in particular on the Dashboard (next to the name of the object), and on the summary (on the object's thumbnail).
+
 
 ### Bulletin board
 
@@ -83,6 +84,12 @@ Each tab represents a type of summary defined in the configuration of Jeedom. Cl
 > **Tip**
 >
 > If you want to add a type of summary or to configure the calculation method of the result, the unit, the icon and the name of a summary, you must go to the general configuration of Jeedom : **Settings → System → Configuration : Summaries tab**.
+
+## Summary tab by device
+
+This page displays all the equipment having the object as parent. On each device, by clicking on it, the list of device info commands is presented, with on the right the means of assigning this command to one or more summaries of the object.
+
+If one or more summary (s) are already defined, the selector appears in orange, with the types of summaries checked on the right.
 
 ## Overview
 

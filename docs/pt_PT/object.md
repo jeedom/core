@@ -66,7 +66,8 @@ Aqui estão as diferentes características para configurar um objeto :
 
 ## Guia Resumo
 
-Resumos são informações globais, atribuídas a um objeto, que são exibidas em particular no Painel ao lado de seu nome.
+Resumos são informações globais, atribuídas a um objeto, que são exibidas em particular no Painel (ao lado do nome do objeto) e no resumo (na miniatura do objeto).
+
 
 ### Quadro de avisos
 
@@ -83,6 +84,12 @@ Cada guia representa um tipo de resumo definido na configuração do Jeedom. Cli
 > **Dica**
 >
 > Se você deseja adicionar um tipo de resumo ou configurar o método de cálculo do resultado, a unidade, o ícone e o nome de um resumo, deve-se acessar a configuração geral do Jeedom : **Configurações → Sistema → Configuração : Guia Resumos**.
+
+## Guia de resumo por dispositivo
+
+Esta página exibe todos os equipamentos tendo o objeto como pai. Em cada dispositivo, clicando sobre ele, é apresentada a lista de comandos de informação do dispositivo, à direita os meios de atribuir este comando a um ou mais resumos do objeto.
+
+Se um ou mais resumos já estiverem definidos, o seletor aparece em laranja, com os tipos de resumos marcados à direita.
 
 ## Visão global
 

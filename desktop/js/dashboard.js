@@ -301,7 +301,10 @@ function editWidgetMode(_mode,_save) {
 
     $('#div_displayObject .row').removeAttr('style')
     $('#dashTopBar').removeAttr('style')
-    $('#in_searchDashboard').removeAttr('style').val('').prop('readonly', false)
+    $('#in_searchDashboard')
+      .removeClass('editing')
+      .val('')
+      .prop('readonly', false)
   } else {
     jeedom.cmd.disableExecute = true
     isEditing = true
@@ -359,11 +362,10 @@ function editWidgetMode(_mode,_save) {
       }
     })
 
-    $('#div_displayObject .row').css('margin-top', '27px')
-    $('#dashTopBar').css({"position":"fixed","top":"55px","z-index":"500","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'})
+    $('#div_displayObject .row').css('margin-top', '40px')
+    $('#dashTopBar').css({"position":"fixed","top":"50px","z-index":"500","width":"calc(100% - "+($('body').width() - $('#dashTopBar').width())+'px)'})
     $('#in_searchDashboard')
-      .style("background-color", "var(--al-info-color)", "important")
-      .style("color", "var(--linkHoverLight-color)", "important")
+      .addClass('editing')
       .val("{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
       .prop('readonly', true)
   }
