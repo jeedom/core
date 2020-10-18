@@ -159,7 +159,8 @@ function loadPage(_url, _noPushHistory) {
     //scenarios uses special tooltips not requiring destroy.
     if ($('body').attr('data-page') != 'scenario') {
       if (__OBSERVER__ !== null) {
-        __OBSERVER__.observe(document.getElementById('div_mainContainer'), _observerConfig_)
+        var targetNode = document.getElementById('div_mainContainer')
+        if (targetNode) __OBSERVER__.observe(targetNode, _observerConfig_)
       } else {
         createObserver()
       }
