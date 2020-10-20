@@ -6,15 +6,15 @@ if (!isConnect()) {
 $_SESSION['user']->refresh();
 @session_write_close();
 $homePageDesktop = array(
-	'core::overview' => '{{Synthèse}}',
 	'core::dashboard' => '{{Dashboard}}',
+	'core::overview' => '{{Synthèse}}',
 	'core::view' => '{{Vue}}',
 	'core::plan' => '{{Design}}',
 	'core::plan3d' => '{{Design 3D}}',
 );
 $homePageMobile = array(
-	'core::overview' => '{{Synthèse}}',
 	'core::dashboard' => '{{Dashboard}}',
+	'core::overview' => '{{Synthèse}}',
 	'core::view' => '{{Vue}}',
 	'core::plan' => '{{Design}}',
 	'core::plan3d' => '{{Design 3D}}',
