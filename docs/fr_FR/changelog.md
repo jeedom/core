@@ -82,14 +82,8 @@
 - **Lib** : Update jQuery v3.4.1 vers v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 vers 5.13.1.
 - Sécurisation des requêtes Ajax.
+- Sécurisation des appels API.
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
 
-
->**IMPORTANT**
->
-> L'inversion des commandes binaire n'inverse plus seulement le widget mais la valeur de la commande, il faudra donc reconfigurer correctement les scénarios et les résumés qui utilisent des commandes de type binaire inversé
-
 [Changelog v4.0](/fr_FR/core/4.0/changelog)
-
-
