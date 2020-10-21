@@ -1774,6 +1774,7 @@
         "Clé Market": "Mercado Principal",
         "Clé Market de": "Mercado Principal de",
         "Clé API pour le plugin": "Chave de API para o plugin",
+        "Ne pas autoriser les methodes générales": "Não permitir métodos gerais",
         "Vérifications Système": "Verificações do sistema",
         "Vérification générale": "Verificação geral",
         "Permet de lancer le test de consistence de Jeedom.": "Vamos iniciar o teste de consistência Jeedom",
@@ -4269,6 +4270,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "Não está autorizado a executar esta ação (API",
         "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "Não está autorizado a executar esta ação (API HTTP desativada), IP:",
         "Demande sur l\\'api http venant de : ": "Pedido na API http proveniente de:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Commande inconnue : ": "Comando desconhecido:",
         "Token invalide": "Token inválido",
         "Aucune commande correspondant à l\\'ID : ": "Nenhum comando correspondente ao ID:",
@@ -4295,9 +4297,10 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Pedido inválido. Versão JSON-RPC inválida:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Nome de utilizador ou senha não podem ficar em branco",
         "Echec lors de l\\'authentification": "Falha ao autenticar",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Não está autorizado a executar esta ação 1",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Não está autorizado a executar esta ação 2",
+        "Demande pour le plugin : ": "Pedido de plugin:",
+        "Aucune méthode correspondante : ": "Nenhum método correspondente:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Não está autorizado a executar esta ação",
         "Objet introuvable : ": "Objeto não encontrado:",
         "Vous n\\'avez pas les droits de faire cette action": "Você não tem o direito de realizar esta ação",
@@ -4314,9 +4317,7 @@
         "Scénario exécuté sur appel API": "Cenário executado na chamada da API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "O parâmetro \"state\" não pode estar vazio e deve ter o valor [executar, parar, ativar, desativar]",
         "Impossible de trouver l\\'objet associé : ": "Não foi possível encontrar o objeto associado:",
-        "Impossible de trouver l\\'objet": "Não foi possível encontrar o objeto",
-        "Demande pour le plugin : ": "Pedido de plugin:",
-        "Aucune méthode correspondante : ": "Nenhum método correspondente:"
+        "Impossible de trouver l\\'objet": "Não foi possível encontrar o objeto"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",

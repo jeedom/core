@@ -394,6 +394,8 @@ For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 - **Localhost** : only requests from the system on which Jeedom is installed are allowed,
 - **Enabled** : no restrictions, any system with access to your Jeedom will be able to access this API.
 
+For each plugin API key you can prohibit them from core methods (general) to limit them to their only embedded method (be careful some plugin like mobile or jeelink absolutely need core methods)
+
 ## Onglet &gt;\_OS/DB
 
 > **Important**
@@ -416,5 +418,3 @@ For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 - **System Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
 - **Database Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
 - **Username / Password** : Username and password to access the database used by Jeedom.
-
-

@@ -1774,6 +1774,7 @@
         "Clé Market": "",
         "Clé Market de": "",
         "Clé API pour le plugin": "",
+        "Ne pas autoriser les methodes générales": "",
         "Vérifications Système": "",
         "Vérification générale": "",
         "Permet de lancer le test de consistence de Jeedom.": "",
@@ -4269,6 +4270,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "",
         "Demande sur l\\'api http venant de : ": "Http API'sından gelen istek:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Commande inconnue : ": "Bilinmeyen komut:",
         "Token invalide": "Geçersiz simge",
         "Aucune commande correspondant à l\\'ID : ": "Kimliğe karşılık gelen komut yok:",
@@ -4295,9 +4297,10 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Geçersiz istek. Geçersiz JSON-RPC sürümü:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Kullanıcı adı veya şifre boş bırakılamaz",
         "Echec lors de l\\'authentification": "Kimlik doğrulaması başarısız oldu",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Vous n\\'êtes pas autorisé à effectuer cette action 1": "Bu işlemi gerçekleştirme yetkiniz yok 1",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Bu işlemi gerçekleştirme yetkiniz yok 2",
+        "Demande pour le plugin : ": "Eklenti talebi:",
+        "Aucune méthode correspondante : ": "Karşılık gelen yöntem yok:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Objet introuvable : ": "Nesne bulunamadı:",
         "Vous n\\'avez pas les droits de faire cette action": "",
@@ -4314,9 +4317,7 @@
         "Scénario exécuté sur appel API": "API çağrısında senaryo yürütüldü",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "",
         "Impossible de trouver l\\'objet associé : ": "İlişkili nesne bulunamıyor:",
-        "Impossible de trouver l\\'objet": "Nesne bulunamadı",
-        "Demande pour le plugin : ": "Eklenti talebi:",
-        "Aucune méthode correspondante : ": "Karşılık gelen yöntem yok:"
+        "Impossible de trouver l\\'objet": "Nesne bulunamadı"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",

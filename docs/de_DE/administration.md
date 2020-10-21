@@ -394,6 +394,8 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 - **Localhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
 - **Aktiv** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
 
+Für jeden Plugin-API-Schlüssel können Sie die Verwendung von Kernmethoden (allgemein) verbieten, um sie auf ihre einzige eingebettete Methode zu beschränken (seien Sie vorsichtig, einige Plugins wie Mobile oder Jeelink benötigen unbedingt Kernmethoden)
+
 ## Onglet &gt;;\._OS/DB
 
 > **Wichtig**
@@ -416,5 +418,3 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 - **Systemverwaltung** : Bietet Zugriff auf eine Systemverwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die nützlichsten Befehle starten können, insbesondere um Informationen über das System zu erhalten.
 - **Datenbankverwaltung** : Ermöglicht den Zugriff auf die Jeedom-Datenbank. Sie können dann Befehle im oberen Feld starten.
 - **Benutzername / Passwort** : Benutzername und Passwort für den Zugriff auf die von Jeedom verwendete Datenbank.
-
-

@@ -1774,6 +1774,7 @@
         "Clé Market": "",
         "Clé Market de": "",
         "Clé API pour le plugin": "",
+        "Ne pas autoriser les methodes générales": "",
         "Vérifications Système": "",
         "Vérification générale": "",
         "Permet de lancer le test de consistence de Jeedom.": "",
@@ -4269,6 +4270,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "",
         "Demande sur l\\'api http venant de : ": "",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "",
         "Commande inconnue : ": "",
         "Token invalide": "",
         "Aucune commande correspondant à l\\'ID : ": "",
@@ -4295,9 +4297,10 @@
         "Requête invalide. Version JSON-RPC invalide : ": "",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "",
         "Echec lors de l\\'authentification": "",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action 1": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "",
+        "Demande pour le plugin : ": "Demande pour le plugin :",
+        "Aucune méthode correspondante : ": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "",
         "Objet introuvable : ": "",
         "Vous n\\'avez pas les droits de faire cette action": "",
@@ -4314,9 +4317,7 @@
         "Scénario exécuté sur appel API": "",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "",
         "Impossible de trouver l\\'objet associé : ": "",
-        "Impossible de trouver l\\'objet": "",
-        "Demande pour le plugin : ": "Demande pour le plugin :",
-        "Aucune méthode correspondante : ": ""
+        "Impossible de trouver l\\'objet": ""
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "",

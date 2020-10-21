@@ -1774,6 +1774,7 @@
         "Clé Market": "主要市場",
         "Clé Market de": "主要市場",
         "Clé API pour le plugin": "プラグインのAPIキー",
+        "Ne pas autoriser les methodes générales": "",
         "Vérifications Système": "",
         "Vérification générale": "一般的な検証",
         "Permet de lancer le test de consistence de Jeedom.": "Jeedom一貫性テストを起動します。",
@@ -4269,6 +4270,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "",
         "Demande sur l\\'api http venant de : ": "",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
         "Commande inconnue : ": "不明なコマンド：",
         "Token invalide": "",
         "Aucune commande correspondant à l\\'ID : ": "",
@@ -4295,9 +4297,10 @@
         "Requête invalide. Version JSON-RPC invalide : ": "",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "",
         "Echec lors de l\\'authentification": "",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
         "Vous n\\'êtes pas autorisé à effectuer cette action 1": "このアクションを実行する権限がありません1",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "",
+        "Demande pour le plugin : ": "プラグインのリクエスト：",
+        "Aucune méthode correspondante : ": "対応する方法はありません：",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "このアクションを実行する権限がありません",
         "Objet introuvable : ": "オブジェクトが見つかりません：",
         "Vous n\\'avez pas les droits de faire cette action": "",
@@ -4314,9 +4317,7 @@
         "Scénario exécuté sur appel API": "API呼び出しで実行されるシナリオ",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "",
         "Impossible de trouver l\\'objet associé : ": "関連するオブジェクトが見つかりません：",
-        "Impossible de trouver l\\'objet": "オブジェクトが見つかりません",
-        "Demande pour le plugin : ": "プラグインのリクエスト：",
-        "Aucune méthode correspondante : ": "対応する方法はありません："
+        "Impossible de trouver l\\'objet": "オブジェクトが見つかりません"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",

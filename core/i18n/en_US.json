@@ -1774,6 +1774,7 @@
         "Clé Market": "Market Key",
         "Clé Market de": "Market Key for",
         "Clé API pour le plugin": "API key for the plugin",
+        "Ne pas autoriser les methodes générales": "Do not allow general methods",
         "Vérifications Système": "System Checks",
         "Vérification générale": "General verification",
         "Permet de lancer le test de consistence de Jeedom.": "Lets launch the Jeedom consistency test",
@@ -4269,6 +4270,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action (API ": "You are not authorized to perform this action (API",
         "Vous n\\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ": "You are not authorized to perform this action (HTTP API disabled), IP:",
         "Demande sur l\\'api http venant de : ": "Request on the http API coming from:",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
         "Commande inconnue : ": "Unknown command:",
         "Token invalide": "Invalid token",
         "Aucune commande correspondant à l\\'ID : ": "No command corresponding to the ID:",
@@ -4295,9 +4297,10 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Invalid request. Invalid JSON-RPC version:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Username or password cannot be blank",
         "Echec lors de l\\'authentification": "Failed to authenticate",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
         "Vous n\\'êtes pas autorisé à effectuer cette action 1": "You are not authorized to perform this action 1",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "You are not authorized to perform this action 2",
+        "Demande pour le plugin : ": "Request for plugin:",
+        "Aucune méthode correspondante : ": "No corresponding method:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "You are not authorized to perform this action",
         "Objet introuvable : ": "Object not found:",
         "Vous n\\'avez pas les droits de faire cette action": "You do not have the rights to do this action",
@@ -4314,9 +4317,7 @@
         "Scénario exécuté sur appel API": "Scenario executed on API call",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "The \"state\" parameter cannot be empty and must have the value [run, stop, enable, disable]",
         "Impossible de trouver l\\'objet associé : ": "Unable to find the associated object:",
-        "Impossible de trouver l\\'objet": "Unable to find object",
-        "Demande pour le plugin : ": "Request for plugin:",
-        "Aucune méthode correspondante : ": "No corresponding method:"
+        "Impossible de trouver l\\'objet": "Unable to find object"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
