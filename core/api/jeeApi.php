@@ -343,7 +343,13 @@ try {
 	if($_RESTRICTED){
 		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 			log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
-			include_file('core', $params['plugin'], 'api', $params['plugin']);
+			try {
+				include_file('core', $params['plugin'], 'api', $params['plugin']);
+			} catch (\Exception $e) {
+				if($e->getCode() != 35486){
+					throw $e;
+				}
+			}
 		}
 		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
 	}
@@ -1296,7 +1302,13 @@ try {
 	
 	if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 		log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
-		include_file('core', $params['plugin'], 'api', $params['plugin']);
+		try {
+			include_file('core', $params['plugin'], 'api', $params['plugin']);
+		} catch (\Exception $e) {
+			if($e->getCode() != 35486){
+				throw $e;
+			}
+		}
 	}
 	throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
 	/*         * *********Catch exeption*************** */
