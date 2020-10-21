@@ -439,7 +439,7 @@ function createUpdateObserver() {
   }
 
   var targetNode = document.getElementById('pre_updateInfo')
-  _UpdateObserver_.observe(targetNode, observerConfig)
+  if (targetNode) _UpdateObserver_.observe(targetNode, observerConfig)
 }
 
 function cleanUpdateLog() {

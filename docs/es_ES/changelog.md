@@ -45,6 +45,7 @@
 - **Línea de tiempo** : Gestión de múltiples líneas de tiempo.
 - **Línea de tiempo** : Rediseño gráfico completo de la línea de tiempo (Escritorio / Móvil).
 - **Resumen global** : Vista de resumen, soporte para resúmenes de un objeto diferente o con un objeto raíz vacío (escritorio y aplicación web).
+- **Herramientas / Objetos** : Nueva pestaña *Resumen por equipos*.
 - **Resumen de domótica** : Equipos de complementos desactivados y sus controles ya no tienen los iconos a la derecha (configuración de equipos y configuración avanzada).
 - **Resumen de domótica** : Posibilidad de buscar en categorías de equipos.
 - **Resumen de domótica** : Posibilidad de mover varios equipos de un objeto a otro.

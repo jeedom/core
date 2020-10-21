@@ -85,7 +85,7 @@ function createSummaryObserver() {
   }
 
   var targetNode = document.getElementById('objectOverviewContainer')
-  _SummaryObserver_.observe(targetNode, observerConfig)
+  if (targetNode) _SummaryObserver_.observe(targetNode, observerConfig)
 }
 
 function updateSummary(_className) {
