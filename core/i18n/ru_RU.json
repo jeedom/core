@@ -2555,7 +2555,8 @@
         "Régénérer API": "Восстановить API",
         "Supprimer": "удаление",
         "Mot de passe": "Пароль",
-        "Droits": "права"
+        "Droits": "права",
+        "Gestion des droits": ""
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Конфигурация плагина",
@@ -4299,6 +4300,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "",
         "Objet introuvable : ": "",
+        "Vous n\\'avez pas les droits de faire cette action": "",
         "EqLogic introuvable : ": "",
         "Type incorrect (classe commande inexistante)": "",
         "Cmd introuvable : ": "",
@@ -4308,6 +4310,7 @@
         "Cette action nécessite une confirmation": "",
         "Vous n\\'êtes pas autorisé à faire cette action": "",
         "Scénario introuvable : ": "",
+        "Vous n\\'avez pas les droits sur ce scénario": "",
         "Scénario exécuté sur appel API": "",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "",
         "Impossible de trouver l\\'objet associé : ": "",
