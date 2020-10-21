@@ -36,8 +36,9 @@ if ($user->getProfils() != 'restrict') {
   <li role="presentation"><a href="#tab_scenario" aria-controls="tab_scenario" role="tab" data-toggle="tab">{{Scénarios}}</a></li>
 </ul>
 
-<div class="tab-content" id="div_tasbUserRights">
-  <span class="userAttr" data-l1key="id" style="display : none;"/>
+<div class="tab-content" id="div_tabUserRights">
+  <span class="userAttr" data-l1key="id" style="display:none;"></span>
+
   <div role="tabpanel" class="tab-pane active" id="tab_eqLogic">
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
@@ -66,6 +67,7 @@ if ($user->getProfils() != 'restrict') {
       </tbody>
     </table>
   </div>
+
   <div role="tabpanel" class="tab-pane" id="tab_scenario">
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
@@ -97,12 +99,12 @@ if ($user->getProfils() != 'restrict') {
 </div>
 
 <script>
-$('#div_tasbUserRights').setValues(user_rights, '.userAttr')
+$('#div_tabUserRights').setValues(user_rights, '.userAttr')
 initTableSorter()
 
 $("#bt_usersRightsSave").on('click', function(event) {
   jeedom.user.save({
-    users: $('#div_tasbUserRights').getValues('.userAttr'),
+    users: $('#div_tabUserRights').getValues('.userAttr'),
     error: function (error) {
       $('#div_userRightAlert').showAlert({message: error.message, level: 'danger'})
     },
