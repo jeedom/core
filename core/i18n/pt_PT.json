@@ -2555,7 +2555,8 @@
         "Régénérer API": "Regenerar API",
         "Supprimer": "Remover",
         "Mot de passe": "Senha",
-        "Droits": "Direitos"
+        "Droits": "Direitos",
+        "Gestion des droits": "Gerenciamento de direitos"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuração do plugin",
@@ -4299,6 +4300,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Não está autorizado a executar esta ação 2",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Não está autorizado a executar esta ação",
         "Objet introuvable : ": "Objeto não encontrado:",
+        "Vous n\\'avez pas les droits de faire cette action": "Você não tem o direito de realizar esta ação",
         "EqLogic introuvable : ": "EqLogic não encontrado:",
         "Type incorrect (classe commande inexistante)": "Invalid type (classe equipamento inexistente)",
         "Cmd introuvable : ": "Cmd não encontrado:",
@@ -4308,6 +4310,7 @@
         "Cette action nécessite une confirmation": "Esta ação requer confirmação",
         "Vous n\\'êtes pas autorisé à faire cette action": "Não tem permissão para executar esta ação",
         "Scénario introuvable : ": "Cenário não encontrado:",
+        "Vous n\\'avez pas les droits sur ce scénario": "Você não tem direitos sobre este cenário",
         "Scénario exécuté sur appel API": "Cenário executado na chamada da API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "O parâmetro \"state\" não pode estar vazio e deve ter o valor [executar, parar, ativar, desativar]",
         "Impossible de trouver l\\'objet associé : ": "Não foi possível encontrar o objeto associado:",

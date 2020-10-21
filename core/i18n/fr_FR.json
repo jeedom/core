@@ -2555,7 +2555,8 @@
         "Régénérer API": "Régénérer API",
         "Supprimer": "Supprimer",
         "Mot de passe": "Mot de passe",
-        "Droits": "Droits"
+        "Droits": "Droits",
+        "Gestion des droits": "Gestion des droits"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -4299,6 +4300,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Vous n\\'êtes pas autorisé à effectuer cette action 2",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Vous n\\'êtes pas autorisé à effectuer cette action ",
         "Objet introuvable : ": "Objet introuvable : ",
+        "Vous n\\'avez pas les droits de faire cette action": "Vous n\\'avez pas les droits de faire cette action",
         "EqLogic introuvable : ": "EqLogic introuvable : ",
         "Type incorrect (classe commande inexistante)": "Type incorrect (classe commande inexistante)",
         "Cmd introuvable : ": "Cmd introuvable : ",
@@ -4308,6 +4310,7 @@
         "Cette action nécessite une confirmation": "Cette action nécessite une confirmation",
         "Vous n\\'êtes pas autorisé à faire cette action": "Vous n\\'êtes pas autorisé à faire cette action",
         "Scénario introuvable : ": "Scénario introuvable : ",
+        "Vous n\\'avez pas les droits sur ce scénario": "Vous n\\'avez pas les droits sur ce scénario",
         "Scénario exécuté sur appel API": "Scénario exécuté sur appel API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver l\\'objet associé : ": "Impossible de trouver l\\'objet associé : ",

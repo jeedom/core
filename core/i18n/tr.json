@@ -2555,7 +2555,8 @@
         "Régénérer API": "",
         "Supprimer": "Sil",
         "Mot de passe": "Şifre",
-        "Droits": "Haklar"
+        "Droits": "Haklar",
+        "Gestion des droits": ""
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Eklentinin ayarları",
@@ -4299,6 +4300,7 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action 2": "Bu işlemi gerçekleştirme yetkiniz yok 2",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Objet introuvable : ": "Nesne bulunamadı:",
+        "Vous n\\'avez pas les droits de faire cette action": "",
         "EqLogic introuvable : ": "EqLogic bulunamadı:",
         "Type incorrect (classe commande inexistante)": "Geçersiz tür (var olmayan sipariş sınıfı)",
         "Cmd introuvable : ": "Cmd bulunamadı:",
@@ -4308,6 +4310,7 @@
         "Cette action nécessite une confirmation": "Bu işlem için onay gerekiyor",
         "Vous n\\'êtes pas autorisé à faire cette action": "Bu işlemi yapmanıza izin verilmiyor",
         "Scénario introuvable : ": "Senaryo bulunamadı:",
+        "Vous n\\'avez pas les droits sur ce scénario": "",
         "Scénario exécuté sur appel API": "API çağrısında senaryo yürütüldü",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "",
         "Impossible de trouver l\\'objet associé : ": "İlişkili nesne bulunamıyor:",
