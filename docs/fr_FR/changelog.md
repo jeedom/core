@@ -81,6 +81,7 @@
 - **Lib** : Update HighStock v7.1.2 vers v8.2.0.
 - **Lib** : Update jQuery v3.4.1 vers v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 vers 5.13.1.
+- **API** :  ajout d'une option pour interdire une clef api d'un plugin d'executer des methodes core (général)
 - Sécurisation des requêtes Ajax.
 - Sécurisation des appels API.
 - Corrections de bugs.

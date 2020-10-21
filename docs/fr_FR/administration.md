@@ -394,6 +394,8 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 - **Localhost** : seules les requêtes venant du système sur lequel est installé Jeedom sont autorisées,
 - **Activé** : aucune restriction, n’importe quel système ayant accès à votre Jeedom pourra accéder à cette API.
 
+Pour chaque clé API de plugin vous pouvez leur interdire les méthodes core (général) pour les limiter à leur seule methode embarqué (attention certain plugin comme mobile ou jeelink ont absolument besoin des methodes core)
+
 ## Onglet &gt;\_OS/DB
 
 > **Important**
@@ -416,5 +418,3 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 - **Administration Système** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
 - **Administration Base de données** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champ du haut.
 - **Utilisateur / Mot de passe** : Nom de l’utilisateur et mot de passe d’accès à la base de données utilisé par Jeedom.
-
-
