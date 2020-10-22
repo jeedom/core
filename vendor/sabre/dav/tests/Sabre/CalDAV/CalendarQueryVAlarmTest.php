@@ -1,19 +1,17 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\VObject;
 
-class CalendarQueryVAlarmTest extends \PHPUnit\Framework\TestCase
-{
+class CalendarQueryVAlarmTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * This test is specifically for a time-range query on a VALARM, contained
-     * in a VEVENT that's recurring.
+     * in a VEVENT that's recurring
      */
-    public function testValarm()
-    {
+    function testValarm() {
+
         $vcalendar = new VObject\Component\VCalendar();
 
         $vevent = $vcalendar->createComponent('VEVENT');
@@ -25,28 +23,29 @@ class CalendarQueryVAlarmTest extends \PHPUnit\Framework\TestCase
         $valarm->TRIGGER = '-P15D';
         $vevent->add($valarm);
 
+
         $vcalendar->add($vevent);
 
         $filter = [
-            'name' => 'VCALENDAR',
+            'name'           => 'VCALENDAR',
             'is-not-defined' => false,
-            'time-range' => null,
-            'prop-filters' => [],
-            'comp-filters' => [
+            'time-range'     => null,
+            'prop-filters'   => [],
+            'comp-filters'   => [
                 [
-                    'name' => 'VEVENT',
+                    'name'           => 'VEVENT',
                     'is-not-defined' => false,
-                    'time-range' => null,
-                    'prop-filters' => [],
-                    'comp-filters' => [
+                    'time-range'     => null,
+                    'prop-filters'   => [],
+                    'comp-filters'   => [
                         [
-                            'name' => 'VALARM',
+                            'name'           => 'VALARM',
                             'is-not-defined' => false,
-                            'prop-filters' => [],
-                            'comp-filters' => [],
-                            'time-range' => [
+                            'prop-filters'   => [],
+                            'comp-filters'   => [],
+                            'time-range'     => [
                                 'start' => new \DateTime('2012-05-10'),
-                                'end' => new \DateTime('2012-05-20'),
+                                'end'   => new \DateTime('2012-05-20'),
                             ],
                         ],
                     ],
@@ -74,8 +73,8 @@ class CalendarQueryVAlarmTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($validator->validate($vcalendar, $filter));
     }
 
-    public function testAlarmWayBefore()
-    {
+    function testAlarmWayBefore() {
+
         $vcalendar = new VObject\Component\VCalendar();
 
         $vevent = $vcalendar->createComponent('VEVENT');
@@ -89,25 +88,25 @@ class CalendarQueryVAlarmTest extends \PHPUnit\Framework\TestCase
         $vcalendar->add($vevent);
 
         $filter = [
-            'name' => 'VCALENDAR',
+            'name'           => 'VCALENDAR',
             'is-not-defined' => false,
-            'time-range' => null,
-            'prop-filters' => [],
-            'comp-filters' => [
+            'time-range'     => null,
+            'prop-filters'   => [],
+            'comp-filters'   => [
                 [
-                    'name' => 'VEVENT',
+                    'name'           => 'VEVENT',
                     'is-not-defined' => false,
-                    'time-range' => null,
-                    'prop-filters' => [],
-                    'comp-filters' => [
+                    'time-range'     => null,
+                    'prop-filters'   => [],
+                    'comp-filters'   => [
                         [
-                            'name' => 'VALARM',
+                            'name'           => 'VALARM',
                             'is-not-defined' => false,
-                            'prop-filters' => [],
-                            'comp-filters' => [],
-                            'time-range' => [
+                            'prop-filters'   => [],
+                            'comp-filters'   => [],
+                            'time-range'     => [
                                 'start' => new \DateTime('2011-12-10'),
-                                'end' => new \DateTime('2011-12-20'),
+                                'end'   => new \DateTime('2011-12-20'),
                             ],
                         ],
                     ],
@@ -117,5 +116,7 @@ class CalendarQueryVAlarmTest extends \PHPUnit\Framework\TestCase
 
         $validator = new CalendarQueryValidator();
         $this->assertTrue($validator->validate($vcalendar, $filter));
+
     }
+
 }

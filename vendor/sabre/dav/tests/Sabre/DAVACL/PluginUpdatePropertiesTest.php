@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL;
 
 use Sabre\DAV;
 
-class PluginUpdatePropertiesTest extends \PHPUnit\Framework\TestCase
-{
-    public function testUpdatePropertiesPassthrough()
-    {
+class PluginUpdatePropertiesTest extends \PHPUnit_Framework_TestCase {
+
+    function testUpdatePropertiesPassthrough() {
+
         $tree = [
             new DAV\SimpleCollection('foo'),
         ];
@@ -26,10 +24,11 @@ class PluginUpdatePropertiesTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $result);
+
     }
 
-    public function testRemoveGroupMembers()
-    {
+    function testRemoveGroupMembers() {
+
         $tree = [
             new MockPrincipal('foo', 'foo'),
         ];
@@ -43,15 +42,16 @@ class PluginUpdatePropertiesTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $expected = [
-            '{DAV:}group-member-set' => 204,
+            '{DAV:}group-member-set' => 204
         ];
 
         $this->assertEquals($expected, $result);
         $this->assertEquals([], $tree[0]->getGroupMemberSet());
+
     }
 
-    public function testSetGroupMembers()
-    {
+    function testSetGroupMembers() {
+
         $tree = [
             new MockPrincipal('foo', 'foo'),
         ];
@@ -65,18 +65,19 @@ class PluginUpdatePropertiesTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $expected = [
-            '{DAV:}group-member-set' => 200,
+            '{DAV:}group-member-set' => 200
         ];
 
         $this->assertEquals($expected, $result);
         $this->assertEquals(['bar', 'baz'], $tree[0]->getGroupMemberSet());
+
     }
 
     /**
-     * @expectedException \Sabre\DAV\Exception
+     * @expectedException Sabre\DAV\Exception
      */
-    public function testSetBadValue()
-    {
+    function testSetBadValue() {
+
         $tree = [
             new MockPrincipal('foo', 'foo'),
         ];
@@ -88,10 +89,11 @@ class PluginUpdatePropertiesTest extends \PHPUnit\Framework\TestCase
         $result = $server->updateProperties('foo', [
             '{DAV:}group-member-set' => new \StdClass(),
         ]);
+
     }
 
-    public function testSetBadNode()
-    {
+    function testSetBadNode() {
+
         $tree = [
             new DAV\SimpleCollection('foo'),
         ];
@@ -109,5 +111,6 @@ class PluginUpdatePropertiesTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $result);
+
     }
 }

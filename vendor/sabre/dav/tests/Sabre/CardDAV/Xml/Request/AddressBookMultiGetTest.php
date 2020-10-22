@@ -4,20 +4,18 @@ namespace Sabre\CardDAV\Xml\Request;
 
 use Sabre\DAV\Xml\XmlTest;
 
-class AddressBookMultiGetTest extends XmlTest
-{
+class AddressBookMultiGetTest extends XmlTest {
+
     protected $elementMap = [
         '{urn:ietf:params:xml:ns:carddav}addressbook-multiget' => 'Sabre\\CardDAV\\Xml\\Request\AddressBookMultiGetReport',
     ];
 
     /**
      * @dataProvider providesAddressDataXml
-     *
      * @param $xml
      */
-    public function testDeserialize($xml, $expectedProps, $expectedVersion = '3.0')
-    {
-        /* lines look a bit odd but this triggers an XML parsing bug */
+    function testDeserialize($xml, $expectedProps, $expectedVersion = '3.0') {
+
         $result = $this->parse($xml);
         $addressBookMultiGetReport = new AddressBookMultiGetReport();
         $addressBookMultiGetReport->properties = [
@@ -30,13 +28,15 @@ class AddressBookMultiGetTest extends XmlTest
         $addressBookMultiGetReport->version = $expectedVersion;
         $addressBookMultiGetReport->addressDataProperties = $expectedProps;
 
+
         $this->assertEquals(
             $addressBookMultiGetReport,
             $result['value']
         );
+
     }
 
-    public function providesAddressDataXml()
+    function providesAddressDataXml()
     {
         $simpleXml = <<<XML
 <?xml version='1.0' encoding='UTF-8' ?>
@@ -79,11 +79,10 @@ XML;
   <d:href>/foo.vcf</d:href>
 </CARD:addressbook-multiget>
 XML;
-
         return [
-            'address data with version' => [$simpleXml, [], '4.0'],
+            'address data with version'         => [$simpleXml, [], '4.0'],
             'address data with inner all props' => [$allPropsXml, []],
-            'address data with mutliple props' => [$multiplePropsXml, ['VERSION', 'UID', 'NICKNAME', 'EMAIL', 'FN']],
+            'address data with mutliple props'  => [$multiplePropsXml, ['VERSION', 'UID', 'NICKNAME', 'EMAIL', 'FN']]
         ];
     }
 }

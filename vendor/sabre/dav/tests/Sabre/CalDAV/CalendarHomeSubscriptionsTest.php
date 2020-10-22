@@ -1,38 +1,38 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\DAV\MkCol;
 
-class CalendarHomeSubscriptionsTest extends \PHPUnit\Framework\TestCase
-{
+class CalendarHomeSubscriptionsTest extends \PHPUnit_Framework_TestCase {
+
     protected $backend;
 
-    public function getInstance()
-    {
+    function getInstance() {
+
         $props = [
-            '{DAV:}displayname' => 'baz',
+            '{DAV:}displayname'                     => 'baz',
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/test.ics'),
         ];
         $principal = [
-            'uri' => 'principals/user1',
+            'uri' => 'principals/user1'
         ];
         $this->backend = new Backend\MockSubscriptionSupport([], []);
         $this->backend->createSubscription('principals/user1', 'uri', $props);
 
         return new CalendarHome($this->backend, $principal);
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $instance = $this->getInstance();
         $this->assertEquals('user1', $instance->getName());
+
     }
 
-    public function testGetChildren()
-    {
+    function testGetChildren() {
+
         $instance = $this->getInstance();
         $children = $instance->getChildren();
         $this->assertEquals(1, count($children));
@@ -42,30 +42,32 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit\Framework\TestCase
             }
         }
         $this->fail('There were no subscription nodes in the calendar home');
+
     }
 
-    public function testCreateSubscription()
-    {
+    function testCreateSubscription() {
+
         $instance = $this->getInstance();
         $rt = ['{DAV:}collection', '{http://calendarserver.org/ns/}subscribed'];
 
         $props = [
-            '{DAV:}displayname' => 'baz',
+            '{DAV:}displayname'                     => 'baz',
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/test2.ics'),
         ];
         $instance->createExtendedCollection('sub2', new MkCol($rt, $props));
 
         $children = $instance->getChildren();
         $this->assertEquals(2, count($children));
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\InvalidResourceType
      */
-    public function testNoSubscriptionSupport()
-    {
+    function testNoSubscriptionSupport() {
+
         $principal = [
-            'uri' => 'principals/user1',
+            'uri' => 'principals/user1'
         ];
         $backend = new Backend\Mock([], []);
         $uC = new CalendarHome($backend, $principal);
@@ -73,9 +75,11 @@ class CalendarHomeSubscriptionsTest extends \PHPUnit\Framework\TestCase
         $rt = ['{DAV:}collection', '{http://calendarserver.org/ns/}subscribed'];
 
         $props = [
-            '{DAV:}displayname' => 'baz',
+            '{DAV:}displayname'                     => 'baz',
             '{http://calendarserver.org/ns/}source' => new \Sabre\DAV\Xml\Property\Href('http://example.org/test2.ics'),
         ];
         $uC->createExtendedCollection('sub2', new MkCol($rt, $props));
+
     }
+
 }

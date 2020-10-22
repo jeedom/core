@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV;
 
 use Sabre\DAVServerTest;
@@ -14,22 +12,25 @@ use Sabre\HTTP;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class HttpHeadTest extends DAVServerTest
-{
+class HttpHeadTest extends DAVServerTest {
+
     /**
      * Sets up the DAV tree.
+     *
+     * @return void
      */
-    public function setUpTree()
-    {
+    function setUpTree() {
+
         $this->tree = new Mock\Collection('root', [
             'file1' => 'foo',
             new Mock\Collection('dir', []),
-            new Mock\StreamingFile('streaming', 'stream'),
+            new Mock\StreamingFile('streaming', 'stream')
         ]);
+
     }
 
-    public function testHEAD()
-    {
+    function testHEAD() {
+
         $request = new HTTP\Request('HEAD', '//file1');
         $response = $this->request($request);
 
@@ -41,14 +42,15 @@ class HttpHeadTest extends DAVServerTest
         $this->assertEquals(
             [
                 'X-Sabre-Version' => [Version::VERSION],
-                'Content-Type' => ['application/octet-stream'],
-                'Content-Length' => [3],
-                'ETag' => ['"'.md5('foo').'"'],
+                'Content-Type'    => ['application/octet-stream'],
+                'Content-Length'  => [3],
+                'ETag'            => ['"' . md5('foo') . '"'],
             ],
             $response->getHeaders()
         );
 
         $this->assertEquals('', $response->getBodyAsString());
+
     }
 
     /**
@@ -56,12 +58,13 @@ class HttpHeadTest extends DAVServerTest
      * clients needs HEAD requests on collections to respond with a 200, so
      * that's what we do.
      */
-    public function testHEADCollection()
-    {
+    function testHEADCollection() {
+
         $request = new HTTP\Request('HEAD', '/dir');
         $response = $this->request($request);
 
         $this->assertEquals(200, $response->getStatus());
+
     }
 
     /**
@@ -69,13 +72,12 @@ class HttpHeadTest extends DAVServerTest
      * The Auth plugin must not be triggered twice for these, so we'll
      * test for that.
      */
-    public function testDoubleAuth()
-    {
+    function testDoubleAuth() {
+
         $count = 0;
 
-        $authBackend = new Auth\Backend\BasicCallBack(function ($userName, $password) use (&$count) {
-            ++$count;
-
+        $authBackend = new Auth\Backend\BasicCallBack(function($userName, $password) use (&$count) {
+            $count++;
             return true;
         });
         $this->server->addPlugin(
@@ -83,11 +85,13 @@ class HttpHeadTest extends DAVServerTest
                 $authBackend
             )
         );
-        $request = new HTTP\Request('HEAD', '/file1', ['Authorization' => 'Basic '.base64_encode('user:pass')]);
+        $request = new HTTP\Request('HEAD', '/file1', ['Authorization' => 'Basic ' . base64_encode('user:pass')]);
         $response = $this->request($request);
 
         $this->assertEquals(200, $response->getStatus());
 
         $this->assertEquals(1, $count, 'Auth was triggered twice :(');
+
     }
+
 }

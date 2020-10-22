@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Schedule;
 
 use Sabre\CalDAV\Backend;
 
-class SchedulingObjectTest extends \PHPUnit\Framework\TestCase
-{
+class SchedulingObjectTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var Sabre\CalDAV\Backend_PDO
      */
@@ -21,11 +19,9 @@ class SchedulingObjectTest extends \PHPUnit\Framework\TestCase
     protected $data;
     protected $data2;
 
-    public function setup()
-    {
-        if (!SABRE_HASSQLITE) {
-            $this->markTestSkipped('SQLite driver is not available');
-        }
+    function setup() {
+
+        if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
         $this->backend = new Backend\MockScheduling();
 
         $this->data = <<<ICS
@@ -47,16 +43,18 @@ ICS;
 
         $this->inbox = new Inbox($this->backend, 'principals/user1');
         $this->inbox->createFile('item1.ics', $this->data);
+
     }
 
-    public function teardown()
-    {
+    function teardown() {
+
         unset($this->inbox);
         unset($this->backend);
+
     }
 
-    public function testSetup()
-    {
+    function testSetup() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
@@ -64,49 +62,53 @@ ICS;
         $this->assertInternalType('string', $children[0]->get());
         $this->assertInternalType('string', $children[0]->getETag());
         $this->assertEquals('text/calendar; charset=utf-8', $children[0]->getContentType());
+
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
-    public function testInvalidArg1()
-    {
+    function testInvalidArg1() {
+
         $obj = new SchedulingObject(
             new Backend\MockScheduling([], []),
             [],
             []
         );
+
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
-    public function testInvalidArg2()
-    {
+    function testInvalidArg2() {
+
         $obj = new SchedulingObject(
             new Backend\MockScheduling([], []),
             [],
             ['calendarid' => '1']
         );
+
     }
 
     /**
      * @depends testSetup
      * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
      */
-    public function testPut()
-    {
+    function testPut() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
         $children[0]->put('');
+
     }
 
     /**
      * @depends testSetup
      */
-    public function testDelete()
-    {
+    function testDelete() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
@@ -115,13 +117,14 @@ ICS;
 
         $children2 = $this->inbox->getChildren();
         $this->assertEquals(count($children) - 1, count($children2));
+
     }
 
     /**
      * @depends testSetup
      */
-    public function testGetLastModified()
-    {
+    function testGetLastModified() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
@@ -129,13 +132,14 @@ ICS;
 
         $lastMod = $obj->getLastModified();
         $this->assertTrue(is_int($lastMod) || ctype_digit($lastMod) || is_null($lastMod));
+
     }
 
     /**
      * @depends testSetup
      */
-    public function testGetSize()
-    {
+    function testGetSize() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
@@ -143,28 +147,31 @@ ICS;
 
         $size = $obj->getSize();
         $this->assertInternalType('int', $size);
+
     }
 
-    public function testGetOwner()
-    {
+    function testGetOwner() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
         $obj = $children[0];
         $this->assertEquals('principals/user1', $obj->getOwner());
+
     }
 
-    public function testGetGroup()
-    {
+    function testGetGroup() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
         $obj = $children[0];
         $this->assertNull($obj->getGroup());
+
     }
 
-    public function testGetACL()
-    {
+    function testGetACL() {
+
         $expected = [
             [
                 'privilege' => '{DAV:}all',
@@ -188,10 +195,11 @@ ICS;
 
         $obj = $children[0];
         $this->assertEquals($expected, $obj->getACL());
+
     }
 
-    public function testDefaultACL()
-    {
+    function testDefaultACL() {
+
         $backend = new Backend\MockScheduling([], []);
         $calendarObject = new SchedulingObject($backend, ['calendarid' => 1, 'uri' => 'foo', 'principaluri' => 'principals/user1']);
         $expected = [
@@ -212,147 +220,159 @@ ICS;
             ],
         ];
         $this->assertEquals($expected, $calendarObject->getACL());
+
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    public function testSetACL()
-    {
+    function testSetACL() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
         $obj = $children[0];
         $obj->setACL([]);
+
     }
 
-    public function testGet()
-    {
+    function testGet() {
+
         $children = $this->inbox->getChildren();
         $this->assertTrue($children[0] instanceof SchedulingObject);
 
         $obj = $children[0];
 
         $this->assertEquals($this->data, $obj->get());
+
     }
 
-    public function testGetRefetch()
-    {
+    function testGetRefetch() {
+
         $backend = new Backend\MockScheduling();
         $backend->createSchedulingObject('principals/user1', 'foo', 'foo');
 
         $obj = new SchedulingObject($backend, [
-            'calendarid' => 1,
-            'uri' => 'foo',
+            'calendarid'   => 1,
+            'uri'          => 'foo',
             'principaluri' => 'principals/user1',
         ]);
 
         $this->assertEquals('foo', $obj->get());
+
     }
 
-    public function testGetEtag1()
-    {
+    function testGetEtag1() {
+
         $objectInfo = [
             'calendardata' => 'foo',
-            'uri' => 'foo',
-            'etag' => 'bar',
-            'calendarid' => 1,
+            'uri'          => 'foo',
+            'etag'         => 'bar',
+            'calendarid'   => 1
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
 
         $this->assertEquals('bar', $obj->getETag());
+
     }
 
-    public function testGetEtag2()
-    {
+    function testGetEtag2() {
+
         $objectInfo = [
             'calendardata' => 'foo',
-            'uri' => 'foo',
-            'calendarid' => 1,
+            'uri'          => 'foo',
+            'calendarid'   => 1
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
 
-        $this->assertEquals('"'.md5('foo').'"', $obj->getETag());
+        $this->assertEquals('"' . md5('foo') . '"', $obj->getETag());
+
     }
 
-    public function testGetSupportedPrivilegesSet()
-    {
+    function testGetSupportedPrivilegesSet() {
+
         $objectInfo = [
             'calendardata' => 'foo',
-            'uri' => 'foo',
-            'calendarid' => 1,
+            'uri'          => 'foo',
+            'calendarid'   => 1
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
         $this->assertNull($obj->getSupportedPrivilegeSet());
+
     }
 
-    public function testGetSize1()
-    {
+    function testGetSize1() {
+
         $objectInfo = [
             'calendardata' => 'foo',
-            'uri' => 'foo',
-            'calendarid' => 1,
+            'uri'          => 'foo',
+            'calendarid'   => 1
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
         $this->assertEquals(3, $obj->getSize());
+
     }
 
-    public function testGetSize2()
-    {
+    function testGetSize2() {
+
         $objectInfo = [
-            'uri' => 'foo',
+            'uri'        => 'foo',
             'calendarid' => 1,
-            'size' => 4,
+            'size'       => 4,
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
         $this->assertEquals(4, $obj->getSize());
+
     }
 
-    public function testGetContentType()
-    {
+    function testGetContentType() {
+
         $objectInfo = [
-            'uri' => 'foo',
+            'uri'        => 'foo',
             'calendarid' => 1,
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
         $this->assertEquals('text/calendar; charset=utf-8', $obj->getContentType());
+
     }
 
-    public function testGetContentType2()
-    {
+    function testGetContentType2() {
+
         $objectInfo = [
-            'uri' => 'foo',
+            'uri'        => 'foo',
             'calendarid' => 1,
-            'component' => 'VEVENT',
+            'component'  => 'VEVENT',
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
         $this->assertEquals('text/calendar; charset=utf-8; component=VEVENT', $obj->getContentType());
-    }
 
-    public function testGetACL2()
-    {
+    }
+    function testGetACL2() {
+
         $objectInfo = [
-            'uri' => 'foo',
+            'uri'        => 'foo',
             'calendarid' => 1,
-            'acl' => [],
+            'acl'        => [],
         ];
 
         $backend = new Backend\MockScheduling([], []);
         $obj = new SchedulingObject($backend, $objectInfo);
         $this->assertEquals([], $obj->getACL());
+
     }
 }

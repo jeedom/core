@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
 
-class Mock implements Xml\Element
-{
+class Mock implements Xml\Element {
+
     /**
      * The serialize method is called during xml writing.
      *
@@ -21,12 +19,14 @@ class Mock implements Xml\Element
      * responsible for closing them.
      *
      * @param Xml\Writer $writer
+     * @return void
      */
-    public function xmlSerialize(Xml\Writer $writer)
-    {
+    function xmlSerialize(Xml\Writer $writer) {
+
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');
         $writer->endElement();
+
     }
 
     /**
@@ -48,13 +48,13 @@ class Mock implements Xml\Element
      * the next element.
      *
      * @param Xml\Reader $reader
-     *
      * @return mixed
      */
-    public static function xmlDeserialize(Xml\Reader $reader)
-    {
-        $reader->next();
+    static function xmlDeserialize(Xml\Reader $reader) {
 
+        $reader->next();
         return 'foobar';
+
     }
+
 }

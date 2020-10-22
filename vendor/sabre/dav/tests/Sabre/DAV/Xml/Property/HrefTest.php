@@ -1,22 +1,22 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Xml\Property;
 
+use Sabre\DAV;
 use Sabre\DAV\Browser\HtmlOutputHelper;
 use Sabre\DAV\Xml\XmlTest;
 
-class HrefTest extends XmlTest
-{
-    public function testConstruct()
-    {
+class HrefTest extends XmlTest {
+
+    function testConstruct() {
+
         $href = new Href('path');
         $this->assertEquals('path', $href->getHref());
+
     }
 
-    public function testSerialize()
-    {
+    function testSerialize() {
+
         $href = new Href('path');
         $this->assertEquals('path', $href->getHref());
 
@@ -28,10 +28,11 @@ class HrefTest extends XmlTest
 '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"><d:href>/bla/path</d:href></d:anything>
 ', $xml);
+
     }
 
-    public function testUnserialize()
-    {
+    function testUnserialize() {
+
         $xml = '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"><d:href>/bla/path</d:href></d:anything>
 ';
@@ -43,33 +44,35 @@ class HrefTest extends XmlTest
         $this->assertInstanceOf('Sabre\\DAV\\Xml\\Property\\Href', $href);
 
         $this->assertEquals('/bla/path', $href->getHref());
+
     }
 
-    public function testUnserializeIncompatible()
-    {
+    function testUnserializeIncompatible() {
+
         $xml = '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"><d:href2>/bla/path</d:href2></d:anything>
 ';
         $result = $this->parse($xml, ['{DAV:}anything' => 'Sabre\\DAV\\Xml\\Property\\Href']);
         $href = $result['value'];
         $this->assertNull($href);
-    }
 
-    public function testUnserializeEmpty()
-    {
+    }
+    function testUnserializeEmpty() {
+
         $xml = '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"></d:anything>
 ';
         $result = $this->parse($xml, ['{DAV:}anything' => 'Sabre\\DAV\\Xml\\Property\\Href']);
         $href = $result['value'];
         $this->assertNull($href);
+
     }
 
     /**
      * This method tests if hrefs containing & are correctly encoded.
      */
-    public function testSerializeEntity()
-    {
+    function testSerializeEntity() {
+
         $href = new Href('http://example.org/?a&b', false);
         $this->assertEquals('http://example.org/?a&b', $href->getHref());
 
@@ -79,14 +82,15 @@ class HrefTest extends XmlTest
 '<?xml version="1.0"?>
 <d:anything xmlns:d="DAV:"><d:href>http://example.org/?a&amp;b</d:href></d:anything>
 ', $xml);
+
     }
 
-    public function testToHtml()
-    {
+    function testToHtml() {
+
         $href = new Href([
             '/foo/bar',
             'foo/bar',
-            'http://example.org/bar',
+            'http://example.org/bar'
         ]);
 
         $html = new HtmlOutputHelper(
@@ -95,9 +99,11 @@ class HrefTest extends XmlTest
         );
 
         $expected =
-            '<a href="/foo/bar">/foo/bar</a><br />'.
-            '<a href="/base/foo/bar">/base/foo/bar</a><br />'.
+            '<a href="/foo/bar">/foo/bar</a><br />' .
+            '<a href="/base/foo/bar">/base/foo/bar</a><br />' .
             '<a href="http://example.org/bar">http://example.org/bar</a>';
         $this->assertEquals($expected, $href->toHtml($html));
+
     }
+
 }

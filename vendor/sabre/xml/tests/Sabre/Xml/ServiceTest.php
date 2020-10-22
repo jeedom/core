@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml;
 
 use Sabre\Xml\Element\KeyValue;
 
-class ServiceTest extends \PHPUnit\Framework\TestCase
-{
-    public function testGetReader()
-    {
+class ServiceTest extends \PHPUnit_Framework_TestCase {
+
+    function testGetReader() {
+
         $elems = [
             '{http://sabre.io/ns}test' => 'Test!',
         ];
@@ -20,10 +18,11 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $reader = $util->getReader();
         $this->assertInstanceOf('Sabre\\Xml\\Reader', $reader);
         $this->assertEquals($elems, $reader->elementMap);
+
     }
 
-    public function testGetWriter()
-    {
+    function testGetWriter() {
+
         $ns = [
             'http://sabre.io/ns' => 's',
         ];
@@ -34,22 +33,14 @@ class ServiceTest extends \PHPUnit\Framework\TestCase
         $writer = $util->getWriter();
         $this->assertInstanceOf('Sabre\\Xml\\Writer', $writer);
         $this->assertEquals($ns, $writer->namespaceMap);
-    }
 
-    public function testEmptyInputParse()
-    {
-        $resource = fopen('php://input', 'r');
-        $util = new Service();
-        $this->expectException('\Sabre\Xml\ParseException');
-        $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
-        $util->parse($resource, '/sabre.io/ns');
     }
 
     /**
      * @depends testGetReader
      */
-    public function testParse()
-    {
+    function testParse() {
+
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
   <child>value</child>
@@ -61,23 +52,24 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
-            ],
+            ]
         ];
 
         $this->assertEquals(
             $expected,
             $result
         );
+
     }
 
     /**
      * @depends testGetReader
      */
-    public function testParseStream()
-    {
+    function testParseStream() {
+
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
   <child>value</child>
@@ -93,33 +85,24 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
-            ],
+            ]
         ];
 
         $this->assertEquals(
             $expected,
             $result
         );
-    }
 
-    public function testEmptyInputExpect()
-    {
-        //$resource = \fopen('')
-        $resource = fopen('php://input', 'r');
-        $util = new Service();
-        $this->expectException('\Sabre\Xml\ParseException');
-        $this->expectExceptionMessage('The input element to parse is empty. Do not attempt to parse');
-        $util->expect('foo', $resource, '/sabre.io/ns');
     }
 
     /**
      * @depends testGetReader
      */
-    public function testExpect()
-    {
+    function testExpect() {
+
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
   <child>value</child>
@@ -130,10 +113,10 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
-            ],
+            ]
         ];
 
         $this->assertEquals(
@@ -145,7 +128,7 @@ XML;
     /**
      * @expectedException \Sabre\Xml\LibXMLException
      */
-    public function testInvalidNameSpace()
+    function testInvalidNameSpace()
     {
         $xml = '<D:propfind xmlns:D="DAV:"><D:prop><bar:foo xmlns:bar=""/></D:prop></D:propfind>';
 
@@ -162,7 +145,7 @@ XML;
     /**
      * @dataProvider providesEmptyPropfinds
      */
-    public function testEmptyPropfind($xml)
+    function testEmptyPropfind($xml)
     {
         $util = new Service();
         $util->elementMap = [
@@ -179,8 +162,8 @@ XML;
     /**
      * @depends testGetReader
      */
-    public function testExpectStream()
-    {
+    function testExpectStream() {
+
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
   <child>value</child>
@@ -196,10 +179,10 @@ XML;
 
         $expected = [
             [
-                'name' => '{http://sabre.io/ns}child',
-                'value' => 'value',
+                'name'       => '{http://sabre.io/ns}child',
+                'value'      => 'value',
                 'attributes' => [],
-            ],
+            ]
         ];
 
         $this->assertEquals(
@@ -212,8 +195,8 @@ XML;
      * @depends testGetReader
      * @expectedException \Sabre\Xml\ParseException
      */
-    public function testExpectWrong()
-    {
+    function testExpectWrong() {
+
         $xml = <<<XML
 <root xmlns="http://sabre.io/ns">
   <child>value</child>
@@ -221,13 +204,14 @@ XML;
 XML;
         $util = new Service();
         $util->expect('{http://sabre.io/ns}error', $xml);
+
     }
 
     /**
      * @depends testGetWriter
      */
-    public function testWrite()
-    {
+    function testWrite() {
+
         $util = new Service();
         $util->namespaceMap = [
             'http://sabre.io/ns' => 's',
@@ -247,10 +231,11 @@ XML;
             $expected,
             $result
         );
+
     }
 
-    public function testMapValueObject()
-    {
+    function testMapValueObject() {
+
         $input = <<<XML
 <?xml version="1.0"?>
 <order xmlns="http://sabredav.org/ns">
@@ -267,8 +252,8 @@ XML;
 
         $ns = 'http://sabredav.org/ns';
         $orderService = new \Sabre\Xml\Service();
-        $orderService->mapValueObject('{'.$ns.'}order', 'Sabre\Xml\Order');
-        $orderService->mapValueObject('{'.$ns.'}status', 'Sabre\Xml\OrderStatus');
+        $orderService->mapValueObject('{' . $ns . '}order', 'Sabre\Xml\Order');
+        $orderService->mapValueObject('{' . $ns . '}status', 'Sabre\Xml\OrderStatus');
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
@@ -286,8 +271,8 @@ XML;
         $this->assertEquals($input, $writtenXml);
     }
 
-    public function testMapValueObjectArrayProperty()
-    {
+    function testMapValueObjectArrayProperty() {
+
         $input = <<<XML
 <?xml version="1.0"?>
 <order xmlns="http://sabredav.org/ns">
@@ -306,8 +291,8 @@ XML;
 
         $ns = 'http://sabredav.org/ns';
         $orderService = new \Sabre\Xml\Service();
-        $orderService->mapValueObject('{'.$ns.'}order', 'Sabre\Xml\Order');
-        $orderService->mapValueObject('{'.$ns.'}status', 'Sabre\Xml\OrderStatus');
+        $orderService->mapValueObject('{' . $ns . '}order', 'Sabre\Xml\Order');
+        $orderService->mapValueObject('{' . $ns . '}status', 'Sabre\Xml\OrderStatus');
         $orderService->namespaceMap[$ns] = null;
 
         $order = $orderService->parse($input);
@@ -329,29 +314,32 @@ XML;
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testWriteVoNotFound()
-    {
+    function testWriteVoNotFound() {
+
         $service = new Service();
         $service->writeValueObject(new \StdClass());
+
     }
 
-    public function testParseClarkNotation()
-    {
+    function testParseClarkNotation() {
+
         $this->assertEquals([
             'http://sabredav.org/ns',
             'elem',
         ], Service::parseClarkNotation('{http://sabredav.org/ns}elem'));
+
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testParseClarkNotationFail()
-    {
+    function testParseClarkNotationFail() {
+
         Service::parseClarkNotation('http://sabredav.org/ns}elem');
+
     }
 
-    public function providesEmptyPropfinds()
+    function providesEmptyPropfinds()
     {
         return [
             ['<D:propfind xmlns:D="DAV:"><D:prop></D:prop></D:propfind>'],
@@ -364,12 +352,10 @@ XML;
 }
 
 /**
- * asset for testMapValueObject().
- *
+ * asset for testMapValueObject()
  * @internal
  */
-class Order
-{
+class Order {
     public $id;
     public $amount;
     public $description;
@@ -379,15 +365,14 @@ class Order
 }
 
 /**
- * asset for testMapValueObject().
- *
+ * asset for testMapValueObject()
  * @internal
  */
-class OrderStatus
-{
+class OrderStatus {
     public $id;
     public $label;
 }
+
 
 /**
  * asset for testInvalidNameSpace.
@@ -400,7 +385,7 @@ class PropFindTestAsset implements XmlDeserializable
 
     public $properties;
 
-    public static function xmlDeserialize(Reader $reader)
+    static function xmlDeserialize(Reader $reader)
     {
         $self = new self();
 

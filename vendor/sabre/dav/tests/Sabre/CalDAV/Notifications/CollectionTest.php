@@ -1,56 +1,58 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Notifications;
 
 use Sabre\CalDAV;
 
-class CollectionTest extends \PHPUnit\Framework\TestCase
-{
+class CollectionTest extends \PHPUnit_Framework_TestCase {
+
     protected $caldavBackend;
     protected $principalUri;
     protected $notification;
 
-    public function getInstance()
-    {
+    function getInstance() {
+
         $this->principalUri = 'principals/user1';
 
         $this->notification = new CalDAV\Xml\Notification\SystemStatus(1, '"1"');
 
         $this->caldavBackend = new CalDAV\Backend\MockSharing([], [], [
             'principals/user1' => [
-                $this->notification,
-            ],
+                $this->notification
+            ]
         ]);
 
         return new Collection($this->caldavBackend, $this->principalUri);
+
     }
 
-    public function testGetChildren()
-    {
+    function testGetChildren() {
+
         $col = $this->getInstance();
         $this->assertEquals('notifications', $col->getName());
 
         $this->assertEquals([
-            new Node($this->caldavBackend, $this->principalUri, $this->notification),
+            new Node($this->caldavBackend, $this->principalUri, $this->notification)
         ], $col->getChildren());
+
     }
 
-    public function testGetOwner()
-    {
+    function testGetOwner() {
+
         $col = $this->getInstance();
         $this->assertEquals('principals/user1', $col->getOwner());
+
     }
 
-    public function testGetGroup()
-    {
+    function testGetGroup() {
+
         $col = $this->getInstance();
         $this->assertNull($col->getGroup());
+
     }
 
-    public function testGetACL()
-    {
+    function testGetACL() {
+
         $col = $this->getInstance();
         $expected = [
             [
@@ -61,20 +63,23 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $col->getACL());
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    public function testSetACL()
-    {
+    function testSetACL() {
+
         $col = $this->getInstance();
         $col->setACL([]);
+
     }
 
-    public function testGetSupportedPrivilegeSet()
-    {
+    function testGetSupportedPrivilegeSet() {
+
         $col = $this->getInstance();
         $this->assertNull($col->getSupportedPrivilegeSet());
+
     }
 }

@@ -1,22 +1,20 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Xml\Property;
 
 use Sabre\DAV\Sharing\Plugin;
 use Sabre\DAV\Xml\Element\Sharee;
 use Sabre\DAV\Xml\XmlTest;
 
-class InviteTest extends XmlTest
-{
-    public function testSerialize()
-    {
+class InviteTest extends XmlTest {
+
+    function testSerialize() {
+
         $sharees = [
             new Sharee(),
             new Sharee(),
             new Sharee(),
-            new Sharee(),
+            new Sharee()
         ];
         $sharees[0]->href = 'mailto:foo@example.org';
         $sharees[0]->properties['{DAV:}displayname'] = 'Foo Bar';
@@ -72,5 +70,7 @@ class InviteTest extends XmlTest
 XML;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml);
+
     }
+
 }

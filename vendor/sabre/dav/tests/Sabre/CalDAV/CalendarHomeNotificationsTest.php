@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
-class CalendarHomeNotificationsTest extends \PHPUnit\Framework\TestCase
-{
-    public function testGetChildrenNoSupport()
-    {
+class CalendarHomeNotificationsTest extends \PHPUnit_Framework_TestCase {
+
+    function testGetChildrenNoSupport() {
+
         $backend = new Backend\Mock();
         $calendarHome = new CalendarHome($backend, ['uri' => 'principals/user']);
 
@@ -15,32 +13,37 @@ class CalendarHomeNotificationsTest extends \PHPUnit\Framework\TestCase
             [],
             $calendarHome->getChildren()
         );
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\NotFound
      */
-    public function testGetChildNoSupport()
-    {
+    function testGetChildNoSupport() {
+
         $backend = new Backend\Mock();
         $calendarHome = new CalendarHome($backend, ['uri' => 'principals/user']);
         $calendarHome->getChild('notifications');
+
     }
 
-    public function testGetChildren()
-    {
+    function testGetChildren() {
+
         $backend = new Backend\MockSharing();
         $calendarHome = new CalendarHome($backend, ['uri' => 'principals/user']);
 
         $result = $calendarHome->getChildren();
         $this->assertEquals('notifications', $result[0]->getName());
+
     }
 
-    public function testGetChild()
-    {
+    function testGetChild() {
+
         $backend = new Backend\MockSharing();
         $calendarHome = new CalendarHome($backend, ['uri' => 'principals/user']);
         $result = $calendarHome->getChild('notifications');
         $this->assertEquals('notifications', $result->getName());
+
     }
+
 }

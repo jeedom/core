@@ -1,104 +1,110 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV;
 
-class TreeTest extends \PHPUnit\Framework\TestCase
-{
-    public function testNodeExists()
-    {
+class TreeTest extends \PHPUnit_Framework_TestCase {
+
+    function testNodeExists() {
+
         $tree = new TreeMock();
 
         $this->assertTrue($tree->nodeExists('hi'));
         $this->assertFalse($tree->nodeExists('hello'));
+
     }
 
-    public function testCopy()
-    {
+    function testCopy() {
+
         $tree = new TreeMock();
         $tree->copy('hi', 'hi2');
 
         $this->assertArrayHasKey('hi2', $tree->getNodeForPath('')->newDirectories);
         $this->assertEquals('foobar', $tree->getNodeForPath('hi/file')->get());
         $this->assertEquals(['test1' => 'value'], $tree->getNodeForPath('hi/file')->getProperties([]));
+
     }
 
-    public function testCopyFile()
-    {
+    function testCopyFile() {
+
         $tree = new TreeMock();
         $tree->copy('hi/file', 'hi/newfile');
 
         $this->assertArrayHasKey('newfile', $tree->getNodeForPath('hi')->newFiles);
     }
 
-    public function testCopyFile0()
-    {
+    function testCopyFile0() {
+
         $tree = new TreeMock();
         $tree->copy('hi/file', 'hi/0');
 
         $this->assertArrayHasKey('0', $tree->getNodeForPath('hi')->newFiles);
     }
 
-    public function testMove()
-    {
+    function testMove() {
+
         $tree = new TreeMock();
         $tree->move('hi', 'hi2');
 
         $this->assertEquals('hi2', $tree->getNodeForPath('hi')->getName());
         $this->assertTrue($tree->getNodeForPath('hi')->isRenamed);
+
     }
 
-    public function testDeepMove()
-    {
+    function testDeepMove() {
+
         $tree = new TreeMock();
         $tree->move('hi/sub', 'hi2');
 
         $this->assertArrayHasKey('hi2', $tree->getNodeForPath('')->newDirectories);
         $this->assertTrue($tree->getNodeForPath('hi/sub')->isDeleted);
+
     }
 
-    public function testDelete()
-    {
+    function testDelete() {
+
         $tree = new TreeMock();
         $tree->delete('hi');
         $this->assertTrue($tree->getNodeForPath('hi')->isDeleted);
+
     }
 
-    public function testGetChildren()
-    {
+    function testGetChildren() {
+
         $tree = new TreeMock();
         $children = $tree->getChildren('');
-        $firstChild = $children->current();
-        $this->assertEquals('hi', $firstChild->getName());
+        $this->assertEquals(2, count($children));
+        $this->assertEquals('hi', $children[0]->getName());
+
     }
 
-    public function testGetMultipleNodes()
-    {
+    function testGetMultipleNodes() {
+
         $tree = new TreeMock();
         $result = $tree->getMultipleNodes(['hi/sub', 'hi/file']);
         $this->assertArrayHasKey('hi/sub', $result);
         $this->assertArrayHasKey('hi/file', $result);
 
-        $this->assertEquals('sub', $result['hi/sub']->getName());
+        $this->assertEquals('sub',  $result['hi/sub']->getName());
         $this->assertEquals('file', $result['hi/file']->getName());
-    }
 
-    public function testGetMultipleNodes2()
-    {
+    }
+    function testGetMultipleNodes2() {
+
         $tree = new TreeMock();
         $result = $tree->getMultipleNodes(['multi/1', 'multi/2']);
         $this->assertArrayHasKey('multi/1', $result);
         $this->assertArrayHasKey('multi/2', $result);
+
     }
+
 }
 
-class TreeMock extends Tree
-{
+class TreeMock extends Tree {
+
     private $nodes = [];
 
-    public function __construct()
-    {
+    function __construct() {
+
         $file = new TreeFileTester('file');
         $file->properties = ['test1' => 'value'];
         $file->data = 'foobar';
@@ -113,86 +119,92 @@ class TreeMock extends Tree
                     new TreeFileTester('1'),
                     new TreeFileTester('2'),
                     new TreeFileTester('3'),
-                ]),
+                ])
             ])
         );
+
     }
+
 }
 
-class TreeDirectoryTester extends SimpleCollection
-{
+class TreeDirectoryTester extends SimpleCollection {
+
     public $newDirectories = [];
     public $newFiles = [];
     public $isDeleted = false;
     public $isRenamed = false;
 
-    public function createDirectory($name)
-    {
+    function createDirectory($name) {
+
         $this->newDirectories[$name] = true;
+
     }
 
-    public function createFile($name, $data = null)
-    {
+    function createFile($name, $data = null) {
+
         $this->newFiles[$name] = $data;
+
     }
 
-    public function getChild($name)
-    {
-        if (isset($this->newDirectories[$name])) {
-            return new self($name);
-        }
-        if (isset($this->newFiles[$name])) {
-            return new TreeFileTester($name, $this->newFiles[$name]);
-        }
+    function getChild($name) {
 
+        if (isset($this->newDirectories[$name])) return new self($name);
+        if (isset($this->newFiles[$name])) return new TreeFileTester($name, $this->newFiles[$name]);
         return parent::getChild($name);
+
     }
 
-    public function childExists($name)
-    {
-        return (bool) $this->getChild($name);
+    function childExists($name) {
+
+        return !!$this->getChild($name);
+
     }
 
-    public function delete()
-    {
+    function delete() {
+
         $this->isDeleted = true;
+
     }
 
-    public function setName($name)
-    {
+    function setName($name) {
+
         $this->isRenamed = true;
         $this->name = $name;
+
     }
+
 }
 
-class TreeFileTester extends File implements IProperties
-{
+class TreeFileTester extends File implements IProperties {
+
     public $name;
     public $data;
     public $properties;
 
-    public function __construct($name, $data = null)
-    {
+    function __construct($name, $data = null) {
+
         $this->name = $name;
-        if (is_null($data)) {
-            $data = 'bla';
-        }
+        if (is_null($data)) $data = 'bla';
         $this->data = $data;
+
     }
 
-    public function getName()
-    {
+    function getName() {
+
         return $this->name;
+
     }
 
-    public function get()
-    {
+    function get() {
+
         return $this->data;
+
     }
 
-    public function getProperties($properties)
-    {
+    function getProperties($properties) {
+
         return $this->properties;
+
     }
 
     /**
@@ -205,16 +217,19 @@ class TreeFileTester extends File implements IProperties
      * Read the PropPatch documentation for more information.
      *
      * @param PropPatch $propPatch
+     * @return void
      */
-    public function propPatch(PropPatch $propPatch)
-    {
+    function propPatch(PropPatch $propPatch) {
+
         $this->properties = $propPatch->getMutations();
         $propPatch->setRemainingResultCode(200);
+
     }
+
 }
 
-class TreeMultiGetTester extends TreeDirectoryTester implements IMultiGet
-{
+class TreeMultiGetTester extends TreeDirectoryTester implements IMultiGet {
+
     /**
      * This method receives a list of paths in it's first argument.
      * It must return an array with Node objects.
@@ -222,11 +237,10 @@ class TreeMultiGetTester extends TreeDirectoryTester implements IMultiGet
      * If any children are not found, you do not have to return them.
      *
      * @param array $paths
-     *
      * @return array
      */
-    public function getMultipleChildren(array $paths)
-    {
+    function getMultipleChildren(array $paths) {
+
         $result = [];
         foreach ($paths as $path) {
             try {
@@ -238,5 +252,7 @@ class TreeMultiGetTester extends TreeDirectoryTester implements IMultiGet
         }
 
         return $result;
+
     }
+
 }

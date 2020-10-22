@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\PropertyStorage\Backend;
 
 use Sabre\DAV\PropFind;
@@ -9,12 +7,12 @@ use Sabre\DAV\PropPatch;
 use Sabre\DAV\Xml\Property\Complex;
 use Sabre\DAV\Xml\Property\Href;
 
-abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
-{
+abstract class AbstractPDOTest extends \PHPUnit_Framework_TestCase {
+
     use \Sabre\DAV\DbTestHelperTrait;
 
-    public function getBackend()
-    {
+    function getBackend() {
+
         $this->dropTables('propertystorage');
         $this->createSchema('propertystorage');
 
@@ -23,20 +21,22 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $pdo->exec("INSERT INTO propertystorage (path, name, valuetype, value) VALUES ('dir', '{DAV:}displayname', 1, 'Directory')");
 
         return new PDO($this->getPDO());
+
     }
 
-    public function testPropFind()
-    {
+    function testPropFind() {
+
         $backend = $this->getBackend();
 
         $propFind = new PropFind('dir', ['{DAV:}displayname']);
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals('Directory', $propFind->get('{DAV:}displayname'));
+
     }
 
-    public function testPropFindNothingToDo()
-    {
+    function testPropFindNothingToDo() {
+
         $backend = $this->getBackend();
 
         $propFind = new PropFind('dir', ['{DAV:}displayname']);
@@ -44,13 +44,14 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals('foo', $propFind->get('{DAV:}displayname'));
+
     }
 
     /**
      * @depends testPropFind
      */
-    public function testPropPatchUpdate()
-    {
+    function testPropPatchUpdate() {
+
         $backend = $this->getBackend();
 
         $propPatch = new PropPatch(['{DAV:}displayname' => 'bar']);
@@ -61,13 +62,14 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals('bar', $propFind->get('{DAV:}displayname'));
+
     }
 
     /**
      * @depends testPropPatchUpdate
      */
-    public function testPropPatchComplex()
-    {
+    function testPropPatchComplex() {
+
         $backend = $this->getBackend();
 
         $complex = new Complex('<foo xmlns="DAV:">somevalue</foo>');
@@ -80,13 +82,15 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals($complex, $propFind->get('{DAV:}complex'));
+
     }
+
 
     /**
      * @depends testPropPatchComplex
      */
-    public function testPropPatchCustom()
-    {
+    function testPropPatchCustom() {
+
         $backend = $this->getBackend();
 
         $custom = new Href('/foo/bar/');
@@ -99,13 +103,14 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals($custom, $propFind->get('{DAV:}custom'));
+
     }
 
     /**
      * @depends testPropFind
      */
-    public function testPropPatchRemove()
-    {
+    function testPropPatchRemove() {
+
         $backend = $this->getBackend();
 
         $propPatch = new PropPatch(['{DAV:}displayname' => null]);
@@ -116,13 +121,14 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals(null, $propFind->get('{DAV:}displayname'));
+
     }
 
     /**
      * @depends testPropFind
      */
-    public function testDelete()
-    {
+    function testDelete() {
+
         $backend = $this->getBackend();
         $backend->delete('dir');
 
@@ -130,13 +136,14 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir', $propFind);
 
         $this->assertEquals(null, $propFind->get('{DAV:}displayname'));
+
     }
 
     /**
      * @depends testPropFind
      */
-    public function testMove()
-    {
+    function testMove() {
+
         $backend = $this->getBackend();
         // Creating a new child property.
         $propPatch = new PropPatch(['{DAV:}displayname' => 'child']);
@@ -169,8 +176,8 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
     /**
      * @depends testPropFind
      */
-    public function testDeepDelete()
-    {
+    function testDeepDelete() {
+
         $backend = $this->getBackend();
         $propPatch = new PropPatch(['{DAV:}displayname' => 'child']);
         $backend->propPatch('dir/child', $propPatch);
@@ -181,5 +188,6 @@ abstract class AbstractPDOTest extends \PHPUnit\Framework\TestCase
         $backend->propFind('dir/child', $propFind);
 
         $this->assertEquals(null, $propFind->get('{DAV:}displayname'));
+
     }
 }

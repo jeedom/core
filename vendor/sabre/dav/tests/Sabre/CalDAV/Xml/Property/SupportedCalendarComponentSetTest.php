@@ -1,62 +1,64 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Xml\Property;
 
 use Sabre\CalDAV;
 use Sabre\DAV;
 
-class SupportedCalendarComponentSetTest extends DAV\Xml\XmlTest
-{
-    public function setUp()
-    {
+class SupportedCalendarComponentSetTest extends DAV\Xml\XmlTest {
+
+    function setUp() {
+
         $this->namespaceMap[CalDAV\Plugin::NS_CALDAV] = 'cal';
         $this->namespaceMap[CalDAV\Plugin::NS_CALENDARSERVER] = 'cs';
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $prop = new SupportedCalendarComponentSet(['VEVENT']);
         $this->assertEquals(
             ['VEVENT'],
             $prop->getValue()
         );
+
     }
 
-    public function testMultiple()
-    {
+    function testMultiple() {
+
         $prop = new SupportedCalendarComponentSet(['VEVENT', 'VTODO']);
         $this->assertEquals(
             ['VEVENT', 'VTODO'],
             $prop->getValue()
         );
+
     }
 
     /**
      * @depends testSimple
      * @depends testMultiple
      */
-    public function testSerialize()
-    {
+    function testSerialize() {
+
         $property = new SupportedCalendarComponentSet(['VEVENT', 'VTODO']);
         $xml = $this->write(['{DAV:}root' => $property]);
 
         $this->assertXmlStringEqualsXmlString(
 '<?xml version="1.0"?>
-<d:root xmlns:d="DAV:" xmlns:cal="'.CalDAV\Plugin::NS_CALDAV.'" xmlns:cs="'.CalDAV\Plugin::NS_CALENDARSERVER.'">
+<d:root xmlns:d="DAV:" xmlns:cal="' . CalDAV\Plugin::NS_CALDAV . '" xmlns:cs="' . CalDAV\Plugin::NS_CALENDARSERVER . '">
   <cal:comp name="VEVENT"/>
   <cal:comp name="VTODO"/>
 </d:root>
 ', $xml);
+
     }
 
-    public function testUnserialize()
-    {
+    function testUnserialize() {
+
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;
 
-        $xml = <<<XML
+$xml = <<<XML
 <?xml version="1.0"?>
  <d:root xmlns:cal="$cal" xmlns:cs="$cs" xmlns:d="DAV:">
    <cal:comp name="VEVENT"/>
@@ -73,17 +75,18 @@ XML;
             new SupportedCalendarComponentSet(['VEVENT', 'VTODO']),
             $result['value']
         );
+
     }
 
     /**
      * @expectedException \Sabre\Xml\ParseException
      */
-    public function testUnserializeEmpty()
-    {
+    function testUnserializeEmpty() {
+
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;
 
-        $xml = <<<XML
+$xml = <<<XML
 <?xml version="1.0"?>
  <d:root xmlns:cal="$cal" xmlns:cs="$cs" xmlns:d="DAV:">
  </d:root>
@@ -93,5 +96,7 @@ XML;
             $xml,
             ['{DAV:}root' => 'Sabre\\CalDAV\\Xml\\Property\\SupportedCalendarComponentSet']
         );
+
     }
+
 }

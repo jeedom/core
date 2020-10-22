@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\VObject;
 
-class Issue166Test extends \PHPUnit\Framework\TestCase
-{
-    public function testFlaw()
-    {
+class Issue166Test extends \PHPUnit_Framework_TestCase {
+
+    function testFlaw() {
+
         $input = <<<HI
 BEGIN:VCALENDAR
 PRODID:-//Mozilla.org/NONSGML Mozilla Calendar V1.1//EN
@@ -40,24 +38,26 @@ HI;
         $validator = new CalendarQueryValidator();
 
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VEVENT',
-                    'comp-filters' => [],
-                    'prop-filters' => [],
+                    'name'           => 'VEVENT',
+                    'comp-filters'   => [],
+                    'prop-filters'   => [],
                     'is-not-defined' => false,
-                    'time-range' => [
+                    'time-range'     => [
                         'start' => new \DateTime('2011-12-01'),
-                        'end' => new \DateTime('2012-02-01'),
+                        'end'   => new \DateTime('2012-02-01'),
                     ],
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
         $input = VObject\Reader::read($input);
         $this->assertTrue($validator->validate($input, $filters));
+
     }
+
 }

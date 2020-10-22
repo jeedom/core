@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre;
 
 use Sabre\HTTP\Request;
 use Sabre\HTTP\Response;
+use Sabre\HTTP\Sapi;
 
 /**
  * This class may be used as a basis for other webdav-related unittests.
@@ -17,8 +16,8 @@ use Sabre\HTTP\Response;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
-{
+abstract class DAVServerTest extends \PHPUnit_Framework_TestCase {
+
     protected $setupCalDAV = false;
     protected $setupCardDAV = false;
     protected $setupACL = false;
@@ -34,7 +33,7 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
     /**
      * An array with calendars. Every calendar should have
      *   - principaluri
-     *   - uri.
+     *   - uri
      */
     protected $caldavCalendars = [];
     protected $caldavCalendarObjects = [];
@@ -55,27 +54,27 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
     protected $propertyStorageBackend;
 
     /**
-     * @var \Sabre\CalDAV\Plugin
+     * @var Sabre\CalDAV\Plugin
      */
     protected $caldavPlugin;
 
     /**
-     * @var \Sabre\CardDAV\Plugin
+     * @var Sabre\CardDAV\Plugin
      */
     protected $carddavPlugin;
 
     /**
-     * @var \Sabre\DAVACL\Plugin
+     * @var Sabre\DAVACL\Plugin
      */
     protected $aclPlugin;
 
     /**
-     * @var \Sabre\CalDAV\SharingPlugin
+     * @var Sabre\CalDAV\SharingPlugin
      */
     protected $caldavSharingPlugin;
 
     /**
-     * CalDAV scheduling plugin.
+     * CalDAV scheduling plugin
      *
      * @var CalDAV\Schedule\Plugin
      */
@@ -109,13 +108,14 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
      */
     protected $autoLogin = null;
 
-    public function setUp()
-    {
+    function setUp() {
+
         $this->initializeEverything();
+
     }
 
-    public function initializeEverything()
-    {
+    function initializeEverything() {
+
         $this->setUpBackends();
         $this->setUpTree();
 
@@ -173,6 +173,7 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
             $this->aclPlugin->adminPrincipals = ['principals/admin'];
             $this->server->addPlugin($this->aclPlugin);
         }
+
     }
 
     /**
@@ -186,12 +187,11 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
      * the test.
      *
      * @param array|\Sabre\HTTP\Request $request
-     * @param int                       $expectedStatus
-     *
+     * @param int $expectedStatus
      * @return \Sabre\HTTP\Response
      */
-    public function request($request, $expectedStatus = null)
-    {
+    function request($request, $expectedStatus = null) {
+
         if (is_array($request)) {
             $request = HTTP\Request::createFromServerArray($request);
         }
@@ -203,10 +203,10 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
 
         if ($expectedStatus) {
             $responseBody = $expectedStatus !== $response->getStatus() ? $response->getBodyAsString() : '';
-            $this->assertEquals($expectedStatus, $response->getStatus(), 'Incorrect HTTP status received for request. Response body: '.$responseBody);
+            $this->assertEquals($expectedStatus, $response->getStatus(), 'Incorrect HTTP status received for request. Response body: ' . $responseBody);
         }
-
         return $this->server->httpResponse;
+
     }
 
     /**
@@ -215,10 +215,9 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
      *
      * @param string $userName
      */
-    public function autoLogin($userName)
-    {
+    function autoLogin($userName) {
         $authBackend = new DAV\Auth\Backend\Mock();
-        $authBackend->setPrincipal('principals/'.$userName);
+        $authBackend->setPrincipal('principals/' . $userName);
         $this->authPlugin = new DAV\Auth\Plugin($authBackend);
 
         // If the auth plugin already exists, we're removing its hooks:
@@ -228,14 +227,14 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
         $this->server->addPlugin($this->authPlugin);
 
         // This will trigger the actual login procedure
-        $this->authPlugin->beforeMethod(new Request('GET', '/'), new Response());
+        $this->authPlugin->beforeMethod(new Request(), new Response());
     }
 
     /**
      * Override this to provide your own Tree for your test-case.
      */
-    public function setUpTree()
-    {
+    function setUpTree() {
+
         if ($this->setupCalDAV) {
             $this->tree[] = new CalDAV\CalendarRoot(
                 $this->principalBackend,
@@ -259,12 +258,15 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
             );
         }
         if ($this->setupFiles) {
+
             $this->tree[] = new DAV\Mock\Collection('files');
+
         }
+
     }
 
-    public function setUpBackends()
-    {
+    function setUpBackends() {
+
         if ($this->setupCalDAVSharing && is_null($this->caldavBackend)) {
             $this->caldavBackend = new CalDAV\Backend\MockSharing($this->caldavCalendars, $this->caldavCalendarObjects);
         }
@@ -287,14 +289,18 @@ abstract class DAVServerTest extends \PHPUnit\Framework\TestCase
         if ($this->setupLocks) {
             $this->locksBackend = new DAV\Locks\Backend\Mock();
         }
-        if ($this->setupPropertyStorage) {
+        if ($this->setupPropertyStorage)  {
             $this->propertyStorageBackend = new DAV\PropertyStorage\Backend\Mock();
         }
+
     }
 
-    public function assertHttpStatus($expectedStatus, HTTP\Request $req)
-    {
+
+    function assertHttpStatus($expectedStatus, HTTP\Request $req) {
+
         $resp = $this->request($req);
-        $this->assertEquals((int) $expectedStatus, (int) $resp->status, 'Incorrect HTTP status received: '.$resp->body);
+        $this->assertEquals((int)$expectedStatus, (int)$resp->status, 'Incorrect HTTP status received: ' . $resp->body);
+
     }
+
 }

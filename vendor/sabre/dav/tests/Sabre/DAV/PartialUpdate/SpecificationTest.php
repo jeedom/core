@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\PartialUpdate;
 
 use Sabre\DAV\FSExt\File;
@@ -14,14 +12,14 @@ use Sabre\HTTP;
  *
  * See: http://sabre.io/dav/http-patch/
  */
-class SpecificationTest extends \PHPUnit\Framework\TestCase
-{
+class SpecificationTest extends \PHPUnit_Framework_TestCase {
+
     protected $server;
 
-    public function setUp()
-    {
+    function setUp() {
+
         $tree = [
-            new File(SABRE_TEMPDIR.'/foobar.txt'),
+            new File(SABRE_TEMPDIR . '/foobar.txt')
         ];
         $server = new Server($tree);
         $server->debugExceptions = true;
@@ -30,30 +28,32 @@ class SpecificationTest extends \PHPUnit\Framework\TestCase
         $tree[0]->put('1234567890');
 
         $this->server = $server;
+
     }
 
-    public function tearDown()
-    {
+    function tearDown() {
+
         \Sabre\TestUtil::clearTempDir();
+
     }
 
     /**
      * @param string $headerValue
      * @param string $httpStatus
      * @param string $endResult
-     * @param int    $contentLength
+     * @param int $contentLength
      *
      * @dataProvider data
      */
-    public function testUpdateRange($headerValue, $httpStatus, $endResult, $contentLength = 4)
-    {
+    function testUpdateRange($headerValue, $httpStatus, $endResult, $contentLength = 4) {
+
         $headers = [
-            'Content-Type' => 'application/x-sabredav-partialupdate',
+            'Content-Type'   => 'application/x-sabredav-partialupdate',
             'X-Update-Range' => $headerValue,
         ];
 
         if ($contentLength) {
-            $headers['Content-Length'] = (string) $contentLength;
+            $headers['Content-Length'] = (string)$contentLength;
         }
 
         $request = new HTTP\Request('PATCH', '/foobar.txt', $headers, '----');
@@ -64,14 +64,15 @@ class SpecificationTest extends \PHPUnit\Framework\TestCase
         $this->server->sapi = new HTTP\SapiMock();
         $this->server->exec();
 
-        $this->assertEquals($httpStatus, $this->server->httpResponse->status, 'Incorrect http status received: '.$this->server->httpResponse->body);
+        $this->assertEquals($httpStatus, $this->server->httpResponse->status, 'Incorrect http status received: ' . $this->server->httpResponse->body);
         if (!is_null($endResult)) {
-            $this->assertEquals($endResult, file_get_contents(SABRE_TEMPDIR.'/foobar.txt'));
+            $this->assertEquals($endResult, file_get_contents(SABRE_TEMPDIR . '/foobar.txt'));
         }
+
     }
 
-    public function data()
-    {
+    function data() {
+
         return [
             // Problems
             ['foo',       400, null],
@@ -85,6 +86,9 @@ class SpecificationTest extends \PHPUnit\Framework\TestCase
             ['bytes=-2',  204, '12345678----'],
             ['bytes=2-',  204, '12----7890'],
             ['append',    204, '1234567890----'],
+
         ];
+
     }
+
 }

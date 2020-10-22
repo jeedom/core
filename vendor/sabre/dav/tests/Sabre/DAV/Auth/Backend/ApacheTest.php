@@ -1,35 +1,33 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Auth\Backend;
 
 use Sabre\HTTP;
 
-class ApacheTest extends \PHPUnit\Framework\TestCase
-{
-    public function testConstruct()
-    {
+class ApacheTest extends \PHPUnit_Framework_TestCase {
+
+    function testConstruct() {
+
         $backend = new Apache();
         $this->assertInstanceOf('Sabre\DAV\Auth\Backend\Apache', $backend);
+
     }
 
-    public function testNoHeader()
-    {
-        $request = new HTTP\Request('GET', '/');
+    function testNoHeader() {
+
+        $request = new HTTP\Request();
         $response = new HTTP\Response();
         $backend = new Apache();
 
         $this->assertFalse(
             $backend->check($request, $response)[0]
         );
+
     }
 
-    public function testRemoteUser()
-    {
+    function testRemoteUser() {
+
         $request = HTTP\Sapi::createFromServerArray([
-            'REQUEST_METHOD' => 'GET',
-            'REQUEST_URI' => '/',
             'REMOTE_USER' => 'username',
         ]);
         $response = new HTTP\Response();
@@ -39,13 +37,12 @@ class ApacheTest extends \PHPUnit\Framework\TestCase
             [true, 'principals/username'],
             $backend->check($request, $response)
         );
+
     }
 
-    public function testRedirectRemoteUser()
-    {
+    function testRedirectRemoteUser() {
+
         $request = HTTP\Sapi::createFromServerArray([
-            'REQUEST_METHOD' => 'GET',
-            'REQUEST_URI' => '/',
             'REDIRECT_REMOTE_USER' => 'username',
         ]);
         $response = new HTTP\Response();
@@ -55,11 +52,12 @@ class ApacheTest extends \PHPUnit\Framework\TestCase
             [true, 'principals/username'],
             $backend->check($request, $response)
         );
+
     }
 
-    public function testRequireAuth()
-    {
-        $request = new HTTP\Request('GET', '/');
+    function testRequireAuth() {
+
+        $request = new HTTP\Request();
         $response = new HTTP\Response();
 
         $backend = new Apache();
@@ -68,5 +66,6 @@ class ApacheTest extends \PHPUnit\Framework\TestCase
         $this->assertNull(
             $response->getHeader('WWW-Authenticate')
         );
+
     }
 }

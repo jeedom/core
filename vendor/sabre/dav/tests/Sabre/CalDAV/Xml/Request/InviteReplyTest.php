@@ -1,20 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Xml\Request;
 
 use Sabre\DAV;
 use Sabre\DAV\Xml\XmlTest;
 
-class InviteReplyTest extends XmlTest
-{
+class InviteReplyTest extends XmlTest {
+
     protected $elementMap = [
         '{http://calendarserver.org/ns/}invite-reply' => 'Sabre\\CalDAV\\Xml\\Request\\InviteReply',
     ];
 
-    public function testDeserialize()
-    {
+    function testDeserialize() {
+
         $xml = <<<XML
 <?xml version="1.0"?>
 <cs:invite-reply xmlns:cs="http://calendarserver.org/ns/" xmlns:d="DAV:">
@@ -33,10 +31,11 @@ XML;
             $inviteReply,
             $result['value']
         );
+
     }
 
-    public function testDeserializeDeclined()
-    {
+    function testDeserializeDeclined() {
+
         $xml = <<<XML
 <?xml version="1.0"?>
 <cs:invite-reply xmlns:cs="http://calendarserver.org/ns/" xmlns:d="DAV:">
@@ -55,13 +54,14 @@ XML;
             $inviteReply,
             $result['value']
         );
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    public function testDeserializeNoHostUrl()
-    {
+    function testDeserializeNoHostUrl() {
+
         $xml = <<<XML
 <?xml version="1.0"?>
 <cs:invite-reply xmlns:cs="http://calendarserver.org/ns/" xmlns:d="DAV:">
@@ -73,5 +73,6 @@ XML;
 XML;
 
         $this->parse($xml);
+
     }
 }

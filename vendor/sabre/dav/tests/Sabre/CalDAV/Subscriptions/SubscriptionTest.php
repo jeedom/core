@@ -1,25 +1,24 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Subscriptions;
 
 use Sabre\DAV\PropPatch;
 use Sabre\DAV\Xml\Property\Href;
 
-class SubscriptionTest extends \PHPUnit\Framework\TestCase
-{
+class SubscriptionTest extends \PHPUnit_Framework_TestCase {
+
     protected $backend;
 
-    public function getSub($override = [])
-    {
+    function getSub($override = []) {
+
         $caldavBackend = new \Sabre\CalDAV\Backend\MockSubscriptionSupport([], []);
 
         $info = [
             '{http://calendarserver.org/ns/}source' => new Href('http://example.org/src', false),
-            'lastmodified' => date('2013-04-06 11:40:00'), // tomorrow is my birthday!
-            '{DAV:}displayname' => 'displayname',
+            'lastmodified'                          => date('2013-04-06 11:40:00'), // tomorrow is my birthday!
+            '{DAV:}displayname'                     => 'displayname',
         ];
+
 
         $id = $caldavBackend->createSubscription('principals/user1', 'uri', array_merge($info, $override));
         $subInfo = $caldavBackend->getSubscriptionsForUser('principals/user1');
@@ -28,12 +27,12 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
         $subscription = new Subscription($caldavBackend, $subInfo[0]);
 
         $this->backend = $caldavBackend;
-
         return $subscription;
+
     }
 
-    public function testValues()
-    {
+    function testValues() {
+
         $sub = $this->getSub();
 
         $this->assertEquals('uri', $sub->getName());
@@ -42,7 +41,7 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             [
-                '{DAV:}displayname' => 'displayname',
+                '{DAV:}displayname'                     => 'displayname',
                 '{http://calendarserver.org/ns/}source' => new Href('http://example.org/src', false),
             ],
             $sub->getProperties(['{DAV:}displayname', '{http://calendarserver.org/ns/}source'])
@@ -66,41 +65,45 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
                 'privilege' => '{DAV:}read',
                 'principal' => 'principals/user1/calendar-proxy-read',
                 'protected' => true,
-            ],
+            ]
         ];
         $this->assertEquals($acl, $sub->getACL());
 
         $this->assertNull($sub->getSupportedPrivilegeSet());
+
     }
 
-    public function testValues2()
-    {
+    function testValues2() {
+
         $sub = $this->getSub([
             'lastmodified' => null,
         ]);
 
         $this->assertEquals(null, $sub->getLastModified());
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    public function testSetACL()
-    {
+    function testSetACL() {
+
         $sub = $this->getSub();
         $sub->setACL([]);
+
     }
 
-    public function testDelete()
-    {
+    function testDelete() {
+
         $sub = $this->getSub();
         $sub->delete();
 
         $this->assertEquals([], $this->backend->getSubscriptionsForUser('principals1/user1'));
+
     }
 
-    public function testUpdateProperties()
-    {
+    function testUpdateProperties() {
+
         $sub = $this->getSub();
         $propPatch = new PropPatch([
             '{DAV:}displayname' => 'foo',
@@ -112,14 +115,17 @@ class SubscriptionTest extends \PHPUnit\Framework\TestCase
             'foo',
             $this->backend->getSubscriptionsForUser('principals/user1')[0]['{DAV:}displayname']
         );
+
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testBadConstruct()
-    {
+    function testBadConstruct() {
+
         $caldavBackend = new \Sabre\CalDAV\Backend\MockSubscriptionSupport([], []);
         new Subscription($caldavBackend, []);
+
     }
+
 }

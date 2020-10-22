@@ -1,29 +1,27 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\HTTP;
 
 /**
- * This unittest is created to check if queries for time-range include the start timestamp or not.
+ * This unittest is created to check if queries for time-range include the start timestamp or not
  *
  * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class GetEventsByTimerangeTest extends \Sabre\DAVServerTest
-{
+class GetEventsByTimerangeTest extends \Sabre\DAVServerTest {
+
     protected $setupCalDAV = true;
 
     protected $caldavCalendars = [
         [
-            'id' => 1,
-            'name' => 'Calendar',
+            'id'           => 1,
+            'name'         => 'Calendar',
             'principaluri' => 'principals/user1',
-            'uri' => 'calendar1',
-        ],
+            'uri'          => 'calendar1',
+        ]
     ];
 
     protected $caldavCalendarObjects = [
@@ -47,14 +45,14 @@ END:VCALENDAR
         ],
     ];
 
-    public function testQueryTimerange()
-    {
+    function testQueryTimerange() {
+
         $request = new HTTP\Request(
             'REPORT',
             '/calendars/user1/calendar1',
             [
                 'Content-Type' => 'application/xml',
-                'Depth' => '1',
+                'Depth'        => '1',
             ]
         );
 
@@ -77,6 +75,8 @@ END:VCALENDAR
 
         $response = $this->request($request);
 
-        $this->assertTrue(false !== strpos($response->getBodyAsString(), 'BEGIN:VCALENDAR'));
+        $this->assertTrue(strpos($response->body, 'BEGIN:VCALENDAR') !== false);
+
     }
+
 }

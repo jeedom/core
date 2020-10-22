@@ -1,37 +1,36 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Xml\Property;
 
 use Sabre\DAV\Sharing\Plugin;
 use Sabre\DAV\Xml\XmlTest;
 
-class ShareAccessTest extends XmlTest
-{
-    public function testSerialize()
-    {
+class ShareAccessTest extends XmlTest {
+
+    function testSerialize() {
+
         $data = ['{DAV:}root' => [
             [
-                'name' => '{DAV:}share-access',
+                'name'  => '{DAV:}share-access',
                 'value' => new ShareAccess(Plugin::ACCESS_READ),
             ],
             [
-                'name' => '{DAV:}share-access',
+                'name'  => '{DAV:}share-access',
                 'value' => new ShareAccess(Plugin::ACCESS_READWRITE),
             ],
             [
-                'name' => '{DAV:}share-access',
+                'name'  => '{DAV:}share-access',
                 'value' => new ShareAccess(Plugin::ACCESS_NOTSHARED),
             ],
             [
-                'name' => '{DAV:}share-access',
+                'name'  => '{DAV:}share-access',
                 'value' => new ShareAccess(Plugin::ACCESS_NOACCESS),
             ],
             [
-                'name' => '{DAV:}share-access',
+                'name'  => '{DAV:}share-access',
                 'value' => new ShareAccess(Plugin::ACCESS_SHAREDOWNER),
             ],
+
         ]];
 
         $xml = $this->write($data);
@@ -48,10 +47,11 @@ class ShareAccessTest extends XmlTest
 XML;
 
         $this->assertXmlStringEqualsXmlString($expected, $xml);
+
     }
 
-    public function testDeserialize()
-    {
+    function testDeserialize() {
+
         $input = <<<XML
 <?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -65,30 +65,31 @@ XML;
 
         $data = [
             [
-                'name' => '{DAV:}share-access',
-                'value' => new ShareAccess(Plugin::ACCESS_READ),
+                'name'       => '{DAV:}share-access',
+                'value'      => new ShareAccess(Plugin::ACCESS_READ),
                 'attributes' => [],
             ],
             [
-                'name' => '{DAV:}share-access',
-                'value' => new ShareAccess(Plugin::ACCESS_READWRITE),
+                'name'       => '{DAV:}share-access',
+                'value'      => new ShareAccess(Plugin::ACCESS_READWRITE),
                 'attributes' => [],
             ],
             [
-                'name' => '{DAV:}share-access',
-                'value' => new ShareAccess(Plugin::ACCESS_NOTSHARED),
+                'name'       => '{DAV:}share-access',
+                'value'      => new ShareAccess(Plugin::ACCESS_NOTSHARED),
                 'attributes' => [],
             ],
             [
-                'name' => '{DAV:}share-access',
-                'value' => new ShareAccess(Plugin::ACCESS_NOACCESS),
+                'name'       => '{DAV:}share-access',
+                'value'      => new ShareAccess(Plugin::ACCESS_NOACCESS),
                 'attributes' => [],
             ],
             [
-                'name' => '{DAV:}share-access',
-                'value' => new ShareAccess(Plugin::ACCESS_SHAREDOWNER),
+                'name'       => '{DAV:}share-access',
+                'value'      => new ShareAccess(Plugin::ACCESS_SHAREDOWNER),
                 'attributes' => [],
             ],
+
         ];
 
         $this->assertParsedValue(
@@ -96,13 +97,14 @@ XML;
             $input,
             ['{DAV:}share-access' => ShareAccess::class]
         );
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\BadRequest
      */
-    public function testDeserializeInvalid()
-    {
+    function testDeserializeInvalid() {
+
         $input = <<<XML
 <?xml version="1.0"?>
 <d:root xmlns:d="DAV:">
@@ -114,5 +116,6 @@ XML;
             $input,
             ['{DAV:}share-access' => ShareAccess::class]
         );
+
     }
 }

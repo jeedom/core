@@ -1,17 +1,15 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml;
 
-class InfiteLoopTest extends \PHPUnit\Framework\TestCase
-{
+class InfiteLoopTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * This particular xml body caused the parser to go into an infinite loop.
      * Need to know why.
      */
-    public function testDeserialize()
-    {
+    function testDeserialize() {
+
         $body = '<?xml version="1.0"?>
 <d:propertyupdate xmlns:d="DAV:" xmlns:s="http://sabredav.org/NS/test">
   <d:set><d:prop></d:prop></d:set>
@@ -27,17 +25,17 @@ class InfiteLoopTest extends \PHPUnit\Framework\TestCase
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{DAV:}propertyupdate',
+            'name'  => '{DAV:}propertyupdate',
             'value' => [
                 [
-                    'name' => '{DAV:}set',
+                    'name'  => '{DAV:}set',
                     'value' => [
                         '{DAV:}prop' => null,
                     ],
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{DAV:}set',
+                    'name'  => '{DAV:}set',
                     'value' => [
                         '{DAV:}prop' => null,
                     ],
@@ -46,5 +44,7 @@ class InfiteLoopTest extends \PHPUnit\Framework\TestCase
             ],
             'attributes' => [],
         ], $output);
+
     }
+
 }

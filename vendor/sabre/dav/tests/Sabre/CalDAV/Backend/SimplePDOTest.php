@@ -1,27 +1,23 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Backend;
 
 use Sabre\CalDAV;
+use Sabre\DAV;
 use Sabre\DAV\PropPatch;
 
-class SimplePDOTest extends \PHPUnit\Framework\TestCase
-{
+class SimplePDOTest extends \PHPUnit_Framework_TestCase {
+
     protected $pdo;
 
-    public function setUp()
-    {
-        if (!SABRE_HASSQLITE) {
-            $this->markTestSkipped('SQLite driver is not available');
-        }
+    function setUp() {
 
-        if (file_exists(SABRE_TEMPDIR.'/testdb.sqlite')) {
-            unlink(SABRE_TEMPDIR.'/testdb.sqlite');
-        }
+        if (!SABRE_HASSQLITE) $this->markTestSkipped('SQLite driver is not available');
 
-        $pdo = new \PDO('sqlite:'.SABRE_TEMPDIR.'/testdb.sqlite');
+        if (file_exists(SABRE_TEMPDIR . '/testdb.sqlite'))
+            unlink(SABRE_TEMPDIR . '/testdb.sqlite');
+
+        $pdo = new \PDO('sqlite:' . SABRE_TEMPDIR . '/testdb.sqlite');
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         $pdo->exec(<<<SQL
@@ -43,34 +39,37 @@ SQL
         );
 
         $this->pdo = $pdo;
+
     }
 
-    public function testConstruct()
-    {
+    function testConstruct() {
+
         $backend = new SimplePDO($this->pdo);
         $this->assertTrue($backend instanceof SimplePDO);
+
     }
 
     /**
      * @depends testConstruct
      */
-    public function testGetCalendarsForUserNoCalendars()
-    {
+    function testGetCalendarsForUserNoCalendars() {
+
         $backend = new SimplePDO($this->pdo);
         $calendars = $backend->getCalendarsForUser('principals/user2');
         $this->assertEquals([], $calendars);
+
     }
 
     /**
      * @depends testConstruct
      */
-    public function testCreateCalendarAndFetch()
-    {
+    function testCreateCalendarAndFetch() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', [
             '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set' => new CalDAV\Xml\Property\SupportedCalendarComponentSet(['VEVENT']),
-            '{DAV:}displayname' => 'Hello!',
-            '{urn:ietf:params:xml:ns:caldav}schedule-calendar-transp' => new CalDAV\Xml\Property\ScheduleCalendarTransp('transparent'),
+            '{DAV:}displayname'                                               => 'Hello!',
+            '{urn:ietf:params:xml:ns:caldav}schedule-calendar-transp'         => new CalDAV\Xml\Property\ScheduleCalendarTransp('transparent'),
         ]);
         $calendars = $backend->getCalendarsForUser('principals/user2');
 
@@ -82,23 +81,26 @@ SQL
         $this->assertEquals(1, count($calendars));
 
         foreach ($elementCheck as $name => $value) {
+
             $this->assertArrayHasKey($name, $calendars[0]);
             $this->assertEquals($value, $calendars[0][$name]);
+
         }
+
     }
 
     /**
      * @depends testConstruct
      */
-    public function testUpdateCalendarAndFetch()
-    {
+    function testUpdateCalendarAndFetch() {
+
         $backend = new SimplePDO($this->pdo);
 
         //Creating a new calendar
         $newId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
         $propPatch = new PropPatch([
-            '{DAV:}displayname' => 'myCalendar',
+            '{DAV:}displayname'                                       => 'myCalendar',
             '{urn:ietf:params:xml:ns:caldav}schedule-calendar-transp' => new CalDAV\Xml\Property\ScheduleCalendarTransp('transparent'),
         ]);
 
@@ -108,27 +110,29 @@ SQL
 
         // Verifying the result of the update
         $this->assertFalse($result);
+
     }
 
     /**
      * @depends testCreateCalendarAndFetch
      */
-    public function testDeleteCalendar()
-    {
+    function testDeleteCalendar() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', [
             '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set' => new CalDAV\Xml\Property\SupportedCalendarComponentSet(['VEVENT']),
-            '{DAV:}displayname' => 'Hello!',
+            '{DAV:}displayname'                                               => 'Hello!',
         ]);
 
         $backend->deleteCalendar($returnedId);
 
         $calendars = $backend->getCalendarsForUser('principals/user2');
         $this->assertEquals([], $calendars);
+
     }
 
-    public function testCreateCalendarObject()
-    {
+    function testCreateCalendarObject() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
@@ -140,10 +144,10 @@ SQL
         $this->assertEquals([
             'calendardata' => $object,
         ], $result->fetch(\PDO::FETCH_ASSOC));
-    }
 
-    public function testGetMultipleObjects()
-    {
+    }
+    function testGetMultipleObjects() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
@@ -154,17 +158,17 @@ SQL
 
         $check = [
             [
-                'id' => 1,
-                'etag' => '"'.md5($object).'"',
-                'uri' => 'id-1',
-                'size' => strlen($object),
+                'id'           => 1,
+                'etag'         => '"' . md5($object) . '"',
+                'uri'          => 'id-1',
+                'size'         => strlen($object),
                 'calendardata' => $object,
             ],
             [
-                'id' => 2,
-                'etag' => '"'.md5($object).'"',
-                'uri' => 'id-2',
-                'size' => strlen($object),
+                'id'           => 2,
+                'etag'         => '"' . md5($object) . '"',
+                'uri'          => 'id-2',
+                'size'         => strlen($object),
                 'calendardata' => $object,
             ],
         ];
@@ -172,21 +176,26 @@ SQL
         $result = $backend->getMultipleCalendarObjects($returnedId, ['id-1', 'id-2']);
 
         foreach ($check as $index => $props) {
+
             foreach ($props as $key => $value) {
-                if ('lastmodified' !== $key) {
+
+                if ($key !== 'lastmodified') {
                     $this->assertEquals($value, $result[$index][$key]);
                 } else {
                     $this->assertTrue(isset($result[$index][$key]));
                 }
+
             }
+
         }
+
     }
 
     /**
      * @depends testCreateCalendarObject
      */
-    public function testGetCalendarObjects()
-    {
+    function testGetCalendarObjects() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
@@ -200,13 +209,14 @@ SQL
 
         $this->assertEquals('random-id', $data['uri']);
         $this->assertEquals(strlen($object), $data['size']);
+
     }
 
     /**
      * @depends testCreateCalendarObject
      */
-    public function testGetCalendarObjectByUID()
-    {
+    function testGetCalendarObjectByUID() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
@@ -220,13 +230,14 @@ SQL
             'somerandomid/random-id',
             $backend->getCalendarObjectByUID('principals/user2', 'foo')
         );
+
     }
 
     /**
      * @depends testCreateCalendarObject
      */
-    public function testUpdateCalendarObject()
-    {
+    function testUpdateCalendarObject() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
@@ -239,13 +250,16 @@ SQL
 
         $this->assertEquals($object2, $data['calendardata']);
         $this->assertEquals('random-id', $data['uri']);
+
+
     }
+
 
     /**
      * @depends testCreateCalendarObject
      */
-    public function testDeleteCalendarObject()
-    {
+    function testDeleteCalendarObject() {
+
         $backend = new SimplePDO($this->pdo);
         $returnedId = $backend->createCalendar('principals/user2', 'somerandomid', []);
 
@@ -255,170 +269,177 @@ SQL
 
         $data = $backend->getCalendarObject($returnedId, 'random-id');
         $this->assertNull($data);
+
     }
 
-    public function testCalendarQueryNoResult()
-    {
+
+    function testCalendarQueryNoResult() {
+
         $abstract = new SimplePDO($this->pdo);
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VJOURNAL',
-                    'comp-filters' => [],
-                    'prop-filters' => [],
+                    'name'           => 'VJOURNAL',
+                    'comp-filters'   => [],
+                    'prop-filters'   => [],
                     'is-not-defined' => false,
-                    'time-range' => null,
+                    'time-range'     => null,
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $this->assertEquals([
         ], $abstract->calendarQuery(1, $filters));
+
     }
 
-    public function testCalendarQueryTodo()
-    {
+    function testCalendarQueryTodo() {
+
         $backend = new SimplePDO($this->pdo);
-        $backend->createCalendarObject(1, 'todo', "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
 
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VTODO',
-                    'comp-filters' => [],
-                    'prop-filters' => [],
+                    'name'           => 'VTODO',
+                    'comp-filters'   => [],
+                    'prop-filters'   => [],
                     'is-not-defined' => false,
-                    'time-range' => null,
+                    'time-range'     => null,
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $this->assertEquals([
-            'todo',
+            "todo",
         ], $backend->calendarQuery(1, $filters));
-    }
 
-    public function testCalendarQueryTodoNotMatch()
-    {
+    }
+    function testCalendarQueryTodoNotMatch() {
+
         $backend = new SimplePDO($this->pdo);
-        $backend->createCalendarObject(1, 'todo', "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
 
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VTODO',
+                    'name'         => 'VTODO',
                     'comp-filters' => [],
                     'prop-filters' => [
                         [
-                            'name' => 'summary',
-                            'text-match' => null,
-                            'time-range' => null,
-                            'param-filters' => [],
+                            'name'           => 'summary',
+                            'text-match'     => null,
+                            'time-range'     => null,
+                            'param-filters'  => [],
                             'is-not-defined' => false,
                         ],
                     ],
                     'is-not-defined' => false,
-                    'time-range' => null,
+                    'time-range'     => null,
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $this->assertEquals([
         ], $backend->calendarQuery(1, $filters));
+
     }
 
-    public function testCalendarQueryNoFilter()
-    {
+    function testCalendarQueryNoFilter() {
+
         $backend = new SimplePDO($this->pdo);
-        $backend->createCalendarObject(1, 'todo', "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
 
         $filters = [
-            'name' => 'VCALENDAR',
-            'comp-filters' => [],
-            'prop-filters' => [],
+            'name'           => 'VCALENDAR',
+            'comp-filters'   => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $result = $backend->calendarQuery(1, $filters);
         $this->assertTrue(in_array('todo', $result));
         $this->assertTrue(in_array('event', $result));
+
     }
 
-    public function testCalendarQueryTimeRange()
-    {
+    function testCalendarQueryTimeRange() {
+
         $backend = new SimplePDO($this->pdo);
-        $backend->createCalendarObject(1, 'todo', "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event2', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20120103\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event2", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20120103\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
 
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VEVENT',
-                    'comp-filters' => [],
-                    'prop-filters' => [],
+                    'name'           => 'VEVENT',
+                    'comp-filters'   => [],
+                    'prop-filters'   => [],
                     'is-not-defined' => false,
-                    'time-range' => [
+                    'time-range'     => [
                         'start' => new \DateTime('20120103'),
-                        'end' => new \DateTime('20120104'),
+                        'end'   => new \DateTime('20120104'),
                     ],
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $this->assertEquals([
-            'event2',
+            "event2",
         ], $backend->calendarQuery(1, $filters));
-    }
 
-    public function testCalendarQueryTimeRangeNoEnd()
-    {
+    }
+    function testCalendarQueryTimeRangeNoEnd() {
+
         $backend = new SimplePDO($this->pdo);
-        $backend->createCalendarObject(1, 'todo', "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
-        $backend->createCalendarObject(1, 'event2', "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120103\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "todo", "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120101\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
+        $backend->createCalendarObject(1, "event2", "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nDTSTART:20120103\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n");
 
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VEVENT',
-                    'comp-filters' => [],
-                    'prop-filters' => [],
+                    'name'           => 'VEVENT',
+                    'comp-filters'   => [],
+                    'prop-filters'   => [],
                     'is-not-defined' => false,
-                    'time-range' => [
+                    'time-range'     => [
                         'start' => new \DateTime('20120102'),
-                        'end' => null,
+                        'end'   => null,
                     ],
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $this->assertEquals([
-            'event2',
+            "event2",
         ], $backend->calendarQuery(1, $filters));
+
     }
+
 }

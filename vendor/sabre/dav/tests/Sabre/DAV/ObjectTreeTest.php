@@ -1,92 +1,100 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV;
 
 require_once 'Sabre/TestUtil.php';
 
-class ObjectTreeTest extends \PHPUnit\Framework\TestCase
-{
+class ObjectTreeTest extends \PHPUnit_Framework_TestCase {
+
     protected $tree;
 
-    public function setup()
-    {
+    function setup() {
+
         \Sabre\TestUtil::clearTempDir();
-        mkdir(SABRE_TEMPDIR.'/root');
-        mkdir(SABRE_TEMPDIR.'/root/subdir');
-        file_put_contents(SABRE_TEMPDIR.'/root/file.txt', 'contents');
-        file_put_contents(SABRE_TEMPDIR.'/root/subdir/subfile.txt', 'subcontents');
-        $rootNode = new FSExt\Directory(SABRE_TEMPDIR.'/root');
+        mkdir(SABRE_TEMPDIR . '/root');
+        mkdir(SABRE_TEMPDIR . '/root/subdir');
+        file_put_contents(SABRE_TEMPDIR . '/root/file.txt', 'contents');
+        file_put_contents(SABRE_TEMPDIR . '/root/subdir/subfile.txt', 'subcontents');
+        $rootNode = new FSExt\Directory(SABRE_TEMPDIR . '/root');
         $this->tree = new Tree($rootNode);
+
     }
 
-    public function teardown()
-    {
+    function teardown() {
+
         \Sabre\TestUtil::clearTempDir();
+
     }
 
-    public function testGetRootNode()
-    {
+    function testGetRootNode() {
+
         $root = $this->tree->getNodeForPath('');
         $this->assertInstanceOf('Sabre\\DAV\\FSExt\\Directory', $root);
+
     }
 
-    public function testGetSubDir()
-    {
+    function testGetSubDir() {
+
         $root = $this->tree->getNodeForPath('subdir');
         $this->assertInstanceOf('Sabre\\DAV\\FSExt\\Directory', $root);
+
     }
 
-    public function testCopyFile()
-    {
-        $this->tree->copy('file.txt', 'file2.txt');
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/file2.txt'));
-        $this->assertEquals('contents', file_get_contents(SABRE_TEMPDIR.'/root/file2.txt'));
-    }
+    function testCopyFile() {
 
-    /**
-     * @depends testCopyFile
-     */
-    public function testCopyDirectory()
-    {
-        $this->tree->copy('subdir', 'subdir2');
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir2'));
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir2/subfile.txt'));
-        $this->assertEquals('subcontents', file_get_contents(SABRE_TEMPDIR.'/root/subdir2/subfile.txt'));
+       $this->tree->copy('file.txt', 'file2.txt');
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/file2.txt'));
+       $this->assertEquals('contents', file_get_contents(SABRE_TEMPDIR . '/root/file2.txt'));
+
     }
 
     /**
      * @depends testCopyFile
      */
-    public function testMoveFile()
-    {
-        $this->tree->move('file.txt', 'file2.txt');
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/file2.txt'));
-        $this->assertFalse(file_exists(SABRE_TEMPDIR.'/root/file.txt'));
-        $this->assertEquals('contents', file_get_contents(SABRE_TEMPDIR.'/root/file2.txt'));
+    function testCopyDirectory() {
+
+       $this->tree->copy('subdir', 'subdir2');
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/subdir2'));
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/subdir2/subfile.txt'));
+       $this->assertEquals('subcontents', file_get_contents(SABRE_TEMPDIR . '/root/subdir2/subfile.txt'));
+
+    }
+
+    /**
+     * @depends testCopyFile
+     */
+    function testMoveFile() {
+
+       $this->tree->move('file.txt', 'file2.txt');
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/file2.txt'));
+       $this->assertFalse(file_exists(SABRE_TEMPDIR . '/root/file.txt'));
+       $this->assertEquals('contents', file_get_contents(SABRE_TEMPDIR . '/root/file2.txt'));
+
     }
 
     /**
      * @depends testMoveFile
      */
-    public function testMoveFileNewParent()
-    {
-        $this->tree->move('file.txt', 'subdir/file2.txt');
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir/file2.txt'));
-        $this->assertFalse(file_exists(SABRE_TEMPDIR.'/root/file.txt'));
-        $this->assertEquals('contents', file_get_contents(SABRE_TEMPDIR.'/root/subdir/file2.txt'));
+    function testMoveFileNewParent() {
+
+       $this->tree->move('file.txt', 'subdir/file2.txt');
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/subdir/file2.txt'));
+       $this->assertFalse(file_exists(SABRE_TEMPDIR . '/root/file.txt'));
+       $this->assertEquals('contents', file_get_contents(SABRE_TEMPDIR . '/root/subdir/file2.txt'));
+
     }
 
     /**
      * @depends testCopyDirectory
      */
-    public function testMoveDirectory()
-    {
-        $this->tree->move('subdir', 'subdir2');
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir2'));
-        $this->assertTrue(file_exists(SABRE_TEMPDIR.'/root/subdir2/subfile.txt'));
-        $this->assertFalse(file_exists(SABRE_TEMPDIR.'/root/subdir'));
-        $this->assertEquals('subcontents', file_get_contents(SABRE_TEMPDIR.'/root/subdir2/subfile.txt'));
+    function testMoveDirectory() {
+
+       $this->tree->move('subdir', 'subdir2');
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/subdir2'));
+       $this->assertTrue(file_exists(SABRE_TEMPDIR . '/root/subdir2/subfile.txt'));
+       $this->assertFalse(file_exists(SABRE_TEMPDIR . '/root/subdir'));
+       $this->assertEquals('subcontents', file_get_contents(SABRE_TEMPDIR . '/root/subdir2/subfile.txt'));
+
     }
+
 }

@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class KeyValueTest extends \PHPUnit\Framework\TestCase
-{
-    public function testDeserialize()
-    {
+class KeyValueTest extends \PHPUnit_Framework_TestCase {
+
+    function testDeserialize() {
+
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -39,22 +37,22 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}struct',
+                    'name'  => '{http://sabredav.org/ns}struct',
                     'value' => [
                         '{http://sabredav.org/ns}elem1' => null,
                         '{http://sabredav.org/ns}elem2' => 'hi',
                         '{http://sabredav.org/ns}elem3' => [
                             [
-                                'name' => '{http://sabredav.org/ns}elem4',
-                                'value' => 'foo',
+                                'name'       => '{http://sabredav.org/ns}elem4',
+                                'value'      => 'foo',
                                 'attributes' => [],
                             ],
                             [
-                                'name' => '{http://sabredav.org/ns}elem5',
-                                'value' => 'foo & bar',
+                                'name'       => '{http://sabredav.org/ns}elem5',
+                                'value'      => 'foo & bar',
                                 'attributes' => [],
                             ],
                         ],
@@ -63,16 +61,16 @@ BLA;
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}struct',
-                    'value' => [],
+                    'name'       => '{http://sabredav.org/ns}struct',
+                    'value'      => [],
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}otherThing',
+                    'name'  => '{http://sabredav.org/ns}otherThing',
                     'value' => [
                         [
-                            'name' => '{http://sabredav.org/ns}elem1',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem1',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                     ],
@@ -81,14 +79,15 @@ BLA;
             ],
             'attributes' => [],
         ], $output);
+
     }
 
     /**
      * This test was added to find out why an element gets eaten by the
      * SabreDAV MKCOL parser.
      */
-    public function testElementEater()
-    {
+    function testElementEater() {
+
         $input = <<<BLA
 <?xml version="1.0"?>
 <mkcol xmlns="DAV:">
@@ -103,17 +102,17 @@ BLA;
 
         $reader = new Reader();
         $reader->elementMap = [
-            '{DAV:}set' => 'Sabre\\Xml\\Element\\KeyValue',
-            '{DAV:}prop' => 'Sabre\\Xml\\Element\\KeyValue',
+            '{DAV:}set'          => 'Sabre\\Xml\\Element\\KeyValue',
+            '{DAV:}prop'         => 'Sabre\\Xml\\Element\\KeyValue',
             '{DAV:}resourcetype' => 'Sabre\\Xml\\Element\\Elements',
         ];
         $reader->xml($input);
 
         $expected = [
-            'name' => '{DAV:}mkcol',
+            'name'  => '{DAV:}mkcol',
             'value' => [
                 [
-                    'name' => '{DAV:}set',
+                    'name'  => '{DAV:}set',
                     'value' => [
                         '{DAV:}prop' => [
                             '{DAV:}resourcetype' => [
@@ -129,10 +128,12 @@ BLA;
         ];
 
         $this->assertEquals($expected, $reader->parse());
+
     }
 
-    public function testSerialize()
-    {
+
+    function testSerialize() {
+
         $value = [
             '{http://sabredav.org/ns}elem1' => null,
             '{http://sabredav.org/ns}elem2' => 'textValue',
@@ -145,7 +146,7 @@ BLA;
 
         $writer = new Writer();
         $writer->namespaceMap = [
-            'http://sabredav.org/ns' => null,
+            'http://sabredav.org/ns' => null
         ];
         $writer->openMemory();
         $writer->startDocument('1.0');
@@ -171,14 +172,15 @@ BLA;
 XML;
 
         $this->assertEquals($expected, $output);
+
     }
 
     /**
      * I discovered that when there's no whitespace between elements, elements
      * can get skipped.
      */
-    public function testElementSkipProblem()
-    {
+    function testElementSkipProblem() {
+
         $input = <<<BLA
 <?xml version="1.0" encoding="utf-8"?>
 <root xmlns="http://sabredav.org/ns">
@@ -194,7 +196,7 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 '{http://sabredav.org/ns}elem3' => 'val3',
                 '{http://sabredav.org/ns}elem4' => 'val4',
@@ -202,5 +204,7 @@ BLA;
             ],
             'attributes' => [],
         ], $output);
+
     }
+
 }

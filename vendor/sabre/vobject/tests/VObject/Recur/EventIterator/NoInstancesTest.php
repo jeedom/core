@@ -1,10 +1,9 @@
 <?php
 
-namespace Sabre\VObject\Recur\EventIterator;
+namespace Sabre\VObject\Recur;
 
 use PHPUnit\Framework\TestCase;
 use Sabre\VObject\Reader;
-use Sabre\VObject\Recur\EventIterator;
 
 class NoInstancesTest extends TestCase
 {

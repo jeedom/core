@@ -1,23 +1,22 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CardDAV;
 
 use Sabre\DAVACL;
 
-class AddressBookRootTest extends \PHPUnit\Framework\TestCase
-{
-    public function testGetName()
-    {
+class AddressBookRootTest extends \PHPUnit_Framework_TestCase {
+
+    function testGetName() {
+
         $pBackend = new DAVACL\PrincipalBackend\Mock();
         $cBackend = new Backend\Mock();
         $root = new AddressBookRoot($pBackend, $cBackend);
         $this->assertEquals('addressbooks', $root->getName());
+
     }
 
-    public function testGetChildForPrincipal()
-    {
+    function testGetChildForPrincipal() {
+
         $pBackend = new DAVACL\PrincipalBackend\Mock();
         $cBackend = new Backend\Mock();
         $root = new AddressBookRoot($pBackend, $cBackend);
@@ -27,5 +26,6 @@ class AddressBookRootTest extends \PHPUnit\Framework\TestCase
 
         $this->assertInstanceOf('Sabre\\CardDAV\\AddressBookHome', $children[0]);
         $this->assertEquals('user1', $children[0]->getName());
+
     }
 }

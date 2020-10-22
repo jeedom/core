@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV;
 
-class PropFindTest extends \PHPUnit\Framework\TestCase
-{
-    public function testHandle()
-    {
+class PropFindTest extends \PHPUnit_Framework_TestCase {
+
+    function testHandle() {
+
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->handle('{DAV:}displayname', 'foobar');
 
@@ -15,30 +13,33 @@ class PropFindTest extends \PHPUnit\Framework\TestCase
             200 => ['{DAV:}displayname' => 'foobar'],
             404 => [],
         ], $propFind->getResultForMultiStatus());
+
     }
 
-    public function testHandleCallBack()
-    {
+    function testHandleCallBack() {
+
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
-        $propFind->handle('{DAV:}displayname', function () { return 'foobar'; });
+        $propFind->handle('{DAV:}displayname', function() { return 'foobar'; });
 
         $this->assertEquals([
             200 => ['{DAV:}displayname' => 'foobar'],
             404 => [],
         ], $propFind->getResultForMultiStatus());
+
     }
 
-    public function testAllPropDefaults()
-    {
+    function testAllPropDefaults() {
+
         $propFind = new PropFind('foo', ['{DAV:}displayname'], 0, PropFind::ALLPROPS);
 
         $this->assertEquals([
             200 => [],
         ], $propFind->getResultForMultiStatus());
+
     }
 
-    public function testSet()
-    {
+    function testSet() {
+
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->set('{DAV:}displayname', 'bar');
 
@@ -46,20 +47,22 @@ class PropFindTest extends \PHPUnit\Framework\TestCase
             200 => ['{DAV:}displayname' => 'bar'],
             404 => [],
         ], $propFind->getResultForMultiStatus());
+
     }
 
-    public function testSetAllpropCustom()
-    {
+    function testSetAllpropCustom() {
+
         $propFind = new PropFind('foo', ['{DAV:}displayname'], 0, PropFind::ALLPROPS);
         $propFind->set('{DAV:}customproperty', 'bar');
 
         $this->assertEquals([
             200 => ['{DAV:}customproperty' => 'bar'],
         ], $propFind->getResultForMultiStatus());
+
     }
 
-    public function testSetUnset()
-    {
+    function testSetUnset() {
+
         $propFind = new PropFind('foo', ['{DAV:}displayname']);
         $propFind->set('{DAV:}displayname', 'bar');
         $propFind->set('{DAV:}displayname', null);
@@ -68,5 +71,6 @@ class PropFindTest extends \PHPUnit\Framework\TestCase
             200 => [],
             404 => ['{DAV:}displayname' => null],
         ], $propFind->getResultForMultiStatus());
+
     }
 }

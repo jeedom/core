@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Mock;
 
 use Sabre\DAV;
@@ -21,21 +19,22 @@ use Sabre\DAV;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Collection extends DAV\Collection
-{
+class Collection extends DAV\Collection {
+
     protected $name;
     protected $children;
     protected $parent;
 
     /**
-     * Creates the object.
+     * Creates the object
      *
-     * @param string     $name
-     * @param array      $children
+     * @param string $name
+     * @param array $children
      * @param Collection $parent
+     * @return void
      */
-    public function __construct($name, array $children = [], Collection $parent = null)
-    {
+    function __construct($name, array $children = [], Collection $parent = null) {
+
         $this->name = $name;
         foreach ($children as $key => $value) {
             if (is_string($value)) {
@@ -49,6 +48,7 @@ class Collection extends DAV\Collection
             }
         }
         $this->parent = $parent;
+
     }
 
     /**
@@ -58,13 +58,14 @@ class Collection extends DAV\Collection
      *
      * @return string
      */
-    public function getName()
-    {
+    function getName() {
+
         return $this->name;
+
     }
 
     /**
-     * Creates a new file in the directory.
+     * Creates a new file in the directory
      *
      * Data will either be supplied as a stream resource, or in certain cases
      * as a string. Keep in mind that you may have to support either.
@@ -83,39 +84,41 @@ class Collection extends DAV\Collection
      * return the same contents of what was submitted here, you are strongly
      * recommended to omit the ETag.
      *
-     * @param string          $name Name of the file
+     * @param string $name Name of the file
      * @param resource|string $data Initial payload
-     *
-     * @return string|null
+     * @return null|string
      */
-    public function createFile($name, $data = '')
-    {
+    function createFile($name, $data = null) {
+
         if (is_resource($data)) {
             $data = stream_get_contents($data);
         }
         $this->children[] = new File($name, $data, $this);
+        return '"' . md5($data) . '"';
 
-        return '"'.md5($data).'"';
     }
 
     /**
-     * Creates a new subdirectory.
+     * Creates a new subdirectory
      *
      * @param string $name
+     * @return void
      */
-    public function createDirectory($name)
-    {
+    function createDirectory($name) {
+
         $this->children[] = new self($name);
+
     }
 
     /**
-     * Returns an array with all the child nodes.
+     * Returns an array with all the child nodes
      *
      * @return \Sabre\DAV\INode[]
      */
-    public function getChildren()
-    {
+    function getChildren() {
+
         return $this->children;
+
     }
 
     /**
@@ -123,35 +126,43 @@ class Collection extends DAV\Collection
      *
      * @param \Sabre\DAV\INode $node
      */
-    public function addNode(\Sabre\DAV\INode $node)
-    {
+    function addNode(\Sabre\DAV\INode $node) {
+
         $this->children[] = $node;
+
     }
 
     /**
      * Removes a childnode from this node.
      *
      * @param string $name
+     * @return void
      */
-    public function deleteChild($name)
-    {
+    function deleteChild($name) {
+
         foreach ($this->children as $key => $value) {
+
             if ($value->getName() == $name) {
                 unset($this->children[$key]);
-
                 return;
             }
+
         }
+
     }
 
     /**
      * Deletes this collection and all its children,.
+     *
+     * @return void
      */
-    public function delete()
-    {
+    function delete() {
+
         foreach ($this->getChildren() as $child) {
             $this->deleteChild($child->getName());
         }
         $this->parent->deleteChild($this->getName());
+
     }
+
 }

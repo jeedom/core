@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Backend;
 
 use
     Sabre\DAV\PropPatch;
 
-class AbstractTest extends \PHPUnit\Framework\TestCase
-{
-    public function testUpdateCalendar()
-    {
+class AbstractTest extends \PHPUnit_Framework_TestCase {
+
+    function testUpdateCalendar() {
+
         $abstract = new AbstractMock();
         $propPatch = new PropPatch(['{DAV:}displayname' => 'anything']);
 
@@ -18,34 +16,36 @@ class AbstractTest extends \PHPUnit\Framework\TestCase
         $result = $propPatch->commit();
 
         $this->assertFalse($result);
+
     }
 
-    public function testCalendarQuery()
-    {
+    function testCalendarQuery() {
+
         $abstract = new AbstractMock();
         $filters = [
-            'name' => 'VCALENDAR',
+            'name'         => 'VCALENDAR',
             'comp-filters' => [
                 [
-                    'name' => 'VEVENT',
-                    'comp-filters' => [],
-                    'prop-filters' => [],
+                    'name'           => 'VEVENT',
+                    'comp-filters'   => [],
+                    'prop-filters'   => [],
                     'is-not-defined' => false,
-                    'time-range' => null,
+                    'time-range'     => null,
                 ],
             ],
-            'prop-filters' => [],
+            'prop-filters'   => [],
             'is-not-defined' => false,
-            'time-range' => null,
+            'time-range'     => null,
         ];
 
         $this->assertEquals([
             'event1.ics',
         ], $abstract->calendarQuery(1, $filters));
+
     }
 
-    public function testGetCalendarObjectByUID()
-    {
+    function testGetCalendarObjectByUID() {
+
         $abstract = new AbstractMock();
         $this->assertNull(
             $abstract->getCalendarObjectByUID('principal1', 'zim')
@@ -60,10 +60,11 @@ class AbstractTest extends \PHPUnit\Framework\TestCase
         $this->assertNull(
             $abstract->getCalendarObjectByUID('principal1', 'shared')
         );
+
     }
 
-    public function testGetMultipleCalendarObjects()
-    {
+    function testGetMultipleCalendarObjects() {
+
         $abstract = new AbstractMock();
         $result = $abstract->getMultipleCalendarObjects(1, [
             'event1.ics',
@@ -72,113 +73,106 @@ class AbstractTest extends \PHPUnit\Framework\TestCase
 
         $expected = [
             [
-                'id' => 1,
-                'calendarid' => 1,
-                'uri' => 'event1.ics',
+                'id'           => 1,
+                'calendarid'   => 1,
+                'uri'          => 'event1.ics',
                 'calendardata' => "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nUID:foo\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n",
             ],
             [
-                'id' => 2,
-                'calendarid' => 1,
-                'uri' => 'task1.ics',
+                'id'           => 2,
+                'calendarid'   => 1,
+                'uri'          => 'task1.ics',
                 'calendardata' => "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n",
             ],
         ];
 
         $this->assertEquals($expected, $result);
+
+
     }
+
 }
 
-class AbstractMock extends AbstractBackend
-{
-    public function getCalendarsForUser($principalUri)
-    {
+class AbstractMock extends AbstractBackend {
+
+    function getCalendarsForUser($principalUri) {
+
         return [
             [
-                'id' => 1,
+                'id'           => 1,
                 'principaluri' => 'principal1',
-                'uri' => 'cal1',
+                'uri'          => 'cal1',
             ],
             [
-                'id' => 2,
-                'principaluri' => 'principal1',
+                'id'                                      => 2,
+                'principaluri'                            => 'principal1',
                 '{http://sabredav.org/ns}owner-principal' => 'principal2',
-                'uri' => 'cal1',
+                'uri'                                     => 'cal1',
             ],
         ];
-    }
 
-    public function createCalendar($principalUri, $calendarUri, array $properties)
-    {
     }
+    function createCalendar($principalUri, $calendarUri, array $properties) { }
+    function deleteCalendar($calendarId) { }
+    function getCalendarObjects($calendarId) {
 
-    public function deleteCalendar($calendarId)
-    {
-    }
-
-    public function getCalendarObjects($calendarId)
-    {
         switch ($calendarId) {
             case 1:
                 return [
                     [
-                        'id' => 1,
+                        'id'         => 1,
                         'calendarid' => 1,
-                        'uri' => 'event1.ics',
+                        'uri'        => 'event1.ics',
                     ],
                     [
-                        'id' => 2,
+                        'id'         => 2,
                         'calendarid' => 1,
-                        'uri' => 'task1.ics',
+                        'uri'        => 'task1.ics',
                     ],
                 ];
             case 2:
                 return [
                     [
-                        'id' => 3,
+                        'id'         => 3,
                         'calendarid' => 2,
-                        'uri' => 'shared-event.ics',
-                    ],
+                        'uri'        => 'shared-event.ics',
+                    ]
                 ];
         }
+
     }
 
-    public function getCalendarObject($calendarId, $objectUri)
-    {
+    function getCalendarObject($calendarId, $objectUri) {
+
         switch ($objectUri) {
-            case 'event1.ics':
+
+            case 'event1.ics' :
                 return [
-                    'id' => 1,
-                    'calendarid' => 1,
-                    'uri' => 'event1.ics',
+                    'id'           => 1,
+                    'calendarid'   => 1,
+                    'uri'          => 'event1.ics',
                     'calendardata' => "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nUID:foo\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n",
                 ];
-            case 'task1.ics':
+            case 'task1.ics' :
                 return [
-                    'id' => 2,
-                    'calendarid' => 1,
-                    'uri' => 'task1.ics',
+                    'id'           => 2,
+                    'calendarid'   => 1,
+                    'uri'          => 'task1.ics',
                     'calendardata' => "BEGIN:VCALENDAR\r\nBEGIN:VTODO\r\nEND:VTODO\r\nEND:VCALENDAR\r\n",
                 ];
-            case 'shared-event.ics':
+            case 'shared-event.ics' :
                 return [
-                    'id' => 3,
-                    'calendarid' => 2,
-                    'uri' => 'event1.ics',
+                    'id'           => 3,
+                    'calendarid'   => 2,
+                    'uri'          => 'event1.ics',
                     'calendardata' => "BEGIN:VCALENDAR\r\nBEGIN:VEVENT\r\nUID:shared\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n",
                 ];
+
         }
-    }
 
-    public function createCalendarObject($calendarId, $objectUri, $calendarData)
-    {
     }
+    function createCalendarObject($calendarId, $objectUri, $calendarData) { }
+    function updateCalendarObject($calendarId, $objectUri, $calendarData) { }
+    function deleteCalendarObject($calendarId, $objectUri) { }
 
-    public function updateCalendarObject($calendarId, $objectUri, $calendarData)
-    {
-    }
-
-    public function deleteCalendarObject($calendarId, $objectUri)
-    {
-    }
 }

@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Mock;
 
 use Sabre\DAV;
 
 /**
- * Mock File.
+ * Mock File
  *
  * See the Collection in this directory for more details.
  *
@@ -15,32 +13,34 @@ use Sabre\DAV;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class File extends DAV\File
-{
+class File extends DAV\File {
+
     protected $name;
     protected $contents;
     protected $parent;
     protected $lastModified;
 
     /**
-     * Creates the object.
+     * Creates the object
      *
-     * @param string     $name
-     * @param resource   $contents
+     * @param string $name
+     * @param resource $contents
      * @param Collection $parent
-     * @param int        $lastModified
+     * @param int $lastModified
+     * @return void
      */
-    public function __construct($name, $contents, Collection $parent = null, $lastModified = -1)
-    {
+    function __construct($name, $contents, Collection $parent = null, $lastModified = -1) {
+
         $this->name = $name;
         $this->put($contents);
         $this->parent = $parent;
 
-        if (-1 === $lastModified) {
+        if ($lastModified === -1) {
             $lastModified = time();
         }
 
         $this->lastModified = $lastModified;
+
     }
 
     /**
@@ -50,23 +50,26 @@ class File extends DAV\File
      *
      * @return string
      */
-    public function getName()
-    {
+    function getName() {
+
         return $this->name;
+
     }
 
     /**
      * Changes the name of the node.
      *
      * @param string $name
+     * @return void
      */
-    public function setName($name)
-    {
+    function setName($name) {
+
         $this->name = $name;
+
     }
 
     /**
-     * Updates the data.
+     * Updates the data
      *
      * The data argument is a readable stream resource.
      *
@@ -83,59 +86,66 @@ class File extends DAV\File
      * return an ETag, and just return null.
      *
      * @param resource $data
-     *
      * @return string|null
      */
-    public function put($data)
-    {
+    function put($data) {
+
         if (is_resource($data)) {
             $data = stream_get_contents($data);
         }
         $this->contents = $data;
+        return '"' . md5($data) . '"';
 
-        return '"'.md5($data).'"';
     }
 
     /**
-     * Returns the data.
+     * Returns the data
      *
      * This method may either return a string or a readable stream resource
      *
      * @return mixed
      */
-    public function get()
-    {
+    function get() {
+
         return $this->contents;
+
     }
 
     /**
-     * Returns the ETag for a file.
+     * Returns the ETag for a file
      *
      * An ETag is a unique identifier representing the current version of the file. If the file changes, the ETag MUST change.
      *
      * Return null if the ETag can not effectively be determined
+     *
+     * @return void
      */
-    public function getETag()
-    {
-        return '"'.md5($this->contents).'"';
+    function getETag() {
+
+        return '"' . md5($this->contents) . '"';
+
     }
 
     /**
-     * Returns the size of the node, in bytes.
+     * Returns the size of the node, in bytes
      *
      * @return int
      */
-    public function getSize()
-    {
+    function getSize() {
+
         return strlen($this->contents);
+
     }
 
     /**
-     * Delete the node.
+     * Delete the node
+     *
+     * @return void
      */
-    public function delete()
-    {
+    function delete() {
+
         $this->parent->deleteChild($this->name);
+
     }
 
     /**
@@ -144,8 +154,10 @@ class File extends DAV\File
      *
      * @return int
      */
-    public function getLastModified()
-    {
+    function getLastModified() {
+
         return $this->lastModified;
+
     }
+
 }

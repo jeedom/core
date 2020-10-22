@@ -1,33 +1,33 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Schedule;
 
 use Sabre\DAV;
 
-class PluginPropertiesTest extends \Sabre\DAVServerTest
-{
+class PluginPropertiesTest extends \Sabre\DAVServerTest {
+
     protected $setupCalDAV = true;
     protected $setupCalDAVScheduling = true;
     protected $setupPropertyStorage = true;
 
-    public function setUp()
-    {
+    function setUp() {
+
         parent::setUp();
         $this->caldavBackend->createCalendar(
             'principals/user1',
             'default',
             [
+
             ]
         );
         $this->principalBackend->addPrincipal([
-            'uri' => 'principals/user1/calendar-proxy-read',
+            'uri' => 'principals/user1/calendar-proxy-read'
         ]);
+
     }
 
-    public function testPrincipalProperties()
-    {
+    function testPrincipalProperties() {
+
         $props = $this->server->getPropertiesForPath('/principals/user1', [
             '{urn:ietf:params:xml:ns:caldav}schedule-inbox-URL',
             '{urn:ietf:params:xml:ns:caldav}schedule-outbox-URL',
@@ -61,10 +61,10 @@ class PluginPropertiesTest extends \Sabre\DAVServerTest
         $this->assertArrayHasKey('{urn:ietf:params:xml:ns:caldav}schedule-default-calendar-URL', $props[0][200]);
         $prop = $props[0][200]['{urn:ietf:params:xml:ns:caldav}schedule-default-calendar-URL'];
         $this->assertEquals('calendars/user1/default/', $prop->getHref());
-    }
 
-    public function testPrincipalPropertiesBadPrincipal()
-    {
+    }
+    function testPrincipalPropertiesBadPrincipal() {
+
         $props = $this->server->getPropertiesForPath('principals/user1/calendar-proxy-read', [
             '{urn:ietf:params:xml:ns:caldav}schedule-inbox-URL',
             '{urn:ietf:params:xml:ns:caldav}schedule-outbox-URL',
@@ -89,10 +89,10 @@ class PluginPropertiesTest extends \Sabre\DAVServerTest
         $this->assertEquals('INDIVIDUAL', $prop);
 
         $this->assertArrayHasKey('{urn:ietf:params:xml:ns:caldav}schedule-default-calendar-URL', $props[0][404]);
-    }
 
-    public function testNoDefaultCalendar()
-    {
+    }
+    function testNoDefaultCalendar() {
+
         foreach ($this->caldavBackend->getCalendarsForUser('principals/user1') as $calendar) {
             $this->caldavBackend->deleteCalendar($calendar['id']);
         }
@@ -104,14 +104,15 @@ class PluginPropertiesTest extends \Sabre\DAVServerTest
         $this->assertArrayHasKey(404, $props[0]);
 
         $this->assertArrayHasKey('{urn:ietf:params:xml:ns:caldav}schedule-default-calendar-URL', $props[0][404]);
+
     }
 
     /**
      * There are two properties for availability. The server should
      * automatically map the old property to the standard property.
      */
-    public function testAvailabilityMapping()
-    {
+    function testAvailabilityMapping() {
+
         $path = 'calendars/user1/inbox';
         $oldProp = '{http://calendarserver.org/ns/}calendar-availability';
         $newProp = '{urn:ietf:params:xml:ns:caldav}calendar-availability';
@@ -120,7 +121,7 @@ class PluginPropertiesTest extends \Sabre\DAVServerTest
 
         // Storing with the old name
         $this->server->updateProperties($path, [
-            $oldProp => $value1,
+            $oldProp => $value1
         ]);
 
         // Retrieving with the new name
@@ -131,7 +132,7 @@ class PluginPropertiesTest extends \Sabre\DAVServerTest
 
         // Storing with the new name
         $this->server->updateProperties($path, [
-            $newProp => $value2,
+            $newProp => $value2
         ]);
 
         // Retrieving with the old name
@@ -139,5 +140,7 @@ class PluginPropertiesTest extends \Sabre\DAVServerTest
             [$oldProp => $value2],
             $this->server->getProperties($path, [$oldProp])
         );
+
     }
+
 }

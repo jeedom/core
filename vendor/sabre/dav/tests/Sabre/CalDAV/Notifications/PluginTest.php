@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Notifications;
 
 use Sabre\CalDAV;
@@ -11,8 +9,8 @@ use Sabre\DAVACL;
 use Sabre\HTTP;
 use Sabre\HTTP\Request;
 
-class PluginTest extends \PHPUnit\Framework\TestCase
-{
+class PluginTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var Sabre\DAV\Server
      */
@@ -27,8 +25,8 @@ class PluginTest extends \PHPUnit\Framework\TestCase
      */
     protected $caldavBackend;
 
-    public function setup()
-    {
+    function setup() {
+
         $this->caldavBackend = new CalDAV\Backend\MockSharing();
         $principalBackend = new DAVACL\PrincipalBackend\Mock();
         $calendars = new CalDAV\CalendarRoot($principalBackend, $this->caldavBackend);
@@ -45,6 +43,7 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->plugin = new Plugin();
         $this->server->addPlugin($this->plugin);
 
+
         // Adding ACL plugin
         $aclPlugin = new DAVACL\Plugin();
         $aclPlugin->allowUnauthenticatedAccess = false;
@@ -58,61 +57,65 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->server->addPlugin($authPlugin);
 
         // This forces a login
-        $authPlugin->beforeMethod(new HTTP\Request('GET', '/'), new HTTP\Response());
+        $authPlugin->beforeMethod(new HTTP\Request(), new HTTP\Response());
 
         $this->response = new HTTP\ResponseMock();
         $this->server->httpResponse = $this->response;
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $this->assertEquals([], $this->plugin->getFeatures());
         $this->assertEquals('notifications', $this->plugin->getPluginName());
         $this->assertEquals(
             'notifications',
             $this->plugin->getPluginInfo()['name']
         );
+
     }
 
-    public function testPrincipalProperties()
-    {
+    function testPrincipalProperties() {
+
         $httpRequest = new Request('GET', '/', ['Host' => 'sabredav.org']);
         $this->server->httpRequest = $httpRequest;
 
         $props = $this->server->getPropertiesForPath('principals/admin', [
-            '{'.Plugin::NS_CALENDARSERVER.'}notification-URL',
+            '{' . Plugin::NS_CALENDARSERVER . '}notification-URL',
         ]);
 
         $this->assertArrayHasKey(0, $props);
         $this->assertArrayHasKey(200, $props[0]);
 
-        $this->assertArrayHasKey('{'.Plugin::NS_CALENDARSERVER.'}notification-URL', $props[0][200]);
-        $prop = $props[0][200]['{'.Plugin::NS_CALENDARSERVER.'}notification-URL'];
+        $this->assertArrayHasKey('{' . Plugin::NS_CALENDARSERVER . '}notification-URL', $props[0][200]);
+        $prop = $props[0][200]['{' . Plugin::NS_CALENDARSERVER . '}notification-URL'];
         $this->assertTrue($prop instanceof DAV\Xml\Property\Href);
         $this->assertEquals('calendars/admin/notifications/', $prop->getHref());
+
     }
 
-    public function testNotificationProperties()
-    {
+    function testNotificationProperties() {
+
         $notification = new Node(
             $this->caldavBackend,
             'principals/user1',
             new SystemStatus('foo', '"1"')
         );
         $propFind = new DAV\PropFind('calendars/user1/notifications', [
-            '{'.Plugin::NS_CALENDARSERVER.'}notificationtype',
+            '{' . Plugin::NS_CALENDARSERVER . '}notificationtype',
         ]);
 
         $this->plugin->propFind($propFind, $notification);
 
         $this->assertEquals(
             $notification->getNotificationType(),
-            $propFind->get('{'.Plugin::NS_CALENDARSERVER.'}notificationtype')
+            $propFind->get('{' . Plugin::NS_CALENDARSERVER . '}notificationtype')
         );
+
     }
 
-    public function testNotificationGet()
-    {
+    function testNotificationGet() {
+
         $notification = new Node(
             $this->caldavBackend,
             'principals/user1',
@@ -133,7 +136,7 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(200, $httpResponse->status);
         $this->assertEquals([
             'Content-Type' => ['application/xml'],
-            'ETag' => ['"1"'],
+            'ETag'         => ['"1"'],
         ], $httpResponse->getHeaders());
 
         $expected =
@@ -144,10 +147,11 @@ class PluginTest extends \PHPUnit\Framework\TestCase
 ';
 
         $this->assertXmlStringEqualsXmlString($expected, $httpResponse->getBodyAsString());
+
     }
 
-    public function testGETPassthrough()
-    {
+    function testGETPassthrough() {
+
         $server = new DAV\Server();
         $caldav = new Plugin();
 
@@ -157,5 +161,8 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $server->addPlugin($caldav);
 
         $this->assertNull($caldav->httpGet(new HTTP\Request('GET', '/foozz'), $server->httpResponse));
+
     }
+
+
 }

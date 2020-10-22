@@ -1,28 +1,26 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\DAV;
 
-class CalendarHomeSharedCalendarsTest extends \PHPUnit\Framework\TestCase
-{
+class CalendarHomeSharedCalendarsTest extends \PHPUnit_Framework_TestCase {
+
     protected $backend;
 
-    public function getInstance()
-    {
+    function getInstance() {
+
         $calendars = [
             [
-                'id' => 1,
+                'id'           => 1,
                 'principaluri' => 'principals/user1',
             ],
             [
-                'id' => 2,
+                'id'                                        => 2,
                 '{http://calendarserver.org/ns/}shared-url' => 'calendars/owner/cal1',
-                '{http://sabredav.org/ns}owner-principal' => 'principal/owner',
-                '{http://sabredav.org/ns}read-only' => false,
-                'principaluri' => 'principals/user1',
+                '{http://sabredav.org/ns}owner-principal'   => 'principal/owner',
+                '{http://sabredav.org/ns}read-only'         => false,
+                'principaluri'                              => 'principals/user1',
             ],
         ];
 
@@ -33,18 +31,20 @@ class CalendarHomeSharedCalendarsTest extends \PHPUnit\Framework\TestCase
         );
 
         return new CalendarHome($this->backend, [
-            'uri' => 'principals/user1',
+            'uri' => 'principals/user1'
         ]);
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $instance = $this->getInstance();
         $this->assertEquals('user1', $instance->getName());
+
     }
 
-    public function testGetChildren()
-    {
+    function testGetChildren() {
+
         $instance = $this->getInstance();
         $children = $instance->getChildren();
         $this->assertEquals(3, count($children));
@@ -53,23 +53,28 @@ class CalendarHomeSharedCalendarsTest extends \PHPUnit\Framework\TestCase
         $sharedCalendars = 0;
         $hasOutbox = false;
         $hasNotifications = false;
-
+        
         foreach ($children as $child) {
+
             if ($child instanceof ISharedCalendar) {
-                ++$sharedCalendars;
+                $sharedCalendars++;
             }
             if ($child instanceof Notifications\ICollection) {
                 $hasNotifications = true;
             }
+
         }
         $this->assertEquals(2, $sharedCalendars);
         $this->assertTrue($hasNotifications);
-    }
 
-    public function testShareReply()
-    {
+    }
+    
+    function testShareReply() {
+
         $instance = $this->getInstance();
         $result = $instance->shareReply('uri', DAV\Sharing\Plugin::INVITE_DECLINED, 'curi', '1');
         $this->assertNull($result);
+
     }
+
 }

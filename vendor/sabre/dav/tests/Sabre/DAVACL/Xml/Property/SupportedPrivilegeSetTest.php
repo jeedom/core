@@ -1,27 +1,28 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL\Xml\Property;
 
 use Sabre\DAV;
 use Sabre\DAV\Browser\HtmlOutputHelper;
+use Sabre\HTTP;
 
-class SupportedPrivilegeSetTest extends \PHPUnit\Framework\TestCase
-{
-    public function testSimple()
-    {
+class SupportedPrivilegeSetTest extends \PHPUnit_Framework_TestCase {
+
+    function testSimple() {
+
         $prop = new SupportedPrivilegeSet([
             'privilege' => '{DAV:}all',
         ]);
         $this->assertInstanceOf('Sabre\DAVACL\Xml\Property\SupportedPrivilegeSet', $prop);
+
     }
+
 
     /**
      * @depends testSimple
      */
-    public function testSerializeSimple()
-    {
+    function testSerializeSimple() {
+
         $prop = new SupportedPrivilegeSet([]);
 
         $xml = (new DAV\Server())->xml->write('{DAV:}supported-privilege-set', $prop);
@@ -34,18 +35,19 @@ class SupportedPrivilegeSetTest extends \PHPUnit\Framework\TestCase
     </d:privilege>
   </d:supported-privilege>
 </d:supported-privilege-set>', $xml);
+
     }
 
     /**
      * @depends testSimple
      */
-    public function testSerializeAggregate()
-    {
+    function testSerializeAggregate() {
+
         $prop = new SupportedPrivilegeSet([
-            '{DAV:}read' => [],
+            '{DAV:}read'  => [],
             '{DAV:}write' => [
                 'description' => 'booh',
-            ],
+            ]
         ]);
 
         $xml = (new DAV\Server())->xml->write('{DAV:}supported-privilege-set', $prop);
@@ -69,12 +71,13 @@ class SupportedPrivilegeSetTest extends \PHPUnit\Framework\TestCase
   </d:supported-privilege>
  </d:supported-privilege>
 </d:supported-privilege-set>', $xml);
+
     }
 
-    public function testToHtml()
-    {
+    function testToHtml() {
+
         $prop = new SupportedPrivilegeSet([
-            '{DAV:}read' => [],
+            '{DAV:}read'  => [],
             '{DAV:}write' => [
                 'description' => 'booh',
             ],
@@ -95,5 +98,6 @@ class SupportedPrivilegeSetTest extends \PHPUnit\Framework\TestCase
 HTML;
 
         $this->assertEquals($expected, $prop->toHtml($html));
+
     }
 }

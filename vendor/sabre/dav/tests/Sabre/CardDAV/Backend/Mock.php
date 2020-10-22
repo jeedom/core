@@ -1,31 +1,29 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CardDAV\Backend;
 
-class Mock extends AbstractBackend
-{
+class Mock extends AbstractBackend {
+
     public $addressBooks;
     public $cards;
 
-    public function __construct($addressBooks = null, $cards = null)
-    {
+    function __construct($addressBooks = null, $cards = null) {
+
         $this->addressBooks = $addressBooks;
         $this->cards = $cards;
 
         if (is_null($this->addressBooks)) {
             $this->addressBooks = [
                 [
-                    'id' => 'foo',
-                    'uri' => 'book1',
-                    'principaluri' => 'principals/user1',
+                    'id'                => 'foo',
+                    'uri'               => 'book1',
+                    'principaluri'      => 'principals/user1',
                     '{DAV:}displayname' => 'd-name',
                 ],
                 [
-                    'id' => 'bar',
-                    'uri' => 'book3',
-                    'principaluri' => 'principals/user1',
+                    'id'                => 'bar',
+                    'uri'               => 'book3',
+                    'principaluri'      => 'principals/user1',
                     '{DAV:}displayname' => 'd-name',
                 ],
             ];
@@ -43,18 +41,20 @@ class Mock extends AbstractBackend
                 ],
             ];
         }
+
     }
 
-    public function getAddressBooksForUser($principalUri)
-    {
+
+    function getAddressBooksForUser($principalUri) {
+
         $books = [];
         foreach ($this->addressBooks as $book) {
             if ($book['principaluri'] === $principalUri) {
                 $books[] = $book;
             }
         }
-
         return $books;
+
     }
 
     /**
@@ -69,43 +69,45 @@ class Mock extends AbstractBackend
      *
      * Read the PropPatch documentation for more info and examples.
      *
-     * @param string               $addressBookId
+     * @param string $addressBookId
      * @param \Sabre\DAV\PropPatch $propPatch
+     * @return void
      */
-    public function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch)
-    {
-        foreach ($this->addressBooks as &$book) {
-            if ($book['id'] !== $addressBookId) {
-                continue;
-            }
+    function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch) {
 
-            $propPatch->handleRemaining(function ($mutations) use (&$book) {
+        foreach ($this->addressBooks as &$book) {
+            if ($book['id'] !== $addressBookId)
+                continue;
+
+            $propPatch->handleRemaining(function($mutations) use (&$book) {
                 foreach ($mutations as $key => $value) {
                     $book[$key] = $value;
                 }
-
                 return true;
             });
+
         }
+
     }
 
-    public function createAddressBook($principalUri, $url, array $properties)
-    {
+    function createAddressBook($principalUri, $url, array $properties) {
+
         $this->addressBooks[] = array_merge($properties, [
-            'id' => $url,
-            'uri' => $url,
+            'id'           => $url,
+            'uri'          => $url,
             'principaluri' => $principalUri,
         ]);
+
     }
 
-    public function deleteAddressBook($addressBookId)
-    {
+    function deleteAddressBook($addressBookId) {
+
         foreach ($this->addressBooks as $key => $value) {
-            if ($value['id'] === $addressBookId) {
+            if ($value['id'] === $addressBookId)
                 unset($this->addressBooks[$key]);
-            }
         }
         unset($this->cards[$addressBookId]);
+
     }
 
     /**
@@ -125,29 +127,28 @@ class Mock extends AbstractBackend
      * This may speed up certain requests, especially with large cards.
      *
      * @param mixed $addressBookId
-     *
      * @return array
      */
-    public function getCards($addressBookId)
-    {
+    function getCards($addressBookId) {
+
         $cards = [];
         foreach ($this->cards[$addressBookId] as $uri => $data) {
             if (is_resource($data)) {
                 $cards[] = [
-                    'uri' => $uri,
+                    'uri'      => $uri,
                     'carddata' => $data,
                 ];
             } else {
                 $cards[] = [
-                    'uri' => $uri,
+                    'uri'      => $uri,
                     'carddata' => $data,
-                    'etag' => '"'.md5($data).'"',
-                    'size' => strlen($data),
+                    'etag'     => '"' . md5($data) . '"',
+                    'size'     => strlen($data)
                 ];
             }
         }
-
         return $cards;
+
     }
 
     /**
@@ -158,25 +159,24 @@ class Mock extends AbstractBackend
      *
      * If the card does not exist, you must return false.
      *
-     * @param mixed  $addressBookId
+     * @param mixed $addressBookId
      * @param string $cardUri
-     *
      * @return array
      */
-    public function getCard($addressBookId, $cardUri)
-    {
+    function getCard($addressBookId, $cardUri) {
+
         if (!isset($this->cards[$addressBookId][$cardUri])) {
             return false;
         }
 
         $data = $this->cards[$addressBookId][$cardUri];
-
         return [
-            'uri' => $cardUri,
+            'uri'      => $cardUri,
             'carddata' => $data,
-            'etag' => '"'.md5($data).'"',
-            'size' => strlen($data),
+            'etag'     => '"' . md5($data) . '"',
+            'size'     => strlen($data)
         ];
+
     }
 
     /**
@@ -199,20 +199,19 @@ class Mock extends AbstractBackend
      *
      * If you don't return an ETag, you can just return null.
      *
-     * @param mixed  $addressBookId
+     * @param mixed $addressBookId
      * @param string $cardUri
      * @param string $cardData
-     *
      * @return string|null
      */
-    public function createCard($addressBookId, $cardUri, $cardData)
-    {
+    function createCard($addressBookId, $cardUri, $cardData) {
+
         if (is_resource($cardData)) {
             $cardData = stream_get_contents($cardData);
         }
         $this->cards[$addressBookId][$cardUri] = $cardData;
+        return '"' . md5($cardData) . '"';
 
-        return '"'.md5($cardData).'"';
     }
 
     /**
@@ -235,24 +234,25 @@ class Mock extends AbstractBackend
      *
      * If you don't return an ETag, you can just return null.
      *
-     * @param mixed  $addressBookId
+     * @param mixed $addressBookId
      * @param string $cardUri
      * @param string $cardData
-     *
      * @return string|null
      */
-    public function updateCard($addressBookId, $cardUri, $cardData)
-    {
+    function updateCard($addressBookId, $cardUri, $cardData) {
+
         if (is_resource($cardData)) {
             $cardData = stream_get_contents($cardData);
         }
         $this->cards[$addressBookId][$cardUri] = $cardData;
+        return '"' . md5($cardData) . '"';
 
-        return '"'.md5($cardData).'"';
     }
 
-    public function deleteCard($addressBookId, $cardUri)
-    {
+    function deleteCard($addressBookId, $cardUri) {
+
         unset($this->cards[$addressBookId][$cardUri]);
+
     }
+
 }

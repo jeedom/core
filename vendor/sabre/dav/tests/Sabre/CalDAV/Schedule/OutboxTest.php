@@ -1,15 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Schedule;
 
 use Sabre\CalDAV;
+use Sabre\DAV;
 
-class OutboxTest extends \PHPUnit\Framework\TestCase
-{
-    public function testSetup()
-    {
+class OutboxTest extends \PHPUnit_Framework_TestCase {
+
+    function testSetup() {
+
         $outbox = new Outbox('principals/user1');
         $this->assertEquals('outbox', $outbox->getName());
         $this->assertEquals([], $outbox->getChildren());
@@ -18,7 +17,7 @@ class OutboxTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals([
             [
-                'privilege' => '{'.CalDAV\Plugin::NS_CALDAV.'}schedule-send',
+                'privilege' => '{' . CalDAV\Plugin::NS_CALDAV . '}schedule-send',
                 'principal' => 'principals/user1',
                 'protected' => true,
             ],
@@ -28,7 +27,7 @@ class OutboxTest extends \PHPUnit\Framework\TestCase
                 'protected' => true,
             ],
             [
-                'privilege' => '{'.CalDAV\Plugin::NS_CALDAV.'}schedule-send',
+                'privilege' => '{' . CalDAV\Plugin::NS_CALDAV . '}schedule-send',
                 'principal' => 'principals/user1/calendar-proxy-write',
                 'protected' => true,
             ],
@@ -43,5 +42,7 @@ class OutboxTest extends \PHPUnit\Framework\TestCase
                 'protected' => true,
             ],
         ], $outbox->getACL());
+
     }
+
 }

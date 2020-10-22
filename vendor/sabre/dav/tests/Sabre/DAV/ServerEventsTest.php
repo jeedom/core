@@ -1,36 +1,36 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV;
 
 use Sabre\HTTP;
 
 require_once 'Sabre/DAV/AbstractServer.php';
 
-class ServerEventsTest extends AbstractServer
-{
+class ServerEventsTest extends AbstractServer {
+
     private $tempPath;
 
     private $exception;
 
-    public function testAfterBind()
-    {
+    function testAfterBind() {
+
         $this->server->on('afterBind', [$this, 'afterBindHandler']);
         $newPath = 'afterBind';
 
         $this->tempPath = '';
         $this->server->createFile($newPath, 'body');
         $this->assertEquals($newPath, $this->tempPath);
+
     }
 
-    public function afterBindHandler($path)
-    {
-        $this->tempPath = $path;
+    function afterBindHandler($path) {
+
+       $this->tempPath = $path;
+
     }
 
-    public function testAfterResponse()
-    {
+    function testAfterResponse() {
+
         $mock = $this->getMockBuilder('stdClass')
             ->setMethods(['afterResponseCallback'])
             ->getMock();
@@ -40,65 +40,74 @@ class ServerEventsTest extends AbstractServer
 
         $this->server->httpRequest = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'GET',
-            'REQUEST_URI' => '/test.txt',
+            'REQUEST_URI'    => '/test.txt',
         ]);
 
         $this->server->exec();
+
     }
 
-    public function testBeforeBindCancel()
-    {
+    function testBeforeBindCancel() {
+
         $this->server->on('beforeBind', [$this, 'beforeBindCancelHandler']);
         $this->assertFalse($this->server->createFile('bla', 'body'));
 
         // Also testing put()
         $req = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'PUT',
-            'REQUEST_URI' => '/barbar',
+            'REQUEST_URI'    => '/barbar',
         ]);
 
         $this->server->httpRequest = $req;
         $this->server->exec();
 
         $this->assertEquals(500, $this->server->httpResponse->getStatus());
+
     }
 
-    public function beforeBindCancelHandler($path)
-    {
+    function beforeBindCancelHandler($path) {
+
         return false;
+
     }
 
-    public function testException()
-    {
+    function testException() {
+
         $this->server->on('exception', [$this, 'exceptionHandler']);
 
         $req = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'GET',
-            'REQUEST_URI' => '/not/exisitng',
+            'REQUEST_URI'    => '/not/exisitng',
         ]);
         $this->server->httpRequest = $req;
         $this->server->exec();
 
         $this->assertInstanceOf('Sabre\\DAV\\Exception\\NotFound', $this->exception);
+
     }
 
-    public function exceptionHandler(Exception $exception)
-    {
+    function exceptionHandler(Exception $exception) {
+
         $this->exception = $exception;
+
     }
 
-    public function testMethod()
-    {
+    function testMethod() {
+
         $k = 1;
-        $this->server->on('method:*', function ($request, $response) use (&$k) {
-            ++$k;
+        $this->server->on('method', function($request, $response) use (&$k) {
+
+            $k += 1;
 
             return false;
+
         });
-        $this->server->on('method:*', function ($request, $response) use (&$k) {
+        $this->server->on('method', function($request, $response) use (&$k) {
+
             $k += 2;
 
             return false;
+
         });
 
         try {
@@ -107,10 +116,11 @@ class ServerEventsTest extends AbstractServer
                 new HTTP\Response(),
                 false
             );
-        } catch (Exception $e) {
-        }
+        } catch (Exception $e) {}
 
         // Fun fact, PHP 7.1 changes the order when sorting-by-callback.
         $this->assertTrue($k >= 2 && $k <= 3);
+
     }
+
 }

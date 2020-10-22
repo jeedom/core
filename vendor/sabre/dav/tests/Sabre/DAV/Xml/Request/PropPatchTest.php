@@ -1,21 +1,19 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Xml\Request;
 
 use Sabre\DAV\Xml\Property\Href;
 use Sabre\DAV\Xml\XmlTest;
 
-class PropPatchTest extends XmlTest
-{
-    public function testSerialize()
-    {
+class PropPatchTest extends XmlTest {
+
+    function testSerialize() {
+
         $propPatch = new PropPatch();
         $propPatch->properties = [
             '{DAV:}displayname' => 'Hello!',
-            '{DAV:}delete-me' => null,
-            '{DAV:}some-url' => new Href('foo/bar'),
+            '{DAV:}delete-me'   => null,
+            '{DAV:}some-url'    => new Href('foo/bar')
         ];
 
         $result = $this->write(
@@ -49,5 +47,7 @@ XML;
             $expected,
             $result
         );
+
     }
+
 }

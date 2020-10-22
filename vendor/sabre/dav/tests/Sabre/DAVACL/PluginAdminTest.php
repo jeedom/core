@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL;
 
 use Sabre\DAV;
@@ -10,12 +8,12 @@ use Sabre\HTTP;
 require_once 'Sabre/DAVACL/MockACLNode.php';
 require_once 'Sabre/HTTP/ResponseMock.php';
 
-class PluginAdminTest extends \PHPUnit\Framework\TestCase
-{
+class PluginAdminTest extends \PHPUnit_Framework_TestCase {
+
     public $server;
 
-    public function setUp()
-    {
+    function setUp() {
+
         $principalBackend = new PrincipalBackend\Mock();
 
         $tree = [
@@ -29,15 +27,15 @@ class PluginAdminTest extends \PHPUnit\Framework\TestCase
         $this->server->addPlugin($plugin);
     }
 
-    public function testNoAdminAccess()
-    {
+    function testNoAdminAccess() {
+
         $plugin = new Plugin();
         $this->server->addPlugin($plugin);
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'OPTIONS',
-            'HTTP_DEPTH' => 1,
-            'REQUEST_URI' => '/adminonly',
+            'HTTP_DEPTH'     => 1,
+            'REQUEST_URI'    => '/adminonly',
         ]);
 
         $response = new HTTP\ResponseMock();
@@ -48,13 +46,14 @@ class PluginAdminTest extends \PHPUnit\Framework\TestCase
         $this->server->exec();
 
         $this->assertEquals(403, $response->status);
+
     }
 
     /**
      * @depends testNoAdminAccess
      */
-    public function testAdminAccess()
-    {
+    function testAdminAccess() {
+
         $plugin = new Plugin();
         $plugin->adminPrincipals = [
             'principals/admin',
@@ -63,8 +62,8 @@ class PluginAdminTest extends \PHPUnit\Framework\TestCase
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'OPTIONS',
-            'HTTP_DEPTH' => 1,
-            'REQUEST_URI' => '/adminonly',
+            'HTTP_DEPTH'     => 1,
+            'REQUEST_URI'    => '/adminonly',
         ]);
 
         $response = new HTTP\ResponseMock();
@@ -75,5 +74,6 @@ class PluginAdminTest extends \PHPUnit\Framework\TestCase
         $this->server->exec();
 
         $this->assertEquals(200, $response->status);
+
     }
 }

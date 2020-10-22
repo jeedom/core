@@ -10,9 +10,6 @@ use Sabre\VObject\Recur;
 
 class InfiniteLoopProblemTest extends TestCase
 {
-    /** @var VCalendar */
-    private $vcal;
-
     public function setUp()
     {
         $this->vcal = new VCalendar();

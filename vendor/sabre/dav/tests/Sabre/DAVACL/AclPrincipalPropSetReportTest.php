@@ -1,18 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL;
 
 use Sabre\HTTP\Request;
 
-class AclPrincipalPropSetReportTest extends \Sabre\DAVServerTest
-{
+class AclPrincipalPropSetReportTest extends \Sabre\DAVServerTest {
+
     public $setupACL = true;
     public $autoLogin = 'admin';
 
-    public function testReport()
-    {
+    function testReport() {
+
         $xml = <<<XML
 <?xml version="1.0"?>
 <acl-principal-prop-set xmlns="DAV:">
@@ -48,10 +46,11 @@ XML;
             $expected,
             $response->getBodyAsString()
         );
+
     }
 
-    public function testReportDepth1()
-    {
+    function testReportDepth1() {
+
         $xml = <<<XML
 <?xml version="1.0"?>
 <acl-principal-prop-set xmlns="DAV:">
@@ -64,5 +63,7 @@ XML;
         $request->setBody($xml);
 
         $this->request($request, 400);
+
     }
+
 }

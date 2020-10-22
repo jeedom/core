@@ -1,31 +1,29 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Locks\Backend;
 
 use Sabre\DAV;
 
-abstract class AbstractTest extends \PHPUnit\Framework\TestCase
-{
+abstract class AbstractTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @abstract
-     *
      * @return AbstractBackend
      */
-    abstract public function getBackend();
+    abstract function getBackend();
 
-    public function testSetup()
-    {
-        $backend = $this->getBackend();
-        $this->assertInstanceOf('Sabre\\DAV\\Locks\\Backend\\AbstractBackend', $backend);
+    function testSetup() {
+
+       $backend = $this->getBackend();
+       $this->assertInstanceOf('Sabre\\DAV\\Locks\\Backend\\AbstractBackend', $backend);
+
     }
 
     /**
      * @depends testSetup
      */
-    public function testGetLocks()
-    {
+    function testGetLocks() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -42,13 +40,14 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1, count($locks));
         $this->assertEquals('Sinterklaas', $locks[0]->owner);
         $this->assertEquals('someuri', $locks[0]->uri);
+
     }
 
     /**
      * @depends testGetLocks
      */
-    public function testGetLocksParent()
-    {
+    function testGetLocksParent() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -65,13 +64,15 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1, count($locks));
         $this->assertEquals('Sinterklaas', $locks[0]->owner);
         $this->assertEquals('someuri', $locks[0]->uri);
+
     }
+
 
     /**
      * @depends testGetLocks
      */
-    public function testGetLocksParentDepth0()
-    {
+    function testGetLocksParentDepth0() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -86,10 +87,11 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
         $locks = $backend->getLocks('someuri/child', false);
 
         $this->assertEquals(0, count($locks));
+
     }
 
-    public function testGetLocksChildren()
-    {
+    function testGetLocksChildren() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -109,13 +111,14 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
 
         $locks = $backend->getLocks('someuri', true);
         $this->assertEquals(1, count($locks));
+
     }
 
     /**
      * @depends testGetLocks
      */
-    public function testLockRefresh()
-    {
+    function testLockRefresh() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -136,13 +139,14 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('Santa Clause', $locks[0]->owner);
         $this->assertEquals('someuri', $locks[0]->uri);
+
     }
 
     /**
      * @depends testGetLocks
      */
-    public function testUnlock()
-    {
+    function testUnlock() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -160,13 +164,14 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
 
         $locks = $backend->getLocks('someuri', false);
         $this->assertEquals(0, count($locks));
+
     }
 
     /**
      * @depends testUnlock
      */
-    public function testUnlockUnknownToken()
-    {
+    function testUnlockUnknownToken() {
+
         $backend = $this->getBackend();
 
         $lock = new DAV\Locks\LockInfo();
@@ -185,5 +190,7 @@ abstract class AbstractTest extends \PHPUnit\Framework\TestCase
 
         $locks = $backend->getLocks('someuri', false);
         $this->assertEquals(1, count($locks));
+
     }
+
 }

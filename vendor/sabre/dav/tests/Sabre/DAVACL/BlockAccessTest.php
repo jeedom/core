@@ -1,21 +1,19 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL;
 
 use Sabre\DAV;
 
-class BlockAccessTest extends \PHPUnit\Framework\TestCase
-{
+class BlockAccessTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var DAV\Server
      */
     protected $server;
     protected $plugin;
 
-    public function setUp()
-    {
+    function setUp() {
+
         $nodes = [
             new DAV\SimpleCollection('testdir'),
         ];
@@ -30,138 +28,151 @@ class BlockAccessTest extends \PHPUnit\Framework\TestCase
         );
         // Login
         $this->server->getPlugin('auth')->beforeMethod(
-            new \Sabre\HTTP\Request('GET', '/'),
+            new \Sabre\HTTP\Request(),
             new \Sabre\HTTP\Response()
         );
         $this->server->addPlugin($this->plugin);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testGet()
-    {
+    function testGet() {
+
         $this->server->httpRequest->setMethod('GET');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
-    public function testGetDoesntExist()
-    {
+    function testGetDoesntExist() {
+
         $this->server->httpRequest->setMethod('GET');
         $this->server->httpRequest->setUrl('/foo');
 
-        $r = $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $r = $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
         $this->assertTrue($r);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testHEAD()
-    {
+    function testHEAD() {
+
         $this->server->httpRequest->setMethod('HEAD');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testOPTIONS()
-    {
+    function testOPTIONS() {
+
         $this->server->httpRequest->setMethod('OPTIONS');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testPUT()
-    {
+    function testPUT() {
+
         $this->server->httpRequest->setMethod('PUT');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testPROPPATCH()
-    {
+    function testPROPPATCH() {
+
         $this->server->httpRequest->setMethod('PROPPATCH');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testCOPY()
-    {
+    function testCOPY() {
+
         $this->server->httpRequest->setMethod('COPY');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testMOVE()
-    {
+    function testMOVE() {
+
         $this->server->httpRequest->setMethod('MOVE');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testACL()
-    {
+    function testACL() {
+
         $this->server->httpRequest->setMethod('ACL');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testLOCK()
-    {
+    function testLOCK() {
+
         $this->server->httpRequest->setMethod('LOCK');
         $this->server->httpRequest->setUrl('/testdir');
 
-        $this->server->emit('beforeMethod:GET', [$this->server->httpRequest, $this->server->httpResponse]);
+        $this->server->emit('beforeMethod', [$this->server->httpRequest, $this->server->httpResponse]);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testBeforeBind()
-    {
+    function testBeforeBind() {
+
         $this->server->emit('beforeBind', ['testdir/file']);
+
     }
 
     /**
-     * @expectedException \Sabre\DAVACL\Exception\NeedPrivileges
+     * @expectedException Sabre\DAVACL\Exception\NeedPrivileges
      */
-    public function testBeforeUnbind()
-    {
+    function testBeforeUnbind() {
+
         $this->server->emit('beforeUnbind', ['testdir']);
+
     }
 
-    public function testPropFind()
-    {
+    function testPropFind() {
+
         $propFind = new DAV\PropFind('testdir', [
             '{DAV:}displayname',
             '{DAV:}getcontentlength',
@@ -176,18 +187,19 @@ class BlockAccessTest extends \PHPUnit\Framework\TestCase
             200 => [],
             404 => [],
             403 => [
-                '{DAV:}displayname' => null,
+                '{DAV:}displayname'      => null,
                 '{DAV:}getcontentlength' => null,
-                '{DAV:}bar' => null,
-                '{DAV:}owner' => null,
+                '{DAV:}bar'              => null,
+                '{DAV:}owner'            => null,
             ],
         ];
 
         $this->assertEquals($expected, $propFind->getResultForMultiStatus());
+
     }
 
-    public function testBeforeGetPropertiesNoListing()
-    {
+    function testBeforeGetPropertiesNoListing() {
+
         $this->plugin->hideNodesFromListings = true;
         $propFind = new DAV\PropFind('testdir', [
             '{DAV:}displayname',
@@ -198,5 +210,6 @@ class BlockAccessTest extends \PHPUnit\Framework\TestCase
 
         $r = $this->server->emit('propFind', [$propFind, new DAV\SimpleCollection('testdir')]);
         $this->assertFalse($r);
+
     }
 }
