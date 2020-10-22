@@ -1560,6 +1560,7 @@ class cmd {
 				$timeline->save();
 			}
 			$this->pushUrl($value);
+			$this->pushInflux($value);
 		}
 	}
 	
@@ -1787,6 +1788,175 @@ class cmd {
 		} catch (Error $e) {
 			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
+	}
+	
+	public function pushInflux($_value) {
+		try{
+			$enabled = $this->getConfiguration('influx::enable');
+			if (!$enabled) {
+				return;
+			}
+			$url = config::byKey('cmdInfluxURL');
+			$port = config::byKey('cmdInfluxPort');
+			$base = config::byKey('cmdInfluxTable');
+			$user = config::byKey('cmdInfluxUser');
+			$pass = config::byKey('cmdInfluxPass');
+			if ($url == '' || $port == ''){
+				return;
+			}
+			if ($base == ''){
+				$base = 'Jeedom';
+			}
+			$cmdname = $this->getHumanName();
+			$name = $this->getName();
+			$eqLogic = $this->getEqLogic();
+			$eqLogicName = $eqLogic->getName();
+			$object= $eqLogic->getObject()->getName();
+			$plugin= $eqLogic->getEqType_name();
+			$client = new InfluxDB\Client($url, $port,$user,$pass);
+			$database = $client->selectDB($base);
+			if (!$database->exists()) {
+				$database->create();
+			}
+			if ($this->getConfiguration('influx::namecmd','') != ''){
+				$name = $this->getConfiguration('influx::namecmd');
+			}
+			if ($this->getConfiguration('influx::nameEq','') != ''){
+				$eqLogicName = $this->getConfiguration('influx::nameEq');
+			}
+			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
+			$genericType = $this->getGeneric_type();
+			$genericName = 'Aucun';
+			if ($genericType != ''){
+				$genericName = jeedom::getConfiguration('cmd::generic_type')[$this->getGeneric_type()]['name'];
+			}
+			$subtype = $this->getSubType();
+			if ($subtype == 'numeric'){
+				$value = floatval($_value);
+			} else if ($subtype == 'binary'){
+				$value = intval($_value);
+			} else {
+				$value = $_value;
+			}
+			$tagArray = array('box' => config::byKey('name','core'),
+							'location' => $object,
+							'equipement' => $eqLogicName,
+							'plugin' => $plugin,
+							'cmd' => $cmdname,
+							'cmdId' => $this->getId(),
+							'cmdname' => $this->getName(),
+							'genericType' => $genericName
+							);
+			$point = new InfluxDB\Point($cleanName, $value,$tagArray);
+			$result = $database->writePoints(array($point),'s');
+			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName() . ' : ' .  json_encode($tagArray,true));
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
+	}
+	
+	public function dropInflux() {
+		try{
+			$enabled = $this->getConfiguration('influx::enable');
+			if (!$enabled) {
+				return;
+			}
+			$url = config::byKey('cmdInfluxURL');
+			$port = config::byKey('cmdInfluxPort');
+			$base = config::byKey('cmdInfluxTable');
+			$user = config::byKey('cmdInfluxUser');
+			$pass = config::byKey('cmdInfluxPass');
+			if ($url == '' || $port == ''){
+				return;
+			}
+			if ($base == ''){
+				$base = 'Jeedom';
+			}
+			$name = $this->getName();
+			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
+			$client = new InfluxDB\Client($url, $port,$user,$pass);
+			$database = $client->selectDB($base);
+			if (!$database->exists()) {
+				return;
+			}
+			$query = 'DROP SERIES WHERE cmdId=\''.$this->getId().'\'';
+			$result = $database->query($query);
+			log::add('cmd', 'debug', 'Delete influx for ' . $this->getHumanName());
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
+	}
+	
+	public function historyInflux() {
+		log::add('cmd','error','histo');
+		try{
+			$enabled = $this->getConfiguration('influx::enable');
+			if (!$enabled) {
+				return;
+			}
+			$url = config::byKey('cmdInfluxURL');
+			$port = config::byKey('cmdInfluxPort');
+			$base = config::byKey('cmdInfluxTable');
+			$user = config::byKey('cmdInfluxUser');
+			$pass = config::byKey('cmdInfluxPass');
+			if ($url == '' || $port == ''){
+				return;
+			}
+			if ($base == ''){
+				$base = 'Jeedom';
+			}
+			$cmdname = $this->getHumanName();
+			$name = $this->getName();
+			$eqLogic = $this->getEqLogic();
+			$eqLogicName = $eqLogic->getName();
+			$object= $eqLogic->getObject()->getName();
+			$plugin= $eqLogic->getEqType_name();
+			$client = new InfluxDB\Client($url, $port,$user,$pass);
+			$database = $client->selectDB($base);
+			if (!$database->exists()) {
+				return;
+			}
+			if ($this->getConfiguration('influx::namecmd','') != ''){
+				$name = $this->getConfiguration('influx::namecmd');
+			}
+			if ($this->getConfiguration('influx::nameEq','') != ''){
+				$eqLogicName = $this->getConfiguration('influx::nameEq');
+			}
+			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
+			$genericType = $this->getGeneric_type();
+			$genericName = 'Aucun';
+			if ($genericType != ''){
+				$genericName = jeedom::getConfiguration('cmd::generic_type')[$this->getGeneric_type()]['name'];
+			}
+			$subtype = $this->getSubType();
+			$history = $this->getHistory();
+			$points =array();
+			$tagArray = array('box' => config::byKey('name','core'),
+							'location' => $object,
+							'equipement' => $eqLogicName,
+							'plugin' => $plugin,
+							'cmd' => $cmdname,
+							'cmdId' => $this->getId(),
+							'cmdname' => $this->getName(),
+							'genericType' => $genericName
+							);
+			foreach ($history as $point) {
+				$value = $point->getValue();
+				if ($subtype == 'numeric'){
+					$value = floatval($value);
+				} else if ($subtype == 'binary'){
+					$value = intval($value);
+				}
+				$timestamp = strtotime($point->getDatetime());
+				$points[]= new InfluxDB\Point($cleanName, $value,$tagArray, [] ,$timestamp);
+			}
+			$result = $database->writePoints($points,'s');
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
 	}
 	
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {

@@ -1015,6 +1015,52 @@ user::isBan();
 				</fieldset>
 			</form>
 			
+			<legend>{{InfluxDB}}</legend>
+			<form class="form-horizontal">
+				<fieldset>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{URL du serveur}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici l'URL du serveur}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxURL">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Port du serveur}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le port du serveur}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxPort">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nom de la base}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le nom de la base}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxTable">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{User de la base}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le user de la base}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxUser">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Mot de passe de la base}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le mot de passe de la base}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="password"  class="configKey form-control" data-l1key="cmdInfluxPass">
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			
 			<legend>{{Divers}}</legend>
 			<form class="form-horizontal">
 				<fieldset>

@@ -568,6 +568,44 @@ jeedom.cmd.usedBy = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.dropInflux = function(_params) {
+  var paramsRequired = ['cmd_id'];
+  var paramsSpecifics = {};
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'dropInflux',
+    cmd_id: _params.cmd_id
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.historyInflux = function(_params) {
+  var paramsRequired = ['cmd_id'];
+  var paramsSpecifics = {};
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'historyInflux',
+    cmd_id: _params.cmd_id
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.cmd.changeType = function(_cmd, _subType) {
   var selSubType = '<select style="width : 120px;margin-top : 5px;" class="cmdAttr form-control input-sm" data-l1key="subType">';
   var type = _cmd.find('.cmdAttr[data-l1key=type]').value();
