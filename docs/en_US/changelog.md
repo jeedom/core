@@ -81,15 +81,10 @@
 - **Lib** : Update HighStock v7.1.2 to v8.2.0.
 - **Lib** : Update jQuery v3.4.1 to v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 to 5.13.1.
+- **API** :  addition of an option to prohibit an api key of a plugin from executing core methods (general)
 - Securing Ajax requests.
+- Securing API calls.
 - Bug fixes.
 - Numerous desktop / mobile performance optimizations.
 
-
->**Important**
->
-> The inversion of the binary commands no longer only inverts the widget but the value of the command, it will therefore be necessary to correctly reconfigure the scenarios and the summaries which use commands of the inverted binary type
-
 [Changelog v4.0](/en_US/core/4.0/changelog)
-
-

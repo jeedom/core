@@ -81,15 +81,10 @@
 - **Lib** : Atualizar o HighStock v7.1.2 a v8.2.0.
 - **Lib** : Atualizar o jQuery v3.4.1 a v3.5.1.
 - **Lib** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
+- **API** :  adição de uma opção para proibir uma chave de API de um plugin de executar métodos centrais (geral)
 - Protegendo solicitações Ajax.
+- Protegendo chamadas de API.
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
 
-
->**IMPORTANTE**
->
-> A inversão dos comandos binários não inverte mais apenas o widget, mas o valor do comando, será necessário, portanto, reconfigurar corretamente os cenários e os resumos que utilizam comandos do tipo binário invertido
-
 [Changelog v4.0](/pt_PT/core/4.0/changelog)
-
-

@@ -236,7 +236,13 @@ $('.bt_exportcsv').on('click',function() {
 $('.objectSelectEqlogics').on('click',function() {
   var object = $(this).closest('.objectSortable')
   if (object.find('.accordion-toggle').attr('aria-expanded') == 'false') object.find('.accordion-toggle').click()
-  $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
+
+  //inactive or not:
+  var elements
+  if ($('#cb_actifDisplay').is(':checked')) elements = $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic')
+  else elements = $(this).closest('.objectSortable').find('li.eqLogic[data-enable="1"] .cb_selEqLogic')
+
+  elements.each(function() {
     $(this).prop('checked', true)
   })
   setEqActions()

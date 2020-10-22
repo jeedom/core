@@ -696,7 +696,7 @@ $('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function() {
 })
 
 $('#bt_resetbattery').on('click',function() {
-  bootbox.confirm('{{Avez vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\'hui}}', function(result) {
+  bootbox.confirm('{{Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\'hui}}', function(result) {
     if (result) {
       var eqLogic = {}
       eqLogic['id']=eqLogicInfo.id
