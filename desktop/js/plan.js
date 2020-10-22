@@ -653,16 +653,23 @@ $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('chan
 
 function fullScreen(_mode) {
   if (_mode) {
-    $('header').hide()
-    $('footer').hide()
-    $('#div_mainContainer').css('margin-top', '-50px')
+    $('header, footer').hide()
+    $('#div_mainContainer').css({
+    'margin-top' : '-50px',
+    'overflow-y' : 'inherit',
+    'overflow-x' : 'inherit'
+  })
     $('#wrap').css('margin-bottom', '0px')
-    $('.div_backgroundPlan').height($('html').height())
+    $('.div_backgroundPlan').height('auto')
     $('.backgroundforJeedom').css('margin-top', '-50px').height('100%')
+
   } else {
-    $('header').show()
-    $('footer').show()
-    $('#div_mainContainer').css('margin-top', '0px')
+    $('header, footer').show()
+    $('#div_mainContainer').css({
+    'margin-top' : '0px',
+    'overflow-y' : 'scroll',
+    'overflow-x' : 'hidden'
+  })
     $('#wrap').css('margin-bottom', '15px')
     $('.div_backgroundPlan').height($('body').height())
     $('.backgroundforJeedom').css('margin-top', '').height('')
