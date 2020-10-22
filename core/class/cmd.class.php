@@ -1790,34 +1790,15 @@ class cmd {
 		}
 	}
 	
-	public function pushInflux($_value) {
+	public function computeInfluxData($_value, $_timestamp = '') {
+		$point='';
 		try{
-			$enabled = $this->getConfiguration('influx::enable');
-			if (!$enabled) {
-				return;
-			}
-			$url = config::byKey('cmdInfluxURL');
-			$port = config::byKey('cmdInfluxPort');
-			$base = config::byKey('cmdInfluxTable');
-			$user = config::byKey('cmdInfluxUser');
-			$pass = config::byKey('cmdInfluxPass');
-			if ($url == '' || $port == ''){
-				return;
-			}
-			if ($base == ''){
-				$base = 'Jeedom';
-			}
 			$cmdname = $this->getHumanName();
 			$name = $this->getName();
 			$eqLogic = $this->getEqLogic();
 			$eqLogicName = $eqLogic->getName();
 			$object= $eqLogic->getObject()->getName();
 			$plugin= $eqLogic->getEqType_name();
-			$client = new InfluxDB\Client($url, $port,$user,$pass);
-			$database = $client->selectDB($base);
-			if (!$database->exists()) {
-				$database->create();
-			}
 			if ($this->getConfiguration('influx::namecmd','') != ''){
 				$name = $this->getConfiguration('influx::namecmd');
 			}
@@ -1839,24 +1820,27 @@ class cmd {
 				$value = $_value;
 			}
 			$tagArray = array('box' => config::byKey('name','core'),
-							'location' => $object,
-							'equipement' => $eqLogicName,
-							'plugin' => $plugin,
-							'cmd' => $cmdname,
-							'cmdId' => $this->getId(),
-							'cmdname' => $this->getName(),
-							'genericType' => $genericName
-							);
-			$point = new InfluxDB\Point($cleanName, $value,$tagArray);
-			$result = $database->writePoints(array($point),'s');
+								'location' => $object,
+								'equipement' => $eqLogicName,
+								'plugin' => $plugin,
+								'cmd' => $cmdname,
+								'cmdId' => $this->getId(),
+								'cmdname' => $this->getName(),
+								'genericType' => $genericName
+								);
+			if ($_timestamp == '') {
+				$point = new InfluxDB\Point($cleanName, $value,$tagArray);
+			} else {
+				$point = new InfluxDB\Point($cleanName, $value,$tagArray, [] ,$_timestamp);
+			}
 			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName() . ' : ' .  json_encode($tagArray,true));
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur computing influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
-		return;
+		return $point;
 	}
 	
-	public function dropInflux() {
+	public function getInflux() {
 		try{
 			$enabled = $this->getConfiguration('influx::enable');
 			if (!$enabled) {
@@ -1873,11 +1857,37 @@ class cmd {
 			if ($base == ''){
 				$base = 'Jeedom';
 			}
-			$name = $this->getName();
-			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
 			$client = new InfluxDB\Client($url, $port,$user,$pass);
 			$database = $client->selectDB($base);
 			if (!$database->exists()) {
+				$database->create();
+			}
+			return $database;
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur get influx database : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return '';
+	}
+	
+	public function pushInflux($_value) {
+		try{
+			$database=$this->getInflux();
+			if ($database == ''){
+				return;
+			}
+			$point = $this->computeInfluxData($_value);
+			$result = $database->writePoints(array($point),'s');
+			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName());
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
+	}
+	
+	public function dropInflux() {
+		try{
+			$database=$this->getInflux();
+			if ($database == ''){
 				return;
 			}
 			$query = 'DROP SERIES WHERE cmdId=\''.$this->getId().'\'';
@@ -1890,67 +1900,17 @@ class cmd {
 	}
 	
 	public function historyInflux() {
-		log::add('cmd','error','histo');
 		try{
-			$enabled = $this->getConfiguration('influx::enable');
-			if (!$enabled) {
+			$database=$this->getInflux();
+			if ($database == ''){
 				return;
 			}
-			$url = config::byKey('cmdInfluxURL');
-			$port = config::byKey('cmdInfluxPort');
-			$base = config::byKey('cmdInfluxTable');
-			$user = config::byKey('cmdInfluxUser');
-			$pass = config::byKey('cmdInfluxPass');
-			if ($url == '' || $port == ''){
-				return;
-			}
-			if ($base == ''){
-				$base = 'Jeedom';
-			}
-			$cmdname = $this->getHumanName();
-			$name = $this->getName();
-			$eqLogic = $this->getEqLogic();
-			$eqLogicName = $eqLogic->getName();
-			$object= $eqLogic->getObject()->getName();
-			$plugin= $eqLogic->getEqType_name();
-			$client = new InfluxDB\Client($url, $port,$user,$pass);
-			$database = $client->selectDB($base);
-			if (!$database->exists()) {
-				return;
-			}
-			if ($this->getConfiguration('influx::namecmd','') != ''){
-				$name = $this->getConfiguration('influx::namecmd');
-			}
-			if ($this->getConfiguration('influx::nameEq','') != ''){
-				$eqLogicName = $this->getConfiguration('influx::nameEq');
-			}
-			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
-			$genericType = $this->getGeneric_type();
-			$genericName = 'Aucun';
-			if ($genericType != ''){
-				$genericName = jeedom::getConfiguration('cmd::generic_type')[$this->getGeneric_type()]['name'];
-			}
-			$subtype = $this->getSubType();
-			$history = $this->getHistory();
 			$points =array();
-			$tagArray = array('box' => config::byKey('name','core'),
-							'location' => $object,
-							'equipement' => $eqLogicName,
-							'plugin' => $plugin,
-							'cmd' => $cmdname,
-							'cmdId' => $this->getId(),
-							'cmdname' => $this->getName(),
-							'genericType' => $genericName
-							);
+			$history = $this->getHistory();
 			foreach ($history as $point) {
 				$value = $point->getValue();
-				if ($subtype == 'numeric'){
-					$value = floatval($value);
-				} else if ($subtype == 'binary'){
-					$value = intval($value);
-				}
 				$timestamp = strtotime($point->getDatetime());
-				$points[]= new InfluxDB\Point($cleanName, $value,$tagArray, [] ,$timestamp);
+				$points[]= $this->computeInfluxData($value,$timestamp);
 			}
 			$result = $database->writePoints($points,'s');
 		} catch (Exception $e) {
