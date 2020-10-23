@@ -1560,6 +1560,7 @@ class cmd {
 				$timeline->save();
 			}
 			$this->pushUrl($value);
+			$this->pushInflux($value);
 		}
 	}
 	
@@ -1787,6 +1788,135 @@ class cmd {
 		} catch (Error $e) {
 			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
+	}
+	
+	public function computeInfluxData($_value, $_timestamp = '') {
+		$point='';
+		try{
+			$cmdname = $this->getHumanName();
+			$name = $this->getName();
+			$eqLogic = $this->getEqLogic();
+			$eqLogicName = $eqLogic->getName();
+			$object= $eqLogic->getObject()->getName();
+			$plugin= $eqLogic->getEqType_name();
+			if ($this->getConfiguration('influx::namecmd','') != ''){
+				$name = $this->getConfiguration('influx::namecmd');
+			}
+			if ($this->getConfiguration('influx::nameEq','') != ''){
+				$eqLogicName = $this->getConfiguration('influx::nameEq');
+			}
+			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
+			$genericType = $this->getGeneric_type();
+			$genericName = 'Aucun';
+			if ($genericType != ''){
+				$genericName = jeedom::getConfiguration('cmd::generic_type')[$this->getGeneric_type()]['name'];
+			}
+			$subtype = $this->getSubType();
+			if ($subtype == 'numeric'){
+				$value = floatval($_value);
+			} else if ($subtype == 'binary'){
+				$value = intval($_value);
+			} else {
+				$value = $_value;
+			}
+			$tagArray = array('box' => config::byKey('name','core'),
+								'location' => $object,
+								'equipement' => $eqLogicName,
+								'plugin' => $plugin,
+								'cmd' => $cmdname,
+								'cmdId' => $this->getId(),
+								'cmdname' => $this->getName(),
+								'genericType' => $genericName
+								);
+			if ($_timestamp == '') {
+				$point = new InfluxDB\Point($cleanName, $value,$tagArray);
+			} else {
+				$point = new InfluxDB\Point($cleanName, $value,$tagArray, [] ,$_timestamp);
+			}
+			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName() . ' : ' .  json_encode($tagArray,true));
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur computing influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return $point;
+	}
+	
+	public function getInflux() {
+		try{
+			$enabled = $this->getConfiguration('influx::enable');
+			if (!$enabled) {
+				return;
+			}
+			$url = config::byKey('cmdInfluxURL');
+			$port = config::byKey('cmdInfluxPort');
+			$base = config::byKey('cmdInfluxTable');
+			$user = config::byKey('cmdInfluxUser');
+			$pass = config::byKey('cmdInfluxPass');
+			if ($url == '' || $port == ''){
+				return;
+			}
+			if ($base == ''){
+				$base = 'Jeedom';
+			}
+			$client = new InfluxDB\Client($url, $port,$user,$pass);
+			$database = $client->selectDB($base);
+			if (!$database->exists()) {
+				$database->create();
+			}
+			return $database;
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur get influx database : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return '';
+	}
+	
+	public function pushInflux($_value) {
+		try{
+			$database=$this->getInflux();
+			if ($database == ''){
+				return;
+			}
+			$point = $this->computeInfluxData($_value);
+			$result = $database->writePoints(array($point),'s');
+			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName());
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
+	}
+	
+	public function dropInflux() {
+		try{
+			$database=$this->getInflux();
+			if ($database == ''){
+				return;
+			}
+			$query = 'DROP SERIES WHERE cmdId=\''.$this->getId().'\'';
+			$result = $database->query($query);
+			log::add('cmd', 'debug', 'Delete influx for ' . $this->getHumanName());
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
+	}
+	
+	public function historyInflux() {
+		try{
+			$database=$this->getInflux();
+			if ($database == ''){
+				return;
+			}
+			$points =array();
+			$history = $this->getHistory();
+			foreach ($history as $point) {
+				$value = $point->getValue();
+				$timestamp = strtotime($point->getDatetime());
+				$points[]= $this->computeInfluxData($value,$timestamp);
+			}
+			$result = $database->writePoints($points,'s');
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+		}
+		return;
 	}
 	
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {

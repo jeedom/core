@@ -22,6 +22,7 @@ usort($list, function ($a, $b) {
 	<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Equipements en alerte}}</a></li>
 	<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
 	<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
+	<li role="presentation"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> {{Push définis}}</a></li>
 	<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
 </ul>
 
@@ -137,6 +138,61 @@ usort($list, function ($a, $b) {
 						if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 							$div .= '{{Code de confirmation de l\'action}}';
+							$div .= '</td>';
+							$div .= '<td>';
+							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+							$div .= '</td>';
+							$div .= '</tr>';
+						}
+					}
+					if ($div != '') echo $div;
+				}
+				?>
+			</tbody>
+		</table>
+	</div>
+	<div role="tabpanel" class="tab-pane" id="pushCmd">
+		<br/>
+		<table class="table table-condensed tablesorter" id="table_Push">
+			<thead>
+				<tr>
+					<th>{{Equipement}}</th>
+					<th>{{Commande}}</th>
+					<th>{{Type}}</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($eqLogicsAll as $eqLogic) {
+					$div = '';
+					foreach (($eqLogic->getCmd('info')) as $cmd) {
+						$timelineEnable = $cmd->getConfiguration('timeline::enable',false);
+						$pushEnable = $cmd->getConfiguration('jeedomPushUrl','');
+						$influxEnable = $cmd->getConfiguration('influx::enable',false);
+						if ($timelineEnable || $pushEnable != '' || $influxEnable) {
+							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>';
+							if ($timelineEnable){
+								$folder= '';
+								if ($cmd->getConfiguration('timeline::folder','') != '') {
+									$folder = ' sur le folder ' . $cmd->getConfiguration('timeline::folder','');
+								}
+								$div .= '<div>- {{Timeline active}}' . $folder . '</div>';
+							}
+							if ($influxEnable){
+								$nameCmd = $cmd->getName();
+								$nameEqLogic = $eqLogic->getName();
+								if ($cmd->getConfiguration('influx::namecmd','') != ''){
+									$nameCmd = $cmd->getConfiguration('influx::namecmd');
+								}
+								if ($cmd->getConfiguration('influx::nameEq','') != ''){
+									$nameEqLogic = $cmd->getConfiguration('influx::nameEq');
+								}
+								$div .= '<div>- {{Influx actif : }}' . $nameCmd . '-' . $nameEqLogic.'</div>';
+							}
+							if ($pushEnable != ''){
+								$div .= '<div>- {{Push actif sur : }}' . $pushEnable.'</div>';
+							}
 							$div .= '</td>';
 							$div .= '<td>';
 							$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';

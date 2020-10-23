@@ -189,6 +189,28 @@ try {
 		}
 		ajax::success($return);
 	}
+	
+	if (init('action') == 'dropInflux') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$cmd = cmd::byId(init('cmd_id'));
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
+		}
+		ajax::success($cmd->dropInflux());
+	}
+	
+	if (init('action') == 'historyInflux') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$cmd = cmd::byId(init('cmd_id'));
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
+		}
+		ajax::success($cmd->historyInflux());
+	}
 
 	if (init('action') == 'getHumanCmdName') {
 		ajax::success(cmd::cmdToHumanReadable('#' . init('id') . '#'));
