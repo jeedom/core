@@ -1849,15 +1849,19 @@ class cmd {
 			$url = config::byKey('cmdInfluxURL');
 			$port = config::byKey('cmdInfluxPort');
 			$base = config::byKey('cmdInfluxTable');
-			$user = config::byKey('cmdInfluxUser');
-			$pass = config::byKey('cmdInfluxPass');
+			$user = config::byKey('cmdInfluxUser','');
+			$pass = config::byKey('cmdInfluxPass','');
 			if ($url == '' || $port == ''){
 				return;
 			}
 			if ($base == ''){
 				$base = 'Jeedom';
 			}
-			$client = new InfluxDB\Client($url, $port,$user,$pass);
+			if ($user == ''){
+				$client = new InfluxDB\Client($url, $port);
+			} else {
+				$client = new InfluxDB\Client($url, $port,$user,$pass);
+			}
 			$database = $client->selectDB($base);
 			if (!$database->exists()) {
 				$database->create();
