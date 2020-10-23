@@ -7,7 +7,6 @@ $date = array(
 	'end' => date('Y-m-d'),
 );
 ?>
-
 <div id="div_alertHistory"></div>
 <div class="row row-overflow">
 	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">

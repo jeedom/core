@@ -29,9 +29,10 @@ if (trim($id) == '') {
 sendVarToJs('cmd_id',$id);
 ?>
 
-<div style="display: none;" id="div_alertHistory"></div>
+
 <div class="md_history">
   <div class="row">
+    <div id="div_alertHistory" style="margin: 0 14px; display: none;"></div>
     <div class="col-lg-12">
       <div class="input-group input-group-sm">
         <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
@@ -40,6 +41,7 @@ sendVarToJs('cmd_id',$id);
           <i class="fas fa-check"></i>
         </a>
         <a class="btn btn-success btn-sm pull-right" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
+
       </div>
     </div>
   </div>
