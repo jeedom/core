@@ -42,7 +42,7 @@ sendVarToJs('img_object_id',init('object_id'));
         $div .= '<div class="col-lg-1 divImgSel">';
         $div .= '<span class="imgSel"><img src="core/img/object_background/'.$category.$file.'" /></span>';
         $div .= '<center class="imgDesc">'.ucfirst(substr(str_replace(array('/','_','.jpg'),array('',' ',''),basename($file)),0,12)).'</center>';
-        $div .= '<center><a class="btn btn-success btn-xs btSelectImgObj" data-filename="'.__DIR__.'/../../core/img/object_background/'.$category.$file.'"><i class="fas fa-check"></i> {{Selectionner}}</a></center>';
+        $div .= '<center><a class="btn btn-success btn-xs btSelectImgObj" data-filename="'.__DIR__.'/../../core/img/object_background/'.$category.$file.'"><i class="fas fa-check"></i> {{Sélectionner}}</a></center>';
         $div .= '</div>';
       }
       $div .= '</div></div>';

@@ -1,29 +1,27 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV;
 
-class StringUtilTest extends \PHPUnit\Framework\TestCase
-{
+class StringUtilTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @param string $haystack
      * @param string $needle
      * @param string $collation
      * @param string $matchType
      * @param string $result
-     *
      * @throws Exception\BadRequest
      *
      * @dataProvider dataset
      */
-    public function testTextMatch($haystack, $needle, $collation, $matchType, $result)
-    {
+    function testTextMatch($haystack, $needle, $collation, $matchType, $result) {
+
         $this->assertEquals($result, StringUtil::textMatch($haystack, $needle, $collation, $matchType));
+
     }
 
-    public function dataset()
-    {
+    function dataset() {
+
         return [
             ['FOOBAR', 'FOO',    'i;octet', 'contains', true],
             ['FOOBAR', 'foo',    'i;octet', 'contains', false],
@@ -70,54 +68,62 @@ class StringUtilTest extends \PHPUnit\Framework\TestCase
             ['FOOBAR', 'BAR',    'i;unicode-casemap', 'ends-with', true],
             ['FOOBAR', 'bar',    'i;unicode-casemap', 'ends-with', true],
         ];
+
     }
 
     /**
-     * @expectedException \Sabre\DAV\Exception\BadRequest
+     * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    public function testBadCollation()
-    {
+    function testBadCollation() {
+
         StringUtil::textMatch('foobar', 'foo', 'blabla', 'contains');
+
     }
+
 
     /**
-     * @expectedException \Sabre\DAV\Exception\BadRequest
+     * @expectedException Sabre\DAV\Exception\BadRequest
      */
-    public function testBadMatchType()
-    {
+    function testBadMatchType() {
+
         StringUtil::textMatch('foobar', 'foo', 'i;octet', 'booh');
+
     }
 
-    public function testEnsureUTF8_ascii()
-    {
-        $inputString = 'harkema';
-        $outputString = 'harkema';
+    function testEnsureUTF8_ascii() {
+
+        $inputString = "harkema";
+        $outputString = "harkema";
 
         $this->assertEquals(
             $outputString,
             StringUtil::ensureUTF8($inputString)
         );
+
     }
 
-    public function testEnsureUTF8_latin1()
-    {
+    function testEnsureUTF8_latin1() {
+
         $inputString = "m\xfcnster";
-        $outputString = 'münster';
+        $outputString = "münster";
 
         $this->assertEquals(
             $outputString,
             StringUtil::ensureUTF8($inputString)
         );
+
     }
 
-    public function testEnsureUTF8_utf8()
-    {
+    function testEnsureUTF8_utf8() {
+
         $inputString = "m\xc3\xbcnster";
-        $outputString = 'münster';
+        $outputString = "münster";
 
         $this->assertEquals(
             $outputString,
             StringUtil::ensureUTF8($inputString)
         );
+
     }
+
 }

@@ -1,13 +1,10 @@
 <phpunit
   colors="true"
-  beStrictAboutCoversAnnotation="true"
-  beStrictAboutOutputDuringTests="true"
-  beStrictAboutTestsThatDoNotTestAnything="true"
-  beStrictAboutTodoAnnotatedTests="true"
   bootstrap="bootstrap.php"
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
+  strict="true"
   >
   <testsuite name="Sabre_HTTP">
       <directory>HTTP/</directory>
@@ -18,8 +15,4 @@
        <directory suffix=".php">../lib/</directory>
     </whitelist>
   </filter>
-
-  <php>
-    <env name="BASEURL" value="http://localhost"/>
-  </php>
 </phpunit>

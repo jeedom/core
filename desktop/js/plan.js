@@ -17,7 +17,9 @@
 "use strict"
 
 var deviceInfo = getDeviceType()
-var editOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
+if (typeof planEditOption === 'undefined' || deviceInfo.type != 'desktop' || !PREVIOUS_LOCATION.includes('&p=plan')) {
+    var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
+}
 var clickedOpen = false
 var $pageContainer = $('#div_pageContainer')
 var style_css = ''
@@ -43,9 +45,9 @@ for (var i in planHeader) {
 if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   jwerty.key('ctrl+shift+e/⌘+shift+e', function(event) {
     event.preventDefault()
-    editOption.state = !editOption.state
-    $pageContainer.data('editOption.state', editOption.state)
-    initEditOption(editOption.state)
+    planEditOption.state = !planEditOption.state
+    $pageContainer.data('planEditOption.state', planEditOption.state)
+    initEditOption(planEditOption.state)
   })
 
   var contextMenu = $.contextMenu({
@@ -69,9 +71,9 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Edition}}",
         icon : 'fas fa-pencil-alt',
         callback: function(key, opt) {
-          editOption.state = !editOption.state
-          this.data('editOption.state', editOption.state)
-          initEditOption(editOption.state)
+          planEditOption.state = !planEditOption.state
+          this.data('planEditOption.state', planEditOption.state)
+          initEditOption(planEditOption.state)
         }
       },
       fullscreen: {
@@ -90,7 +92,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter Graphique}}",
         icon : 'fas fa-chart-line',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           addObject({link_type : 'graph',link_id:Math.round(Math.random() * 99999999) + 9999})
@@ -100,7 +102,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter texte/html}}",
         icon : 'fas fa-align-center',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}})
@@ -110,7 +112,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter scénario}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           jeedom.scenario.getSelectModal({}, function(data) {
@@ -122,14 +124,14 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter un lien}}",
         icon : 'fas fa-link',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         items: {
           addViewLink: {
             name: "{{Vers une vue}}",
             icon : 'fas fa-link',
             disabled:function(key, opt) {
-              return !this.data('editOption.state')
+              return !this.data('planEditOption.state')
             },
             callback: function(key, opt) {
               addObject({link_type :'view',link_id : -(Math.round(Math.random() * 99999999) + 9999),display : {name : 'A configurer'}})
@@ -139,7 +141,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             name: "{{Vers un design}}",
             icon : 'fas fa-link',
             disabled:function(key, opt) {
-              return !this.data('editOption.state')
+              return !this.data('planEditOption.state')
             },
             callback: function(key, opt) {
               addObject({link_type :'plan',link_id : -(Math.round(Math.random() * 99999999) + 9999),display : {name : 'A configurer'}})
@@ -151,7 +153,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter équipement}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           jeedom.eqLogic.getSelectModal({}, function(data) {
@@ -163,7 +165,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter commande}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           jeedom.cmd.getSelectModal({}, function(data) {
@@ -175,7 +177,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter une image/caméra}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           addObject({link_type : 'image',link_id : Math.round(Math.random() * 99999999) + 9999})
@@ -185,7 +187,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter une zone}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           addObject({link_type : 'zone',link_id : Math.round(Math.random() * 99999999) + 9999})
@@ -195,7 +197,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter un résumé}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           addObject({link_type : 'summary',link_id : -1})
@@ -206,7 +208,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Affichage}}",
         icon : 'fas fa-th',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         items: {
           grid_none: {
@@ -217,7 +219,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             selected: true,
             events: {
               click : function(e) {
-                editOption.gridSize = false
+                planEditOption.gridSize = false
                 initEditOption(1)
               }
             }
@@ -229,7 +231,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             value: '10',
             events: {
               click : function(e) {
-                editOption.gridSize = [10,10]
+                planEditOption.gridSize = [10,10]
                 initEditOption(1)
               }
             }
@@ -241,7 +243,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             value: '15',
             events: {
               click : function(e) {
-                editOption.gridSize = [15,15]
+                planEditOption.gridSize = [15,15]
                 initEditOption(1)
               }
             }
@@ -253,7 +255,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             value: '20',
             events: {
               click : function(e) {
-                editOption.gridSize = [20,20]
+                planEditOption.gridSize = [20,20]
                 initEditOption(1)
               }
             }
@@ -263,10 +265,10 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             name: "{{Aimanter à la grille}}",
             type: 'checkbox',
             radio: 'radio',
-            selected:  editOption.grid,
+            selected:  planEditOption.grid,
             events: {
               click : function(e) {
-                editOption.grid = $(this).value()
+                planEditOption.grid = $(this).value()
                 initEditOption(1)
               }
             }
@@ -275,10 +277,10 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             name: "{{Masquer surbrillance des éléments}}",
             type: 'checkbox',
             radio: 'radio',
-            selected:  editOption.highlight,
+            selected:  planEditOption.highlight,
             events: {
               click : function(e) {
-                editOption.highlight = ($(this).value() == 1) ? false : true
+                planEditOption.highlight = ($(this).value() == 1) ? false : true
                 initEditOption(1)
               }
             }
@@ -289,7 +291,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Supprimer le design}}",
         icon : 'fas fa-trash',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
@@ -312,7 +314,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Creer un design}}",
         icon : 'fas fa-plus-circle',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           createNewDesign()
@@ -322,7 +324,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Dupliquer le design}}",
         icon : 'far fa-copy',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           bootbox.prompt("{{Nom la copie du design ?}}", function(result) {
@@ -347,7 +349,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Configurer le design}}",
         icon : 'fas fa-cogs',
         disabled:function(key, opt) {
-          return !this.data('editOption.state')
+          return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
           savePlan(false,false)
@@ -371,13 +373,13 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
     events: {
       show : function(opt) {
         $.contextMenu.setInputValues(opt, this.data())
-        if (editOption.highlight) {
+        if (planEditOption.highlight) {
           $(this).removeClass('editingMode').addClass('contextMenu_select')
         }
       },
       hide : function(opt) {
         $.contextMenu.getInputValues(opt, this.data())
-        if (editOption.highlight) {
+        if (planEditOption.highlight) {
           $(this).removeClass('contextMenu_select').addClass('editingMode')
         }
       }
@@ -502,19 +504,19 @@ $('#bt_createNewDesign').on('click',function() {
 })
 
 $pageContainer.off('click', '.plan-link-widget').on('click', '.plan-link-widget', function() {
-  if (!editOption.state) {
+  if (!planEditOption.state) {
     if ($(this).attr('data-link_id') == undefined) {
       return
     }
     planHeader_id = $(this).attr('data-link_id')
-    editOption = {state:false, snap:false, grid:false, gridSize:editOption.gridSize, highlight:true}
+    planEditOption = {state:false, snap:false, grid:false, gridSize:planEditOption.gridSize, highlight:true}
     displayPlan()
   }
 })
 
 $pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
   var el = $(this)
-  if (!editOption.state) {
+  if (!planEditOption.state) {
     el.append('<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
     jeedom.plan.execute({
       id: el.attr('data-plan_id'),
@@ -535,7 +537,7 @@ $pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
 })
 
 $pageContainer.on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly', function() {
-  if (!editOption.state) {
+  if (!planEditOption.state) {
     clickedOpen = true
     var el = $(this)
     jeedom.eqLogic.toHtml({
@@ -559,7 +561,7 @@ $pageContainer.on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly', func
 })
 
 $pageContainer.on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function() {
-  if (!editOption.state && !clickedOpen) {
+  if (!planEditOption.state && !clickedOpen) {
     clickedOpen = true
     var el = $(this)
     jeedom.eqLogic.toHtml({
@@ -581,7 +583,7 @@ $pageContainer.on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function
 })
 
 $(document).click(function(event) {
-  if (!editOption.state) {
+  if (!planEditOption.state) {
     if ( (!$(event.target).hasClass('.zone-widget.zoneEqLogic') && $(event.target).closest('.zone-widget.zoneEqLogic').html() == undefined) && (!$(event.target).hasClass('.zone-widget.zoneEqLogicOnFly') && $(event.target).closest('.zone-widget.zoneEqLogicOnFly').html() == undefined)) {
       $('.zone-widget.zoneEqLogic').each(function() {
         if ($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')) {
@@ -599,7 +601,7 @@ jwerty.key('ctrl+s/⌘+s', function(event) {
 })
 
 $('.view-link-widget').off('click').on('click', function() {
-  if (!editOption.state) {
+  if (!planEditOption.state) {
     $(this).find('a').click()
   }
 })
@@ -611,7 +613,7 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
 })
 
 $pageContainer.off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function(event) {
-  if (editOption.state == true) return false
+  if (planEditOption.state == true) return false
   event.stopImmediatePropagation()
   event.stopPropagation()
   if (event.ctrlKey) {
@@ -653,16 +655,23 @@ $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('chan
 
 function fullScreen(_mode) {
   if (_mode) {
-    $('header').hide()
-    $('footer').hide()
-    $('#div_mainContainer').css('margin-top', '-50px')
+    $('header, footer').hide()
+    $('#div_mainContainer').css({
+      'margin-top' : '-50px',
+      'overflow-y' : 'inherit',
+      'overflow-x' : 'inherit'
+    })
     $('#wrap').css('margin-bottom', '0px')
-    $('.div_backgroundPlan').height($('html').height())
+    $('.div_backgroundPlan').height('auto')
     $('.backgroundforJeedom').css('margin-top', '-50px').height('100%')
+
   } else {
-    $('header').show()
-    $('footer').show()
-    $('#div_mainContainer').css('margin-top', '0px')
+    $('header, footer').show()
+    $('#div_mainContainer').css({
+      'margin-top' : '0px',
+      'overflow-y' : 'scroll',
+      'overflow-x' : 'hidden'
+    })
     $('#wrap').css('margin-bottom', '15px')
     $('.div_backgroundPlan').height($('body').height())
     $('.backgroundforJeedom').css('margin-top', '').height('')
@@ -686,8 +695,8 @@ function draggableStartFix(event, ui) {
     return false
   }
   zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-  if (editOption.grid == 1) {
-    dragStep = editOption.gridSize[0]
+  if (planEditOption.grid == 1) {
+    dragStep = planEditOption.gridSize[0]
   } else {
     dragStep = false
   }
@@ -735,10 +744,10 @@ function initEditOption(_state) {
   var $editItems = $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget')
 
   if (_state) {
-    if (!$pageContainer.data('editOption.state')) {
-      $pageContainer.data('editOption.state',true)
+    if (!$pageContainer.data('planEditOption.state')) {
+      $pageContainer.data('planEditOption.state',true)
     }
-    editOption.state = true
+    planEditOption.state = true
     $('.tooltipstered').tooltipster('disable')
     $('.div_displayObject').addClass('editingMode')
     jeedom.cmd.disableExecute = true
@@ -755,14 +764,14 @@ function initEditOption(_state) {
       }
     })
 
-    if (editOption.highlight) {
+    if (planEditOption.highlight) {
       $editItems.addClass('editingMode')
     } else {
       $editItems.removeClass('editingMode contextMenu_select')
     }
 
-    if (editOption.gridSize) {
-      $('#div_grid').show().css('background-size',editOption.gridSize[0]+'px '+editOption.gridSize[1]+'px')
+    if (planEditOption.gridSize) {
+      $('#div_grid').show().css('background-size',planEditOption.gridSize[0]+'px '+planEditOption.gridSize[1]+'px')
     } else {
       $('#div_grid').hide()
     }
@@ -777,8 +786,8 @@ function initEditOption(_state) {
           $(this).resizable("option", "containment", null)
         }
         var zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-        if (editOption.grid == 1) {
-          dragStep = editOption.gridSize[0]
+        if (planEditOption.grid == 1) {
+          dragStep = planEditOption.gridSize[0]
           dragStep = dragStep / zoomScale
         } else {
           dragStep = false
@@ -806,12 +815,12 @@ function initEditOption(_state) {
 
     try {
       $editItems.contextMenu(true)
-     }catch(e) {}
+    }catch(e) {}
   } else {
-    if ($pageContainer.data('editOption.state')) {
-      $pageContainer.data('editOption.state',false)
+    if ($pageContainer.data('planEditOption.state')) {
+      $pageContainer.data('planEditOption.state',false)
     }
-    editOption.state = false
+    planEditOption.state = false
     jeedom.cmd.disableExecute = false
     $('.div_displayObject').removeClass('editingMode')
     try {
@@ -871,8 +880,8 @@ function displayPlan(_code) {
     success: function(data) {
       var $divDisplayObject = $('.div_displayObject')
       $divDisplayObject.empty()
-        .append('<div id="div_grid" class="container-fluid" style="display:none;"></div>')
-        .height('auto').width('auto')
+      .append('<div id="div_grid" class="container-fluid" style="display:none;"></div>')
+      .height('auto').width('auto')
       if (isset(data.image)) {
         $divDisplayObject.append(data.image)
       }
@@ -928,7 +937,7 @@ function displayPlan(_code) {
             style_css  =''
           } catch(e) {}
           addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom')
-          initEditOption(editOption.state)
+          initEditOption(planEditOption.state)
           initReportMode()
           $(window).scrollTop(0)
         }
@@ -995,8 +1004,8 @@ function savePlan(_refreshDisplay, _async) {
     } else {
       position = $(this).position()
     }
-    plan.position.top = (((position.top)) / $('.div_displayObject').height()) * 100
-    plan.position.left = (((position.left)) / $('.div_displayObject').width()) * 100
+    plan.position.top = position.top
+    plan.position.left = position.left
     plans.push(plan)
   })
   jeedom.plan.save({
@@ -1044,16 +1053,16 @@ function displayObject(_plan, _html, _noRender) {
 
   var html = $(_html)
   html.attr('data-plan_id',_plan.id)
-    .addClass('jeedomAlreadyPosition')
-    .attr('data-zoom', init(_plan.css.zoom, 1))
-    .addClass('noResize')
+  .addClass('jeedomAlreadyPosition')
+  .attr('data-zoom', init(_plan.css.zoom, 1))
+  .addClass('noResize')
 
   //set widget style:
   var style = {}
   style['z-index'] = '1000'
   style['position'] = 'absolute'
-  style['top'] = (init(_plan.position.top, '10') * $('.div_displayObject').height() / 100)+'px'
-  style['left'] = (init(_plan.position.left, '10') * $('.div_displayObject').width() / 100)+'px'
+  style['top'] = init(_plan.position.top, '10')+'px'
+  style['left'] =init(_plan.position.left, '10')+'px'
   if (init(_plan.css.zoom, 1) != 1) {
     style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')'
   }
@@ -1243,7 +1252,7 @@ function displayObject(_plan, _html, _noRender) {
         }
       }
     }
-    initEditOption(editOption.state)
+    initEditOption(planEditOption.state)
     return
   }
 
@@ -1253,7 +1262,7 @@ function displayObject(_plan, _html, _noRender) {
   }
   $pageContainer.append(style_el)
   $('.div_displayObject').append(html)
-  initEditOption(editOption.state)
+  initEditOption(planEditOption.state)
 }
 
 //back to mobile home with three fingers on mobile:

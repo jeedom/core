@@ -1,23 +1,22 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Auth\Backend;
 
 use Sabre\HTTP\RequestInterface;
 use Sabre\HTTP\ResponseInterface;
 
-class Mock implements BackendInterface
-{
+class Mock implements BackendInterface {
+
     public $fail = false;
 
     public $invalidCheckResponse = false;
 
     public $principal = 'principals/admin';
 
-    public function setPrincipal($principal)
-    {
+    function setPrincipal($principal) {
+
         $this->principal = $principal;
+
     }
 
     /**
@@ -44,21 +43,20 @@ class Mock implements BackendInterface
      *
      * principals/users/[username]
      *
-     * @param RequestInterface  $request
+     * @param RequestInterface $request
      * @param ResponseInterface $response
-     *
      * @return array
      */
-    public function check(RequestInterface $request, ResponseInterface $response)
-    {
+    function check(RequestInterface $request, ResponseInterface $response) {
+
         if ($this->invalidCheckResponse) {
             return 'incorrect!';
         }
         if ($this->fail) {
-            return [false, 'fail!'];
+            return [false, "fail!"];
         }
-
         return [true, $this->principal];
+
     }
 
     /**
@@ -78,10 +76,12 @@ class Mock implements BackendInterface
      * append your own WWW-Authenticate header instead of overwriting the
      * existing one.
      *
-     * @param RequestInterface  $request
+     * @param RequestInterface $request
      * @param ResponseInterface $response
+     * @return void
      */
-    public function challenge(RequestInterface $request, ResponseInterface $response)
-    {
+    function challenge(RequestInterface $request, ResponseInterface $response) {
+
     }
+
 }

@@ -1,36 +1,36 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Mock;
 
 use Sabre\DAV\IProperties;
 use Sabre\DAV\PropPatch;
 
 /**
- * A node specifically for testing property-related operations.
+ * A node specifically for testing property-related operations
  *
  * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class PropertiesCollection extends Collection implements IProperties
-{
+class PropertiesCollection extends Collection implements IProperties {
+
     public $failMode = false;
 
     public $properties;
 
     /**
-     * Creates the object.
+     * Creates the object
      *
      * @param string $name
-     * @param array  $children
-     * @param array  $properties
+     * @param array $children
+     * @param array $properties
+     * @return void
      */
-    public function __construct($name, array $children, array $properties = [])
-    {
+    function __construct($name, array $children, array $properties = []) {
+
         parent::__construct($name, $children, null);
         $this->properties = $properties;
+
     }
 
     /**
@@ -43,25 +43,24 @@ class PropertiesCollection extends Collection implements IProperties
      * Read the PropPatch documentation for more information.
      *
      * @param PropPatch $proppatch
-     *
      * @return bool|array
      */
-    public function propPatch(PropPatch $proppatch)
-    {
-        $proppatch->handleRemaining(function ($updateProperties) {
-            switch ($this->failMode) {
-                case 'updatepropsfalse': return false;
-                case 'updatepropsarray':
-                    $r = [];
-                    foreach ($updateProperties as $k => $v) {
-                        $r[$k] = 402;
-                    }
+    function propPatch(PropPatch $proppatch) {
 
+        $proppatch->handleRemaining(function($updateProperties) {
+
+            switch ($this->failMode) {
+                case 'updatepropsfalse' : return false;
+                case 'updatepropsarray' :
+                    $r = [];
+                    foreach ($updateProperties as $k => $v) $r[$k] = 402;
                     return $r;
-                case 'updatepropsobj':
+                case 'updatepropsobj' :
                     return new \STDClass();
             }
+
         });
+
     }
 
     /**
@@ -77,11 +76,10 @@ class PropertiesCollection extends Collection implements IProperties
      * The Server class will filter out the extra.
      *
      * @param array $requestedProperties
-     *
      * @return array
      */
-    public function getProperties($requestedProperties)
-    {
+    function getProperties($requestedProperties) {
+
         $returnedProperties = [];
         foreach ($requestedProperties as $requestedProperty) {
             if (isset($this->properties[$requestedProperty])) {
@@ -89,7 +87,8 @@ class PropertiesCollection extends Collection implements IProperties
                     $this->properties[$requestedProperty];
             }
         }
-
         return $returnedProperties;
+
     }
+
 }

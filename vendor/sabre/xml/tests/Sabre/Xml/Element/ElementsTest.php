@@ -1,16 +1,14 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class ElementsTest extends \PHPUnit\Framework\TestCase
-{
-    public function testDeserialize()
-    {
+class ElementsTest extends \PHPUnit_Framework_TestCase {
+
+    function testDeserialize() {
+
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -40,10 +38,10 @@ BLA;
         $output = $reader->parse();
 
         $this->assertEquals([
-            'name' => '{http://sabredav.org/ns}root',
+            'name'  => '{http://sabredav.org/ns}root',
             'value' => [
                 [
-                    'name' => '{http://sabredav.org/ns}listThingy',
+                    'name'  => '{http://sabredav.org/ns}listThingy',
                     'value' => [
                         '{http://sabredav.org/ns}elem1',
                         '{http://sabredav.org/ns}elem2',
@@ -55,26 +53,26 @@ BLA;
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}listThingy',
-                    'value' => [],
+                    'name'       => '{http://sabredav.org/ns}listThingy',
+                    'value'      => [],
                     'attributes' => [],
                 ],
                 [
-                    'name' => '{http://sabredav.org/ns}otherThing',
+                    'name'  => '{http://sabredav.org/ns}otherThing',
                     'value' => [
                         [
-                            'name' => '{http://sabredav.org/ns}elem1',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem1',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                         [
-                            'name' => '{http://sabredav.org/ns}elem2',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem2',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                         [
-                            'name' => '{http://sabredav.org/ns}elem3',
-                            'value' => null,
+                            'name'       => '{http://sabredav.org/ns}elem3',
+                            'value'      => null,
                             'attributes' => [],
                         ],
                     ],
@@ -83,10 +81,11 @@ BLA;
             ],
             'attributes' => [],
         ], $output);
+
     }
 
-    public function testSerialize()
-    {
+    function testSerialize() {
+
         $value = [
             '{http://sabredav.org/ns}elem1',
             '{http://sabredav.org/ns}elem2',
@@ -98,7 +97,7 @@ BLA;
 
         $writer = new Writer();
         $writer->namespaceMap = [
-            'http://sabredav.org/ns' => null,
+            'http://sabredav.org/ns' => null
         ];
         $writer->openMemory();
         $writer->startDocument('1.0');
@@ -123,5 +122,8 @@ BLA;
 XML;
 
         $this->assertEquals($expected, $output);
+
+
     }
+
 }

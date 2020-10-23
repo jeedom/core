@@ -9,7 +9,7 @@ class TimeZoneUtilTest extends TestCase
     public function setUp()
     {
         // clearning the tz cache
-        TimeZoneUtil::$map = null;
+        TimezoneUtil::$map = null;
     }
 
     /**

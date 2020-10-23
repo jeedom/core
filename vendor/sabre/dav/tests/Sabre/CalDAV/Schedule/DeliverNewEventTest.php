@@ -1,38 +1,39 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Schedule;
 
 use Sabre\HTTP\Request;
 use Sabre\VObject;
 
-class DeliverNewEventTest extends \Sabre\DAVServerTest
-{
+class DeliverNewEventTest extends \Sabre\DAVServerTest {
+
     public $setupCalDAV = true;
     public $setupCalDAVScheduling = true;
     public $setupACL = true;
     public $autoLogin = 'user1';
 
-    public function setUp()
-    {
+    function setUp() {
+
         parent::setUp();
         $this->caldavBackend->createCalendar(
             'principals/user1',
             'default',
             [
+
             ]
         );
         $this->caldavBackend->createCalendar(
             'principals/user2',
             'default',
             [
+
             ]
         );
+
     }
 
-    public function testDelivery()
-    {
+    function testDelivery() {
+
         $request = new Request('PUT', '/calendars/user1/default/foo.ics');
         $request->setBody(<<<ICS
 BEGIN:VCALENDAR
@@ -58,13 +59,13 @@ ICS
     );
 
         $messages = [];
-        $this->server->on('schedule', function ($message) use (&$messages) {
+        $this->server->on('schedule', function($message) use (&$messages) {
             $messages[] = $message;
         });
 
         $response = $this->request($request);
 
-        $this->assertEquals(201, $response->getStatus(), 'Incorrect status code received. Response body:'.$response->getBodyAsString());
+        $this->assertEquals(201, $response->getStatus(), 'Incorrect status code received. Response body:' . $response->getBodyAsString());
 
         $result = $this->request(new Request('GET', '/calendars/user1/default/foo.ics'))->getBody();
         $resultVObj = VObject\Reader::read($result);
@@ -85,5 +86,7 @@ ICS
         $this->assertEquals('REQUEST', $message->method);
 
         $this->assertEquals('REQUEST', $message->message->METHOD->getValue());
+
     }
+
 }

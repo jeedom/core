@@ -43,19 +43,19 @@ class JCalTest extends TestCase
             [
                 [
                     'version',
-                    new \stdClass(),
+                    new \StdClass(),
                     'text',
                     '2.0',
                 ],
                 [
                     'prodid',
-                    new \stdClass(),
+                    new \StdClass(),
                     'text',
                     '-//Sabre//Sabre VObject '.Version::VERSION.'//EN',
                 ],
                 [
                     'calscale',
-                    new \stdClass(),
+                    new \StdClass(),
                     'text',
                     'GREGORIAN',
                 ],
@@ -64,22 +64,22 @@ class JCalTest extends TestCase
                 ['vevent',
                     [
                         [
-                            'uid', new \stdClass(), 'text', 'foo',
+                            'uid', new \StdClass(), 'text', 'foo',
                         ],
                         [
-                            'dtstart', new \stdClass(), 'date', '2013-05-26',
+                            'dtstart', new \StdClass(), 'date', '2013-05-26',
                         ],
                         [
-                            'duration', new \stdClass(), 'duration', 'P1D',
+                            'duration', new \StdClass(), 'duration', 'P1D',
                         ],
                         [
-                            'categories', new \stdClass(), 'text', 'home', 'testing',
+                            'categories', new \StdClass(), 'text', 'home', 'testing',
                         ],
                         [
-                            'created', new \stdClass(), 'date-time', '2013-05-26T18:10:00Z',
+                            'created', new \StdClass(), 'date-time', '2013-05-26T18:10:00Z',
                         ],
                         [
-                            'attendee', new \stdClass(), 'cal-address', 'mailto:armin@example.org',
+                            'attendee', new \StdClass(), 'cal-address', 'mailto:armin@example.org',
                         ],
                         [
                             'attendee',
@@ -91,50 +91,50 @@ class JCalTest extends TestCase
                             'mailto:dominik@example.org',
                         ],
                         [
-                            'geo', new \stdClass(), 'float', [51.96668, 7.61876],
+                            'geo', new \StdClass(), 'float', [51.96668, 7.61876],
                         ],
                         [
-                            'sequence', new \stdClass(), 'integer', 5,
+                            'sequence', new \StdClass(), 'integer', 5,
                         ],
                         [
-                            'freebusy', new \stdClass(), 'period',  ['2013-05-26T21:02:13', 'PT1H'], ['2013-06-26T12:00:00', '2013-06-26T13:00:00'],
+                            'freebusy', new \StdClass(), 'period',  ['2013-05-26T21:02:13', 'PT1H'], ['2013-06-26T12:00:00', '2013-06-26T13:00:00'],
                         ],
                         [
-                            'url', new \stdClass(), 'uri', 'http://example.org/',
+                            'url', new \StdClass(), 'uri', 'http://example.org/',
                         ],
                         [
-                            'tzoffsetfrom', new \stdClass(), 'utc-offset', '+05:00',
+                            'tzoffsetfrom', new \StdClass(), 'utc-offset', '+05:00',
                         ],
                         [
-                            'rrule', new \stdClass(), 'recur', [
+                            'rrule', new \StdClass(), 'recur', [
                                 'freq' => 'WEEKLY',
                                 'byday' => ['MO', 'TU'],
                             ],
                         ],
                         [
-                            'x-bool', new \stdClass(), 'boolean', true,
+                            'x-bool', new \StdClass(), 'boolean', true,
                         ],
                         [
-                            'x-time', new \stdClass(), 'time', '08:00:00',
+                            'x-time', new \StdClass(), 'time', '08:00:00',
                         ],
                         [
-                            'attach', new \stdClass(), 'binary', base64_encode('attachment'),
+                            'attach', new \StdClass(), 'binary', base64_encode('attachment'),
                         ],
                         [
                             'request-status',
-                            new \stdClass(),
+                            new \StdClass(),
                             'text',
                             ['2.0', 'Success'],
                         ],
                         [
                             'request-status',
-                            new \stdClass(),
+                            new \StdClass(),
                             'text',
                             ['3.7', 'Invalid Calendar User', 'ATTENDEE:mailto:jsmith@example.org'],
                         ],
                         [
                             'dtend',
-                            new \stdClass(),
+                            new \StdClass(),
                             'date-time',
                             '2015-01-08T13:30:00',
                         ],

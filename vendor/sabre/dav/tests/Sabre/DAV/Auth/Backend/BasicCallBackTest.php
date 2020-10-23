@@ -1,28 +1,28 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Auth\Backend;
 
-use Sabre\HTTP;
+use Sabre\HTTP\Response;
+use Sabre\HTTP\Sapi;
 
-class BasicCallBackTest extends \PHPUnit\Framework\TestCase
-{
-    public function testCallBack()
-    {
+class BasicCallBackTest extends \PHPUnit_Framework_TestCase {
+
+    function testCallBack() {
+
         $args = [];
-        $callBack = function ($user, $pass) use (&$args) {
-            $args = [$user, $pass];
+        $callBack = function($user, $pass) use (&$args) {
 
+            $args = [$user, $pass];
             return true;
+
         };
 
         $backend = new BasicCallBack($callBack);
 
-        $request = new HTTP\Request('GET', '/', [
-            'Authorization' => 'Basic '.base64_encode('foo:bar'),
+        $request = Sapi::createFromServerArray([
+            'HTTP_AUTHORIZATION' => 'Basic ' . base64_encode('foo:bar'),
         ]);
-        $response = new HTTP\Response();
+        $response = new Response();
 
         $this->assertEquals(
             [true, 'principals/foo'],
@@ -30,5 +30,7 @@ class BasicCallBackTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->assertEquals(['foo', 'bar'], $args);
+
     }
+
 }

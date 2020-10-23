@@ -1,66 +1,69 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Notifications;
 
 use Sabre\CalDAV;
 
-class NodeTest extends \PHPUnit\Framework\TestCase
-{
+class NodeTest extends \PHPUnit_Framework_TestCase {
+
     protected $systemStatus;
     protected $caldavBackend;
 
-    public function getInstance()
-    {
+    function getInstance() {
+
         $principalUri = 'principals/user1';
 
         $this->systemStatus = new CalDAV\Xml\Notification\SystemStatus(1, '"1"');
 
         $this->caldavBackend = new CalDAV\Backend\MockSharing([], [], [
             'principals/user1' => [
-                $this->systemStatus,
-            ],
+                $this->systemStatus
+            ]
         ]);
 
         $node = new Node($this->caldavBackend, 'principals/user1', $this->systemStatus);
-
         return $node;
+
     }
 
-    public function testGetId()
-    {
+    function testGetId() {
+
         $node = $this->getInstance();
-        $this->assertEquals($this->systemStatus->getId().'.xml', $node->getName());
+        $this->assertEquals($this->systemStatus->getId() . '.xml', $node->getName());
+
     }
 
-    public function testGetEtag()
-    {
+    function testGetEtag() {
+
         $node = $this->getInstance();
         $this->assertEquals('"1"', $node->getETag());
+
     }
 
-    public function testGetNotificationType()
-    {
+    function testGetNotificationType() {
+
         $node = $this->getInstance();
         $this->assertEquals($this->systemStatus, $node->getNotificationType());
+
     }
 
-    public function testDelete()
-    {
+    function testDelete() {
+
         $node = $this->getInstance();
         $node->delete();
         $this->assertEquals([], $this->caldavBackend->getNotificationsForPrincipal('principals/user1'));
+
     }
 
-    public function testGetGroup()
-    {
+    function testGetGroup() {
+
         $node = $this->getInstance();
         $this->assertNull($node->getGroup());
+
     }
 
-    public function testGetACL()
-    {
+    function testGetACL() {
+
         $node = $this->getInstance();
         $expected = [
             [
@@ -71,20 +74,23 @@ class NodeTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $node->getACL());
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    public function testSetACL()
-    {
+    function testSetACL() {
+
         $node = $this->getInstance();
         $node->setACL([]);
+
     }
 
-    public function testGetSupportedPrivilegeSet()
-    {
+    function testGetSupportedPrivilegeSet() {
+
         $node = $this->getInstance();
         $this->assertNull($node->getSupportedPrivilegeSet());
+
     }
 }

@@ -394,6 +394,8 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 - **Localhost** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
 - **Activado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 
+Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado, algunos complementos como mobile o jeelink necesitan absolutamente métodos básicos)
+
 ## Onglet &gt;\_OS/DB
 
 > **Importante**
@@ -416,5 +418,3 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 - **Administración del sistema** : Proporciona acceso a una interfaz de administración del sistema. Es un tipo de consola de shell en la que puede iniciar los comandos más útiles, en particular para obtener información sobre el sistema.
 - **Administración de bases de datos** : Permite el acceso a la base de datos Jeedom. Luego puede ejecutar comandos en el campo superior.
 - **Nombre de usuario / Contraseña** : Nombre de usuario y contraseña para acceder a la base de datos utilizada por Jeedom.
-
-

@@ -1,29 +1,27 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\HTTP;
 
 /**
- * This unittest is created to check if the time-range filter is working correctly with all-day-events.
+ * This unittest is created to check if the time-range filter is working correctly with all-day-events
  *
  * @copyright Copyright (C) fruux GmbH (https://fruux.com/)
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Issue228Test extends \Sabre\DAVServerTest
-{
+class Issue228Test extends \Sabre\DAVServerTest {
+
     protected $setupCalDAV = true;
 
     protected $caldavCalendars = [
         [
-            'id' => 1,
-            'name' => 'Calendar',
+            'id'           => 1,
+            'name'         => 'Calendar',
             'principaluri' => 'principals/user1',
-            'uri' => 'calendar1',
-        ],
+            'uri'          => 'calendar1',
+        ]
     ];
 
     protected $caldavCalendarObjects = [
@@ -45,13 +43,13 @@ END:VCALENDAR
         ],
     ];
 
-    public function testIssue228()
-    {
+    function testIssue228() {
+
         $request = HTTP\Sapi::createFromServerArray([
-            'REQUEST_METHOD' => 'REPORT',
+            'REQUEST_METHOD'    => 'REPORT',
             'HTTP_CONTENT_TYPE' => 'application/xml',
-            'REQUEST_URI' => '/calendars/user1/calendar1',
-            'HTTP_DEPTH' => '1',
+            'REQUEST_URI'       => '/calendars/user1/calendar1',
+            'HTTP_DEPTH'        => '1',
         ]);
 
         $request->setBody('<?xml version="1.0" encoding="utf-8" ?>
@@ -75,6 +73,7 @@ END:VCALENDAR
         $response = $this->request($request);
 
         // We must check if absolutely nothing was returned from this query.
-        $this->assertFalse(strpos($response->getBodyAsString(), 'BEGIN:VCALENDAR'));
+        $this->assertFalse(strpos($response->body, 'BEGIN:VCALENDAR'));
+
     }
 }

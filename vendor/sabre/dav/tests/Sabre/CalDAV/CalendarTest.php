@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use Sabre\DAV\PropPatch;
 
 require_once 'Sabre/CalDAV/TestUtil.php';
 
-class CalendarTest extends \PHPUnit\Framework\TestCase
-{
+class CalendarTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var Sabre\CalDAV\Backend\PDO
      */
@@ -24,30 +22,34 @@ class CalendarTest extends \PHPUnit\Framework\TestCase
      */
     protected $calendars;
 
-    public function setup()
-    {
+    function setup() {
+
         $this->backend = TestUtil::getBackend();
 
         $this->calendars = $this->backend->getCalendarsForUser('principals/user1');
         $this->assertEquals(2, count($this->calendars));
         $this->calendar = new Calendar($this->backend, $this->calendars[0]);
+
+
     }
 
-    public function teardown()
-    {
+    function teardown() {
+
         unset($this->backend);
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $this->assertEquals($this->calendars[0]['uri'], $this->calendar->getName());
+
     }
 
     /**
      * @depends testSimple
      */
-    public function testUpdateProperties()
-    {
+    function testUpdateProperties() {
+
         $propPatch = new PropPatch([
             '{DAV:}displayname' => 'NewName',
         ]);
@@ -59,80 +61,87 @@ class CalendarTest extends \PHPUnit\Framework\TestCase
 
         $calendars2 = $this->backend->getCalendarsForUser('principals/user1');
         $this->assertEquals('NewName', $calendars2[0]['{DAV:}displayname']);
+
     }
 
     /**
      * @depends testSimple
      */
-    public function testGetProperties()
-    {
+    function testGetProperties() {
+
         $question = [
             '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set',
         ];
 
         $result = $this->calendar->getProperties($question);
 
-        foreach ($question as $q) {
-            $this->assertArrayHasKey($q, $result);
-        }
+        foreach ($question as $q) $this->assertArrayHasKey($q, $result);
 
         $this->assertEquals(['VEVENT', 'VTODO'], $result['{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set']->getValue());
+
     }
 
     /**
-     * @expectedException \Sabre\DAV\Exception\NotFound
+     * @expectedException Sabre\DAV\Exception\NotFound
      * @depends testSimple
      */
-    public function testGetChildNotFound()
-    {
+    function testGetChildNotFound() {
+
         $this->calendar->getChild('randomname');
+
     }
 
     /**
      * @depends testSimple
      */
-    public function testGetChildren()
-    {
+    function testGetChildren() {
+
         $children = $this->calendar->getChildren();
         $this->assertEquals(1, count($children));
 
         $this->assertTrue($children[0] instanceof CalendarObject);
+
     }
 
     /**
      * @depends testGetChildren
      */
-    public function testChildExists()
-    {
+    function testChildExists() {
+
         $this->assertFalse($this->calendar->childExists('foo'));
 
         $children = $this->calendar->getChildren();
         $this->assertTrue($this->calendar->childExists($children[0]->getName()));
     }
 
+
+
     /**
-     * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
+     * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    public function testCreateDirectory()
-    {
+    function testCreateDirectory() {
+
         $this->calendar->createDirectory('hello');
+
     }
 
     /**
-     * @expectedException \Sabre\DAV\Exception\MethodNotAllowed
+     * @expectedException Sabre\DAV\Exception\MethodNotAllowed
      */
-    public function testSetName()
-    {
+    function testSetName() {
+
         $this->calendar->setName('hello');
+
     }
 
-    public function testGetLastModified()
-    {
+    function testGetLastModified() {
+
         $this->assertNull($this->calendar->getLastModified());
+
     }
 
-    public function testCreateFile()
-    {
+    function testCreateFile() {
+
         $file = fopen('php://memory', 'r+');
         fwrite($file, TestUtil::getTestCalendarData());
         rewind($file);
@@ -141,10 +150,11 @@ class CalendarTest extends \PHPUnit\Framework\TestCase
 
         $file = $this->calendar->getChild('hello');
         $this->assertTrue($file instanceof CalendarObject);
+
     }
 
-    public function testCreateFileNoSupportedComponents()
-    {
+    function testCreateFileNoSupportedComponents() {
+
         $file = fopen('php://memory', 'r+');
         fwrite($file, TestUtil::getTestCalendarData());
         rewind($file);
@@ -154,28 +164,31 @@ class CalendarTest extends \PHPUnit\Framework\TestCase
 
         $file = $calendar->getChild('hello');
         $this->assertTrue($file instanceof CalendarObject);
+
     }
 
-    public function testDelete()
-    {
+    function testDelete() {
+
         $this->calendar->delete();
 
         $calendars = $this->backend->getCalendarsForUser('principals/user1');
         $this->assertEquals(1, count($calendars));
     }
 
-    public function testGetOwner()
-    {
+    function testGetOwner() {
+
         $this->assertEquals('principals/user1', $this->calendar->getOwner());
+
     }
 
-    public function testGetGroup()
-    {
+    function testGetGroup() {
+
         $this->assertNull($this->calendar->getGroup());
+
     }
 
-    public function testGetACL()
-    {
+    function testGetACL() {
+
         $expected = [
             [
                 'privilege' => '{DAV:}read',
@@ -193,7 +206,7 @@ class CalendarTest extends \PHPUnit\Framework\TestCase
                 'protected' => true,
             ],
             [
-                'privilege' => '{'.Plugin::NS_CALDAV.'}read-free-busy',
+                'privilege' => '{' . Plugin::NS_CALDAV . '}read-free-busy',
                 'principal' => '{DAV:}authenticated',
                 'protected' => true,
             ],
@@ -209,29 +222,35 @@ class CalendarTest extends \PHPUnit\Framework\TestCase
             ],
         ];
         $this->assertEquals($expected, $this->calendar->getACL());
+
     }
 
     /**
      * @expectedException \Sabre\DAV\Exception\Forbidden
      */
-    public function testSetACL()
-    {
+    function testSetACL() {
+
         $this->calendar->setACL([]);
+
     }
 
-    public function testGetSyncToken()
-    {
+    function testGetSyncToken() {
+
         $this->assertNull($this->calendar->getSyncToken());
+
     }
 
-    public function testGetSyncTokenNoSyncSupport()
-    {
+    function testGetSyncTokenNoSyncSupport() {
+
         $calendar = new Calendar(new Backend\Mock([], []), []);
         $this->assertNull($calendar->getSyncToken());
+
     }
 
-    public function testGetChanges()
-    {
+    function testGetChanges() {
+
         $this->assertNull($this->calendar->getChanges(1, 1));
+
     }
+
 }

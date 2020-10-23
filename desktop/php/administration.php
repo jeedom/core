@@ -1015,6 +1015,52 @@ user::isBan();
 				</fieldset>
 			</form>
 
+			<legend>{{InfluxDB}}</legend>
+			<form class="form-horizontal">
+				<fieldset>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{URL du serveur InfluxDB}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici l'URL du serveur InfluxDB}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxURL">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Port du serveur InfluxDB}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le port du serveur InfluxDB}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxPort">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nom de la base}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le nom de la base}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxTable">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{User de la base}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le user de la base}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control" data-l1key="cmdInfluxUser">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Mot de passe de la base}}
+							<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le mot de passe de la base}}"></i></sup>
+						</label>
+						<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<input type="text"  class="configKey form-control inputPassword" data-l1key="cmdInfluxPass">
+						</div>
+					</div>
+				</fieldset>
+			</form>
+
 			<legend>{{Divers}}</legend>
 			<form class="form-horizontal">
 				<fieldset>
@@ -1836,10 +1882,10 @@ user::isBan();
 								continue;
 							}
 							$div .=  '<div class="form-group">';
-							$div .= '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
+							$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
 							$div .= '<sup><i class="fas fa-question-circle" tooltip="{{Clé API pour le plugin}} '.$plugin->getName().'"></i></sup>';
 							$div .= '</label>';
-							$div .= '<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">';
+							$div .= '<div class="col-lg-2 col-md-2 col-sm-8 col-xs-12">';
 							$div .= '<div class="input-group">';
 							$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . config::byKey('api', $plugin->getId()) . '" />';
 							$div .= '<span class="input-group-btn">';
@@ -1847,13 +1893,18 @@ user::isBan();
 							$div .= '</span>';
 							$div .= '</div>';
 							$div .= '</div>';
-							$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
-							$div .= '<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">';
+							$div .= '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">{{Accès API}}</label>';
+							$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">';
 							$div .= '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
 							$div .= '<option value="enable">{{Activé}}</option>';
 							$div .= '<option value="whiteip">{{IP blanche}}</option>';
 							$div .= '<option value="localhost">{{Localhost}}</option>';
 							$div .= '<option value="disable">{{Désactivé}}</option>';
+							$div .= '</select>';
+							$div .= '</div>';
+							$div .= '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">{{Ne pas autoriser les methodes générales}}</label>';
+							$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">';
+							$div .= '<input type="checkbox" class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::restricted" />';
 							$div .= '</select>';
 							$div .= '</div>';
 							$div .= '</div>';

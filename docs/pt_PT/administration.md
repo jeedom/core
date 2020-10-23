@@ -394,6 +394,8 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 - **Localhost** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
 - **Ativado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
 
+Para cada chave de API de plugin você pode proibi-los de métodos básicos (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)
+
 ## Onglet &gt;\_OS/DB
 
 > **IMPORTANTE**
@@ -416,5 +418,3 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 - **Administração do sistema** : Fornece acesso a uma interface de administração do sistema. É um tipo de console shell no qual você pode iniciar os comandos mais úteis, em particular para obter informações sobre o sistema.
 - **Banco de dados de administração** : Permite acesso ao banco de dados Jeedom. Você pode então iniciar comandos no campo superior.
 - **Nome de usuário / senha** : Nome de usuário e senha para acessar o banco de dados usado pelo Jeedom.
-
-

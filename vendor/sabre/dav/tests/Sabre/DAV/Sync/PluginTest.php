@@ -1,34 +1,34 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Sync;
 
 use Sabre\DAV;
 use Sabre\HTTP;
 
-require_once __DIR__.'/MockSyncCollection.php';
+require_once __DIR__ . '/MockSyncCollection.php';
 
-class PluginTest extends \Sabre\DAVServerTest
-{
+class PluginTest extends \Sabre\DAVServerTest {
+
     protected $collection;
 
-    public function setUp()
-    {
+    function setUp() {
+
         parent::setUp();
         $this->server->addPlugin(new Plugin());
+
     }
 
-    public function testGetInfo()
-    {
+    function testGetInfo() {
+
         $this->assertArrayHasKey(
             'name',
             (new Plugin())->getPluginInfo()
         );
+
     }
 
-    public function setUpTree()
-    {
+    function setUpTree() {
+
         $this->collection =
             new MockSyncCollection('coll', [
                 new DAV\SimpleFile('file1.txt', 'foo'),
@@ -36,12 +36,13 @@ class PluginTest extends \Sabre\DAVServerTest
             ]);
         $this->tree = [
             $this->collection,
-            new DAV\SimpleCollection('normalcoll', []),
+            new DAV\SimpleCollection('normalcoll', [])
         ];
+
     }
 
-    public function testSupportedReportSet()
-    {
+    function testSupportedReportSet() {
+
         $result = $this->server->getProperties('/coll', ['{DAV:}supported-report-set']);
         $this->assertFalse($result['{DAV:}supported-report-set']->has('{DAV:}sync-collection'));
 
@@ -50,10 +51,11 @@ class PluginTest extends \Sabre\DAVServerTest
 
         $result = $this->server->getProperties('/coll', ['{DAV:}supported-report-set']);
         $this->assertTrue($result['{DAV:}supported-report-set']->has('{DAV:}sync-collection'));
+
     }
 
-    public function testGetSyncToken()
-    {
+    function testGetSyncToken() {
+
         $result = $this->server->getProperties('/coll', ['{DAV:}sync-token']);
         $this->assertFalse(isset($result['{DAV:}sync-token']));
 
@@ -70,8 +72,8 @@ class PluginTest extends \Sabre\DAVServerTest
         $this->assertFalse(isset($result['{DAV:}sync-token']));
     }
 
-    public function testSyncInitialSyncCollection()
-    {
+    function testSyncInitialSyncCollection() {
+
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
 
@@ -92,7 +94,7 @@ BLA;
 
         $response = $this->request($request);
 
-        $this->assertEquals(207, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(207, $response->status, 'Full response body:' . $response->body);
 
         $multiStatus = $this->server->xml->parse($response->getBodyAsString());
 
@@ -112,7 +114,7 @@ BLA;
         $this->assertEquals([
             200 => [
                 '{DAV:}getcontentlength' => 3,
-            ],
+            ]
         ], $response->getResponseProperties());
 
         $response = $responses[1];
@@ -122,12 +124,13 @@ BLA;
         $this->assertEquals([
             200 => [
                 '{DAV:}getcontentlength' => 3,
-            ],
+            ]
         ], $response->getResponseProperties());
+
     }
 
-    public function testSubsequentSyncSyncCollection()
-    {
+    function testSubsequentSyncSyncCollection() {
+
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
         // Making another change
@@ -135,8 +138,8 @@ BLA;
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -154,7 +157,7 @@ BLA;
 
         $response = $this->request($request);
 
-        $this->assertEquals(207, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(207, $response->status, 'Full response body:' . $response->body);
 
         $multiStatus = $this->server->xml->parse($response->getBodyAsString());
 
@@ -174,7 +177,7 @@ BLA;
         $this->assertEquals([
             200 => [
                 '{DAV:}getcontentlength' => 3,
-            ],
+            ]
         ], $response->getResponseProperties());
 
         $response = $responses[1];
@@ -182,10 +185,11 @@ BLA;
         $this->assertEquals('404', $response->getHttpStatus());
         $this->assertEquals('/coll/file3.txt', $response->getHref());
         $this->assertEquals([], $response->getResponseProperties());
+
     }
 
-    public function testSubsequentSyncSyncCollectionLimit()
-    {
+    function testSubsequentSyncSyncCollectionLimit() {
+
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
         // Making another change
@@ -193,8 +197,8 @@ BLA;
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -213,7 +217,7 @@ BLA;
 
         $response = $this->request($request);
 
-        $this->assertEquals(207, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(207, $response->status, 'Full response body:' . $response->body);
 
         $multiStatus = $this->server->xml->parse(
             $response->getBodyAsString()
@@ -233,10 +237,11 @@ BLA;
         $this->assertEquals('404', $response->getHttpStatus());
         $this->assertEquals('/coll/file3.txt', $response->getHref());
         $this->assertEquals([], $response->getResponseProperties());
+
     }
 
-    public function testSubsequentSyncSyncCollectionDepthFallBack()
-    {
+    function testSubsequentSyncSyncCollectionDepthFallBack() {
+
         // Making a change
         $this->collection->addChange(['file1.txt'], [], []);
         // Making another change
@@ -244,9 +249,9 @@ BLA;
 
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
-            'HTTP_DEPTH' => '1',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
+            'HTTP_DEPTH'     => "1",
         ]);
 
         $body = <<<BLA
@@ -263,7 +268,7 @@ BLA;
 
         $response = $this->request($request);
 
-        $this->assertEquals(207, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(207, $response->status, 'Full response body:' . $response->body);
 
         $multiStatus = $this->server->xml->parse(
             $response->getBodyAsString()
@@ -285,7 +290,7 @@ BLA;
         $this->assertEquals([
             200 => [
                 '{DAV:}getcontentlength' => 3,
-            ],
+            ]
         ], $response->getResponseProperties());
 
         $response = $responses[1];
@@ -293,14 +298,15 @@ BLA;
         $this->assertEquals('404', $response->getHttpStatus());
         $this->assertEquals('/coll/file3.txt', $response->getHref());
         $this->assertEquals([], $response->getResponseProperties());
+
     }
 
-    public function testSyncNoSyncInfo()
-    {
+    function testSyncNoSyncInfo() {
+
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -320,15 +326,16 @@ BLA;
 
         // The default state has no sync-token, so this report should not yet
         // be supported.
-        $this->assertEquals(415, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(415, $response->status, 'Full response body:' . $response->body);
+
     }
 
-    public function testSyncNoSyncCollection()
-    {
+    function testSyncNoSyncCollection() {
+
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/normalcoll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/normalcoll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -348,16 +355,17 @@ BLA;
 
         // The default state has no sync-token, so this report should not yet
         // be supported.
-        $this->assertEquals(415, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(415, $response->status, 'Full response body:' . $response->body);
+
     }
 
-    public function testSyncInvalidToken()
-    {
+    function testSyncInvalidToken() {
+
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -377,16 +385,16 @@ BLA;
 
         // The default state has no sync-token, so this report should not yet
         // be supported.
-        $this->assertEquals(403, $response->status, 'Full response body:'.$response->getBodyAsString());
-    }
+        $this->assertEquals(403, $response->status, 'Full response body:' . $response->body);
 
-    public function testSyncInvalidTokenNoPrefix()
-    {
+    }
+    function testSyncInvalidTokenNoPrefix() {
+
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -406,15 +414,16 @@ BLA;
 
         // The default state has no sync-token, so this report should not yet
         // be supported.
-        $this->assertEquals(403, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(403, $response->status, 'Full response body:' . $response->body);
+
     }
 
-    public function testSyncNoSyncToken()
-    {
+    function testSyncNoSyncToken() {
+
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -433,16 +442,17 @@ BLA;
 
         // The default state has no sync-token, so this report should not yet
         // be supported.
-        $this->assertEquals(400, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(400, $response->status, 'Full response body:' . $response->body);
+
     }
 
-    public function testSyncNoProp()
-    {
+    function testSyncNoProp() {
+
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'REPORT',
-            'REQUEST_URI' => '/coll/',
-            'CONTENT_TYPE' => 'application/xml',
+            'REQUEST_URI'    => '/coll/',
+            'CONTENT_TYPE'   => 'application/xml',
         ]);
 
         $body = <<<BLA
@@ -459,16 +469,17 @@ BLA;
 
         // The default state has no sync-token, so this report should not yet
         // be supported.
-        $this->assertEquals(400, $response->status, 'Full response body:'.$response->getBodyAsString());
+        $this->assertEquals(400, $response->status, 'Full response body:' . $response->body);
+
     }
 
-    public function testIfConditions()
-    {
+    function testIfConditions() {
+
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'DELETE',
-            'REQUEST_URI' => '/coll/file1.txt',
-            'HTTP_IF' => '</coll> (<http://sabre.io/ns/sync/1>)',
+            'REQUEST_URI'    => '/coll/file1.txt',
+            'HTTP_IF'        => '</coll> (<http://sabre.io/ns/sync/1>)',
         ]);
         $response = $this->request($request);
 
@@ -476,15 +487,16 @@ BLA;
         // doesn't allow itself to be deleted.
         // If the If conditions failed, it would have been a 412 instead.
         $this->assertEquals(403, $response->status);
+
     }
 
-    public function testIfConditionsNot()
-    {
+    function testIfConditionsNot() {
+
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'DELETE',
-            'REQUEST_URI' => '/coll/file1.txt',
-            'HTTP_IF' => '</coll> (Not <http://sabre.io/ns/sync/2>)',
+            'REQUEST_URI'    => '/coll/file1.txt',
+            'HTTP_IF'        => '</coll> (Not <http://sabre.io/ns/sync/2>)',
         ]);
         $response = $this->request($request);
 
@@ -492,18 +504,20 @@ BLA;
         // doesn't allow itself to be deleted.
         // If the If conditions failed, it would have been a 412 instead.
         $this->assertEquals(403, $response->status);
+
     }
 
-    public function testIfConditionsNoSyncToken()
-    {
+    function testIfConditionsNoSyncToken() {
+
         $this->collection->addChange(['file1.txt'], [], []);
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'DELETE',
-            'REQUEST_URI' => '/coll/file1.txt',
-            'HTTP_IF' => '</coll> (<opaquelocktoken:foo>)',
+            'REQUEST_URI'    => '/coll/file1.txt',
+            'HTTP_IF'        => '</coll> (<opaquelocktoken:foo>)',
         ]);
         $response = $this->request($request);
 
         $this->assertEquals(412, $response->status);
+
     }
 }

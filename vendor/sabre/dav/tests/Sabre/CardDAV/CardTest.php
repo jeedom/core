@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CardDAV;
 
-class CardTest extends \PHPUnit\Framework\TestCase
-{
+class CardTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var Sabre\CardDAV\Card
      */
@@ -15,128 +13,140 @@ class CardTest extends \PHPUnit\Framework\TestCase
      */
     protected $backend;
 
-    public function setUp()
-    {
+    function setUp() {
+
         $this->backend = new Backend\Mock();
         $this->card = new Card(
             $this->backend,
             [
-                'uri' => 'book1',
-                'id' => 'foo',
+                'uri'          => 'book1',
+                'id'           => 'foo',
                 'principaluri' => 'principals/user1',
             ],
             [
-                'uri' => 'card1',
+                'uri'           => 'card1',
                 'addressbookid' => 'foo',
-                'carddata' => 'card',
+                'carddata'      => 'card',
             ]
         );
+
     }
 
-    public function testGet()
-    {
+    function testGet() {
+
         $result = $this->card->get();
         $this->assertEquals('card', $result);
-    }
 
-    public function testGet2()
-    {
+    }
+    function testGet2() {
+
         $this->card = new Card(
             $this->backend,
             [
-                'uri' => 'book1',
-                'id' => 'foo',
+                'uri'          => 'book1',
+                'id'           => 'foo',
                 'principaluri' => 'principals/user1',
             ],
             [
-                'uri' => 'card1',
+                'uri'           => 'card1',
                 'addressbookid' => 'foo',
             ]
         );
         $result = $this->card->get();
         $this->assertEquals("BEGIN:VCARD\nVERSION:3.0\nUID:12345\nEND:VCARD", $result);
+
     }
+
 
     /**
      * @depends testGet
      */
-    public function testPut()
-    {
+    function testPut() {
+
         $file = fopen('php://memory', 'r+');
         fwrite($file, 'newdata');
         rewind($file);
         $this->card->put($file);
         $result = $this->card->get();
         $this->assertEquals('newdata', $result);
+
     }
 
-    public function testDelete()
-    {
+
+    function testDelete() {
+
         $this->card->delete();
         $this->assertEquals(1, count($this->backend->cards['foo']));
+
     }
 
-    public function testGetContentType()
-    {
+    function testGetContentType() {
+
         $this->assertEquals('text/vcard; charset=utf-8', $this->card->getContentType());
+
     }
 
-    public function testGetETag()
-    {
-        $this->assertEquals('"'.md5('card').'"', $this->card->getETag());
+    function testGetETag() {
+
+        $this->assertEquals('"' . md5('card') . '"', $this->card->getETag());
+
     }
 
-    public function testGetETag2()
-    {
+    function testGetETag2() {
+
         $card = new Card(
             $this->backend,
             [
-                'uri' => 'book1',
-                'id' => 'foo',
+                'uri'          => 'book1',
+                'id'           => 'foo',
                 'principaluri' => 'principals/user1',
             ],
             [
-                'uri' => 'card1',
+                'uri'           => 'card1',
                 'addressbookid' => 'foo',
-                'carddata' => 'card',
-                'etag' => '"blabla"',
+                'carddata'      => 'card',
+                'etag'          => '"blabla"',
             ]
         );
         $this->assertEquals('"blabla"', $card->getETag());
+
     }
 
-    public function testGetLastModified()
-    {
+    function testGetLastModified() {
+
         $this->assertEquals(null, $this->card->getLastModified());
+
     }
 
-    public function testGetSize()
-    {
+    function testGetSize() {
+
         $this->assertEquals(4, $this->card->getSize());
         $this->assertEquals(4, $this->card->getSize());
+
     }
 
-    public function testGetSize2()
-    {
+    function testGetSize2() {
+
         $card = new Card(
             $this->backend,
             [
-                'uri' => 'book1',
-                'id' => 'foo',
+                'uri'          => 'book1',
+                'id'           => 'foo',
                 'principaluri' => 'principals/user1',
             ],
             [
-                'uri' => 'card1',
+                'uri'           => 'card1',
                 'addressbookid' => 'foo',
-                'etag' => '"blabla"',
-                'size' => 4,
+                'etag'          => '"blabla"',
+                'size'          => 4,
             ]
         );
         $this->assertEquals(4, $card->getSize());
+
     }
 
-    public function testACLMethods()
-    {
+    function testACLMethods() {
+
         $this->assertEquals('principals/user1', $this->card->getOwner());
         $this->assertNull($this->card->getGroup());
         $this->assertEquals([
@@ -146,22 +156,22 @@ class CardTest extends \PHPUnit\Framework\TestCase
                 'protected' => true,
             ],
         ], $this->card->getACL());
-    }
 
-    public function testOverrideACL()
-    {
+    }
+    function testOverrideACL() {
+
         $card = new Card(
             $this->backend,
             [
-                'uri' => 'book1',
-                'id' => 'foo',
+                'uri'          => 'book1',
+                'id'           => 'foo',
                 'principaluri' => 'principals/user1',
             ],
             [
-                'uri' => 'card1',
+                'uri'           => 'card1',
                 'addressbookid' => 'foo',
-                'carddata' => 'card',
-                'acl' => [
+                'carddata'      => 'card',
+                'acl'           => [
                     [
                         'privilege' => '{DAV:}read',
                         'principal' => 'principals/user1',
@@ -177,20 +187,24 @@ class CardTest extends \PHPUnit\Framework\TestCase
                 'protected' => true,
             ],
         ], $card->getACL());
+
     }
 
     /**
-     * @expectedException \Sabre\DAV\Exception\Forbidden
+     * @expectedException Sabre\DAV\Exception\Forbidden
      */
-    public function testSetACL()
-    {
-        $this->card->setACL([]);
+    function testSetACL() {
+
+       $this->card->setACL([]);
+
     }
 
-    public function testGetSupportedPrivilegeSet()
-    {
+    function testGetSupportedPrivilegeSet() {
+
         $this->assertNull(
             $this->card->getSupportedPrivilegeSet()
         );
+
     }
+
 }

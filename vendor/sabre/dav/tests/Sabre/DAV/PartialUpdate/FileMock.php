@@ -1,21 +1,20 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\PartialUpdate;
 
 use Sabre\DAV;
 
-class FileMock implements IPatchSupport
-{
+class FileMock implements IPatchSupport {
+
     protected $data = '';
 
-    public function put($str)
-    {
+    function put($str) {
+
         if (is_resource($str)) {
             $str = stream_get_contents($str);
         }
         $this->data = $str;
+
     }
 
     /**
@@ -41,71 +40,83 @@ class FileMock implements IPatchSupport
      * time.
      *
      * @param resource|string $data
-     * @param int             $rangeType
-     * @param int             $offset
-     *
+     * @param int $rangeType
+     * @param int $offset
      * @return string|null
      */
-    public function patch($data, $rangeType, $offset = null)
-    {
+    function patch($data, $rangeType, $offset = null) {
+
         if (is_resource($data)) {
             $data = stream_get_contents($data);
         }
 
         switch ($rangeType) {
-            case 1:
+
+            case 1 :
                 $this->data .= $data;
                 break;
-            case 3:
+            case 3 :
                 // Turn the offset into an offset-offset.
                 $offset = strlen($this->data) - $offset;
-                // no break is intentional
-            case 2:
+                // No break is intentional
+            case 2 :
                 $this->data =
-                    substr($this->data, 0, $offset).
-                    $data.
+                    substr($this->data, 0, $offset) .
+                    $data .
                     substr($this->data, $offset + strlen($data));
                 break;
+
         }
+
     }
 
-    public function get()
-    {
+    function get() {
+
         return $this->data;
+
     }
 
-    public function getContentType()
-    {
+    function getContentType() {
+
         return 'text/plain';
+
     }
 
-    public function getSize()
-    {
+    function getSize() {
+
         return strlen($this->data);
+
     }
 
-    public function getETag()
-    {
-        return '"'.$this->data.'"';
+    function getETag() {
+
+        return '"' . $this->data . '"';
+
     }
 
-    public function delete()
-    {
+    function delete() {
+
         throw new DAV\Exception\MethodNotAllowed();
+
     }
 
-    public function setName($name)
-    {
+    function setName($name) {
+
         throw new DAV\Exception\MethodNotAllowed();
+
     }
 
-    public function getName()
-    {
+    function getName() {
+
         return 'partial';
+
     }
 
-    public function getLastModified()
-    {
+    function getLastModified() {
+
         return null;
+
     }
+
+
 }

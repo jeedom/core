@@ -1,21 +1,19 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
 
 /**
  * The intention for this reader class, is to read past the end element. This
- * should trigger a ParseException.
+ * should trigger a ParseException
  *
  * @copyright Copyright (C) 2009-2015 fruux GmbH (https://fruux.com/).
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class Eater implements Xml\Element
-{
+class Eater implements Xml\Element {
+
     /**
      * The serialize method is called during xml writing.
      *
@@ -29,12 +27,14 @@ class Eater implements Xml\Element
      * responsible for closing them.
      *
      * @param Xml\Writer $writer
+     * @return void
      */
-    public function xmlSerialize(Xml\Writer $writer)
-    {
+    function xmlSerialize(Xml\Writer $writer) {
+
         $writer->startElement('{http://sabredav.org/ns}elem1');
         $writer->write('hiiii!');
         $writer->endElement();
+
     }
 
     /**
@@ -56,20 +56,23 @@ class Eater implements Xml\Element
      * the next element.
      *
      * @param Xml\Reader $reader
-     *
      * @return mixed
      */
-    public static function xmlDeserialize(Xml\Reader $reader)
-    {
+    static function xmlDeserialize(Xml\Reader $reader) {
+
         $reader->next();
 
         $count = 1;
         while ($count) {
+
             $reader->read();
             if ($reader->nodeType === $reader::END_ELEMENT) {
-                --$count;
+                $count--;
             }
+
         }
         $reader->read();
+
     }
+
 }

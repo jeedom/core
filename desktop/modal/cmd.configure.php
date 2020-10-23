@@ -188,6 +188,29 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <input class="cmdAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="display:none;">
                 </div>
               </div>
+			   <?php if ($cmd->getType() == 'info') {?>
+               <div class="form-group">
+                <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
+                <div class="col-xs-1">
+                  <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
+                </div>
+                </div>
+				<div class="form-group selInflux" style="display:none;">
+                <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
+                <div class="col-xs-8">
+                  <input class="cmdAttr input-xs" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}" style="margin-bottom: 2px;">
+                </div>
+                <label class="col-xs-4 control-label">{{Nom personnalisé Equipement}}</label>
+                 <div class="col-xs-8">
+                  <input class="cmdAttr input-xs" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}" style="margin-bottom: 2px;">
+                </div>
+				<label class="col-xs-4 control-label">{{Actions}}</label>
+                 <div class="col-xs-8">
+                   <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+                   <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+                </div>
+              </div>
+              <?php }?>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
                 <div class="col-xs-4">
@@ -874,6 +897,14 @@ $('.cmdAttr[data-l2key="timeline::enable"]').off('change').on('change',function(
   }
 })
 
+$('.cmdAttr[data-l2key="influx::enable"]').off('change').on('change',function() {
+  if ($(this).value() == 1) {
+    $('.selInflux').show()
+  } else {
+    $('.selInflux').hide()
+  }
+})
+
 $('#cmdConfigureTab').off('click').on('click',function() {
   setTimeout(function() {
     taAutosize()
@@ -924,6 +955,38 @@ $('#bt_cmdConfigureRawObject').off('click').on('click',function() {
 
 $('#bt_cmdConfigureGraph').on('click', function() {
   $('#md_modal3').dialog({title: "{{Graphique des liens}}"}).load('index.php?v=d&modal=graph.link&filter_type=cmd&filter_id='+cmdInfo.id).dialog('open')
+})
+
+$('#bt_influxDelete').off('click').on('click',function() {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
+      if (result) {
+          jeedom.cmd.dropInflux({
+          cmd_id : cmdInfo.id,
+          error: function(error) {
+            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $('#md_displayCmdConfigure').showAlert({message: '{{Action envoyée avec succés}}', level: 'success'})
+          }
+        })
+      }
+    })
+})
+
+$('#bt_influxHistory').off('click').on('click',function() {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB}}', function(result) {
+      if (result) {
+          jeedom.cmd.historyInflux({
+          cmd_id : cmdInfo.id,
+          error: function(error) {
+            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $('#md_displayCmdConfigure').showAlert({message: '{{Action envoyée avec succés}}', level: 'success'})
+          }
+        })
+      }
+    })
 })
 
 $('#bt_cmdConfigureCopyHistory').off('click').on('click',function() {

@@ -69,10 +69,12 @@ function checkPageModified() {
 
 //OnePage design PageLoader -------------------------------------
 var PREVIOUS_PAGE = null
+var PREVIOUS_LOCATION = null
 var NO_POPSTAT = false
 var printEqLogic = undefined
 var jeedomBackgroundImg = null
 function loadPage(_url, _noPushHistory) {
+  PREVIOUS_LOCATION = window.location.href
   if (checkPageModified()) return
   if (JS_ERROR.length > 0) {
     document.location.href = _url

@@ -1,27 +1,27 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Mock;
 
 use Sabre\DAV\Sharing\ISharedNode;
 use Sabre\DAV\Sharing\Sharee;
 
-class SharedNode extends \Sabre\DAV\Node implements ISharedNode
-{
+class SharedNode extends \Sabre\DAV\Node implements ISharedNode {
+
     protected $name;
     protected $access;
     protected $invites = [];
 
-    public function __construct($name, $access)
-    {
+    function __construct($name, $access) {
+
         $this->name = $name;
         $this->access = $access;
+
     }
 
-    public function getName()
-    {
+    function getName() {
+
         return $this->name;
+
     }
 
     /**
@@ -32,9 +32,10 @@ class SharedNode extends \Sabre\DAV\Node implements ISharedNode
      *
      * @return int
      */
-    public function getShareAccess()
-    {
+    function getShareAccess() {
+
         return $this->access;
+
     }
 
     /**
@@ -48,9 +49,10 @@ class SharedNode extends \Sabre\DAV\Node implements ISharedNode
      *
      * @return string
      */
-    public function getShareResourceUri()
-    {
+    function getShareResourceUri() {
+
         return 'urn:example:bar';
+
     }
 
     /**
@@ -59,19 +61,25 @@ class SharedNode extends \Sabre\DAV\Node implements ISharedNode
      * Every item must be a Sharee object.
      *
      * @param Sharee[] $sharees
+     * @return void
      */
-    public function updateInvites(array $sharees)
-    {
+    function updateInvites(array $sharees) {
+
         foreach ($sharees as $sharee) {
-            if (\Sabre\DAV\Sharing\Plugin::ACCESS_NOACCESS === $sharee->access) {
+
+            if ($sharee->access === \Sabre\DAV\Sharing\Plugin::ACCESS_NOACCESS) {
                 // Removal
                 foreach ($this->invites as $k => $invitee) {
+
                     if ($invitee->href = $sharee->href) {
                         unset($this->invites[$k]);
                     }
+
                 }
+
             } else {
                 foreach ($this->invites as $k => $invitee) {
+
                     if ($invitee->href = $sharee->href) {
                         if (!$sharee->inviteStatus) {
                             $sharee->inviteStatus = $invitee->inviteStatus;
@@ -80,6 +88,7 @@ class SharedNode extends \Sabre\DAV\Node implements ISharedNode
                         $this->invites[$k] = $sharee;
                         continue 2;
                     }
+
                 }
                 if (!$sharee->inviteStatus) {
                     $sharee->inviteStatus = \Sabre\DAV\Sharing\Plugin::INVITE_NORESPONSE;
@@ -87,7 +96,9 @@ class SharedNode extends \Sabre\DAV\Node implements ISharedNode
                 // Adding a new invitee
                 $this->invites[] = $sharee;
             }
+
         }
+
     }
 
     /**
@@ -106,8 +117,9 @@ class SharedNode extends \Sabre\DAV\Node implements ISharedNode
      *
      * @return \Sabre\DAV\Xml\Element\Sharee[]
      */
-    public function getInvites()
-    {
+    function getInvites() {
+
         return $this->invites;
+
     }
 }

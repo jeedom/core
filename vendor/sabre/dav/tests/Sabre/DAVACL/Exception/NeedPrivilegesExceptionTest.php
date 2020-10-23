@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL\Exception;
 
 use Sabre\DAV;
 
-class NeedPrivilegesExceptionTest extends \PHPUnit\Framework\TestCase
-{
-    public function testSerialize()
-    {
+class NeedPrivilegesExceptionTest extends \PHPUnit_Framework_TestCase {
+
+    function testSerialize() {
+
         $uri = 'foo';
         $privileges = [
             '{DAV:}read',
@@ -25,12 +23,12 @@ class NeedPrivilegesExceptionTest extends \PHPUnit\Framework\TestCase
         $ex->serialize($server, $root);
 
         $xpaths = [
-            '/d:root' => 1,
-            '/d:root/d:need-privileges' => 1,
-            '/d:root/d:need-privileges/d:resource' => 2,
-            '/d:root/d:need-privileges/d:resource/d:href' => 2,
-            '/d:root/d:need-privileges/d:resource/d:privilege' => 2,
-            '/d:root/d:need-privileges/d:resource/d:privilege/d:read' => 1,
+            '/d:root'                                                  => 1,
+            '/d:root/d:need-privileges'                                => 1,
+            '/d:root/d:need-privileges/d:resource'                     => 2,
+            '/d:root/d:need-privileges/d:resource/d:href'              => 2,
+            '/d:root/d:need-privileges/d:resource/d:privilege'         => 2,
+            '/d:root/d:need-privileges/d:resource/d:privilege/d:read'  => 1,
             '/d:root/d:need-privileges/d:resource/d:privilege/d:write' => 1,
         ];
 
@@ -41,7 +39,11 @@ class NeedPrivilegesExceptionTest extends \PHPUnit\Framework\TestCase
         $dxpath = new \DOMXPath($dom2);
         $dxpath->registerNamespace('d', 'DAV:');
         foreach ($xpaths as $xpath => $count) {
-            $this->assertEquals($count, $dxpath->query($xpath)->length, 'Looking for : '.$xpath.', we could only find '.$dxpath->query($xpath)->length.' elements, while we expected '.$count);
+
+            $this->assertEquals($count, $dxpath->query($xpath)->length, 'Looking for : ' . $xpath . ', we could only find ' . $dxpath->query($xpath)->length . ' elements, while we expected ' . $count);
+
         }
+
     }
+
 }

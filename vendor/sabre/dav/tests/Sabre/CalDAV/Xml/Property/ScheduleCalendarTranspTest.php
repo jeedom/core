@@ -1,75 +1,79 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV\Xml\Property;
 
 use Sabre\CalDAV;
 use Sabre\DAV;
 
-class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest
-{
-    public function setUp()
-    {
+class ScheduleCalendarTranspTest extends DAV\Xml\XmlTest {
+
+    function setUp() {
+
         $this->namespaceMap[CalDAV\Plugin::NS_CALDAV] = 'cal';
         $this->namespaceMap[CalDAV\Plugin::NS_CALENDARSERVER] = 'cs';
+
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $prop = new ScheduleCalendarTransp(ScheduleCalendarTransp::OPAQUE);
         $this->assertEquals(
             ScheduleCalendarTransp::OPAQUE,
             $prop->getValue()
         );
+
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testBadValue()
-    {
+    function testBadValue() {
+
         new ScheduleCalendarTransp('ahhh');
+
     }
 
     /**
      * @depends testSimple
      */
-    public function testSerializeOpaque()
-    {
+    function testSerializeOpaque() {
+
         $property = new ScheduleCalendarTransp(ScheduleCalendarTransp::OPAQUE);
         $xml = $this->write(['{DAV:}root' => $property]);
 
         $this->assertXmlStringEqualsXmlString(
 '<?xml version="1.0"?>
-<d:root xmlns:d="DAV:" xmlns:cal="'.CalDAV\Plugin::NS_CALDAV.'" xmlns:cs="'.CalDAV\Plugin::NS_CALENDARSERVER.'">
+<d:root xmlns:d="DAV:" xmlns:cal="' . CalDAV\Plugin::NS_CALDAV . '" xmlns:cs="' . CalDAV\Plugin::NS_CALENDARSERVER . '">
   <cal:opaque />
 </d:root>
 ', $xml);
+
     }
 
     /**
      * @depends testSimple
      */
-    public function testSerializeTransparent()
-    {
+    function testSerializeTransparent() {
+
         $property = new ScheduleCalendarTransp(ScheduleCalendarTransp::TRANSPARENT);
         $xml = $this->write(['{DAV:}root' => $property]);
 
         $this->assertXmlStringEqualsXmlString(
 '<?xml version="1.0"?>
-<d:root xmlns:d="DAV:" xmlns:cal="'.CalDAV\Plugin::NS_CALDAV.'" xmlns:cs="'.CalDAV\Plugin::NS_CALENDARSERVER.'">
+<d:root xmlns:d="DAV:" xmlns:cal="' . CalDAV\Plugin::NS_CALDAV . '" xmlns:cs="' . CalDAV\Plugin::NS_CALENDARSERVER . '">
   <cal:transparent />
 </d:root>
 ', $xml);
+
     }
 
-    public function testUnserializeTransparent()
-    {
+    function testUnserializeTransparent() {
+
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;
 
-        $xml = <<<XML
+$xml = <<<XML
 <?xml version="1.0"?>
 <d:root xmlns:d="DAV:" xmlns:cal="$cal" xmlns:cs="$cs">
   <cal:transparent />
@@ -85,14 +89,15 @@ XML;
             new ScheduleCalendarTransp(ScheduleCalendarTransp::TRANSPARENT),
             $result['value']
         );
+
     }
 
-    public function testUnserializeOpaque()
-    {
+    function testUnserializeOpaque() {
+
         $cal = CalDAV\Plugin::NS_CALDAV;
         $cs = CalDAV\Plugin::NS_CALENDARSERVER;
 
-        $xml = <<<XML
+$xml = <<<XML
 <?xml version="1.0"?>
 <d:root xmlns:d="DAV:" xmlns:cal="$cal" xmlns:cs="$cs">
   <cal:opaque />
@@ -108,5 +113,6 @@ XML;
             new ScheduleCalendarTransp(ScheduleCalendarTransp::OPAQUE),
             $result['value']
         );
+
     }
 }

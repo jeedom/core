@@ -4,7 +4,6 @@ namespace Psr\Log\Test;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Provides a base test class for ensuring compliance with the LoggerInterface.
@@ -12,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * Implementors can extend the class and implement abstract methods to run this
  * as part of their test suite.
  */
-abstract class LoggerInterfaceTest extends TestCase
+abstract class LoggerInterfaceTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return LoggerInterface
@@ -134,5 +133,12 @@ abstract class LoggerInterfaceTest extends TestCase
             'critical Uncaught Exception!'
         );
         $this->assertEquals($expected, $this->getLogs());
+    }
+}
+
+class DummyTest
+{
+    public function __toString()
+    {
     }
 }

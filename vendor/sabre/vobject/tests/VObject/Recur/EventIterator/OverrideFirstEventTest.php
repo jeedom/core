@@ -1,6 +1,6 @@
 <?php
 
-namespace Sabre\VObject\Recur\EventIterator;
+namespace Sabre\VObject\RecurrenceIterator;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;

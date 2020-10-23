@@ -1,19 +1,17 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml\Reader;
 use Sabre\Xml\Writer;
 
-class CDataTest extends \PHPUnit\Framework\TestCase
-{
+class CDataTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @expectedException \LogicException
      */
-    public function testDeserialize()
-    {
+    function testDeserialize() {
+
         $input = <<<BLA
 <?xml version="1.0"?>
 <root xmlns="http://sabredav.org/ns">
@@ -28,13 +26,14 @@ BLA;
         $reader->xml($input);
 
         $output = $reader->parse();
+
     }
 
-    public function testSerialize()
-    {
+    function testSerialize() {
+
         $writer = new Writer();
         $writer->namespaceMap = [
-            'http://sabredav.org/ns' => null,
+            'http://sabredav.org/ns' => null
         ];
         $writer->openMemory();
         $writer->startDocument('1.0');
@@ -52,5 +51,8 @@ BLA;
 XML;
 
         $this->assertEquals($expected, $output);
+
+
     }
+
 }

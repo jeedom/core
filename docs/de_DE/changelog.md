@@ -81,15 +81,10 @@
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
 - **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 bis 5.13.1.
+- **API** :  Hinzufügung einer Option, um zu verhindern, dass ein API-Schlüssel eines Plugins Kernmethoden ausführt (allgemein))
 - Sichern von Ajax-Anfragen.
+- API-Aufrufe sichern.
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
-
->**Wichtig**
->
-> Die Inversion der Binärbefehle invertiert nicht mehr nur das Widget, sondern auch den Wert des Befehls. Daher müssen die Szenarien und Zusammenfassungen, in denen Befehle vom invertierten Binärtyp verwendet werden, korrekt neu konfiguriert werden
-
 [Changelog v4.0](/de_DE/core/4.0/changelog)
-
-

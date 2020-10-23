@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\PropertyStorage\Backend;
 
 use Sabre\DAV\PropFind;
 use Sabre\DAV\PropPatch;
 
-class Mock implements BackendInterface
-{
+class Mock implements BackendInterface {
+
     public $data = [];
 
     /**
@@ -21,11 +19,12 @@ class Mock implements BackendInterface
      * as this will give you the _exact_ list of properties that need to be
      * fetched, and haven't yet.
      *
-     * @param string   $path
+     * @param string $path
      * @param PropFind $propFind
+     * @return void
      */
-    public function propFind($path, PropFind $propFind)
-    {
+    function propFind($path, PropFind $propFind) {
+
         if (!isset($this->data[$path])) {
             return;
         }
@@ -33,10 +32,11 @@ class Mock implements BackendInterface
         foreach ($this->data[$path] as $name => $value) {
             $propFind->set($name, $value);
         }
+
     }
 
     /**
-     * Updates properties for a path.
+     * Updates properties for a path
      *
      * This method received a PropPatch object, which contains all the
      * information about the update.
@@ -44,25 +44,30 @@ class Mock implements BackendInterface
      * Usually you would want to call 'handleRemaining' on this object, to get;
      * a list of all properties that need to be stored.
      *
-     * @param string    $path
+     * @param string $path
      * @param PropPatch $propPatch
+     * @return void
      */
-    public function propPatch($path, PropPatch $propPatch)
-    {
+    function propPatch($path, PropPatch $propPatch) {
+
         if (!isset($this->data[$path])) {
             $this->data[$path] = [];
         }
-        $propPatch->handleRemaining(function ($properties) use ($path) {
+        $propPatch->handleRemaining(function($properties) use ($path) {
+
             foreach ($properties as $propName => $propValue) {
+
                 if (is_null($propValue)) {
                     unset($this->data[$path][$propName]);
                 } else {
                     $this->data[$path][$propName] = $propValue;
                 }
-
                 return true;
+
             }
+
         });
+
     }
 
     /**
@@ -71,14 +76,16 @@ class Mock implements BackendInterface
      * This allows a backend to clean up all associated properties.
      *
      * @param string $path
+     * @return void
      */
-    public function delete($path)
-    {
+    function delete($path) {
+
         unset($this->data[$path]);
+
     }
 
     /**
-     * This method is called after a successful MOVE.
+     * This method is called after a successful MOVE
      *
      * This should be used to migrate all properties from one path to another.
      * Note that entire collections may be moved, so ensure that all properties
@@ -86,20 +93,25 @@ class Mock implements BackendInterface
      *
      * @param string $source
      * @param string $destination
+     * @return void
      */
-    public function move($source, $destination)
-    {
+    function move($source, $destination) {
+
         foreach ($this->data as $path => $props) {
+
             if ($path === $source) {
                 $this->data[$destination] = $props;
                 unset($this->data[$path]);
                 continue;
             }
 
-            if (0 === strpos($path, $source.'/')) {
-                $this->data[$destination.substr($path, strlen($source) + 1)] = $props;
+            if (strpos($path, $source . '/') === 0) {
+                $this->data[$destination . substr($path, strlen($source) + 1)] = $props;
                 unset($this->data[$path]);
             }
+
         }
+
     }
+
 }

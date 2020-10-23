@@ -491,8 +491,8 @@ class jeedom {
 		}
 		$apikey = self::getApiKey($_plugin);
 		if (trim($apikey) != '' && $apikey == $_apikey) {
-			GLOBAL $_PLUGIN_APIKEY;
-			$_PLUGIN_APIKEY = ($_plugin != 'core' && $_plugin != 'proapi' && $_plugin != 'market');
+			GLOBAL $_RESTRICTED;
+			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
 			return true;
 		}
 		$user = user::byHash($_apikey);

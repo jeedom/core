@@ -81,15 +81,10 @@
 - **Lib** : Actualizar HighStock v7.1.2 a v8.2.0.
 - **Lib** : Actualizar jQuery v3.4.1 a v3.5.1.
 - **Lib** : Actualizar Font Awesome 5.9.0 a 5.13.1.
+- **API** :  adición de una opción para prohibir que una clave api de un complemento ejecute métodos centrales (general)
 - Asegurando solicitudes Ajax.
+- Asegurar las llamadas a la API.
 - Correcciones de errores.
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
 
-
->**Importante**
->
-> La inversión de los comandos binarios ya no solo invierte el widget sino el valor del comando, por lo que será necesario reconfigurar correctamente los escenarios y los resúmenes que utilizan comandos del tipo binario invertido
-
 [Registro de cambios v4.0](/es_ES/core/4.0/changelog)
-
-

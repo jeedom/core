@@ -46,11 +46,11 @@ sendVarToJS('id', $plan->getId());
       </div>
     </div>
     <div class="form-group link_type link_eqLogic link_cmd link_scenario link_graph link_text link_view link_plan link_image link_zone link_summary">
-      <label class="col-lg-4 control-label">{{Position X }}<sub>%</sub></label>
+      <label class="col-lg-4 control-label">{{Position X }}<sub>px</sub></label>
       <div class="col-lg-2">
         <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="left" placeholder="0"/>
       </div>
-      <label class="col-lg-2 control-label">{{Position Y }}<sub>%</sub></label>
+      <label class="col-lg-2 control-label">{{Position Y }}<sub>px</sub></label>
       <div class="col-lg-2">
         <input type="text" class="planAttr form-control" data-l1key="position" data-l2key="top" placeholder="0" />
       </div>
@@ -364,12 +364,12 @@ sendVarToJS('id', $plan->getId());
           </select>
         </div>
       </div>
-
+      
       <div class="zone_mode zone_simple">
         <legend>{{Action}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="other"><i class="fas fa-plus"></i></a></legend>
         <div id="div_planConfigureActionother"></div>
       </div>
-
+      
       <div class="zone_mode zone_widget" style="display:none;">
         <div class="form-group">
           <label class="col-lg-4 control-label">{{Equipement}}</label>
@@ -422,244 +422,244 @@ sendVarToJS('id', $plan->getId());
           </div>
           <legend>{{Action on}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="on"><i class="fas fa-plus"></i></a></legend>
           <div id="div_planConfigureActionon"></div>
-
+          
           <legend>{{Action off}}<a class="btn btn-success pull-right btn-xs bt_planConfigurationAction" data-type="off"><i class="fas fa-plus"></i></a></legend>
           <div id="div_planConfigureActionoff"></div>
         </div>
       </div>
     </fieldset>
-</form>
-
-<script>
-var plan_configure_plan = null
-
-$('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change', function() {
-  $('.zone_mode').hide()
-  $('.zone_mode.zone_'+$(this).value()).show()
-})
-
-$('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change', function() {
-  $('.display_mode').hide()
-  $('.display_mode.display_mode_'+$(this).value()).show()
-})
-
-$('.bt_planConfigurationAction').on('click', function() {
-  addActionPlanConfigure({}, $(this).attr('data-type'))
-});
-
-$('#fd_planConfigure').on({
-  'click': function(event) {
-    $(this).closest('.' +  $(this).attr('data-type')).remove()
-  }
-}, '.bt_removeAction')
-
-$('#fd_planConfigure').on({
-  'click': function(event) {
-    var type = $(this).attr('data-type')
-    var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
-    jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
-      el.value(result.human);
-      jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-        el.closest('.' + type).find('.actionOptions').html(html)
-        taAutosize()
-      })
-    })
-  }
-}, '.listCmdAction')
-
-$('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]', function(event) {
-  var type = $(this).attr('data-type')
-  var el = $(this)
-  jeedom.cmd.displayActionOption(el.value(), '', function(html) {
-    el.closest('.' + type).find('.actionOptions').html(html)
-    taAutosize()
+  </form>
+  
+  <script>
+  var plan_configure_plan = null
+  
+  $('.planAttr[data-l1key=configuration][data-l2key=zone_mode]').on('change', function() {
+    $('.zone_mode').hide()
+    $('.zone_mode.zone_'+$(this).value()).show()
   })
-})
-
-$('body').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression', function(event) {
-  var expression = $(this).closest('.expression')
-  jeedom.getSelectActionModal({scenario : true}, function(result) {
-    expression.find('.expressionAttr[data-l1key=cmd]').value(result.human)
-    jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=cmd]').value(), '', function(html) {
-      expression.find('.actionOptions').html(html)
+  
+  $('.planAttr[data-l1key=configuration][data-l2key=display_mode]').on('change', function() {
+    $('.display_mode').hide()
+    $('.display_mode.display_mode_'+$(this).value()).show()
+  })
+  
+  $('.bt_planConfigurationAction').on('click', function() {
+    addActionPlanConfigure({}, $(this).attr('data-type'))
+  });
+  
+  $('#fd_planConfigure').on({
+    'click': function(event) {
+      $(this).closest('.' +  $(this).attr('data-type')).remove()
+    }
+  }, '.bt_removeAction')
+  
+  $('#fd_planConfigure').on({
+    'click': function(event) {
+      var type = $(this).attr('data-type')
+      var el = $(this).closest('.' + type).find('.expressionAttr[data-l1key=cmd]')
+      jeedom.cmd.getSelectModal({cmd: {type: 'action'}}, function(result) {
+        el.value(result.human);
+        jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+          el.closest('.' + type).find('.actionOptions').html(html)
+          taAutosize()
+        })
+      })
+    }
+  }, '.listCmdAction')
+  
+  $('body').off('focusout','.expressionAttr[data-l1key=cmd]').on('focusout','.expressionAttr[data-l1key=cmd]', function(event) {
+    var type = $(this).attr('data-type')
+    var el = $(this)
+    jeedom.cmd.displayActionOption(el.value(), '', function(html) {
+      el.closest('.' + type).find('.actionOptions').html(html)
       taAutosize()
     })
   })
-})
-
-function addActionPlanConfigure(_action, _type) {
-  if (!isset(_action)) {
-    _action = {}
-  }
-  if (!isset(_action.options)) {
-    _action.options = {}
-  }
-  var div = '<div class="expression ' + _type + '">'
-  div += '<div class="form-group ">'
-  div += '<label class="col-sm-1 control-label">{{Action}}</label>'
-  div += '<div class="col-sm-4">'
-  div += '<div class="input-group">'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
-  div += '</span>'
-  div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default btn-sm bt_selectOtherActionExpression" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
-  div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-  div += '<div class="col-sm-7 actionOptions">'
-  div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
-  div += '</div>'
-  div += '</div>'
-  $('#div_planConfigureAction' + _type).append(div)
-  $('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
-  taAutosize()
-}
-
-$('#bt_planConfigureAddEqLogic').on('click', function() {
-  var el = $(this)
-  jeedom.eqLogic.getSelectModal({}, function(result) {
-    el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=eqLogic]').value(result.human)
-  })
-})
-
-$('#bt_planConfigureSelectCamera').on('click', function() {
-  var el = $(this)
-  jeedom.eqLogic.getSelectModal({eqLogic: {eqType_name: 'camera'}}, function(result) {
-    el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=camera]').value(result.human)
-  })
-})
-
-$('#bt_planConfigureSelectBinary').on('click', function() {
-  var el = $(this)
-  jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-    el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=binary_info]').value(result.human)
-  })
-})
-
-$('#bt_uploadImagePlan').fileupload({
-  replaceFileInput: false,
-  url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id,
-  dataType: 'json',
-  done: function(e, data) {
-    if (plan.plan.state != 'ok') {
-      $('#div_alertPlanConfigure').showAlert({message: plan.plan.result, level: 'danger'})
-      return
-    }
-  }
-})
-
-$('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
-  if ($(this).value() == 1) {
-    $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
-  }
-})
-
-$('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
-  if ($(this).value() != '#000000') {
-    $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
-  }
-})
-
-$('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
-  if ($(this).value() == 1) {
-    $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0)
-    $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000')
-  }
-})
-
-editor = []
-
-$('#bt_chooseIcon').on('click', function() {
-  chooseIcon(function(_icon) {
-    $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-  })
-})
-
-$('#bt_saveConfigurePlan').on('click', function() {
-  save()
-})
-
-if (isset(id) && id != '') {
-  jeedom.plan.byId({
-    id : id,
-    error: function(error) {
-      $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(plan) {
-      plan_configure_plan = plan
-      $('.link_type:not(.link_'+plan.plan.link_type+')').remove()
-      $('#fd_planConfigure').setValues(plan.plan, '.planAttr')
-      if (isset(plan.plan.configuration.action_on)) {
-        for (var i in plan.plan.configuration.action_on) {
-          addActionPlanConfigure(plan.plan.configuration.action_on[i],'on')
-        }
-      }
-      if (isset(plan.plan.configuration.action_off)) {
-        for (var i in plan.plan.configuration.action_off) {
-          addActionPlanConfigure(plan.plan.configuration.action_off[i],'off')
-        }
-      }
-      if (isset(plan.plan.configuration.action_other)) {
-        for (var i in plan.plan.configuration.action_other) {
-          addActionPlanConfigure(plan.plan.configuration.action_other[i],'other')
-        }
-      }
-      if (plan.plan.link_type == 'text') {
-        var code = $('.planAttr[data-l1key=display][data-l2key=text]')
-        if (code.attr('id') == undefined) {
-          code.uniqueId()
-          var id = code.attr('id')
-          setTimeout(function() {
-            editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
-              lineNumbers: true,
-              mode: 'htmlmixed',
-              matchBrackets: true
-            })
-          }, 1)
-        }
-      }
-    }
-  })
-}
-
-function save() {
-  var plans = $('#fd_planConfigure').getValues('.planAttr')
-  if (plans[0].link_type == 'text') {
-    var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id')
-    if (id != undefined && isset(editor[id])) {
-      plans[0].display.text = editor[id].getValue()
-    }
-  }
-  if (!isset(plans[0].configuration)) {
-    plans[0].configuration = {}
-  }
-  plans[0].configuration.action_on = $('#div_planConfigureActionon .on').getValues('.expressionAttr')
-  plans[0].configuration.action_off = $('#div_planConfigureActionoff .off').getValues('.expressionAttr')
-  plans[0].configuration.action_other = $('#div_planConfigureActionother .other').getValues('.expressionAttr')
-  jeedom.plan.save({
-    plans: plans,
-    error: function(error) {
-      $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'})
-      jeedom.plan.byId({
-        id : plans[0].id,
-        error: function(error) {
-          $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
-        },
-        success: function(plan) {
-          if (plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id) {
-            $('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove()
-          }
-          displayObject(plan.plan,plan.html,false)
-          $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close")
-        }
+  
+  $('body').off('click','.bt_selectOtherActionExpression').on('click','.bt_selectOtherActionExpression', function(event) {
+    var expression = $(this).closest('.expression')
+    jeedom.getSelectActionModal({scenario : true}, function(result) {
+      expression.find('.expressionAttr[data-l1key=cmd]').value(result.human)
+      jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=cmd]').value(), '', function(html) {
+        expression.find('.actionOptions').html(html)
+        taAutosize()
       })
+    })
+  })
+  
+  function addActionPlanConfigure(_action, _type) {
+    if (!isset(_action)) {
+      _action = {}
+    }
+    if (!isset(_action.options)) {
+      _action.options = {}
+    }
+    var div = '<div class="expression ' + _type + '">'
+    div += '<div class="form-group ">'
+    div += '<label class="col-sm-1 control-label">{{Action}}</label>'
+    div += '<div class="col-sm-4">'
+    div += '<div class="input-group">'
+    div += '<span class="input-group-btn">'
+    div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
+    div += '</span>'
+    div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
+    div += '<span class="input-group-btn">'
+    div += '<a class="btn btn-default btn-sm bt_selectOtherActionExpression" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
+    div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
+    div += '</span>'
+    div += '</div>'
+    div += '</div>'
+    div += '<div class="col-sm-7 actionOptions">'
+    div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
+    div += '</div>'
+    div += '</div>'
+    $('#div_planConfigureAction' + _type).append(div)
+    $('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
+    taAutosize()
+  }
+  
+  $('#bt_planConfigureAddEqLogic').on('click', function() {
+    var el = $(this)
+    jeedom.eqLogic.getSelectModal({}, function(result) {
+      el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=eqLogic]').value(result.human)
+    })
+  })
+  
+  $('#bt_planConfigureSelectCamera').on('click', function() {
+    var el = $(this)
+    jeedom.eqLogic.getSelectModal({eqLogic: {eqType_name: 'camera'}}, function(result) {
+      el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=camera]').value(result.human)
+    })
+  })
+  
+  $('#bt_planConfigureSelectBinary').on('click', function() {
+    var el = $(this)
+    jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+      el.parent().parent().find('.planAttr[data-l1key=configuration][data-l2key=binary_info]').value(result.human)
+    })
+  })
+  
+  $('#bt_uploadImagePlan').fileupload({
+    replaceFileInput: false,
+    url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id,
+    dataType: 'json',
+    done: function(e, data) {
+      if (plan.plan.state != 'ok') {
+        $('#div_alertPlanConfigure').showAlert({message: plan.plan.result, level: 'danger'})
+        return
+      }
     }
   })
-}
+  
+  $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+    if ($(this).value() == 1) {
+      $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
+    }
+  })
+  
+  $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+    if ($(this).value() != '#000000') {
+      $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
+    }
+  })
+  
+  $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+    if ($(this).value() == 1) {
+      $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0)
+      $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000')
+    }
+  })
+  
+  editor = []
+  
+  $('#bt_chooseIcon').on('click', function() {
+    chooseIcon(function(_icon) {
+      $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
+    })
+  })
+  
+  $('#bt_saveConfigurePlan').on('click', function() {
+    save()
+  })
+  
+  if (isset(id) && id != '') {
+    jeedom.plan.byId({
+      id : id,
+      error: function(error) {
+        $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(plan) {
+        plan_configure_plan = plan
+        $('.link_type:not(.link_'+plan.plan.link_type+')').remove()
+        $('#fd_planConfigure').setValues(plan.plan, '.planAttr')
+        if (isset(plan.plan.configuration.action_on)) {
+          for (var i in plan.plan.configuration.action_on) {
+            addActionPlanConfigure(plan.plan.configuration.action_on[i],'on')
+          }
+        }
+        if (isset(plan.plan.configuration.action_off)) {
+          for (var i in plan.plan.configuration.action_off) {
+            addActionPlanConfigure(plan.plan.configuration.action_off[i],'off')
+          }
+        }
+        if (isset(plan.plan.configuration.action_other)) {
+          for (var i in plan.plan.configuration.action_other) {
+            addActionPlanConfigure(plan.plan.configuration.action_other[i],'other')
+          }
+        }
+        if (plan.plan.link_type == 'text') {
+          var code = $('.planAttr[data-l1key=display][data-l2key=text]')
+          if (code.attr('id') == undefined) {
+            code.uniqueId()
+            var id = code.attr('id')
+            setTimeout(function() {
+              editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+                lineNumbers: true,
+                mode: 'htmlmixed',
+                matchBrackets: true
+              })
+            }, 1)
+          }
+        }
+      }
+    })
+  }
+  
+  function save() {
+    var plans = $('#fd_planConfigure').getValues('.planAttr')
+    if (plans[0].link_type == 'text') {
+      var id = $('.planAttr[data-l1key=display][data-l2key=text]').attr('id')
+      if (id != undefined && isset(editor[id])) {
+        plans[0].display.text = editor[id].getValue()
+      }
+    }
+    if (!isset(plans[0].configuration)) {
+      plans[0].configuration = {}
+    }
+    plans[0].configuration.action_on = $('#div_planConfigureActionon .on').getValues('.expressionAttr')
+    plans[0].configuration.action_off = $('#div_planConfigureActionoff .off').getValues('.expressionAttr')
+    plans[0].configuration.action_other = $('#div_planConfigureActionother .other').getValues('.expressionAttr')
+    jeedom.plan.save({
+      plans: plans,
+      error: function(error) {
+        $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'})
+        jeedom.plan.byId({
+          id : plans[0].id,
+          error: function(error) {
+            $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(plan) {
+            if (plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id) {
+              $('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove()
+            }
+            displayObject(plan.plan,plan.html,false)
+            $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close")
+          }
+        })
+      }
+    })
+  }
 </script>

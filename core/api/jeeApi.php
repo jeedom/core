@@ -35,8 +35,8 @@ if (isset($argv)) {
 }
 GLOBAL $_USER_GLOBAL;
 $_USER_GLOBAL = null;
-GLOBAL $_PLUGIN_APIKEY;
-$_PLUGIN_APIKEY = false;
+GLOBAL $_RESTRICTED;
+$_RESTRICTED = false;
 if (init('type') != '') {
 	try {
 		$type = init('type');
@@ -59,8 +59,12 @@ if (init('type') != '') {
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ', __FILE__) . getClientIp());
 		}
+		$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
 		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp().' => '.json_encode($_GET));
 		if ($type == 'ask') {
+			if($_RESTRICTED){
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+			}
 			$cmd = cmd::byId(init('cmd_id'));
 			if (!is_object($cmd)) {
 				throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd_id'));
@@ -76,6 +80,9 @@ if (init('type') != '') {
 		}
 		
 		if ($type == 'cmd') {
+			if($_RESTRICTED){
+				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+			}
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
 				$result = array();
@@ -117,6 +124,9 @@ if (init('type') != '') {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
 			$type::event();
 			die();
+		}
+		if($_RESTRICTED){
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
 		}
 		if ($type == 'interact') {
 			$query = init('query');
@@ -310,6 +320,7 @@ try {
 	if ($jsonrpc->getMethod() == 'ping') {
 		$jsonrpc->makeSuccess('pong');
 	}
+	
 	if (isset($params['session']) && $params['session']) {
 		ini_set('session.gc_maxlifetime', 24 * 3600);
 		ini_set('session.use_cookies', 1);
@@ -344,12 +355,24 @@ try {
 			@session_write_close();
 		}
 	}
+	
+	if($_RESTRICTED){
+		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
+			log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
+			try {
+				include_file('core', $params['plugin'], 'api', $params['plugin']);
+			} catch (\Exception $e) {
+				if($e->getCode() != 35486){
+					throw $e;
+				}
+			}
+		}
+		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
+	}
+	
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
 		unautorizedInDemo();
-		if($_PLUGIN_APIKEY){
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
-		}
 		if (!isset($params['default'])) {
 			$params['default'] = '';
 		}
@@ -361,9 +384,6 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'config::save') {
 		unautorizedInDemo();
-		if($_PLUGIN_APIKEY){
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
-		}
 		if (!isset($params['plugin'])) {
 			$params['plugin'] = 'core';
 		}
@@ -382,9 +402,6 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'jeedom::halt') {
 		unautorizedInDemo();
-		if($_PLUGIN_APIKEY){
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
-		}
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 		}
@@ -394,9 +411,6 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'jeedom::reboot') {
 		unautorizedInDemo();
-		if($_PLUGIN_APIKEY){
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
-		}
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 		}
@@ -406,9 +420,6 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'jeedom::update') {
 		unautorizedInDemo();
-		if($_PLUGIN_APIKEY){
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
-		}
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 		}
@@ -418,9 +429,6 @@ try {
 	
 	if ($jsonrpc->getMethod() == 'jeedom::backup') {
 		unautorizedInDemo();
-		if($_PLUGIN_APIKEY){
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
-		}
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action ', __FILE__) . $jsonrpc->getMethod(), -32001);
 		}
@@ -1310,7 +1318,13 @@ try {
 	
 	if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 		log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
-		include_file('core', $params['plugin'], 'api', $params['plugin']);
+		try {
+			include_file('core', $params['plugin'], 'api', $params['plugin']);
+		} catch (\Exception $e) {
+			if($e->getCode() != 35486){
+				throw $e;
+			}
+		}
 	}
 	throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
 	/*         * *********Catch exeption*************** */

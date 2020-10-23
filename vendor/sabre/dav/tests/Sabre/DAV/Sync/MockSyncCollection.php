@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAV\Sync;
 
 use Sabre\DAV;
@@ -16,8 +14,8 @@ use Sabre\DAV;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
-{
+class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection {
+
     public $changeLog = [];
 
     public $token = null;
@@ -31,20 +29,22 @@ class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
      *
      * @return string|null
      */
-    public function getSyncToken()
-    {
+    function getSyncToken() {
+
         // Will be 'null' in the first round, and will increment ever after.
         return $this->token;
+
     }
 
-    public function addChange(array $added, array $modified, array $deleted)
-    {
-        ++$this->token;
+    function addChange(array $added, array $modified, array $deleted) {
+
+        $this->token++;
         $this->changeLog[$this->token] = [
-            'added' => $added,
+            'added'    => $added,
             'modified' => $modified,
-            'deleted' => $deleted,
+            'deleted'  => $deleted,
         ];
+
     }
 
     /**
@@ -95,40 +95,41 @@ class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
      * The limit is 'suggestive'. You are free to ignore it.
      *
      * @param string $syncToken
-     * @param int    $syncLevel
-     * @param int    $limit
-     *
+     * @param int $syncLevel
+     * @param int $limit
      * @return array
      */
-    public function getChanges($syncToken, $syncLevel, $limit = null)
-    {
+    function getChanges($syncToken, $syncLevel, $limit = null) {
+
         // This is an initial sync
         if (is_null($syncToken)) {
             return [
                'added' => array_map(
-                    function ($item) {
+                    function($item) {
                         return $item->getName();
                     }, $this->getChildren()
                 ),
-                'modified' => [],
-                'deleted' => [],
+                'modified'  => [],
+                'deleted'   => [],
                 'syncToken' => $this->getSyncToken(),
             ];
         }
 
         if (!is_int($syncToken) && !ctype_digit($syncToken)) {
+
             return null;
+
         }
-        if (is_null($this->token)) {
-            return null;
-        }
+        if (is_null($this->token)) return null;
 
         $added = [];
         $modified = [];
         $deleted = [];
 
         foreach ($this->changeLog as $token => $change) {
+
             if ($token > $syncToken) {
+
                 $added = array_merge($added, $change['added']);
                 $modified = array_merge($modified, $change['modified']);
                 $deleted = array_merge($deleted, $change['deleted']);
@@ -137,32 +138,32 @@ class MockSyncCollection extends DAV\SimpleCollection implements ISyncCollection
                     // If there's a limit, we may need to cut things off.
                     // This alghorithm is weird and stupid, but it works.
                     $left = $limit - (count($modified) + count($deleted));
-                    if ($left > 0) {
-                        continue;
-                    }
-                    if (0 === $left) {
-                        break;
-                    }
+                    if ($left > 0) continue;
+                    if ($left === 0) break;
                     if ($left < 0) {
                         $modified = array_slice($modified, 0, $left);
                     }
                     $left = $limit - (count($modified) + count($deleted));
-                    if (0 === $left) {
-                        break;
-                    }
+                    if ($left === 0) break;
                     if ($left < 0) {
                         $deleted = array_slice($deleted, 0, $left);
                     }
                     break;
+
                 }
+
             }
+
         }
 
         return [
             'syncToken' => $this->token,
-            'added' => $added,
-            'modified' => $modified,
-            'deleted' => $deleted,
+            'added'     => $added,
+            'modified'  => $modified,
+            'deleted'   => $deleted,
         ];
+
     }
+
+
 }

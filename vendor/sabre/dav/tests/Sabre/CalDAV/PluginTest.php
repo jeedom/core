@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CalDAV;
 
 use DateTime;
@@ -10,8 +8,8 @@ use Sabre\DAV;
 use Sabre\DAVACL;
 use Sabre\HTTP;
 
-class PluginTest extends \PHPUnit\Framework\TestCase
-{
+class PluginTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var DAV\Server
      */
@@ -26,37 +24,37 @@ class PluginTest extends \PHPUnit\Framework\TestCase
      */
     protected $caldavBackend;
 
-    public function setup()
-    {
+    function setup() {
+
         $caldavNS = '{urn:ietf:params:xml:ns:caldav}';
 
         $this->caldavBackend = new Backend\Mock([
             [
-                'id' => 1,
-                'uri' => 'UUID-123467',
-                'principaluri' => 'principals/user1',
-                '{DAV:}displayname' => 'user1 calendar',
-                $caldavNS.'calendar-description' => 'Calendar description',
-                '{http://apple.com/ns/ical/}calendar-order' => '1',
-                '{http://apple.com/ns/ical/}calendar-color' => '#FF0000',
-                $caldavNS.'supported-calendar-component-set' => new Xml\Property\SupportedCalendarComponentSet(['VEVENT', 'VTODO']),
+                'id'                                           => 1,
+                'uri'                                          => 'UUID-123467',
+                'principaluri'                                 => 'principals/user1',
+                '{DAV:}displayname'                            => 'user1 calendar',
+                $caldavNS . 'calendar-description'             => 'Calendar description',
+                '{http://apple.com/ns/ical/}calendar-order'    => '1',
+                '{http://apple.com/ns/ical/}calendar-color'    => '#FF0000',
+                $caldavNS . 'supported-calendar-component-set' => new Xml\Property\SupportedCalendarComponentSet(['VEVENT', 'VTODO']),
             ],
             [
-                'id' => 2,
-                'uri' => 'UUID-123468',
-                'principaluri' => 'principals/user1',
-                '{DAV:}displayname' => 'user1 calendar2',
-                $caldavNS.'calendar-description' => 'Calendar description',
-                '{http://apple.com/ns/ical/}calendar-order' => '1',
-                '{http://apple.com/ns/ical/}calendar-color' => '#FF0000',
-                $caldavNS.'supported-calendar-component-set' => new Xml\Property\SupportedCalendarComponentSet(['VEVENT', 'VTODO']),
-            ],
+                'id'                                           => 2,
+                'uri'                                          => 'UUID-123468',
+                'principaluri'                                 => 'principals/user1',
+                '{DAV:}displayname'                            => 'user1 calendar2',
+                $caldavNS . 'calendar-description'             => 'Calendar description',
+                '{http://apple.com/ns/ical/}calendar-order'    => '1',
+                '{http://apple.com/ns/ical/}calendar-color'    => '#FF0000',
+                $caldavNS . 'supported-calendar-component-set' => new Xml\Property\SupportedCalendarComponentSet(['VEVENT', 'VTODO']),
+            ]
         ], [
             1 => [
                 'UUID-2345' => [
                     'calendardata' => TestUtil::getTestCalendarData(),
-                ],
-            ],
+                ]
+            ]
         ]);
         $principalBackend = new DAVACL\PrincipalBackend\Mock();
         $principalBackend->setGroupMemberSet('principals/admin/calendar-proxy-read', ['principals/user1']);
@@ -91,45 +89,41 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $authBackend = new DAV\Auth\Backend\Mock();
         $authBackend->setPrincipal('principals/user1');
         $authPlugin = new DAV\Auth\Plugin($authBackend);
-        $authPlugin->beforeMethod(new \Sabre\HTTP\Request('GET', '/'), new \Sabre\HTTP\Response());
+        $authPlugin->beforeMethod(new \Sabre\HTTP\Request(), new \Sabre\HTTP\Response());
         $this->server->addPlugin($authPlugin);
 
         // This forces a login
-        $authPlugin->beforeMethod(new HTTP\Request('GET', '/'), new HTTP\Response());
+        $authPlugin->beforeMethod(new HTTP\Request(), new HTTP\Response());
 
         $this->response = new HTTP\ResponseMock();
         $this->server->httpResponse = $this->response;
+
     }
 
-    public function testSimple()
-    {
+    function testSimple() {
+
         $this->assertEquals(['MKCALENDAR'], $this->plugin->getHTTPMethods('calendars/user1/randomnewcalendar'));
         $this->assertEquals(['calendar-access', 'calendar-proxy'], $this->plugin->getFeatures());
         $this->assertEquals(
             'caldav',
             $this->plugin->getPluginInfo()['name']
         );
+
     }
 
-    public function testUnknownMethodPassThrough()
-    {
+    function testUnknownMethodPassThrough() {
+
         $request = new HTTP\Request('MKBREAKFAST', '/');
 
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(501, $this->response->status, 'Incorrect status returned. Full response body:'.$this->response->getBodyAsString());
+        $this->assertEquals(501, $this->response->status, 'Incorrect status returned. Full response body:' . $this->response->body);
+
     }
 
-    public function testGetWithoutContentType()
-    {
-        $request = new HTTP\Request('GET', '/');
-        $this->plugin->httpAfterGet($request, $this->response);
-        $this->assertTrue(true);
-    }
+    function testReportPassThrough() {
 
-    public function testReportPassThrough()
-    {
         $request = new HTTP\Request('REPORT', '/', ['Content-Type' => 'application/xml']);
         $request->setBody('<?xml version="1.0"?><s:somereport xmlns:s="http://www.rooftopsolutions.nl/NS/example" />');
 
@@ -137,10 +131,11 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->server->exec();
 
         $this->assertEquals(415, $this->response->status);
+
     }
 
-    public function testMkCalendarBadLocation()
-    {
+    function testMkCalendarBadLocation() {
+
         $request = new HTTP\Request('MKCALENDAR', '/blabla');
 
         $body = '<?xml version="1.0" encoding="utf-8" ?>
@@ -186,10 +181,11 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->server->exec();
 
         $this->assertEquals(403, $this->response->status);
+
     }
 
-    public function testMkCalendarNoParentNode()
-    {
+    function testMkCalendarNoParentNode() {
+
         $request = new HTTP\Request('MKCALENDAR', '/doesntexist/calendar');
 
         $body = '<?xml version="1.0" encoding="utf-8" ?>
@@ -235,13 +231,14 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->server->exec();
 
         $this->assertEquals(409, $this->response->status);
+
     }
 
-    public function testMkCalendarExistingCalendar()
-    {
+    function testMkCalendarExistingCalendar() {
+
         $request = HTTP\Sapi::createFromServerArray([
             'REQUEST_METHOD' => 'MKCALENDAR',
-            'REQUEST_URI' => '/calendars/user1/UUID-123467',
+            'REQUEST_URI'    => '/calendars/user1/UUID-123467',
         ]);
 
         $body = '<?xml version="1.0" encoding="utf-8" ?>
@@ -287,10 +284,11 @@ class PluginTest extends \PHPUnit\Framework\TestCase
         $this->server->exec();
 
         $this->assertEquals(405, $this->response->status);
+
     }
 
-    public function testMkCalendarSucceed()
-    {
+    function testMkCalendarSucceed() {
+
         $request = new HTTP\Request('MKCALENDAR', '/calendars/user1/NEWCALENDAR');
 
         $timezone = 'BEGIN:VCALENDAR
@@ -327,7 +325,7 @@ END:VCALENDAR';
          <C:supported-calendar-component-set>
            <C:comp name="VEVENT"/>
          </C:supported-calendar-component-set>
-         <C:calendar-timezone><![CDATA['.$timezone.']]></C:calendar-timezone>
+         <C:calendar-timezone><![CDATA[' . $timezone . ']]></C:calendar-timezone>
        </D:prop>
      </D:set>
    </C:mkcalendar>';
@@ -336,87 +334,89 @@ END:VCALENDAR';
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(201, $this->response->status, 'Invalid response code received. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(201, $this->response->status, 'Invalid response code received. Full response body: ' . $this->response->body);
 
         $calendars = $this->caldavBackend->getCalendarsForUser('principals/user1');
         $this->assertEquals(3, count($calendars));
 
         $newCalendar = null;
         foreach ($calendars as $calendar) {
-            if ('NEWCALENDAR' === $calendar['uri']) {
+           if ($calendar['uri'] === 'NEWCALENDAR') {
                 $newCalendar = $calendar;
                 break;
-            }
+           }
         }
 
         $this->assertInternalType('array', $newCalendar);
 
         $keys = [
-            'uri' => 'NEWCALENDAR',
-            'id' => null,
-            '{urn:ietf:params:xml:ns:caldav}calendar-description' => 'Calendar restricted to events.',
-            '{urn:ietf:params:xml:ns:caldav}calendar-timezone' => $timezone,
-            '{DAV:}displayname' => 'Lisa\'s Events',
+            'uri'                                                             => 'NEWCALENDAR',
+            'id'                                                              => null,
+            '{urn:ietf:params:xml:ns:caldav}calendar-description'             => 'Calendar restricted to events.',
+            '{urn:ietf:params:xml:ns:caldav}calendar-timezone'                => $timezone,
+            '{DAV:}displayname'                                               => 'Lisa\'s Events',
             '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set' => null,
         ];
 
         foreach ($keys as $key => $value) {
+
             $this->assertArrayHasKey($key, $newCalendar);
 
-            if (is_null($value)) {
-                continue;
-            }
+            if (is_null($value)) continue;
             $this->assertEquals($value, $newCalendar[$key]);
+
         }
         $sccs = '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set';
         $this->assertTrue($newCalendar[$sccs] instanceof Xml\Property\SupportedCalendarComponentSet);
         $this->assertEquals(['VEVENT'], $newCalendar[$sccs]->getValue());
+
     }
 
-    public function testMkCalendarEmptyBodySucceed()
-    {
+    function testMkCalendarEmptyBodySucceed() {
+
         $request = new HTTP\Request('MKCALENDAR', '/calendars/user1/NEWCALENDAR');
 
         $request->setBody('');
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(201, $this->response->status, 'Invalid response code received. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(201, $this->response->status, 'Invalid response code received. Full response body: ' . $this->response->body);
 
         $calendars = $this->caldavBackend->getCalendarsForUser('principals/user1');
         $this->assertEquals(3, count($calendars));
 
         $newCalendar = null;
         foreach ($calendars as $calendar) {
-            if ('NEWCALENDAR' === $calendar['uri']) {
+           if ($calendar['uri'] === 'NEWCALENDAR') {
                 $newCalendar = $calendar;
                 break;
-            }
+           }
         }
 
         $this->assertInternalType('array', $newCalendar);
 
         $keys = [
-            'uri' => 'NEWCALENDAR',
-            'id' => null,
+            'uri'                                                             => 'NEWCALENDAR',
+            'id'                                                              => null,
             '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set' => null,
         ];
 
         foreach ($keys as $key => $value) {
+
             $this->assertArrayHasKey($key, $newCalendar);
 
-            if (is_null($value)) {
-                continue;
-            }
+            if (is_null($value)) continue;
             $this->assertEquals($value, $newCalendar[$key]);
+
         }
         $sccs = '{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set';
         $this->assertTrue($newCalendar[$sccs] instanceof Xml\Property\SupportedCalendarComponentSet);
         $this->assertEquals(['VEVENT', 'VTODO'], $newCalendar[$sccs]->getValue());
+
     }
 
-    public function testMkCalendarBadXml()
-    {
+    function testMkCalendarBadXml() {
+
         $request = new HTTP\Request('MKCALENDAR', '/blabla');
         $body = 'This is not xml';
 
@@ -425,23 +425,25 @@ END:VCALENDAR';
         $this->server->exec();
 
         $this->assertEquals(400, $this->response->status);
+
     }
 
-    public function testPrincipalProperties()
-    {
+    function testPrincipalProperties() {
+
         $httpRequest = new HTTP\Request('FOO', '/blabla', ['Host' => 'sabredav.org']);
         $this->server->httpRequest = $httpRequest;
 
         $props = $this->server->getPropertiesForPath('/principals/user1', [
-            '{'.Plugin::NS_CALDAV.'}calendar-home-set',
-            '{'.Plugin::NS_CALENDARSERVER.'}calendar-proxy-read-for',
-            '{'.Plugin::NS_CALENDARSERVER.'}calendar-proxy-write-for',
-            '{'.Plugin::NS_CALENDARSERVER.'}notification-URL',
-            '{'.Plugin::NS_CALENDARSERVER.'}email-address-set',
+            '{' . Plugin::NS_CALDAV . '}calendar-home-set',
+            '{' . Plugin::NS_CALENDARSERVER . '}calendar-proxy-read-for',
+            '{' . Plugin::NS_CALENDARSERVER . '}calendar-proxy-write-for',
+            '{' . Plugin::NS_CALENDARSERVER . '}notification-URL',
+            '{' . Plugin::NS_CALENDARSERVER . '}email-address-set',
         ]);
 
         $this->assertArrayHasKey(0, $props);
         $this->assertArrayHasKey(200, $props[0]);
+
 
         $this->assertArrayHasKey('{urn:ietf:params:xml:ns:caldav}calendar-home-set', $props[0][200]);
         $prop = $props[0][200]['{urn:ietf:params:xml:ns:caldav}calendar-home-set'];
@@ -458,14 +460,15 @@ END:VCALENDAR';
         $this->assertInstanceOf('Sabre\\DAV\\Xml\\Property\\Href', $prop);
         $this->assertEquals(['principals/admin/'], $prop->getHrefs());
 
-        $this->assertArrayHasKey('{'.Plugin::NS_CALENDARSERVER.'}email-address-set', $props[0][200]);
-        $prop = $props[0][200]['{'.Plugin::NS_CALENDARSERVER.'}email-address-set'];
+        $this->assertArrayHasKey('{' . Plugin::NS_CALENDARSERVER . '}email-address-set', $props[0][200]);
+        $prop = $props[0][200]['{' . Plugin::NS_CALENDARSERVER . '}email-address-set'];
         $this->assertInstanceOf('Sabre\\CalDAV\\Xml\\Property\\EmailAddressSet', $prop);
         $this->assertEquals(['user1.sabredav@sabredav.org'], $prop->getValue());
+
     }
 
-    public function testSupportedReportSetPropertyNonCalendar()
-    {
+    function testSupportedReportSetPropertyNonCalendar() {
+
         $props = $this->server->getPropertiesForPath('/calendars/user1', [
             '{DAV:}supported-report-set',
         ]);
@@ -484,13 +487,14 @@ END:VCALENDAR';
             '{DAV:}principal-search-property-set',
         ];
         $this->assertEquals($value, $prop->getValue());
+
     }
 
     /**
      * @depends testSupportedReportSetPropertyNonCalendar
      */
-    public function testSupportedReportSetProperty()
-    {
+    function testSupportedReportSetProperty() {
+
         $props = $this->server->getPropertiesForPath('/calendars/user1/UUID-123467', [
             '{DAV:}supported-report-set',
         ]);
@@ -509,13 +513,14 @@ END:VCALENDAR';
             '{DAV:}expand-property',
             '{DAV:}principal-match',
             '{DAV:}principal-property-search',
-            '{DAV:}principal-search-property-set',
+            '{DAV:}principal-search-property-set'
         ];
         $this->assertEquals($value, $prop->getValue());
+
     }
 
-    public function testSupportedReportSetUserCalendars()
-    {
+    function testSupportedReportSetUserCalendars() {
+
         $this->server->addPlugin(new \Sabre\DAV\Sync\Plugin());
 
         $props = $this->server->getPropertiesForPath('/calendars/user1', [
@@ -537,21 +542,22 @@ END:VCALENDAR';
             '{DAV:}principal-search-property-set',
         ];
         $this->assertEquals($value, $prop->getValue());
+
     }
 
     /**
      * @depends testSupportedReportSetProperty
      */
-    public function testCalendarMultiGetReport()
-    {
+    function testCalendarMultiGetReport() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data />'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data />' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>' .
             '</c:calendar-multiget>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1', ['Depth' => '1']);
@@ -581,23 +587,24 @@ END:VCALENDAR';
 XML;
 
         $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
     /**
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarMultiGetReportExpand()
-    {
+    function testCalendarMultiGetReportExpand() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20110101T000000Z" end="20111231T235959Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20110101T000000Z" end="20111231T235959Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>' .
             '</c:calendar-multiget>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1', ['Depth' => '1']);
@@ -606,8 +613,7 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $bodyAsString = $this->response->getBodyAsString();
-        $this->assertEquals(207, $this->response->status, 'Invalid HTTP status received. Full response body: '.$bodyAsString);
+        $this->assertEquals(207, $this->response->status, 'Invalid HTTP status received. Full response body: ' . $this->response->body);
 
         $expectedIcal = TestUtil::getTestCalendarData();
         $expectedIcal = \Sabre\VObject\Reader::read($expectedIcal);
@@ -633,29 +639,30 @@ XML;
 </d:multistatus>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $bodyAsString);
+        $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
     /**
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarQueryReport()
-    {
+    function testCalendarQueryReport() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<c:filter>'.
-            '  <c:comp-filter name="VCALENDAR">'.
-            '    <c:comp-filter name="VEVENT" />'.
-            '  </c:comp-filter>'.
-            '</c:filter>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<c:filter>' .
+            '  <c:comp-filter name="VCALENDAR">' .
+            '    <c:comp-filter name="VEVENT" />' .
+            '  </c:comp-filter>' .
+            '</c:filter>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467', ['Depth' => '1']);
@@ -664,8 +671,7 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $bodyAsString = $this->response->getBodyAsString();
-        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: '.$bodyAsString);
+        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
 
         $expectedIcal = TestUtil::getTestCalendarData();
         $expectedIcal = \Sabre\VObject\Reader::read($expectedIcal);
@@ -691,33 +697,34 @@ XML;
 </d:multistatus>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $bodyAsString);
+        $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
     /**
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarQueryReportWindowsPhone()
-    {
+    function testCalendarQueryReportWindowsPhone() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<c:filter>'.
-            '  <c:comp-filter name="VCALENDAR">'.
-            '    <c:comp-filter name="VEVENT" />'.
-            '  </c:comp-filter>'.
-            '</c:filter>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<c:filter>' .
+            '  <c:comp-filter name="VCALENDAR">' .
+            '    <c:comp-filter name="VEVENT" />' .
+            '  </c:comp-filter>' .
+            '</c:filter>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467', [
-            'Depth' => '0',
+            'Depth'      => '0',
             'User-Agent' => 'MSFT-WP/8.10.14219 (gzip)',
         ]);
 
@@ -726,8 +733,7 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $bodyAsString = $this->response->getBodyAsString();
-        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: '.$bodyAsString);
+        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
 
         $expectedIcal = TestUtil::getTestCalendarData();
         $expectedIcal = \Sabre\VObject\Reader::read($expectedIcal);
@@ -753,29 +759,30 @@ XML;
 </d:multistatus>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $bodyAsString);
+        $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
     /**
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarQueryReportBadDepth()
-    {
+    function testCalendarQueryReportBadDepth() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<c:filter>'.
-            '  <c:comp-filter name="VCALENDAR">'.
-            '    <c:comp-filter name="VEVENT" />'.
-            '  </c:comp-filter>'.
-            '</c:filter>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<c:filter>' .
+            '  <c:comp-filter name="VCALENDAR">' .
+            '    <c:comp-filter name="VEVENT" />' .
+            '  </c:comp-filter>' .
+            '</c:filter>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467', [
@@ -786,25 +793,26 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(400, $this->response->status, 'Received an unexpected status. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(400, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
+
     }
 
     /**
      * @depends testCalendarQueryReport
      */
-    public function testCalendarQueryReportNoCalData()
-    {
+    function testCalendarQueryReportNoCalData() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<c:filter>'.
-            '  <c:comp-filter name="VCALENDAR">'.
-            '    <c:comp-filter name="VEVENT" />'.
-            '  </c:comp-filter>'.
-            '</c:filter>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<c:filter>' .
+            '  <c:comp-filter name="VCALENDAR">' .
+            '    <c:comp-filter name="VEVENT" />' .
+            '  </c:comp-filter>' .
+            '</c:filter>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467', [
@@ -815,8 +823,7 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $bodyAsString = $this->server->httpResponse->getBodyAsString();
-        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: '.$bodyAsString);
+        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
 
         $expected = <<<XML
 <?xml version="1.0"?>
@@ -833,21 +840,22 @@ XML;
 </d:multistatus>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $bodyAsString);
+        $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
     /**
      * @depends testCalendarQueryReport
      */
-    public function testCalendarQueryReportNoFilters()
-    {
+    function testCalendarQueryReportNoFilters() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data />'.
-            '  <d:getetag />'.
-            '</d:prop>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data />' .
+            '  <d:getetag />' .
+            '</d:prop>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467');
@@ -856,29 +864,30 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(400, $this->response->status, 'Received an unexpected status. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(400, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
+
     }
 
     /**
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarQueryReport1Object()
-    {
+    function testCalendarQueryReport1Object() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<c:filter>'.
-            '  <c:comp-filter name="VCALENDAR">'.
-            '    <c:comp-filter name="VEVENT" />'.
-            '  </c:comp-filter>'.
-            '</c:filter>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20000101T000000Z" end="20101231T235959Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<c:filter>' .
+            '  <c:comp-filter name="VCALENDAR">' .
+            '    <c:comp-filter name="VEVENT" />' .
+            '  </c:comp-filter>' .
+            '</c:filter>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467/UUID-2345', ['Depth' => '0']);
@@ -887,8 +896,7 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $bodyAsString = $this->server->httpResponse->getBodyAsString();
-        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: '.$bodyAsString);
+        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
 
         $expectedIcal = TestUtil::getTestCalendarData();
         $expectedIcal = \Sabre\VObject\Reader::read($expectedIcal);
@@ -914,26 +922,27 @@ XML;
 </d:multistatus>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $bodyAsString);
+        $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
     /**
      * @depends testSupportedReportSetProperty
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarQueryReport1ObjectNoCalData()
-    {
+    function testCalendarQueryReport1ObjectNoCalData() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<c:filter>'.
-            '  <c:comp-filter name="VCALENDAR">'.
-            '    <c:comp-filter name="VEVENT" />'.
-            '  </c:comp-filter>'.
-            '</c:filter>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-query xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<c:filter>' .
+            '  <c:comp-filter name="VCALENDAR">' .
+            '    <c:comp-filter name="VEVENT" />' .
+            '  </c:comp-filter>' .
+            '</c:filter>' .
             '</c:calendar-query>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1/UUID-123467/UUID-2345', ['Depth' => '0']);
@@ -942,8 +951,7 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $bodyAsString = $this->server->httpResponse->getBodyAsString();
-        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: '.$bodyAsString);
+        $this->assertEquals(207, $this->response->status, 'Received an unexpected status. Full response body: ' . $this->response->body);
 
         $expected = <<<XML
 <?xml version="1.0"?>
@@ -960,33 +968,35 @@ XML;
 </d:multistatus>
 XML;
 
-        $this->assertXmlStringEqualsXmlString($expected, $bodyAsString);
+        $this->assertXmlStringEqualsXmlString($expected, $this->response->getBodyAsString());
+
     }
 
-    public function testHTMLActionsPanel()
-    {
+    function testHTMLActionsPanel() {
+
         $output = '';
         $r = $this->server->emit('onHTMLActionsPanel', [$this->server->tree->getNodeForPath('calendars/user1'), &$output]);
         $this->assertFalse($r);
 
-        $this->assertTrue((bool) strpos($output, 'Display name'));
+        $this->assertTrue(!!strpos($output, 'Display name'));
+
     }
 
     /**
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarMultiGetReportNoEnd()
-    {
+    function testCalendarMultiGetReportNoEnd() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20110101T000000Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20110101T000000Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>' .
             '</c:calendar-multiget>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1', ['Depth' => '1']);
@@ -995,24 +1005,25 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(400, $this->response->status, 'Invalid HTTP status received. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(400, $this->response->status, 'Invalid HTTP status received. Full response body: ' . $this->response->body);
+
     }
 
     /**
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarMultiGetReportNoStart()
-    {
+    function testCalendarMultiGetReportNoStart() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand end="20110101T000000Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand end="20110101T000000Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>' .
             '</c:calendar-multiget>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1', ['Depth' => '1']);
@@ -1021,24 +1032,25 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(400, $this->response->status, 'Invalid HTTP status received. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(400, $this->response->status, 'Invalid HTTP status received. Full response body: ' . $this->response->body);
+
     }
 
     /**
      * @depends testCalendarMultiGetReport
      */
-    public function testCalendarMultiGetReportEndBeforeStart()
-    {
+    function testCalendarMultiGetReportEndBeforeStart() {
+
         $body =
-            '<?xml version="1.0"?>'.
-            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">'.
-            '<d:prop>'.
-            '  <c:calendar-data>'.
-            '     <c:expand start="20200101T000000Z" end="20110101T000000Z" />'.
-            '  </c:calendar-data>'.
-            '  <d:getetag />'.
-            '</d:prop>'.
-            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>'.
+            '<?xml version="1.0"?>' .
+            '<c:calendar-multiget xmlns:c="urn:ietf:params:xml:ns:caldav" xmlns:d="DAV:">' .
+            '<d:prop>' .
+            '  <c:calendar-data>' .
+            '     <c:expand start="20200101T000000Z" end="20110101T000000Z" />' .
+            '  </c:calendar-data>' .
+            '  <d:getetag />' .
+            '</d:prop>' .
+            '<d:href>/calendars/user1/UUID-123467/UUID-2345</d:href>' .
             '</c:calendar-multiget>';
 
         $request = new HTTP\Request('REPORT', '/calendars/user1', ['Depth' => '1']);
@@ -1047,25 +1059,28 @@ XML;
         $this->server->httpRequest = $request;
         $this->server->exec();
 
-        $this->assertEquals(400, $this->response->status, 'Invalid HTTP status received. Full response body: '.$this->response->getBodyAsString());
+        $this->assertEquals(400, $this->response->status, 'Invalid HTTP status received. Full response body: ' . $this->response->body);
+
     }
 
     /**
      * @depends testSupportedReportSetPropertyNonCalendar
      */
-    public function testCalendarProperties()
-    {
+    function testCalendarProperties() {
+
         $ns = '{urn:ietf:params:xml:ns:caldav}';
         $props = $this->server->getProperties('calendars/user1/UUID-123467', [
-            $ns.'max-resource-size',
-            $ns.'supported-calendar-data',
-            $ns.'supported-collation-set',
+            $ns . 'max-resource-size',
+            $ns . 'supported-calendar-data',
+            $ns . 'supported-collation-set',
         ]);
 
         $this->assertEquals([
-            $ns.'max-resource-size' => 10000000,
-            $ns.'supported-calendar-data' => new Xml\Property\SupportedCalendarData(),
-            $ns.'supported-collation-set' => new Xml\Property\SupportedCollationSet(),
+            $ns . 'max-resource-size'       => 10000000,
+            $ns . 'supported-calendar-data' => new Xml\Property\SupportedCalendarData(),
+            $ns . 'supported-collation-set' => new Xml\Property\SupportedCollationSet(),
         ], $props);
+
     }
+
 }

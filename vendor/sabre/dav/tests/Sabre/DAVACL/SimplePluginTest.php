@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\DAVACL;
 
 use Sabre\DAV;
@@ -10,10 +8,10 @@ use Sabre\HTTP;
 require_once 'Sabre/DAVACL/MockPrincipal.php';
 require_once 'Sabre/DAVACL/MockACLNode.php';
 
-class SimplePluginTest extends \PHPUnit\Framework\TestCase
-{
-    public function testValues()
-    {
+class SimplePluginTest extends \PHPUnit_Framework_TestCase {
+
+    function testValues() {
+
         $aclPlugin = new Plugin();
         $this->assertEquals('acl', $aclPlugin->getPluginName());
         $this->assertEquals(
@@ -26,11 +24,12 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
                 '{DAV:}expand-property',
                 '{DAV:}principal-match',
                 '{DAV:}principal-property-search',
-                '{DAV:}principal-search-property-set',
+                '{DAV:}principal-search-property-set'
             ],
             $aclPlugin->getSupportedReportSet(''));
 
         $this->assertEquals(['ACL'], $aclPlugin->getMethods(''));
+
 
         $this->assertEquals(
             'acl',
@@ -38,12 +37,12 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testGetFlatPrivilegeSet()
-    {
+    function testGetFlatPrivilegeSet() {
+
         $expected = [
             '{DAV:}all' => [
-                'privilege' => '{DAV:}all',
-                'abstract' => false,
+                'privilege'  => '{DAV:}all',
+                'abstract'   => false,
                 'aggregates' => [
                     '{DAV:}read',
                     '{DAV:}write',
@@ -51,8 +50,8 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
                 'concrete' => '{DAV:}all',
             ],
             '{DAV:}read' => [
-                'privilege' => '{DAV:}read',
-                'abstract' => false,
+                'privilege'  => '{DAV:}read',
+                'abstract'   => false,
                 'aggregates' => [
                     '{DAV:}read-acl',
                     '{DAV:}read-current-user-privilege-set',
@@ -60,20 +59,20 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
                 'concrete' => '{DAV:}read',
             ],
             '{DAV:}read-acl' => [
-                'privilege' => '{DAV:}read-acl',
-                'abstract' => false,
+                'privilege'  => '{DAV:}read-acl',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}read-acl',
+                'concrete'   => '{DAV:}read-acl',
             ],
             '{DAV:}read-current-user-privilege-set' => [
-                'privilege' => '{DAV:}read-current-user-privilege-set',
-                'abstract' => false,
+                'privilege'  => '{DAV:}read-current-user-privilege-set',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}read-current-user-privilege-set',
+                'concrete'   => '{DAV:}read-current-user-privilege-set',
             ],
             '{DAV:}write' => [
-                'privilege' => '{DAV:}write',
-                'abstract' => false,
+                'privilege'  => '{DAV:}write',
+                'abstract'   => false,
                 'aggregates' => [
                     '{DAV:}write-properties',
                     '{DAV:}write-content',
@@ -84,35 +83,36 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
                 'concrete' => '{DAV:}write',
             ],
             '{DAV:}write-properties' => [
-                'privilege' => '{DAV:}write-properties',
-                'abstract' => false,
+                'privilege'  => '{DAV:}write-properties',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}write-properties',
+                'concrete'   => '{DAV:}write-properties',
             ],
             '{DAV:}write-content' => [
-                'privilege' => '{DAV:}write-content',
-                'abstract' => false,
+                'privilege'  => '{DAV:}write-content',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}write-content',
+                'concrete'   => '{DAV:}write-content',
             ],
             '{DAV:}unlock' => [
-                'privilege' => '{DAV:}unlock',
-                'abstract' => false,
+                'privilege'  => '{DAV:}unlock',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}unlock',
+                'concrete'   => '{DAV:}unlock',
             ],
             '{DAV:}bind' => [
-                'privilege' => '{DAV:}bind',
-                'abstract' => false,
+                'privilege'  => '{DAV:}bind',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}bind',
+                'concrete'   => '{DAV:}bind',
             ],
             '{DAV:}unbind' => [
-                'privilege' => '{DAV:}unbind',
-                'abstract' => false,
+                'privilege'  => '{DAV:}unbind',
+                'abstract'   => false,
                 'aggregates' => [],
-                'concrete' => '{DAV:}unbind',
+                'concrete'   => '{DAV:}unbind',
             ],
+
         ];
 
         $plugin = new Plugin();
@@ -120,24 +120,28 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         $server = new DAV\Server();
         $server->addPlugin($plugin);
         $this->assertEquals($expected, $plugin->getFlatPrivilegeSet(''));
+
     }
 
-    public function testCurrentUserPrincipalsNotLoggedIn()
-    {
+    function testCurrentUserPrincipalsNotLoggedIn() {
+
         $acl = new Plugin();
         $acl->allowUnauthenticatedAccess = false;
         $server = new DAV\Server();
         $server->addPlugin($acl);
 
         $this->assertEquals([], $acl->getCurrentUserPrincipals());
+
     }
 
-    public function testCurrentUserPrincipalsSimple()
-    {
+    function testCurrentUserPrincipalsSimple() {
+
         $tree = [
+
             new DAV\SimpleCollection('principals', [
                 new MockPrincipal('admin', 'principals/admin'),
-            ]),
+            ])
+
         ];
 
         $acl = new Plugin();
@@ -149,20 +153,23 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         $server->addPlugin($auth);
 
         //forcing login
-        $auth->beforeMethod(new HTTP\Request('GET', '/'), new HTTP\Response());
+        $auth->beforeMethod(new HTTP\Request(), new HTTP\Response());
 
         $this->assertEquals(['principals/admin'], $acl->getCurrentUserPrincipals());
+
     }
 
-    public function testCurrentUserPrincipalsGroups()
-    {
+    function testCurrentUserPrincipalsGroups() {
+
         $tree = [
+
             new DAV\SimpleCollection('principals', [
                 new MockPrincipal('admin', 'principals/admin', ['principals/administrators', 'principals/everyone']),
                 new MockPrincipal('administrators', 'principals/administrators', ['principals/groups'], ['principals/admin']),
                 new MockPrincipal('everyone', 'principals/everyone', [], ['principals/admin']),
                 new MockPrincipal('groups', 'principals/groups', [], ['principals/administrators']),
-            ]),
+            ])
+
         ];
 
         $acl = new Plugin();
@@ -174,7 +181,7 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         $server->addPlugin($auth);
 
         //forcing login
-        $auth->beforeMethod(new HTTP\Request('GET', '/'), new HTTP\Response());
+        $auth->beforeMethod(new HTTP\Request(), new HTTP\Response());
 
         $expected = [
             'principals/admin',
@@ -187,10 +194,11 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
 
         // The second one should trigger the cache and be identical
         $this->assertEquals($expected, $acl->getCurrentUserPrincipals());
+
     }
 
-    public function testGetACL()
-    {
+    function testGetACL() {
+
         $acl = [
             [
                 'principal' => 'principals/admin',
@@ -202,6 +210,7 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+
         $tree = [
             new MockACLNode('foo', $acl),
         ];
@@ -212,10 +221,11 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         $server->addPlugin($aclPlugin);
 
         $this->assertEquals($acl, $aclPlugin->getACL('foo'));
+
     }
 
-    public function testGetCurrentUserPrivilegeSet()
-    {
+    function testGetCurrentUserPrivilegeSet() {
+
         $acl = [
             [
                 'principal' => 'principals/admin',
@@ -231,12 +241,14 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+
         $tree = [
             new MockACLNode('foo', $acl),
 
             new DAV\SimpleCollection('principals', [
                 new MockPrincipal('admin', 'principals/admin'),
             ]),
+
         ];
 
         $server = new DAV\Server($tree);
@@ -248,7 +260,7 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         $server->addPlugin($auth);
 
         //forcing login
-        $auth->beforeMethod(new HTTP\Request('GET', '/'), new HTTP\Response());
+        $auth->beforeMethod(new HTTP\Request(), new HTTP\Response());
 
         $expected = [
             '{DAV:}write',
@@ -262,10 +274,11 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $aclPlugin->getCurrentUserPrivilegeSet('foo'));
+
     }
 
-    public function testCheckPrivileges()
-    {
+    function testCheckPrivileges() {
+
         $acl = [
             [
                 'principal' => 'principals/admin',
@@ -281,12 +294,14 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+
         $tree = [
             new MockACLNode('foo', $acl),
 
             new DAV\SimpleCollection('principals', [
                 new MockPrincipal('admin', 'principals/admin'),
             ]),
+
         ];
 
         $server = new DAV\Server($tree);
@@ -301,5 +316,6 @@ class SimplePluginTest extends \PHPUnit\Framework\TestCase
         //$auth->beforeMethod('GET','/');
 
         $this->assertFalse($aclPlugin->checkPrivileges('foo', ['{DAV:}read'], Plugin::R_PARENT, false));
+
     }
 }

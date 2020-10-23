@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Sabre\CardDAV;
 
 use Sabre\DAV;
 use Sabre\DAVACL;
 use Sabre\HTTP;
 
-abstract class AbstractPluginTest extends \PHPUnit\Framework\TestCase
-{
+abstract class AbstractPluginTest extends \PHPUnit_Framework_TestCase {
+
     /**
      * @var Sabre\CardDAV\Plugin
      */
@@ -23,14 +21,14 @@ abstract class AbstractPluginTest extends \PHPUnit\Framework\TestCase
      */
     protected $backend;
 
-    public function setUp()
-    {
+    function setUp() {
+
         $this->backend = new Backend\Mock();
         $principalBackend = new DAVACL\PrincipalBackend\Mock();
 
         $tree = [
             new AddressBookRoot($principalBackend, $this->backend),
-            new DAVACL\PrincipalCollection($principalBackend),
+            new DAVACL\PrincipalCollection($principalBackend)
         ];
 
         $this->plugin = new Plugin();
@@ -39,5 +37,7 @@ abstract class AbstractPluginTest extends \PHPUnit\Framework\TestCase
         $this->server->sapi = new HTTP\SapiMock();
         $this->server->addPlugin($this->plugin);
         $this->server->debugExceptions = true;
+
     }
+
 }
