@@ -36,7 +36,7 @@ if (isset($argv)) {
 GLOBAL $_USER_GLOBAL;
 $_USER_GLOBAL = null;
 GLOBAL $_RESTRICTED;
-$_RESTRICTED = true;
+$_RESTRICTED = false;
 if (init('type') != '') {
 	try {
 		$type = init('type');
