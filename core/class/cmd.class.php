@@ -1881,7 +1881,6 @@ class cmd {
 			}
 			$point = $this->computeInfluxData($_value);
 			$result = $database->writePoints(array($point),'s');
-			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName());
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
