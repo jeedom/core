@@ -1905,14 +1905,28 @@ class cmd {
 			if ($database == ''){
 				return;
 			}
-			$points =array();
-			$history = $this->getHistory();
-			foreach ($history as $point) {
-				$value = $point->getValue();
-				$timestamp = strtotime($point->getDatetime());
-				$points[]= $this->computeInfluxData($value,$timestamp);
+			$oldest = $this->getOldest();
+			$begin = date('Y-m-d H:i:s', strtotime('-7 days'));
+			$now= date('Y-m-d H:i:s');
+			if (count($oldest) >0){
+				$begin= date('Y-m-d H:i:s',strtotime($oldest[0]->getDatetime()));
 			}
-			$result = $database->writePoints($points,'s');
+			$end = $begin;
+			while ($end<date('Y-m-d H:i:s',strtotime($now. ' +7 days'))){
+				$points =array();
+				$history = $this->getHistory($begin,$end);
+				foreach ($history as $point) {
+					$value = $point->getValue();
+					$timestamp = strtotime($point->getDatetime());
+					$points[]= $this->computeInfluxData($value,$timestamp);
+				}
+				$array_points = array_chunk($points,10000);
+				foreach ($array_points as $point) {
+					$database->writePoints($point,'s');
+				}
+				$begin = $end;
+				$end = date('Y-m-d H:i:s',strtotime($begin. ' +7 days'));
+			}
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
@@ -2006,6 +2020,10 @@ class cmd {
 	
 	public function getHistory($_dateStart = null, $_dateEnd = null,$_groupingType = null) {
 		return history::all($this->id, $_dateStart, $_dateEnd,$_groupingType);
+	}
+	
+	public function getOldest() {
+		return history::getOldestValue($this->id);
 	}
 	
 	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {
