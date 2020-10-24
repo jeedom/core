@@ -38,7 +38,6 @@ $(function() {
     }
   }
   setChartOptions()
-  //setTimeout(resizeDn, 250)
 })
 
 //handle resizing:
@@ -280,6 +279,7 @@ function initHistoryTrigger() {
       }
     }
     setChartOptions()
+    setTimeout(setChartExtremes, 500)
   })
 }
 
@@ -409,7 +409,7 @@ function emptyHistory(_cmd_id, _date) {
 
 function setChartExtremes() {
   try {
-    var yExtremes = chart.yAxis[0].getExtremes()
+    var yExtremes = chart.yAxis[0].getExtremes(true)
     var min = yExtremes.dataMin / 1.005
     var max = yExtremes.dataMax * 1.005
     chart.yAxis[0].setExtremes(min, max, true, true)
