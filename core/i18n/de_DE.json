@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Ohne",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Historique calculé": "Berechnete Historie",
-        "Sélectionner la commande": "Befehl auswählen",
-        "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
-        "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
-        "Historique": "Chronik",
-        "Configuration": "Konfiguration",
-        "Rechercher": "Suchen",
-        "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
-        "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden",
         "Aucun groupement": "Keine Gruppe",
         "Somme par heure": "Mengen pro Stunde",
@@ -2335,7 +2326,16 @@
         "Escalier": "Treppe",
         "Comparer": "Vergleichen Sie",
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
-        "Affichage": "Anzeigen"
+        "Affichage": "Anzeigen",
+        "Historique calculé": "Berechnete Historie",
+        "Sélectionner la commande": "Befehl auswählen",
+        "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
+        "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
+        "Historique": "Chronik",
+        "Configuration": "Konfiguration",
+        "Rechercher": "Suchen",
+        "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
+        "Exporter cet historique.": "Exportieren Sie diesen Verlauf"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",

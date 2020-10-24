@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "何でもありません",
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Historique calculé": "歴史計算",
-        "Sélectionner la commande": "コマンドを選択",
-        "Afficher le graphique calculé": "計算されたグラフを表示",
-        "Configuration des formules de calcul": "式の設定",
-        "Historique": "歴史的",
-        "Configuration": "コンフィギュレーション",
-        "Rechercher": "検索する",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "警告：あまりにも大きな日付範囲を計算するのに長い時間がかかるかさえ表示されない場合があります。",
         "Aucun groupement": "何のグループません",
         "Somme par heure": "時間あたり合計",
@@ -2335,7 +2326,16 @@
         "Escalier": "階段",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "観覧"
+        "Affichage": "観覧",
+        "Historique calculé": "歴史計算",
+        "Sélectionner la commande": "コマンドを選択",
+        "Afficher le graphique calculé": "計算されたグラフを表示",
+        "Configuration des formules de calcul": "式の設定",
+        "Historique": "歴史的",
+        "Configuration": "コンフィギュレーション",
+        "Rechercher": "検索する",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",

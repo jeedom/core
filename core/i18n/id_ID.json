@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Historique calculé": "Sejarah dihitung",
-        "Sélectionner la commande": "Pilih perintah",
-        "Afficher le graphique calculé": "",
-        "Configuration des formules de calcul": "Konfigurasi rumus",
-        "Historique": "Historis",
-        "Configuration": "Konfigurasi",
-        "Rechercher": "Mencari",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul",
         "Aucun groupement": "Tidak ada kelompok",
         "Somme par heure": "Sum per jam",
@@ -2335,7 +2326,16 @@
         "Escalier": "Tangga",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Melihat"
+        "Affichage": "Melihat",
+        "Historique calculé": "Sejarah dihitung",
+        "Sélectionner la commande": "Pilih perintah",
+        "Afficher le graphique calculé": "",
+        "Configuration des formules de calcul": "Konfigurasi rumus",
+        "Historique": "Historis",
+        "Configuration": "Konfigurasi",
+        "Rechercher": "Mencari",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",

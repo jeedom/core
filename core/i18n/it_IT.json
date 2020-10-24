@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Nessuno",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Historique calculé": "Storia calcolato",
-        "Sélectionner la commande": "Seleziona comando",
-        "Afficher le graphique calculé": "Mostra grafico calcolato",
-        "Configuration des formules de calcul": "Configurazione di formule",
-        "Historique": "Storico",
-        "Configuration": "Configurazione",
-        "Rechercher": "Cerca",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno",
         "Aucun groupement": "Nessun gruppo",
         "Somme par heure": "Somma all'ora",
@@ -2335,7 +2326,16 @@
         "Escalier": "Passi",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Mostra"
+        "Affichage": "Mostra",
+        "Historique calculé": "Storia calcolato",
+        "Sélectionner la commande": "Seleziona comando",
+        "Afficher le graphique calculé": "Mostra grafico calcolato",
+        "Configuration des formules de calcul": "Configurazione di formule",
+        "Historique": "Storico",
+        "Configuration": "Configurazione",
+        "Rechercher": "Cerca",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Valore [ 'name']",
