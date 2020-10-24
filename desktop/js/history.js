@@ -38,17 +38,22 @@ $(function() {
     }
   }
   setChartOptions()
+  //setTimeout(resizeDn, 250)
 })
 
 //handle resizing:
 var resizeDone
 function resizeDn() {
   var chart = $('#div_graph').highcharts()
-  chart.setSize( $('#div_graph').width(), $('#div_graph').height())
+  var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true) - $('#div_alertHistory').outerHeight(true)
+  if (chart) {
+    chart.setSize( $('#div_graph').width(), height)
+  }
+  $('.bs-sidebar').height( height)
 }
 $(window).resize(function() {
-  clearTimeout(resizeDone);
-  resizeDone = setTimeout(resizeDn, 100);
+  clearTimeout(resizeDone)
+  resizeDone = setTimeout(resizeDn, 100)
 })
 
 function setChartOptions() {
@@ -87,6 +92,7 @@ function setChartOptions() {
     setChartExtremes()
   }
   $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step, #sel_compare').prop('disabled', _prop)
+  resizeDn()
 }
 
 $('#bt_findCmdCalculHistory').on('click', function() {
