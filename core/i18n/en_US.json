@@ -3067,6 +3067,7 @@
         "Supprimer": "Delete",
         "Gratuit": "Free",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Please note this plugin is not an official plugin in case of problems with it (direct or indirect) any request for support can be refused",
+        "Attention ce plugin n\\'est disponible que en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possible de demande de support (quelque soit le plugin) en l\\'installant": "Please note that this plugin is only available in beta, so it can have many bugs and you will lose any possible support request (whatever the plugin) by installing it",
         "Attention ce plugin ne semble pas être compatible avec votre système": "Please note this plugin does not seem to be compatible with your system",
         "Description": "Description",
         "Documentation": "Documentation",

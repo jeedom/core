@@ -3067,6 +3067,7 @@
         "Supprimer": "取り除きます",
         "Gratuit": "自由な",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "このプラグインは、直接または間接的に問題が発生した場合の公式プラグインではないことに注意してください。サポートのリクエストは拒否できます。",
+        "Attention ce plugin n\\'est disponible que en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possible de demande de support (quelque soit le plugin) en l\\'installant": "",
         "Attention ce plugin ne semble pas être compatible avec votre système": "このプラグインはシステムと互換性がないようです",
         "Description": "説明",
         "Documentation": "ドキュメンテーション",
