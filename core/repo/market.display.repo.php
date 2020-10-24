@@ -134,6 +134,9 @@ if ($market->getCertification() == 'Premium') {
 if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy'  && $market->getCertification() != 'Partenaire') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
 }
+if ($market->getStatus('stable') == 0) {
+	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est disponible que en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possible de demande de support (quelque soit le plugin) en l\'installant}}</div>';
+}
 $compatibilityHardware = $market->getHardwareCompatibility();
 if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && isset($compatibilityHardware[jeedom::getHardwareName()]) && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
 	echo '<div class="alert alert-danger">{{Attention ce plugin ne semble pas être compatible avec votre système}}</div>';
