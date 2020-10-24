@@ -135,6 +135,9 @@ sendVarToJS('market_display_info', $market_array);
 if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy' && $market->getCertification() != 'Partenaire') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
 }
+if ($market->getStatus('stable') == 0) {
+	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est disponible que en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possible de demande de support (quelque soit le plugin) en l\'installation}}</div>';
+}
 $compatibilityHardware = $market->getHardwareCompatibility();
 if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && isset($compatibilityHardware[jeedom::getHardwareName()]) && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
 	echo '<div class="alert alert-danger">{{Attention ce plugin ne semble pas être compatible avec votre système}}</div>';
@@ -214,7 +217,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-
+			
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -234,7 +237,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-
+			
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -266,7 +269,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-
+	
 </div>
 
 <style>
@@ -332,7 +335,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-
+	
 });
 
 $('#bt_removeFromMarket').on('click', function () {
