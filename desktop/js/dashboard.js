@@ -180,29 +180,36 @@ function resetCategoryFilter() {
 }
 
 function filterByCategory() {
+  //get defined categories:
   var cats = []
   $('#categoryfilter .catFilterKey').each(function() {
     if ($(this).is(':checked')) {
       cats.push($(this).attr('data-key'))
     }
   })
+  //check eqLogics cats:
   var eqCats, catFound
   $('div.eqLogic-widget').each(function() {
+    catFound = false
     if ($(this).hasAttr('data-translate-category')) {
       eqCats = $(this).attr('data-translate-category').split(',')
       catFound = eqCats.some(r=> cats.includes(r))
-    } else {
+    } else if ($(this).hasAttr('data-category')) {
       eqCats = $(this).attr('data-category')
       if (cats.findIndex(item => eqCats.toLowerCase() === item.toLowerCase()) >= 0) catFound = true
+    } else {
+      eqCats = ''
     }
     if (catFound) $(this).show()
     else $(this).hide()
   })
+
   if (cats.includes('scenario')) {
     $('.scenario-widget').show()
   } else {
     $('.scenario-widget').hide()
   }
+
   $('.div_displayEquipement').packery()
   if (cats.length == $('#categoryfilter .catFilterKey').length) {
     $('#dashTopBar button.dropdown-toggle').removeClass('warning')
