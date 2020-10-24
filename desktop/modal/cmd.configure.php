@@ -974,7 +974,7 @@ $('#bt_influxDelete').off('click').on('click',function() {
 })
 
 $('#bt_influxHistory').off('click').on('click',function() {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB}}', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
       if (result) {
           jeedom.cmd.historyInflux({
           cmd_id : cmdInfo.id,
@@ -982,7 +982,7 @@ $('#bt_influxHistory').off('click').on('click',function() {
             $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
           },
           success: function(data) {
-            $('#md_displayCmdConfigure').showAlert({message: '{{Action envoyée avec succés}}', level: 'success'})
+            $('#md_displayCmdConfigure').showAlert({message: '{{Programmation envoyée avec succés}}', level: 'success'})
           }
         })
       }

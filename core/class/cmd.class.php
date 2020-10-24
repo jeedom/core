@@ -1849,15 +1849,19 @@ class cmd {
 			$url = config::byKey('cmdInfluxURL');
 			$port = config::byKey('cmdInfluxPort');
 			$base = config::byKey('cmdInfluxTable');
-			$user = config::byKey('cmdInfluxUser');
-			$pass = config::byKey('cmdInfluxPass');
+			$user = config::byKey('cmdInfluxUser','');
+			$pass = config::byKey('cmdInfluxPass','');
 			if ($url == '' || $port == ''){
 				return;
 			}
 			if ($base == ''){
 				$base = 'Jeedom';
 			}
-			$client = new InfluxDB\Client($url, $port,$user,$pass);
+			if ($user == ''){
+				$client = new InfluxDB\Client($url, $port);
+			} else {
+				$client = new InfluxDB\Client($url, $port,$user,$pass);
+			}
 			$database = $client->selectDB($base);
 			if (!$database->exists()) {
 				$database->create();
@@ -1877,7 +1881,6 @@ class cmd {
 			}
 			$point = $this->computeInfluxData($_value);
 			$result = $database->writePoints(array($point),'s');
-			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName());
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
@@ -1899,23 +1902,50 @@ class cmd {
 		return;
 	}
 	
-	public function historyInflux() {
+	public function sendHistoryInflux($_params) {
+		$cmd = cmd::byId($_params['cmd_id']);
 		try{
-			$database=$this->getInflux();
+			$database=$cmd->getInflux();
 			if ($database == ''){
 				return;
 			}
-			$points =array();
-			$history = $this->getHistory();
-			foreach ($history as $point) {
-				$value = $point->getValue();
-				$timestamp = strtotime($point->getDatetime());
-				$points[]= $this->computeInfluxData($value,$timestamp);
+			$oldest = $cmd->getOldest();
+			$begin = date('Y-m-d H:i:s', strtotime('-60 days'));
+			$now= date('Y-m-d H:i:s');
+			if (count($oldest) >0){
+				$begin= date('Y-m-d H:i:s',strtotime($oldest[0]->getDatetime()));
 			}
-			$result = $database->writePoints($points,'s');
+			$end = $begin;
+			while ($end<date('Y-m-d H:i:s',strtotime($now. ' +60 days'))){
+				$points =array();
+				$history = $cmd->getHistory($begin,$end);
+				foreach ($history as $point) {
+					$value = $point->getValue();
+					$timestamp = strtotime($point->getDatetime());
+					$points[]= $cmd->computeInfluxData($value,$timestamp);
+				}
+				log::add('cmd', 'error', count($points));
+				$array_points = array_chunk($points,10000);
+				foreach ($array_points as $point) {
+					$database->writePoints($point,'s');
+				}
+				$begin = $end;
+				$end = date('Y-m-d H:i:s',strtotime($begin. ' +60 days'));
+			}
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : '.$cmd->getHumanName().' => ' . $e->getMessage());
 		}
+	}
+	
+	public function historyInflux() {
+		$cron = new cron();
+		$cron->setClass('cmd');
+		$cron->setFunction('sendHistoryInflux');
+		$cron->setOption(array('cmd_id' => intval($this->getId())));
+		$cron->setLastRun(date('Y-m-d H:i:s'));
+		$cron->setOnce(1);
+		$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
+		$cron->save();
 		return;
 	}
 	
@@ -2006,6 +2036,10 @@ class cmd {
 	
 	public function getHistory($_dateStart = null, $_dateEnd = null,$_groupingType = null) {
 		return history::all($this->id, $_dateStart, $_dateEnd,$_groupingType);
+	}
+	
+	public function getOldest() {
+		return history::getOldestValue($this->id);
 	}
 	
 	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {

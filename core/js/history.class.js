@@ -213,7 +213,7 @@ jeedom.history.drawChart = function(_params) {
       var opacityLow = 0.1
       var seriesNumber = 1
       var colorsNbr = colors.length
-      if (isset(jeedom.history.chart[_params.el])) {
+      if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].chart.series)) {
         seriesNumber = jeedom.history.chart[_params.el].chart.series.length
       }
       if (seriesNumber > colorsNbr || seriesNumber == 0) {
