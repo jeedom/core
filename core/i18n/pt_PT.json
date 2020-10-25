@@ -3864,7 +3864,7 @@
         " sur : ": "em:",
         " car il est désactivé": "porque está desabilitado",
         "Lancement du scénario : ": "Inicie o script:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "cancelado porque usa uma condição de tipo de hora e a data do sistema não está OK",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "cancelado porque usa uma condição de tipo de hora e a data do sistema não está OK (ou porque estamos em mudança de hora negativa)",
         "Exécution du scénario ": "Executando o cenário",
         " déclenché par : ": "desencadeado por:",
         "Fin correcte du scénario": "Final correta do cenário",

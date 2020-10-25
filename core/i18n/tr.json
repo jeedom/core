@@ -3864,7 +3864,7 @@
         " sur : ": "tarih:",
         " car il est désactivé": "çünkü devre dışı",
         "Lancement du scénario : ": "Senaryonun başlatılması:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "zaman türü koşulu kullandığından ve sistem tarihi uygun olmadığından iptal edildi",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "",
         "Exécution du scénario ": "Senaryonun uygulanması",
         " déclenché par : ": "den tetiklenmiş",
         "Fin correcte du scénario": "Senaronun doğru sonuçlanması",

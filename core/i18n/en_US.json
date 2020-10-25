@@ -3864,7 +3864,7 @@
         " sur : ": " on: ",
         " car il est désactivé": "as it is disabled",
         "Lancement du scénario : ": "Start of scenario:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "canceled because it uses a time type condition and the system date is not OK",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "canceled because it uses a time-type condition and the system date is not OK (or that we are in negative time change)",
         "Exécution du scénario ": "Execution of the scenario",
         " déclenché par : ": "triggered by:",
         "Fin correcte du scénario": "Correct end of scenario",
