@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Historique calculé": "Calculated history",
-        "Sélectionner la commande": "Select command",
-        "Afficher le graphique calculé": "Show calculated graph",
-        "Configuration des formules de calcul": "Configuration of calculation formulas",
-        "Historique": "History",
-        "Configuration": "Configuration",
-        "Rechercher": "Search",
-        "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
-        "Exporter cet historique.": "Export this history",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: Too large a date range can take a very long time to calculate or even not display",
         "Aucun groupement": "No group",
         "Somme par heure": "Sum per hour",
@@ -2335,7 +2326,16 @@
         "Escalier": "Steps",
         "Comparer": "Compare",
         "Vide l'affichage des courbes sur la zone.": "Clear the display of curves on the area",
-        "Affichage": "Viewing"
+        "Affichage": "Viewing",
+        "Historique calculé": "Calculated history",
+        "Sélectionner la commande": "Select command",
+        "Afficher le graphique calculé": "Show calculated graph",
+        "Configuration des formules de calcul": "Configuration of calculation formulas",
+        "Historique": "History",
+        "Configuration": "Configuration",
+        "Rechercher": "Search",
+        "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
+        "Exporter cet historique.": "Export this history"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",

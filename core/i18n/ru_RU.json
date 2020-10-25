@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Нет",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Historique calculé": "История рассчитывается",
-        "Sélectionner la commande": "Выберите команду",
-        "Afficher le graphique calculé": "",
-        "Configuration des formules de calcul": "Настройка формул",
-        "Historique": "История",
-        "Configuration": "Конфигурация",
-        "Rechercher": "Искать",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Внимание: слишком большой диапазон дат могут занять много времени, чтобы быть вычислен или даже не появляется",
         "Aucun groupement": "нет группы",
         "Somme par heure": "Сумма в час",
@@ -2335,7 +2326,16 @@
         "Escalier": "лестница",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Отображение"
+        "Affichage": "Отображение",
+        "Historique calculé": "История рассчитывается",
+        "Sélectionner la commande": "Выберите команду",
+        "Afficher le graphique calculé": "",
+        "Configuration des formules de calcul": "Настройка формул",
+        "Historique": "История",
+        "Configuration": "Конфигурация",
+        "Rechercher": "Искать",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",

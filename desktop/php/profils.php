@@ -27,6 +27,11 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 		$homePageMobile[$pluginList->getId() . '::' . $pluginList->getMobile()] = $pluginList->getName();
 	}
 }
+$objectOptions = '';
+foreach ((jeeObject::buildTree(null, false)) as $object) {
+	$decay = $object->getConfiguration('parentNumber');
+	$objectOptions .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
+}
 ?>
 
 <div style="margin-top: 5px;">
@@ -76,10 +81,8 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 						<div class="col-sm-2 col-xs-6">
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultDashboardObject">
 								<?php
-								foreach ((jeeObject::all()) as $object) {
-									echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
-								}
-								?>
+						        	echo $objectOptions;
+						        ?>
 							</select>
 						</div>
 						<div class="col-sm-1 col-xs-6 control-label"><i class="fas fa-tablet-alt"></i> {{Mobile}}</div>
@@ -87,9 +90,7 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 							<select class="form-control userAttr" data-l1key="options" data-l2key="defaultMobileObject">
 								<option value="all">{{Tout}}</option>
 								<?php
-								foreach ((jeeObject::all()) as $object) {
-									echo '<option value="'.$object->getId().'">'.$object->getName().'</option>';
-								}
+									echo $objectOptions;
 								?>
 							</select>
 						</div>

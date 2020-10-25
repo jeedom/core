@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Historique calculé": "Historique calculé",
-        "Sélectionner la commande": "Sélectionner la commande",
-        "Afficher le graphique calculé": "Afficher le graphique calculé",
-        "Configuration des formules de calcul": "Configuration des formules de calcul",
-        "Historique": "Historique",
-        "Configuration": "Configuration",
-        "Rechercher": "Rechercher",
-        "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
-        "Exporter cet historique.": "Exporter cet historique.",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
         "Aucun groupement": "Aucun groupement",
         "Somme par heure": "Somme par heure",
@@ -2335,7 +2326,16 @@
         "Escalier": "Escalier",
         "Comparer": "Comparer",
         "Vide l'affichage des courbes sur la zone.": "Vide l'affichage des courbes sur la zone.",
-        "Affichage": "Affichage"
+        "Affichage": "Affichage",
+        "Historique calculé": "Historique calculé",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Afficher le graphique calculé": "Afficher le graphique calculé",
+        "Configuration des formules de calcul": "Configuration des formules de calcul",
+        "Historique": "Historique",
+        "Configuration": "Configuration",
+        "Rechercher": "Rechercher",
+        "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
+        "Exporter cet historique.": "Exporter cet historique."
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",

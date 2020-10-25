@@ -2297,15 +2297,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Hiçbir",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Historique calculé": "Tarih hesaplanmış",
-        "Sélectionner la commande": "Komutayı seçin",
-        "Afficher le graphique calculé": "",
-        "Configuration des formules de calcul": "Formüller yapılandırılması",
-        "Historique": "Geçmiş",
-        "Configuration": "Ayar",
-        "Rechercher": "Arayın",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Uyarı: uzun sürebilir çok büyük tarih aralığı hesaplandı ve hatta görünmez olmak",
         "Aucun groupement": "Hiçbir gruplama",
         "Somme par heure": "Saatte Sum",
@@ -2335,7 +2326,16 @@
         "Escalier": "Merdiven",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Gösterim"
+        "Affichage": "Gösterim",
+        "Historique calculé": "Tarih hesaplanmış",
+        "Sélectionner la commande": "Komutayı seçin",
+        "Afficher le graphique calculé": "",
+        "Configuration des formules de calcul": "Formüller yapılandırılması",
+        "Historique": "Geçmiş",
+        "Configuration": "Ayar",
+        "Rechercher": "Arayın",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Değer [ 'name']",
