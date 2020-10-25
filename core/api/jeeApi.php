@@ -59,7 +59,7 @@ if (init('type') != '') {
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (HTTP API désactivé), IP : ', __FILE__) . getClientIp());
 		}
-		$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
+		$_RESTRICTED = config::byKey('api::' . $plugin . '::restricted', 'core', 0);
 		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp().' => '.json_encode($_GET));
 		if ($type == 'ask') {
 			if($_RESTRICTED){
