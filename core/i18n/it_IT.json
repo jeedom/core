@@ -3864,7 +3864,7 @@
         " sur : ": "on:",
         " car il est désactivé": "perché è disabilitato",
         "Lancement du scénario : ": "Lancio dello scenario:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "annullato perché utilizza una condizione del tipo di ora e la data del sistema non è OK",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "",
         "Exécution du scénario ": "Esecuzione della scena",
         " déclenché par : ": "innescato da:",
         "Fin correcte du scénario": "Finale corretto della scena",

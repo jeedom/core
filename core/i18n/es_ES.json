@@ -3864,7 +3864,7 @@
         " sur : ": "sobre :",
         " car il est désactivé": "porque está deshabilitado",
         "Lancement du scénario : ": "Lanzamiento del escenario :",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "cancelado porque usa una condición de tipo de hora y la fecha del sistema no está bien",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "cancelado porque usa una condición de tipo temporal y la fecha del sistema no está bien (o porque estamos en un cambio de hora negativo)",
         "Exécution du scénario ": "Ejecución del escenario",
         " déclenché par : ": "desencadenado por :",
         "Fin correcte du scénario": "Escenario finalizado correctamente",

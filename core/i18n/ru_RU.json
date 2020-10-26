@@ -3864,7 +3864,7 @@
         " sur : ": "",
         " car il est désactivé": "",
         "Lancement du scénario : ": "Запуск сценария:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "",
         "Exécution du scénario ": "Выполнение сценария",
         " déclenché par : ": "инициирован:",
         "Fin correcte du scénario": "Правильное окончание сценария",

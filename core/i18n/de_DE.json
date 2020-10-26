@@ -3864,7 +3864,7 @@
         " sur : ": "am:",
         " car il est désactivé": "weil es deaktiviert ist",
         "Lancement du scénario : ": "Start des Szenarios:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "abgebrochen, weil eine Zeittypbedingung verwendet wird und das Systemdatum nicht in Ordnung ist",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "abgebrochen, weil eine Zeitbedingung verwendet wird und das Systemdatum nicht in Ordnung ist (oder wir uns in einer negativen Zeitänderung befinden)",
         "Exécution du scénario ": "Szenario Ausführung",
         " déclenché par : ": "ausgelöst durch:",
         "Fin correcte du scénario": "Richtiges Ende des Szenarios",
