@@ -682,6 +682,9 @@ pre {
   background: rgb(247, 248, 248);
 }
 
+.div_rowZones {
+  background-color: rgb(252, 252, 254) !important;
+}
 .div_viewZone{
   background-color: rgb(232, 232, 234) !important;
 }
@@ -693,7 +696,10 @@ pre {
   display: inline-block;
   vertical-align: top;
 }
-
+.div_backgroundPlan .text-widget {
+  background-color: rgb(252, 252, 254) !important;
+  color: rgb(115, 115, 115) !important;
+}
 
 /* context menus */
 .context-menu-layer {
@@ -1685,6 +1691,10 @@ hr {
 
 .tablesorter-filter {
   opacity: 0.45 !important;
+}
+
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
+  background-color: transparent !important;
 }
 
 
