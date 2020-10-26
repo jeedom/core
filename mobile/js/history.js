@@ -33,8 +33,6 @@ function addChart(_cmd_id, _action) {
     }
   } else {
     lastId = _cmd_id
-	console.log($('#in_startDate').value());
-	console.log($('#in_endDate').value());
     jeedom.history.drawChart({
       cmd_id: _cmd_id,
       el: 'div_graph',
