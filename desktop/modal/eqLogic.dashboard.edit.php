@@ -540,27 +540,30 @@ $('.accordion-toggle').click(function() {
 })
 
 function editSaveEqlogic() {
-  //save eqLogic:
+  //get eqLogic:
   var eqLogic = $('#div_displayEqLogicConfigure').getValues('.eqLogicAttr')[0]
   if (!isset(eqLogic.display)) eqLogic.display = {}
   if (!isset(eqLogic.display.parameters)) eqLogic.display.parameters = {}
+  //tile optionnal parameters:
   $('#table_widgetParameters tbody tr').each(function() {
     eqLogic.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
   })
-  //save cmds:
-  eqLogic.cmds = []
+
+  //get cmds:
+  eqLogic.cmd = []
   var cmd, attribClass
   $('#div_eqLogicCmds .cmdConfig').each(function() {
     attribClass = $(this).data('attribclass')
     cmd = $(this).getValues('.'+attribClass)[0]
     if (!isset(cmd.display)) cmd.display = {}
     if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
-    //optionnal parameters:
+    //cmd optionnal parameters:
     $(this).find('tr.cmdoptparam').each(function() {
       cmd.display.parameters[$(this).find('.key').value()] = $(this).find('.value').value()
     })
-    eqLogic.cmds.push(cmd);
+    eqLogic.cmd.push(cmd);
   })
+
   jeedom.eqLogic.save({
     eqLogics: [eqLogic],
     type: eqLogic.eqType_name,
