@@ -553,7 +553,7 @@ function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
   $(_button).on('click', function(event) {
     if (isEditing == true) return false
     $('#jeedomMenuBar li.dropdown > .dropdown-menu').hide()
-    if (event.ctrlKey || event.originalEvent.which == 2) {
+    if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
       window.open(url).focus()

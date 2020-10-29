@@ -263,7 +263,7 @@ function initHistoryTrigger() {
   })
 
   $('.highcharts-legend-item').off('click').on('click',function(event) {
-    if (event.ctrlKey || event.altKey) {
+    if (event.ctrlKey || event.metaKey || event.altKey) {
       event.stopImmediatePropagation()
       var chart = $('#div_graph').highcharts()
       if (event.altKey) {

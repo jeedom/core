@@ -209,7 +209,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                    <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
                    <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
                 </div>
-              </div>  
+              </div>
               <?php }?>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
@@ -1121,7 +1121,7 @@ $('#bt_cmdConfigureSave').on('click', function(event) {
       modifyWithoutSave = false
       $('#md_displayCmdConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
       synchModalToCmd()
-      if (event.ctrlKey) {
+      if (event.ctrlKey || event.metaKey) {
         setTimeout(function() { $('#md_modal').dialog('close') }, 500)
       }
     }

@@ -135,7 +135,7 @@ $('#objectOverviewContainer').on({
 $('.objectPreview').off('click').on('click', function (event) {
   if (event.target !== this && !$(event.target).hasClass('bottomPreview')) return
   var url = 'index.php?v=d&p=dashboard&object_id='+$(this).attr('data-object_id')+'&childs=0'+'&btover=1'
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
     loadPage(url)
@@ -161,7 +161,7 @@ $('.objectPreview').off('mouseup').on('mouseup', function (event) {
 //Tile name click or center-click
 $('.objectPreview .name').off('click').on('click', function (event) {
   var url = 'index.php?v=d&p=dashboard&object_id='+$(this).closest('.objectPreview').attr('data-object_id')
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
     loadPage(url)
@@ -214,7 +214,7 @@ $(function() {
     'click': function(event) {
       event.stopImmediatePropagation()
       event.stopPropagation()
-      if (event.ctrlKey) {
+      if (event.ctrlKey || event.metaKey) {
         var cmdIds = []
         $(this).closest('div.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
           cmdIds.push($(this).data('cmd_id'))

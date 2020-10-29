@@ -39,15 +39,17 @@ global $JEEDOM_INTERNAL_CONFIG;
 		<div id="div_fileList" style="list-style-type: none;"></div>
 	</div>
 
-	<div class="col-lg-8">
-		<legend><i class="fas fa-edit"></i> {{Edition}} <span class="success" id="span_editorFileName"></span>
-			<div class="input-group pull-right" style="display:inline-flex">
-				<span class="input-group-btn">
-					<a class="btn btn-sm roundedLeft" id="bt_createFile" style="position:relative;top:-6px;"><i class="far fa-file"></i> {{Nouveau}}</a><a class="btn btn-success btn-sm" id="bt_saveFile" style="position:relative;top:-6px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_deleteFile" style="position:relative;top:-6px;"><i class="fas fa-times"></i> {{Supprimer}}</a>
-				</span>
-			</div>
-		</legend>
-		<textarea class="form-control" id="ta_fileContent"></textarea>
+	<div id="editorContainer" class="col-lg-8">
+		<div id="editorOptions">
+			<legend><i class="fas fa-edit"></i> {{Edition}} <span class="success" id="span_editorFileName"></span>
+				<div class="input-group pull-right" style="display:inline-flex">
+					<span class="input-group-btn">
+						<a class="btn btn-sm roundedLeft" id="bt_createFile" style="position:relative;top:-6px;"><i class="far fa-file"></i> {{Nouveau}}</a><a class="btn btn-success btn-sm" id="bt_saveFile" style="position:relative;top:-6px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_deleteFile" style="position:relative;top:-6px;"><i class="fas fa-times"></i> {{Supprimer}}</a>
+					</span>
+				</div>
+			</legend>
+		</div>
+		<textarea class="form-control hidden" id="ta_fileContent"></textarea>
 	</div>
 </div>
 

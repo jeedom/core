@@ -119,7 +119,7 @@ $(function() {
           zIndex: 9999,
           className: 'widget-context-menu',
           callback: function(key, options, event) {
-            if (event.ctrlKey || event.originalEvent.which == 2) {
+            if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
               url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
               window.open(url).focus()
             } else {
@@ -516,7 +516,7 @@ $('#div_usedBy').off('click','.cmdAdvanceConfigure').on('click','.cmdAdvanceConf
 })
 
 $(".widgetsDisplayCard").off('click').on('click', function(event) {
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=widgets&id='+$(this).attr('data-widgets_id')
     window.open(url).focus()
   } else {

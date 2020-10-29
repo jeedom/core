@@ -66,7 +66,7 @@ $('body').off('click','.bt_refreshPluginInfo').on('click','.bt_refreshPluginInfo
 
 $(".pluginDisplayCard").off('click').on('click', function(event) {
   var pluginId = $(this).attr('data-plugin_id')
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=plugin&id='+pluginId
     window.open(url).focus()
   } else {

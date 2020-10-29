@@ -643,7 +643,7 @@ $('#bt_eqLogicConfigureSave').on('click', function(event) {
           $('#md_displayEqLogicConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
           synchModalToEq()
 
-          if (event.ctrlKey) {
+          if (event.ctrlKey || event.metaKey) {
             setTimeout(function() {
               $('#md_modal').dialog('close')
             }, 500)

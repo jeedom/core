@@ -1924,7 +1924,6 @@ class cmd {
 					$timestamp = strtotime($point->getDatetime());
 					$points[]= $cmd->computeInfluxData($value,$timestamp);
 				}
-				log::add('cmd', 'error', count($points));
 				$array_points = array_chunk($points,10000);
 				foreach ($array_points as $point) {
 					$database->writePoints($point,'s');

@@ -88,7 +88,7 @@
     }
     jeedom.cmd.update['#id#']({display_value:'#state#', valueDate:'#valueDate#', collectDate:'#collectDate#'})
 
-    setTimeout(function(){
+    setTimeout(function() {
       if ($('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').length > 1) {
         $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:not(:first)').hide()
       }
@@ -99,26 +99,41 @@
       if (cmd.attr('scaled') != '1' && '#scale#' > 0) {
         cmd.attr('scaled', '1')
         cmd.width(cmd.width()*'#scale#').height(cmd.height()*'#scale#')
-        cmd.find('.hygrothermographe-background').width(cmd.find('.hygrothermographe-background').width()*'#scale#')
-        cmd.find('.hygrothermographe-background').height(cmd.find('.hygrothermographe-background').height()*'#scale#')
-        cmd.find('.intNumTemp').css('font-size',(cmd.find('.intNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
-        .css('top',(cmd.find('.intNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
-        .css('right',(cmd.find('.intNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
-        cmd.find('.decNumTemp').css('font-size',(cmd.find('.decNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
-        .css('top',(cmd.find('.decNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
-        .css('right',(cmd.find('.decNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
-        cmd.find('.uniteTemp').css('font-size',(cmd.find('.uniteTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px')
-        .css('top',(cmd.find('.uniteTemp').css('top').replace(/px/i, '')*'#scale#')+'px')
-        .css('right',(cmd.find('.uniteTemp').css('right').replace(/px/i, '')*'#scale#')+'px')
-        cmd.find('.intNumHumidity').css('font-size',(cmd.find('.intNumHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
-        .css('top',(cmd.find('.intNumHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
-        .css('right',(cmd.find('.intNumHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
-        cmd.find('.decNumHumidity').css('font-size',(cmd.find('.decNumHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
-        .css('top',(cmd.find('.decNumHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
-        .css('right',(cmd.find('.decNumHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
-        cmd.find('.uniteHumidity').css('font-size',(cmd.find('.uniteHumidity').css('font-size').replace(/px/i, '')*'#scale#')+'px')
-        .css('top',(cmd.find('.uniteHumidity').css('top').replace(/px/i, '')*'#scale#')+'px')
-        .css('right',(cmd.find('.uniteHumidity').css('right').replace(/px/i, '')*'#scale#')+'px')
+
+        cmd.find('.hygrothermographe-background').css({
+          'width' : cmd.find('.hygrothermographe-background').width()*'#scale#',
+          'height' : cmd.find('.hygrothermographe-background').height()*'#scale#'
+        })
+        cmd.find('.intNumTemp').css({
+          'font-size' : (cmd.find('.intNumTemp').css('font-size').replace(/px/i, '')*'#scale#')+'px',
+          'top' : (cmd.find('.intNumTemp').css('top').replace(/px/i, '')*'#scale#')+'px',
+          'right' : (cmd.find('.intNumTemp').css('right').replace(/px/i, '')*'#scale#')+'px'
+        })
+        cmd.find('.decNumTemp').css({
+          'font-size' : cmd.find('.decNumTemp').css('font-size').replace(/px/i, '')*'#scale#'+'px',
+          'top' : cmd.find('.decNumTemp').css('top').replace(/px/i, '')*'#scale#'+'px',
+          'right' : cmd.find('.decNumTemp').css('right').replace(/px/i, '')*'#scale#'+'px'
+        })
+        cmd.find('.uniteTemp').css({
+          'font-size' : cmd.find('.uniteTemp').css('font-size').replace(/px/i, '')*'#scale#'+'px',
+          'top' : cmd.find('.uniteTemp').css('top').replace(/px/i, '')*'#scale#'+'px',
+          'right' : cmd.find('.uniteTemp').css('right').replace(/px/i, '')*'#scale#'+'px'
+        })
+        cmd.find('.intNumHumidity').css({
+          'font-size' : cmd.find('.intNumHumidity').css('font-size').replace(/px/i, '')*'#scale#'+'px',
+          'top' : cmd.find('.intNumHumidity').css('top').replace(/px/i, '')*'#scale#'+'px',
+          'right' : cmd.find('.intNumHumidity').css('right').replace(/px/i, '')*'#scale#'+'px'
+        })
+        cmd.find('.decNumHumidity').css({
+          'font-size' : cmd.find('.decNumHumidity').css('font-size').replace(/px/i, '')*'#scale#'+'px',
+          'top' : cmd.find('.decNumHumidity').css('top').replace(/px/i, '')*'#scale#'+'px',
+          'right' : cmd.find('.decNumHumidity').css('right').replace(/px/i, '')*'#scale#'+'px'
+        })
+        cmd.find('.uniteHumidity').css({
+          'font-size' : cmd.find('.uniteHumidity').css('font-size').replace(/px/i, '')*'#scale#'+'px',
+          'top' : cmd.find('.uniteHumidity').css('top').replace(/px/i, '')*'#scale#'+'px',
+          'right' : cmd.find('.uniteHumidity').css('right').replace(/px/i, '')*'#scale#'+'px'
+        })
       }
     }
 

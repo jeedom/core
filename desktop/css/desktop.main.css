@@ -1285,9 +1285,6 @@ Theme Core 2021 @Jeedom
   .control-label {
     font-weight: 500;
   }
-  .form-horizontal .control-label {
-    /*! padding-top: 4px; */
-  }
 
   pre {
     color: var(--link-color);
@@ -1332,6 +1329,24 @@ Theme Core 2021 @Jeedom
     vertical-align: top;
   }
 
+  /* editor page */
+  #editorOptions {
+    position: fixed;
+    text-align: right;
+    top: 55px;
+    right: 19px;
+    padding: 0 5px !important;
+    width: calc(66.66666667% - 31px);
+    z-index: 10;
+    background: rgba(var(--panel-bg-color), var(--opacity));
+  }
+  #editorContainer {
+    padding-right: 5px !important;
+    width: calc(66.66666667% - 12px)
+  }
+  #editorContainer div.CodeMirror.CodeMirror-wrap {
+    top: 55px !important;
+  }
 
   /* context menus */
   .context-menu-layer {
