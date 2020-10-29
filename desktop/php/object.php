@@ -89,9 +89,12 @@ sendVarToJS([
 								<select class="form-control objectAttr" data-l1key="father_id">
 									<option value="">{{Aucun}}</option>
 									<?php
+									$options = '';
 									foreach ($allObject as $object) {
-										echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+									 	$decay = $object->getConfiguration('parentNumber');
+									 	$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
 									}
+									echo $options;
 									?>
 								</select>
 							</div>
