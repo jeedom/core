@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Error en la función del complemento mobileManifest:"
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
@@ -66,9 +63,6 @@
         "Historique": "Guardar historial",
         "Préviens moi": "Avísame",
         "Me prévenir si": "Notifícame si",
-        "Mise à jour de l\\'application en cours": "Actualización de la aplicación en progreso",
-        "Erreur lors de la mise à jour": "Error al actualizar",
-        "Nouvelle tentative dans 5s": "Reintentar en 5 segundos",
         "Synthèse": "Síntesis",
         "Accueil": "Inicio"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Ninguno",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Historique calculé": "Historia calculada",
-        "Sélectionner la commande": "Seleccione el comando",
-        "Afficher le graphique calculé": "Mostrar gráfico calculado",
-        "Configuration des formules de calcul": "Configuración de fórmulas",
-        "Historique": "Historial",
-        "Configuration": "Configuración ",
-        "Rechercher": "Buscar",
-        "Supprimer tout ou partie de cet historique.": "Eliminar todo o parte de este historial",
-        "Exporter cet historique.": "Exportar esta historia",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Advertencia: demasiado grande rango de fechas puede tardar mucho tiempo para calcular o ni siquiera aparece",
         "Aucun groupement": "Ninguna agrupación",
         "Somme par heure": "Suma por hora",
@@ -2335,7 +2320,16 @@
         "Escalier": "Escalera",
         "Comparer": "Comparar",
         "Vide l'affichage des courbes sur la zone.": "Borre la visualización de curvas en el área",
-        "Affichage": "Visualización"
+        "Affichage": "Visualización",
+        "Historique calculé": "Historia calculada",
+        "Sélectionner la commande": "Seleccione el comando",
+        "Afficher le graphique calculé": "Mostrar gráfico calculado",
+        "Configuration des formules de calcul": "Configuración de fórmulas",
+        "Historique": "Historial",
+        "Configuration": "Configuración ",
+        "Rechercher": "Buscar",
+        "Supprimer tout ou partie de cet historique.": "Eliminar todo o parte de este historial",
+        "Exporter cet historique.": "Exportar esta historia"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "Valor $ [ 'nombre']",
@@ -3584,6 +3578,7 @@
         "Supprimer": "Borrar",
         "Gratuit": "Gratis",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Tenga en cuenta que este plugin no es un plugin oficial en caso de problemas con él (directo o indirecto), cualquier solicitud de soporte puede ser rechazada",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Tenga en cuenta que este complemento solo está disponible en versión beta, por lo que puede tener muchos errores y perderá toda posibilidad de solicitar soporte (independientemente del complemento) al instalarlo",
         "Attention ce plugin ne semble pas être compatible avec votre système": "Tenga en cuenta que este plugin no parece ser compatible con su sistema",
         "Description": "Descripción",
         "Documentation": "Documentación",
@@ -3863,7 +3858,7 @@
         " sur : ": "sobre :",
         " car il est désactivé": "porque está deshabilitado",
         "Lancement du scénario : ": "Lanzamiento del escenario :",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "cancelado porque usa una condición de tipo de hora y la fecha del sistema no está bien",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "cancelado porque usa una condición de tipo temporal y la fecha del sistema no está bien (o porque estamos en un cambio de hora negativo)",
         "Exécution du scénario ": "Ejecución del escenario",
         " déclenché par : ": "desencadenado por :",
         "Fin correcte du scénario": "Escenario finalizado correctamente",

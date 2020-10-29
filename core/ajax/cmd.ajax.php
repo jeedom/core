@@ -297,6 +297,14 @@ try {
 		}
 		ajax::success();
 	}
+	
+	if (init('action') == 'getInitDates') {
+		$date = array(
+			'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),
+			'end' => date('Y-m-d'),
+		);
+		ajax::success($date);
+	}
 
 	if (init('action') == 'getHistory') {
 		global $JEEDOM_INTERNAL_CONFIG;

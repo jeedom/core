@@ -9,8 +9,15 @@ var cmd_id = null
 
 function initHistory(_cmd_id) {
   cmd_id = _cmd_id
-  addChart(_cmd_id,1)
-  delete jeedom.history.chart['div_graph']
+  jeedom.history.getInitDates({
+	cmd_id: cmd_id,
+	success: function(data) {
+		$('#in_startDate').value(data['start']);
+		$('#in_endDate').value(data['end']);
+		addChart(_cmd_id,1)
+		delete jeedom.history.chart['div_graph']
+	}
+  });
 }
 
 function addChart(_cmd_id, _action) {

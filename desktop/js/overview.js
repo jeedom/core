@@ -119,7 +119,12 @@ $('#objectOverviewContainer').on({
     event.preventDefault()
     var objectId = $(this).closest('.objectPreview').attr('data-object_id')
     var summaryType = $(this).attr('data-summary')
-    var title = $(this).get(0).firstChild.outerHTML + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
+    var icon = $(this).get(0).firstChild.outerHTML
+    if (icon) {
+      var title = icon + ' ' +  $(this).closest('.objectPreview').find('.topPreview .name').text()
+    } else {
+      var title = $(this).closest('.objectPreview').find('.topPreview .name').text()
+    }
     getSummaryHtml(objectId, summaryType, title)
   }
 }, '.objectSummaryParent')

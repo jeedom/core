@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": ""
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
     },
@@ -66,9 +63,6 @@
         "Historique": "История",
         "Préviens moi": "предупредить меня",
         "Me prévenir si": "Сообщите мне, если",
-        "Mise à jour de l\\'application en cours": "",
-        "Erreur lors de la mise à jour": "Ошибка при обновлении",
-        "Nouvelle tentative dans 5s": "Повторить в течение 5 секунд",
         "Synthèse": "",
         "Accueil": "Домой"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Нет",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Historique calculé": "История рассчитывается",
-        "Sélectionner la commande": "Выберите команду",
-        "Afficher le graphique calculé": "",
-        "Configuration des formules de calcul": "Настройка формул",
-        "Historique": "История",
-        "Configuration": "Конфигурация",
-        "Rechercher": "Искать",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Внимание: слишком большой диапазон дат могут занять много времени, чтобы быть вычислен или даже не появляется",
         "Aucun groupement": "нет группы",
         "Somme par heure": "Сумма в час",
@@ -2335,7 +2320,16 @@
         "Escalier": "лестница",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Отображение"
+        "Affichage": "Отображение",
+        "Historique calculé": "История рассчитывается",
+        "Sélectionner la commande": "Выберите команду",
+        "Afficher le graphique calculé": "",
+        "Configuration des formules de calcul": "Настройка формул",
+        "Historique": "История",
+        "Configuration": "Конфигурация",
+        "Rechercher": "Искать",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",
@@ -3584,6 +3578,7 @@
         "Supprimer": "удаление",
         "Gratuit": "Бесплатно",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "",
         "Attention ce plugin ne semble pas être compatible avec votre système": "",
         "Description": "Описание",
         "Documentation": "документация",
@@ -3863,7 +3858,7 @@
         " sur : ": "",
         " car il est désactivé": "",
         "Lancement du scénario : ": "Запуск сценария:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "",
         "Exécution du scénario ": "Выполнение сценария",
         " déclenché par : ": "инициирован:",
         "Fin correcte du scénario": "Правильное окончание сценария",

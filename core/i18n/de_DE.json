@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Fehler in der Plugin-Funktion mobileManifest:"
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
     },
@@ -66,9 +63,6 @@
         "Historique": "Chronik",
         "Préviens moi": "Lassen Sie mich wissen",
         "Me prévenir si": "Warne mich, wenn",
-        "Mise à jour de l\\'application en cours": "Anwendungsaktualisierung läuft",
-        "Erreur lors de la mise à jour": "Fehler beim Aktualisieren",
-        "Nouvelle tentative dans 5s": "Wiederholen Sie den Vorgang in 5 Sekunden",
         "Synthèse": "Synthese",
         "Accueil": "Mein Haus"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Ohne",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Historique calculé": "Berechnete Historie",
-        "Sélectionner la commande": "Befehl auswählen",
-        "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
-        "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
-        "Historique": "Chronik",
-        "Configuration": "Konfiguration",
-        "Rechercher": "Suchen",
-        "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
-        "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden",
         "Aucun groupement": "Keine Gruppe",
         "Somme par heure": "Mengen pro Stunde",
@@ -2335,7 +2320,16 @@
         "Escalier": "Treppe",
         "Comparer": "Vergleichen Sie",
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
-        "Affichage": "Anzeigen"
+        "Affichage": "Anzeigen",
+        "Historique calculé": "Berechnete Historie",
+        "Sélectionner la commande": "Befehl auswählen",
+        "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
+        "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
+        "Historique": "Chronik",
+        "Configuration": "Konfiguration",
+        "Rechercher": "Suchen",
+        "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
+        "Exporter cet historique.": "Exportieren Sie diesen Verlauf"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",
@@ -3584,6 +3578,7 @@
         "Supprimer": "Löschen",
         "Gratuit": "Kostenlos",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Bitte beachten Sie, dass dieses Plugin kein offizielles Plugin ist, wenn Probleme damit (direkt oder indirekt) auftreten. Supportanfragen können abgelehnt werden",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Bitte beachten Sie, dass dieses Plugin nur in der Beta-Version verfügbar ist, daher kann es viele Fehler geben und Sie verlieren alle Möglichkeiten, Support (unabhängig vom Plugin) anzufordern, indem Sie es installieren",
         "Attention ce plugin ne semble pas être compatible avec votre système": "Bitte beachten Sie, dass dieses Plugin nicht mit Ihrem System kompatibel zu sein scheint",
         "Description": "Beschreibung",
         "Documentation": "Dokumentation",
@@ -3863,7 +3858,7 @@
         " sur : ": "am:",
         " car il est désactivé": "weil es deaktiviert ist",
         "Lancement du scénario : ": "Start des Szenarios:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "abgebrochen, weil eine Zeittypbedingung verwendet wird und das Systemdatum nicht in Ordnung ist",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "abgebrochen, weil eine Zeitbedingung verwendet wird und das Systemdatum nicht in Ordnung ist (oder wir uns in einer negativen Zeitänderung befinden)",
         "Exécution du scénario ": "Szenario Ausführung",
         " déclenché par : ": "ausgelöst durch:",
         "Fin correcte du scénario": "Richtiges Ende des Szenarios",

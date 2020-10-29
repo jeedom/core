@@ -61,6 +61,7 @@ function displayTimeline() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
+      if (data.length == 0) return
       data.sort(sortByDateConsistentASC)
       data = data.reverse()
       var dataLength = data.length

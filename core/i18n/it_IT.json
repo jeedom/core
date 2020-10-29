@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Errore nella funzione plug-in mobileManifest:"
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato"
     },
@@ -66,9 +63,6 @@
         "Historique": "Storico",
         "Préviens moi": "Mi avvisate",
         "Me prévenir si": "Avvisami se",
-        "Mise à jour de l\\'application en cours": "",
-        "Erreur lors de la mise à jour": "Errore aggiornamento",
-        "Nouvelle tentative dans 5s": "Riprovare in 5 secondi",
         "Synthèse": "Sintesi",
         "Accueil": "Principale"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Nessuno",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Historique calculé": "Storia calcolato",
-        "Sélectionner la commande": "Seleziona comando",
-        "Afficher le graphique calculé": "Mostra grafico calcolato",
-        "Configuration des formules de calcul": "Configurazione di formule",
-        "Historique": "Storico",
-        "Configuration": "Configurazione",
-        "Rechercher": "Cerca",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attenzione: troppo grande intervallo di date potrebbe richiedere molto tempo per essere calcolato o non appare nemmeno",
         "Aucun groupement": "Nessun gruppo",
         "Somme par heure": "Somma all'ora",
@@ -2335,7 +2320,16 @@
         "Escalier": "Passi",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Mostra"
+        "Affichage": "Mostra",
+        "Historique calculé": "Storia calcolato",
+        "Sélectionner la commande": "Seleziona comando",
+        "Afficher le graphique calculé": "Mostra grafico calcolato",
+        "Configuration des formules de calcul": "Configurazione di formule",
+        "Historique": "Storico",
+        "Configuration": "Configurazione",
+        "Rechercher": "Cerca",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Valore [ 'name']",
@@ -3584,6 +3578,7 @@
         "Supprimer": "Rimuovere",
         "Gratuit": "Gratis",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Nota che questo plugin non è un plugin ufficiale in caso di problemi (diretti o indiretti), qualsiasi richiesta di supporto può essere rifiutata",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "",
         "Attention ce plugin ne semble pas être compatible avec votre système": "Nota che questo plugin non sembra essere compatibile con il tuo sistema",
         "Description": "Descrizione",
         "Documentation": "Documentazione",
@@ -3863,7 +3858,7 @@
         " sur : ": "on:",
         " car il est désactivé": "perché è disabilitato",
         "Lancement du scénario : ": "Lancio dello scenario:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "annullato perché utilizza una condizione del tipo di ora e la data del sistema non è OK",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "",
         "Exécution du scénario ": "Esecuzione della scena",
         " déclenché par : ": "innescato da:",
         "Fin correcte du scénario": "Finale corretto della scena",

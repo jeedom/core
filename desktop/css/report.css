@@ -238,6 +238,7 @@ legend {
 
 .reportModeVisible {
   color: white;
+  display: initial !important;
 }
 
 .timeCmd.label {
@@ -530,6 +531,10 @@ div[class*="DisplayCard"] .name > .label {
   color: rgb(254, 254, 254);
   font-size: 14px !important;
 }
+.eqLogic.eqLogic-widget .widget-name span.reportModeVisible {
+  font-size: 16px !important;
+}
+
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
@@ -677,8 +682,11 @@ pre {
   background: rgb(247, 248, 248);
 }
 
+.div_rowZones {
+  background-color: rgb(252, 252, 254) !important;
+}
 .div_viewZone{
-  background-color: rgba(249, 249, 250, 1) !important;
+  background-color: rgb(232, 232, 234) !important;
 }
 
 .view-link-widget,
@@ -688,7 +696,10 @@ pre {
   display: inline-block;
   vertical-align: top;
 }
-
+.div_backgroundPlan .text-widget {
+  background-color: rgb(252, 252, 254) !important;
+  color: rgb(115, 115, 115) !important;
+}
 
 /* context menus */
 .context-menu-layer {
@@ -1682,6 +1693,10 @@ hr {
   opacity: 0.45 !important;
 }
 
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
+  background-color: transparent !important;
+}
+
 
 
 
@@ -2314,9 +2329,6 @@ div.cmd-widget[data-subtype="select"]::after {
   font-size: 14px;
   top: 5px!important;
   right: 5px;
-}
-div.eqLogic_layout_table table.tableCmd {
-  min-width: 100%;
 }
 div.eqLogic_layout_table table.tableCmd td {
   vertical-align: top;

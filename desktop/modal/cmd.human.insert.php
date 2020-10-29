@@ -33,9 +33,12 @@ if (!isConnect()) {
         <select class='form-control'>
           <option value="-1">{{Aucun}}</option>
           <?php
-          foreach ((jeeObject::all()) as $object) {
-            echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
+          $options = '';
+          foreach ((jeeObject::buildTree(null, false)) as $object) {
+            $decay = $object->getConfiguration('parentNumber');
+            $options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
           }
+          echo $options;
           ?>
         </select>
       </td>
@@ -80,7 +83,7 @@ mod_insertCmd.setOptions = function(_options) {
 }
 
 mod_insertCmd.getValue = function() {
-  var object_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_object select option:selected').html()
+  var object_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_object select option:selected').html().replace(/&nbsp;/g, '')
   var equipement_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_eqLogic select option:selected').html()
   var cmd_name = $('#table_mod_insertCmdValue_valueEqLogicToMessage tbody tr:first .mod_insertCmdValue_cmd select option:selected').html()
   if (cmd_name == undefined) {

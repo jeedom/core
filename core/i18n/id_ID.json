@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": ""
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah"
     },
@@ -66,9 +63,6 @@
         "Historique": "Historis",
         "Préviens moi": "Memperingatkan saya",
         "Me prévenir si": "Beritahu saya jika",
-        "Mise à jour de l\\'application en cours": "",
-        "Erreur lors de la mise à jour": "Memperbarui kesalahan",
-        "Nouvelle tentative dans 5s": "Coba lagi dalam 5 detik",
         "Synthèse": "",
         "Accueil": "Rumah"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Historique calculé": "Sejarah dihitung",
-        "Sélectionner la commande": "Pilih perintah",
-        "Afficher le graphique calculé": "",
-        "Configuration des formules de calcul": "Konfigurasi rumus",
-        "Historique": "Historis",
-        "Configuration": "Konfigurasi",
-        "Rechercher": "Mencari",
-        "Supprimer tout ou partie de cet historique.": "",
-        "Exporter cet historique.": "",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Peringatan: terlalu besar rentang tanggal mungkin memakan waktu lama untuk dihitung atau bahkan tidak muncul",
         "Aucun groupement": "Tidak ada kelompok",
         "Somme par heure": "Sum per jam",
@@ -2335,7 +2320,16 @@
         "Escalier": "Tangga",
         "Comparer": "",
         "Vide l'affichage des courbes sur la zone.": "",
-        "Affichage": "Melihat"
+        "Affichage": "Melihat",
+        "Historique calculé": "Sejarah dihitung",
+        "Sélectionner la commande": "Pilih perintah",
+        "Afficher le graphique calculé": "",
+        "Configuration des formules de calcul": "Konfigurasi rumus",
+        "Historique": "Historis",
+        "Configuration": "Konfigurasi",
+        "Rechercher": "Mencari",
+        "Supprimer tout ou partie de cet historique.": "",
+        "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
         "$value['name']": "",
@@ -3584,6 +3578,7 @@
         "Supprimer": "Menghapus",
         "Gratuit": "Gratis",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "",
         "Attention ce plugin ne semble pas être compatible avec votre système": "",
         "Description": "Deskripsi",
         "Documentation": "Dokumentasi",
@@ -3863,7 +3858,7 @@
         " sur : ": "",
         " car il est désactivé": "",
         "Lancement du scénario : ": "Peluncuran skenario",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "",
         "Exécution du scénario ": "Menjalankan skenario",
         " déclenché par : ": "dibesarkan oleh:",
         "Fin correcte du scénario": "Akhir yang benar dari skenario",

@@ -173,7 +173,12 @@ class scenarioExpression {
 	public static function getDatesFromPeriod($_period = '1 hour') {
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
-		$_startTime = date('Y-m-d H:i:s', strtotime('-' . $_period));
+
+		if (ctype_digit($_period[0])) {
+			$_startTime = date('Y-m-d H:i:s', strtotime('-'.$_period));
+		} else {
+			$_startTime = date('Y-m-d H:i:s', strtotime($_period));
+		}
 		$_endTime = date('Y-m-d H:i:s');
 
 		if ($_period == 'today') {
@@ -610,7 +615,7 @@ class scenarioExpression {
 		return history::stateChanges($cmd_id, $_value, $_startTime, $_endTime);
 	}
 
-	public static function duration($_cmd_id, $_value, $_period = '1 hour', $_unit = 60,$_operator = '=') {
+	public static function duration($_cmd_id, $_value, $_period = '1 hour', $_unit = 60, $_operator = '=') {
 		$cmd_id = str_replace('#', '', $_cmd_id);
 		if (!is_numeric($cmd_id)) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));

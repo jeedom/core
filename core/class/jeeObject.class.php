@@ -684,6 +684,9 @@ class jeeObject {
 	public function cleanSummary(){
 		$def = config::byKey('object:summary');
 		$summaries = $this->getConfiguration('summary');
+		if(!is_array($summaries) || count($summaries) == 0){
+			return;
+		}
 		foreach ($summaries as $key => $value) {
 			if(!isset($def[$key])){
 				unset($summaries[$key]);

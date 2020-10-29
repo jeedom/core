@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Error on the plugin mobileManifest function:"
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access"
     },
@@ -66,9 +63,6 @@
         "Historique": "History",
         "Préviens moi": "Notify me",
         "Me prévenir si": "Notify me if",
-        "Mise à jour de l\\'application en cours": "Application update in progress",
-        "Erreur lors de la mise à jour": "Error while updating",
-        "Nouvelle tentative dans 5s": "Retry in 5s",
         "Synthèse": "Synthesis",
         "Accueil": "Home"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Historique calculé": "Calculated history",
-        "Sélectionner la commande": "Select command",
-        "Afficher le graphique calculé": "Show calculated graph",
-        "Configuration des formules de calcul": "Configuration of calculation formulas",
-        "Historique": "History",
-        "Configuration": "Configuration",
-        "Rechercher": "Search",
-        "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
-        "Exporter cet historique.": "Export this history",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: Too large a date range can take a very long time to calculate or even not display",
         "Aucun groupement": "No group",
         "Somme par heure": "Sum per hour",
@@ -2335,7 +2320,16 @@
         "Escalier": "Steps",
         "Comparer": "Compare",
         "Vide l'affichage des courbes sur la zone.": "Clear the display of curves on the area",
-        "Affichage": "Viewing"
+        "Affichage": "Viewing",
+        "Historique calculé": "Calculated history",
+        "Sélectionner la commande": "Select command",
+        "Afficher le graphique calculé": "Show calculated graph",
+        "Configuration des formules de calcul": "Configuration of calculation formulas",
+        "Historique": "History",
+        "Configuration": "Configuration",
+        "Rechercher": "Search",
+        "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
+        "Exporter cet historique.": "Export this history"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
@@ -3584,6 +3578,7 @@
         "Supprimer": "Delete",
         "Gratuit": "Free",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Please note this plugin is not an official plugin in case of problems with it (direct or indirect) any request for support can be refused",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Please note that this plugin is only available in beta, so it can have many bugs and you will lose all possibility of requesting support (regardless of the plugin) by installing it",
         "Attention ce plugin ne semble pas être compatible avec votre système": "Please note this plugin does not seem to be compatible with your system",
         "Description": "Description",
         "Documentation": "Documentation",
@@ -3863,7 +3858,7 @@
         " sur : ": " on: ",
         " car il est désactivé": "as it is disabled",
         "Lancement du scénario : ": "Start of scenario:",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": "canceled because it uses a time type condition and the system date is not OK",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": "canceled because it uses a time-type condition and the system date is not OK (or that we are in negative time change)",
         "Exécution du scénario ": "Execution of the scenario",
         " déclenché par : ": "triggered by:",
         "Fin correcte du scénario": "Correct end of scenario",

@@ -1770,6 +1770,10 @@ Theme Core 2021 @Jeedom
     background: rgba(var(--panel-bg-color), var(--opacity));
   }
 
+  body[data-page="history"] #div_mainContainer {
+    overflow: hidden;
+  }
+
   body[data-page="history"] .label.displayObject {
     margin-top: 2.2px;
   }

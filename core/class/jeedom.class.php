@@ -201,7 +201,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
 			'state' => $state,
-			'result' => ($state) ? __('OK ', __FILE__) . date('Y-m-d H:i:s') . ' (' . $lastKnowDate . ')' : date('Y-m-d H:i:s'),
+			'result' => ($state) ? __('OK ', __FILE__) . date('Y-m-d H:i:s') . ' (' . date('Y-m-d H:i:s',$lastKnowDate) . ' UTC)' : date('Y-m-d H:i:s'),
 			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse, il faut la remettre à zéro', __FILE__),
 			'key' => 'hour'
 		);
@@ -852,10 +852,10 @@ class jeedom {
 		}
 		$cache = cache::byKey('hour');
 		$lastKnowDate = $cache->getValue();
-		if (strtotime($lastKnowDate) > strtotime('now')) {
+		if ($lastKnowDate > strtotime('UTC')) {
 			self::forceSyncHour();
 			sleep(3);
-			if (strtotime($lastKnowDate) > strtotime('now')) {
+			if ($lastKnowDate > strtotime('UTC')) {
 				return false;
 			}
 		}
@@ -1078,7 +1078,7 @@ class jeedom {
 	
 	public static function cronHourly() {
 		try {
-			cache::set('hour', date('Y-m-d H:i:s'));
+			cache::set('hour', strtotime('UTC'));
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {

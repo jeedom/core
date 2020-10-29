@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Erreur sur la fonction mobileManifest du plugin : "
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
@@ -66,9 +63,6 @@
         "Historique": "Historique",
         "Préviens moi": "Préviens moi",
         "Me prévenir si": "Me prévenir si",
-        "Mise à jour de l\\'application en cours": "Mise à jour de l\\'application en cours",
-        "Erreur lors de la mise à jour": "Erreur lors de la mise à jour",
-        "Nouvelle tentative dans 5s": "Nouvelle tentative dans 5s",
         "Synthèse": "Synthèse",
         "Accueil": "Accueil"
     },
@@ -2297,15 +2291,6 @@
     "desktop\/php\/history.php": {
         "Aucun": "Aucun",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Historique calculé": "Historique calculé",
-        "Sélectionner la commande": "Sélectionner la commande",
-        "Afficher le graphique calculé": "Afficher le graphique calculé",
-        "Configuration des formules de calcul": "Configuration des formules de calcul",
-        "Historique": "Historique",
-        "Configuration": "Configuration",
-        "Rechercher": "Rechercher",
-        "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
-        "Exporter cet historique.": "Exporter cet historique.",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.",
         "Aucun groupement": "Aucun groupement",
         "Somme par heure": "Somme par heure",
@@ -2335,7 +2320,16 @@
         "Escalier": "Escalier",
         "Comparer": "Comparer",
         "Vide l'affichage des courbes sur la zone.": "Vide l'affichage des courbes sur la zone.",
-        "Affichage": "Affichage"
+        "Affichage": "Affichage",
+        "Historique calculé": "Historique calculé",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Afficher le graphique calculé": "Afficher le graphique calculé",
+        "Configuration des formules de calcul": "Configuration des formules de calcul",
+        "Historique": "Historique",
+        "Configuration": "Configuration",
+        "Rechercher": "Rechercher",
+        "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique.",
+        "Exporter cet historique.": "Exporter cet historique."
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
@@ -3584,6 +3578,7 @@
         "Supprimer": "Supprimer",
         "Gratuit": "Gratuit",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée",
+        "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant",
         "Attention ce plugin ne semble pas être compatible avec votre système": "Attention ce plugin ne semble pas être compatible avec votre système",
         "Description": "Description",
         "Documentation": "Documentation",
@@ -3863,7 +3858,7 @@
         " sur : ": " sur : ",
         " car il est désactivé": " car il est désactivé",
         "Lancement du scénario : ": "Lancement du scénario : ",
-        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK": " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK",
+        " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)": " annulé car il utilise une condition de type temporelle et que la date système n\\'est pas OK (ou que l\\'on est en changement d\\'heure négatif)",
         "Exécution du scénario ": "Exécution du scénario ",
         " déclenché par : ": " déclenché par : ",
         "Fin correcte du scénario": "Fin correcte du scénario",
