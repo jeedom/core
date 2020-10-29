@@ -197,7 +197,7 @@ $(function(){
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              if (event.ctrlKey || event.originalEvent.which == 2) {
+              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
                 var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
                 if (window.location.hash != '') {
                   url += window.location.hash
@@ -291,7 +291,7 @@ $('.scenarioAttr[data-l2key="timeline::enable"]').off('change').on('change',func
 })
 
 $('.scenarioDisplayCard').off('click').on('click', function(event) {
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
     window.open(url).focus()
   } else {
@@ -408,7 +408,7 @@ function checkNoMode() {
 
 $('.scenario_link').off('click','.scenario_link').on('click','.scenario_link',function(event) {
   $.hideAlert()
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=scenario&id='+$(this).attr('data-scenario_id')
     window.open(url).focus()
   } else {
@@ -626,7 +626,7 @@ $("#bt_runScenario").off('click').on('click', function(event) {
   $.hideAlert()
   var scenario_id = $('.scenarioAttr[data-l1key=id]').value()
   var logmode = $('button[data-l2key="logmode"]').attr('value')
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     saveScenario(function() {
       jeedom.scenario.changeState({
         id: scenario_id,
@@ -725,7 +725,7 @@ $divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable
 
 $divScenario.on('click', '.bt_removeElement', function(event) {
   var button = $(this)
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     if (button.closest('.expression').length != 0) {
       setUndoStack()
       button.closest('.expression').remove()
@@ -774,7 +774,7 @@ $divScenario.on('click', '.bt_showElse', function(event) {
 
 $divScenario.on('click', '.bt_collapse', function(event) {
   var changeThis = $(this)
-  if (event.ctrlKey) changeThis = $('.element').find('.bt_collapse')
+  if (event.ctrlKey || event.metaKey) changeThis = $('.element').find('.bt_collapse')
   if ($(this).children('i').hasClass('fa-eye')) {
     // -> Collapse!
     changeThis.children('i').removeClass('fa-eye').addClass('fa-eye-slash')
@@ -1033,7 +1033,7 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
   localStorage.removeItem('jeedomScCopy')
   localStorage.setItem('jeedomScCopy', $(SC_CLIPBOARD)[0].outerHTML)
 
-  if(event.ctrlKey) {
+  if(event.ctrlKey || event.metaKey) {
     setUndoStack()
     clickedBloc.remove()
   }
@@ -1077,7 +1077,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
     }
   }
 
-  if(event.ctrlKey) {
+  if(event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
   updateSortable()

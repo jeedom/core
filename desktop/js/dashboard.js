@@ -221,7 +221,7 @@ function filterByCategory() {
 //Overview preview click or center-click
 $('.objectPreview, .objectPreview .name').off('click').on('click', function (event) {
   var url = 'index.php?v=d&p=dashboard&object_id='+$(this).closest('.objectPreview').attr('data-object_id')+'&childs=0'+'&btover=1'
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
     loadPage(url)

@@ -94,8 +94,8 @@ $(function() {
           zIndex: 9999,
           className: 'object-context-menu',
           callback: function(key, options, event) {
-            if (event.ctrlKey || event.originalEvent.which == 2) {
-              url = 'index.php?v=d&p=object&id=' + options.commands[key].id
+            if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+              var url = 'index.php?v=d&p=object&id=' + options.commands[key].id
               if (window.location.hash != '') {
                 url += window.location.hash
               }
@@ -138,7 +138,7 @@ $('#bt_returnToThumbnailDisplay').on('click',function() {
 })
 
 $(".objectDisplayCard").off('click').on('click', function(event) {
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=object&id='+$(this).attr('data-object_id')
     window.open(url).focus()
   } else {

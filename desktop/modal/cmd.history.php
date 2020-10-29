@@ -109,7 +109,7 @@ function setModal() {
     });
 
     $('.highcharts-legend-item').on('click',function(event) {
-      if (!event.ctrlKey && !event.altKey) return
+      if (!event.ctrlKey && !event.metaKey && !event.altKey) return
       event.stopImmediatePropagation()
       var chart = $('#div_graph').highcharts()
       if (!chart) return

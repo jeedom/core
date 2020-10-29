@@ -616,7 +616,7 @@ $pageContainer.off('click','.eqLogic-widget .history').on('click','.eqLogic-widg
   if (planEditOption.state == true) return false
   event.stopImmediatePropagation()
   event.stopPropagation()
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var cmdIds = []
     $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
       cmdIds.push($(this).data('cmd_id'))

@@ -141,8 +141,8 @@ $(function() {
             zIndex: 9999,
             className: 'interact-context-menu',
             callback: function(key, options, event) {
-              if (event.ctrlKey || event.originalEvent.which == 2) {
-                url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
+              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
                 if (window.location.hash != '') {
                   url += window.location.hash
                 }
@@ -191,7 +191,7 @@ $('#bt_interactThumbnailDisplay').on('click', function() {
 })
 
 $('.interactDisplayCard').off('click').on('click', function(event) {
-  if (event.ctrlKey) {
+  if (event.ctrlKey || event.metaKey) {
     var url = '/index.php?v=d&p=interact&id='+$(this).attr('data-interact_id')
     window.open(url).focus()
   } else {

@@ -230,7 +230,7 @@ jeedomUI.setHistoryModalHandler = function() {
     if (isEditing) return false
     event.stopImmediatePropagation()
     event.stopPropagation()
-    if (event.ctrlKey && $(this).closest('div.eqLogic.eqLogic-widget').html() != undefined) {
+    if ((event.ctrlKey || event.metaKey) && $(this).closest('div.eqLogic.eqLogic-widget').html() != undefined) {
       var cmdIds = []
       $(this).closest('div.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
         cmdIds.push($(this).data('cmd_id'))

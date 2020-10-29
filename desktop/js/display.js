@@ -99,13 +99,13 @@ $('#bt_resetdisplaySearch').on('click', function() {
 })
 $('#bt_openAll').off('click').on('click', function(event) {
   $(".accordion-toggle[aria-expanded='false']").click()
-  if(event.ctrlKey) {
+  if(event.ctrlKey || event.metaKey) {
     $('.cmdSortable').show()
   }
 })
 $('#bt_closeAll').off('click').on('click', function(event) {
   $(".accordion-toggle[aria-expanded='true']").click()
-  if(event.ctrlKey) {
+  if(event.ctrlKey || event.metaKey) {
     $('.cmdSortable').hide()
   }
 })
