@@ -226,7 +226,7 @@ jeedomUI.setEqSignals = function() {
 Handle history modal openning on infos
 */
 jeedomUI.setHistoryModalHandler = function() {
-  $('#div_pageContainer').off('click', '.cmd-widget.history, .timeCmd.history').on('click', '.cmd-widget.history, .timeCmd.history', function (event) {
+  $('#div_pageContainer').off('click', '.history, .timeCmd.history').on('click', '.history, .timeCmd.history', function (event) {
     if (isEditing) return false
     event.stopImmediatePropagation()
     event.stopPropagation()
