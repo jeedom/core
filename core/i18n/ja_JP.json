@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "プラグインmobileManifest関数のエラー："
-    },
     "index.php": {
         "401 - Accès non autorisé": "401-不正アクセス"
     },
@@ -66,9 +63,6 @@
         "Historique": "歴史的",
         "Préviens moi": "私に警告",
         "Me prévenir si": "なら、私に通知",
-        "Mise à jour de l\\'application en cours": "",
-        "Erreur lors de la mise à jour": "更新エラー",
-        "Nouvelle tentative dans 5s": "5秒で再試行",
         "Synthèse": "合成",
         "Accueil": "家庭"
     },

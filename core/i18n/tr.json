@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Mobil eklenti eklentisinde hata:"
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
     },
@@ -66,9 +63,6 @@
         "Historique": "Geçmiş",
         "Préviens moi": "Beni uyar",
         "Me prévenir si": "Eğer bana bildir",
-        "Mise à jour de l\\'application en cours": "",
-        "Erreur lors de la mise à jour": "Güncellenirken hata",
-        "Nouvelle tentative dans 5s": "5 saniye sonra yeniden dene",
         "Synthèse": "Sentez",
         "Accueil": "Ana sayfa"
     },

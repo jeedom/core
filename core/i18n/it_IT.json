@@ -1,7 +1,4 @@
 {
-    "mobile.manifest.php": {
-        "Erreur sur la fonction mobileManifest du plugin : ": "Errore nella funzione plug-in mobileManifest:"
-    },
     "index.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato"
     },
@@ -66,9 +63,6 @@
         "Historique": "Storico",
         "Préviens moi": "Mi avvisate",
         "Me prévenir si": "Avvisami se",
-        "Mise à jour de l\\'application en cours": "",
-        "Erreur lors de la mise à jour": "Errore aggiornamento",
-        "Nouvelle tentative dans 5s": "Riprovare in 5 secondi",
         "Synthèse": "Sintesi",
         "Accueil": "Principale"
     },

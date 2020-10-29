@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="mobile.manifest.php">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
@@ -56,7 +56,7 @@
   <div data-role="page" id="pagecontainer">
     <div id="bottompanel" data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" data-animate="true" data-position='bottom' data-display="overlay"></div>
     <div id="div_popup" data-role="popup" class="ui-corner-all"></div>
-
+    
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
       <a id="homeLogoLink" class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></i></a>
       <h1>
@@ -65,18 +65,18 @@
       <div id="summaryglobalContainer">
         <span class="objectSummaryglobal" data-version="mobile"></span>
       </div>
-
+      
       <a href="#bottompanel" id="bt_bottompanel"><i class="fas fa-bars"></i></a>
-
+      
       <div id="searchContainer" style="display:none;">
         <input class="form-control roundedLeft" id="in_searchDashboard" placeholder="{{Rechercher}}" autocomplete="off">
         <a id="bt_eraseSearchInput" class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight">
           <i class="fas fa-times"></i>
         </a>
       </div>
-
+      
     </div>
-
+    
     <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
     <div data-role="popup" id="popupDialog" style="width : 100%">
       <div data-role="header">
