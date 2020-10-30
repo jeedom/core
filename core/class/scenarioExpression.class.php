@@ -174,7 +174,7 @@ class scenarioExpression {
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
 
-		if (ctype_digit($_period[0])) {
+		if (ctype_digit($_period[0]) && !stristr($_period, "ago")) {
 			$_startTime = date('Y-m-d H:i:s', strtotime('-'.$_period));
 		} else {
 			$_startTime = date('Y-m-d H:i:s', strtotime($_period));
