@@ -93,8 +93,8 @@ $( document ).ready(function() {
 	$('#div_treeFolder ul li a:not(:first)').css('margin-left', '15px');
 
 	$('#div_imageGallery').on('click', '.divIconSel', function() {
-		$('.divIconSel').removeClass('iconSelected');
-		$(this).closest('.divIconSel').addClass('iconSelected');
+		$('.divIconSel').removeClass('iconSelected').find('.iconSel').css('outline','none');
+		$(this).closest('.divIconSel').addClass('iconSelected').find('.iconSel').css('outline','solid 1px #94CA02');
 	})
 
 	$('#div_imageGallery').on('dblclick', '.divIconSel', function() {
