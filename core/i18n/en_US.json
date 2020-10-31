@@ -55,8 +55,7 @@
     },
     "mobile\/js\/equipment.js": {
         "Tout": "All",
-        "Synthèse": "Synthesis",
-        "Aperçu": "Overview"
+        "Synthèse": "Synthesis"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Summary",
