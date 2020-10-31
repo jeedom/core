@@ -714,7 +714,7 @@ jeedom.version = function(_params) {
 };
 
 jeedom.removeImageIcon = function(_params) {
-  var paramsRequired = ['filename'];
+  var paramsRequired = ['filepath'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -727,7 +727,7 @@ jeedom.removeImageIcon = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'removeImageIcon',
-    filename : _params.filename
+    filepath : _params.filepath
   };
   $.ajax(paramsAJAX);
 };
