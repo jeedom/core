@@ -19,6 +19,7 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $rootPath = __DIR__ . '/../../data/img/';
+
 sendVarToJS([
 	'tabimg' => init('tabimg'),
 	'selectIcon' => init('selectIcon', 0),
@@ -53,7 +54,7 @@ sendVarToJS([
 	</div>
 
 	<?php if(init('tabimg') == 1 || init('showimg') == 1){ ?>
-		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
+		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px);">
 			<span class="btn btn-default btn-file pull-right">
 				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageIcon" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
 			</span>
@@ -103,6 +104,10 @@ $( document ).ready(function() {
 		$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
 	})
 
+	$('a[href="#tabicon"]').on('click', function () {
+		$.hideAlert();
+	})
+
 });
 
 	$('#bt_uploadImageIcon').fileupload({
@@ -122,7 +127,7 @@ $( document ).ready(function() {
 	});
 
 	$('#div_imageGallery').off('click').on('click', '.bt_removeImgIcon',function() {
-		$.hideAlert()
+		$.hideAlert();
 		var filepath = $(this).attr('data-realfilepath');
 		bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filepath + '</span> ?', function(result) {
 			if (result) {
@@ -155,9 +160,9 @@ $( document ).ready(function() {
 	      $('#div_imageGallery').empty();
 	      var div = '';
 	      for (var i in data) {
-					div += '<div class="divIconSel divImgSel" style="height:140px;min-width:120px;display:flex;flex-direction:column;align-items:center">';
+					div += '<div class="divIconSel divImgSel" style="height:140px;min-width:120px;display:flex;flex-direction:column;align-items:center;">';
 					div += '<div class="cursor iconSel" style="width:80px;height:80px;"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
-					div += '<center>'+data[i].substr(0,12)+'</center>';
+					div += '<div class="iconDesc" style="font-size: 0.8em;">'+data[i].substr(0,15)+'</div>';
 					div += '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 					div += '</div>';
 	      }
