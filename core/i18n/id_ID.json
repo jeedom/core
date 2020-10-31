@@ -444,7 +444,6 @@
         "Objet": "Item",
         "Equipement": "Peralatan",
         "Commande": "Pesanan",
-        "Aucun": "Tak ada",
         "Commande info": "",
         "Commande action": ""
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "",
         "Nom de l'objet": "Nama obyek",
         "Objet parent": "Objek induk",
-        "Aucun": "Tak ada",
         "Visible": "Terlihat",
         "Rendre cet objet visible ou non.": "",
         "Masquer sur le Dashboard": "Menyembunyikan dashboard",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Di ringkasan keseluruhan",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "",
         "Tous": "Semua",
+        "Aucun": "Tak ada",
         "Masquer en desktop": "Sembunyikan di desktop yang",
         "Masquer en mobile": "Sembunyikan seluler",
         "Commandes des résumés": "",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": ""
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Tak ada",
         "Le plugin virtuel doit être installé": "",
         "Le plugin virtuel doit être actif": "",
         "Résumé Global": "",

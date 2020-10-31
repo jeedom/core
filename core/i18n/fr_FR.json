@@ -444,7 +444,6 @@
         "Objet": "Objet",
         "Equipement": "Equipement",
         "Commande": "Commande",
-        "Aucun": "Aucun",
         "Commande info": "Commande info",
         "Commande action": "Commande action"
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "Résumé par équipements",
         "Nom de l'objet": "Nom de l'objet",
         "Objet parent": "Objet parent",
-        "Aucun": "Aucun",
         "Visible": "Visible",
         "Rendre cet objet visible ou non.": "Rendre cet objet visible ou non.",
         "Masquer sur le Dashboard": "Masquer sur le Dashboard",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Remonter dans le résumé global",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.",
         "Tous": "Tous",
+        "Aucun": "Aucun",
         "Masquer en desktop": "Masquer en desktop",
         "Masquer en mobile": "Masquer en mobile",
         "Commandes des résumés": "Commandes des résumés",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": "La fonction ne peut pas être vide"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Aucun",
         "Le plugin virtuel doit être installé": "Le plugin virtuel doit être installé",
         "Le plugin virtuel doit être actif": "Le plugin virtuel doit être actif",
         "Résumé Global": "Résumé Global",

@@ -444,7 +444,6 @@
         "Objet": "Объект",
         "Equipement": "Оборудование",
         "Commande": "Команда",
-        "Aucun": "Нет",
         "Commande info": "",
         "Commande action": ""
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "",
         "Nom de l'objet": "Имя объекта",
         "Objet parent": "Родительский объект",
-        "Aucun": "Нет",
         "Visible": "Видимый",
         "Rendre cet objet visible ou non.": "",
         "Masquer sur le Dashboard": "Скрыть панель",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Up в общем резюме",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "",
         "Tous": "все",
+        "Aucun": "Нет",
         "Masquer en desktop": "Скрыть в рабочем столе",
         "Masquer en mobile": "Скрыть мобильный",
         "Commandes des résumés": "",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": ""
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Нет",
         "Le plugin virtuel doit être installé": "",
         "Le plugin virtuel doit être actif": "",
         "Résumé Global": "",

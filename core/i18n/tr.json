@@ -444,7 +444,6 @@
         "Objet": "Konu",
         "Equipement": "Cihaz",
         "Commande": "Komuta",
-        "Aucun": "Hiçbir",
         "Commande info": "",
         "Commande action": ""
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "",
         "Nom de l'objet": "Nesne ismi",
         "Objet parent": "Üst nesne",
-        "Aucun": "Hiçbir",
         "Visible": "Görülebilir",
         "Rendre cet objet visible ou non.": "",
         "Masquer sur le Dashboard": "Dashboard Hide",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Genel özete geri çıkart",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "",
         "Tous": "Hepsi",
+        "Aucun": "Hiçbir",
         "Masquer en desktop": "Masaüstünde gizle",
         "Masquer en mobile": "Mobilde gizle",
         "Commandes des résumés": "",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": "İşlev boş olamaz"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Hiçbir",
         "Le plugin virtuel doit être installé": "Sanal eklenti kurulmalıdır",
         "Le plugin virtuel doit être actif": "Sanal eklenti etkin olmalı",
         "Résumé Global": "Global Özet",

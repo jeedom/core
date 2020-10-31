@@ -444,7 +444,6 @@
         "Objet": "Objeto",
         "Equipement": "Equipamento",
         "Commande": "Ordem",
-        "Aucun": "Nemhum",
         "Commande info": "Comando Info",
         "Commande action": "Comando de ação"
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "Resumo por equipamento",
         "Nom de l'objet": "Nome do objeto",
         "Objet parent": "Objeto pai",
-        "Aucun": "Nemhum",
         "Visible": "Visivél",
         "Rendre cet objet visible ou non.": "Torne este objeto visível ou não",
         "Masquer sur le Dashboard": "Esconder o painel de instrumentos",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "-Se no resumo geral",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Ative os resumos que serão levados em consideração para o resumo global, exibido à direita na barra de menus",
         "Tous": "Tudo",
+        "Aucun": "Nemhum",
         "Masquer en desktop": "Esconder no ambiente de trabalho",
         "Masquer en mobile": "Esconder móvel",
         "Commandes des résumés": "Ordens de resumo",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": "A função não pode estar vazia"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Nemhum",
         "Le plugin virtuel doit être installé": "O plug-in virtual deve estar instalado",
         "Le plugin virtuel doit être actif": "O plug-in virtual deve estar ativo",
         "Résumé Global": "Resumo Global",

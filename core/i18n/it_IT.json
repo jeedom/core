@@ -444,7 +444,6 @@
         "Objet": "Oggetto",
         "Equipement": "Dispositivo",
         "Commande": "Comando",
-        "Aucun": "Nessuno",
         "Commande info": "",
         "Commande action": ""
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "",
         "Nom de l'objet": "Nome oggetto",
         "Objet parent": "Oggetto padre",
-        "Aucun": "Nessuno",
         "Visible": "Visibile",
         "Rendre cet objet visible ou non.": "Rendi questo oggetto visibile o meno",
         "Masquer sur le Dashboard": "Nascondi nella Dashboard",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Up in the riepilogo generale",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Attiva i riepiloghi che verranno presi in considerazione per il riepilogo globale, visualizzati a destra nella barra dei menu",
         "Tous": "Tutti",
+        "Aucun": "Nessuno",
         "Masquer en desktop": "Hide in Desktop",
         "Masquer en mobile": "Nascondi mobili",
         "Commandes des résumés": "Ordini di riepilogo",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": "La funzione non può essere vuota"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Nessuno",
         "Le plugin virtuel doit être installé": "Il plugin virtuale deve essere installato",
         "Le plugin virtuel doit être actif": "Il plugin virtuale deve essere attivo",
         "Résumé Global": "Riepilogo globale",

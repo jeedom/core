@@ -444,7 +444,6 @@
         "Objet": "Objeto",
         "Equipement": "Dispositivo",
         "Commande": "Comando",
-        "Aucun": "Ninguno",
         "Commande info": "Comando de información",
         "Commande action": "Comando de acción"
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "Resumen por equipos",
         "Nom de l'objet": "Nombre del objeto",
         "Objet parent": "Objeto padre",
-        "Aucun": "Ninguno",
         "Visible": "Visible",
         "Rendre cet objet visible ou non.": "Haga este objeto visible o no",
         "Masquer sur le Dashboard": "Ocultar en el tablero",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Exportar al Resumen general",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Active los resúmenes que se tendrán en cuenta para el resumen global, que se muestra a la derecha en la barra de menú",
         "Tous": "Todos",
+        "Aucun": "Ninguno",
         "Masquer en desktop": "Ocultar en escritorio",
         "Masquer en mobile": "Ocultar en el móvil",
         "Commandes des résumés": "Resumen de pedidos",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": "La función no puede estar vacía"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Ninguna",
         "Le plugin virtuel doit être installé": "El complemento virtual debe estar instalado",
         "Le plugin virtuel doit être actif": "El complemento virtual debe estar activo",
         "Résumé Global": "Resumen global",

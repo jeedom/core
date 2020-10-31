@@ -444,7 +444,6 @@
         "Objet": "オブジェクト",
         "Equipement": "設備",
         "Commande": "オーダー",
-        "Aucun": "何でもありません",
         "Commande info": "",
         "Commande action": ""
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "",
         "Nom de l'objet": "オブジェクト名",
         "Objet parent": "親オブジェクト",
-        "Aucun": "何でもありません",
         "Visible": "目に見えます",
         "Rendre cet objet visible ou non.": "このオブジェクトを表示するかどうか。",
         "Masquer sur le Dashboard": "ダッシュボードで非表示",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "全体の要約でアップ",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "メニューバーの右側に表示されるグローバルサマリーに考慮されるサマリーをアクティブにします。",
         "Tous": "全て",
+        "Aucun": "何でもありません",
         "Masquer en desktop": "デスクトップに隠します",
         "Masquer en mobile": "隠すモバイル",
         "Commandes des résumés": "要約注文",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": ""
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "何でもありません",
         "Le plugin virtuel doit être installé": "",
         "Le plugin virtuel doit être actif": "",
         "Résumé Global": "",

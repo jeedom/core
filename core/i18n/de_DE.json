@@ -444,7 +444,6 @@
         "Objet": "Objekt",
         "Equipement": "Gerät",
         "Commande": "Befehl",
-        "Aucun": "Ohne",
         "Commande info": "Info Befehl",
         "Commande action": "Aktionsbefehl"
     },
@@ -2231,7 +2230,6 @@
         "Résumé par équipements": "Zusammenfassung nach Ausrüstung",
         "Nom de l'objet": "Objektname",
         "Objet parent": "Übergeordnetes Objekt",
-        "Aucun": "Ohne",
         "Visible": "Sichtbar",
         "Rendre cet objet visible ou non.": "Machen Sie dieses Objekt sichtbar oder nicht",
         "Masquer sur le Dashboard": "Im Dashboard ausblenden",
@@ -2257,6 +2255,7 @@
         "Remonter dans le résumé global": "Bis in der Gesamtübersicht",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Aktivieren Sie die Zusammenfassungen, die für die globale Zusammenfassung berücksichtigt werden, die rechts in der Menüleiste angezeigt wird",
         "Tous": "Alle",
+        "Aucun": "Ohne",
         "Masquer en desktop": "Desktop verstecken",
         "Masquer en mobile": "Mobil verstecken",
         "Commandes des résumés": "Zusammenfassende Bestellungen",
@@ -4106,6 +4105,7 @@
         "La fonction ne peut pas être vide": "Die Funktion kann nicht leer sein"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "Ohne",
         "Le plugin virtuel doit être installé": "Das virtuelle Plugin muss installiert sein",
         "Le plugin virtuel doit être actif": "Das virtuelle Plugin muss aktiv sein",
         "Résumé Global": "Globale Zusammenfassung",
