@@ -183,7 +183,7 @@ $( document ).ready(function() {
 	      var div = '';
 	      for (var i in data) {
 					div += '<div class="divIconSel divImgSel" style="height:140px;min-width:120px;display:flex;flex-direction:column;align-items:center;">';
-					div += '<div class="cursor iconSel" style="width:80px;height:80px;"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
+					div += '<div class="cursor iconSel" style="width:80px;height:80px;display:flex;justify-content:center;align-items:center;"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
 					div += '<div class="iconDesc" style="font-size: 0.8em;">'+data[i].substr(0,15)+'</div>';
 					div += '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 					div += '</div>';
