@@ -18,7 +18,7 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$rootPath = __DIR__ . '/../../data/img/';
+$rootPath = __DIR__ . '/../../data/';
 
 sendVarToJS([
 	'tabimg' => init('tabimg'),
@@ -63,8 +63,7 @@ sendVarToJS([
  				<div id="div_treeFolder" style="height:100%;min-width:180px;">
 				<ul id="ul_Folder">
 					<?php
-					echo '<li><a data-path="' . $rootPath . '">data/img/</a></li>';
-					foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
+					foreach (ls($rootPath, 'img', false, array('folders')) as $folder) {
 						echo '<li><a data-path="' . $rootPath . $folder . '">' . $folder . '</a></li>';
 					}
 					?>
@@ -85,13 +84,36 @@ $( document ).ready(function() {
 		if (selected.node.a_attr['data-path'] != undefined) {
 	   	var path = selected.node.a_attr['data-path'];
 			printFileFolder(path);
-		}
+    	var ref = $('#div_treeFolder').jstree(true)
+    	var sel = ref.get_selected()[0]
+    	ref.open_node(sel)
+    	var nodesList = ref.get_children_dom(sel)
+    	if (nodesList.length != 0) {
+      	return
+    	}
+    	jeedom.getFileFolder({
+      	type : 'folders',
+      	path : path,
+      	error: function(error) {
+        	$('#div_alert').showAlert({message: error.message, level: 'danger'})
+      	},
+      	success : function(data) {
+        	for (var i in data) {
+          	node = ref.create_node(sel, {"type":"folder","text":data[i],state:{opened:true},a_attr:{'data-path':path+data[i]}})
+          	$('li#'+node+' a').addClass('li_folder')
+        	}
+      	}
+    	})
+  	}
 	})
 
-	$("#div_treeFolder").jstree();
+	$("#div_treeFolder").jstree({
+		"core" : {
+  		"check_callback": true
+		}
+	});
 
 	$('#div_treeFolder ul li a:first').click();
-	$('#div_treeFolder ul li a:not(:first)').css('margin-left', '15px');
 
 	$('#div_imageGallery').on('click', '.divIconSel', function() {
 		$('.divIconSel').removeClass('iconSelected').find('.iconSel').css('outline','none');
