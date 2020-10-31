@@ -18,6 +18,7 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$rootPath = __DIR__ . '/../../data/img/';
 sendVarToJS([
 	'tabimg' => init('tabimg'),
 	'selectIcon' => init('selectIcon', 0),
@@ -28,12 +29,12 @@ sendVarToJS([
 <div style="display: none;" id="div_iconSelectorAlert"></div>
 <ul class="nav nav-tabs" role="tablist">
 	<li role="presentation" class="active"><a href="#tabicon" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icône}}</a></li>
-	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
-		<li role="presentation" ><a href="#tabimg" aria-controls="home" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Image}}</a></li>
+	<?php if(init('tabimg') == 1 || init('showimg') == 1){ ?>
+		<li role="presentation"><a href="#tabimg" aria-controls="home" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Image}}</a></li>
 	<?php } ?>
 </ul>
 
-<div class="tab-content" style="height:calc(100% - 20px)!important;overflow-y:scroll;">
+<div class="tab-content" style="overflow-y:scroll;">
 	<div id="mySearch" class="input-group" style="margin-left:6px;margin-top:6px">
 		<div class="input-group-btn">
 			<select class="form-control roundedLeft" style="width : 200px;" id="sel_colorIcon">
@@ -51,60 +52,120 @@ sendVarToJS([
 		</div>
 	</div>
 
-	<?php if(init('imgtab') == 1 || init('showimg') == 1){ ?>
+	<?php if(init('tabimg') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px)">
 			<span class="btn btn-default btn-file pull-right">
-				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImageIcon" type="file" name="file" style="display: inline-block;">
+				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageIcon" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
 			</span>
-			<div class="imgContainer" style="width:calc(100% - 15px);padding-top: 32px;">
-				<div class="row">
+
+			<div class="imgContainer" style="padding-top: 32px;display:flex;">
+ 				<div id="div_treeFolder" style="height:100%;min-width:180px;">
+				<ul id="ul_Folder">
 					<?php
-					$echo = '';
-					$ls = ls(__DIR__.'/../../data/img/','*');
-					foreach ($ls as $file) {
-						$echo .= '<div class="col-lg-2 divIconSel divImgSel">';
-						$echo .= '<span class="iconSel"><img class="img-responsive" src="data/img/'.$file.'" /></span>';
-						$echo .= '<center>'.substr(basename($file),0,12).'</center>';
-						$echo .= '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-filename="'.$file.'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
-						$echo .= '</div>';
+					echo '<li><a data-path="' . $rootPath . '">data/img/</a></li>';
+					foreach (ls($rootPath, '*', false, array('folders')) as $folder) {
+						echo '<li><a data-path="' . $rootPath . $folder . '">' . $folder . '</a></li>';
 					}
-					echo $echo;
 					?>
+				</ul>
+			</div>
+			<div id="div_imageGallery" style="height:100%;margin-left:15px;display:flex;flex-wrap:wrap;">
+
 				</div>
 			</div>
-			<script>
-			$('#bt_uploadImageIcon').fileupload({
-				replaceFileInput: false,
-				url: 'core/ajax/jeedom.ajax.php?action=uploadImageIcon',
-				dataType: 'json',
-				done: function(e, data) {
-					if (data.result.state != 'ok') {
-						$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'})
-						return
-					}
-					$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1')
-				}
-			});
+		</div>
+	<?php }
+		include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+		?>
 
-			$('.bt_removeImgIcon').on('click',function() {
-				var filename = $(this).attr('data-filename')
-				bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filename + '</span> ?', function(result) {
-					if (result) {
-						jeedom.removeImageIcon({
-							filename : filename,
-							error: function(error) {
-								$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'})
-							},
-							success: function(data) {
-								$('#mod_selectIcon').empty().load('index.php?v=d&modal=icon.selector&tabimg=1&showimg=1')
-							}
-						})
+<script>
+$( document ).ready(function() {
+	$('#div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
+		if (selected.node.a_attr['data-path'] != undefined) {
+	   	var path = selected.node.a_attr['data-path'];
+			printFileFolder(path);
+		}
+	})
+
+	$("#div_treeFolder").jstree();
+
+	$('#div_treeFolder ul li a:first').click();
+	$('#div_treeFolder ul li a:not(:first)').css('margin-left', '15px');
+
+	$('#div_imageGallery').on('click', '.divIconSel', function() {
+		$('.divIconSel').removeClass('iconSelected');
+		$(this).closest('.divIconSel').addClass('iconSelected');
+	})
+
+	$('#div_imageGallery').on('dblclick', '.divIconSel', function() {
+		$('.divIconSel').removeClass('iconSelected');
+		$(this).closest('.divIconSel').addClass('iconSelected');
+		$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
+	})
+
+});
+
+	$('#bt_uploadImageIcon').fileupload({
+    add: function (e, data) {
+			let currentPath = $('#bt_uploadImageIcon').attr('data-path');
+			data.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath='+currentPath;
+      data.submit();
+    },
+		done: function(e, data) {
+			if (data.result.state != 'ok') {
+				$('#div_iconSelectorAlert').showAlert({message: data.result.result, level: 'danger'});
+				return;
+			}
+			$('.jstree-clicked').click();
+			$('#div_iconSelectorAlert').showAlert({message: 'Fichier(s) ajouté(s) avec succès', level: 'success'});
+		}
+	});
+
+	$('#div_imageGallery').off('click').on('click', '.bt_removeImgIcon',function() {
+		$.hideAlert()
+		var filepath = $(this).attr('data-realfilepath');
+		bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filepath + '</span> ?', function(result) {
+			if (result) {
+				jeedom.removeImageIcon({
+					filepath : filepath,
+					error: function(error) {
+						$('#div_iconSelectorAlert').showAlert({message: error.message, level: 'danger'});
+					},
+					success: function(data) {
+						$('.jstree-clicked').click();
+						$('#div_iconSelectorAlert').showAlert({message: 'Fichier supprimé avec succès', level: 'success'});
 					}
 				})
-			})
-			</script>
-		</div>
-	<?php } ?>
+			}
+		})
+	});
+
+	function printFileFolder(_path) {
+		$.hideAlert()
+	  CURRENT_FOLDER = _path;
+	  jeedom.getFileFolder({
+	    type : 'files',
+	    path : _path,
+	    error: function(error) {
+	      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+	    },
+	    success : function(data){
+				let realPath = _path.substr(_path.search('data/'));
+				$('#bt_uploadImageIcon').attr('data-path', realPath);
+	      $('#div_imageGallery').empty();
+	      var div = '';
+	      for (var i in data) {
+					div += '<div class="divIconSel divImgSel" style="height:140px;min-width:120px;display:flex;flex-direction:column;align-items:center">';
+					div += '<div class="cursor iconSel" style="width:80px;height:80px;"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
+					div += '<center>'+data[i].substr(0,12)+'</center>';
+					div += '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
+					div += '</div>';
+	      }
+	      $('#div_imageGallery').append(div)
+	    }
+	  })
+	}
+</script>
 
 	<div role="tabpanel" class="tab-pane active" id="tabicon" style="width:calc(100% - 20px)">
 		<?php
@@ -366,17 +427,6 @@ $('#bt_resetSearch').on('click', function() {
 	$('#in_searchIconSelector').val('').keyup()
 })
 
-$('.divIconSel').on('click', function() {
-	$('.divIconSel').removeClass('iconSelected')
-	$(this).closest('.divIconSel').addClass('iconSelected')
-})
-
-$('.divIconSel').on('dblclick', function() {
-	$('.divIconSel').removeClass('iconSelected')
-	$(this).closest('.divIconSel').addClass('iconSelected')
-	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'))
-})
-
 setTimeout(function() {
 	if (tabimg && tabimg == 1) {
 		$('#mod_selectIcon ul li a[href="#img"]').click()
@@ -390,6 +440,17 @@ $('#mod_selectIcon ul li a[href="#tabicon"]').click(function() {
 $('#mod_selectIcon ul li a[href="#tabimg"]').click(function() {
 	$('#mySearch').hide()
 	$('.iconCategory').hide()
+})
+
+$('.divIconSel').on('click', function() {
+	$('.divIconSel').removeClass('iconSelected');
+	$(this).closest('.divIconSel').addClass('iconSelected');
+})
+
+$('.divIconSel').on('dblclick', function() {
+	$('.divIconSel').removeClass('iconSelected');
+	$(this).closest('.divIconSel').addClass('iconSelected');
+	$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
 })
 
 $('#mod_selectIcon').css('overflow', 'hidden')
