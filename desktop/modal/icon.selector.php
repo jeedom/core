@@ -81,9 +81,9 @@ sendVarToJS([
 <script>
 $( document ).ready(function() {
 	$('#div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
-		if (selected.node.a_attr['data-path'] != undefined) {
-	   	var path = selected.node.a_attr['data-path'];
-			printFileFolder(path);
+	if (selected.node.a_attr['data-path'] != undefined) {
+	var path = selected.node.a_attr['data-path'];
+	printFileFolder(path);
     	var ref = $('#div_treeFolder').jstree(true)
     	var sel = ref.get_selected()[0]
     	ref.open_node(sel)
@@ -113,8 +113,6 @@ $( document ).ready(function() {
 		}
 	});
 
-	$('#div_treeFolder ul li a:first').click();
-
 	$('#div_imageGallery').on('click', '.divIconSel', function() {
 		$('.divIconSel').removeClass('iconSelected').find('.iconSel').css('outline','none');
 		$(this).closest('.divIconSel').addClass('iconSelected').find('.iconSel').css('outline','solid 1px #94CA02');
@@ -124,6 +122,10 @@ $( document ).ready(function() {
 		$('.divIconSel').removeClass('iconSelected');
 		$(this).closest('.divIconSel').addClass('iconSelected');
 		$('#mod_selectIcon').dialog("option", "buttons")['Valider'].apply($('#mod_selectIcon'));
+	})
+
+	$('a[href="#tabimg"]').on('click', function () {
+      		$('#j1_1_anchor').click();
 	})
 
 	$('a[href="#tabicon"]').on('click', function () {
