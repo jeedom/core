@@ -787,8 +787,8 @@
         "Vert": "グリーン",
         "Rechercher": "検索",
         "Envoyer": "送ります",
-        "Supprimer": "取り除きます",
         "Êtes-vous sûr de vouloir supprimer cette image": "この画像を削除してもよろしいですか？",
+        "Supprimer": "取り除きます",
         "Général": "コモン"
     },
     "desktop\/modal\/update.send.php": {
@@ -1077,6 +1077,7 @@
         "Concept": "",
         "Documentation de démarrage": "はじめにドキュメント",
         "Documentation": "ドキュメンテーション",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "成功したバックアップ"
     },
     "desktop\/modal\/interact.test.php": {

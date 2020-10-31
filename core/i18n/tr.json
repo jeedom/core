@@ -787,8 +787,8 @@
         "Vert": "Yeşil",
         "Rechercher": "Arayın",
         "Envoyer": "Gönder",
-        "Supprimer": "Sil",
         "Êtes-vous sûr de vouloir supprimer cette image": "",
+        "Supprimer": "Sil",
         "Général": "Genel"
     },
     "desktop\/modal\/update.send.php": {
@@ -1077,6 +1077,7 @@
         "Concept": "",
         "Documentation de démarrage": "",
         "Documentation": "Belgeleme",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "Kayıt başarılı"
     },
     "desktop\/modal\/interact.test.php": {

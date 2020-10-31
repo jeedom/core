@@ -787,8 +787,8 @@
         "Vert": "Vert",
         "Rechercher": "Rechercher",
         "Envoyer": "Envoyer",
-        "Supprimer": "Supprimer",
         "Êtes-vous sûr de vouloir supprimer cette image": "Êtes-vous sûr de vouloir supprimer cette image",
+        "Supprimer": "Supprimer",
         "Général": "Général"
     },
     "desktop\/modal\/update.send.php": {
@@ -1077,6 +1077,7 @@
         "Concept": "Concept",
         "Documentation de démarrage": "Documentation de démarrage",
         "Documentation": "Documentation",
+        "Ne plus afficher": "Ne plus afficher",
         "Sauvegarde réussie": "Sauvegarde réussie"
     },
     "desktop\/modal\/interact.test.php": {

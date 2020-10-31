@@ -787,8 +787,8 @@
         "Vert": "зеленый",
         "Rechercher": "поиск",
         "Envoyer": "Отправить",
-        "Supprimer": "удаление",
         "Êtes-vous sûr de vouloir supprimer cette image": "Вы уверены, что хотите удалить это изображение?",
+        "Supprimer": "удаление",
         "Général": "Главная"
     },
     "desktop\/modal\/update.send.php": {
@@ -1077,6 +1077,7 @@
         "Concept": "",
         "Documentation de démarrage": "Начало работы с документацией",
         "Documentation": "документация",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "Удачная резервная копия"
     },
     "desktop\/modal\/interact.test.php": {

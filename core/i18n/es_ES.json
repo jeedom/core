@@ -787,8 +787,8 @@
         "Vert": "Verde",
         "Rechercher": "Buscar",
         "Envoyer": "Enviar",
-        "Supprimer": "Borrar",
         "Êtes-vous sûr de vouloir supprimer cette image": "¿Estás seguro de que deseas eliminar esta imagen?",
+        "Supprimer": "Borrar",
         "Général": "Principal"
     },
     "desktop\/modal\/update.send.php": {
@@ -1077,6 +1077,7 @@
         "Concept": "Concepto",
         "Documentation de démarrage": "Documentación de inicio",
         "Documentation": "Documentación",
+        "Ne plus afficher": "No mostrar",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito"
     },
     "desktop\/modal\/interact.test.php": {
