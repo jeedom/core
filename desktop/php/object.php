@@ -87,12 +87,7 @@ sendVarToJS([
 							<label class="col-lg-2 col-xs-4 control-label">{{Objet parent}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-7">
 								<select class="form-control objectAttr" data-l1key="father_id">
-									<option value="">{{Aucun}}</option>
-									<?php
-									foreach ($allObject as $object) {
-										echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-									}
-									?>
+									<?php echo jeeObject::getUISelectList(); ?>
 								</select>
 							</div>
 						</div>

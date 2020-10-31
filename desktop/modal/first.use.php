@@ -82,6 +82,18 @@ try {
 			<a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
 			<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
 		</center>
+
+		<?php
+			if (config::byKey('jeedom::firstUse') == 1) {
+				$divButton = '<br><br>';
+				$divButton .= '<div class="row">';
+				$divButton .= '<div class="col-xs-12">';
+				$divButton .= '<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>';
+				$divButton .= '</div>';
+				$divButton .= '</div>';
+				echo $divButton;
+			}
+		?>
 	</div>
 
 	<script>

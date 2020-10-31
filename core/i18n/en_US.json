@@ -55,8 +55,7 @@
     },
     "mobile\/js\/equipment.js": {
         "Tout": "All",
-        "Synthèse": "Synthesis",
-        "Aperçu": "Overview"
+        "Synthèse": "Synthesis"
     },
     "mobile\/js\/application.js": {
         "Résumé": "Summary",
@@ -444,7 +443,6 @@
         "Objet": "Object",
         "Equipement": "Equipment",
         "Commande": "Command",
-        "Aucun": "None",
         "Commande info": "Info command",
         "Commande action": "Action command"
     },
@@ -1832,7 +1830,7 @@
         "Filtre par catégorie": "Filter by category",
         "Toutes": "All",
         "Aucune": "None",
-        "Scenario": "Scenario",
+        "Scénario": "Scenario",
         "Édition du Dashboard": "Dashboard edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Adjust all the tiles to the height of the lowest",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Set all the tiles to the height of the tallest"
@@ -2231,7 +2229,6 @@
         "Résumé par équipements": "Summary by equipment",
         "Nom de l'objet": "Object name",
         "Objet parent": "Parent object",
-        "Aucun": "None",
         "Visible": "Visible",
         "Rendre cet objet visible ou non.": "Make this object visible or not",
         "Masquer sur le Dashboard": "Hide on Dashboard",
@@ -2257,6 +2254,7 @@
         "Remonter dans le résumé global": "Report in global summary",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Activate the summaries which will be taken into account for the global summary, displayed on the right in the menu bar",
         "Tous": "All",
+        "Aucun": "None",
         "Masquer en desktop": "Hide on desktop",
         "Masquer en mobile": "Hide on mobile",
         "Commandes des résumés": "Commands on summaries",
@@ -4106,6 +4104,7 @@
         "La fonction ne peut pas être vide": "The function cannot be empty"
     },
     "core\/class\/jeeObject.class.php": {
+        "Aucun": "None",
         "Le plugin virtuel doit être installé": "Virtual plugin must be installed",
         "Le plugin virtuel doit être actif": "Virtual plugin must be active",
         "Résumé Global": "Global Summary",

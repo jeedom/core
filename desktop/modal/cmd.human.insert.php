@@ -31,15 +31,7 @@ if (!isConnect()) {
     <tr>
       <td class="mod_insertCmdValue_object">
         <select class='form-control'>
-          <option value="-1">{{Aucun}}</option>
-          <?php
-          $options = '';
-          foreach ((jeeObject::buildTree(null, false)) as $object) {
-            $decay = $object->getConfiguration('parentNumber');
-            $options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
-          }
-          echo $options;
-          ?>
+          <?php echo jeeObject::getUISelectList(); ?>
         </select>
       </td>
       <td class="mod_insertCmdValue_eqLogic"></td>

@@ -98,7 +98,7 @@ foreach ($objectTree as $_object) {
 					echo '<li><a><input checked type="checkbox" class="catFilterKey" data-key="'.$value['name'].'"/>&nbsp;<i class="'.$value['icon'].'"></i> '.$value['name'].'</a></li>';
 				}
 				?>
-				<li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scenario}}</a></li>
+				<li><a><input checked type="checkbox" class="catFilterKey" data-key="scenario"/>&nbsp;<i class="fas fa-cogs"></i> {{Scénario}}</a></li>
 			</ul>
 		</div>
 		<?php
@@ -108,7 +108,7 @@ foreach ($objectTree as $_object) {
 			</div>
 		<?php } ?>
 	</div>
-	
+
 	<?php
 	//display previews:
 	if (init('btover', 0) != 0) { //overview
@@ -134,7 +134,7 @@ foreach ($objectTree as $_object) {
 			$dataHref = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId();
 			$div .= '<div class="cursor li_object"><a data-object_id="' . $_object->getId() . '" data-href="'.$dataHref.'">';
 			$div .= '<span style="position:relative;left:' . $margin . 'px;">'.$_object->getHumanName(true, true) . '</a></span>';
-			
+
 			//summary:
 			$html = '<span class="objectSummaryglobal">';
 			$html .= $summaryCache[$_object->getId()];
@@ -145,9 +145,9 @@ foreach ($objectTree as $_object) {
 		$div .= '</div>';
 		echo $div;
 	}
-	
+
 	include_file('desktop', 'dashboard', 'js');
-	
+
 	function formatJeedomObjectDiv($object, $toSummary=false) {
 		global $summaryCache;
 		$objectId =  $object->getId();
@@ -164,7 +164,7 @@ foreach ($objectTree as $_object) {
 		</span>
 		</legend>';
 		$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
-		
+
 		if ($toSummary) {
 			$div .= '<script>getObjectHtmlFromSummary(' . $objectId . ')</script>';
 		} else {
@@ -196,7 +196,7 @@ foreach ($objectTree as $_object) {
 				formatJeedomObjectDiv($object, true);
 			}
 		}
-		
+
 		?>
 	</div>
 </div>
