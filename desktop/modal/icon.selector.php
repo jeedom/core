@@ -59,7 +59,7 @@ sendVarToJS([
 				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageIcon" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
 			</span>
 
-			<div class="imgContainer" style="padding-top: 32px;display:flex;">
+			<div class="imgContainer" style="padding-top: 32px;display:flex;align-items:flex-start;">
  				<div id="div_treeFolder" style="height:100%;min-width:180px;">
 				<ul id="ul_Folder">
 					<?php
