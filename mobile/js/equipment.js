@@ -31,7 +31,7 @@ function initEquipment(_object_id) {
       li += '<li class="li-splitter">'
       li += '<div>'
       li += '<a href="#" class="link" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"> </i> {{Tout}}</a>'
-      li += '<a href="#" class="link" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}" style="float: right;margin: 0;padding: 0 !important;"><i class="fab fa-hubspot"> </i> {{Aperçu}}</a>'
+      li += '<a href="#" class="link" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}" style="float: right;margin: 0;padding: 0 !important;"><i class="fab fa-hubspot"> </i> {{Synthèse}}</a>'
       li += '</div>'
       li += '</li>'
 
