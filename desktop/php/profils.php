@@ -27,11 +27,7 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 		$homePageMobile[$pluginList->getId() . '::' . $pluginList->getMobile()] = $pluginList->getName();
 	}
 }
-$objectOptions = '';
-foreach ((jeeObject::buildTree(null, false)) as $object) {
-	$decay = $object->getConfiguration('parentNumber');
-	$objectOptions .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
-}
+$objectOptions = jeeObject::getUISelectList(false);
 ?>
 
 <div style="margin-top: 5px;">

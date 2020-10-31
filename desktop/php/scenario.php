@@ -198,15 +198,7 @@ sendVarToJs('initSearch', init('search', 0));
 									<label class="col-xs-5 control-label" >{{Objet parent}}</label>
 									<div class="col-xs-6">
 										<select class="form-control scenarioAttr" data-l1key="object_id">
-											<option value="">{{Aucun}}</option>
-											<?php
-											$options = '';
-									        foreach ((jeeObject::buildTree(null, false)) as $object) {
-									          $decay = $object->getConfiguration('parentNumber');
-									          $options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
-									        }
-									        echo $options;
-											?>
+											<?php echo jeeObject::getUISelectList(); ?>
 										</select>
 									</div>
 								</div>
