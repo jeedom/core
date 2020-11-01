@@ -37,8 +37,8 @@ if (!isConnect()) {
       <th>{{Dernier lancement}}</th>
       <th data-sorter="checkbox" data-filter="false">{{Actif}}</th>
       <th data-sorter="checkbox" data-filter="false">{{Visible}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Multi lancement}}</th>
-      <th data-sorter="checkbox" data-filter="false">{{Mode synchrone}}</th>
+      <th data-sorter="checkbox" data-filter="false">{{Multi}}</th>
+      <th data-sorter="checkbox" data-filter="false">{{Sync}}</th>
       <th data-sorter="select-text">{{Log}}</th>
       <th data-sorter="checkbox" data-filter="false">{{Timeline}}</th>
       <th data-sorter="false" data-filter="false">{{Actions}}</th>
@@ -53,21 +53,17 @@ if (!isConnect()) {
 initTableSorter()
 refreshScenarioSummary()
 var tableScSummary = $('#table_scenarioSummary')
-tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '60px', '', '50px', '60px', '130px', '130px', '', '80px', '60px']
+tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '60px']
 tableScSummary.trigger('applyWidgets')
 tableScSummary.trigger('resizableReset')
 tableScSummary.trigger('sorton', [[[1,0]]])
-
-$(function() {
-  jeedom.timeline.autocompleteFolder()
-})
 
 $('#bt_refreshSummaryScenario').off().on('click', function() {
   refreshScenarioSummary()
 })
 
 function refreshScenarioSummary() {
-  jeedom.scenario.all({
+  jeedom.scenario.allOrderedByGroupObjectName({
     nocache : true,
     error: function (error) {
       $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
@@ -81,9 +77,9 @@ function refreshScenarioSummary() {
         tr += '<span class="label label-info scenarioAttr" data-l1key="id"></span>'
         tr += '</td>'
         tr += '<td>'
-        tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="humanName"></span>'
+        tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="groupObjectName"></span>'
         tr += '</td>'
-        tr += '<td style="min-width:75px">'
+        tr += '<td>'
         switch (data[i].state) {
           case 'error' :
           tr += '<span class="label label-warning">{{Erreur}}</span>'
@@ -99,29 +95,29 @@ function refreshScenarioSummary() {
           break
         }
         tr += '</td>'
-        tr += '<td style="min-width:155px">'
+        tr += '<td>'
         tr += '<span class="scenarioAttr" data-l1key="lastLaunch"></span>'
         tr += '</td>'
-        tr += '<td class="center" style="min-width:70px">'
+        tr += '<td class="center">'
         tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Actif}}" data-l1key="isActive">'
         tr += '</td>'
-        tr += '<td class="center" style="min-width:78px">'
+        tr += '<td class="center">'
         tr += '<input type="checkbox" class="scenarioAttr" data-label-text="{{Visible}}" data-l1key="isVisible">'
         tr += '</td>'
-        tr += '<td class="center" style="min-width:140px">'
+        tr += '<td class="center">'
         tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">'
         tr += '</td>'
-        tr += '<td class="center" style="min-width:145px">'
+        tr += '<td class="center">'
         tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="syncmode">'
         tr += '</td>'
-        tr += '<td style="min-width:60px">'
+        tr += '<td>'
         tr += '<select class="scenarioAttr form-control input-sm" data-l1key="configuration" data-l2key="logmode">'
         tr += '<option value="default">{{Défaut}}</option>'
         tr += '<option value="none">{{Aucun}}</option>'
         tr += '<option value="realtime">{{Temps réel}}</option>'
         tr += '</select>'
         tr += '</td>'
-        tr += '<td style="min-width:200px">'
+        tr += '<td>'
         tr += '<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="timeline::enable"> '
         tr += ' <input class="scenarioAttr input-sm form-control" data-l1key="configuration" data-l2key="timeline::folder" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
         tr += '</td>'
@@ -141,10 +137,11 @@ function refreshScenarioSummary() {
       $('#table_scenarioSummary tbody').append(table)
       $("#table_scenarioSummary").trigger("update")
 
+      jeedom.timeline.autocompleteFolder()
+
       $('.bt_summaryViewLog').off().on('click', function() {
         var tr = $(this).closest('tr')
-        $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"})
-        $("#md_modal2").load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
+        $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + tr.attr('data-id')).dialog('open')
       })
 
       $('.bt_summaryStopScenario').off().on('click', function() {
