@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Objet": "Объект",
-        "Equipement": "Оборудование",
-        "Aucun": "Нет"
+        "Equipement": "Оборудование"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
