@@ -1024,6 +1024,8 @@
         "Dossier": "Dossier",
         "Voir les logs": "Voir les logs",
         "Exécuter": "Exécuter",
+        "Supprimer ce scénario": "Supprimer ce scénario",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Êtes-vous sûr de vouloir supprimer le scénario",
         "Log d'exécution du scénario": "Log d'exécution du scénario"
     },
     "desktop\/modal\/scenario.template.php": {

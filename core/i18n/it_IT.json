@@ -1024,6 +1024,8 @@
         "Dossier": "Record",
         "Voir les logs": "Visualizza i log",
         "Exécuter": "Eseguire",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Sei sicuro di voler eliminare lo scenario",
         "Log d'exécution du scénario": "Registro di esecuzione della scena"
     },
     "desktop\/modal\/scenario.template.php": {

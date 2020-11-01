@@ -1024,6 +1024,8 @@
         "Dossier": "記録",
         "Voir les logs": "ログを見る",
         "Exécuter": "行います",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "シナリオを削除してもよろしいですか",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します"
     },
     "desktop\/modal\/scenario.template.php": {

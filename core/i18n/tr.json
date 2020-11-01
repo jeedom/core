@@ -1024,6 +1024,8 @@
         "Dossier": "",
         "Voir les logs": "Görünüm günlükleri",
         "Exécuter": "Uygula",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Senaryoyu silmek istemenizden eminmisiniz",
         "Log d'exécution du scénario": "Senaryonun çalışma logu"
     },
     "desktop\/modal\/scenario.template.php": {

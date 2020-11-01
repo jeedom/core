@@ -1024,6 +1024,8 @@
         "Dossier": "запись",
         "Voir les logs": "Смотрите логи",
         "Exécuter": "выполнять",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Вы уверены, что хотите удалить сценарий?",
         "Log d'exécution du scénario": "Журнал запуска скрипта"
     },
     "desktop\/modal\/scenario.template.php": {

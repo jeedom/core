@@ -1024,6 +1024,8 @@
         "Dossier": "Rekord",
         "Voir les logs": "Siehe die Protokolle",
         "Exécuter": "Ausführen",
+        "Supprimer ce scénario": "Löschen Sie dieses Szenario",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Möchten Sie das Szenario wirklich löschen?",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios"
     },
     "desktop\/modal\/scenario.template.php": {

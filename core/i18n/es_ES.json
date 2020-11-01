@@ -1024,6 +1024,8 @@
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
         "Exécuter": "Ejecutar",
+        "Supprimer ce scénario": "Eliminar este escenario",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Está seguro de que desea eliminar el escenario?",
         "Log d'exécution du scénario": "Log de ejecución de la escena"
     },
     "desktop\/modal\/scenario.template.php": {

@@ -1024,6 +1024,8 @@
         "Dossier": "",
         "Voir les logs": "Lihat log",
         "Exécuter": "Melakukan",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Apakah Anda yakin ingin menghapus skenario",
         "Log d'exécution du scénario": "Log eksekusi script"
     },
     "desktop\/modal\/scenario.template.php": {

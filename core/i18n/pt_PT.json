@@ -1024,6 +1024,8 @@
         "Dossier": "Ficheiro",
         "Voir les logs": "Ver registos",
         "Exécuter": "Realizar",
+        "Supprimer ce scénario": "Exclua este cenário",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Tem certeza de que deseja excluir o cenário",
         "Log d'exécution du scénario": "Log execução do script"
     },
     "desktop\/modal\/scenario.template.php": {
