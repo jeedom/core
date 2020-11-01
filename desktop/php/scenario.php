@@ -2,15 +2,70 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+
+global $scenarios, $noneString;
 $scenarios = array();
-$totalScenario = scenario::all();
-$scenarios[-1] = scenario::all(null);
+$noneString = __('Aucun', __FILE__);
+$hasScenario = false;
+
+//get all scenarios groups and all scenarios by groups:
 $scenarioListGroup = scenario::listGroup();
 if (is_array($scenarioListGroup)) {
 	foreach ($scenarioListGroup as $group) {
 		$scenarios[$group['group']] = scenario::all($group['group']);
 	}
+	$hasScenario = true;
 }
+//get all scenarios without group:
+$scenarioNoGroup = scenario::all(null);
+if (count($scenarioNoGroup) > 0) {
+	$scenarios[$noneString] = scenario::all(null);
+	$hasScenario = true;
+}
+
+function jeedom_displayScenarioGroup($_group='', $_index=-1) {
+	global $scenarios, $noneString;
+	$thisDiv = '';
+
+	if ($_group == '') {
+		$groupName = $noneString;
+		$href = '#config_none';
+		$id = 'config_none';
+	} else {
+		$groupName = $_group;
+		$href = '#config_'.$_index;
+		$id = 'config_'.$_index;
+	}
+	$thisDiv .= '<div class="panel panel-default">';
+	$thisDiv .= '<div class="panel-heading">';
+	$thisDiv .= '<h3 class="panel-title">';
+	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="'.$href.'">' . $groupName . ' - ';
+	$c = count($scenarios[$groupName]);
+	$thisDiv .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
+	$thisDiv .= '</h3>';
+	$thisDiv .= '</div>';
+	$thisDiv .= '<div id="'.$id.'" class="panel-collapse collapse">';
+	$thisDiv .= '<div class="panel-body">';
+	$thisDiv .= '<div class="scenarioListContainer">';
+	foreach ($scenarios[$groupName] as $scenario) {
+		$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
+		$thisDiv .= '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
+		if($scenario->getDisplay('icon') != ''){
+			$thisDiv .= '<span>'.$scenario->getDisplay('icon').'</span>';
+		}else{
+			$thisDiv .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
+		}
+		$thisDiv .= "<br>";
+		$thisDiv .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+		$thisDiv .= '</div>';
+	}
+	$thisDiv .= '</div>';
+	$thisDiv .= '</div>';
+	$thisDiv .= '</div>';
+	$thisDiv .= '</div>';
+	return $thisDiv;
+}
+
 sendVarToJs('initSearch', init('search', 0));
 ?>
 
@@ -41,7 +96,7 @@ sendVarToJs('initSearch', init('search', 0));
 
 		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
-		if (count($totalScenario) == 0) {
+		if ($hasScenario == false) {
 			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
@@ -54,70 +109,20 @@ sendVarToJs('initSearch', init('search', 0));
 			$div .= '</div>';
 
 			$div .= '<div class="panel-group" id="accordionScenario">';
-			if (count($scenarios[-1]) > 0) {
-				$div .= '<div class="panel panel-default">';
-				$div .= '<div class="panel-heading">';
-				$div .= '<h3 class="panel-title">';
-				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none">{{Aucun}} - ';
-				$c = count($scenarios[-1]);
-				$div .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
-				$div .= '</h3>';
-				$div .= '</div>';
-				$div .= '<div id="config_none" class="panel-collapse collapse">';
-				$div .= '<div class="panel-body">';
-				$div .= '<div class="scenarioListContainer">';
-				foreach ($scenarios[-1] as $scenario) {
-					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					$div .= '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
-					if($scenario->getDisplay('icon') != ''){
-						$div .= '<span>'.$scenario->getDisplay('icon').'</span>';
-					}else{
-						$div .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
-					}
-					$div .= "<br>";
-					$div .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
-					$div .= '</div>';
-				}
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
+			//No group first:
+			if (count($scenarios[$noneString]) > 0) {
+				$div .= jeedom_displayScenarioGroup();
 			}
 			echo $div;
 
+			//scenarios groups:
 			$i = 0;
 			$div = '';
 			foreach ($scenarioListGroup as $group) {
 				if ($group['group'] == '') {
 					continue;
 				}
-				$div .= '<div class="panel panel-default">';
-				$div .= '<div class="panel-heading">';
-				$div .= '<h3 class="panel-title">';
-				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
-				$c = count($scenarios[$group['group']]);
-				$div .= $c. ($c > 1 ? ' scénarios' : ' scénario').'</a>';
-				$div .= '</h3>';
-				$div .= '</div>';
-				$div .= '<div id="config_' . $i . '" class="panel-collapse collapse">';
-				$div .= '<div class="panel-body">';
-				$div .= '<div class="scenarioListContainer">';
-				foreach ($scenarios[$group['group']] as $scenario) {
-					$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					$div .= '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
-					if($scenario->getDisplay('icon') != ''){
-						$div .= '<span>'.$scenario->getDisplay('icon').'</span>';
-					}else{
-						$div .= '<span><i class="icon noicon jeedom-clap_cinema"></i></span>';
-					}
-					$div .= '<br/>';
-					$div .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
-					$div .= '</div>';
-				}
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
+				$div .= jeedom_displayScenarioGroup($group['group'], $i);
 				$i += 1;
 			}
 			$div .= '</div>';

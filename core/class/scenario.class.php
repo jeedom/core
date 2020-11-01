@@ -136,7 +136,7 @@ class scenario {
 	public static function allOrderedByGroupObjectName() {
 		$scenarioList = array();
 		$scenarios = array();
-		$totalScenario = scenario::all();
+
 		$scenarios[-1] = scenario::all(null);
 		$scenarioListGroup = scenario::listGroup();
 		if (is_array($scenarioListGroup)) {
