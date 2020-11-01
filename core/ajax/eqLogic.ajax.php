@@ -359,6 +359,7 @@ try {
 			}
 			foreach ($result['scenario'] as $scenario) {
 				$info = utils::o2a($scenario);
+				$info['groupObjectName'] = $scenario->getGroupObjectName();
 				$info['humanName'] = $scenario->getHumanName();
 				$info['link'] = $scenario->getLinkToConfiguration();
 				$info['linkId'] = $scenario->getId();
