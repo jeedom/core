@@ -53,7 +53,7 @@ if (!isConnect()) {
 initTableSorter()
 refreshScenarioSummary()
 var tableScSummary = $('#table_scenarioSummary')
-tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '60px']
+tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '80px']
 tableScSummary.trigger('applyWidgets')
 tableScSummary.trigger('resizableReset')
 tableScSummary.trigger('sorton', [[[1,0]]])
@@ -123,11 +123,12 @@ function refreshScenarioSummary() {
         tr += '</td>'
         tr += '<td>'
         tr += '<a class="btn btn-default tooltips btn-xs bt_summaryViewLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> '
-        if(data[i].state == 'in_progress'){
+        if (data[i].state == 'in_progress') {
           tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a>'
-        }else{
+        } else {
           tr += '<a class="btn btn-success tooltips btn-xs bt_summaryLaunchScenario" title="{{Exécuter}}"><i class="fas fa-play"></i></a>'
         }
+        tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryRemoveScenario" title="{{Supprimer ce scénario}}"><i class="far fa-trash-alt"></i></a> '
         tr += '</td>'
         tr += '</tr>'
         var result = $(tr)
@@ -138,6 +139,27 @@ function refreshScenarioSummary() {
       $("#table_scenarioSummary").trigger("update")
 
       jeedom.timeline.autocompleteFolder()
+
+      $('#table_scenarioSummary .bt_summaryRemoveScenario').on('click', function(event) {
+        $.hideAlert()
+        var id = $(this).closest('tr').attr('data-id')
+        var name = $(this).closest('tr').find('span[data-l1key="groupObjectName"]').text()
+        bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
+          if (result) {
+            jeedom.scenario.remove({
+              id: id,
+              error: function(error) {
+                $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
+              },
+              success: function() {
+                $('#table_scenarioSummary tr[data-id="'+id+'"]').remove()
+                $('.scenarioDisplayCard[data-scenario_id="'+id+'"]').remove()
+              }
+            })
+          }
+        })
+        return false
+      })
 
       $('.bt_summaryViewLog').off().on('click', function() {
         var tr = $(this).closest('tr')
