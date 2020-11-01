@@ -1450,6 +1450,12 @@ function printScenario(_id) {
         checkNoMode()
         updateTooltips()
       }, 500)
+
+      var group = $('input[data-l1key="group"]').val()
+      if (group == '') group = '{{Aucun}}'
+      var object = $('select[data-l1key="object_id"] option:selected').text().trim()
+      var name = $('input[data-l1key="name"]').val()
+      $('#groupObjectName').html('['+group+']['+object+']['+name+']')
     }
   })
 }

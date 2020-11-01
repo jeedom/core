@@ -233,7 +233,7 @@ sendVarToJs('initSearch', init('search', 0));
 									<div class="col-xs-1">
 										<input type="checkbox" class="scenarioAttr" data-l1key="configuration" data-l2key="allowMultiInstance">
 									</div>
-									<label class="col-xs-2 control-label">{{Synchrone}}
+									<label class="col-xs-3 control-label">{{Synchrone}}
 										<sup><i class="fas fa-question-circle" tooltip="{{Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.}}"></i></sup>
 									</label>
 									<div class="col-xs-1">
@@ -309,10 +309,16 @@ sendVarToJs('initSearch', init('search', 0));
 					</div>
 				</div>
 
-
+				<hr class="hrPrimary">
 				<div class="row">
 					<div class="col-sm-12">
-						<hr class="hrPrimary">
+						<div class="form-group">
+							<div class="col-md-12">
+								<span class="label" id="groupObjectName"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12">
 						<div class="form-group">
 							<div class="col-md-12">
 								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
