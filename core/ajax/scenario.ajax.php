@@ -359,14 +359,14 @@ try {
 			if($scenarioLink->getId() == $scenario->getId()){
 				continue;
 			}
-			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(),'isActive' => $scenarioLink->getIsActive());
+			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getGroupObjectName(),'isActive' => $scenarioLink->getIsActive());
 		}
 		$use = $scenario->getUse();
 		foreach ($use['scenario'] as $scenarioLink) {
 			if($scenarioLink->getId() == $scenario->getId()){
 				continue;
 			}
-			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(),'isActive' => $scenarioLink->getIsActive());
+			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getGroupObjectName(),'isActive' => $scenarioLink->getIsActive());
 		}
 		ajax::success($return);
 	}
