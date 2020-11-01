@@ -145,18 +145,24 @@ $(function(){
       },
       success: function(scenarios) {
         if (scenarios.length == 0) return
+
+        var noneString = '{{Aucun}}'
         var scenarioGroups = []
         for (var i=0; i<scenarios.length; i++) {
           group = scenarios[i].group
           if (group == null) continue
-          if (group == "") group = '{{Aucun}}'
+          if (group == "") group = noneString
           group = group[0].toUpperCase() + group.slice(1)
           scenarioGroups.push(group)
         }
 
         scenarioGroups = Array.from(new Set(scenarioGroups))
-        var first = '{{Aucun}}'
-        scenarioGroups.sort(function(x, y) { return x == first ? -1 : y == first ? 1 : 0 })
+        scenarioGroups.sort()
+        var first = scenarioGroups[scenarioGroups.indexOf(noneString)]
+        if (first) {
+          scenarioGroups.splice(scenarioGroups.indexOf(noneString), 1)
+          scenarioGroups.unshift(first)
+        }
 
         var scenarioList = []
         for(var i=0; i<scenarioGroups.length; i++) {
@@ -167,7 +173,7 @@ $(function(){
             sc = scenarios[j]
             scGroup = sc.group
             if (scGroup == null) continue
-            if (scGroup == "") scGroup = '{{Aucun}}'
+            if (scGroup == "") scGroup = noneString
             if (scGroup.toLowerCase() != group.toLowerCase()) continue
             scenarioList[group].push([sc.name, sc.id])
           }
