@@ -165,10 +165,10 @@ $(function(){
         }
 
         var scenarioList = []
+        var sc, scGroup
         for(var i=0; i<scenarioGroups.length; i++) {
           group = scenarioGroups[i]
           scenarioList[group] = []
-          var sc, scGroup
           for (var j=0; j<scenarios.length; j++) {
             sc = scenarios[j]
             scGroup = sc.group
@@ -182,13 +182,14 @@ $(function(){
         //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
+        var groupScenarios, items, scName, scId
         for (var group in scenarioList) {
-          var groupScenarios = scenarioList[group]
-          var items = {}
+          groupScenarios = scenarioList[group]
+          items = {}
           for (var index in groupScenarios) {
-            var sc = groupScenarios[index]
-            var scName = sc[0] + '  ('+sc[1]+')'
-            var scId = sc[1]
+            sc = groupScenarios[index]
+            scName = sc[0] + '  ('+sc[1]+')'
+            scId = sc[1]
             items[uniqId] = {'name': scName, 'id' : scId}
             uniqId ++
           }

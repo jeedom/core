@@ -33,14 +33,15 @@
         var noneString = '{{Aucun}}'
 
         //get right name [Group][Object][Name] and store group names
+        var group, splitter, objectName
         for (var i in scenarios) {
-          var group = scenarios[i].group
+          group = scenarios[i].group
           if (group == "") group = noneString
           if (scenarios[i].object_id == null) {
-            var objectName = noneString
+            objectName = noneString
           } else {
-            var splitter = scenarios[i].humanName.split('][')
-            var objectName = splitter[0].replace("[", '')
+            splitter = scenarios[i].humanName.split('][')
+            objectName = splitter[0].replace("[", '')
           }
           scenarioGroups.push(group[0].toUpperCase() + group.slice(1))
           scenarios[i].listName = "["+group+"]["+objectName+"]["+scenarios[i].name+"]"
@@ -57,10 +58,10 @@
 
         //put them back in their group:
         var scenarioList = []
-        for(var i=0; i<scenarioGroups.length; i++) {
+        var sc, scGroup
+        for (var i=0; i<scenarioGroups.length; i++) {
           group = scenarioGroups[i]
           scenarioList[group] = []
-          var sc, scGroup
           for (var j=0; j<scenarios.length; j++) {
             sc = scenarios[j]
             scGroup = sc.group
@@ -72,12 +73,13 @@
         }
 
         //order all that!
+        var groupScenarios, sclistName, scId
         for (var group in scenarioList) {
-          var groupScenarios = scenarioList[group]
+          groupScenarios = scenarioList[group]
           for (var index in groupScenarios) {
-            var sc = groupScenarios[index]
-            var sclistName = sc[0]
-            var scId = sc[1]
+            sc = groupScenarios[index]
+            sclistName = sc[0]
+            scId = sc[1]
             allScenarios.push({id:scId, 'listName':sclistName})
           }
         }

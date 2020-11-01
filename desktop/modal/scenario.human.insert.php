@@ -22,9 +22,13 @@ if (!isConnect()) {
 <center>
   <select id="mod_insertScenariocValue_value" class="form-control">
     <?php
-    foreach ((scenario::all()) as $scenario) {
-      echo '<option value="#' . $scenario->getHumanName(true) . '#" data-scenario_id="' . $scenario->getId() . '">' . $scenario->getHumanName(true) . '</option>';
-    }
+      $scenarioList = scenario::allOrderedByGroupObjectName();
+      $options = '';
+      foreach ($scenarioList as $scenario) {
+        $scName = $scenario->getGroupObjectName();
+        $options .= '<option value="#' . $scName . '#" data-scenario_id="' . $scenario->getId() . '">' . $scName . '</option>';
+      }
+      echo $options;
     ?>
   </select>
 </center>
