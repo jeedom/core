@@ -1010,8 +1010,8 @@
         "Dernier lancement": "最後の打ち上げ",
         "Actif": "財産",
         "Visible": "目に見えます",
-        "Multi lancement": "マルチローンチ",
-        "Mode synchrone": "同期モード",
+        "Multi": "",
+        "Sync": "",
         "Log": "ログ",
         "Timeline": "タイムライン",
         "Actions": "株式",
@@ -1965,6 +1965,7 @@
         "Annuler": "キャンセル"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "何でもありません",
         "401 - Accès non autorisé": "401-不正アクセス",
         "Gestion": "管理",
         "Ajouter": "加えます",
@@ -1973,7 +1974,6 @@
         "Vue d'ensemble": "概要",
         "Mes scénarios": "私のシナリオ",
         "Rechercher": "検索",
-        "Aucun": "何でもありません",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "ブロックを追加",

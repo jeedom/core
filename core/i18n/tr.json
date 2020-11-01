@@ -1010,8 +1010,8 @@
         "Dernier lancement": "Son çalıştırma",
         "Actif": "Varlıklar",
         "Visible": "Görülebilir",
-        "Multi lancement": "Çoklu başlatma",
-        "Mode synchrone": "Senkron mod",
+        "Multi": "",
+        "Sync": "",
         "Log": "",
         "Timeline": "Zaman çizelgesi",
         "Actions": "Işlemler",
@@ -1965,6 +1965,7 @@
         "Annuler": "Iptal et"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Hiçbir",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Gestion": "Idare",
         "Ajouter": "Ekle",
@@ -1973,7 +1974,6 @@
         "Vue d'ensemble": "Genel görünüm",
         "Mes scénarios": "Senaryolarım",
         "Rechercher": "Arayın",
-        "Aucun": "Hiçbir",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Blok ekleyin",
