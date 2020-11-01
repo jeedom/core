@@ -31,12 +31,7 @@ if (!isConnect()) {
     <tr>
       <td class="mod_insertEqLogicValue_object">
         <select class='form-control'>
-          <option value="-1">{{Aucun}}</option>
-          <?php
-          foreach ((jeeObject::all()) as $object) {
-            echo '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
-          }
-          ?>
+          <?php echo jeeObject::getUISelectList(); ?>
          </select>
        </td>
        <td class="mod_insertEqLogicValue_eqLogic"></td>
@@ -65,7 +60,7 @@ if (!isConnect()) {
   }
 
   mod_insertEqLogic.getValue = function() {
-    var object_name = $('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr:first .mod_insertEqLogicValue_object select option:selected').html()
+    var object_name = $('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr:first .mod_insertEqLogicValue_object select option:selected').html().replace(/&nbsp;/g, '')
     var equipement_name = $('#table_mod_insertEqLogicValue_valueEqLogicToMessage tbody tr:first .mod_insertEqLogicValue_eqLogic select option:selected').html()
     if (equipement_name == undefined) {
       return ''
