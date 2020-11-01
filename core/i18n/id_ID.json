@@ -1010,8 +1010,8 @@
         "Dernier lancement": "Peluncuran terakhir",
         "Actif": "Aktiva",
         "Visible": "Terlihat",
-        "Multi lancement": "Multi-peluncuran",
-        "Mode synchrone": "Serempak",
+        "Multi": "",
+        "Sync": "",
         "Log": "",
         "Timeline": "Waktu",
         "Actions": "Tindakan",
@@ -1965,6 +1965,7 @@
         "Annuler": "Tidak jadi"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
@@ -1973,7 +1974,6 @@
         "Vue d'ensemble": "Ikhtisar",
         "Mes scénarios": "Skrip saya",
         "Rechercher": "Pencarian",
-        "Aucun": "Tak ada",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Menambahkan blok",

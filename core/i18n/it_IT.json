@@ -1010,8 +1010,8 @@
         "Dernier lancement": "Ultimo lancio",
         "Actif": "Beni",
         "Visible": "Visibile",
-        "Multi lancement": "Multi lancio",
-        "Mode synchrone": "Sincrono",
+        "Multi": "",
+        "Sync": "",
         "Log": "Registro",
         "Timeline": "Cronologia",
         "Actions": "Stock",
@@ -1965,6 +1965,7 @@
         "Annuler": "Cancella"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Nessuno",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Gestion": "Gestione",
         "Ajouter": "Aggiungi",
@@ -1973,7 +1974,6 @@
         "Vue d'ensemble": "Panoramica",
         "Mes scénarios": "I miei scenari",
         "Rechercher": "Ricercare",
-        "Aucun": "Nessuno",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Aggiungi blocco",

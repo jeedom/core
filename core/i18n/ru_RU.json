@@ -1010,8 +1010,8 @@
         "Dernier lancement": "Последний запуск",
         "Actif": "активы",
         "Visible": "Видимый",
-        "Multi lancement": "Мульти запуск",
-        "Mode synchrone": "Синхронный режим",
+        "Multi": "",
+        "Sync": "",
         "Log": "журнал",
         "Timeline": "хронология",
         "Actions": "акции",
@@ -1965,6 +1965,7 @@
         "Annuler": "Отменить"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Нет",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
@@ -1973,7 +1974,6 @@
         "Vue d'ensemble": "обзор",
         "Mes scénarios": "Мои сценарии",
         "Rechercher": "поиск",
-        "Aucun": "Нет",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Добавить блок",

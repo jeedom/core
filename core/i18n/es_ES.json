@@ -1010,8 +1010,8 @@
         "Dernier lancement": "Última ejecución",
         "Actif": "Activo",
         "Visible": "Visible",
-        "Multi lancement": "Ejecución multiple",
-        "Mode synchrone": "Modo sincrono",
+        "Multi": "Multi",
+        "Sync": "Sync",
         "Log": "Registro",
         "Timeline": "Línea de tiempo",
         "Actions": "Acciones",
@@ -1965,6 +1965,7 @@
         "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Ninguno",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
@@ -1973,7 +1974,6 @@
         "Vue d'ensemble": "Resumen",
         "Mes scénarios": "Mis escenarios",
         "Rechercher": "Buscar",
-        "Aucun": "Ninguno",
         "Etat précédent": "Estado anterior",
         "Etat suivant": "Siguiente estado",
         "Ajouter bloc": "Agregar bloque",
