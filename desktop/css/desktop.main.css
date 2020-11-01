@@ -277,7 +277,6 @@ Theme Core 2021 @Jeedom
   }
 
   .labelObjectHuman {
-    padding-left: 5px !important;
     color: var(--objectTxt-color) !important;
     background-color: var(--objectBkgd-color);
   }
@@ -2355,6 +2354,7 @@ Theme Core 2021 @Jeedom
     background-color: rgb(var(--defaultBkg-color)) !important;
     font-size: 13px;
     font-family: 'Roboto', 'Verdana';
+    font-weight: 500;
   }
   select optgroup {
     color: var(--txt-color) !important;
