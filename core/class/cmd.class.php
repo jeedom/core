@@ -1846,11 +1846,14 @@ class cmd {
 		return $point;
 	}
 	
-	public function getInflux() {
+	public function getInflux($_cmdId=null) {
 		try{
-			$enabled = $this->getConfiguration('influx::enable');
-			if (!$enabled) {
-				return;
+			if ($_cmdId){
+				$cmd=cmd::byId($_cmdId);
+				$enabled = $cmd->getConfiguration('influx::enable');
+				if (!$enabled) {
+					return;
+				}
 			}
 			$url = config::byKey('cmdInfluxURL');
 			$port = config::byKey('cmdInfluxPort');
@@ -1874,14 +1877,14 @@ class cmd {
 			}
 			return $database;
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur get influx database : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur get influx database : ', __FILE__) . ' => ' . $e->getMessage());
 		}
 		return '';
 	}
 	
 	public function pushInflux($_value) {
 		try{
-			$database=$this->getInflux();
+			$database=cmd::getInflux($this->getId());
 			if ($database == ''){
 				return;
 			}
@@ -1893,9 +1896,22 @@ class cmd {
 		return;
 	}
 	
+	public function dropInfluxDatabase() {
+		try{
+			$database=cmd::getInflux();
+			if ($database == ''){
+				return;
+			}
+			$database->drop();
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' => ' . $e->getMessage());
+		}
+		return;
+	}
+	
 	public function dropInflux() {
 		try{
-			$database=$this->getInflux();
+			$database=cmd::getInflux($this->getId());
 			if ($database == ''){
 				return;
 			}
@@ -1908,46 +1924,65 @@ class cmd {
 		return;
 	}
 	
+	public function historyInfluxAll (){
+		cmd::historyInflux('all');
+	}
+	
 	public function sendHistoryInflux($_params) {
-		$cmd = cmd::byId($_params['cmd_id']);
+		$cmds=array();
+		if ($_params['cmd_id'] == 'all') {
+			foreach (cmd::byTypeSubType('info') as $cmd){
+				if ($cmd->getConfiguration('influx::enable',false)){
+					$cmds[]=$cmd;
+				}
+			}
+		} else {
+			$cmds[] = cmd::byId($_params['cmd_id']);
+		}
 		try{
-			$database=$cmd->getInflux();
-			if ($database == ''){
-				return;
-			}
-			$oldest = $cmd->getOldest();
-			$begin = date('Y-m-d H:i:s', strtotime('-60 days'));
-			$now= date('Y-m-d H:i:s');
-			if (count($oldest) >0){
-				$begin= date('Y-m-d H:i:s',strtotime($oldest[0]->getDatetime()));
-			}
-			$end = $begin;
-			while ($end<date('Y-m-d H:i:s',strtotime($now. ' +60 days'))){
-				$points =array();
-				$history = $cmd->getHistory($begin,$end);
-				foreach ($history as $point) {
-					$value = $point->getValue();
-					$timestamp = strtotime($point->getDatetime());
-					$points[]= $cmd->computeInfluxData($value,$timestamp);
+			foreach ($cmds as $cmd){
+				log::add('cmd', 'info', __('Envoie de l\'historique à influx : ', __FILE__) . ' commande : '.$cmd->getHumanName());
+				$database=cmd::getInflux($cmd->getId());
+				if ($database == ''){
+					return;
 				}
-				log::add('cmd', 'error', count($points));
-				$array_points = array_chunk($points,10000);
-				foreach ($array_points as $point) {
-					$database->writePoints($point,'s');
+				$oldest = $cmd->getOldest();
+				$begin = date('Y-m-d H:i:s', strtotime('-60 days'));
+				$now= date('Y-m-d H:i:s');
+				if (count($oldest) >0){
+					$begin= date('Y-m-d H:i:s',strtotime($oldest[0]->getDatetime()));
 				}
-				$begin = $end;
-				$end = date('Y-m-d H:i:s',strtotime($begin. ' +60 days'));
+				$end = $begin;
+				while ($end<date('Y-m-d H:i:s',strtotime($now. ' +60 days'))){
+					$points =array();
+					$history = $cmd->getHistory($begin,$end);
+					foreach ($history as $point) {
+						$value = $point->getValue();
+						$timestamp = strtotime($point->getDatetime());
+						$points[]= $cmd->computeInfluxData($value,$timestamp);
+					}
+					$array_points = array_chunk($points,10000);
+					foreach ($array_points as $point) {
+						$database->writePoints($point,'s');
+					}
+					$begin = $end;
+					$end = date('Y-m-d H:i:s',strtotime($begin. ' +60 days'));
+				}
 			}
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : '.$cmd->getHumanName().' => ' . $e->getMessage());
 		}
 	}
 	
-	public function historyInflux() {
+	public function historyInflux($_type='') {
 		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('sendHistoryInflux');
-		$cron->setOption(array('cmd_id' => intval($this->getId())));
+		if ($_type =='all') {
+			$cron->setOption(array('cmd_id' => 'all'));
+		} else {
+			$cron->setOption(array('cmd_id' => intval($this->getId())));
+		}
 		$cron->setLastRun(date('Y-m-d H:i:s'));
 		$cron->setOnce(1);
 		$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));

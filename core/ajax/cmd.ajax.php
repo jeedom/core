@@ -163,7 +163,6 @@ try {
 		}
 		foreach ($result['scenario'] as $scenario) {
 			$info = utils::o2a($scenario);
-			$info['groupObjectName'] = $scenario->getGroupObjectName();
 			$info['humanName'] = $scenario->getHumanName();
 			$info['link'] = $scenario->getLinkToConfiguration();
 			$info['linkId'] = $scenario->getId();
@@ -190,7 +189,7 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'dropInflux') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -201,7 +200,7 @@ try {
 		}
 		ajax::success($cmd->dropInflux());
 	}
-
+	
 	if (init('action') == 'historyInflux') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -211,6 +210,20 @@ try {
 			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
 		}
 		ajax::success($cmd->historyInflux());
+	}
+	
+	if (init('action') == 'dropDatabaseInflux') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(cmd::dropInfluxDatabase());
+	}
+	
+	if (init('action') == 'historyInfluxAll') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(cmd::historyInfluxAll());
 	}
 
 	if (init('action') == 'getHumanCmdName') {
@@ -298,7 +311,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'getInitDates') {
 		$date = array(
 			'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),

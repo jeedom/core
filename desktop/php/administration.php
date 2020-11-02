@@ -1058,6 +1058,11 @@ user::isBan();
 							<input type="text"  class="configKey form-control inputPassword" data-l1key="cmdInfluxPass">
 						</div>
 					</div>
+					<label class="col-xs-4 control-label">{{Actions}}</label>
+					<div class="col-xs-8">
+						<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+						<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+					</div>
 				</fieldset>
 			</form>
 
