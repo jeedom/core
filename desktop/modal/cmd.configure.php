@@ -203,13 +203,16 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <label class="col-xs-4 control-label">{{Nom personnalisé équipement}}</label>
                  <div class="col-xs-8">
                   <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
+                </div><label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
+                 <div class="col-xs-8">
+                  <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
                 </div>
 				<label class="col-xs-4 control-label">{{Actions}}</label>
                  <div class="col-xs-8">
                    <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
                    <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
                 </div>
-              </div>
+              </div>  
               <?php }?>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
@@ -278,9 +281,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <?php
               foreach ($usedBy['scenario'] as $usedByScenario) {
                 if ($usedByScenario->getIsActive() != 1) {
-                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search='.urlencode($cmd->getHumanName()).'" class="btn btn-xs btn-info">' . $usedByScenario->getGroupObjectName() . '</a><br/>';
+                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search='.urlencode($cmd->getHumanName()).'" class="btn btn-xs btn-info">' . $usedByScenario->getHumanName() . '</a><br/>';
                 } else {
-                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search='.urlencode($cmd->getHumanName()).'" class="btn btn-xs btn-primary">' . $usedByScenario->getGroupObjectName() . '</a><br/>';
+                  echo '<a href="' . $usedByScenario->getLinkToConfiguration() . '&search='.urlencode($cmd->getHumanName()).'" class="btn btn-xs btn-primary">' . $usedByScenario->getHumanName() . '</a><br/>';
                 }
               }
               ?>
@@ -1121,7 +1124,7 @@ $('#bt_cmdConfigureSave').on('click', function(event) {
       modifyWithoutSave = false
       $('#md_displayCmdConfigure').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
       synchModalToCmd()
-      if (event.ctrlKey || event.metaKey) {
+      if (event.ctrlKey) {
         setTimeout(function() { $('#md_modal').dialog('close') }, 500)
       }
     }

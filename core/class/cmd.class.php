@@ -1805,6 +1805,7 @@ class cmd {
 			if ($this->getConfiguration('influx::nameEq','') != ''){
 				$eqLogicName = $this->getConfiguration('influx::nameEq');
 			}
+			$valName = $this->getConfiguration('influx::nameVal','');
 			$cleanName = str_replace(',','\,',str_replace(' ','\ ', $name));
 			$genericType = $this->getGeneric_type();
 			$genericName = 'Aucun';
@@ -1828,10 +1829,15 @@ class cmd {
 								'cmdname' => $this->getName(),
 								'genericType' => $genericName
 								);
+			$valueArray=[];
+			if ($valName != ''){
+				$valueArray[$valName]=$value;
+				$value =null;
+			}
 			if ($_timestamp == '') {
-				$point = new InfluxDB\Point($cleanName, $value,$tagArray);
+				$point = new InfluxDB\Point($cleanName, $value,$tagArray,$valueArray);
 			} else {
-				$point = new InfluxDB\Point($cleanName, $value,$tagArray, [] ,$_timestamp);
+				$point = new InfluxDB\Point($cleanName, $value,$tagArray, $valueArray ,$_timestamp);
 			}
 			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName() . ' : ' .  json_encode($tagArray,true));
 		} catch (Exception $e) {
@@ -1924,6 +1930,7 @@ class cmd {
 					$timestamp = strtotime($point->getDatetime());
 					$points[]= $cmd->computeInfluxData($value,$timestamp);
 				}
+				log::add('cmd', 'error', count($points));
 				$array_points = array_chunk($points,10000);
 				foreach ($array_points as $point) {
 					$database->writePoints($point,'s');
