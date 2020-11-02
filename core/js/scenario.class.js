@@ -78,6 +78,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'allOrderedByGroupObjectName',
+    asGroup: _params.asGroup || 0
   };
   $.ajax(paramsAJAX);
 }
@@ -132,7 +133,6 @@ jeedom.scenario.toHtml = function (_params) {
   };
   $.ajax(paramsAJAX);
 }
-
 
 jeedom.scenario.changeState = function (_params) {
   var paramsRequired = ['id', 'state'];
@@ -231,7 +231,6 @@ jeedom.scenario.loadTemplateDiff = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-
 jeedom.scenario.applyTemplate = function (_params) {
   var paramsRequired = ['template', 'id', 'convert'];
   var paramsSpecifics = {};
@@ -290,9 +289,7 @@ jeedom.scenario.refreshValue = function (_params) {
     version: _params.version || version
   };
   $.ajax(paramsAJAX);
-
 };
-
 
 jeedom.scenario.copy = function (_params) {
   var paramsRequired = ['id', 'name'];
@@ -314,7 +311,6 @@ jeedom.scenario.copy = function (_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.scenario.get = function (_params) {
   var paramsRequired = ['id'];

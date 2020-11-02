@@ -19,76 +19,16 @@
   if ('#action#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=action]').value('#action#');
   }
-  jeedom.scenario.all({
+  jeedom.scenario.allOrderedByGroupObjectName({
+    asGroup: 0,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
     success: function (scenarios) {
-      //set back to Group/Object/Name order
-
-      var allScenarios = []
-      var scenarioGroups = []
-
-      if (scenarios.length > 0) {
-        var noneString = '{{Aucun}}'
-
-        //get right name [Group][Object][Name] and store group names
-        var group, splitter, objectName
-        for (var i in scenarios) {
-          group = scenarios[i].group
-          if (group == "") group = noneString
-          if (scenarios[i].object_id == null) {
-            objectName = noneString
-          } else {
-            splitter = scenarios[i].humanName.split('][')
-            objectName = splitter[0].replace("[", '')
-          }
-          scenarioGroups.push(group[0].toUpperCase() + group.slice(1))
-          scenarios[i].listName = "["+group+"]["+objectName+"]["+scenarios[i].name+"]"
-        }
-
-        //sort group names, with none first:
-        scenarioGroups = Array.from(new Set(scenarioGroups))
-        scenarioGroups.sort()
-        var first = scenarioGroups[scenarioGroups.indexOf(noneString)]
-        if (first) {
-          scenarioGroups.splice(scenarioGroups.indexOf(noneString), 1)
-          scenarioGroups.unshift(first)
-        }
-
-        //put them back in their group:
-        var scenarioList = []
-        var sc, scGroup
-        for (var i=0; i<scenarioGroups.length; i++) {
-          group = scenarioGroups[i]
-          scenarioList[group] = []
-          for (var j=0; j<scenarios.length; j++) {
-            sc = scenarios[j]
-            scGroup = sc.group
-            if (scGroup == null) continue
-            if (scGroup == "") scGroup = noneString
-            if (scGroup.toLowerCase() != group.toLowerCase()) continue
-            scenarioList[group].push([sc.listName, sc.id])
-          }
-        }
-
-        //order all that!
-        var groupScenarios, sclistName, scId
-        for (var group in scenarioList) {
-          groupScenarios = scenarioList[group]
-          for (var index in groupScenarios) {
-            sc = groupScenarios[index]
-            sclistName = sc[0]
-            scId = sc[1]
-            allScenarios.push({id:scId, 'listName':sclistName})
-          }
-        }
-      }
-
       var options = '';
       options += '<option value="-1">{{Aucun}}</option>';
-      for (var i in allScenarios) {
-        options += '<option value="' + allScenarios[i].id + '">' + allScenarios[i].listName + '</option>';
+      for (var i in scenarios) {
+        options += '<option value="' + scenarios[i].id + '">' + scenarios[i].groupObjectName + '</option>';
       }
       $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=scenario_id]').append(options);
       if ('#scenario_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=scenario_id] option[value=#scenario_id#]').html() != undefined) {

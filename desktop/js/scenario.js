@@ -69,7 +69,7 @@ $('#in_searchInsideScenario').keyup(function() {
   $('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').each(function() {
     $(this).get(0).CodeMirror.setCursor(0)
   })
-  
+
   if (search == '' || search.length < 3) {
     $('i.fa-eye-slash').each(function() {
       $(this).parents('.element').first().addClass('elementCollapse')
@@ -77,7 +77,7 @@ $('#in_searchInsideScenario').keyup(function() {
     return
   }
   search = normTextLower(search)
-  
+
   //search code blocks:
   var cmEditor, code, cursor
   $('#div_scenarioElement div.elementCODE').each(function() {
@@ -138,64 +138,30 @@ $('#bt_resetInsideScenarioSearch').on('click', function() {
 //contextMenu
 $(function(){
   try{
-    $.contextMenu('destroy', $('.nav.nav-tabs'));
-    jeedom.scenario.all({
+    $.contextMenu('destroy', $('.nav.nav-tabs'))
+
+    jeedom.scenario.allOrderedByGroupObjectName({
+      asGroup: 1,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function(scenarios) {
-        if (scenarios.length == 0) return
-        
-        var noneString = '{{Aucun}}'
-        var scenarioGroups = []
-        for (var i=0; i<scenarios.length; i++) {
-          group = scenarios[i].group
-          if (group == null) continue
-          if (group == "") group = noneString
-          group = group[0].toUpperCase() + group.slice(1)
-          scenarioGroups.push(group)
-        }
-        
-        scenarioGroups = Array.from(new Set(scenarioGroups))
-        scenarioGroups.sort()
-        var first = scenarioGroups[scenarioGroups.indexOf(noneString)]
-        if (first) {
-          scenarioGroups.splice(scenarioGroups.indexOf(noneString), 1)
-          scenarioGroups.unshift(first)
-        }
-        
-        var scenarioList = []
-        var sc, scGroup
-        for(var i=0; i<scenarioGroups.length; i++) {
-          group = scenarioGroups[i]
-          scenarioList[group] = []
-          for (var j=0; j<scenarios.length; j++) {
-            sc = scenarios[j]
-            scGroup = sc.group
-            if (scGroup == null) continue
-            if (scGroup == "") scGroup = noneString
-            if (scGroup.toLowerCase() != group.toLowerCase()) continue
-            scenarioList[group].push([sc.name, sc.id])
-          }
-        }
-        
-        //set context menu!
+      success: function(scenarioGroupedList) {
+        if (scenarioGroupedList.length == 0) return
+
         var contextmenuitems = {}
         var uniqId = 0
-        var groupScenarios, items, scName, scId
-        for (var group in scenarioList) {
-          groupScenarios = scenarioList[group]
+        var items, scName, scId
+        for (var group in scenarioGroupedList) {
           items = {}
-          for (var index in groupScenarios) {
-            sc = groupScenarios[index]
-            scName = sc[0] + '  ('+sc[1]+')'
-            scId = sc[1]
+          for (var i in scenarioGroupedList[group]) {
+            scName = scenarioGroupedList[group][i].groupObjectName.replace('['+group+']', '')
+            scId = scenarioGroupedList[group][i].id
             items[uniqId] = {'name': scName, 'id' : scId}
             uniqId ++
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
         {
           $('.nav.nav-tabs').contextMenu({
@@ -326,7 +292,7 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
     $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
   }, 500)
   if (checkPageModified()) return
-  
+
   $('#div_editScenario').hide()
   $('#scenarioThumbnailDisplay').show()
   $('.scenarioListContainer').packery()
@@ -400,7 +366,7 @@ $(function() {
       }, 500)
     }, 200)
   }
-  
+
   //trigger:
   setTimeout(function() { checkNoMode() }, 250)
 })
@@ -539,7 +505,7 @@ $divScenario.on('click','.bt_addScenarioElement', function(event) {
   var expression = false
   var insertAfter = false
   var elementDiv = $(this).closest('.element')
-  
+
   //is scenario empty:
   if ($('#div_scenarioElement').children('.element').length == 0) {
     elementDiv = $('#div_scenarioElement')
@@ -557,7 +523,7 @@ $divScenario.on('click','.bt_addScenarioElement', function(event) {
       elementDiv = $('#div_scenarioElement')
     }
   }
-  
+
   $('#md_addElement').modal('show')
   $("#bt_addElementSave").off('click').on('click', function(event) {
     setUndoStack()
@@ -571,7 +537,7 @@ $divScenario.on('click','.bt_addScenarioElement', function(event) {
     } else {
       elementDiv.append(newEL.addClass('disableElement'))
     }
-    
+
     setEditors()
     updateSortable()
     updateElseToggle()
@@ -836,13 +802,13 @@ $('body').on('click', '.modal-body .bt_selectCmdFromModal', function(event) {
 
 function getSelectCmdExpressionMessage(subType, cmdHumanName) {
   if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
-  
+
   var message =  '<div class="row">'
   message += '<div class="col-md-12">'
   message += '<form class="form-horizontal" onsubmit="return false;">'
   message += '<div class="form-group">'
   message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
-  
+
   if (subType == 'numeric') {
     message += '<div class="col-xs-3">'
     message += '  <select class="conditionAttr form-control" data-l1key="operator">'
@@ -858,7 +824,7 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
     message += '</div>'
     message += '</div>'
   }
-  
+
   if (subType == 'string') {
     message += '<div class="col-xs-2">'
     message += '  <select class="conditionAttr form-control" data-l1key="operator">'
@@ -873,7 +839,7 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
     message += '</div>'
     message += '</div>'
   }
-  
+
   if (subType == 'binary') {
     message += '<div class="col-xs-7">'
     message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
@@ -888,7 +854,7 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
     message += '</div>'
     message += '</div>'
   }
-  
+
   message += '<div class="form-group">'
   message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
   message += '<div class="col-xs-3">'
@@ -911,7 +877,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
     type = 'action'
   }
-  
+
   jeedom.cmd.getSelectModal({cmd: {type: type}}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
       setUndoStack()
@@ -922,14 +888,14 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
         updateTooltips()
       })
     }
-    
+
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'condition') {
       var condType = el.closest('.subElement').get(0)
       if (!$(condType).hasClass('subElementIF') && !$(condType).hasClass('subElementFOR')) {
         expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
         return
       }
-      
+
       var message = getSelectCmdExpressionMessage(result.cmd.subType, result.human)
       bootbox.dialog({
         title: "{{Ajout d'une nouvelle condition}}",
@@ -1036,10 +1002,10 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
   })
   SC_CLIPBOARD = SC_CLIPBOARD.clone()
   SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
-  
+
   localStorage.removeItem('jeedomScCopy')
   localStorage.setItem('jeedomScCopy', $(SC_CLIPBOARD)[0].outerHTML)
-  
+
   if(event.ctrlKey || event.metaKey) {
     setUndoStack()
     clickedBloc.remove()
@@ -1052,7 +1018,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
   if (localStorage.getItem('jeedomScCopy')) {
     SC_CLIPBOARD = $.parseHTML(localStorage.getItem('jeedomScCopy'))
   }
-  
+
   setUndoStack()
   //Removes its id for later save:
   var newBloc = $(SC_CLIPBOARD).clone()
@@ -1062,7 +1028,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
   newBloc.find('.insideSearch').removeClass('insideSearch')
   newBloc.find('.expressionAttr[data-l1key=expression]').removeAttr('id').show()
   newBloc.find('.CodeMirror.CodeMirror-wrap').remove()
-  
+
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
     //get the element if copied from an expression:
@@ -1083,7 +1049,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
       $('#insertHere').removeAttr('id')
     }
   }
-  
+
   if(event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
@@ -1116,7 +1082,7 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
       } else {
         ui.placeholder.removeClass('sortable-placeholderLast')
       }
-      
+
       var getClass = true
       if (ui.placeholder.parent().hasClass('subElement')) {
         getClass = false
@@ -1128,7 +1094,7 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
       if(thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
         getClass = false
       }
-      
+
       if (getClass) {
         ui.placeholder.addClass('sortable-placeholder')
       } else {
@@ -1142,7 +1108,7 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
       if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
         ui.item.replaceWith(ui.item.findAtDepth('.element', 2))
       }
-      
+
       if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
         ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function(){
           var value = $(this).value()
@@ -1161,14 +1127,14 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
         })
         ui.item.parent().replaceWith(el)
       }
-      
+
       if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
         $("#div_scenarioElement").sortable("cancel")
       }
       if (ui.item.closest('.subElement').hasClass('noSortable')) {
         $("#div_scenarioElement").sortable("cancel")
       }
-      
+
       updateTooltips()
       updateSortable()
     },
@@ -1290,7 +1256,7 @@ function setAutocomplete() {
         }
       })
     }
-    
+
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
       $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
         source: autoCompleteAction,
@@ -1351,7 +1317,7 @@ function printScenario(_id) {
       $divScenario.setValues(data, '.scenarioAttr')
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
       $('#span_lastLaunch').text(data.lastLaunch)
-      
+
       $.clearDivContent('div_scenarioElement')
       $('.provokeMode').empty()
       $('.scheduleMode').empty()
@@ -1450,7 +1416,7 @@ function printScenario(_id) {
         checkNoMode()
         updateTooltips()
       }, 500)
-      
+
       var group = $('input[data-l1key="group"]').val()
       if (group == '') group = '{{Aucun}}'
       var object = $('select[data-l1key="object_id"] option:selected').text().trim()
@@ -1535,7 +1501,7 @@ function addExpression(_expression) {
   if (_expression.type == 'condition' || _expression.type == 'code') {
     sortable = 'noSortable'
   }
-  
+
   var retour = '<div class="expression ' + sortable + ' col-xs-12" >'
   if (_expression.type == 'action') {
     retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >'
@@ -1631,7 +1597,7 @@ function addSubElement(_subElement) {
   if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
     noSortable = 'noSortable'
   }
-  
+
   var blocClass = ''
   switch (_subElement.type) {
     case 'if':
@@ -1669,7 +1635,7 @@ function addSubElement(_subElement) {
   retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>'
   retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>'
   retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>'
-  
+
   switch (_subElement.type) {
     case 'if':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
@@ -1687,7 +1653,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>'
     retour += '<div><legend >{{SI}}</legend></div>'
-    
+
     retour += '<div >'
     if(!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
       retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
@@ -1695,7 +1661,7 @@ function addSubElement(_subElement) {
       retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
     }
     retour += '</div>'
-    
+
     retour += '<div class="expressions" >'
     var expression = {type: 'condition'}
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1705,7 +1671,7 @@ function addSubElement(_subElement) {
     retour += '  </div>'
     retour = addElButtons(retour)
     break
-    
+
     case 'then':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
     retour += '<div class="subElementFields">'
@@ -1721,7 +1687,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>'
     break
-    
+
     case 'else':
     retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>'
     retour += '<div class="subElementFields">'
@@ -1737,7 +1703,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>'
     break
-    
+
     case 'for':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
     retour += '<div>'
@@ -1765,7 +1731,7 @@ function addSubElement(_subElement) {
     retour += '</div>'
     retour = addElButtons(retour)
     break
-    
+
     case 'in':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
     retour += '<div>'
@@ -1793,7 +1759,7 @@ function addSubElement(_subElement) {
     retour += '</div>'
     retour = addElButtons(retour)
     break
-    
+
     case 'at':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
     retour += '<div>'
@@ -1821,7 +1787,7 @@ function addSubElement(_subElement) {
     retour += '</div>'
     retour = addElButtons(retour)
     break
-    
+
     case 'do':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
     retour += '<div class="subElementFields">'
@@ -1837,7 +1803,7 @@ function addSubElement(_subElement) {
     }
     retour += '</div>'
     break
-    
+
     case 'code':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
     retour += '<div>'
@@ -1868,7 +1834,7 @@ function addSubElement(_subElement) {
     retour += '</div>'
     retour = addElButtons(retour)
     break
-    
+
     case 'comment':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>'
     retour += '<div>'
@@ -1896,7 +1862,7 @@ function addSubElement(_subElement) {
     retour += '</div>'
     retour = addElButtons(retour)
     break
-    
+
     case 'action':
     retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
     retour += '<div>'
@@ -1956,7 +1922,7 @@ function addElement(_element) {
   if (!isset(_element.type) || _element.type == '') {
     return ''
   }
-  
+
   var elementClass = ''
   switch (_element.type) {
     case 'if':
@@ -1980,9 +1946,9 @@ function addElement(_element) {
     case 'action':
     elementClass = 'elementACTION'
   }
-  
+
   var div = '<div class="element ' + elementClass + '">'
-  
+
   div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>'
   div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>'
   switch (_element.type) {
@@ -2066,7 +2032,7 @@ function getElement(_element) {
   }
   element = element[0]
   element.subElements = []
-  
+
   var subElement, expression_dom, expression, id
   _element.findAtDepth('.subElement', 2).each(function() {
     subElement = $(this).getValues('.subElementAttr', 2)[0]
@@ -2087,7 +2053,7 @@ function getElement(_element) {
         }
       }
       subElement.expressions.push(expression)
-      
+
     });
     element.subElements.push(subElement)
   });
@@ -2122,7 +2088,7 @@ function getAddButton(_caret) {
   retour += '<span class="caret"></span>'
   retour += '</button>'
   retour += '<ul class="dropdown-menu">'
-  
+
   retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
@@ -2131,7 +2097,7 @@ function getAddButton(_caret) {
   retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
-  
+
   retour += '</ul>'
   retour += '</div>'
   if (_caret) {
@@ -2144,11 +2110,11 @@ function getAddButton(_caret) {
 $divScenario.on('click','.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
-  
+
   var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
   var newEL = $(addExpression({type: 'element', element: {type: elementType}}))
   elementDiv.append(newEL.addClass('disableElement'))
-  
+
   setEditors()
   updateSortable()
   updateElseToggle()
@@ -2204,7 +2170,7 @@ function setUndoStack(state=0) {
   bt_redo.addClass('disabled')
   var newStack = $('#div_scenarioElement').clone()
   newStack.find('.tooltipstered').removeClass('tooltipstered')
-  
+
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
     state = _undoState_ = _undoStack_.length
@@ -2228,7 +2194,7 @@ function undo() {
     $('#div_scenarioElement').replaceWith(loadStack)
     $('.dropdown.open').dropdown("toggle")
     _undoState_ -= 1
-    
+
     if (_undoState_ < _firstState_) bt_undo.addClass('disabled')
     bt_redo.removeClass('disabled')
   } catch(error) {
@@ -2249,7 +2215,7 @@ function redo() {
     $('#div_scenarioElement').replaceWith(loadStack)
     $('.dropdown.open').dropdown("toggle")
     _undoState_ += 1
-    
+
     if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) bt_redo.addClass('disabled')
   } catch(error) {
     console.log('redo ERROR:', error)

@@ -233,13 +233,26 @@ try {
 	}
 
 	if (init('action') == 'allOrderedByGroupObjectName') {
-		$scenarios = scenario::allOrderedByGroupObjectName();
+		$_asGroup = init('asGroup', 0);
+		$result = scenario::allOrderedByGroupObjectName($_asGroup);
 		$return = array();
-		foreach ($scenarios as $scenario) {
-			$info_scenario = utils::o2a($scenario);
-			$info_scenario['humanName'] = $scenario->getHumanName();
-			$info_scenario['groupObjectName'] = $scenario->getGroupObjectName();
-			$return[] = $info_scenario;
+		if (!$_asGroup) {
+			foreach ($result as $scenario) {
+				$info_scenario = utils::o2a($scenario);
+				$info_scenario['humanName'] = $scenario->getHumanName();
+				$info_scenario['groupObjectName'] = $scenario->getGroupObjectName();
+				$return[] = $info_scenario;
+			}
+		} else {
+			foreach ($result as $key => $value) {
+				$return[$key] = array();
+				foreach ($result[$key] as $scenario) {
+					$info_scenario = utils::o2a($scenario);
+					$info_scenario['humanName'] = $scenario->getHumanName();
+					$info_scenario['groupObjectName'] = $scenario->getGroupObjectName();
+					array_push($return[$key], $info_scenario);
+				}
+			}
 		}
 		ajax::success($return);
 	}
