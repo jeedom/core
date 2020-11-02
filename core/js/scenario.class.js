@@ -27,6 +27,9 @@ if (!isset(jeedom.scenario.cache.html)) {
 if (!isset(jeedom.scenario.update)) {
   jeedom.scenario.update = Array();
 }
+if (!isset(jeedom.scenario.cache.byGroupObjectName)) {
+  jeedom.scenario.cache.byGroupObjectName = Array();
+}
 
 jeedom.scenario.all = function (_params) {
   var paramsRequired = [];
@@ -56,8 +59,14 @@ jeedom.scenario.all = function (_params) {
 }
 
 jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
+  var asGroup = _params.asGroup ? _params.asGroup : 0
   var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsSpecifics = {
+    pre_success: function (data) {
+      jeedom.scenario.cache.byGroupObjectName[asGroup] = data.result
+      return data
+    }
+  };
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -65,11 +74,15 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  if (isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null) {
+    params.success(jeedom.scenario.cache.byGroupObjectName[asGroup]);
+    return;
+  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'allOrderedByGroupObjectName',
-    asGroup: _params.asGroup ? _params.asGroup : 0
+    asGroup: asGroup
   };
   $.ajax(paramsAJAX);
 }
@@ -84,6 +97,7 @@ jeedom.scenario.saveAll = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -292,6 +306,7 @@ jeedom.scenario.copy = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -332,6 +347,7 @@ jeedom.scenario.save = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -352,6 +368,7 @@ jeedom.scenario.remove = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
