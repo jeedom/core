@@ -21,14 +21,11 @@ jeedom.scenario = function () {
 
 jeedom.scenario.cache = Array();
 
-if (!isset(jeedom.scenario.cache.html)) {
-  jeedom.scenario.cache.html = Array();
-}
 if (!isset(jeedom.scenario.update)) {
-  jeedom.scenario.update = Array();
+  jeedom.scenario.update = Array()
 }
 if (!isset(jeedom.scenario.cache.byGroupObjectName)) {
-  jeedom.scenario.cache.byGroupObjectName = Array();
+  jeedom.scenario.cache.byGroupObjectName = Array()
 }
 
 jeedom.scenario.all = function (_params) {
@@ -75,8 +72,8 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   if (isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null) {
-    params.success(jeedom.scenario.cache.byGroupObjectName[asGroup]);
-    return;
+    params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
+    return
   }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -110,18 +107,7 @@ jeedom.scenario.saveAll = function (_params) {
 
 jeedom.scenario.toHtml = function (_params) {
   var paramsRequired = ['id', 'version'];
-  var paramsSpecifics = {
-    pre_success: function (data) {
-      if (_params.id == 'all' || $.isArray(_params.id)) {
-        for (var i in data.result) {
-          jeedom.scenario.cache.html[i] = data.result[i];
-        }
-      } else {
-        jeedom.scenario.cache.html[_params.id] = data.result;
-      }
-      return data;
-    }
-  };
+  var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
