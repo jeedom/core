@@ -654,6 +654,7 @@
         "Nom personnalisé Commande": "Orden de nombre personalizado",
         "Facultatif": "Opcional",
         "Nom personnalisé équipement": "Equipo de nombre personalizado",
+        "Nom personnalisé Valeur": "Nombre personalizado Valor",
         "Actions": "Acciones",
         "Supprimer": "Borrar",
         "Envoyer Historique": "Enviar historial",
@@ -1658,6 +1659,8 @@
         "Mettez ici le user de la base": "Pon aquí el usuario de la base",
         "Mot de passe de la base": "Contraseña base",
         "Mettez ici le mot de passe de la base": "Pon la contraseña de la base de datos aquí",
+        "Actions": "Acciones",
+        "Envoyer Historique": "Enviar historial",
         "Quoter automatiquement les expressions": "Citar expresiones automáticamente",
         "Delai d'attente après génération de la page": "Tiempo de espera después de la generación de la página",
         "Nettoyer les rapports plus anciens de": "Limpiar informes anteriores de",
@@ -2727,7 +2730,11 @@
         "Binaire": "Binario",
         "Créer virtuel": "Crear virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "Derechos de acceso restaurados exitosamente",
-        "Log consistency": "Consistencia de registro"
+        "Log consistency": "Consistencia de registro",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "¿Está seguro de que desea eliminar la base de datos de InfluxDB?",
+        "Action envoyée avec succés": "Acción enviada con éxito",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "¿Está seguro de que desea impulsar el historial completo de todos los pedidos con InfluxDB? Esto se programará y realizará en segundo plano en un minuto y puede llevar mucho tiempo dependiendo de la cantidad de comandos",
+        "Programmation envoyée avec succés": "Programación enviada con éxito"
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de seguridad: <br\/> Su contraseña debe ser cambiada",
@@ -3631,6 +3638,7 @@
         "Erreur get influx database : ": "Obtener error de base de datos de afluencia:",
         "Erreur push influx sur : ": "Error de empuje de entrada en:",
         "Erreur delete influx sur : ": "Error al eliminar la afluencia en:",
+        "Envoie de l\\'historique à influx : ": "Envía historial de afluencia:",
         "Erreur history influx sur : ": "Error de flujo de historial en:",
         "Commande": "Comando"
     },

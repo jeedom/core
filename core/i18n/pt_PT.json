@@ -654,6 +654,7 @@
         "Nom personnalisé Commande": "Ordem de nome personalizado",
         "Facultatif": "Opcional",
         "Nom personnalisé équipement": "Equipamento de nome personalizado",
+        "Nom personnalisé Valeur": "Valor de nome personalizado",
         "Actions": "Estoque",
         "Supprimer": "Remover",
         "Envoyer Historique": "Enviar histórico",
@@ -1658,6 +1659,8 @@
         "Mettez ici le user de la base": "Coloque aqui o usuário da base",
         "Mot de passe de la base": "Senha base",
         "Mettez ici le mot de passe de la base": "Coloque a senha do banco de dados aqui",
+        "Actions": "Estoque",
+        "Envoyer Historique": "Enviar histórico",
         "Quoter automatiquement les expressions": "Citar expressões automaticamente",
         "Delai d'attente après génération de la page": "Tempo de espera após a geração da página",
         "Nettoyer les rapports plus anciens de": "Limpe relatórios mais antigos de",
@@ -2727,7 +2730,11 @@
         "Binaire": "Binário",
         "Créer virtuel": "Criar virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "Direitos de acesso restaurados com sucesso",
-        "Log consistency": "Consistência do log"
+        "Log consistency": "Consistência do log",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Tem certeza de que deseja excluir o banco de dados do InfluxDB",
+        "Action envoyée avec succés": "Ação enviada com sucesso",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Tem certeza de que deseja enviar todo o histórico de todos os pedidos com o InfluxDB. Isso será agendado e executado em segundo plano em um minuto e pode levar muito tempo dependendo do número de comandos",
+        "Programmation envoyée avec succés": "Programação enviada com sucesso"
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/> Sua senha deve ser alterada",
@@ -3631,6 +3638,7 @@
         "Erreur get influx database : ": "Obter erro de influxo de banco de dados:",
         "Erreur push influx sur : ": "Erro de envio de influxo em:",
         "Erreur delete influx sur : ": "Erro ao excluir influxo em:",
+        "Envoie de l\\'historique à influx : ": "Envia histórico de influxo:",
         "Erreur history influx sur : ": "Erro de influxo de histórico em:",
         "Commande": "Ordem"
     },

@@ -654,6 +654,7 @@
         "Nom personnalisé Commande": "Benutzerdefinierter Name Bestellung",
         "Facultatif": "Optional",
         "Nom personnalisé équipement": "Benutzerdefinierte Namensausrüstung",
+        "Nom personnalisé Valeur": "Benutzerdefinierter Name Wert",
         "Actions": "Lager",
         "Supprimer": "Löschen",
         "Envoyer Historique": "Verlauf senden",
@@ -1658,6 +1659,8 @@
         "Mettez ici le user de la base": "Setzen Sie hier den Benutzer der Basis",
         "Mot de passe de la base": "Basiskennwort",
         "Mettez ici le mot de passe de la base": "Geben Sie hier das Datenbankkennwort ein",
+        "Actions": "Aktionen",
+        "Envoyer Historique": "Verlauf senden",
         "Quoter automatiquement les expressions": "Zitieren Sie Ausdrücke automatisch",
         "Delai d'attente après génération de la page": "Wartezeit nach der Seitengenerierung",
         "Nettoyer les rapports plus anciens de": "Bereinigen Sie ältere Berichte von",
@@ -2727,7 +2730,11 @@
         "Binaire": "Binär",
         "Créer virtuel": "Virtuell erstellen",
         "Rétablissement des droits d\\'accès effectué avec succès": "Zugriffsrechte erfolgreich wiederhergestellt",
-        "Log consistency": "Protokollkonsistenz"
+        "Log consistency": "Protokollkonsistenz",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Möchten Sie die Datenbank wirklich aus InfluxDB löschen?",
+        "Action envoyée avec succés": "Aktion erfolgreich gesendet",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Sind Sie sicher, dass Sie mit InfluxDB die gesamte Historie aller Bestellungen verschieben möchten? Dies wird in einer Minute im Hintergrund geplant und durchgeführt und kann je nach Anzahl der Befehle lange dauern",
+        "Programmation envoyée avec succés": "Programmierung erfolgreich gesendet"
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Sicherheitswarnung: <br\/> Ihr Passwort muss geändert werden",
@@ -3631,6 +3638,7 @@
         "Erreur get influx database : ": "Fehler in der Influx-Datenbank abrufen:",
         "Erreur push influx sur : ": "Zufluss-Push-Fehler ein:",
         "Erreur delete influx sur : ": "Fehler beim Löschen des Zuflusses bei:",
+        "Envoie de l\\'historique à influx : ": "Sendet die Zuflusshistorie:",
         "Erreur history influx sur : ": "Verlaufszuflussfehler bei:",
         "Commande": "Befehl"
     },

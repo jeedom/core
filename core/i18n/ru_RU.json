@@ -654,6 +654,7 @@
         "Nom personnalisé Commande": "",
         "Facultatif": "",
         "Nom personnalisé équipement": "",
+        "Nom personnalisé Valeur": "",
         "Actions": "акции",
         "Supprimer": "удаление",
         "Envoyer Historique": "",
@@ -1658,6 +1659,8 @@
         "Mettez ici le user de la base": "",
         "Mot de passe de la base": "",
         "Mettez ici le mot de passe de la base": "",
+        "Actions": "акции",
+        "Envoyer Historique": "",
         "Quoter automatiquement les expressions": "",
         "Delai d'attente après génération de la page": "",
         "Nettoyer les rapports plus anciens de": "",
@@ -2727,7 +2730,11 @@
         "Binaire": "двоичный",
         "Créer virtuel": "Создание виртуального",
         "Rétablissement des droits d\\'accès effectué avec succès": "Успешно восстановлены права доступа",
-        "Log consistency": ""
+        "Log consistency": "",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "",
+        "Action envoyée avec succés": "",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "",
+        "Programmation envoyée avec succés": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -3631,6 +3638,7 @@
         "Erreur get influx database : ": "",
         "Erreur push influx sur : ": "",
         "Erreur delete influx sur : ": "",
+        "Envoie de l\\'historique à influx : ": "",
         "Erreur history influx sur : ": "",
         "Commande": "Команда"
     },
