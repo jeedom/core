@@ -2783,7 +2783,6 @@
         "L\\'opération a échoué": "Operação de L \\ 'falhou"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Nemhum",
         "Résumé scénario": "Resumo cenário",
         "Scénario": "Cenas",
         "Log d'exécution du scénario": "Log execução do script",
@@ -2825,6 +2824,7 @@
         "Arrêté": "Preso",
         "Jamais": "Sempre",
         "Inactif": "Inativo",
+        "Aucun": "Nemhum",
         "Evénement": "Evento",
         "Choisir une commande": "Escolha um comando",
         "Choisir une variable": "Selecione uma variável",
@@ -3844,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "Não foi possível encontrar o comando:",
         " => ": "=>",
+        "Aucun": "Nemhum",
         "Scénario exécuté automatiquement sur événement venant de : ": "Cenário executado automaticamente em caso de:",
         "Scénario exécuté sur événement : #": "Cenário executado no evento #",
         "Scénario exécuté automatiquement sur programmation": "Cenário executado automaticamente no programa",
@@ -3856,7 +3857,6 @@
         "Un déclencheur du scénario : ": "Um gatilho de cenário:",
         " est introuvable": "não é encontrado",
         "Une commande du scénario : ": "Uma ordem do script:",
-        "Aucun": "Nemhum",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "A última execução do cenário não foi iniciada. Verifique o log do cenário_execução, bem como o log do cenário",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "A última execução do cenário não foi iniciada. Verifique o log do cenário_execução para execução em",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "Muitas chamadas simultâneas para o cenário, ele não pode ser executado novamente. É aconselhável reduzir as chamadas para o cenário",

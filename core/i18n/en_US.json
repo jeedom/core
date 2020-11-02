@@ -2783,7 +2783,6 @@
         "L\\'opération a échoué": "Operation failed"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "None",
         "Résumé scénario": "Scenario summary",
         "Scénario": "Scenario",
         "Log d'exécution du scénario": "Scenario execution log",
@@ -2825,6 +2824,7 @@
         "Arrêté": "Stopped",
         "Jamais": "Never",
         "Inactif": "Inactive",
+        "Aucun": "None",
         "Evénement": "Event",
         "Choisir une commande": "Choose a command",
         "Choisir une variable": "Choose a variable",
@@ -3844,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "The command could not be found:",
         " => ": "=>",
+        "Aucun": "None",
         "Scénario exécuté automatiquement sur événement venant de : ": "Scenario executed automatically on event from :",
         "Scénario exécuté sur événement : #": "Scenario executed on event : #",
         "Scénario exécuté automatiquement sur programmation": "Scenario executed automatically on schedule",
@@ -3856,7 +3857,6 @@
         "Un déclencheur du scénario : ": "A scenario trigger:",
         " est introuvable": "is unfound",
         "Une commande du scénario : ": "A scenario command:",
-        "Aucun": "None",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "The last execution of the scenario did not start. Check the log scenario_execution, as well as the log of the scenario",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "The last execution of the scenario did not start. Check the scenario_execution log for execution at",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "Too many simultaneous calls to the scenario, it cannot be executed again. It is advisable to reduce the calls to the scenario",

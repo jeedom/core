@@ -2783,7 +2783,6 @@
         "L\\'opération a échoué": "Операция не удалась"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Нет",
         "Résumé scénario": "Сводный сценарий",
         "Scénario": "Сценарий",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
@@ -2825,6 +2824,7 @@
         "Arrêté": "арестованный",
         "Jamais": "Никогда",
         "Inactif": "неактивный",
+        "Aucun": "Нет",
         "Evénement": "событие",
         "Choisir une commande": "Выберите заказ",
         "Choisir une variable": "Выберите переменную",
@@ -3844,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "",
         " => ": "=>",
+        "Aucun": "Нет",
         "Scénario exécuté automatiquement sur événement venant de : ": "Сценарий выполняется автоматически по событию",
         "Scénario exécuté sur événement : #": "Сценарий выполняется на турнире #",
         "Scénario exécuté automatiquement sur programmation": "Сценарий запрограммирован запускаться автоматически",
@@ -3856,7 +3857,6 @@
         "Un déclencheur du scénario : ": "",
         " est introuvable": "не найден",
         "Une commande du scénario : ": "Порядок сценария:",
-        "Aucun": "Нет",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "",
