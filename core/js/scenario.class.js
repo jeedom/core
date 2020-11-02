@@ -57,12 +57,7 @@ jeedom.scenario.all = function (_params) {
 
 jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
   var paramsRequired = [];
-  var paramsSpecifics = {
-    pre_success: function (data) {
-      jeedom.scenario.cache.all = data.result;
-      return data;
-    }
-  };
+  var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -70,15 +65,11 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.scenario.cache.all) && jeedom.scenario.cache.all != null && init(_params.nocache,false) == false) {
-    params.success(jeedom.scenario.cache.all);
-    return;
-  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'allOrderedByGroupObjectName',
-    asGroup: _params.asGroup || 0
+    asGroup: _params.asGroup ? _params.asGroup : 0
   };
   $.ajax(paramsAJAX);
 }
