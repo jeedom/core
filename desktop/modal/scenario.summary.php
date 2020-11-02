@@ -78,10 +78,11 @@ $('#bt_saveSummaryScenario').off().on('click', function() {
 function refreshScenarioSummary() {
   $.clearDivContent('tbody_scenarioSummary')
   jeedom.scenario.allOrderedByGroupObjectName({
+    nocache: true,
     error: function (error) {
       $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(data){
+    success : function(data) {
       var table = []
       for(var i in data){
         var tr = '<tr class="scenario" data-id="' + init(data[i].id) + '">'

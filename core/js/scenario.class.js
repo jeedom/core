@@ -71,7 +71,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null) {
+  if (isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
     return
   }
