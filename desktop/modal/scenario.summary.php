@@ -44,32 +44,44 @@ if (!isConnect()) {
       <th data-sorter="false" data-filter="false">{{Actions}}</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbody_scenarioSummary">
 
   </tbody>
 </table>
 
 <script>
+var tableScSummary = $('#table_scenarioSummary')
 initTableSorter()
 refreshScenarioSummary()
-var tableScSummary = $('#table_scenarioSummary')
 tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '80px']
 tableScSummary.trigger('applyWidgets')
-tableScSummary.trigger('resizableReset')
-tableScSummary.trigger('sorton', [[[1,0]]])
+  .trigger('resizableReset')
+  .trigger('sorton', [[[1,0]]])
 
 $('#bt_refreshSummaryScenario').off().on('click', function() {
   refreshScenarioSummary()
 })
 
+$('#bt_saveSummaryScenario').off().on('click', function() {
+  var scenarios = $('#table_scenarioSummary tbody .scenario').getValues('.scenarioAttr')
+  jeedom.scenario.saveAll({
+    scenarios : scenarios,
+    error: function(error) {
+      $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(data) {
+      refreshScenarioSummary()
+    }
+  })
+})
+
 function refreshScenarioSummary() {
+  $.clearDivContent('tbody_scenarioSummary')
   jeedom.scenario.allOrderedByGroupObjectName({
-    nocache : true,
     error: function (error) {
       $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
     },
     success : function(data){
-      $('#table_scenarioSummary tbody').empty()
       var table = []
       for(var i in data){
         var tr = '<tr class="scenario" data-id="' + init(data[i].id) + '">'
@@ -135,8 +147,9 @@ function refreshScenarioSummary() {
         result.setValues(data[i], '.scenarioAttr')
         table.push(result)
       }
-      $('#table_scenarioSummary tbody').append(table)
-      $("#table_scenarioSummary").trigger("update")
+
+      tableScSummary.find('tbody').append(table)
+      tableScSummary.trigger("update")
 
       jeedom.timeline.autocompleteFolder()
 
@@ -198,20 +211,11 @@ function refreshScenarioSummary() {
         var tr = $(this).closest('tr')
         window.location.href = 'index.php?v=d&p=scenario&id='+tr.attr('data-id')
       })
+
+      setTimeout(function() {
+        tableScSummary.closest('.ui-dialog').resize()
+      }, 500)
     }
   })
 }
-
-$('#bt_saveSummaryScenario').off().on('click', function() {
-  var scenarios = $('#table_scenarioSummary tbody .scenario').getValues('.scenarioAttr')
-  jeedom.scenario.saveAll({
-    scenarios : scenarios,
-    error: function(error) {
-      $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(data) {
-      refreshScenarioSummary()
-    }
-  })
-})
 </script>
