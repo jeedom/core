@@ -164,8 +164,8 @@ $(function(){
 
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
         {
-          $('.nav.nav-tabs').contextMenu({
-            selector: 'li',
+          $.contextMenu({
+            selector: '.nav.nav-tabs li',
             autoHide: true,
             zIndex: 9999,
             className: 'scenario-context-menu',
