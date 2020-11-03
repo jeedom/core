@@ -875,8 +875,9 @@ Theme Core 2021 @Jeedom
     font-size: 1.5em;
   }
 
-  #tabicon .iconSelected {
-    background-color: #563d7c;
+  #tabicon .iconSelected,
+  #tabimg .iconSelected {
+    background-color: var(--objectBkgd-color);
     color: white;
   }
 
@@ -894,7 +895,42 @@ Theme Core 2021 @Jeedom
     text-align: center;
   }
 
-  #tabicon .iconDesc {
+  #tabimg .imgContainer {
+    padding-top: 32px;
+    display:flex;
+    align-items:flex-start;
+  }
+
+  #tabimg .imgContainer img {
+    width:80px;
+    height:80px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  #tabimg #div_treeFolder {
+    height:100%;
+    min-width:180px;
+  }
+
+  #tabimg #div_imageGallery {
+    height:100%;
+    margin-left:15px;
+    display:flex;
+    flex-wrap:wrap;
+  }
+
+  #tabimg .divImgSel {
+    height:140px;
+    min-width:120px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  #tabicon .iconDesc,
+  #tabimg .iconDesc {
     font-size: 0.8em;
     word-wrap: break-word;
   }
@@ -4213,5 +4249,3 @@ Theme Core 2021 @Jeedom
       width: 14.2%;
     }
   }
-
-

@@ -159,15 +159,14 @@ class scenario {
 		}
 
 		if ($_asGroup) {
-			$noneString = __('Aucun', __FILE__);
 			$scenarioGroupedList = array();
 			foreach ($scenarioListGroup as $group) {
 				$groupName = $group['group'];
-				if ($groupName == '') $groupName = $noneString;
+				if ($groupName == '') $groupName = __('Aucun', __FILE__);
 				$scenarioGroupedList[$groupName] = array();
 				foreach ($scenarioList as $scenario) {
 					$scGroup = $scenario->getGroup();
-					if ($scGroup == '') $scGroup = $noneString;
+					if ($scGroup == '') $scGroup = __('Aucun', __FILE__);
 					if ($scGroup != $groupName) continue;
 					array_push($scenarioGroupedList[$groupName], $scenario);
 				}
@@ -460,7 +459,7 @@ class scenario {
 	}
 
 	/**
-	* @name byObjectNameGroupNameScenarioName()
+	* @name byGroupNameObjectNameScenarioName()
 	* @param object $_object_name
 	* @param type $_group_name
 	* @param type $_scenario_name
@@ -591,7 +590,7 @@ class scenario {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i]) && isset($matches[3][$i])) {
-					$scenario = self::byObjectNameGroupNameScenarioName($matches[1][$i], $matches[2][$i], $matches[3][$i]);
+					$scenario = self::byObjectNameGroupNameScenarioName($matches[2][$i], $matches[1][$i], $matches[3][$i]);
 					if (is_object($scenario)) {
 						$text = str_replace($matches[0][$i], '#scenario' . $scenario->getId() . '#', $text);
 					}
@@ -1354,23 +1353,6 @@ class scenario {
 	}
 	/**
 	*
-	* @return string
-	*/
-	public function getGroupObjectName() {
-		$noneString = __('Aucun', __FILE__);
-		$scGroup = $this->getGroup();
-		if ($scGroup == '') $scGroup = $noneString;
-
-		if (is_numeric($this->getObject_id()) && is_object($this->getObject())) {
-			$scObject = $this->getObject();
-			$scName = '['.$scGroup.']['.$scObject->getName().']['.$this->getName().']';
-		} else {
-			$scName = '['.$scGroup.']['.$noneString.']['.$this->getName().']';
-		}
-		return $scName;
-	}
-	/**
-	*
 	* @param type $_complete
 	* @param type $_noGroup
 	* @param type $_tag
@@ -1378,8 +1360,19 @@ class scenario {
 	* @param type $_withoutScenarioName
 	* @return string
 	*/
-	public function getHumanName($_complete = false, $_noGroup = false, $_tag = false, $_prettify = false, $_withoutScenarioName = false, $_object_name = true) {
+	public function getHumanName($_complete=true, $_noGroup=false, $_tag=false, $_prettify=false, $_withoutScenarioName=false, $_object_name=true) {
+		//$_complete : add None if no tag or no group
+		//$_noGroup: add group name
+		//$_tag: html label with custom color
 		$name = '';
+		if (!$_noGroup) {
+			$groupName = $this->getGroup() != '' ? $this->getGroup() : __('Aucun', __FILE__);
+			if ($_tag) {
+				$name .= '<span class="label label-info">' . $groupName . '</span> ';
+			} else {
+				$name .= '[' . $groupName . ']';
+			}
+		}
 		if ($_object_name && is_numeric($this->getObject_id()) && is_object($this->getObject())) {
 			$object = $this->getObject();
 			if ($_tag) {
@@ -1396,15 +1389,6 @@ class scenario {
 				if ($_tag) {
 					$name .= '<span class="label labelObjectHuman">' . __('Aucun', __FILE__) . '</span>';
 				} else {
-					$name .= '[' . __('Aucun', __FILE__) . ']';
-				}
-			}
-		}
-		if (!$_noGroup) {
-			if ($this->getGroup() != '') {
-				$name .= '[' . $this->getGroup() . ']';
-			} else {
-				if ($_complete) {
 					$name .= '[' . __('Aucun', __FILE__) . ']';
 				}
 			}

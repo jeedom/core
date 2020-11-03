@@ -180,7 +180,7 @@ try {
 				$scenario = $subElement->getElement()->getScenario();
 				if (is_object($scenario)) {
 					$info = utils::o2a($scenario);
-					$info['groupObjectName'] = $scenario->getGroupObjectName();
+					$info['humanNameTag'] = $scenario->getHumanName(true, false, true);
 					$info['humanName'] = $scenario->getHumanName();
 					$info['link'] = $scenario->getLinkToConfiguration();
 					$info['linkId'] = $scenario->getId();

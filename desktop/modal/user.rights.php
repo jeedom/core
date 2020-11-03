@@ -24,9 +24,6 @@ if (!is_object($user)) {
   throw new Exception(__('Impossible de trouver l\'utilisateur : ', __FILE__) . init('id'));
 }
 sendVarToJs('user_rights', utils::o2a($user));
-if ($user->getProfils() != 'restrict') {
-  echo '<div class="alert alert-danger">{{Attention : le compte utilisateur n\'a pas un profil "Utilisateur limité", aucune restriction mise ici ne pourra donc s\'appliquer}}</div>';
-}
 ?>
 
 <div style="display: none;" id="div_userRightAlert"></div>
@@ -37,6 +34,11 @@ if ($user->getProfils() != 'restrict') {
 </ul>
 
 <div class="tab-content" id="div_tabUserRights">
+  <?php
+  if ($user->getProfils() != 'restrict') {
+    echo '<div class="alert alert-danger">{{Attention : le compte utilisateur n\'a pas un profil "Utilisateur limité", aucune restriction mise ici ne pourra donc s\'appliquer}}</div>';
+  }
+  ?>
   <span class="userAttr" data-l1key="id" style="display:none;"></span>
 
   <div role="tabpanel" class="tab-pane active" id="tab_eqLogic">
@@ -78,10 +80,10 @@ if ($user->getProfils() != 'restrict') {
       </thead>
       <tbody>
         <?php
-          foreach ((scenario::all()) as $scenario) {
+          foreach ((scenario::allOrderedByGroupObjectName()) as $scenario) {
             $sc = '';
             $sc .= '<tr>';
-            $sc .= '<td>' . $scenario->getHumanName(true, true, true) . '</td>';
+            $sc .= '<td>' . $scenario->getHumanName(true, false, true) . '</td>';
             $sc .= '<td>';
             $sc .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="scenario' . $scenario->getId() . '">';
             $sc .= '<option value="n">{{Aucun}}</option>';

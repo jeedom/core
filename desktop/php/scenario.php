@@ -314,7 +314,7 @@ sendVarToJs('initSearch', init('search', 0));
 					<div class="col-sm-12">
 						<div class="form-group">
 							<div class="col-md-12">
-								<span class="label" id="groupObjectName"></span>
+								<span class="label" id="humanNameTag"></span>
 							</div>
 						</div>
 					</div>
