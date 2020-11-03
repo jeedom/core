@@ -903,7 +903,8 @@ Theme Core 2021 @Jeedom
 
   #tabimg .imgContainer img {
     width:80px;
-    height:80px;
+    height: auto;
+    max-height:80px;
     display:flex;
     justify-content:center;
     align-items:center;
