@@ -927,6 +927,7 @@ Theme Core 2021 @Jeedom
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content: center;
   }
 
   #tabicon .iconDesc,
