@@ -349,10 +349,10 @@
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur : ": "",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "",
         "Sauvegarder": "Menyimpan",
         "Equipements": "Peralatan",
         "Scénarios": "Skenario",
+        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "",
         "Equipement": "Peralatan",
         "Droits": "",
         "Aucun": "Tak ada",
