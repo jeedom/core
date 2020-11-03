@@ -1044,3 +1044,33 @@ $('#bt_consistency').off('click').on('click',function() {
 $('#bt_logConsistency').off('click').on('click',function() {
   $('#md_modal2').dialog({title: "{{Log consistency}}"}).load('index.php?v=d&modal=log.display&log=consistency').dialog('open')
 })
+
+$('#bt_influxDelete').off('click').on('click',function() {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
+      if (result) {
+          jeedom.cmd.dropDatabaseInflux({
+          error: function(error) {
+            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $('#md_displayCmdConfigure').showAlert({message: '{{Action envoyée avec succés}}', level: 'success'})
+          }
+        })
+      }
+    })
+})
+
+$('#bt_influxHistory').off('click').on('click',function() {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.}}', function(result) {
+      if (result) {
+          jeedom.cmd.historyInfluxAll({
+          error: function(error) {
+            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $('#md_displayCmdConfigure').showAlert({message: '{{Programmation envoyée avec succés}}', level: 'success'})
+          }
+        })
+      }
+    })
+})

@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Objet": "Objeto",
-        "Equipement": "Equipamento",
-        "Aucun": "Nemhum"
+        "Equipement": "Equipamento"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -655,6 +654,7 @@
         "Nom personnalisé Commande": "Ordem de nome personalizado",
         "Facultatif": "Opcional",
         "Nom personnalisé équipement": "Equipamento de nome personalizado",
+        "Nom personnalisé Valeur": "Valor de nome personalizado",
         "Actions": "Estoque",
         "Supprimer": "Remover",
         "Envoyer Historique": "Enviar histórico",
@@ -787,8 +787,8 @@
         "Vert": "Verde",
         "Rechercher": "Pesquisa",
         "Envoyer": "Enviar",
-        "Supprimer": "Remover",
         "Êtes-vous sûr de vouloir supprimer cette image": "Tem certeza de que deseja excluir esta imagem",
+        "Supprimer": "Remover",
         "Général": "Geral"
     },
     "desktop\/modal\/update.send.php": {
@@ -1011,8 +1011,8 @@
         "Dernier lancement": "último lançamento",
         "Actif": "Ativos",
         "Visible": "Visivél",
-        "Multi lancement": "Multi lançamento",
-        "Mode synchrone": "Sincronicamente",
+        "Multi": "Multi",
+        "Sync": "Sincronizar",
         "Log": "Log",
         "Timeline": "Cronograma",
         "Actions": "Estoque",
@@ -1025,6 +1025,8 @@
         "Dossier": "Ficheiro",
         "Voir les logs": "Ver registos",
         "Exécuter": "Realizar",
+        "Supprimer ce scénario": "Exclua este cenário",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Tem certeza de que deseja excluir o cenário",
         "Log d'exécution du scénario": "Log execução do script"
     },
     "desktop\/modal\/scenario.template.php": {
@@ -1077,6 +1079,7 @@
         "Concept": "Conceito",
         "Documentation de démarrage": "Documentação de introdução",
         "Documentation": "Documentação",
+        "Ne plus afficher": "Não exibir mais",
         "Sauvegarde réussie": "Backup bem-sucedido"
     },
     "desktop\/modal\/interact.test.php": {
@@ -1656,6 +1659,8 @@
         "Mettez ici le user de la base": "Coloque aqui o usuário da base",
         "Mot de passe de la base": "Senha base",
         "Mettez ici le mot de passe de la base": "Coloque a senha do banco de dados aqui",
+        "Actions": "Estoque",
+        "Envoyer Historique": "Enviar histórico",
         "Quoter automatiquement les expressions": "Citar expressões automaticamente",
         "Delai d'attente après génération de la page": "Tempo de espera após a geração da página",
         "Nettoyer les rapports plus anciens de": "Limpe relatórios mais antigos de",
@@ -1965,6 +1970,7 @@
         "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Nemhum",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
@@ -1973,7 +1979,6 @@
         "Vue d'ensemble": "Visão global",
         "Mes scénarios": "Meus scripts",
         "Rechercher": "Pesquisa",
-        "Aucun": "Nemhum",
         "Etat précédent": "Estado anterior",
         "Etat suivant": "Próximo estado",
         "Ajouter bloc": "Adicionar bloco",
@@ -2725,7 +2730,11 @@
         "Binaire": "Binário",
         "Créer virtuel": "Criar virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "Direitos de acesso restaurados com sucesso",
-        "Log consistency": "Consistência do log"
+        "Log consistency": "Consistência do log",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Tem certeza de que deseja excluir o banco de dados do InfluxDB",
+        "Action envoyée avec succés": "Ação enviada com sucesso",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Tem certeza de que deseja enviar todo o histórico de todos os pedidos com o InfluxDB. Isso será agendado e executado em segundo plano em um minuto e pode levar muito tempo dependendo do número de comandos",
+        "Programmation envoyée avec succés": "Programação enviada com sucesso"
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/> Sua senha deve ser alterada",
@@ -2774,7 +2783,6 @@
         "L\\'opération a échoué": "Operação de L \\ 'falhou"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Nemhum",
         "Résumé scénario": "Resumo cenário",
         "Scénario": "Cenas",
         "Log d'exécution du scénario": "Log execução do script",
@@ -2816,6 +2824,7 @@
         "Arrêté": "Preso",
         "Jamais": "Sempre",
         "Inactif": "Inativo",
+        "Aucun": "Nemhum",
         "Evénement": "Evento",
         "Choisir une commande": "Escolha um comando",
         "Choisir une variable": "Selecione uma variável",
@@ -3629,6 +3638,7 @@
         "Erreur get influx database : ": "Obter erro de influxo de banco de dados:",
         "Erreur push influx sur : ": "Erro de envio de influxo em:",
         "Erreur delete influx sur : ": "Erro ao excluir influxo em:",
+        "Envoie de l\\'historique à influx : ": "Envia histórico de influxo:",
         "Erreur history influx sur : ": "Erro de influxo de histórico em:",
         "Commande": "Ordem"
     },
@@ -3834,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "Não foi possível encontrar o comando:",
         " => ": "=>",
+        "Aucun": "Nemhum",
         "Scénario exécuté automatiquement sur événement venant de : ": "Cenário executado automaticamente em caso de:",
         "Scénario exécuté sur événement : #": "Cenário executado no evento #",
         "Scénario exécuté automatiquement sur programmation": "Cenário executado automaticamente no programa",
@@ -3846,7 +3857,6 @@
         "Un déclencheur du scénario : ": "Um gatilho de cenário:",
         " est introuvable": "não é encontrado",
         "Une commande du scénario : ": "Uma ordem do script:",
-        "Aucun": "Nemhum",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "A última execução do cenário não foi iniciada. Verifique o log do cenário_execução, bem como o log do cenário",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "A última execução do cenário não foi iniciada. Verifique o log do cenário_execução para execução em",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "Muitas chamadas simultâneas para o cenário, ele não pode ser executado novamente. É aconselhável reduzir as chamadas para o cenário",

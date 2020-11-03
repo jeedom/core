@@ -303,7 +303,7 @@ function searchFor_variable(_searchFor) {
       cmdResult = []
       for (var i in result) {
         for (var sc in result[i].usedBy.scenario) {
-          scenarioResult.push({'humanName':result[i].usedBy.scenario[sc]['humanName'], 'id':result[i].usedBy.scenario[sc]['id']})
+          scenarioResult.push({'humanName':result[i].usedBy.scenario[sc]['groupObjectName'], 'id':result[i].usedBy.scenario[sc]['id']})
         }
         for (var sc in result[i].usedBy.interactDef) {
           interactResult.push({'humanName':result[i].usedBy.interactDef[sc]['humanName'], 'id':result[i].usedBy.interactDef[sc]['id']})
@@ -351,7 +351,7 @@ function searchFor_equipment(_searchFor, _byId=false) {
     },
     success: function(result) {
       for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
+        showScenariosResult({'humanName':result.scenario[i].groupObjectName, 'id':result.scenario[i].linkId}, false)
       }
       for (var i in result.plan) {
         showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
@@ -397,7 +397,7 @@ function searchFor_command(_searchFor, _byId=false) {
     },
     success: function(result) {
       for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
+        showScenariosResult({'humanName':result.scenario[i].groupObjectName, 'id':result.scenario[i].linkId}, false)
       }
       for (var i in result.plan) {
         showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
@@ -426,7 +426,7 @@ function searchFor_value(_searchFor) {
     },
     success: function(result) {
       for (var i in result.scenario) {
-        showScenariosResult({'humanName':result.scenario[i].humanName, 'id':result.scenario[i].linkId}, false)
+        showScenariosResult({'humanName':result.scenario[i].groupObjectName, 'id':result.scenario[i].linkId}, false)
       }
       for (var i in result.interactDef) {
         showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)

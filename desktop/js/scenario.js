@@ -138,51 +138,24 @@ $('#bt_resetInsideScenarioSearch').on('click', function() {
 //contextMenu
 $(function(){
   try{
-    $.contextMenu('destroy', $('.nav.nav-tabs'));
-    jeedom.scenario.all({
+    $.contextMenu('destroy', $('.nav.nav-tabs'))
+
+    jeedom.scenario.allOrderedByGroupObjectName({
+      asGroup: 1,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
-      success: function(scenarios) {
-        if (scenarios.length == 0) return
-        var scenarioGroups = []
-        for (var i=0; i<scenarios.length; i++) {
-          group = scenarios[i].group
-          if (group == null) continue
-          if (group == "") group = '{{Aucun}}'
-          group = group[0].toUpperCase() + group.slice(1)
-          scenarioGroups.push(group)
-        }
+      success: function(scenarioGroupedList) {
+        if (scenarioGroupedList.length == 0) return
 
-        scenarioGroups = Array.from(new Set(scenarioGroups))
-        var first = '{{Aucun}}'
-        scenarioGroups.sort(function(x, y) { return x == first ? -1 : y == first ? 1 : 0 })
-
-        var scenarioList = []
-        for(var i=0; i<scenarioGroups.length; i++) {
-          group = scenarioGroups[i]
-          scenarioList[group] = []
-          var sc, scGroup
-          for (var j=0; j<scenarios.length; j++) {
-            sc = scenarios[j]
-            scGroup = sc.group
-            if (scGroup == null) continue
-            if (scGroup == "") scGroup = '{{Aucun}}'
-            if (scGroup.toLowerCase() != group.toLowerCase()) continue
-            scenarioList[group].push([sc.name, sc.id])
-          }
-        }
-
-        //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
-        for (var group in scenarioList) {
-          var groupScenarios = scenarioList[group]
-          var items = {}
-          for (var index in groupScenarios) {
-            var sc = groupScenarios[index]
-            var scName = sc[0] + '  ('+sc[1]+')'
-            var scId = sc[1]
+        var items, scName, scId
+        for (var group in scenarioGroupedList) {
+          items = {}
+          for (var i in scenarioGroupedList[group]) {
+            scName = scenarioGroupedList[group][i].groupObjectName.replace('['+group+']', '')
+            scId = scenarioGroupedList[group][i].id
             items[uniqId] = {'name': scName, 'id' : scId}
             uniqId ++
           }
@@ -191,8 +164,8 @@ $(function(){
 
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object)
         {
-          $('.nav.nav-tabs').contextMenu({
-            selector: 'li',
+          $.contextMenu({
+            selector: '.nav.nav-tabs li',
             autoHide: true,
             zIndex: 9999,
             className: 'scenario-context-menu',
@@ -1443,6 +1416,12 @@ function printScenario(_id) {
         checkNoMode()
         updateTooltips()
       }, 500)
+
+      var group = $('input[data-l1key="group"]').val()
+      if (group == '') group = '{{Aucun}}'
+      var object = $('select[data-l1key="object_id"] option:selected').text().trim()
+      var name = $('input[data-l1key="name"]').val()
+      $('#groupObjectName').html('['+group+']['+object+']['+name+']')
     }
   })
 }
@@ -1843,7 +1822,7 @@ function addSubElement(_subElement) {
     retour += '<div>'
     retour += '<legend >{{CODE}}</legend>'
     var expression = {type: 'code'}
-    if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+    if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression == "string") {
       expression = _subElement.expressions[0]
       retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>'
     } else {

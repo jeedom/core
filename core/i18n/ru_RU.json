@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Objet": "Объект",
-        "Equipement": "Оборудование",
-        "Aucun": "Нет"
+        "Equipement": "Оборудование"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -655,6 +654,7 @@
         "Nom personnalisé Commande": "",
         "Facultatif": "",
         "Nom personnalisé équipement": "",
+        "Nom personnalisé Valeur": "",
         "Actions": "акции",
         "Supprimer": "удаление",
         "Envoyer Historique": "",
@@ -787,8 +787,8 @@
         "Vert": "зеленый",
         "Rechercher": "поиск",
         "Envoyer": "Отправить",
-        "Supprimer": "удаление",
         "Êtes-vous sûr de vouloir supprimer cette image": "Вы уверены, что хотите удалить это изображение?",
+        "Supprimer": "удаление",
         "Général": "Главная"
     },
     "desktop\/modal\/update.send.php": {
@@ -1011,8 +1011,8 @@
         "Dernier lancement": "Последний запуск",
         "Actif": "активы",
         "Visible": "Видимый",
-        "Multi lancement": "Мульти запуск",
-        "Mode synchrone": "Синхронный режим",
+        "Multi": "",
+        "Sync": "",
         "Log": "журнал",
         "Timeline": "хронология",
         "Actions": "акции",
@@ -1025,6 +1025,8 @@
         "Dossier": "запись",
         "Voir les logs": "Смотрите логи",
         "Exécuter": "выполнять",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Вы уверены, что хотите удалить сценарий?",
         "Log d'exécution du scénario": "Журнал запуска скрипта"
     },
     "desktop\/modal\/scenario.template.php": {
@@ -1077,6 +1079,7 @@
         "Concept": "",
         "Documentation de démarrage": "Начало работы с документацией",
         "Documentation": "документация",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "Удачная резервная копия"
     },
     "desktop\/modal\/interact.test.php": {
@@ -1656,6 +1659,8 @@
         "Mettez ici le user de la base": "",
         "Mot de passe de la base": "",
         "Mettez ici le mot de passe de la base": "",
+        "Actions": "акции",
+        "Envoyer Historique": "",
         "Quoter automatiquement les expressions": "",
         "Delai d'attente après génération de la page": "",
         "Nettoyer les rapports plus anciens de": "",
@@ -1965,6 +1970,7 @@
         "Annuler": "Отменить"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Нет",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
@@ -1973,7 +1979,6 @@
         "Vue d'ensemble": "обзор",
         "Mes scénarios": "Мои сценарии",
         "Rechercher": "поиск",
-        "Aucun": "Нет",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Добавить блок",
@@ -2725,7 +2730,11 @@
         "Binaire": "двоичный",
         "Créer virtuel": "Создание виртуального",
         "Rétablissement des droits d\\'accès effectué avec succès": "Успешно восстановлены права доступа",
-        "Log consistency": ""
+        "Log consistency": "",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "",
+        "Action envoyée avec succés": "",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "",
+        "Programmation envoyée avec succés": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2774,7 +2783,6 @@
         "L\\'opération a échoué": "Операция не удалась"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Нет",
         "Résumé scénario": "Сводный сценарий",
         "Scénario": "Сценарий",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
@@ -2816,6 +2824,7 @@
         "Arrêté": "арестованный",
         "Jamais": "Никогда",
         "Inactif": "неактивный",
+        "Aucun": "Нет",
         "Evénement": "событие",
         "Choisir une commande": "Выберите заказ",
         "Choisir une variable": "Выберите переменную",
@@ -3629,6 +3638,7 @@
         "Erreur get influx database : ": "",
         "Erreur push influx sur : ": "",
         "Erreur delete influx sur : ": "",
+        "Envoie de l\\'historique à influx : ": "",
         "Erreur history influx sur : ": "",
         "Commande": "Команда"
     },
@@ -3834,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "",
         " => ": "=>",
+        "Aucun": "Нет",
         "Scénario exécuté automatiquement sur événement venant de : ": "Сценарий выполняется автоматически по событию",
         "Scénario exécuté sur événement : #": "Сценарий выполняется на турнире #",
         "Scénario exécuté automatiquement sur programmation": "Сценарий запрограммирован запускаться автоматически",
@@ -3846,7 +3857,6 @@
         "Un déclencheur du scénario : ": "",
         " est introuvable": "не найден",
         "Une commande du scénario : ": "Порядок сценария:",
-        "Aucun": "Нет",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "",

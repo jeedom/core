@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Objet": "Oggetto",
-        "Equipement": "Dispositivo",
-        "Aucun": "Nessuno"
+        "Equipement": "Dispositivo"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -655,6 +654,7 @@
         "Nom personnalisé Commande": "",
         "Facultatif": "",
         "Nom personnalisé équipement": "",
+        "Nom personnalisé Valeur": "",
         "Actions": "Stock",
         "Supprimer": "Rimuovere",
         "Envoyer Historique": "",
@@ -787,8 +787,8 @@
         "Vert": "Verde",
         "Rechercher": "Ricercare",
         "Envoyer": "Invia",
-        "Supprimer": "Rimuovere",
         "Êtes-vous sûr de vouloir supprimer cette image": "",
+        "Supprimer": "Rimuovere",
         "Général": "Principale"
     },
     "desktop\/modal\/update.send.php": {
@@ -1011,8 +1011,8 @@
         "Dernier lancement": "Ultimo lancio",
         "Actif": "Beni",
         "Visible": "Visibile",
-        "Multi lancement": "Multi lancio",
-        "Mode synchrone": "Sincrono",
+        "Multi": "",
+        "Sync": "",
         "Log": "Registro",
         "Timeline": "Cronologia",
         "Actions": "Stock",
@@ -1025,6 +1025,8 @@
         "Dossier": "Record",
         "Voir les logs": "Visualizza i log",
         "Exécuter": "Eseguire",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Sei sicuro di voler eliminare lo scenario",
         "Log d'exécution du scénario": "Registro di esecuzione della scena"
     },
     "desktop\/modal\/scenario.template.php": {
@@ -1077,6 +1079,7 @@
         "Concept": "",
         "Documentation de démarrage": "",
         "Documentation": "Documentazione",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "Backup completato correttamente"
     },
     "desktop\/modal\/interact.test.php": {
@@ -1656,6 +1659,8 @@
         "Mettez ici le user de la base": "",
         "Mot de passe de la base": "",
         "Mettez ici le mot de passe de la base": "",
+        "Actions": "Stock",
+        "Envoyer Historique": "",
         "Quoter automatiquement les expressions": "Cita espressioni automaticamente",
         "Delai d'attente après génération de la page": "Tempo di attesa dopo la generazione della pagina",
         "Nettoyer les rapports plus anciens de": "Pulisci i rapporti più vecchi da",
@@ -1965,6 +1970,7 @@
         "Annuler": "Cancella"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Nessuno",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Gestion": "Gestione",
         "Ajouter": "Aggiungi",
@@ -1973,7 +1979,6 @@
         "Vue d'ensemble": "Panoramica",
         "Mes scénarios": "I miei scenari",
         "Rechercher": "Ricercare",
-        "Aucun": "Nessuno",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Aggiungi blocco",
@@ -2725,7 +2730,11 @@
         "Binaire": "Binario",
         "Créer virtuel": "Creare virtuale",
         "Rétablissement des droits d\\'accès effectué avec succès": "Diritti di accesso ripristinati correttamente",
-        "Log consistency": ""
+        "Log consistency": "",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "",
+        "Action envoyée avec succés": "",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "",
+        "Programmation envoyée avec succés": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2774,7 +2783,6 @@
         "L\\'opération a échoué": "Operazione fallita"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Nessuno",
         "Résumé scénario": "Scenario riassuntivo",
         "Scénario": "Scena",
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
@@ -2816,6 +2824,7 @@
         "Arrêté": "Smettere",
         "Jamais": "Mai",
         "Inactif": "Inattivo",
+        "Aucun": "Nessuno",
         "Evénement": "Evento",
         "Choisir une commande": "Scegli un ordine",
         "Choisir une variable": "Scegli una variabile",
@@ -3629,6 +3638,7 @@
         "Erreur get influx database : ": "",
         "Erreur push influx sur : ": "",
         "Erreur delete influx sur : ": "",
+        "Envoie de l\\'historique à influx : ": "",
         "Erreur history influx sur : ": "",
         "Commande": "Comando"
     },
@@ -3834,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "Impossibile trovare il comando:",
         " => ": "=>",
+        "Aucun": "Nessuno",
         "Scénario exécuté automatiquement sur événement venant de : ": "Scena eseguita automaticamente sull'evento da:",
         "Scénario exécuté sur événement : #": "Esegui scena su evento: #",
         "Scénario exécuté automatiquement sur programmation": "Scena eseguita automaticamene su pianificazione",
@@ -3846,7 +3857,6 @@
         "Un déclencheur du scénario : ": "Un trigger di scenario:",
         " est introuvable": "non è stato trovato",
         "Une commande du scénario : ": "Un comando di script:",
-        "Aucun": "Nessuno",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "L'ultima esecuzione dello scenario non è iniziata. Controllare l'esecuzione del registro scenario_execution in",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "",

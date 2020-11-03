@@ -19,7 +19,8 @@
   if ('#action#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=action] option[value=#action#]').html() != undefined) {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=action]').value('#action#');
   }
-  jeedom.scenario.all({
+  jeedom.scenario.allOrderedByGroupObjectName({
+    asGroup: 0,
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
     },
@@ -27,7 +28,7 @@
       var options = '';
       options += '<option value="-1">{{Aucun}}</option>';
       for (var i in scenarios) {
-        options += '<option value="' + scenarios[i].id + '">' + scenarios[i].humanName + '</option>';
+        options += '<option value="' + scenarios[i].id + '">' + scenarios[i].groupObjectName + '</option>';
       }
       $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=scenario_id]').append(options);
       if ('#scenario_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=scenario_id] option[value=#scenario_id#]').html() != undefined) {

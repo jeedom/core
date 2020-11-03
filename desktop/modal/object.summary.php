@@ -42,7 +42,7 @@ if (!isConnect()) {
     $allObject = jeeObject::buildTree(null, false);
     foreach ($allObject as $object) {
       $html = '';
-      $html .= '<tr class="tr_object" data-object_id="' . $object->getId() . '"><td style="width:40px;"><span class="label label-info">' . $object->getId() . '</span></td>';
+      $html .= '<tr class="tr_object" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getHumanName() . '"><td style="width:40px;"><span class="label label-info">' . $object->getId() . '</span></td>';
       $html .= '<td style="width:auto;">';
       for ($i = 0; $i < $object->getConfiguration('parentNumber'); $i++) {
         $html .= '&nbsp;&nbsp;&nbsp;';
@@ -123,7 +123,8 @@ initTableSorter()
 $('#table_ObjectSummary .bt_removeObject').on('click', function(event) {
   $.hideAlert()
   var id = $(this).closest('tr.tr_object').attr('data-object_id')
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text() + '</span> ?', function(result) {
+  var name = $(this).closest('tr.tr_object').attr('data-object_name')
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
     if (result) {
       jeedom.object.remove({
         id: id,

@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Objet": "オブジェクト",
-        "Equipement": "設備",
-        "Aucun": "何でもありません"
+        "Equipement": "設備"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -655,6 +654,7 @@
         "Nom personnalisé Commande": "",
         "Facultatif": "",
         "Nom personnalisé équipement": "",
+        "Nom personnalisé Valeur": "",
         "Actions": "株式",
         "Supprimer": "取り除きます",
         "Envoyer Historique": "",
@@ -787,8 +787,8 @@
         "Vert": "グリーン",
         "Rechercher": "検索",
         "Envoyer": "送ります",
-        "Supprimer": "取り除きます",
         "Êtes-vous sûr de vouloir supprimer cette image": "この画像を削除してもよろしいですか？",
+        "Supprimer": "取り除きます",
         "Général": "コモン"
     },
     "desktop\/modal\/update.send.php": {
@@ -1011,8 +1011,8 @@
         "Dernier lancement": "最後の打ち上げ",
         "Actif": "財産",
         "Visible": "目に見えます",
-        "Multi lancement": "マルチローンチ",
-        "Mode synchrone": "同期モード",
+        "Multi": "",
+        "Sync": "",
         "Log": "ログ",
         "Timeline": "タイムライン",
         "Actions": "株式",
@@ -1025,6 +1025,8 @@
         "Dossier": "記録",
         "Voir les logs": "ログを見る",
         "Exécuter": "行います",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "シナリオを削除してもよろしいですか",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します"
     },
     "desktop\/modal\/scenario.template.php": {
@@ -1077,6 +1079,7 @@
         "Concept": "",
         "Documentation de démarrage": "はじめにドキュメント",
         "Documentation": "ドキュメンテーション",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "成功したバックアップ"
     },
     "desktop\/modal\/interact.test.php": {
@@ -1656,6 +1659,8 @@
         "Mettez ici le user de la base": "",
         "Mot de passe de la base": "",
         "Mettez ici le mot de passe de la base": "",
+        "Actions": "株式",
+        "Envoyer Historique": "",
         "Quoter automatiquement les expressions": "式を自動的に引用する",
         "Delai d'attente après génération de la page": "ページ生成後の待機時間",
         "Nettoyer les rapports plus anciens de": "からの古いレポートをクリーンアップする",
@@ -1965,6 +1970,7 @@
         "Annuler": "キャンセル"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "何でもありません",
         "401 - Accès non autorisé": "401-不正アクセス",
         "Gestion": "管理",
         "Ajouter": "加えます",
@@ -1973,7 +1979,6 @@
         "Vue d'ensemble": "概要",
         "Mes scénarios": "私のシナリオ",
         "Rechercher": "検索",
-        "Aucun": "何でもありません",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "ブロックを追加",
@@ -2725,7 +2730,11 @@
         "Binaire": "バイナリ",
         "Créer virtuel": "仮想作成",
         "Rétablissement des droits d\\'accès effectué avec succès": "正常に復元されたアクセス権",
-        "Log consistency": ""
+        "Log consistency": "",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "",
+        "Action envoyée avec succés": "",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "",
+        "Programmation envoyée avec succés": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",
@@ -2774,7 +2783,6 @@
         "L\\'opération a échoué": "操作に失敗しました"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "何でもありません",
         "Résumé scénario": "要約シナリオ",
         "Scénario": "シナリオ",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
@@ -2816,6 +2824,7 @@
         "Arrêté": "逮捕",
         "Jamais": "今までに",
         "Inactif": "不活発",
+        "Aucun": "何でもありません",
         "Evénement": "イベント",
         "Choisir une commande": "注文する",
         "Choisir une variable": "変数を選択してください",
@@ -3629,6 +3638,7 @@
         "Erreur get influx database : ": "",
         "Erreur push influx sur : ": "",
         "Erreur delete influx sur : ": "",
+        "Envoie de l\\'historique à influx : ": "",
         "Erreur history influx sur : ": "",
         "Commande": "オーダー"
     },
@@ -3834,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "",
         " => ": "=>",
+        "Aucun": "何でもありません",
         "Scénario exécuté automatiquement sur événement venant de : ": "シナリオが自動的からのイベントで実行します：",
         "Scénario exécuté sur événement : #": "イベントで実行されるシナリオ＃",
         "Scénario exécuté automatiquement sur programmation": "プログラムに自動的に実行シナリオ",
@@ -3846,7 +3857,6 @@
         "Un déclencheur du scénario : ": "",
         " est introuvable": "見つかりません",
         "Une commande du scénario : ": "スクリプトの順序：",
-        "Aucun": "何でもありません",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "",

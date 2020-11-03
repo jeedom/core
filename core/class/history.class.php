@@ -295,11 +295,11 @@ class history {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			}else if($goupingType[1] == 'hour'){
 				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
+			}else if($goupingType[1] == 'month'){
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
 			}else{
 				$time='DATE';
-				if($goupingType[1] == 'month'){
-					$time='MONTH';
-				}else if($goupingType[1] == 'year'){
+				if($goupingType[1] == 'year'){
 					$time='YEAR';
 				}
 				$sql .= ' GROUP BY '.$time.'(`datetime`)';
@@ -338,11 +338,11 @@ class history {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			}else if($goupingType[1] == 'hour'){
 				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
+			}else if($goupingType[1] == 'month'){
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
 			}else{
 				$time='DATE';
-				if($goupingType[1] == 'month'){
-					$time='MONTH';
-				}else if($goupingType[1] == 'year'){
+				if($goupingType[1] == 'year'){
 					$time='YEAR';
 				}
 				$sql .= ' GROUP BY '.$time.'(`datetime`)';

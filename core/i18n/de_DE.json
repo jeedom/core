@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Objet": "Objekt",
-        "Equipement": "Gerät",
-        "Aucun": "Ohne"
+        "Equipement": "Gerät"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -655,6 +654,7 @@
         "Nom personnalisé Commande": "Benutzerdefinierter Name Bestellung",
         "Facultatif": "Optional",
         "Nom personnalisé équipement": "Benutzerdefinierte Namensausrüstung",
+        "Nom personnalisé Valeur": "Benutzerdefinierter Name Wert",
         "Actions": "Lager",
         "Supprimer": "Löschen",
         "Envoyer Historique": "Verlauf senden",
@@ -787,8 +787,8 @@
         "Vert": "Grün",
         "Rechercher": "Suchen nach",
         "Envoyer": "Senden",
-        "Supprimer": "Löschen",
         "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?",
+        "Supprimer": "Löschen",
         "Général": "Allgemein"
     },
     "desktop\/modal\/update.send.php": {
@@ -1011,8 +1011,8 @@
         "Dernier lancement": "Letzter Start",
         "Actif": "Aktiviert",
         "Visible": "Sichtbar",
-        "Multi lancement": "Mehrfachstart",
-        "Mode synchrone": "Synchroner Modus",
+        "Multi": "Multi",
+        "Sync": "Synchronisieren",
         "Log": "Log",
         "Timeline": "Zeitleiste",
         "Actions": "Aktionen",
@@ -1025,6 +1025,8 @@
         "Dossier": "Rekord",
         "Voir les logs": "Siehe die Protokolle",
         "Exécuter": "Ausführen",
+        "Supprimer ce scénario": "Löschen Sie dieses Szenario",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Möchten Sie das Szenario wirklich löschen?",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios"
     },
     "desktop\/modal\/scenario.template.php": {
@@ -1077,6 +1079,7 @@
         "Concept": "Konzept",
         "Documentation de démarrage": "Erste Schritte Dokumentation",
         "Documentation": "Dokumentation",
+        "Ne plus afficher": "Nicht mehr anzeigen",
         "Sauvegarde réussie": "Speichern erfolgreich"
     },
     "desktop\/modal\/interact.test.php": {
@@ -1656,6 +1659,8 @@
         "Mettez ici le user de la base": "Setzen Sie hier den Benutzer der Basis",
         "Mot de passe de la base": "Basiskennwort",
         "Mettez ici le mot de passe de la base": "Geben Sie hier das Datenbankkennwort ein",
+        "Actions": "Aktionen",
+        "Envoyer Historique": "Verlauf senden",
         "Quoter automatiquement les expressions": "Zitieren Sie Ausdrücke automatisch",
         "Delai d'attente après génération de la page": "Wartezeit nach der Seitengenerierung",
         "Nettoyer les rapports plus anciens de": "Bereinigen Sie ältere Berichte von",
@@ -1965,6 +1970,7 @@
         "Annuler": "Abbrechen"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Ohne",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Gestion": "Management",
         "Ajouter": "Einfügen",
@@ -1973,7 +1979,6 @@
         "Vue d'ensemble": "Übersicht",
         "Mes scénarios": "Meine Szenarien",
         "Rechercher": "Suchen nach",
-        "Aucun": "Ohne",
         "Etat précédent": "Vorheriger Zustand",
         "Etat suivant": "Nächster Zustand",
         "Ajouter bloc": "Block einfügen",
@@ -2725,7 +2730,11 @@
         "Binaire": "Binär",
         "Créer virtuel": "Virtuell erstellen",
         "Rétablissement des droits d\\'accès effectué avec succès": "Zugriffsrechte erfolgreich wiederhergestellt",
-        "Log consistency": "Protokollkonsistenz"
+        "Log consistency": "Protokollkonsistenz",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Möchten Sie die Datenbank wirklich aus InfluxDB löschen?",
+        "Action envoyée avec succés": "Aktion erfolgreich gesendet",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "Sind Sie sicher, dass Sie mit InfluxDB die gesamte Historie aller Bestellungen verschieben möchten? Dies wird in einer Minute im Hintergrund geplant und durchgeführt und kann je nach Anzahl der Befehle lange dauern",
+        "Programmation envoyée avec succés": "Programmierung erfolgreich gesendet"
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Sicherheitswarnung: <br\/> Ihr Passwort muss geändert werden",
@@ -2774,7 +2783,6 @@
         "L\\'opération a échoué": "Operation fehlgeschlagen"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Ohne",
         "Résumé scénario": "Zusammenfassendes Szenario",
         "Scénario": "Szenario",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
@@ -2816,6 +2824,7 @@
         "Arrêté": "Gestoppt",
         "Jamais": "Noch nie",
         "Inactif": "Inaktiv",
+        "Aucun": "Ohne",
         "Evénement": "Ereignis",
         "Choisir une commande": "Wählen Sie eine Bestellung",
         "Choisir une variable": "Wählen Sie eine Variable",
@@ -3629,6 +3638,7 @@
         "Erreur get influx database : ": "Fehler in der Influx-Datenbank abrufen:",
         "Erreur push influx sur : ": "Zufluss-Push-Fehler ein:",
         "Erreur delete influx sur : ": "Fehler beim Löschen des Zuflusses bei:",
+        "Envoie de l\\'historique à influx : ": "Sendet die Zuflusshistorie:",
         "Erreur history influx sur : ": "Verlaufszuflussfehler bei:",
         "Commande": "Befehl"
     },
@@ -3834,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "Der Befehl konnte nicht gefunden werden:",
         " => ": "=>",
+        "Aucun": "Ohne",
         "Scénario exécuté automatiquement sur événement venant de : ": "Das automatisch auf Ereignis ausgeführte Szenario :",
         "Scénario exécuté sur événement : #": "Szenario durch Ereignis ausgeführt : #",
         "Scénario exécuté automatiquement sur programmation": "Automatisch auf Programmierung ausgeführtes Szenario",
@@ -3846,7 +3857,6 @@
         "Un déclencheur du scénario : ": "Ein Szenario-Trigger:",
         " est introuvable": "wird nicht gefunden",
         "Une commande du scénario : ": "Ein Skriptbefehl:",
-        "Aucun": "Ohne",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "Die letzte Ausführung des Szenarios wurde nicht gestartet. Überprüfen Sie das Protokoll szenario_ausführung sowie das Protokoll des Szenarios",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "Die letzte Ausführung des Szenarios wurde nicht gestartet. Überprüfen Sie das Szenario-Ausführungsprotokoll auf Ausführung unter",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "Zu viele gleichzeitige Aufrufe des Szenarios können nicht erneut ausgeführt werden. Es ist ratsam, die Aufrufe auf das Szenario zu reduzieren",

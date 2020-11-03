@@ -21,11 +21,11 @@ jeedom.scenario = function () {
 
 jeedom.scenario.cache = Array();
 
-if (!isset(jeedom.scenario.cache.html)) {
-  jeedom.scenario.cache.html = Array();
-}
 if (!isset(jeedom.scenario.update)) {
-  jeedom.scenario.update = Array();
+  jeedom.scenario.update = Array()
+}
+if (!isset(jeedom.scenario.cache.byGroupObjectName)) {
+  jeedom.scenario.cache.byGroupObjectName = Array()
 }
 
 jeedom.scenario.all = function (_params) {
@@ -55,6 +55,35 @@ jeedom.scenario.all = function (_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
+  var asGroup = _params.asGroup ? _params.asGroup : 0
+  var paramsRequired = [];
+  var paramsSpecifics = {
+    pre_success: function (data) {
+      jeedom.scenario.cache.byGroupObjectName[asGroup] = data.result
+      return data
+    }
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  if (isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
+    params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
+    return
+  }
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+  paramsAJAX.data = {
+    action: 'allOrderedByGroupObjectName',
+    asGroup: asGroup
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.scenario.saveAll = function (_params) {
   var paramsRequired = ['scenarios'];
   var paramsSpecifics = {};
@@ -65,6 +94,7 @@ jeedom.scenario.saveAll = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -77,18 +107,7 @@ jeedom.scenario.saveAll = function (_params) {
 
 jeedom.scenario.toHtml = function (_params) {
   var paramsRequired = ['id', 'version'];
-  var paramsSpecifics = {
-    pre_success: function (data) {
-      if (_params.id == 'all' || $.isArray(_params.id)) {
-        for (var i in data.result) {
-          jeedom.scenario.cache.html[i] = data.result[i];
-        }
-      } else {
-        jeedom.scenario.cache.html[_params.id] = data.result;
-      }
-      return data;
-    }
-  };
+  var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -105,7 +124,6 @@ jeedom.scenario.toHtml = function (_params) {
   };
   $.ajax(paramsAJAX);
 }
-
 
 jeedom.scenario.changeState = function (_params) {
   var paramsRequired = ['id', 'state'];
@@ -204,7 +222,6 @@ jeedom.scenario.loadTemplateDiff = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-
 jeedom.scenario.applyTemplate = function (_params) {
   var paramsRequired = ['template', 'id', 'convert'];
   var paramsSpecifics = {};
@@ -263,9 +280,7 @@ jeedom.scenario.refreshValue = function (_params) {
     version: _params.version || version
   };
   $.ajax(paramsAJAX);
-
 };
-
 
 jeedom.scenario.copy = function (_params) {
   var paramsRequired = ['id', 'name'];
@@ -277,6 +292,7 @@ jeedom.scenario.copy = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
@@ -287,7 +303,6 @@ jeedom.scenario.copy = function (_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.scenario.get = function (_params) {
   var paramsRequired = ['id'];
@@ -338,6 +353,7 @@ jeedom.scenario.remove = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';

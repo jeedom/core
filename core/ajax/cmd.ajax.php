@@ -163,6 +163,7 @@ try {
 		}
 		foreach ($result['scenario'] as $scenario) {
 			$info = utils::o2a($scenario);
+			$info['groupObjectName'] = $scenario->getGroupObjectName();
 			$info['humanName'] = $scenario->getHumanName();
 			$info['link'] = $scenario->getLinkToConfiguration();
 			$info['linkId'] = $scenario->getId();
@@ -210,6 +211,20 @@ try {
 			throw new Exception(__('Commande inconnue : ', __FILE__) . init('id'), 9999);
 		}
 		ajax::success($cmd->historyInflux());
+	}
+	
+	if (init('action') == 'dropDatabaseInflux') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(cmd::dropInfluxDatabase());
+	}
+	
+	if (init('action') == 'historyInfluxAll') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(cmd::historyInfluxAll());
 	}
 
 	if (init('action') == 'getHumanCmdName') {

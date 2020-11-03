@@ -180,6 +180,7 @@ try {
 				$scenario = $subElement->getElement()->getScenario();
 				if (is_object($scenario)) {
 					$info = utils::o2a($scenario);
+					$info['groupObjectName'] = $scenario->getGroupObjectName();
 					$info['humanName'] = $scenario->getHumanName();
 					$info['link'] = $scenario->getLinkToConfiguration();
 					$info['linkId'] = $scenario->getId();
@@ -461,11 +462,12 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 		}
-		if(!file_exists(__DIR__ . '/../../data/img')){
-			mkdir(__DIR__ . '/../../data/img');
+		$path = init('filepath');
+		if(!file_exists(__DIR__ . '/../../' . $path)) {
+			mkdir(__DIR__ . '/../../' . $path);
 		}
 		$filename = $_FILES['file']['name'];
-		$filepath = __DIR__ . '/../../data/img/' . $filename;
+		$filepath = __DIR__ . '/../../' . $path . $filename;
 		file_put_contents($filepath,file_get_contents($_FILES['file']['tmp_name']));
 		if(!file_exists($filepath)){
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
@@ -478,7 +480,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$filepath = __DIR__ . '/../../data/img/' . init('filename');
+		$filepath = __DIR__ . '/../../' . init('filepath');
 		if(!file_exists($filepath)){
 			throw new Exception(__('Fichier introuvable, impossible de le supprimer', __FILE__));
 		}

@@ -486,8 +486,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Objet": "Item",
-        "Equipement": "Peralatan",
-        "Aucun": "Tak ada"
+        "Equipement": "Peralatan"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -655,6 +654,7 @@
         "Nom personnalisé Commande": "",
         "Facultatif": "",
         "Nom personnalisé équipement": "",
+        "Nom personnalisé Valeur": "",
         "Actions": "Tindakan",
         "Supprimer": "Menghapus",
         "Envoyer Historique": "",
@@ -787,8 +787,8 @@
         "Vert": "Hijau",
         "Rechercher": "Pencarian",
         "Envoyer": "Kirim",
-        "Supprimer": "Menghapus",
         "Êtes-vous sûr de vouloir supprimer cette image": "",
+        "Supprimer": "Menghapus",
         "Général": "Umum"
     },
     "desktop\/modal\/update.send.php": {
@@ -1011,8 +1011,8 @@
         "Dernier lancement": "Peluncuran terakhir",
         "Actif": "Aktiva",
         "Visible": "Terlihat",
-        "Multi lancement": "Multi-peluncuran",
-        "Mode synchrone": "Serempak",
+        "Multi": "",
+        "Sync": "",
         "Log": "",
         "Timeline": "Waktu",
         "Actions": "Tindakan",
@@ -1025,6 +1025,8 @@
         "Dossier": "",
         "Voir les logs": "Lihat log",
         "Exécuter": "Melakukan",
+        "Supprimer ce scénario": "",
+        "Êtes-vous sûr de vouloir supprimer le scénario": "Apakah Anda yakin ingin menghapus skenario",
         "Log d'exécution du scénario": "Log eksekusi script"
     },
     "desktop\/modal\/scenario.template.php": {
@@ -1077,6 +1079,7 @@
         "Concept": "",
         "Documentation de démarrage": "",
         "Documentation": "Dokumentasi",
+        "Ne plus afficher": "",
         "Sauvegarde réussie": "Menyimpan sukses"
     },
     "desktop\/modal\/interact.test.php": {
@@ -1656,6 +1659,8 @@
         "Mettez ici le user de la base": "",
         "Mot de passe de la base": "",
         "Mettez ici le mot de passe de la base": "",
+        "Actions": "Tindakan",
+        "Envoyer Historique": "",
         "Quoter automatiquement les expressions": "",
         "Delai d'attente après génération de la page": "",
         "Nettoyer les rapports plus anciens de": "",
@@ -1965,6 +1970,7 @@
         "Annuler": "Tidak jadi"
     },
     "desktop\/php\/scenario.php": {
+        "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
@@ -1973,7 +1979,6 @@
         "Vue d'ensemble": "Ikhtisar",
         "Mes scénarios": "Skrip saya",
         "Rechercher": "Pencarian",
-        "Aucun": "Tak ada",
         "Etat précédent": "",
         "Etat suivant": "",
         "Ajouter bloc": "Menambahkan blok",
@@ -2725,7 +2730,11 @@
         "Binaire": "Biner",
         "Créer virtuel": "Membuat virtual",
         "Rétablissement des droits d\\'accès effectué avec succès": "",
-        "Log consistency": ""
+        "Log consistency": "",
+        "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "",
+        "Action envoyée avec succés": "",
+        "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "",
+        "Programmation envoyée avec succés": ""
     },
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "",
@@ -2774,7 +2783,6 @@
         "L\\'opération a échoué": "Operasi L \\' gagal"
     },
     "desktop\/js\/scenario.js": {
-        "Aucun": "Tak ada",
         "Résumé scénario": "Skenario Ringkasan",
         "Scénario": "Skenario",
         "Log d'exécution du scénario": "Log eksekusi script",
@@ -2816,6 +2824,7 @@
         "Arrêté": "Berhenti",
         "Jamais": "Pernah",
         "Inactif": "Non-aktif",
+        "Aucun": "Tak ada",
         "Evénement": "Peristiwa",
         "Choisir une commande": "Pilih perintah",
         "Choisir une variable": "Pilih variabel",
@@ -3629,6 +3638,7 @@
         "Erreur get influx database : ": "",
         "Erreur push influx sur : ": "",
         "Erreur delete influx sur : ": "",
+        "Envoie de l\\'historique à influx : ": "",
         "Erreur history influx sur : ": "",
         "Commande": "Pesanan"
     },
@@ -3834,6 +3844,7 @@
     "core\/class\/scenario.class.php": {
         "La commande n\\'a pas pu être trouvée : ": "",
         " => ": "=>",
+        "Aucun": "Tak ada",
         "Scénario exécuté automatiquement sur événement venant de : ": "Skenario otomatis dijalankan pada acara dari:",
         "Scénario exécuté sur événement : #": "Skenario dieksekusi pada acara #",
         "Scénario exécuté automatiquement sur programmation": "Skenario dijalankan secara otomatis pada program",
@@ -3846,7 +3857,6 @@
         "Un déclencheur du scénario : ": "",
         " est introuvable": "tidak ditemukan",
         "Une commande du scénario : ": "Perintah dari script:",
-        "Aucun": "Tak ada",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario": "",
         "La dernière exécution du scénario ne s\\'est pas lancée. Vérifiez le log scenario_execution pour l\\'exécution à ": "",
         "Trop d\\'appels simultanés du scénario, il ne peut-être exécuté une nouvelle fois. Il est conseillé de réduire les appels au scénario": "",

@@ -66,7 +66,7 @@ try {
 				);
 				$usedBy = $datastore->getUsedBy();
 				foreach ($usedBy['scenario'] as $scenario) {
-					$info_datastore['usedBy']['scenario'][] = ['humanName'=>$scenario->getHumanName(), 'link'=>$scenario->getLinkToConfiguration(), 'id'=>$scenario->getId()];
+					$info_datastore['usedBy']['scenario'][] = ['groupObjectName'=>$scenario->getGroupObjectName(), 'humanName'=>$scenario->getHumanName(), 'link'=>$scenario->getLinkToConfiguration(), 'id'=>$scenario->getId()];
 				}
 				foreach ($usedBy['eqLogic'] as $eqLogic) {
 					$info_datastore['usedBy']['eqLogic'][] = ['humanName'=>$eqLogic->getHumanName(), 'link'=>$eqLogic->getLinkToConfiguration(), 'id'=>$eqLogic->getId()];
