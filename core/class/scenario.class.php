@@ -1366,20 +1366,11 @@ class scenario {
 		//$_tag: html label with custom color
 		$name = '';
 		if (!$_noGroup) {
-			if ($this->getGroup() != '') {
-				if ($_tag) {
-					$name .= '<span class="label label-info">' . $this->getGroup() . '</span> ';
-				} else {
-					$name .= '[' . $this->getGroup() . ']';
-				}
+			$groupName = $this->getGroup() != '' ? $this->getGroup() : __('Aucun', __FILE__);
+			if ($_tag) {
+				$name .= '<span class="label label-info">' . $groupName . '</span> ';
 			} else {
-				if ($_complete) {
-					if ($_tag) {
-						$name .= '<span class="label label-info">' . __('Aucun', __FILE__) . '</span> ';
-					} else {
-						$name .= '[' . __('Aucun', __FILE__) . ']';
-					}
-				}
+				$name .= '[' . $groupName . ']';
 			}
 		}
 		if ($_object_name && is_numeric($this->getObject_id()) && is_object($this->getObject())) {
