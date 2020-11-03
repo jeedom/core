@@ -881,6 +881,20 @@ Theme Core 2021 @Jeedom
     color: white;
   }
 
+  #tabicon .imgContainer img {
+    max-width: 120px;
+    max-height: 70px;
+    padding: 10px;
+  }
+
+  #tabicon .divImgSel {
+    min-width: 120px;
+    width: 120px;
+    height: 115px !important;
+    overflow: hidden !important;
+    text-align: center;
+  }
+
   #tabimg .imgContainer {
     padding-top: 32px;
     display:flex;
