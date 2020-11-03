@@ -56,20 +56,20 @@ sendVarToJS([
 	<?php if(init('tabimg') == 1 || init('showimg') == 1){ ?>
 		<div role="tabpanel" class="tab-pane" id="tabimg" style="width:calc(100% - 20px);">
 			<span class="btn btn-default btn-file pull-right">
-				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageIcon" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
+				<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImg" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
 			</span>
 
-			<div class="imgContainer" style="padding-top: 32px;display:flex;align-items:flex-start;">
- 				<div id="div_treeFolder" style="height:100%;min-width:180px;">
+			<div class="imgContainer">
+ 				<div id="div_treeFolder">
 				<ul id="ul_Folder">
 					<?php
 					foreach (ls($rootPath, 'img', false, array('folders')) as $folder) {
-						echo '<li><a data-path="' . $rootPath . $folder . '">' . $folder . '</a></li>';
+						echo '<li data-jstree=\'{"opened":true}\'><a data-path="' . $rootPath . $folder . '">' . $folder . '</a></li>';
 					}
 					?>
 				</ul>
 			</div>
-			<div id="div_imageGallery" style="height:100%;margin-left:15px;display:flex;flex-wrap:wrap;">
+			<div id="div_imageGallery">
 
 				</div>
 			</div>
@@ -81,9 +81,9 @@ sendVarToJS([
 <script>
 $( document ).ready(function() {
 	$('#div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
-	if (selected.node.a_attr['data-path'] != undefined) {
-	var path = selected.node.a_attr['data-path'];
-	printFileFolder(path);
+		if (selected.node.a_attr['data-path'] != undefined) {
+			var path = selected.node.a_attr['data-path'];
+			printFileFolder(path);
     	var ref = $('#div_treeFolder').jstree(true)
     	var sel = ref.get_selected()[0]
     	ref.open_node(sel)
@@ -114,8 +114,8 @@ $( document ).ready(function() {
 	});
 
 	$('#div_imageGallery').on('click', '.divIconSel', function() {
-		$('.divIconSel').removeClass('iconSelected').find('.iconSel').css('outline','none');
-		$(this).closest('.divIconSel').addClass('iconSelected').find('.iconSel').css('outline','solid 1px #94CA02');
+		$('.divIconSel').removeClass('iconSelected');
+		$(this).closest('.divIconSel').addClass('iconSelected');
 	})
 
 	$('#div_imageGallery').on('dblclick', '.divIconSel', function() {
@@ -125,7 +125,7 @@ $( document ).ready(function() {
 	})
 
 	$('a[href="#tabimg"]').on('click', function () {
-      		$('#j1_1_anchor').click();
+    $('#div_treeFolder').find('a:first').click();
 	})
 
 	$('a[href="#tabicon"]').on('click', function () {
@@ -134,9 +134,9 @@ $( document ).ready(function() {
 
 });
 
-	$('#bt_uploadImageIcon').fileupload({
+	$('#bt_uploadImg').fileupload({
     add: function (e, data) {
-			let currentPath = $('#bt_uploadImageIcon').attr('data-path');
+			let currentPath = $('#bt_uploadImg').attr('data-path');
 			data.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath='+currentPath;
       data.submit();
     },
@@ -150,7 +150,7 @@ $( document ).ready(function() {
 		}
 	});
 
-	$('#div_imageGallery').off('click').on('click', '.bt_removeImgIcon',function() {
+	$('#div_imageGallery').off('click').on('click', '.bt_removeImg',function() {
 		$.hideAlert();
 		var filepath = $(this).attr('data-realfilepath');
 		bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image}} <span style="font-weight: bold ;">' + filepath + '</span> ?', function(result) {
@@ -180,14 +180,14 @@ $( document ).ready(function() {
 	    },
 	    success : function(data){
 				let realPath = _path.substr(_path.search('data/'));
-				$('#bt_uploadImageIcon').attr('data-path', realPath);
+				$('#bt_uploadImg').attr('data-path', realPath);
 	      $('#div_imageGallery').empty();
 	      var div = '';
 	      for (var i in data) {
-					div += '<div class="divIconSel divImgSel" style="height:140px;min-width:120px;display:flex;flex-direction:column;align-items:center;">';
-					div += '<div class="cursor iconSel" style="width:80px;height:80px;display:flex;justify-content:center;align-items:center;"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
-					div += '<div class="iconDesc" style="font-size: 0.8em;">'+data[i].substr(0,15)+'</div>';
-					div += '<center><a class="btn btn-danger btn-xs bt_removeImgIcon" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
+					div += '<div class="divIconSel divImgSel">';
+					div += '<div class="cursor iconSel"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
+					div += '<div class="iconDesc">'+data[i].substr(0,15)+'</div>';
+					div += '<center><a class="btn btn-danger btn-xs bt_removeImg" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
 					div += '</div>';
 	      }
 	      $('#div_imageGallery').append(div)
