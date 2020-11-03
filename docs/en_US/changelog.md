@@ -82,6 +82,7 @@
 - **Lib** : Update jQuery v3.4.1 to v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 to 5.13.1.
 - **API** :  addition of an option to prohibit an api key of a plugin from executing core methods (general)
+- Function **getHumanName()** of the php scenario class no longer returns *[object] [group] [name]* But *[group] [object] [name]*.
 - Securing Ajax requests.
 - Securing API calls.
 - Bug fixes.

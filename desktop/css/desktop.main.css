@@ -877,8 +877,22 @@ Theme Core 2021 @Jeedom
 
   #tabicon .iconSelected,
   #tabimg .iconSelected {
-    background-color: #563d7c;
+    background-color: var(--logo-primary-color);
     color: white;
+  }
+
+  #tabicon .imgContainer img {
+    max-width: 120px;
+    max-height: 70px;
+    padding: 10px;
+  }
+
+  #tabicon .divImgSel {
+    min-width: 120px;
+    width: 120px;
+    height: 115px !important;
+    overflow: hidden !important;
+    text-align: center;
   }
 
   #tabimg .imgContainer {
