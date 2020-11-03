@@ -877,7 +877,7 @@ Theme Core 2021 @Jeedom
 
   #tabicon .iconSelected,
   #tabimg .iconSelected {
-    background-color: var(--logo-primary-color);
+    background-color: var(--objectBkgd-color);
     color: white;
   }
 
