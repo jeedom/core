@@ -60,6 +60,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
   var paramsRequired = [];
   var paramsSpecifics = {
     pre_success: function (data) {
+      if (!isset(jeedom.scenario.cache.byGroupObjectName)) jeedom.scenario.cache.byGroupObjectName = Array()
       jeedom.scenario.cache.byGroupObjectName[asGroup] = data.result
       return data
     }
@@ -71,7 +72,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
+  if (isset(jeedom.scenario.cache.byGroupObjectName) && isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
     return
   }
@@ -333,6 +334,7 @@ jeedom.scenario.save = function (_params) {
     return;
   }
   delete jeedom.scenario.cache.all
+  delete jeedom.scenario.cache.byGroupObjectName
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
