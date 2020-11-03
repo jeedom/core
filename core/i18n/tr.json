@@ -349,10 +349,10 @@
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur : ": "",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "",
         "Sauvegarder": "Kaydet",
         "Equipements": "Cihazlar",
         "Scénarios": "Senaryolar",
+        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "",
         "Equipement": "Cihaz",
         "Droits": "Haklar",
         "Aucun": "Hiçbir",

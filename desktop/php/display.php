@@ -5,22 +5,25 @@ if (!isConnect('admin')) {
 global $JEEDOM_INTERNAL_CONFIG;
 $nbEqlogic = 0;
 $nbCmd = 0;
-$objects = jeeObject::all();
-$eqLogics = array();
-$cmds = array();
-$eqLogics[-1] = eqLogic::byObjectId(null, false);
-foreach ($eqLogics[-1] as $eqLogic) {
-	$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
-	$nbCmd += count($cmds[$eqLogic->getId()]);
+global $display_objects;
+$display_objects = jeeObject::all(false, true);
+global $display_eqlogics;
+$display_eqlogics = array();
+global $display_cmds;
+$display_cmds = array();
+$display_eqlogics[-1] = eqLogic::byObjectId(null, false);
+foreach ($display_eqlogics[-1] as $eqLogic) {
+	$display_cmds[$eqLogic->getId()] = $eqLogic->getCmd();
+	$nbCmd += count($display_cmds[$eqLogic->getId()]);
 }
-$nbEqlogic += count($eqLogics[-1]);
-foreach ($objects as $object) {
-	$eqLogics[$object->getId()] = $object->getEqLogic(false, false);
-	foreach ($eqLogics[$object->getId()] as $eqLogic) {
-		$cmds[$eqLogic->getId()] = $eqLogic->getCmd();
-		$nbCmd += count($cmds[$eqLogic->getId()]);
+$nbEqlogic += count($display_eqlogics[-1]);
+foreach ($display_objects as $object) {
+	$display_eqlogics[$object->getId()] = $object->getEqLogic(false, false);
+	foreach ($display_eqlogics[$object->getId()] as $eqLogic) {
+		$display_cmds[$eqLogic->getId()] = $eqLogic->getCmd();
+		$nbCmd += count($display_cmds[$eqLogic->getId()]);
 	}
-	$nbEqlogic += count($eqLogics[$object->getId()]);
+	$nbEqlogic += count($display_eqlogics[$object->getId()]);
 }
 sendVarToJs('_nbCmd_', $nbCmd);
 
@@ -31,6 +34,106 @@ if (!is_array($remove_history)) {
 	$remove_history = array();
 }
 $plugin_enable = config::getPluginEnable();
+
+function jeedom_displayObjectGroup($object=-1) {
+	global $display_objects, $display_eqlogics, $display_cmds;
+
+	if ($object == -1) {
+		$_index = 'none';
+		$numParents = 0;
+		$objectId = -1;
+		$objectName = __('Aucun', __FILE__);
+		$objecUseCustomColor = 0;
+		$objectIcon = '<i class="far fa-circle"></i>';
+	} else {
+		$_index = $object->getId();
+		$numParents = $object->getConfiguration('parentNumber');
+		$objectId = $object->getId();
+		$objectName = $object->getName();
+		$objecUseCustomColor = $object->getConfiguration('useCustomColor');
+		$objectIcon = $object->getDisplay('icon');
+	}
+
+	$div = '';
+	//hierarchy decay:
+	if ($numParents > 0) {
+		$aStyle = ' style="margin-left:' . 30*$numParents . 'px;"';
+	} else {
+		$aStyle = ' style="margin-left:5px"';
+	}
+	$div .= '<div class="panel panel-default objectSortable" '.$aStyle.'">';
+	$div .= '<div class="panel-heading" data-id="'.$objectId.'">';
+	//custom colors panel-title:
+	if ($objecUseCustomColor == 1) {
+		$aStyle = 'style="color:'.$object->getDisplay('tagTextColor').'!important"';
+		$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 100px);display: inline-block;">';
+		$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$_index.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$objectIcon.' '.$objectName;
+	} else {
+		$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
+		$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$_index.'">'.$objectIcon.' '.$objectName;
+	}
+	$div .= '</a></h3>';
+	//second panel-title trick for functions on the right:
+	$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
+	$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
+	$div .= '<a href="/index.php?v=d&p=object&id='.$objectId.'" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-square-alt"></i></a>';
+	$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
+	$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
+	$div .= '</h3>';
+	$div .= '</div>';
+
+	//inner panel:
+	$div .= '<div id="config_'.$_index.'" class="panel-collapse collapse">';
+	$div .= '<div class="panel-body">';
+
+	//eqLogics ul with cmds ul inside:
+	$div .= '<ul class="eqLogicSortable">';
+	foreach ($display_eqlogics[$objectId] as $eqLogic) {
+		$translate_category = '';
+		foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
+			if ($eqLogic->getCategory($key, 0) == 1) {
+				$translate_category .= __($value['name'],__FILE__).',';
+			}
+		}
+		$translate_category = trim($translate_category,',');
+		$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-translate-category="'.$translate_category.'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
+		$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
+		$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
+		if ($eqLogic->getIsEnable() != 1) {
+			$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
+		}
+		if ($eqLogic->getIsVisible() != 1) {
+			$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+		}
+		if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+			$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
+			$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
+		}
+
+		//cmds ul:
+		$div .= '<ul class="cmdSortable" style="display:none;" >';
+		foreach ($display_cmds[$eqLogic->getId()] as $cmd) {
+			$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
+			$div .= '<input type="checkbox" class="cb_selCmd"> ';
+			$div .=  $cmd->getId().' | '.$cmd->getName();
+			if ($cmd->getIsVisible() != 1) {
+				$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+			}
+			if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
+				$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
+			}
+			$div .= '</li>';
+		}
+		$div .= '</ul>';
+		$div .= '</li>';
+	}
+	$div .= '</ul>';
+	$div .= '</div>';
+	$div .= '</div>';
+	$div .= '</div>';
+	return $div;
+}
+
 ?>
 <br/>
 <div class="eqActions pull-right" style="display:none;">
@@ -52,7 +155,7 @@ $plugin_enable = config::getPluginEnable();
 		<br/>
 		<div>
 			<div class="pull-left">
-				<span class="label label-default">{{Nombre d'objets :}} <?php echo count($objects) ?></span>
+				<span class="label label-default">{{Nombre d'objets :}} <?php echo count($display_objects) ?></span>
 				<span class="label label-info">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
 				<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 				<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
@@ -74,146 +177,13 @@ $plugin_enable = config::getPluginEnable();
 		<div class="panel-group" id="accordionObject">
 			<?php
 			//No parent objects:
-			if (count($eqLogics[-1]) > 0) {
-				$div = '';
-				$div .= '<div class="panel panel-default objectSortable">';
-				$div .= '<div class="panel-heading" data-id="-1">';
-				$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
-				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none"><i class="far fa-circle"></i> {{Aucun}}';
-				$div .= '</a></h3>';
-
-				$div .= '<h3 class="panel-title" style="width:100px;display: inline;">';
-              	$div .= '<span class="pull-right" style="min-width:38px">&nbsp;</span>';
-				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
-				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
-				$div .= '</h3></div>';
-
-				$div .= '<div id="config_none" class="panel-collapse collapse">';
-				$div .= '<div class="panel-body">';
-
-				$div .= '<ul class="eqLogicSortable">';
-				foreach ($eqLogics[-1] as $eqLogic) {
-					$translate_category = '';
-					foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
-						if ($eqLogic->getCategory($key, 0) == 1) {
-							$translate_category .= __($value['name'],__FILE__).',';
-						}
-					}
-					$translate_category = trim($translate_category,',');
-					$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-translate-category="'.$translate_category.'" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
-					if ($eqLogic->getIsEnable() != 1) {
-						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
-					}
-					if ($eqLogic->getIsVisible() != 1) {
-						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
-					}
-					if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
-						$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
-					}
-					$div .= '<ul class="cmdSortable" style="display:none;" >';
-					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
-						$div .= '<input type="checkbox" class="cb_selCmd" /> ';
-						$div .=  $cmd->getId().' | '.$cmd->getName();
-						if ($cmd->getIsVisible() != 1) {
-							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
-						}
-						if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
-							$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
-						}
-						$div .= '</li>';
-					}
-					$div .= '</ul>';
-					$div .= '</li>';
-				}
-				$div .= '</ul>';
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
-				echo $div;
+			if (count($display_eqlogics[-1]) > 0) {
+				echo jeedom_displayObjectGroup(-1);
 			}
 
-			//one panel per parent:
-			$i = 0;
-			$div = '';
-			foreach ($objects as $object) {
-				$numParents = $object->getConfiguration('parentNumber');
-				if ($numParents > 0) {
-					$aStyle = ' style="margin-left:' . (10 + 10*$object->getConfiguration('parentNumber')) . 'px;"';
-				} else {
-					$aStyle = ' style=""';
-				}
-				$div .= '<div class="panel panel-default objectSortable">';
-				$div .= '<div class="panel-heading" data-id="'.$object->getId().'">';
-				if ($object->getConfiguration('useCustomColor') == 1) {
-					$aStyle = str_replace('style="', 'style="color:'.$object->getDisplay('tagTextColor').'!important;', $aStyle);
-					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 100px);display: inline-block;">';
-					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
-				} else {
-					$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
-					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
-				}
-				$div .= '</a></h3>';
-				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
-				$div .= '<i class="fas fa-cog pull-right cursor configureObject" title="{{Configuration avancée}}"></i>';
-				$div .= '<a href="/index.php?v=d&p=object&id=' . $object->getId() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'objet}}"><i class="fas fa-external-link-square-alt"></i></a>';
-				$div .= '<i class="fas fa-square pull-right cursor objectUnselectEqlogics" title="{{Désélectionner les équipements}}"></i>';
-				$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
-				$div .= '</h3></div>';
-
-				$div .= '<div id="config_'.$i.'" class="panel-collapse collapse">';
-				$div .= '<div class="panel-body">';
-
-				$div .= '<ul class="eqLogicSortable">';
-				foreach ($eqLogics[$object->getId()] as $eqLogic) {
-					$translate_category = '';
-					foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
-						if ($eqLogic->getCategory($key, 0) == 1) {
-							$translate_category .= __($value['name'],__FILE__).',';
-						}
-					}
-					$translate_category = trim($translate_category,',');
-					$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-translate-category="'.$translate_category.'" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getName().'" data-type="'.$eqLogic->getEqType_name().'">';
-					$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
-					$div .= $eqLogic->getId(). ' | ' . $eqLogic->getEqType_name() .' | '.$eqLogic->getName();
-					if ($eqLogic->getIsEnable() != 1) {
-						$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
-					}
-					if ($eqLogic->getIsVisible() != 1) {
-						$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
-					}
-					if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
-						$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
-						$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
-					}
-					$div .= '<ul class="cmdSortable" style="display:none;" >';
-
-					foreach ($cmds[$eqLogic->getId()] as $cmd) {
-						$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">' ;
-						$div .= '<input type="checkbox" class="cb_selCmd"> ';
-						$div .=  $cmd->getId().' | '.$cmd->getName();
-						if ($cmd->getIsVisible() != 1) {
-							$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
-						}
-						if(!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1){
-							$div .= '<i class="fas fa-cog pull-right configureCmd" title="{{Configuration avancée}}"></i>';
-						}
-						$div .= '</li>';
-					}
-					$div .= '</ul>';
-					$div .= '</li>';
-				}
-				$i++;
-				$div .= '</ul>';
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
+			foreach ($display_objects as $object) {
+				echo jeedom_displayObjectGroup($object);
 			}
-			echo $div;
-			$div = null;
 			?>
 		</div>
 	</div>

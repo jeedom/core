@@ -349,10 +349,10 @@
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur : ": "Unable to find user:",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Please note: the user account does not have a \"Limited user\" profile, so no restrictions can be applied here",
         "Sauvegarder": "Save",
         "Equipements": "Equipments",
         "Scénarios": "Scenarios",
+        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Please note: the user account does not have a \"Limited user\" profile, so no restrictions can be applied here",
         "Equipement": "Equipment",
         "Droits": "Rights",
         "Aucun": "None",

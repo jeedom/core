@@ -902,8 +902,10 @@ Theme Core 2021 @Jeedom
   }
 
   #tabimg .imgContainer img {
-    width:80px;
-    height:80px;
+    width: auto;
+    height: auto;
+    max-width:80px;
+    max-height:80px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -927,6 +929,7 @@ Theme Core 2021 @Jeedom
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content: flex-end;
   }
 
   #tabicon .iconDesc,

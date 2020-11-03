@@ -187,7 +187,7 @@ $( document ).ready(function() {
 					div += '<div class="divIconSel divImgSel">';
 					div += '<div class="cursor iconSel"><img class="img-responsive" src="'+realPath+data[i]+'"/></div>';
 					div += '<div class="iconDesc">'+data[i].substr(0,15)+'</div>';
-					div += '<center><a class="btn btn-danger btn-xs bt_removeImg" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a></center>';
+					div += '<a class="btn btn-danger btn-xs bt_removeImg" data-realfilepath="'+realPath+data[i]+'"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
 					div += '</div>';
 	      }
 	      $('#div_imageGallery').append(div)

@@ -480,28 +480,33 @@ class history {
 		}
 		
 		public static function getTemporalAvg($_cmd_id, $_startTime, $_endTime){
-			$histories = self::all($_cmd_id, $_startTime, $_endTime);
-			$result = null;
-			$start = null;
+			$histories = self::all($_cmd_id, date('Y-m-d H:i:s',strtotime($_startTime.' -2 hours')), $_endTime);
 			$cTime = null;
 			$cValue = null;
 			$sum = 0;
+			if(count($histories) == 0){
+				return 0;
+			}
 			foreach ($histories as $history) {
-				if($start == null){
+				if($cValue == null || strtotime($history->getDatetime()) < strtotime($_startTime)){
 					$cValue = $history->getValue();
 					$cTime = strtotime($history->getDatetime());
-					$start = $cTime;
 					continue;
+				}
+				if($cTime < strtotime($_startTime)){
+					$cTime = strtotime($_startTime);
 				}
 				$sum += $cValue * (strtotime($history->getDatetime()) - $cTime);
 				$cValue = $history->getValue();
 				$cTime = strtotime($history->getDatetime());
 			}
-			if(($cTime - $start) <= 0){
+			if(strtotime($_endTime) > $cTime){
+				$sum += $cValue * (strtotime($_endTime) - $cTime);
+			}
+			if(($cTime - strtotime($_startTime)) <= 0){
 				return 0;
 			}
-			$result = $sum / ($cTime - $start);
-			return $result;
+			return $sum / (strtotime($_endTime) - strtotime($_startTime));
 		}
 		
 		public static function getStatistique($_cmd_id, $_startTime, $_endTime) {

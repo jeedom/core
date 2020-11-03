@@ -59,13 +59,18 @@ class jeeObject {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function all($_onlyVisible = false) {
+	public static function all($_onlyVisible=false, $_byPosition=false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object ';
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
-		$sql .= ' ORDER BY father_id,position,name';
+		if (!$_byPosition) {
+			$sql .= ' ORDER BY father_id, position, name';
+		} else {
+			$sql .= ' ORDER BY position, father_id, name';
+		}
+
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
