@@ -25,7 +25,7 @@ if (!isConnect()) {
       $scenarioList = scenario::allOrderedByGroupObjectName();
       $options = '';
       foreach ($scenarioList as $scenario) {
-        $scName = $scenario->getGroupObjectName();
+        $scName = $scenario->getHumanName();
         $options .= '<option value="#' . $scName . '#" data-scenario_id="' . $scenario->getId() . '">' . $scName . '</option>';
       }
       echo $options;

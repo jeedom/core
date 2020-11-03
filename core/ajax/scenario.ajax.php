@@ -234,13 +234,13 @@ try {
 
 	if (init('action') == 'allOrderedByGroupObjectName') {
 		$_asGroup = init('asGroup', 0);
+		$_asTag = init('asTag', 0);
 		$result = scenario::allOrderedByGroupObjectName($_asGroup);
 		$return = array();
 		if (!$_asGroup) {
 			foreach ($result as $scenario) {
 				$info_scenario = utils::o2a($scenario);
-				$info_scenario['humanName'] = $scenario->getHumanName();
-				$info_scenario['groupObjectName'] = $scenario->getGroupObjectName();
+				$info_scenario['humanName'] = $scenario->getHumanName(true, false, $_asTag);
 				$return[] = $info_scenario;
 			}
 		} else {
@@ -248,8 +248,7 @@ try {
 				$return[$key] = array();
 				foreach ($result[$key] as $scenario) {
 					$info_scenario = utils::o2a($scenario);
-					$info_scenario['humanName'] = $scenario->getHumanName();
-					$info_scenario['groupObjectName'] = $scenario->getGroupObjectName();
+					$info_scenario['humanName'] = $scenario->getHumanName(true, false, $_asTag);
 					array_push($return[$key], $info_scenario);
 				}
 			}
@@ -363,6 +362,7 @@ try {
 		$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
 		$return['forecast'] = $scenario->calculateScheduleDate();
 		$return['elements'] = array();
+		$return['humanNameTag'] = $scenario->getHumanName(true, false, true);
 		foreach(($scenario->getElement()) as $element) {
 			$return['elements'][] = $element->getAjaxElement();
 		}
@@ -372,14 +372,14 @@ try {
 			if($scenarioLink->getId() == $scenario->getId()){
 				continue;
 			}
-			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getGroupObjectName(),'isActive' => $scenarioLink->getIsActive());
+			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(),'isActive' => $scenarioLink->getIsActive());
 		}
 		$use = $scenario->getUse();
 		foreach ($use['scenario'] as $scenarioLink) {
 			if($scenarioLink->getId() == $scenario->getId()){
 				continue;
 			}
-			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getGroupObjectName(),'isActive' => $scenarioLink->getIsActive());
+			$return['scenario_link']['scenario'][$scenarioLink->getId()] = array('name' => $scenarioLink->getHumanName(),'isActive' => $scenarioLink->getIsActive());
 		}
 		ajax::success($return);
 	}

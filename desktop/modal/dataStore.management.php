@@ -139,7 +139,7 @@ $(function() {
           tr += '</td>'
           tr += '<td>'
           for (var j in data[i].usedBy.scenario) {
-            tr += ' <a href="'+data[i].usedBy.scenario[j]['link']+'&search='+encodeURI(data[i].key)+'" class="btn btn-xs btn-primary">'+data[i].usedBy.scenario[j]['groupObjectName']+'</a>'
+            tr += ' <a href="'+data[i].usedBy.scenario[j]['link']+'&search='+encodeURI(data[i].key)+'" class="btn btn-xs btn-primary">'+data[i].usedBy.scenario[j]['humanName']+'</a>'
           }
           for (var j in data[i].usedBy.eqLogic) {
             tr += ' <a href="'+data[i].usedBy.eqLogic[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.eqLogic[j]['humanName']+'</a>'

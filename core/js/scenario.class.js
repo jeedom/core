@@ -57,32 +57,37 @@ jeedom.scenario.all = function (_params) {
 
 jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
   var asGroup = _params.asGroup ? _params.asGroup : 0
+  var asTag = _params.asTag ? _params.asTag : 0
   var paramsRequired = [];
   var paramsSpecifics = {
     pre_success: function (data) {
       if (!isset(jeedom.scenario.cache.byGroupObjectName)) jeedom.scenario.cache.byGroupObjectName = Array()
+      if (asTag) return data
       jeedom.scenario.cache.byGroupObjectName[asGroup] = data.result
       return data
     }
-  };
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.scenario.cache.byGroupObjectName) && isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  /*
+  if (!asTag && isset(jeedom.scenario.cache.byGroupObjectName) && isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
     return
   }
+  */
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'allOrderedByGroupObjectName',
-    asGroup: asGroup
-  };
-  $.ajax(paramsAJAX);
+    asGroup: asGroup,
+    asTag: asTag
+  }
+  $.ajax(paramsAJAX)
 }
 
 jeedom.scenario.saveAll = function (_params) {

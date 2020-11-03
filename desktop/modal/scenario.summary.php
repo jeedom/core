@@ -79,6 +79,7 @@ function refreshScenarioSummary() {
   $.clearDivContent('tbody_scenarioSummary')
   jeedom.scenario.allOrderedByGroupObjectName({
     nocache: true,
+    asTag: true,
     error: function (error) {
       $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
     },
@@ -90,7 +91,7 @@ function refreshScenarioSummary() {
         tr += '<span class="label label-info scenarioAttr" data-l1key="id"></span>'
         tr += '</td>'
         tr += '<td>'
-        tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="groupObjectName"></span>'
+        tr += '<span class="scenarioAttr cursor bt_summaryGotoScenario" data-l1key="humanName"></span>'
         tr += '</td>'
         tr += '<td>'
         switch (data[i].state) {
@@ -157,7 +158,7 @@ function refreshScenarioSummary() {
       $('#table_scenarioSummary .bt_summaryRemoveScenario').on('click', function(event) {
         $.hideAlert()
         var id = $(this).closest('tr').attr('data-id')
-        var name = $(this).closest('tr').find('span[data-l1key="groupObjectName"]').text()
+        var name = $(this).closest('tr').find('span[data-l1key="humanName"]').text()
         bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
           if (result) {
             jeedom.scenario.remove({

@@ -26,7 +26,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 ?>
 
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
-<?php echo '<span style="font-weight: bold;font-size:1.5em;">' . $scenario->getGroupObjectName() . '</span>'; ?>
+<?php echo '<span style="font-weight: bold;">' . $scenario->getHumanName(true, false, true) . '</span>'; ?>
 <div class="input-group pull-right" style="display:inline-flex">
   <input class="form-control input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
   <span class="input-group-btn">

@@ -78,10 +78,10 @@ if ($user->getProfils() != 'restrict') {
       </thead>
       <tbody>
         <?php
-          foreach ((scenario::all()) as $scenario) {
+          foreach ((scenario::allOrderedByGroupObjectName()) as $scenario) {
             $sc = '';
             $sc .= '<tr>';
-            $sc .= '<td>' . $scenario->getHumanName(true, true, true) . '</td>';
+            $sc .= '<td>' . $scenario->getHumanName(true, false, true) . '</td>';
             $sc .= '<td>';
             $sc .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="scenario' . $scenario->getId() . '">';
             $sc .= '<option value="n">{{Aucun}}</option>';

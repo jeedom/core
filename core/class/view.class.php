@@ -161,7 +161,7 @@ class view {
 						if ($_html) {
 							$viewData_info['html'] = $scenario->toHtml($_version);
 						} else {
-							$viewData_info['name'] = $scenario->getGroupObjectName();
+							$viewData_info['name'] = $scenario->getHumanName();
 							$viewData_info['id'] = $scenario->getId();
 						}
 					}
