@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 global $JEEDOM_INTERNAL_CONFIG;
 $nbEqlogic = 0;
 $nbCmd = 0;
-$objects = jeeObject::all();
+$objects = jeeObject::all(false, true);
 $eqLogics = array();
 $cmds = array();
 $eqLogics[-1] = eqLogic::byObjectId(null, false);
@@ -76,7 +76,7 @@ $plugin_enable = config::getPluginEnable();
 			//No parent objects:
 			if (count($eqLogics[-1]) > 0) {
 				$div = '';
-				$div .= '<div class="panel panel-default objectSortable">';
+				$div .= '<div class="panel panel-default objectSortable" style="margin-left:5px">';
 				$div .= '<div class="panel-heading" data-id="-1">';
 				$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
 				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_none"><i class="far fa-circle"></i> {{Aucun}}';
@@ -142,19 +142,19 @@ $plugin_enable = config::getPluginEnable();
 			foreach ($objects as $object) {
 				$numParents = $object->getConfiguration('parentNumber');
 				if ($numParents > 0) {
-					$aStyle = ' style="margin-left:' . (10 + 10*$object->getConfiguration('parentNumber')) . 'px;"';
+					$aStyle = ' style="margin-left:' . (30*$object->getConfiguration('parentNumber')) . 'px;"';
 				} else {
-					$aStyle = ' style=""';
+					$aStyle = ' style="margin-left:5px"';
 				}
-				$div .= '<div class="panel panel-default objectSortable">';
+				$div .= '<div class="panel panel-default objectSortable" '.$aStyle.'">';
 				$div .= '<div class="panel-heading" data-id="'.$object->getId().'">';
 				if ($object->getConfiguration('useCustomColor') == 1) {
-					$aStyle = str_replace('style="', 'style="color:'.$object->getDisplay('tagTextColor').'!important;', $aStyle);
+					$aStyle = 'style="color:'.$object->getDisplay('tagTextColor').'!important"';
 					$div .= '<h3 class="panel-title" style="background-color:'.$object->getDisplay('tagColor').'; width:calc(100% - 100px);display: inline-block;">';
 					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'" style="color:'.$object->getDisplay('tagTextColor').'!important">'.$object->getDisplay('icon').' '.$object->getName();
 				} else {
 					$div .= '<h3 class="panel-title" style="width:calc(100% - 100px);display: inline-block;">';
-					$div .= '<a '.$aStyle.'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
+					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_'.$i.'">'.$object->getDisplay('icon').' '.$object->getName();
 				}
 				$div .= '</a></h3>';
 				$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
