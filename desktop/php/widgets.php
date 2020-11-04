@@ -231,8 +231,8 @@ foreach ((widgets::all()) as $widget) {
               <div class="form-group">
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
                 <div class="col-sm-3 center">{{Expression}}</div>
-                <div class="col-sm-3 center">{{Résultat theme Light}}</div>
-                <div class="col-sm-3 center">{{Résultat theme Dark}}</div>
+                <div class="col-sm-3 center">{{Résultat thème Light}}</div>
+                <div class="col-sm-3 center">{{Résultat thème Dark}}</div>
               </div>
             </div>
             <div id="div_templateTest" class="type_test"></div>
