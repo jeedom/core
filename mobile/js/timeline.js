@@ -39,7 +39,7 @@ function initTimeline() {
 //exact same success function desktop/mobile:
 function displayTimeline() {
   jeedom.timeline.byFolder({
-    folder : $('#sel_timelineFolder').value(),
+    folder : $('.changeTimelineFolder.active').attr('data-value'),
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
