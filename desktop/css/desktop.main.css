@@ -1171,22 +1171,6 @@ Theme Core 2021 @Jeedom
   .tablesorter-header-inner {
     padding: 0 0 0 0!important;
   }
-  table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
-    border-right: 1px dotted var(--txt-color) !important;
-  }
-  table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inner {
-    border-right: none !important;
-  }
-  table.tablesorter .tablesorter-header:focus {
-    outline:none;
-  }
-  table.tablesorter thead .tablesorter-filter-row input {
-    height: 20px;
-  }
-
-  #table_cron .tablesorter-filter {
-    display: none;
-  }
 
   #div_commandResult {
     overflow: auto;
@@ -2679,10 +2663,6 @@ Theme Core 2021 @Jeedom
     background-color: var(--bg-modal-color) !important;
   }
 
-  tr.tablesorter-filter-row td {
-    background-color: rgb(var(--bg-color)) !important;
-  }
-
   .table-bordered,
   .table-bordered>tbody>tr>td,
   .table-bordered>tbody>tr>th,
@@ -2696,6 +2676,19 @@ Theme Core 2021 @Jeedom
   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
     border: none !important;
     color: var(--txt-color) !important;
+  }
+
+  table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
+    border-right: 1px dotted var(--txt-color) !important;
+  }
+  table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inner {
+    border-right: none !important;
+  }
+  table.tablesorter .tablesorter-header:focus {
+    outline:none;
+  }
+  table.tablesorter thead .tablesorter-filter-row input {
+    height: 20px;
   }
 
   .tablesorter-filter-row {
@@ -2749,10 +2742,13 @@ Theme Core 2021 @Jeedom
     border-top-color: var(--form-bg-color);
   }
 
-  .tablesorter-filter {
+  input.tablesorter-filter {
     background-color: rgb(var(--defaultBkg-color));
     color: var(--link-color);
     opacity: 0.85 !important;
+  }
+  input.tablesorter-filter.disabled {
+    display: none;
   }
 
 /* ______CodeMirror */
