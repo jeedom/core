@@ -14,13 +14,14 @@ $date = array(
 			<span class="input-group-btn">
 				<select class="form-control roundedLeft input-sm" style="width:300px;" id="sel_timelineFolder">
 					<?php
+					$options = '<option value="main">{{Principal}}</option>';
+					$options .= '<optgroup label="{{Timelines}}">';
 					foreach ((timeline::listFolder()) as $folder) {
-						if($folder == 'main'){
-							echo '<option value="'.$folder.'">{{Principal}}</option>';
-						}else{
-							echo '<option value="'.$folder.'">'.$folder.'</option>';
-						}
+						if ($folder == 'main') continue;
+						$options .= '<option value="'.$folder.'">'.$folder.'</option>';
 					}
+					$options .= '</optgroup>';
+					echo $options;
 					?>
 				</select>
 				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
