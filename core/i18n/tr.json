@@ -1931,6 +1931,9 @@
         "Choisir": "Seç",
         "Prévisualisation": "",
         "Test": "Test, denetleme",
+        "Expression": "Ifade",
+        "Résultat theme Light": "",
+        "Résultat theme Dark": "",
         "Commandes liées": ""
     },
     "desktop\/php\/report.php": {

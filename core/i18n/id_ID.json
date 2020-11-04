@@ -1931,6 +1931,9 @@
         "Choisir": "Memilih",
         "Prévisualisation": "",
         "Test": "Uji",
+        "Expression": "Ekspresi",
+        "Résultat theme Light": "",
+        "Résultat theme Dark": "",
         "Commandes liées": ""
     },
     "desktop\/php\/report.php": {

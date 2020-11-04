@@ -1931,6 +1931,9 @@
         "Choisir": "Выбрать",
         "Prévisualisation": "",
         "Test": "тест",
+        "Expression": "выражение",
+        "Résultat theme Light": "",
+        "Résultat theme Dark": "",
         "Commandes liées": ""
     },
     "desktop\/php\/report.php": {

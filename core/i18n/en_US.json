@@ -1931,6 +1931,9 @@
         "Choisir": "Select",
         "Prévisualisation": "Preview",
         "Test": "Test",
+        "Expression": "Expression",
+        "Résultat theme Light": "Theme Light result",
+        "Résultat theme Dark": "Dark theme result",
         "Commandes liées": "Linked commands"
     },
     "desktop\/php\/report.php": {

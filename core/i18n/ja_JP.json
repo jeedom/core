@@ -1931,6 +1931,9 @@
         "Choisir": "選択",
         "Prévisualisation": "試写",
         "Test": "テスト",
+        "Expression": "表現",
+        "Résultat theme Light": "",
+        "Résultat theme Dark": "",
         "Commandes liées": "リンクされた注文"
     },
     "desktop\/php\/report.php": {

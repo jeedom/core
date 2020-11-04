@@ -1931,6 +1931,9 @@
         "Choisir": "Elegir",
         "Prévisualisation": "Preestreno",
         "Test": "Prueba",
+        "Expression": "Expresión",
+        "Résultat theme Light": "Resultado de la luz del tema",
+        "Résultat theme Dark": "Resultado del tema oscuro",
         "Commandes liées": "Pedidos vinculados"
     },
     "desktop\/php\/report.php": {

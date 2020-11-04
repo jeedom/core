@@ -1931,6 +1931,9 @@
         "Choisir": "Scegli",
         "Prévisualisation": "Anteprima",
         "Test": "Prova",
+        "Expression": "Espressione",
+        "Résultat theme Light": "",
+        "Résultat theme Dark": "",
         "Commandes liées": "Ordini collegati"
     },
     "desktop\/php\/report.php": {
