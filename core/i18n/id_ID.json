@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Dingin",
-        "Principal": ""
+        "Principal": "",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Menyegarkan",
@@ -1340,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Principal": "",
+        "Timelines": "",
         "Rafraîchir": "Dingin",
         "Configuration": "Konfigurasi"
     },

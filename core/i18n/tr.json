@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Yenile",
-        "Principal": "Birincil"
+        "Principal": "Birincil",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Yenile",
@@ -1340,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Principal": "Birincil",
+        "Timelines": "",
         "Rafraîchir": "Yenile",
         "Configuration": "Ayar"
     },
