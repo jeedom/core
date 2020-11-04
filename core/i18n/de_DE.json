@@ -1932,8 +1932,8 @@
         "Prévisualisation": "Vorschau",
         "Test": "Test",
         "Expression": "Ausdruck",
-        "Résultat theme Light": "Thema Licht Ergebnis",
-        "Résultat theme Dark": "Dunkles Themenergebnis",
+        "Résultat thème Light": "Thema Licht Ergebnis",
+        "Résultat thème Dark": "Dunkles Themenergebnis",
         "Commandes liées": "Verknüpfte Bestellungen"
     },
     "desktop\/php\/report.php": {
