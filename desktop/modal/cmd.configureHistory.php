@@ -61,8 +61,8 @@ foreach ($cmds as $cmd) {
 
       //humanName:
       $tr .= '<td>';
-      $tr .= '<span class="cmdAttr" data-l1key="id" style="display:none;">'.$cmd->getId().'</span>';
       $tr .= '<span class="cmdAttr" data-l1key="humanName">'.str_replace('<br/>', '', $cmd->getHumanName(true, true)).'</span>';
+      $tr .= '<span class="cmdAttr" data-l1key="id" style="display:none;">'.$cmd->getId().'</span>';
       $tr .= '</td>';
 
       //plugin:
