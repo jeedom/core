@@ -95,7 +95,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
-          addObject({link_type : 'graph',link_id:Math.round(Math.random() * 99999999) + 9999})
+          addObject({link_type : 'graph', link_id:Math.round(Math.random() * 99999999) + 9999})
         }
       },
       addText: {
@@ -105,7 +105,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
-          addObject({link_type : 'text',link_id:Math.round(Math.random() * 99999999) + 9999,display: {text: 'Texte à insérer ici'}})
+          addObject({link_type : 'text', link_id:Math.round(Math.random() * 99999999) + 9999, display: {text: 'Texte à insérer ici'}})
         }
       },
       addScenario: {
@@ -116,7 +116,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeedom.scenario.getSelectModal({}, function(data) {
-            addObject({link_type : 'scenario',link_id : data.id})
+            addObject({link_type : 'scenario', link_id : data.id})
           })
         }
       },
@@ -134,7 +134,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               return !this.data('planEditOption.state')
             },
             callback: function(key, opt) {
-              addObject({link_type :'view',link_id : -(Math.round(Math.random() * 99999999) + 9999),display : {name : 'A configurer'}})
+              addObject({link_type :'view', link_id : -(Math.round(Math.random() * 99999999) + 9999), display : {name : 'A configurer'}})
             }
           },
           addPlanLink: {
@@ -144,7 +144,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               return !this.data('planEditOption.state')
             },
             callback: function(key, opt) {
-              addObject({link_type :'plan',link_id : -(Math.round(Math.random() * 99999999) + 9999),display : {name : 'A configurer'}})
+              addObject({link_type :'plan', link_id : -(Math.round(Math.random() * 99999999) + 9999), display : {name : 'A configurer'}})
             }
           },
         }
@@ -157,7 +157,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeedom.eqLogic.getSelectModal({}, function(data) {
-            addObject({link_type : 'eqLogic',link_id : data.id})
+            addObject({link_type : 'eqLogic', link_id : data.id})
           })
         }
       },
@@ -169,7 +169,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeedom.cmd.getSelectModal({}, function(data) {
-            addObject({link_type : 'cmd',link_id : data.cmd.id})
+            addObject({link_type : 'cmd', link_id : data.cmd.id})
           })
         }
       },
@@ -180,7 +180,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
-          addObject({link_type : 'image',link_id : Math.round(Math.random() * 99999999) + 9999})
+          addObject({link_type : 'image', link_id : Math.round(Math.random() * 99999999) + 9999})
         }
       },
       addZone: {
@@ -190,7 +190,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
-          addObject({link_type : 'zone',link_id : Math.round(Math.random() * 99999999) + 9999})
+          addObject({link_type : 'zone', link_id : Math.round(Math.random() * 99999999) + 9999})
         }
       },
       addSummary: {
@@ -200,7 +200,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('planEditOption.state')
         },
         callback: function(key, opt) {
-          addObject({link_type : 'summary',link_id : -1})
+          addObject({link_type : 'summary', link_id : -1})
         }
       },
       sep2 : "---------",
@@ -948,34 +948,34 @@ function displayPlan(_code) {
 
 function getObjectInfo(_object) {
   if (_object.hasClass('eqLogic-widget')) {
-    return {type : 'eqLogic',id : _object.attr('data-eqLogic_id')}
+    return {type:'eqLogic', id:_object.attr('data-eqLogic_id')}
   }
   if (_object.hasClass('cmd-widget')) {
-    return {type :  'cmd',id : _object.attr('data-cmd_id')}
+    return {type:'cmd', id:_object.attr('data-cmd_id')}
   }
   if (_object.hasClass('scenario-widget')) {
-    return {type :  'scenario',id : _object.attr('data-scenario_id')}
+    return {type:'scenario', id:_object.attr('data-scenario_id')}
   }
   if (_object.hasClass('plan-link-widget')) {
-    return {type :  'plan',id : _object.attr('data-link_id')}
+    return {type:'plan', id:_object.attr('data-link_id')}
   }
   if (_object.hasClass('view-link-widget')) {
-    return {type :  'view',id : _object.attr('data-link_id')}
+    return {type:'view', id:_object.attr('data-link_id')}
   }
   if (_object.hasClass('graph-widget')) {
-    return {type :  'graph',id : _object.attr('data-graph_id')}
+    return {type:'graph', id:_object.attr('data-graph_id')}
   }
   if (_object.hasClass('text-widget')) {
-    return {type : 'text',id : _object.attr('data-text_id')}
+    return {type:'text', id:_object.attr('data-text_id')}
   }
   if (_object.hasClass('image-widget')) {
-    return {type : 'image',id : _object.attr('data-image_id')}
+    return {type:'image', id:_object.attr('data-image_id')}
   }
   if (_object.hasClass('zone-widget')) {
-    return {type : 'zone',id : _object.attr('data-zone_id')}
+    return {type:'zone', id:_object.attr('data-zone_id')}
   }
   if (_object.hasClass('summary-widget')) {
-    return {type : 'summary',id : _object.attr('data-summary_id')}
+    return {type:'summary', id:_object.attr('data-summary_id')}
   }
 }
 

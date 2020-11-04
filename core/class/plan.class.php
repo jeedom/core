@@ -247,9 +247,9 @@ class plan {
 			if ($this->getDisplay('transparentBackground', false)) {
 				$background_color = '';
 			}
-			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="' . $background_color . '">';
+			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="width:75px; height:75px;' . $background_color . '">';
 			$html .= '<span class="graphOptions" style="display:none;">' . json_encode($this->getDisplay('graph', array())) . '</span>';
-			$html .= '<div class="graph" id="graph' . $this->getLink_id() . '" style="width : 100%;height : 100%;"></div>';
+			$html .= '<div class="graph" id="graph' . $this->getLink_id() . '" style="width:100%; height:100%;"></div>';
 			$html .= '</div>';
 			return array(
 				'plan' => utils::o2a($this),
