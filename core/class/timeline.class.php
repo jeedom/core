@@ -88,6 +88,7 @@ class timeline {
   public static function listFolder(){
     $sql = 'SELECT DISTINCT(folder) as folder
     FROM timeline';
+    $sql .= ' ORDER BY folder';
     $results = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
     $return = array('main');
     foreach ($results as $result) {
