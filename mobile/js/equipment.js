@@ -198,8 +198,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         $('#div_displayEquipement').empty().html(div).trigger('create')
         jeedom.object.summaryUpdate([{object_id:_objectId}])
       }
-      setTileSize('.eqLogic')
-      setTileSize('.scenario')
+      setTileSize('.eqLogic, .scenario')
       $('#div_displayEquipement .objectHtml').packery({gutter :0})
       setTimeout(function() {
         $('#div_displayEquipement .objectHtml').packery({gutter :0})

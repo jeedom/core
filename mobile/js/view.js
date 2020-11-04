@@ -80,8 +80,7 @@ function displayView(html) {
   } else {
     $('.chartContainer').width(((deviceInfo.width / 2) - 20))
   }
-  setTileSize('.eqLogic')
-  setTileSize('.scenario')
+  setTileSize('.eqLogic, .scenario')
   $('.eqLogicZone').packery({gutter : 0})
   setTimeout(function(){
     $('.eqLogicZone').packery({gutter : 0})
