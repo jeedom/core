@@ -47,7 +47,7 @@ foreach ($cmds as $cmd) {
         <a class="btn btn-success btn-xs" id="bt_applytimeline" style="width:22px;"><i class="fas fa-check"></i></a>
         <a class="btn btn-danger btn-xs" id="bt_canceltimeline" style="width:22px;"><i class="fas fa-times"></i></a>
       </th>
-      <th data-filter="false" data-sorter="checkbox">{{Invert}}</th>
+      <th data-filter="false" data-sorter="checkbox">{{Inversée}}</th>
       <th data-sorter="select-text">{{Mode de lissage}}</th>
       <th class="extractor-select sorter-purges">{{Purge si plus vieux}}</th>
       <th data-sorter="false" data-filter="false">{{Action}}</th>
@@ -57,7 +57,7 @@ foreach ($cmds as $cmd) {
     <?php
     $tr = '';
     foreach ($cmds as $cmd) {
-      $tr .= '<tr data-cmd_id="'.$cmd->getId(). '">';
+      $tr .= '<tr data-change="0" data-cmd_id="'.$cmd->getId(). '">';
 
       //humanName:
       $tr .= '<td>';
@@ -66,19 +66,19 @@ foreach ($cmds as $cmd) {
       $tr .= '</td>';
 
       //plugin:
-      $tr .= '<td style="width:100px;">';
+      $tr .= '<td>';
       if(is_object($cmd->getEqLogic())){
         $tr .= '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
       }
       $tr .= '</td>';
 
       //type / subType:
-      $tr .= '<td style="width:120px;">';
+      $tr .= '<td>';
       $tr .= '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
       $tr .= '</td>';
 
       //historized:
-      $tr .= '<td class="center" style="width:95px;">';
+      $tr .= '<td class="center">';
       if ($cmd->getType() == 'info') {
         $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized()) ? 'checked' : '').' />';
       }
@@ -91,7 +91,7 @@ foreach ($cmds as $cmd) {
       $tr .= '</td>';
 
       //Invert:
-      $tr .= '<td class="center" style="width:75px;">';
+      $tr .= '<td class="center">';
       if ($cmd->getType() == 'info' && $cmd->getSubType() == 'binary') {
         $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="invertBinary"'.(($cmd->getDisplay('invertBinary') == 1) ? 'checked' : '').' />';
       }
@@ -130,7 +130,7 @@ foreach ($cmds as $cmd) {
       $tr .= '</td>';
 
       //Actions:
-      $tr .= '<td style="width:90px;">';
+      $tr .= '<td>';
       $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       if ($cmd->getType() == 'info') {
         $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
@@ -148,9 +148,11 @@ foreach ($cmds as $cmd) {
 setTableParser()
 initTableSorter()
 var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
-$tableCmdConfigureHistory.tablesorter({headers:{0:{sorter:'checkbox'}}})
-$tableCmdConfigureHistory.find('tbody tr').attr('data-change', '0')
 $tableCmdConfigureHistory.trigger("update")
+$tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '100px', '115px', '95px', '160px', '90px', '120px', '130px', '95px']
+$tableCmdConfigureHistory.trigger('applyWidgets').trigger('resizableReset')
+
+
 $tableCmdConfigureHistory.width('100%')
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
