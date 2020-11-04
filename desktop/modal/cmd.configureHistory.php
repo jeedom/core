@@ -151,8 +151,6 @@ var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
 $tableCmdConfigureHistory.trigger("update")
 $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '100px', '115px', '95px', '160px', '90px', '120px', '130px', '95px']
 $tableCmdConfigureHistory.trigger('applyWidgets').trigger('resizableReset')
-
-
 $tableCmdConfigureHistory.width('100%')
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
@@ -229,5 +227,9 @@ function setTableParser() {
 $(function() {
   jeedom.timeline.autocompleteFolder()
   initTooltips($tableCmdConfigureHistory)
+
+  setTimeout(function() {
+    $tableCmdConfigureHistory.closest('.ui-dialog').resize()
+  }, 500)
 })
 </script>
