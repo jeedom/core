@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "クール",
-        "Principal": "主要"
+        "Principal": "主要",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "リフレッシュ",
@@ -1340,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Principal": "主要",
+        "Timelines": "",
         "Rafraîchir": "クール",
         "Configuration": "コンフィギュレーション"
     },

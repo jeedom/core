@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Aktualisieren",
-        "Principal": "Primär"
+        "Principal": "Primär",
+        "Timelines": "Zeitleisten"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Aktualisieren",
@@ -1340,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Principal": "Primär",
+        "Timelines": "Zeitleisten",
         "Rafraîchir": "Aktualisieren",
         "Configuration": "Konfiguration"
     },

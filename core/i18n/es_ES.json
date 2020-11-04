@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refrescar",
-        "Principal": "Primario"
+        "Principal": "Primario",
+        "Timelines": "Cronologías"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Actualizar",
@@ -1340,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Principal": "Primario",
+        "Timelines": "Cronologías",
         "Rafraîchir": "Refrescar",
         "Configuration": "Configuración"
     },
