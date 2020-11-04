@@ -223,11 +223,12 @@ foreach ((widgets::all()) as $widget) {
           <div class="col-sm-12">
             <legend class="type_replace"><i class="fas fa-random"></i> {{Remplacement}}</legend>
             <div id="div_templateReplace" class="type_replace"></div>
+
             <legend class="type_test"><i class="fas fa-stethoscope"></i> {{Test}}
               <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
             </legend>
 
-            <div>
+            <div class="type_test">
               <div class="form-group">
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label"></label>
                 <div class="col-sm-3 center">{{Expression}}</div>
@@ -235,6 +236,7 @@ foreach ((widgets::all()) as $widget) {
                 <div class="col-sm-3 center">{{Résultat thème Dark}}</div>
               </div>
             </div>
+
             <div id="div_templateTest" class="type_test"></div>
           </div>
         </fieldset>
