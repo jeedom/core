@@ -181,18 +181,10 @@ $('#bt_applyToCmd').off('click').on('click', function() {
     })
 
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
-      var state = false
-      if ($(this).attr('data-state') == 0) {
-        state = true
-        $(this).attr('data-state', 1)
-        .find('i').removeClass('fa-check-circle-o').addClass('fa-circle-o')
-        $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(1)
-      } else {
-        state = false
-        $(this).attr('data-state', 0)
-        .find('i').removeClass('fa-circle-o').addClass('fa-check-circle-o')
-        $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0)
-      }
+      $('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd:visible').each(function() {
+         $(this).prop('checked', !$(this).prop('checked'))
+         $(this).attr('data-state', 1)
+      })
     })
 
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
