@@ -526,11 +526,12 @@ function addEqlogicsInfo(_id, _objName, _summay) {
       summarySelect += '</ul>'
 
       var nbEqs = eqLogics.length
+      var thisEq, thisId, thisEqName, panel, nbCmds, humanName
       for (var i=0; i<nbEqs; i++) {
-        var thisEq = eqLogics[i]
-        var thisId = thisEq.id
-        var thisEqName = thisEq.name
-        var panel = '<div class="panel-group" style="margin-bottom:5px;">'
+        thisEq = eqLogics[i]
+        thisId = thisEq.id
+        thisEqName = thisEq.name
+        panel = '<div class="panel-group" style="margin-bottom:5px;">'
         panel += '<div class="panel panel-default">'
         panel += '<div class="panel-heading">'
         panel += '<h3 class="panel-title">'
@@ -540,11 +541,11 @@ function addEqlogicsInfo(_id, _objName, _summay) {
         panel += '<div id="eqlogicId-'+thisId+'" class="panel-collapse collapse">'
         panel += '<div class="panel-body">'
 
-        var nbCmds = thisEq.cmds.length
+        nbCmds = thisEq.cmds.length
         for (var j=0; j<nbCmds; j++) {
           if (thisEq.cmds[j].type != 'info') continue
 
-          var humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
+          humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
           panel += '<form class="form-horizontal">'
           panel += '<div class="form-group" data-cmdname="'+humanName+'">'
           panel += '<label class="col-sm-5 control-label">'+humanName+'</label>'
