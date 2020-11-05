@@ -5,7 +5,7 @@ La page *Synthèse* vous propose une synthèse visuelle et centralisée de vos o
 
 ![Synthèse](./images/synthesis_intro.gif)
 
-Pour qu'elle prenne tous son sens, il faut sur chaque objet, configurer les résumés et une image de fond.
+Pour qu'elle prenne tout son sens, il faut sur chaque objet, configurer les résumés et une image de fond.
 
 Vous pouvez la configurer comme page par défaut dans **Réglages → Préférences**, en desktop et/ou mobile.
 
@@ -32,7 +32,7 @@ La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 
 > **Note**
 >
-> Si un objet n'a pas résumé défini, un bouton s'affiche en haut à droite pour accéder à la configuration / résumés de l'objet.
+> Si un objet n'a pas de résumé défini, un bouton s'affiche en haut à droite pour accéder à la configuration / résumés de l'objet.
 
 ## Fonctions
 
