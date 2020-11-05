@@ -5,7 +5,7 @@ A página *Síntese* oferece uma síntese visual centralizada de seus objetos e 
 
 ![Síntese](./images/synthesis_intro.gif)
 
-Para que assuma todo o seu significado, você deve configurar os resumos e uma imagem de plano de fundo em cada objeto.
+Para que tome todo o sentido, é necessário em cada objeto configurar os resumos e uma imagem de fundo.
 
 Você pode configurá-lo como a página padrão em **Configurações → Preferências**, no computador e / ou celular.
 
@@ -32,7 +32,7 @@ A configuração da exibição do objeto é feita em **Ferramentas → Objetos**
 
 > **NOTA**
 >
-> Se um objeto não definiu um resumo, um botão é exibido no canto superior direito para acessar a configuração / resumos do objeto.
+> Se um objeto não possui um resumo definido, um botão é exibido no canto superior direito para acessar a configuração / resumos do objeto.
 
 ## Fonctions
 
