@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Aggiorna",
-        "Principal": "Primario"
+        "Principal": "Primario",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Ricarica",
@@ -800,11 +801,12 @@
         "Valider": "Convalidare",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :",
-        "Historisé": "",
-        "Timeline": "Cronologia",
-        "Type": "Tipo",
         "Nom": "Nome",
         "Plugin": "",
+        "Type": "Tipo",
+        "Historisé": "",
+        "Timeline": "Cronologia",
+        "Inversée": "",
         "Mode de lissage": "Modalità livellamento",
         "Purge si plus vieux": "",
         "Action": "Azione",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Principal": "Primario",
+        "Timelines": "",
         "Rafraîchir": "Aggiorna",
         "Configuration": "Configurazione"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Scegli",
         "Prévisualisation": "Anteprima",
         "Test": "Prova",
+        "Expression": "Espressione",
+        "Résultat thème Light": "",
+        "Résultat thème Dark": "",
         "Commandes liées": "Ordini collegati"
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Nessuno",
         "$value['name']": "$ Valore [ 'name']",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Configuration avancée": "Configurazione avanzata",
+        "Aller sur la configuration de l\\'objet": "",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
+        "Non actif": "Non attivo",
+        "Non visible": "Non visibile",
+        "Aller sur la configuration de l\\'équipement": "Vai alla configurazione dell'apparecchiatura",
         "Supprimer": "Rimuovere",
         "Visible": "Visibile",
         "Invisible": "Invisibile",
@@ -2351,14 +2365,6 @@
         "Inactifs": "Inattivo",
         "Export CSV": "Esportazione CSV",
         "Rechercher": "Ricercare",
-        "Aucun": "Nessuno",
-        "Désélectionner les équipements": "",
-        "Sélectionner les équipements": "",
-        "Non actif": "Non attivo",
-        "Non visible": "Non visibile",
-        "Configuration avancée": "Configurazione avanzata",
-        "Aller sur la configuration de l\\'équipement": "Vai alla configurazione dell'apparecchiatura",
-        "Aller sur la configuration de l\\'objet": "",
         "Historique des suppressions": "Cronologia delle cancellazioni",
         "Vider": "Vuota",
         "Date": "Data",

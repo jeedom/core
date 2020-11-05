@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Yenile",
-        "Principal": "Birincil"
+        "Principal": "Birincil",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Yenile",
@@ -800,11 +801,12 @@
         "Valider": "Onaylayın",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :",
-        "Historisé": "",
-        "Timeline": "Zaman çizelgesi",
-        "Type": "Çeşit",
         "Nom": "İsim",
         "Plugin": "Eklenti",
+        "Type": "Çeşit",
+        "Historisé": "",
+        "Timeline": "Zaman çizelgesi",
+        "Inversée": "",
         "Mode de lissage": "Pürüzsüzleştirme yöntemi",
         "Purge si plus vieux": "",
         "Action": "Eylem",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Principal": "Birincil",
+        "Timelines": "",
         "Rafraîchir": "Yenile",
         "Configuration": "Ayar"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Seç",
         "Prévisualisation": "",
         "Test": "Test, denetleme",
+        "Expression": "Ifade",
+        "Résultat thème Light": "",
+        "Résultat thème Dark": "",
         "Commandes liées": ""
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Hiçbir",
         "$value['name']": "$ Değer [ 'name']",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Configuration avancée": "Gelişmiş ayarlar",
+        "Aller sur la configuration de l\\'objet": "",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
+        "Non actif": "Aktif değil",
+        "Non visible": "Görünmüyor",
+        "Aller sur la configuration de l\\'équipement": "",
         "Supprimer": "Sil",
         "Visible": "Görülebilir",
         "Invisible": "Görünmez",
@@ -2351,14 +2365,6 @@
         "Inactifs": "",
         "Export CSV": "",
         "Rechercher": "Arayın",
-        "Aucun": "Hiçbir",
-        "Désélectionner les équipements": "",
-        "Sélectionner les équipements": "",
-        "Non actif": "Aktif değil",
-        "Non visible": "Görünmüyor",
-        "Configuration avancée": "Gelişmiş ayarlar",
-        "Aller sur la configuration de l\\'équipement": "",
-        "Aller sur la configuration de l\\'objet": "",
         "Historique des suppressions": "",
         "Vider": "Boşalt",
         "Date": "Tarih",

@@ -12,12 +12,11 @@ function initTimeline() {
     success: function(data) {
       var rightPanel = '<ul data-role="listview" class="ui-icon-alt">'
       rightPanel += '<li><a id="bt_refreshTimeline" href="#"><i class="fas fa-sync"></i> {{Rafraîchir}}</a></li>'
+      rightPanel += '<li><a class="changeTimelineFolder active" href="#" data-value="main">{{Principal}}</a></li>'
+      rightPanel += '<span class="ui-bottom-sheet-link ui-bottom-sheet-sep">&#160&#160&#160 {{Timelines}} <i class="fas fa-sort-down"></i></span>'
       for (var i in data) {
-        if (data[i] == 'main') {
-          rightPanel += '<li><a class="changeTimelineFolder active" href="#" data-value="'+data[i]+'">{{Principal}}</a></li>'
-        } else {
-          rightPanel += '<li><a class="changeTimelineFolder" href="#" data-value="'+data[i]+'">'+data[i]+'</a></li>'
-        }
+        if (data[i] == 'main') continue
+        rightPanel += '<li><a class="changeTimelineFolder" href="#" data-value="'+data[i]+'">'+data[i]+'</a></li>'
       }
       rightPanel += '</ul>'
       panel(rightPanel)
@@ -39,7 +38,7 @@ function initTimeline() {
 //exact same success function desktop/mobile:
 function displayTimeline() {
   jeedom.timeline.byFolder({
-    folder : $('#sel_timelineFolder').value(),
+    folder : $('.changeTimelineFolder.active').attr('data-value'),
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },

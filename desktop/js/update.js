@@ -300,8 +300,9 @@ function addUpdate(_update) {
 
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span></td>'
-  tr += '<td><span class="hidden">' + _update.name + '</span><span class="updateAttr" data-l1key="id" style="display:none;"></span>'
+  tr += '<td>'
   tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
+  tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
   if (_update.configuration && _update.configuration.version) {
     var updClass = 'label-warning'
     if (_update.configuration.version.toLowerCase() == 'stable') updClass = 'label-success'

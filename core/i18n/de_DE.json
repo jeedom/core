@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Aktualisieren",
-        "Principal": "Primär"
+        "Principal": "Primär",
+        "Timelines": "Zeitleisten"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Aktualisieren",
@@ -800,11 +801,12 @@
         "Valider": "Validate",
         "Commande(s) historisée(s) : ": "Historische Ordnung (en):",
         "Commande(s) timeline : ": "Timeline-Reihenfolge (n):",
-        "Historisé": "Historisiert",
-        "Timeline": "Zeitleiste",
-        "Type": "Typ",
         "Nom": "Name",
         "Plugin": "Plugin",
+        "Type": "Typ",
+        "Historisé": "Historisiert",
+        "Timeline": "Zeitleiste",
+        "Inversée": "Invertiert",
         "Mode de lissage": "Modus Glättung",
         "Purge si plus vieux": "Spülen, wenn älter",
         "Action": "Aktionen",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Principal": "Primär",
+        "Timelines": "Zeitleisten",
         "Rafraîchir": "Aktualisieren",
         "Configuration": "Konfiguration"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Wählen",
         "Prévisualisation": "Vorschau",
         "Test": "Test",
+        "Expression": "Ausdruck",
+        "Résultat thème Light": "Thema Licht Ergebnis",
+        "Résultat thème Dark": "Dunkles Themenergebnis",
         "Commandes liées": "Verknüpfte Bestellungen"
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": "Exportieren Sie diesen Verlauf"
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Ohne",
         "$value['name']": "$ Wert [ 'name']",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Configuration avancée": "Erweiterte Konfiguration",
+        "Aller sur la configuration de l\\'objet": "Gehen Sie zur Konfiguration des Objekts",
+        "Désélectionner les équipements": "Deaktivieren Sie die Ausrüstung",
+        "Sélectionner les équipements": "Ausrüstung auswählen",
+        "Non actif": "Nicht aktiv",
+        "Non visible": "Nicht sichtbar",
+        "Aller sur la configuration de l\\'équipement": "Gehen Sie zur Konfiguration des Geräts",
         "Supprimer": "Löschen",
         "Visible": "Sichtbar",
         "Invisible": "Unsichtbar",
@@ -2351,14 +2365,6 @@
         "Inactifs": "Inaktiv",
         "Export CSV": "CSV-Export",
         "Rechercher": "Suchen nach",
-        "Aucun": "Ohne",
-        "Désélectionner les équipements": "Deaktivieren Sie die Ausrüstung",
-        "Sélectionner les équipements": "Ausrüstung auswählen",
-        "Non actif": "Nicht aktiv",
-        "Non visible": "Nicht sichtbar",
-        "Configuration avancée": "Erweiterte Konfiguration",
-        "Aller sur la configuration de l\\'équipement": "Gehen Sie zur Konfiguration des Geräts",
-        "Aller sur la configuration de l\\'objet": "Gehen Sie zur Konfiguration des Objekts",
         "Historique des suppressions": "Löschverlauf",
         "Vider": "Leeren",
         "Date": "Datum",

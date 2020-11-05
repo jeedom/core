@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refresh",
-        "Principal": "Main"
+        "Principal": "Main",
+        "Timelines": "Timelines"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Refresh",
@@ -800,11 +801,12 @@
         "Valider": "Validate",
         "Commande(s) historisée(s) : ": "Historized command(s):",
         "Commande(s) timeline : ": "Timeline command(s):",
-        "Historisé": "Historized",
-        "Timeline": "Timeline",
-        "Type": "Type",
         "Nom": "Name",
         "Plugin": "Plugin",
+        "Type": "Type",
+        "Historisé": "Historized",
+        "Timeline": "Timeline",
+        "Inversée": "Inverted",
         "Mode de lissage": "Smoothing mode",
         "Purge si plus vieux": "Purge if older",
         "Action": "Action",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Principal": "Main",
+        "Timelines": "Timelines",
         "Rafraîchir": "Refresh",
         "Configuration": "Configuration"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Select",
         "Prévisualisation": "Preview",
         "Test": "Test",
+        "Expression": "Expression",
+        "Résultat thème Light": "Theme Light result",
+        "Résultat thème Dark": "Dark theme result",
         "Commandes liées": "Linked commands"
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": "Export this history"
     },
     "desktop\/php\/display.php": {
+        "Aucun": "None",
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Configuration avancée": "Advanced configuration",
+        "Aller sur la configuration de l\\'objet": "Go to the object configuration",
+        "Désélectionner les équipements": "Unselect equipments",
+        "Sélectionner les équipements": "Select equipments",
+        "Non actif": "Not active",
+        "Non visible": "Not visible",
+        "Aller sur la configuration de l\\'équipement": "Go to the configuration of the equipment",
         "Supprimer": "Delete",
         "Visible": "Visible",
         "Invisible": "Invisible",
@@ -2351,14 +2365,6 @@
         "Inactifs": "Inactive",
         "Export CSV": "CSV export",
         "Rechercher": "Search",
-        "Aucun": "None",
-        "Désélectionner les équipements": "Unselect equipments",
-        "Sélectionner les équipements": "Select equipments",
-        "Non actif": "Not active",
-        "Non visible": "Not visible",
-        "Configuration avancée": "Advanced configuration",
-        "Aller sur la configuration de l\\'équipement": "Go to the configuration of the equipment",
-        "Aller sur la configuration de l\\'objet": "Go to the object configuration",
         "Historique des suppressions": "Deletion history",
         "Vider": "Clear",
         "Date": "Date",

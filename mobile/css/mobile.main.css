@@ -1431,6 +1431,14 @@ a.ui-table-columntoggle-btn {
   margin: 10px !important;
   display: inline-block;
 }
+.objectPreview:not(.big) {
+    height: 165px;
+  }
+@media (orientation: portrait) {
+  .objectPreview:not(.big) {
+    height: 150px;
+  }
+}
 .objectPreview .topPreview > .name > i {
   color: var(--link-color);
 }

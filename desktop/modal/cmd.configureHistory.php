@@ -39,14 +39,15 @@ foreach ($cmds as $cmd) {
 <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory">
   <thead>
     <tr>
+      <th>{{Nom}}</th>
+      <th>{{Plugin}}</th>
+      <th>{{Type}}</th>
       <th data-filter="false" data-sorter="checkbox">{{Historisé}}</th>
       <th data-filter="false" data-sorter="checkbox">{{Timeline}}
         <a class="btn btn-success btn-xs" id="bt_applytimeline" style="width:22px;"><i class="fas fa-check"></i></a>
         <a class="btn btn-danger btn-xs" id="bt_canceltimeline" style="width:22px;"><i class="fas fa-times"></i></a>
       </th>
-      <th>{{Type}}</th>
-      <th>{{Nom}}</th>
-      <th>{{Plugin}}</th>
+      <th data-filter="false" data-sorter="checkbox">{{Inversée}}</th>
       <th data-sorter="select-text">{{Mode de lissage}}</th>
       <th class="extractor-select sorter-purges">{{Purge si plus vieux}}</th>
       <th data-sorter="false" data-filter="false">{{Action}}</th>
@@ -56,28 +57,47 @@ foreach ($cmds as $cmd) {
     <?php
     $tr = '';
     foreach ($cmds as $cmd) {
-      $tr .= '<tr data-cmd_id="'.$cmd->getId(). '">';
-      $tr .= '<td class="center" style="width:95px;">';
-      if ($cmd->getType() == 'info') {
-        $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized()) ? 'checked' : '').' />';
-      }
-      $tr .= '</td>';
-      $tr .= '<td style="width:155px;">';
-      $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' />';
-      $tr .= ' <input class="cmdAttr input-sm form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
-      $tr .= '</td>';
-      $tr .= '<td style="width:130px;">';
-      $tr .= '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
-      $tr .= '</td>';
+      $tr .= '<tr data-change="0" data-cmd_id="'.$cmd->getId(). '">';
+
+      //humanName:
       $tr .= '<td>';
+      $tr .= '<span class="cmdAttr" data-l1key="humanName">'.str_replace('<br/>', '', $cmd->getHumanName(true, true)).'</span>';
       $tr .= '<span class="cmdAttr" data-l1key="id" style="display:none;">'.$cmd->getId().'</span>';
-      $tr .= '<span class="cmdAttr" data-l1key="humanName">'.$cmd->getHumanName().'</span>';
       $tr .= '</td>';
-      $tr .= '<td style="width:100px;">';
+
+      //plugin:
+      $tr .= '<td>';
       if(is_object($cmd->getEqLogic())){
         $tr .= '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
       }
       $tr .= '</td>';
+
+      //type / subType:
+      $tr .= '<td>';
+      $tr .= '<span class="cmdAttr">'.$cmd->getType().' / '.$cmd->getSubType().'</span>';
+      $tr .= '</td>';
+
+      //historized:
+      $tr .= '<td class="center">';
+      if ($cmd->getType() == 'info') {
+        $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="isHistorized" '.(($cmd->getIsHistorized()) ? 'checked' : '').' />';
+      }
+      $tr .= '</td>';
+
+      //timeline:
+      $tr .= '<td>';
+      $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' />';
+      $tr .= ' <input class="cmdAttr input-sm form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
+      $tr .= '</td>';
+
+      //Invert:
+      $tr .= '<td class="center">';
+      if ($cmd->getType() == 'info' && $cmd->getSubType() == 'binary') {
+        $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="invertBinary"'.(($cmd->getDisplay('invertBinary') == 1) ? 'checked' : '').' />';
+      }
+      $tr .= '</td>';
+
+      //historizeMode
       $tr .= '<td>';
       if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') {
         $confHistorized = $cmd->getConfiguration('historizeMode');
@@ -90,6 +110,8 @@ foreach ($cmds as $cmd) {
         $tr .= '</select>';
       }
       $tr .= '</td>';
+
+      //historyPurge
       $tr .= '<td>';
       if ($cmd->getType() == 'info') {
         $confHistoryPurge = $cmd->getConfiguration('historyPurge');
@@ -106,7 +128,9 @@ foreach ($cmds as $cmd) {
         $tr .= '</select>';
       }
       $tr .= '</td>';
-      $tr .= '<td style="width:90px;">';
+
+      //Actions:
+      $tr .= '<td>';
       $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       if ($cmd->getType() == 'info') {
         $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
@@ -124,9 +148,9 @@ foreach ($cmds as $cmd) {
 setTableParser()
 initTableSorter()
 var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
-$tableCmdConfigureHistory.tablesorter({headers:{0:{sorter:'checkbox'}}})
-$tableCmdConfigureHistory.find('tbody tr').attr('data-change', '0')
 $tableCmdConfigureHistory.trigger("update")
+$tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '100px', '115px', '95px', '160px', '90px', '120px', '130px', '95px']
+$tableCmdConfigureHistory.trigger('applyWidgets').trigger('resizableReset')
 $tableCmdConfigureHistory.width('100%')
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
@@ -203,5 +227,9 @@ function setTableParser() {
 $(function() {
   jeedom.timeline.autocompleteFolder()
   initTooltips($tableCmdConfigureHistory)
+
+  setTimeout(function() {
+    $tableCmdConfigureHistory.closest('.ui-dialog').resize()
+  }, 500)
 })
 </script>

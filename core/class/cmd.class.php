@@ -1882,11 +1882,14 @@ class cmd {
 		return '';
 	}
 	
-	public function pushInflux($_value) {
+	public function pushInflux($_value=null) {
 		try{
 			$database=cmd::getInflux($this->getId());
 			if ($database == ''){
 				return;
+			}
+			if ($_value===null){
+				$_value = $this->execCmd();
 			}
 			$point = $this->computeInfluxData($_value);
 			$result = $database->writePoints(array($point),'s');

@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "クール",
-        "Principal": "主要"
+        "Principal": "主要",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "リフレッシュ",
@@ -800,11 +801,12 @@
         "Valider": "検証",
         "Commande(s) historisée(s) : ": "歴史的順序：",
         "Commande(s) timeline : ": "タイムライン順（秒）：",
-        "Historisé": "Historized",
-        "Timeline": "タイムライン",
-        "Type": "タイプ",
         "Nom": "表題",
         "Plugin": "プラグイン",
+        "Type": "タイプ",
+        "Historisé": "Historized",
+        "Timeline": "タイムライン",
+        "Inversée": "",
         "Mode de lissage": "ファッションスムージング",
         "Purge si plus vieux": "古い場合はパージ",
         "Action": "アクション",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Principal": "主要",
+        "Timelines": "",
         "Rafraîchir": "クール",
         "Configuration": "コンフィギュレーション"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "選択",
         "Prévisualisation": "試写",
         "Test": "テスト",
+        "Expression": "表現",
+        "Résultat thème Light": "",
+        "Résultat thème Dark": "",
         "Commandes liées": "リンクされた注文"
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
+        "Aucun": "何でもありません",
         "$value['name']": "",
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Configuration avancée": "高度な構成",
+        "Aller sur la configuration de l\\'objet": "",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
+        "Non actif": "アクティブではありません",
+        "Non visible": "見えない",
+        "Aller sur la configuration de l\\'équipement": "機器の構成に移動します",
         "Supprimer": "取り除きます",
         "Visible": "目に見えます",
         "Invisible": "インビジブル",
@@ -2351,14 +2365,6 @@
         "Inactifs": "不活発",
         "Export CSV": "CSVエクスポート",
         "Rechercher": "検索",
-        "Aucun": "何でもありません",
-        "Désélectionner les équipements": "",
-        "Sélectionner les équipements": "",
-        "Non actif": "アクティブではありません",
-        "Non visible": "見えない",
-        "Configuration avancée": "高度な構成",
-        "Aller sur la configuration de l\\'équipement": "機器の構成に移動します",
-        "Aller sur la configuration de l\\'objet": "",
         "Historique des suppressions": "削除履歴",
         "Vider": "空",
         "Date": "日付",

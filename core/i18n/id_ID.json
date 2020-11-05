@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Dingin",
-        "Principal": ""
+        "Principal": "",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Menyegarkan",
@@ -800,11 +801,12 @@
         "Valider": "Mengesahkan",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :",
-        "Historisé": "",
-        "Timeline": "Waktu",
-        "Type": "Jenis",
         "Nom": "Nama",
         "Plugin": "",
+        "Type": "Jenis",
+        "Historisé": "",
+        "Timeline": "Waktu",
+        "Inversée": "",
         "Mode de lissage": "Mode smoothing",
         "Purge si plus vieux": "",
         "Action": "Tindakan",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Principal": "",
+        "Timelines": "",
         "Rafraîchir": "Dingin",
         "Configuration": "Konfigurasi"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Memilih",
         "Prévisualisation": "",
         "Test": "Uji",
+        "Expression": "Ekspresi",
+        "Résultat thème Light": "",
+        "Résultat thème Dark": "",
         "Commandes liées": ""
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Tak ada",
         "$value['name']": "",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Configuration avancée": "Konfigurasi lanjutan",
+        "Aller sur la configuration de l\\'objet": "",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
+        "Non actif": "Tidak aktif",
+        "Non visible": "Tidak terlihat",
+        "Aller sur la configuration de l\\'équipement": "",
         "Supprimer": "Menghapus",
         "Visible": "Terlihat",
         "Invisible": "Tak kelihatan",
@@ -2351,14 +2365,6 @@
         "Inactifs": "",
         "Export CSV": "",
         "Rechercher": "Pencarian",
-        "Aucun": "Tak ada",
-        "Désélectionner les équipements": "",
-        "Sélectionner les équipements": "",
-        "Non actif": "Tidak aktif",
-        "Non visible": "Tidak terlihat",
-        "Configuration avancée": "Konfigurasi lanjutan",
-        "Aller sur la configuration de l\\'équipement": "",
-        "Aller sur la configuration de l\\'objet": "",
         "Historique des suppressions": "",
         "Vider": "Abisin",
         "Date": "Kencan",

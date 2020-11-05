@@ -50,11 +50,11 @@ if (!isConnect()) {
 </table>
 
 <script>
-var tableScSummary = $('#table_scenarioSummary')
+var $tableScSummary = $('#table_scenarioSummary')
 initTableSorter()
 refreshScenarioSummary()
-tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '80px']
-tableScSummary.trigger('applyWidgets')
+$tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '80px']
+$tableScSummary.trigger('applyWidgets')
   .trigger('resizableReset')
   .trigger('sorton', [[[1,0]]])
 
@@ -150,8 +150,8 @@ function refreshScenarioSummary() {
         table.push(result)
       }
 
-      tableScSummary.find('tbody').append(table)
-      tableScSummary.trigger("update")
+      $tableScSummary.find('tbody').append(table)
+      $tableScSummary.trigger("update")
 
       jeedom.timeline.autocompleteFolder()
 
@@ -215,7 +215,7 @@ function refreshScenarioSummary() {
       })
 
       setTimeout(function() {
-        tableScSummary.closest('.ui-dialog').resize()
+        $tableScSummary.closest('.ui-dialog').resize()
       }, 500)
     }
   })

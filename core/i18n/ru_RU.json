@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Обновить",
-        "Principal": ""
+        "Principal": "",
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Обновить",
@@ -800,11 +801,12 @@
         "Valider": "Validate",
         "Commande(s) historisée(s) : ": "Исторический порядок (ы):",
         "Commande(s) timeline : ": "Сроки заказа (ов):",
-        "Historisé": "Historized",
-        "Timeline": "хронология",
-        "Type": "Тип",
         "Nom": "Имя",
         "Plugin": "Плагин",
+        "Type": "Тип",
+        "Historisé": "Historized",
+        "Timeline": "хронология",
+        "Inversée": "",
         "Mode de lissage": "Режим сглаживания",
         "Purge si plus vieux": "Очистить, если старше",
         "Action": "Действие",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Principal": "",
+        "Timelines": "",
         "Rafraîchir": "Обновить",
         "Configuration": "Конфигурация"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Выбрать",
         "Prévisualisation": "",
         "Test": "тест",
+        "Expression": "выражение",
+        "Résultat thème Light": "",
+        "Résultat thème Dark": "",
         "Commandes liées": ""
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": ""
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Нет",
         "$value['name']": "",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Configuration avancée": "Расширенные настройки",
+        "Aller sur la configuration de l\\'objet": "",
+        "Désélectionner les équipements": "",
+        "Sélectionner les équipements": "",
+        "Non actif": "не существует",
+        "Non visible": "не видно",
+        "Aller sur la configuration de l\\'équipement": "",
         "Supprimer": "удаление",
         "Visible": "Видимый",
         "Invisible": "невидимый",
@@ -2351,14 +2365,6 @@
         "Inactifs": "",
         "Export CSV": "",
         "Rechercher": "поиск",
-        "Aucun": "Нет",
-        "Désélectionner les équipements": "",
-        "Sélectionner les équipements": "",
-        "Non actif": "не существует",
-        "Non visible": "не видно",
-        "Configuration avancée": "Расширенные настройки",
-        "Aller sur la configuration de l\\'équipement": "",
-        "Aller sur la configuration de l\\'objet": "",
         "Historique des suppressions": "История удаления",
         "Vider": "Пусто",
         "Date": "Дата",

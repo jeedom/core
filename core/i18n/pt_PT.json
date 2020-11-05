@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Legal",
-        "Principal": "Principal"
+        "Principal": "Principal",
+        "Timelines": "Linhas do tempo"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Refrescar",
@@ -800,11 +801,12 @@
         "Valider": "Validar",
         "Commande(s) historisée(s) : ": "Commande(s) historisée(s) :",
         "Commande(s) timeline : ": "Commande(s) timeline :",
-        "Historisé": "Historized",
-        "Timeline": "Cronograma",
-        "Type": "Tipo",
         "Nom": "Nome",
         "Plugin": "Plugin",
+        "Type": "Tipo",
+        "Historisé": "Historized",
+        "Timeline": "Cronograma",
+        "Inversée": "Invertido",
         "Mode de lissage": "Suavização moda",
         "Purge si plus vieux": "Limpar se for mais antigo",
         "Action": "Ação",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Principal": "Principal",
+        "Timelines": "Linhas do tempo",
         "Rafraîchir": "Legal",
         "Configuration": "Configuração"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Escolher",
         "Prévisualisation": "Pré-visualização",
         "Test": "Teste",
+        "Expression": "Expressão",
+        "Résultat thème Light": "Resultado da luz do tema",
+        "Résultat thème Dark": "Resultado de tema escuro",
         "Commandes liées": "Pedidos vinculados"
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": "Exporte esse histórico"
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Nemhum",
         "$value['name']": "$ value ['nome']",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Configuration avancée": "Configuração avançada",
+        "Aller sur la configuration de l\\'objet": "Vá para a configuração do objeto",
+        "Désélectionner les équipements": "Desmarcar equipamento",
+        "Sélectionner les équipements": "Selecionar equipamento",
+        "Non actif": "Não ativa",
+        "Non visible": "Não visível",
+        "Aller sur la configuration de l\\'équipement": "Vá para a configuração do equipamento",
         "Supprimer": "Remover",
         "Visible": "Visivél",
         "Invisible": "Invisível",
@@ -2351,14 +2365,6 @@
         "Inactifs": "Inativo",
         "Export CSV": "Exportação de CSV",
         "Rechercher": "Pesquisa",
-        "Aucun": "Nemhum",
-        "Désélectionner les équipements": "Desmarcar equipamento",
-        "Sélectionner les équipements": "Selecionar equipamento",
-        "Non actif": "Não ativa",
-        "Non visible": "Não visível",
-        "Configuration avancée": "Configuração avançada",
-        "Aller sur la configuration de l\\'équipement": "Vá para a configuração do equipamento",
-        "Aller sur la configuration de l\\'objet": "Vá para a configuração do objeto",
         "Historique des suppressions": "Histórico de exclusão",
         "Vider": "Vazio",
         "Date": "Data",

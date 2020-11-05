@@ -52,6 +52,8 @@ function initOverview() {
             $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
           }
           $(this).find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
+          //get bigger if too much summaries:
+          if ($(this).find('.objectSummaryParent').length > 18) $(this).addClass('big')
         })
 
         $('.resume').show()

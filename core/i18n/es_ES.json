@@ -45,7 +45,8 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refrescar",
-        "Principal": "Primario"
+        "Principal": "Primario",
+        "Timelines": "Cronologías"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Actualizar",
@@ -800,11 +801,12 @@
         "Valider": "Validar",
         "Commande(s) historisée(s) : ": "Orden (es) histórica (s):",
         "Commande(s) timeline : ": "Orden (es) de línea de tiempo:",
-        "Historisé": "Historizar",
-        "Timeline": "Línea de tiempo",
-        "Type": "Tipo",
         "Nom": "Nombre",
         "Plugin": "Plugin",
+        "Type": "Tipo",
+        "Historisé": "Historizar",
+        "Timeline": "Línea de tiempo",
+        "Inversée": "Invertido",
         "Mode de lissage": "Modo de alisamiento",
         "Purge si plus vieux": "Purgar si es mayor",
         "Action": "Acción",
@@ -1339,6 +1341,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Principal": "Primario",
+        "Timelines": "Cronologías",
         "Rafraîchir": "Refrescar",
         "Configuration": "Configuración"
     },
@@ -1928,6 +1931,9 @@
         "Choisir": "Elegir",
         "Prévisualisation": "Preestreno",
         "Test": "Prueba",
+        "Expression": "Expresión",
+        "Résultat thème Light": "Resultado de la luz del tema",
+        "Résultat thème Dark": "Resultado del tema oscuro",
         "Commandes liées": "Pedidos vinculados"
     },
     "desktop\/php\/report.php": {
@@ -2335,8 +2341,16 @@
         "Exporter cet historique.": "Exportar esta historia"
     },
     "desktop\/php\/display.php": {
+        "Aucun": "Ninguno",
         "$value['name']": "Valor $ [ 'nombre']",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Configuration avancée": "Configuración avanzada",
+        "Aller sur la configuration de l\\'objet": "Ir a la configuración del objeto",
+        "Désélectionner les équipements": "Deseleccionar equipo",
+        "Sélectionner les équipements": "Seleccionar equipo",
+        "Non actif": "No activo",
+        "Non visible": "No visible",
+        "Aller sur la configuration de l\\'équipement": "Ir a la configuración del equipo",
         "Supprimer": "Borrar",
         "Visible": "Visible",
         "Invisible": "Invisible",
@@ -2351,14 +2365,6 @@
         "Inactifs": "Inactivo",
         "Export CSV": "Exportar CSV",
         "Rechercher": "Buscar",
-        "Aucun": "Ninguno",
-        "Désélectionner les équipements": "Deseleccionar equipo",
-        "Sélectionner les équipements": "Seleccionar equipo",
-        "Non actif": "No activo",
-        "Non visible": "No visible",
-        "Configuration avancée": "Configuración avanzada",
-        "Aller sur la configuration de l\\'équipement": "Ir a la configuración del equipo",
-        "Aller sur la configuration de l\\'objet": "Ir a la configuración del objeto",
         "Historique des suppressions": "Historial de borrado",
         "Vider": "Vaciar",
         "Date": "Fecha",
