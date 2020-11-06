@@ -133,6 +133,8 @@ $('#table_ObjectSummary .bt_removeObject').on('click', function(event) {
         },
         success: function() {
           $('#table_ObjectSummary tr.tr_object[data-object_id="'+id+'"]').remove()
+          $('.objectDisplayCard[data-object_id="'+id+'"]').remove()
+          $('.objectListContainer').packery()
         }
       })
     }
@@ -170,6 +172,19 @@ $('#bt_saveSummaryObject').off('click').on('click',function() {
     },
     success : function(data) {
       $('#div_alertObjectSummary').showAlert({message: '{{Modification sauvegardées avec succès}}', level: 'success'})
+
+      //update object page list:
+      var $objectContainer = $('#objectPanel .objectListContainer')
+      var objectId
+      $('#table_ObjectSummary tr.tr_object').each(function() {
+        objectId = $(this).attr('data-object_id')
+        $objectContainer.append($objectContainer.find('.objectDisplayCard[data-object_id="'+objectId+'"]'))
+      })
+
+      var packData = $objectContainer.data('packery')
+      if (isset(packData) && packData.items.length >= 1) {
+        $objectContainer.packery('destroy').packery()
+      }
     }
   })
 })

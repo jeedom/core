@@ -5,7 +5,7 @@ The page *Synthesis* offers you a centralized visual synthesis of your objects a
 
 ![Synthesis](./images/synthesis_intro.gif)
 
-For it to take on its full meaning, you must configure the summaries and a background image on each object.
+For it to take on its full meaning, it is necessary on each object, to configure the summaries and a background image.
 
 You can configure it as the default page in **Settings → Preferences**, in desktop and / or mobile.
 
@@ -32,7 +32,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 
 > **NOTE**
 >
-> If an object has not defined a summary, a button is displayed at the top right to access the configuration / summaries of the object.
+> If an object does not have a summary defined, a button is displayed at the top right to access the configuration / summaries of the object.
 
 ## Fonctions
 
