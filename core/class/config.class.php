@@ -25,6 +25,7 @@ class config {
 	private static $defaultConfiguration = array();
 	private static $cache = array();
 	private static $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username','ldap:password','ldap:host','ldap:username','dns::token');
+	private static $nocache = array('enableScenario');
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -139,7 +140,7 @@ class config {
 	* @return string valeur de la clef
 	*/
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
-		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key])) {
+		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key,self::$nocache)) {
 			return self::$cache[$_plugin . '::' . $_key];
 		}
 		$values = array(
@@ -151,7 +152,7 @@ class config {
 		WHERE `key`=:key
 		AND plugin=:plugin';
 		$value = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if ($value['value'] === '' || $value['value'] === null) {
+		if (($value['value'] === '' || $value['value'] === null)) {
 			$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 			if (isset($defaultConfiguration[$_plugin][$_key])) {
 				self::$cache[$_plugin . '::' . $_key] = $defaultConfiguration[$_plugin][$_key];
