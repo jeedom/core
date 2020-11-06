@@ -65,7 +65,7 @@ La page de configuration est constituée de plusieurs onglets et de boutons :
 - **Réponse** : La réponse à fournir.
 - **Attendre avant de répondre (s)** : Permet d'ajouter un délai de X secondes avant de générer la réponse. Ca permet par exemple d'attendre que le retour d'état d'une lampe se fasse avant de répondre.
 - **Conversion binaire** : Permet de convertir les valeurs binaires en ouvert/fermé par exemple (uniquement pour les commandes de type info binaire).
-- **Utilisateurs autorisés** : Limite l’interaction à certains utilisateurs (les logins séparés par des |).
+- **Utilisateurs autorisés** : Limite l’interaction à certains utilisateurs (les logins séparés par des \|).
 
 ### Onglet Filtres
 
@@ -127,7 +127,7 @@ Dans les synonymes, on va donc indiquer le nom de la commande et le(s) synonyme(
 
 ![interact008](../images/interact008.png)
 
-On peut voir ici une syntaxe un peu nouvelle pour les synonymes. Un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer". La syntaxe est donc "*nom de la commande*" ***=*** "*synonyme 1*"***,*** "*synonyme 2*" (on peut mettre autant de synonyme que l’on veut). Puis, pour ajouter des synonymes pour un autre nom de commande, il suffit d’ajouter après le dernier synonyme une barre verticale "*|*" à la suite de laquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie, etc.
+On peut voir ici une syntaxe un peu nouvelle pour les synonymes. Un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer". La syntaxe est donc "*nom de la commande*" ***=*** "*synonyme 1*"***,*** "*synonyme 2*" (on peut mettre autant de synonyme que l’on veut). Puis, pour ajouter des synonymes pour un autre nom de commande, il suffit d’ajouter après le dernier synonyme une barre verticale "*\|*" à la suite de laquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie, etc.
 
 C’est déjà mieux, mais il manque encore pour la commande "on" "entrée" le "l' " et pour d’autres le "la" ou "le" ou "un", etc. On pourrait modifier le nom de l’équipement pour l’ajouter, ce serait une solution, sinon on peut utiliser les variations dans la demande. Cela consiste à lister une série de mots possibles à un emplacement de la phrase, Jeedom va donc générer des phrases avec ces variations.
 
@@ -161,7 +161,7 @@ Les conversions binaires s’appliquent aux commandes de type info dont le sous-
 
 Comme on peut le voir ici, j’ai conservé quasiment la même structure pour la demande (c’est volontaire pour se concentrer sur les spécificités). Bien sûr, j’ai adapté les synonymes pour avoir quelque chose de cohérent. Par contre, pour la réponse, il est **impératif** de mettre uniquement \#valeur\# qui représente le 0 ou 1 que Jeedom va remplacer par la conversion binaire qui suit.
 
-Le champ **conversion binaire** doit contenir 2 réponses : en premier la réponse si la valeur de la commande vaut 0, puis une barre verticale "|" de séparation et enfin la réponse si la commande vaut 1. Ici les réponses sont simplement non et oui mais on pourrait y mettre une phrase un peu plus longue.
+Le champ **conversion binaire** doit contenir 2 réponses : en premier la réponse si la valeur de la commande vaut 0, puis une barre verticale "\|" de séparation et enfin la réponse si la commande vaut 1. Ici les réponses sont simplement non et oui mais on pourrait y mettre une phrase un peu plus longue.
 
 > **Warning**
 >
@@ -169,9 +169,9 @@ Le champ **conversion binaire** doit contenir 2 réponses : en premier la répon
 
 ### Utilisateurs autorisés
 
-Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par un "|".
+Le champ "Utilisateurs autorisés" permet de n’autoriser que certaines personnes à exécuter la commande, vous pouvez mettre plusieurs profils en les séparant par un "\|".
 
-Exemple : personne1|personne2
+Exemple : personne1\|personne2
 
 On peut imaginer qu’une alarme peut être activée ou désactivée par un enfant ou un voisin qui viendrait arroser les plantes en votre absence.
 
@@ -242,11 +242,11 @@ Dans cet exemple on voit une phrase simple qui va nous retourner une réponse av
 
 ![interact017](../images/interact017.png)
 
-Cette exemple cible précisément un équipement spécifique ce qui permet d’avoir une réponse personnalisée. On pourrait donc imaginer remplacer la réponse de l’exemple par "non il n’y a personne dans la chambre de *julie*|oui il y a quelqu’un dans la chambre de *julie*"
+Cette exemple cible précisément un équipement spécifique ce qui permet d’avoir une réponse personnalisée. On pourrait donc imaginer remplacer la réponse de l’exemple par "non il n’y a personne dans la chambre de *julie*\|oui il y a quelqu’un dans la chambre de *julie*"
 
 #### Evolution
 
-- La question est donc "\#commande\# \[dans la |dans le\] \#objet\#"
+- La question est donc "\#commande\# \[dans la \|dans le\] \#objet\#"
 - La réponse sera "non il n’y a personne dans la pièce" ou "oui il y a quelqu’un dans la pièce"
 - Il n’y a pas de commande qui réponde à ça dans la partie Action vu que c’est une interaction Multiple commandes
 - En ajoutant une expression régulière, on peut nettoyer les commandes que l’on ne veut pas voir pour n’avoir que les phrases sur les commandes "Présence".
@@ -265,7 +265,7 @@ Ici un exemple générique qui sert à connaître la température, l’humidité
 
 ![interact019](../images/interact019.png)
 
-- On peut donc voir qu’une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" peut être convertie en : "quelle est \[la |l\\'\]\#commande\# objet" (l’utilisation de \[mot1 | mot2\] permet de dire cette possibilité ou celle-là pour générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrases avec toutes les commandes existantes (en fonction des filtres) en remplaçant \#commande\# par le nom de la commande et \#objet\# par le nom de l’objet.
+- On peut donc voir qu’une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" peut être convertie en : "quelle est \[la \|l\\'\]\#commande\# objet" (l’utilisation de \[mot1 \| mot2\] permet de dire cette possibilité ou celle-là pour générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrases avec toutes les commandes existantes (en fonction des filtres) en remplaçant \#commande\# par le nom de la commande et \#objet\# par le nom de l’objet.
 - La réponse sera de type "21 °C" ou "200 lux". Il suffit de mettre : \#valeur\# \#unite\# (l’unité est à compléter dans la configuration de chaque commande pour laquelle on veut en avoir une)
 - Cette exemple génère donc une phrase pour toutes les commandes de type info numérique qui ont une unité, on peut donc décocher des unités dans le filtre de droite limité au type qui nous intéresse.
 
@@ -281,7 +281,7 @@ On peut aussi ajouter un filtre Regexp pour enlever quelques commandes. En repre
 
 On peut donc voir un regexp :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(batterie\|latence\|pression\|vitesse\|consommation)**
 
 Celui-ci permet de supprimer toutes les commandes qui ont l’un de ces mots dans leur phrase
 
