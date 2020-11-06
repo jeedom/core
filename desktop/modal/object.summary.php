@@ -175,15 +175,10 @@ $('#bt_saveSummaryObject').off('click').on('click',function() {
 
       //update object page list:
       var $objectContainer = $('#objectPanel .objectListContainer')
-      var objectId, card
+      var objectId
       $('#table_ObjectSummary tr.tr_object').each(function() {
         objectId = $(this).attr('data-object_id')
-        card = $objectContainer.find('.objectDisplayCard[data-object_id="'+objectId+'"]')
-        card.css({
-          'top': '',
-          'left': ''
-        })
-        $objectContainer.append(card)
+        $objectContainer.append($objectContainer.find('.objectDisplayCard[data-object_id="'+objectId+'"]'))
       })
 
       var packData = $objectContainer.data('packery')
