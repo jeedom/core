@@ -72,6 +72,11 @@ Theme Core 2021 @Jeedom
     background: none
   }
 
+  i.far.blank::before {
+    content: " ";
+    white-space: pre;
+  }
+
 /* ______Main */
   .center {
     text-align: center;

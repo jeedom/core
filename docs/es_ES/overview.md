@@ -5,7 +5,7 @@ La página *Síntesis* le ofrece una síntesis visual centralizada de sus objeto
 
 ![Síntesis](./images/synthesis_intro.gif)
 
-Para que tome su significado completo, debe configurar los resúmenes y una imagen de fondo en cada objeto.
+Para que adquiera todo su significado, es necesario en cada objeto, configurar los resúmenes y una imagen de fondo.
 
 Puede configurarlo como la página predeterminada en **Configuración → Preferencias**, en escritorio y / o móvil.
 
@@ -32,7 +32,7 @@ La configuración de la visualización del objeto se realiza en **Herramientas �
 
 > **Nota**
 >
-> Si un objeto no ha definido un resumen, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto.
+> Si un objeto no tiene un resumen definido, se muestra un botón en la parte superior derecha para acceder a la configuración / resúmenes del objeto.
 
 ## Fonctions
 

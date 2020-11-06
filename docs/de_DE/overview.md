@@ -5,7 +5,7 @@ Die Seite *Synthese* bietet Ihnen eine zentralisierte visuelle Synthese Ihrer Ob
 
 ![Synthese](./images/synthesis_intro.gif)
 
-Damit es seine volle Bedeutung annimmt, müssen Sie die Zusammenfassungen und ein Hintergrundbild für jedes Objekt konfigurieren.
+Damit es seine volle Bedeutung annehmen kann, muss es für jedes Objekt die Zusammenfassungen und ein Hintergrundbild konfigurieren.
 
 Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.
 
@@ -32,7 +32,7 @@ Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
 
 > **Notiz**
 >
-> Wenn ein Objekt keine Zusammenfassung definiert hat, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
+> Wenn für ein Objekt keine Zusammenfassung definiert ist, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
 
 ## Fonctions
 
