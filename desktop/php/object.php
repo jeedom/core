@@ -35,7 +35,7 @@ sendVarToJS([
 				<a id="bt_resetObjectSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 			</div>
 		</div>
-		<div class="panel">
+		<div id="objectPanel" class="panel">
 			<div class="panel-body">
 				<div class="objectListContainer">
 					<?php
