@@ -93,6 +93,8 @@ function displayPlugin(_pluginId) {
       alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
+      console.log(data)
+      console.log(jeedomVersion)
       $('#span_plugin_id').html(data.id)
       $('#span_plugin_name').html(data.name)
 
@@ -115,6 +117,22 @@ function displayPlugin(_pluginId) {
         $('#span_plugin_install_version').html(data.update.configuration.version)
       } else {
         $('#span_plugin_install_version').html('')
+      }
+
+      if (isset(data.author)) {
+        $('#span_plugin_author').html('<a href="https://market.jeedom.com/index.php?v=d&p=market&author='+data.author+'">'+data.author+'</a>')
+      } else {
+        $('#span_plugin_author').html('')
+      }
+
+      if (data.checkVersion != -1) {
+        if (data.require <= jeedomVersion) {
+          $('#span_plugin_require').html('<span class="label label-success">' + data.require + '</span>')
+        } else {
+          $('#span_plugin_require').html('<span class="label label-warning">' + data.require + '</span>')
+        }
+      } else {
+        $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>')
       }
 
       //dependencies and daemon divs:
@@ -154,11 +172,6 @@ function displayPlugin(_pluginId) {
         $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="'+data.info.display+'"><i class="fas fa-book"></i> {{Détails}}</a>')
       }
       $spanRightButton.append('<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
-      if (data.checkVersion != -1) {
-        $('#span_plugin_require').html('<span>' + data.require + '</span>')
-      } else {
-        $('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>')
-      }
 
       $('#div_configPanel').hide()
       $.clearDivContent('div_plugin_panel')
