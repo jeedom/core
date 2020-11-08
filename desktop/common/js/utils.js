@@ -19,6 +19,10 @@
 //cmd update:
 var utid = 0
 
+//design edit options conservation:
+var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
+
+
 var isEditing = false
 
 //js error in ! ui:
