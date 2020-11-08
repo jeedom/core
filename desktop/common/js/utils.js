@@ -81,6 +81,8 @@ function loadPage(_url, _noPushHistory) {
     return
   }
 
+  closeJeedomMenu()
+
   if ($('.context-menu-root').length > 0) {
     try {
       $.contextMenu('destroy')
@@ -295,6 +297,7 @@ function setJeedomTheme() {
   }
 
   $body.on('click','#bt_switchTheme',function() {
+    closeJeedomMenu()
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
@@ -469,7 +472,7 @@ function initJeedomModals() {
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: { my: 'center center-10', at: 'center center', of: window }
       })
-      setTimeout(function(){initTooltips($('#md_reportBug'))}, 500)
+      setTimeout(function() {initTooltips($('#md_reportBug'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_reportBug')
@@ -491,7 +494,7 @@ function initJeedomModals() {
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
         position: {my: 'center bottom-50', at: 'center bottom', of: window}
       })
-      setTimeout(function(){initTooltips($('#md_modal'))}, 500)
+      setTimeout(function() {initTooltips($('#md_modal'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal')
@@ -513,7 +516,7 @@ function initJeedomModals() {
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
       })
-      setTimeout(function(){initTooltips($('#md_modal2'))}, 500)
+      setTimeout(function() {initTooltips($('#md_modal2'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal2')
@@ -535,7 +538,7 @@ function initJeedomModals() {
         width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
       })
-      setTimeout(function(){initTooltips($('#md_modal3'))}, 500)
+      setTimeout(function() {initTooltips($('#md_modal3'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal3')
@@ -551,8 +554,8 @@ function initJeedomModals() {
 
 function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
   $(_button).on('click', function(event) {
+    closeJeedomMenu()
     if (isEditing == true) return false
-    $('#jeedomMenuBar li.dropdown > .dropdown-menu').hide()
     if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
@@ -580,7 +583,46 @@ function setJeedomGlobalUI() {
     }
   })
 
+  setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
+  setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
+  setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
+  setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal')
+  setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
+
+  $('#bt_gotoDashboard').on('click',function(event) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+      event.stopPropagation()
+      return
+    }
+    loadPage('index.php?v=d&p=dashboard')
+  })
+
+  $('#bt_gotoView').on('click',function(event) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+      event.stopPropagation()
+      return
+    }
+    loadPage('index.php?v=d&p=view')
+  })
+
+  $('#bt_gotoPlan').on('click',function(event) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+      event.stopPropagation()
+      return
+    }
+    loadPage('index.php?v=d&p=plan')
+  })
+
+  $('#bt_gotoPlan3d').on('click',function(event) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+      event.stopPropagation()
+      return
+    }
+    loadPage('index.php?v=d&p=plan3d')
+  })
+
   $('#bt_jeedomAbout').on('click', function() {
+    closeJeedomMenu()
     $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   })
 
@@ -598,76 +640,23 @@ function setJeedomGlobalUI() {
     });
   })
 
-  $('body').on( 'click','.bt_reportBug', function() {
+  $('.bt_reportBug').on('click',function(event) {
+    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
+      event.preventDefault()
+      return
+    }
+    closeJeedomMenu()
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
   })
 
-  setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
-  setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
-  setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal')
-  setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
-
-  $('#bt_gotoDashboard').on('click',function(event){
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
-      event.preventDefault()
-      return
-    }
-    if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      event.preventDefault()
-      return
-    }
-    $('#jeedomMenuBar ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-    loadPage('index.php?v=d&p=dashboard')
-  })
-
-  $('#bt_gotoView').on('click',function(){
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
-      event.preventDefault()
-      return
-    }
-    if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      event.preventDefault()
-      return
-    }
-    $('#jeedomMenuBar ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open');
-    loadPage('index.php?v=d&p=view')
-  })
-
-  $('#bt_gotoPlan').on('click',function(){
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
-      event.preventDefault()
-      return
-    }
-    if ('ontouchstart' in window || navigator.msMaxTouchPoints) {
-      event.preventDefault()
-      return
-    }
-    $('#jeedomMenuBar ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open')
-    loadPage('index.php?v=d&p=plan')
-  })
-
-  $('#bt_gotoPlan3d').on('click',function() {
-    if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
-      event.preventDefault()
-      return
-    }
-    if('ontouchstart' in window || navigator.msMaxTouchPoints){
-      event.preventDefault()
-      return
-    }
-    $('#jeedomMenuBar ul.dropdown-menu [data-toggle=dropdown]').parent().parent().parent().siblings().removeClass('open')
-    loadPage('index.php?v=d&p=plan3d')
-  })
-
-  $('#bt_messageModal').on('click',function(){
+  $('#bt_messageModal').on('click',function() {
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
   })
-  $('#bt_jsErrorModal').on('click',function(){
+  $('#bt_jsErrorModal').on('click',function() {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
-  $('body').on('click','.objectSummaryParent',function() {
+  $('body').on('click', '.objectSummaryParent',function() {
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
     loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'))
   })
@@ -831,7 +820,7 @@ function initTableSorter(filter) {
 }
 
 function initHelp() {
-  $('.help').each(function(){
+  $('.help').each(function() {
     if ($(this).attr('data-help') != undefined) {
       $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>')
     }
@@ -1009,13 +998,21 @@ function addOrUpdateUrl(_param,_value,_title) {
   }
 }
 
+function closeJeedomMenu() {
+  $('#jeedomMenuBar .navbar-nav').addClass('disabled')
+  setTimeout(function() {
+    $('#jeedomMenuBar .navbar-nav').removeClass('disabled')
+  }, 250)
+
+  if ($(window).width() < 768) {
+    $('#jeedomMenuBar .navbar-collapse.in').removeClass('in')
+  }
+}
+
 //Global UI functions__
 var userDeviceType = 'mobile'
 function setJeedomMenu() {
   $('body').on('click', 'a', function(event) {
-    if ($(window).width() < 768) {
-      $('#jeedomMenuBar ul.dropdown-menu').css('display', '')
-    }
     if ($(this).hasClass('noOnePageLoad')) {
       return
     }
@@ -1038,64 +1035,11 @@ function setJeedomMenu() {
       return
     }
 
-    //hide first level main menu:
-    $('#jeedomMenuBar li.dropdown > .dropdown-menu').hide()
+    if (!$(this).hasClass('navbar-brand')) closeJeedomMenu()
 
-    if (userDeviceType == 'mobile') {
-      $('#jeedomMenuBar .dropdown-toggle').dropdown("close")
-    }
-
+    event.preventDefault()
+    event.stopPropagation()
     loadPage($(this).attr('href'))
-    event.preventDefault()
-    event.stopPropagation()
-  })
-
-  $('#jeedomMenuBar ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-    if ($(this).parent().hasClass('dropdown-submenu')) return
-    event.preventDefault()
-    event.stopPropagation()
-    $(this).parent().siblings().removeClass('open')
-    $(this).parent().toggleClass('open')
-    $('.dropdown-menu').dropdown('toggle')
-  })
-
-  if (userDeviceType == 'desktop') {
-    $('#jeedomMenuBar ul.dropdown-menu [data-toggle=dropdown]').on('mouseenter', function(event) {
-      if ($(window).width() < 768) return
-      event.preventDefault()
-      event.stopPropagation()
-      $(this).parent().siblings().removeClass('open')
-      $(this).parent().toggleClass('open')
-    })
-  }
-
-  $('#jeedomMenuBar li.dropdown-submenu a.dropdown-toggle').on('click',function(event) {
-    event.stopPropagation()
-    var opened = false
-    if ($(this).parent().hasClass('open')) opened = true
-    $('li.dropdown-submenu').removeClass('open')
-    if (!opened) $(this).parent().addClass('open')
-  })
-
-  $('#jeedomMenuBar .dropdown-menu').on('mouseleave', '.dropdown-submenu.open a',function(){
-    if ($(window).width() < 768) return
-    if ($(this).closest('#jeedomMenuBar .dropdown-submenu').is(':hover')) {
-      return
-    }
-    $(this).trigger('mouseenter')
-  })
-
-  $('#jeedomMenuBar .dropdown-menu').on('mouseleave', '.dropdown-submenu.open .dropdown-menu',function(){
-    if ($(window).width() < 768) return
-    $(this).closest('#jeedomMenuBar .dropdown-submenu').find('a').trigger('mouseenter')
-  })
-
-  $('ul.nav li.dropdown').hover(function() {
-    if ($(window).width() < 768) return
-    $(this).find('.dropdown-menu').first().stop(true, true).show()
-  }, function() {
-    if ($(window).width() < 768) return
-    $(this).find('.dropdown-menu').first().stop(true, true).hide()
   })
 }
 
@@ -1180,7 +1124,7 @@ function chooseIcon(_callback, _params) {
           $('#mod_selectIcon').dialog({width: jQuery(window).width() - 50})
         }
         $('body').css({overflow: 'hidden'});
-        setTimeout(function(){initTooltips($("#mod_selectIcon"))},500)
+        setTimeout(function() {initTooltips($("#mod_selectIcon"))},500)
       },
       beforeClose: function(event, ui) {
         $('body').css({overflow: 'inherit'})

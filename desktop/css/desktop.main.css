@@ -149,6 +149,238 @@ Theme Core 2021 @Jeedom
     width: 15px;
   }
 
+/* ____________________NAVBAR */
+  .navbar-fixed-top .visible-xs-inline-block {
+    max-width: calc(100% - 150px) !important;
+    max-height: 38px !important;
+    overflow: hidden;
+  }
+
+  /* navbar top modales on hover */
+  #jeedomMenuBar {
+    min-height: 50px;
+    height: 50px;
+    z-index: 100;
+  }
+  #jeedomMenuBar:hover {
+    z-index: 50000;
+  }
+  .ui-widget-overlay.ui-front,
+  .modal-backdrop {
+    z-index: 90 !important;
+    background: var(--el-defaultColor) !important;
+    opacity: 0.6 !important;
+    backdrop-filter: blur(2px);
+  }
+
+  .navbar-collapse {
+    background: var(--bg-modal-color);
+  }
+
+  #jeedomMenuBar li.navTime {
+    padding: 5px 0 0 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    width: 90px;
+  }
+  #jeedomMenuBar li.navTime > a  {
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 105px;
+  }
+
+  .navbar,
+  .navbar .container-fluid,
+  .navbar-header,
+  .navbar-collapse,
+  .nav.navbar-nav,
+  .dropdown-menu,
+  .dropdown > a,
+  .dropdown > a:hover {
+    background-color: rgb(var(--defaultBkg-color)) !important;
+  }
+  .dropdown-menu {
+    z-index: 10 !important;
+  }
+
+  /* hamburger */
+  header .navbar-toggle {
+    border: none;
+    background: transparent !important;
+  }
+  .navbar-toggle .icon-bar {
+    height: 3px;
+    background-color: var(--link-color);
+  }
+
+/* ______Main Menu */
+  #jeedomMenuBar .navbar-collapse {
+    max-height: 80vh;
+    scrollbar-color: var(--form-bg-color) transparent !important;
+    scrollbar-width: thin;
+  }
+  #jeedomMenuBar ul.navbar-nav > li ul {
+    position: absolute;
+    display: none;
+    padding: 0;
+    z-index: 9999 !important;
+    min-width: 180px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    scrollbar-color: var(--form-bg-color) transparent !important;
+    scrollbar-width: thin;
+  }
+  #jeedomMenuBar ul.navbar-nav li ul {
+    background-color: rgb(var(--defaultBkg-color));
+  }
+  #jeedomMenuBar ul.navbar-nav li ul a {
+    display: block;
+    padding: 3px 30px 3px 20px;
+    border-right: 7px solid transparent;
+    line-height: 1.42857143;
+    white-space: nowrap;
+  }
+  #jeedomMenuBar ul.navbar-nav li ul a i {
+    display: inline-flex;
+    width: 20px;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 7px !important;
+  }
+  #jeedomMenuBar ul.navbar-nav li ul li {
+    display: block;
+    list-style-type: none;
+    line-height: 1.42857143;
+    white-space: nowrap;
+  }
+  #jeedomMenuBar ul.navbar-nav li ul ul {
+    position: relative;
+    border-top: 1px solid var(--el-defaultColor);
+    border-bottom: 1px solid var(--el-defaultColor);
+  }
+  #jeedomMenuBar ul.navbar-nav > li > ul > li > ul {
+    position: absolute;
+    margin-top: -30px;
+    left: calc(100% - 5px);
+  }
+  #jeedomMenuBar ul.navbar-nav .divider {
+    background-color: var(--el-defaultColor) !important;
+    height: 1px;
+    margin: 9px 0;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  #jeedomMenuBar ul.navbar-nav ul img {
+    display: inline-block;
+    width: 20px;
+  }
+
+  #jeedomMenuBar input[type=checkbox] {
+    display: none;
+  }
+
+  /* scroll menus */
+  #jeedomMenuBar ul.navbar-nav > li ul ul {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+  @media screen and (max-height: 400px) {
+    #jeedomMenuBar ul.navbar-nav > li ul ul {
+      max-height: 114px; /* 4 items */
+    }
+  }
+  @media screen and (min-height: 400px) and (max-height: 800px) {
+    #jeedomMenuBar ul.navbar-nav > li ul ul {
+      max-height: 272px; /* 10 items */
+    }
+  }
+  @media screen and (min-height: 801px) {
+    #jeedomMenuBar ul.navbar-nav > li ul ul {
+      max-height: 600px;
+    }
+  }
+
+
+  @media screen and (min-width: 768px) {
+    /* hovering interaction */
+    #jeedomMenuBar ul.navbar-nav label.drop-icon {
+      display: none;
+    }
+    #jeedomMenuBar ul.navbar-nav a.submenu:after {
+      position: absolute;
+      display: block;
+      content: " ";
+      height: 0;
+      right: 15px;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-left-color: var(--txt-color);
+      margin-top: -12px;
+    }
+    #jeedomMenuBar ul.navbar-nav .fa-caret-square-down {
+      display: none;
+    }
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li:hover > ul {
+      display: block !important;
+    }
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li:hover > ul,
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li > ul:hover {
+      display: block !important;
+    }
+  }
+
+
+  @media screen and (max-width: 767px) {
+    /* clicking interaction */
+    #jeedomMenuBar ul.navbar-nav li ul li {
+      padding-top: 2px;
+      margin-right: -30px;
+    }
+    #jeedomMenuBar ul.navbar-nav label.drop-icon {
+      float: right;
+      margin-right: 10px;
+      color: var(--txt-color);
+      font-size: 10px;
+    }
+    #jeedomMenuBar ul.navbar-nav li ul li label.drop-icon {
+      margin-right: 0;
+      color: var(--txt-color);
+    }
+    #jeedomMenuBar ul.navbar-nav .caret {
+      display: none;
+    }
+    #jeedomMenuBar ul.navbar-nav li input[type="checkbox"]:checked + ul {
+      display: block !important;
+    }
+    #jeedomMenuBar ul.navbar-nav > li {
+      border-bottom: 3px solid rgb(var(--bg-color)) !important;
+    }
+    #jeedomMenuBar ul.navbar-nav > li > ul {
+      padding-left: 6%;
+    }
+    #jeedomMenuBar ul.navbar-nav > li > ul > li > ul {
+      margin-top: 12px;
+      padding-left: 6%;
+    }
+    #jeedomMenuBar ul.navbar-nav > li ul,
+    #jeedomMenuBar ul.navbar-nav > li > ul > li > ul {
+      position: static;
+      float: none;
+      width: auto;
+      max-height: 80vh;
+      background-color: transparent;
+      border: 0;
+      border-top: 1px solid var(--el-defaultColor);
+      height: auto;
+      overflow-x: hidden;
+    }
+  }
+
 /* ______Links */
   .widget-name,
   .cmd-widget,
@@ -1836,180 +2068,6 @@ Theme Core 2021 @Jeedom
     font-size: 14px !important;
   }
 
-/* ____________________NAVBAR */
-  .navbar-fixed-top .visible-xs-inline-block {
-    max-width: calc(100% - 150px) !important;
-    max-height: 38x !important;
-    overflow: hidden;
-  }
-
-  .navbar {
-    min-height: 50px;
-    height: 50px;
-    z-index: 100;
-  }
-  .navbar:hover {
-    z-index: 50000;
-  }
-  .ui-widget-overlay.ui-front,
-  .modal-backdrop {
-    z-index: 90 !important;
-    background: var(--el-defaultColor) !important;
-    opacity: 0.6 !important;
-    backdrop-filter: blur(2px);
-  }
-
-  .navbar-collapse {
-    background: var(--bg-modal-color);
-  }
-  .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-
-  .nav.navbar-nav ul li a i {
-    display: inline-flex;
-    width: 20px;
-    font-size: 14px;
-    text-align: center;
-  }
-  header.navbar,
-  .nav.navbar-nav .dropdown {
-    box-sizing: border-box;
-    border-bottom: 3px solid rgb(var(--bg-color)) !important;
-  }
-  header.navbar {
-    box-sizing: unset;
-  }
-  .navbar-nav > li.navTime {
-    padding: 5px 0 0 0 !important;
-    margin: 0 !important;
-    text-align: center !important;
-    width: 90px;
-  }
-  .navbar-nav > li.navTime > a  {
-    padding: 0 !important;
-    margin: 0 !important;
-    text-align: center !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 105px;
-  }
-
-  .navbar,
-  .navbar .container-fluid,
-  .navbar-header,
-  .navbar-collapse,
-  .nav.navbar-nav,
-  .dropdown-menu,
-  .dropdown > a,
-  .dropdown > a:hover {
-    background-color: rgb(var(--defaultBkg-color)) !important;
-  }
-
-  .nav .dropdown-menu {
-    font-size: 14px;
-  }
-  .dropdown-menu > li a {
-    border-right: 7px solid transparent
-  }
-  .nav.navbar-nav .dropdown-submenu ul li a {
-    padding-right: 30px;
-  }
-
-  /* hamburger */
-  header .navbar-toggle {
-    border: none;
-    background: transparent !important;
-  }
-  .navbar-toggle .icon-bar {
-    height: 3px;
-    background-color: var(--link-color);
-  }
-
-  .dropdown-menu,
-  .dropdown-menu > ul {
-    z-index: 9999 !important;
-    scrollbar-color: var(--form-bg-color) transparent !important;
-    scrollbar-width: thin;
-  }
-  ul.dropdown-menu {
-    border-bottom: 2px solid var(--el-defaultColor);
-  }
-
-  .dropdown-menu > li > a:hover,
-  .dropdown-menu > li > a:focus {
-    background-color: rgb(var(--bg-color)) !important;
-  }
-  .dropdown-menu > li > a > i {
-    margin-right: 7px !important;
-  }
-  .dropdown-menu .divider{
-    background-color: var(--el-defaultColor) !important;
-  }
-  .dropdown img {
-    width: 20px;
-    display: inline-block;
-  }
-  .dropdown-submenu {
-    position: relative;
-  }
-  .dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    margin-left: -1px;
-  }
-  .dropdown-submenu > a:after {
-    display: block;
-    content: " ";
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: var(--txt-color);
-    margin-top: 5px;
-    margin-right: -10px;
-  }
-  .dropdown-submenu:hover > a:after {
-    border-left-color: #555;
-  }
-  .dropdown-submenu.pull-left {
-    float: none;
-  }
-  .dropdown-submenu.pull-left > .dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-  }
-
-  .navbar-fixed-top .navbar-collapse {
-    max-height: 80vh;
-  }
-
-  ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
-    border-top: 1px solid var(--el-defaultColor);
-    height: auto;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-height: 400px) {
-    ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
-      max-height: 114px; /* 4 items */
-    }
-  }
-  @media screen and (min-height: 400px) and (max-height: 800px) {
-    ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
-      max-height: 238px; /* 9 items */
-    }
-  }
-  @media screen and (min-height: 801px) {
-    ul.navbar-nav > li.dropdown > ul.dropdown-menu > li.dropdown-submenu > ul.dropdown-menu {
-      max-height: 600px;
-    }
-  }
 
 /* ____________________PANELS */
   .eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
@@ -4106,14 +4164,10 @@ Theme Core 2021 @Jeedom
     border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
   }
 
-  .nav.nav-tabs li:first-child,
-  .nav.nav-tabs li:first-child a {
-    border-radius: var(--border-radius) 0 0 0 !important;
+  #jeedomMenuBar .navbar-nav li ul {
+    border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   }
-  .nav.nav-tabs li:last-child,
-  .nav.nav-tabs li:last-child a {
-    border-radius: 0 var(--border-radius) 0 0 !important;
-  }
+
   .tab-content {
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   }
