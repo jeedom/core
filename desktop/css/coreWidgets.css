@@ -167,6 +167,11 @@ Core Widgets CSS @Jeedom
     height: 48px;
   }
 
+  .ui-slider .ui-slider-range {
+    background-color: var(--txt-color) !important;
+    background-image: none !important;
+  }
+
   .sliderValue {
     font-size: 12px;
     color: var(--txt-color);

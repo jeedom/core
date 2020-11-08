@@ -50,6 +50,12 @@ h4.modal-title {
 path.highcharts-graph {
   stroke-width: 1;
 }
+.ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
+  position: absolute;
+  left: 0;
+  height: 5px !important;
+  background-color: var(--txt-color) !important;
+}
 
 
 /* __________________________________________________________________________________________________________Specific */

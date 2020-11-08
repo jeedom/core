@@ -26,6 +26,8 @@
         min: minValue,
         max: maxValue,
         value: stateValue,
+        range: "min",
+        animate: false,
         slide: function(event, ui) {
           $(".value#uid#").show();
           $(".value#uid#").html(ui.value);

@@ -70,6 +70,8 @@
       min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
       max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
       value: '#state#',
+      range: "min",
+      animate: false,
       slide: function(event, ui) {
         $(".value#uid#").show()
         $(".value#uid#").html(ui.value);
