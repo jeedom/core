@@ -290,33 +290,34 @@ $(function() {
 var BACKGROUND_IMG = ''
 function setJeedomTheme() {
   var $body = $('body')
+
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
-    $('#bootstrap_theme_css').attr('data-nochange',0)
+    $('#bootstrap_theme_css').attr('data-nochange', 1)
   }
 
   if (jeedom.theme.currentTheme) {
-    $body.attr('data-theme',jeedom.theme.currentTheme)
+    $body.attr('data-theme', jeedom.theme.currentTheme)
   }
 
-  $body.on('click','#bt_switchTheme',function() {
+  //button event:
+  $body.on('click', '#bt_switchTheme', function() {
     closeJeedomMenu()
-    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
+    var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/'+jeedom.theme.default_bootstrap_theme_night+'.css'
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
+    $('#bootstrap_theme_css').attr('data-nochange', 1)
 
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       $body.attr('data-theme', jeedom.theme.default_bootstrap_theme)
-      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
+      theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/'+jeedom.theme.default_bootstrap_theme+'.css'
       themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
       themeCook = 'default'
       themeButton = '<i class="fas fa-random"></i> {{Thème alternatif}}'
-      $('#bootstrap_theme_css').attr('data-nochange',0)
     } else {
       $body.attr('data-theme', jeedom.theme.default_bootstrap_theme_night)
-      $('#bootstrap_theme_css').attr('data-nochange',1)
     }
     setCookie('currentTheme', themeCook, 30)
     $('#bootstrap_theme_css').attr('href', theme)
@@ -333,9 +334,9 @@ function setJeedomTheme() {
   }
 
   if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
-    $body.attr('data-coloredIcons',1)
+    $body.attr('data-coloredIcons', 1)
   } else {
-    $body.attr('data-coloredIcons',0)
+    $body.attr('data-coloredIcons', 0)
   }
 }
 
@@ -352,11 +353,9 @@ function changeJeedomThemeAuto() {
 }
 
 function checkThemechange() {
-  if (getCookie('currentTheme') == 'alternate') return
-  if ($('#bootstrap_theme_css').attr('data-nochange') == 1) {
-    return
-  }
-  var theme  = jeedom.theme.default_bootstrap_theme_night;
+  if (getCookie('currentTheme') == 'alternate' || $('#bootstrap_theme_css').attr('data-nochange') == 1) return
+
+  var theme = jeedom.theme.default_bootstrap_theme_night
   var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
   var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
 
