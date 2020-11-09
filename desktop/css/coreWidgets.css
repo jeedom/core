@@ -156,6 +156,35 @@ Core Widgets CSS @Jeedom
   }
 
 /* ____________________Sliders */
+  .ui-slider-handle {
+    font-size: 13px;
+    border-radius: 8px !important;
+    background-color: var(--link-color) !important;
+    cursor: pointer !important;
+  }
+  .ui-slider-handle:active,
+  .ui-slider-handle:focus,
+  .ui-slider-handle:hover {
+    background-color: var(--linkHover-color) !important;
+    outline: none;
+  }
+  .ui-slider-horizontal .ui-slider-handle {
+    top: -5px !important;
+  }
+  .ui-slider-vertical .ui-slider-handle {
+    left: -5px !important;
+  }
+  .ui-slider-horizontal {
+    height: 3.2px !important;
+  }
+  .ui-slider-vertical {
+    width: 3.2px !important;
+  }
+  .ui-slider{
+    background: var(--el-defaultColor) !important;
+    border: none !important;
+  }
+
   .slider.ui-slider-horizontal {
     position: relative;
     margin: 5px;
@@ -170,6 +199,14 @@ Core Widgets CSS @Jeedom
   .ui-slider .ui-slider-range {
     background-color: var(--txt-color) !important;
     background-image: none !important;
+  }
+  .ui-slider.ui-slider-vertical .ui-slider-range {
+    left: 2px;
+    width: 4.2px;
+  }
+  .ui-slider.ui-slider-horizontal .ui-slider-range {
+    top: 2px;
+    height: 4.2px;
   }
 
   .sliderValue {

@@ -1806,37 +1806,6 @@ Theme Core 2021 @Jeedom
   }
   .row .objectSummaryParent{ font-size : 14px !important; }
 
-
-  /* sliders */
-  .ui-slider-handle {
-    font-size: 13px;
-    border-radius: 8px !important;
-    background-color: var(--link-color) !important;
-    cursor: pointer !important;
-  }
-  .ui-slider-handle:active,
-  .ui-slider-handle:focus,
-  .ui-slider-handle:hover {
-    background-color: var(--linkHover-color) !important;
-    outline: none;
-  }
-  .ui-slider-horizontal .ui-slider-handle {
-    top: -6px !important;
-  }
-  .ui-slider-vertical .ui-slider-handle {
-    left: -6px !important;
-  }
-  .ui-slider-horizontal {
-    height: 3.2px !important;
-  }
-  .ui-slider-vertical {
-    width: 3.2px !important;
-  }
-  .ui-slider{
-    background: var(--el-defaultColor) !important;
-    border: none !important;
-  }
-
   .action_colorpicker_change,
   .action_colorpicker_off {
     width: 75px !important;
