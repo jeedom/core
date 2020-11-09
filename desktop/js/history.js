@@ -90,7 +90,6 @@ function setChartOptions() {
     $('#sel_compare').val(0)
     setChartExtremes()
   }
-  //$('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step, #sel_compare').prop('disabled', _prop)
   $('#sel_groupingType, #sel_chartType, #sel_compare').prop('disabled', _prop)
   resizeDn()
 }
