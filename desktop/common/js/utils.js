@@ -1044,6 +1044,18 @@ function setJeedomMenu() {
     event.stopPropagation()
     loadPage($(this).attr('href'))
   })
+
+  //one submenu opened at a time in mobile:
+  $('body').on('click', '#jeedomMenuBar .navbar-nav > li > input', function() {
+    var checked = $(this).prop("checked")
+    $('#jeedomMenuBar .navbar-nav li > input').prop("checked", false)
+    $(this).prop("checked", checked)
+  })
+  $('body').on('click', '#jeedomMenuBar .navbar-nav > li > ul > li > input', function() {
+    var checked = $(this).prop("checked")
+    $('#jeedomMenuBar .navbar-nav > li > ul > li > input').prop("checked", false)
+    $(this).prop("checked", checked)
+  })
 }
 
 function positionEqLogic(_id, _preResize, _scenario) {
