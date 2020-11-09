@@ -90,7 +90,8 @@ function setChartOptions() {
     $('#sel_compare').val(0)
     setChartExtremes()
   }
-  $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step, #sel_compare').prop('disabled', _prop)
+  //$('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step, #sel_compare').prop('disabled', _prop)
+  $('#sel_groupingType, #sel_chartType, #sel_compare').prop('disabled', _prop)
   resizeDn()
 }
 
@@ -214,46 +215,70 @@ function initHistoryTrigger() {
   })
 
   $('#cb_derive').off('change').on('change', function() {
-    if (lastId == null) return
-
-    var currentId = lastId
     var graphDerive = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-    addChart(currentId, 0)
-    jeedom.cmd.save({
-      cmd: {id: currentId, display: {graphDerive: graphDerive}},
-      error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function() {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
+    var nbSeries = chart.series.length
+    $(chart.series).each(function(idx, serie) {
+      var cmdId = $('g.highcharts-legend-item.highcharts-series-'+idx).attr('data-cmd_id')
+      if (cmdId == undefined) {
+        nbSeries--
+        return
       }
+      addChart(cmdId, 0)
+      jeedom.cmd.save({
+        cmd: {id: cmdId, display: {graphDerive: graphDerive}},
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          nbSeries--
+          addChart(data.id, 1)
+          if (nbSeries == 0) {
+            setTimeout(function(){
+              setChartExtremes()
+            }, 1000)
+          }
+        }
+      })
     })
+
   })
 
   $('#cb_step').off('change').on('change', function() {
-    if (lastId == null) return
-
-    var currentId = lastId
     var graphStep = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-    addChart(currentId, 0)
-    jeedom.cmd.save({
-      cmd: {id: currentId, display: {graphStep: graphStep}},
-      error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function() {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
+    var nbSeries = chart.series.length
+    $(chart.series).each(function(idx, serie) {
+      var cmdId = $('g.highcharts-legend-item.highcharts-series-'+idx).attr('data-cmd_id')
+      if (cmdId == undefined) {
+        nbSeries--
+        return
       }
+      addChart(cmdId, 0)
+      jeedom.cmd.save({
+        cmd: {id: cmdId, display: {graphStep: graphStep}},
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          nbSeries--
+          addChart(data.id, 1)
+          if (nbSeries == 0) {
+            setTimeout(function(){
+              setChartExtremes()
+            }, 1000)
+          }
+        }
+      })
     })
+    setChartExtremes()
   })
 
   $('#sel_compare').off('change').on('change', function() {
     if ($(this).val() != 0) {
       isComparing = true
+      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
     } else {
       isComparing = false
+      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', false)
       $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
         if (isset(serie.userOptions.comparing)) serie.remove()
       })
@@ -293,6 +318,9 @@ function addChart(_cmd_id, _action, _options) {
           if (serie.options.id == _cmd_id) {
             serie.remove()
             setChartOptions()
+            setTimeout(function(){
+              setChartExtremes()
+            }, 500)
           }
         } catch(error) {}
       })
@@ -318,7 +346,6 @@ function addChart(_cmd_id, _action, _options) {
       }
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
-      initHistoryTrigger()
     }
   })
 }
