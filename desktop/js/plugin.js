@@ -93,8 +93,6 @@ function displayPlugin(_pluginId) {
       alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      console.log(data)
-      console.log(jeedomVersion)
       $('#span_plugin_id').html(data.id)
       $('#span_plugin_name').html(data.name)
 
