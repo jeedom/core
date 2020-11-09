@@ -164,15 +164,16 @@ Core Widgets CSS @Jeedom
   }
   .ui-slider-handle:active,
   .ui-slider-handle:focus,
-  .ui-slider-handle:hover {
-    background-color: var(--linkHover-color) !important;
+  .ui-slider-handle:hover,
+  .ui-slider-handle.ui-state-focus,
+  .ui-slider-handle.ui-state-default {
     outline: none;
   }
   .ui-slider-horizontal .ui-slider-handle {
     top: -5px !important;
   }
   .ui-slider-vertical .ui-slider-handle {
-    left: -5px !important;
+    left: -4.5px !important;
   }
   .ui-slider-horizontal {
     height: 3.2px !important;
@@ -201,12 +202,12 @@ Core Widgets CSS @Jeedom
     background-image: none !important;
   }
   .ui-slider.ui-slider-vertical .ui-slider-range {
-    left: 2px;
-    width: 4.2px;
+    left: 2.2px;
+    width: 3.3px;
   }
   .ui-slider.ui-slider-horizontal .ui-slider-range {
-    top: 2px;
-    height: 4.2px;
+    top: 2.2px;
+    height: 3.3px;
   }
 
   .sliderValue {
