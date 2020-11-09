@@ -342,8 +342,10 @@ Theme Core 2021 @Jeedom
       margin-right: -30px;
     }
     #jeedomMenuBar ul.navbar-nav label.drop-icon {
-      float: right;
-      margin-right: 10px;
+      position: absolute;
+      width: 100%;
+      right: 25px;
+      text-align: right;
       color: var(--txt-color);
       font-size: 10px;
     }
