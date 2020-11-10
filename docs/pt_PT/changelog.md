@@ -14,6 +14,7 @@
 - **Painel de instrumentos** : Capacidade de desfocar imagens de fundo (Configuração -> Interface).
 - **Ferramentas / Widgets** : A função *Aplicar em* mostra os comandos vinculados marcados, desmarcando um aplicará o widget principal padrão a este comando.
 - **Widgets** : Adicionando um widget principal *sliderVertical*.
+- **Widgets** : Adicionando um widget principal *binarySwitch*.
 - **Update Center** : As atualizações são verificadas automaticamente quando a página é aberta, se for 120 minutos mais antiga.
 - **Update Center** : A barra de progresso está agora na guia *Núcleo e plugins*, e o log aberto por padrão na guia *Informação*.
 - **Update Center** : Se você abrir outro navegador durante uma atualização, a barra de progresso e o log indicarão.
