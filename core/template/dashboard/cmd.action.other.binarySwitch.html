@@ -26,7 +26,7 @@
           cmd.show()
         }
       }
-      cmd.find('input.binarySwitch').prop("checked", check#uid#)
+      cmd.find('input.binarySwitch').prop("checked", !check#uid#)
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#'})
