@@ -14,6 +14,7 @@
 - **Dashboard** : Possibilité de flouter les arrières plan des images de fond (Configuration -> Interface).
 - **Outils / Widgets** : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - **Widgets** : Ajout d'un widget core *sliderVertical*.
+- **Widgets** : Ajout d'un widget core *binarySwitch*.
 - **Centre de mise à jour** : La vérification des mises à jour se fait automatiquement à l'ouverture de la page si plus ancienne de 120 mins.
 - **Centre de mise à jour** : La barre de progression est maintenant sur l'onglet *Core et plugins*, et le log ouvert par défaut sur l'onglet *Informations*.
 - **Centre de mise à jour** : Si vous ouvrez un autre navigateur pendant une update, la barre de progression et le log le signalent.

@@ -1,0 +1,42 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="other" data-template="binarySwitch" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+    <center>
+        <div class="widthx2">
+            <span class="cmdName #hide_name#">#valueName#</span>
+            <label class="binarySwitch">
+              <input type="checkbox" class="binarySwitch" data-role="none">
+              <span class="binarySwitch"></span>
+            </label>
+        </div>
+    </center>
+    <script>
+    var check#uid#
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      cmd.find('.cmdName.hidden').parent().removeClass('widthx2')
+      if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+        check#uid# = false
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
+          cmd.hide()
+        } else {
+          cmd.show()
+        }
+      } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
+        check#uid# = true
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
+          cmd.hide()
+        } else {
+          cmd.show()
+        }
+      }
+      cmd.find('input.binarySwitch').prop("checked", check#uid#)
+    }
+
+    jeedom.cmd.update['#id#']({display_value:'#state#'})
+
+    $('.cmd[data-cmd_uid=#uid#] input.binarySwitch').off().on('click', function (event) {
+      event.preventDefault()
+      event.stopPropagation()
+      jeedom.cmd.execute({id: '#id#'})
+    })
+  </script>
+</div>

@@ -1,5 +1,6 @@
 /*
 Core Widgets CSS @Jeedom
+Desktop
 */
 
 /* ____________________Global */
@@ -288,6 +289,62 @@ Core Widgets CSS @Jeedom
     overflow: auto;
   }
 
+/* ____________________binarySwitch */
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs.widthx2 {
+    min-width: 140px;
+    text-align: left;
+  }
+  label.binarySwitch {
+    position: relative;
+    display: inline-block;
+    float: right;
+    width: 40px;
+    height: 20px;
+    bottom: 2px;
+    margin: 0 0 -5px 15px
+  }
+  label.binarySwitch input {
+    display: none;
+  }
+  label.binarySwitch > input:checked + span.binarySwitch:before {
+    transform: translateX(17px);
+  }
+  span.binarySwitch {
+    border-radius: 1em;
+  }
+  span.binarySwitch:before {
+    border-radius: 50%;
+  }
+  span.binarySwitch:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 2px;
+    background-color: var(--link-color);
+    transition: .4s;
+  }
+  label.binarySwitch > input + span.binarySwitch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+    background-color: var(--btnEq-default-color);
+  }
+  label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--el-defaultColor);
+  }
+
+/* ____________________others */
   .cmd-widget.widget-hygrothermographe {
     width: 220px;
     height: 220px;
