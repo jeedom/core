@@ -267,7 +267,8 @@ Theme Core 2021 @Jeedom
     margin-top: -30px;
     left: calc(100% - 5px);
   }
-  #jeedomMenuBar ul.navbar-nav .divider {
+  #jeedomMenuBar ul.navbar-nav .divider,
+  .dropdown-menu .divider {
     background-color: var(--el-defaultColor) !important;
     height: 1px;
     margin: 9px 0;
