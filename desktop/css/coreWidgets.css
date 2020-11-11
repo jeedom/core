@@ -290,10 +290,10 @@ Desktop
   }
 
 /* ____________________binarySwitch */
-  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
     margin-left: 5px;
     margin-right: 5px;
-    margin-bottom: 10px;
+    height: 22px !important;
   }
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs.widthx2 {
     min-width: 140px;
@@ -301,12 +301,14 @@ Desktop
   }
   label.binarySwitch {
     position: relative;
-    display: inline-block;
     float: right;
     width: 40px;
     height: 20px;
-    bottom: 2px;
-    margin: 0 0 -5px 15px
+    bottom: 3px;
+    margin-bottom: -5px;
+  }
+  .content-xs:not(.widthx2) label.binarySwitch {
+    margin-left: 47px !important;
   }
   label.binarySwitch input {
     display: none;
