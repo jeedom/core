@@ -161,6 +161,7 @@ Theme Core 2021 @Jeedom
     min-height: 50px;
     height: 50px;
     z-index: 100;
+    outline: 3px solid rgb(var(--bg-color));
   }
   #jeedomMenuBar:hover {
     z-index: 50000;
@@ -205,6 +206,14 @@ Theme Core 2021 @Jeedom
   }
   .dropdown-menu {
     z-index: 10 !important;
+  }
+  .dropdown-menu > li > a {
+    color: var(--link-color)
+  }
+  .dropdown-menu > li > a:focus,
+  .dropdown-menu > li > a:hover {
+    color: var(--link-color) !important;
+    background-color: var(--form-bg-color);
   }
 
   /* hamburger */
@@ -323,8 +332,10 @@ Theme Core 2021 @Jeedom
       border-left-color: var(--txt-color);
       margin-top: -12px;
     }
-    #jeedomMenuBar ul.navbar-nav .fa-caret-square-down {
-      display: none;
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover,
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover > a{
+      color: var(--link-color) !important;
+      background-color: var(--form-bg-color);
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li:hover > ul {
       display: block !important;
