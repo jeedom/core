@@ -350,6 +350,9 @@ Desktop
   [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--bt-success-color);
   }
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch input:checked + span.binarySwitch:before {
+    background-color: var(--btnEq-default-color) !important;
+  }
 
 /* ____________________others */
   .cmd-widget.widget-hygrothermographe {
