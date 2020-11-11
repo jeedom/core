@@ -2383,8 +2383,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Optionen",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Möchten Sie diesen Artikel wirklich aktualisieren?",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "Möchten Sie dieses Objekt wirklich löschen?",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "Möchten Sie wirklich aktualisieren:",
+        "Êtes-vous sûr de vouloir supprimer : ": "Sind Sie sicher, dass Sie löschen möchten:",
         "L\\'opération a échoué": "Operation fehlgeschlagen",
         "Mise(s) à jour terminée(s) avec succès.": "Update (s) erfolgreich abgeschlossen",
         "Voulez vous recharger la page maintenant ?": "Möchten Sie die Seite jetzt neu laden?",

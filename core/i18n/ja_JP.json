@@ -2383,8 +2383,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "オプション",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "このアイテムを更新してもよろしいですか？",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "このオブジェクトを削除してもよろしいですか？",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "",
+        "Êtes-vous sûr de vouloir supprimer : ": "",
         "L\\'opération a échoué": "操作に失敗しました",
         "Mise(s) à jour terminée(s) avec succès.": "",
         "Voulez vous recharger la page maintenant ?": "",

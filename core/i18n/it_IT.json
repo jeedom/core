@@ -2383,8 +2383,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Opzioni",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "",
+        "Êtes-vous sûr de vouloir supprimer : ": "",
         "L\\'opération a échoué": "Operazione fallita",
         "Mise(s) à jour terminée(s) avec succès.": "",
         "Voulez vous recharger la page maintenant ?": "",
