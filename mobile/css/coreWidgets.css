@@ -50,14 +50,13 @@ Mobile WebApp
     stroke-width: 1;
   }
   .ui-slider-track .ui-btn.ui-slider-handle {
-    margin-top: -8px;
+    margin-top: -9px;
   }
   .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
     position: absolute;
     left: 0;
-    top: 3px;
-    height: 5px !important;
-    background-color: var(--txt-color) !important;
+    height: 7px !important;
+    background-color: var(--link-color) !important;
   }
 
 /* ____________________Specific */

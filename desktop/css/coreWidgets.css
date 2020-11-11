@@ -171,10 +171,10 @@ Desktop
     outline: none;
   }
   .ui-slider-horizontal .ui-slider-handle {
-    top: -5px !important;
+    top: -6px !important;
   }
   .ui-slider-vertical .ui-slider-handle {
-    left: -4.5px !important;
+    left: -6px !important;
   }
   .ui-slider-horizontal {
     height: 3.2px !important;
@@ -182,7 +182,7 @@ Desktop
   .ui-slider-vertical {
     width: 3.2px !important;
   }
-  .ui-slider{
+  .slider.ui-slider {
     background: var(--el-defaultColor) !important;
     border: none !important;
   }
@@ -198,22 +198,24 @@ Desktop
     height: 48px;
   }
 
-  .ui-slider .ui-slider-range {
-    background-color: var(--txt-color) !important;
+  .ui-slider .ui-slider-range,
+  .ui-slider .ui-corner-all.ui-slider-range {
+    background-color: var(--link-color) !important;
     background-image: none !important;
+    border-radius: 2px !important;
   }
   .ui-slider.ui-slider-vertical .ui-slider-range {
-    left: 2.2px;
-    width: 3.3px;
+    left: -1px;
+    width: 6px;
   }
   .ui-slider.ui-slider-horizontal .ui-slider-range {
-    top: 2.2px;
-    height: 3.3px;
+    top: -1px;
+    height: 6px;
   }
 
   .sliderValue {
     font-size: 12px;
-    color: var(--txt-color);
+    color: var(--link-color);
     font-weight: normal;
     position: absolute;
     z-index: 1;
