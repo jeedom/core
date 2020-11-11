@@ -75,8 +75,23 @@ $('#bt_checkAllUpdate').off('click').on('click', function() {
 
 $('#table_update').on({
   'click': function(event) {
+    $(this).tooltipster('open')
+    if ($(this).is(':checked')) {
+      console.log('checked')
+      $(this).closest('tr').find('a.btn.update').addClass('disabled')
+    } else {
+      console.log('not checked')
+      $(this).closest('tr').find('a.btn.update').removeClass('disabled')
+    }
+  }
+}, 'input[data-l2key="doNotUpdate"]')
+
+$('#table_update').on({
+  'click': function(event) {
+    if ($(this).hasClass('disabled')) return
     var id = $(this).closest('tr').attr('data-id')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour cet objet ?}}', function(result) {
+    var logicalId = $(this).closest('tr').attr('data-logicalid')
+    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour : }}'+logicalId+' ?', function(result) {
       if (result) {
         progress = -1;
         $('.progressbarContainer').removeClass('hidden')
@@ -99,7 +114,8 @@ $('#table_update').on({
 $('#table_update').on({
   'click': function(event) {
     var id = $(this).closest('tr').attr('data-id');
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cet objet ?}}', function(result) {
+    var logicalId = $(this).closest('tr').attr('data-logicalid')
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer : }}'+logicalId+' ?', function(result) {
       if (result) {
         $.hideAlert();
         jeedom.update.remove({
@@ -152,10 +168,6 @@ $(function() {
     updateProgressBar()
     getJeedomLog(1, 'update')
   }
-
-  $('[data-l2key="doNotUpdate"]').on('click',function() {
-    $(this).tooltipster('open')
-  })
 })
 
 function checkAllUpdate() {
@@ -336,7 +348,11 @@ function addUpdate(_update) {
   }
   if (_update.type != 'core') {
     if (_update.status == 'UPDATE') {
-      tr += '<a class="btn btn-warning btn-xs update""><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
+      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
+        tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
+      } else {
+        tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
+      }
     } else if (_update.type != 'core') {
       tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
     }
