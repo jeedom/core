@@ -141,6 +141,9 @@ Mobile WebApp
   label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--el-defaultColor);
   }
+  [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--bt-success-color);
+  }
 
 /* ____________________others */
   .hgauge-value,

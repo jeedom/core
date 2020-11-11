@@ -343,6 +343,9 @@ Desktop
   label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--el-defaultColor);
   }
+  [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--bt-success-color);
+  }
 
 /* ____________________others */
   .cmd-widget.widget-hygrothermographe {
