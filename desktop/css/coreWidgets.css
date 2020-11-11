@@ -205,12 +205,12 @@ Desktop
     border-radius: 2px !important;
   }
   .ui-slider.ui-slider-vertical .ui-slider-range {
-    left: -1px;
-    width: 6px;
+    left: -0.5px;
+    width: 4.7px;
   }
   .ui-slider.ui-slider-horizontal .ui-slider-range {
-    top: -1px;
-    height: 6px;
+    top: -0.5px;
+    height: 4.7px;
   }
 
   .sliderValue {

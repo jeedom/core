@@ -123,7 +123,7 @@ Mobile WebApp
     height: 16px;
     width: 16px;
     left: 4px;
-    bottom: 2px;
+    bottom: 1.8px;
     background-color: var(--link-color);
     transition: .4s;
   }
@@ -142,6 +142,9 @@ Mobile WebApp
   }
   [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--bt-success-color);
+  }
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch input:checked + span.binarySwitch:before {
+    background-color: var(--btnEq-default-color) !important;
   }
 
 /* ____________________others */
