@@ -157,7 +157,7 @@ foreach ($objectTree as $_object) {
 		$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="'.$divClass.'">';
 		$div .= '<legend><span class="objectDashLegend fullCorner">
 		<a href="index.php?v=d&p=dashboard&object_id=' . $objectId . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>
-		<a class="div_object" href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a>
+		<a href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a>
 		<span>' . $summaryCache[$objectId] . '</span>
 		<i class="fas fa-compress pull-right cursor bt_editDashboardTilesAutoResizeDown" id="compressTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la moins haute.}}" data-mode="0" style="display: none;"></i>
 		<i class="fas fa-expand pull-right cursor bt_editDashboardTilesAutoResizeUp" id="expandTiles_object_' . $objectId . '" title="{{Régler toutes les tuiles à la hauteur de la plus haute.}}" data-mode="0" style="display: none;"></i>
