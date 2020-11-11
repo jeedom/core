@@ -168,6 +168,7 @@ $(function() {
     updateProgressBar()
     getJeedomLog(1, 'update')
   }
+  $('#md_specifyUpdate').removeClass('hidden')
 })
 
 function checkAllUpdate() {
