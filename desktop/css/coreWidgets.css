@@ -1,5 +1,6 @@
 /*
 Core Widgets CSS @Jeedom
+Desktop
 */
 
 /* ____________________Global */
@@ -170,10 +171,10 @@ Core Widgets CSS @Jeedom
     outline: none;
   }
   .ui-slider-horizontal .ui-slider-handle {
-    top: -5px !important;
+    top: -6px !important;
   }
   .ui-slider-vertical .ui-slider-handle {
-    left: -4.5px !important;
+    left: -6px !important;
   }
   .ui-slider-horizontal {
     height: 3.2px !important;
@@ -181,7 +182,7 @@ Core Widgets CSS @Jeedom
   .ui-slider-vertical {
     width: 3.2px !important;
   }
-  .ui-slider{
+  .slider.ui-slider {
     background: var(--el-defaultColor) !important;
     border: none !important;
   }
@@ -197,22 +198,24 @@ Core Widgets CSS @Jeedom
     height: 48px;
   }
 
-  .ui-slider .ui-slider-range {
-    background-color: var(--txt-color) !important;
+  .ui-slider .ui-slider-range,
+  .ui-slider .ui-corner-all.ui-slider-range {
+    background-color: var(--link-color) !important;
     background-image: none !important;
+    border-radius: 2px !important;
   }
   .ui-slider.ui-slider-vertical .ui-slider-range {
-    left: 2.2px;
-    width: 3.3px;
+    left: -1px;
+    width: 6px;
   }
   .ui-slider.ui-slider-horizontal .ui-slider-range {
-    top: 2.2px;
-    height: 3.3px;
+    top: -1px;
+    height: 6px;
   }
 
   .sliderValue {
     font-size: 12px;
-    color: var(--txt-color);
+    color: var(--link-color);
     font-weight: normal;
     position: absolute;
     z-index: 1;
@@ -288,6 +291,67 @@ Core Widgets CSS @Jeedom
     overflow: auto;
   }
 
+/* ____________________binarySwitch */
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 22px !important;
+  }
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs.widthx2 {
+    min-width: 140px;
+    text-align: left;
+  }
+  label.binarySwitch {
+    position: relative;
+    float: right;
+    width: 40px;
+    height: 20px;
+    bottom: 3px;
+    margin-bottom: -5px;
+  }
+  .content-xs:not(.widthx2) label.binarySwitch {
+    margin-left: 47px !important;
+  }
+  label.binarySwitch input {
+    display: none;
+  }
+  label.binarySwitch > input:checked + span.binarySwitch:before {
+    transform: translateX(17px);
+  }
+  span.binarySwitch {
+    border-radius: 1em;
+  }
+  span.binarySwitch:before {
+    border-radius: 50%;
+  }
+  span.binarySwitch:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 2px;
+    background-color: var(--link-color);
+    transition: .4s;
+  }
+  label.binarySwitch > input + span.binarySwitch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+    background-color: var(--btnEq-default-color);
+  }
+  label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--el-defaultColor);
+  }
+  [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--bt-success-color);
+  }
+
+/* ____________________others */
   .cmd-widget.widget-hygrothermographe {
     width: 220px;
     height: 220px;

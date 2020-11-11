@@ -14,6 +14,7 @@
 - **Dashboard** : Ability to blur background images (Configuration -> Interface).
 - **Tools / Widgets** : Function *Apply on* shows the linked commands checked, unchecking one will apply the default core widget to this command.
 - **Widget** : Adding a core widget *sliderVertical*.
+- **Widget** : Adding a core widget *binarySwitch*.
 - **Update Center** : Updates are checked automatically when opening this page and update check is older than 120mins.
 - **Update Center** : The progress bar is now on the tab *Core and plugins*, and the log open by default on the tab *Information*.
 - **Update Center** : If you open another browser during an update, the progress bar and the log indicate it.
