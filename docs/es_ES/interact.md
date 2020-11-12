@@ -65,7 +65,7 @@ La página de configuración consta de varias pestañas y botones :
 - **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
 - **Conversión binaria** : Convierte valores binarios en abiertos / cerrados, por ejemplo (solo para comandos de tipo de información binaria).
-- **Usuarios autorizados** : Limita la interacción con ciertos usuarios (inicios de sesión separados por |).
+- **Usuarios autorizados** : Limita la interacción a ciertos usuarios (inicios de sesión separados por \|).
 
 ### Pestaña Filtros
 
@@ -127,7 +127,7 @@ Por lo tanto, en sinónimos, indicaremos el nombre del comando y los sinónimos 
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es por lo tanto "*Nombre de la orden*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2*" (podemos poner tantos sinónimos como queramos). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue una barra vertical después del último sinónimo "*|*" después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos en la primera parte, etc.
+Podemos ver aquí una sintaxis algo nueva para sinónimos. Un nombre de comando puede tener varios sinónimos, aquí "on" tiene el sinónimo "encender" y "encender"". La sintaxis es por lo tanto "*Nombre de la orden*" ***=*** "*sinónimo 1*"***,*** "*sinónimo 2*" (podemos poner tantos sinónimos como queramos). Luego, para agregar sinónimos para otro nombre de comando, simplemente agregue una barra vertical después del último sinónimo "*\|*" después de lo cual puede nombrar nuevamente el comando que tendrá sinónimos en la primera parte, etc.
 
 Ya es mejor, pero aún le falta el comando &quot;en&quot; &quot;entrada&quot; la &quot;l&quot; y para otros la &quot;la&quot; o &quot;le&quot; o &quot;a&quot;, etc. Podríamos cambiar el nombre del equipo para agregarlo, sería una solución, de lo contrario, podemos usar las variaciones en la solicitud. Esto consiste en enumerar una serie de palabras posibles en un lugar de la oración, por lo tanto, Jeedom generará oraciones con estas variaciones.
 
@@ -161,7 +161,7 @@ Las conversiones binarias se aplican a los comandos de tipo de información cuyo
 
 Como podemos ver aquí, he mantenido casi la misma estructura para la solicitud (es voluntario enfocarse en los detalles). Por supuesto, adapté los sinónimos para tener algo coherente. Sin embargo, para la respuesta, es **imperativo** para poner solo#valeur\# que representa el 0 o 1 que Jeedom reemplazará con la siguiente conversión binaria.
 
-El campo **Conversión binaria** debe contener 2 respuestas : primero la respuesta si el valor del comando vale 0, luego una barra vertical "|" separación y finalmente la respuesta si el comando vale 1. Aquí las respuestas son simplemente no y sí, pero podríamos poner una oración un poco más larga.
+El campo **Conversión binaria** debe contener 2 respuestas : primero la respuesta si el valor del comando es 0, luego una barra vertical "\|" separación y finalmente la respuesta si el comando vale 1. Aquí las respuestas son simplemente no y sí, pero podríamos poner una oración un poco más larga.
 
 > **Advertencia**
 >
@@ -169,9 +169,9 @@ El campo **Conversión binaria** debe contener 2 respuestas : primero la respues
 
 ### Usuarios autorizados
 
-El campo "Usuarios autorizados" permite autorizar solo a ciertas personas para que ejecuten el comando, puede poner varios perfiles separándolos por "|".
+El campo "Usuarios autorizados" te permite autorizar solo a determinadas personas a ejecutar el comando, puedes poner varios perfiles separándolos con un "\|".
 
-Ejemplo : personne1|personne2
+Ejemplo : personne1\|personne2
 
 Podemos imaginar que una alarma puede ser activada o desactivada por un niño o un vecino que vendría a regar las plantas en su ausencia.
 
@@ -242,11 +242,11 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 ![interact017](../images/interact017.png)
 
-Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *Julie*|si hay alguien en la sala *Julie*"
+Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *Julie*\|si hay alguien en la sala *Julie*"
 
 #### Evolution
 
-- Entonces la pregunta es "\#commande\# \[en la |en el\] \#objet\#"
+- Entonces la pregunta es "\#commande\# \[en la \|en el\] \#objet\#"
 - La respuesta será "no, no hay nadie en la habitación" o "sí, hay alguien en la habitación""
 - No hay ningún comando que responda a eso en la parte Acción, ya que es una interacción de múltiples comandos
 - Al agregar una expresión regular, podemos limpiar los comandos que no queremos ver para que solo tengamos las oraciones en los comandos de "Presencia"".
@@ -265,7 +265,7 @@ Aquí un ejemplo genérico que se utiliza para conocer la temperatura, la humeda
 
 ![interact019](../images/interact019.png)
 
-- Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : "Cuál es la |l \\ '\] \#commande\# objeto "(el uso de \ [word1 | word2 \] le permite decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con word1 o word2). Al generar Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \#commande\# por el nombre del comando y \#objet\# por el nombre del objeto.
+- Entonces podemos ver que una oración genérica como &quot;¿Cuál es la temperatura en la sala de estar&quot; o &quot;¿Cuál es el brillo de la habitación?&quot; Se puede convertir en : "Cuál es la \|l \\ '\] \#commande\# objeto "(el uso de \ [palabra1 \| word2 \] le permite decir esta posibilidad o aquella para generar todas las variantes posibles de la oración con word1 o word2). Al generar Jeedom generará todas las combinaciones posibles de oraciones con todos los comandos existentes (dependiendo de los filtros) reemplazando \#commande\# por el nombre del comando y \#objet\# por el nombre del objeto.
 - La respuesta será "21 ° C" o "200 lux". Solo pon : \#valeur\# \#unite\# (la unidad se completará en la configuración de cada comando para el que queremos tener uno)
 - Por lo tanto, este ejemplo genera una oración para todos los comandos de tipo de información digital que tienen una unidad, por lo que podemos desmarcar las unidades en el filtro derecho limitado al tipo que nos interesa.
 
@@ -281,7 +281,7 @@ También podemos agregar un filtro Regexp para eliminar algunos comandos. Usando
 
 Entonces podemos ver una expresión regular :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(batterie\|latence\|pression\|vitesse\|consommation)**
 
 Esto le permite eliminar todos los comandos que tienen una de estas palabras en su oración
 
