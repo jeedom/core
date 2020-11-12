@@ -64,8 +64,11 @@ if (init('rescue', 0) == 0) {
 		foreach ($categories as $cat) {
 			$name = $cat[0];
 			$icon = $cat[1];
-			$plugin_menu .= '<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas ' . $icon . '"></i> ' . $name . '</a>';
-			$plugin_menu .= '<ul class="dropdown-menu">';
+			$plugin_menu .= '<li><a class="submenu"><i class="fas ' . $icon . '"></i> ' . $name;
+			$plugin_menu .= '<label class="drop-icon" for="drop-'.$name.'"><i class="fas fa-chevron-down fa-2x"></i></label>';
+			$plugin_menu .= '</a>';
+			$plugin_menu .= '<input type="checkbox" id="drop-'.$name.'">';
+			$plugin_menu .= '</i><ul>';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
 				$pluginObj = $pluginAr[1];
@@ -263,7 +266,7 @@ function setTheme() {
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="$.showLoading()" height="30px"></a>
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+						<button id="mainMenuHamburgerToggle" class="navbar-toggle cursor" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -273,13 +276,24 @@ function setTheme() {
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></a>
-								<ul class="dropdown-menu">
+
+							<li class="cursor">
+								<a>
+									<i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></span>
+        							<label class="drop-icon" for="drop-home"><i class="fas fa-chevron-down fa-2x"></i></label>
+								</a>
+								<input type="checkbox" id="drop-home">
+								<ul>
+
 									<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
-									<li class="dropdown-submenu">
-										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoDashboard"><i class="fas fa-tachometer-alt"></i> {{Dashboard}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu">
+
+									<li>
+										<a id="bt_gotoDashboard" class="submenu">
+											<i class="fas fa-tachometer-alt"></i> {{Dashboard}}
+											<label class="drop-icon" for="drop-dashboard"><i class="fas fa-chevron-down fa-2x"></i></label>
+										</a>
+										<input type="checkbox" id="drop-dashboard">
+										<ul>
 											<?php
 											$echo = '';
 											foreach ((jeeObject::buildTree(null, false)) as $object_li) {
@@ -289,48 +303,69 @@ function setTheme() {
 											?>
 										</ul>
 									</li>
-									<li class="dropdown-submenu">
-										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoView"><i class="far fa-image"></i> {{Vue}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu">
-											<?php
+
+									<li>
+										<a id="bt_gotoView" class="submenu">
+											<i class="far fa-image"></i> {{Vue}}
+											<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>
+										</a>
+										<input type="checkbox" id="drop-view">
+										<?php
 											$echo = '';
 											foreach ((view::all()) as $view_menu) {
 												$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon','<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 											}
-											echo $echo;
-											?>
-										</ul>
+											if ($echo != '') {
+												echo '<ul>'.$echo.'</ul>';
+											}
+										?>
 									</li>
-									<li class="dropdown-submenu">
-										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan"><i class="fas fa-paint-brush"></i> {{Design}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu">
-											<?php
+
+									<li>
+										<a id="bt_gotoPlan" class="submenu">
+											<i class="fas fa-paint-brush"></i> {{Design}}
+											<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>
+										</a>
+										<input type="checkbox" id="drop-design">
+										<?php
 											$echo = '';
 											foreach ((planHeader::all()) as $plan_menu) {
 												$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon','<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
 											}
-											echo $echo;
-											?>
-										</ul>
+											if ($echo != '') {
+												echo '<ul>'.$echo.'</ul>';
+											}
+										?>
 									</li>
-									<li class="dropdown-submenu">
-										<a class="dropdown-toggle" data-toggle="dropdown" id="bt_gotoPlan3d"><i class="fas fa-cubes"></i> {{Design 3D}}</a>
-										<ul class="dropdown-menu scrollable-menu" role="menu">
-											<?php
+
+									<li>
+										<a id="bt_gotoPlan3d" class="submenu">
+											<i class="fas fa-cubes"></i> {{Design 3D}}
+											<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>
+										</a>
+										<input type="checkbox" id="drop-design3d">
+										<?php
 											$echo = '';
 											foreach ((plan3dHeader::all()) as $plan3d_menu) {
 												$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 											}
-											echo $echo;
-											?>
-										</ul>
+											if ($echo != '') {
+												echo '<ul>'.$echo.'</ul>';
+											}
+										?>
 									</li>
 									<?php echo $panel_menu; ?>
 								</ul>
 							</li>
-							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b></a>
-								<ul class="dropdown-menu" role="menu">
+
+
+							<li class="cursor">
+								<a>
+									<i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b>
+									<label class="drop-icon" for="drop-analysis"><i class="fas fa-chevron-down fa-2x"></i></label>
+								</a>
+								<input type="checkbox" id="drop-analysis">
+								<ul>
 									<?php if (isConnect('admin')) { ?>
 										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
 									<?php } ?>
@@ -349,10 +384,16 @@ function setTheme() {
 									<?php } ?>
 								</ul>
 							</li>
+
+
 							<?php if (isConnect('admin')) { ?>
-								<li class="dropdown cursor">
-									<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b></a>
-									<ul class="dropdown-menu" role="menu">
+								<li class="cursor">
+									<a>
+										<i class="fas fa-wrench"></i> <span class="hidden-sm hidden-md">{{Outils}}</span> <b class="caret"></b>
+										<label class="drop-icon" for="drop-tools"><i class="fas fa-chevron-down fa-2x"></i></label>
+									</a>
+									<input type="checkbox" id="drop-tools">
+									<ul>
 										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
 										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
@@ -365,25 +406,39 @@ function setTheme() {
 									</ul>
 								</li>
 							<?php } ?>
+
+
 							<?php if (isConnect('admin')) { ?>
-								<li class="dropdown cursor">
-									<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-tasks"></i> <span class="hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b></a>
-									<ul class="dropdown-menu" role="menu">
+								<li class="cursor">
+									<a>
+										<i class="fas fa-tasks"></i> <span class="hidden-sm hidden-md">{{Plugins}}</span> <b class="caret"></b>
+										<label class="drop-icon" for="drop-plugins"><i class="fas fa-chevron-down fa-2x"></i></label>
+									</a>
+									<input type="checkbox" id="drop-plugins">
+									<ul>
 										<li><a href="index.php?v=d&p=plugin"><i class="fas fa-tags"></i> {{Gestion des plugins}}</a></li>
 										<li role="separator" class="divider"></li>
 										<?php echo $plugin_menu; ?>
 									</ul>
 								</li>
 							<?php } ?>
-							<li class="dropdown cursor">
-								<a class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span>
-									<span class="caret"></span>
+
+
+							<li class="cursor">
+								<a>
+									<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span> <b class="caret"></b>
+									<label class="drop-icon" for="drop-settings"><i class="fas fa-chevron-down fa-2x"></i></label>
 								</a>
-								<ul class="dropdown-menu">
+								<input type="checkbox" id="drop-settings">
+								<ul>
 									<?php if (isConnect('admin')) { ?>
-										<li class="dropdown-submenu"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-cog"></i> {{Système}}</a>
-											<ul class="dropdown-menu">
+										<li>
+											<a class="submenu">
+												<i class="fas fa-cog"></i> {{Système}}
+												<label class="drop-icon" for="drop-system"><i class="fas fa-chevron-down fa-2x"></i></label>
+											</a>
+											<input type="checkbox" id="drop-system">
+											<ul>
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
@@ -402,12 +457,12 @@ function setTheme() {
 										</li>
 									<?php } ?>
 									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
-									<li role="separator" class="divider"></li>
+									<li class="divider"></li>
 									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
 										<li><a id="bt_switchTheme"><i class="fas fa-random"></i> {{Thème alternatif}}</a></li>
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
-									<li role="separator" class="divider"></li>
+									<li class="divider"></li>
 									<?php if (isConnect('admin')) { ?>
 										<li>
 											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>

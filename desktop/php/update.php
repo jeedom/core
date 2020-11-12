@@ -67,7 +67,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 	</div>
 </div>
 
-<div id="md_specifyUpdate" style="overflow-x: hidden;">
+<div id="md_specifyUpdate" class="hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="alert alert-warning">

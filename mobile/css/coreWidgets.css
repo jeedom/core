@@ -3,248 +3,318 @@ Core Widgets CSS @Jeedom
 Mobile WebApp
 */
 
-/* __________________________________________________________________________________________________________Global */
-
-.eqLogic-widget div.cmd {
-  vertical-align: top;
-}
-
-
-/* arc gauges and sliders */
-.highcharts-pane {
-  stroke-width: 0;
-}
-.highcharts-data-label > span > span {
-  font-size: 12px !important;
-}
-.highcharts-color-0 {
-  fill: var(--link-color);
-}
-.ui-slider-handle {
-  font-size: 1em;
-  border-radius: 1em !important;
-  cursor: pointer !important;
-}
-.ui-slider-horizontal{
-  height: 5px !important;
-}
-.ui-slider{
-  border:none !important;
-}
-
-/* less space under arc gauges */
-.gauge.cursor{ height: 85px !important; }
-.container-fluid.cmd-widget { min-height: 85px !important; }
-
-h4.modal-title {
-  font-size: 14px;
-}
-.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
-  font-weight: normal !important;
-}
-.highcharts-legend-item.highcharts-legend-item-hidden text {
-  font-weight: normal !important;
-  font-style: italic;
-}
-
-path.highcharts-graph {
-  stroke-width: 1;
-}
+/* ____________________Global */
+  .eqLogic-widget div.cmd {
+    vertical-align: top;
+  }
 
 
-/* __________________________________________________________________________________________________________Specific */
-.cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
-  font-size: 1.4em !important;
-}
-.cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
-  font-size: 1.2em !important;
-}
-.cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .value {
-  width: 55px;
-}
-.cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
-  margin-top: 5px;
-  height: 50px;
-}
-.cmd.cmd-widget[data-type="info"][data-subtype="binary"][data-template="shutter"] {
-  height: 100px;
-}
-.cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
-  height: 100px;
-}
-.cmd.cmd-widget .selectCmd {
-  max-height: 50px;
-  overflow: auto;
-}
+  /* arc gauges and sliders */
+  .highcharts-pane {
+    stroke-width: 0;
+  }
+  .highcharts-data-label > span > span {
+    font-size: 12px !important;
+  }
+  .highcharts-color-0 {
+    fill: var(--link-color);
+  }
+  .ui-slider-handle {
+    font-size: 1em;
+    border-radius: 1em !important;
+    cursor: pointer !important;
+  }
+  .ui-slider-horizontal{
+    height: 5px !important;
+  }
+  .ui-slider{
+    border:none !important;
+  }
 
+  /* less space under arc gauges */
+  .gauge.cursor{ height: 85px !important; }
+  .container-fluid.cmd-widget { min-height: 85px !important; }
 
-.hgauge-value,
-.shuttergauge-value {
-  background: var(--link-color);
-}
+  h4.modal-title {
+    font-size: 14px;
+  }
+  .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+    font-weight: normal !important;
+  }
+  .highcharts-legend-item.highcharts-legend-item-hidden text {
+    font-weight: normal !important;
+    font-style: italic;
+  }
 
-.hgauge {
-  position: relative;
-  width: calc(100% - 16px);
-  margin-top: 6px;
-  margin-bottom: 4px;
-}
-.hgauge-bckg {
-  position:relative;
-  height: 5px;
-  top: -3px;
-  background: var(--el-defaultColor);
-}
-.hgauge .cmdName {
-  min-height: 26px;
-}
-.hgauge-value {
-  height: 10px;
-  position: absolute;
-  left: 0;
-  margin-top: -4px;
-}
-.hgauge .state {
-  margin-top: 10px;
-}
+  path.highcharts-graph {
+    stroke-width: 1;
+  }
+  .ui-slider-track .ui-btn.ui-slider-handle {
+    margin-top: -9px;
+  }
+  .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
+    position: absolute;
+    left: 0;
+    height: 7px !important;
+    background-color: var(--link-color) !important;
+  }
 
-.shuttergauge, .timeShuttergauge {
-  position: relative;
-  width: 100% !important;
-  height: 120px;
-}
-.timeShuttergauge {
-  height: 140px;
-}
-.shuttergauge-bckg {
-  width: 42px;
-  height: 45px;
-  margin-left: -26px;
-  position: absolute;
-  top: 20px;
-}
-.shuttergauge-chart {
-  display: inline-block;
-  text-align: center !important;
-  min-height: 85px;
-}
-.shuttergauge-state {
-  font-size: 16px;
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
-.shuttergauge-state .timeCmd {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
-}
-.shuttergauge .slider {
-  margin-top: -20px;
-}
-.timeShuttergauge .slider {
-  margin-top: 0px !important;
-}
+/* ____________________Specific */
+  .cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+    font-size: 1.4em !important;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+    font-size: 1.2em !important;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .value {
+    width: 55px;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
+    margin-top: 5px;
+    height: 50px;
+  }
+  .cmd.cmd-widget[data-type="info"][data-subtype="binary"][data-template="shutter"] {
+    height: 100px;
+  }
+  .cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+    height: 100px;
+  }
+  .cmd.cmd-widget .selectCmd {
+    max-height: 50px;
+    overflow: auto;
+  }
 
-/* __________________________________________________________________________________________________________Compass */
-.widget-compass-container {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin-bottom: 18px;
-}
-.widget-compass-container * {
-  position: absolute;
-}
-.widget-compass .value {
-  position: absolute;
-  top: 48px;
-}
-.widget-compass .state {
-  font-size: 16px !important;
-  font-weight: bold;
-  position: relative;
-  top: 24px;
-}
-.widget-compass .winDir {
-  font-size: 11px !important;
-  position: relative;
-  top: 21px;
-}
-.widget-compass-outline {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 7px solid var(--txt-color);
-  border-top: 7px solid var(--al-info-color);
-  border-bottom: 7px solid var(--al-info-color);
-  border-radius: 50%;
-}
-.widget-compass-needle {
-  left: 38px;
-  width: 4px;
-  height: 80px;
-  top: 0px;
-}
-.widget-compass-needle:after {
-  position: absolute;
-  content: '' !important;
-  top: -3px;
-  left: -6px;
-  width: 0;
-  height: 0;
-  border: 8px solid transparent;
-  border-top: 22px solid var(--al-warning-color);
-}
+/* ____________________binarySwitch */
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
+    height: 20px;
+    margin: 5px;
+  }
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .widthx2 {
+    min-width: 140px;
+    text-align: left;
+  }
+  label.binarySwitch {
+    position: relative;
+    display: inline-block;
+    float: right;
+    width: 40px;
+    height: 20px;
+    bottom: 2px;
+    margin: 0 0 -5px 15px
+  }
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] > center > div:not(.widthx2) > label.binarySwitch {
+    float: unset !important;
+  }
+  label.binarySwitch input {
+    display: none;
+  }
+  label.binarySwitch > input:checked + span.binarySwitch:before {
+    transform: translateX(17px);
+  }
+  span.binarySwitch {
+    border-radius: 1em;
+  }
+  span.binarySwitch:before {
+    border-radius: 50%;
+  }
+  span.binarySwitch:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 1.8px;
+    background-color: var(--link-color);
+    transition: .4s;
+  }
+  label.binarySwitch > input + span.binarySwitch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+    background-color: var(--btnEq-default-color);
+  }
+  label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--el-defaultColor);
+  }
+  [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--bt-success-color);
+  }
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch input:checked + span.binarySwitch:before {
+    background-color: var(--btnEq-default-color) !important;
+  }
 
-/* __________________________________________________________________________________________________________Rain */
-div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] {
-  width: 90px;
-  margin: 5px;
-  padding: 0;
-}
+/* ____________________others */
+  .hgauge-value,
+  .shuttergauge-value {
+    background: var(--link-color);
+  }
 
-@keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
+  .hgauge {
+    position: relative;
+    width: calc(100% - 16px);
+    margin-top: 6px;
+    margin-bottom: 4px;
+  }
+  .hgauge-bckg {
+    position:relative;
+    height: 5px;
+    top: -3px;
+    background: var(--el-defaultColor);
+  }
+  .hgauge .cmdName {
+    min-height: 26px;
+  }
+  .hgauge-value {
+    height: 10px;
+    position: absolute;
+    left: 0;
+    margin-top: -4px;
+  }
+  .hgauge .state {
+    margin-top: 10px;
+  }
 
-.widget-rain-water {
-  height: 0pt;
-  background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0 0 1px 1px;
-  bottom: 0;
-  width : 100%;
-  transition: water 3s ease-out;
-  z-index: 0;
-  animation: homeweatherstationraingauge 3000s linear infinite;
-  bottom : 0px;
-  position: absolute;
-}
+  .shuttergauge, .timeShuttergauge {
+    position: relative;
+    width: 100% !important;
+    height: 120px;
+  }
+  .timeShuttergauge {
+    height: 140px;
+  }
+  .shuttergauge-bckg {
+    width: 42px;
+    height: 45px;
+    margin-left: -26px;
+    position: absolute;
+    top: 20px;
+  }
+  .shuttergauge-chart {
+    display: inline-block;
+    text-align: center !important;
+    min-height: 85px;
+  }
+  .shuttergauge-state {
+    font-size: 16px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .shuttergauge-state .timeCmd {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+  }
+  .shuttergauge .slider {
+    margin-top: -20px;
+  }
+  .timeShuttergauge .slider {
+    margin-top: 0px !important;
+  }
 
-.widget-rain-container {
-  background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
-  background-size: cover;
-  position: relative;
-  height: 60px;
-  z-index: 20;
-}
+/* ____________________Compass */
+  .widget-compass-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 18px;
+  }
+  .widget-compass-container * {
+    position: absolute;
+  }
+  .widget-compass .value {
+    position: absolute;
+    top: 48px;
+  }
+  .widget-compass .state {
+    font-size: 16px !important;
+    font-weight: bold;
+    position: relative;
+    top: 24px;
+  }
+  .widget-compass .winDir {
+    font-size: 11px !important;
+    position: relative;
+    top: 21px;
+  }
+  .widget-compass-outline {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 7px solid var(--txt-color);
+    border-top: 7px solid var(--al-info-color);
+    border-bottom: 7px solid var(--al-info-color);
+    border-radius: 50%;
+  }
+  .widget-compass-needle {
+    left: 38px;
+    width: 4px;
+    height: 80px;
+    top: 0px;
+  }
+  .widget-compass-needle:after {
+    position: absolute;
+    content: '' !important;
+    top: -3px;
+    left: -6px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top: 22px solid var(--al-warning-color);
+  }
 
-.widget-rain-container .plage {
-  position: absolute;
-  bottom: 5px;
-  right: 5%;
-  left: 5%;
-  z-index: 2;
-}
+/* ____________________Rain */
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] {
+    width: 90px;
+    margin: 5px;
+    padding: 0;
+  }
 
-.widget-rain-main {
-  overflow: hidden;
-  width: 80px;
-  z-index: 0;
-  position : relative;
-}
+  @keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
+
+  .widget-rain-water {
+    height: 0pt;
+    background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0 0 1px 1px;
+    bottom: 0;
+    width : 100%;
+    transition: water 3s ease-out;
+    z-index: 0;
+    animation: homeweatherstationraingauge 3000s linear infinite;
+    bottom : 0px;
+    position: absolute;
+  }
+
+  .widget-rain-container {
+    background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 60px;
+    z-index: 20;
+  }
+
+  .widget-rain-container .plage {
+    position: absolute;
+    bottom: 5px;
+    right: 5%;
+    left: 5%;
+    z-index: 2;
+  }
+
+  .widget-rain-main {
+    overflow: hidden;
+    width: 80px;
+    z-index: 0;
+    position : relative;
+  }

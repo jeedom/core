@@ -3,7 +3,11 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 global $JEEDOM_INTERNAL_CONFIG;
-sendVarToJS('sel_plugin_id', init('id', '-1'));
+
+sendVarToJS([
+  'sel_plugin_id' => init('id', '-1'),
+  'jeedomVersion' => jeedom::version()
+]);
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 
@@ -96,19 +100,28 @@ $plugins_list = plugin::listPlugin(false, true);
             <form class="form-horizontal">
               <fieldset>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">{{Version}}</label>
+                  <label class="col-sm-2 control-label">{{Auteur}}</label>
+                  <div class="col-sm-4">
+                    <span id="span_plugin_author"></span>
+                  </div>
+                  <label class="col-sm-2 control-label">{{Version}}
+                    <sup><i class="fas fa-question-circle" title="{{Version installée du plugin.}}"></i></sup>
+                  </label>
                   <div class="col-sm-4">
                     <span id="span_plugin_install_date"></span>
                   </div>
-                  <label class="col-sm-2 control-label">{{Version minimum Jeedom}}</label>
-                  <div class="col-sm-4">
-                    <span id="span_plugin_require"></span>
-                  </div>
                 </div>
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label">{{License}}</label>
                   <div class="col-sm-4">
                     <span id="span_plugin_license"></span>
+                  </div>
+                  <label class="col-sm-2 control-label">{{Prérequis}}
+                    <sup><i class="fas fa-question-circle" title="{{Version minimale du Core supportée par le plugin.}}"></i></sup>
+                  </label>
+                  <div class="col-sm-4">
+                    <span id="span_plugin_require"></span>
                   </div>
                 </div>
               </fieldset>

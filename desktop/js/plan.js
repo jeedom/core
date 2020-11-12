@@ -17,9 +17,10 @@
 "use strict"
 
 var deviceInfo = getDeviceType()
-if (typeof planEditOption === 'undefined' || deviceInfo.type != 'desktop' || !PREVIOUS_LOCATION.includes('&p=plan')) {
-    var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
+if (typeof planEditOption === 'undefined' || deviceInfo.type != 'desktop') {
+  planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
 }
+
 var clickedOpen = false
 var $pageContainer = $('#div_pageContainer')
 var style_css = ''

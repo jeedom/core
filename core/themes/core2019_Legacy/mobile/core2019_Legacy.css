@@ -138,10 +138,6 @@ p.state,
   color: var(--link-color);
 }
 
-.ui-slider-bg {
-  background: linear-gradient(var(--el-defaultColor), var(--el-defaultColor)) fixed !important;
-}
-
 .clr-btn-red,
 .clr-btn-red:hover {
   color: var(--sc-lightTxt-color) !important;
