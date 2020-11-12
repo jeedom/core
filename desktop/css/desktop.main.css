@@ -362,7 +362,10 @@ Theme Core 2021 @Jeedom
       font-size: 10px;
     }
     #jeedomMenuBar ul.navbar-nav li ul li label.drop-icon {
-      margin-right: 0;
+      position: relative;
+      top: -15px;
+      float: right;
+      right: -5px;
       color: var(--txt-color);
     }
     #jeedomMenuBar ul.navbar-nav .caret {
