@@ -37,20 +37,16 @@ window.addEventListener('error', function(event) {
 })
 
 var $document = $(document)
+$(function() {
+  $(document)
+    .ajaxStart(function () {
+        $.showLoading()
+    })
+    .ajaxStop(function () {
+        $.hideLoading()
+    })
+})
 
-//ajax queuing:
-var nbActiveAjaxRequest = 0
-$document.ajaxStart(function() {
-  nbActiveAjaxRequest++
-  $.showLoading()
-})
-$document.ajaxStop(function() {
-  nbActiveAjaxRequest--
-  if (nbActiveAjaxRequest <= 0) {
-    nbActiveAjaxRequest = 0
-    $.hideLoading()
-  }
-})
 
 //UI Time display:
 setInterval(function() {

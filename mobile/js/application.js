@@ -1,23 +1,20 @@
 "use strict"
 
-var nbActiveAjaxRequest = 0
-$(document).ajaxStart(function() {
-  nbActiveAjaxRequest++
-  $.showLoading()
-})
-
-$(document).ajaxStop(function() {
-  nbActiveAjaxRequest--
-  if (nbActiveAjaxRequest <= 0) {
-    nbActiveAjaxRequest = 0
-    $.hideLoading()
-  }
+$(function() {
+  $(document)
+    .ajaxStart(function () {
+        $.showLoading()
+    })
+    .ajaxStop(function () {
+        $.hideLoading()
+    })
 })
 
 window.addEventListener('error', function(event) {
   $.hideLoading()
 })
 
+//allow shortcut as app:
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
@@ -488,7 +485,6 @@ function page(_page, _title, _option, _plugin, _dialog) {
 
   $('#searchContainer').hide()
   setBackgroundImage('')
-  $.showLoading()
   try {
     $('#bottompanel').panel('close')
     $('#bottompanel_mainoption').panel('close')
