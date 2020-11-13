@@ -303,7 +303,7 @@ function editWidgetMode(_mode,_save) {
   if (_mode == 0) {
     jeedom.cmd.disableExecute = false
     isEditing = false
-    $('#dashTopBar').removeClass('disabled')
+    $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').removeClass('disabled')
     if (!isset(_save) || _save) {
       jeedomUI.saveWidgetDisplay({dashboard : 1})
     }
@@ -322,7 +322,7 @@ function editWidgetMode(_mode,_save) {
     jeedom.cmd.disableExecute = true
     isEditing = true
     resetCategoryFilter()
-    $('#dashTopBar').addClass('disabled')
+    $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
 
     //show orders:
     $('.jeedomAlreadyPosition.ui-draggable').each( function() {
