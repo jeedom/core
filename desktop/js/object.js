@@ -155,16 +155,21 @@ $('.objectDisplayCard').off('mouseup').on('mouseup', function(event) {
 })
 
 $('#bt_removeBackgroundImage').off('click').on('click', function() {
-  jeedom.object.removeImage({
-    id: $('.objectAttr[data-l1key=id]').value(),
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('.objectImg img').hide()
-      $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'})
-    },
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'image de cet objet ?}}', function(result) {
+    if (result) {
+      jeedom.object.removeImage({
+        id: $('.objectAttr[data-l1key=id]').value(),
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function() {
+          $('.objectImg img').hide()
+          $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'})
+        },
+      })
+    }
   })
+  return false
 })
 
 function printObject(_id) {
