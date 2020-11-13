@@ -36,13 +36,15 @@ $(function() {
     if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
       $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
     }
-    $(this).find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
   })
 
   colorizeSummary()
   checkResumeEmpty()
   $('.resume').show()
-  createSummaryObserver()
+  setTimeout(function(){
+    createSummaryObserver()
+  }, 500)
+
 })
 
 function checkResumeEmpty() {
@@ -69,10 +71,12 @@ function colorizeSummary() {
 }
 
 function createSummaryObserver() {
-  var _SummaryObserver_ = new MutationObserver(function(mutations) {
+  _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type == 'childList' && mutation.target.className == 'resume') {
-        updateSummary(mutation.addedNodes[0].className)
+        try {
+          updateSummary(mutation.addedNodes[0].className)
+        } catch {}
       }
     })
   })
@@ -98,7 +102,6 @@ function updateSummary(_className) {
   if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
     pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
   }
-  pResume.find('.objectSummaryParent').eq(-7).after("<br />")
   colorizeSummary()
   checkResumeEmpty()
 }
@@ -272,6 +275,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
             //is last ajax:
             if (nbEqs == 0) {
               //adapt modal size:
+
               var brwSize = {
                 width: window.innerWidth || document.body.clientWidth,
                 height: window.innerHeight || document.body.clientHeight
@@ -280,7 +284,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
               var fullHeight = 0
               var thisWidth = 0
               var thisHeight = 0
-              $('#md_overviewSummary div.eqLogic-widget').each(function( index ) {
+              $('#md_overviewSummary div.eqLogic-widget').each(function(index) {
                 thisWidth = $(this).outerWidth(true)
                 thisHeight = $(this).outerHeight(true)
                 if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
@@ -298,8 +302,15 @@ function getSummaryHtml(_object_id, _summary, _title) {
               fullHeight += 6
               modal.width(fullWidth + 26).height(fullHeight + 50)
               modalContent.width(fullWidth).height(fullHeight)
-
               $summaryContainer.packery({gutter: 10})
+
+              //second pass for reliability in certain cases:
+              fullWidth = $("#summaryEqlogics").width()
+              fullHeight = $("#summaryEqlogics").height()
+              modal.width(fullWidth + 26).height(fullHeight + 50)
+              modalContent.width(fullWidth).height(fullHeight)
+
+
               initTooltips($('#md_overviewSummary'))
             }
           }

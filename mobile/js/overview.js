@@ -51,7 +51,6 @@ function initOverview() {
           if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
             $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
           }
-          $(this).find('.resume').find('.objectSummaryParent').eq(-7).after("<br />")
 
           //get bigger if too much summaries:
           if ($(this).find('.bottomPreview .objectSummaryParent').length > 18) $(this).addClass('big')
@@ -84,10 +83,12 @@ function colorizeSummary() {
 }
 
 function createSummaryObserver() {
-  var _SummaryObserver_ = new MutationObserver(function(mutations) {
+  _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type == 'childList' && mutation.target.className == 'resume') {
-        updateSummary(mutation.addedNodes[0].className)
+        try {
+          updateSummary(mutation.addedNodes[0].className)
+        } catch {}
       }
     })
   })
@@ -113,6 +114,5 @@ function updateSummary(_className) {
   if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
     pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
   }
-  pResume.find('.objectSummaryParent').eq(-7).after("<br />")
   colorizeSummary()
 }

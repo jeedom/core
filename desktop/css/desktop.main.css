@@ -958,18 +958,18 @@ Theme Core 2021 @Jeedom
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 54px;
-    text-align: right;
   }
   .objectPreview > .bottomPreview > .resume {
-    position: absolute;
-    right: 6px;
-    bottom: 5px;
-    text-align: right;
     max-width: 100%;
     margin-right: 8px !important;
   }
 
+  .objectPreview > .bottomPreview > .resume > span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+  }
 
   .objectPreview .objectSummaryParent,
   .objectPreview .objectSummaryParent i {

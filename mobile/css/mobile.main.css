@@ -1466,16 +1466,15 @@ a.ui-table-columntoggle-btn {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 54px;
-  text-align: right;
 }
 .objectPreview > .bottomPreview > .resume {
-  position: absolute;
-  right: -8px;
-  bottom: -2px;
-  text-align: right;
   max-width: 100%;
-  margin-right: 8px !important;
+}
+.objectPreview > .bottomPreview > .resume > span {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
 }
 
 
