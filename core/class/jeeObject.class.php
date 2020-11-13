@@ -644,7 +644,7 @@ class jeeObject {
 		$sql = 'UPDATE scenario set object_id= NULL where object_id=:object_id';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		$childs = $this->getChild(false);
-		if(is_array($childs) && count($childs) > 0){
+		if (is_array($childs) && count($childs) > 0) {
 			foreach ($childs as $child) {
 				try {
 					$child->setFather_id($this->getFather_id());
@@ -652,6 +652,12 @@ class jeeObject {
 				} catch (\Exception $e) {
 
 				}
+			}
+		}
+		$files = ls(__DIR__ . '/../../data/object/','object'.$this->getId().'-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/'.$file);
 			}
 		}
 	}
