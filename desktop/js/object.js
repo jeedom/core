@@ -164,6 +164,7 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
         },
         success: function() {
           $('.objectImg img').hide()
+          $('#bt_removeBackgroundImage').addClass('disabled')
           $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'})
         },
       })
@@ -199,8 +200,10 @@ function loadObjectConfiguration(_id) {
         var filePath = data.result.result.filepath
         filePath = '/data/object/' + filePath.split('/data/object/')[1]
         $('.objectImg img').attr('src',filePath).show()
+        $('#bt_removeBackgroundImage').removeClass('disabled')
       } else {
         $('.objectImg img').hide()
+        $('#bt_removeBackgroundImage').addClass('disabled')
       }
       $('#div_alert').showAlert({message: '{{Image ajoutée}}', level: 'success'})
     }
@@ -261,11 +264,12 @@ function loadObjectConfiguration(_id) {
       $('.div_summary').empty()
       $('.tabnumber').empty()
 
-      if (isset(data.img)) {
-        $('.objectImg img').attr('src',data.img);
-        $('.objectImg img').show()
+      if (isset(data.img) && data.img != '') {
+        $('.objectImg img').attr('src',data.img).show()
+        $('#bt_removeBackgroundImage').removeClass('disabled')
       } else {
         $('.objectImg img').hide()
+        $('#bt_removeBackgroundImage').addClass('disabled')
       }
       //set summary tab:
       if (isset(data.configuration) && isset(data.configuration.summary)) {
