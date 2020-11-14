@@ -44,17 +44,10 @@ $(function() {
   var $tableDataStore = $('#table_dataStore')
   initTableSorter()
   refreshDataStoreMangementTable()
-
   $tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
   $tableDataStore.trigger('applyWidgets')
-  .trigger('resizableReset')
-  .trigger('sorton', [[[1,0]]])
-
-  /*
-  setTimeout(function() {
-    $tableDataStore.find('th[data-column="0"]').trigger('sort')
-  }, 100)
-  */
+    .trigger('resizableReset')
+    .trigger('sorton', [[[1,0]]])
 
   $tableDataStore.on({
     'click': function(event) {
@@ -108,24 +101,55 @@ $(function() {
   }, '.bt_graphDataStore')
 
   $('#bt_dataStoreManagementAdd').on('click', function() {
-    var tr = '<tr data-dataStore_id="">'
-    tr += '<td>'
-    tr += '<input class="form-control input-sm key" value="" />'
-    tr += '</td>'
-    tr += '<td>'
-    tr += '<input class="form-control input-sm value" value="" />'
-    tr += '</td>'
-    tr += '<td>'
-    tr += '</td>'
-    tr += '<td>'
-    tr += '<a class="btn btn-info btn-xs bt_graphDataStore"><i class="fas fa-object-group"></i></a> '
-    tr += '<a class="btn btn-success btn-xs bt_saveDataStore"><i class="fas fa-check"></i></a> '
-    tr += '<a class="btn btn-danger btn-xs bt_removeDataStore"><i class="far fa-trash-alt"></i></a> '
-    tr += '</td>'
-    tr += '</tr>'
+    var tr = getDatastoreTr()
     $tableDataStore.find('tbody').prepend(tr)
     $tableDataStore.trigger("update")
   })
+
+  function getDatastoreTr(_datastore=false) {
+    var thisTr = ''
+    thisTr += '<tr data-dataStore_id="' + (_datastore ? _datastore.id : '') + '">'
+    thisTr += '<td>'
+    if (_datastore) {
+      thisTr += '<span style="display : none;">' + _datastore.key + '</span><input class="form-control input-sm key" value="' + _datastore.key + '" readonly />'
+    } else {
+      thisTr += '<input class="form-control input-sm key" value="" />'
+    }
+    thisTr += '</td>'
+
+    thisTr += '<td>'
+    if (_datastore) {
+      thisTr += '<span style="display : none;">' + _datastore.value + '</span><input class="form-control input-sm value" value="' + _datastore.value + '" />'
+    } else {
+      thisTr += '<input class="form-control input-sm value" value="" />'
+    }
+    thisTr += '</td>'
+
+    thisTr += '<td>'
+    if (_datastore) {
+      for (var j in _datastore.usedBy.scenario) {
+        thisTr += ' <a href="'+_datastore.usedBy.scenario[j]['link']+'&search='+encodeURI(_datastore.key)+'" class="btn btn-xs btn-primary">'+_datastore.usedBy.scenario[j]['humanName']+'</a>'
+      }
+      for (var j in _datastore.usedBy.eqLogic) {
+        thisTr += ' <a href="'+_datastore.usedBy.eqLogic[j]['link']+'" class="btn btn-xs btn-primary">'+_datastore.usedBy.eqLogic[j]['humanName']+'</a>'
+      }
+      for (var j in _datastore.usedBy.cmd) {
+        thisTr += ' <a href="'+_datastore.usedBy.cmd[j]['link']+'" class="btn btn-xs btn-primary">'+_datastore.usedBy.cmd[j]['humanName']+'</a>'
+      }
+      for (var j in _datastore.usedBy.interactDef) {
+        thisTr += ' <a href="'+_datastore.usedBy.interactDef[j]['link']+'" class="btn btn-xs btn-primary">'+_datastore.usedBy.interactDef[j]['humanName']+'</a>'
+      }
+    }
+    thisTr += '</td>'
+
+    thisTr += '<td>'
+    thisTr += '<a class="btn btn-info btn-xs bt_graphDataStore"><i class="fas fa-object-group"></i></a> '
+    thisTr += '<a class="btn btn-success btn-xs bt_saveDataStore"><i class="fas fa-check"></i></a> '
+    thisTr += '<a class="btn btn-danger btn-xs bt_removeDataStore"><i class="far fa-trash-alt"></i></a> '
+    thisTr += '</td>'
+    thisTr += '</tr>'
+    return thisTr
+  }
 
   function refreshDataStoreMangementTable() {
     jeedom.dataStore.all({
@@ -138,36 +162,10 @@ $(function() {
         $('#table_dataStore tbody').empty()
         var tr = ''
         for (var i in data) {
-          tr += '<tr data-dataStore_id="' + data[i].id + '">'
-          tr += '<td>'
-          tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" readonly />'
-          tr += '</td>'
-          tr += '<td>'
-          tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />'
-          tr += '</td>'
-          tr += '<td>'
-          for (var j in data[i].usedBy.scenario) {
-            tr += ' <a href="'+data[i].usedBy.scenario[j]['link']+'&search='+encodeURI(data[i].key)+'" class="btn btn-xs btn-primary">'+data[i].usedBy.scenario[j]['humanName']+'</a>'
-          }
-          for (var j in data[i].usedBy.eqLogic) {
-            tr += ' <a href="'+data[i].usedBy.eqLogic[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.eqLogic[j]['humanName']+'</a>'
-          }
-          for (var j in data[i].usedBy.cmd) {
-            tr += ' <a href="'+data[i].usedBy.cmd[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.cmd[j]['humanName']+'</a>'
-          }
-          for (var j in data[i].usedBy.interactDef) {
-            tr += ' <a href="'+data[i].usedBy.interactDef[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.interactDef[j]['humanName']+'</a>'
-          }
-          tr += '</td>'
-          tr += '<td>'
-          tr += '<a class="btn btn-info btn-xs bt_graphDataStore"><i class="fas fa-object-group"></i></a> '
-          tr += '<a class="btn btn-success btn-xs bt_saveDataStore"><i class="fas fa-check"></i></a> '
-          tr += '<a class="btn btn-danger btn-xs bt_removeDataStore"><i class="far fa-trash-alt"></i></a> '
-          tr += '</td>'
-          tr += '</tr>'
+          tr += getDatastoreTr(data[i])
         }
-        $('#table_dataStore tbody').append(tr)
-        $("#table_dataStore").trigger("update")
+        $tableDataStore.find('tbody').append(tr)
+        $tableDataStore.trigger("update")
       }
     })
   }
