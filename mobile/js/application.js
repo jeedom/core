@@ -483,6 +483,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
     PAGE_HISTORY.push({page : _page, title : _title,option : _option, plugin : _plugin})
   }
 
+  $.showLoading()
   $('#searchContainer').hide()
   setBackgroundImage('')
   try {
@@ -533,7 +534,6 @@ function page(_page, _title, _option, _plugin, _dialog) {
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
   }
-
 
   if (isset(_dialog) && _dialog) {
     $('#popupDialog .content').load(page, function() {
@@ -594,6 +594,10 @@ function page(_page, _title, _option, _plugin, _dialog) {
       $('#page').fadeIn(400)
     })
   }
+
+  setTimeout(function() {
+    if ($.active == 0) $.hideLoading()
+  }, 1500)
 }
 
 function modal(_name) {
