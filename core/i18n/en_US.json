@@ -330,6 +330,7 @@
         "Valeur": "Value",
         "Utilisée dans": "Used in",
         "Action": "Action",
+        "Êtes-vous sûr de vouloir supprimer la variable": "Are you sure you want to delete the variable",
         "Dépôt de données supprimé": "Data repository deleted",
         "Dépôt de données sauvegardé": "Data repository saved",
         "Graphique de lien(s)": "Link graphic"
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Links chart",
         "Bibliotheque d'images": "Picture library",
         "Objets": "Objects",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "Are you sure you want to delete the image for this object?",
         "Image supprimée": "Picture deleted",
         "Envoyer": "Send",
         "Image ajoutée": "Image added",

@@ -70,37 +70,39 @@ sendVarToJs('edit_type',$type);
     <?php
     foreach (($type::all()) as $object) {
       $data_object = utils::o2a($object);
-      echo '<tr class="editObject" data-id="'.$object->getId().'">';
-      echo '<td>';
-      echo '<input class="editObjectAttr" data-l1key="id" hidden value="'.$object->getId().'"></input>';
-      echo $object->getId();
-      echo '</td>';
+      $tr = '';
+      $tr .= '<tr class="editObject" data-id="'.$object->getId().'">';
+      $tr .= '<td>';
+      $tr .= '<input class="editObjectAttr" data-l1key="id" hidden value="'.$object->getId().'"></input>';
+      $tr .= $object->getId();
+      $tr .= '</td>';
       if(method_exists($type,'getEqType_name')){
-        echo '  <td>'.$object->getEqType_name().'</td>';
+        $tr .= '  <td>'.$object->getEqType_name().'</td>';
       }
-      echo '<td>';
-      echo $object->getHumanName();
-      echo '</td>';
+      $tr .= '<td>';
+      $tr .= $object->getHumanName();
+      $tr .= '</td>';
       foreach ($fields as $field) {
-        echo '<td>';
+        $tr .= '<td>';
         $value = $data_object;
         foreach ($field['path'] as $key) {
           $value = $value[$key];
         }
         switch ($field['type']) {
           case 'number':
-          echo '<input type="number" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
+          $tr .= '<input type="number" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
           case 'checkbox':
-          echo '<input type="checkbox" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
+          $tr .= '<input type="checkbox" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
           default:
-          echo '<input class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
+          $tr .= '<input class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
         }
-        echo '</td>';
+        $tr .= '</td>';
       }
-      echo '</tr>';
+      $tr .= '</tr>';
+      echo $tr;
     }
     ?>
   </tbody>

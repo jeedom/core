@@ -330,6 +330,7 @@
         "Valeur": "Valeur",
         "Utilisée dans": "Utilisée dans",
         "Action": "Action",
+        "Êtes-vous sûr de vouloir supprimer la variable": "Êtes-vous sûr de vouloir supprimer la variable",
         "Dépôt de données supprimé": "Dépôt de données supprimé",
         "Dépôt de données sauvegardé": "Dépôt de données sauvegardé",
         "Graphique de lien(s)": "Graphique de lien(s)"
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Graphique des liens",
         "Bibliotheque d'images": "Bibliotheque d'images",
         "Objets": "Objets",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?",
         "Image supprimée": "Image supprimée",
         "Envoyer": "Envoyer",
         "Image ajoutée": "Image ajoutée",

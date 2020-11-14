@@ -330,6 +330,7 @@
         "Valeur": "Değer",
         "Utilisée dans": "Kullanılan",
         "Action": "Eylem",
+        "Êtes-vous sûr de vouloir supprimer la variable": "",
         "Dépôt de données supprimé": "Mevduat silindi veri",
         "Dépôt de données sauvegardé": "Kaydedilen verilerin Mevduat",
         "Graphique de lien(s)": ""
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Linkler grafiği",
         "Bibliotheque d'images": "",
         "Objets": "Nesneler",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "",
         "Image supprimée": "Fotoğraf silindi",
         "Envoyer": "Gönder",
         "Image ajoutée": "",

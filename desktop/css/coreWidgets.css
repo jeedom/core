@@ -162,6 +162,7 @@ Desktop
     border-radius: 8px !important;
     background-color: var(--link-color) !important;
     cursor: pointer !important;
+    touch-action: none;
   }
   .ui-slider-handle:active,
   .ui-slider-handle:focus,

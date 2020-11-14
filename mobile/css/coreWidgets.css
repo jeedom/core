@@ -51,6 +51,7 @@ Mobile WebApp
   }
   .ui-slider-track .ui-btn.ui-slider-handle {
     margin-top: -9px;
+    touch-action: none;
   }
   .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
     position: absolute;

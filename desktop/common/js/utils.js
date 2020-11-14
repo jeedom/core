@@ -16,12 +16,21 @@
 
 "use strict"
 
+$(function() {
+  $(document)
+    .ajaxStart(function () {
+        $.showLoading()
+    })
+    .ajaxStop(function () {
+        $.hideLoading()
+    })
+})
+
 //cmd update:
 var utid = 0
 
 //design edit options conservation:
 var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
-
 
 var isEditing = false
 
@@ -34,22 +43,6 @@ window.addEventListener('error', function(event) {
   JS_ERROR.push(event)
   $('#bt_jsErrorModal').show()
   $.hideLoading()
-})
-
-var $document = $(document)
-
-//ajax queuing:
-var nbActiveAjaxRequest = 0
-$document.ajaxStart(function() {
-  nbActiveAjaxRequest++
-  $.showLoading()
-})
-$document.ajaxStop(function() {
-  nbActiveAjaxRequest--
-  if (nbActiveAjaxRequest <= 0) {
-    nbActiveAjaxRequest = 0
-    $.hideLoading()
-  }
 })
 
 //UI Time display:
@@ -691,7 +684,7 @@ function initPage() {
   initHelp()
   initTextArea()
   $('.nav-tabs a').on('click',function() {
-    var scrollHeight = $document.scrollTop()
+    var scrollHeight = $(document).scrollTop()
     $(this).tab('show')
     $(window).scrollTop(scrollHeight)
     setTimeout(function() {

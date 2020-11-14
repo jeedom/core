@@ -77,6 +77,10 @@ Theme Core 2021 @Jeedom
     white-space: pre;
   }
 
+  .disabled {
+    pointer-events: none;
+  }
+
 /* ______Main */
   .center {
     text-align: center;
@@ -954,18 +958,18 @@ Theme Core 2021 @Jeedom
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 54px;
-    text-align: right;
   }
   .objectPreview > .bottomPreview > .resume {
-    position: absolute;
-    right: 6px;
-    bottom: 5px;
-    text-align: right;
     max-width: 100%;
     margin-right: 8px !important;
   }
 
+  .objectPreview > .bottomPreview > .resume > span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+  }
 
   .objectPreview .objectSummaryParent,
   .objectPreview .objectSummaryParent i {
@@ -2193,6 +2197,10 @@ Theme Core 2021 @Jeedom
   input.inputPassword  {
     font-family: "text-security-disc" !important;
     letter-spacing: 2px;
+  }
+
+  input[readonly] {
+    cursor: alias;
   }
 
   .form-actions {
@@ -4152,6 +4160,9 @@ Theme Core 2021 @Jeedom
 
   #jeedomMenuBar .navbar-nav li ul {
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+  }
+  #jeedomMenuBar .navbar-nav li ul li ul {
+    border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius) !important;
   }
 
   .tab-content {

@@ -330,6 +330,7 @@
         "Valeur": "Wert",
         "Utilisée dans": "Verwendet in",
         "Action": "Aktionen",
+        "Êtes-vous sûr de vouloir supprimer la variable": "Möchten Sie die Variable wirklich löschen?",
         "Dépôt de données supprimé": "Datenrepository gelöscht",
         "Dépôt de données sauvegardé": "Datenrepository gespeichert",
         "Graphique de lien(s)": "Grafik verknüpfen"
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Grafik-Links",
         "Bibliotheque d'images": "Bildbibliothek",
         "Objets": "Objekte",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "Möchten Sie das Bild für dieses Objekt wirklich löschen?",
         "Image supprimée": "Bild gelöscht",
         "Envoyer": "Senden",
         "Image ajoutée": "Bild hinzugefügt",

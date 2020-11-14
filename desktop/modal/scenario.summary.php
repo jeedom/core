@@ -23,8 +23,8 @@ if (!isConnect()) {
 <div id="div_alertScenarioSummary"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
-    <a class="btn btn-sm roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}
-    </a><a class="btn btn-success btn-sm roundedRight" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+    <a class="btn btn-xs roundedLeft" id="bt_refreshSummaryScenario"><i class="fas fa-refresh"></i> {{Rafraîchir}}
+    </a><a class="btn btn-success btn-xs roundedRight" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
   </span>
 </div>
 <br/><br/>
@@ -53,7 +53,7 @@ if (!isConnect()) {
 var $tableScSummary = $('#table_scenarioSummary')
 initTableSorter()
 refreshScenarioSummary()
-$tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '80px']
+$tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '85px']
 $tableScSummary.trigger('applyWidgets')
   .trigger('resizableReset')
   .trigger('sorton', [[[1,0]]])
@@ -138,9 +138,9 @@ function refreshScenarioSummary() {
         tr += '<td>'
         tr += '<a class="btn btn-default tooltips btn-xs bt_summaryViewLog" title="{{Voir les logs}}"><i class="far fa-file"></i></a> '
         if (data[i].state == 'in_progress') {
-          tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a>'
+          tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryStopScenario" title="{{Exécuter}}"><i class="fas fa-stop"></i></a> '
         } else {
-          tr += '<a class="btn btn-success tooltips btn-xs bt_summaryLaunchScenario" title="{{Exécuter}}"><i class="fas fa-play"></i></a>'
+          tr += '<a class="btn btn-success tooltips btn-xs bt_summaryLaunchScenario" title="{{Exécuter}}"><i class="fas fa-play"></i></a> '
         }
         tr += '<a class="btn btn-danger tooltips btn-xs bt_summaryRemoveScenario" title="{{Supprimer ce scénario}}"><i class="far fa-trash-alt"></i></a> '
         tr += '</td>'

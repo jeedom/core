@@ -65,7 +65,7 @@ The configuration page consists of several tabs and buttons :
 - **Reply** : The answer to provide.
 - **Wait before answering (s)** : Add a delay of X seconds before generating the response. It allows for example to wait for the return of a lamp status before being answered.
 - **Binary conversion** : Converts binary values to open / closed for example (only for binary info type commands).
-- **Authorized users** : Limits interaction to certain users (logins separated by |).
+- **Authorized users** : Limits interaction to certain users (logins separated by \|).
 
 ### Filters tab
 
@@ -127,7 +127,7 @@ In synonyms, we will therefore indicate the name of the command and the synonym 
 
 ![interact008](../images/interact008.png)
 
-We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "*Name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2*" (we can put as many synonym as we want). Then, to add synonyms for another command name, just add a vertical bar after the last synonym "*|*" after which you can again name the command which will have synonyms as for the first part, etc.
+We can see here a somewhat new syntax for synonyms. A command name can have several synonyms, here "on" has the synonym "turn on" and "turn on". The syntax is therefore "*Name of the command*" ***=*** "*synonym 1*"***,*** "*synonym 2*" (we can put as many synonym as we want). Then, to add synonyms for another command name, just add a vertical bar after the last synonym "*\|*" after which you can again name the command which will have synonyms as for the first part, etc.
 
 It&#39;s already better, but it still lacks for the command &quot;on&quot; &quot;input&quot; the &quot;l&quot; and for others the &quot;la&quot; or &quot;le&quot; or &quot;a&quot;, etc. We could change the name of the equipment to add it, it would be a solution, otherwise we can use the variations in the request. This consists of listing a series of possible words at a location in the sentence, Jeedom will therefore generate sentences with these variations.
 
@@ -161,7 +161,7 @@ Binary conversions apply to info type commands whose subtype is binary (returns 
 
 As we can see here, I have kept almost the same structure for the request (it is voluntary to focus on the specifics). Of course, I adapted the synonyms to have something coherent. However, for the answer, it is **imperative** to put only \#valeur\# which represents the 0 or 1 that Jeedom will replace with the following binary conversion.
 
-Field **Binary conversion** must contain 2 answers : first the answer if the value of the command is worth 0, then a vertical bar "|" separation and finally the response if the command is worth 1. Here the answers are simply no and yes but we could put a little longer sentence.
+Field **Binary conversion** must contain 2 answers : first the answer if the value of the command is 0, then a vertical bar "\|" separation and finally the response if the command is worth 1. Here the answers are simply no and yes but we could put a little longer sentence.
 
 > **Warning**
 >
@@ -169,9 +169,9 @@ Field **Binary conversion** must contain 2 answers : first the answer if the val
 
 ### Authorized users
 
-The field "Authorized users" allows to authorize only certain people to execute the command, you can put several profiles by separating them by a "|".
+The "Authorized users" field allows you to authorize only certain people to execute the command, you can put several profiles by separating them with a "\|".
 
-Example : personne1|personne2
+Example : personne1\|personne2
 
 We can imagine that an alarm can be activated or deactivated by a child or a neighbor who would come to water the plants in your absence.
 
@@ -242,11 +242,11 @@ In this example we see a simple sentence that will return an answer with 3 diffe
 
 ![interact017](../images/interact017.png)
 
-This example specifically targets specific equipment which allows for a personalized response. So we could imagine replacing the answer of the example with "no there is no one in the room *julie*|yes there is someone in the room *julie*"
+This example specifically targets specific equipment which allows for a personalized response. So we could imagine replacing the answer of the example with "no there is no one in the room *julie*\|yes there is someone in the room *julie*"
 
 #### Evolution
 
-- So the question is "\#commande\# \[in the |in the\] \#objet\#"
+- So the question is "\#commande\# \[in the \|in the\] \#objet\#"
 - The answer will be "no there is no one in the room" or "yes there is someone in the room"
 - There is no command that responds to that in the Action part since it is a Multiple commands interaction
 - By adding a regular expression, we can clean up the commands that we don&#39;t want to see so that we only have the sentences on the "Presence" commands".
@@ -265,7 +265,7 @@ Here a generic example which is used to know the temperature, humidity, brightne
 
 ![interact019](../images/interact019.png)
 
-- So we can see that a generic sentence like &quot;What is the temperature in the living room&quot; or &quot;What is the brightness of the bedroom&quot; can be converted into : "what is the |l \\ '\] \#commande\# object "(the use of \ [word1 | word2 \] allows you to say this possibility or that to generate all possible variants of the sentence with word1 or word2). When generating Jeedom will generate all possible combinations of sentences with all existing commands (depending on the filters) by replacing \#commande\# by the name of the command and \#objet\# by the name of the object.
+- So we can see that a generic sentence like &quot;What is the temperature in the living room&quot; or &quot;What is the brightness of the bedroom&quot; can be converted into : "what is the \|l \\ '\] \#commande\# object "(the use of \ [word1 \| word2 \] allows you to say this possibility or that to generate all possible variants of the sentence with word1 or word2). When generating Jeedom will generate all possible combinations of sentences with all existing commands (depending on the filters) by replacing \#commande\# by the name of the command and \#objet\# by the name of the object.
 - The answer will be "21 ° C" or "200 lux". Just put : \#valeur\# \#unite\# (the unit is to be completed in the configuration of each command for which we want to have one)
 - This example therefore generates a sentence for all digital info type commands that have a unit, so we can uncheck units in the right filter limited to the type that interests us.
 
@@ -281,7 +281,7 @@ We can also add a Regexp filter to remove some commands. Using the simple exampl
 
 So we can see a regexp :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(batterie\|latence\|pression\|vitesse\|consommation)**
 
 This allows you to delete all commands that have one of these words in their sentence
 

@@ -330,6 +330,7 @@
         "Valeur": "Valore",
         "Utilisée dans": "Usato in",
         "Action": "Azione",
+        "Êtes-vous sûr de vouloir supprimer la variable": "",
         "Dépôt de données supprimé": "I dati sui depositi cancellati",
         "Dépôt de données sauvegardé": "Deposito di dati salvati",
         "Graphique de lien(s)": "Link grafico"
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Link grafici",
         "Bibliotheque d'images": "Libreria di immagini",
         "Objets": "Oggetti",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "",
         "Image supprimée": "Immagine cancellata",
         "Envoyer": "Invia",
         "Image ajoutée": "Immagine aggiunta",
