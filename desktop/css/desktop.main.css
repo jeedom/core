@@ -4157,6 +4157,9 @@ Theme Core 2021 @Jeedom
   #jeedomMenuBar .navbar-nav li ul {
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   }
+  #jeedomMenuBar .navbar-nav li ul li ul {
+    border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius) !important;
+  }
 
   .tab-content {
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;

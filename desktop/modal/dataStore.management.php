@@ -25,7 +25,7 @@ sendVarToJS([
 ?>
 
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
-<a class="btn btn-sm pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+<a class="btn btn-xs pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 <table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
   <thead>
     <tr>
@@ -44,9 +44,17 @@ $(function() {
   var $tableDataStore = $('#table_dataStore')
   initTableSorter()
   refreshDataStoreMangementTable()
+
+  $tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
+  $tableDataStore.trigger('applyWidgets')
+  .trigger('resizableReset')
+  .trigger('sorton', [[[1,0]]])
+
+  /*
   setTimeout(function() {
     $tableDataStore.find('th[data-column="0"]').trigger('sort')
   }, 100)
+  */
 
   $tableDataStore.on({
     'click': function(event) {
@@ -55,7 +63,7 @@ $(function() {
         tr.remove()
         return
       }
-      bootbox.confirm('Êtes-vous sûr de vouloir supprimer la variable <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
+      bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.find('.key').value() + '</span> ?', function(result) {
         if (result) {
           jeedom.dataStore.remove({
             id: tr.attr('data-dataStore_id'),
@@ -110,9 +118,9 @@ $(function() {
     tr += '<td>'
     tr += '</td>'
     tr += '<td>'
-    tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore"><i class="fas fa-check"></i></a>'
-    tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore"><i class="far fa-trash-alt"></i></a>'
-    tr += '<a class="btn btn-default pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>'
+    tr += '<a class="btn btn-info btn-xs bt_graphDataStore"><i class="fas fa-object-group"></i></a> '
+    tr += '<a class="btn btn-success btn-xs bt_saveDataStore"><i class="fas fa-check"></i></a> '
+    tr += '<a class="btn btn-danger btn-xs bt_removeDataStore"><i class="far fa-trash-alt"></i></a> '
     tr += '</td>'
     tr += '</tr>'
     $tableDataStore.find('tbody').prepend(tr)
@@ -131,10 +139,10 @@ $(function() {
         var tr = ''
         for (var i in data) {
           tr += '<tr data-dataStore_id="' + data[i].id + '">'
-          tr += '<td style="min-width:55px;">'
+          tr += '<td>'
           tr += '<span style="display : none;">' + data[i].key + '</span><input class="form-control input-sm key" value="' + data[i].key + '" readonly />'
           tr += '</td>'
-          tr += '<td style="min-width:90px;">'
+          tr += '<td>'
           tr += '<span style="display : none;">' + data[i].value + '</span><input class="form-control input-sm value" value="' + data[i].value + '" />'
           tr += '</td>'
           tr += '<td>'
@@ -151,10 +159,10 @@ $(function() {
             tr += ' <a href="'+data[i].usedBy.interactDef[j]['link']+'" class="btn btn-xs btn-primary">'+data[i].usedBy.interactDef[j]['humanName']+'</a>'
           }
           tr += '</td>'
-          tr += '<td style="min-width:120px; width:120px;">'
-          tr += '<a class="btn btn-success pull-right btn-sm bt_saveDataStore"><i class="fas fa-check"></i></a>'
-          tr += '<a class="btn btn-danger pull-right btn-sm bt_removeDataStore"><i class="far fa-trash-alt"></i></a>'
-          tr += '<a class="btn pull-right btn-sm bt_graphDataStore"><i class="fas fa-object-group"></i></a>'
+          tr += '<td>'
+          tr += '<a class="btn btn-info btn-xs bt_graphDataStore"><i class="fas fa-object-group"></i></a> '
+          tr += '<a class="btn btn-success btn-xs bt_saveDataStore"><i class="fas fa-check"></i></a> '
+          tr += '<a class="btn btn-danger btn-xs bt_removeDataStore"><i class="far fa-trash-alt"></i></a> '
           tr += '</td>'
           tr += '</tr>'
         }
