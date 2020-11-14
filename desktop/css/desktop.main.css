@@ -2199,6 +2199,10 @@ Theme Core 2021 @Jeedom
     letter-spacing: 2px;
   }
 
+  input[readonly] {
+    cursor: alias;
+  }
+
   .form-actions {
     margin-top: 5px;
   }
