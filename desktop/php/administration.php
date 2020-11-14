@@ -253,7 +253,7 @@ user::isBan();
 						<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 							<?php
 							$cache = cache::byKey('hour');
-							$lastKnowDate = $cache->getValue();
+							$lastKnowDate = $cache->getDatetime();
 							?>
 							<span class="label label-info"><?php echo $lastKnowDate ?></span>
 						</div>
