@@ -112,6 +112,7 @@ function loadPage(_url, _noPushHistory) {
   jeedom.scenario.update = []
   printEqLogic = undefined
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
+
   $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
 
   if (_url.indexOf('#') == -1) {
@@ -129,7 +130,6 @@ function loadPage(_url, _noPushHistory) {
     'background-size':'cover'
   })
 
-  //$('#div_pageContainer').add("#div_pageContainer *").off()
   $.clearDivContent('div_pageContainer')
   isEditing = false
   $('body').off('mouseenter mouseleave')
@@ -166,7 +166,7 @@ function loadPage(_url, _noPushHistory) {
         createObserver()
       }
     }
-  }, 750)
+  }, 500)
 
   return
 }
