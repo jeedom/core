@@ -174,8 +174,8 @@ function resetCategoryFilter() {
   $('#categoryfilter .catFilterKey').each(function() {
     $(this).prop("checked", true)
   })
-  $('div.eqLogic-widget, div.scenario-widget').show()
-  $('.div_displayEquipement').packery()
+  $('div.div_object, div.eqLogic-widget, div.scenario-widget').show()
+  $('div.div_displayEquipement').packery()
   $('#dashTopBar button.dropdown-toggle').removeClass('warning')
 }
 
@@ -205,17 +205,23 @@ function filterByCategory() {
   })
 
   if (cats.includes('scenario')) {
-    $('.scenario-widget').show()
+    $('div.scenario-widget').show()
   } else {
-    $('.scenario-widget').hide()
+    $('div.scenario-widget').hide()
   }
 
-  $('.div_displayEquipement').packery()
+  $('#div_displayObject div.div_object').each(function() {
+    $(this).show()
+    if ($(this).find('div.div_displayEquipement > div:visible').length == 0) $(this).hide()
+  })
+
   if (cats.length == $('#categoryfilter .catFilterKey').length) {
     $('#dashTopBar button.dropdown-toggle').removeClass('warning')
   } else {
     $('#dashTopBar button.dropdown-toggle').addClass('warning')
   }
+
+  $('#div_displayObject div.div_displayEquipement').packery()
 }
 
 //Overview preview click or center-click
@@ -293,11 +299,11 @@ function editWidgetMode(_mode,_save) {
     }
     return
   }
-  var divEquipements = $('.div_displayEquipement')
+  var divEquipements = $('div.div_displayEquipement')
   if (_mode == 0) {
     jeedom.cmd.disableExecute = false
     isEditing = false
-    $('#dashTopBar').removeClass('disabled')
+    $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').removeClass('disabled')
     if (!isset(_save) || _save) {
       jeedomUI.saveWidgetDisplay({dashboard : 1})
     }
@@ -316,7 +322,7 @@ function editWidgetMode(_mode,_save) {
     jeedom.cmd.disableExecute = true
     isEditing = true
     resetCategoryFilter()
-    $('#dashTopBar').addClass('disabled')
+    $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
 
     //show orders:
     $('.jeedomAlreadyPosition.ui-draggable').each( function() {

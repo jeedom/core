@@ -330,6 +330,7 @@
         "Valeur": "Wert",
         "Utilisée dans": "Verwendet in",
         "Action": "Aktionen",
+        "Êtes-vous sûr de vouloir supprimer la variable": "Möchten Sie die Variable wirklich löschen?",
         "Dépôt de données supprimé": "Datenrepository gelöscht",
         "Dépôt de données sauvegardé": "Datenrepository gespeichert",
         "Graphique de lien(s)": "Grafik verknüpfen"
@@ -2383,8 +2384,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Optionen",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Möchten Sie diesen Artikel wirklich aktualisieren?",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "Möchten Sie dieses Objekt wirklich löschen?",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "Möchten Sie wirklich aktualisieren:",
+        "Êtes-vous sûr de vouloir supprimer : ": "Sind Sie sicher, dass Sie löschen möchten:",
         "L\\'opération a échoué": "Operation fehlgeschlagen",
         "Mise(s) à jour terminée(s) avec succès.": "Update (s) erfolgreich abgeschlossen",
         "Voulez vous recharger la page maintenant ?": "Möchten Sie die Seite jetzt neu laden?",
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Grafik-Links",
         "Bibliotheque d'images": "Bildbibliothek",
         "Objets": "Objekte",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "Möchten Sie das Bild für dieses Objekt wirklich löschen?",
         "Image supprimée": "Bild gelöscht",
         "Envoyer": "Senden",
         "Image ajoutée": "Bild hinzugefügt",

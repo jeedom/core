@@ -65,7 +65,7 @@ A página de configuração consiste em várias guias e botões :
 - **Réponse** : A resposta para fornecer.
 - **Aguarde antes de responder (s))** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
 - **Conversão binária** : Converte valores binários em abertos / fechados, por exemplo (apenas para comandos do tipo de informações binárias).
-- **Usuários autorizados** : Limita a interação com determinados usuários (logins separados por |).
+- **Usuários autorizados** : Limita a interação a certos usuários (logins separados por \|).
 
 ### Guia Filtros
 
@@ -127,7 +127,7 @@ Nos sinônimos, indicaremos o nome do comando e os sinônimos a serem usados :
 
 ![interact008](../images/interact008.png)
 
-Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome de comando pode ter vários sinônimos, aqui "on" tem o sinônimo "ativar" e "ativar". A sintaxe é, portanto, "*nome do comando*" ***=*** "*sinônimo 1*"***,*** "*sinônimo 2*" (podemos colocar quantos sinónimos quisermos). Em seguida, para adicionar sinônimos para outro nome de comando, basta adicionar uma barra vertical após o último sinônimo "*|*" após o qual você pode novamente nomear o comando que terá sinônimos como para a primeira parte etc.
+Podemos ver aqui uma sintaxe um pouco nova para sinônimos. Um nome de comando pode ter vários sinônimos, aqui "on" tem o sinônimo "ativar" e "ativar". A sintaxe é, portanto, "*nome do comando*" ***=*** "*sinônimo 1*"***,*** "*sinônimo 2*" (podemos colocar quantos sinónimos quisermos). Em seguida, para adicionar sinônimos para outro nome de comando, basta adicionar uma barra vertical após o último sinônimo "*\|*" após o qual você pode novamente nomear o comando que terá sinônimos como para a primeira parte etc.
 
 Já é melhor, mas ainda falta o comando "on" "input" the "l" e para outros o "la" ou "le" ou "a" etc. Poderíamos mudar o nome do equipamento para adicioná-lo, seria uma solução, caso contrário, podemos usar as variações na solicitação. Isso consiste em listar uma série de palavras possíveis em um local da sentença, portanto, o Jeedom irá gerar sentenças com essas variações.
 
@@ -161,7 +161,7 @@ As conversões binárias se aplicam a comandos do tipo info cujo subtipo é bin�
 
 Como podemos ver aqui, mantive quase a mesma estrutura para a solicitação (é voluntário focar nos detalhes). Claro, eu adaptei os sinônimos para ter algo coerente. No entanto, para a resposta, é **imperativo** colocar apenas \#valeur\# que representa o 0 ou 1 que o Jeedom substituirá pela seguinte conversão binária.
 
-O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se o valor do comando vale 0, depois uma barra vertical "|" separação e, finalmente, a resposta se o comando vale 1. Aqui as respostas são simplesmente não e sim, mas poderíamos colocar uma frase um pouco mais longa.
+O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se o valor do comando for 0, então uma barra vertical "\|" separação e, finalmente, a resposta se o comando vale 1. Aqui as respostas são simplesmente não e sim, mas poderíamos colocar uma frase um pouco mais longa.
 
 > **Aviso**
 >
@@ -169,9 +169,9 @@ O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se
 
 ### Usuários autorizados
 
-O campo "Usuários autorizados" permite autorizar apenas determinadas pessoas a executar o comando. Você pode colocar vários perfis, separando-os por um "|".
+O campo "Usuários autorizados" permite que você autorize apenas certas pessoas a executar o comando, você pode colocar vários perfis, separando-os com um "\|".
 
-Exemplo : personne1|personne2
+Exemplo : personne1\|personne2
 
 Podemos imaginar que um alarme pode ser ativado ou desativado por uma criança ou um vizinho que viria a regar as plantas na sua ausência.
 
@@ -242,11 +242,11 @@ Neste exemplo, vemos uma frase simples que retornará uma resposta com três tem
 
 ![interact017](../images/interact017.png)
 
-Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *julie*|sim tem alguém na sala *julie*"
+Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *julie*\|sim tem alguém na sala *julie*"
 
 #### Evolution
 
-- Então a pergunta é "\#commande\# \ [no |no \] \#objet\#"
+- Então a pergunta é "\#commande\# \[no \|no \] \#objet\#"
 - A resposta será "não, não há ninguém na sala" ou "sim, há alguém na sala"
 - Não há nenhum comando que responda a isso na parte Ação, pois é uma interação de Vários Comandos
 - Ao adicionar uma expressão regular, podemos limpar os comandos que não queremos ver, para ter apenas as frases nos comandos "Presença"".
@@ -265,7 +265,7 @@ Aqui está um exemplo genérico usado para conhecer a temperatura, umidade e bri
 
 ![interact019](../images/interact019.png)
 
-- Assim, podemos ver que uma frase genérica como "Qual é a temperatura na sala de estar" ou "Qual é o brilho do quarto" pode ser convertida em : "o que é \ |l \\ '\] \#commande\# objeto "(o uso de \ [word1 | word2 \] permite que você diga essa possibilidade ou que gere todas as variantes possíveis da frase com a palavra1 ou a palavra2). Ao gerar o Jeedom, todas as combinações possíveis de frases serão geradas com todos os comandos existentes (dependendo dos filtros) substituindo \#commande\# pelo nome do comando e \#objet\# pelo nome do objeto.
+- Assim, podemos ver que uma frase genérica como "Qual é a temperatura na sala de estar" ou "Qual é o brilho do quarto" pode ser convertida em : "o que é \|l \\ '\] \#commande\# objeto "(o uso de \ [palavra1 \| word2 \] permite que você diga essa possibilidade ou que gere todas as variantes possíveis da frase com a palavra1 ou a palavra2). Ao gerar o Jeedom, todas as combinações possíveis de frases serão geradas com todos os comandos existentes (dependendo dos filtros) substituindo \#commande\# pelo nome do comando e \#objet\# pelo nome do objeto.
 - A resposta será "21 ° C" ou "200 lux". Basta colocar : \#valeur\# \#unite\# (a unidade deve ser concluída na configuração de cada comando para o qual queremos ter um)
 - Portanto, este exemplo gera uma sentença para todos os comandos do tipo de informação digital que possuem uma unidade, para que possamos desmarcar as unidades no filtro certo, limitadas ao tipo que nos interessa.
 
@@ -281,7 +281,7 @@ Também podemos adicionar um filtro Regexp para remover alguns comandos. Usando 
 
 Então podemos ver uma regexp :
 
-**(batterie|latence|pression|vitesse|consommation)**
+**(batterie\|latence\|pression\|vitesse\|consommation)**
 
 Isso permite que você exclua todos os comandos que possuem uma dessas palavras em suas frases
 

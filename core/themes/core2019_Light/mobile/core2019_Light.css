@@ -113,9 +113,7 @@ a.action.ui-btn {
 .ui-slider-track .ui-slider-handle {
 	background-color: var(--link-color) !important;
 }
-.ui-slider-handle:hover {
-	background-color: var(--linkHover-color) !important;
-}
+
 /* ___________________________________________________________GAUGES */
 .shuttergauge-value {
 	background: var(--link-color);

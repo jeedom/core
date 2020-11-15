@@ -330,6 +330,7 @@
         "Valeur": "Value",
         "Utilisée dans": "Used in",
         "Action": "Action",
+        "Êtes-vous sûr de vouloir supprimer la variable": "Are you sure you want to delete the variable",
         "Dépôt de données supprimé": "Data repository deleted",
         "Dépôt de données sauvegardé": "Data repository saved",
         "Graphique de lien(s)": "Link graphic"
@@ -2383,8 +2384,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Options",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "Are you sure you want to update this item?",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "Are you sure you want to delete this object?",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "Are you sure you want to update:",
+        "Êtes-vous sûr de vouloir supprimer : ": "Are you sure you want to delete:",
         "L\\'opération a échoué": "Operation failed",
         "Mise(s) à jour terminée(s) avec succès.": "Update (s) completed successfully",
         "Voulez vous recharger la page maintenant ?": "Do you want to reload the page now?",
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Links chart",
         "Bibliotheque d'images": "Picture library",
         "Objets": "Objects",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "Are you sure you want to delete the image for this object?",
         "Image supprimée": "Picture deleted",
         "Envoyer": "Send",
         "Image ajoutée": "Image added",

@@ -235,6 +235,13 @@ try {
 		$object->setImage('sha512', '');
 		$object->save();
 		@rrmdir(__DIR__ . '/../../core/img/object');
+
+		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/'.$file);
+			}
+		}
 		ajax::success();
 	}
 
@@ -247,7 +254,7 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		if(init('file') == ''){
+		if (init('file') == '') {
 			if (!isset($_FILES['file'])) {
 				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 			}
@@ -259,13 +266,13 @@ try {
 				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
 			}
 			$upfilepath = $_FILES['file']['tmp_name'];
-		}else{
+		} else {
 			$extension = strtolower(strrchr(init('file'), '.'));
 			$upfilepath = init('file');
 		}
 		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
 
-		if(count($files)  > 0){
+		if (count($files)  > 0) {
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/object/'.$file);
 			}
@@ -275,7 +282,7 @@ try {
 		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
 		$filepath = __DIR__ . '/../../data/object/' . $filename;
 		file_put_contents($filepath,file_get_contents($upfilepath));
-		if(!file_exists($filepath)){
+		if (!file_exists($filepath)) {
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
 		$object->save();

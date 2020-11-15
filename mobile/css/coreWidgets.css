@@ -51,6 +51,7 @@ Mobile WebApp
   }
   .ui-slider-track .ui-btn.ui-slider-handle {
     margin-top: -9px;
+    touch-action: none;
   }
   .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
     position: absolute;
@@ -123,7 +124,7 @@ Mobile WebApp
     height: 16px;
     width: 16px;
     left: 4px;
-    bottom: 2px;
+    bottom: 1.8px;
     background-color: var(--link-color);
     transition: .4s;
   }
@@ -142,6 +143,9 @@ Mobile WebApp
   }
   [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--bt-success-color);
+  }
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch input:checked + span.binarySwitch:before {
+    background-color: var(--btnEq-default-color) !important;
   }
 
 /* ____________________others */

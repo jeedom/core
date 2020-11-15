@@ -330,6 +330,7 @@
         "Valeur": "Nilai",
         "Utilisée dans": "Digunakan dalam",
         "Action": "Tindakan",
+        "Êtes-vous sûr de vouloir supprimer la variable": "",
         "Dépôt de données supprimé": "Deposit dihapus Data",
         "Dépôt de données sauvegardé": "Deposit dari data yang disimpan",
         "Graphique de lien(s)": ""
@@ -2383,8 +2384,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "Pilihan",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "",
+        "Êtes-vous sûr de vouloir supprimer : ": "",
         "L\\'opération a échoué": "Operasi L \\' gagal",
         "Mise(s) à jour terminée(s) avec succès.": "",
         "Voulez vous recharger la page maintenant ?": "",
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "Link grafis",
         "Bibliotheque d'images": "",
         "Objets": "Item",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "",
         "Image supprimée": "Gambar dihapus",
         "Envoyer": "Kirim",
         "Image ajoutée": "",

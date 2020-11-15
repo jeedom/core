@@ -77,6 +77,10 @@ Theme Core 2021 @Jeedom
     white-space: pre;
   }
 
+  .disabled {
+    pointer-events: none;
+  }
+
 /* ______Main */
   .center {
     text-align: center;
@@ -161,6 +165,7 @@ Theme Core 2021 @Jeedom
     min-height: 50px;
     height: 50px;
     z-index: 100;
+    outline: 3px solid rgb(var(--bg-color));
   }
   #jeedomMenuBar:hover {
     z-index: 50000;
@@ -205,6 +210,14 @@ Theme Core 2021 @Jeedom
   }
   .dropdown-menu {
     z-index: 10 !important;
+  }
+  .dropdown-menu > li > a {
+    color: var(--link-color)
+  }
+  .dropdown-menu > li > a:focus,
+  .dropdown-menu > li > a:hover {
+    color: var(--link-color) !important;
+    background-color: var(--form-bg-color);
   }
 
   /* hamburger */
@@ -267,7 +280,8 @@ Theme Core 2021 @Jeedom
     margin-top: -30px;
     left: calc(100% - 5px);
   }
-  #jeedomMenuBar ul.navbar-nav .divider {
+  #jeedomMenuBar ul.navbar-nav .divider,
+  .dropdown-menu .divider {
     background-color: var(--el-defaultColor) !important;
     height: 1px;
     margin: 9px 0;
@@ -322,8 +336,10 @@ Theme Core 2021 @Jeedom
       border-left-color: var(--txt-color);
       margin-top: -12px;
     }
-    #jeedomMenuBar ul.navbar-nav .fa-caret-square-down {
-      display: none;
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover,
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover > a{
+      color: var(--link-color) !important;
+      background-color: var(--form-bg-color);
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li:hover > ul {
       display: block !important;
@@ -350,7 +366,10 @@ Theme Core 2021 @Jeedom
       font-size: 10px;
     }
     #jeedomMenuBar ul.navbar-nav li ul li label.drop-icon {
-      margin-right: 0;
+      position: relative;
+      top: -15px;
+      float: right;
+      right: -5px;
       color: var(--txt-color);
     }
     #jeedomMenuBar ul.navbar-nav .caret {
@@ -939,18 +958,18 @@ Theme Core 2021 @Jeedom
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 54px;
-    text-align: right;
   }
   .objectPreview > .bottomPreview > .resume {
-    position: absolute;
-    right: 6px;
-    bottom: 5px;
-    text-align: right;
     max-width: 100%;
     margin-right: 8px !important;
   }
 
+  .objectPreview > .bottomPreview > .resume > span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-end;
+  }
 
   .objectPreview .objectSummaryParent,
   .objectPreview .objectSummaryParent i {
@@ -2178,6 +2197,10 @@ Theme Core 2021 @Jeedom
   input.inputPassword  {
     font-family: "text-security-disc" !important;
     letter-spacing: 2px;
+  }
+
+  input[readonly] {
+    cursor: alias;
   }
 
   .form-actions {
@@ -4137,6 +4160,9 @@ Theme Core 2021 @Jeedom
 
   #jeedomMenuBar .navbar-nav li ul {
     border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+  }
+  #jeedomMenuBar .navbar-nav li ul li ul {
+    border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius) !important;
   }
 
   .tab-content {

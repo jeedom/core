@@ -162,6 +162,7 @@ Desktop
     border-radius: 8px !important;
     background-color: var(--link-color) !important;
     cursor: pointer !important;
+    touch-action: none;
   }
   .ui-slider-handle:active,
   .ui-slider-handle:focus,
@@ -205,12 +206,12 @@ Desktop
     border-radius: 2px !important;
   }
   .ui-slider.ui-slider-vertical .ui-slider-range {
-    left: -1px;
-    width: 6px;
+    left: -0.5px;
+    width: 4.7px;
   }
   .ui-slider.ui-slider-horizontal .ui-slider-range {
-    top: -1px;
-    height: 6px;
+    top: -0.5px;
+    height: 4.7px;
   }
 
   .sliderValue {
@@ -349,6 +350,9 @@ Desktop
   }
   [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--bt-success-color);
+  }
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch input:checked + span.binarySwitch:before {
+    background-color: var(--btnEq-default-color) !important;
   }
 
 /* ____________________others */

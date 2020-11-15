@@ -330,6 +330,7 @@
         "Valeur": "値",
         "Utilisée dans": "で使用される",
         "Action": "アクション",
+        "Êtes-vous sûr de vouloir supprimer la variable": "",
         "Dépôt de données supprimé": "データリポジトリを削除しました",
         "Dépôt de données sauvegardé": "データリポジトリを保存しました",
         "Graphique de lien(s)": "リンク画像"
@@ -2383,8 +2384,8 @@
     },
     "desktop\/js\/update.js": {
         "Options": "オプション",
-        "Êtes-vous sûr de vouloir mettre à jour cet objet ?": "このアイテムを更新してもよろしいですか？",
-        "Êtes-vous sûr de vouloir supprimer cet objet ?": "このオブジェクトを削除してもよろしいですか？",
+        "Êtes-vous sûr de vouloir mettre à jour : ": "",
+        "Êtes-vous sûr de vouloir supprimer : ": "",
         "L\\'opération a échoué": "操作に失敗しました",
         "Mise(s) à jour terminée(s) avec succès.": "",
         "Voulez vous recharger la page maintenant ?": "",
@@ -2758,6 +2759,7 @@
         "Graphique des liens": "グラフィックリンク",
         "Bibliotheque d'images": "画像ライブラリ",
         "Objets": "オブジェクト",
+        "Êtes-vous sûr de vouloir supprimer l\\'image de cet objet ?": "",
         "Image supprimée": "削除された画像",
         "Envoyer": "送ります",
         "Image ajoutée": "画像を追加しました",

@@ -1,23 +1,20 @@
 "use strict"
 
-var nbActiveAjaxRequest = 0
-$(document).ajaxStart(function() {
-  nbActiveAjaxRequest++
-  $.showLoading()
-})
-
-$(document).ajaxStop(function() {
-  nbActiveAjaxRequest--
-  if (nbActiveAjaxRequest <= 0) {
-    nbActiveAjaxRequest = 0
-    $.hideLoading()
-  }
+$(function() {
+  $(document)
+    .ajaxStart(function () {
+        $.showLoading()
+    })
+    .ajaxStop(function () {
+        $.hideLoading()
+    })
 })
 
 window.addEventListener('error', function(event) {
   $.hideLoading()
 })
 
+//allow shortcut as app:
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
@@ -486,9 +483,9 @@ function page(_page, _title, _option, _plugin, _dialog) {
     PAGE_HISTORY.push({page : _page, title : _title,option : _option, plugin : _plugin})
   }
 
+  $.showLoading()
   $('#searchContainer').hide()
   setBackgroundImage('')
-  $.showLoading()
   try {
     $('#bottompanel').panel('close')
     $('#bottompanel_mainoption').panel('close')
@@ -537,7 +534,6 @@ function page(_page, _title, _option, _plugin, _dialog) {
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
   }
-
 
   if (isset(_dialog) && _dialog) {
     $('#popupDialog .content').load(page, function() {
@@ -598,6 +594,10 @@ function page(_page, _title, _option, _plugin, _dialog) {
       $('#page').fadeIn(400)
     })
   }
+
+  setTimeout(function() {
+    if ($.active == 0) $.hideLoading()
+  }, 1500)
 }
 
 function modal(_name) {
