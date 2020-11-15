@@ -133,7 +133,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				)),
 				'heatPiloteWireQubino' => array('template' => 'tmplmultistate',
 				'test' => array(
-					array('operation' => '#value# >= 51 && #value# <= 99','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
+					array('operation' => '#value# >= 51 && #value# <= 255','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
 					array('operation' => '#value# >= 41 && #value# <= 50','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
 					array('operation' => '#value# >= 31 && #value# <= 40','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
 					array('operation' => '#value# >= 21 && #value# <= 30','state_light' => '<i class=\'icon jeedom-pilote-eco\'></i>'),
@@ -143,7 +143,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'timeHeatPiloteWireQubino' => array('template' => 'tmplmultistate',
 				'replace' => array('#_time_widget_#' => '1'),
 				'test' => array(
-					array('operation' => '#value# >= 51 && #value# <= 99','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
+					array('operation' => '#value# >= 51 && #value# <= 255','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i>'),
 					array('operation' => '#value# >= 41 && #value# <= 50','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-1</sup>'),
 					array('operation' => '#value# >= 31 && #value# <= 40','state_light' => '<i class=\'icon jeedom-pilote-conf\'></i><sup style=\'font-size: 0.3em; margin-left: 1px\'>-2</sup>'),
 					array('operation' => '#value# >= 21 && #value# <= 30','state_light' => '<i class=\'icon jeedom-pilote-eco\'></i>'),

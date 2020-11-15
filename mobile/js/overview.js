@@ -2,7 +2,6 @@
 
 $('body').attr('data-page', 'overview')
 
-var _SummaryObserver_ = null
 function initOverview() {
   jeedom.object.all({
     error: function(error) {
@@ -83,7 +82,7 @@ function colorizeSummary() {
 }
 
 function createSummaryObserver() {
-  _SummaryObserver_ = new MutationObserver(function(mutations) {
+  var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type == 'childList' && mutation.target.className == 'resume') {
         try {
