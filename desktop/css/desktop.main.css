@@ -2057,7 +2057,9 @@ Theme Core 2021 @Jeedom
   #in_testExpression {
     font-size: 14px !important;
   }
-
+  #table_removeHistory tr > td > i {
+    margin-right: 10px;
+  }
 
 /* ____________________PANELS */
   .eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
