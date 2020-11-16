@@ -46,13 +46,15 @@ setTimeout(function() {
     matchBrackets: true,
     viewportMargin: Infinity
   })
-  var hmenu = $('header.navbar').height()
-  var hcontainer = $('#div_pageContainer').height()
-  var hwin = $(window).height()
-  contentHeight = hwin - (hmenu + hcontainer) + 300
-  editorDesktopJS.setSize(null, contentHeight)
-  editorDesktopCSS.setSize(null, contentHeight)
-}, 1)
+
+  var $tabContainer = $('#div_pageContainer .tab-content')
+  $(window).resize(function() {
+    editorDesktopJS.setSize(null, $tabContainer.height() - 50)
+    editorDesktopCSS.setSize(null, $tabContainer.height() - 50)
+  })
+  $(window).resize()
+
+}, 250)
 
  $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
   if (editorMobileCSS == null) {
