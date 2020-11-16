@@ -172,20 +172,20 @@ usort($list, function ($a, $b) {
 						$influxEnable = $cmd->getConfiguration('influx::enable',false);
 						if ($timelineEnable || $pushEnable != '' || $influxEnable) {
 							$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>';
-							if ($timelineEnable){
+							if ($timelineEnable) {
 								$folder= '';
 								if ($cmd->getConfiguration('timeline::folder','') != '') {
-									$folder = ' sur le folder ' . $cmd->getConfiguration('timeline::folder','');
+									$folder = ' {{sur le folder}} ' . $cmd->getConfiguration('timeline::folder','');
 								}
 								$div .= '<div>- {{Timeline active}}' . $folder . '</div>';
 							}
-							if ($influxEnable){
+							if ($influxEnable) {
 								$nameCmd = $cmd->getName();
 								$nameEqLogic = $eqLogic->getName();
-								if ($cmd->getConfiguration('influx::namecmd','') != ''){
+								if ($cmd->getConfiguration('influx::namecmd','') != '') {
 									$nameCmd = $cmd->getConfiguration('influx::namecmd');
 								}
-								if ($cmd->getConfiguration('influx::nameEq','') != ''){
+								if ($cmd->getConfiguration('influx::nameEq','') != '') {
 									$nameEqLogic = $cmd->getConfiguration('influx::nameEq');
 								}
 								$div .= '<div>- {{Influx actif : }}' . $nameCmd . '-' . $nameEqLogic.'</div>';
