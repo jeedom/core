@@ -20,7 +20,7 @@ var editorDesktopJS = null
 var editorDesktopCSS = null
 var editorMobileJS = null
 var editorMobileCSS = null
-var contentHeight = 0
+var $tabContainer = $('#div_pageContainer .tab-content')
 
 jeedom.config.load({
   configuration: $('#div_spanAlertMessage').getValues('.configKey:not(.noSet)')[0],
@@ -46,25 +46,17 @@ setTimeout(function() {
     matchBrackets: true,
     viewportMargin: Infinity
   })
-
-  var $tabContainer = $('#div_pageContainer .tab-content')
   $(window).resize(function() {
     editorDesktopJS.setSize(null, $tabContainer.height() - 50)
     editorDesktopCSS.setSize(null, $tabContainer.height() - 50)
+    if (editorMobileJS) editorMobileJS.setSize(null, $tabContainer.height() - 50)
+    if (editorMobileCSS) editorMobileCSS.setSize(null, $tabContainer.height() - 50)
   })
   $(window).resize()
 
 }, 250)
 
- $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
-  if (editorMobileCSS == null) {
-    editorMobileCSS = CodeMirror.fromTextArea(document.getElementById("ta_cssMobileContent"), {
-      lineNumbers: true,
-      mode: "text/css",
-      matchBrackets: true,
-      viewportMargin: Infinity
-    })
-  }
+$('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
   if (editorMobileJS == null) {
     editorMobileJS = CodeMirror.fromTextArea(document.getElementById("ta_jsMobileContent"), {
       lineNumbers: true,
@@ -73,8 +65,16 @@ setTimeout(function() {
       viewportMargin: Infinity
     })
   }
-   editorMobileCSS.setSize(null, contentHeight)
-   editorMobileJS.setSize(null, contentHeight)
+  if (editorMobileCSS == null) {
+    editorMobileCSS = CodeMirror.fromTextArea(document.getElementById("ta_cssMobileContent"), {
+      lineNumbers: true,
+      mode: "text/css",
+      matchBrackets: true,
+      viewportMargin: Infinity
+    })
+  }
+  editorMobileJS.setSize(null, $tabContainer.height() - 50)
+  editorMobileCSS.setSize(null, $tabContainer.height() - 50)
 })
 
  $('.saveCustom').on('click', function() {
