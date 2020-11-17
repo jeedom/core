@@ -3708,6 +3708,9 @@ Theme Core 2021 @Jeedom
   }
 
   /* view data table */
+  #table_addViewData .graphDataOption {
+    width: 30px;
+  }
   .highcharts-data-table {
     width: 100%;
     max-width: 100%;
