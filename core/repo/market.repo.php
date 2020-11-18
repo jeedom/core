@@ -382,7 +382,7 @@ class repo_market {
 				));
 				$request_http->setPost(json_encode($data));
 				try {
-					$request_http->exec(10,1);
+					$request_http->exec(30,1);
 				} catch (\Exception $e) {
 					
 				}
