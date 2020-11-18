@@ -385,7 +385,7 @@ class repo_market {
 				));
 				$request_http->setPost(json_encode($data));
 				try {
-					$result = json_decode($request_http->exec(10,1),true);
+					$result = json_decode($request_http->exec(30,1),true);
 					if($result['state'] != 'ok'){
 						log::add('monitoring_cloud','debug',__('Erreur sur le monitoring cloud :',__FILE__).' '.json_encode($result));
 					}
