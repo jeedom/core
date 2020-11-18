@@ -57,7 +57,7 @@ Der Motor wird in den folgenden Tabellen angezeigt :
 - Die **Gerät** mit diesem Plugin.
 - Die **Befehle** mit diesem Plugin.
 
-## Nach Wert
+## Durch Wort
 
 Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit *Geben Sie ein* oder mit der Taste *Suchen nach*.
 
@@ -73,6 +73,20 @@ Der Motor wird in den folgenden Tabellen angezeigt :
 	Suche in Feldern *Name*, *logische ID*, *eqType*, *generic_type*, .
 - Die **Hinweis** mit dieser Zeichenfolge.
 	Notizen Textsuche.
+
+## Nach ID
+
+Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validieren mit *Geben Sie ein* oder mit der Taste *Suchen nach*.
+
+Der Motor wird in den folgenden Tabellen angezeigt :
+
+- Die **Szenario** mit dieser ID.
+- Die **Design** mit dieser ID.
+- Die **Ansicht** mit dieser ID.
+- L'**Interaktion** mit dieser ID.
+- L'**Gerät** mit dieser ID.
+- Die **Befehl** mit dieser ID.
+- Die **Notiz** mit dieser ID.
 
 ## Ergebnisse
 

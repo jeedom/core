@@ -57,7 +57,7 @@ El motor se mostrará en las tablas a continuación :
 - La **Dispositivos** usando este complemento.
 - La **Comandos** usando este complemento.
 
-## Por valor
+## Por palabra
 
 Ingrese una cadena de caracteres en el campo de búsqueda. Validar con *Entrar* o con el botón *Buscar*.
 
@@ -73,6 +73,20 @@ El motor se mostrará en las tablas a continuación :
 	Buscar en campos *nombre*, *Id. lógico*, *eqType*, *tipo_genérico*, .
 - La **Notas** usando esta cuerda.
 	Búsqueda de texto de notas.
+
+## Por ID
+
+Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con *Entrar* o con el botón *Buscar*.
+
+El motor se mostrará en las tablas a continuación :
+
+- El **Escenario** tener esta identificación.
+- El **Diseño** tener esta identificación.
+- El **Vista** tener esta identificación.
+- L'**Interacción** tener esta identificación.
+- L'**Dispositivos** tener esta identificación.
+- El **Comando** tener esta identificación.
+- El **Nota** tener esta identificación.
 
 ## Resultados
 
