@@ -5,8 +5,8 @@ if (!isConnect('admin')) {
 global $CONFIG;
 ?>
 
-<div id="div_rowSystemCommand" class="row row-overflow">
-  <div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
+<div id="div_rowSystemCommand" class="row">
+  <div class="col-lg-2 col-md-3 col-sm-4" style="height: calc(100vh - 60px); overflow: hidden auto;">
     <div class="bs-sidebar">
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlHistory'></ul>
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSqlRequest'>
@@ -20,7 +20,7 @@ global $CONFIG;
       </ul>
     </div>
   </div>
-  <div class="col-lg-10 col-md-9 col-sm-8">
+  <div class="col-lg-10 col-md-9 col-sm-8" style="height: calc(100vh - 150px); padding-right: 0 !important; padding-top: 5px;">
     <div class="alert alert-info" id="h3_executeCommand">{{Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous}}</div>
     <div class="input-group">
       <input id="in_specificCommand" class="form-control" />
@@ -28,7 +28,7 @@ global $CONFIG;
         <a id="bt_validateSpecifiCommand" class="btn btn-warning"><i class="fas fa-check"></i> {{OK}}</a>
       </div>
     </div>
-    <div id="div_commandResult"></div>
+    <div id="div_commandResult" style="height: 100%; overflow: auto; margin-top: 5px;"></div>
   </div>
 </div>
 

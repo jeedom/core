@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
 ?>
 
 <div id="div_rowSystemCommand" class="row row-overflow">
-  <div class="col-lg-2 col-md-3 col-sm-4" style="overflow-y:auto;overflow-x:hidden;">
+  <div class="col-lg-2 col-md-3 col-sm-4" style="overflow: hidden auto;">
     <div class="bs-sidebar">
       <ul class="nav nav-list bs-sidenav list-group" id='ul_listSystemHistory'></ul>
       <ul class="nav nav-list bs-sidenav list-group">
@@ -35,7 +35,7 @@ if (!isConnect('admin')) {
       </ul>
     </div>
   </div>
-  <div class="col-lg-10 col-md-9 col-sm-8" style="overflow-y:hidden;overflow-x:hidden;">
+  <div class="col-lg-10 col-md-9 col-sm-8" style="overflow: hidden auto">
     <div class="alert alert-info" id="h3_executeCommand">{{Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous}}</div>
     <div class="input-group">
       <input id="in_specificCommand" class="form-control roundedLeft" />
@@ -43,7 +43,7 @@ if (!isConnect('admin')) {
         <a id="bt_validateSpecifiCommand" class="btn btn-warning roundedRight"><i class="fas fa-check"></i> {{OK}}</a>
       </div>
     </div>
-    <pre id="pre_commandResult" style="height : calc(100% - 110px);width:100%;margin-top:5px;"></pre>
+    <pre id="pre_commandResult" style="height: calc(100% - 110px); width: 100%; margin-top: 5px;"></pre>
   </div>
 </div>
 
