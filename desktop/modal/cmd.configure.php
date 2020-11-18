@@ -25,7 +25,8 @@ if (!is_object($cmd)) {
 global $JEEDOM_INTERNAL_CONFIG;
 sendVarToJS([
   'cmdInfo' => jeedom::toHumanReadable(utils::o2a($cmd)),
-  'cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName()))
+  'cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName())),
+  'cmdInfoString' => $cmd->getHumanName()
 ]);
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
 $cmd_widgetMobile = cmd::availableWidget('mobile');
@@ -212,7 +213,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                    <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
                    <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
                 </div>
-              </div>  
+              </div>
               <?php }?>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
@@ -1017,7 +1018,7 @@ $('#bt_cmdConfigureReplaceMeBy').off('click').on('click',function() {
   jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function(result) {
     var target_id = result.cmd.id
     var name = result.human
-    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+cmdInfo.name+'</strong> {{par}} <strong>'+name+'</strong> ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+cmdInfoString+'</strong> {{par}} : <br/><strong>'+name+'</strong> ?', function(result) {
       if (result) {
         jeedom.cmd.replaceCmd({
           source_id : cmdInfo.id,
@@ -1038,7 +1039,7 @@ $('#bt_cmdConfigureReplaceByMe').off('click').on('click',function() {
   jeedom.cmd.getSelectModal({cmd: {type: cmdInfo.type, subType: cmdInfo.subType}}, function(result) {
     var target_id = result.cmd.id
     var name = result.human
-    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer l\'ID}} <strong>'+name+'</strong> {{par}} : <br/><strong>'+cmdInfoString+'</strong> ?', function(result) {
       if (result) {
         jeedom.cmd.replaceCmd({
           source_id : target_id,
@@ -1060,7 +1061,7 @@ $('#bt_cmdConfigureReplaceIdByMe').off('click').on('click',function() {
   if (target_id == null) {
     return
   }
-  bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer}} <strong>'+target_id+'</strong> {{par}} <strong>'+cmdInfo.name+'</strong> ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir remplacer la commande}} id : <strong>'+target_id+'</strong> {{par}} : <br/><strong>'+cmdInfoString+'</strong> ?', function(result) {
     if (result) {
       jeedom.cmd.replaceCmd({
         source_id : target_id,
