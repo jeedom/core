@@ -424,7 +424,6 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   $(this).dialog("close")
                 }
               buttons[validateButtonText] = function() {
-                  conso
                   var tr = $('#table_addViewData tbody tr').first()
                   var options = []
                   while (tr.attr('data-link_id') != undefined) {
