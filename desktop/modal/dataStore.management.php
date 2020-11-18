@@ -47,7 +47,7 @@ $(function() {
   $tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
   $tableDataStore.trigger('applyWidgets')
     .trigger('resizableReset')
-    .trigger('sorton', [[[1,0]]])
+    .trigger('sorton', [[[0,0]]])
 
   $tableDataStore.on({
     'click': function(event) {

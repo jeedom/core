@@ -212,7 +212,34 @@ function jeedom_displayObjectGroup($object=-1) {
 						$tr .= $remove['date'];
 						$tr .= '</td>';
 						$tr .= '<td>';
-						$tr .= $remove['type'];
+						switch ($remove['type']) {
+							case 'cmd':
+								$tr .= '<i class="fas fa-terminal"></i> '.$remove['type'];
+								break;
+							case 'eqLogic':
+								$tr .= '<i class="fas fa-cog"></i> '.$remove['type'];
+								break;
+							case 'object':
+								$tr .= '<i class="far fa-object-group"></i> '.$remove['type'];
+								break;
+							case 'scenario':
+								$tr .= '<i class="fas fa-cogs"></i> '.$remove['type'];
+								break;
+							case 'plan':
+								$tr .= '<i class="fas fa-paint-brush"></i> '.$remove['type'];
+								break;
+							case 'plan3d':
+								$tr .= '<i class="fas fa-cubes"></i> '.$remove['type'];
+								break;
+							case 'view':
+								$tr .= '<i class="far fa-image"></i> '.$remove['type'];
+								break;
+							case 'user':
+								$tr .= '<i class="fas fa-users"></i> '.$remove['type'];
+								break;
+							default:
+								$tr .= $remove['type'];
+						}
 						$tr .= '</td>';
 						$tr .= '<td>';
 						$tr .= $remove['id'];

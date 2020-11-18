@@ -870,7 +870,7 @@
         "Escalier": "Steps",
         "Empiler": "Stack",
         "Variation": "Variation",
-        "Echelle": "Ladder"
+        "Echelle": "Scale"
     },
     "desktop\/modal\/interact.query.display.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2134,7 +2134,7 @@
         "Equipements en alerte": "Equipment on alert",
         "Actions définies": "Defined actions",
         "Alertes définies": "Defined alerts",
-        "Push définis": "Push defined",
+        "Push définis": "Defined pushes",
         "Commandes orphelines": "Orphan commands",
         "Rechercher": "Search",
         "Aucun équipement en Alerte.": "No equipment on alert",
@@ -2150,6 +2150,7 @@
         " avec code": "with code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Action confirmation code",
+        "sur le folder": "on the folder",
         "Timeline active": "Active timeline",
         "Influx actif : ": "Active influx:",
         "Push actif sur : ": "Push active on:",
@@ -2630,6 +2631,8 @@
         "Paramètres d\\'affichage": "Display settings",
         "Configuration du composant": "Component configuration",
         "Configuration avancée": "Advanced configuration",
+        "Annuler": "Cancel",
+        "Valider": "Validate",
         "Supprimer": "Delete",
         "Dupliquer": "Duplicate",
         "Verrouiller": "Lock",

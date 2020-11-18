@@ -112,6 +112,7 @@ function loadPage(_url, _noPushHistory) {
   jeedom.scenario.update = []
   printEqLogic = undefined
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
+
   $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
 
   if (_url.indexOf('#') == -1) {
@@ -129,7 +130,6 @@ function loadPage(_url, _noPushHistory) {
     'background-size':'cover'
   })
 
-  //$('#div_pageContainer').add("#div_pageContainer *").off()
   $.clearDivContent('div_pageContainer')
   isEditing = false
   $('body').off('mouseenter mouseleave')
@@ -166,7 +166,7 @@ function loadPage(_url, _noPushHistory) {
         createObserver()
       }
     }
-  }, 750)
+  }, 500)
 
   return
 }
@@ -557,6 +557,7 @@ function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
       window.open(url).focus()
     } else {
+      $(_modal).dialog('close')
       $(_modal).dialog({title: _title}).load('index.php?v=d&modal='+_uri).dialog('open')
     }
   })

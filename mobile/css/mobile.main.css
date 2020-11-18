@@ -567,6 +567,9 @@ p.state {
 }
 
 /* top bar */
+.ui-header {
+  z-index: 100000 !important;
+}
 .ui-header > .ui-btn {
   color: var(--txt-color) !important;
 }

@@ -16,7 +16,6 @@
 
 "use strict"
 
-var _SummaryObserver_ = null
 var $summaryContainer = null
 var modal = null
 var modalContent = null
@@ -41,10 +40,7 @@ $(function() {
   colorizeSummary()
   checkResumeEmpty()
   $('.resume').show()
-  setTimeout(function(){
-    createSummaryObserver()
-  }, 500)
-
+  createSummaryObserver()
 })
 
 function checkResumeEmpty() {
@@ -71,7 +67,7 @@ function colorizeSummary() {
 }
 
 function createSummaryObserver() {
-  _SummaryObserver_ = new MutationObserver(function(mutations) {
+  var _SummaryObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type == 'childList' && mutation.target.className == 'resume') {
         try {
@@ -179,7 +175,7 @@ $('.objectPreview .name').off('mouseup').on('mouseup', function (event) {
   }
 })
 
-//Dialog suammry opening:
+//Dialog summary opening:
 $("#md_overviewSummary").dialog({
   closeText: '',
   autoOpen: false,
@@ -189,6 +185,11 @@ $("#md_overviewSummary").dialog({
   position: {my: 'left top', at: 'left+19 top+96', of: window},
   open: function() {
     $('.ui-widget-overlay.ui-front').css('display', 'none')
+    //catch infos updates by main mutationobserver (loadpage disconnect/reconnect it):
+    if (__OBSERVER__) {
+      var summaryModal = document.getElementById('summaryEqlogics')
+      __OBSERVER__.observe(summaryModal, _observerConfig_)
+    }
   },
   beforeClose: function(event, ui) {
     $('.ui-widget-overlay.ui-front').css('display')
@@ -203,8 +204,6 @@ $(function() {
   modal.resize(function() {
     $summaryContainer.packery()
   })
-
-
   modalContent.off()
   modalContent.off('click').on('click', function (event) {
     if (!$(event.target).parents('.eqLogic-widget').length) {
@@ -229,7 +228,6 @@ $(function() {
       $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
     }
   }, 'div.eqLogic-widget .history')
-
 })
 
 var summaryObjEqs = []
@@ -275,7 +273,6 @@ function getSummaryHtml(_object_id, _summary, _title) {
             //is last ajax:
             if (nbEqs == 0) {
               //adapt modal size:
-
               var brwSize = {
                 width: window.innerWidth || document.body.clientWidth,
                 height: window.innerHeight || document.body.clientHeight
@@ -309,7 +306,6 @@ function getSummaryHtml(_object_id, _summary, _title) {
               fullHeight = $("#summaryEqlogics").height()
               modal.width(fullWidth + 26).height(fullHeight + 50)
               modalContent.width(fullWidth).height(fullHeight)
-
 
               initTooltips($('#md_overviewSummary'))
             }
