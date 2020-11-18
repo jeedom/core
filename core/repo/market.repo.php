@@ -367,6 +367,7 @@ class repo_market {
 	public static function cron5() {
 		try {
 			if(config::byKey('service::monitoring::enable')){
+				sleep(rand(0,60));
 				$data = array(
 					'health' => jeedom::health(),
 					'name' => config::byKey('name'),
