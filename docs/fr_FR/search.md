@@ -57,7 +57,7 @@ Le moteur affichera dans les tableaux en dessous :
 - Les **équipement** utilisant ce plugin.
 - Les **commandes** utilisant ce plugin.
 
-## Par Valeur
+## Par Mot
 
 Entrez une chaîne de caractères dans le champ de recherche. Valider avec *enter* ou avec le bouton *Rechercher*.
 
@@ -73,6 +73,20 @@ Le moteur affichera dans les tableaux en dessous :
 	Recherche dans les champs *name*, *logicalId*, *eqType*, *generic_type*, .
 - Les **notes** utilisant cette chaîne.
 	Recherche dans le texte des notes.
+
+## Par ID
+
+Entrez un nombre correspondant à un Id recherché dans le champ de recherche. Valider avec *enter* ou avec le bouton *Rechercher*.
+
+Le moteur affichera dans les tableaux en dessous :
+
+- Le **scénario** ayant cet Id.
+- Le **design** ayant cet Id.
+- La **vue** ayant cet Id.
+- L'**interaction** ayant cet Id.
+- L'**équipement** ayant cet Id.
+- La **commande** ayant cet Id.
+- La **note** ayant cet Id.
 
 ## Résultats
 

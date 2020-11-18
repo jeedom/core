@@ -224,6 +224,71 @@ try {
 		ajax::success($return);
 	}
 
+	if (init('action') == 'getIdUsedBy') {
+		$_search = init('search');
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'interactDef' => array(), 'note' => array(), 'view' => array(), 'plan' => array());
+
+		$plan = planHeader::byId($_search);
+		if (is_object($plan)) {
+			$info = utils::o2a($plan);
+			$info['name'] = $plan->getName();
+			$info['linkId'] = $plan->getId();
+			$return['plan'][] = $info;
+		}
+
+		$view = view::byId($_search);
+		if (is_object($view)) {
+			$info = utils::o2a($view);
+			$info['name'] = $view->getName();
+			$info['linkId'] = $view->getId();
+			$return['view'][] = $info;
+		}
+
+		$scenario = scenario::byId($_search);
+		if (is_object($scenario)) {
+			$info = utils::o2a($scenario);
+			$info['humanNameTag'] = $scenario->getHumanName(true, false, true);
+			$info['humanName'] = $scenario->getHumanName();
+			$info['link'] = $scenario->getLinkToConfiguration();
+			$info['linkId'] = $scenario->getId();
+			$return['scenario'][] = $info;
+		}
+
+		$interactQuery = interactQuery::byId($_search);
+		if (is_object($interactQuery)) {
+			$interact = $interactQuery->getInteractDef();
+			$info = utils::o2a($interact);
+			$info['humanName'] = $interact->getHumanName();
+			$info['link'] = $interact->getLinkToConfiguration();
+			$info['linkId'] = $interact->getId();
+			$return['interactDef'][] = $info;
+		}
+
+		$eqLogic = eqLogic::byId($_search);
+		if (is_object($eqLogic)) {
+			$info['humanName'] = $eqLogic->getHumanName();
+			$info['link'] = $eqLogic->getLinkToConfiguration();
+			$info['linkId'] = $eqLogic->getId();
+			$return['eqLogic'][] = $info;
+		}
+
+		$cmd = cmd::byId($_search);
+		if (is_object($cmd)) {
+			$info['humanName'] = $cmd->getHumanName();
+			$info['link'] = $cmd->getEqLogic()->getLinkToConfiguration();
+			$info['linkId'] = $cmd->getId();
+			$return['cmd'][] = $info;
+		}
+
+		$note = note::byId($_search);
+		if (is_object($note)) {
+			$info['humanName'] = $note->getName();
+			$info['linkId'] = $note->getId();
+			$return['note'][] = $info;
+		}
+		ajax::success($return);
+	}
+
 	if (init('action') == 'dbcorrectTable') {
 		unautorizedInDemo();
 		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/../../install/database.json'),true),init('table'));
