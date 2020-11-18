@@ -228,33 +228,24 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
-	public static function backup_serverPath(){
-		return ' "webdavs://' . config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'"';
-	}
-	
-	public static function backup_install(){
-		if (exec('which duplicity | wc -l') == 0) {
-			try {
-				com_shell::execute('sudo apt-get -y install duplicity');
-			} catch (\Exception $e) {
-				
-			}
-		}
-	}
-	
-	public static function backup_createFolderIsNotExist() {
+	public static function backup_flysystem(){
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => config::byKey('service::backup::url'),
 			'userName' => config::byKey('market::username'),
 			'password' => config::byKey('market::password'),
+			'authType' => Sabre\DAV\Client::AUTH_BASIC,
 		));
 		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
-		$filesystem = new League\Flysystem\Filesystem($adapter);
-		$folders = $filesystem->listContents('/webdav/'.config::byKey('market::username'));
+		return new League\Flysystem\Filesystem($adapter);
+	}
+	
+	public static function backup_createFolderIsNotExist() {
+		$filesystem =self::backup_flysystem();
+		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username'));
 		$found = false;
 		if (count($folders) > 0) {
 			foreach ($folders as $folder) {
-				if ($folder['basename'] == config::byKey('market::cloud::backup::name')) {
+				if (basename($folder['path']) == config::byKey('market::cloud::backup::name')) {
 					$found = true;
 					break;
 				}
@@ -267,140 +258,83 @@ class repo_market {
 	
 	public static function backup_send($_path) {
 		if (!config::byKey('service::backup::enable')) {
-			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
+			throw new Exception(__('Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?', __FILE__));
 		}
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour/Market)', __FILE__));
 		}
+		self::backup_clean($_path);
 		self::backup_createFolderIsNotExist();
-		self::backup_install();
-		$base_dir = realpath(__DIR__ . '/../../');
-		if(!file_exists($base_dir . '/tmp')){
-			mkdir($base_dir . '/tmp');
-		}
-		$excludes = array(
-			$base_dir . '/tmp',
-			$base_dir . '/log',
-			$base_dir . '/backup',
-			$base_dir . '/doc',
-			$base_dir . '/docs',
-			$base_dir . '/plugins/*/doc',
-			$base_dir . '/plugins/*/docs',
-			$base_dir . '/tests',
-			$base_dir . '/.git',
-			$base_dir . '/.log',
-			$base_dir . '/core/config/common.config.php',
-			$base_dir . '/' . config::byKey('backup::path'),
-		);
-		if (config::byKey('recordDir', 'camera') != '') {
-			$excludes[] = $base_dir . '/' . config::byKey('recordDir', 'camera');
-		}
-		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		$cmd .= ' duplicity incremental --full-if-older-than ' . config::byKey('market::cloud::backup::fullfrequency', 'core', '1M');
-		foreach ($excludes as $exclude) {
-			$cmd .= ' --exclude "' . $exclude . '"';
-		}
-		$cmd .= ' --num-retries 2';
-		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --tempdir '.$base_dir . '/tmp';
-		$cmd .= ' ' . $base_dir;
-		$cmd .= self::backup_serverPath();
 		try {
+			$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 -c '.$_path;
 			com_shell::execute($cmd);
-		} catch (Exception $e) {
-			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
-				throw new Exception('[backup cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
-			}
-			if (strpos($e->getMessage(), 'Insufficient Storage') !== false) {
-				self::backup_clean();
-			}
-			system::kill('duplicity');
-			shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir . '/tmp/duplicity*');
-			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
-			shell_exec(system::getCmdSudo() . ' rm -rf /root/.cache/duplicity');
-			com_shell::execute($cmd);
+			$filesystem =self::backup_flysystem();
+			$stream = fopen($_path.'.gpg', 'r+');
+			$response = $filesystem->writeStream('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')).'/'.basename($_path).'.gpg', $stream);
+			unlink($_path.'.gpg');
+		} catch (\Exception $e) {
+			unlink($_path.'.gpg');
+			throw $e;
 		}
 	}
 	
-	public static function backup_errorAnalyzed($_error) {
-		if (strpos($_error, 'decryption failed: Bad session key') !== false) {
-			return __('Clef de chiffrement invalide. Si vous oubliez votre mot de passe aucune récupération n\'est possible. Veuillez supprimer le backup à partir de votre page profil sur le market', __FILE__);
-		}
-		return null;
-	}
-	
-	public static function backup_clean($_nb = null) {
+	public static function backup_clean($_path) {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
-		self::backup_install();
-		shell_exec(system::getCmdSudo() . ' rm -rf /tmp/duplicity-*-tempdir');
-		
-		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		$cmd .= ' duplicity cleanup --force ';
-		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 3';
-		$cmd .= self::backup_serverPath();
-		try {
-			com_shell::execute($cmd);
-		} catch (Exception $e) {
-			
+		$limit = 3900;
+		self::backup_createFolderIsNotExist();
+		$filesystem =self::backup_flysystem();
+		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username'));
+		$files = array();
+		foreach ($folders as $folder) {
+			$files += $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username').'/'.basename($folder['path']).'/');
 		}
-		
-		if ($_nb == null) {
-			$_nb = 0;
-			$lists = self::backup_list();
-			foreach ($lists as $name) {
-				if (strpos($name, 'Full') !== false) {
-					$_nb++;
-				}
+		$total_size = 0;
+		foreach ($files as $file) {
+			if($file['type'] == 'dir'){
+				continue;
 			}
-			$_nb = ($_nb - 2 < 1) ? 1 : $_nb - 2;
+			$total_size += $file['size'];
 		}
-		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		$cmd .= ' duplicity remove-all-but-n-full ' . $_nb . ' --force ';
-		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 3';
-		$cmd .= self::backup_serverPath();
-		try {
-			com_shell::execute($cmd);
-		} catch (Exception $e) {
-			if(strpos($e->getMessage(),'found incomplete backup sets') !== false){
-				if (self::backup_errorAnalyzed($e->getMessage()) != null) {
-					throw new Exception('[backup clean] ' . self::backup_errorAnalyzed($e->getMessage()));
-				}
-				throw new Exception('[backup clean] ' . $e->getMessage());
+		if( ($total_size/1024/1024) < $limit-(filesize($_path)/1024/1024)){
+			return;
+		}
+		echo __('Besoin de faire de la place sur le stockage distant',__FILE__)."\n";
+		usort($files, function($a,$b){
+			return $a["timestamp"] - $b["timestamp"];
+		});
+		$nb = 0;
+		while(($total_size/1024/1024) > $limit-(filesize($_path)/1024/1024)){
+			if(count($files) == 0){
+				throw new \Exception(__('Pas assez de place et aucun backup à supprimer',__FILE__));
+			}
+			$file = array_shift($files);
+			$filename = basename($file['path']);
+			$path = basename(str_replace($filename,'',$file['path'])).'/'.$filename;
+			echo __('Supression du backup cloud : ',__FILE__).$path."\n";
+			$filesystem->delete('/webdav/'.config::byKey('market::username').'/'.$path);
+			$total_size -= $file['size'];
+			$nb++;
+			if($nb > 10){
+				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 10'));
 			}
 		}
 	}
+	
 	
 	public static function backup_list() {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
-		self::backup_install();
-		$return = array();
-		$cmd = system::getCmdSudo();
-		$cmd .= ' duplicity collection-status';
-		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 2';
-		$cmd .= ' --timeout 60';
-		$cmd .= self::backup_serverPath();
-		try {
-			$results = explode("\n", com_shell::execute($cmd));
-		} catch (\Exception $e) {
-			shell_exec(system::getCmdSudo() . ' rm -rf ~/.cache/duplicity');
-			shell_exec(system::getCmdSudo() . ' rm -rf /root/.cache/duplicity');
-			$results = explode("\n", com_shell::execute($cmd));
+		$filesystem =self::backup_flysystem();
+		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')));
+		$result = array();
+		foreach ($folders as $folder) {
+			$result[] = basename($folder['path']);
 		}
-		foreach ($results as $line) {
-			if (strpos($line, 'Full') === false && strpos($line, 'Incremental') === false && strpos($line, 'Complète') === false && strpos($line, 'Incrémentale') === false) {
-				continue;
-			}
-			$return[] = trim(substr($line, 0, -1));
-		}
-		return array_reverse($return);
+		return array_reverse($result);
 	}
 	
 	public static function backup_restore($_backup) {
@@ -411,40 +345,15 @@ class repo_market {
 		if (!is_writable($backup_dir)) {
 			throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
 		}
-		$restore_dir = '/usr/jeedom_cloud_restore';
-		if (file_exists($restore_dir)) {
-			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
+		$path = $backup_dir.'/'.$_backup;
+		if(file_exists($path)){
+			unlink($path);
 		}
-		self::backup_install();
-		$base_dir =  '/usr/jeedom_duplicity';
-		if(!file_exists($base_dir)){
-			com_shell::execute(system::getCmdSudo() .' mkdir '.$base_dir);
-		}
-		com_shell::execute(system::getCmdSudo() .' chmod 777 -R '.$base_dir);
-		mkdir($restore_dir);
-		$timestamp = strtotime(trim(str_replace(array('Full','Incremental','Incrémental','Complète'), '', $_backup)));
-		$backup_name = str_replace(' ', '_', 'backup-cloud-' . config::byKey('market::cloud::backup::name') . '-' . date("Y-m-d-H\hi", $timestamp) . '.tar.gz');
-		$cmd = system::getCmdSudo() . ' PASSPHRASE="' . config::byKey('market::cloud::backup::password') . '"';
-		$cmd .= ' duplicity --file-to-restore /';
-		$cmd .= ' --time ' . $timestamp;
-		$cmd .= ' --ssl-no-check-certificate';
-		$cmd .= ' --num-retries 3';
-		$cmd .= ' --tempdir '.$base_dir;
-		$cmd .= self::backup_serverPath();
-		$cmd .= ' ' . $restore_dir;
-		try {
-			com_shell::execute($cmd);
-		} catch (Exception $e) {
-			if (self::backup_errorAnalyzed($e->getMessage()) != null) {
-				throw new Exception('[restore cloud] ' . self::backup_errorAnalyzed($e->getMessage()));
-			}
-			throw new Exception('[restore cloud] ' . $e->getMessage());
-		}
-		shell_exec(system::getCmdSudo() . ' rm -rf '.$base_dir);
-		system('cd ' . $restore_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" . > /dev/null');
-		if (file_exists($restore_dir)) {
-			com_shell::execute(system::getCmdSudo() . ' rm -rf ' . $restore_dir);
-		}
+		$cmd = 'cd '.$backup_dir.';wget https://'.config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'/'.$_backup;
+		com_shell::execute($cmd);
+		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
+		com_shell::execute($cmd);
+		unlink($backup_dir.'/'.$_backup);
 	}
 	
 	/*     * ***********************CRON*************************** */
