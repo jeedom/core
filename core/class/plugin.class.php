@@ -980,6 +980,12 @@ class plugin {
 	}
 	
 	public function getDescription() {
+		if(is_array($this->description)){
+			foreach ($this->description as $key => &$value) {
+				$value = nl2br($value);
+			}
+			return $this->description;
+		}
 		return nl2br($this->description);
 	}
 	
