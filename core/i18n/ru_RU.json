@@ -747,6 +747,7 @@
         "Remplacement réalisé avec succès": "Замена успешно",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Вы уверены, что хотите заменить идентификатор",
         "ID de commande à remplacer ?": "ID заказа заменить?",
+        "Êtes-vous sûr de vouloir remplacer la commande": "",
         "Sauvegarde réussie": "Удачная резервная копия",
         "Décocher pour désactiver l\\'action": "Снимите флажок, чтобы отключить \\ Action",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Проверьте, команда \\ «ы работает параллельно другие действия",

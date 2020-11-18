@@ -747,6 +747,7 @@
         "Remplacement réalisé avec succès": "Successfully replaced",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Are you sure you want to replace the ID",
         "ID de commande à remplacer ?": "Command ID to replace?",
+        "Êtes-vous sûr de vouloir remplacer la commande": "Are you sure you want to replace the order",
         "Sauvegarde réussie": "Successfully saved",
         "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Check for the command to run in parallel with the other actions",

@@ -747,6 +747,7 @@
         "Remplacement réalisé avec succès": "Başarıyla değiştirildi",
         "Êtes-vous sûr de vouloir remplacer l\\'ID": "Eğer \\ 'ın kimliğini değiştirmek istediğinizden emin misiniz",
         "ID de commande à remplacer ?": "Kimlik al yerine?",
+        "Êtes-vous sûr de vouloir remplacer la commande": "",
         "Sauvegarde réussie": "Kayıt başarılı",
         "Décocher pour désactiver l\\'action": "\\ Eylem devre dışı bırakmak için işaretini kaldırın",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Komut \\ 'ın paralel diğer eylemler çalışan olup olmadığını kontrol edin",
