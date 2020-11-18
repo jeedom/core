@@ -2057,7 +2057,9 @@ Theme Core 2021 @Jeedom
   #in_testExpression {
     font-size: 14px !important;
   }
-
+  #table_removeHistory tr > td > i {
+    margin-right: 10px;
+  }
 
 /* ____________________PANELS */
   .eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
@@ -2588,15 +2590,13 @@ Theme Core 2021 @Jeedom
   #scenariotab {
     min-height: 80vh;
   }
+
   body[data-page="custom"] #div_pageContainer {
-    height: calc(100% - 5px);
+    height: calc(100% - 10px);
   }
   body[data-page="custom"] div[role="tabpanel"],
   body[data-page="custom"] .tab-content {
     height: calc(100% - 55px) !important;
-  }
-  body[data-page="custom"] .CodeMirror {
-    height: 100% !important;
   }
 
   .tab-content .tab-content,
@@ -3708,6 +3708,9 @@ Theme Core 2021 @Jeedom
   }
 
   /* view data table */
+  #table_addViewData .graphDataOption {
+    width: 30px;
+  }
   .highcharts-data-table {
     width: 100%;
     max-width: 100%;

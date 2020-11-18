@@ -23,6 +23,9 @@ $("#tab_deadCmd").off("click").on("click", function() {
   displayDeadCmd()
 })
 
+var $batteryListContainer = $('div.batteryListContainer')
+var $alertListContainer = $('div.alertListContainer')
+
 $('.batteryListContainer, .alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
   gutter : 2
@@ -43,19 +46,20 @@ $('.cmdAction[data-action=configure]').on('click', function() {
 })
 
 //searching
+var $eqlogics = $batteryListContainer.find('.eqLogic-widget')
 $('#in_search').off('keyup').on('keyup', function() {
-  if ($('.batteryListContainer .eqLogic-widget').length == 0) {
+  if ($eqlogics.length == 0) {
     return
   }
   var search = $(this).value()
   if (search == '') {
-    $('.batteryListContainer .eqLogic-widget').show()
-    $('.batteryListContainer').packery()
+    $eqlogics.show()
+    $batteryListContainer.packery()
     return
   }
   search = normTextLower(search)
   var match, text
-  $('.batteryListContainer .eqLogic-widget').each(function() {
+  $eqlogics.each(function() {
     match = false
     text = normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
@@ -67,7 +71,7 @@ $('#in_search').off('keyup').on('keyup', function() {
       $(this).hide()
     }
   })
-  $('.batteryListContainer').packery()
+  $batteryListContainer.packery()
 })
 $('#bt_resetSearch').on('click', function() {
   $('#in_search').val('').keyup()
@@ -82,16 +86,17 @@ $('#bt_massConfigureEqLogic').off('click').on('click', function() {
 })
 
 $(function() {
+  $batteryListContainer.removeClass('hidden').packery()
   //tabs icons colors:
-  if ($('.batteryListContainer div.eqLogic-widget.critical').length) {
+  if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
     $('a[href="#battery"] > i').addClass('danger')
-  } else if ($('.batteryListContainer div.eqLogic-widget.warning').length) {
+  } else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
     $('a[href="#battery"] > i').addClass('warning')
   } else {
     $('a[href="#battery"] > i').addClass('success')
   }
 
-  if ($('.alertListContainer div.eqLogic-widget').length) {
+  if ($('div.alertListContainer div.eqLogic-widget').length) {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
 

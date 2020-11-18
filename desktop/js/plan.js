@@ -402,7 +402,6 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !(info.type == 'eqLogic' || info.type == 'cmd' || info.type == 'graph')
         },
         callback: function(key, opt) {
-          $('#md_modal').dialog({title: "{{Configuration avancée}}"})
           var info = getObjectInfo($(this))
           if (info.type == 'graph') {
             var el = $(this)
@@ -415,11 +414,16 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 tr.setValues(options[i], '.graphDataOption')
                 setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'))
               }
-              $('#md_modal').dialog('option', 'buttons', {
-                "Annuler": function() {
+
+              //set modal options:
+              $('#md_modal').dialog({title: "{{Configuration avancée}}"})
+              var buttons = {}
+              var closeButtonText = "{{Annuler}}"
+              var validateButtonText = "{{Valider}}"
+              buttons[closeButtonText] = function() {
                   $(this).dialog("close")
-                },
-                "Valider": function() {
+                }
+              buttons[validateButtonText] = function() {
                   var tr = $('#table_addViewData tbody tr').first()
                   var options = []
                   while (tr.attr('data-link_id') != undefined) {
@@ -434,6 +438,10 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   savePlan(true)
                   $(this).dialog('close')
                 }
+              $('#md_modal').dialog({buttons: buttons})
+
+              $('#md_modal').on( "dialogclose", function(event, ui) {
+                $(this).parent('div.ui-dialog').find('div.ui-dialog-buttonpane').remove()
               })
               $('#md_modal').dialog('open')
             })

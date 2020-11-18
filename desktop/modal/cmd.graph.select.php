@@ -26,9 +26,9 @@ if (!isConnect()) {
 <table class="table table-condensed table-bordered table-striped tablesorter" id="table_addViewData">
   <thead>
     <tr>
-      <th style="width: 50px;">#</th>
-      <th style="width: 130px;">{{Objet}}</th>
-      <th style="width: 150px;">{{Nom}}</th>
+      <th>#</th>
+      <th>{{Objet}}</th>
+      <th>{{Nom}}</th>
       <th data-sorter="false" data-filter="false">{{Affichage}}</th>
     </tr>
   </thead>
@@ -60,7 +60,7 @@ if (!isConnect()) {
       $html .= '<div class="option">';
       $html .= '<form class="form-inline">';
       $html .= '<div class="form-group">';
-      $html .= '<input type="color" class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphColor" style="width : 110px;" />';
+      $html .= '<input type="color" class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphColor">';
       $html .= '</div> ';
       $html .= '<div class="form-group">';
       $html .= ' <select class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphType" style="width : 70px;">';
@@ -115,5 +115,9 @@ if (!isConnect()) {
 </table>
 
 <script>
-initTableSorter()
+  var $tableViewData = $('#table_addViewData')
+  initTableSorter()
+  $tableViewData[0].config.widgetOptions.resizable_widths = ['50px', '150px', '', '645px']
+  $tableViewData.trigger('applyWidgets')
+    .trigger('resizableReset')
 </script>

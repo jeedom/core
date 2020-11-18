@@ -23,6 +23,7 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 })
 
+
 //searching
 $('#in_search').on('keyup',function() {
   try {
@@ -287,7 +288,18 @@ $('#cb_actifDisplay').on('change',function() {
 
 $('[aria-controls="historytab"]').on('click',function() {
   $('.eqActions').hide()
+  setRemoveHistoryTable()
 })
+
+function setRemoveHistoryTable() {
+  var $tableRemoveHistory = $('#table_removeHistory')
+  initTableSorter()
+  $tableRemoveHistory[0].config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
+  $tableRemoveHistory.trigger('applyWidgets')
+    .trigger('resizableReset')
+    .trigger('sorton', [[[0,1]]])
+  $tableRemoveHistory.trigger("update")
+}
 
 $('[aria-controls="displaytab"]').on('click',function() {
   $('#display').show()
@@ -439,4 +451,10 @@ $('#bt_emptyRemoveHistory').on('click',function() {
       $('#div_alertRemoveHistory').showAlert({message: '{{Historique vidé avec succès}}', level: 'success'})
     }
   })
+})
+
+$(function() {
+  setTimeout(function() {
+    setRemoveHistoryTable()
+  }, 500)
 })
