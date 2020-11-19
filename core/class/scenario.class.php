@@ -430,7 +430,7 @@ class scenario {
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn) {
-							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => 'Déclencheur du scénario', 'who' => '#' . $cmd_id . '#');
+							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => __('Déclencheur du scénario', __FILE__), 'who' => '#' . $cmd_id . '#');
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
@@ -446,7 +446,7 @@ class scenario {
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if ($_needsReturn) {
-						$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => 'Utilisé dans le scénario', 'who' => '#' . $cmd_id . '#');
+						$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => __('Utilisé dans le scénario', __FILE__), 'who' => '#' . $cmd_id . '#');
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
