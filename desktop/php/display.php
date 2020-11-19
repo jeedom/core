@@ -133,129 +133,128 @@ function jeedom_displayObjectGroup($object=-1) {
 	$div .= '</div>';
 	return $div;
 }
-
 ?>
-<br/>
-<div class="eqActions pull-right" style="display:none;">
-	<div class="input-group">
-		<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
-		</a><a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
-		</a><a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}
-		</a><a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}
-		</a><a class="btn btn-warning btn-sm bt_setIsEnable roundedRight" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</a>
-	</div>
-</div>
-<ul class="nav nav-tabs" role="tablist" id="ul_tabDisplay">
-	<li role="presentation" class="active"><a href="#displaytab" aria-controls="displaytab" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
-	<li role="presentation"><a href="#historytab" aria-controls="historytab" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique}}</a></li>
-</ul>
 
-<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
-	<div role="tabpanel" class="tab-pane active" id="displaytab">
-		<br/>
-		<div>
-			<div class="pull-left">
-				<span class="label label-default">{{Nombre d'objets :}} <?php echo count($display_objects) ?></span>
-				<span class="label label-info">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
-				<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
-				<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
+<div class="row row-overflow">
+	<div class="col-xs-12">
+		<div class="eqActions floatingbar" style="display:none;">
+			<div class="input-group">
+				<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
+				</a><a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
+				</a><a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}
+				</a><a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}
+				</a><a class="btn btn-warning btn-sm bt_setIsEnable roundedRight" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</a>
 			</div>
-			<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
 		</div>
-		<br/><br/>
-		<div>
-			<div class="input-group" style="margin-bottom:5px;display: inline-table;">
-				<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_search"/>
-				<div class="input-group-btn">
-					<a id="bt_resetdisplaySearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-					</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
-					</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+		<ul class="nav nav-tabs" role="tablist" id="ul_tabDisplay">
+			<li role="presentation" class="active"><a href="#displaytab" aria-controls="displaytab" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
+			<li role="presentation"><a href="#historytab" aria-controls="historytab" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique de suppression}}</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="displaytab">
+				<br/>
+				<div>
+					<div class="pull-left">
+						<span class="label label-default">{{Nombre d'objets :}} <?php echo count($display_objects) ?></span>
+						<span class="label label-info">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
+						<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
+						<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
+					</div>
+					<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
+				</div>
+				<br/><br/>
+				<div>
+					<div class="input-group" style="margin-bottom:5px;display: inline-table;">
+						<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_search"/>
+						<div class="input-group-btn">
+							<a id="bt_resetdisplaySearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+							</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
+							</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel-group" id="accordionObject">
+					<?php
+					//No parent objects:
+					if (count($display_eqlogics[-1]) > 0) {
+						echo jeedom_displayObjectGroup(-1);
+					}
+
+					foreach ($display_objects as $object) {
+						echo jeedom_displayObjectGroup($object);
+					}
+					?>
 				</div>
 			</div>
-		</div>
 
-		<div class="panel-group" id="accordionObject">
-			<?php
-			//No parent objects:
-			if (count($display_eqlogics[-1]) > 0) {
-				echo jeedom_displayObjectGroup(-1);
-			}
-
-			foreach ($display_objects as $object) {
-				echo jeedom_displayObjectGroup($object);
-			}
-			?>
-		</div>
-	</div>
-
-	<div role="tabpanel" class="tab-pane" id="historytab">
-		<br/>
-		<div id="div_alertRemoveHistory"></div>
-		<label class="label-sm"><i class="fas fa-trash"></i> {{Historique des suppressions}}</label>
-		<a class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
-		<br/>
-		<table class="table table-condensed table-bordered tablesorter" id="table_removeHistory">
-			<thead>
-				<tr>
-					<th>{{Date}}</th>
-					<th>{{Type}}</th>
-					<th>{{ID}}</th>
-					<th>{{Nom}}</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				if (count($remove_history) > 0) {
-					foreach ($remove_history as $remove) {
-						$tr = '<tr>';
-						$tr .= '<td>';
-						$tr .= $remove['date'];
-						$tr .= '</td>';
-						$tr .= '<td>';
-						switch ($remove['type']) {
-							case 'cmd':
-								$tr .= '<i class="fas fa-terminal"></i> '.$remove['type'];
-								break;
-							case 'eqLogic':
-								$tr .= '<i class="fas fa-cog"></i> '.$remove['type'];
-								break;
-							case 'object':
-								$tr .= '<i class="far fa-object-group"></i> '.$remove['type'];
-								break;
-							case 'scenario':
-								$tr .= '<i class="fas fa-cogs"></i> '.$remove['type'];
-								break;
-							case 'plan':
-								$tr .= '<i class="fas fa-paint-brush"></i> '.$remove['type'];
-								break;
-							case 'plan3d':
-								$tr .= '<i class="fas fa-cubes"></i> '.$remove['type'];
-								break;
-							case 'view':
-								$tr .= '<i class="far fa-image"></i> '.$remove['type'];
-								break;
-							case 'user':
-								$tr .= '<i class="fas fa-users"></i> '.$remove['type'];
-								break;
-							default:
-								$tr .= $remove['type'];
+			<div role="tabpanel" class="tab-pane" id="historytab">
+				<div id="div_alertRemoveHistory"></div>
+				<a class="btn btn-danger btn-sm floatingbar" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
+				<table class="table table-condensed table-bordered tablesorter" id="table_removeHistory">
+					<thead>
+						<tr>
+							<th>{{Date}}</th>
+							<th>{{Type}}</th>
+							<th>{{ID}}</th>
+							<th>{{Nom}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						if (count($remove_history) > 0) {
+							foreach ($remove_history as $remove) {
+								$tr = '<tr>';
+								$tr .= '<td>';
+								$tr .= $remove['date'];
+								$tr .= '</td>';
+								$tr .= '<td>';
+								switch ($remove['type']) {
+									case 'cmd':
+										$tr .= '<i class="fas fa-terminal"></i> '.$remove['type'];
+										break;
+									case 'eqLogic':
+										$tr .= '<i class="fas fa-cog"></i> '.$remove['type'];
+										break;
+									case 'object':
+										$tr .= '<i class="far fa-object-group"></i> '.$remove['type'];
+										break;
+									case 'scenario':
+										$tr .= '<i class="fas fa-cogs"></i> '.$remove['type'];
+										break;
+									case 'plan':
+										$tr .= '<i class="fas fa-paint-brush"></i> '.$remove['type'];
+										break;
+									case 'plan3d':
+										$tr .= '<i class="fas fa-cubes"></i> '.$remove['type'];
+										break;
+									case 'view':
+										$tr .= '<i class="far fa-image"></i> '.$remove['type'];
+										break;
+									case 'user':
+										$tr .= '<i class="fas fa-users"></i> '.$remove['type'];
+										break;
+									default:
+										$tr .= $remove['type'];
+								}
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= $remove['id'];
+								$tr .= '</td>';
+								$tr .= '<td>';
+								$tr .= $remove['name'];
+								$tr .= '</td>';
+								$tr .= '</tr>';
+								echo $tr;
+							}
 						}
-						$tr .= '</td>';
-						$tr .= '<td>';
-						$tr .= $remove['id'];
-						$tr .= '</td>';
-						$tr .= '<td>';
-						$tr .= $remove['name'];
-						$tr .= '</td>';
-						$tr .= '</tr>';
-						echo $tr;
-					}
-				}
-				?>
-			</tbody>
-		</table>
+						?>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
-
 </div>
 
 <?php include_file('desktop', 'display', 'js');?>

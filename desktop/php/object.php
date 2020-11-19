@@ -55,8 +55,8 @@ sendVarToJS([
 		</div>
 	</div>
 
-	<div class="col-xs-12 object" style="display: none;" id="div_conf">
-		<div class="input-group pull-right" style="display:inline-flex">
+	<div id="div_conf" class="col-xs-12 object" style="display: none;">
+		<div class="input-group floatingbar" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
@@ -71,7 +71,7 @@ sendVarToJS([
 			<li role="presentation"><a href="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé par équipements}}</a></li>
 		</ul>
 
-		<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
+		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
 				<form class="form-horizontal">
@@ -288,6 +288,7 @@ sendVarToJS([
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="eqlogicsTab" style="margin-bottom: 200px;">
+				<br/>
 				<div class="input-group" style="margin-bottom:5px;">
 					<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchCmds"/>
 					<div class="input-group-btn">

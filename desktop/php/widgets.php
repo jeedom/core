@@ -128,7 +128,7 @@ foreach ((widgets::all()) as $widget) {
 </div>
 
 <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
-  <div class="input-group pull-right" style="display:inline-flex">
+  <div class="input-group floatingbar" style="display:inline-flex">
     <span class="input-group-btn">
       <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-arrow-alt-circle-down"></i> <span class="hidden-xs">{{Appliquer à}}</span>
       </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
@@ -143,7 +143,7 @@ foreach ((widgets::all()) as $widget) {
     <li role="presentation" class="active"><a href="#widgetstab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Widgets}}</a></li>
   </ul>
 
-  <div class="tab-content" style="overflow:auto;overflow-x: hidden;">
+  <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="widgetstab">
       <br/>
       <form class="form-horizontal">

@@ -25,7 +25,7 @@ if (count($scenarioNoGroup) > 0) {
 function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 	global $scenarios;
 	$thisDiv = '';
-	
+
 	if ($_group == '') {
 		$groupName = __('Aucun', __FILE__);
 		$href = '#config_none';
@@ -92,7 +92,7 @@ sendVarToJs('initSearch', init('search', 0));
 				<span class="txtColor">{{Vue d'ensemble}}</span>
 			</div>
 		</div>
-		
+
 		<legend><i class="icon jeedom-clap_cinema"></i>  {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if ($hasScenario == false) {
@@ -106,14 +106,14 @@ sendVarToJs('initSearch', init('search', 0));
 			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
-			
+
 			$div .= '<div class="panel-group" id="accordionScenario">';
 			//No group first:
 			if (isset($scenarios[__('Aucun', __FILE__)]) && count($scenarios[__('Aucun', __FILE__)]) > 0) {
 				$div .= jeedom_displayScenarioGroup();
 			}
 			echo $div;
-			
+
 			//scenarios groups:
 			$i = 0;
 			$div = '';
@@ -129,15 +129,15 @@ sendVarToJs('initSearch', init('search', 0));
 		}
 		?>
 	</div>
-	
+
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
-		<div class="input-group pull-right" style="display:inline-flex">
+		<div class="input-group floatingbar" style="display:inline-flex">
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
-				
+
 				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)"><i class="fas fa-chevron-left"></i>
 				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)"><i class="fas fa-chevron-right"></i></a>
-				
+
 				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
 				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
 				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
@@ -145,10 +145,10 @@ sendVarToJs('initSearch', init('search', 0));
 				</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
 				</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fas fa-share"></i>
 				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
-				
+
 				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
 				<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
-				
+
 				<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
 				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
@@ -307,7 +307,7 @@ sendVarToJs('initSearch', init('search', 0));
 						<div class="scenario_link"></div>
 					</div>
 				</div>
-				
+
 				<hr class="hrPrimary">
 				<div class="row">
 					<div class="col-sm-12">
@@ -326,13 +326,13 @@ sendVarToJs('initSearch', init('search', 0));
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
 				<div id="div_scenarioElement" class="element"></div>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 
@@ -357,31 +357,31 @@ sendVarToJs('initSearch', init('search', 0));
 				<div class="alert alert-info addElementTypeDescription if">
 					Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription action" style="display:none;">
 					Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription for" style="display:none;">
 					Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription in" style="display:none;">
 					Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription at" style="display:none;">
 					A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription code" style="display:none;">
 					Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
 				</div>
-				
+
 				<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
 					Permet de commenter votre scénario.
 				</div>
-				
+
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>

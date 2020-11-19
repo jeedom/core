@@ -13,6 +13,7 @@ if (is_array($interactListGroup)) {
 }
 $optionMaxSize = 15;
 ?>
+
 <div class="row row-overflow">
 	<div id="interactThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
@@ -124,8 +125,8 @@ $optionMaxSize = 15;
 		?>
 	</div>
 
-	<div class="interact col-xs-12" style="display: none;" id="div_conf">
-		<div class="input-group pull-right" style="display:inline-flex">
+	<div id="div_conf" class="interact col-xs-12" style="display: none;">
+		<div class="input-group floatingbar" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
 				</a><a class="btn btn-sm" id="bt_duplicate"><i class="fas fa-copy"></i> {{Dupliquer}}
@@ -140,7 +141,7 @@ $optionMaxSize = 15;
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 
-	<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
+	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="generaltab">
 			<form class="form-horizontal">
 				<br/>
