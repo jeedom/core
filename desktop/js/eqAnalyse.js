@@ -99,10 +99,6 @@ $(function() {
   if ($('div.alertListContainer div.eqLogic-widget').length) {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
-
-  if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
-    $('a[href="#deadCmd"] > i').addClass('warning')
-  }
 })
 
 function displayDeadCmd(){
