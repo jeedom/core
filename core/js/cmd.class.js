@@ -293,7 +293,7 @@ jeedom.cmd.test = function(_params) {
           jeedom.cmd.execute({
             id: _params.id,
             value: {
-              title: '{{[Jeedom] Message de test}}',
+              title: '[' + JEEDOM_PRODUCT_NAME + '] {{Message de test}}',
               message: '{{Ceci est un test de message pour la commande}} ' + result.name
             },
             cache: 0,
