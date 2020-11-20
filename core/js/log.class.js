@@ -170,7 +170,7 @@ jeedom.log.autoupdate = function (_params) {
         jeedom.log.autoupdate(_params);
       }
     });
-    
+
     _params['search'].off('keypress').on('keypress',function(){
       if(_params['control'].attr('data-state') == 0){
         _params['control'].trigger('click');
@@ -179,7 +179,7 @@ jeedom.log.autoupdate = function (_params) {
   }
   _params.callNumber++;
   jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {log : _params.log};
-  
+
   if(_params.callNumber > 0 && (_params.display.scrollTop() + _params.display.innerHeight() + 1) < _params.display[0].scrollHeight){
     if(_params['control'].attr('data-state') == 1){
       _params['control'].trigger('click');
@@ -193,10 +193,13 @@ jeedom.log.autoupdate = function (_params) {
     success : function(result){
       var log = '';
       var regex = /<br\s*[\/]?>/gi;
-      if($.isArray(result)){
+      var pad
+      if ($.isArray(result)) {
         for (var i in result.reverse()) {
-          if(!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1){
-            log += $.trim(result[i])+"\n";
+          if (!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1) {
+            pad = '000000000' + i
+            pad = pad.substr(pad.length-4)
+            log += pad + '|' + $.trim(result[i])+"\n"
           }
         }
       }
