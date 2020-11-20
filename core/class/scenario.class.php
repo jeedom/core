@@ -1194,7 +1194,7 @@ class scenario {
 						$cron->halt();
 						$cron->remove();
 					} catch (Exception $e) {
-						log::add('scenario', 'info', __('Can not stop subtask : ', __FILE__) . json_encode($cron->getOption()));
+						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche : ', __FILE__) . json_encode($cron->getOption()));
 					}
 				}
 			}
