@@ -26,13 +26,7 @@ foreach ($display_objects as $object) {
 	$nbEqlogic += count($display_eqlogics[$object->getId()]);
 }
 sendVarToJs('_nbCmd_', $nbCmd);
-
-if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
-	$remove_history = json_decode(file_get_contents(__DIR__ . '/../../data/remove_history.json'), true);
-}
-if (!is_array($remove_history)) {
-	$remove_history = array();
-}
+$remove_history = jeedom::getRemovehistory();
 $plugin_enable = config::getPluginEnable();
 
 function jeedom_displayObjectGroup($object=-1) {

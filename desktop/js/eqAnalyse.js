@@ -19,12 +19,23 @@
 positionEqLogic()
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
 
+//update tablesorter on tab click:
+$("#tab_actionCmd").off("click").on("click", function() {
+  $('#table_Action').trigger('update')
+})
+$("#tab_alertCmd").off("click").on("click", function() {
+  $('#table_Alert').trigger('update')
+})
+$("#tab_pushCmd").off("click").on("click", function() {
+  $('#table_Push').trigger('update')
+})
 $("#tab_deadCmd").off("click").on("click", function() {
   displayDeadCmd()
 })
 
 var $batteryListContainer = $('div.batteryListContainer')
 var $alertListContainer = $('div.alertListContainer')
+var $tableDeadCmd = $('#table_deadCmd')
 
 $('.batteryListContainer, .alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
@@ -100,18 +111,24 @@ $(function() {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
 
-  if ($('#deadCmd #table_deadCmd > tbody > tr').length) {
-    $('a[href="#deadCmd"] > i').addClass('warning')
-  }
+  initTableSorter()
 })
 
-function displayDeadCmd(){
+function getRemoveCmd(_id) {
+  for (var i in _remove_history_) {
+    if (_remove_history_[i].type == 'cmd' && _remove_history_[i].id == _id) return _remove_history_[i]
+  }
+  return false
+}
+
+function displayDeadCmd() {
   jeedom.cmd.getDeadCmd({
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      var tr = '';
+      var tr = ''
+      var removed
       for (var i in data) {
         for (var j in data[i].cmd) {
           tr += '<tr>'
@@ -123,6 +140,13 @@ function displayDeadCmd(){
           tr += '</td>'
           tr += '<td>'
           tr += data[i].cmd[j].who
+
+          removed = getRemoveCmd(data[i].cmd[j].who.replaceAll('#',''))
+          if (removed) {
+            tr += ' <span class="lebel label-sm label-info">'+removed.name + '</span>'
+            tr += ' {{Supprimée le}} '+removed.date
+          }
+
           tr += '</td>'
           tr += '<td>'
           tr += data[i].cmd[j].help
@@ -130,7 +154,13 @@ function displayDeadCmd(){
           tr += '</tr>'
         }
       }
-      $('#table_deadCmd tbody').empty().append(tr)
+      $tableDeadCmd.find('tbody').empty().append(tr)
+      $tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '300px', '', '180px']
+      $tableDeadCmd.trigger('update')
+        .trigger('applyWidgets')
+        .trigger('resizableReset')
+        .trigger('sorton', [[[0,0]]])
     }
   })
 }
+

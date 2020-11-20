@@ -14,6 +14,10 @@ foreach ($eqLogicsAll as $eqLogic) {
 usort($list, function ($a, $b) {
 	return ($a->getStatus('battery') < $b->getStatus('battery')) ? -1 : (($a->getStatus('battery') > $b->getStatus('battery')) ? 1 : 0);
 });
+
+
+$remove_history = jeedom::getRemovehistory();
+sendVarToJs('_remove_history_', $remove_history);
 ?>
 
 <div class="row row-overflow">
@@ -22,10 +26,10 @@ usort($list, function ($a, $b) {
 		<ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
 			<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
 			<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Equipements en alerte}}</a></li>
-			<li role="presentation"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
-			<li role="presentation"><a href="#alertCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
-			<li role="presentation"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> {{Push définis}}</a></li>
-			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
+			<li role="presentation" id="tab_actionCmd"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
+			<li role="presentation" id="tab_alertCmd"><a href="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
+			<li role="presentation" id="tab_pushCmd"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> {{Push définis}}</a></li>
+			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -206,7 +210,7 @@ usort($list, function ($a, $b) {
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="alertCmd">
-				<table class="table table-condensed tablesorter">
+				<table class="table table-condensed tablesorter" id="table_Alert">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
