@@ -173,6 +173,7 @@ $(function() {
 
 function checkAllUpdate() {
   $.hideAlert()
+  $('.progressbarContainer').addClass('hidden')
   jeedom.update.checkAll({
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
