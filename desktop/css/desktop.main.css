@@ -2625,7 +2625,7 @@ Theme Core 2021 @Jeedom
   body[data-page="administration"] .tab-content .tab-content {
     height: unset !important;
   }
-  table.tablesorter > thead {
+  #div_mainContainer table.tablesorter > thead {
     position: sticky;
     top: 0;
     z-index: 5;
