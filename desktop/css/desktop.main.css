@@ -2736,6 +2736,11 @@ Theme Core 2021 @Jeedom
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
   }
 
+  .tablesorter-resizable-handle {
+    z-index: 8!important;
+    margin-left: -5px;
+  }
+
   #logsForms .form-group:nth-child(odd){
     background-color: rgb(var(--bg-color)) !important;
   }
