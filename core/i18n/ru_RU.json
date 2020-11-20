@@ -2511,7 +2511,7 @@
         "Etes-vous sûr de vouloir faire cette action ?": "Etes-vous sûr de vouloir faire cette action ?",
         "Résultat de la commande : ": "Результат команды:",
         "Action exécutée avec succès": "Действие успешно завершено",
-        "[Jeedom] Message de test": "[Jeedom] Тестовое сообщение",
+        "Message de test": "",
         "Ceci est un test de message pour la commande": "Это тестовое сообщение для команды",
         "Info": "Информация",
         "Action": "Действие",
