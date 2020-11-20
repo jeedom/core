@@ -66,12 +66,24 @@ class timeline {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function cleaning($_all = false){
-    if($_all){
+  public static function cleaning($_all = false) {
+    //reset:
+    if ($_all) {
       $sql = 'DELETE FROM timeline';
       DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
       return;
     }
+    //ensure no duplicates:
+    $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
+    $sql .= 't1.id < t2.id AND ';
+    $sql .= 't1.type = t2.type AND ';
+    $sql .= 't1.subtype = t2.subtype AND ';
+    $sql .= 't1.datetime = t2.datetime AND ';
+    $sql .= 't1.options = t2.options AND ';
+    $sql .= 't1.folder = t2.folder';
+    DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+
+    //clean:
     $sql = 'SELECT count(id) as number FROM timeline';
     $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
     $delete_number = $result['number'] - config::byKey('timeline::maxevent');
