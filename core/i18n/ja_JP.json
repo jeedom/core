@@ -2976,7 +2976,7 @@
         "Êtes-vous sûr de vouloir faire cette action ?": "このアクションを実行してもよろしいですか？",
         "Résultat de la commande : ": "注文の結果：",
         "Action exécutée avec succès": "アクションが正常に完了しました",
-        "[Jeedom] Message de test": "[ジーダム]テストメッセージ",
+        "Message de test": "",
         "Ceci est un test de message pour la commande": "これはコマンドのメッセージテストです",
         "Info": "インフォ",
         "Action": "アクション",
