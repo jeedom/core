@@ -3887,7 +3887,7 @@
         " déclenché par : ": "ausgelöst durch:",
         "Fin correcte du scénario": "Richtiges Ende des Szenarios",
         "Le scénario est de type programmé mais la programmation est vide": "Das Szenario ist vom programmierten Typ, aber die Programmierung ist leer",
-        "Can not stop subtask : ": "Unteraufgabe kann nicht gestoppt werden:",
+        "Impossible d\\'arrêter la sous tâche : ": "Die Unteraufgabe kann nicht gestoppt werden:",
         "Impossible d\\'arrêter le scénario : ": "Das Szenario kann nicht gestoppt werden:",
         ". PID : ": ". PID:",
         "Scénario": "Szenario"

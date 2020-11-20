@@ -3887,7 +3887,7 @@
         " déclenché par : ": "desencadenado por :",
         "Fin correcte du scénario": "Escenario finalizado correctamente",
         "Le scénario est de type programmé mais la programmation est vide": "El escenario es del tipo programado pero la programación está vacía",
-        "Can not stop subtask : ": "No se puede detener la subtarea:",
+        "Impossible d\\'arrêter la sous tâche : ": "No se puede detener la subtarea:",
         "Impossible d\\'arrêter le scénario : ": "Incapaz de detener el escenario:",
         ". PID : ": ". PID:",
         "Scénario": "Escenario"

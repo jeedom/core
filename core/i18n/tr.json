@@ -3887,7 +3887,7 @@
         " déclenché par : ": "den tetiklenmiş",
         "Fin correcte du scénario": "Senaronun doğru sonuçlanması",
         "Le scénario est de type programmé mais la programmation est vide": "Senaryo programlanmış tiptedir ancak programlama boş",
-        "Can not stop subtask : ": "Alt görev durdurulamıyor:",
+        "Impossible d\\'arrêter la sous tâche : ": "",
         "Impossible d\\'arrêter le scénario : ": "Senaryo durdurulamıyor:",
         ". PID : ": ". PID:",
         "Scénario": "Senaryo"

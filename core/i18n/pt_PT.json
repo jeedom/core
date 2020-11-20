@@ -3887,7 +3887,7 @@
         " déclenché par : ": "desencadeado por:",
         "Fin correcte du scénario": "Final correta do cenário",
         "Le scénario est de type programmé mais la programmation est vide": "O cenário é do tipo programado, mas a programação está vazia",
-        "Can not stop subtask : ": "Não é possível parar a subtarefa:",
+        "Impossible d\\'arrêter la sous tâche : ": "Incapaz de parar a subtarefa:",
         "Impossible d\\'arrêter le scénario : ": "Não foi possível parar o cenário:",
         ". PID : ": ". PID:",
         "Scénario": "Cenas"

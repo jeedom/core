@@ -3887,7 +3887,7 @@
         " déclenché par : ": "инициирован:",
         "Fin correcte du scénario": "Правильное окончание сценария",
         "Le scénario est de type programmé mais la programmation est vide": "",
-        "Can not stop subtask : ": "",
+        "Impossible d\\'arrêter la sous tâche : ": "",
         "Impossible d\\'arrêter le scénario : ": "",
         ". PID : ": "",
         "Scénario": "Сценарий"

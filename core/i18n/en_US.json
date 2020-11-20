@@ -3887,7 +3887,7 @@
         " déclenché par : ": "triggered by:",
         "Fin correcte du scénario": "Correct end of scenario",
         "Le scénario est de type programmé mais la programmation est vide": "The scenario is of programmed type but the programming is empty",
-        "Can not stop subtask : ": "Can not stop subtask:",
+        "Impossible d\\'arrêter la sous tâche : ": "Unable to stop the sub task:",
         "Impossible d\\'arrêter le scénario : ": "Unable to stop the scenario:",
         ". PID : ": ". PID:",
         "Scénario": "Scenario"

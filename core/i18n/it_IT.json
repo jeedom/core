@@ -3887,7 +3887,7 @@
         " déclenché par : ": "innescato da:",
         "Fin correcte du scénario": "Finale corretto della scena",
         "Le scénario est de type programmé mais la programmation est vide": "Lo scenario è del tipo programmato ma la programmazione è vuota",
-        "Can not stop subtask : ": "Impossibile interrompere la sottoattività:",
+        "Impossible d\\'arrêter la sous tâche : ": "",
         "Impossible d\\'arrêter le scénario : ": "Impossibile interrompere lo scenario:",
         ". PID : ": ". PID:",
         "Scénario": "Scena"
