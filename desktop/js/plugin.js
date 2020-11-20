@@ -123,6 +123,14 @@ function displayPlugin(_pluginId) {
         $('#span_plugin_author').html('')
       }
 
+      if (isset(data.category) && isset(pluginCategories[data.category])) {
+        $('#span_plugin_category').html(pluginCategories[data.category].name)
+      } else {
+        $('#span_plugin_category').html('')
+      }
+
+      $('#div_confPlugin .openPluginPage').attr("href", 'index.php?v=d&m='+data.index+'&p='+data.index)
+
       if (data.checkVersion != -1) {
         if (data.require <= jeedomVersion) {
           $('#span_plugin_require').html('<span class="label label-success">' + data.require + '</span>')
@@ -241,12 +249,12 @@ function displayPlugin(_pluginId) {
           html += '<span class="label label-danger">{{Inactif}}</span>'
         }
         html += '</div>'
-        html += '<label class="col-sm-2 control-label">{{Action}}</label>'
+        html += '<label class="col-sm-2 control-label"><i class="fas fa-exclamation"></i> {{Action}}</label>'
         html += '<div class="col-sm-4">'
         if (data.activate == 1) {
-          html += '<a class="btn btn-danger btn-sm togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Désactiver}}</a>'
+          html += '<a class="btn btn-danger btn-xs togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Désactiver}}</a>'
         }else{
-          html += '<a class="btn btn-success btn-sm togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-check"></i> {{Activer}}</a>'
+          html += '<a class="btn btn-success btn-xs togglePlugin" data-state="1" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-check"></i> {{Activer}}</a>'
         }
         html += '</div>'
         html += '</div>'

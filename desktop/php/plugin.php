@@ -6,9 +6,11 @@ global $JEEDOM_INTERNAL_CONFIG;
 
 sendVarToJS([
   'sel_plugin_id' => init('id', '-1'),
-  'jeedomVersion' => jeedom::version()
+  'jeedomVersion' => jeedom::version(),
+  'pluginCategories' => $JEEDOM_INTERNAL_CONFIG['plugin']['category']
 ]);
 $plugins_list = plugin::listPlugin(false, true);
+
 ?>
 
 <div id='div_alertPluginConfiguration'></div>
@@ -100,6 +102,17 @@ $plugins_list = plugin::listPlugin(false, true);
             <form class="form-horizontal">
               <fieldset>
                 <div class="form-group">
+                  <label class="col-sm-2 control-label">{{Catégorie}}</label>
+                  <div class="col-sm-4">
+                    <span id="span_plugin_category"></span>
+                  </div>
+                  <label class="col-sm-2 control-label"></label>
+                  <div class="col-sm-4">
+                    <a class="btn btn-success btn-xs openPluginPage" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Ouvrir}}</a>
+                  </div>
+                </div>
+
+                <div class="form-group">
                   <label class="col-sm-2 control-label">{{Auteur}}</label>
                   <div class="col-sm-4">
                     <span id="span_plugin_author"></span>
@@ -124,6 +137,7 @@ $plugins_list = plugin::listPlugin(false, true);
                     <span id="span_plugin_require"></span>
                   </div>
                 </div>
+
               </fieldset>
             </form>
           </div>
