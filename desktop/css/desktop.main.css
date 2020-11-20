@@ -1430,10 +1430,6 @@ Theme Core 2021 @Jeedom
     padding: 0 0 0 0!important;
   }
 
-  #div_commandResult {
-    overflow: auto;
-  }
-
   #md_modal table.tablesorter {
     width: 100% !important;
     min-width: 100% !important;
@@ -1628,6 +1624,13 @@ Theme Core 2021 @Jeedom
   #editorContainer div.CodeMirror.CodeMirror-wrap {
     top: 55px !important;
   }
+
+  /* administration */
+  #div_commandResult > table > thead {
+    position: sticky;
+    top: 0;
+  }
+
 
   /* context menus */
   .context-menu-layer {
@@ -2708,6 +2711,11 @@ Theme Core 2021 @Jeedom
   .table-striped>tbody>tr:nth-of-type(2n+1),
   .table > thead > tr {
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
+  }
+
+  .tablesorter-resizable-handle {
+    z-index: 8!important;
+    margin-left: -5px;
   }
 
   #logsForms .form-group:nth-child(odd){

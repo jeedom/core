@@ -791,7 +791,7 @@ function initTableSorter(filter) {
   if (filter !== false) {
     widgets.push('filter')
   }
-  $(".tablesorter").tablesorter({
+  $('table.tablesorter').tablesorter({
     dateFormat : "yyyy-mm-dd",
     theme: "bootstrap",
     widthFixed: false,
@@ -813,7 +813,7 @@ function initTableSorter(filter) {
       $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
     }
   })
-  $(".tablesorter").css('width','')
+  $('table.tablesorter').css('width','')
 }
 
 function initHelp() {

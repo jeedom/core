@@ -57,7 +57,7 @@ O mecanismo será exibido nas tabelas abaixo :
 - O **Equipamento** usando este plugin.
 - O **Comandos** usando este plugin.
 
-## Por Valor
+## Por palavra
 
 Digite uma sequência de caracteres no campo de pesquisa. Valide com *Entrar* ou com o botão *Pesquisa*.
 
@@ -73,6 +73,20 @@ O mecanismo será exibido nas tabelas abaixo :
 	Pesquisar nos campos *nome*, *logicId*, *eqType*, *generic_type*, .
 - O **Anotações** usando esta string.
 	Pesquisa de texto do Notes.
+
+## Por ID
+
+Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide com *Entrar* ou com o botão *Pesquisa*.
+
+O mecanismo será exibido nas tabelas abaixo :
+
+- O **Cenas** tendo este id.
+- O **Projeto** tendo este id.
+- O **Vista** tendo este id.
+- L'**Interação** tendo este id.
+- L'**Equipamento** tendo este id.
+- O **Ordem** tendo este id.
+- O **NOTA** tendo este id.
 
 ## Resultados
 

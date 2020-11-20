@@ -57,7 +57,7 @@ The engine will display in the tables below :
 - The **Equipment** using this plugin.
 - The **Commands** using this plugin.
 
-## By Value
+## By Word
 
 Enter a character string in the search field. Validate with *Enter* or with the button *Search*.
 
@@ -73,6 +73,20 @@ The engine will display in the tables below :
 	Search in fields *name*, *logicalId*, *eqType*, *generic_type*, .
 - The **Notes** using this string.
 	Notes text search.
+
+## By ID
+
+Enter a number corresponding to a searched Id in the search field. Validate with *Enter* or with the button *Search*.
+
+The engine will display in the tables below :
+
+- The **Scenario** having this Id.
+- The **Design** having this Id.
+- The **View** having this Id.
+- L'**Interaction** having this Id.
+- L'**Equipment** having this Id.
+- The **Command** having this Id.
+- The **NOTE** having this Id.
 
 ## Results
 

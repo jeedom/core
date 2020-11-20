@@ -18,15 +18,9 @@
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$objects = jeeObject::all();
-$objectList = [];
-foreach ($objects as $object) {
-  $objectLists[$object->getId()] = $object->getName();
-}
-sendVarToJS('__objectList', $objectLists);
 ?>
 
-<div id="div_alertScenarioSearch"></div>
+<div id="div_alertModalSearch"></div>
 <a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
@@ -39,13 +33,14 @@ sendVarToJS('__objectList', $objectLists);
         <option value="command">{{Commande}}</option>
         <option value="variable">{{Variable}}</option>
         <option value="plugin">{{Plugin}}</option>
-        <option value="value">{{Valeur}}</option>
+        <option value="string">{{Mot}}</option>
+        <option value="id">{{ID}}</option>
       </select>
     </div>
     <div class="input-group pull-right" style="margin-bottom:5px;">
       <div class="input-group-btn col-lg-6">
-        <a class="btn roundedLeft" href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé Domotique}}
-        </a><a class="btn btn-success roundedRight" id="bt_search"><i class="fas fa-search"></i> {{Rechercher}}</a>
+        <a class="btn btn-sm roundedLeft" href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé Domotique}}
+        </a><a class="btn btn-sm btn-success roundedRight" id="bt_search"><i class="fas fa-search"></i> {{Rechercher}}</a>
       </div>
     </div>
   </div>
@@ -94,8 +89,12 @@ sendVarToJS('__objectList', $objectLists);
       </div>
     </div>
 
-    <div class="col-lg-4 searchType" data-searchType="value" data-tableFilter="1001111" style="display: none;">
-      <input id="in_searchFor_value" class="form-control" placeholder="{{Rechercher}}"/>
+    <div class="col-lg-4 searchType" data-searchType="string" data-tableFilter="1001111" style="display: none;">
+      <input id="in_searchFor_string" class="form-control" placeholder="{{Rechercher}}"/>
+    </div>
+
+    <div class="col-lg-4 searchType" data-searchType="id" data-tableFilter="1111111" style="display: none;">
+      <input id="in_searchFor_id" class="form-control" placeholder="{{Rechercher}}"/>
     </div>
   </div>
   <br/>
@@ -225,12 +224,13 @@ tableStore.forEach(function(table){
 initTooltips()
 /* ------            Search UI            -------*/
 function emptyResultTables() {
-  $('#div_alertScenarioSearch').hide()
+  $('#div_alertModalSearch').hide()
   tableStore.forEach(function(table){
     table.find('tbody').empty()
   })
 }
 
+//search type selector:
 $('#sel_searchByType').change(function() {
   emptyResultTables()
   $('#searchByTypes > div.searchType').hide()
@@ -271,7 +271,7 @@ $('#in_searchFor_variable').change(function() {
 $('#bt_search').off().on('click',function() {
   searchFor()
 })
-$('#in_searchFor_value').on('keypress', function(event) {
+$('#in_searchFor_string, #in_searchFor_id').on('keypress', function(event) {
   if (event.which === 13) {
     searchFor()
   }
@@ -327,7 +327,7 @@ function searchFor_plugin(_searchFor) {
   jeedom.eqLogic.byType({
     type: _searchFor,
     error: function(error) {
-      $('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
     },
     success: function(result) {
       for (var eq in result) {
@@ -347,7 +347,7 @@ function searchFor_equipment(_searchFor, _byId=false) {
   jeedom.eqLogic.usedBy({
     id : eQiD,
     error: function(error) {
-      $('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
     },
     success: function(result) {
       for (var i in result.scenario) {
@@ -371,7 +371,7 @@ function searchFor_equipment(_searchFor, _byId=false) {
       jeedom.eqLogic.getCmd({
         id : eQiD,
         error: function(error) {
-          $('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+          $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
         },
         success: function(result) {
           for (var i in result) {
@@ -393,7 +393,7 @@ function searchFor_command(_searchFor, _byId=false) {
   jeedom.cmd.usedBy({
     id : cmdId,
     error: function(error) {
-      $('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
     },
     success: function(result) {
       for (var i in result.scenario) {
@@ -418,11 +418,11 @@ function searchFor_command(_searchFor, _byId=false) {
   })
 }
 
-function searchFor_value(_searchFor) {
+function searchFor_string(_searchFor) {
   jeedom.getStringUsedBy({
     search : _searchFor,
     error: function(error) {
-      $('#div_alertScenarioSearch').showAlert({message: error.message, level: 'danger'})
+      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
     },
     success: function(result) {
       for (var i in result.scenario) {
@@ -436,6 +436,35 @@ function searchFor_value(_searchFor) {
       }
       for (var i in result.cmd) {
         showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
+      }
+      for (var i in result.note) {
+        showNotesResult({'humanName':result.note[i].humanName, 'id':result.note[i].linkId}, false)
+      }
+    }
+  })
+}
+
+function searchFor_id(_searchFor) {
+  jeedom.getIdUsedBy({
+    search : _searchFor,
+    error: function(error) {
+      $('#div_alertModalSearch').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(result) {
+      for (var i in result.scenario) {
+        showScenariosResult({'humanName':result.scenario[i].humanNameTag, 'id':result.scenario[i].linkId}, false)
+      }
+      for (var i in result.plan) {
+        showPlansResult({'humanName':result.plan[i].name, 'id':result.plan[i].id}, false)
+      }
+      for (var i in result.view) {
+        showViewsResult({'humanName':result.view[i].name, 'id':result.view[i].id}, false)
+      }
+      for (var i in result.interactDef) {
+        showInteractsResult({'humanName':result.interactDef[i].humanName, 'id':result.interactDef[i].linkId}, false)
+      }
+      for (var i in result.eqLogic) {
+        showEqlogicsResult({'humanName':result.eqLogic[i].humanName, 'id':result.eqLogic[i].link}, false)
       }
       for (var i in result.cmd) {
         showCmdsResult({'humanName':result.cmd[i].humanName, 'id':result.cmd[i].linkId}, false)
