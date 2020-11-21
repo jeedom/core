@@ -31,6 +31,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
   <span class="label-sm">{{Brut log}}</span>
   <input type="checkbox" id="brutlog" />
   <input class="form-control input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
+  <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
   <span class="input-group-btn">
     <a class="btn btn-warning btn-sm" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a><a class="btn btn-success btn-sm" id="bt_scenarioLogDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_scenarioLogEmpty"><i class="fas fa-trash"></i> {{Vider le log}}</a>
   </span>
@@ -44,6 +45,10 @@ jeedom.log.autoupdate({
   display : $('#pre_scenariolog'),
   search : $('#in_scenarioLogSearch'),
   control : $('#bt_scenarioLogStopStart'),
+})
+
+$('#bt_resetScenarioLogSearch').on('click', function () {
+  $('#in_scenarioLogSearch').val('').keyup()
 })
 
 $('#bt_scenarioLogEmpty').on('click', function() {
