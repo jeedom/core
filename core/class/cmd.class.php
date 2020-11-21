@@ -56,6 +56,13 @@ class cmd {
 		'*s'=> array(60,'s','min','h')
 	);
 
+	public static $_scLogTexts = null;
+
+	public function __construct() {
+		global $JEEDOM_SCLOG_TEXT;
+		self::$_scLogTexts = $JEEDOM_SCLOG_TEXT;
+	}
+
 	/*     * ***********************Méthodes statiques*************************** */
 
 	private static function cast($_inputs, $_eqLogic = null) {
@@ -1065,7 +1072,7 @@ class cmd {
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
-			throw new Exception(__('Equipement désactivé - impossible d\'exécuter la commande : ', __FILE__) . $this->getHumanName());
+			throw new Exception(self::$_scLogTexts['disableEqNoExecCmd']['txt'] . $this->getHumanName());
 		}
 		try {
 			if ($_options !== null && $_options !== '') {
@@ -1083,9 +1090,9 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
-				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
+				log::add('event', 'info', self::$_scLogTexts['execCmd']['txt'] . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
 			} else {
-				log::add('event', 'info', __('Exécution de la commande ', __FILE__) . $this->getHumanName());
+				log::add('event', 'info', self::$_scLogTexts['execCmd']['txt'] . $this->getHumanName());
 			}
 
 			if ($this->getConfiguration('timeline::enable')) {

@@ -48,6 +48,10 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'getScTranslations') {
+		ajax::success(json_encode($JEEDOM_SCLOG_TEXT));
+	}
+
 	if (init('action') == 'get') {
 		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 	}

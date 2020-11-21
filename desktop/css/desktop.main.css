@@ -315,7 +315,7 @@ Theme Core 2021 @Jeedom
   }
   @media screen and (min-height: 801px) {
     #jeedomMenuBar ul.navbar-nav > li ul ul {
-      max-height: 600px;
+      max-height: 610px;
     }
   }
 
@@ -4147,6 +4147,21 @@ Theme Core 2021 @Jeedom
     font-family: "CamingoCode", monospace;
     font-size: 13px;
     line-height: 14px;
+  }
+  #pre_globallog span {
+      height: 12px;
+      min-width: 50px;
+      padding: 0 4px
+  }
+  #pre_scenariolog label,
+  #pre_scenariolog span {
+    height: 8px;
+  }
+  #pre_scenariolog .success {
+    color: var(--al-success-color) !important;
+  }
+  #pre_scenariolog .info {
+    color: var(--al-primary-color) !important;
   }
 
   .input-group .btn,

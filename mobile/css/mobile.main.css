@@ -248,7 +248,7 @@ a, .ui-link {
   color: var(--link-color) !important;
   background-color: var(--bg-modal-color) !important;
 }
-.ui-mobile label {
+label {
   color: var(--link-color) !important;
   text-shadow: none !important;
 }
@@ -979,11 +979,13 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 
 .ui-table-columntoggle-btn,
 .ui-table,
-#pre_globallog {
+#pre_globallog,
+#pre_scenariolog {
   color: var(--txt-color) !important;
   background: rgb(var(--bg-color));
 }
-#pre_globallog {
+#pre_globallog,
+#pre_scenariolog {
   width: calc(100% - 8px);
   font-size: 13px;
   line-height: 14px;
@@ -998,7 +1000,30 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
   margin-top: 5px;
 }
 
-
+#pre_globallog span {
+  height: 12px;
+  min-width: 50px;
+  padding: 0 4px;
+  display: inline-block;
+  text-align: center;
+}
+#pre_scenariolog label,
+#pre_scenariolog span {
+  height: 8px;
+  display: inline-block;
+}
+#pre_scenariolog .success {
+  color: var(--al-success-color) !important;
+}
+#pre_scenariolog .info {
+  color: var(--al-primary-color) !important;
+}
+#pre_scenariolog .warning {
+  color: var(--al-warning-color) !important;
+}
+#pre_scenariolog > label.danger
+  color: var(--al-danger-color) !important;
+}
 
 /*______Timeline cards */
 #timelineContainer .html .tml-cmd > span >span i {

@@ -430,3 +430,34 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 ),
 );
+
+global $JEEDOM_SCLOG_TEXT;
+$JEEDOM_SCLOG_TEXT = array(
+	'startManual' 			=> array('txt' => __('Scénario lancé manuellement', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'startAutoOnEvent'		=> array('txt' => __('Scénario exécuté automatiquement sur événement venant de : ', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'startOnEvent'			=> array('txt' => __('Scénario exécuté sur événement', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'startAutoOnShedule'	=> array('txt' => __('Scénario exécuté automatiquement sur programmation', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'finishOk' 				=> array('txt' =>__('Fin correcte du scénario', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'sheduledOn'			=> array('txt' =>__(' programmée à : ', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'startByScenario'		=> array('txt' =>__('Lancement provoqué par le scénario  : ', __FILE__), 'replace' => '<label class="success">::</label>'),
+	'startCausedBy'			=> array('txt' =>__('Lancement provoqué', __FILE__), 'replace' => '<label class="success">::</label>'),
+
+	'startSubTask' 			=> array('txt' =>__('************Lancement sous tâche**************', __FILE__), 'replace' => '<label class="info">::</label>'),
+	'endSubTask' 			=> array('txt' =>__('************FIN sous tâche**************', __FILE__), 'replace' => '<label class="info">::</label>'),
+	'evalCondition'			=> array('txt' =>__('Evaluation de la condition', __FILE__), 'replace' => '<label class="info">::</label>'),
+
+	'execCmd'				=> array('txt' =>__('Exécution de la commande ', __FILE__), 'replace' => '<label class="warning">::</label>'),
+	'execCode'				=> array('txt' =>__('Exécution d\'un bloc code', __FILE__), 'replace' => '<label class="warning">::</label>'),
+	'launchScenario'		=> array('txt' =>__('Lancement du scénario : ', __FILE__), 'replace' => '<label class="warning">::</label>'),
+	'launchScenarioSync'	=> array('txt' =>__('Lancement du scénario en mode synchrone', __FILE__), 'replace' => '<label class="warning">::</label>'),
+	'task'					=> array('txt' =>__('Tâche : ', __FILE__), 'replace' => '<label class="warning">::</label>'),
+
+
+	'stopTimeout'			=> array('txt' => __('Arrêt du scénario car il a dépassé son temps de timeout : ', __FILE__), 'replace' => '<label class="danger">::</label>'),
+	'disableNoSubtask'		=> array('txt' => __('Scénario désactivé non lancement de la sous tâche', __FILE__), 'replace' => '<label class="danger">::</label>'),
+	'disableEqNoExecCmd'	=> array('txt' =>__('Equipement désactivé - impossible d\'exécuter la commande : ', __FILE__), 'replace' => '<label class="danger">::</label>'),
+	'toStartUnfound'		=> array('txt' =>__('Eléments à lancer non trouvé', __FILE__), 'replace' => '<label class="danger">::</label>'),
+	'invalideShedule'		=> array('txt' =>__(', heure programmée invalide : ', __FILE__), 'replace' => '<label class="danger">::</label>'),
+	'unfoundEq'				=> array('txt' =>__('Action sur l\'équipement impossible. Equipement introuvable - Vérifiez l\'id :', __FILE__), 'replace' => '<label class="danger">::</label>'),
+	'unfoundScenario'		=> array('txt' =>__('Action sur scénario impossible. Scénario introuvable - Vérifiez l\'id :', __FILE__), 'replace' => '<label class="danger">::</label>'),
+);

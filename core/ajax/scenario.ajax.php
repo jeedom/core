@@ -27,6 +27,7 @@ try {
 	ajax::init(array('templateupload'));
 
 	if (init('action') == 'changeState') {
+		global $JEEDOM_SCLOG_TEXT;
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
@@ -39,7 +40,7 @@ try {
 			if (!$scenario->getIsActive()) {
 				throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 			}
-			$scenario->launch('user', __('Scénario lancé manuellement', __FILE__), 0);
+			$scenario->launch('user', $JEEDOM_SCLOG_TEXT['startManual']['txt'], 0);
 			break;
 			case 'stop':
 			$scenario->stop();

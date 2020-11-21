@@ -4,12 +4,12 @@ $('body').attr('data-page', 'scenariolog')
 
 function initScenariolog(_scenarioId) {
   $('#bt_eraseLogSearch').insertAfter($('#in_globalLogSearch'))
-  $('#pre_globallog').empty()
+  $('#pre_scenariolog').empty()
   if (isset(_scenarioId)) {
     setTimeout(function() {
       jeedom.log.autoupdate({
         log : 'scenarioLog/scenario'+_scenarioId+'.log',
-        display : $('#pre_globallog'),
+        display : $('#pre_scenariolog'),
         search : $('#in_globalLogSearch'),
         control : $('#bt_globalLogStopStart'),
       })

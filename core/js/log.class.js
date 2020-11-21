@@ -63,6 +63,17 @@ jeedom.log.removeAll = function (_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.log.getScTranslations = function (_params) {
+  var paramsSpecifics = {};
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/log.ajax.php';
+  paramsAJAX.data = {
+    action: 'getScTranslations'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.log.get = function (_params) {
   var paramsRequired = ['log'];
   var paramsSpecifics = {
@@ -193,17 +204,33 @@ jeedom.log.autoupdate = function (_params) {
     success : function(result){
       var log = '';
       var regex = /<br\s*[\/]?>/gi;
-      var pad
+      var pad, line
+      var isSysLog = (_params.display[0].id == 'pre_globallog') ? true : false
+      var isScenaroLog = (_params.display[0].id == 'pre_scenariolog') ? true : false
       if ($.isArray(result)) {
         for (var i in result.reverse()) {
           if (!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1) {
-            pad = '000000000' + i
-            pad = pad.substr(pad.length-4)
-            log += pad + '|' + $.trim(result[i])+"\n"
+            line = $.trim(result[i])
+            if (isSysLog) {
+              pad = '000000000' + i
+              pad = pad.substr(pad.length-4)
+              log += pad + '|' + line + "\n"
+            } else {
+              log += line + "\n"
+            }
           }
         }
       }
-      _params.display.text(log);
+      if ($('#brutlog').is(':checked')) {
+        _params.display.text(log)
+      } else {
+        if (isScenaroLog) {
+          log = jeedom.log.scenarioColorReplace(log)
+        } else {
+          log = jeedom.log.stringColorReplace(log)
+        }
+        _params.display.html(log)
+      }
       _params.display.scrollTop(_params.display.height() + 200000);
       if(jeedom.log.timeout !== null){
         clearTimeout(jeedom.log.timeout);
@@ -221,4 +248,41 @@ jeedom.log.autoupdate = function (_params) {
       }, 1000);
     },
   });
+}
+
+//Standard log replacement:
+jeedom.log.colorReplacement = {
+   '[INFO]' : '<span class="label label-sm label-info">INFO</span>',
+   '[DEBUG]' : '<span class="label label-sm label-success">DEBUG</span>',
+   '[ERROR]' : '<span class="label label-sm label-danger">ERROR</span>',
+   '[ALERT]' : '<span class="label label-sm label-warning">ALERT</span>',
+   'WARNING' : '<span class="warning">WARNING</span>',
+   'Erreur' : '<span class="danger">Erreur</span>',
+   'OK': '<strong>OK</strong>',
+}
+jeedom.log.stringColorReplace = function (_str) {
+  for (var re in jeedom.log.colorReplacement) {
+    _str = _str.split(re).join(jeedom.log.colorReplacement[re])
+  }
+  return _str
+}
+
+//scenario log replacement:
+jeedom.log.colorScReplacement = null
+jeedom.log.getScTranslations({
+  success : function(result) {
+    jeedom.log.colorScReplacement = JSON.parse(result)
+    jeedom.log.colorScReplacement[' Start : '] = {'txt': ' Start : ', 'replace': '<strong> -- Start : </strong>'}
+  },
+  error : function() {
+    console.log('Unable to get jeedom scenario traductions')
+  }
+})
+
+jeedom.log.scenarioColorReplace = function (_str) {
+  if (jeedom.log.colorScReplacement == null) return _str
+  for (var item in jeedom.log.colorScReplacement) {
+    _str = _str.split(jeedom.log.colorScReplacement[item]['txt']).join(jeedom.log.colorScReplacement[item]['replace'].replace('::', jeedom.log.colorScReplacement[item]['txt']))
+  }
+  return _str
 }

@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenarioElement {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $type;
@@ -29,9 +29,15 @@ class scenarioElement {
 	private $order = 0;
 	private $_changed = false;
 	private $_subelement;
-	
+	public static $_scLogTexts = null;
+
+	public function __construct() {
+		global $JEEDOM_SCLOG_TEXT;
+		self::$_scLogTexts = $JEEDOM_SCLOG_TEXT;
+	}
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -41,7 +47,7 @@ class scenarioElement {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function saveAjaxElement($element_ajax) {
 		if (isset($element_ajax['id']) && $element_ajax['id'] != '') {
 			$element_db = scenarioElement::byId($element_ajax['id']);
@@ -71,7 +77,7 @@ class scenarioElement {
 			$subElement_db->save();
 			$subElement_order++;
 			$enable_subElement[$subElement_db->getId()] = true;
-			
+
 			$expression_list = $subElement_db->getExpression();
 			$expression_order = 0;
 			$enable_expression = array();
@@ -111,21 +117,21 @@ class scenarioElement {
 		}
 		return $element_db->getId();
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
 	public function save() {
 		DB::save($this);
 		return true;
 	}
-	
+
 	public function remove() {
 		foreach(($this->getSubElement()) as $subelement) {
 			$subelement->remove();
 		}
 		DB::remove($this);
 	}
-	
+
 	public function execute(&$_scenario = null) {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
@@ -174,7 +180,7 @@ class scenarioElement {
 				}
 			}
 			return $this->getSubElement('else')->execute($_scenario);
-			
+
 		} else if ($this->getType() == 'action') {
 			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
 				return true;
@@ -211,7 +217,7 @@ class scenarioElement {
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' lancement immédiat ', __FILE__));
+				$_scenario->setLog(self::$_scLogTexts['task']['txt'] . $this->getId() . __(' lancement immédiat ', __FILE__));
 				system::php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
@@ -231,7 +237,7 @@ class scenarioElement {
 				$next = strtotime('+ ' . $time . ' min');
 				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->save();
-				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
+				$_scenario->setLog(self::$_scLogTexts['task']['txt'] . $this->getId() . self::$_scLogTexts['sheduledOn']['txt'] . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
 		} else if ($this->getType() == 'at') {
@@ -240,7 +246,7 @@ class scenarioElement {
 			}
 			$next = $this->getSubElement('at')->execute($_scenario);
 			if (!is_numeric($next) || $next < 0) {
-				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . self::$_scLogTexts['invalideShedule']['txt'] . $next);
 			}
 			if ($next <= date('Gi')) {
 				$next = str_repeat('0', 4 - strlen($next)) . $next;
@@ -251,7 +257,7 @@ class scenarioElement {
 			}
 			$next = strtotime($next);
 			if ($next < strtotime('now')) {
-				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . date('Y-m-d H:i:00', $next));
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . self::$_scLogTexts['invalideShedule']['txt'] . date('Y-m-d H:i:00', $next));
 			}
 			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
@@ -269,11 +275,11 @@ class scenarioElement {
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
-			$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:00', $next));
+			$_scenario->setLog(self::$_scLogTexts['task']['txt'] . $this->getId() . self::$_scLogTexts['sheduledOn']['txt'] . date('Y-m-d H:i:00', $next));
 			return true;
 		}
 	}
-	
+
 	public function getSubElement($_type = '') {
 		if ($_type != '') {
 			if (isset($this->_subelement[$_type]) && is_object($this->_subelement[$_type])) {
@@ -289,7 +295,7 @@ class scenarioElement {
 			return $this->_subelement[-1];
 		}
 	}
-	
+
 	public function getAjaxElement($_mode = 'ajax') {
 		$return = utils::o2a($this);
 		if ($_mode == 'array') {
@@ -367,7 +373,7 @@ class scenarioElement {
 		}
 		return $return;
 	}
-	
+
 	public function getAllId() {
 		$return = array(
 			'element' => array($this->getId()),
@@ -382,7 +388,7 @@ class scenarioElement {
 		}
 		return $return;
 	}
-	
+
 	public function resetRepeatIfStatus() {
 		foreach(($this->getSubElement()) as $subElement) {
 			if ($subElement->getType() == 'if') {
@@ -394,7 +400,7 @@ class scenarioElement {
 			}
 		}
 	}
-	
+
 	public function export() {
 		$return = '';
 		foreach(($this->getSubElement()) as $subElement) {
@@ -431,7 +437,7 @@ class scenarioElement {
 							$return .= $subElement->getType();
 							break;
 						}
-						
+
 						foreach(($subElement->getExpression()) as $expression) {
 							$export = $expression->export();
 							if ($expression->getType() != 'condition' && trim($export) != '') {
@@ -444,7 +450,7 @@ class scenarioElement {
 					}
 					return $return;
 				}
-				
+
 				public function copy() {
 					$elementCopy = clone $this;
 					$elementCopy->setId('');
@@ -454,7 +460,7 @@ class scenarioElement {
 					}
 					return $elementCopy->getId();
 				}
-				
+
 				public function getScenario() {
 					$scenario = scenario::byElement($this->getId());
 					if (is_object($scenario)) {
@@ -466,68 +472,67 @@ class scenarioElement {
 					}
 					return null;
 				}
-				
+
 				/*     * **********************Getteur Setteur*************************** */
-				
+
 				public function getId() {
 					return $this->id;
 				}
-				
+
 				public function setId($_id) {
 					$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 					$this->id = $_id;
 					return $this;
 				}
-				
+
 				public function getName() {
 					return $this->name;
 				}
-				
+
 				public function setName($_name) {
 					$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 					$this->name = $_name;
 					return $this;
 				}
-				
+
 				public function getType() {
 					return $this->type;
 				}
-				
+
 				public function setType($_type) {
 					$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 					$this->type = $_type;
 					return $this;
 				}
-				
+
 				public function getOptions($_key = '', $_default = '') {
 					return utils::getJsonAttr($this->options, $_key, $_default);
 				}
-				
+
 				public function setOptions($_key, $_value) {
 					$options =  utils::setJsonAttr($this->options, $_key, $_value);
 					$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
 					$this->options =$options;
 					return $this;
 				}
-				
+
 				public function getOrder() {
 					return $this->order;
 				}
-				
+
 				public function setOrder($_order) {
 					$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 					$this->order = $_order;
 					return $this;
 				}
-				
+
 				public function getChanged() {
 					return $this->_changed;
 				}
-				
+
 				public function setChanged($_changed) {
 					$this->_changed = $_changed;
 					return $this;
 				}
-				
+
 			}
-			
