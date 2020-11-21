@@ -31,6 +31,12 @@ class scenarioSubElement {
 	private $order;
 	private $_expression;
 	private $_changed = false;
+	public static $_scLogTexts = null;
+
+	public function __construct() {
+		global $JEEDOM_SCLOG_TEXT;
+		self::$_scLogTexts = $JEEDOM_SCLOG_TEXT;
+	}
 
 	/*     * ***********************Methode static*************************** */
 
@@ -68,7 +74,7 @@ class scenarioSubElement {
 			return;
 		}
 		if ($this->getSubtype() == 'action') {
-			$_scenario->setLog(__('Exécution du sous-élément de type [action] : ', __FILE__) . $this->getType());
+			$_scenario->setLog(self::$_scLogTexts['execAction']['txt'] . $this->getType());
 			$return = true;
 			foreach(($this->getExpression()) as $expression) {
 				$return = $expression->execute($_scenario);
@@ -76,7 +82,7 @@ class scenarioSubElement {
 			return $return;
 		}
 		if ($this->getSubtype() == 'condition') {
-			$_scenario->setLog(__('Exécution du sous-élément de type [condition] : ', __FILE__) . $this->getType());
+			$_scenario->setLog(self::$_scLogTexts['execCondition']['txt'] . $this->getType());
 			foreach(($this->getExpression()) as $expression) {
 				return $expression->execute($_scenario);
 			}

@@ -750,7 +750,7 @@ class scenario {
 			$this->setCache('tags', '');
 		}
 		if ($this->getIsActive() != 1) {
-			$this->setLog(__('Impossible d\'exécuter le scénario : ', __FILE__) . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
+			$this->setLog(self::$_scLogTexts['disableScenario']['txt']  . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();

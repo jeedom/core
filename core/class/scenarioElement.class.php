@@ -145,7 +145,7 @@ class scenarioElement {
 			}
 			$result = $this->getSubElement('if')->execute($_scenario);
 			if (is_string($result) && strlen($result) > 1) {
-				$_scenario->setLog(__('Expression non valide : ', __FILE__) . $result);
+				$_scenario->setLog(self::$_scLogTexts['invalidExpr']['txt'] . $result);
 				$expresssion_str = '';
 				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
 					foreach(($this->getSubElement('if')->getExpression()) as $expression) {
@@ -217,7 +217,7 @@ class scenarioElement {
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				$_scenario->setLog(self::$_scLogTexts['task']['txt'] . $this->getId() . __(' lancement immédiat ', __FILE__));
+				$_scenario->setLog(self::$_scLogTexts['task']['txt'] . $this->getId() . self::$_scLogTexts['sheduleNow']['txt'] );
 				system::php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');

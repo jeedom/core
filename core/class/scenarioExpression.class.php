@@ -1330,7 +1330,7 @@ class scenarioExpression {
 							return;
 						}
 					}
-					$this->setLog($scenario, __('Aucune durée trouvée pour l\'action sleep ou la durée n\'est pas valide : ', __FILE__) . $options['duration']);
+					$this->setLog($scenario, self::$_scLogTexts['invalidDuration']['txt'] . $options['duration']);
 					return;
 				} elseif ($this->getExpression() == 'stop') {
 					if ($scenario !== null) {
@@ -1731,12 +1731,12 @@ class scenarioExpression {
 						}
 						return $cmd->execCmd($options);
 					}
-					$this->setLog($scenario, __('[Erreur] Aucune commande trouvée pour ', __FILE__) . $this->getExpression());
+					$this->setLog($scenario, self::$_scLogTexts['unfoundCmd']['txt'] . $this->getExpression());
 					return;
 				}
 			} elseif ($this->getType() == 'condition') {
 				$expression = self::setTags($this->getExpression(), $scenario, true);
-				$message = self::$_scLogTexts['evalCondition']['txt'] . ' : [' . $expression . '] = ';
+				$message = __('Evaluation de la condition', __FILE__) . ' : [' . $expression . '] = ';
 				$result = evaluate($expression);
 				if (is_bool($result)) {
 					if ($result) {
