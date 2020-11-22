@@ -445,8 +445,8 @@ $JEEDOM_SCLOG_TEXT = array(
 	'endSubTask' 			=> array('txt' => __('************FIN sous tâche**************', __FILE__), 'replace' => '<label class="success">::</label>'),
 	'sheduleNow'			=> array('txt' => __(' lancement immédiat ', __FILE__), 'replace' => '<label class="success">::</label>'),
 
-	'execAction'			=> array('txt' => __('Exécution du sous-élément de type [action] : ', __FILE__), 'replace' => '<label class="info">::</label>'),
-	'execCondition'			=> array('txt' => __('Exécution du sous-élément de type [condition] : ', __FILE__), 'replace' => '<label class="info">::</label>'),
+	'execAction'			=> array('txt' => __('Exécution du sous-élément de type [action] : ', __FILE__), 'replace' => '<label class="info">- ::</label>'),
+	'execCondition'			=> array('txt' => __('Exécution du sous-élément de type [condition] : ', __FILE__), 'replace' => '<label class="info">- ::</label>'),
 
 	'execCmd'				=> array('txt' => __('Exécution de la commande ', __FILE__), 'replace' => '<label class="warning">::</label>'),
 	'execCode'				=> array('txt' => __('Exécution d\'un bloc code', __FILE__), 'replace' => '<label class="warning">::</label>'),

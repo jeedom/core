@@ -28,7 +28,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 <div style="display: none;width : 100%" id="div_alertScenarioLog"></div>
 <?php echo '<span style="font-weight: bold;">' . $scenario->getHumanName(true, false, true) . '</span>'; ?>
 <div class="input-group pull-right" style="display:inline-flex">
-  <span class="label-sm">{{Brut log}}</span>
+  <span class="label-sm">{{Log brut}}</span>
   <input type="checkbox" id="brutlog" />
   <input class="form-control input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
   <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
