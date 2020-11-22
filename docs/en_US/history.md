@@ -41,7 +41,6 @@ If you display a graph via the history page, you have access to several display 
 - **Display type** : Display in *Line*, *Area*, or *Bar*. Option saved on the order and used from the Dashboard.
 - **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
 - **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
-- **Compare** : Compare the curve between different periods. The comparison is made according to the displayed period. If the period is one week, the comparison will be made over -1 week, -2 week, etc.
 
 
 > **Tip**

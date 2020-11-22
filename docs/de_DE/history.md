@@ -41,7 +41,6 @@ Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diag
 - **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, oder *Balken*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Veränderung** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Vergleichen Sie** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden. Der Vergleich erfolgt nach dem angezeigten Zeitraum. Wenn der Zeitraum eine Woche beträgt, wird der Vergleich über -1 Woche, -2 Wochen usw. durchgeführt.
 
 
 > **Spitze**

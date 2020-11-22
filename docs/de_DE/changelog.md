@@ -35,7 +35,6 @@
 - **Analyse / Geschichte** : Strg Klicken Sie auf eine Legende, um nur diesen Verlauf anzuzeigen. Alt Klicken Sie, um alle anzuzeigen.
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Fläche* mit der Option *Treppe*.
-- **Analyse / Geschichte** : Möglichkeit, eine Historie nach dem aktuellen Zeitraum zu vergleichen.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
 - **Ansicht** : Möglichkeit, Szenarien zu setzen.
 - **Ansicht** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
