@@ -41,7 +41,6 @@ Si vous affichez un graphique par la page historique, vous avez accès à plusie
 - **Type d'affichage** : Affichage en *Ligne*, *Aire*, ou *Barre*. Option sauvegardée sur la commande et utilisée depuis le Dashboard.
 - **Variation** : Affiche la différence de valeur par rapport au point précédent. Option sauvegardée sur la commande et utilisée depuis le Dashboard.
 - **Escalier** : Permet d’afficher la courbe sous la forme d’un escalier ou d’un affichage continu. Option sauvegardée sur la commande et utilisée depuis le Dashboard.
-- **Comparer** : Permet de comparer la courbe entre différentes périodes. La comparaison s'effectue en fonction de la période affichée. Si la période est d'une semaine, la comparaison se fera sur -1 semaine, -2 semaine, etc.
 
 
 > **Tip**

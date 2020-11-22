@@ -20,7 +20,6 @@ var chart
 var noChart = 1
 var colorChart = 0
 var lastId = null
-var isComparing = false
 delete jeedom.history.chart['div_graph']
 
 $(function() {
@@ -87,10 +86,9 @@ function setChartOptions() {
     lastId = null
     $('#sel_groupingType').val($('#sel_groupingType option:first').val())
     $('#sel_chartType').val($('#sel_chartType option:first').val())
-    $('#sel_compare').val(0)
     setChartExtremes()
   }
-  $('#sel_groupingType, #sel_chartType, #sel_compare').prop('disabled', _prop)
+  $('#sel_groupingType, #sel_chartType').prop('disabled', _prop)
   resizeDn()
 }
 
@@ -110,7 +108,6 @@ $('#bt_configureCalculHistory').on('click', function() {
 })
 
 $('#bt_clearGraph').on('click', function() {
-  isComparing = false
   if (jeedom.history.chart['div_graph'] === undefined) return
   while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
     jeedom.history.chart['div_graph'].chart.series[0].remove(true)
@@ -124,7 +121,6 @@ datePickerInit()
 
 $(".li_history .history").on('click', function(event) {
   $.hideAlert()
-  if (isComparing) return
   if ($(this).closest('.li_history').hasClass('active')) {
     $(this).closest('.li_history').removeClass('active')
     addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
@@ -271,21 +267,6 @@ function initHistoryTrigger() {
     setChartExtremes()
   })
 
-  $('#sel_compare').off('change').on('change', function() {
-    if ($(this).val() != 0) {
-      isComparing = true
-      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
-    } else {
-      isComparing = false
-      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', false)
-      $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
-        if (isset(serie.userOptions.comparing)) serie.remove()
-      })
-    }
-    if (lastId == null) return
-    compareChart(lastId)
-  })
-
   $('.highcharts-legend-item').off('click').on('click',function(event) {
     if (event.ctrlKey || event.metaKey || event.altKey) {
       event.stopImmediatePropagation()
@@ -337,7 +318,6 @@ function addChart(_cmd_id, _action, _options) {
     dateEnd :  dateEnd,
     height : $('#div_graph').height(),
     option : _options,
-    compare: 0,
     success: function(data) {
       if (isset(data.error)) {
         $('.li_history[data-cmd_id='+_cmd_id+']').removeClass('active')
@@ -347,63 +327,6 @@ function addChart(_cmd_id, _action, _options) {
       setChartOptions()
     }
   })
-}
-
-function compareChart(_cmd_id, _options) {
-  //compare:
-  var compare = $('#sel_compare').val()
-  if (compare < 0) {
-    var dateStart = $('#in_startDate').value()
-    var dateEnd = $('#in_endDate').value()
-
-    dateStart = Date.parse(dateStart)
-    dateEnd = Date.parse(dateEnd)
-
-    var rangeTs = dateEnd - dateStart
-    var delta = (rangeTs * Math.abs(compare)) + 86400000
-    var compare_dateStart = dateStart - delta
-    var compare_dateEnd = dateEnd - delta
-
-    var thisTime = new Date
-    thisTime.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime)
-    thisTime = ("0" + thisTime.getHours()).slice(-2) + ':' + ("0" + thisTime.getMinutes()).slice(-2) + ':' + ("0" + thisTime.getSeconds()).slice(-2)
-
-    compare_dateStart = tsToDate(compare_dateStart)
-    compare_dateEnd = tsToDate(compare_dateEnd) + ' ' + thisTime
-
-    jeedom.history.drawChart({
-      cmd_id: _cmd_id,
-      el: 'div_graph',
-      dateRange : 'all',
-      dateStart : compare_dateStart,
-      dateEnd :  compare_dateEnd,
-      height : $('#div_graph').height(),
-      option : _options,
-      compare: compare,
-      delta: delta,
-      success: function(data) {
-        $('#sel_compare').val(compare)
-      }
-    })
-  }
-}
-
-function tsToDate(UNIX_timestamp, hour=false) {
-  var date_ob = new Date(UNIX_timestamp)
-  var year = date_ob.getFullYear()
-  var month = ("0" + (date_ob.getMonth() + 1)).slice(-2)
-  var day = ("0" + date_ob.getDate()).slice(-2)
-
-  var date = year + '-' + month + '-' + day
-
-  if (hour) {
-    var hours = ("0" + date_ob.getHours()).slice(-2)
-    var minutes = ("0" + date_ob.getMinutes()).slice(-2)
-    var seconds = ("0" + date_ob.getSeconds()).slice(-2)
-    return date + ' ' + hours + ':' + minutes + ':' + seconds
-  } else {
-    return date
-  }
 }
 
 function emptyHistory(_cmd_id, _date) {

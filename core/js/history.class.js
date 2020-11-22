@@ -202,23 +202,6 @@ jeedom.history.drawChart = function(_params) {
         return;
       }
 
-      //is comparing:
-      var delta = false
-      if (isset(_params.delta) && _params.delta > 0) {
-        delta = _params.delta
-        for (var i=0; i<data.result.data.length;i++) {
-          var x = data.result.data[i][0]
-          var y = data.result.data[i][1]
-          var dateTooltip = tsToDate(x - (serverTZoffsetMin*60000), true)
-          x += delta
-          data.result.data[i] = {
-            x: x,
-            y: y,
-            dateTooltip: dateTooltip
-          }
-        }
-      }
-
       //set/check some params:
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
@@ -443,7 +426,6 @@ jeedom.history.drawChart = function(_params) {
                   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
                   if ($('#md_modal2').is(':visible')) return
                   if ($('#md_modal1').is(':visible')) return
-                  if (isset(isComparing) && isComparing == true) return
 
                   var id = this.series.userOptions.id;
                   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
@@ -521,7 +503,7 @@ jeedom.history.drawChart = function(_params) {
             }
           }
 
-          if (init(_params.option.groupingType) == '' && !delta) {
+          if (init(_params.option.groupingType) == '') {
             //continue value to now, dotted if last value older than one minute (ts in millisecond):
             var dateEnd = new Date(data.result.dateEnd)
             dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
@@ -674,15 +656,6 @@ jeedom.history.drawChart = function(_params) {
           })
         } else {
           //add curve to existing graph:
-
-          //set tooltip for comparison:
-          if (delta) {
-            series.name = _params.compare
-            series.comparing = '1'
-            series.tooltip =  {
-              pointFormat: '{point.y} {series.userOptions.unite}<br/>{point.dateTooltip}'
-            }
-          }
           jeedom.history.chart[_params.el].chart.addSeries(series)
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange}
