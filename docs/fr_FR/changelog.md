@@ -35,7 +35,6 @@
 - **Analyse / Historique** : Ctrl Clic sur une légende pour afficher seulement cet historique, Alt Clic pour les afficher tous.
 - **Analyse / Historique** : Les options *groupement, type, variation, escalier* sont actives seulement avec une seule courbe affichée.
 - **Analyse / Historique** : On peut maintenant utiliser l'option *Aire* avec l'option *Escalier*.
-- **Analyse / Historique** : Possibilité de comparer un historique selon la période en cours.
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
 - **Vue** : Possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
