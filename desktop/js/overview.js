@@ -133,7 +133,7 @@ $('#objectOverviewContainer').on({
 //Tile click or center-click
 $('.objectPreview').off('click').on('click', function (event) {
   if (event.target !== this && !$(event.target).hasClass('bottomPreview')) return
-  var url = 'index.php?v=d&p=dashboard&object_id='+$(this).attr('data-object_id')+'&childs=0'+'&btover=1'
+  var url = $(this).attr('data-url')
   if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {

@@ -173,6 +173,11 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
   return false
 })
 
+$('select[data-l2key="synthToAction"]').off().on('change',function() {
+  $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').addClass('hidden')
+  $('select[data-l2key="'+$(this).val()+'"]').removeClass('hidden')
+})
+
 function printObject(_id) {
   $.hideAlert()
   var objName = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_name')
@@ -228,6 +233,13 @@ function loadObjectConfiguration(_id) {
       if (!isset(data.configuration.hideOnOverview)) {
         $('input[data-l2key="hideOnOverview"]').prop('checked', false)
       }
+      if (!isset(data.configuration.useBackground)) {
+        $('.objectAttr[data-l1key=configuration][data-l2key=useBackground]').prop('checked', false)
+      }
+      if (!isset(data.configuration.synthToAction)) {
+        $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').addClass('hidden')
+        $('select[data-l2key="synthToAction"]').val('synthToDashboard')
+      }
 
       if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
         var bodyStyles = window.getComputedStyle(document.body)
@@ -256,10 +268,6 @@ function loadObjectConfiguration(_id) {
         })
       }
 
-      if (!isset(data.configuration.useBackground)) {
-        $('.objectAttr[data-l1key=configuration][data-l2key=useBackground]').prop('checked', false)
-      }
-
       $('.objectAttr[data-l1key=father_id] option[value=' + data.id + ']').hide()
       $('.div_summary').empty()
       $('.tabnumber').empty()
@@ -271,6 +279,7 @@ function loadObjectConfiguration(_id) {
         $('.objectImg img').hide()
         $('#bt_removeBackgroundImage').addClass('disabled')
       }
+
       //set summary tab:
       if (isset(data.configuration) && isset(data.configuration.summary)) {
         var el
@@ -289,7 +298,6 @@ function loadObjectConfiguration(_id) {
       } else {
         var summary = {}
       }
-
 
       //set eqlogics tab:
       addEqlogicsInfo(_id, data.name, summary)
