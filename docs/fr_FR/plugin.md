@@ -94,11 +94,14 @@ En cliquant sur l'icône d'un plugin, vous ouvrez sa page de configuration.
 ### En dessous à gauche, on retrouve une zone **état** avec :
 
 - **Statut** : Permet de voir le statut du plugin (actif / inactif).
-- **Version** : La version du plugin installée.
-- **Auteur** : L’auteur du plugin.
-- **Action** : Permet d’activer ou désactiver le plugin.
-- **Version jeedom** : Indique la version de Jeedom minimum requise pour le plugin.
+- **Catégorie** : La catégorie du plugin, indiquant dans quel sous-menu le trouver.
+- **Auteur** : L’auteur du plugin, lien vers la market et les plugins de cet auteur.
 - **Licence** : Indique la licence du plugin qui sera généralement AGPL.
+
+- **Action** : Permet d’activer ou désactiver le plugin. Le bouton **Ouvrir** Permet de vous rendre directement sur la page du plugin.
+- **Version** : La version du plugin installée.
+- **Pré-requis** : Indique la version de Jeedom minimum requise pour le plugin.
+
 
 ### A droite, on retrouve la zone **Log et surveillance** qui permet de définir :
 
