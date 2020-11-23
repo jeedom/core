@@ -55,6 +55,7 @@ $date = array(
 
 			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
+			<span><i class="fas fa-bullseye"></i> {{Tracking}} <input type="checkbox" id="cb_tracking" checked/></span>
 
 			<a class="btn btn-sm btn-success" id="bt_compare"><i class="fas fa-greater-than-equal"></i> {{Comparer}}</a>
 			<a class="btn btn-sm btn-warning" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >

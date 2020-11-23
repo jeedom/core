@@ -480,6 +480,7 @@ jeedom.history.drawChart = function(_params) {
           }
 
           var series = {
+            //stickyTracking: false,
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
             visible: _visible,
@@ -688,10 +689,9 @@ jeedom.history.drawChart = function(_params) {
             series: [series]
           })
         } else {
-          //add curve to existing graph:
-
           //set options for comparison serie:
           if (comparisonSerie == 1) {
+            series.zIndex = -1
             series.dashStyle = 'shortdot'
             series.xAxis = 1
             series.name = '{{Comparaison}}'
@@ -705,6 +705,7 @@ jeedom.history.drawChart = function(_params) {
                     ],
               }
           }
+          //add curve to existing graph:
           jeedom.history.chart[_params.el].chart.addSeries(series)
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {option: _params.option, dateRange: _params.dateRange}

@@ -2047,6 +2047,9 @@ Theme Core 2021 @Jeedom
   body[data-page="history"] .history.disabled {
     color: var(--placeholder-color) !important;
   }
+  #div_historyOptions {
+    background: rgba(var(--panel-bg-color), var(--opacity)) !important;
+  }
   #ul_expressionHistory li a {
     color: var(--sc-lightTxt-color) !important;
   }

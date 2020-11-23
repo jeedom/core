@@ -341,6 +341,25 @@ function clearGraph(_lastId=null) {
   lastId = _lastId
 }
 
+$('#cb_tracking').off('change').on('change', function() {
+  if (chart) {
+    if ($(this).is(':checked')) {
+      var opacity = 0.1
+    } else {
+      var opacity = 1
+    }
+    chart.update({
+        plotOptions: {
+          series: {
+            states: {
+              inactive: {opacity: opacity}
+            }
+          }
+        }
+      })
+  }
+})
+
 $("#md_getCompareRange").dialog({
   closeText: '',
   autoOpen: false,
