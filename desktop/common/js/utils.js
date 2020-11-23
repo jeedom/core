@@ -1228,6 +1228,8 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
   return this
 }
 
+$.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
+
 //deprecated
 function initCheckBox() {}
 

@@ -3,8 +3,9 @@
 ## 4.2.0
 
 - **Synthèse** : Possibilité de paramétrage des objets pour aller vers un *design* ou une *vue* depuis la synthèse.
-- **Logs** : Coloration des logs en fonction de certains évènements. Possibilité d'afficher le log brut.
+- **Analyse / Historique** : Possibilité de comparer un historique sur une période donnée.
 - **Analyse / Equipements** : Les commandes orphelines affichent maintenant leurs noms et date de suppression si encore dans l'historique de suppression.
+- **Logs** : Coloration des logs en fonction de certains évènements. Possibilité d'afficher le log brut.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci.
 
 

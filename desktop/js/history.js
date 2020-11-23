@@ -16,11 +16,9 @@
 
 "use strict"
 
-var chart
-var noChart = 1
-var colorChart = 0
 var lastId = null
 var isComparing = false
+var chart = $('#div_graph').highcharts()
 delete jeedom.history.chart['div_graph']
 
 $(function() {
@@ -37,13 +35,13 @@ $(function() {
       })
     }
   }
+  datePickerInit()
   setChartOptions()
 })
 
 //handle resizing:
 var resizeDone
 function resizeDn() {
-  var chart = $('#div_graph').highcharts()
   var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true) - $('#div_alertHistory').outerHeight(true)
   if (chart) {
     chart.setSize( $('#div_graph').width(), height)
@@ -79,6 +77,7 @@ function setChartOptions() {
         $('#sel_chartType').off().value(type)
         $('#cb_derive').prop('checked', serie.userOptions.derive)
         $('#cb_step').prop('checked', serie.userOptions.step)
+        $('#bt_compare').removeClass('disabled')
         initHistoryTrigger()
         return false
       }
@@ -87,10 +86,10 @@ function setChartOptions() {
     lastId = null
     $('#sel_groupingType').val($('#sel_groupingType option:first').val())
     $('#sel_chartType').val($('#sel_chartType option:first').val())
-    $('#sel_compare').val(0)
-    setChartExtremes()
+    $('#bt_compare').addClass('disabled')
+    setChartYExtremes()
   }
-  $('#sel_groupingType, #sel_chartType, #sel_compare').prop('disabled', _prop)
+  $('#sel_groupingType, #sel_chartType').prop('disabled', _prop)
   resizeDn()
 }
 
@@ -108,19 +107,6 @@ $('#bt_displayCalculHistory').on('click', function() {
 $('#bt_configureCalculHistory').on('click', function() {
   $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
-
-$('#bt_clearGraph').on('click', function() {
-  isComparing = false
-  if (jeedom.history.chart['div_graph'] === undefined) return
-  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
-    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
-  }
-  delete jeedom.history.chart['div_graph']
-  $('#ul_history').find('.li_history.active').removeClass('active')
-  setChartOptions()
-})
-
-datePickerInit()
 
 $(".li_history .history").on('click', function(event) {
   $.hideAlert()
@@ -197,7 +183,6 @@ function initHistoryTrigger() {
 
   $('#sel_chartType').off('change').on('change', function() {
     if (lastId == null) return
-
     var currentId = lastId
     var graphType = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
@@ -208,7 +193,8 @@ function initHistoryTrigger() {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
+        $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
+        addChart(currentId)
       }
     })
   })
@@ -233,7 +219,7 @@ function initHistoryTrigger() {
           addChart(data.id, 1)
           if (nbSeries == 0) {
             setTimeout(function(){
-              setChartExtremes()
+              setChartYExtremes()
             }, 1000)
           }
         }
@@ -262,28 +248,13 @@ function initHistoryTrigger() {
           addChart(data.id, 1)
           if (nbSeries == 0) {
             setTimeout(function(){
-              setChartExtremes()
+              setChartYExtremes()
             }, 1000)
           }
         }
       })
     })
-    setChartExtremes()
-  })
-
-  $('#sel_compare').off('change').on('change', function() {
-    if ($(this).val() != 0) {
-      isComparing = true
-      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
-    } else {
-      isComparing = false
-      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', false)
-      $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
-        if (isset(serie.userOptions.comparing)) serie.remove()
-      })
-    }
-    if (lastId == null) return
-    compareChart(lastId)
+    setChartYExtremes()
   })
 
   $('.highcharts-legend-item').off('click').on('click',function(event) {
@@ -303,7 +274,7 @@ function initHistoryTrigger() {
       }
     }
     setChartOptions()
-    setTimeout(setChartExtremes, 500)
+    setTimeout(setChartYExtremes, 500)
   })
 }
 
@@ -318,7 +289,7 @@ function addChart(_cmd_id, _action, _options) {
             serie.remove()
             setChartOptions()
             setTimeout(function(){
-              setChartExtremes()
+              setChartYExtremes()
             }, 500)
           }
         } catch(error) {}
@@ -345,65 +316,113 @@ function addChart(_cmd_id, _action, _options) {
       }
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
+      setTimeout(function(){
+        setChartYExtremes()
+      }, 500)
     }
   })
 }
 
-function compareChart(_cmd_id, _options) {
-  //compare:
-  var compare = $('#sel_compare').val()
-  if (compare < 0) {
-    var dateStart = $('#in_startDate').value()
-    var dateEnd = $('#in_endDate').value()
+$('#bt_clearGraph').on('click', function() {
+  clearGraph()
+})
 
-    dateStart = Date.parse(dateStart)
-    dateEnd = Date.parse(dateEnd)
-
-    var rangeTs = dateEnd - dateStart
-    var delta = (rangeTs * Math.abs(compare)) + 86400000
-    var compare_dateStart = dateStart - delta
-    var compare_dateEnd = dateEnd - delta
-
-    var thisTime = new Date
-    thisTime.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime)
-    thisTime = ("0" + thisTime.getHours()).slice(-2) + ':' + ("0" + thisTime.getMinutes()).slice(-2) + ':' + ("0" + thisTime.getSeconds()).slice(-2)
-
-    compare_dateStart = tsToDate(compare_dateStart)
-    compare_dateEnd = tsToDate(compare_dateEnd) + ' ' + thisTime
-
-    jeedom.history.drawChart({
-      cmd_id: _cmd_id,
-      el: 'div_graph',
-      dateRange : 'all',
-      dateStart : compare_dateStart,
-      dateEnd :  compare_dateEnd,
-      height : $('#div_graph').height(),
-      option : _options,
-      compare: compare,
-      delta: delta,
-      success: function(data) {
-        $('#sel_compare').val(compare)
-      }
-    })
+function clearGraph(_lastId=null) {
+  isComparing = false
+  if (jeedom.history.chart['div_graph'] === undefined) return
+  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
+    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
+  $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
+  chart.xAxis[1].update({visible: false})
+  delete jeedom.history.chart['div_graph']
+  $('#ul_history').find('.li_history.active').removeClass('active')
+  setChartOptions()
+  lastId = _lastId
 }
 
-function tsToDate(UNIX_timestamp, hour=false) {
-  var date_ob = new Date(UNIX_timestamp)
-  var year = date_ob.getFullYear()
-  var month = ("0" + (date_ob.getMonth() + 1)).slice(-2)
-  var day = ("0" + date_ob.getDate()).slice(-2)
-
-  var date = year + '-' + month + '-' + day
-
-  if (hour) {
-    var hours = ("0" + date_ob.getHours()).slice(-2)
-    var minutes = ("0" + date_ob.getMinutes()).slice(-2)
-    var seconds = ("0" + date_ob.getSeconds()).slice(-2)
-    return date + ' ' + hours + ':' + minutes + ':' + seconds
-  } else {
-    return date
+$("#md_getCompareRange").dialog({
+  closeText: '',
+  autoOpen: false,
+  modal: true,
+  width: 520,
+  height: 180,
+  open: function() {
+    $(this).parent().css({'top': 120})
+    $('#in_compareStart1').value($('#in_startDate').value())
+    $('#in_compareEnd1').value($('#in_endDate').value())
+  },
+  beforeClose: function(event, ui) {
   }
+})
+
+$('#bt_compare').off().on('click', function() {
+  if (!isComparing) {
+    if (lastId == null) return
+    $('#md_getCompareRange').removeClass('hidden').dialog({title: "{{Période de comparaison}}"}).dialog('open')
+  } else {
+    clearGraph(lastId)
+    chart.xAxis[1].update({visible: false})
+    chart.update({
+      navigator: { enabled: true },
+      scrollbar: { enabled: true }
+    })
+    addChart(lastId)
+    $('li.li_history[data-cmd_id="'+lastId+'"]').addClass('active')
+    $(this).removeClass('btn-danger').addClass('btn-success')
+  }
+})
+
+$('#bt_doCompare').off('click').on('click', function() {
+  isComparing = true
+  $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
+  $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
+  chart.xAxis[1].update({visible: true})
+  compareChart(lastId)
+})
+
+function compareChart(_cmd_id, _options) {
+  //compare:
+  var fromStart, fromEnd, toStart, toEnd
+  fromStart = $('#in_compareStart1').value() +' 00:00:00'
+  fromEnd = $('#in_compareEnd1').value() +' 23:59:59'
+  toStart = $('#in_compareStart2').value() +' 00:00:00'
+  toEnd = $('#in_compareEnd2').value() +' 23:59:59'
+
+  //remove all series from chart:
+  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
+    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
+  }
+
+  //add data from both date range:
+  jeedom.history.drawChart({
+    cmd_id: _cmd_id,
+    el: 'div_graph',
+    dateRange : 'all',
+    dateStart : fromStart,
+    dateEnd :  fromEnd,
+    height : $('#div_graph').height(),
+    option : _options,
+    success: function(data) {
+      jeedom.history.drawChart({
+        cmd_id: _cmd_id,
+        el: 'div_graph',
+        dateRange : 'all',
+        dateStart : toStart,
+        dateEnd :  toEnd,
+        height : $('#div_graph').height(),
+        option : _options,
+        compare: 1,
+        success: function(data) {
+          setTimeout(function() {
+            setChartXExtremes()
+            setChartYExtremes()
+          }, 500)
+        }
+      })
+    }
+  })
+  $('#md_getCompareRange').dialog('close')
 }
 
 function emptyHistory(_cmd_id, _date) {
@@ -433,12 +452,30 @@ function emptyHistory(_cmd_id, _date) {
   })
 }
 
-function setChartExtremes() {
+function setChartYExtremes() {
+  if (!chart) return
+  var max = 0
+  var min = 10000
+  chart.yAxis.forEach((axis, index) => {
+    if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min ) min = axis.getExtremes().dataMin
+    if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max ) max = axis.getExtremes().dataMax
+  })
+  chart.yAxis.forEach((axis, index) => {
+    axis.setExtremes(min / 1.005, max * 1.005)
+  })
+}
+
+function setChartXExtremes() {
+  //only used for comparison
   try {
-    var yExtremes = chart.yAxis[0].getExtremes(true)
-    var min = yExtremes.dataMin / 1.005
-    var max = yExtremes.dataMax * 1.005
-    chart.yAxis[0].setExtremes(min, max, true, true)
+    var xExtremes0 = chart.xAxis[0].getExtremes()
+    var xExtremes1 = chart.xAxis[1].getExtremes()
+    chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin))
+    chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax)
+    chart.update({
+      navigator: { enabled: false },
+      scrollbar: { enabled: false }
+    })
   }
   catch(error) {}
 }

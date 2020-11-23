@@ -49,6 +49,7 @@ sendVarToJs('cmd_id',$id);
 </div>
 
 <script>
+var isComparing = false
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)

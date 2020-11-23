@@ -21,8 +21,8 @@ $date = array(
 		</div>
 	</div>
 
-	<div class="col-lg-7 col-sm-10 col-xs-12">
-		<div class="input-group input-group-sm">
+	<div class="col-lg-7 col-sm-10 col-xs-12 pull-right">
+		<div class="input-group input-group-sm" style="float: right;">
 			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;">
 				<option value="">{{Aucun groupement}}</option>
 				<option value="sum::hour">{{Somme par heure}}</option>
@@ -56,23 +56,11 @@ $date = array(
 			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 
-			<span>{{Comparer}} </span>
-			<select class="fullCorner input-sm" id="sel_compare" style="width: 60px;">
-				<?php
-					$options = '<option>0</option>';
-					for ($o = 1; $o <= 12; $o++) {
-						$options .= '<option>-'.$o.'</option>';
-					}
-					echo $options;
-				?>
-			</select>
+			<a class="btn btn-sm btn-success" id="bt_compare"><i class="fas fa-greater-than-equal"></i> {{Comparer}}</a>
+			<a class="btn btn-sm btn-warning" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >
+				<i class="fas fa-times"></i> {{Affichage}}
+			</a>
 		</div>
-	</div>
-
-	<div class="col-lg-2 col-sm-2 col-xs-12">
-		<a class="btn btn-warning pull-right" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >
-			<i class="fas fa-times"></i> {{Affichage}}
-		</a>
 	</div>
 </div>
 
@@ -140,6 +128,34 @@ $date = array(
 	</div>
 </div>
 
+<div id="md_getCompareRange" class="hidden" style="overflow-x: hidden;">
+	<form class="form-horizontal">
+		<fieldset>
+			<div class="form-group">
+				<div class="form-group">
+					<label class="col-xs-4 control-label">{{Comparer la période}}</label>
+					<div class="col-xs-3">
+						<input id="in_compareStart1" class="form-control input-sm in_datepicker" value="<?php echo $date['start'] ?>"/>
+					</div>
+					<div class="col-xs-3">
+						<input id="in_compareEnd1" class="form-control input-sm in_datepicker" value="<?php echo $date['end'] ?>"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-4 control-label">{{Avec la période}}</label>
+					<div class="col-xs-3">
+						<input id="in_compareStart2" class="form-control input-sm in_datepicker"/>
+					</div>
+					<div class="col-xs-3">
+						<input id="in_compareEnd2" class="form-control input-sm in_datepicker"/>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<br>
+	<a class="btn btn-success pull-right" id="bt_doCompare"><i class="fas fa-check"></i> {{Comparer}}</a>
+</div>
 <?php
 include_file("desktop", "history", "js");
 ?>

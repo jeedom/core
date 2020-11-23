@@ -202,22 +202,23 @@ jeedom.history.drawChart = function(_params) {
         return;
       }
 
-      //is comparing:
-      var delta = false
-      if (isset(_params.delta) && _params.delta > 0) {
-        delta = _params.delta
-        for (var i=0; i<data.result.data.length;i++) {
-          var x = data.result.data[i][0]
-          var y = data.result.data[i][1]
-          var dateTooltip = tsToDate(x - (serverTZoffsetMin*60000), true)
-          x += delta
-          data.result.data[i] = {
-            x: x,
-            y: y,
-            dateTooltip: dateTooltip
-          }
+      //If is comparing, add midnight start and end points to both series for range adjusting:
+      if (typeof isComparing !== 'undefined' && isComparing == true) {
+        var tsFirst = data.result.data[0][0]
+        var tsStart = Date.parse(data.result.dateStart)
+        if (tsStart < tsFirst) {
+          data.result.data.unshift([tsStart, data.result.data[0][1]])
+        }
+        var tsLast = data.result.data.slice(-1)[0][0]
+        var tsEnd = Date.parse(data.result.dateEnd)
+        if (tsEnd > tsLast) {
+          data.result.data.push([tsEnd, data.result.data.slice(-1)[0][1]])
         }
       }
+      //if this serie a comparison one:
+      var comparisonSerie = false
+      if (isset(_params.compare) && _params.compare == 1) comparisonSerie = true
+
 
       //set/check some params:
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
@@ -294,18 +295,27 @@ jeedom.history.drawChart = function(_params) {
           },
           selection: function(event) {
             //zoom back after reset zoom button. allways play with immutables!
+            //setChartYExtremes() function only defined on history page
             if (event.resetSelection) {
-              var min = this.fullMin
-              var max = this.fullMax
-              if (this.series.length <= 2) {
-                chart = $('#div_graph').highcharts()
+              if (typeof isComparing !== 'undefined' && isComparing == true) {
                 setTimeout(function() {
-                  event.target.yAxis[0].setExtremes(min, max, true, true)
-                }, 10)
+                  setChartXExtremes()
+                  setChartYExtremes()
+                }, 500)
+                return
               }
-            } else {
-              this.fullMin = this.yAxis[0].dataMin / 1.005
-              this.fullMax = this.yAxis[0].dataMax * 1.005
+
+              setTimeout(function() {
+                var max = 0
+                var min = 10000
+                jeedom.history.chart[_params.el].chart.yAxis.forEach((axis, index) => {
+                  if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min ) min = axis.getExtremes().dataMin
+                  if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max ) max = axis.getExtremes().dataMax
+                })
+                jeedom.history.chart[_params.el].chart.yAxis.forEach((axis, index) => {
+                  event.target.yAxis[index].setExtremes(min / 1.005, max * 1.005, true, true)
+                })
+              }, 250)
             }
           },
           addSeries: function(event) {
@@ -443,7 +453,7 @@ jeedom.history.drawChart = function(_params) {
                   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
                   if ($('#md_modal2').is(':visible')) return
                   if ($('#md_modal1').is(':visible')) return
-                  if (isset(isComparing) && isComparing == true) return
+                  if (typeof isComparing !== 'undefined' && isComparing == true) return
 
                   var id = this.series.userOptions.id;
                   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
@@ -521,7 +531,7 @@ jeedom.history.drawChart = function(_params) {
             }
           }
 
-          if (init(_params.option.groupingType) == '' && !delta) {
+          if (init(_params.option.groupingType) == '' && !comparisonSerie) {
             //continue value to now, dotted if last value older than one minute (ts in millisecond):
             var dateEnd = new Date(data.result.dateEnd)
             dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
@@ -652,12 +662,17 @@ jeedom.history.drawChart = function(_params) {
                 x: 2
               }
             }],
-            xAxis: {
+            xAxis: [{
               type: 'datetime',
               ordinal: false,
               maxPadding : 0.02,
               minPadding : 0.02
-            },
+            }, {
+              type: 'datetime',
+              ordinal: false,
+              maxPadding : 0.02,
+              minPadding : 0.02
+            }],
             scrollbar: {
               barBackgroundColor: 'gray',
               barBorderRadius: 7,
@@ -675,13 +690,20 @@ jeedom.history.drawChart = function(_params) {
         } else {
           //add curve to existing graph:
 
-          //set tooltip for comparison:
-          if (delta) {
-            series.name = _params.compare
+          //set options for comparison serie:
+          if (comparisonSerie == 1) {
+            series.dashStyle = 'shortdot'
+            series.xAxis = 1
+            series.name = '{{Comparaison}}'
             series.comparing = '1'
-            series.tooltip =  {
-              pointFormat: '{point.y} {series.userOptions.unite}<br/>{point.dateTooltip}'
-            }
+            series.color = colors[1]
+            series.fillColor = {
+              linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1},
+              stops: [
+                      [0, Highcharts.Color(series.color).setOpacity(opacityHigh).get('rgba')],
+                      [1, Highcharts.Color(series.color).setOpacity(opacityLow).get('rgba')]
+                    ],
+              }
           }
           jeedom.history.chart[_params.el].chart.addSeries(series)
         }
