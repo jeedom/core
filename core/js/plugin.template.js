@@ -375,6 +375,10 @@ $('#in_searchEqlogic').off('keyup').keyup(function () {
   $('.eqLogicThumbnailContainer').packery();
 });
 
+ $('#bt_resetSearch').on('click', function() {
+   $('#in_searchEqlogic').val('').keyup()
+ })
+
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function () {
   addCmdToTable();
