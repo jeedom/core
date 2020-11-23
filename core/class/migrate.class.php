@@ -130,9 +130,57 @@ class migrate {
 		}
 	}
 	
+	public static function kernelToUsb() {
+		$mediaLink = '/media/migrate';
+		log::remove('migrate');
+		$jsonrpc = repo_market::getJsonRpc();
+		if (!$jsonrpc->sendRequest('box::smart_kernel_url')) {
+			throw new Exception($jsonrpc->getErrorMessage());
+		}
+		$urlArray = $jsonrpc->getResult();
+		$url = $urlArray['url'];
+		$size = $urlArray['SHA256'];
+		exec('sudo pkill -9 wget');
+		$fileExiste = 0;
+		if(file_exists($mediaLink.'/kernel.tar.gz.installed')){
+			$fileExiste = $mediaLink.'/kernel.tar.gz.installed';
+		}elseif(file_exists($mediaLink.'/kernel.tar.gz')){
+			$fileExiste = $mediaLink.'/kernel.tar.gz';
+		}elseif(file_exists($mediaLink.'/kernelDownload.tar.gz')){
+			$fileExiste = $mediaLink.'/kernelDownload.tar.gz';
+		}
+		if($fileExiste !== 0){
+			$sizeFileExiste = hash_file('sha256',$fileExiste);
+			if($sizeFileExiste == $size){
+				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/kernel.tar.gz');
+				return 'fileExist';
+			}else{
+				exec('sudo wget --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/kernelDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+				return 'telechargement';
+			}
+		}else{
+			exec('sudo wget --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/kernelDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
+			return 'telechargement';
+		}
+	}
+	
 	public static function renameImage(){
 		$mediaLink = '/media/migrate';
 		exec('sudo mv '.$mediaLink.'/backupJeedomDownload.tar.gz '.$mediaLink.'/backupJeedom.tar.gz');
+		log::remove('migrate');
+		return 'ok';
+	}
+	
+	public static function renameKernel(){
+		$mediaLink = '/media/migrate';
+		exec('sudo mv '.$mediaLink.'/kernelDownload.tar.gz '.$mediaLink.'/kernel.tar.gz');
+		log::remove('migrate');
+		return 'ok';
+	}
+	
+	public static function execKernel(){
+		$mediaLink = '/media/migrate';
+		// A faire
 		log::remove('migrate');
 		return 'ok';
 	}
