@@ -97,6 +97,7 @@ class migrate {
 	}
 	
 	public static function imageToUsb() {
+		migrate::kernelToUsb();
 		$mediaLink = '/media/migrate';
 		log::remove('migrate');
 		$jsonrpc = repo_market::getJsonRpc();
@@ -153,15 +154,16 @@ class migrate {
 			$sizeFileExiste = hash_file('sha256',$fileExiste);
 			if($sizeFileExiste == $size){
 				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/kernel.tar.gz');
-				return 'fileExist';
 			}else{
-				exec('sudo wget --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/kernelDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
-				return 'telechargement';
+				exec('sudo wget '.$url.' -O '.$mediaLink.'/kernelDownload.tar.gz');
+				migrate::renameKernel();
 			}
 		}else{
-			exec('sudo wget --progress=dot --dot=mega '.$url.' -a '.log::getPathToLog('migrate').' -O '.$mediaLink.'/kernelDownload.tar.gz >> ' . log::getPathToLog('migrate').' 2&>1');
-			return 'telechargement';
+			exec('sudo wget '.$url.'-O '.$mediaLink.'/kernelDownload.tar.gz');
+			migrate::renameKernel();
 		}
+		$returnKernel = migrate::execKernel();
+		return $returnKernel;
 	}
 	
 	public static function renameImage(){
@@ -174,13 +176,13 @@ class migrate {
 	public static function renameKernel(){
 		$mediaLink = '/media/migrate';
 		exec('sudo mv '.$mediaLink.'/kernelDownload.tar.gz '.$mediaLink.'/kernel.tar.gz');
-		log::remove('migrate');
 		return 'ok';
 	}
 	
 	public static function execKernel(){
 		$mediaLink = '/media/migrate';
-		// A faire
+		exec('sudo rm /media/boot/multiboot/mb_kernel/*');
+		exec('sudo tar -xzvf '.$mediaLink.'/kernel.tar.gz -C /media/boot/multiboot/mb_kernel');
 		log::remove('migrate');
 		return 'ok';
 	}
