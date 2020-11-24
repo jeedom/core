@@ -247,10 +247,11 @@ jeedom.object.summaryUpdate = function(_params) {
   var objects = {};
   var sends = {};
   var object = null;
+  var summarySpan = null;
   var keySpan = null;
   var updated = null;
   var icon = null;
-  var summarySpan = null;
+
   for (var i in _params) {
     object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
@@ -288,7 +289,7 @@ jeedom.object.summaryUpdate = function(_params) {
           }
         }
       }
-      if (updated) {
+      if ((updated && !isset(_params[i]['force'])) || (updated && _params[i]['force'] != 1)) {
         continue;
       }
     }
