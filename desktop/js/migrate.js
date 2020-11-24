@@ -245,7 +245,7 @@ function getJeedomLog(_autoUpdate, _log) {
 						}else if(_log == 'migrate'){
 							if(migrateGo == 0){
 								if(data.result[i].indexOf("Saving to: '/media/migrate/backupJeedomDownload.tar.gz'") != -1){
-									$('.TextImage').text('{{Téléchargement en cours de l\'image...}}');
+									$('.TextImage').text('{{Cette tache peux prendre jusqu\'à 10 minutes a commencer. Téléchargement en cours de l\'image...}}');
 									pourcentageBar = 0;
 									migrateGo = 1;
 								}else{
