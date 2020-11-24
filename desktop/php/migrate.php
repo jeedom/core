@@ -14,6 +14,7 @@ if (!isConnect('admin')) {
 			</div>
 			<div id="contenuText" class="debut">
 				<span id="contenuTextSpan">{{Insérer une clé USB de plus de 8Go}}<br /> {{dans votre Jeedom et cliquer sur}} <i class="fas fa-arrow-circle-right"></i>.</span>
+				<span>Attention vous devez etre en local pour lancer cette procedure (ne pas lancer via les dns ou lien exterieur)</span>
 				<div id="nextDiv">
 					<i class="next fas fa-arrow-circle-right" id="bt_next"></i>
 				</div>
