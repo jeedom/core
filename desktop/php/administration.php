@@ -863,10 +863,15 @@ user::isBan();
 									<th>{{Nom}}</th>
 									<th>{{Calcul}}</th>
 									<th>{{Icône}}</th>
-									<th>{{Unité}}</th>
+									<th>{{Icône si nul}}</th>
+									<th style="width:70px">{{Unité}}</th>
 									<th>{{Méthode de comptage}}</th>
-									<th>{{Affiché même si nulle}}</th>
-									<th>{{Ignorer commande si plus veille que (min)}}</th>
+									<th style="width:70px">{{Si nul}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Afficher l'icône même si le résumé est nul.}}"></i></sup>
+									</th>
+									<th style="width:90px">{{Ignorer si}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Ignorer commande si plus veille que (min).}}"></i></sup>
+									</th>
 									<th>{{Lier à un virtuel}}</th>
 									<th></th>
 								</tr>

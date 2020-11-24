@@ -196,7 +196,6 @@ jeedom.object.save = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.object.byId = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {
@@ -244,55 +243,63 @@ jeedom.object.setOrder = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.object.summaryUpdate = function(_params) {
   var objects = {};
   var sends = {};
   var object = null;
   var keySpan = null;
   var updated = null;
-  for(var i in _params){
+  var icon = null;
+  for (var i in _params) {
     object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
       continue;
     }
-    if(isset(_params[i]['keys'])){
+    if (isset(_params[i]['keys'])) {
       updated = false;
-      for(var j in _params[i]['keys']){
+      for (var j in _params[i]['keys']) {
         keySpan = object.find('.objectSummary'+j);
-        if(keySpan.html() != undefined){
+        if (keySpan.html() != undefined) {
           updated = true;
-          if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){
+          //hide if no display if nul:
+          if (keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0) {
             keySpan.closest('.objectSummaryParent').hide();
             continue;
           }
-          if(_params[i]['keys'][j]['value'] === null){
+          if (_params[i]['keys'][j]['value'] === null) {
             continue;
           }
-          keySpan.closest('.objectSummaryParent').show();
+          //update icon and value:
+          if (_params[i]['keys'][j]['value'] == 0 && keySpan.closest('.objectSummaryParent').attr('data-iconnul') != '') {
+            icon = decodeURIComponent(keySpan.closest('.objectSummaryParent').attr('data-iconnul')).replaceAll('+', ' ')
+          } else {
+            icon = decodeURIComponent(keySpan.closest('.objectSummaryParent').attr('data-icon')).replaceAll('+', ' ')
+          }
+          keySpan.closest('.objectSummaryParent').find('i').remove()
+          keySpan.closest('.objectSummaryParent').show().prepend(icon)
           keySpan.empty().append(_params[i]['keys'][j]['value']);
         }
       }
-      if(updated){
+      if (updated) {
         continue;
       }
     }
     objects[_params[i].object_id] = {object : object, version : object.attr('data-version')};
     sends[_params[i].object_id] = {version : object.attr('data-version')};
   }
-  if (Object.keys(objects).length == 0){
+  if (Object.keys(objects).length == 0) {
     return;
   }
   var paramsRequired = [];
   var paramsSpecifics = {
     global: false,
     success: function (result) {
-      for(var i in result){
+      for (var i in result) {
         objects[i].object.replaceWith($(result[i].html));
-        if($('.objectSummary' + i).closest('.objectSummaryHide') != []){
-          if($(result[i].html).html() == ''){
+        if ($('.objectSummary' + i).closest('.objectSummaryHide') != []) {
+          if ($(result[i].html).html() == '') {
             $('.objectSummary' + i).closest('.objectSummaryHide').hide();
-          }else{
+          } else {
             $('.objectSummary' + i).closest('.objectSummaryHide').show();
           }
         }
@@ -337,7 +344,6 @@ jeedom.object.getImgPath = function(_params){
     }
   });
 }
-
 
 jeedom.object.removeImage = function (_params) {
   var paramsRequired = ['id'];

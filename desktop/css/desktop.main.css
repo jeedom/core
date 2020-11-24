@@ -880,6 +880,7 @@ Theme Core 2021 @Jeedom
   .objectSummaryParent {
     color: var(--txt-color) !important;
     font-size: 12px;
+    margin-right: 4px;
   }
 
 /* ____________________OVERVIEW */
@@ -1622,6 +1623,11 @@ Theme Core 2021 @Jeedom
   #div_commandResult > table > thead {
     position: sticky;
     top: 0;
+  }
+  #table_objectSummary .objectSummaryAttr i {
+    margin-left: 10px;
+    vertical-align: middle;
+    padding-top: 3px;
   }
 
 

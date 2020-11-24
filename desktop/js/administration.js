@@ -858,6 +858,28 @@ $divConfig.on({
 
 $divConfig.on({
   'click': function(event) {
+    var objectSummary = $(this).closest('.objectSummary')
+    var _icon = false
+    var icon = false
+    var color = false
+    if ( $(this).parent().find('.objectSummaryAttr > i').length ) {
+      var color = ''
+      var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
+      class_icon = class_icon.replace(' ', '.').split(' ')
+      var icon = '.'+class_icon[0]
+      if (class_icon[1]) {
+        color = class_icon[1]
+      }
+    }
+    chooseIcon(function(_icon) {
+      objectSummary.find('.objectSummaryAttr[data-l1key=iconnul]').empty().append(_icon)
+    },{icon:icon,color:color})
+    modifyWithoutSave = true
+  }
+}, '.objectSummary .objectSummaryAction[data-l1key=chooseIconNul]')
+
+$divConfig.on({
+  'click': function(event) {
     $(this).closest('.objectSummary').remove()
     modifyWithoutSave = true
   }
@@ -916,32 +938,24 @@ function printObjectSummary() {
         return
       }
       $('#table_objectSummary tbody').empty()
-      var _objSumLength = Object.keys(data.result).length
-      var n = 0
-      var _direction
       for (var i in data.result) {
         if (isset(data.result[i].key) && data.result[i].key == '') {
-          _objSumLength--
           continue
         }
         if (!isset(data.result[i].name)) {
-          _objSumLength--
           continue
         }
         if (!isset(data.result[i].key)) {
           data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
         }
-        _direction = -1
-        if (n > (_objSumLength - 4)) _direction = 1
-        addObjectSummary(data.result[i], _direction)
-        n++
+        addObjectSummary(data.result[i])
       }
       modifyWithoutSave = false
     }
   })
 }
 
-function addObjectSummary(_summary, _direction=1) {
+function addObjectSummary(_summary) {
   var tr = '<tr class="objectSummary">'
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="key" /></td>'
 
@@ -949,12 +963,15 @@ function addObjectSummary(_summary, _direction=1) {
 
   tr += '<td><select class="form-control objectSummaryAttr input-sm" data-l1key="calcul">'
   tr += '<option value="sum">{{Somme}}</option>'
-  tr += '<option value="avg">{{Moyenne}}</option>>'
+  tr += '<option value="avg">{{Moyenne}}</option>'
   tr += '<option value="text">{{Texte}}</option>'
   tr += '</select></td>'
 
   tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>'
-  tr += '<span class="objectSummaryAttr" data-l1key="icon" style="margin-left : 10px;"></span></td>'
+  tr += '<span class="objectSummaryAttr" data-l1key="icon"></span></td>'
+
+  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i> {{Icône}}</a>'
+  tr += '<span class="objectSummaryAttr" data-l1key="iconnul"></span></td>'
 
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
 

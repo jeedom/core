@@ -524,6 +524,7 @@ p.state {
 }
 .objectSummaryParent {
   font-size: 15px;
+  margin-right: 2px;
 }
 
 #bottompanel_objectList .objectSummaryParent,

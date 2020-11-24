@@ -307,10 +307,12 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
-	public static function getGlobalHtmlSummary($_version = 'dashboard') {
-		$cache = cache::byKey('globalSummaryHtml' . $_version);
-		if ($cache->getValue() != '') {
-			return $cache->getValue();
+	public static function getGlobalHtmlSummary($_version='dashboard', $_nocache=false) {
+		if (!$_nocache) {
+			$cache = cache::byKey('globalSummaryHtml' . $_version);
+			if ($cache->getValue() != '') {
+				return $cache->getValue();
+			}
 		}
 		$objects = self::all();
 		$def = config::byKey('object:summary');
@@ -331,8 +333,6 @@ class jeeObject {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'dashboard') ? 4 : 2;
-
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
 				continue;
@@ -348,8 +348,10 @@ class jeeObject {
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
 			}
-			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
-			$return .= $def[$key]['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
+			$icon = $def[$key]['icon'];
+			if ($result == 0 && isset($def[$key]['iconnul'])) $icon = $def[$key]['iconnul'];
+			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '">';
+			$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
 			$return .= '</span>';
 		}
 		$return = trim($return) . '</span>';
@@ -769,9 +771,11 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 
-	public function getHtmlSummary($_version = 'dashboard') {
-		if (trim($this->getCache('summaryHtml' . $_version)) != '') {
-			return $this->getCache('summaryHtml' . $_version);
+	public function getHtmlSummary($_version='dashboard', $_nocache=false) {
+		if (!$_nocache) {
+			if (trim($this->getCache('summaryHtml' . $_version)) != '') {
+				return $this->getCache('summaryHtml' . $_version);
+			}
 		}
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
@@ -789,7 +793,10 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;'.$style.'" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
+				$icon = $value['icon'];
+				if ($result == 0 && isset($value['iconnul'])) $icon = $value['iconnul'];
+				$return .= '<span style="' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '">';
+				$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
 			}
 		}
 		$return = trim($return) . '</span>';
