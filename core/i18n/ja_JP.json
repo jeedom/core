@@ -2679,7 +2679,7 @@
         "Validation du Backup...": "バックアップの検証",
         "Téléchargement de la mise à jour": "更新をダウンロードする",
         "Vérification de la mise à jour.": "更新の検証。",
-        "Téléchargement en cours de l\\'image...": "画像をダウンロードしています",
+        "Cette tache peux prendre jusqu\\'à 10 minutes a commencer. Téléchargement en cours de l\\'image...": "",
         "Image Téléchargée et validée !": "画像をダウンロードして検証しました！",
         "Le backup n\\'a pas été copié": "バックアップはコピーされていません",
         "Backup Copié...": "バックアップをコピーしました",

@@ -2679,7 +2679,7 @@
         "Validation du Backup...": "Backup-Validierung",
         "Téléchargement de la mise à jour": "Laden Sie das Update herunter",
         "Vérification de la mise à jour.": "Überprüfung des Updates",
-        "Téléchargement en cours de l\\'image...": "Bild herunterladen",
+        "Cette tache peux prendre jusqu\\'à 10 minutes a commencer. Téléchargement en cours de l\\'image...": "Der Start dieser Aufgabe kann bis zu 10 Minuten dauern. Bild herunterladen",
         "Image Téléchargée et validée !": "Bild heruntergeladen und validiert!",
         "Le backup n\\'a pas été copié": "Das Backup wurde nicht kopiert",
         "Backup Copié...": "Backup kopiert",

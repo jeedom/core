@@ -2679,7 +2679,7 @@
         "Validation du Backup...": "Validación de respaldo",
         "Téléchargement de la mise à jour": "Descargar la actualización",
         "Vérification de la mise à jour.": "Verificación de la actualización",
-        "Téléchargement en cours de l\\'image...": "Descargando imagen",
+        "Cette tache peux prendre jusqu\\'à 10 minutes a commencer. Téléchargement en cours de l\\'image...": "Esta tarea puede tardar hasta 10 minutos en iniciarse. Descargando imagen",
         "Image Téléchargée et validée !": "¡Imagen descargada y validada!",
         "Le backup n\\'a pas été copié": "La copia de seguridad no se ha copiado",
         "Backup Copié...": "Copia de seguridad copiada",
