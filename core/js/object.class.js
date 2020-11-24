@@ -250,6 +250,7 @@ jeedom.object.summaryUpdate = function(_params) {
   var keySpan = null;
   var updated = null;
   var icon = null;
+  var summarySpan = null;
   for (var i in _params) {
     object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
@@ -257,27 +258,34 @@ jeedom.object.summaryUpdate = function(_params) {
     }
     if (isset(_params[i]['keys'])) {
       updated = false;
-      for (var j in _params[i]['keys']) {
-        keySpan = object.find('.objectSummary'+j);
-        if (keySpan.html() != undefined) {
+      for (var key in _params[i]['keys']) {
+        summarySpan = object.find('.objectSummaryParent[data-summary="'+key+'"]')
+        keySpan = summarySpan.find('.objectSummary'+key);
+        if (summarySpan.html() != undefined) {
           updated = true;
           //hide if no display if nul:
-          if (keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0) {
-            keySpan.closest('.objectSummaryParent').hide();
+          if (summarySpan.attr('data-displayZeroValue') == 0 && _params[i]['keys'][key]['value'] === 0) {
+            summarySpan.hide();
             continue;
           }
-          if (_params[i]['keys'][j]['value'] === null) {
+          if (_params[i]['keys'][key]['value'] === null) {
             continue;
           }
           //update icon and value:
-          if (_params[i]['keys'][j]['value'] == 0 && keySpan.closest('.objectSummaryParent').attr('data-iconnul') != '') {
-            icon = decodeURIComponent(keySpan.closest('.objectSummaryParent').attr('data-iconnul')).replaceAll('+', ' ')
+          if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-iconnul') != '') {
+            icon = decodeURIComponent(summarySpan.attr('data-iconnul')).replaceAll('+', ' ')
           } else {
-            icon = decodeURIComponent(keySpan.closest('.objectSummaryParent').attr('data-icon')).replaceAll('+', ' ')
+            icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
           }
-          keySpan.closest('.objectSummaryParent').find('i').remove()
-          keySpan.closest('.objectSummaryParent').show().prepend(icon)
-          keySpan.empty().append(_params[i]['keys'][j]['value']);
+          summarySpan.find('i').remove()
+          summarySpan.show().prepend(icon)
+
+          //update number:
+          if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
+            keySpan.empty()
+          } else {
+            keySpan.empty().append(_params[i]['keys'][key]['value']);
+          }
         }
       }
       if (updated) {

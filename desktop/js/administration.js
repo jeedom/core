@@ -975,6 +975,10 @@ function addObjectSummary(_summary) {
 
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
 
+  tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr warning" data-l1key="hidenumber" /></td>'
+
+  tr += '<td class="center"><input type="checkbox" class="objectSummaryAttr" data-l1key="hidenulnumber" /></td>'
+
   tr += '<td><select class="objectSummaryAttr input-sm" data-l1key="count">'
   tr += '<option value="">{{Aucun}}</option>'
   tr += '<option value="binary">{{Binaire}}</option>'

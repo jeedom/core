@@ -350,9 +350,12 @@ class jeeObject {
 			}
 			$icon = $def[$key]['icon'];
 			if ($result == 0 && isset($def[$key]['iconnul'])) $icon = $def[$key]['iconnul'];
-			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '">';
-			$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
-			$return .= '</span>';
+			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '" data-hidenulnumber="'. $def[$key]['hidenulnumber'] . '">';
+			if ($def[$key]['hidenumber'] == 1 || ($result == 0 && $def[$key]['hidenulnumber'] == 1)) {
+				$return .= $icon . '</sup></span>';
+			} else {
+				$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
+			}
 		}
 		$return = trim($return) . '</span>';
 		cache::set('globalSummaryHtml' . $_version, $return);
@@ -795,8 +798,12 @@ class jeeObject {
 				}
 				$icon = $value['icon'];
 				if ($result == 0 && isset($value['iconnul'])) $icon = $value['iconnul'];
-				$return .= '<span style="' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '">';
-				$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
+				$return .= '<span style="' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="'. $value['hidenulnumber'] . '">';
+				if ($value['hidenumber'] == 1 || ($result == 0 && $value['hidenulnumber'] == 1)) {
+					$return .= $icon. '</span>';
+				} else {
+					$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
+				}
 			}
 		}
 		$return = trim($return) . '</span>';
