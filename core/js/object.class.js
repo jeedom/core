@@ -284,7 +284,7 @@ jeedom.object.summaryUpdate = function(_params) {
           if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
             keySpan.empty()
           } else {
-            keySpan.empty().append(_params[i]['keys'][key]['value']);
+            keySpan.empty().append(_params[i]['keys'][key]['value']).show();
           }
         }
       }

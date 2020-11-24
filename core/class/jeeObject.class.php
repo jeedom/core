@@ -352,7 +352,7 @@ class jeeObject {
 			if ($result == 0 && isset($def[$key]['iconnul'])) $icon = $def[$key]['iconnul'];
 			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '" data-hidenulnumber="'. $def[$key]['hidenulnumber'] . '">';
 			if ($def[$key]['hidenumber'] == 1 || ($result == 0 && $def[$key]['hidenulnumber'] == 1)) {
-				$return .= $icon . '</sup></span>';
+				$return .= $icon . ' <sup><span style="display:none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
 			} else {
 				$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
 			}
@@ -800,7 +800,7 @@ class jeeObject {
 				if ($result == 0 && isset($value['iconnul'])) $icon = $value['iconnul'];
 				$return .= '<span style="' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="'. $value['hidenulnumber'] . '">';
 				if ($value['hidenumber'] == 1 || ($result == 0 && $value['hidenulnumber'] == 1)) {
-					$return .= $icon. '</span>';
+					$return .= $icon . ' <sup><span style="display: none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
 				} else {
 					$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
 				}
