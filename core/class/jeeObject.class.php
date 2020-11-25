@@ -307,13 +307,7 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
-	public static function getGlobalHtmlSummary($_version='dashboard', $_nocache=false) {
-		if (!$_nocache) {
-			$cache = cache::byKey('globalSummaryHtml' . $_version);
-			if ($cache->getValue() != '') {
-				return $cache->getValue();
-			}
-		}
+	public static function getGlobalHtmlSummary($_version='dashboard') {
 		$objects = self::all();
 		$def = config::byKey('object:summary');
 		$values = array();
@@ -774,12 +768,7 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 
-	public function getHtmlSummary($_version='dashboard', $_nocache=false) {
-		if (!$_nocache) {
-			if (trim($this->getCache('summaryHtml' . $_version)) != '') {
-				return $this->getCache('summaryHtml' . $_version);
-			}
-		}
+	public function getHtmlSummary($_version='dashboard') {
 		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => $value) {
