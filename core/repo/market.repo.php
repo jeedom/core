@@ -275,6 +275,9 @@ class repo_market {
 			$stream = fopen($_path.'.gpg', 'r+');
 			$response = $filesystem->writeStream('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')).'/'.basename($_path).'.gpg', $stream);
 			unlink($_path.'.gpg');
+			if(!$response){
+				throw new \Exception(__('Impossible d\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long',__FILE__));
+			}
 		} catch (\Exception $e) {
 			unlink($_path.'.gpg');
 			throw $e;
@@ -320,7 +323,7 @@ class repo_market {
 			$total_size -= $file['size'];
 			$nb++;
 			if($nb > 10){
-				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 10'));
+				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 10',__FILE__));
 			}
 		}
 	}
@@ -346,7 +349,7 @@ class repo_market {
 			mkdir($backup_dir, 0770, true);
 		}
 		if (!is_writable($backup_dir)) {
-			throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
+			throw new Exception(__('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits :',__FILE__). ' ' . $backup_dir);
 		}
 		$path = $backup_dir.'/'.$_backup;
 		if(file_exists($path)){
