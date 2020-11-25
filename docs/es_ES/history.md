@@ -41,7 +41,6 @@ Si muestra un gráfico a través de la página del historial, tiene acceso a var
 - **Tipo de visualización** : Mostrar en *Línea*, *área*, o *Bar*. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Cambio** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Escalera** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
-- **Comparar** : Compara la curva entre diferentes períodos. La comparación se realiza según el período mostrado. Si el período es de una semana, la comparación se realizará durante -1 semana, -2 semanas, etc.
 
 
 > **Punta**

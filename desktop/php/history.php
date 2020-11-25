@@ -56,16 +56,6 @@ $date = array(
 			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 
-			<span>{{Comparer}} </span>
-			<select class="fullCorner input-sm" id="sel_compare" style="width: 60px;">
-				<?php
-					$options = '<option>0</option>';
-					for ($o = 1; $o <= 12; $o++) {
-						$options .= '<option>-'.$o.'</option>';
-					}
-					echo $options;
-				?>
-			</select>
 		</div>
 	</div>
 

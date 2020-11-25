@@ -314,7 +314,7 @@ Theme Core 2021 @Jeedom
   }
   @media screen and (min-height: 801px) {
     #jeedomMenuBar ul.navbar-nav > li ul ul {
-      max-height: 600px;
+      max-height: 610px;
     }
   }
 
