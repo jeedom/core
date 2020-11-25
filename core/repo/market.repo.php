@@ -346,7 +346,7 @@ class repo_market {
 			mkdir($backup_dir, 0770, true);
 		}
 		if (!is_writable($backup_dir)) {
-			throw new Exception('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits : ' . $backup_dir);
+			throw new Exception(__('Impossible d\'accéder au dossier de sauvegarde. Veuillez vérifier les droits :',__FILE__). ' ' . $backup_dir);
 		}
 		$path = $backup_dir.'/'.$_backup;
 		if(file_exists($path)){
