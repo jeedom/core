@@ -220,8 +220,6 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
-		/*     * ***********************BACKUP*************************** */
-	
 	public static function backup_flysystem(){
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => config::byKey('service::backup::url'),
@@ -252,7 +250,7 @@ class repo_market {
 	
 	public static function backup_send($_path) {
 		if (!config::byKey('service::backup::enable')) {
-			throw new Exception(__('Aucun serveur de backup defini. Avez vous bien un abonnement au backup cloud ?', __FILE__));
+			throw new Exception(__('Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?', __FILE__));
 		}
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour/Market)', __FILE__));
@@ -260,7 +258,10 @@ class repo_market {
 		self::backup_clean($_path);
 		self::backup_createFolderIsNotExist();
 		try {
-			$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 -c '.$_path;
+			if(!file_exists('/tmp/jeedom_gnupg')){
+				mkdir('/tmp/jeedom_gnupg');
+			}
+			$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c '.$_path;
 			com_shell::execute($cmd);
 			$filesystem =self::backup_flysystem();
 			$stream = fopen($_path.'.gpg', 'r+');
@@ -343,9 +344,12 @@ class repo_market {
 		if(file_exists($path)){
 			unlink($path);
 		}
+		if(!file_exists('/tmp/jeedom_gnupg')){
+			mkdir('/tmp/jeedom_gnupg');
+		}
 		$cmd = 'cd '.$backup_dir.';wget https://'.config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'/'.$_backup;
 		com_shell::execute($cmd);
-		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
+		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
 		com_shell::execute($cmd);
 		unlink($backup_dir.'/'.$_backup);
 	}
