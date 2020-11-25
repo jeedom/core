@@ -35,7 +35,6 @@
 - **Analysis / History** : Ctrl Click on a legend to display only this history, Alt Click to display them all.
 - **Analysis / History** : The options *grouping, type, variation, staircase* are active only with a single displayed curve.
 - **Analysis / History** : We can now use the option *Area* with the option *Steps*.
-- **Analysis / History** : Possibility to compare a history according to the current period.
 - **Analysis / Logs** : New monospace type font for logs.
 - **View** : Possibility to put scenarios.
 - **View** : Edit mode now inserting the moved tile.

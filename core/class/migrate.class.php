@@ -97,6 +97,7 @@ class migrate {
 	}
 	
 	public static function imageToUsb() {
+		migrate::kernelToUsb();
 		$mediaLink = '/media/migrate';
 		log::remove('migrate');
 		$jsonrpc = repo_market::getJsonRpc();
@@ -130,9 +131,58 @@ class migrate {
 		}
 	}
 	
+	public static function kernelToUsb() {
+		$mediaLink = '/media/migrate';
+		log::remove('migrate');
+		$jsonrpc = repo_market::getJsonRpc();
+		if (!$jsonrpc->sendRequest('box::smart_kernel_url')) {
+			throw new Exception($jsonrpc->getErrorMessage());
+		}
+		$urlArray = $jsonrpc->getResult();
+		$url = $urlArray['url'];
+		$size = $urlArray['SHA256'];
+		exec('sudo pkill -9 wget');
+		$fileExiste = 0;
+		if(file_exists($mediaLink.'/kernel.tar.gz.installed')){
+			$fileExiste = $mediaLink.'/kernel.tar.gz.installed';
+		}elseif(file_exists($mediaLink.'/kernel.tar.gz')){
+			$fileExiste = $mediaLink.'/kernel.tar.gz';
+		}elseif(file_exists($mediaLink.'/kernelDownload.tar.gz')){
+			$fileExiste = $mediaLink.'/kernelDownload.tar.gz';
+		}
+		if($fileExiste !== 0){
+			$sizeFileExiste = hash_file('sha256',$fileExiste);
+			if($sizeFileExiste == $size){
+				exec('sudo mv '.$fileExiste.' '.$mediaLink.'/kernel.tar.gz');
+			}else{
+				exec('sudo wget '.$url.' -O '.$mediaLink.'/kernelDownload.tar.gz');
+				migrate::renameKernel();
+			}
+		}else{
+			exec('sudo wget '.$url.'-O '.$mediaLink.'/kernelDownload.tar.gz');
+			migrate::renameKernel();
+		}
+		$returnKernel = migrate::execKernel();
+		return $returnKernel;
+	}
+	
 	public static function renameImage(){
 		$mediaLink = '/media/migrate';
 		exec('sudo mv '.$mediaLink.'/backupJeedomDownload.tar.gz '.$mediaLink.'/backupJeedom.tar.gz');
+		log::remove('migrate');
+		return 'ok';
+	}
+	
+	public static function renameKernel(){
+		$mediaLink = '/media/migrate';
+		exec('sudo mv '.$mediaLink.'/kernelDownload.tar.gz '.$mediaLink.'/kernel.tar.gz');
+		return 'ok';
+	}
+	
+	public static function execKernel(){
+		$mediaLink = '/media/migrate';
+		exec('sudo rm /media/boot/multiboot/mb_kernel/*');
+		exec('sudo tar -xzvf '.$mediaLink.'/kernel.tar.gz -C /media/boot/multiboot/mb_kernel');
 		log::remove('migrate');
 		return 'ok';
 	}

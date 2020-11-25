@@ -35,7 +35,6 @@
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
 - **Análise / História** : Agora podemos usar a opção *área* com a opção *Escada*.
-- **Análise / História** : Possibilidade de comparar um histórico de acordo com o período atual.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Vista** : Possibilidade de colocar cenários.
 - **Vista** : Modo de edição agora inserindo o bloco movido.

@@ -35,7 +35,6 @@
 - **Análisis / Historia** : Ctrl Haga clic en una leyenda para mostrar solo este historial, Alt Haga clic para mostrarlos todos.
 - **Análisis / Historia** : Las opciones *agrupación, tipo, variación, escalera* están activos solo con una sola curva mostrada.
 - **Análisis / Historia** : Ahora podemos usar la opción *Area* con la opción *Escalera*.
-- **Análisis / Historia** : Posibilidad de comparar un historial según el período actual.
 - **Análisis / Registros** : Nueva fuente tipo monoespacio para registros.
 - **Vista** : Posibilidad de poner escenarios.
 - **Vista** : El modo de edición ahora inserta el mosaico movido.

@@ -41,7 +41,6 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 - **Tipo de exibição** : Exibir em *Linha*, *área*, onde *Bar*. Opção salva no pedido e usada no Painel.
 - **Mudança** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
 - **Escada** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
-- **Comparar** : Compare a curva entre diferentes períodos. A comparação é feita de acordo com o período exibido. Se o período for de uma semana, a comparação será feita em -1 semana, -2 semana etc.
 
 
 > **Dica**
