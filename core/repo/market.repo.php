@@ -228,7 +228,7 @@ class repo_market {
 	
 	/*     * ***********************BACKUP*************************** */
 	
-	public static function backup_flysystem(){
+		public static function backup_flysystem(){
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => config::byKey('service::backup::url'),
 			'userName' => config::byKey('market::username'),
@@ -266,7 +266,10 @@ class repo_market {
 		self::backup_clean($_path);
 		self::backup_createFolderIsNotExist();
 		try {
-			$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 -c '.$_path;
+			if(!file_exists('/tmp/jeedom_gnupg')){
+				mkdir('/tmp/jeedom_gnupg');
+			}
+			$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c '.$_path;
 			com_shell::execute($cmd);
 			$filesystem =self::backup_flysystem();
 			$stream = fopen($_path.'.gpg', 'r+');
@@ -349,9 +352,12 @@ class repo_market {
 		if(file_exists($path)){
 			unlink($path);
 		}
+		if(!file_exists('/tmp/jeedom_gnupg')){
+			mkdir('/tmp/jeedom_gnupg');
+		}
 		$cmd = 'cd '.$backup_dir.';wget https://'.config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'/'.$_backup;
 		com_shell::execute($cmd);
-		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
+		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
 		com_shell::execute($cmd);
 		unlink($backup_dir.'/'.$_backup);
 	}
