@@ -150,10 +150,14 @@ Permet d’ajouter des résumés d’objets. Cette information est affichée tou
     - **Somme** : fait la somme des différentes valeurs,
     - **Moyenne** : fait la moyenne des valeurs,
     - **Texte** : affiche textuellement la valeur (surtout pour celles de type chaine de caractères).
-- **Icone** : Icône du résumé.
+- **Icône** : Icône du résumé.
+- **Icône si nul** : Icône du résumé si sa valeur vaut 0. Permet de spécifier une icône différente comme un volet fermée, une lumière éteinte, etc.
 - **Unité** : Unité du résumé.
+- **Masquer le nombre** : N'affiche jamais la valeur du résumé (le nombre à droite de l'icône).
+- ** Masquer le nombre si nul** : Permet de masquer la valeur du résumé, seulement si celle-ci vaut 0. On peux ainsi souhaité avoir l"icône volet ouvert avec leur nombre, et l'icône volet fermé sans le nombre quand tout les volets sont fermés.
 - **Méthode de comptage** : Si vous comptez une donnée binaire alors il faut mettre cette valeur à binaire, exemple si vous comptez le nombre de lampes allumées mais que vous avez juste la valeur du variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom considéra que si la valeur est supérieure à 1, alors la lampe est allumée.
-- **Afficher si valeur égale 0** : Cochez cette case pour afficher la valeur, même quand elle vaut 0.
+- **Si nul** : Afficher le résumé même quand sa valeur est 0.
+- **Ignorer si** : Ignorer une commande pour ce résumé si celle-ci n'a pas d'update depuis x minutes.
 - **Lier à un virtuel** : Lance la création de commandes virtuelles ayant pour valeur celles du résumé.
 - **Supprimer le résumé** : Le dernier bouton, tout à droite, permet de supprimer le résumé de la ligne.
 

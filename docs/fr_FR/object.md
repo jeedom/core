@@ -47,7 +47,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 - **Visible** : Cochez cette case pour rendre visible cet objet.
 - **Masquer sur le Dashboard** : Cochez cette case pour masquer l’objet sur le Dashboard. Il est tout de même conservé dans la liste, ce qui permet de l’afficher, mais uniquement de manière explicite.
 - **Masquer sur la synthèse** : Cochez cette case pour masquer l’objet sur la synthèse'. Il est tout de même conservé dans la liste, ce qui permet de l’afficher, mais uniquement de manière explicite.
-- **Action depuis la synthèse** : Vous pouvez ici une vue ou un design sur lequel aller quand vous cliquez sur l'objet depuis la Synthèse. *Defaut : Dashboard*.
+- **Action depuis la synthèse** : Vous pouvez ici indiquer une vue ou un design sur lequel aller quand vous cliquez sur l'objet depuis la Synthèse. *Defaut : Dashboard*.
 
 #### Affichage :
 
