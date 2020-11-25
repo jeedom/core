@@ -7,7 +7,8 @@
 - **Analyse / Equipements** : Les commandes orphelines affichent maintenant leurs noms et date de suppression si encore dans l'historique de suppression.
 - **Logs** : Coloration des logs en fonction de certains évènements. Possibilité d'afficher le log brut.
 - **Résumés** : Possibilité de definir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc).
-- **Résumés** : Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement si il est positif.
+- **Résumés** : Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif.
+- **Résumés** : Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci.
 
 
