@@ -244,7 +244,12 @@ function changeThemeAuto(_ambiantLight){
 }
 
 function checkThemechange() {
-  if ($('#jQMnDColor').attr('data-nochange') == 1) return
+  var $jQMnDColor = $('#jQMnDColor')
+  if ($jQMnDColor.attr('data-nochange') == 1) return
+  
+  var defaultTheme = jeedom.theme.mobile_theme_color
+  var defaultThemeCss = 'core/themes/' + defaultTheme + '/mobile/' + defaultTheme + '.css'
+  if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == $jQMnDColor.attr('href')) return
 
   var theme = jeedom.theme.mobile_theme_color_night
   var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
@@ -253,7 +258,7 @@ function checkThemechange() {
     theme = jeedom.theme.mobile_theme_color
     themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
   }
-  if ($('#jQMnDColor').attr('href') != themeCss) {
+  if ($jQMnDColor.attr('href') != themeCss) {
     $('body').attr('data-theme',theme)
     $('#jQMnDColor').attr('href', themeCss)
     setBackgroundImage(BACKGROUND_IMG)
