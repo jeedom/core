@@ -77,10 +77,8 @@ $('#table_update').on({
   'click': function(event) {
     $(this).tooltipster('open')
     if ($(this).is(':checked')) {
-      console.log('checked')
       $(this).closest('tr').find('a.btn.update').addClass('disabled')
     } else {
-      console.log('not checked')
       $(this).closest('tr').find('a.btn.update').removeClass('disabled')
     }
   }
@@ -355,8 +353,12 @@ function addUpdate(_update) {
       } else {
         tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
       }
-    } else if (_update.type != 'core') {
-      tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
+    } else {
+      if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
+        tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
+      } else {
+        tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
+      }
     }
   }
   if (_update.type != 'core') {
