@@ -25,23 +25,23 @@ if (!isConnect('admin')) {
 </a>
 
 <div class="row text-center">
-  <p class="alert alert-info">Après plusieurs mois de développement et d'optimisations, la version 4 de Jeedom est désormais accessible à tous.<br> Avant d'effectuer la mise à niveau, nous allons découvrir quelques fonctionnalités proposées dans cette nouvelle version et vérifier la compatibilité des plugins installés sur votre machine.</p>
+  <p class="alert alert-info">{{Après plusieurs mois de développement et d'optimisations, la version 4 de Jeedom est désormais accessible à tous.}}<br> {{Avant d'effectuer la mise à niveau, nous allons découvrir quelques fonctionnalités proposées dans cette nouvelle version et vérifier la compatibilité des plugins installés sur votre machine.}}</p>
 </div>
 
 <div class="row">
   <div style="display: none;" class="col-md-10 col-md-offset-1" id="div_alert_upgrade"></div>
   <div style="display: none;" class="col-md-10 col-md-offset-1" id="div_alert_upgrade2"></div>
-  <h4 class="col-xs-12 text-center">Quoi de neuf en V4 ?</h4>
+  <h4 class="col-xs-12 text-center">{{Quoi de neuf en V4}} ?</h4>
 
   <div class="col-sm-6 col-md-4">
     <div class="panel panel-success" style="height:550px;">
       <div class="panel-heading">
-        <h4 class="panel-title">3 nouveaux thèmes</h4>
+        <h4 class="panel-title">{{3 nouveaux thèmes}}</h4>
       </div>
       <div class="panel-body">
         <div class="caption text-center">
-          <h5>3 thèmes font leur apparition : <strong>Light, Dark ou Legacy.</strong></h5>
-          <p>Optez pour un interface qui vous ressemble grâce aux 3 thèmes disponibles en V4. Il est possible de <strong>changer de thème automatiquement</strong> selon l'heure de la journée ou encore en fonction de la <strong>luminosité ambiante sur mobile</strong>.</p>
+          <h5>{{3 thèmes font leur apparition}} : <strong>Light, Dark ou Legacy.</strong></h5>
+          <p>{{Optez pour un interface qui vous ressemble grâce aux 3 thèmes disponibles en V4. Il est possible de}} <strong>{{changer de thème automatiquement}}</strong> {{selon l'heure de la journée ou encore en fonction de la}} <strong>{{luminosité ambiante sur mobile}}</strong>.</p>
         </div>
       </div>
       <div class="panel-footer">
@@ -53,16 +53,16 @@ if (!isConnect('admin')) {
   <div class="col-sm-6 col-md-4">
     <div class="panel panel-success" style="height:550px;">
       <div class="panel-heading">
-        <h4 class="panel-title">Outil de création de widgets</h4>
+        <h4 class="panel-title">{{Outil de création de widgets}}</h4>
       </div>
       <div class="panel-body">
         <div class="caption text-center">
-          <h5>Pour toujours plus de <strong>simplicité et d'évolutivité.</strong></h5>
-          <p>Le core Jeedom prend désormais en charge <strong>les widgets</strong> en mettant à disposition <strong>un nouvel outil</strong> alliant possibilités de personnalisations et facilité d'utilisation.</p>
-          <a href="https://blog.jeedom.com/4368-les-widgets-en-v4/" target="blank" class="btn btn-success" role="button">En savoir plus</a>
-          <p class="alert alert-warning" style="margin-top:20px;" >Le <strong>plugin Widgets</strong> devient par conséquent <strong>obsolète et doit être désinstallé après migration en V4</strong>.
+          <h5>{{Pour toujours plus de}} <strong>{{simplicité et d'évolutivité.}}</strong></h5>
+          <p>{{Le core Jeedom prend désormais en charge}} <strong>{{les widgets}}</strong> {{en mettant à disposition}} <strong>{{un nouvel outil}}</strong> {{alliant possibilités de personnalisations et facilité d'utilisation.}}</p>
+          <a href="https://blog.jeedom.com/4368-les-widgets-en-v4/" target="blank" class="btn btn-success" role="button">{{En savoir plus}}</a>
+          <p class="alert alert-warning" style="margin-top:20px;" >{{Le}} <strong>{{plugin Widgets}}</strong> {{devient par conséquent}} <strong>{{obsolète et doit être désinstallé après migration en V4}}</strong>.
             <br>
-            Les widgets tiers utilisés en V3 sont susceptibles de ne plus fonctionner comme souhaité et peuvent nécessiter une intervention de votre part.</p>
+            {{Les widgets tiers utilisés en V3 sont susceptibles de ne plus fonctionner comme souhaité et peuvent nécessiter une intervention de votre part.}}</p>
           </div>
         </div>
         <div class="panel-footer">
@@ -74,13 +74,13 @@ if (!isConnect('admin')) {
     <div class="col-sm-6 col-md-4">
       <div class="panel panel-success" style="height:550px;">
         <div class="panel-heading">
-          <h4 class="panel-title">A venir en V4.1</h4>
+          <h4 class="panel-title">{{A venir en V4.1}}</h4>
         </div>
         <div class="panel-body">
           <div class="caption text-center">
-            <h5>Une nouvelle page <strong>Synthèse.</strong></h5>
-            <p>En V4.1, la page <strong>Synthèse</strong> vous propose une synthèse visuelle et centralisée de vos objets et de leurs résumés.</p>
-            <a href="https://doc.jeedom.com/fr_FR/core/4.1/overview" target="blank" class="btn btn-success" role="button">En savoir plus</a>
+            <h5>{{Une nouvelle page}} <strong>{{Synthèse.}}</strong></h5>
+            <p>{{En V4.1, la page}} <strong>{{Synthèse}}</strong> {{vous propose une synthèse visuelle et centralisée de vos objets et de leurs résumés.}}</p>
+            <a href="https://doc.jeedom.com/fr_FR/core/4.1/overview" target="blank" class="btn btn-success" role="button">{{En savoir plus}}</a>
           </div>
         </div>
         <div class="panel-footer">
@@ -91,18 +91,18 @@ if (!isConnect('admin')) {
   </div>
 
   <div class="row" id="v4Compatibility_div">
-    <h4 class="text-center">Compatibilité des plugins installés
+    <h4 class="text-center">{{Compatibilité des plugins installés}}
       <img src="core/img/logo_v4Compatible.png" alt="" height=30px>
     </h4>
     <div class="col-md-10 col-md-offset-1 table-responsive">
       <table class="table table-condensed table-hover" id="plugins_upgrade">
         <thead>
           <tr>
-            <th class="col-xs-2">Plugin</th>
+            <th class="col-xs-2">{{Plugin}}</th>
             <th class="col-xs-1"></th>
-            <th class="col-xs-2">Auteur</th>
-            <th class="col-xs-2">Version</th>
-            <th class="text-right col-xs-5">Compatibilité V4 confirmée ?</th>
+            <th class="col-xs-2">{{Auteur}}</th>
+            <th class="col-xs-2">{{Version}}</th>
+            <th class="text-right col-xs-5">{{Compatibilité V4 confirmée}} ?</th>
           </tr>
         </thead>
         <tbody>
@@ -308,11 +308,11 @@ $('#bt_goUpgradeV4').off('click').on('click', function() {
 
 
 if($('#md_modal').innerHeight() >= $('#md_modal')[0].scrollHeight) {
-  $('#bt_goUpgradeV4').attr({'disabled': false,'title': 'Cliquez ici pour effectuer la migration vers Jeedom V4.'});
+  $('#bt_goUpgradeV4').attr({'disabled': false,'title': '{{Cliquez ici pour effectuer la migration vers Jeedom V4.}}'});
 }
 $('#md_modal').on("scroll", function() {
   if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-    $('#bt_goUpgradeV4').attr({'disabled': false,'title': 'Cliquez ici pour effectuer la migration vers Jeedom V4.'});
+    $('#bt_goUpgradeV4').attr({'disabled': false,'title': '{{Cliquez ici pour effectuer la migration vers Jeedom V4.}}'});
   }
 });
 
