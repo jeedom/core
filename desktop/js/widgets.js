@@ -86,7 +86,7 @@ $(function() {
       },
       success: function(_widgets) {
         if (_widgets.length == 0) return
-        
+
         var widgetsList = []
         widgetsList['info'] = []
         widgetsList['action'] = []
@@ -95,7 +95,7 @@ $(function() {
           if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
           if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
         }
-        
+
         //set context menu!
         var contextmenuitems = {}
         var uniqId = 0
@@ -112,7 +112,7 @@ $(function() {
           }
           contextmenuitems[group] = {'name':group, 'items':items}
         }
-        
+
         $('.nav.nav-tabs').contextMenu({
           selector: 'li',
           autoHide: true,
@@ -169,24 +169,24 @@ $('#bt_applyToCmd').off('click').on('click', function() {
   $('#div_usedBy .cmdAdvanceConfigure').each(function() {
     checkedId.push($(this).data('cmd_id'))
   })
-  
+
   $('#md_modal').dialog({title: "{{Appliquer ce widget à}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
     initTableSorter()
-    
+
     $('#table_cmdConfigureSelectMultiple tbody tr').each(function( index ) {
       if (checkedId.includes($(this).data('cmd_id'))) {
         $(this).find('.selectMultipleApplyCmd').prop('checked', true)
       }
     })
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
       $('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd:visible').each(function() {
         $(this).prop('checked', !$(this).prop('checked'))
         $(this).attr('data-state', 1)
       })
     })
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
       var widgets = $('.widgets').getValues('.widgetsAttr')[0]
       widgets.test = $('#div_templateTest .test').getValues('.testAttr')
@@ -199,7 +199,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
           modifyWithoutSave = false
           var cmd = {template : {dashboard : 'custom::'+$('.widgetsAttr[data-l1key=name]').value(),mobile : 'custom::'+$('.widgetsAttr[data-l1key=name]').value()}}
           var cmdDefault = {template : {dashboard : 'default', mobile : 'default'}}
-          
+
           $('#table_cmdConfigureSelectMultiple tbody tr').each(function() {
             var thisId = $(this).data('cmd_id')
             if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
@@ -220,7 +220,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
                 },
                 success: function() {}
               });
-              
+
             } else {
               if (checkedId.includes(thisId)) {
                 cmdDefault.id = thisId
@@ -328,7 +328,7 @@ function loadTemplateConfiguration(_template,_data) {
       } else {
         $('.type_replace').hide()
       }
-      
+
       if (typeof _data != 'undefined') {
         $('.widgets').setValues({replace : _data.replace}, '.widgetsAttr')
       }
@@ -386,7 +386,7 @@ function printWidget(_id) {
   $('#div_conf').show()
   $('#div_widgetsList').hide()
   $('#div_templateTest').empty()
-  
+
   jeedom.widgets.byId({
     id: _id,
     cache: false,
@@ -478,7 +478,7 @@ function addTest(_test){
   div += '</span>'
   div += '</div>'
   div += '</div>'
-  
+
   div += '</div>'
   div += '</div>'
   $('#div_templateTest').append(div)
@@ -584,7 +584,7 @@ $("#bt_mainImportWidgets").change(function(event) {
     $('#div_alert').showAlert({message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}", level: 'danger'})
     return false
   }
-  
+
   if (uploadedFile) {
     bootbox.prompt("Nom du widget ?", function(result) {
       if (result !== null) {
@@ -597,7 +597,7 @@ $("#bt_mainImportWidgets").change(function(event) {
             var readFile = new FileReader()
             readFile.readAsText(uploadedFile)
             readFile.onload = function(e) {
-              objectData = JSON.parse(e.target.result)
+              var objectData = JSON.parse(e.target.result)
               if (!isset(objectData.jeedomCoreVersion)) {
                 $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
                 return false
@@ -639,9 +639,9 @@ $("#bt_importWidgets").change(function(event) {
   if (uploadedFile) {
     var readFile = new FileReader()
     readFile.readAsText(uploadedFile)
-    
+
     readFile.onload = function(e) {
-      objectData = JSON.parse(e.target.result)
+      var objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {
         $('#div_alert').showAlert({message: "{{Fichier json non compatible.}}", level: 'danger'})
         return false
