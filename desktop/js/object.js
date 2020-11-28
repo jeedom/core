@@ -485,7 +485,7 @@ function addSummaryInfo(_el, _summary) {
 }
 
 $('.bt_showObjectSummary').off('click').on('click', function() {
-  $('#md_modal').dialog({title: "{{Résumé Objets}}"}).load('index.php?v=d&modal=object.summary').dialog('open')
+  $('#md_modal').dialog({title: "{{Vue d'ensemble des objets}}"}).load('index.php?v=d&modal=object.summary').dialog('open')
 })
 
 //eqLogics tab searching
