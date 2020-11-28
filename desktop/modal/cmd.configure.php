@@ -201,7 +201,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <div class="col-xs-8">
                   <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}" >
                 </div>
-                <label class="col-xs-4 control-label">{{Nom personnalisé équipement}}</label>
+                <label class="col-xs-4 control-label">{{Nom personnalisé Équipement}}</label>
                  <div class="col-xs-8">
                   <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
                 </div><label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
