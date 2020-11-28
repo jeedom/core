@@ -87,13 +87,14 @@ if (!isConnect()) {
         }
         if (count($object->getConfiguration('summary')[$key]) > 0) {
           if ($object->getConfiguration('summary::global::' . $key) == 1) {
-            $html .= '<a style="cursor:default;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+            $html .= '<a title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
           } else {
-            $html .= '<a style="cursor:default;color:grey;text-decoration:none;" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
+            $html .= '<a class="disabled" title="' . $value['name'] . $title . '">' . $value['icon'] . '<sup> ' . count($object->getConfiguration('summary')[$key]) . '</sup></a>  ';
           }
         }
       }
       $html .= '</td>';
+
       $html .= '<td>';
       foreach ((config::byKey('object:summary')) as $key => $value) {
         if ($object->getConfiguration('summary::hide::desktop::' . $key) == 1) {
@@ -101,6 +102,7 @@ if (!isConnect()) {
         }
       }
       $html .= '</td>';
+
       $html .= '<td>';
       foreach ((config::byKey('object:summary')) as $key => $value) {
         if ($object->getConfiguration('summary::hide::mobile::' . $key) == 1) {
@@ -108,6 +110,7 @@ if (!isConnect()) {
         }
       }
       $html .= '</td>';
+
       $html .= '<td>';
       $html .= '<a class="btn btn-danger pull-right btn-xs bt_removeObject"><i class="far fa-trash-alt"></i></a>';
       $html .= '</td>';
