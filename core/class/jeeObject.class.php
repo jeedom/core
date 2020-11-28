@@ -131,8 +131,8 @@ class jeeObject {
 		$options = '';
 		if ($_none) $options .= '<option value="">'.__('Aucun', __FILE__).'</option>';
 		foreach ($allObject as $object) {
-		 	$decay = $object->getConfiguration('parentNumber');
-		 	$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
+			$decay = $object->getConfiguration('parentNumber');
+			$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
 		}
 		return $options;
 	}
@@ -727,27 +727,36 @@ class jeeObject {
 			return null;
 		}
 		$values = array();
-		foreach ($summaries[$_key] as $infos) {
+		foreach ($summaries[$_key] as &$infos) {
 			if (isset($infos['enable']) && $infos['enable'] == 0) {
 				continue;
 			}
-			$cmd = cmd::byId(str_replace('#','',$infos['cmd']));
-			if(!is_object($cmd)){
+			preg_match_all("/#([0-9]*)#/", $infos['cmd'], $matches);
+			if (count($matches[1]) == 0) {
 				continue;
 			}
-			if($cmd->getType() != 'info'){
+			$cmds = cmd::byIds($matches[1]);
+			if(count($cmds) == 0){
 				continue;
 			}
-			if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
-				continue;
-			}
-			$value = $cmd->execCmd();
-			if(isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0){
-				if((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)){
-					continue;
+			foreach ($cmds as $cmd) {
+				if($cmd->getType() != 'info'){
+					continue(2);
 				}
+				if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
+					continue(2);
+				}
+				$value = $cmd->execCmd();
+				if(isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0){
+					if((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)){
+						continue(2);
+					}
+				}
+				$infos['cmd'] = str_replace('#'.$cmd->getId().'#',$value,$infos['cmd']);
 			}
+			$value = evaluate($infos['cmd']);
 
+			$value = trim($value,'"');
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;
 			}
