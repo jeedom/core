@@ -2575,6 +2575,7 @@ Theme Core 2021 @Jeedom
   a.disabled,
   a.disabled > i {
     cursor: default !important;
+    opacity: 0.75;
   }
 
 /* ____________________TABS */
