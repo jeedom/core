@@ -223,7 +223,11 @@ class plan {
 			);
 		} else if ($linkType == 'plan') {
 			$html = '<span class="cursor plan-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
-			$html .= '<a style="color:' . $this->getCss('color', '') . '">';
+			if ($this->getDisplay('color-defaut', 1) == 1) {
+				$html .= '<a>';
+			} else {
+				$html .= '<a style="color:' . $this->getCss('color', '') . '!important">';
+			}
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
