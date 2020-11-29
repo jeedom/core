@@ -18,14 +18,56 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
+$hardware = jeedom::getHardwareName();
+$goUpgrade = true;
+if (system::getDistrib() != 'debian') {
+  $system = strtoupper($hardware) . ' - OS non supporté.';
+  $alertLevel = 'alert alert-danger';
+  $messageAlert = '{{Impossible de vous renseigner sur la compatibilité de votre environnement.}}';
+}
+else {
+	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
+  if ($version < '9') {
+    $goUpgrade = false;
+    $name = 'Jessie ou inférieur';
+    $alertLevel = 'alert alert-danger';
+    if ($hardware == 'smart') {
+      $messageAlert = '{{Votre version de Debian est trop ancienne pour être en mesure d\'utiliser toutes les possibilités offertes par Jeedom dans les meilleures conditions. Veuillez suivre la procédure de recovery pour mettre à jour l\'environnement de votre box Smart.}}';
+    }
+    else {
+      $messageAlert = '{{Votre version de Debian est trop ancienne pour être en mesure d\'utiliser toutes les possibilités offertes par Jeedom dans les meilleures conditions. Veuillez mettre à jour votre environnement vers Debian Buster avant de procéder à la migration V4.}}';
+    }
+  }
+  else if ($version >= '9' && $version < '10') {
+    $name = 'Stretch';
+    $alertLevel = 'alert alert-warning';
+    if ($hardware == 'smart') {
+      $messageAlert = '{{La version de Debian officiellement supportée en V4 est Buster (10.X). Vous aurez accès à une procédure de mise à jour de l\'environnement de votre box Smart en V4.}}';
+    }
+    else {
+    $messageAlert = '{{La version de Debian officiellement supportée en V4 est Buster (10.X). Pensez à mettre à jour votre environnement.}}';
+  }
+  }
+  else if ($version >= '10' && $version < '11') {
+    $name = 'Buster';
+    $alertLevel = 'alert alert-success';
+    $messageAlert = '{{Version de Debian officiellement supportée installée, vous pouvez continuer le processus de migration.}}';
+  }
+  $system = strtoupper($hardware) . ' - Debian en version '.$version.' ('.$name.')';
+}
 ?>
 
-<a class="btn btn-warning pull-right" id="bt_goUpgradeV4" disabled="true" title="Veuillez lire toute la page avant de lancer la migration V4.">
-  <i class="fas fa-level-up-alt"></i> {{Mettre à niveau V4}}
-</a>
-
 <div class="row text-center">
-  <p class="alert alert-info">{{Après plusieurs mois de développement et d'optimisations, la version 4 de Jeedom est désormais accessible à tous.}}<br> {{Avant d'effectuer la mise à niveau, nous allons découvrir quelques fonctionnalités proposées dans cette nouvelle version et vérifier la compatibilité des plugins installés sur votre machine.}}</p>
+  <p class="alert alert-info">{{Après plusieurs mois de développement et d'optimisations, la version 4 de Jeedom est désormais accessible à tous.}}<br> {{Avant d'effectuer la mise à niveau, nous allons découvrir quelques fonctionnalités proposées dans cette nouvelle version et vérifier la compatibilité de votre système et des plugins installés sur votre machine.}}</p>
+  <div class="col-md-10 col-md-offset-1 <?= $alertLevel ?>"><strong><?= $system ?></strong><br/><?= $messageAlert ?></div>
+
+  <?php if ($goUpgrade == true) { ?>
+    <p>
+      <a class="btn btn-warning" id="bt_goUpgradeV4" disabled="true" title="Veuillez lire toute la page avant de lancer la migration V4.">
+        <i class="fas fa-level-up-alt"></i> {{Mettre à niveau V4}}
+      </a>
+</p>
+<?php } ?>
 </div>
 
 <div class="row">
@@ -125,7 +167,7 @@ if (!isConnect('admin')) {
 $('#table_update tbody tr').each(function() {
   let logicalId = $(this).data('logicalid');
   let version = $(this).find('span.label.label-warning').last().html();
-  if(logicalId != 'jeedom') {
+  if (logicalId != 'jeedom') {
     $.ajax({
       type: 'POST',
       url: 'core/ajax/repo.ajax.php',
@@ -150,11 +192,14 @@ $('#table_update tbody tr').each(function() {
         else if (data.result['name'] == 'Timeline') {
           $('#plugins_upgrade > tbody').append('<tr id="timeline" class="danger toremove"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=timeline" target="blank"><b>Timeline</b></a></td><td class="text-center"></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"> {{Conflit timeline V4 - à désinstaller avant migration}} <i class="icon_red fas fa-trash-alt"></i></td></tr>');
         }
-        else if (data.result['hardwareCompatibility']['v4'] == '1') {
+        else if (data.result['hardwareCompatibility']['v4'] == '1' && data.result['certification'] != 'Obsolète' && data.result['certification'] != 'Legacy' && data.result['parameters']["github::stable::version"] != '') {
           $('#plugins_upgrade > tbody').append('<tr class="success"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center">' + getBadgeCertification(data.result['certification']) + '</td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"><i class="icon_green fas fa-check"></i></td></tr>');
         }
         else if (data.result['certification'] == 'Obsolète') {
-          $('#plugins_upgrade > tbody').append('<tr id="' + logicalId + '" class="danger toremove"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center"><span style="background-color:#DC0D0B;" class="certif-badge">' + data.result['certification'] + '</span></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"> {{Plugin Obsolète - à désinstaller avant migration}} <i class="icon_red fas fa-trash-alt"></i></td></tr>');
+          $('#plugins_upgrade > tbody').append('<tr id="' + logicalId + '" class="danger toremove"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center"><span style="background-color:#DC0D0B;" class="certif-badge">{{Obsolète}}</span></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"> {{Plugin Obsolète - à désinstaller avant migration}} <i class="icon_red fas fa-trash-alt"></i></td></tr>');
+        }
+        else if (data.result['certification'] == 'Legacy') {
+          $('#plugins_upgrade > tbody').append('<tr id="' + logicalId + '" class="info"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center"><span style="background-color:#6B6B6B;" class="certif-badge">Legacy</span></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"> {{Plugin Legacy - fonctionnement non garanti}}</td></tr>');
         }
         else if (data.result['parameters']["github::stable::version"] == '') {
           $('#plugins_upgrade > tbody').append('<tr class="warning"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center"></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right">{{Ce plugin ne possède pas de version Stable}} <i class="icon_orange fas fa-question"></i></td></tr>');
@@ -201,7 +246,7 @@ function removePlugins() {
     }
   })
 
-  bootbox.confirm('{{Etes-vous sûr de vouloir supprimer ce(s) plugin(s) obsolète(s) : }}' + names.join(', '),
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce(s) plugin(s) obsolète(s) : }}' + names.join(', '),
   function(result){
     if (result) {
       for (let i in ids_array) {
@@ -237,9 +282,6 @@ function getBadgeCertification(certifLevel) {
     break;
     case 'Premium':
     return '<span style="background-color:#9B5BB9;" class="certif-badge">' + certifLevel + '</span>';
-    break;
-    case 'Legacy':
-    return '<span style="background-color:#6B6B6B;" class="certif-badge">' + certifLevel + '</span>';
     break;
     default:
     return '';
