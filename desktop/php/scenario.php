@@ -135,8 +135,8 @@ sendVarToJs('initSearch', init('search', 0));
 			<span class="input-group-btn">
 				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
 				
-				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)"><i class="fas fa-chevron-left"></i>
-				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)"><i class="fas fa-chevron-right"></i></a>
+				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
+				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
 				
 				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
 				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
