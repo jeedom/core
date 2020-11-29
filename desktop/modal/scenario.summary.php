@@ -70,10 +70,23 @@ $('#bt_saveSummaryScenario').off().on('click', function() {
       $('#div_alertScenarioSummary').showAlert({message: error.message, level: 'danger'})
     },
     success : function(data) {
+      synchModaleToPage()
       refreshScenarioSummary()
     }
   })
 })
+
+function synchModaleToPage() {
+  $('#table_scenarioSummary tbody .scenario').each(function() {
+    var scId = $(this).attr('data-id')
+    var scPage = $('#scenarioThumbnailDisplay div.scenarioDisplayCard[data-scenario_id="'+scId+'"]')
+    if ($(this).find('input[data-l1key="isActive"]').is(':checked')) {
+      scPage.removeClass('inactive')
+    } else {
+      scPage.addClass('inactive')
+    }
+  })
+}
 
 function refreshScenarioSummary() {
   $.clearDivContent('tbody_scenarioSummary')
