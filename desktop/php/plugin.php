@@ -59,8 +59,8 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="pluginListContainer">
           <?php
           foreach ((plugin::listPlugin()) as $plugin) {
-            $opacity = ($plugin->isActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-            $div = '<div class="pluginDisplayCard hidden cursor" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="'.$opacity.'; display: none;">';
+            $inactive = ($plugin->isActive()) ? '' : 'inactive';
+            $div = '<div class="pluginDisplayCard hidden cursor '.$inactive.'" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="display: none;">';
             $div .= '<div class="center">';
             $div .= '<img src="' . $plugin->getPathImgIcon() . '" />';
             $div .= '</div>';

@@ -70,8 +70,8 @@ $optionMaxSize = 15;
 				$div .= '<div class="panel-body">';
 				$div .= '<div class="interactListContainer">';
 				foreach ($interacts[-1] as $interact) {
-					$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-					$div .= '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
+					$inactive = ($interact->getEnable()) ? '' : 'inactive';
+					$div .= '<div class="interactDisplayCard cursor '.$inactive.'" data-interact_id="' . $interact->getId() . '">';
 					if($interact->getDisplay('icon') != ''){
 						$div .= '<span>'.$interact->getDisplay('icon').'</span>';
 					}else{
@@ -101,8 +101,8 @@ $optionMaxSize = 15;
 					$div .= '<div class="panel-body">';
 					$div .= '<div class="interactListContainer">';
 					foreach ($interacts[$group['group']] as $interact) {
-						$opacity = ($interact->getEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-						$div .= '<div class="interactDisplayCard cursor" data-interact_id="' . $interact->getId() . '" style="'.$opacity.'" >';
+						$inactive = ($interact->getEnable()) ? '' : 'inactive';
+						$div .= '<div class="interactDisplayCard cursor '.$inactive.'" data-interact_id="' . $interact->getId() . '">';
 						if($interact->getDisplay('icon') != ''){
 							$div .= '<span>'.$interact->getDisplay('icon').'</span>';
 						}else{

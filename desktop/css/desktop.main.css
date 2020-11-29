@@ -1205,6 +1205,11 @@ Theme Core 2021 @Jeedom
     margin-bottom: 0 !important;
   }
 
+  div[class*="DisplayCard"].inactive {
+    opacity: 0.45 !important;
+    filter: grayscale(20%);
+  }
+
   div[class*="ListContainer"] {
     background: transparent;
   }

@@ -47,8 +47,8 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 	$thisDiv .= '<div class="panel-body">';
 	$thisDiv .= '<div class="scenarioListContainer">';
 	foreach ($scenarios[$groupName] as $scenario) {
-		$opacity = ($scenario->getIsActive()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
-		$thisDiv .= '<div class="scenarioDisplayCard cursor" data-scenario_id="' . $scenario->getId() . '" style="' . $opacity . '" >';
+		$inactive = ($scenario->getIsActive()) ? '' : 'inactive';
+		$thisDiv .= '<div class="scenarioDisplayCard cursor '.$inactive.'" data-scenario_id="' . $scenario->getId() . '">';
 		if($scenario->getDisplay('icon') != ''){
 			$thisDiv .= '<span>'.$scenario->getDisplay('icon').'</span>';
 		}else{

@@ -29,9 +29,6 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			'multimedia' => array('name' => __('Multimédia',__FILE__), 'icon' => 'fas fa-sliders-h'),
 			'default' => array('name' => __('Autre',__FILE__), 'icon' => 'far fa-circle'),
 		),
-		'style' => array(
-			'noactive' => '-webkit-filter: grayscale(100%);-moz-filter: grayscale(100);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);filter: grayscale(100%); opacity: 0.35;',
-		),
 		'displayType' => array(
 			'dashboard' => array('name' => 'Dashboard'),
 			'mobile' => array('name' => 'Mobile'),
