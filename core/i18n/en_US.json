@@ -1655,7 +1655,7 @@
         "3 ans": "3 years",
         "Push": "Push",
         "URL de push globale": "Global push URL",
-        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call when updating the value of the commands. <br> You can use the following tags: <br> # value # (command value), # cmd_id # (command id) and # cmd_name # (orcommand der name)",
+        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL to call when updating value of commands. <br> You can use the following tags: <br> #value# (command value), #cmd_id# (command id) and #cmd_name# (command  name)",
         "InfluxDB": "InfluxDB",
         "URL du serveur InfluxDB": "InfluxDB server URL",
         "Mettez ici l'URL du serveur InfluxDB": "Put here the URL of the InfluxDB server",
