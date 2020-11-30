@@ -185,35 +185,44 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <div class="col-xs-1">
                   <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" />
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-7">
                   <input class="cmdAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="display:none;">
                 </div>
               </div>
-			   <?php if ($cmd->getType() == 'info') {?>
-               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
-                <div class="col-xs-1">
-                  <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
+              <?php if ($cmd->getType() == 'info') {?>
+                <div class="form-group">
+                  <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
+                  <div class="col-xs-1">
+                    <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
+                  </div>
+                  <div class="col-xs-7"></div>
                 </div>
+                <div class="form-group selInflux" style="display:none;">
+                  <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
+                  <div class="col-xs-8">
+                    <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}" >
+                  </div>
                 </div>
-				<div class="form-group selInflux" style="display:none;">
-                <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
-                <div class="col-xs-8">
-                  <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}" >
+                <div class="form-group selInflux" style="display:none;">
+                  <label class="col-xs-4 control-label">{{Nom personnalisé Équipement}}</label>
+                  <div class="col-xs-8">
+                    <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
+                  </div>
                 </div>
-                <label class="col-xs-4 control-label">{{Nom personnalisé équipement}}</label>
-                 <div class="col-xs-8">
-                  <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
-                </div><label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
-                 <div class="col-xs-8">
-                  <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
+                <div class="form-group selInflux" style="display:none;">
+                  <label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
+                  <div class="col-xs-8">
+                    <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
+                  </div>
                 </div>
-				<label class="col-xs-4 control-label">{{Actions}}</label>
-                 <div class="col-xs-8">
-                   <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-                   <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+                <div class="form-group selInflux" style="display:none;">
+                  <label class="col-xs-4 control-label">{{Actions}}</label>
+                  <div class="col-xs-8">
+                    <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+                    <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+                  </div>
+                  <br/><br/>
                 </div>
-              </div>
               <?php }?>
               <div class="form-group">
                 <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>

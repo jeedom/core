@@ -82,10 +82,14 @@
 - **Lib** : Atualizar o jQuery v3.4.1 a v3.5.1.
 - **Lib** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
 - **API** :  adição de uma opção para proibir uma chave de API de um plugin de executar métodos centrais (geral)
-- A função **getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* Mas *[grupo] [objeto] [nome]*.
 - Protegendo solicitações Ajax.
 - Protegendo chamadas de API.
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
+<br/><br/>
+- **Alterar**
+- A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* Mas *[grupo] [objeto] [nome]*.
+- A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
+- Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
 
 [Changelog v4.0](/pt_PT/core/4.0/changelog)
