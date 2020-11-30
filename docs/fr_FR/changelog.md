@@ -86,7 +86,7 @@
 - Sécurisation des appels API.
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
-
+<br/><br/>
 - **Changements**
 - La fonction **scenario->getHumanName()** de la class php scenario ne renvoit plus *[object][group][name]* mais *[group][object][name]*.
 - La fonction **scenario->byString()** doit maintenant être appellée avec la structure *[group][object][name]*.
