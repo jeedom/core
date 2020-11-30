@@ -82,10 +82,14 @@
 - **Lib** : Update jQuery v3.4.1 vers v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 vers 5.13.1.
 - **API** :  ajout d'une option pour interdire une clef api d'un plugin d'executer des methodes core (général)
-- La fonction **getHumanName()** de la class php scenario ne renvoit plus *[object][group][name]* mais *[group][object][name]*.
 - Sécurisation des requêtes Ajax.
 - Sécurisation des appels API.
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
+
+- **Changements**
+- La fonction **scenario->getHumanName()** de la class php scenario ne renvoit plus *[object][group][name]* mais *[group][object][name]*.
+- La fonction **scenario->byString()** doit maintenant être appellée avec la structure *[group][object][name]*.
+- Les fonctions **network->getInterfaceIp() network->getInterfaceMac() network->getInterfaces()** ont été remplacées par **network->getInterfacesInfo()**
 
 [Changelog v4.0](/fr_FR/core/4.0/changelog)
