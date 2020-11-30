@@ -81,7 +81,7 @@ else {
         <h4 class="panel-title">{{3 nouveaux thèmes}}</h4>
       </div>
       <div class="panel-body">
-        <div class="caption text-center">
+        <div class="text-center">
           <h5>{{3 thèmes font leur apparition}} : <strong>Light, Dark ou Legacy.</strong></h5>
           <p>{{Optez pour un interface qui vous ressemble grâce aux 3 thèmes disponibles en V4. Il est possible de}} <strong>{{changer de thème automatiquement}}</strong> {{selon l'heure de la journée ou encore en fonction de la}} <strong>{{luminosité ambiante sur mobile}}</strong>.</p>
         </div>
@@ -98,7 +98,7 @@ else {
         <h4 class="panel-title">{{Outil de création de widgets}}</h4>
       </div>
       <div class="panel-body">
-        <div class="caption text-center">
+        <div class="text-center">
           <h5>{{Pour toujours plus de}} <strong>{{simplicité et d'évolutivité.}}</strong></h5>
           <p>{{Le core Jeedom prend désormais en charge}} <strong>{{les widgets}}</strong> {{en mettant à disposition}} <strong>{{un nouvel outil}}</strong> {{alliant possibilités de personnalisations et facilité d'utilisation.}}</p>
           <a href="https://blog.jeedom.com/4368-les-widgets-en-v4/" target="blank" class="btn btn-success" role="button">{{En savoir plus}}</a>
@@ -119,7 +119,7 @@ else {
           <h4 class="panel-title">{{A venir en V4.1}}</h4>
         </div>
         <div class="panel-body">
-          <div class="caption text-center">
+          <div class="text-center">
             <h5>{{Une nouvelle page}} <strong>{{Synthèse.}}</strong></h5>
             <p>{{En V4.1, la page}} <strong>{{Synthèse}}</strong> {{vous propose une synthèse visuelle et centralisée de vos objets et de leurs résumés.}}</p>
             <a href="https://doc.jeedom.com/fr_FR/core/4.1/overview" target="blank" class="btn btn-success" role="button">{{En savoir plus}}</a>
