@@ -108,7 +108,7 @@ function testUsb(){
 					stepTwo();
 				}, 4000);
 				break;
-				
+
 			}
 		}
 	});
@@ -486,53 +486,52 @@ function finalisation(go){
 			},
 			success: function (data) {
 				console.log('getInfoApplication > '+JSON.stringify(data));
-			})
-			setTimeout(function(){
-				$.ajax({
-					type: 'POST',
-					url: 'core/ajax/user.ajax.php',
-					data: {
-						action: 'login',
-						username: 'admin',
-						password: 'admin',
-						storeConnection : 1
-					},
-					dataType: 'json',
-					global: false,
-					error: function (request, status, error) {
-						console.log('Ajax User Error');
-						$('#div_alert').showAlert({message: error.message, level: 'danger'});
-					},
-					success: function (result){
-						console.log('Succes Login ;) > '+JSON.stringify(result));
-						$.ajax({
-							type: 'POST',
-							url: 'core/ajax/update.ajax.php',
-							data: {
-								action: 'updateAll',
-								options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
-							},
-							dataType: 'json',
-							global: false,
-							error: function (request, status, error) {
-								console.log('Error Update');
-								$('#div_alert').showAlert({message: error.message, level: 'danger'});
-							},
-							success: function (result){
-								console.log('Update lancé > '+JSON.stringify(result));
-								if(result.result == ""){
-									$('.progress-bar').width('1%');
-									$('.progress-bar').text('1%');
-									getJeedomLog(1, 'update');
-								}else{
-									finalisation();
+				setTimeout(function(){
+					$.ajax({
+						type: 'POST',
+						url: 'core/ajax/user.ajax.php',
+						data: {
+							action: 'login',
+							username: 'admin',
+							password: 'admin',
+							storeConnection : 1
+						},
+						dataType: 'json',
+						global: false,
+						error: function (request, status, error) {
+							console.log('Ajax User Error');
+							$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						},
+						success: function (result){
+							console.log('Succes Login ;) > '+JSON.stringify(result));
+							$.ajax({
+								type: 'POST',
+								url: 'core/ajax/update.ajax.php',
+								data: {
+									action: 'updateAll',
+									options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
+								},
+								dataType: 'json',
+								global: false,
+								error: function (request, status, error) {
+									console.log('Error Update');
+									$('#div_alert').showAlert({message: error.message, level: 'danger'});
+								},
+								success: function (result){
+									console.log('Update lancé > '+JSON.stringify(result));
+									if(result.result == ""){
+										$('.progress-bar').width('1%');
+										$('.progress-bar').text('1%');
+										getJeedomLog(1, 'update');
+									}else{
+										finalisation();
+									}
 								}
-							}
-						});
-					}
-				});
-			}, 3000);
-		}
+							});
+						}
+					});
+				}, 3000);
+			}
 	});
 }
 }
@@ -718,10 +717,10 @@ function confirmOnLeave(msg) {
 		if(End == 0){
 			e = e || window.event;
 			msg = msg || '';
-			
+
 			// For IE and Firefox
 			if (e) {e.returnValue = msg;}
-			
+
 			// For Chrome and Safari
 			return msg;
 		}
