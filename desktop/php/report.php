@@ -16,7 +16,8 @@ $report_path = __DIR__ . '/../../data/report/';
 				<li class="cursor li_type" data-type="other"><a>{{Autre}}</a></li>
 			</ul>
 		</div>
-
+		
+		
 		<div class="bs-sidebar reportType view">
 			<ul id="ul_view" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="far fa-image"></i> {{Vues}}</li>
@@ -29,7 +30,7 @@ $report_path = __DIR__ . '/../../data/report/';
 				?>
 			</ul>
 		</div>
-
+		
 		<div class="bs-sidebar reportType plan" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-paint-brush"></i> {{Design}}</li>
@@ -42,7 +43,7 @@ $report_path = __DIR__ . '/../../data/report/';
 				?>
 			</ul>
 		</div>
-
+		
 		<div class="bs-sidebar reportType plugin" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-tags"></i> {{Plugin}}</li>
@@ -58,17 +59,18 @@ $report_path = __DIR__ . '/../../data/report/';
 				?>
 			</ul>
 		</div>
-
+		
 		<div class="bs-sidebar reportType other" style="display:none">
 			<ul id="ul_plan" class="nav nav-list bs-sidenav">
 				<li class="nav-header"><i class="fas fa-network-wired"></i> {{Autre}}</li>
 				<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
 				<li class="cursor li_reportType" data-type="other" data-id="eqAnalyse"><a>{{Analyse}}</a></li>
+				<li class="cursor li_reportType" data-type="other" data-id="timeline"><a>{{Timeline}}</a></li>
 				<li class="cursor li_reportType" data-type="other" data-id="url"><a>{{URL}}</a></li>
 			</ul>
 		</div>
 	</div>
-
+	
 	<div class="col-lg-2 col-md-3 col-sm-3" style="margin-top : 4px;">
 		<div class="bs-sidebar" style="margin-top : 4px;">
 			<ul id="ul_report" class="nav nav-list bs-sidenav">
@@ -77,7 +79,7 @@ $report_path = __DIR__ . '/../../data/report/';
 			</ul>
 		</div>
 	</div>
-
+	
 	<div class="col-lg-8 col-md-6 col-sm-6" style="margin-top : 4px;display:none;" id="div_reportForm">
 		<form class="form-horizontal">
 			<fieldset>
