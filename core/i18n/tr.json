@@ -2797,7 +2797,7 @@
         "L\\'opération a échoué": "Operasyon başarılamadı"
     },
     "desktop\/js\/scenario.js": {
-        "Résumé scénario": "Senaryo özeti",
+        "Vue d'ensemble des scénarios": "",
         "Scénario": "Senaryo",
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
         "Graphique de lien(s)": "",

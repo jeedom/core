@@ -2797,7 +2797,7 @@
         "L\\'opération a échoué": "Operasi L \\' gagal"
     },
     "desktop\/js\/scenario.js": {
-        "Résumé scénario": "Skenario Ringkasan",
+        "Vue d'ensemble des scénarios": "",
         "Scénario": "Skenario",
         "Log d'exécution du scénario": "Log eksekusi script",
         "Graphique de lien(s)": "",

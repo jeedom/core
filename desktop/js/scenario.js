@@ -237,7 +237,7 @@ $("#bt_changeAllScenarioState").off('click').on('click', function() {
 })
 
 $('.bt_showScenarioSummary').off('click').on('click', function() {
-  $('#md_modal').dialog({title: "{{Résumé scénario}}"}).load('index.php?v=d&modal=scenario.summary').dialog('open')
+  $('#md_modal').dialog({title: "{{Vue d'ensemble des scénarios}}"}).load('index.php?v=d&modal=scenario.summary').dialog('open')
 })
 
 $('#bt_generalTab').on('click',function() {
