@@ -211,6 +211,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 				<br/>
 				<form class="form-horizontal">
 					<fieldset>
+						<legend><i class="fas fa-user-secret"></i> {{Utilisateur}}</legend>
 						<?php if (config::byKey('sso:allowRemoteUser') != 1) {
 							?>
 							<div class="form-group">
@@ -257,7 +258,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Session(s) active(s)}}</legend>
+						<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
 						<table class="table table-condensed table-bordered">
 							<thead>
 								<tr>
@@ -290,7 +291,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+						<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
 						<table class="table table-bordered table-condensed">
 							<thead>
 								<tr>
