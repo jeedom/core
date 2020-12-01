@@ -82,10 +82,14 @@
 - **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 - **Lib** : Update Font Awesome 5.9.0 bis 5.13.1.
 - **API** :  Hinzufügung einer Option, um zu verhindern, dass ein API-Schlüssel eines Plugins Kernmethoden ausführt (allgemein))
-- Die Funktion **getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* Aber *[Gruppe] [Objekt] [Name]*.
 - Sichern von Ajax-Anfragen.
 - API-Aufrufe sichern.
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
+<br/><br/>
+- **Änderungen**
+- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* Aber *[Gruppe] [Objekt] [Name]*.
+- Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
+- Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
 
 [Changelog v4.0](/de_DE/core/4.0/changelog)

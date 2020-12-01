@@ -2797,7 +2797,7 @@
         "L\\'opération a échoué": "Операция не удалась"
     },
     "desktop\/js\/scenario.js": {
-        "Résumé scénario": "Сводный сценарий",
+        "Vue d'ensemble des scénarios": "",
         "Scénario": "Сценарий",
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Graphique de lien(s)": "Ссылка графическая",
