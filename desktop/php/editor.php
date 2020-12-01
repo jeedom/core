@@ -116,5 +116,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 	include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
 	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
 	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
+
+	include_file('3rdparty', 'codemirror/addon/fold/brace-fold', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/comment-fold', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/foldcode', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/indent-fold', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
 ?>
 

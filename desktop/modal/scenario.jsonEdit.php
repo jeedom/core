@@ -23,6 +23,18 @@ if (!is_object($scenario)) {
   throw new Exception(__('Aucun scénario ne correspondant à : ', __FILE__) . init('id'));
 }
 sendVarToJs('scenarioJsonEdit_scenario_id', init('id'));
+include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
+include_file('3rdparty', 'codemirror/addon/search/search', 'js');
+include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
+
+include_file('3rdparty', 'codemirror/addon/fold/brace-fold', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/comment-fold', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/foldcode', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/indent-fold', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
 ?>
 
 <div id="div_alertScenarioJsonEdit"></div>
@@ -42,7 +54,17 @@ sendVarToJs('scenarioJsonEdit_scenario_id', init('id'));
 fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_scenarioJsonEdit_scenario"), {
   lineNumbers: true,
   mode: 'application/json',
-  matchBrackets: true
+  styleActiveLine: true,
+  lineNumbers: true,
+  lineWrapping: true,
+  matchBrackets: true,
+  autoRefresh: true,
+  foldGutter: true,
+  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+})
+fileEditor.setOption("extraKeys", {
+  "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+  "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
 })
 fileEditor.getWrapperElement().style.height = ($('#ta_scenarioJsonEdit_scenario').closest('.ui-dialog-content').height() - 90) + 'px'
 fileEditor.refresh()

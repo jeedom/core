@@ -2245,7 +2245,13 @@ function setEditors() {
           lineWrapping: true,
           mode: 'text/x-php',
           matchBrackets: true,
-          viewportMargin : Infinity
+          viewportMargin : Infinity,
+          foldGutter: true,
+          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        })
+        _EDITORS[id].setOption("extraKeys", {
+          "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+          "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
         })
       }, 1)
     }

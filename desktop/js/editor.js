@@ -139,10 +139,14 @@ function displayFile(_path) {
             lineWrapping: true,
             mode: getEditorMode(_path),
             matchBrackets: true,
-            viewportMargin : Infinity
+            viewportMargin : Infinity,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
           })
-          //fileEditor.getWrapperElement().style.height = ($('#ta_fileContent').closest('.row-overflow').find('.col-lg-2').height() - 60) + 'px'
-          //fileEditor.refresh()
+          fileEditor.setOption("extraKeys", {
+            "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+            "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+          })
         }, 1)
       }
     }

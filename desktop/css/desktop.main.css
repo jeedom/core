@@ -2869,7 +2869,20 @@ Theme Core 2021 @Jeedom
     background-color: transparent !important;
   }
 
+  .CodeMirror-dialog-top {
+    border-bottom: 2px solid var(--txt-color) !important;
+  }
 
+  .CodeMirror-foldmarker {
+    text-shadow: none !important;
+    color: var(--txt-color) !important;
+    cursor: pointer !important;
+  }
+  .CodeMirror-foldgutter-open,
+  .CodeMirror-foldgutter-folded {
+    cursor: pointer;
+    transform: scale(1.6) translate(-1.5px,0) !important;
+  }
 
   /* hihgly special */
   div[id^=__lpform_] { /*lastpass*/

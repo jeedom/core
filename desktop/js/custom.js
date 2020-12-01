@@ -38,13 +38,25 @@ setTimeout(function() {
     lineNumbers: true,
     mode: "text/javascript",
     matchBrackets: true,
-    viewportMargin: Infinity
+    viewportMargin: Infinity,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+  })
+  editorDesktopJS.setOption("extraKeys", {
+    "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+    "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
   })
   editorDesktopCSS = CodeMirror.fromTextArea(document.getElementById("ta_cssDesktopContent"), {
     lineNumbers: true,
     mode: "text/css",
     matchBrackets: true,
-    viewportMargin: Infinity
+    viewportMargin: Infinity,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+  })
+  editorDesktopCSS.setOption("extraKeys", {
+    "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+    "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
   })
   $(window).resize(function() {
     editorDesktopJS.setSize(null, $tabContainer.height() - 50)
@@ -62,18 +74,31 @@ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
       lineNumbers: true,
       mode: "text/javascript",
       matchBrackets: true,
-      viewportMargin: Infinity
+      viewportMargin: Infinity,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+    })
+    editorMobileJS.setOption("extraKeys", {
+      "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+      "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
     })
   }
+  editorMobileJS.setSize(null, $tabContainer.height() - 50)
+
   if (editorMobileCSS == null) {
     editorMobileCSS = CodeMirror.fromTextArea(document.getElementById("ta_cssMobileContent"), {
       lineNumbers: true,
       mode: "text/css",
       matchBrackets: true,
-      viewportMargin: Infinity
+      viewportMargin: Infinity,
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+    })
+    editorMobileCSS.setOption("extraKeys", {
+      "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+      "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
     })
   }
-  editorMobileJS.setSize(null, $tabContainer.height() - 50)
   editorMobileCSS.setSize(null, $tabContainer.height() - 50)
 })
 
