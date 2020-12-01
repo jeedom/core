@@ -2797,7 +2797,7 @@
         "L\\'opération a échoué": "Operazione fallita"
     },
     "desktop\/js\/scenario.js": {
-        "Résumé scénario": "Scenario riassuntivo",
+        "Vue d'ensemble des scénarios": "",
         "Scénario": "Scena",
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
         "Graphique de lien(s)": "Link grafico",

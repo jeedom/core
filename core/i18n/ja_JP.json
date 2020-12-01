@@ -2797,7 +2797,7 @@
         "L\\'opération a échoué": "操作に失敗しました"
     },
     "desktop\/js\/scenario.js": {
-        "Résumé scénario": "要約シナリオ",
+        "Vue d'ensemble des scénarios": "",
         "Scénario": "シナリオ",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Graphique de lien(s)": "リンク画像",
