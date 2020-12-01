@@ -1343,19 +1343,52 @@ user::isBan();
 				<br/>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Dépendance et démon}}</legend>
+						<legend>{{Connexion}}</legend>
 						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}</label>
-							<div class="col-sm-1">
-								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDependancy"/>
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée de vie de votre connexion, en heure<br>(si vous n'avez pas coché la case enregistrer cet ordinateur)}}"></i></sup>
+								<sub>h</sub>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}</label>
-							<div class="col-sm-1">
-								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDeamony"/>
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Passé ce nombre, l'IP sera bannie.}}"></i></sup>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes}}"></i></sup>
+								<sub>s</sub>
+							</label>
+
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée en secondes.<br> -1 : bannissement infini}}"></i></sup>
+								<sub>s</sub>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="security::bantime" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Liste blanche}}
+								<sup><i class="fas fa-question-circle" tooltip="{{IPs ou masques séparés par ;<br>ex: 127.0.0.1;192.168.*.*}}"></i></sup>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
+							</div>
+						</div>
+
 						<legend>{{LDAP}}</legend>
 						<?php if (function_exists('ldap_connect')) {?>
 							<div class="form-group">
@@ -1473,52 +1506,24 @@ user::isBan();
 						<?php } else {
 							echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 						}?>
-						<legend>{{Connexion}}</legend>
-						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Durée de vie de votre connexion, en heure<br>(si vous n'avez pas coché la case enregistrer cet ordinateur)}}"></i></sup>
-								<sub>h</sub>
-							</label>
-							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text"  class="configKey form-control" data-l1key="session_lifetime" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Passé ce nombre, l'IP sera bannie.}}"></i></sup>
-							</label>
-							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes}}"></i></sup>
-								<sub>s</sub>
-							</label>
 
-							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
+						<legend>{{Dépendance et démon}}</legend>
+						<div class="form-group">
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}"></i></sup>
+							</label>
+							<div class="col-sm-1">
+								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDependancy"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée du bannissement}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Durée en secondes.<br> -1 : bannissement infini}}"></i></sup>
-								<sub>s</sub>
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}"></i></sup>
 							</label>
-							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::bantime" />
+							<div class="col-sm-1">
+								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDeamony"/>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Liste blanche}}
-								<sup><i class="fas fa-question-circle" tooltip="{{IPs ou masques séparés par ;<br>ex: 127.0.0.1;192.168.*.*}}"></i></sup>
-							</label>
-							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
-							</div>
-						</div>
-
 					</fieldset>
 				</form>
 				<form class="form-horizontal">
@@ -1555,7 +1560,6 @@ user::isBan();
 								?>
 							</tbody>
 						</table>
-
 					</fieldset>
 				</form>
 			</div>
