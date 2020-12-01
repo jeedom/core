@@ -2,6 +2,17 @@
 Changelog
 =========
 
+3.3.54
+======
+
+- Ajout d'un assistant de migration V4
+- Correction de bugs sur les backups cloud
+- Gestion du cryptage de données en base
+
+>**IMPORTANT**
+>
+>Lors de la mise à jour vous pouvez avoir une erreur ressemblant à "PHP Fatal error: Uncaught Error: Call to undefined method utils::decrypt()" ce n'est pas grave il vous suffit de relancer la mise à jour.
+
 3.3.53
 ======
 
