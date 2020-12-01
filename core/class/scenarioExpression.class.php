@@ -1655,7 +1655,7 @@ class scenarioExpression {
 						$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport équipement généré le ', __FILE__) . date('Y-m-d H:i:s');
 						break;
 						case 'timeline':
-						$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=history&report=1&timeline='. $options['timeline'];
+						$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline='. $options['timeline'];
 						$this->setLog($scenario, __('Génération du rapport timeline ', __FILE__) . $options['timeline']);
 						$cmd_parameters['files'] = array(report::generate($url,'other','timeline',$options['export_type'], $options));
 						$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $options['timeline'] . __(' du ', __FILE__) . date('Y-m-d H:i:s');

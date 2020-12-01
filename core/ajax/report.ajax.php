@@ -17,25 +17,25 @@
 */
 
 try {
-	
+
 	require_once __DIR__ . '/../php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'list') {
 		$return = array();
 		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/';
 		foreach (ls($path, '*') as $value) {
 			$return[$value] = array('name' => $value);
 		}
-		ajax::success($return);
+		ajax::success(array_reverse($return));
 	}
-	
+
 	if (init('action') == 'get') {
 		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/' . init('report');
 		$return = pathinfo($path);
@@ -44,7 +44,7 @@ try {
 		$return['id'] = init('id');
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'remove') {
 		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/' . init('report');
 		if (file_exists($path)) {
@@ -55,7 +55,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'removeAll') {
 		$path = __DIR__ . '/../../data/report/' . init('type') . '/' . init('id') . '/';
 		foreach (ls($path, '*') as $value) {
@@ -63,7 +63,7 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
