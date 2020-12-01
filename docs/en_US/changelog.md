@@ -2,6 +2,17 @@
 Changelog
 =========
 
+3.3.54
+======
+
+- Adding a V4 migration wizard
+- Correction of bugs on cloud backups
+- Database data encryption management
+
+>**Important**
+>
+>During the update you may get an error resembling "PHP Fatal error: Uncaught Error: Call to undefined method utils::decrypt () "it does not matter, you just have to restart the update.
+
 3.3.53
 ======
 

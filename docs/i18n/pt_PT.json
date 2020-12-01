@@ -1705,6 +1705,14 @@
         " Market*": " Mercado*"
     },
     "changelog.md": {
+        "3.3.54": "3.3.54",
+        "Ajout d'un assistant de migration V4": "Adicionar um assistente de migração V4",
+        "Correction de bugs sur les backups cloud": "Correção de bugs em backups em nuvem",
+        "Gestion du cryptage de données en base": "Gerenciamento de criptografia de dados de banco de dados",
+        "Lors de la mise à jour vous pouvez avoir une erreur ressemblant à \"PHP Fatal error": "Durante a atualização, você pode obter um erro semelhante a \"Erro fatal do PHP",
+        "Uncaught Error": "Erro não detectado",
+        "Call to undefined method utils": "Chamada para utils de método indefinido",
+        "decrypt()\" ce n'est pas grave il vous suffit de relancer la mise à jour": "decrypt () \"não importa, você só precisa reiniciar a atualização",
         "3.3.53": "3.3.53",
         "Correction d'un souci sur l'archivage des historiques si le mode de lissage était à jamais": "Corrigido um problema com os logs de arquivamento se o modo de suavização fosse para sempre",
         "3.3.52": "3.3.52",
