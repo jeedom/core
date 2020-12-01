@@ -2637,6 +2637,21 @@ Theme Core 2021 @Jeedom
     border-image-width: 0 !important;
     border-image-width: 0 !important;
   }
+
+  .floatingbar {
+    position: absolute;
+    top: 55px;
+    right: 10px;
+  }
+  .row-overflow .floatingbar {
+    top: 15px;
+    right: 15px;
+  }
+  .tab-pane .floatingbar {
+    top: 10px;
+    right: 15px;
+  }
+
   .row.row-overflow > div > div.input-group.pull-right {
     margin-right: -1px;
   }
