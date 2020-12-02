@@ -7,7 +7,8 @@
 		}
 
 		//events if not on scenario page:
-		if ($('#div_editScenario').length == 0) {
+		var myself = $('select[data-l1key="options"][data-l2key="type"][data-uid="#uid#"]')
+		if (myself.parents('.expressionOptions').length.length == 0) {
 			$('.bt_chooseIcon[data-uid=#uid#]').off().on('click', function() {
 				chooseIcon(function(_icon) {
 					$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append(_icon)
