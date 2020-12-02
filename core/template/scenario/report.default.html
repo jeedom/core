@@ -130,19 +130,20 @@
 	}
 
 	//events if not on scenario page:
-	if ($('#div_editScenario').length == 0) {
-		$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function(){
+	var myself = $('select[data-l1key="options"][data-l2key="type"][data-uid="#uid#"]')
+	if (myself.parents('.expressionOptions').length.length == 0) {
+		$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function() {
 			$(this).closest('select').removeClass('roundedRight')
-			$('.type[data-uid=#uid#]').hide();
-			$('.'+$(this).value()+'[data-uid=#uid#]').show();
+			$('.type[data-uid=#uid#]').hide()
+			$('.'+$(this).value()+'[data-uid=#uid#]').show()
 			if($(this).value() == 'eqAnalyse'){
 				$(this).closest('select').addClass('roundedRight')
 			}
-		});
+		})
 		$('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
 			jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-				$('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert', result.human);
-			});
-		});
+				$('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert', result.human)
+			})
+		})
 	}
 </script>
