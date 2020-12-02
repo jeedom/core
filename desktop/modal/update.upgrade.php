@@ -192,9 +192,6 @@ $('#table_update tbody tr').each(function() {
         else if (data.result['name'] == 'Timeline') {
           $('#plugins_upgrade > tbody').append('<tr id="timeline" class="danger toremove"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=timeline" target="blank"><b>Timeline</b></a></td><td class="text-center"></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"> {{Conflit timeline V4 - à désinstaller avant migration}} <i class="icon_red fas fa-trash-alt"></i></td></tr>');
         }
-        else if (data.result['hardwareCompatibility']['v4'] == '1' && data.result['certification'] != 'Obsolète' && data.result['certification'] != 'Legacy' && data.result['parameters']["github::stable::version"] != '') {
-          $('#plugins_upgrade > tbody').append('<tr class="success"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center">' + getBadgeCertification(data.result['certification']) + '</td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"><i class="icon_green fas fa-check"></i></td></tr>');
-        }
         else if (data.result['certification'] == 'Obsolète') {
           $('#plugins_upgrade > tbody').append('<tr id="' + logicalId + '" class="danger toremove"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center"><span style="background-color:#DC0D0B;" class="certif-badge">{{Obsolète}}</span></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"> {{Plugin Obsolète - à désinstaller avant migration}} <i class="icon_red fas fa-trash-alt"></i></td></tr>');
         }
@@ -203,6 +200,9 @@ $('#table_update tbody tr').each(function() {
         }
         else if (data.result['parameters']["github::stable::version"] == '') {
           $('#plugins_upgrade > tbody').append('<tr class="warning"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center"></td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right">{{Ce plugin ne possède pas de version Stable}} <i class="icon_orange fas fa-question"></i></td></tr>');
+        }
+        else if (data.result['hardwareCompatibility']['v4'] == '1') {
+          $('#plugins_upgrade > tbody').append('<tr class="success"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center">' + getBadgeCertification(data.result['certification']) + '</td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"><i class="icon_green fas fa-check"></i></td></tr>');
         }
         else {
           $('#plugins_upgrade > tbody').append('<tr class="danger"><td><a href="https://www.jeedom.com/market/index.php?v=d&p=market_display&id=' + logicalId + '" target="blank"><b>' + data.result['name'] + '</b></a></td><td class="text-center">' + getBadgeCertification(data.result['certification']) + '</td><td>' + data.result['author'] + '</td><td class="text-capitalize">' + version + '</td><td class="text-right"><i class="icon_red fas fa-times"></i></td></tr>');

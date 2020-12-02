@@ -2,6 +2,17 @@
 Changelog
 =========
 
+3.3.54
+======
+
+- Agregar un asistente de migración V4
+- Corrección de errores en las copias de seguridad en la nube
+- Gestión de cifrado de datos de base de datos
+
+>**IMPORTANTE**
+>
+>Durante la actualización, es posible que obtenga un error parecido a "Error fatal de PHP: Error no detectado: Llamar a utilidades de métodos indefinidos::desencriptar () "no importa, solo tienes que reiniciar la actualización.
+
 3.3.53
 ======
 

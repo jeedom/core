@@ -2,6 +2,17 @@
 Changelog
 =========
 
+3.3.54
+======
+
+- Adicionar um assistente de migração V4
+- Correção de bugs em backups em nuvem
+- Gerenciamento de criptografia de dados de banco de dados
+
+>**IMPORTANTE**
+>
+>Durante a atualização, você pode obter um erro semelhante a "Erro fatal do PHP: Erro não detectado: Chamada para utils de método indefinido::decrypt () "não importa, você só precisa reiniciar a atualização.
+
 3.3.53
 ======
 

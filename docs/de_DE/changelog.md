@@ -2,6 +2,17 @@
 Changelog
 =========
 
+3.3.54
+======
+
+- Hinzufügen eines V4-Migrationsassistenten
+- Behebung von Fehlern bei Cloud-Backups
+- Verwaltung der Datenbankdatenverschlüsselung
+
+>**WICHTIG**
+>
+>Während des Updates wird möglicherweise ein Fehler angezeigt, der "PHP Fatal error" ähnelt: Nicht erfasster Fehler: Aufruf undefinierter Methoden-Utils::decrypt () "Es spielt keine Rolle, Sie müssen nur das Update neu starten.
+
 3.3.53
 ======
 

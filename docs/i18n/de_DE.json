@@ -1705,6 +1705,14 @@
         " Market*": " Markt*"
     },
     "changelog.md": {
+        "3.3.54": "3.3.54",
+        "Ajout d'un assistant de migration V4": "Hinzufügen eines V4-Migrationsassistenten",
+        "Correction de bugs sur les backups cloud": "Behebung von Fehlern bei Cloud-Backups",
+        "Gestion du cryptage de données en base": "Verwaltung der Datenbankdatenverschlüsselung",
+        "Lors de la mise à jour vous pouvez avoir une erreur ressemblant à \"PHP Fatal error": "Während des Updates wird möglicherweise ein Fehler angezeigt, der \"PHP Fatal error\" ähnelt",
+        "Uncaught Error": "Nicht erfasster Fehler",
+        "Call to undefined method utils": "Aufruf undefinierter Methoden-Utils",
+        "decrypt()\" ce n'est pas grave il vous suffit de relancer la mise à jour": "decrypt () \"Es spielt keine Rolle, Sie müssen nur das Update neu starten",
         "3.3.53": "3.3.53",
         "Correction d'un souci sur l'archivage des historiques si le mode de lissage était à jamais": "Es wurde ein Problem mit der Archivierung von Protokollen behoben, wenn der Glättungsmodus für immer war",
         "3.3.52": "3.3.52",
