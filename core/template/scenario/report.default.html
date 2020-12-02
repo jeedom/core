@@ -131,7 +131,7 @@
 
 	//events if not on scenario page:
 	var myself = $('select[data-l1key="options"][data-l2key="type"][data-uid="#uid#"]')
-	if (myself.parents('.expressionOptions').length.length == 0) {
+	if (myself.parents('.expressionOptions').length == 0) {
 		$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function() {
 			$(this).closest('select').removeClass('roundedRight')
 			$('.type[data-uid=#uid#]').hide()
