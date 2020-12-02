@@ -6,13 +6,10 @@
 			$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append('#icon#'.replaceAll('&quot;', '"'))
 		}
 
-		//events if not on scenario page:
-		if ($('#div_editScenario').length == 0) {
-			$('.bt_chooseIcon[data-uid=#uid#]').off().on('click', function() {
-				chooseIcon(function(_icon) {
-					$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append(_icon)
-				})
+		$('.bt_chooseIcon[data-uid=#uid#]').off().on('click', function() {
+			chooseIcon(function(_icon) {
+				$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append(_icon)
 			})
-		}
+		})
 	</script>
 </div>

@@ -870,28 +870,6 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
   return message
 }
 
-//report template:
-$divScenario.on('click', '.expressionOptions .listEquipementInfo', function(event) {
-  jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-      $(event.target).parent().parent().find('.expressionAttr[data-l2key="cmd"]').atCaret('insert', result.human)
-    })
-})
-$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=type]', function(event) {
-  $(event.target).closest('select').removeClass('roundedRight')
-  $(event.target).parent().find('.type').hide()
-  $(event.target).parent().find('.'+$(event.target).value()).show()
-  if($(event.target).value() == 'eqAnalyse'){
-      $(event.target).closest('select').addClass('roundedRight')
-    }
-})
-
-//icon template:
-$divScenario.on('click', '.expressionOptions > div > a.bt_chooseIcon', function(event) {
-  chooseIcon(function(_icon) {
-    $(event.target).parent().find('.expressionAttr').empty().append($(_icon))
-  })
-})
-
 $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
@@ -1008,7 +986,6 @@ $divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]'
   }
 })
 
-
 //COPY - PASTE
 //keep select synch with options for cloning:
 $divScenario.on('change', 'select', function() {
@@ -1033,7 +1010,7 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
       $(this).attr('value', $(this).val())
     } catch (error) {}
   })
-
+  SC_CLIPBOARD = SC_CLIPBOARD.clone()
   SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
 
   localStorage.removeItem('jeedomScCopy')
@@ -1053,9 +1030,8 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
   }
 
   setUndoStack()
-  var newBloc = $(SC_CLIPBOARD).clone()
-
   //Removes its id for later save:
+  var newBloc = $(SC_CLIPBOARD).clone()
   newBloc.find('input[data-l1key="id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
   newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
@@ -2137,7 +2113,7 @@ function getAddButton(_caret) {
   return retour
 }
 
-$divScenario.on('click', '.fromSubElement', function(event) {
+$divScenario.on('click','.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
 
