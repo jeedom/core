@@ -1010,7 +1010,6 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
       $(this).attr('value', $(this).val())
     } catch (error) {}
   })
-  SC_CLIPBOARD = SC_CLIPBOARD.clone()
   SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
 
   localStorage.removeItem('jeedomScCopy')
