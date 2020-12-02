@@ -32,7 +32,7 @@ $plugin_enable = config::getPluginEnable();
 function jeedom_displayObjectGroup($object=-1) {
 	global $display_objects, $display_eqlogics, $display_cmds;
 
-	if ($object == -1) {
+	if (!is_object($object) && $object == -1) {
 		$_index = 'none';
 		$numParents = 0;
 		$objectId = -1;
@@ -40,6 +40,7 @@ function jeedom_displayObjectGroup($object=-1) {
 		$objecUseCustomColor = 0;
 		$objectIcon = '<i class="far fa-circle"></i>';
 	} else {
+		if (!is_object($object)) return;
 		$_index = $object->getId();
 		$numParents = $object->getConfiguration('parentNumber');
 		$objectId = $object->getId();
