@@ -259,6 +259,7 @@ Theme Core 2021 @Jeedom
   }
   #jeedomMenuBar ul.navbar-nav li ul a i {
     display: inline-flex;
+    justify-content: center;
     width: 20px;
     font-size: 14px;
     text-align: center;
@@ -2636,6 +2637,21 @@ Theme Core 2021 @Jeedom
     border-image-width: 0 !important;
     border-image-width: 0 !important;
   }
+
+  .floatingbar {
+    position: absolute;
+    top: 55px;
+    right: 10px;
+  }
+  .row-overflow .floatingbar {
+    top: 15px;
+    right: 15px;
+  }
+  .tab-pane .floatingbar {
+    top: 10px;
+    right: 15px;
+  }
+
   .row.row-overflow > div > div.input-group.pull-right {
     margin-right: -1px;
   }
@@ -3034,6 +3050,13 @@ Theme Core 2021 @Jeedom
   .element .expressionAttr:not([data-l2key=graphColor]) {
     font-weight: bold;
   }
+  .element .expressionAttr[data-l2key="icon"] i::before {
+    background: var(--sc-form-color);
+    padding: 2.5px;
+    height: 28px;
+    color: var(--sc-formTxt-color);
+  }
+
   #div_editScenario .element .expressionAttr.insideSearch {
     background-color: var(--al-warning-color) !important;
     color: var(--linkHoverLight-color) !important;
