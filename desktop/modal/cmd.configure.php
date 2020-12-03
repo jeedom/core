@@ -1205,7 +1205,8 @@ function addActionCmd(_action, _type, _name) {
   if (!isset(_action.options)) {
     _action.options = {}
   }
-  var div = '<div class="' + _type + '">'
+  var div = '<div class="expression ' + _type + '">'
+  div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
   div += '<div class="form-group ">'
   div += '<div class="col-sm-1">'
   div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />'
@@ -1228,6 +1229,8 @@ function addActionCmd(_action, _type, _name) {
   div += '</div>'
   $('#div_' + _type).append(div)
   $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
+
+  jeedom.scenario.setAutoComplete({parent: $('#div_'+_type), type:'cmd'})
 }
 
 $('#bt_cmdConfigureSaveOn').on('click',function() {

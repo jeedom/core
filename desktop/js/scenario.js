@@ -313,47 +313,6 @@ $('#div_scenarioElement').on('focus', ':input', function() {
   PREV_FOCUS = $(this)
 })
 
-var autoCompleteCondition = [
-  '#rand(MIN,MAX)',
-  '##minute#',
-  '##heure#',
-  '##jour#',
-  '##semaine#',
-  '##mois#',
-  '##annee#',
-  '##sjour#',
-  '##date#',
-  '##time#',
-  '##timestamp#',
-  '##IP#',
-  '##hostname#',
-  '#tag(montag,defaut)',
-  '#variable(mavariable,defaut)',
-  '#delete_variable(mavariable)',
-  '#tendance(commande,periode)',
-  '#average(commande,periode)',
-  '#max(commande,periode)',
-  '#min(commande,periode)',
-  '#round(valeur)',
-  '#trigger(commande)',
-  '#randomColor(debut,fin)',
-  '#lastScenarioExecution(scenario)',
-  '#stateDuration(commande)',
-  '#lastChangeStateDuration(commande,value)',
-  '#age(commande)',
-  '#median(commande1,commande2)',
-  '#avg(commande1,commande2)',
-  '#time(value)',
-  '#collectDate(cmd)',
-  '#valueDate(cmd)',
-  '#eqEnable(equipement)',
-  '#name(type,commande)',
-  '#value(commande)',
-  '#lastCommunication(equipement)',
-  '#color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)'
-]
-var autoCompleteAction = ['setColoredIcon','tag','report','exportHistory','sleep', 'variable', 'delete_variable', 'scenario', 'stop', 'wait','gotodesign','log','message','equipement','ask','jeedom_poweroff','scenario_return','alert','popup','icon','event','remove_inat']
-
 $(function() {
   jeedom.timeline.autocompleteFolder()
   $('sub.itemsNumber').html('('+$('.scenarioDisplayCard').length+')')
@@ -544,7 +503,7 @@ $divScenario.on('click','.bt_addScenarioElement', function(event) {
     $('#md_addElement').modal('hide')
     modifyWithoutSave = true
     updateTooltips()
-    setAutocomplete()
+    jeedom.scenario.setAutoComplete()
     setTimeout(function(){ newEL.removeClass('disableElement') }, 600)
   })
 })
@@ -726,7 +685,7 @@ $divScenario.on('click', '.bt_removeElement', function(event) {
 $divScenario.on('click', '.bt_addAction', function(event) {
   setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({type: 'action'}))
-  setAutocomplete()
+  jeedom.scenario.setAutoComplete()
   updateSortable()
   updateTooltips()
 })
@@ -870,28 +829,6 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
   return message
 }
 
-//report template:
-$divScenario.on('click', '.expressionOptions .listEquipementInfo', function(event) {
-  jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-      $(event.target).parent().parent().find('.expressionAttr[data-l2key="cmd"]').atCaret('insert', result.human)
-    })
-})
-$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=type]', function(event) {
-  $(event.target).closest('select').removeClass('roundedRight')
-  $(event.target).parent().find('.type').hide()
-  $(event.target).parent().find('.'+$(event.target).value()).show()
-  if($(event.target).value() == 'eqAnalyse'){
-      $(event.target).closest('select').addClass('roundedRight')
-    }
-})
-
-//icon template:
-$divScenario.on('click', '.expressionOptions > div > a.bt_chooseIcon', function(event) {
-  chooseIcon(function(_icon) {
-    $(event.target).parent().find('.expressionAttr').empty().append($(_icon))
-  })
-})
-
 $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
@@ -1008,36 +945,17 @@ $divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]'
   }
 })
 
-
 //COPY - PASTE
-//keep select synch with options for cloning:
-$divScenario.on('change', 'select', function() {
-    var val = $(this).val()
-    $('option', this).removeAttr('selected').filter(function() {
-        return $(this).attr('value') == val
-    }).first().attr('selected', 'selected')
-})
-
 $divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
-  //If element in an expression, copy the entire expression:
   if (!clickedBloc.parent('#div_scenarioElement').length) {
     SC_CLIPBOARD = clickedBloc.parent().parent()
   } else {
     SC_CLIPBOARD = clickedBloc
   }
-  //Write input value for later paste:
-  SC_CLIPBOARD = SC_CLIPBOARD.clone()
-  SC_CLIPBOARD.find('input').each(function() {
-    try {
-      $(this).attr('value', $(this).val())
-    } catch (error) {}
-  })
-
-  SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
-
+  SC_CLIPBOARD = getElement(clickedBloc)
   localStorage.removeItem('jeedomScCopy')
-  localStorage.setItem('jeedomScCopy', $(SC_CLIPBOARD)[0].outerHTML)
+  localStorage.setItem('jeedomScCopy', JSON.stringify(SC_CLIPBOARD))
 
   if(event.ctrlKey || event.metaKey) {
     setUndoStack()
@@ -1049,47 +967,58 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
 $divScenario.on('click', '.bt_pasteElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (localStorage.getItem('jeedomScCopy')) {
-    SC_CLIPBOARD = $.parseHTML(localStorage.getItem('jeedomScCopy'))
+    SC_CLIPBOARD = JSON.parse(localStorage.getItem('jeedomScCopy'))
   }
 
   setUndoStack()
-  var newBloc = $(SC_CLIPBOARD).clone()
 
-  //Removes its id for later save:
-  newBloc.find('input[data-l1key="id"]').attr("value", "")
-  newBloc.find('input[data-l1key="scenarioElement_id"]').attr("value", "")
-  newBloc.find('input[data-l1key="scenarioSubElement_id"]').attr("value", "")
-  newBloc.find('.insideSearch').removeClass('insideSearch')
-  newBloc.find('.expressionAttr[data-l1key=expression]').removeAttr('id').show()
-  newBloc.find('.CodeMirror.CodeMirror-wrap').remove()
+  actionOptions = []
+  var pastedElement = addElement(SC_CLIPBOARD)
+  pastedElement = $(pastedElement)
 
   //Are we pasting inside an expresion:
   if (clickedBloc.parent('#div_scenarioElement').length) {
     //get the element if copied from an expression:
-    if (newBloc.hasClass('expression')) newBloc = newBloc.find('.element')
-    newBloc.insertAfter(clickedBloc)
+    if (pastedElement.hasClass('expression')) pastedElement = pastedElement.find('.element')
+    pastedElement.insertAfter(clickedBloc)
   } else {
     //make it an expression if not yet:
-    if (newBloc.hasClass('expression')) {
-      newBloc.insertAfter(clickedBloc.parent().parent())
+    if (pastedElement.hasClass('expression')) {
+      pastedElement.insertAfter(clickedBloc.parent().parent())
     } else {
-      newDiv = '<div class="expression sortable col-xs-12">'
+      var newDiv = '<div class="expression sortable col-xs-12">'
       newDiv += '<input class="expressionAttr" data-l1key="type" style="display: none;" value="element">'
       newDiv += '<div class="col-xs-12" id="insertHere">'
       newDiv += '</div>'
       newDiv += '</div>'
       $(newDiv).insertAfter(clickedBloc.parent().parent())
-      newBloc.appendTo('#insertHere')
-      $('#insertHere').removeAttr('id')
+      pastedElement.appendTo('#insertHere')
     }
   }
 
   if(event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
+
+  jeedom.cmd.displayActionsOption({
+    params : actionOptions,
+    async : false,
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(data) {
+      $.showLoading()
+      for (var i in data) {
+        $('#'+data[i].id).append(data[i].html.html)
+      }
+      $.hideLoading()
+      taAutosize()
+    }
+  })
+
   updateSortable()
   updateTooltips()
-  setAutocomplete()
+  jeedom.scenario.setAutoComplete()
   setEditors()
   modifyWithoutSave = true
 })
@@ -1252,55 +1181,6 @@ function updateElementCollpase() {
   })
 }
 
-function setAutocomplete() {
-  $('.expression').each(function() {
-    if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
-        minLength: 1,
-        source: function(request, response) {
-          //return last term after last space:
-          var values = request.term.split(' ')
-          var term = values[values.length-1]
-          if (term == '') return false //only space entered
-          response(
-            $.ui.autocomplete.filter(autoCompleteCondition,term)
-          )
-        },
-        response: function(event, ui) {
-          //remove leading # from all values:
-          $.each(ui.content, function(index, _obj) {
-            _obj.label = _obj.label.substr(1)
-            _obj.value = _obj.label
-          })
-        },
-        focus: function() {
-          event.preventDefault()
-          return false
-        },
-        select: function(event, ui) {
-          //update input value:
-          if (this.value.substr(-1) == '#') {
-            this.value = this.value.slice(0, -1) + ui.item.value
-          } else {
-            var values = this.value.split(' ')
-            var term = values[values.length-1]
-            this.value = this.value.slice(0, -term.length) + ui.item.value
-          }
-          return false
-        }
-      })
-    }
-
-    if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
-      $(this).find('.expressionAttr[data-l1key=expression]').autocomplete({
-        source: autoCompleteAction,
-        close: function(event, ui) {
-          $(this).trigger('focusout')
-        }
-      })
-    }
-  })
-}
 
 var actionOptions = []
 function printScenario(_id) {
@@ -1425,7 +1305,7 @@ function printScenario(_id) {
       })
       $('#div_editScenario').show()
       updateSortable()
-      setAutocomplete()
+      jeedom.scenario.setAutoComplete()
       updateElementCollpase()
       updateElseToggle()
       taAutosize()
@@ -1451,6 +1331,7 @@ function printScenario(_id) {
         updateTooltips()
       }, 500)
 
+      jeedom.scenario.setAutoComplete()
       $('#humanNameTag').html(data.humanNameTag)
     }
   })
@@ -2137,7 +2018,7 @@ function getAddButton(_caret) {
   return retour
 }
 
-$divScenario.on('click', '.fromSubElement', function(event) {
+$divScenario.on('click','.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
 
@@ -2150,7 +2031,7 @@ $divScenario.on('click', '.fromSubElement', function(event) {
   updateElseToggle()
   modifyWithoutSave = true
   updateTooltips()
-  setAutocomplete()
+  jeedom.scenario.setAutoComplete()
   setTimeout(function() {
     newEL.removeClass('disableElement')
   }, 600)
@@ -2194,21 +2075,40 @@ jwerty.key('ctrl+shift+y/⌘+shift+y', function(e) {
   }
 })
 
-/* To fix:
-action selects
-actions events
-autocomplete
+function reloadStack(loadStack) {
+  $('#div_scenarioElement').empty()
+  actionOptions = []
+    var elements = ''
+    for (var i in loadStack) {
+      elements += addElement(loadStack[i])
+    }
+  $('#div_scenarioElement').append(elements)
 
-cf copy/paste to factorise
-
-*/
+  jeedom.cmd.displayActionsOption({
+    params : actionOptions,
+    async : false,
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(data) {
+      $.showLoading()
+      for (var i in data) {
+        $('#'+data[i].id).append(data[i].html.html)
+      }
+      $.hideLoading()
+      taAutosize()
+    }
+  })
+}
 
 function setUndoStack(state=0) {
   syncEditors()
   bt_undo.removeClass('disabled')
   bt_redo.addClass('disabled')
-  var newStack = $('#div_scenarioElement').clone()
-  newStack.find('.tooltipstered').removeClass('tooltipstered')
+  var newStack = []
+  $('#div_scenarioElement').children('.element').each(function() {
+    newStack.push(getElement($(this)))
+  })
 
   if (newStack ==  $(_undoStack_[state-1])) return
   if (state == 0) {
@@ -2229,9 +2129,7 @@ function undo() {
   try {
     var loadState = _undoState_
     if (_redo_ == 0) setUndoStack(_undoState_ + 1)
-    var loadStack = $(_undoStack_[loadState])
-    $('#div_scenarioElement').replaceWith(loadStack)
-    $('.dropdown.open').dropdown("toggle")
+    reloadStack(_undoStack_[loadState])
     _undoState_ -= 1
 
     if (_undoState_ < _firstState_) bt_undo.addClass('disabled')
@@ -2240,7 +2138,7 @@ function undo() {
     console.log('undo ERROR:', error)
   }
   updateTooltips()
-  setAutocomplete()
+  jeedom.scenario.setAutoComplete()
   resetEditors()
 }
 function redo() {
@@ -2251,9 +2149,7 @@ function redo() {
   bt_undo.removeClass('disabled')
   try {
     var loadState = _undoState_ + 2
-    var loadStack = $(_undoStack_[loadState])
-    $('#div_scenarioElement').replaceWith(loadStack)
-    $('.dropdown.open').dropdown("toggle")
+    reloadStack(_undoStack_[loadState])
     _undoState_ += 1
 
     if (_undoState_ < _firstState_ -1 || _undoState_ +2 >= _undoStack_.length) bt_redo.addClass('disabled')
@@ -2261,7 +2157,7 @@ function redo() {
     console.log('redo ERROR:', error)
   }
   updateTooltips()
-  setAutocomplete()
+  jeedom.scenario.setAutoComplete()
   resetEditors()
 }
 function resetUndo() {

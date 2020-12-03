@@ -136,7 +136,7 @@ jeedom.config.load({
     $('#config').setValues(data, '.configKey')
     $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
     $('.configKey[data-l1key="ldap:enable"]').trigger('change')
-    loadAactionOnMessage()
+    loadActionOnMessage()
     modifyWithoutSave = false
   }
 })
@@ -343,7 +343,7 @@ $("#bt_saveGeneraleConfig").on('click', function(event) {
         },
         success: function(data) {
           $('#config').setValues(data, '.configKey')
-          loadAactionOnMessage()
+          loadActionOnMessage()
           modifyWithoutSave = false
           setTimeout(function() {
             modifyWithoutSave = false
@@ -403,7 +403,7 @@ $('#bt_addActionOnMessage').on('click',function() {
 })
 
 
-function loadAactionOnMessage(){
+function loadActionOnMessage(){
   $('#div_actionOnMessage').empty()
   jeedom.config.load({
     configuration: 'actionOnMessage',
@@ -440,7 +440,8 @@ function addActionOnMessage(_action) {
   if (!isset(_action.options)) {
     _action.options = {}
   }
-  var div = '<div class="actionOnMessage">'
+  var div = '<div class="expression actionOnMessage">'
+  div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
   div += '<div class="form-group ">'
   div += '<label class="col-sm-2 control-label">Action</label>'
   div += '<div class="col-sm-1">'
@@ -469,6 +470,8 @@ function addActionOnMessage(_action) {
     options : _action.options,
     id : actionOption_id
   })
+
+  jeedom.scenario.setAutoComplete({parent: $('#div_actionOnMessage'), type:'cmd'})
 }
 
 $divConfig.on({
@@ -480,9 +483,10 @@ $divConfig.on({
 $divConfig.on({
   'focusout': function(event) {
     var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr')
+    var el = $(this)
     if (expression[0] && expression[0].options) {
       jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
-        $(this).closest('.actionOnMessage').find('.actionOptions').html(html)
+        el.closest('.actionOnMessage').find('.actionOptions').html(html)
         taAutosize()
       })
     }
