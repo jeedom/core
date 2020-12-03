@@ -364,7 +364,7 @@ Desktop
   .gauge {
     position: relative;
     width: 100px;
-    height: 54px;
+    height: 42px;
     margin: 0 auto;
   }
   .gauge .highcharts-pane {
@@ -375,7 +375,7 @@ Desktop
   .arcgauge .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
   .arcgauge .cmdStats {
     position: relative;
-    top: 3px;
+    top: -2px;
   }
   .arcgauge .highcharts-background {
     fill-opacity: 0 !important;
