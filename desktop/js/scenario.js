@@ -1048,7 +1048,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
     if (newBloc.hasClass('expression')) {
       newBloc.insertAfter(clickedBloc.parent().parent())
     } else {
-      newDiv = '<div class="expression sortable col-xs-12">'
+      var newDiv = '<div class="expression sortable col-xs-12">'
       newDiv += '<input class="expressionAttr" data-l1key="type" style="display: none;" value="element">'
       newDiv += '<div class="col-xs-12" id="insertHere">'
       newDiv += '</div>'
