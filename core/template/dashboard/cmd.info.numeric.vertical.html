@@ -17,13 +17,18 @@
   </div>
 
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var position = _options.display_value
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
-      var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
+      if (position > maxValue) position = maxValue
+      if (position < minValue) position = minValue
+
+      var height = ((position - minValue) * 100) / (maxValue - minValue)
       height = Math.round(parseFloat(height) * 10) / 10
+
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       cmd.find('.vgauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value)
     }
