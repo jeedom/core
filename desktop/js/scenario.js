@@ -986,6 +986,15 @@ $divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]'
   }
 })
 
+//COPY - PASTE
+//keep select synch with options for cloning:
+$divScenario.on('change', 'select', function() {
+    var val = $(this).val()
+    $('option', this).removeAttr('selected').filter(function() {
+        return $(this).attr('value') == val
+    }).first().attr('selected', 'selected')
+})
+
 $divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   //If element in an expression, copy the entire expression:
@@ -994,13 +1003,13 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
   } else {
     SC_CLIPBOARD = clickedBloc
   }
-  //Sync select options tags:
-  SC_CLIPBOARD.find('select').each(function() {
+  //Write input value for later paste:
+  SC_CLIPBOARD = SC_CLIPBOARD.clone()
+  SC_CLIPBOARD.find('input').each(function() {
     try {
-      $(this).find('option[value='+$(this).val()+']').attr('selected',true)
+      $(this).attr('value', $(this).val())
     } catch (error) {}
   })
-  SC_CLIPBOARD = SC_CLIPBOARD.clone()
   SC_CLIPBOARD.find('.tooltipstered').removeClass('tooltipstered')
 
   localStorage.removeItem('jeedomScCopy')
@@ -2197,6 +2206,7 @@ function undo() {
     console.log('undo ERROR:', error)
   }
   updateTooltips()
+  setAutocomplete()
   resetEditors()
 }
 function redo() {
@@ -2217,6 +2227,7 @@ function redo() {
     console.log('redo ERROR:', error)
   }
   updateTooltips()
+  setAutocomplete()
   resetEditors()
 }
 function resetUndo() {

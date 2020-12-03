@@ -10,16 +10,16 @@
   </select>
   <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
   <select class="expressionAttr form-control input-sm type view roundedRight" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
-  
+
   <span class="input-group-addon type plan" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Design}}</span>
   <select class="expressionAttr form-control input-sm type plan roundedRight" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
-  
+
   <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
   <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
-  
+
   <span class="input-group-addon type timeline" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Timeline}}</span>
   <select class="expressionAttr form-control input-sm type timeline roundedRight" data-l1key="options" data-l2key="timeline" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
-  
+
   <span class="input-group-addon type url" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{URL}}</span>
   <input class="expressionAttr form-control input-sm type url roundedRight" data-l1key="options" data-l2key="url" data-cmd_id="#id#" data-uid="#uid#" style="display:none;" />
 </div>
@@ -46,15 +46,6 @@
   <input class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="arg" value="#arg#" data-cmd_id="#id#" data-uid="#uid#"/>
 </div>
 <script>
-  $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function(){
-    $(this).closest('select').removeClass('roundedRight')
-    $('.type[data-uid=#uid#]').hide();
-    $('.'+$(this).value()+'[data-uid=#uid#]').show();
-    if($(this).value() == 'eqAnalyse'){
-      $(this).closest('select').addClass('roundedRight')
-    }
-  });
-  
   jeedom.view.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -87,7 +78,7 @@
       }
     }
   });
-  
+
   jeedom.plugin.all({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -107,7 +98,7 @@
       }
     }
   });
-  
+
   jeedom.timeline.listFolder({
     error: function (error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -127,20 +118,28 @@
       }
     }
   });
-  
-  
+
   if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').value('#export_type#');
   }
   if ('#type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type] option[value=#type#]').html() != undefined) {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').value('#type#');
   }
-  $('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
-    jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
-      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert',result.human);
-    });
-  });
   if ('#url#' != '') {
     $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=url]').value('#url#');
   }
+
+  $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function() {
+    $(this).closest('select').removeClass('roundedRight')
+    $('.type[data-uid=#uid#]').hide()
+    $('.'+$(this).value()+'[data-uid=#uid#]').show()
+    if($(this).value() == 'eqAnalyse'){
+      $(this).closest('select').addClass('roundedRight')
+    }
+  })
+  $('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
+    jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
+      $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert', result.human)
+    })
+  })
 </script>

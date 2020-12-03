@@ -75,6 +75,7 @@ function getReport(_type, _id, _report) {
       } else {
         $('#div_imgreport').append('{{Aucun aperçu possible en pdf}}')
       }
+      $('#currentReport').html('<i class="fas fa-clipboard-check"></i> ' + filename + ' (' + type + ')')
     }
   })
 }
