@@ -44,6 +44,8 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
+  add-apt-repository non-free
+  apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
@@ -55,8 +57,6 @@ step_2_mainpackage() {
   apt-get -y install apt-transport-https
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
-  add-apt-repository non-free
-  apt-get update
   apt-get -y install libav-tools
   apt-get -y install libsox-fmt-mp3 sox libttspico-utils
   apt-get -y install espeak
