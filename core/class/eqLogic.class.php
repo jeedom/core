@@ -1216,7 +1216,6 @@ class eqLogic {
 				} catch (Exception $exc) {
 
 				}
-				$cmd->event('');
 			}
 		}
 		if (count($link_cmds) > 0) {
