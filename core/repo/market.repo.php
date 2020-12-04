@@ -273,13 +273,13 @@ class repo_market {
 			$stream = fopen($_path.'.gpg', 'r+');
 			$response = $filesystem->writeStream('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')).'/'.basename($_path).'.gpg', $stream);
 			unlink($_path.'.gpg');
-			unlink('/tmp/jeedom_gnupg');
+			rrmdir('/tmp/jeedom_gnupg');
 			if(!$response){
 				throw new \Exception(__('Impossible d\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long',__FILE__));
 			}
 		} catch (\Exception $e) {
 			unlink($_path.'.gpg');
-			unlink('/tmp/jeedom_gnupg');
+			rrmdir('/tmp/jeedom_gnupg');
 			throw $e;
 		}
 	}
@@ -364,7 +364,7 @@ class repo_market {
 		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
 		com_shell::execute($cmd);
 		unlink($backup_dir.'/'.$_backup);
-		unlink('/tmp/jeedom_gnupg');
+		rrmdir('/tmp/jeedom_gnupg');
 	}
 	
 	/*     * ***********************CRON*************************** */
