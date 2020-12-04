@@ -27,13 +27,20 @@ $(function() {
     alert_div_plugin_configuration = $('#div_alert')
   }
 
-
   setTimeout(function() {
     $('.pluginDisplayCard').removeClass('hidden').show()
     $('.pluginListContainer').removeClass('hidden').packery()
   }, 100)
 })
 
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $("#bt_savePluginConfig").click()
+  }
+}
 
 //searching
 $('#in_searchPlugin').off('keyup').keyup(function() {
@@ -436,11 +443,6 @@ $('#bt_returnToThumbnailDisplay').on('click', function() {
   $('#div_confPlugin').hide()
   $('.pluginListContainer').packery()
   addOrUpdateUrl('id',null,'{{Gestion Plugins}} - '+JEEDOM_PRODUCT_NAME)
-})
-
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault();
-  $("#bt_savePluginConfig").click()
 })
 
 $("#bt_savePluginConfig").on('click', function(event) {

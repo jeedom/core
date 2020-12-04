@@ -22,12 +22,16 @@ $('.backgroundforJeedom').css({
   'background-size':'auto'
 })
 
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault();
-  if ($('#bt_saveObject').is(':visible')) {
-    if (!getOpenedModal()) $("#bt_saveObject").click()
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    if ($('#bt_saveObject').is(':visible')) {
+      $("#bt_saveObject").click()
+    }
   }
-})
+}
 
 $(function() {
   $('sub.itemsNumber').html('('+$('.objectDisplayCard').length+')')

@@ -17,7 +17,17 @@
 
 "use strict"
 
-printUsers();
+printUsers()
+
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $('#bt_saveUser').click()
+  }
+}
+
 $("#bt_addUser").on('click', function(event) {
   $.hideAlert()
   $('#in_newUserLogin').value('')
@@ -40,11 +50,6 @@ $("#bt_newUserSave").on('click', function(event) {
       $('#md_newUser').modal('hide')
     }
   })
-})
-
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  $('#bt_saveUser').click()
 })
 
 $("#bt_saveUser").on('click', function(event) {

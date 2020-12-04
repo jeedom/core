@@ -43,14 +43,36 @@ for (var i in planHeader) {
   }
 }
 
-if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
-  jwerty.key('ctrl+shift+e/⌘+shift+e', function(event) {
-    event.preventDefault()
-    planEditOption.state = !planEditOption.state
-    $pageContainer.data('planEditOption.state', planEditOption.state)
-    initEditOption(planEditOption.state)
-  })
 
+if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+  document.onkeydown = function(event) {
+    if (getOpenedModal()) return
+
+    if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+      event.preventDefault()
+      savePlan()
+      return
+    }
+
+    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 69) { //e
+      event.preventDefault()
+      planEditOption.state = !planEditOption.state
+      $pageContainer.data('planEditOption.state', planEditOption.state)
+      initEditOption(planEditOption.state)
+    }
+  }
+} else {
+  document.onkeydown = function(event) {
+    if (getOpenedModal()) return
+
+    if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+      event.preventDefault()
+      savePlan()
+    }
+  }
+}
+
+if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   var contextMenu = $.contextMenu({
     selector: '#div_pageContainer',
     zIndex: 9999,
@@ -604,11 +626,6 @@ $(document).click(function(event) {
   }
 })
 
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  savePlan()
-})
-
 $('.view-link-widget').off('click').on('click', function() {
   if (!planEditOption.state) {
     $(this).find('a').click()
@@ -991,6 +1008,7 @@ function getObjectInfo(_object) {
 function savePlan(_refreshDisplay, _async) {
   if (planHeader_id == -1) return
 
+  $.showLoading()
   var plans = []
   var info, plan, position
   $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function() {
@@ -1028,6 +1046,7 @@ function savePlan(_refreshDisplay, _async) {
       if (init(_refreshDisplay, false)) {
         displayPlan()
       }
+      $.hideLoading()
     },
   })
 }

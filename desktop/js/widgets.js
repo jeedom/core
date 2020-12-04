@@ -31,12 +31,16 @@ var widget_parameters_opt = {
   }
 }
 
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault();
-  if ($('#bt_saveWidgets').is(':visible')) {
-    if (!getOpenedModal()) $("#bt_saveWidgets").click()
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    if ($('#bt_saveWidgets').is(':visible')) {
+      $("#bt_saveWidgets").click()
+    }
   }
-})
+}
 
 $(function() {
   $('sub.itemsNumber').html('('+$('.widgetsDisplayCard').length+')')

@@ -301,12 +301,37 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
 
 
 /* ---------Scenario UI---------- */
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  if ($('#bt_saveScenario').is(':visible')) {
-    if (!getOpenedModal()) saveScenario()
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    if ($('#bt_saveScenario').is(':visible')) {
+      saveScenario()
+      return
+    }
   }
-})
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 76) { //l
+    event.preventDefault()
+    $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
+    return
+  }
+
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 90) { //z
+    event.preventDefault()
+    undo()
+    PREV_FOCUS = null
+    return
+  }
+
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 89) { //y
+    event.preventDefault()
+    redo()
+    PREV_FOCUS = null
+    return
+  }
+}
 
 var PREV_FOCUS = null
 $('#div_scenarioElement').on('focus', ':input', function() {
@@ -512,11 +537,6 @@ $('#in_addElementType').off('change').on('change',function() {
   $('.addElementTypeDescription.'+$(this).value()).show()
 })
 
-jwerty.key('ctrl+l', function() {
-  if (!getOpenedModal()) {
-    $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
-  }
-})
 $('#bt_logScenario').off('click').on('click', function() {
   $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $('.scenarioAttr[data-l1key=id]').value()).dialog('open')
 })
@@ -1000,22 +1020,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
     clickedBloc.remove()
   }
 
-  jeedom.cmd.displayActionsOption({
-    params : actionOptions,
-    async : false,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      $.showLoading()
-      for (var i in data) {
-        $('#'+data[i].id).append(data[i].html.html)
-      }
-      $.hideLoading()
-      taAutosize()
-    }
-  })
-
+  setScenarioActionsOptions()
   updateSortable()
   updateTooltips()
   jeedom.scenario.setAutoComplete()
@@ -1183,6 +1188,23 @@ function updateElementCollpase() {
 
 
 var actionOptions = []
+function setScenarioActionsOptions() {
+  jeedom.cmd.displayActionsOption({
+    params : actionOptions,
+    async : false,
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(data) {
+      $.showLoading()
+      for (var i in data) {
+        $('#'+data[i].id).append(data[i].html.html)
+      }
+      $.hideLoading()
+      taAutosize()
+    }
+  })
+}
 function printScenario(_id) {
   $.hideAlert()
   $.showLoading()
@@ -1288,21 +1310,7 @@ function printScenario(_id) {
       $('#div_scenarioElement').append(elements)
       $('.subElementAttr[data-l1key=options][data-l2key=enable]').trigger('change')
       $('.expressionAttr[data-l1key=options][data-l2key=enable]').trigger('change')
-      jeedom.cmd.displayActionsOption({
-        params : actionOptions,
-        async : false,
-        error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        },
-        success : function(data) {
-          $.showLoading();
-          for (var i in data) {
-            $('#'+data[i].id).append(data[i].html.html)
-          }
-          $.hideLoading()
-          taAutosize()
-        }
-      })
+      setScenarioActionsOptions()
       $('#div_editScenario').show()
       updateSortable()
       jeedom.scenario.setAutoComplete()
@@ -2060,21 +2068,6 @@ bt_redo.off('click').on('click', function() {
   }
 })
 
-jwerty.key('ctrl+shift+z/⌘+shift+z', function(e) {
-  e.preventDefault()
-  if (!getOpenedModal()) {
-    undo()
-    PREV_FOCUS = null
-  }
-})
-jwerty.key('ctrl+shift+y/⌘+shift+y', function(e) {
-  e.preventDefault()
-  if (!getOpenedModal()) {
-    redo()
-    PREV_FOCUS = null
-  }
-})
-
 function reloadStack(loadStack) {
   $('#div_scenarioElement').empty()
   actionOptions = []
@@ -2083,22 +2076,7 @@ function reloadStack(loadStack) {
       elements += addElement(loadStack[i])
     }
   $('#div_scenarioElement').append(elements)
-
-  jeedom.cmd.displayActionsOption({
-    params : actionOptions,
-    async : false,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(data) {
-      $.showLoading()
-      for (var i in data) {
-        $('#'+data[i].id).append(data[i].html.html)
-      }
-      $.hideLoading()
-      taAutosize()
-    }
-  })
+  setScenarioActionsOptions()
 }
 
 function setUndoStack(state=0) {

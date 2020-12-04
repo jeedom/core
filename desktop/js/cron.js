@@ -24,10 +24,14 @@ setTimeout(function() {
   $tableCron.find('th[data-column="0"]').trigger('sort')
 }, 100)
 
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  $("#bt_save").click()
-})
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $("#bt_save").click()
+  }
+}
 
 $("#bt_refreshCron").on('click', function() {
   printCron()

@@ -19,10 +19,15 @@
 var actionOptions = []
 var $divConfig = $('#config')
 
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  $("#bt_saveGeneraleConfig").click()
-})
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $("#bt_saveGeneraleConfig").click()
+    return
+  }
+}
 
 //select tab:
 var _url = window.location.href

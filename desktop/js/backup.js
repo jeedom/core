@@ -16,10 +16,14 @@
 
 "use strict"
 
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  $("#bt_saveBackup").click()
-})
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $("#bt_saveBackup").click()
+  }
+}
 
 $("#bt_saveBackup").on('click', function(event) {
   $.hideAlert()

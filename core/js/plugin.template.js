@@ -16,12 +16,18 @@
 
 $('body').attr('data-type', 'plugin')
 $('.nav-tabs a:not(.eqLogicAction)').first().click()
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  if ($('.eqLogicAction[data-action=save]').is(':visible')) {
-    if (!getOpenedModal()) $(".eqLogicAction[data-action=save]").click()
+
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    if ($('.eqLogicAction[data-action=save]').is(':visible')) {
+      $(".eqLogicAction[data-action=save]").click()
+      return
+    }
   }
-})
+}
 
 //contextMenu
 $(function() {

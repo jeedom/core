@@ -16,6 +16,15 @@
 
 "use strict"
 
+document.onkeydown = function(event) {
+  if (getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $('#bt_saveView').click()
+  }
+}
+
 $("#ul_view").sortable({
   axis: "y",
   cursor: "move",
@@ -105,11 +114,6 @@ $("#bt_addView").on('click', function(event) {
 
 $("#bt_editView").on('click', function(event) {
   $('#md_modal').dialog({title: "{{Configuration de la vue}}"}).load('index.php?v=d&modal=view.configure&view_id='+$('.li_view.active').attr('data-view_id')).dialog('open')
-})
-
-jwerty.key('ctrl+s/⌘+s', function(event) {
-  event.preventDefault()
-  $('#bt_saveView').click()
 })
 
 $('#bt_saveView').on('click', function(event) {
