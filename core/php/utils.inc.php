@@ -435,7 +435,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 			
 			if ($recursivly) {
 				// Continue calling this function for all the folders
-				$deep_items = ls($pattern, $this_folder, $recursivly, $options); # :RECURSION:
+				$deep_items = ls($this_folder,$pattern, $recursivly, $options); # :RECURSION:
 				foreach ($deep_items as $item) {
 					array_push($all, $this_folder . $item);
 				}
