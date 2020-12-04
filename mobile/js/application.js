@@ -165,12 +165,7 @@ function switchTheme(themeConfig) {
     $('body').attr('data-theme', themeConfig.mobile_theme_color_night)
   }
 
-  var now = new Date()
-  var time = now.getTime()
-  //+8hours in milliseconds:
-  var expireTime = time + (8 * 3600 * 1000)
-  now.setTime(expireTime)
-  document.cookie = "currentThemeMobile=" + themeCook + "; expires=" + now.toGMTString() +"; path=/"
+  setCookie('currentThemeMobile', themeCook, 0.3)
 
   if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
   setBackgroundImage(BACKGROUND_IMG)
