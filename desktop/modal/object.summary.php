@@ -43,10 +43,10 @@ if (!isConnect()) {
     foreach ($allObject as $object) {
       $html = '';
       $html .= '<tr class="tr_object" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getHumanName() . '"><td style="width:40px;"><span class="label label-info">' . $object->getId() . '</span></td>';
+
       $html .= '<td style="width:auto;">';
-      for ($i = 0; $i < $object->getConfiguration('parentNumber'); $i++) {
-        $html .= '&nbsp;&nbsp;&nbsp;';
-      }
+
+      $html .= str_repeat('&nbsp;&nbsp;&nbsp;', $object->getConfiguration('parentNumber'));
       $html .= '<input class="objectAttr hidden" data-l1key="id" value="'.$object->getId().'"/>';
       $html .= '<span>'.$object->getHumanName(true, true).'</span>';
       $html .= '</td>';
