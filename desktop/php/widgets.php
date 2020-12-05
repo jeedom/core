@@ -17,6 +17,44 @@ $widgets = array('action' => array(),'info' => array());
 foreach ((widgets::all()) as $widget) {
   $widgets[$widget->getType()][] = $widget;
 }
+
+function jeedom_displayWidgetGroup($_type, $_widgets) {
+  $c = count($_widgets[$_type]);
+  $title = ucfirst($_type);
+  if ($c > 0) {
+    $thisDiv = '<div class="panel panel-default">';
+    $thisDiv .= '<div class="panel-heading">';
+    $thisDiv .= '<h3 class="panel-title">';
+    $thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_'.$_type.'">{{'.$title.'}} - ';
+    $thisDiv .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
+    $thisDiv .= '</h3>';
+    $thisDiv .= '</div>';
+    $thisDiv .= '<div id="widget_'.$_type.'" class="panel-collapse collapse">';
+    $thisDiv .= '<div class="panel-body">';
+    $thisDiv .= '<div class="widgetsListContainer">';
+    foreach ($_widgets[$_type] as $widget) {
+      $thisDiv .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
+      if ($widget->getDisplay('icon') != '') {
+        $thisDiv .= '<span>'.$widget->getDisplay('icon').'</span>';
+      } else {
+        $thisDiv .= '<span><i class="fas fa-image"></i></span>';
+      }
+      $thisDiv .= '<br/>';
+      $thisDiv .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> | <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
+      $thisDiv .= '<span class="name">' . $widget->getName() . '</span><br/>';
+      $thisDiv .= '<span class="hiddenAsCard btnDisplayTableRight">'.ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
+      if ($widget->getReplace('#_time_widget_#', 0) == 1) $thisDiv .= ' (time)';
+      $thisDiv .= '</span>';
+      $thisDiv .= '</div>';
+    }
+    $thisDiv .= '</div>';
+    $thisDiv .= '</div>';
+    $thisDiv .= '</div>';
+    $thisDiv .= '</div>';
+
+    return $thisDiv;
+  }
+}
 ?>
 
 <div class="row row-overflow">
@@ -62,66 +100,11 @@ foreach ((widgets::all()) as $widget) {
       $div .= '</div>';
       $div .= '</div>';
       $div .= '<div class="panel-group" id="accordionWidgets">';
-      if( count($widgets['info']) > 0) {
-        $div .= '<div class="panel panel-default">';
-        $div .= '<div class="panel-heading">';
-        $div .= '<h3 class="panel-title">';
-        $div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_info">{{Info}} - ';
-        $c = count($widgets['info']);
-        $div .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
-        $div .= '</h3>';
-        $div .= '</div>';
-        $div .= '<div id="widget_info" class="panel-collapse collapse">';
-        $div .= '<div class="panel-body">';
-        $div .= '<div class="widgetsListContainer">';
-        foreach ($widgets['info'] as $widget) {
-          $div .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
-          if ($widget->getDisplay('icon') != '') {
-            $div .= '<span>'.$widget->getDisplay('icon').'</span>';
-          } else {
-            $div .= '<span><i class="fas fa-image"></i></span>';
-          }
-          $div .= '<br/>';
-          $div .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
-          $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
-          $div .= '</div>';
-        }
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        //echo $div;
-      }
-      if(count($widgets['action']) > 0) {
-        $div .= '<div class="panel panel-default">';
-        $div .= '<div class="panel-heading">';
-        $div .= '<h3 class="panel-title">';
-        $div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#widget_action">{{Action}} - ';
-        $c = count($widgets['action']);
-        $div .= $c. ($c > 1 ? ' widgets' : ' widget').'</a>';
-        $div .= '</h3>';
-        $div .= '</div>';
-        $div .= '<div id="widget_action" class="panel-collapse collapse">';
-        $div .= '<div class="panel-body">';
-        $div .= '<div class="widgetsListContainer">';
-        foreach ($widgets['action'] as $widget) {
-          $div .= '<div class="widgetsDisplayCard cursor" data-widgets_id="' . $widget->getId() . '">';
-          if ($widget->getDisplay('icon') != '') {
-            $div .= '<span>'.$widget->getDisplay('icon').'</span>';
-          } else {
-            $div .= '<span><i class="fas fa-image"></i></span>';
-          }
-          $div .= '<br/>';
-          $div .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> / <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
-          $div .= '<span class="name">' . $widget->getName() . '</span><br/>';
-          $div .= '</div>';
-        }
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-        $div .= '</div>';
-      }
-      echo $div;
+
+      $div .= jeedom_displayWidgetGroup('info', $widgets);
+      $div .= jeedom_displayWidgetGroup('action', $widgets);
+
+      echo $div.'</div>';
     }
     ?>
   </div>
