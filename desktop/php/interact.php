@@ -2,9 +2,11 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+
+global $interacts;
 $interacts = array();
 $totalInteract = interactDef::all();
-$interacts[-1] = interactDef::all(null);
+$interacts[__('Aucun', __FILE__)] = interactDef::all(null);
 $interactListGroup = interactDef::listGroup();
 if (is_array($interactListGroup)) {
 	foreach ($interactListGroup as $group) {
@@ -12,6 +14,50 @@ if (is_array($interactListGroup)) {
 	}
 }
 $optionMaxSize = 15;
+
+function jeedom_displayInteractGroup($_group='', $_index=-1) {
+	global $interacts;
+	$thisDiv = '';
+
+	if ($_group == '') {
+		$groupName = __('Aucun', __FILE__);
+		$href = '#config_none';
+		$id = 'config_none';
+	} else {
+		$groupName = $_group;
+		$href = '#config_'.$_index;
+		$id = 'config_'.$_index;
+	}
+	$thisDiv .= '<div class="panel panel-default">';
+	$thisDiv .= '<div class="panel-heading">';
+	$thisDiv .= '<h3 class="panel-title">';
+	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="'.$href.'">' . $groupName . ' - ';
+	$c = count($interacts[$groupName]);
+	$thisDiv .= $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
+	$thisDiv .= '</h3>';
+	$thisDiv .= '</div>';
+	$thisDiv .= '<div id="'.$id.'" class="panel-collapse collapse">';
+	$thisDiv .= '<div class="panel-body">';
+	$thisDiv .= '<div class="interactListContainer">';
+	foreach ($interacts[$groupName] as $interact) {
+		$inactive = ($interact->getEnable()) ? '' : 'inactive';
+		$thisDiv .= '<div class="interactDisplayCard cursor '.$inactive.'" data-interact_id="' . $interact->getId() . '">';
+		if ($interact->getDisplay('icon') != '') {
+			$thisDiv .= $interact->getDisplay('icon');
+		} else {
+			$thisDiv .= '<i class="icon noicon far fa-comments"></i>';
+		}
+		$thisDiv .= "<br>";
+		$thisDiv .= '<span class="name">' . $interact->getHumanName() . '</span>';
+		$thisDiv .= '</div>';
+	}
+	$thisDiv .= '</div>';
+	$thisDiv .= '</div>';
+	$thisDiv .= '</div>';
+	$thisDiv .= '</div>';
+	return $thisDiv;
+}
+
 ?>
 
 <div class="row row-overflow">
@@ -41,7 +87,7 @@ $optionMaxSize = 15;
 		<legend><i class="far fa-comments"></i> {{Mes interactions}} <sub class="itemsNumber"></sub></legend>
 		<?php
 		if (count($totalInteract) == 0) {
-			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.</span></div>";
+			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>{{Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.}}</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
 			$div .= '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
@@ -57,66 +103,20 @@ $optionMaxSize = 15;
 			$div .= '</div>';
 
 			$div .= '<div class="panel-group" id="accordionInteract">';
-			if (count($interacts[-1]) > 0) {
-				$div .= '<div class="panel panel-default">';
-				$div .= '<div class="panel-heading">';
-				$div .= '<h3 class="panel-title">';
-				$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_aucun">Aucun - ';
-				$c = count($interacts[-1]);
-				$div .= $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
-				$div .= '</h3>';
-				$div .= '</div>';
-				$div .= '<div id="config_aucun" class="panel-collapse collapse">';
-				$div .= '<div class="panel-body">';
-				$div .= '<div class="interactListContainer">';
-				foreach ($interacts[-1] as $interact) {
-					$inactive = ($interact->getEnable()) ? '' : 'inactive';
-					$div .= '<div class="interactDisplayCard cursor '.$inactive.'" data-interact_id="' . $interact->getId() . '">';
-					if($interact->getDisplay('icon') != ''){
-						$div .= '<span>'.$interact->getDisplay('icon').'</span>';
-					}else{
-						$div .= '<span><i class="icon noicon far fa-comments"></i></span>';
-					}
-					$div .= "<br>";
-					$div .= '<span class="name">' . $interact->getHumanName() . '</span>';
-					$div .= '</div>';
-				}
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
-				$div .= '</div>';
+			//No group first:
+			if (isset($interacts[__('Aucun', __FILE__)]) && count($interacts[__('Aucun', __FILE__)]) > 0) {
+				$div .= jeedom_displayInteractGroup();
 			}
+			echo $div;
+
+			//interacts groups:
 			$i = 0;
+			$div = '';
 			foreach ($interactListGroup as $group) {
-				if ($group['group'] != '') {
-					$div .= '<div class="panel panel-default">';
-					$div .= '<div class="panel-heading">';
-					$div .= '<h3 class="panel-title">';
-					$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $i . '">' . $group['group'] . ' - ';
-					$c = count($interacts[$group['group']]);
-					$div .= $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
-					$div .= '</h3>';
-					$div .= '</div>';
-					$div .= '<div id="config_' . $i . '" class="panel-collapse collapse">';
-					$div .= '<div class="panel-body">';
-					$div .= '<div class="interactListContainer">';
-					foreach ($interacts[$group['group']] as $interact) {
-						$inactive = ($interact->getEnable()) ? '' : 'inactive';
-						$div .= '<div class="interactDisplayCard cursor '.$inactive.'" data-interact_id="' . $interact->getId() . '">';
-						if($interact->getDisplay('icon') != ''){
-							$div .= '<span>'.$interact->getDisplay('icon').'</span>';
-						}else{
-							$div .= '<span><i class="icon noicon far fa-comments"></i></span>';
-						}
-						$div .= "<br>";
-						$div .= '<span class="name">' . $interact->getHumanName(true, true, true, true) . '</span>';
-						$div .= '</div>';
-					}
-					$div .= '</div>';
-					$div .= '</div>';
-					$div .= '</div>';
-					$div .= '</div>';
+				if ($group['group'] == '') {
+					continue;
 				}
+				$div .= jeedom_displayInteractGroup($group['group'], $i);
 				$i += 1;
 			}
 			$div .= '</div>';
