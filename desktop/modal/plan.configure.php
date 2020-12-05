@@ -585,6 +585,10 @@ sendVarToJS('id', $plan->getId());
   })
 
   $('#bt_saveConfigurePlan').on('click', function() {
+    if ( !$('input[data-l2key="font-size"]').val().endsWith('%') ) {
+      $('input[data-l2key="font-size"]').val( $('input[data-l2key="font-size"]').val()+'%' )
+    }
+
     save()
   })
 
