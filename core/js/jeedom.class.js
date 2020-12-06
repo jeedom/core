@@ -147,59 +147,58 @@ jeedom.init = function () {
         return;
       }
     }
-  }
-  if(!isset(_options.container) || _options.container == ''){
-    _options.container = 'body';
-  }
-  $(_options.container).setValues(_options.data, _options.type);
-});
-
-$('body').on('jeedom::gotoplan', function (_event,_plan_id) {
-  if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
-    if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
-      planHeader_id = _plan_id;
-      displayPlan();
+    if(!isset(_options.container) || _options.container == ''){
+      _options.container = 'body';
     }
-  }
-});
-
-$('body').on('jeedom::alert', function (_event,_options) {
-  if (!isset(_options.message) || $.trim(_options.message) == '') {
-    if(isset(_options.page) && _options.page != ''){
-      if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+    $(_options.container).setValues(_options.data, _options.type);
+  });
+  
+  $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
+    if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
+      if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
+        planHeader_id = _plan_id;
+        displayPlan();
+      }
+    }
+  });
+  
+  $('body').on('jeedom::alert', function (_event,_options) {
+    if (!isset(_options.message) || $.trim(_options.message) == '') {
+      if(isset(_options.page) && _options.page != ''){
+        if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+          $.hideAlert();
+        }
+      }else{
         $.hideAlert();
       }
-    }else{
-      $.hideAlert();
-    }
-  } else {
-    if(isset(_options.page) && _options.page != ''){
-      if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+    } else {
+      if(isset(_options.page) && _options.page != ''){
+        if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+          $('#div_alert').showAlert({message: _options.message, level: _options.level});
+        }
+      }else{
         $('#div_alert').showAlert({message: _options.message, level: _options.level});
       }
-    }else{
-      $('#div_alert').showAlert({message: _options.message, level: _options.level});
     }
+  });
+  $('body').on('jeedom::alertPopup', function (_event,_message) {
+    alert(_message);
+  });
+  $('body').on('jeedom::coloredIcons', function (_event,_state) {
+    $('body').attr('data-coloredIcons',_state);
+  });
+  $('body').on('message::refreshMessageNumber', function (_event,_options) {
+    refreshMessageNumber();
+  });
+  $('body').on('update::refreshUpdateNumber', function (_event,_options) {
+    refreshUpdateNumber();
+  });
+  $('body').on('notify', function (_event,_options) {
+    notify(_options.title, _options.message, _options.theme);
+  });
+  if (typeof user_id !== 'undefined') {
+    jeedom.changes();
   }
-});
-$('body').on('jeedom::alertPopup', function (_event,_message) {
-  alert(_message);
-});
-$('body').on('jeedom::coloredIcons', function (_event,_state) {
-  $('body').attr('data-coloredIcons',_state);
-});
-$('body').on('message::refreshMessageNumber', function (_event,_options) {
-  refreshMessageNumber();
-});
-$('body').on('update::refreshUpdateNumber', function (_event,_options) {
-  refreshUpdateNumber();
-});
-$('body').on('notify', function (_event,_options) {
-  notify(_options.title, _options.message, _options.theme);
-});
-if (typeof user_id !== 'undefined') {
-  jeedom.changes();
-}
 }
 
 jeedom.getStringUsedBy = function (_params) {
