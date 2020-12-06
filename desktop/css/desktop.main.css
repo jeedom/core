@@ -2335,6 +2335,10 @@ Theme Core 2021 @Jeedom
     padding: 6px 12px;
     border: none;
   }
+  #modalDisplay {
+    background: var(--bg-modal-color);
+    padding-bottom: 1em;
+  }
   :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
     background-color: rgb(var(--defaultBkg-color)) !important;
     border-bottom: 1px solid rgb(var(--bg-color), 1);
