@@ -42,7 +42,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       $thisDiv .= '<br/>';
       $thisDiv .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> | <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
       $thisDiv .= '<span class="name">' . $widget->getName() . '</span><br/>';
-      $thisDiv .= '<span class="hiddenAsCard btnDisplayTableRight">'.ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
+      $thisDiv .= '<span class="hiddenAsCard displayTableRight">'.ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
       if ($widget->getReplace('#_time_widget_#', 0) == 1) $thisDiv .= ' (time)';
       $thisDiv .= '</span>';
       $thisDiv .= '</div>';
@@ -96,7 +96,8 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       $div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
       $div .= '</div>';
       $div .= '<div class="input-group-btn">';
-      $div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+      $div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+      $div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".widgetsDisplayCard" data-container=".widgetsListContainer" data-cookie="widgetAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>';
       $div .= '</div>';
       $div .= '</div>';
       $div .= '<div class="panel-group" id="accordionWidgets">';

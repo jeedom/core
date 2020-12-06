@@ -51,7 +51,8 @@ $plugins_list = plugin::listPlugin(false, true);
     <div class="input-group" style="margin-bottom:5px;">
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchPlugin"/>
       <div class="input-group-btn">
-        <a id="bt_resetPluginSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+        <a id="bt_resetPluginSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+        </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".pluginDisplayCard" data-container=".pluginListContainer" data-cookie="pluginsAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>
       </div>
     </div>
     <div class="panel">
@@ -61,9 +62,9 @@ $plugins_list = plugin::listPlugin(false, true);
           foreach ((plugin::listPlugin()) as $plugin) {
             $inactive = ($plugin->isActive()) ? '' : 'inactive';
             $div = '<div class="pluginDisplayCard hidden cursor '.$inactive.'" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="display: none;">';
-            $div .= '<div class="center">';
+            $div .= '<center>';
             $div .= '<img src="' . $plugin->getPathImgIcon() . '" />';
-            $div .= '</div>';
+            $div .= '</center>';
             $lbl_version = false;
             $update = $plugin->getUpdate();
             if (is_object($update)) {
@@ -75,6 +76,12 @@ $plugins_list = plugin::listPlugin(false, true);
             } else {
               $div .= '<span class="name">' . $plugin->getName() . '</span>';
             }
+
+            $div .= '<span class="hiddenAsCard displayTableRight">';
+              $div .= '<span>'.$plugin->getCategory().'</span>';
+              $div .= '<a class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></a>';
+            $div .= '</span>';
+
             $div .= '</div>';
             echo $div;
           }

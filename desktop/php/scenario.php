@@ -56,6 +56,12 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 		}
 		$thisDiv .= "<br>";
 		$thisDiv .= '<span class="name">' . $scenario->getHumanName(true, true, true, true) . '</span>';
+
+		$thisDiv .= '<span class="hiddenAsCard displayTableRight">';
+			$thisDiv .= '<span>'.$scenario->getLastLaunch().'</span>';
+			$thisDiv .= '<a class="btn btn-default btn-xs bt_ViewLog"><i class="far fa-file"></i></a>';
+		$thisDiv .= '</span>';
+
 		$thisDiv .= '</div>';
 	}
 	$thisDiv .= '</div>';
@@ -103,7 +109,8 @@ sendVarToJs('initSearch', init('search', 0));
 			$div .= '<div class="input-group-btn">';
 			$div .= '<a id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>';
 			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
-			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			$div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".scenarioDisplayCard" data-container=".scenarioListContainer" data-cookie="scenarioAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
 

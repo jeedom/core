@@ -103,7 +103,7 @@ function getCookie(name) {
   var csplit = null;
   for(var i in cookies){
     csplit = cookies[i].split('=');
-    if(name.trim() == csplit[0].trim()){
+    if (name.trim() == csplit[0].trim()) {
       return csplit[1];
     }
   }

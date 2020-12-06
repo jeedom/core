@@ -458,13 +458,18 @@ Theme Core 2021 @Jeedom
   }
 
   .btn:not(.cmdName),
-  .btn:not(.cmdName):active {
+  .btn:not(.cmdName):active,
+  .btn:not(.cmdName).active {
     color: var(--linkHoverLight-color) !important;
     background-color: var(--btn-default-color) !important;
   }
   .btn:hover {
     color: var(--linkHoverLight-color) !important;
     opacity: .85 !important;
+  }
+  .btn:not(.cmdName).active {
+    color: var(--al-info-color) !important;
+    background-color: var(--sc-formTxt-color) !important;
   }
 
   span.cursor > i:hover,
@@ -1686,6 +1691,225 @@ Theme Core 2021 @Jeedom
     border-left-color: var(--btnEq-default-color) !important;
   }
 
+/* __________________displayAsTable */
+  /* top button container for pages and plugins */
+  div[class*="ListContainer"].containerAsTable,
+  div.eqLogicThumbnailContainer.containerAsTable {
+    min-height: 30px;
+  }
+  div[class*="ListContainer"].containerAsTable > div.cursor,
+  div.eqLogicThumbnailContainer.containerAsTable > div.cursor {
+    display: flex;
+    width: auto !important;
+    height: 24px !important;
+    flex: 0 0 auto;
+  }
+  div[class*="ListContainer"].containerAsTable > div.cursor i,
+  div.eqLogicThumbnailContainer.containerAsTable > div.cursor i {
+    font-size: 16px !important;
+    margin-left: 18px;
+  }
+  div[class*="ListContainer"].containerAsTable > div.cursor > span,
+  div.eqLogicThumbnailContainer.containerAsTable > div.cursor > span {
+    min-height: 22px;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    padding-right: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+  div[class*="DisplayCard"]:not(.displayAsTable) .hiddenAsCard {
+    display: none !important;
+  }
+  div[class*="DisplayCard"].displayAsTable .hiddenAsTable {
+    display: none !important;
+  }
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    min-width: 100%;
+    text-align: left;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    transform: unset !important;
+    margin: 0 0 2px 0 !important;
+    padding: 0 !important;
+  }
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable:last-child {
+    margin-bottom: 5px !important;
+  }
+  div[class*="DisplayCard"].displayAsTable:hover .name {
+    background-color: rgb(var(--bg-color)) !important;
+    color: unset !important;
+  }
+  div[class*="DisplayCard"].displayAsTable > br {
+    display: none;
+  }
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > span[class*="objectSummary"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 28px;
+    font-size: 10px !important;
+    padding: 0 5px;
+    background: rgba(var(--defaultBkg-color), var(--opacity));
+  }
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > span > i,
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > .icon,
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > i {
+    font-size: 18px !important;
+    width: 50px !important;
+    min-width: 50px !important;
+    padding-left: 10px;
+  }
+  div[class*="DisplayCard"].displayAsTable .name {
+    position: absolute;
+    left : 30px;
+    display: inline-flex !important;
+    top: unset !important;
+    font-size: 14px !important;
+    min-width: calc(100% - 40px) !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    height: 24px !important;
+    line-height: 22px !important;
+    margin-left: 10px;
+    font-weight: normal;
+    overflow: hidden !important;
+    padding-top: 1px;
+  }
+  div[class*="DisplayCard"].displayAsTable .name > .label,
+  div[class*="DisplayCard"].displayAsTable .name > strong {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    top: unset !important;
+  }
+  div[class*="DisplayCard"].displayAsTable .name > strong,
+  div[class*="DisplayCard"].displayAsTable .name + .name,
+  div[class*="DisplayCard"].displayAsTable > i ~ span.name {
+    font-weight: 500 !important;
+  }
+  div[class*="DisplayCard"].displayAsTable .name > .label,
+  div[class*="DisplayCard"].displayAsTable .name > .label.labelObjectHuman{
+    line-height: 14px !important;
+    margin: 0 20px !important;
+    min-width: 20% !important;
+    max-width: calc(100% - 340px);
+    text-align: center !important;
+    padding: 4px 12px;
+    overflow: hidden;
+  }
+  div[class*="DisplayCard"].displayAsTable .name > strong {
+    line-height: 22px !important;
+  }
+
+  /* objects - interact */
+  div.objectDisplayCard.displayAsTable:not(:hover) .name,
+  div.interactDisplayCard.displayAsTable:not(:hover) .name {
+    min-width: 200px !important;
+    max-width: calc(50vw - 200px) !important;
+  }
+
+  /* plugins */
+  div.pluginDisplayCard .name {
+    padding-top: 4px;
+    height: 28px;
+    font-weight: 500 !important;
+  }
+  div.pluginListContainer div.pluginDisplayCard.cursor.displayAsTable > center > img {
+    max-width: 18px !important;
+    padding-top: 0;
+    position: absolute;
+    left: 15px;
+  }
+  div.pluginListContainer div.pluginDisplayCard.cursor.displayAsTable .name > sub.warning {
+    margin-top: 10px !important;
+    margin-right: 3px;
+    font-size: 14px !important;
+  }
+
+  /* widgets */
+  div.widgetsDisplayCard.displayAsTable > .name .label  {
+    min-width: 60px !important;
+    padding: 4px !important;
+    height: 22px;
+  }
+  div.widgetsDisplayCard.displayAsTable > span.name:nth-child(4)  {
+    position: absolute;
+    left: 250px !important;
+    height: 22px;
+    padding-top: 3px;
+  }
+
+  /* displayTableRight */
+  div[class*="DisplayCard"].displayAsTable .displayTableRight {
+    display: inline;
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    top: 2px;
+    height: 20px !important;
+    max-width: 45vw;
+    overflow: hidden;
+    text-align: right;
+    z-index: 5;
+  }
+  div[class*="DisplayCard"].displayAsTable .displayTableRight > span {
+    margin-right: 12px !important;
+  }
+  div.cursor[class*="DisplayCard"].displayAsTable .btn {
+    height: 20px !important;
+  }
+  div.cursor[class*="DisplayCard"].displayAsTable .displayTableRight i {
+    font-size: 11px !important;
+    height: 20px !important;
+  }
+  div.cursor[class*="DisplayCard"].displayAsTable .displayTableRight i::before {
+    vertical-align: top !important;
+    line-height: 9px !important;
+  }
+
+  /* plugins page standard support */
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable {
+    position: relative !important;
+    top: 2px !important;
+    left: 0 !important;
+    min-width: 100%;
+    text-align: left;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    transform: unset !important;
+    margin: 2px 0 !important;
+    padding: 0 !important;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
+    max-width: 21px !important;
+    min-height: 21px !important;
+    padding-top: 0;
+    position: absolute;
+    left: 15px;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label  {
+    line-height: 14px !important;
+    margin: 0 20px !important;
+    min-width: 20% !important;
+    text-align: center !important;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label i {
+    margin-right: 5px;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:first-child {
+    margin-top: 8px !important;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:last-child {
+    margin-bottom: 5px !important;
+  }
+
 /* ____________________COLORS */
   .label-info {
     font-weight: normal;
@@ -2080,6 +2304,7 @@ Theme Core 2021 @Jeedom
     transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
     margin-top: 5px;
     margin-bottom: 30px;
+    padding-top: 0.1px;
   }
 
   .navbar-nav.navbar-right > li a {

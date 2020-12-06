@@ -39,7 +39,8 @@ $synthToActions = array(
 		<div class="input-group" style="margin-bottom:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
 			<div class="input-group-btn">
-				<a id="bt_resetObjectSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+				<a id="bt_resetObjectSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+                </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-cookie="objectAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>
 			</div>
 		</div>
 		<div id="objectPanel" class="panel">
@@ -51,7 +52,9 @@ $synthToActions = array(
 						$echo .= '<div style="display:none" class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="far blank"></i>') . '\'>';
 						$echo .= $object->getDisplay('icon', '<i class="far blank"></i>');
 						$echo .= "<br/>";
-						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">' . $object->getName() . '</span><br/>';
+						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
+						$echo .= '<span class="hiddenAsCard">'.str_repeat('&nbsp;&nbsp;&nbsp;', $object->getConfiguration('parentNumber')).'</span>';
+						$echo .=  $object->getName() . '</span><br/>';
 						$echo .= $object->getHtmlSummary();
 						$echo .= '</div>';
 					}

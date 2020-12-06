@@ -153,7 +153,7 @@ function loadPage(_url, _noPushHistory) {
 
     setTimeout(function() {
       modifyWithoutSave = false
-    },500)
+    }, 500)
   })
 
   setTimeout(function() {
@@ -665,6 +665,7 @@ function setJeedomGlobalUI() {
     })
   })
 
+  //search input escape:
   $('body').on({
     'keydown': function(event) {
       if (event.key == 'Escape') {
@@ -693,8 +694,40 @@ function initPage() {
     }, 0)
   })
 
-  setTimeout(function() { initTooltips() }, 750)
+  setTimeout(function() {
+    initTooltips()
+  }, 750)
   if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
+  initDisplayAsTable()
+}
+
+function initDisplayAsTable() {
+  if ($('#bt_displayAsTable').length) {
+    var $buttonAsTable = $('#bt_displayAsTable')
+    var dataCookie = $buttonAsTable.attr('data-cookie')
+    if (dataCookie == '') return
+
+    if (getCookie(dataCookie) == 'true') {
+      $('#bt_displayAsTable').data('state', '1').addClass('active')
+      $($buttonAsTable.data('card')).addClass('displayAsTable')
+      $($buttonAsTable.data('container')).first().addClass('containerAsTable')
+    }
+
+    $buttonAsTable.off('click').on('click', function () {
+      if ($(this).data('state') == "0") {
+        $(this).data('state', '1').addClass('active')
+        setCookie(dataCookie, 'true', 2)
+        $($(this).data('card')).addClass('displayAsTable')
+        $($(this).data('container')).first().addClass('containerAsTable')
+      } else {
+        $(this).data('state', '0').removeClass('active')
+        setCookie(dataCookie, 'false', 2)
+        $($(this).data('card')).removeClass('displayAsTable')
+        $($(this).data('container')).first().removeClass('containerAsTable')
+      }
+      $($(this).data('container')).packery()
+    })
+  }
 }
 
 var __OBSERVER__ = null

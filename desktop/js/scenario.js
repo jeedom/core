@@ -62,6 +62,12 @@ $('#bt_resetScenarioSearch').on('click', function() {
   $('#in_searchScenario').val('').keyup()
 })
 
+$('.bt_ViewLog').off('click').on('click', function (event) {
+  event.stopPropagation()
+  var id = $(this).closest('.scenarioDisplayCard').attr('data-scenario_id')
+  $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + id).dialog('open')
+})
+
 //inside searching
 $('#in_searchInsideScenario').keyup(function() {
   var search = $(this).value()

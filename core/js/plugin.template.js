@@ -121,6 +121,34 @@ $(function() {
   }
 })
 
+//displayAsTable if plugin support it:
+if ($('#bt_pluginDisplayAsTable').length) {
+  $('#bt_pluginDisplayAsTable').removeClass('hidden') //Not shown on previous core versions
+  if (getCookie('pluginAsTable') == 'true') {
+    $('#bt_pluginDisplayAsTable').data('state', '1').addClass('active')
+    if ($('#bt_pluginDisplayAsTable[data-coreSupport="1"]').length) {
+      $('.eqLogicDisplayCard').addClass('displayAsTable')
+      $('.eqLogicThumbnailContainer').first().addClass('containerAsTable')
+    }
+  }
+  //core event:
+  $('#bt_pluginDisplayAsTable[data-coreSupport="1"]').off('click').on('click', function () {
+    if ($(this).data('state') == "0") {
+      $(this).data('state', '1').addClass('active')
+      setCookie('pluginAsTable', 'true', 2)
+      $('.eqLogicDisplayCard').addClass('displayAsTable')
+      $('.eqLogicThumbnailContainer').first().addClass('containerAsTable')
+    } else {
+      $(this).data('state', '0').removeClass('active')
+      setCookie('pluginAsTable', 'false', 2)
+      $('.eqLogicDisplayCard').removeClass('displayAsTable')
+      $('.eqLogicThumbnailContainer').first().removeClass('containerAsTable')
+    }
+    $('.eqLogicThumbnailContainer').packery()
+  })
+}
+
+
 $(function() {
   if ($("#table_cmd").sortable("instance")) {
     $("#table_cmd").sortable("option", "delay", 500).sortable("option", "distance", 30)

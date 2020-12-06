@@ -49,6 +49,7 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 		}
 		$thisDiv .= "<br>";
 		$thisDiv .= '<span class="name">' . $interact->getHumanName() . '</span>';
+		$thisDiv .= '<span class="hiddenAsCard displayTableRight">'.$interact->getQuery();
 		$thisDiv .= '</div>';
 	}
 	$thisDiv .= '</div>';
@@ -98,7 +99,8 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
 			$div .= '</div>';
 			$div .= '<div class="input-group-btn">';
-			$div .= '<a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			$div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
+			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".interactDisplayCard" data-container=".interactListContainer" data-cookie="interactAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
 
