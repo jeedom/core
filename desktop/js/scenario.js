@@ -972,6 +972,19 @@ $divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]'
 })
 
 //COPY - PASTE
+function removeObjectProp(obj, propToDelete) {
+  for (var property in obj) {
+    if (obj.hasOwnProperty(property)) {
+      if (typeof obj[property] == 'object') {
+        removeObjectProp(obj[property], propToDelete)
+      } else {
+        if (property === propToDelete) {
+          delete obj[property]
+        }
+      }
+    }
+  }
+}
 $divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (!clickedBloc.parent('#div_scenarioElement').length) {
@@ -980,6 +993,8 @@ $divScenario.on('click', '.bt_copyElement', function(event) {
     SC_CLIPBOARD = clickedBloc
   }
   SC_CLIPBOARD = getElement(clickedBloc)
+  //delete all id in properties to make it unique:
+  removeObjectProp(SC_CLIPBOARD, 'id')
   localStorage.removeItem('jeedomScCopy')
   localStorage.setItem('jeedomScCopy', JSON.stringify(SC_CLIPBOARD))
 
