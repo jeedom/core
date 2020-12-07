@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Erreur sur la verification des mies à jour : ": "Erreur sur la verification des mies à jour : ",
+        "Erreur sur la vérification des mises à jour : ": "Erreur sur la vérification des mises à jour : ",
         "Dernière vérification : ": "Dernière vérification : ",
         "Vérifier les mises à jour": "Vérifier les mises à jour",
         "Sauvegarder": "Sauvegarder",

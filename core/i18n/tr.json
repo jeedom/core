@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Erreur sur la verification des mies à jour : ": "",
+        "Erreur sur la vérification des mises à jour : ": "",
         "Dernière vérification : ": "Son kontrol :",
         "Vérifier les mises à jour": "Güncellemeleri kontrol et",
         "Sauvegarder": "Kaydet",

@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Erreur sur la verification des mies à jour : ": "Errore nel controllo dei mouse aggiornati:",
+        "Erreur sur la vérification des mises à jour : ": "",
         "Dernière vérification : ": "Ultimo controllo:",
         "Vérifier les mises à jour": "Controlla aggiornamenti",
         "Sauvegarder": "Salva",
