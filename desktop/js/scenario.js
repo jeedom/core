@@ -844,7 +844,7 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
   message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
   message += '<div class="col-xs-3">'
   message += '  <select class="conditionAttr form-control" data-l1key="next">'
-  message += '    <option value="">rien</option>'
+  message += '    <option value="">{{rien}}</option>'
   message += '    <option value="ET">{{et}}</option>'
   message += '    <option value="OU">{{ou}}</option>'
   message += '  </select>'
