@@ -6,7 +6,7 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 	try {
 		update::checkAllUpdate();
 	} catch (\Exception $e) {
-		echo '<div class="alert alert-danger">{{Erreur sur la verification des mies à jour : }}'.$e->getMessage().'</div>';
+		echo '<div class="alert alert-danger">{{Erreur sur la vérification des mises à jour : }}'.$e->getMessage().'</div>';
 	}
 }
 $logUpdate = log::get('update', 0, -1);
