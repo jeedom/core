@@ -115,7 +115,7 @@ $plugins_list = plugin::listPlugin(false, true);
                   </div>
                   <label class="col-sm-2 control-label"></label>
                   <div class="col-sm-4">
-                    <a class="btn btn-success btn-xs openPluginPage" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Ouvrir}}</a>
+                    <a class="btn btn-success btn-xs openPluginPage" style="position:relative;top:-2px;"><i class="fas fa-share"></i> {{Ouvrir}}</a>
                   </div>
                 </div>
 
