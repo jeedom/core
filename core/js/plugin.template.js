@@ -128,6 +128,7 @@ if ($('#bt_pluginDisplayAsTable').length) {
     $('#bt_pluginDisplayAsTable').data('state', '1').addClass('active')
     if ($('#bt_pluginDisplayAsTable[data-coreSupport="1"]').length) {
       $('.eqLogicDisplayCard').addClass('displayAsTable')
+      $('.eqLogicDisplayCard .hiddenAsCard').removeClass('hidden')
       $('.eqLogicThumbnailContainer').first().addClass('containerAsTable')
     }
   }
@@ -137,11 +138,13 @@ if ($('#bt_pluginDisplayAsTable').length) {
       $(this).data('state', '1').addClass('active')
       setCookie('pluginAsTable', 'true', 2)
       $('.eqLogicDisplayCard').addClass('displayAsTable')
+      $('.eqLogicDisplayCard .hiddenAsCard').removeClass('hidden')
       $('.eqLogicThumbnailContainer').first().addClass('containerAsTable')
     } else {
       $(this).data('state', '0').removeClass('active')
       setCookie('pluginAsTable', 'false', 2)
       $('.eqLogicDisplayCard').removeClass('displayAsTable')
+      $('.eqLogicDisplayCard .hiddenAsCard').addClass('hidden')
       $('.eqLogicThumbnailContainer').first().removeClass('containerAsTable')
     }
     $('.eqLogicThumbnailContainer').packery()

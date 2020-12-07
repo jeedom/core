@@ -1275,10 +1275,13 @@ Theme Core 2021 @Jeedom
     height: 130px !important;
     overflow: hidden;
   }
-  .eqLogicThumbnailContainer .eqLogicDisplayCard {
+  div:not(.panel-body) > div.eqLogicThumbnailContainer {
+    padding-right: 15px !important;
+  }
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard {
     height: 168px !important;
   }
-  .scenarioDisplayCard.cursor {
+  div.scenarioDisplayCard.cursor {
     margin-left: 0 !important;
     position: absolute;
     text-align: center;
@@ -1294,60 +1297,60 @@ Theme Core 2021 @Jeedom
     line-height: 14px !important;
   }
 
-  .pluginDisplayCard,
-  .objectDisplayCard {
+  div.pluginDisplayCard,
+  div.objectDisplayCard {
     height: 130px;
     min-height: 130px !important;
   }
-  .objectDisplayCard > i {
+  div.objectDisplayCard > i {
     display: inline-block;
     height: 42px !important;
   }
-  .objectDisplayCard .name {
+  div.objectDisplayCard .name {
     display: inline-block;
     padding: 4px 12px;
     border-radius: var(--border-radius) !important;
   }
-  .pluginListContainer div.cursor > center > img,
-  .pluginListContainer div.cursor > .center > img,
-  .interactListContainer div.cursor > img {
+  div.pluginListContainer div.cursor > center > img,
+  div.pluginListContainer div.cursor > .center > img,
+  div.interactListContainer div.cursor > img {
     width: 75px !important;
     padding-top: 5px;
   }
 
-  .eqLogicThumbnailContainer div.cursor > center > img,
-  .eqLogicThumbnailContainer div.cursor img {
+  div.eqLogicThumbnailContainer div.cursor > center > img,
+  div.eqLogicThumbnailContainer div.cursor img {
     width: 75px !important;
     height: auto !important;
     padding-top: 15px;
   }
-  .eqLogicDisplayCard {
+  div.eqLogicDisplayCard {
     margin-bottom: 10px !important;
     height: 168px !important;
     padding: 0 !important;
     margin: 0 !important;
     overflow: hidden;
   }
-  .eqLogicDisplayCard .name {
+  div.eqLogicDisplayCard .name {
     word-break: break-word !important;
     font-size: 12px !important;
     position: relative;
     top: 3px !important;
   }
-  .scenarioDisplayCard > span.name strong,
-  .eqLogicDisplayCard > span.name strong {
+  div.scenarioDisplayCard > span.name strong,
+  div.eqLogicDisplayCard > span.name strong {
     position: relative;
     top: 3px !important;
     display: block;
     height: 28px !important;
     overflow: hidden;
   }
-  .interactDisplayCard > span.name {
+  div.interactDisplayCard > span.name {
     height: 55px !important;
     overflow: hidden;
   }
 
-  .eqLogicDisplayCard img {
+  div.eqLogicDisplayCard img {
     min-height: 99px !important;
     max-height: 99px;
     width: auto !important;
@@ -1356,28 +1359,28 @@ Theme Core 2021 @Jeedom
     vertical-align: baseline;
   }
 
-  .eqLogic.eqLogic-widget .widget-name,
-  .scenario-widget .widget-name {
+  div.eqLogic.eqLogic-widget .widget-name,
+  div.scenario-widget .widget-name {
     font-weight: 300;
     padding-right: 22px;
     padding-left: 12px;
     max-height: 45px;
     overflow: hidden;
   }
-  .eqLogic-widget .cmd.refresh {
+  div.eqLogic-widget .cmd.refresh {
     margin-top: 5px !important;
     position: absolute;
     right : 0;
   }
-  .eqLogic-widget .cmd.refresh i {
+  div.eqLogic-widget .cmd.refresh i {
     color: var(--eqTitle-color) !important;
     font-size: 12px !important;
   }
-  .eqLogic-widget .cmd.refresh i:hover {
+  div.eqLogic-widget .cmd.refresh i:hover {
     color: var(--linkHoverLight-color) !important;
   }
 
-  .eqLogic-widget .cmd.refresh.spinning i {
+  div.eqLogic-widget .cmd.refresh.spinning i {
     animation: spin-animation 1s infinite linear;
   }
   @keyframes spin-animation {
@@ -1385,11 +1388,11 @@ Theme Core 2021 @Jeedom
     100% { transform: rotate(1turn); }
   }
 
-  .eqLogic-widget.editingMode .cmd.refresh {
+  div.eqLogic-widget.editingMode .cmd.refresh {
     display: none;
   }
 
-  .eqLogic-widget .cmd.editOptions {
+  div.eqLogic-widget .cmd.editOptions {
     position: absolute;
     top: 0;
     right: 5px;
@@ -1399,32 +1402,32 @@ Theme Core 2021 @Jeedom
     text-align: center;
     z-index: 500;
   }
-  .eqLogic-widget .cmd.editOptions:after {
+  div.eqLogic-widget .cmd.editOptions:after {
     content: '\2807';
     color: var(--eqTitle-color);
     font-size: 20px;
   }
 
-  .eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
+  div.eqLogic.eqLogic-widget .widget-name span.warning i[class=""] {
     display: none;
   }
-  .eqLogic.eqLogic-widget .widget-name span.warning i {
+  div.eqLogic.eqLogic-widget .widget-name span.warning i {
     margin-right: 5px;
     color: var(--linkHoverLight-color);
     font-size: 14px !important;
   }
-  .eqLogic.eqLogic-widget .widget-name .object_name {
+  div.eqLogic.eqLogic-widget .widget-name .object_name {
     vertical-align: super;
     font-size: 13px;
   }
-  .eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
+  div.eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
     display: none;
   }
-  .scenarioDisplayCard > span > i {
+  div.scenarioDisplayCard > span > i {
     font-size: 3em !important;
   }
-  .scenarioDisplayCard .icon.noicon,
-  .interactDisplayCard .icon.noicon {
+  div.scenarioDisplayCard .icon.noicon,
+  div.interactDisplayCard .icon.noicon {
     color: var(--logo-primary-color);
   }
 
@@ -1814,6 +1817,9 @@ Theme Core 2021 @Jeedom
     min-width: 200px !important;
     max-width: calc(50vw - 200px) !important;
   }
+  div.objectDisplayCard.displayAsTable i ~ span.name {
+    font-weight: 400 !important;
+  }
 
   /* plugins */
   div.pluginDisplayCard .name {
@@ -1890,7 +1896,7 @@ Theme Core 2021 @Jeedom
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
     max-width: 21px !important;
     min-height: 21px !important;
-    padding-top: 0;
+    padding-top: 1px;
     position: absolute;
     left: 15px;
   }
