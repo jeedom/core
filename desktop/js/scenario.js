@@ -87,15 +87,20 @@ $('#in_searchInsideScenario').keyup(function() {
   //search code blocks:
   var cmEditor, code, cursor
   $('#div_scenarioElement div.elementCODE').each(function() {
-    cmEditor = $(this).find('div.CodeMirror.CodeMirror-wrap').get(0).CodeMirror
-    code = normTextLower(cmEditor.getValue())
-    if (code.indexOf(search) >= 0) {
-      $(this).removeClass('elementCollapse')
-      cursor = cmEditor.getSearchCursor(search , CodeMirror.Pos(cmEditor.firstLine(), 0), {caseFold: true, multiline: true})
-      if (cursor.find(false)) {
-        cmEditor.setSelection(cursor.from(), cursor.to())
+    try {
+      cmEditor = $(this).find('div.CodeMirror.CodeMirror-wrap').get(0).CodeMirror
+      code = normTextLower(cmEditor.getValue())
+      if (code.indexOf(search) >= 0) {
+        $(this).removeClass('elementCollapse')
+        cursor = cmEditor.getSearchCursor(search , CodeMirror.Pos(cmEditor.firstLine(), 0), {caseFold: true, multiline: true})
+        if (cursor.find(false)) {
+          cmEditor.setSelection(cursor.from(), cursor.to())
+        }
+      } else {
+        $(this).addClass('elementCollapse')
+        cmEditor.setCursor(0)
       }
-    } else {
+    } catch {}
       $(this).addClass('elementCollapse')
       cmEditor.setCursor(0)
     }

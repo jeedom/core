@@ -669,7 +669,7 @@ $('#table_ScenarioSearch').on({
     var url = 'index.php?v=d&p=scenario&id=' + tr.attr('data-id')
     if (searchType != 'plugin') {
       var searchFor = $('#in_searchFor_'+searchType).val()
-      url += '&search=' + searchFor.replace('#', '')
+      url += '&search=' + encodeURI(searchFor.replace('#', ''))
     }
     window.open(url).focus()
   }
