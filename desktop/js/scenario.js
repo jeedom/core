@@ -101,9 +101,6 @@ $('#in_searchInsideScenario').keyup(function() {
         cmEditor.setCursor(0)
       }
     } catch {}
-      $(this).addClass('elementCollapse')
-      cmEditor.setCursor(0)
-    }
   })
   //search in expressions:
   var text
