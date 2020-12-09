@@ -109,11 +109,17 @@ class DB {
 				foreach ($res as &$obj) {
 					if(method_exists($obj,'decrypt')){
 						$obj->decrypt();
+						if(method_exists($obj, 'setChanged')){
+							$obj->setChanged(false);
+						}
 					}
 				}
 			}else{
 				if(method_exists($res,'decrypt')){
 					$res->decrypt();
+					if(method_exists($res, 'setChanged')){
+						$res->setChanged(false);
+					}
 				}
 			}
 		}
