@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Erreur sur la verification des mies à jour : ": "",
+        "Erreur sur la vérification des mises à jour : ": "",
         "Dernière vérification : ": "Terakhir:",
         "Vérifier les mises à jour": "Periksa pembaruan",
         "Sauvegarder": "Menyimpan",
@@ -2826,6 +2826,7 @@
         "Déclenché": "Dibesarkan",
         "Au repos": "Saat istirahat",
         "Ensuite": "Kemudian",
+        "rien": "tidak ada",
         "et": "dan",
         "ou": "atau",
         "Ajout d'une nouvelle condition": "",

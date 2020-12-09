@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Erreur sur la verification des mies à jour : ": "最新のMiesのチェックエラー：",
+        "Erreur sur la vérification des mises à jour : ": "",
         "Dernière vérification : ": "最終確認：",
         "Vérifier les mises à jour": "更新を確認する",
         "Sauvegarder": "セーブ",
@@ -2826,6 +2826,7 @@
         "Déclenché": "トリガー",
         "Au repos": "安静時",
         "Ensuite": "それから",
+        "rien": "何も",
         "et": "と",
         "ou": "若しくは",
         "Ajout d'une nouvelle condition": "新しい条件を追加する",

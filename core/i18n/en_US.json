@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Erreur sur la verification des mies à jour : ": "Error on the check of the mies up to date:",
+        "Erreur sur la vérification des mises à jour : ": "Error checking for updates:",
         "Dernière vérification : ": "Last check:",
         "Vérifier les mises à jour": "Check for updates",
         "Sauvegarder": "Save",
@@ -2826,6 +2826,7 @@
         "Déclenché": "Triggered",
         "Au repos": "Idle",
         "Ensuite": "Then",
+        "rien": "nothing",
         "et": "and",
         "ou": "or",
         "Ajout d'une nouvelle condition": "Adding a new condition",
