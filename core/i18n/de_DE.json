@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Erreur sur la verification des mies à jour : ": "Fehler bei der Überprüfung der Mies auf dem neuesten Stand:",
+        "Erreur sur la vérification des mises à jour : ": "Fehler beim Überprüfen auf Updates:",
         "Dernière vérification : ": "Letzte Überprüfung:",
         "Vérifier les mises à jour": "Suchen Sie nach Updates",
         "Sauvegarder": "Speichern",
@@ -2826,6 +2826,7 @@
         "Déclenché": "Ausgelöst",
         "Au repos": "In Ruhe",
         "Ensuite": "Dann",
+        "rien": "nichts",
         "et": "und",
         "ou": "oder",
         "Ajout d'une nouvelle condition": "Einfügung einer neuen Bedingung",

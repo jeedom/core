@@ -1421,7 +1421,7 @@
     },
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Erreur sur la verification des mies à jour : ": "Error en el chequeo de los mies al día:",
+        "Erreur sur la vérification des mises à jour : ": "Error al buscar actualizaciones:",
         "Dernière vérification : ": "Ultima verificación :",
         "Vérifier les mises à jour": "Verifique las actualizaciones",
         "Sauvegarder": "Guardar",
@@ -2826,6 +2826,7 @@
         "Déclenché": "Activado",
         "Au repos": "En espera",
         "Ensuite": "Después",
+        "rien": "nada",
         "et": "y",
         "ou": "o",
         "Ajout d'une nouvelle condition": "Agregar una nueva condición",
