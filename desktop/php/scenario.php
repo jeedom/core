@@ -77,7 +77,7 @@ sendVarToJs('initSearch', init('search', 0));
 <div class="row row-overflow">
 	<div id="scenarioThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-		<div class="scenarioListContainer hidden">
+		<div class="scenarioListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
 			<div class="cursor logoPrimary" id="bt_addScenario">
 				<div class="center"><i class="fas fa-plus-circle"></i></div>
 				<span class="txtColor">{{Ajouter}}</span>
@@ -110,7 +110,7 @@ sendVarToJs('initSearch', init('search', 0));
 			$div .= '<a id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>';
 			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
 			$div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".scenarioDisplayCard" data-container=".scenarioListContainer" data-cookie="scenarioAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".scenarioDisplayCard" data-container=".scenarioListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
 

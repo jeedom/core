@@ -702,12 +702,10 @@ function initPage() {
 }
 
 function initDisplayAsTable() {
-  if ($('#bt_displayAsTable').length) {
-    var $buttonAsTable = $('#bt_displayAsTable')
-    var dataCookie = $buttonAsTable.attr('data-cookie')
-    if (dataCookie == '') return
+  var $buttonAsTable = $('#bt_displayAsTable')
+  if ($buttonAsTable.length) {
 
-    if (getCookie(dataCookie) == 'true') {
+    if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
       $('#bt_displayAsTable').data('state', '1').addClass('active')
       $($buttonAsTable.data('card')).addClass('displayAsTable')
       $($buttonAsTable.data('container')).first().addClass('containerAsTable')
@@ -716,16 +714,15 @@ function initDisplayAsTable() {
     $buttonAsTable.off('click').on('click', function () {
       if ($(this).data('state') == "0") {
         $(this).data('state', '1').addClass('active')
-        setCookie(dataCookie, 'true', 2)
+        setCookie('jeedom_displayAsTable', 'true', 7)
         $($(this).data('card')).addClass('displayAsTable')
         $($(this).data('container')).first().addClass('containerAsTable')
       } else {
         $(this).data('state', '0').removeClass('active')
-        setCookie(dataCookie, 'false', 2)
+        setCookie('jeedom_displayAsTable', 'false', 7)
         $($(this).data('card')).removeClass('displayAsTable')
         $($(this).data('container')).first().removeClass('containerAsTable')
       }
-      $($(this).data('container')).packery()
     })
   }
 }

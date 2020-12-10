@@ -64,7 +64,7 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 <div class="row row-overflow">
 	<div id="interactThumbnailDisplay" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
-		<div class="interactListContainer hidden">
+		<div class="interactListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
 			<div class="cursor logoPrimary" id="bt_addInteract2">
 				<div class="center">
 					<i class="fas fa-plus-circle"></i>
@@ -100,7 +100,7 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 			$div .= '</div>';
 			$div .= '<div class="input-group-btn">';
 			$div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".interactDisplayCard" data-container=".interactListContainer" data-cookie="interactAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".interactDisplayCard" data-container=".interactListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>';
 			$div .= '</div>';
 			$div .= '</div>';
 

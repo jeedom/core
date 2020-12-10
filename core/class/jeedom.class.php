@@ -70,7 +70,8 @@ class jeedom {
 			'logo_dark',
 			'logo_mobile_light',
 			'logo_mobile_dark',
-			'objectBackgroundBlur'
+			'objectBackgroundBlur',
+			'theme_displayAsTable'
 		);
 
 		$return = config::byKeys($key);

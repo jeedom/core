@@ -419,6 +419,14 @@ user::isBan();
 								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" />
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
+							</div>
+						</div>
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}

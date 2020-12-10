@@ -18,7 +18,7 @@ $plugins_list = plugin::listPlugin(false, true);
 <div class="row row-overflow">
   <div class="col-xs-12" id="div_resumePluginList">
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
-    <div class="pluginListContainer hidden">
+    <div class="pluginListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
       <?php
       $div = '';
       foreach ((update::listRepo()) as $key => $value) {
@@ -52,7 +52,7 @@ $plugins_list = plugin::listPlugin(false, true);
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchPlugin"/>
       <div class="input-group-btn">
         <a id="bt_resetPluginSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-        </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".pluginDisplayCard" data-container=".pluginListContainer" data-cookie="pluginsAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>
+        </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".pluginDisplayCard" data-container=".pluginListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
       </div>
     </div>
     <div class="panel">
@@ -61,7 +61,7 @@ $plugins_list = plugin::listPlugin(false, true);
           <?php
           foreach ((plugin::listPlugin()) as $plugin) {
             $inactive = ($plugin->isActive()) ? '' : 'inactive';
-            $div = '<div class="pluginDisplayCard hidden cursor '.$inactive.'" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '" style="display: none;">';
+            $div = '<div class="pluginDisplayCard cursor '.$inactive.'" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '">';
             $div .= '<center>';
             $div .= '<img src="' . $plugin->getPathImgIcon() . '" />';
             $div .= '</center>';

@@ -60,7 +60,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
 <div class="row row-overflow">
   <div id="div_widgetsList" class="col-xs-12">
     <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-    <div class="widgetsListContainer hidden">
+    <div class="widgetsListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
       <div class="cursor logoPrimary" id="bt_addWidgets">
         <div class="center"><i class="fas fa-plus-circle"></i></div>
         <span class="txtColor">{{Ajouter}}</span>
@@ -97,7 +97,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       $div .= '</div>';
       $div .= '<div class="input-group-btn">';
       $div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-      $div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".widgetsDisplayCard" data-container=".widgetsListContainer" data-cookie="widgetAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+      $div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".widgetsDisplayCard" data-container=".widgetsListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>';
       $div .= '</div>';
       $div .= '</div>';
       $div .= '<div class="panel-group" id="accordionWidgets">';

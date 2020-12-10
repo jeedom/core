@@ -6,7 +6,7 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
-$configs = array_merge($jeedom_theme,config::byKeys(array( 'language', 'jeedom::firstUse')));
+$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {

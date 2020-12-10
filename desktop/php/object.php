@@ -15,12 +15,13 @@ $synthToActions = array(
 	'synthToPlan' => '{{Design}}',
 	'synthToPlan3d' => '{{Design 3D}}',
 );
+
 ?>
 
 <div class="row row-overflow">
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
-		<div class="objectListContainer hidden">
+		<div class="objectListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
 			<div class="cursor logoPrimary" id="bt_addObject2">
 				<div class="center">
 					<i class="fas fa-plus-circle"></i>
@@ -40,7 +41,7 @@ $synthToActions = array(
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
 			<div class="input-group-btn">
 				<a id="bt_resetObjectSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-                </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-cookie="objectAsTable" data-state="0"><i class="fas fa-grip-lines"></i></a>
+                </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
 			</div>
 		</div>
 		<div id="objectPanel" class="panel">
@@ -48,8 +49,10 @@ $synthToActions = array(
 				<div class="objectListContainer">
 					<?php
 					$echo = '';
+					$class = '';
+					if (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) $class = ' displayAsTable';
 					foreach ($allObject as $object) {
-						$echo .= '<div style="display:none" class="objectDisplayCard cursor" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="far blank"></i>') . '\'>';
+						$echo .= '<div class="objectDisplayCard cursor'.$class.'" data-object_id="' . $object->getId() . '" data-object_name="' . $object->getName() . '" data-object_icon=\'' . $object->getDisplay('icon', '<i class="far blank"></i>') . '\'>';
 						$echo .= $object->getDisplay('icon', '<i class="far blank"></i>');
 						$echo .= "<br/>";
 						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
