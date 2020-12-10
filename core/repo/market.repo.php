@@ -397,9 +397,6 @@ class repo_market {
 					'Content-Type: application/json',
 					'Autorization: '.sha512(mb_strtolower(config::byKey('market::username')).':'.config::byKey('market::password'))
 				));
-				$request_http->setCURLOPT(array(
-					CURLOPT_SSLVERSION => 3
-				));
 				$request_http->setPost(json_encode($data));
 				try {
 					$result = json_decode($request_http->exec(30,1),true);
