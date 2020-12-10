@@ -38,6 +38,7 @@ class com_http {
 	private $noReportError = false;
 	private $userAgent = '';
 	private $CURLOPT_HTTPAUTH = '';
+	private $CURLOPT_HTTPVERSION = false;
 	
 	/*     * ********************Fonctions statiques********************* */
 	
@@ -100,6 +101,9 @@ class com_http {
 			}
 			if ($this->getUserAgent() != '') {
 				curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
+			}
+			if ($this->getCURLOPT_HTTPVERSION() != false) {
+				curl_setopt($ch, CURLOPT_HTTP_VERSION, $this->getCURLOPT_HTTPVERSION());
 			}
 			$response = curl_exec($ch);
 			$nbRetry++;
@@ -257,6 +261,15 @@ class com_http {
 	
 	public function setDelete($delete = array()) {
 		$this->delete = $delete;
+		return $this;
+	}
+	
+	public function getCURLOPT_HTTPVERSION() {
+		return $this->CURLOPT_HTTPVERSION;
+	}
+	
+	public function setCURLOPT_HTTPVERSION($CURLOPT_HTTPVERSION) {
+		$this->CURLOPT_HTTPVERSION = $CURLOPT_HTTPVERSION;
 		return $this;
 	}
 	
