@@ -148,7 +148,7 @@ jeedom.config.load({
 
 
 $("#bt_resetThemeCookie").on('click', function(event) {
-  document.cookie = "currentTheme= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+  setCookie('currentTheme', '', -1)
 })
 
 $divConfig.on({
