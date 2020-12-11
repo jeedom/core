@@ -841,6 +841,9 @@ class cmd {
 		if (is_array($_value) || is_object($_value)) {
 			return '';
 		}
+		if($_value === null){
+			$_value = 0;
+		}
 		if (trim($_value) == '' && $_value !== false && $_value !== 0) {
 			return '';
 		}
@@ -1828,14 +1831,14 @@ class cmd {
 				$value = $_value;
 			}
 			$tagArray = array('box' => config::byKey('name','core'),
-								'location' => $object,
-								'equipement' => $eqLogicName,
-								'plugin' => $plugin,
-								'cmd' => $cmdname,
-								'cmdId' => $this->getId(),
-								'cmdname' => $this->getName(),
-								'genericType' => $genericName
-								);
+				'location' => $object,
+				'equipement' => $eqLogicName,
+				'plugin' => $plugin,
+				'cmd' => $cmdname,
+				'cmdId' => $this->getId(),
+				'cmdname' => $this->getName(),
+				'genericType' => $genericName
+			);
 			$valueArray=[];
 			if ($valName != ''){
 				$valueArray[$valName]=$value;
