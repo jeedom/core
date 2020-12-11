@@ -33,9 +33,6 @@ function initEqanalyse() {
           $('#div_displayBattery').empty().html(div).trigger('create')
           $('ul[data-role=nd2tabs]').tabs()
           setTileSize('.eqLogic')
-          setTimeout(function() {
-            $('#div_displayBattery').packery({gutter : 0})
-          }, 100)
         }
       })
     }
@@ -43,6 +40,6 @@ function initEqanalyse() {
 
   $('body').on('orientationChanged', function(event, _orientation) {
     setTileSize('.eqLogic')
-    $('#div_displayAlert, #div_displayBattery').packery({gutter : 0})
+    $('#div_displayAlert').packery({gutter : 0})
   })
 }

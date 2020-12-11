@@ -52,7 +52,6 @@ $('#in_searchWidgets').keyup(function() {
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.widgetsDisplayCard').show()
-    $('.widgetsListContainer').packery()
     return;
   }
   search = normTextLower(search)
@@ -68,7 +67,6 @@ $('#in_searchWidgets').keyup(function() {
   })
   $('.panel-collapse[data-show=1]').collapse('show')
   $('.panel-collapse[data-show=0]').collapse('hide')
-  $('.widgetsListContainer').packery()
 })
 $('#bt_openAll').off('click').on('click', function() {
   $(".accordion-toggle[aria-expanded='false']").click()
@@ -350,16 +348,6 @@ function loadTemplateConfiguration(_template,_data) {
   })
 }
 
-setTimeout(function(){
-  $('.widgetsListContainer').removeClass('hidden').packery()
-}, 100)
-
-$('.accordion-toggle').off('click').on('click', function() {
-  setTimeout(function(){
-    $('.widgetsListContainer').packery()
-  }, 100)
-})
-
 $('#div_pageContainer').off('change','.widgetsAttr').on('change','.widgetsAttr:visible', function() {
   modifyWithoutSave = true
 })
@@ -372,7 +360,6 @@ $('#bt_returnToThumbnailDisplay').on('click',function() {
   if (checkPageModified()) return
   $('#div_conf').hide()
   $('#div_widgetsList').show()
-  $('.widgetsListContainer').packery()
   addOrUpdateUrl('id',null,'{{Widgets}} - '+JEEDOM_PRODUCT_NAME)
 })
 

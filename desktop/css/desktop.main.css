@@ -558,13 +558,6 @@ Theme Core 2021 @Jeedom
   [data-page=display] .object legend {
     border-left: none;
   }
-  [data-page=display] #div_pageContainer div.packeryContainer legend,
-  [data-page=display] #div_pageContainer div.packeryContainer > div,
-  [data-page=display] #div_pageContainer div.packeryContainer > div > div {
-    padding: 5px !important;
-    margin: 0 !important;
-    border-left: none;
-  }
   [data-page=display] #div_pageContainer #displaytab ul > li {
     list-style-type: none;
     margin: 2px 25px !important;
@@ -1257,6 +1250,20 @@ Theme Core 2021 @Jeedom
     cursor: pointer !important;
   }
 
+  div[class*="ListContainer"],
+  div.eqLogicThumbnailContainer {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  div[class*="ListContainer"] div[class*="DisplayCard"],
+  div.eqLogicThumbnailContainer div[class*="DisplayCard"] {
+    flex: 0 0 auto;
+  }
+  div[class*="ListContainer"] > div.alert {
+    flex: auto;
+  }
+
   div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div.cursor,
   .eqLogicDisplayCard div.cursor,
   .eqLogicThumbnailContainer div.cursor {
@@ -1283,7 +1290,6 @@ Theme Core 2021 @Jeedom
   }
   div.scenarioDisplayCard.cursor {
     margin-left: 0 !important;
-    position: absolute;
     text-align: center;
     min-height: 123px !important;
   }
@@ -1780,6 +1786,7 @@ Theme Core 2021 @Jeedom
     min-height: 24px !important;
     max-height: 24px !important;
     height: 24px !important;
+    height: 24px !important;
     line-height: 22px !important;
     margin-left: 10px;
     font-weight: normal;
@@ -1797,7 +1804,7 @@ Theme Core 2021 @Jeedom
   div[class*="DisplayCard"].displayAsTable > i ~ span.name {
     font-weight: 500 !important;
   }
-  div[class*="DisplayCard"].displayAsTable .name > .label,
+  div[class*="DisplayCard"].displayAsTable .name > .label:not(.displayTableRight),
   div[class*="DisplayCard"].displayAsTable .name > .label.labelObjectHuman{
     line-height: 14px !important;
     margin: 0 20px !important;
@@ -1840,7 +1847,7 @@ Theme Core 2021 @Jeedom
   }
 
   /* widgets */
-  div.widgetsDisplayCard.displayAsTable > .name .label  {
+  div.widgetsDisplayCard.displayAsTable > .name .label.cursor  {
     min-width: 60px !important;
     padding: 4px !important;
     height: 22px;
@@ -1890,17 +1897,19 @@ Theme Core 2021 @Jeedom
     min-height: 24px !important;
     max-height: 24px !important;
     transform: unset !important;
-    margin: 2px 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
-    max-width: 21px !important;
-    min-height: 21px !important;
+    max-width: 24px !important;
+    min-height: 24px !important;
+    height: 24px !important;
+    width: auto !important;
     padding-top: 1px;
     position: absolute;
     left: 15px;
   }
-  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label  {
+  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label:not(.displayTableRight)  {
     line-height: 14px !important;
     margin: 0 20px !important;
     min-width: 20% !important;

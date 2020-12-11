@@ -41,7 +41,7 @@ sendVarToJs('_remove_history_', $remove_history);
 						<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 					</div>
 				</div>
-				<div class="batteryListContainer hidden">
+				<div class="batteryListContainer">
 					<?php
 					foreach ($list as $eqLogic) {
 						echo $eqLogic->batteryWidget();

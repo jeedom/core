@@ -167,13 +167,6 @@ legend {
 [data-page=display] .object legend {
   border-left: none;
 }
-[data-page=display] #div_pageContainer > div.packeryContainer legend,
-[data-page=display] #div_pageContainer > div.packeryContainer > div,
-[data-page=display] #div_pageContainer > div.packeryContainer > div > div {
-  padding: 5px !important;
-  margin: 0 !important;
-  border-left: none;
-}
 [data-page=display] #div_pageContainer ul > li {
   margin: 1.2px 0 !important;
   padding: 2px 5px !important;

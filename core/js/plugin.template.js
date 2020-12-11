@@ -176,7 +176,6 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
   $('.eqLogic').hide()
   $('.eqLogicThumbnailDisplay').show()
   $(this).closest('ul').find('li').removeClass('active')
-  $('.eqLogicThumbnailContainer').packery()
   addOrUpdateUrl('id',null,)
 })
 
@@ -426,7 +425,6 @@ $('#in_searchEqlogic').off('keyup').keyup(function() {
   var search = $(this).value()
   if (search == '') {
     $('.eqLogicDisplayCard').show()
-    $('.eqLogicThumbnailContainer').packery()
     return
   }
   $('.eqLogicDisplayCard').hide()
@@ -438,7 +436,6 @@ $('#in_searchEqlogic').off('keyup').keyup(function() {
       $(this).closest('.eqLogicDisplayCard').show()
     }
   })
-  $('.eqLogicThumbnailContainer').packery()
 })
 
  /*
@@ -501,8 +498,6 @@ $('#div_pageContainer').on('dblclick', '.cmd', function() {
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=configure]', function() {
   $('#md_modal').dialog({title: "{{Configuration commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open')
 })
-
-$('.eqLogicThumbnailContainer').packery()
 
 if (is_numeric(getUrlVars('id'))) {
   if ($('#ul_eqLogic .li_eqLogic[data-eqLogic_id=' + getUrlVars('id') + ']').length != 0) {

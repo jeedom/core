@@ -50,7 +50,6 @@ $('#in_searchObject').keyup(function() {
   var search = $(this).value()
   if (search == '') {
     $('.objectDisplayCard').show()
-    $('.objectListContainer').packery()
     return
   }
   search = normTextLower(search)
@@ -63,7 +62,6 @@ $('#in_searchObject').keyup(function() {
       $(this).closest('.objectDisplayCard').show()
     }
   })
-  $('.objectListContainer').packery()
 })
 $('#bt_resetObjectSearch').on('click', function() {
   $('#in_searchObject').val('').keyup()
@@ -124,11 +122,6 @@ $('#bt_libraryBackgroundImage').on('click', function() {
   $('#md_modal').dialog({title: "{{Bibliotheque d'images}}"}).load('index.php?v=d&modal=object.img.selector&object_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open')
 })
 
-setTimeout(function() {
-  $('.objectDisplayCard').show()
-  $('.objectListContainer').removeClass('hidden').packery()
-}, 100)
-
 $('#bt_returnToThumbnailDisplay').on('click',function() {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
@@ -137,7 +130,6 @@ $('#bt_returnToThumbnailDisplay').on('click',function() {
   if (checkPageModified()) return
   $('#div_conf').hide()
   $('#div_resumeObjectList').show()
-  $('.objectListContainer').packery()
   addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME)
 })
 

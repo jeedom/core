@@ -38,9 +38,6 @@ document.onkeydown = function(event) {
 
 $(function() {
   $('sub.itemsNumber').html('('+$('.interactDisplayCard').length+')')
-  setTimeout(function() {
-    $interactListContainer.removeClass('hidden').packery()
-  }, 100)
 })
 
 //searching
@@ -49,7 +46,6 @@ $('#in_searchInteract').keyup(function() {
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.interactDisplayCard').show()
-    $interactListContainer.packery()
     return
   }
   search = normTextLower(search)
@@ -67,7 +63,6 @@ $('#in_searchInteract').keyup(function() {
   })
   $('.panel-collapse[data-show=1]').collapse('show')
   $('.panel-collapse[data-show=0]').collapse('hide')
-  $interactListContainer.packery()
 })
 $('#bt_resetInteractSearch').on('click', function() {
   $('#in_searchInteract').val('').keyup()
@@ -190,7 +185,6 @@ $('#bt_interactThumbnailDisplay').on('click', function() {
   if (checkPageModified()) return
   $('#div_conf').hide()
   $('#interactThumbnailDisplay').show()
-  $interactListContainer.packery()
   addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME)
 })
 
@@ -212,12 +206,6 @@ $('.interactDisplayCard').off('mouseup').on('mouseup', function(event) {
 
 $('#div_pageContainer').off('change','.interactAttr').on('change','.interactAttr:visible', function() {
   modifyWithoutSave = true
-})
-
-$('.accordion-toggle').off('click').on('click', function() {
-  setTimeout(function() {
-    $interactListContainer.packery()
-  }, 100)
 })
 
 $('#bt_duplicate').on('click', function() {

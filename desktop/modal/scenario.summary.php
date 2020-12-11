@@ -182,9 +182,6 @@ function refreshScenarioSummary() {
               success: function() {
                 $('#table_scenarioSummary tr[data-id="'+id+'"]').remove()
                 $('.scenarioDisplayCard[data-scenario_id="'+id+'"]').remove()
-                setTimeout(function() {
-                  $('.scenarioListContainer').packery()
-                }, 250)
               }
             })
           }

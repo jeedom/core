@@ -37,7 +37,7 @@ var $batteryListContainer = $('div.batteryListContainer')
 var $alertListContainer = $('div.alertListContainer')
 var $tableDeadCmd = $('#table_deadCmd')
 
-$('.batteryListContainer, .alertListContainer').packery({
+$('.alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
   gutter : 2
 })
@@ -45,7 +45,7 @@ $('.batteryListContainer, .alertListContainer').packery({
 $('.alerts, .batteries').on('click', function() {
   setTimeout(function() {
     positionEqLogic()
-    $('.batteryListContainer, .alertListContainer').packery({
+    $('.alertListContainer').packery({
       itemSelector: ".eqLogic-widget",
       gutter : 2
     })
@@ -65,7 +65,6 @@ $('#in_search').off('keyup').on('keyup', function() {
   var search = $(this).value()
   if (search == '') {
     $eqlogics.show()
-    $batteryListContainer.packery()
     return
   }
   search = normTextLower(search)
@@ -82,7 +81,6 @@ $('#in_search').off('keyup').on('keyup', function() {
       $(this).hide()
     }
   })
-  $batteryListContainer.packery()
 })
 $('#bt_resetSearch').on('click', function() {
   $('#in_search').val('').keyup()
@@ -97,7 +95,6 @@ $('#bt_massConfigureEqLogic').off('click').on('click', function() {
 })
 
 $(function() {
-  $batteryListContainer.removeClass('hidden').packery()
   //tabs icons colors:
   if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
     $('a[href="#battery"] > i').addClass('danger')

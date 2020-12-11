@@ -69,7 +69,6 @@ function initScenario() {
       setTimeout(function() {
         deviceInfo = getDeviceType()
         setTileSize('.scenario')
-        $('#div_displayScenario').packery({gutter : 0})
       }, 100)
     }
   })
@@ -80,16 +79,12 @@ function initScenario() {
       if ($(this).next(".groupContainer").is(":visible")) toggle = false
       $('.groupContainer').hide()
       if (toggle) $(this).next('.groupContainer').show()
-      setTimeout(function() {
-        $('#div_displayScenario').packery({gutter : 0})
-      }, 100)
     }
   }, '.toggleShowGroup')
 
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
     setTileSize('.scenario')
-    $('#div_displayScenario').packery({gutter : 0})
   })
 
   //searching:
@@ -99,7 +94,6 @@ function initScenario() {
     search = normTextLower(search)
     if (search == '') {
       $('.scenario-widget').show()
-      $('#div_displayScenario').packery()
       return
     }
     var match, text
@@ -116,7 +110,6 @@ function initScenario() {
         $(this).hide()
       }
     })
-    $('#div_displayScenario').packery()
   })
 
   $('#bt_eraseSearchInput').off('click').on('click',function() {

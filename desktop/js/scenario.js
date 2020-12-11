@@ -30,7 +30,6 @@ $('#in_searchScenario').keyup(function() {
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show()
-    $('.scenarioListContainer').packery()
     return
   }
   search = normTextLower(search)
@@ -46,7 +45,6 @@ $('#in_searchScenario').keyup(function() {
   })
   $('.panel-collapse[data-show=1]').collapse('show')
   $('.panel-collapse[data-show=0]').collapse('hide')
-  $('.scenarioListContainer').packery()
 })
 $('#bt_openAll').off('click').on('click', function() {
   $(".accordion-toggle[aria-expanded='false']").each(function(){
@@ -198,10 +196,6 @@ $(function(){
 })
 
 /* ---------Scenario Management UI---------- */
-setTimeout(function(){
-  $('.scenarioListContainer').removeClass('hidden').packery()
-},100)
-
 var tab = null
 $("#bt_addScenario").off('click').on('click', function(event) {
   bootbox.prompt("Nom du scénario ?", function(result) {
@@ -288,12 +282,6 @@ $('.scenarioDisplayCard').off('mouseup').on('mouseup', function(event) {
   }
 })
 
-$('.accordion-toggle').off('click').on('click', function() {
-  setTimeout(function() {
-    $('.scenarioListContainer').packery()
-  }, 100)
-})
-
 $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
@@ -303,7 +291,6 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
 
   $('#div_editScenario').hide()
   $('#scenarioThumbnailDisplay').show()
-  $('.scenarioListContainer').packery()
   addOrUpdateUrl('id',null,'{{Scénario}} - ' + JEEDOM_PRODUCT_NAME)
 })
 
