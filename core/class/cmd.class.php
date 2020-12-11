@@ -834,11 +834,11 @@ class cmd {
 		if (is_array($_value) || is_object($_value)) {
 			return '';
 		}
-		if (trim($_value) == '' && $_value !== false && $_value !== 0 && $_value !== null) {
-			return '';
-		}
 		if($_value === null){
 			$_value = 0;
+		}
+		if (trim($_value) == '' && $_value !== false && $_value !== 0) {
+			return '';
 		}
 		$_value = trim(trim($_value), '"');
 		if (@strpos(strtolower($_value), 'error::') !== false) {
