@@ -108,7 +108,7 @@ function testUsb(){
 					stepTwo();
 				}, 4000);
 				break;
-				
+
 			}
 		}
 	});
@@ -451,42 +451,28 @@ function GoReload(){
 }
 
 function finalisation(go){
-	if(go == 1){
-		setStep('5');
-		$('#step1').hide();
-		$('#step2').hide();
-		$('#step3').hide();
-		$('#step4').hide();
-		$('.progress-bar').width('0%');
-		$('.progress-bar').text('0%');
-		pourcentageBar = 0;
-		$('#step5').show();
-		$('#contenuWithStepFive').addClass('animated');
-		getJeedomLog(1, 'update');
-	}else{
-		$('#step1').hide();
-		$('#step2').hide();
-		$('#step3').hide();
-		$('#step4').hide();
-		$('.progress-bar').width('0%');
-		$('.progress-bar').text('0%');
-		pourcentageBar = 0;
-		$('#step5').show();
-		$('#contenuWithStepFive').addClass('animated');
-		console.log('function Finalisation');
-		$.ajax({
-			type: 'POST',
-			url: 'core/ajax/jeedom.ajax.php',
-			data: {
-				action: 'getInfoApplication'
-			},
-			dataType: 'json',
-			error: function (request, status, error) {
-				confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
-			},
-			success: function (data) {
-				console.log('getInfoApplication > '+JSON.stringify(data));
-			})
+	$('#step1').hide();
+	$('#step2').hide();
+	$('#step3').hide();
+	$('#step4').hide();
+	$('.progress-bar').width('0%');
+	$('.progress-bar').text('0%');
+	pourcentageBar = 0;
+	$('#step5').show();
+	$('#contenuWithStepFive').addClass('animated');
+	console.log('function Finalisation');
+	$.ajax({
+		type: 'POST',
+		url: 'core/ajax/jeedom.ajax.php',
+		data: {
+			action: 'getInfoApplication'
+		},
+		dataType: 'json',
+		error: function (request, status, error) {
+			confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
+		},
+		success: function (data) {
+			console.log('getInfoApplication > '+JSON.stringify(data));
 			setTimeout(function(){
 				$.ajax({
 					type: 'POST',
@@ -505,59 +491,15 @@ function finalisation(go){
 					},
 					success: function (result){
 						console.log('Succes Login ;) > '+JSON.stringify(result));
-						$.ajax({
-							type: 'POST',
-							url: 'core/ajax/update.ajax.php',
-							data: {
-								action: 'updateAll',
-								options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
-							},
-							dataType: 'json',
-							global: false,
-							error: function (request, status, error) {
-								console.log('Error Update');
-								$('#div_alert').showAlert({message: error.message, level: 'danger'});
-							},
-							success: function (result){
-								console.log('Update lancé > '+JSON.stringify(result));
-								if(result.result == ""){
-									$('.progress-bar').width('1%');
-									$('.progress-bar').text('1%');
-									getJeedomLog(1, 'update');
-								}else{
-									finalisation();
-								}
-							}
-						});
+						final();
 					}
 				});
 			}, 3000);
 		}
 	});
 }
-}
 
 function final(){
-	if(Maj == 0){
-		Maj = 1;
-		$.ajax({
-			type: 'POST',
-			url: 'core/ajax/update.ajax.php',
-			data: {
-				action: 'updateAll',
-				options: '{"preUpdate":"0","backup::before":"0","plugins":"0","core":"1","force":"0","update::reapply":""}'
-			},
-			dataType: 'json',
-			global: false,
-			error: function (request, status, error) {
-				console.log('Error Update');
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function (result){
-				getJeedomLog(1, 'update');
-			}
-		});
-	}else{
 		setStep('5');
 		$.ajax({
 			type: 'POST',
@@ -574,7 +516,6 @@ function final(){
 				$('#modalFinalStep').modal('show');
 			}
 		});
-	}
 }
 
 function installBackup(){
@@ -718,10 +659,10 @@ function confirmOnLeave(msg) {
 		if(End == 0){
 			e = e || window.event;
 			msg = msg || '';
-			
+
 			// For IE and Firefox
 			if (e) {e.returnValue = msg;}
-			
+
 			// For Chrome and Safari
 			return msg;
 		}
