@@ -631,7 +631,7 @@ function page_rebootjs(){
 		}, 300000);
 	}else{
 		testjeedom++;
-		pourcentageBar = pourcentageBar+10;
+		pourcentageBar = pourcentageBar+3;
 		$('.progress-bar').width(pourcentageBar+'%');
 		$('.progress-bar').text(pourcentageBar+'%');
 		if(pourcentageBar > '80'){
