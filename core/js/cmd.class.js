@@ -341,7 +341,7 @@ jeedom.cmd.refreshValue = function(_params) {
   var cmd = null;
   for(var i in _params){
     cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
-    if (cmd.html() != undefined && cmd.hasClass('noRefresh')) {
+    if (cmd.hasClass('noRefresh')) {
       continue;
     }
     if (!isset(jeedom.cmd.update) || !isset(jeedom.cmd.update[_params[i].cmd_id])) {
