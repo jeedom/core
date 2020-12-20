@@ -132,9 +132,20 @@ function displayDeadCmd() {
           tr += '<td>'
           tr += data[i].name
           tr += '</td>'
+
           tr += '<td>'
-          tr += data[i].cmd[j].detail
+          if (isset(data[i].cmd[j].fromId)) {
+            if (data[i].name == 'Scenario') {
+              tr += '<a href="/index.php?v=d&p=scenario&id='+data[i].cmd[j].fromId+'">' + data[i].cmd[j].detail + '</a>'
+            }
+            if (data[i].name.startsWith("{{Plugin}}")) {
+              tr += '<a href="/index.php?v=d&m='+i+'&p='+i+'&id='+data[i].cmd[j].fromId+'">' + data[i].cmd[j].detail + '</a>'
+            }
+          } else {
+            tr += data[i].cmd[j].detail
+          }
           tr += '</td>'
+
           tr += '<td>'
           tr += data[i].cmd[j].who
 
@@ -145,6 +156,7 @@ function displayDeadCmd() {
           }
 
           tr += '</td>'
+
           tr += '<td>'
           tr += data[i].cmd[j].help
           tr += '</td>'

@@ -1416,7 +1416,12 @@ class eqLogic {
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
-						$return[] = array('detail' => ucfirst($_plugin_id).' ' . $eqLogic->getHumanName(), 'help' => 'Action', 'who' => '#' . $cmd_id . '#');
+						$return[] = array(
+							'detail' => $eqLogic->getHumanName(),
+							'help' => __('Action', __FILE__),
+							'who' => '#' . $cmd_id . '#',
+							'fromId' => $eqLogic->getId()
+						);
 					}
 				}
 			}

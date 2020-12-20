@@ -418,7 +418,7 @@ class scenario {
 		$scenarios = self::all();
 		foreach ($scenarios as $scenario) {
 			if ($scenario->getGroup() == '') {
-				$group = 'aucun';
+				$group = __('Aucun', __FILE__);
 			} else {
 				$group = $scenario->getGroup();
 			}
@@ -427,6 +427,7 @@ class scenario {
 					continue;
 				}
 			}
+			//check scenario triggers:
 			if ($scenario->getMode() == 'provoke' || $scenario->getMode() == 'all') {
 				$trigger_list = '';
 				foreach(($scenario->getTrigger()) as $trigger) {
@@ -436,13 +437,19 @@ class scenario {
 				foreach ($matches[1] as $cmd_id) {
 					if (is_numeric($cmd_id)) {
 						if ($_needsReturn) {
-							$return[] = array('detail' => 'Scénario ' . $scenario->getName() . ' du groupe ' . $group, 'help' => __('Déclencheur du scénario', __FILE__), 'who' => '#' . $cmd_id . '#');
+							$return[] = array(
+								'detail' => $scenario->getHumanName(),
+								'help' => __('Déclencheur', __FILE__),
+								'who' => '#' . $cmd_id . '#',
+								'fromId' => $scenario->getId()
+							);
 						} else {
 							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
 					}
 				}
 			}
+			//check scenario expressions:
 			$expression_list = '';
 			$elements = $scenario->getElement();
 			foreach ($elements as $element) {
@@ -452,7 +459,12 @@ class scenario {
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					if ($_needsReturn) {
-						$return[] = array('detail' => 'Scénario ' . $scenario->getHumanName(), 'help' => __('Utilisé dans le scénario', __FILE__), 'who' => '#' . $cmd_id . '#');
+						$return[] = array(
+							'detail' => $scenario->getHumanName(),
+							'help' => __('Expression', __FILE__),
+							'who' => '#' . $cmd_id . '#',
+							'fromId' => $scenario->getId()
+						);
 					} else {
 						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}

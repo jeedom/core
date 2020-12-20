@@ -524,7 +524,7 @@ try {
 		);
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
-			$return[$plugin_id] =  array('cmd' => array(),'name' => 'Plugin '.$plugin->getName());
+			$return[$plugin_id] =  array('cmd' => array(),'name' => __('Plugin',__FILE__).' '.$plugin->getName());
 			if (method_exists($plugin_id, 'deadCmd')) {
 				$return[$plugin_id]['cmd'] = $plugin_id::deadCmd();
 			} else {
