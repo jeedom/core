@@ -1417,7 +1417,6 @@ class eqLogic {
 				if (is_numeric($cmd_id)) {
 					if (!cmd::byId(str_replace('#', '', $cmd_id))) {
 						$return[] = array(
-							'detail' => $eqLogic->getHumanName(),
 							'detail' => '<a href="/index.php?v=d&m='.$eqLogic->getEqType_name().'&p='.$eqLogic->getEqType_name().'&id='.$eqLogic->getId().'">'.$eqLogic->getHumanName().'</a>',
 							'help' => __('Action', __FILE__),
 							'who' => '#' . $cmd_id . '#'
