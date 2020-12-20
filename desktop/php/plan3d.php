@@ -33,13 +33,13 @@ if (is_object($plan3dHeader)) {
 	</div>
 	<div class="col-lg-2 bs-sidebar" id="div_colMenu">
 		<div id="div_btEdit" style="display: none;">
-			<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure"><i class="fas fa-cogs"></i></a>
-			<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd"><i class="fas fa-plus"></i></a>
-			<a class="btn btn-default btn-xs" id="bt_showAllObject"><i class="fas fa-eye"></i></a>
+			<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure" title="{{Configuration du design 3D}}"><i class="fas fa-cogs"></i></a>
+			<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd" title="{{Créer un nouveau design 3D}}"><i class="fas fa-plus"></i></a>
+			<a class="btn btn-default btn-xs" id="bt_showAllObject" title="{{Afficher tous les objets du design 3D}}"><i class="fas fa-eye"></i></a>
 		</div>
 		<legend>{{Informations}}
-			<a class="btn btn-default btn-xs pull-right" id="bt_editMode"><i class="fas fa-pencil-alt"></i></a>
-			<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen"><i class="fas fa-desktop"></i></a>
+			<a class="btn btn-default btn-xs pull-right" id="bt_editMode" title="{{Edition}}"><i class="fas fa-pencil-alt"></i></a>
+			<a class="btn btn-default btn-xs pull-right" id="bt_plan3dHeaderFullScreen" title="{{Plein écran}}"><i class="fas fa-desktop"></i></a>
 		</legend>
 
 		<ul id="ul_plan3d" class="nav nav-list bs-sidenav">
