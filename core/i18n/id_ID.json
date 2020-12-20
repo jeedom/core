@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Impossible de trouver le design 3D": "",
         "Général": "Umum",
         "Composants": "",
         "Supprimer": "Menghapus",
@@ -952,10 +953,10 @@
         "Code d'accès": "Kode akses",
         "Icône": "Icon",
         "Choisir": "Memilih",
-        "Model 3D": "",
+        "Modèle 3D": "",
         "Envoyer": "Kirim",
         "Couleur du fond": "",
-        "Puissance eclairage général (0.4 defaut)": "",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "",
         "Nom object": "",
         "Type": "Jenis",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Informations": "Informasi"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "Informasi",
+        "Edition": "Edisi",
+        "Plein écran": "Layar penuh"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigasi",
@@ -2457,6 +2463,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Konfigurasi peta 3D",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "Konfigurasi \\ 's objek"
     },
     "desktop\/js\/view.js": {

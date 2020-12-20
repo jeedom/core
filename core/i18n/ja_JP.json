@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Impossible de trouver le design 3D": "",
         "Général": "コモン",
         "Composants": "コンポーネント",
         "Supprimer": "取り除きます",
@@ -952,10 +953,10 @@
         "Code d'accès": "アクセスコード",
         "Icône": "アイコン",
         "Choisir": "選択",
-        "Model 3D": "3Dモデル",
+        "Modèle 3D": "",
         "Envoyer": "送ります",
         "Couleur du fond": "背景色",
-        "Puissance eclairage général (0.4 defaut)": "一般照明パワー（デフォルトは0.4）",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "",
         "Nom object": "名前オブジェクト",
         "Type": "タイプ",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Informations": "情報"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "情報",
+        "Edition": "版",
+        "Plein écran": "全画面"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "トグルナビゲーション",
@@ -2457,6 +2463,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3Dプラン構成",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "オブジェクトの構成"
     },
     "desktop\/js\/view.js": {

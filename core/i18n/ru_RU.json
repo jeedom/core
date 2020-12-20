@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Impossible de trouver le design 3D": "",
         "Général": "Главная",
         "Composants": "компоненты",
         "Supprimer": "удаление",
@@ -952,10 +953,10 @@
         "Code d'accès": "Код доступа",
         "Icône": "Иконка",
         "Choisir": "Выбрать",
-        "Model 3D": "3D модель",
+        "Modèle 3D": "",
         "Envoyer": "Отправить",
         "Couleur du fond": "Цвет фона",
-        "Puissance eclairage général (0.4 defaut)": "Общая мощность освещения (0,4 по умолчанию)",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "Идентификатор",
         "Nom object": "Наименование объекта",
         "Type": "Тип",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Informations": "Информация"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "Информация",
+        "Edition": "издание",
+        "Plein écran": "Полноэкранный режим"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Включить\/выключить навигацию",
@@ -2457,6 +2463,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Настройка 3D-карты",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "Объект конфигурации \\ «s"
     },
     "desktop\/js\/view.js": {
