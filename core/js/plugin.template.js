@@ -418,7 +418,9 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
 })
 
 $('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open')
+  var eqName = $('input.eqLogicAttr[data-l1key="name"]')
+  eqName = (eqName.length ? ' : '+eqName.val() : '')
+  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"+eqName}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open')
 });
 
 $('#in_searchEqlogic').off('keyup').keyup(function() {
@@ -496,7 +498,9 @@ $('#div_pageContainer').on('dblclick', '.cmd', function() {
 })
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=configure]', function() {
-  $('#md_modal').dialog({title: "{{Configuration commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open')
+  var eqName = $('input.eqLogicAttr[data-l1key="name"]')
+  eqName = (eqName.length ? ' : '+eqName.val() : '')
+  $('#md_modal').dialog({title: "{{Configuration commande}}"+eqName}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-cmd_id')).dialog('open')
 })
 
 if (is_numeric(getUrlVars('id'))) {

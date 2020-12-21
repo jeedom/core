@@ -684,11 +684,15 @@ $('#bt_eqLogicConfigureRemove').on('click',function() {
 })
 
 $('.bt_advanceCmdConfigurationOnEqLogicConfiguration').off('click').on('click', function() {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+  var eqName = $('input.eqLogicAttr[data-l1key="name"]')
+  eqName = (eqName.length ? ' : '+eqName.val() : '')
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"+eqName}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
 })
 
 $('.advanceCmdConfigurationCmdConfigure').off('dblclick').on('dblclick', function() {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+  var eqName = $('input.eqLogicAttr[data-l1key="name"]')
+  eqName = (eqName.length ? ' : '+eqName.val() : '')
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"+eqName}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
 })
 
 $('#bt_eqLogicConfigureLogRealTime').off('click').on('click', function() {
