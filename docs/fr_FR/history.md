@@ -1,7 +1,7 @@
 # Historique
 **Analyse → Historique**
 
-Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d’historiser une courbe de température, de consommation,  les ouvertures d’une porte, etc.​
+Partie importante dans un logiciel : la partie historisation, véritable mémoire de celui-ci. Il est possible dans Jeedom d’historiser n’importe quelle commande de type information (binaire ou numérique). Cela vous permettra donc par exemple d’historiser une courbe de température, de consommation, les ouvertures d’une porte, etc.​
 
 ![Historique](./images/history.gif)
 
@@ -70,7 +70,7 @@ La page d’historique donne accès à quelques options supplémentaires
 
 #### Historique calculé
 
-Permet d’afficher une courbe en fonction d’un calcul sur plusieurs commande (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir documentation PHP pour certaines fonctions).
+Permet d’afficher une courbe en fonction d’un calcul sur plusieurs commandes (vous pouvez à peu prêt tout faire, +-/\* valeur absolue…​ voir documentation PHP pour certaines fonctions).
 Ex :
 abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de vie\]\[Hygrométrie\]\[Température\]*)
 

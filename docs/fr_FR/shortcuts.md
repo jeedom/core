@@ -6,7 +6,7 @@ A l'ouverture d'une page (Dashboard, Scénarios, etc) le focus est sur le champ 
 
 - Clic sur l'horloge (barre de menu) : Ouvre la Timeline.
 - Clic sur le nom du Jeedom (barre de menu)  : Ouvre **Réglages → Système → Configuration**.
-- Clic sur le ?  (barre de menu)  : Ouvre l'aide sur le page en cours.
+- Clic sur le ?  (barre de menu)  : Ouvre l'aide sur la page en cours.
 - Echap sur un champ de recherche : Vide le champ de recherche et annule celle-ci.
 
 ### Dashboard
@@ -62,7 +62,7 @@ Sur un scénario :
 - Ctrl Clic sur icône *Copier ce bloc* : Couper ce bloc.
 - Ctrl Clic sur icône *Coller un bloc* : Remplacer ce bloc.
 - Ctrl Clic sur icône *Supprimer ce bloc* : Supprimer le bloc sans confirmation.
-- Ctrl Clic sur icône *Masquer ce bloc* : Masque ou affiche tout les blocs.
+- Ctrl Clic sur icône *Masquer ce bloc* : Masque ou affiche tous les blocs.
 
 Dans un bloc Code :
 - Ctrl F : Rechercher dans le code.
