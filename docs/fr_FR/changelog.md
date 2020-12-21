@@ -4,7 +4,7 @@
 
 - **Synthèse** : Possibilité de paramétrage des objets pour aller vers un *design* ou une *vue* depuis la synthèse.
 - **Analyse / Historique** : Possibilité de comparer un historique sur une période donnée.
-- **Analyse / Equipements** : Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou équipement concerné.
+- **Analyse / Equipements** : Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné.
 - **Analyse / Logs** : Numérotation des lignes des logs. Possibilité d'afficher le log brut.
 - **Logs** : Coloration des logs en fonction de certains événements. Possibilité d'afficher le log brut.
 - **Résumés** : Possibilité de définir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc).
