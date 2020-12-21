@@ -129,7 +129,7 @@ class jeeObject {
 	public static function getUISelectList($_none=true) {
 		$allObject = self::buildTree(null, false);
 		$options = '';
-		if ($_none) $options .= '<option value="">'.__('Aucun', __FILE__).'</option>';
+		if ($_none) $options .= '<option value="-1">'.__('Aucun', __FILE__).'</option>';
 		foreach ($allObject as $object) {
 			$decay = $object->getConfiguration('parentNumber');
 			$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
