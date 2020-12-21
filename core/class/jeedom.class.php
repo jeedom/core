@@ -1089,8 +1089,11 @@ class jeedom {
 			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600) || strtotime('now') < strtotime(config::byKey('update::lastCheck')))) {
 				update::checkAllUpdate();
 				$updates = update::byStatus('update');
-				if (count($updates) > 0) {
-					message::add('update', __('De nouvelles mises à jour sont disponibles', __FILE__), '', 'newUpdate');
+				foreach ($updates as $update) {
+					if ($update->getConfiguration('doNotUpdate', 0) == 0) {
+						message::add('update', __('De nouvelles mises à jour sont disponibles', __FILE__), '', 'newUpdate');
+						break;
+					}
 				}
 			}
 		} catch (Exception $e) {
