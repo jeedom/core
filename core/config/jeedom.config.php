@@ -297,6 +297,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'MEDIA_PREVIOUS' => array('name' => __('Précedent',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action'),
 		'MEDIA_ON' => array('name' => __('On',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
 		'MEDIA_OFF' => array('name' => __('On',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'MEDIA_MUTE' => array('name' => __('Muet',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'MEDIA_UNMUTE' => array('name' => __('Non Muet',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
 		'GENERIC_INFO' => array('name' => __(' Générique',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'Info'),
 		'GENERIC_ACTION' => array('name' => __(' Générique',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'Action'),
 		'FAN_SPEED' => array('name' => __('Vitesse ventilateur',__FILE__), 'family' => __('Ventilateur',__FILE__), 'type' => 'Action', 'noapp' => true),
