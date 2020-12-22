@@ -84,12 +84,12 @@ class system {
 	
 	public static function getCmdSudo() {
 		if(!class_exists('jeedom')){
-			return 'sudo -s ';
+			return 'sudo ';
 		}
 		if (!jeedom::isCapable('sudo')) {
 			return '';
 		}
-		return 'sudo -s ';
+		return 'sudo ';
 	}
 	
 	public static function fuserk($_port, $_protocol = 'tcp') {
