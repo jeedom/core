@@ -38,6 +38,7 @@ class com_http {
 	private $noReportError = false;
 	private $userAgent = '';
 	private $CURLOPT_HTTPAUTH = '';
+	private $CURLOPT = array();
 	
 	/*     * ********************Fonctions statiques********************* */
 	
@@ -100,6 +101,11 @@ class com_http {
 			}
 			if ($this->getUserAgent() != '') {
 				curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
+			}
+			if(count($this->getCURLOPT()) > 0){
+				foreach ($this->getCURLOPT() as $key => $value) {
+					curl_setopt($ch, $key,$value);
+				}
 			}
 			$response = curl_exec($ch);
 			$nbRetry++;
@@ -257,6 +263,15 @@ class com_http {
 	
 	public function setDelete($delete = array()) {
 		$this->delete = $delete;
+		return $this;
+	}
+	
+	public function getCURLOPT() {
+		return $this->CURLOPT;
+	}
+	
+	public function setCURLOPT($CURLOPT) {
+		$this->CURLOPT = $CURLOPTN;
 		return $this;
 	}
 	

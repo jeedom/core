@@ -9,7 +9,7 @@ A página Preferências permite configurar determinados comportamentos Jeedom es
 
 Define certos comportamentos da interface
 
-- **Página padrão** : Página a ser exibida por padrão para exibição ao conectar-se a computadores ou dispositivos móveis.
+- **Página padrão** : Página a ser exibida por padrão ao conectar ao desktop ou celular.
 - **Objeto padrão** : Objeto a ser exibido por padrão na chegada ao Painel / dispositivo móvel.
 
 - **Modo de exibição padrão** : Exibir para exibir por padrão na chegada ao painel / dispositivo móvel.
@@ -27,9 +27,9 @@ Define certos comportamentos da interface
 
 ## Guia Segurança
 
-- **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *google authentificator*). Observe que a autenticação dupla só será solicitada para conexões externas.Para conexões locais, o código não será solicitado.
+- **Autenticação em duas etapas** : permite configurar a autenticação em 2 etapas (como lembrete, é um código que muda a cada X segundos que é exibido em um aplicativo móvel, digite *google authentificator*). Observe que a autenticação dupla só será solicitada para conexões externas. Para conexões locais, o código não será solicitado.
 
-  **IMPORTANTE** se durante a configuração da autenticação dupla houver um erro, verifique se o Jeedom (consulte a página de integridade) e o telefone estão ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
+  **IMPORTANTE** se durante a configuração da autenticação dupla tiver um erro, é necessário verificar se o Jeedom (veja na página de saúde) e o seu telefone estão bem ao mesmo tempo (1 min de diferença é suficiente para que não funcione).
 
 - **Senha** : Permite alterar sua senha (não esqueça de redigitá-la abaixo).
 
@@ -37,9 +37,9 @@ Define certos comportamentos da interface
 
 ### Sessões ativas
 
-Aqui você tem a lista de suas sessões atualmente conectadas, seu ID, seu IP e a data da última comunicação. Ao clicar em "Desconectar", isso desconectará o usuário. Atenção, se estiver em um dispositivo registrado, isso também excluirá a gravação.
+Aqui você tem a lista de suas sessões atualmente conectadas, seu ID, seu IP e a data da última comunicação. Ao clicar em "Desconectar", isso desconectará o usuário. Tenha cuidado se estiver em um dispositivo registrado, isso também excluirá o registro.
 
-### Dispositivo registrado
+### Dispositivos registrados
 
 Aqui você encontra a lista de todos os dispositivos registrados (que se conectam sem autenticação) ao seu Jeedom, bem como a data do último uso.
 Aqui você pode excluir o registro de um dispositivo. Atenção, ele não o desconecta, mas apenas impede sua reconexão automática.

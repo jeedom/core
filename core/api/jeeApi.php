@@ -242,7 +242,7 @@ if (init('type') != '') {
 			if (init('value') == '') {
 				$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim(init('name')));
 				if (is_object($dataStore)) {
-					echo $dataStore->getValue($_default);
+					echo $dataStore->getValue();
 				}
 			} else {
 				$dataStore = new dataStore();

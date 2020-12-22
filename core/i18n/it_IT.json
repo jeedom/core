@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Impossible de trouver le design 3D": "",
         "Général": "Principale",
         "Composants": "",
         "Supprimer": "Rimuovere",
@@ -952,10 +953,10 @@
         "Code d'accès": "Codice d\\'accesso",
         "Icône": "Icona",
         "Choisir": "Scegli",
-        "Model 3D": "Modello 3D",
+        "Modèle 3D": "",
         "Envoyer": "Invia",
         "Couleur du fond": "",
-        "Puissance eclairage général (0.4 defaut)": "",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "",
         "Nom object": "",
         "Type": "Tipo",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Informations": "Informazioni"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "Informazioni",
+        "Edition": "Edizione",
+        "Plein écran": "Schermo intero"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Commuta naviazione",
@@ -2457,6 +2463,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configurazione di una mappa 3D",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "Oggetto Configuration \\ 's"
     },
     "desktop\/js\/view.js": {

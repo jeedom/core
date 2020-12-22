@@ -71,4 +71,4 @@ Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Si
 > - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
 > - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.
 > - Klicken Sie auf ? (Menüleiste) : Öffnet die Hilfe auf der aktuellen Seite.
-> - Flucht auf ein Forschungsfeld : Löschen Sie das Feld und brechen Sie diese Suche ab .
+> - Flucht auf ein Forschungsfeld : Löschen Sie das Feld und brechen Sie diese Suche ab.

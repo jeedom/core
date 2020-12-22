@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Impossible de trouver le design 3D": "Could not find the 3D design",
         "Général": "Main",
         "Composants": "Components",
         "Supprimer": "Delete",
@@ -952,10 +953,10 @@
         "Code d'accès": "Access code",
         "Icône": "Icon",
         "Choisir": "Select",
-        "Model 3D": "3D model",
+        "Modèle 3D": "3d model",
         "Envoyer": "Send",
         "Couleur du fond": "Background color",
-        "Puissance eclairage général (0.4 defaut)": "General lighting power (0.4 default)",
+        "Puissance éclairage général (Défaut : 0.4)": "General lighting power (Default: 0.4)",
         "ID": "ID",
         "Nom object": "Object name",
         "Type": "Type",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Informations": "Information"
+        "Configuration du design 3D": "3D design setup",
+        "Créer un nouveau design 3D": "Create a new 3D design",
+        "Afficher tous les objets du design 3D": "Show all 3D design objects",
+        "Informations": "Information",
+        "Edition": "Editing",
+        "Plein écran": "Full screen"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -2457,6 +2463,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3D plan configuration",
+        "Nom du design 3D ?": "Name of the 3D design?",
         "Configuration de l\\'objet": "Object configuration"
     },
     "desktop\/js\/view.js": {

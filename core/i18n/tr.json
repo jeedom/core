@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Impossible de trouver le design 3D": "",
         "Général": "Genel",
         "Composants": "",
         "Supprimer": "Sil",
@@ -952,10 +953,10 @@
         "Code d'accès": "Giriş kodu",
         "Icône": "Icon",
         "Choisir": "Seç",
-        "Model 3D": "3B Model",
+        "Modèle 3D": "",
         "Envoyer": "Gönder",
         "Couleur du fond": "",
-        "Puissance eclairage général (0.4 defaut)": "",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "Kimlik",
         "Nom object": "",
         "Type": "Çeşit",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Informations": "Bilgiler"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "Bilgiler",
+        "Edition": "Düzenleme",
+        "Plein écran": "Tam ekran"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle tarama",
@@ -2457,6 +2463,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3D harita Yapılandırılması",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "Yapılandırma \\ 'in nesne"
     },
     "desktop\/js\/view.js": {
