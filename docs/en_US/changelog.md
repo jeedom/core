@@ -2,6 +2,12 @@
 
 ## 4.1.0
 
+### Prerequisites
+
+- Debian 10 Buster
+
+### News / Improvements
+
 - **Synthesis** : New page **Home → Synthesis** offering a global visual summary of the parts, with quick access to summaries.
 - **Research** : Add of a search engine in **Tools → Search**.
 - **Dashboard** : Edit mode now inserting the moved tile.
@@ -66,16 +72,20 @@
 - New ModalDisplay page :
 	- Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
 	- Tools menu : Ctrl Click / Click Center on *Notes*, *Expression tester*, *Variables*, *Research* : Open the window in a new tab, in full screen.
-- Code Block, File Editor, Advanced Customization : Dark theme adaptation.<br/><br/>
-- **WebApp** : Integration of the new Synthesis page.
-- **WebApp** : Scenarios page, a click on the scenario title displays its log.
-- **WebApp** : We can now select / copy part of a log.
-- **WebApp** : On the search in a log, addition of an x button to cancel the search.
-- **WebApp** : Persistence of the theme toggle (8h).
-- **WebApp** : On a design, a click with three fingers returns to the home page.
-- **WebApp** : Display of scenarios by group.
-- **WebApp** : New monospace type font for logs.
-- **WebApp** : Many bug-fix (UI, portrait / landscape iOS, etc.).<br/><br/>
+- Code Block, File Editor, Advanced Customization : Dark theme adaptation.
+
+### WebApp
+- Integration of the new Synthesis page.
+- Scenarios page, a click on the scenario title displays its log.
+- We can now select / copy part of a log.
+- On the search in a log, addition of an x button to cancel the search.
+- Persistence of the theme toggle (8h).
+- On a design, a click with three fingers returns to the home page.
+- Display of scenarios by group.
+- New monospace type font for logs.
+- Many bug-fix (UI, portrait / landscape iOS, etc.).
+
+### Autres
 - **Documentation** : Adaptations in line with v4 and v4.1.
 - **Documentation** : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - **Lib** : Update HighStock v7.1.2 to v8.2.0.
@@ -86,8 +96,8 @@
 - Securing API calls.
 - Bug fixes.
 - Numerous desktop / mobile performance optimizations.
-<br/><br/>
-- **Changes**
+
+### Changements
 - Function **scenario-> getHumanName()** of the php scenario class no longer returns *[object] [group] [name]* But *[group] [object] [name]*.
 - Function **scenario-> byString()** must now be called with the structure *[group] [object] [name]*.
 - Functions **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** have been replaced by **network-> getInterfacesInfo()**

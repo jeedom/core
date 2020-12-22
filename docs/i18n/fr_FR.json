@@ -741,6 +741,9 @@
     "changelog.md": {
         "Changelog Jeedom V4.1": "Changelog Jeedom V4.1",
         "4.1.0": "4.1.0",
+        "Pré-requis": "Pré-requis",
+        "Debian 10 Buster": "Debian 10 Buster",
+        "Nouveautés \/ Améliorations": "Nouveautés \/ Améliorations",
         "Synthèse": "Synthèse",
         "Accueil → Synthèse": "Accueil → Synthèse",
         "Ajout d'une nouvelle page": "Ajout d'une nouvelle page",
@@ -883,6 +886,7 @@
         "Sur un design, un click avec trois doigts permet de revenir à l'accueil": "Sur un design, un click avec trois doigts permet de revenir à l'accueil",
         "Affichage des scénarios par groupe": "Affichage des scénarios par groupe",
         "Nombreux bug-fix (UI, portrait\/landscape iOS, etc": "Nombreux bug-fix (UI, portrait\/landscape iOS, etc",
+        "Autres": "Autres",
         "Documentation": "Documentation",
         "Adaptations en adéquation avec la v4 et v4.1": "Adaptations en adéquation avec la v4 et v4.1",
         "Raccourcis clavier \/ souris": "Raccourcis clavier \/ souris",

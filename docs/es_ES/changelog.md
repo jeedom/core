@@ -2,6 +2,12 @@
 
 ## 4.1.0
 
+### Requisitos previos
+
+- Debian 10 Buster
+
+### Noticias / Mejoras
+
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** Ofrece un resumen visual global de las partes, con acceso rápido a resúmenes.
 - **Buscar** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
 - **Salpicadero** : El modo de edición ahora inserta el mosaico movido.
@@ -66,16 +72,20 @@
 - Nueva página ModalDisplay :
 	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
 	- Menú de herramientas : Ctrl Click / Click Center en *Notas*, *Probador de expresión*, *Las variables*, *Buscar* : Abra la ventana en una pestaña nueva, en pantalla completa.
-- Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.<br/><br/>
-- **Aplicación web** : Integración de la nueva página de resumen.
-- **Aplicación web** : Página de escenarios, un clic en el título del escenario muestra su registro.
-- **Aplicación web** : Ahora podemos seleccionar / copiar parte de un registro.
-- **Aplicación web** : En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
-- **Aplicación web** : Persistencia del cambio de tema (8h).
-- **Aplicación web** : En un diseño, un clic con tres dedos vuelve a la página de inicio.
-- **Aplicación web** : Visualización de escenarios por grupo.
-- **Aplicación web** : Nueva fuente tipo monoespacio para registros.
-- **Aplicación web** : Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).<br/><br/>
+- Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
+
+### WebApp
+- Integración de la nueva página de resumen.
+- Página de escenarios, un clic en el título del escenario muestra su registro.
+- Ahora podemos seleccionar / copiar parte de un registro.
+- En la búsqueda en un registro, agregue un botón x para cancelar la búsqueda.
+- Persistencia del cambio de tema (8h).
+- En un diseño, un clic con tres dedos vuelve a la página de inicio.
+- Visualización de escenarios por grupo.
+- Nueva fuente tipo monoespacio para registros.
+- Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).
+
+### Autres
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - **Lib** : Actualizar HighStock v7.1.2 a v8.2.0.
@@ -86,8 +96,8 @@
 - Asegurar las llamadas a la API.
 - Correcciones de errores.
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
-<br/><br/>
-- **Cambios**
+
+### Changements
 - La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* Pero *[grupo] [objeto] [nombre]*.
 - La funcion **escenario-> byString()** ahora debe llamarse con la estructura *[grupo] [objeto] [nombre]*.
 - Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**

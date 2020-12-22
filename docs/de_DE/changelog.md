@@ -2,6 +2,12 @@
 
 ## 4.1.0
 
+### Voraussetzungen
+
+- Debian 10 Buster
+
+### Neuigkeiten / Verbesserungen
+
 - **Synthese** : Neue Seite hinzufügen **Home → Zusammenfassung** Bietet eine globale visuelle Zusammenfassung der Teile mit schnellem Zugriff auf Zusammenfassungen.
 - **Suche** : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
 - **Armaturenbrett** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
@@ -66,16 +72,20 @@
 - Neue ModalDisplay-Seite :
 	- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
 	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Hinweis*, *Expressionstester*, *Variablen*, *Suche* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
-- Codeblock, Datei-Editor, Erweiterte Anpassung : Dunkle Themenanpassung.<br/><br/>
-- **WebApp** : Integration der neuen Übersichtsseite.
-- **WebApp** : Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
-- **WebApp** : Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
-- **WebApp** : Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
-- **WebApp** : Persistenz des Themenumschalters (8h).
-- **WebApp** : Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
-- **WebApp** : Anzeige von Szenarien nach Gruppe.
-- **WebApp** : Neue Monospace-Schriftart für Protokolle.
-- **WebApp** : Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).<br/><br/>
+- Codeblock, Datei-Editor, Erweiterte Anpassung : Dunkle Themenanpassung.
+
+### WebApp
+- Integration der neuen Übersichtsseite.
+- Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
+- Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
+- Fügen Sie bei der Suche in einem Protokoll eine x-Schaltfläche hinzu, um die Suche abzubrechen.
+- Persistenz des Themenumschalters (8h).
+- Bei einem Design kehrt ein Klick mit drei Fingern zur Startseite zurück.
+- Anzeige von Szenarien nach Gruppe.
+- Neue Monospace-Schriftart für Protokolle.
+- Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).
+
+### Autres
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
@@ -86,8 +96,8 @@
 - API-Aufrufe sichern.
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
-<br/><br/>
-- **Änderungen**
+
+### Changements
 - Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* Aber *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
