@@ -2,6 +2,12 @@
 
 ## 4.1.0
 
+### Pré-requis
+
+- Debian 10 Buster
+
+### Nouveautés / Améliorations
+
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces, avec accès rapide aux résumés.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
 - **Dashboard** : Mode Édition maintenant en insertion de la tuile déplacée.
@@ -66,16 +72,20 @@
 - Nouvelle page ModalDisplay :
 	- Menu Analyse : Ctrl Clic / Clic Centre sur *Temps réel* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables*, *Recherche* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
-- Bloc code, Éditeur de fichier, Personnalisation avancée : Adaptation thème Dark.<br/><br/>
-- **WebApp** : Intégration de la nouvelle page Synthèse.
-- **WebApp** : Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
-- **WebApp** : On peut maintenant sélectionner / copier une partie d'un log.
-- **WebApp** : Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
-- **WebApp** : Persistance de la bascule de thème (8h).
-- **WebApp** : Sur un design, un click avec trois doigts permet de revenir à l'accueil.
-- **WebApp** : Affichage des scénarios par groupe.
-- **WebApp** : Nouvelle police de type monospace pour les logs.
-- **WebApp** : Nombreux bug-fix (UI, portrait/landscape iOS, etc.).<br/><br/>
+- Bloc code, Éditeur de fichier, Personnalisation avancée : Adaptation thème Dark.
+
+### WebApp
+- Intégration de la nouvelle page Synthèse.
+- Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
+- On peut maintenant sélectionner / copier une partie d'un log.
+- Sur la recherche dans un log, ajout d'un bouton x pour annuler la recherche.
+- Persistance de la bascule de thème (8h).
+- Sur un design, un click avec trois doigts permet de revenir à l'accueil.
+- Affichage des scénarios par groupe.
+- Nouvelle police de type monospace pour les logs.
+- Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
+
+### Autres
 - **Documentation** : Adaptations en adéquation avec la v4 et v4.1.
 - **Documentation** : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - **Lib** : Update HighStock v7.1.2 vers v8.2.0.
@@ -86,8 +96,8 @@
 - Sécurisation des appels API.
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
-<br/><br/>
-- **Changements**
+
+### Changements
 - La fonction **scenario->getHumanName()** de la class php scenario ne renvoit plus *[object][group][name]* mais *[group][object][name]*.
 - La fonction **scenario->byString()** doit maintenant être appellée avec la structure *[group][object][name]*.
 - Les fonctions **network->getInterfaceIp() network->getInterfaceMac() network->getInterfaces()** ont été remplacées par **network->getInterfacesInfo()**
