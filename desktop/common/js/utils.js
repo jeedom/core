@@ -814,7 +814,7 @@ function initReportMode() {
 }
 
 function initTableSorter(filter) {
-  var widgets = ['uitheme', 'zebra', 'resizable']
+  var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
   }
@@ -825,7 +825,6 @@ function initTableSorter(filter) {
     dateFormat : "yyyy-mm-dd",
     theme: "bootstrap",
     widthFixed: false,
-    headerTemplate: '{content} ',
     widgets: widgets,
     ignoreCase: true,
     delayInit: false,
@@ -835,15 +834,13 @@ function initTableSorter(filter) {
     widgetOptions: {
       filter_ignoreCase: true,
       resizable: true,
-      stickyHeaders_offset: $('header.navbar-fixed-top').height(),
-      zebra: ["ui-widget-content even", "ui-state-default odd"],
+      stickyHeaders_offset: $('header.navbar-fixed-top').height()
     },
     cssIcon: 'tablesorter-icon',
-    initialized : function(table){
+    initialized : function(table) {
       $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
     }
-  })
-  $('table.tablesorter').css('width','')
+  }).css('width','')
 }
 
 function initHelp() {

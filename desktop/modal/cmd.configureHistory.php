@@ -14,7 +14,6 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -67,7 +66,7 @@ foreach ($cmds as $cmd) {
 
       //plugin:
       $tr .= '<td>';
-      if(is_object($cmd->getEqLogic())){
+      if (is_object($cmd->getEqLogic())) {
         $tr .= '<span class="cmdAttr" data-l1key="plugins">'.$cmd->getEqLogic()->getEqType_name().'</span>';
       }
       $tr .= '</td>';
@@ -138,19 +137,17 @@ foreach ($cmds as $cmd) {
       $tr .= '</td>';
       $tr .= '</tr>';
     }
-    echo $tr;
+    print $tr;
     ?>
   </tbody>
 </table>
 
 <script>
-
-setTableParser()
 initTableSorter()
+
 var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
-$tableCmdConfigureHistory.trigger("update")
-$tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '100px', '115px', '95px', '160px', '90px', '120px', '130px', '95px']
-$tableCmdConfigureHistory.trigger('applyWidgets').trigger('resizableReset')
+$tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '95px', '160px', '90px', '120px', '130px', '95px']
+$tableCmdConfigureHistory.trigger('resizableReset')
 $tableCmdConfigureHistory.width('100%')
 
 $('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
@@ -225,9 +222,9 @@ function setTableParser() {
 }
 
 $(function() {
-  jeedom.timeline.autocompleteFolder()
+  setTableParser()
   initTooltips($tableCmdConfigureHistory)
-
+  jeedom.timeline.autocompleteFolder()
   setTimeout(function() {
     $tableCmdConfigureHistory.closest('.ui-dialog').resize()
   }, 500)
