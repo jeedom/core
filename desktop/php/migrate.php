@@ -10,10 +10,11 @@ if (!isConnect('admin')) {
 		<span class="titleStep animated slideInLeft"><i class="fas fa-hdd"></i> {{Etape 1}}</span>
 		<div id="contenuWithStepOne" class="animated zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepUn.jpg" />
+				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepUn.jpg" />
 			</div>
 			<div id="contenuText" class="debut">
 				<span id="contenuTextSpan">{{Insérer une clé USB de plus de 8Go}}<br /> {{dans votre Jeedom et cliquer sur}} <i class="fas fa-arrow-circle-right"></i>.</span>
+				<span>Attention vous devez etre en local pour lancer cette procedure (ne pas lancer via les dns ou lien exterieur)</span>
 				<div id="nextDiv">
 					<i class="next fas fa-arrow-circle-right" id="bt_next"></i>
 				</div>
@@ -25,7 +26,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 2}}</span>
 		<div id="contenuWithStepTwo" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepDeux.jpg" />
+				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepDeux.jpg" />
 			</div>
 			<div id="contenuText" class="backup">
 				<span id="contenuTextSpan" class="TextBackup">{{Backup lancé merci de patienter...}}</span>
@@ -40,7 +41,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 3}}</span>
 		<div id="contenuWithStepTree" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
+				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepTrois.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextImage">{{Téléchargement de l'image Jeedom.}}</span>
@@ -54,7 +55,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
 		<div id="contenuWithStepFor" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepQuatre.jpg" />
+				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepQuatre.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextMigrate">{{Migration de votre Jeedom}}</span>
@@ -69,7 +70,7 @@ if (!isConnect('admin')) {
 		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 5}}</span>
 		<div id="contenuWithStepFive" class="zoomIn contenuWith">
 			<div id="contenuImage">
-				<img id="contenuImageSrc" src="/core/img/imageMaj_stepTrois.jpg" />
+				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepTrois.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
 				<span id="contenuTextSpan" class="TextFinalisation">{{Finalisation}}</span>
