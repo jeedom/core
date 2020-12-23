@@ -143,7 +143,7 @@ class message {
 		if ($this->getMessage() == '') {
 			return;
 		}
-		if ($this->getLogicalId() == '') {
+		if ($this->getLogicalId() == '' || $this->getLogicalId() == 'newUpdate') {
 			$this->setLogicalId($this->getPlugin() . '::' . config::genKey());
 			$values = array(
 				'message' => $this->getMessage(),
