@@ -10,7 +10,7 @@
 
   <script>
     $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
-    jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.update['#id#'] = function(_options) {
       $(".cmd[data-cmd_id=#id#] .slider").slider({
         orientation: "vertical",
         min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
@@ -20,15 +20,21 @@
         animate: false,
         slide: function(event, ui) {
           $(".value#uid#").show()
-          $(".value#uid#").html(ui.value);
+          $(".value#uid#").html(ui.value)
         }
       })
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#'})
 
     $(".cmd[data-cmd_uid=#uid#] .slider").on('slidestop', function (event,ui) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}});
-      $(".value#uid#").hide();
-    });
+      jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
+      $(".value#uid#").hide()
+    })
+
+    if ('#color#' != '') {
+      $('.cmd[data-cmd_id=#id#]').find('div.ui-slider-range').style('background-color', '#color#', 'important')
+      $('.cmd[data-cmd_id=#id#]').find('span.ui-slider-handle').style('background-color', '#color#', 'important')
+    }
+
   </script>
 </div>

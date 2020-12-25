@@ -34,5 +34,9 @@
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+
+    if ('#color#' != '') {
+      $('.cmd[data-cmd_id=#id#] .vgauge-value').css('background', '#color#')
+    }
   </script>
 </div>

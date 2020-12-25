@@ -23,7 +23,7 @@
 
       var width = ((position - minValue) * 100) / (maxValue - minValue)
       width = Math.round(parseFloat(width) * 10) / 10
-      
+
       var cmd = $('.cmd[data-cmd_id=#id#]')
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       cmd.find('.hgauge-value').width(width+'%')
@@ -31,5 +31,9 @@
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+
+    if ('#color#' != '') {
+      $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')
+    }
   </script>
 </div>

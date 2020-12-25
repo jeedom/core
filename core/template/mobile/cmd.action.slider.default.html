@@ -1,13 +1,23 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="default" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <div class="slider full-width-slider">
-    <input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#" data-highlight="true"/>
+    <input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#" data-highlight="true" data-role="none"/>
   </div>
   <script>
+    $('.cmd[data-cmd_id=#id#] input').slider({
+      create: function(event, ui) {
+        if ('#color#' != '') {
+          $(event.target.parentNode).find('div.ui-slider-bg').style('background-color', '#color#', 'important')
+          $(event.target.parentNode).find('a.ui-slider-handle').style('background-color', '#color#', 'important')
+        }
+      }
+    })
+
     $('.cmd[data-cmd_uid=#uid#]').on({
       'slidestop': function(event, ui) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
       }
     }, '.slider')
+
     jeedom.cmd.update['#id#'] = function(_options) {
       $(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value)
     }

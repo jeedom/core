@@ -2,6 +2,13 @@
 
 ## 4.2.0
 
+### Pré-requis
+
+- Debian 10 Buster
+- Php 7.3
+
+### Nouveautés / Améliorations
+
 - **Synthèse** : Possibilité de paramétrage des objets pour aller vers un *design* ou une *vue* depuis la synthèse.
 - **Analyse / Historique** : Possibilité de comparer un historique sur une période donnée.
 - **Analyse / Equipements** : Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné.
@@ -14,8 +21,9 @@
 - **Blocs Code** : (Editeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code (*code folding*). Raccourcis Ctrl+Y et Ctrl+I.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
-<br/><br/>
-#### Deprecated
+- **Widgets Core** : Les Widgets info numérique *default*, *horizontal* et *vertical* et action *binarySwitch* acceptent un paramètre **color** pour changer la couleur du bandeau de valeur.
+
+### Deprecated
 - Suppression de la lib jwerty pour du vanillaJS (gestion des raccourcis clavier). Conservée en v4.2 pour les plugins susceptibles de l'utiliser.
 
 

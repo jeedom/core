@@ -109,24 +109,21 @@ Mobile WebApp
   label.binarySwitch input {
     display: none;
   }
-  label.binarySwitch > input:checked + span.binarySwitch:before {
+  label.binarySwitch > input:checked + span.binarySwitch > span.binarySwitchHandle {
     transform: translateX(17px);
   }
   span.binarySwitch {
     border-radius: 1em;
   }
-  span.binarySwitch:before {
-    border-radius: 50%;
-  }
-  span.binarySwitch:before {
+  span.binarySwitchHandle {
     position: absolute;
-    content: "";
     height: 16px;
     width: 16px;
     left: 4px;
-    bottom: 1.8px;
+    bottom: 2px;
     background-color: var(--link-color);
     transition: .4s;
+    border-radius: 50%;
   }
   label.binarySwitch > input + span.binarySwitch {
     position: absolute;
@@ -144,7 +141,7 @@ Mobile WebApp
   [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
     background-color: var(--bt-success-color);
   }
-  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch input:checked + span.binarySwitch:before {
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch > span.binarySwitchHandle {
     background-color: var(--btnEq-default-color) !important;
   }
 

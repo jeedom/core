@@ -28,5 +28,10 @@
       jeedom.cmd.execute({id: '#id#', value: {slider: ui.value}})
       $(".value#uid#").hide()
     })
+
+    if ('#color#' != '') {
+      $('.cmd[data-cmd_id=#id#]').find('div.ui-slider-range').style('background-color', '#color#', 'important')
+      $('.cmd[data-cmd_id=#id#]').find('span.ui-slider-handle').style('background-color', '#color#', 'important')
+    }
   </script>
 </div>
