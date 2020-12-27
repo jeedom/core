@@ -11,7 +11,7 @@
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       var cmd_#id# = $('.cmd[data-cmd_id=#id#]');
-      var directions_#id# = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
+      let directions#id# = ['{{Nord}}', '{{Nord-Est}}', '{{Est}}', '{{Sud-Est}}', '{{Sud}}', '{{Sud-Ouest}}', '{{Ouest}}', '{{Nord-Ouest}}']
       var windDir_#id# = directions_#id#[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8];
       cmd_#id#.find('.widget-compass-needle').css('transform', 'rotate(' + _options.display_value +'deg)');
       cmd_#id#.find('.state').text(_options.display_value.toString()+'°')
