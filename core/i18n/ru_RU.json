@@ -4166,7 +4166,15 @@
         "Dernier lancement": "Последний запуск",
         "Min": "Мин",
         "Moyenne": "Средний",
-        "Max": "Макс"
+        "Max": "Макс",
+        "Nord": "",
+        "Nord-Est": "",
+        "Est": "является",
+        "Sud-Est": "",
+        "Sud": "",
+        "Sud-Ouest": "",
+        "Ouest": "",
+        "Nord-Ouest": ""
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Продолжительность"

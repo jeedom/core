@@ -4166,7 +4166,15 @@
         "Dernier lancement": "Peluncuran terakhir",
         "Min": "",
         "Moyenne": "Rata-rata",
-        "Max": ""
+        "Max": "",
+        "Nord": "",
+        "Nord-Est": "",
+        "Est": "Adalah",
+        "Sud-Est": "",
+        "Sud": "",
+        "Sud-Ouest": "",
+        "Ouest": "",
+        "Nord-Ouest": ""
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Lamanya"

@@ -4166,7 +4166,15 @@
         "Dernier lancement": "最後の打ち上げ",
         "Min": "低いです",
         "Moyenne": "平均",
-        "Max": "マックス"
+        "Max": "マックス",
+        "Nord": "",
+        "Nord-Est": "",
+        "Est": "あります",
+        "Sud-Est": "",
+        "Sud": "",
+        "Sud-Ouest": "",
+        "Ouest": "",
+        "Nord-Ouest": ""
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "期間"

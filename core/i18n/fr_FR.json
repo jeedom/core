@@ -4166,7 +4166,15 @@
         "Dernier lancement": "Dernier lancement",
         "Min": "Min",
         "Moyenne": "Moyenne",
-        "Max": "Max"
+        "Max": "Max",
+        "Nord": "Nord",
+        "Nord-Est": "Nord-Est",
+        "Est": "Est",
+        "Sud-Est": "Sud-Est",
+        "Sud": "Sud",
+        "Sud-Ouest": "Sud-Ouest",
+        "Ouest": "Ouest",
+        "Nord-Ouest": "Nord-Ouest"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Durée"

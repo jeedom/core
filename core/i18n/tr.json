@@ -4166,7 +4166,15 @@
         "Dernier lancement": "Son çalıştırma",
         "Min": "Minimum",
         "Moyenne": "Ortalama",
-        "Max": "Maximum"
+        "Max": "Maximum",
+        "Nord": "",
+        "Nord-Est": "",
+        "Est": "Olduğu",
+        "Sud-Est": "",
+        "Sud": "",
+        "Sud-Ouest": "",
+        "Ouest": "",
+        "Nord-Ouest": ""
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Süre"
