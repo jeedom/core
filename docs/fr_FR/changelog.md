@@ -21,10 +21,29 @@
 - **Blocs Code** : (Editeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code (*code folding*). Raccourcis Ctrl+Y et Ctrl+I.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
-- **Widgets Core** : Les Widgets info numérique *default*, *horizontal* et *vertical* et action *binarySwitch* acceptent un paramètre **color** pour changer la couleur du bandeau de valeur.
 
-### Deprecated
-- Suppression de la lib jwerty pour du vanillaJS (gestion des raccourcis clavier). Conservée en v4.2 pour les plugins susceptibles de l'utiliser.
+### Widgets Core
+
+Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Edition du Dashboard.
+
+De nombreux Widgets Core acceptent maintenant des paramètres optionnels de couleur. (slider horizontal et vertical, jauge, compass, rain, etc.).
+
+### Déprécié
+
+- Suppression de la lib jwerty pour du vanillaJS (gestion des raccourcis clavier). Conservée en v4.2 pour les plugins susceptibles de l'utiliser, elle sera supprimée en v4.3.
+
+### En cours de test / développement
+
+#### Coloration des logs et traduction
+
+- `\core\configjeedom.config.php` : $JEEDOM_SCLOG_TEXT reprend les valeurs colorées pour la traduction. Vérifiez les retours de log manquant et les incorporer si nécessaire.
+- Utilisé dans les class php `cmd` `scenario` `scenarioElement` `scenarioExpression` `scenarioSubElement`
+- Utilisé dans les appels ajax `scenario` et `log`
+
+#### Aide sur les template widget dashboard
+
+- Système de traduction qui actuellement ne scanne pas core/template/dashboard et /mobile :
+- > Scanner core/template/dashboard et tout mettre dans le i18n.json avec le path "core\/template\/widgets.html"
 
 
 
