@@ -523,17 +523,18 @@ p.state {
   float: right;
 }
 span.summaryMenu > span,
-span.objectSummaryContainer {
+#div_displayEquipement span.objectSummaryContainer {
   display: inline-flex;
   justify-content: center;
   padding: 4px;
 }
-.objectSummaryParent {
+#div_displayEquipement .objectSummaryParent,
+span.summaryMenu .objectSummaryParent {
   font-size: 16px;
   margin: 3px;
   display: inline-flex;
 }
-.objectSummaryParent > sup {
+#div_displayEquipement .objectSummaryParent > sup {
   font-size: 12px;
   margin-top: -5px;
   display: flex;

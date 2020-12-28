@@ -89,6 +89,7 @@ function createSummaryObserver() {
 }
 
 function updateSummary(_className) {
+  _className = _className.replace('objectSummaryContainer ', '')
   var parent = $('.'+_className).closest('.objectPreview')
   var pResume = parent.find('.resume')
   parent.find('.topPreview').find('.objectSummaryParent').remove()
