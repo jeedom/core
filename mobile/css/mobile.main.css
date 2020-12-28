@@ -522,14 +522,25 @@ p.state {
 .summaryMenu {
   float: right;
 }
-.objectSummaryParent {
-  font-size: 15px;
-  margin-right: 2px;
+span.summaryMenu > span,
+span.objectSummaryContainer {
+  display: inline-flex;
+  justify-content: center;
+  padding: 4px;
 }
-
+.objectSummaryParent {
+  font-size: 16px;
+  margin: 3px;
+  display: inline-flex;
+}
+.objectSummaryParent > sup {
+  font-size: 12px;
+  margin-top: -5px;
+  display: flex;
+}
 #bottompanel_objectList .objectSummaryParent,
 .ui-listview .objectSummaryParent {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 .li-splitter {
@@ -599,21 +610,23 @@ p.state {
   margin-top: -5px;
   padding: 4px 10px;
 }
-.ui-header.ui-bar-inherit #summaryglobalContainer {
+.ui-header.ui-bar-inherit #summaryglobalContainer,
+#div_displayEquipement .objectSummaryContainer {
   scrollbar-width: thin;
   position: relative;
-  right: 2px !important;
   max-height: 24px;
-  text-align: right !important;
+  text-align: center !important;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   margin: 0 8px;
   padding: 4px 0;
 }
-
+#div_displayEquipement .objectSummaryContainer {
+  width: 100vw;
+}
 .objectSummaryglobal .objectSummaryParent {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
 }
 

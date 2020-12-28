@@ -57,7 +57,7 @@ function initEquipment(_object_id) {
           }
           li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '">'
           li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name
-          li += ' <span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
+          li += ' <span class="summaryMenu"><span class="objectSummaryContainer objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
           summaries.push({object_id : objects[i].id})
         }
       }
@@ -176,7 +176,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
           objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
           div += '<span>' + icon + '</span> ' + objectName
           div += '</legend>'
-          div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummary'+id+'" data-version="mobile"></span></center></div></div>'
+          div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+id+'" data-version="mobile"></span></center></div></div>'
           div += '<div class="objectHtml">'
           div += html[i]
           div += '</div></div></div>'
@@ -191,7 +191,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
       } else {
         div = '<div class="div_displayEquipement" data-objectid="'+_objectId+'">'
         div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important">'
-        div += '<div class="card-title has-supporting-text"><center><span class="objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
+        div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
         div += html
         div += '</div></div></div>'
 
@@ -225,7 +225,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
     div += '<span>' + icon + '</span> ' + objectName
     div += '</legend>'
-    div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummary'+thisObject.id+'" data-version="mobile"></span></center></div></div>'
+    div += '<div class="nd2-card objectSummaryHide" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+thisObject.id+'" data-version="mobile"></span></center></div></div>'
     div += '<div class="objectHtml">'
     div += '</div>'
     div += '</div>'

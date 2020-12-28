@@ -311,7 +311,7 @@ class jeeObject {
 		$objects = self::all();
 		$def = config::byKey('object:summary');
 		$values = array();
-		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
+		$return = '<span class="objectSummaryContainer objectSummaryglobal" data-version="' . $_version . '">';
 		foreach ($def as $key => $value) {
 			foreach ($objects as $object) {
 				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
@@ -778,7 +778,7 @@ class jeeObject {
 	}
 
 	public function getHtmlSummary($_version='dashboard') {
-		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
+		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
