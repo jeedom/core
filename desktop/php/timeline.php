@@ -37,5 +37,4 @@ $date = array(
 
 <?php
 include_file("desktop", "timeline", "js");
-include_file('3rdparty', 'moment/lib.moment', 'js');
 ?>

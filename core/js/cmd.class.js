@@ -981,49 +981,77 @@ jeedom.cmd.getDeadCmd = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-jeedom.cmd.formatDuration = function(_duration) {
-  var j = Math.floor(_duration / 86400)
-  var h = Math.floor(_duration % 86400 / 3600)
-  var m = Math.floor(_duration % 3600 / 60)
-  var s = Math.floor(_duration - (j*86400 + h*3600 + m*60) )
-  if (_duration > 86399) {
-    var interval = 3600000
-    var durationString = (((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))))
-  } else if (_duration > 3599 && _duration < 86400) {
-    var interval = 60000
-    var durationString = (((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))))
-  } else {
-    var interval = 10000
-    var durationString = (((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 " + jeedom.config.locales[jeedom_langage].duration.second.trim() )))
+/* time widgets */
+jeedom.cmd.browserTimeDelta = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
+jeedom.cmd.formatMomentDuration = function(_duration) {
+  //moment.locale(jeedom_langage.substring(0, 2))
+  var durationString = ''
+  var used = 0
+
+  if (_duration._data.years > 0) {
+    durationString += _duration._data.years + jeedom.config.locales[jeedom_langage].duration.year
+    used++
   }
-  return [durationString, interval]
+  if (_duration._data.months > 0) {
+    durationString += _duration._data.months + jeedom.config.locales[jeedom_langage].duration.month
+    used++
+  }
+  if (_duration._data.days > 0) {
+    durationString += _duration._data.days + jeedom.config.locales[jeedom_langage].duration.day
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration._data.hours > 0) {
+    durationString += _duration._data.hours + jeedom.config.locales[jeedom_langage].duration.hour
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration._data.minutes > 0) {
+    durationString += _duration._data.minutes + jeedom.config.locales[jeedom_langage].duration.minute
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration._data.seconds > 0) {
+    durationString += _duration._data.seconds + jeedom.config.locales[jeedom_langage].duration.second
+    used++
+  }
+
+  return durationString
 }
 
 jeedom.cmd.displayDuration = function(_date, _el) {
-  var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
-  var arrDate = _date.split(/-|\s|:/)
-  var tsDate = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime()
-  _el.attr('data-time', tsDate)
+  var tsDate = moment(_date).unix() * 1000
 
   if (_el.attr('data-interval') != undefined) {
     clearInterval(_el.attr('data-interval'))
   }
 
+  var interval = 10000
+
   //_date in past or now ?
-  if (tsDate < (Date.now() + deltaDiff)) {
-    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000
-    var [durationString, interval] = jeedom.cmd.formatDuration(d)
+  if (tsDate < (Date.now() + jeedom.cmd.browserTimeDelta)) {
+    var duration = moment.duration(moment() - moment(_date))
+    var durationSec = duration._milliseconds / 1000
+    if (durationSec > 86399) {
+      interval = 3600000
+    } else if (durationSec > 3599) {
+      interval = 60000
+    }
+    var durationString = jeedom.cmd.formatMomentDuration(duration)
     _el.empty().append(durationString)
   } else {
-    var interval = 10000
-    _el.empty().append("0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))
+    _el.empty().append("0"+jeedom.config.locales[jeedom_langage].duration.second)
   }
 
   //set refresh interval:
   var myinterval = setInterval(function() {
-    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000
-    var [durationString, interval] = jeedom.cmd.formatDuration(d)
+    var duration = moment.duration(moment() - moment(_date))
+    var durationString = jeedom.cmd.formatMomentDuration(duration)
     _el.empty().append(durationString)
   }, interval)
+
   _el.attr('data-interval', myinterval)
 }

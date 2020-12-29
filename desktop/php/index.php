@@ -210,6 +210,7 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
 	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
+	include_file('3rdparty', 'moment/lib.moment', 'js');
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
