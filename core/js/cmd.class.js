@@ -982,7 +982,6 @@ jeedom.cmd.getDeadCmd = function(_params) {
 };
 
 /* time widgets */
-jeedom.cmd.browserTimeDelta = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
 jeedom.cmd.formatMomentDuration = function(_duration) {
   //moment.locale(jeedom_langage.substring(0, 2))
   var durationString = ''
@@ -1030,9 +1029,8 @@ jeedom.cmd.displayDuration = function(_date, _el) {
   }
 
   var interval = 10000
-
   //_date in past or now ?
-  if (tsDate < (Date.now() + jeedom.cmd.browserTimeDelta)) {
+  if (tsDate < (Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime)) {
     var duration = moment.duration(moment() - moment(_date))
     var durationSec = duration._milliseconds / 1000
     if (durationSec > 86399) {
