@@ -32,7 +32,7 @@ else {
     $name = 'Jessie ou inférieur';
     $alertLevel = 'alert alert-danger';
     if ($hardware == 'smart') {
-      $messageAlert = '{{Votre version de Debian est trop ancienne pour être en mesure d\'utiliser toutes les possibilités offertes par Jeedom dans les meilleures conditions. Veuillez suivre la procédure de recovery pour mettre à jour l\'environnement de votre box Smart.}}';
+      $messageAlert = '{{Votre version de Debian est trop ancienne pour être en mesure d\'utiliser toutes les possibilités offertes par Jeedom dans les meilleures conditions. Veuillez mettre à niveau l\'environnement Linux de votre box Smart en cliquant sur le bouton}} <a class="btn btn-sm btn-danger roundedLeft" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}</a>';
     }
     else {
       $messageAlert = '{{Votre version de Debian est trop ancienne pour être en mesure d\'utiliser toutes les possibilités offertes par Jeedom dans les meilleures conditions. Veuillez mettre à jour votre environnement vers Debian Buster avant de procéder à la migration V4.}}';
