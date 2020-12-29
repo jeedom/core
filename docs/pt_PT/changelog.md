@@ -2,6 +2,12 @@
 
 ## 4.1.0
 
+### Pré-requisitos
+
+- Debian 10 Buster
+
+### Notícias / Melhorias
+
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **Painel de instrumentos** : Modo de edição agora inserindo o bloco movido.
@@ -66,16 +72,20 @@
 - Nova página ModalDisplay :
 	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
 	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Anotações*, *Testador de expressão*, *Variáveis*, *Pesquisa* : Abra a janela em uma nova guia, em tela cheia.
-- Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.<br/><br/>
-- **WebApp** : Integração da nova página Resumo.
-- **WebApp** : Na página Cenários, um clique no título do cenário exibe seu log.
-- **WebApp** : Agora podemos selecionar / copiar parte de um log.
-- **WebApp** : Na pesquisa em um log, adição de um botão x para cancelar a pesquisa.
-- **WebApp** : Persistência da alternância do tema (8h).
-- **WebApp** : Em um design, um clique com três dedos retorna à página inicial.
-- **WebApp** : Exibição de cenários por grupo.
-- **WebApp** : Nova fonte de tipo monoespaçado para logs.
-- **WebApp** : Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).<br/><br/>
+- Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
+
+### WebApp
+- Integração da nova página Resumo.
+- Na página Cenários, um clique no título do cenário exibe seu log.
+- Agora podemos selecionar / copiar parte de um log.
+- Na pesquisa em um log, adição de um botão x para cancelar a pesquisa.
+- Persistência da alternância do tema (8h).
+- Em um design, um clique com três dedos retorna à página inicial.
+- Exibição de cenários por grupo.
+- Nova fonte de tipo monoespaçado para logs.
+- Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).
+
+### Autres
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **Lib** : Atualizar o HighStock v7.1.2 a v8.2.0.
@@ -86,8 +96,8 @@
 - Protegendo chamadas de API.
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
-<br/><br/>
-- **Alterar**
+
+### Changements
 - A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* Mas *[grupo] [objeto] [nome]*.
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
