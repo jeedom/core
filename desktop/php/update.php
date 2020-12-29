@@ -9,6 +9,32 @@ if(strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))){
 		echo '<div class="alert alert-danger">{{Erreur sur la vérification des mises à jour : }}'.$e->getMessage().'</div>';
 	}
 }
+
+$hardware = jeedom::getHardwareName();
+$distrib = system::getDistrib();
+$coreRemoteVersion = update::byLogicalId('jeedom')->getRemoteVersion();
+$showUpdate = true;
+$showUpgrade = false;
+
+if ($coreRemoteVersion >= '4.1' && $distrib == 'debian') {
+	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
+	if ($version < '10') {
+		$system = strtoupper($hardware) . ' - ' . ucfirst($distrib) . ' ' . $version;
+		$showUpdate = false;
+		$alertLevel = 'alert alert-warning';
+		if ($hardware == 'miniplus' || $hardware == 'Jeedomboard') {
+			$messageAlert = '{{Votre système actuel fonctionnant correctement et n\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.}}';
+		}
+		else if ($hardware == 'smart') {
+			$showUpgrade = true;
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box Smart en cliquant sur le bouton <span class="label label-danger"><i class="fab fa-linux"></i> Mettre à niveau</span>}}';
+		}
+		else {
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers <strong>Debian 10 Buster</strong>.<br><em>Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter <a href="https://doc.jeedom.com/fr_FR/installation/#Installation" target="_blank">la documentation d\'installation</a> pour plus d\'informations.</em>}}';
+		}
+	}
+}
+
 $logUpdate = log::get('update', 0, -1);
 if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
   sendVarToJS('isUpdating', '0');
@@ -17,6 +43,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 }
 ?>
 
+<div class="col-xs-12 text-center <?= $alertLevel ?>"><strong><?= $system ?></strong><br><?= $messageAlert ?></div>
 <br/>
 <i class="far fa-clock"></i> <span>{{Dernière vérification : }}</span>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
@@ -24,7 +51,9 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 	<span class="input-group-btn">
 		<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
 		</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-		</a><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
+		</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
+		</a><?php }  else if ($showUpgrade == true) { ?><a class="btn btn-sm btn-danger roundedRight" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}
+		</a><?php } ?>
 	</span>
 </div>
 <br/><br/>
