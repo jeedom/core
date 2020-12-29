@@ -296,11 +296,13 @@ function isset() {
 var serverDatetime
 var clientServerDiffDatetime
 var serverTZoffsetMin
+var jeedom_langage
 var user_id
 var plugins
 var userProfils
 var deviceInfo
 var defaultMobilePage = null
+
 function initApplication(_reinit) {
   $.ajax({
     type: 'POST',
@@ -315,6 +317,7 @@ function initApplication(_reinit) {
     },
     success: function (data) {
       jeedom.theme = data.result
+      jeedom_langage = data.result.langage
       insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
       insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
       insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
