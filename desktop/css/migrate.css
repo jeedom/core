@@ -9,8 +9,7 @@ body{
 .titleStep{
 	font-size: 50px;
 	font-weight: bold;
-	font: 'San Francisco', Helvetica, Arial, san-serif;
-	color: #FFFFFFB3;
+	font: 'San Francisco', Helvetica, Arial, sans-serif;
 	margin-top: 2%;
 	margin-left: 2%;
 }
@@ -40,6 +39,7 @@ body{
 	width: 100%;
 	height: 30%;
 	margin-bottom: 0px;
+	color:#737373;
 }
 #contenuTextSpan{
 	display: block;
@@ -47,12 +47,7 @@ body{
 	text-align: center;
 	font-size: 120%;
 	font-weight: bold;
-	font: 'San Francisco', Helvetica, Arial, san-serif;
-	color: #000000B3;
-}
-.next{
-	font-size: 50px;
-	color:rgba(147,204,1,1);
+	font: 'San Francisco', Helvetica, Arial, sans-serif;
 }
 #nextDiv{
 	width: 100px;

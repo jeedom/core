@@ -2,13 +2,43 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$hardware = jeedom::getHardwareName();
+$distrib = system::getDistrib();
+$coreRemoteVersion = update::byLogicalId('jeedom')->getRemoteVersion();
+$showUpdate = true;
+$showUpgrade = false;
+
+if ($coreRemoteVersion >= '4.1' && $distrib == 'debian') {
+	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
+	if ($version < '10') {
+		$system = strtoupper($hardware) . ' - ' . ucfirst($distrib) . ' ' . $version;
+		$showUpdate = false;
+		$alertLevel = 'alert alert-warning';
+		if ($hardware == 'miniplus' || $hardware == 'Jeedomboard') {
+			$messageAlert = '{{Votre système actuel fonctionnant correctement et n\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.}}';
+		}
+		else if ($hardware == 'smart') {
+			$showUpgrade = true;
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box Smart en cliquant sur le bouton <span class="label label-danger"><i class="fab fa-linux"></i> Mettre à niveau</span>}}';
+		}
+		else {
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers <strong>Debian 10 Buster</strong>.<br><em>Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter <a href="https://doc.jeedom.com/fr_FR/installation/#Installation" target="_blank">la documentation d\'installation</a> pour plus d\'informations.</em>}}';
+		}
+	}
+}
 ?>
-<br/>
+
+<div class="col-xs-12 text-center <?= $alertLevel ?>"><strong><?= $system ?></strong><br><?= $messageAlert ?></div>
+<br>
 <i class="far fa-clock"></i> <span>{{Dernière vérification : }}</span>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
 <div class="input-group pull-right" style="display:inline-flex">
 	<span class="input-group-btn">
-		<a href="#" class="btn btn-sm btn-warning roundedLeft" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}</a><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
+		<?php if ($showUpdate == true) { ?>
+		<a href="#" class="btn btn-sm btn-warning roundedLeft" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
+		</a><?php }  else if ($showUpgrade == true) { ?><a class="btn btn-sm btn-danger roundedLeft" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}
+		</a><?php } ?><a class="btn btn-info btn-sm" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+		</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUpdate"><i class="far fa-check-circle"></i> {{Sauvegarder}}</a>
 	</span>
 </div>
 <br/><br/>
@@ -74,8 +104,8 @@ if (!isConnect('admin')) {
 <div id="md_specifyUpdate" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
-			<div class="alert alert-danger">
-				{{Avant toute mise à jour, merci de consulter}} <a class="warning" style="color:var(--al-warning-color)!important" target="_blank" href="https://jeedom.github.io/core/fr_FR/noteVersion">{{la note de version}}</a> {{du core de Jeedom}}.
+			<div class="alert alert-warning">
+				{{Avant toute mise à jour, merci de consulter}} <a class="label label-info" target="_blank" href="https://doc.jeedom.com/fr_FR/core/4.0/changelog">{{le changelog}}</a> {{du core de Jeedom}}.
 			</div>
 			<div class="form-group">
 				<div class="form-group">

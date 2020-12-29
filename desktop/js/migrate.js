@@ -83,24 +83,24 @@ function testUsb(){
 			var statusUsb = result.result.statut;
 			switch(statusUsb){
 				case 'sdaNull' :
-				alert('{{Pas de clé USB branchée}}');
+				alert('{{Aucune clé USB trouvée. Veuillez insérer une clé USB.}}');
 				break;
 				case 'sdaSup' :
-				alert('{{Merci de ne brancher qu\'une seule clé USB}}');
+				alert('{{Merci de ne brancher qu\'une seule clé USB.}}');
 				break;
 				case 'sdaNumNull' :
-				alert('{{Votre clé USB doit être formatée en FAT32}}');
+				alert('{{Votre clé USB doit être formatée en FAT32.}}');
 				break;
 				case 'sdaNumSup' :
-				alert('{{Il ne doit y avoir qu\'une seule partition sur votre clé USB}}');
+				alert('{{Il ne doit y avoir qu\'une seule partition sur votre clé USB.}}');
 				break;
 				case 'space' :
-				alert('{{L\'espace libre sur votre clé USB est trop petit }}('+result.result.space+' Mo) {{il faut un minimum de}} '+result.result.minSpace+' {{Mo}}. {{Merci}}');
+				alert('{{L\'espace libre sur votre clé USB est trop petit }}('+result.result.space+' Mo) {{L\'espace minimum nécessaire est de}} '+result.result.minSpace+' {{Mo}}. {{Merci}}');
 				break;
 				case 'ok' :
 				$('.debut').hide();
 				$('.usb').show();
-				$('.usb').append('<span id="contenuTextSpan">{{Clé USB vérifiée passage à l\'étape 2 en cours}}<br /><i class="next fa fa-refresh" id="bt_next"></i></span>');
+				$('.usb').append('<span id="contenuTextSpan">{{Clé USB vérifiée passage à l\'étape 2 en cours}}<br /><i class="icon_green fas fa-3x fa-sync" id="bt_next"></i></span>');
 				setTimeout(function(){
 					$('#step1').hide();
 					$('#step2').show();
@@ -162,7 +162,7 @@ function getJeedomLog(_autoUpdate, _log) {
 					if(FinalDown > 0){
 						if(data.result[i].indexOf('[START RESTORE]') != -1 && FinalDown == 1){
 							FinalDown++;
-							$('.TextFinalisation').text('{{Début de la restauration du backup !}}');
+							$('.TextFinalisation').text('{{Début de restauration de la sauvegarde !}}');
 							$('.progress-bar').width('95%');
 							$('.progress-bar').text('95%');
 						}else if(data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2){
@@ -174,19 +174,19 @@ function getJeedomLog(_autoUpdate, _log) {
 						}
 					}else{
 						if(data.result[i].indexOf('[END BACKUP SUCCESS]') != -1){
-							$('.TextBackup').text('{{Backup Fini, copie en cours sur la clé USB, ne pas débrancher celle-ci...}}');
+							$('.TextBackup').text('{{Sauvegarde terminée. Copie en cours sur la clé USB, veuillez ne pas la débrancher...}}');
 							$('.progress-bar').width('75%');
 							$('.progress-bar').text('75%');
 							backupToUsb();
 							_autoUpdate = 0;
 						}if(data.result[i].indexOf('[END UPDATE SUCCESS]') != -1){
 							if(Maj == 0){
-								$('.TextFinalisation').text('{{test de l\'image}}');
+								$('.TextFinalisation').text('{{Test de l\'image}}');
 								var textProgress = $('.progress-bar').text();
 								$('.progress-bar').width('50%');
 								$('.progress-bar').text('50%');
 							}else{
-								$('.TextFinalisation').text('{{Mise à jour de votre Jeedom réussie}}');
+								$('.TextFinalisation').text('{{La mise à jour de votre box Jeedom s\'est terminée avec succès.}}');
 								var textProgress = $('.progress-bar').text();
 								$('.progress-bar').width('70%');
 								$('.progress-bar').text('70%');
@@ -194,13 +194,13 @@ function getJeedomLog(_autoUpdate, _log) {
 							_autoUpdate = 0;
 							final();
 						}else if(data.result[i].indexOf('[END BACKUP ERROR]') != -1){
-							$('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
+							$('#div_alert').showAlert({message: '{{L\'opération a échoué.}}', level: 'danger'});
 							_autoUpdate = 0;
 						}else if(_log == 'backup'){
 							if(data.result[i].indexOf("Persist cache") != -1){
 								if(persiste == 0){
 									persiste = 1;
-									$('.TextBackup').text('{{Création du backup en cours...}}');
+									$('.TextBackup').text('{{Création de la sauvegarde en cours...}}');
 									$('.progress-bar').width('25%');
 									$('.progress-bar').text('25%');
 								}
@@ -222,7 +222,7 @@ function getJeedomLog(_autoUpdate, _log) {
 							if(data.result[i].indexOf("Téléchargement") != -1 || data.result[i].indexOf("Download url") != -1){
 								if(telechargement == 0){
 									telechargement = 1;
-									$('.TextFinalisation').text('{{Téléchargement de la mise à jour}}');
+									$('.TextFinalisation').text('{{Téléchargement de la mise à jour.}}');
 									$('.progress-bar').width('15%');
 									$('.progress-bar').text('15%');
 								}
@@ -245,7 +245,7 @@ function getJeedomLog(_autoUpdate, _log) {
 						}else if(_log == 'migrate'){
 							if(migrateGo == 0){
 								if(data.result[i].indexOf("Saving to: '/media/migrate/backupJeedomDownload.tar.gz'") != -1){
-									$('.TextImage').text('{{Cette tache peux prendre jusqu\'à 10 minutes a commencer. Téléchargement en cours de l\'image...}}');
+									$('.TextImage').text('{{Cette tâche peut prendre jusqu\'à 10 minutes pour commencer. Téléchargement de l\'image en cours...}}');
 									pourcentageBar = 0;
 									migrateGo = 1;
 								}else{
@@ -330,10 +330,10 @@ function backupToUsb(){
 			var backupToUsbResult = result.result;
 			switch(backupToUsbResult){
 				case 'nok' :
-				alert('{{Le backup n\'a pas été copié}}');
+				alert('{{La sauvegarde n\'a pas été copiée}}');
 				break;
 				case 'ok' :
-				$('.TextBackup').text('{{Backup Copié...}}');
+				$('.TextBackup').text('{{Sauvegarde Copiée...}}');
 				setTimeout(function () {
 					UpImage();
 				}, 1000);
@@ -469,7 +469,7 @@ function finalisation(go){
 		},
 		dataType: 'json',
 		error: function (request, status, error) {
-			confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?');
+			confirm('Erreur de communication. Êtes-vous connecté à Internet ? Voulez-vous réessayer ?');
 		},
 		success: function (data) {
 			console.log('getInfoApplication > '+JSON.stringify(data));
@@ -615,7 +615,7 @@ function refresh() {
 	$.ajax({
 		url: "desktop/js/rebootjs.js?t="+Date.now(),
 		success:function(retour){
-			$('reboot_jeedom').html(retour);
+			$('#reboot_jeedom').html(retour);
 		}
 	});
 }
@@ -623,7 +623,7 @@ function refresh() {
 function page_rebootjs(){
 	refresh();
 	if(rebooti == '1'){
-		$('.TextMigrate').text('{{Votre Jeedom vient de redémarrer, Merci de patienter le premier redémarrage peut prendre jusqu\'à 5 minutes}}');
+		$('.TextMigrate').text('{{Votre box Jeedom vient de redémarrer. Merci de patienter, le premier redémarrage pouvant durer jusqu\'à 5 minutes.}}');
 		$('.progress-bar').width('90%');
 		$('.progress-bar').text('90%');
 		setTimeout(function(){
@@ -636,7 +636,7 @@ function page_rebootjs(){
 		$('.progress-bar').text(pourcentageBar+'%');
 		if(pourcentageBar > '80'){
 			$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
-			$('.TextMigrate').text('{{Migration en Cours... merci de ne surtout pas débrancher votre Jeedom}}');
+			$('.TextMigrate').text('{{Migration en Cours... Veuillez ne surtout pas débrancher votre box Jeedom}}');
 		}
 		setTimeout(function(){
 			page_rebootjs();
@@ -645,7 +645,7 @@ function page_rebootjs(){
 }
 
 function reboot_jeedom(){
-	$('.TextMigrate').text('{{Merci de patienter... Jeedom est en cours de Migration}}');
+	$('.TextMigrate').text('{{Merci de patienter... Jeedom est en cours de migration}}');
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
 	pourcentageBar = 5;
@@ -669,4 +669,4 @@ function confirmOnLeave(msg) {
 	};
 }
 
-confirmOnLeave('{{Attention si vous fermez cette page la migration ne pourra s\'effectuer}}');
+confirmOnLeave('{{Attention si vous fermez cette page la migration ne pourra pas s\'effectuer.}}');
