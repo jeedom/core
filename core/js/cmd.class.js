@@ -981,74 +981,49 @@ jeedom.cmd.getDeadCmd = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.formatDuration = function(_duration) {
+  var j = Math.floor(_duration / 86400)
+  var h = Math.floor(_duration % 86400 / 3600)
+  var m = Math.floor(_duration % 3600 / 60)
+  var s = Math.floor(_duration - (j*86400 + h*3600 + m*60) )
+  if (_duration > 86399) {
+    var interval = 3600000
+    var durationString = (((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))))
+  } else if (_duration > 3599 && _duration < 86400) {
+    var interval = 60000
+    var durationString = (((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))))
+  } else {
+    var interval = 10000
+    var durationString = (((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 " + jeedom.config.locales[jeedom_langage].duration.second.trim() )))
+  }
+  return [durationString, interval]
+}
+
 jeedom.cmd.displayDuration = function(_date, _el) {
   var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
   var arrDate = _date.split(/-|\s|:/)
-  var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime()
-  _el.attr('data-time',timeInMillis)
+  var tsDate = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime()
+  _el.attr('data-time', tsDate)
 
   if (_el.attr('data-interval') != undefined) {
     clearInterval(_el.attr('data-interval'))
   }
 
-  if (_el.attr('data-time') < (Date.now() + deltaDiff)) {
-    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
-    var j = Math.floor(d / 86400);
-    var h = Math.floor(d % 86400 / 3600);
-    var m = Math.floor(d % 3600 / 60);
-    var s = Math.floor(d - (j*86400 + h*3600 + m*60) );
-    if (d > 86399) {
-      var interval = 3600000;
-      _el.empty().append(((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))));
-    } else if (d > 3599 && d < 86400) {
-      var interval = 60000;
-      _el.empty().append(((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))));
-    } else {
-      var interval = 10000;
-      _el.empty().append(((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))));
-    }
-    var myinterval = setInterval(function() {
-      var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
-      var j = Math.floor(d / 86400);
-      var h = Math.floor(d % 86400 / 3600);
-      var m = Math.floor(d % 3600 / 60);
-      var s = Math.floor(d - (j*86400 + h*3600 + m*60) );
-      if (d > 86399) {
-        var interval = 3600000;
-        _el.empty().append(((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))));
-      } else if (d > 3599 && d < 86400) {
-        var interval = 60000;
-        _el.empty().append(((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))));
-      } else {
-        var interval = 10000;
-        _el.empty().append(((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))));
-      }
-    }, interval);
-    _el.attr('data-interval',myinterval);
+  //_date in past or now ?
+  if (tsDate < (Date.now() + deltaDiff)) {
+    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000
+    var [durationString, interval] = jeedom.cmd.formatDuration(d)
+    _el.empty().append(durationString)
   } else {
-    _el.empty().append("0 s");
-    var interval = 10000;
-    var myinterval = setInterval(function(){
-      if (_el.attr('data-time') < (Date.now()+ deltaDiff)) {
-        var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
-        var j = Math.floor(d / 86400);
-        var h = Math.floor(d % 86400 / 3600);
-        var m = Math.floor(d % 3600 / 60);
-        var s = Math.floor(d - (j*86400 + h*3600 + m*60) );
-        if (d > 86399) {
-          interval = 3600000;
-          _el.empty().append(((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))));
-        } else if (d > 3599 && d < 86400) {
-          interval = 60000;
-          _el.empty().append(((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))));
-        } else {
-          interval = 10000;
-          _el.empty().append(((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))));
-        }
-      } else {
-        _el.empty().append("0 s");
-      }
-    }, interval);
-    _el.attr('data-interval',myinterval);
+    var interval = 10000
+    _el.empty().append("0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))
   }
-};
+
+  //set refresh interval:
+  var myinterval = setInterval(function() {
+    var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000
+    var [durationString, interval] = jeedom.cmd.formatDuration(d)
+    _el.empty().append(durationString)
+  }, interval)
+  _el.attr('data-interval', myinterval)
+}
