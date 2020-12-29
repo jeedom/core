@@ -981,69 +981,71 @@ jeedom.cmd.getDeadCmd = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-jeedom.cmd.displayDuration = function(_date,_el){
+jeedom.cmd.displayDuration = function(_date, _el) {
   var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
-  var arrDate = _date.split(/-|\s|:/);
-  var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
-  _el.attr('data-time',timeInMillis);
-  if(_el.attr('data-interval') != undefined){
-    clearInterval(_el.attr('data-interval'));
+  var arrDate = _date.split(/-|\s|:/)
+  var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime()
+  _el.attr('data-time',timeInMillis)
+
+  if (_el.attr('data-interval') != undefined) {
+    clearInterval(_el.attr('data-interval'))
   }
-  if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+
+  if (_el.attr('data-time') < (Date.now() + deltaDiff)) {
     var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
     var j = Math.floor(d / 86400);
     var h = Math.floor(d % 86400 / 3600);
     var m = Math.floor(d % 3600 / 60);
-    var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+    var s = Math.floor(d - (j*86400 + h*3600 + m*60) );
     if (d > 86399) {
       var interval = 3600000;
-      _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+      _el.empty().append(((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))));
     } else if (d > 3599 && d < 86400) {
       var interval = 60000;
-      _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+      _el.empty().append(((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))));
     } else {
       var interval = 10000;
-      _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+      _el.empty().append(((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))));
     }
-    var myinterval = setInterval(function(){
+    var myinterval = setInterval(function() {
       var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
       var j = Math.floor(d / 86400);
       var h = Math.floor(d % 86400 / 3600);
       var m = Math.floor(d % 3600 / 60);
-      var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+      var s = Math.floor(d - (j*86400 + h*3600 + m*60) );
       if (d > 86399) {
         var interval = 3600000;
-        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+        _el.empty().append(((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))));
       } else if (d > 3599 && d < 86400) {
         var interval = 60000;
-        _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+        _el.empty().append(((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))));
       } else {
         var interval = 10000;
-        _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+        _el.empty().append(((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))));
       }
     }, interval);
     _el.attr('data-interval',myinterval);
-  }else{
+  } else {
     _el.empty().append("0 s");
     var interval = 10000;
     var myinterval = setInterval(function(){
-      if(_el.attr('data-time') < (Date.now()+ deltaDiff)){
+      if (_el.attr('data-time') < (Date.now()+ deltaDiff)) {
         var d = ((Date.now() + deltaDiff) - _el.attr('data-time')) / 1000;
         var j = Math.floor(d / 86400);
         var h = Math.floor(d % 86400 / 3600);
         var m = Math.floor(d % 3600 / 60);
-        var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
+        var s = Math.floor(d - (j*86400 + h*3600 + m*60) );
         if (d > 86399) {
           interval = 3600000;
-          _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
+          _el.empty().append(((j + jeedom.config.locales[jeedom_langage].duration.day) + (h + jeedom.config.locales[jeedom_langage].duration.hour.slice(0, -1))));
         } else if (d > 3599 && d < 86400) {
           interval = 60000;
-          _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+          _el.empty().append(((h + jeedom.config.locales[jeedom_langage].duration.hour) + (m + jeedom.config.locales[jeedom_langage].duration.minute.slice(0, -1))));
         } else {
           interval = 10000;
-          _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+          _el.empty().append(((m > 0 ? m + jeedom.config.locales[jeedom_langage].duration.minute : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + jeedom.config.locales[jeedom_langage].duration.second : "0 "+trim(jeedom.config.locales[jeedom_langage].duration.second))));
         }
-      }else{
+      } else {
         _el.empty().append("0 s");
       }
     }, interval);

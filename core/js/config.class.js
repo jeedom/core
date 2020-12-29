@@ -15,9 +15,119 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.config = function () {
-};
-
+jeedom.config = function() {};
+jeedom.config.locales = {
+    fr_FR: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'j ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        }
+    },
+    en_US: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'd ',
+            week: 'W ',
+            month: 'M ',
+            year: 'Y '
+        }
+    },
+    de_DE: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 's ',
+            day: 't ',
+            week: 'W ',
+            month: 'M ',
+            year: 'J '
+        }
+    },
+    es_ES: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'd ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        }
+    },
+    it_IT: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'o ',
+            day: 'g ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        }
+    },
+    pt_PT: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'd ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        }
+    },
+    ru_RU: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'c ',
+            day: 'd ',
+            week: 'N ',
+            month: 'M ',
+            year: 'G '
+        }
+    },
+    ja_JP: {
+        duration: {
+            second: 'ba ',
+            minute: 'b ',
+            hour: 'j ',
+            day: 'h ',
+            week: 'S ',
+            month: 'Ts ',
+            year: 'T '
+        }
+    },
+    id_ID: {
+        duration: {
+            second: 'd ',
+            minute: 'm ',
+            hour: 'j ',
+            day: 'm ',
+            week: 'H ',
+            month: 'B ',
+            year: 'T '
+        }
+    },
+    tr: {
+        duration: {
+            second: 's ',
+            minute: 'd ',
+            hour: 's ',
+            day: 'g ',
+            week: 'H ',
+            month: 'A ',
+            year: 'Y '
+        }
+    }
+}
 
 jeedom.config.save = function (_params) {
     var paramsRequired = ['configuration'];
