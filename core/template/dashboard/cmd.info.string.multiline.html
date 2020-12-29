@@ -2,6 +2,9 @@
 	<div class="content-xs">
 		<span class="cmdName #hide_name#">#name_display# </span><strong class="state" ></strong>
 	</div>
+	<template>
+		<div>maxHeight : 20 ({{Hauteur maximale en pixel}}).</div>
+	</template>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options) {
 			var cmd = $('.cmd[data-cmd_id=#id#]')
@@ -11,15 +14,16 @@
 				cmd.removeClass('label label-warning label-danger')
 				if (_options.alertLevel == 'warning') {
 					cmd.addClass('label label-warning')
-				} else if(_options.alertLevel == 'danger') {
+				} else if (_options.alertLevel == 'danger') {
 					cmd.addClass('label label-danger')
 				}
 			}
 		}
 
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
-		if(!isNaN(parseInt('#maxHeight#'))){
-			$('.cmd[data-cmd_id=#id#]').css('max-height',parseInt('#maxHeight#')+'px');
+		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+
+		if (!isNaN(parseInt('#maxHeight#'))) {
+			$('.cmd[data-cmd_id=#id#]').css('max-height',parseInt('#maxHeight#')+'px')
 		}
 	</script>
 </div>

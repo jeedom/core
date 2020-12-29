@@ -2,30 +2,32 @@
   <div class="title #hide_name#">
     <div class="cmdName">#valueName#</div>
   </div>
-  <div class="content-sm ">
+  <div class="content-sm">
     <span class="iconCmd"></span>
   </div>
+  <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.update['#id#'] = function(_options) {
       if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          $('.cmd[data-cmd_id=#id#]').hide();
-        }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell"></i>');
+          $('.cmd[data-cmd_id=#id#]').hide()
+        } else {
+          $('.cmd[data-cmd_id=#id#]').show()
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell"></i>')
         }
       } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          $('.cmd[data-cmd_id=#id#]').hide();
-        }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell-slash"></i>');
+          $('.cmd[data-cmd_id=#id#]').hide()
+        } else {
+          $('.cmd[data-cmd_id=#id#]').show()
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell-slash"></i>')
         }
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
+
     $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
-      jeedom.cmd.execute({id: '#id#'});
-    });
+      jeedom.cmd.execute({id: '#id#'})
+    })
   </script>
 </div>

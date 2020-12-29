@@ -2,28 +2,32 @@
 	<div class="content-xs">
 		<span class="cmdName #hide_name#">#name_display# </span> <span class="iconCmdLine"></span>
 	</div>
+	<template></template>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options) {
 			var cmd = $('.cmd[data-cmd_id=#id#]')
-			cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+			cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+
 			if (_options.display_value == '1') {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_on_#")
 			} else {
 				$('.cmd[data-cmd_id=#id#] .iconCmdLine').empty().append("#_icon_off_#")
 			}
-			if(_options.alertLevel){
-				if(_options.alertLevel == 'warning'){
+
+			if (_options.alertLevel) {
+				if (_options.alertLevel == 'warning') {
 					cmd.addClass('label label-warning')
-					cmd.attr('data-alertlevel','warning');
-				}else if(_options.alertLevel == 'danger'){
+					cmd.attr('data-alertlevel','warning')
+				} else if (_options.alertLevel == 'danger') {
 					cmd.addClass('label label-danger')
-					cmd.attr('data-alertlevel','danger');
-				}else{
+					cmd.attr('data-alertlevel','danger')
+				} else {
 					cmd.removeClass('label label-warning label-danger')
-					cmd.attr('data-alertlevel','none');
+					cmd.attr('data-alertlevel','none')
 				}
 			}
 		}
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+
+		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
 	</script>
 </div>

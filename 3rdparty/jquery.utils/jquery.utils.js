@@ -705,3 +705,10 @@ function init(_value, _default) {
     return this.attr(name) !== undefined;
   }
 })(jQuery);
+
+(function($) {
+  $.issetWidgetOptParam = function(_def, _param) {
+    if (_def != '#'+_param+'#') return true
+    return false
+  }
+})(jQuery)

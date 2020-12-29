@@ -8,10 +8,19 @@
     </div>
     <div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
     <div class="slider full-width-slider ui-slider">
-      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
+      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" data-role="none"/>
     </div>
   </center>
   <script>
+    $('.cmd[data-cmd_id=#id#] input').slider({
+      create: function(event, ui) {
+        if ($.issetWidgetOptParam('#color#', 'color')) {
+          $(event.target.parentNode).find('div.ui-slider-bg').style('background-color', '#color#', 'important')
+          $(event.target.parentNode).find('a.ui-slider-handle').style('background-color', '#color#', 'important')
+        }
+      }
+    })
+
     $('.cmd[data-cmd_uid=#uid#]').on({
       'slidestop': function(event, ui) {
       jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
@@ -37,6 +46,11 @@
         jeedom.cmd.execute({id: '#id#', value: {slider: #maxValue#}})
       }
     })
-    jeedom.cmd.update['#id#']({display_value:'#state#'})
+
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+    }
   </script>
 </div>

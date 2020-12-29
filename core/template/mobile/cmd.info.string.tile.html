@@ -1,15 +1,14 @@
 <div class="cmd cmd-widget" data-type="info" data-subtype="numeric" data-template="tile" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-	<center>
-		<div class="cmdName #hide_name#">#name_display#</div>
-		<div class="iconCmd">
-			<span>#state#</span>
-			<span>#unite#</span><br/>
-		</div>
-	</center>
-
-	<script>
-		jeedom.cmd.update['#id#'] = function(_options){
-			$('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(_options.display_value);
-		}
-	</script>
+  <center>
+    <div class="cmdName #hide_name#">#name_display#</div>
+    <div class="iconCmd">
+      <span>#state#</span>
+      <span>#unite#</span><br/>
+    </div>
+  </center>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append(_options.display_value)
+    }
+  </script>
 </div>

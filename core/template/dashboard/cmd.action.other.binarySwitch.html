@@ -8,17 +8,20 @@
       </span>
     </label>
   </div>
+  <template>
+    <div>color : rgb(20,20,20) ({{couleur d'arrière plan}})</div>
+    <div>color_switch : rgb(230,230,230) ({{couleur de la pastille}})</div>
+  </template>
   <script>
     //if not name, centered:
     $('.cmd[data-cmd_id=#id#]').find('.cmdName.hidden').parent().removeClass('widthx2')
 
-    if ('#color#' != '') {
+    if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').css('background', '#color#')
     }
-    if ('#color_switch#' != '') {
+    if ($.issetWidgetOptParam('#color_switch#', 'color_switch')) {
       $('.cmd[data-cmd_uid=#uid#] span.binarySwitchHandle').style('background-color', '#color_switch#', 'important')
     }
-
 
     jeedom.cmd.update['#id#'] = function(_options) {
       if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
@@ -46,6 +49,5 @@
       event.preventDefault()
       event.stopPropagation()
     })
-
   </script>
 </div>

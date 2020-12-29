@@ -351,6 +351,27 @@ jeedom.cmd.refreshValue = function(_params) {
   }
 };
 
+jeedom.cmd.getWidgetHelp = function (_params) {
+  var paramsRequired = ['id', 'version'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getWidgetHelp',
+    id: _params.id,
+    version: _params.version,
+    widgetName: _params.widgetName
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.cmd.toHtml = function (_params) {
   var paramsRequired = ['id', 'version'];
   var paramsSpecifics = {};
@@ -491,7 +512,6 @@ jeedom.cmd.byId = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.cmd.getHumanCmdName = function(_params) {
   var paramsRequired = ['id'];
@@ -960,7 +980,6 @@ jeedom.cmd.getDeadCmd = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.cmd.displayDuration = function(_date,_el){
   var deltaDiff = ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime

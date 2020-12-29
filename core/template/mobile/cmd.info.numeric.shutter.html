@@ -6,8 +6,13 @@
     </div>
     <div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
+  <div class="cmdStats #hide_history#">
+    <div class="col-xs-12 center-block">
+      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
+  </div>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       var height = (_options.display_value * 100 / (#maxValue#-#minValue#)) + #minValue#
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
@@ -15,6 +20,10 @@
       cmd.find('.shuttergauge-state strong').first().text(_options.display_value)
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+    }
   </script>
 </div>

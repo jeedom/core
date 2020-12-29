@@ -818,6 +818,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
             <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a>
           </legend>
+
+          <div id="optionalParamHelp"></div>
+
           <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
             <thead class="table table-bordered">
               <tr>
@@ -900,7 +903,27 @@ $(function() {
   }
 
   jeedom.timeline.autocompleteFolder()
+
+  displayWidgetHelp($('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').val())
+
+  $('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change',function() {
+    displayWidgetHelp($(this).val())
+  })
 })
+
+function displayWidgetHelp(widgetName) {
+  jeedom.cmd.getWidgetHelp({
+    id: $('#cmd_information span[data-l1key="id"]').text(),
+    version: 'dashboard',
+    widgetName: widgetName,
+    error: function(error) {
+      $('#optionalParamHelp').empty().text('{{Pas de description des paramètres optionnels sur ce Widget.}}')
+    },
+    success: function(data) {
+      $('#optionalParamHelp').empty().html(data.html)
+    }
+  })
+}
 
 $('.cmdAttr[data-l2key="timeline::enable"]').off('change').on('change',function() {
   if ($(this).value() == 1) {
@@ -1145,7 +1168,6 @@ function synchModalToCmd() {
   var cmdId = $('#div_displayCmdConfigure .cmdAttr[data-l1key="id"]').text()
   var $cmdTr = $('#div_pageContainer tr[data-cmd_id="'+cmdId+'"]')
   if ($cmdTr) {
-    //$cmdTr.find('input.cmdAttr[data-l1key="name"]').val($('#div_displayCmdConfigure input.cmdAttr[data-l1key="name"]').val())
     $cmdTr.find('input.cmdAttr[data-l1key="isVisible"]').prop('checked', $('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').prop('checked'))
     $cmdTr.find('.cmdAttr[data-l1key=display][data-l2key=icon]').html( $('#div_displayCmdConfigure .cmdAttr[data-l1key=display][data-l2key=icon]').html())
   }

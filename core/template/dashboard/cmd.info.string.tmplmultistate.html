@@ -8,40 +8,51 @@
 	<div class="value">
 		<span class="timeCmd label label-default #history#" data-type="info"></span>
 	</div>
+	<template></template>
 	<script>
-		jeedom.cmd.update['#id#'] = function(_options){
-			var cmd = $('.cmd[data-cmd_id=#id#]');
-			if('#_time_widget_#' == '1'){
-				jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
-			}else{
-				cmd.find('.timeCmd').parent().remove();
+		jeedom.cmd.update['#id#'] = function(_options) {
+			var cmd = $('.cmd[data-cmd_id=#id#]')
+			if ('#_time_widget_#' == '1') {
+				jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'))
+			} else {
+				cmd.find('.timeCmd').parent().remove()
 			}
-			var state = '';
-			cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#');
-			#test#
-			cmd.find('.iconCmd').empty().append(state);
-			var style = '';
-			if(!isNaN('#_desktop_width_#')){
+
+			cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
+
+			try {
+				var state = ''
+				#test#
+				cmd.find('.iconCmd').empty().append(state)
+			} catch (error) {
+				console.log(error)
+			}
+
+			var style = ''
+			if (!isNaN('#_desktop_width_#')) {
 				style = 'width:#_desktop_width_#px !important;'
 			}
-			cmd.find('.iconCmd img').attr('style',style);
+			cmd.find('.iconCmd img').attr('style',style)
+
 			cmd.off('changeThemeEventCmd').on('changeThemeEventCmd',function (event, theme) {
-				var state = '';
+				var state = ''
 				#change_theme#
-				if(state != ''){
+				if (state != '') {
 					cmd.find('.iconCmd').empty().append(state);
 				}
-				var style = '';
-				if(!isNaN('#_desktop_width_#')){
+				var style = ''
+				if (!isNaN('#_desktop_width_#')) {
 					style = 'width:#_desktop_width_#px !important;'
 				}
-				cmd.find('.iconCmd img').attr('style',style);
-			});
+				cmd.find('.iconCmd img').attr('style',style)
+			})
 		}
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+
+		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+
 		$('body').on('changeThemeEvent', function (event, theme) {
-			$('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
-		});
+			$('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
+		})
 	</script>
 	<!-- Hide parameters  #_mobile_width_# -->
 </div>

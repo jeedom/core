@@ -7,7 +7,9 @@
       <span class="value#uid# sliderValue"></span>
     </div>
   </div>
-
+  <template>
+    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+  </template>
   <script>
     $(".cmd[data-cmd_uid=#uid#] .slider.slider-horizontal").css('z-index',1);
     jeedom.cmd.update['#id#'] = function(_options) {
@@ -31,10 +33,9 @@
       $(".value#uid#").hide()
     })
 
-    if ('#color#' != '') {
+    if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#]').find('div.ui-slider-range').style('background-color', '#color#', 'important')
       $('.cmd[data-cmd_id=#id#]').find('span.ui-slider-handle').style('background-color', '#color#', 'important')
     }
-
   </script>
 </div>

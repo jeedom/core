@@ -5,31 +5,34 @@
       <span class="cmdName #hide_name#">#valueName#</span>
     </a>
   </div>
+  <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+    jeedom.cmd.update['#id#'] = function(_options) {
+      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          $('.cmd[data-cmd_id=#id#]').hide();
+          $('.cmd[data-cmd_id=#id#]').hide()
         }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell"></i>');
+          $('.cmd[data-cmd_id=#id#]').show()
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell"></i>')
         }
-      } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
+      } else if (['0', 0, 'off'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          $('.cmd[data-cmd_id=#id#]').hide();
+          $('.cmd[data-cmd_id=#id#]').hide()
         }else{
-          $('.cmd[data-cmd_id=#id#]').show();
-          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell-slash"></i>');
+          $('.cmd[data-cmd_id=#id#]').show()
+          $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="far fa-bell-slash"></i>')
         }
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value:' #state#'})
+
     $('.cmd[data-cmd_uid=#uid#] .action').off().on('click', function () {
-      jeedom.cmd.execute({id: '#id#'});
-    });
+      jeedom.cmd.execute({id: '#id#'})
+    })
+
     if ($('.cmd[data-cmd_uid=#uid#]').last().prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').last().prev().data('subtype') != 'other'
     && $('.cmd[data-cmd_uid=#uid#]').last().prev().css('display') != 'block') {
-      $('.cmd[data-cmd_uid=#uid#]').last().prepend('<br/>');
+      $('.cmd[data-cmd_uid=#uid#]').last().prepend('<br/>')
     }
   </script>
 </div>

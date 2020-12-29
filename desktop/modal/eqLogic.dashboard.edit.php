@@ -289,6 +289,8 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
               $display .= '<tr><td><label class="control-label">{{Paramètres optionnels sur le widget:}}</label></td>';
               $display .= '<td><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
 
+              $display .= '<tr><td colspan="2"><div class="optionalParamHelp '.$thisclassAttrib.'"></div></td></tr>';
+
               if ($cmd->getDisplay('parameters') != '') {
                 foreach (($cmd->getDisplay('parameters')) as $key => $value) {
                   $display .= '<tr class="cmdoptparam">';
@@ -511,6 +513,30 @@ $('.sel_layout').on('change',function() {
 $('#panel_cmds').on('click', '.removeWidgetParameter', function() {
   $(this).closest('tr').remove()
 })
+
+$(function() {
+  $('#commands select[data-l1key="template"][data-l2key="dashboard"]').each(function() {
+    displayWidgetHelp($(this).val(), $(this).closest('.cmdConfig').attr('data-id'))
+  })
+
+  $('#commands select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change',function() {
+    displayWidgetHelp($(this).val(), $(this).closest('.cmdConfig').attr('data-id'))
+  })
+})
+
+function displayWidgetHelp(widgetName, cmdId) {
+  jeedom.cmd.getWidgetHelp({
+    id: cmdId,
+    version: 'dashboard',
+    widgetName: widgetName,
+    error: function(error) {
+      $('#commands div.optionalParamHelp.cmdAttr'+cmdId).empty().text('{{Pas de description des paramètres optionnels sur ce Widget.}}')
+    },
+    success: function(data) {
+      $('#commands div.optionalParamHelp.cmdAttr'+cmdId).empty().html(data.html)
+    }
+  })
+}
 
 $('.addWidgetParametersCmd').on('click', function() {
   var tr = '<tr class="cmdoptparam">'

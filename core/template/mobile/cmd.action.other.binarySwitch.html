@@ -10,15 +10,14 @@
       </label>
     </div>
   </center>
-
   <script>
     //if not name, centered:
     $('.cmd[data-cmd_id=#id#]').find('.cmdName.hidden').parent().removeClass('widthx2')
 
-    if ('#color#' != '') {
+    if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').css('background', '#color#')
     }
-    if ('#color_switch#' != '') {
+    if ($.issetWidgetOptParam('#color_switch#', 'color_switch')) {
       $('.cmd[data-cmd_uid=#uid#] span.binarySwitchHandle').style('background-color', '#color_switch#', 'important')
     }
 
@@ -41,7 +40,7 @@
       }
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#'})
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
 
     $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').off().on('click', function (event) {
       jeedom.cmd.execute({id: '#id#'})

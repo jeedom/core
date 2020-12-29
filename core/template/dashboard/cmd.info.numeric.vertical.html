@@ -15,7 +15,9 @@
   <div class="cmdStats #hide_history#">
     <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
-
+  <template>
+    <div>color : rgb(20,20,20) ({{couleur de l'indicateur de valeur}})</div>
+  </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var position = _options.display_value
@@ -35,7 +37,7 @@
 
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
 
-    if ('#color#' != '') {
+    if ($.issetWidgetOptParam('#color#', 'color')) {
       $('.cmd[data-cmd_id=#id#] .vgauge-value').css('background', '#color#')
     }
   </script>

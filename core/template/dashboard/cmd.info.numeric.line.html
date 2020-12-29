@@ -2,6 +2,7 @@
 	<div class="content-xs">
 		<span class="cmdName #hide_name#">#name_display# </span> <strong class="state"></strong> #unite#
 	</div>
+	<template></template>
 	<script>
 		jeedom.cmd.update['#id#'] = function(_options) {
 			var cmd = $('.cmd[data-cmd_id=#id#]')
@@ -20,6 +21,6 @@
 				}
 			}
 		}
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
 	</script>
 </div>

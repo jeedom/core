@@ -3,14 +3,15 @@
     <div class="cmdName #hide_name#">#name_display#</div>
     <span id="iconCmd"></span>
   </center>
-</div>
-<script>
-  jeedom.cmd.update['#id#'] = function(_options){
-    if (_options.display_value == '1') {
-      $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>');
-    } else {
-      $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>');
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options){
+      if (_options.display_value == '1') {
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-on"></i>')
+      } else {
+        $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="icon jeedom-lumiere-off"></i>')
+      }
     }
-  }
-  jeedom.cmd.update['#id#']({display_value:'#state#'});
-</script>
+
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
+  </script>
+</div>

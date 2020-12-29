@@ -8,6 +8,9 @@ Mobile WebApp
     vertical-align: top;
   }
 
+  div.cmd-widget div.cmdStats {
+    min-height: 24px;
+  }
 
   /* arc gauges and sliders */
   .highcharts-pane {
@@ -67,8 +70,12 @@ Mobile WebApp
   .cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
     font-size: 1.2em !important;
   }
-  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .value {
+  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .ui-input-text {
+    opacity: 1;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
     width: 55px;
+    opacity: 1 !important;
   }
   .cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
     margin-top: 5px;
@@ -146,6 +153,9 @@ Mobile WebApp
   }
 
 /* ____________________others */
+  div.shuttergauge-chart + div.cmdStats {
+    margin-top: -22px;
+  }
   .hgauge-value,
   .shuttergauge-value {
     background: var(--link-color);
@@ -252,19 +262,17 @@ Mobile WebApp
     border-bottom: 7px solid var(--al-info-color);
     border-radius: 50%;
   }
-  .widget-compass-needle {
-    left: 38px;
-    width: 4px;
-    height: 80px;
-    top: 0px;
-  }
-  .widget-compass-needle:after {
+  .widget-compass-needle-placer {
     position: absolute;
-    content: '' !important;
-    top: -3px;
-    left: -6px;
-    width: 0;
-    height: 0;
+    margin-top: -3px;
+    margin-left: -3px;
+    width: 86px;
+    height: 86px;
+  }
+  .widget-compass-needle {
+    position: relative;
+    width: 0px;
+    height: 0px;
     border: 8px solid transparent;
     border-top: 22px solid var(--al-warning-color);
   }
@@ -276,22 +284,15 @@ Mobile WebApp
     padding: 0;
   }
 
-  @keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
+  @keyframes jeedomWidgetRainWaterAnimation{from{background-position:0 0}to{background-position:100000% 0}}
 
   .widget-rain-water {
-    height: 0pt;
-    background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0 0 1px 1px;
-    bottom: 0;
-    width : 100%;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
     transition: water 3s ease-out;
     z-index: 0;
-    animation: homeweatherstationraingauge 3000s linear infinite;
-    bottom : 0px;
-    position: absolute;
+    animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
   }
 
   .widget-rain-container {

@@ -15,6 +15,9 @@
   <div class="cmdStats #hide_history#">
     <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
+  <template>
+    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+  </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
@@ -25,6 +28,11 @@
       }
       $('.cmd[data-cmd_id=#id#] .state strong').first().text(_options.display_value)
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+    }
   </script>
 </div>

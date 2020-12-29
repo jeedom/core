@@ -256,12 +256,20 @@ Desktop
     vertical-align: top !important;
     padding-top: 6px;
   }
+  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
+    opacity: 1 !important;
+  }
   div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
     overflow: hidden;
   }
   div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .message {
     margin: 5px 0 !important;
     resize: none !important;
+  }
+
+
+  div.cmd-widget[data-type="action"][data-subtype="select"][data-template="default"] .title.hidden + .content-xs > .selectCmd {
+    margin-top: 9px;
   }
 
   div.cmd-widget[data-type="info"][data-subtype="string"][data-template="error"],
@@ -517,19 +525,17 @@ Desktop
     border-bottom: 7px solid var(--al-info-color);
     border-radius: 50%;
   }
-  .widget-compass-needle {
-    left: 38px;
-    width: 4px;
-    height: 80px;
-    top: 0px;
-  }
-  .widget-compass-needle:after {
+  .widget-compass-needle-placer {
     position: absolute;
-    content: '' !important;
-    top: -3px;
-    left: -6px;
-    width: 0;
-    height: 0;
+    margin-top: -3px;
+    margin-left: -3px;
+    width: 86px;
+    height: 86px;
+  }
+  .widget-compass-needle {
+    position: relative;
+    width: 0px;
+    height: 0px;
     border: 8px solid transparent;
     border-top: 22px solid var(--al-warning-color);
   }
@@ -541,22 +547,15 @@ Desktop
     padding: 0;
   }
 
-  @keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
+  @keyframes jeedomWidgetRainWaterAnimation{from{background-position:0 0}to{background-position:100000% 0}}
 
   .widget-rain-water {
-    height: 0pt;
-    background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0 0 1px 1px;
-    bottom: 0;
-    width : 100%;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
     transition: water 3s ease-out;
     z-index: 0;
-    animation: homeweatherstationraingauge 3000s linear infinite;
-    bottom : 0px;
-    position: absolute;
+    animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
   }
 
   .widget-rain-container {

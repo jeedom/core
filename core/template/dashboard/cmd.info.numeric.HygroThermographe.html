@@ -68,6 +68,9 @@
       right: 85px;
     }
   </style>
+  <template>
+    <div>scale : 0.75 ({{Echelle du widget, entre 0 et 1}}).</div>
+  </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first')
@@ -94,7 +97,7 @@
       }
     }, 100)
 
-    if ('#scale#' != '') {
+    if ($.issetWidgetOptParam('#scale#', 'scale')) {
       let cmd = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe').first()
       if (cmd.attr('scaled') != '1' && '#scale#' > 0) {
         cmd.attr('scaled', '1')

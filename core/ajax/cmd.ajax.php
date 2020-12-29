@@ -26,6 +26,17 @@ try {
 
 	ajax::init();
 
+	if (init('action') == 'getWidgetHelp') {
+		$cmd = cmd::byId(init('id'));
+		if (!is_object($cmd)) {
+			throw new Exception(__('Commande inconnue - Vérifiez l\'id', __FILE__));
+		}
+		$info_cmd = array();
+		$info_cmd['id'] = $cmd->getId();
+		$info_cmd['html'] = $cmd->getWidgetHelp(init('version'), init('widgetName', ''));
+		ajax::success($info_cmd);
+	}
+
 	if (init('action') == 'toHtml') {
 		if (init('ids') != '') {
 			$return = array();

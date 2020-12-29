@@ -2482,6 +2482,7 @@ Theme Core 2021 @Jeedom
   }
   .form-control::placeholder {
     color: var(--placeholder-color);
+    font-weight: 300;
   }
 
   fieldset > div {
@@ -4073,6 +4074,11 @@ Theme Core 2021 @Jeedom
   }
 
 /* ____________________DIALOGS */
+#div_displayEqLogicConfigure #commands div.optionalParamHelp,
+#div_displayCmdConfigure #optionalParamHelp {
+  padding-left: 10px;
+  color: var(--al-info-color);
+}
   .ui-autocomplete .ui-menu-item-wrapper,
   .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
     cursor: pointer;

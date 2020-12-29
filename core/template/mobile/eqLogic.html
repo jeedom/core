@@ -14,12 +14,12 @@
 		</div>
 	</center>
 	<script>
-		if ('#refresh_id#' != ''){
+		if ('#refresh_id#' != '') {
 			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
-				jeedom.cmd.execute({id: '#refresh_id#'});
-			});
-		}else{
-			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove();
+				jeedom.cmd.execute({id: '#refresh_id#'})
+			})
+		} else {
+			$('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
 		}
 	</script>
 </div>

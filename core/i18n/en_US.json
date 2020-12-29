@@ -3654,7 +3654,9 @@
         "Erreur delete influx sur : ": "Error delete influx on:",
         "Envoie de l\\'historique à influx : ": "Sends influx history:",
         "Erreur history influx sur : ": "History influx error on:",
-        "Commande": "Command"
+        "Commande": "Command",
+        "Aucun paramètre optionnel disponible.": "No optional parameter available for this widget.",
+        "Aucune description trouvée pour ce Widget.": "No description found for this widget."
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Settings",
@@ -4148,7 +4150,18 @@
         "Dernier lancement": "Last launch",
         "Min": "Min",
         "Moyenne": "Average",
-        "Max": "Max"
+        "Max": "Max",
+        "Aucun paramètre optionnel disponible": "No optionnal parameter",
+        "couleur d'arrière plan": "background color",
+        "couleur de la pastille": "handle color",
+        "Nord": "North",
+        "Nord-Est": "North-East",
+        "Est": "East",
+        "Sud-Est": "South-East",
+        "Sud": "South",
+        "Sud-Ouest": "South-West",
+        "Ouest": "West",
+        "Nord-Ouest": "North-West"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Duration"

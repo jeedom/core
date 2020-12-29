@@ -3,11 +3,20 @@
     <div class="cmdName #hide_name#">#name_display#</div>
     <span class="cursor iconCmd"></span>
     <div class="slider full-width-slider ui-slider">
-      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" />
+      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" data-role="none"/>
     </div>
     <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
   <script>
+    $('.cmd[data-cmd_id=#id#] input').slider({
+      create: function(event, ui) {
+        if ($.issetWidgetOptParam('#color#', 'color')) {
+          $(event.target.parentNode).find('div.ui-slider-bg').style('background-color', '#color#', 'important')
+          $(event.target.parentNode).find('a.ui-slider-handle').style('background-color', '#color#', 'important')
+        }
+      }
+    })
+
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
@@ -16,12 +25,14 @@
         var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       }
-    });
+    })
+
     $('.cmd[data-cmd_uid=#uid#]').on({
       'slidestop': function(event, ui) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
+        jeedom.cmd.execute({id: '#id#', value: {slider: event.target.value}})
       }
     }, '.slider')
+
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
@@ -39,6 +50,7 @@
         cmd.find('.iconCmd').empty().append("#_icon_off_#").attr('data-state', 'off')
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
   </script>
 </div>

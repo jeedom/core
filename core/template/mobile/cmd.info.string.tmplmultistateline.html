@@ -3,22 +3,29 @@
     <span class="cmdName #hide_name#">#name_display#</span> <span class="iconCmdLine"></span>
     <span class="timeCmd value #history#" data-type="info"></span>
   </center>
-</div>
-<script>
-  jeedom.cmd.update['#id#'] = function(_options){
-    var cmd = $('.cmd[data-cmd_id=#id#]');
-    if('#_time_widget_#' == '1'){
-      jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
-    }else{
-      cmd.find('.timeCmd').remove();
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      if ('#_time_widget_#' == '1') {
+        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'))
+      } else {
+        cmd.find('.timeCmd').remove()
+      }
+      cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+
+      try {
+        var state = ''
+        #test#
+        cmd.find('.iconCmd').empty().append(state)
+      } catch (error) {
+        console.log(error)
+      }
     }
-    var state = '';
-    cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
-    #test#
-    cmd.find('.iconCmdLine').empty().append(state);
-  }
-  jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-  $('body').on('changeThemeEvent', function (event,theme) {
-    $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
-  });
-</script>
+
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+
+    $('body').on('changeThemeEvent', function (event,theme) {
+      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
+    })
+  </script>
+</div>

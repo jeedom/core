@@ -20,9 +20,9 @@
 			$('.cmd[data-cmd_uid=#uid#] .state strong').first().text(_options.display_value)
 		}
 
-		jeedom.cmd.update['#id#']({display_value:'#state#'});
+		jeedom.cmd.update['#id#']({display_value: '#state#'})
 
-		if ('#color#' != '') {
+		if ($.issetWidgetOptParam('#color#', 'color')) {
 			 $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')
 		}
 	</script>

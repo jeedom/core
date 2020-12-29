@@ -19,6 +19,11 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
+/*
+Translate system scan core/template/dashboard files and set them in i18n all under "core\/template\/widgets.html" path
+-> translate::exec($string, 'core/template/widgets.html');
+*/
+
 class cmd {
 	/*     * *************************Attributs****************************** */
 
@@ -1154,18 +1159,45 @@ class cmd {
 		return $value;
 	}
 
-	public function getWidgetTemplateCode($_version = 'dashboard') {
+	public function getWidgetHelp($_version='dashboard', $_widgetName='') {
+		$widgetCode = $this->getWidgetTemplateCode($_version, false, $_widgetName);
+		if (strpos($widgetCode, '</template>') !== false) {
+			$widgetHelp = explode('</template>', $widgetCode)[0];
+			$widgetHelp = explode('<template>', $widgetHelp)[1];
+			if ($widgetHelp == '') {
+				return '<em>'.__('Aucun paramètre optionnel disponible.', __FILE__).'</em>.';
+			} else {
+				return translate::exec($widgetHelp, 'core/template/widgets.html');
+			}
+		} else {
+			return '<em>'.__('Aucune description trouvée pour ce Widget.', __FILE__).'</em>.';
+		}
+	}
+
+	public function cleanWidgetCode($_template) {
+		$_template = preg_replace('/<template>[\s\S]+?<\/template>/', '', $_template);
+		$_template = str_replace(array('<template>', '</template>'), '', $_template);
+		return $_template;
+	}
+
+	public function getWidgetTemplateCode($_version='dashboard', $_clean=true, $_widgetName='') {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$_version = jeedom::versionAlias($_version);
 		$replace = null;
 		$widget_template = $JEEDOM_INTERNAL_CONFIG['cmd']['widgets'];
-		$widget_name = $this->getTemplate($_version, 'default');
-		if(strpos($this->getTemplate($_version, 'default'),'::') !== false){
-			$name = explode('::',$this->getTemplate($_version, 'default'));
+
+		if ($_widgetName == '') {
+			$widget_name = $this->getTemplate($_version, 'default');
+		} else {
+			$widget_name = $_widgetName;
+		}
+
+		if (strpos($widget_name,'::') !== false) {
+			$name = explode('::',$widget_name);
 			$widget_name = $name[1];
-			if($name[0] == 'custom'){
+			if ($name[0] == 'custom') {
 				$widget = widgets::byTypeSubtypeAndName($this->getType(),$this->getSubType(),$name[1]);
-				if(is_object($widget)){
+				if (is_object($widget)) {
 					$widget_template = array(
 						$this->getType() => array(
 							$this->getSubType() => array(
@@ -1178,13 +1210,16 @@ class cmd {
 						)
 					);
 				}
-			}elseif($name[0] == 'customtemp'){
+			} elseif ($name[0] == 'customtemp') {
 				$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
-				if(file_exists(__DIR__ . '/../../data/customTemplates/' . $_version . '/'. $template_name .'.html')){
+				if (file_exists(__DIR__ . '/../../data/customTemplates/' . $_version . '/'. $template_name .'.html')) {
 					$template = file_get_contents(__DIR__ . '/../../data/customTemplates/' . $_version . '/'. $template_name .'.html');
+					if ($_clean) {
+						$template = $this->cleanWidgetCode($template);
+					}
 					return $template;
 				}
-			}elseif($name[0] != 'core'){
+			} elseif($name[0] != 'core'){
 				$plugin_id  = $name[0];
 				if (method_exists($plugin_id, 'templateWidget')) {
 					$widget_template = $plugin_id::templateWidget();
@@ -1192,36 +1227,44 @@ class cmd {
 			}
 		}
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
-		if(isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])){
+		if (isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])) {
 			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
-			if(isset($template_conf['replace']) && is_array($template_conf['replace']) && count($template_conf['replace']) > 0){
+			if (isset($template_conf['replace']) && is_array($template_conf['replace']) && count($template_conf['replace']) > 0) {
 				$replace = $template_conf['replace'];
 				foreach ($replace as &$value) {
 					$value = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$value));
 				}
-			}else{
+			} else {
 				$replace = array();
 			}
 			$replace['#test#'] = '';
-			if(isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0){
+			if (isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0) {
 				$i=0;
 				$replace['#change_theme#'] = '';
 				foreach ($template_conf['test'] as &$test) {
-					if(!isset($test['operation'])){
+					if (!isset($test['operation'])) {
 						continue;
 					}
-					if(!isset($test['state_light'])){
+					if (!isset($test['state_light'])) {
 						$test['state_light'] = '';
 					}
-					if(!isset($test['state_dark'])){
+					if (!isset($test['state_dark'])) {
 						$test['state_dark'] = '';
 					}
-					$test['state_light'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$test['state_light']));
-					$test['state_dark'] = str_replace('#value#','"+_options.display_value+"',str_replace('"',"'",$test['state_dark']));
-					$test['operation'] = str_replace('"',"'",str_replace('#value#','_options.display_value',$test['operation']));
-					$replace['#test#'] .= 'if('. $test['operation'].'){cmd.attr("data-state",'.$i.');state=jeedom.widgets.getThemeImg("'.$test['state_light'].'","'.$test['state_dark'].'")}';
-					$replace['#change_theme#'] .= 'if(cmd.attr("data-state") == '.$i.'){state=jeedom.widgets.getThemeImg("'.$test['state_light'].'","'.$test['state_dark'].'")}';
+					$test['state_light'] = str_replace('#value#', '"+_options.display_value+"', str_replace('"', "'", $test['state_light']));
+					$test['state_dark'] = str_replace('#value#', '"+_options.display_value+"', str_replace('"', "'", $test['state_dark']));
+					$test['operation'] = str_replace('"', "'", str_replace('#value#', '_options.display_value', $test['operation']));
+
+					//ltrim avoid js variable starting with # error
+					$replace['#test#'] .= 'if ('. ltrim($test['operation'], '#').') {'."\n";
+					$replace['#test#'] .= 'cmd.attr("data-state", '.$i.')'."\n";
+					$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("'.$test['state_light'].'", "'.$test['state_dark'].'")'."\n";
+					$replace['#test#'] .= "}\n";
+
+					$replace['#change_theme#'] .= 'if (cmd.attr("data-state") == '.$i.') {'."\n";
+					$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("'.$test['state_light'].'", "'.$test['state_dark'].'")'."\n";
+					$replace['#change_theme#'] .= "}\n";
 					$i++;
 				}
 			}
@@ -1250,8 +1293,12 @@ class cmd {
 		} else {
 			$template = self::$_templateArray[$_version . '::' . $template_name];
 		}
-		if($replace != null && is_array($replace)){
-			$template = str_replace(array_keys($replace),$replace,$template);
+		if ($replace != null && is_array($replace)) {
+			$template = str_replace(array_keys($replace), $replace, $template);
+		}
+
+		if ($_clean) {
+			$template = $this->cleanWidgetCode($template);
 		}
 		return $template;
 	}
@@ -1359,13 +1406,13 @@ class cmd {
 					if ($this->getSubType() == 'numeric' && trim($replace['#unite#']) != ''){
 						if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
 							$round=$this->getConfiguration('historizeRound');
-						}else{
+						} else {
 							$round=99;
 						}
 
 						$valueInfo=self::autoValueArray($replace['#state#'],$round,$replace['#unite#']);
-						$replace['#state#']=$valueInfo[0];
-						$replace['#unite#']=$valueInfo[1];
+						$replace['#state#'] = $valueInfo[0];
+						$replace['#unite#'] = $valueInfo[1];
 					}
 				}
 				if (method_exists($this, 'formatValueWidget')) {
@@ -1409,8 +1456,11 @@ class cmd {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
-			return translate::exec(template_replace($replace, $template), 'core/template/widgets.html');
-		} else {
+			$template = template_replace($replace, $template);
+			return translate::exec($template, 'core/template/widgets.html');
+		}
+
+		if ($this->getType() == 'action') {
 			$cmdValue = $this->getCmdValue();
 			if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
 				$replace['#value_id#'] = $cmdValue->getId();
@@ -1433,16 +1483,30 @@ class cmd {
 				$replace['#unite#'] = $this->getUnite();
 			}
 			$replace['#state#'] = str_replace(array("\'", "'"), array("'", "\'"), $replace['#state#']);
+
+			$html .= template_replace($replace, $template);
+			if (trim($html) == '') {
+				return $html;
+			}
+
+			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
+			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
+			$replace['#message_cmd_type#'] = $this->getDisplay('message_cmd_type', 'info');
+			$replace['#message_cmd_subtype#'] = $this->getDisplay('message_cmd_subtype', '');
+			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
+			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
+			$replace['#title_color#'] = $this->getDisplay('title_color', 0);
+			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
+			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
+			$replace['#other_tooltips#'] = ($replace['#name#'] != $this->getName()) ? $this->getName() : '';
+
 			$parameters = $this->getDisplay('parameters');
 			if (is_array($parameters)) {
 				foreach ($parameters as $key => $value) {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
-			$html .= template_replace($replace, $template);
-			if (trim($html) == '') {
-				return $html;
-			}
+
 			if (!isset($replace['#title#'])) {
 				$replace['#title#'] = '';
 			}
@@ -1455,17 +1519,9 @@ class cmd {
 			if (!isset($replace['#color#'])) {
 				$replace['#color#'] = '';
 			}
-			$replace['#title_placeholder#'] = $this->getDisplay('title_placeholder', __('Titre', __FILE__));
-			$replace['#message_placeholder#'] = $this->getDisplay('message_placeholder', __('Message', __FILE__));
-			$replace['#message_cmd_type#'] = $this->getDisplay('message_cmd_type', 'info');
-			$replace['#message_cmd_subtype#'] = $this->getDisplay('message_cmd_subtype', '');
-			$replace['#message_disable#'] = $this->getDisplay('message_disable', 0);
-			$replace['#title_disable#'] = $this->getDisplay('title_disable', 0);
-			$replace['#title_color#'] = $this->getDisplay('title_color', 0);
-			$replace['#title_possibility_list#'] = str_replace("'", "\'", $this->getDisplay('title_possibility_list', ''));
-			$replace['#slider_placeholder#'] = $this->getDisplay('slider_placeholder', __('Valeur', __FILE__));
-			$replace['#other_tooltips#'] = ($replace['#name#'] != $this->getName()) ? $this->getName() : '';
-			return translate::exec(template_replace($replace, $template), 'core/template/widgets.html');
+
+			$template = template_replace($replace, $template);
+			return translate::exec($template, 'core/template/widgets.html');
 		}
 	}
 

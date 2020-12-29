@@ -16,7 +16,9 @@
     <div class="state valueshutter"><strong>#state#</strong> <strong>#unite#</strong></div>
     <div class="state dynamicshutter hidden"></div>
   </div>
-
+  <template>
+    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+  </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
@@ -93,5 +95,11 @@
     })
 
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+      $('.cmd[data-cmd_id=#id#]').find('div.ui-slider-range').style('background-color', '#color#', 'important')
+      $('.cmd[data-cmd_id=#id#]').find('span.ui-slider-handle').style('background-color', '#color#', 'important')
+    }
   </script>
 </div>
