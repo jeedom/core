@@ -33,7 +33,7 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 			$messageAlert .= ' <strong>Debian 10 Buster</strong>.<br><em>';
 			$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter }} <a href="https://doc.jeedom.com/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}'.'</em>';
 		}
-		echo '<div class="col-xs-12 text-center '.$alertLevel.'"><strong>'.$system.'></strong><br>'.$messageAlert.'</div>';
+		echo '<div class="col-xs-12 text-center '.$alertLevel.'"><strong>'.$system.'</strong><br>'.$messageAlert.'</div>';
 	}
 }
 
