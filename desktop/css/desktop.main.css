@@ -690,6 +690,9 @@ Theme Core 2021 @Jeedom
     font-size: 11px !important;
     margin-top: 4px;
   }
+  .timeCmd.label:first-letter {
+    text-transform: uppercase;
+  }
 
   .eqLogic-widget,
   .scenario-widget {

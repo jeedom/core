@@ -409,6 +409,9 @@ label {
   font-size: 12.5px;
   margin: 6px;
 }
+.timeCmd:first-letter {
+    text-transform: uppercase;
+  }
 .iconCmd + .timeCmd {
   line-height: 15px;
   width: 80%
