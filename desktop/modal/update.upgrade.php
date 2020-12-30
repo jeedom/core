@@ -21,7 +21,7 @@ if (!isConnect('admin')) {
 $hardware = jeedom::getHardwareName();
 $goUpgrade = true;
 if (system::getDistrib() != 'debian') {
-  $system = strtoupper($hardware) . ' - OS non supporté.';
+  $system = strtoupper($hardware) . ' - {{OS non supporté}}.';
   $alertLevel = 'alert alert-danger';
   $messageAlert = '{{Impossible de vous renseigner sur la compatibilité de votre environnement.}}';
 }
@@ -29,7 +29,7 @@ else {
 	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
   if ($version < '9') {
     $goUpgrade = false;
-    $name = 'Jessie ou inférieur';
+    $name = 'Jessie {{ou inférieur}}';
     $alertLevel = 'alert alert-danger';
     if ($hardware == 'smart') {
       $messageAlert = '{{Votre version de Debian est trop ancienne pour être en mesure d\'utiliser toutes les possibilités offertes par Jeedom dans les meilleures conditions. Veuillez mettre à niveau l\'environnement Linux de votre box Smart en cliquant sur le bouton}} <a class="btn btn-sm btn-danger roundedLeft" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}</a>';
@@ -53,7 +53,7 @@ else {
     $alertLevel = 'alert alert-success';
     $messageAlert = '{{Version de Debian officiellement supportée installée, vous pouvez continuer le processus de migration.}}';
   }
-  $system = strtoupper($hardware) . ' - Debian en version '.$version.' ('.$name.')';
+  $system = strtoupper($hardware) . ' - {{Debian en version}} '.$version.' ('.$name.')';
 }
 ?>
 
@@ -63,7 +63,7 @@ else {
 
   <?php if ($goUpgrade == true) { ?>
     <p>
-      <a class="btn btn-warning" id="bt_goUpgradeV4" disabled="true" title="Veuillez lire toute la page avant de lancer la migration V4.">
+      <a class="btn btn-warning" id="bt_goUpgradeV4" disabled="true" title="{{Veuillez lire toute la page avant de lancer la migration V4}}.">
         <i class="fas fa-level-up-alt"></i> {{Mettre à niveau V4}}
       </a>
 </p>
@@ -82,7 +82,7 @@ else {
       </div>
       <div class="panel-body">
         <div class="text-center">
-          <h5>{{3 thèmes font leur apparition}} : <strong>Light, Dark ou Legacy.</strong></h5>
+          <h5>{{3 thèmes font leur apparition}} : <strong>Light, Dark {{ou}} Legacy.</strong></h5>
           <p>{{Optez pour un interface qui vous ressemble grâce aux 3 thèmes disponibles en V4. Il est possible de}} <strong>{{changer de thème automatiquement}}</strong> {{selon l'heure de la journée ou encore en fonction de la}} <strong>{{luminosité ambiante sur mobile}}</strong>.</p>
         </div>
       </div>
@@ -301,7 +301,7 @@ $('#bt_goUpgradeV4').off('click').on('click', function() {
   if($(this).attr('disabled') != 'disabled') {
     if ($('#plugins_upgrade >tbody >tr >td i.icon_red.fas.fa-trash-alt').length == 0) {
       bootbox.confirm({
-        title: '{{Etes-vous certain de vouloir mettre à niveau Jeedom en V4 ?}}',
+        title: '{{Êtes-vous certain de vouloir mettre à niveau Jeedom en V4 ?}}',
         message: '<div class="alert alert-success">{{Votre version actuelle de Jeedom ainsi que vos plugins seront sauvegardés avant migration. En cas de besoin il suffit de restaurer la dernière sauvegarde pour revenir en V3.}}</div>',
         callback: function(result){
           if (result) {
