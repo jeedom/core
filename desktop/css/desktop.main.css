@@ -2015,7 +2015,7 @@ Theme Core 2021 @Jeedom
   [data-coloredicons="1"] .scenario-widget:not(.disabled) .iconCmd {
     color: var(--bt-success-color) !important;
   }
-  [data-coloredicons="1"] .scenario-widget.disabled .iconCmd {
+  [data-coloredicons="1"] .scenario-widget.inactive .iconCmd {
     color: var(--al-danger-color) !important;
   }
 
