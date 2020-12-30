@@ -241,80 +241,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
               //select dashboard widget
               $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
-              $display .= '<option value="default">Défaut</option>';
-              if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
-                $types = array();
-                foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
-                  if (isset($info['type'])) {
-                    $info['key'] = $key;
-                    if (!isset($types[$info['type']])) {
-                      $types[$info['type']][0] = $info;
-                    } else {
-                      array_push($types[$info['type']], $info);
-                    }
-                  }
-                }
-                ksort($types);
-                foreach ($types as $type) {
-                  usort($type, function($a, $b) {
-                    return strcmp($a['name'], $b['name']);
-                  });
-                  foreach ($type as $key => $widget) {
-                    if ($widget['name'] == 'default') {
-                      continue;
-                    }
-                    if ($key == 0) {
-                      $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-                    }
-                    if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
-                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
-                    }else{
-                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
-                    }
-                  }
-                  $display .= '</optgroup>';
-                }
-              }
+              $display .= $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
               $display .= '</select></td>';
 
               //select mobile widget:
               $display .= '<td class="widgetPossibilityMobile" style="display: none;"><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="mobile">';
-              $display .= '<option value="default">Défaut</option>';
-              if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
-                $types = array();
-                foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
-                  if (isset($info['type'])) {
-                    $info['key'] = $key;
-                    if (!isset($types[$info['type']])) {
-                      $types[$info['type']][0] = $info;
-                    } else {
-                      array_push($types[$info['type']], $info);
-                    }
-                  }
-                }
-                ksort($types);
-                foreach ($types as $type) {
-                  usort($type, function($a, $b) {
-                    return strcmp($a['name'], $b['name']);
-                  });
-                  foreach ($type as $key => $widget) {
-                    if ($widget['name'] == 'default') {
-                      continue;
-                    }
-                    if ($key == 0) {
-                      $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-                    }
-                    if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
-                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
-                    }else{
-                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
-                    }
-                  }
-                  $display .= '</optgroup>';
-                }
-              }
+              $display .= $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
               $display .= '</select></td>';
-
               $display .= '</tr>';
 
               $display .= '<tr><td><label class="control-label">{{Afficher le nom}}</label></td>';

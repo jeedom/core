@@ -1159,6 +1159,49 @@ class cmd {
 		return $value;
 	}
 
+	// Used by modals eqLogic.dashboard.edit and cmd.configure
+	public function getWidgetsSelectOptions($_version='dashboard', $_availWidgets=false) {
+		if (!$_availWidgets) {
+			$_availWidgets = self::availableWidget($_version);
+		}
+		$display = '<option value="default">Défaut</option>';
+      	if (is_array($_availWidgets[$this->getType()]) && is_array($_availWidgets[$this->getType()][$this->getSubType()]) && count($_availWidgets[$this->getType()][$this->getSubType()]) > 0) {
+        $types = array();
+        foreach ($_availWidgets[$this->getType()][$this->getSubType()] as $key => $info) {
+          if (isset($info['type'])) {
+            $info['key'] = $key;
+            if (!isset($types[$info['type']])) {
+              $types[$info['type']][0] = $info;
+            } else {
+              array_push($types[$info['type']], $info);
+            }
+          }
+        }
+
+        ksort($types);
+        foreach ($types as $type) {
+          usort($type, function($a, $b) {
+            return strcmp($a['name'], $b['name']);
+          });
+          foreach ($type as $key => $widget) {
+            if ($widget['name'] == 'default') {
+              continue;
+            }
+            if ($key == 0) {
+              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
+            }
+            if (isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
+              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+            } else {
+              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+            }
+          }
+          $display .= '</optgroup>';
+        }
+        return $display;
+      }
+	}
+
 	public function getWidgetHelp($_version='dashboard', $_widgetName='') {
 		$widgetCode = $this->getWidgetTemplateCode($_version, false, $_widgetName);
 		if (strpos($widgetCode, '</template>') !== false) {

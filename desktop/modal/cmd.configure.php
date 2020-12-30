@@ -650,42 +650,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
                       <option value="default">Défaut</option>
                       <?php
-
-                      if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
-                        $types = array();
-                        foreach ($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
-                          if (isset($info['type'])) {
-                            $info['key'] = $key;
-                            if (!isset($types[$info['type']])) {
-                              $types[$info['type']][0] = $info;
-                            } else {
-                              array_push($types[$info['type']], $info);
-                            }
-                          }
-                        }
-                        ksort($types);
-                        $display = '';
-                        foreach ($types as $type) {
-                          usort($type, function($a, $b) {
-                            return strcmp($a['name'], $b['name']);
-                          });
-                          foreach ($type as $key => $widget) {
-                            if ($widget['name'] == 'default') {
-                              continue;
-                            }
-                            if ($key == 0) {
-                              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-                            }
-                            if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
-                              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
-                            }else{
-                              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
-                            }
-                          }
-                          $display .= '</optgroup>';
-                        }
-                        echo $display;
-                      }
+                        echo $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
                       ?>
                     </select>
                   <?php }
@@ -697,42 +662,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
                       <option value="default">Défaut</option>';
                       <?php
-                      if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
-                        $types = array();
-                        foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
-                          if (isset($info['type'])) {
-                            $info['key'] = $key;
-                            if (!isset($types[$info['type']])) {
-                              $types[$info['type']][0] = $info;
-                            } else {
-                              array_push($types[$info['type']], $info);
-                            }
-                          }
-                        }
-                        ksort($types);
-                        $display = '';
-                        foreach ($types as $type) {
-                          usort($type, function($a, $b) {
-                            return strcmp($a['name'], $b['name']);
-                          });
-
-                          foreach ($type as $key => $widget) {
-                            if ($widget['name'] == 'default') {
-                              continue;
-                            }
-                            if ($key == 0) {
-                              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-                            }
-                            if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
-                              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
-                            }else{
-                              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
-                            }
-                          }
-                          $display .= '</optgroup>';
-                        }
-                        echo $display;
-                      }
+                        echo $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
                       ?>
                     </select>
                   <?php }
