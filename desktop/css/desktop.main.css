@@ -4077,11 +4077,14 @@ Theme Core 2021 @Jeedom
   }
 
 /* ____________________DIALOGS */
-#div_displayEqLogicConfigure #commands div.optionalParamHelp,
-#div_displayCmdConfigure #optionalParamHelp {
-  padding-left: 10px;
-  color: var(--al-info-color);
-}
+  #div_displayEqLogicConfigure #commands div.optionalParamHelp,
+  #div_displayCmdConfigure #optionalParamHelp {
+    padding-left: 10px;
+    color: var(--al-info-color);
+  }
+  #div_displayEqLogicConfigure #commands .cmdConfig table tr > td:not(:first-child) {
+    text-align: center;
+  }
   .ui-autocomplete .ui-menu-item-wrapper,
   .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
     cursor: pointer;

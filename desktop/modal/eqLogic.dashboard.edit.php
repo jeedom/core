@@ -28,6 +28,7 @@ $allCmds = [];
 foreach ($cmds as $cmd) {
   $allCmds[$cmd->getId()] = jeedom::toHumanReadable(utils::o2a($cmd));
   $allCmds[$cmd->getId()]['widgetPossibilityDashboard'] = $cmd->widgetPossibility('custom::widget::dashboard');
+  $allCmds[$cmd->getId()]['widgetPossibilityMobile'] = $cmd->widgetPossibility('custom::widget::mobile');
 }
 //eqLogic setter:
 sendVarToJS([
@@ -37,6 +38,7 @@ sendVarToJS([
 ]);
 
 $cmd_widgetDashboard = cmd::availableWidget('dashboard');
+$cmd_widgetMobile = cmd::availableWidget('mobile');
 ?>
 
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
@@ -230,11 +232,15 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
               $display .= '<table class="table table-bordered table-condensed">';
 
-              $display .= '<tr><td style="width:60%"><label class="control-label">{{Visible}}</label></td>';
-              $display .= '<td style="width:40%"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" /></td></tr>';
+              //visible and td widths:
+              $display .= '<tr><td style="width:40%"><label class="control-label">{{Visible}}</label><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" style="float: right"/></td>';
+              $display .= '<td style="width:30%"><i class="fas fa-desktop"></i></td>';
+              $display .= '<td style="width:30%"><i class="fas fa-tablet-alt"></i></td></tr>';
 
-              $display .= '<tr class="widgetPossibilityDashboard" style="display: none;"><td><label class="control-label">{{Widget}}</label></td>';
-              $display .= '<td><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
+              $display .= '<tr><td><label class="control-label">{{Widget}}</label></td>';
+
+              //select dashboard widget
+              $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
               $display .= '<option value="default">Défaut</option>';
               if (is_array($cmd_widgetDashboard[$cmd->getType()]) && is_array($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetDashboard[$cmd->getType()][$cmd->getSubType()]) > 0) {
                 $types = array();
@@ -260,7 +266,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                     if ($key == 0) {
                       $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
                     }
-                    if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom'){
+                    if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
                       $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
                     }else{
                       $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
@@ -269,27 +275,73 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                   $display .= '</optgroup>';
                 }
               }
-              $display .= '</select></td></tr>';
+              $display .= '</select></td>';
+
+              //select mobile widget:
+              $display .= '<td class="widgetPossibilityMobile" style="display: none;"><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="mobile">';
+              $display .= '<option value="default">Défaut</option>';
+              if (is_array($cmd_widgetMobile[$cmd->getType()]) && is_array($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) && count($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()]) > 0) {
+                $types = array();
+                foreach ($cmd_widgetMobile[$cmd->getType()][$cmd->getSubType()] as $key => $info) {
+                  if (isset($info['type'])) {
+                    $info['key'] = $key;
+                    if (!isset($types[$info['type']])) {
+                      $types[$info['type']][0] = $info;
+                    } else {
+                      array_push($types[$info['type']], $info);
+                    }
+                  }
+                }
+                ksort($types);
+                foreach ($types as $type) {
+                  usort($type, function($a, $b) {
+                    return strcmp($a['name'], $b['name']);
+                  });
+                  foreach ($type as $key => $widget) {
+                    if ($widget['name'] == 'default') {
+                      continue;
+                    }
+                    if ($key == 0) {
+                      $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
+                    }
+                    if(isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
+                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+                    }else{
+                      $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+                    }
+                  }
+                  $display .= '</optgroup>';
+                }
+              }
+              $display .= '</select></td>';
+
+              $display .= '</tr>';
 
               $display .= '<tr><td><label class="control-label">{{Afficher le nom}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOndashboard" checked></td></tr>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOndashboard" checked></td>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
+              $display .= '</tr>';
 
               $display .= '<tr><td><label class="control-label">{{Afficher le nom ET l\'icône}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td></tr>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
+              $display .= '</tr>';
 
               $display .= '<tr><td><label class="control-label">{{Afficher les statistiques}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOndashboard" checked></td></tr>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
+              $display .= '</tr>';
 
               $display .= '<tr><td><label class="control-label">{{Retour à la ligne avant le widget}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
+              $display .= '<td colspan="2"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
 
               $display .= '<tr><td><label class="control-label">{{Retour à la ligne après le widget}}</label></td>';
-              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
+              $display .= '<td colspan="2"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
 
               $display .= '<tr><td><label class="control-label">{{Paramètres optionnels sur le widget:}}</label></td>';
-              $display .= '<td><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
+              $display .= '<td colspan="2"><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
 
-              $display .= '<tr><td colspan="2"><div class="optionalParamHelp '.$thisclassAttrib.'"></div></td></tr>';
+              $display .= '<tr><td colspan="3"><div class="optionalParamHelp '.$thisclassAttrib.'"></div></td></tr>';
 
               if ($cmd->getDisplay('parameters') != '') {
                 foreach (($cmd->getDisplay('parameters')) as $key => $value) {
@@ -297,7 +349,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                   $display .= '<td>';
                   $display .= '<input class="input-sm key" value="' . $key . '" style="width: 100%;"/>';
                   $display .= '</td>';
-                  $display .= '<td>';
+                  $display .= '<td colspan="2">';
                   $display .= '<input class="input-sm value" value="' . $value . '" style="width: calc(100% - 30px);"/>';
                   $display .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i></a>';
                   $display .= '</td>';
@@ -354,11 +406,14 @@ $(function() {
     var id = $(this).data('id')
     var cmdInfo = allCmdsInfo[id]
     if (cmdInfo.widgetPossibilityDashboard == true) $(this).find('.widgetPossibilityDashboard').show()
+    if (cmdInfo.widgetPossibilityMobile == true) $(this).find('.widgetPossibilityMobile').show()
     $panelCmds.setValues(cmdInfo, '.cmdAttr'+id)
 
     //widgets default if empty:
     var dashWidget = $(this).find('select[data-l2key="dashboard"]')
     if (dashWidget.val()==null) dashWidget.val($(this).find('select[data-l2key="dashboard"] option:first').val())
+    var mobileWidget = $(this).find('select[data-l2key="mobile"]')
+    if (mobileWidget.val()==null) mobileWidget.val($(this).find('select[data-l2key="mobile"] option:first').val())
   })
 
   setTableLayoutSortable()
@@ -543,7 +598,7 @@ $('.addWidgetParametersCmd').on('click', function() {
   tr += '<td>'
   tr += '<input class="input-sm key" style="width: 100%;"/>'
   tr += '</td>'
-  tr += '<td>'
+  tr += '<td colspan="2">'
   tr += '<input class="input-sm value" style="width: calc(100% - 30px);"/>'
   tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i></a>'
   tr += '</td>'
