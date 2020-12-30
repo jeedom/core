@@ -401,14 +401,17 @@ label {
 }
 
 .timeCmd {
+  display: block;
   color: var(--txt-color);
   background-color: rgb(var(--bg-color)) !important;
   padding-left: 5px !important;
   padding-right: 5px !important;
   font-size: 12.5px;
+  margin: 6px;
 }
 .iconCmd + .timeCmd {
-  line-height: 25px;
+  line-height: 15px;
+  width: 80%
 }
 .statusCmd {
   position: absolute;

@@ -19,11 +19,18 @@
   </div>
   <template>
     <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
   </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
       jeedom.cmd.displayDuration(_options.valueDate,  $('.cmd[data-cmd_id=#id#] .timeCmd'))
+      if ('#time#' == 'date') {
+        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), 'date')
+      } else {
+        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'))
+      }
+
       cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       var position = _options.display_value
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')

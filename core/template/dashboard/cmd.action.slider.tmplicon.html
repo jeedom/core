@@ -13,12 +13,17 @@
   </div>
   <template>
     <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
   </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
-        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'))
+        if ('#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), 'date')
+        } else {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'))
+        }
       } else {
         cmd.find('.timeCmd').remove()
       }

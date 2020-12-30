@@ -8,12 +8,18 @@
   <div class="value">
     <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </div>
-  <template></template>
+  <template>
+    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
+  </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd#id# = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
-        jeedom.cmd.displayDuration(_options.valueDate, cmd#id#.find('.timeCmd'))
+        if ('#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd#id#.find('.timeCmd'), 'date')
+        } else {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd#id#.find('.timeCmd'))
+        }
       } else {
         cmd#id#.find('.timeCmd').parent().remove()
       }

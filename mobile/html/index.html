@@ -22,7 +22,7 @@
   <script src="core/php/getJS.php?file=3rdparty/highstock/modules/solid-gauge.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.utils/jquery.utils.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.packery/jquery.packery.js"></script>
-  <script src="core/php/getJS.php?file=3rdparty/moment/lib.moment.js"></script>
+  <script src="core/php/getJS.php?file=3rdparty/moment/moment-with-locales.min.js"></script>
   <script src="core/php/getJS.php?file=core/js/jeedom.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/private.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/cmd.class.js"></script>
@@ -56,7 +56,7 @@
   <div data-role="page" id="pagecontainer">
     <div id="bottompanel" data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" data-animate="true" data-position='bottom' data-display="overlay"></div>
     <div id="div_popup" data-role="popup" class="ui-corner-all"></div>
-    
+
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
       <a id="homeLogoLink" class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></i></a>
       <h1>
@@ -65,18 +65,18 @@
       <div id="summaryglobalContainer">
         <span class="objectSummaryglobal" data-version="mobile"></span>
       </div>
-      
+
       <a href="#bottompanel" id="bt_bottompanel"><i class="fas fa-bars"></i></a>
-      
+
       <div id="searchContainer" style="display:none;">
         <input class="form-control roundedLeft" id="in_searchDashboard" placeholder="{{Rechercher}}" autocomplete="off">
         <a id="bt_eraseSearchInput" class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight">
           <i class="fas fa-times"></i>
         </a>
       </div>
-      
+
     </div>
-    
+
     <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
     <div data-role="popup" id="popupDialog" style="width : 100%">
       <div data-role="header">

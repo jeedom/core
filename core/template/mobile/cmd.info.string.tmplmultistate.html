@@ -1,4 +1,4 @@
-<div class="cmd cmd-widget" data-type="info" data-subtype="numeric" data-template="tmplmultistate" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+<div class="cmd cmd-widget" data-type="info" data-subtype="string" data-template="tmplmultistate" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <div class="iconCmd"></div>
@@ -8,7 +8,11 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
-        jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
+        if ('#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), 'date')
+        } else {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'))
+        }
       } else {
         cmd.find('.timeCmd').remove();
       }

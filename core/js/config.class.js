@@ -26,6 +26,14 @@ jeedom.config.locales = {
             week: 'S ',
             month: 'M ',
             year: 'A '
+        },
+        calendar: {
+            lastDay: '[Hier à] <br> HH:mm',
+            sameDay: '[A] HH:mm',
+            nextDay: '[Demain à] <br> HH:mm',
+            lastWeek: 'ddd [dernier] <br> [à] HH:mm',
+            nextWeek: 'ddd [à] <br> HH:mm',
+            sameElse: 'YYYY-MM-DD'
         }
     },
     en_US: {
@@ -37,6 +45,14 @@ jeedom.config.locales = {
             week: 'W ',
             month: 'M ',
             year: 'Y '
+        },
+        calendar: {
+            lastDay: '[Yesterday at] <br> HH:mm',
+            sameDay: '[At] HH:mm',
+            nextDay: '[Tomorrow at] <br> HH:mm',
+            lastWeek: '[Last] ddd <br> [at] HH:mm',
+            nextWeek: 'ddd [at] <br> HH:mm',
+            sameElse: 'YYYY-MM-DD'
         }
     },
     de_DE: {
@@ -59,6 +75,14 @@ jeedom.config.locales = {
             week: 'S ',
             month: 'M ',
             year: 'A '
+        },
+        calendar: {
+            lastDay: '[Ayer a las] <br> HH:mm',
+            sameDay: '[A las] HH:mm',
+            nextDay: '[Mañana a las] <br> HH:mm',
+            lastWeek: '[El pasado] ddd <br> [a las] HH:mm',
+            nextWeek: 'ddd [a las] <br> HH:mm',
+            sameElse: 'YYYY-MM-DD'
         }
     },
     it_IT: {

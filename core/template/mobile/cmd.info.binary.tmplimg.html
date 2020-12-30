@@ -1,51 +1,55 @@
 <div class="cmd cmd-widget" data-type="info" data-subtype="binary" data-template="tmplimg" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-	<center>
-		<div class="cmdName #hide_name#">#name_display#</div>
-		<div class="imgCmd"></div>
-		<span class="timeCmd value #history#" data-type="info"></span>
-	</center>
-	<script>
-		jeedom.cmd.update['#id#'] = function(_options) {
-			var cmd = $('.cmd[data-cmd_id=#id#]')
-			if ('#_time_widget_#' == '1') {
-				jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'))
-			} else {
-				cmd.find('.timeCmd').remove()
-			}
+  <center>
+    <div class="cmdName #hide_name#">#name_display#</div>
+    <div class="imgCmd"></div>
+    <span class="timeCmd value #history#" data-type="info"></span>
+  </center>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      if ('#_time_widget_#' == '1') {
+        if ('#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), 'date')
+        } else {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'))
+        }
+      } else {
+        cmd.find('.timeCmd').remove()
+      }
 
-			if (_options.display_value == '1') {
-				cmd.attr('data-state','on')
-				cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
-			} else {
-				cmd.attr('data-state','off')
-				cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
-			}
+      if (_options.display_value == '1') {
+        cmd.attr('data-state','on')
+        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
+      } else {
+        cmd.attr('data-state','off')
+        cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
+      }
 
-			var style = ''
-			if (!isNaN('#_mobile_width_#')) {
-				style = 'max-width:#_mobile_width_#px !important;'
-			}
-			cmd.find('.imgCmd img').attr('style', style)
+      var style = ''
+      if (!isNaN('#_mobile_width_#')) {
+        style = 'max-width:#_mobile_width_#px !important;'
+      }
+      cmd.find('.imgCmd img').attr('style', style)
 
-			cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
-				var cmd = $('.cmd[data-cmd_id=#id#]')
-				if (cmd.attr('data-state') == 'on') {
-					cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
-				} else {
-					cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
-				}
-				var style = ''
-				if(!isNaN('#_mobile_width_#')) {
-					style = 'max-width:#_mobile_width_#px !important;'
-				}
-				cmd.find('.imgCmd img').attr('style',style)
-			})
-		}
+      cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
+        var cmd = $('.cmd[data-cmd_id=#id#]')
+        if (cmd.attr('data-state') == 'on') {
+          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
+        } else {
+          cmd.find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_off_#", "#_img_dark_off_#"))
+        }
+        var style = ''
+        if(!isNaN('#_mobile_width_#')) {
+          style = 'max-width:#_mobile_width_#px !important;'
+        }
+        cmd.find('.imgCmd img').attr('style',style)
+      })
+    }
 
-		jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
 
-		$('body').on('changeThemeEvent', function (event,theme) {
-			$('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
-		})
-	</script>
+    $('body').on('changeThemeEvent', function (event,theme) {
+      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
+    })
+  </script>
 </div>

@@ -1021,7 +1021,18 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
   return durationString
 }
 
-jeedom.cmd.displayDuration = function(_date, _el) {
+jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
+  if (_type == 'date') {
+    moment.locale(jeedom_langage.substring(0, 2))
+    if (isset(jeedom.config.locales[jeedom_langage].calendar)) {
+      var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales[jeedom_langage].calendar)
+    } else {
+      var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
+    }
+    _el.empty().append(dateString)
+    return true
+  }
+
   var tsDate = moment(_date).unix() * 1000
 
   if (_el.attr('data-interval') != undefined) {
