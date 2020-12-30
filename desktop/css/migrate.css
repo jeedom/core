@@ -1,16 +1,19 @@
 body{
 	transition: all .5s;
 }
+
+#jqueryLoadingDiv {
+  display:none!important;
+}
+
 #contenu{
 	width: 100%;
 	height: 100%;
-	position: fixed;
 }
 .titleStep{
 	font-size: 50px;
 	font-weight: bold;
-	font: 'San Francisco', Helvetica, Arial, san-serif;
-	color: #FFFFFFB3;
+	font: 'San Francisco', Helvetica, Arial, sans-serif;
 	margin-top: 2%;
 	margin-left: 2%;
 }
@@ -20,15 +23,16 @@ body{
 }
 .contenuWith{
 	width: 40%;
-	height: 60%;
+	max-height: 90%;
 	margin: 2% auto;
 	background-color: #FFFFFF;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	margin-top: : 2%;
+	padding-bottom: 5%;
 }
 #contenuImage{
 	width: 100%;
-	height: 70%;
+	height: 60%;
 	margin-top: 0px;
 }
 #contenuImageSrc{
@@ -38,27 +42,25 @@ body{
 }
 #contenuText{
 	width: 100%;
-	height: 30%;
+	height: 40%;
 	margin-bottom: 0px;
+	padding: 1%;
+	color:#737373;
 }
 #contenuTextSpan{
 	display: block;
-	margin-top: 8%;
 	text-align: center;
 	font-size: 120%;
 	font-weight: bold;
-	font: 'San Francisco', Helvetica, Arial, san-serif;
-	color: #000000B3;
-}
-.next{
-	font-size: 50px;
-	color:rgba(147,204,1,1);
+	font: 'San Francisco', Helvetica, Arial, sans-serif;
 }
 #nextDiv{
 	width: 100px;
 	height: 100px;
 	margin-right: -45px;
+	margin-top: 32px;
 	float: right;
+	background-color: "#FFF"
 }
 #step2{
 	display:none;

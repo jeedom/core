@@ -7,29 +7,30 @@ if (!isConnect('admin')) {
 ?>
 <div id="contenu">
 	<div id="step1">
-		<span class="titleStep animated slideInLeft"><i class="fas fa-hdd"></i> {{Etape 1}}</span>
+		<span class="titleStep animated slideInLeft"><i class="fas fa-hdd"></i> {{Étape 1}}</span>
 		<div id="contenuWithStepOne" class="animated zoomIn contenuWith">
 			<div id="contenuImage">
 				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepUn.jpg" />
 			</div>
 			<div id="contenuText" class="debut">
-				<span id="contenuTextSpan">{{Insérer une clé USB de plus de 8Go}}<br /> {{dans votre Jeedom et cliquer sur}} <i class="fas fa-arrow-circle-right"></i>.</span>
-				<span>Attention vous devez etre en local pour lancer cette procedure (ne pas lancer via les dns ou lien exterieur)</span>
+				<span id="contenuTextSpan">{{Insérez une clé USB avec plus de 8Go libres}}<br /> {{dans votre box Jeedom et cliquez sur}} <i class="icon_green fas fa-arrow-circle-right"></i></span>
+  <br>
+				<span class="col-sm-10">Attention : vous devez être connecté en local pour débuter cette procédure (et non pas via les DNS Jeedom ou un lien extérieur)</span>
 				<div id="nextDiv">
-					<i class="next fas fa-arrow-circle-right" id="bt_next"></i>
+					<i class="icon_green fas fa-3x fa-arrow-circle-right cursor" id="bt_next"></i>
 				</div>
 			</div>
 			<div id="contenuText" class="usb" style="display:none;"></div>
 		</div>
 	</div>
 	<div id="step2">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 2}}</span>
+		<span class="titleStep"><i class="fas fa-hdd"></i> {{Étape 2}}</span>
 		<div id="contenuWithStepTwo" class="zoomIn contenuWith">
 			<div id="contenuImage">
 				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepDeux.jpg" />
 			</div>
 			<div id="contenuText" class="backup">
-				<span id="contenuTextSpan" class="TextBackup">{{Backup lancé merci de patienter...}}</span>
+				<span id="contenuTextSpan" class="TextBackup">{{Processus de sauvegarde démarré, merci de patienter...}}</span>
 				<div id="contenuTextSpan" class="progress">
 					<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 					</div>
@@ -38,7 +39,7 @@ if (!isConnect('admin')) {
 		</div>
 	</div>
 	<div id="step3">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 3}}</span>
+		<span class="titleStep"><i class="fas fa-hdd"></i> {{Étape 3}}</span>
 		<div id="contenuWithStepTree" class="zoomIn contenuWith">
 			<div id="contenuImage">
 				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepTrois.jpg" />
@@ -52,13 +53,13 @@ if (!isConnect('admin')) {
 		</div>
 	</div>
 	<div id="step4">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 4}}</span>
+		<span class="titleStep"><i class="fas fa-hdd"></i> {{Étape 4}}</span>
 		<div id="contenuWithStepFor" class="zoomIn contenuWith">
 			<div id="contenuImage">
 				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepQuatre.jpg" />
 			</div>
 			<div id="contenuText" class="imageUp">
-				<span id="contenuTextSpan" class="TextMigrate">{{Migration de votre Jeedom}}</span>
+				<span id="contenuTextSpan" class="TextMigrate">{{Migration de votre box Jeedom}}</span>
 				<div id="contenuTextSpan" class="progress">
 					<div class="progress-bar progress-bar-striped progress-bar-animated active" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
 </div>
@@ -67,7 +68,7 @@ if (!isConnect('admin')) {
 		</div>
 	</div>
 	<div id="step5">
-		<span class="titleStep"><i class="fas fa-hdd"></i> {{Etape 5}}</span>
+		<span class="titleStep"><i class="fas fa-hdd"></i> {{Étape 5}}</span>
 		<div id="contenuWithStepFive" class="zoomIn contenuWith">
 			<div id="contenuImage">
 				<img id="contenuImageSrc" src="/core/img/migrate/imageMaj_stepTrois.jpg" />
@@ -90,7 +91,7 @@ if (!isConnect('admin')) {
         <h4 class="modal-title">{{Reprendre la restauration}}</h4>
       </div>
       <div class="modal-body">
-        <p>{{Pour reprendre votre restauration cliquez sur "Reprendre".}}</p>
+        <p>{{Cliquez sur "Reprendre" pour reprendre la restauration.}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="bt_close" data-dismiss="modal">{{Fermer}}</button>
@@ -104,16 +105,16 @@ if (!isConnect('admin')) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">{{Réinstallation de votre Backup}}</h4>
+        <h4 class="modal-title">{{Réinstallation de votre sauvegarde}}</h4>
       </div>
       <div class="modal-body">
-        <p>{{Voulez-vous installer votre Backup sur cette Jeedom ou bien repartir de zéro ?}}</p>
-        <p>{{Votre backup est disponible sur votre Jeedom dans tous les cas.}}</p>
-        <p>{{Si vous choisissez "zéro" n'oubliez pas que vos identifiants sont admin/admin}}</p>
+        <p>{{Voulez-vous installer votre Backup sur cette box Jeedom ou bien repartir de zéro ?}}</p>
+        <p>{{Votre sauvegarde reste à disposition sur votre box dans tous les cas.}}</p>
+        <p>{{Si vous choisissez de repartir "zéro", n'oubliez pas que les identifiants de connexion par défaut sont admin/admin}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" id="bt_zero">{{Zéro}}</button>
-        <button type="button" class="btn btn-primary" id="bt_backup">{{Installer mon Backup}}</button>
+        <button type="button" class="btn btn-primary" id="bt_backup">{{Restaurer ma sauvegarde}}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -126,10 +127,10 @@ if (!isConnect('admin')) {
         <h4 class="modal-title">{{Informations Importantes}}</h4>
       </div>
       <div class="modal-body">
-        <p>{{- Il vous faut une clé USB de plus de 8Go.}}</p>
-	<p>{{- Il vous faut être sur le meme réseau Local que votre Jeedom.}}</p>
-	<p>{{- Accéder à votre Jeedom depuis son adresse interne.}}</p>
-	<p>{{- Pouvoir laisser cette page ouverte au minimum 1h30.}}</p>
+        <p>{{- Il faut une clé USB de plus de 8Go.}}</p>
+				<p>{{- Il faut être sur le meme réseau Local que votre box Jeedom.}}</p>
+				<p>{{- Accéder à votre Jeedom depuis son adresse interne.}}</p>
+				<p>{{- Pouvoir laisser cette page ouverte au minimum 1h30.}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">{{C'est parti}}</button>
