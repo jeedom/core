@@ -15,20 +15,20 @@ if ($coreRemoteVersion >= '4.1' && $distrib == 'debian') {
 		$showUpdate = false;
 		$alertLevel = 'alert alert-warning';
 		if ($hardware == 'miniplus' || $hardware == 'Jeedomboard') {
-			$messageAlert = '{{Votre système actuel fonctionnant correctement et n\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.}}';
+			$messageAlert = '{{Votre système actuel fonctionnant correctement et n\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant}}.';
 		}
 		else if ($hardware == 'smart') {
 			$showUpgrade = true;
-			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box Smart en cliquant sur le bouton <span class="label label-danger"><i class="fab fa-linux"></i> Mettre à niveau</span>}}';
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box Smart en cliquant sur le bouton}} <span class="label label-danger"><i class="fab fa-linux"></i> {{Mettre à niveau}}</span>';
 		}
 		else {
-			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers <strong>Debian 10 Buster</strong>.<br><em>Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter <a href="https://doc.jeedom.com/fr_FR/installation/#Installation" target="_blank">la documentation d\'installation</a> pour plus d\'informations.</em>}}';
+			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers}} <strong>{{Debian 10 Buster}}</strong>.<br><em>{{Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="https://doc.jeedom.com/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations}}.</em>';
 		}
+		echo '<div class="col-xs-12 text-center '.$alertLevel.'"><strong>'.$system.'</strong><br>'.$messageAlert.'</div>';
 	}
 }
 ?>
 
-<div class="col-xs-12 text-center <?= $alertLevel ?>"><strong><?= $system ?></strong><br><?= $messageAlert ?></div>
 <br>
 <i class="far fa-clock"></i> <span>{{Dernière vérification : }}</span>
 <span class="label label-info" id="span_lastUpdateCheck"></span>
