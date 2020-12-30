@@ -46,6 +46,8 @@
 - Système de traduction qui actuellement ne scanne pas core/template/dashboard et /mobile :
 - > Scanner core/template/dashboard et tout mettre dans le i18n.json avec le path "core\/template\/widgets.html"
 
+#### Documentation à adapter aux nouvelles options / fonctions
+
 
 # Changelog Jeedom V4.1
 
