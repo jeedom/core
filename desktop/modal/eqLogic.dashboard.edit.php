@@ -555,6 +555,7 @@ $("#div_eqLogicCmds").sortable({
   axis: "y",
   cursor: "move",
   items: ".cmdConfig",
+  handle: ".bt_cmdConfig",
   placeholder: "ui-state-highlight",
   tolerance: "intersect",
   forcePlaceholderSize: true
