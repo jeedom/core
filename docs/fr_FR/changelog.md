@@ -24,7 +24,8 @@
 
 ### Widgets Core
 
-- Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Edition du Dashboard.
+- Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard.
+- Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard.
 - De nombreux Widgets Core acceptent maintenant des paramètres optionnels de couleur. (slider horizontal et vertical, jauge, compass, rain, shutter, templates slider, etc.).
 - Les Widgets Core avec affichage d'un *time* supportent maintenant un paramètre optionnel **time : date** pour afficher une date relative (Hier à 16h48, Lundi dernier à 14h00, etc).
 
