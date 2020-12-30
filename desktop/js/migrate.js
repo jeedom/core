@@ -556,7 +556,6 @@ function setStep(stepValue){
 }
 
 function returnStep(){
-	console.log('returnStep demandé');
 	$.ajax({
 		type: 'POST',
 		url: 'core/ajax/migrate.ajax.php',
