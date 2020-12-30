@@ -3987,7 +3987,7 @@
         "Changement de l\\'icone du scénario : ": "Change of scenario icon:",
         "[Wait] Condition valide par dépassement de temps : ": "[Wait] Condition valid on timeout:",
         "[Wait] Condition valide : ": "[Wait] Valid condition:",
-        "Pause de ": "Break from",
+        "Pause de ": "Pause of",
         " seconde(s)": "second(s)",
         "Aucune durée trouvée pour l\\'action sleep ou la durée n\\'est pas valide : ": "No duration found for the sleep action or the duration is not valid:",
         "Action stop": "Stop action",
