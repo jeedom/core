@@ -59,12 +59,7 @@ step_2_mainpackage() {
   echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
   add-apt-repository non-free
   apt-get update
-  apt-install ca-certificates 
-  apt-install unzip 
-  apt-install curl
-  apt-install sudo 
-  apt-install cron
-  apt_install ntp 
+  apt-install ntp ca-certificates unzip curl sudo cron
   apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
