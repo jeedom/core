@@ -1,4 +1,4 @@
-FROM debian:10
+FROM debian:10.7
 
 MAINTAINER info@jeedom.com
 
