@@ -26,16 +26,16 @@ use Monolog\Logger;
 
 class log {
 	/*     * *************************Constantes****************************** */
-	
+
 	const DEFAULT_MAX_LINE = 200;
-	
+
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $logger = array();
 	private static $config = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
 			self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog')));
@@ -45,7 +45,7 @@ class log {
 		}
 		return $_default;
 	}
-	
+
 	public static function getLogger($_log) {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
@@ -68,7 +68,7 @@ class log {
 		self::$logger[$_log]->pushHandler($handler);
 		return self::$logger[$_log];
 	}
-	
+
 	public static function getLogLevel($_log) {
 		$specific_level = self::getConfig('log::level::' . $_log);
 		if (is_array($specific_level)) {
@@ -83,10 +83,18 @@ class log {
 					return $key;
 				}
 			}
-		}
+		} else {
+            $logName = "";
+            foreach (explode("_", $_log) as $logChunk) {
+                $logName .= $logChunk;
+                if (is_array(self::getConfig('log::level::' . $logName))) {
+                    return self::getLogLevel($logName);
+                }
+            }
+        }
 		return self::getConfig('log::level');
 	}
-	
+
 	public static function convertLogLevel($_level = 100) {
 		if ($_level > logger::EMERGENCY) {
 			return 'none';
@@ -94,10 +102,10 @@ class log {
 		try {
 			return strtolower(Logger::getLevelName($_level));
 		} catch (Exception $e) {
-			
+
 		}
 	}
-	
+
 	/**
 	* Ajoute un message dans les log et fait en sorte qu'il n'y
 	* ai jamais plus de 1000 lignes
@@ -120,11 +128,11 @@ class log {
 					@message::add($_log, $_message, '', $_logicalId);
 				}
 			} catch (Exception $e) {
-				
+
 			}
 		}
 	}
-	
+
 	public static function chunk($_log = '') {
 		$paths = array();
 		if ($_log != '') {
@@ -145,7 +153,7 @@ class log {
 			}
 		}
 	}
-	
+
 	public static function chunkLog($_path) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
@@ -157,7 +165,7 @@ class log {
 		try {
 			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		} catch (\Exception $e) {
-			
+
 		}
 		@chown($_path, system::get('www-uid'));
 		@chgrp($_path, system::get('www-gid'));
@@ -171,11 +179,11 @@ class log {
 			com_shell::execute(system::getCmdSudo() . ' rm -f ' . $_path);
 		}
 	}
-	
+
 	public static function getPathToLog($_log = 'core') {
 		return __DIR__ . '/../../log/' . $_log;
 	}
-	
+
 	/**
 	* Autorisation de vide le fichier de log
 	*/
@@ -185,7 +193,7 @@ class log {
 		|| (!file_exists($path) || !is_file($path)))
 		;
 	}
-	
+
 	/**
 	* Vide le fichier de log
 	*/
@@ -197,7 +205,7 @@ class log {
 		}
 		return;
 	}
-	
+
 	/**
 	* Vide le fichier de log
 	*/
@@ -212,7 +220,7 @@ class log {
 			return true;
 		}
 	}
-	
+
 	public static function removeAll() {
 		foreach (array('', 'scenarioLog/') as $logPath) {
 			$logs = ls(self::getPathToLog($logPath), '*');
@@ -222,7 +230,7 @@ class log {
 		}
 		return true;
 	}
-	
+
 	/*
 	*
 	* @param string $_log
@@ -256,7 +264,7 @@ class log {
 		}
 		return $page;
 	}
-	
+
 	public static function liste($_filtre = null) {
 		$return = array();
 		foreach (ls(self::getPathToLog(''), '*') as $log) {
@@ -269,7 +277,7 @@ class log {
 		}
 		return $return;
 	}
-	
+
 	/**
 	* Fixe le niveau de rapport d'erreurs PHP
 	* @param int $log_level
@@ -302,7 +310,7 @@ class log {
 			throw new Exception('log::level invalide ("' . $log_level . '")');
 		}
 	}
-	
+
 	public static function exception($e) {
 		if (self::getConfig('log::level') > 100) {
 			return $e->getMessage();
@@ -310,8 +318,8 @@ class log {
 			return print_r($e, true);
 		}
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
 }
