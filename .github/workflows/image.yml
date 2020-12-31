@@ -21,4 +21,4 @@ jobs:
         run: |
           docker buildx build --push \
             --tag jeedom/jeedom:alpha \
-            --platform linux/amd64 .
+            --platform linux/arm64/v8 .
