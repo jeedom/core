@@ -102,4 +102,167 @@
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
 
-[Changelog v4.0](/de_DE/core/4.0/changelog)
+
+# Changelog Jeedom V4.0
+
+## 4.0.61
+
+- Ein Problem beim Anwenden einer Szenariovorlage wurde behoben
+- Hinzufügen einer Option zum Deaktivieren der SSL-Überprüfung während der Kommunikation mit dem Markt (nicht empfohlen, aber in bestimmten Netzwerkkonfigurationen nützlich)
+- Es wurde ein Problem mit dem Archivierungsverlauf behoben, wenn der Glättungsmodus für immer war
+- Fehlerbehebungen
+- Korrektur des Befehls trigger () in Szenarien, sodass der Name des Triggers (ohne das #) anstelle des Werts für den Wert zurückgegeben wird, den Sie triggerValue verwenden müssen()
+
+## 4.0.60
+
+- Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die permanente http2-Flows verbieten
+
+## 4.0.59
+
+- Fehler bei Zeit-Widgets behoben
+- Erhöhen Sie die Anzahl der fehlerhaften Kennwörter vor dem Verbannen (vermeidet Probleme mit der Webanwendung beim Drehen von API-Schlüsseln)
+
+## 4.0.57
+
+- Verstärkung der Cookie-Sicherheit
+- Verwendung von Chrom (falls installiert) für Berichte
+- Es wurde ein Problem beim Berechnen der Statuszeit für Widgets behoben, wenn die Zeitzone jeedom nicht mit der des Browsers übereinstimmt
+- Fehlerbehebungen
+
+## 4.0.55
+
+- Die neuen DNS (\*. Eu.jeedom.Link) wird zum primären DNS (der alte DNS funktioniert immer noch)
+
+## 4.0.54
+
+- Start des Updates für die neue Dokumentationssite
+
+## 4.0.53
+
+- Fehlerbehebung.
+
+## 4.0.52
+
+- Fehlerkorrektur (Update unbedingt durchführen, wenn Sie in 4.0.51 sind).
+
+## 4.0.51
+
+- Fehlerbehebungen.
+- Optimierung des zukünftigen DNS-Systems.
+
+## 4.0.49
+
+- Möglichkeit, den Jeedom TTS-Motor zu wählen und Plugins zu haben, die einen neuen TTS-Motor bieten.
+- Verbesserte Webview-Unterstützung in der mobilen Anwendung.
+- Fehlerbehebungen.
+- Aktualisieren des Dokuments.
+
+## 4.0.47
+
+- Verbesserter Expressionstester.
+- Aktualisieren des Repositorys auf smart.
+- Fehlerbehebungen.
+
+## 4.0.44
+
+- Verbesserte Übersetzungen.
+- Fehlerbehebungen.
+- Verbesserte Wiederherstellung von Cloud-Backups.
+- Bei der Cloud-Wiederherstellung wird nur noch das lokale Backup abgerufen, sodass Sie es herunterladen oder wiederherstellen können.
+
+## 4.0.43
+
+- Verbesserte Übersetzungen.
+- Fehler in Szenariovorlagen behoben.
+
+## 4.0.0
+- Komplette Neugestaltung des Themas (Core 2019 Light / Dark / Legacy)).
+- Möglichkeit, das Thema je nach Zeit automatisch zu ändern.
+- In Mobilgeräten kann sich das Thema je nach Helligkeit ändern (Aktivierung erforderlich) *generischer zusätzlicher Sensor* in Chrom, Chromseite://flags).<br/><br/>
+- Verbesserung und Neuorganisation des Hauptmenüs.
+- Plugins-Menü : Die Liste der Kategorien und Plugins ist jetzt alphabetisch sortiert.
+- Menü Extras : Fügen Sie eine Schaltfläche hinzu, um auf den Ausdruckstester zuzugreifen.
+- Menü Extras : Hinzufügen einer Schaltfläche für den Zugriff auf die Variablen.<br/><br/>
+- Suchfelder unterstützen jetzt Akzente.
+- Die Suchfelder (Dashboard, Szenarien, Objekte, Widgets, Interaktionen, Plugins) sind jetzt beim Öffnen der Seite aktiv, sodass Sie eine Suche direkt eingeben können.
+- In den Suchfeldern wurde eine X-Schaltfläche hinzugefügt, um die Suche abzubrechen.
+- Während einer Suche wird der Schlüssel *Flucht* Suche abbrechen.
+- Armaturenbrett : Im Bearbeitungsmodus sind das Suchsteuerelement und seine Schaltflächen deaktiviert und werden behoben.
+- Armaturenbrett : Im Bearbeitungsmodus ein Klick auf eine Schaltfläche *erweitern* rechts von Objekten wird die Größe der Kacheln des Objekts auf die höchste Höhe geändert. Strg + Klick reduziert sie auf die niedrigste Höhe.
+- Armaturenbrett : Die Befehlsausführung auf einer Kachel wird jetzt durch die Schaltfläche signalisiert *Aktualisieren*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
+- Armaturenbrett : Die Kacheln zeigen einen Infobefehl (historisiert, wodurch das Verlaufsfenster geöffnet wird) oder eine Aktion beim Schweben an.
+- Armaturenbrett : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
+- Armaturenbrett : Das Verlaufsfenster behält seine Position / Abmessungen bei, wenn ein anderer Verlauf erneut geöffnet wird.
+- Befehlskonfigurationsfenster: Strg + Klick auf "Speichern" schließt das Fenster danach.
+- Fenster Gerätekonfiguration: Strg + Klick auf "Speichern" schließt das Fenster danach.
+- Fügen Sie beim Löschen eines Geräts Nutzungsinformationen hinzu.
+- Objekte : Option zur Verwendung benutzerdefinierter Farben hinzugefügt.
+- Objekte : Hinzufügen eines Kontextmenüs auf den Registerkarten (schneller Objektwechsel).
+- Interaktion : Hinzufügen eines Kontextmenüs auf den Registerkarten (schnelle Änderung der Interaktion).
+- Plugins : Hinzufügen eines Kontextmenüs auf den Registerkarten (schneller Wechsel der Ausrüstung).
+- Plugins : Auf der Plugins-Verwaltungsseite zeigt ein orangefarbener Punkt die Plugins in einer nicht stabilen Version an.
+- Tabellenverbesserungen mit Filter- und Sortieroption.
+- Möglichkeit, einer Interaktion ein Symbol zuzuweisen.
+- Jede Jeedom-Seite hat jetzt einen Titel in der Sprache der Benutzeroberfläche (Registerkarte Browser)).
+- Verhinderung des automatischen Ausfüllens von 'Zugangscode'-Feldern'.
+- Funktionsmanagement *Vorherige Seite / Nächste Seite* vom Browser.<br/><br/>
+- Widgets : Neugestaltung des Widget-Systems (Menü Extras / Widgets).
+- Widgets : Möglichkeit, ein Widget bei allen Befehlen, die es verwenden, durch ein anderes zu ersetzen.
+- Widgets : Möglichkeit, mehreren Befehlen Widgets zuzuweisen.
+- Widgets : Hinzufügen eines horizontalen numerischen Info-Widgets.
+- Widgets : Hinzufügen eines vertikalen numerischen Info-Widgets.
+- Widgets : Hinzufügen eines Widgets für numerische Kompass- / Windinformationen (danke @thanaus).
+- Widgets : Ein numerisches Regeninfo-Widget wurde hinzugefügt (danke @thanaus)
+- Widgets : Anzeige des Info- / Action-Shutter-Widgets proportional zum Wert.<br/><br/>
+- Konfiguration : Verbesserung und Reorganisation von Registerkarten.
+- Konfiguration : Hinzufügung von vielen *Tooltips* (aide).
+- Konfiguration : Hinzufügen einer Suchmaschine.
+- Konfiguration : Es wurde eine Schaltfläche hinzugefügt, um den Cache der Widgets zu leeren (Registerkarte Cache)).
+- Konfiguration : Es wurde eine Option hinzugefügt, um den Cache von Widgets zu deaktivieren (Registerkarte Cache)).
+- Konfiguration : Möglichkeit der vertikalen Zentrierung des Inhalts der Kacheln (Registerkarte Schnittstelle)).
+- Konfiguration : Es wurde ein Parameter für die globale Bereinigung von Protokollen hinzugefügt (Registerkarte "Bestellungen")).
+- Konfiguration : Änderung von #message# Bis #subject# in Konfiguration / Protokolle / Nachrichten, um das Duplizieren der Nachricht zu vermeiden.
+- Konfiguration : Möglichkeit in den Zusammenfassungen, einen Ausschluss von Aufträgen hinzuzufügen, die nicht länger als XX Minuten aktualisiert wurden (Beispiel für die Berechnung von Temperaturdurchschnitten, wenn ein Sensor länger als 30 Minuten nichts gemeldet hat, wird er von der Berechnung ausgeschlossen)<br/><br/>
+- Szenario : Die Färbung von Blöcken erfolgt nicht mehr zufällig, sondern nach Blocktyp.
+- Szenario : Möglichkeit durch Strg + Klick auf die Schaltfläche *Ausführung* Speichern Sie es, starten Sie es und zeigen Sie das Protokoll an (wenn die Protokollebene nicht aktiviert ist *Ohne*).
+- Szenario : Bestätigung der Blocklöschung. Strg + Klicken, um eine Bestätigung zu vermeiden.
+- Szenario : Hinzufügen einer Suchfunktion in Codeblöcken. Suchen nach : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G
+- Szenario : Möglichkeit der Verdichtung der Blöcke.
+- Szenario : Die Aktion "Block hinzufügen" wechselt bei Bedarf zur Registerkarte "Szenario".
+- Szenario : Neue Funktionen zum Kopieren / Einfügen von Blöcken. Strg + Klicken zum Ausschneiden / Ersetzen.
+- Szenario : Ein neuer Block wird nicht mehr am Ende der Zeitleiste hinzugefügt, sondern nach dem Block, in dem Sie sich vor dem Klicken befanden, bestimmt durch das zuletzt angeklickte Feld.
+- Szenario : Einrichten eines Rückgängig- / Wiederherstellungssystems (Strg + Umschalt + Z / Strg + Umschalt + Y)).
+- Szenario : Entfernen Sie die Szenariofreigabe.
+- Szenario : Verbesserung des Verwaltungsfensters für Szenariovorlagen.<br/><br/>
+- Analyse / Ausrüstung : Hinzufügen einer Suchmaschine (Registerkarte Batterien, Suche nach Namen und Eltern).
+- Analyse / Ausrüstung : Auf die Tageszone für Kalender / Ausrüstung kann jetzt geklickt werden, um direkt auf die Batteriewechsel zuzugreifen).
+- Analyse / Ausrüstung : Suchfeld hinzufügen.<br/><br/>
+- Update Center : Warnung auf der Registerkarte "Core and Plugins" und / oder "Others", wenn ein Update verfügbar ist. Wechseln Sie bei Bedarf zu "Andere".
+- Update Center : Differenzierung nach Version (stabil, Beta, ...).
+- Update Center : Hinzufügen eines Fortschrittsbalkens während des Updates.<br/><br/>
+- Zusammenfassung der Hausautomation : Der Verlauf der Löschungen ist jetzt auf einer Registerkarte verfügbar (Zusammenfassung - Verlauf).
+- Zusammenfassung der Hausautomation : Komplette Neugestaltung, Möglichkeit der Bestellung von Objekten, Ausrüstung, Bestellungen.
+- Zusammenfassung der Hausautomation : Hinzufügen von Geräten und Bestell-IDs zum Anzeigen und Suchen.
+- Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
+- Zusammenfassung der Hausautomation : Möglichkeit, einen oder mehrere Befehle sichtbar zu machen oder nicht.<br/><br/>
+- Design : Möglichkeit zur Angabe der Reihenfolge (Position) des *Design* und *3D-Designs* (Bearbeiten, Design konfigurieren).
+- Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
+- Design : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Design*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Design*.
+- Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
+- Allgemeine Aufhellung (CSS / Inline-Stile, Refactoring usw.) und Leistungsverbesserungen.
+- Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
+- Libs Update : jquery 3.4.1, CodeMiror 5.46.0, Tablesorter 2.31.1.
+- Zahlreiche Fehlerbehebungen.
+- Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um Kommunikationswarnungen darauf zu konfigurieren)
+- Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung.
+- Sicherheitsupdate
+
+>**Wichtig**
+>
+>Wenn nach dem Update ein Fehler im Dashboard auftritt, versuchen Sie, Ihre Box neu zu starten, damit die neuen Ergänzungen von Komponenten berücksichtigt werden.
+
+>**Wichtig**
+>
+>Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+
+

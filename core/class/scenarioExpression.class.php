@@ -1307,13 +1307,13 @@ class scenarioExpression {
 				} elseif ($this->getExpression() == 'sleep') {
 					if (isset($options['duration'])) {
 						try {
-							$options['duration'] = floatval(evaluate($options['duration']));
+							$options['duration'] = intval(evaluate($options['duration']));
 						} catch (Exception $e) {
 							
 						} catch (Error $e) {
 							
 						}
-						if (is_numeric($options['duration']) && $options['duration'] > 0) {
+						if (is_int($options['duration']) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
 							if ($options['duration'] < 1) {
 								usleep($options['duration'] * 1000000);

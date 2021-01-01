@@ -102,4 +102,167 @@
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
 
-[Changelog v4.0](/pt_PT/core/4.0/changelog)
+
+# Changelog Jeedom V4.0
+
+## 4.0.61
+
+- Corrigido um problema ao aplicar um modelo de cenário
+- Adição de uma opção para desativar a verificação SSL durante a comunicação com o mercado (não recomendado, mas útil em certas configurações de rede específicas)
+- Corrigido um problema com o histórico de arquivamento se o modo de suavização fosse para sempre
+- Correções de bugs
+- Correção do comando trigger () em cenários para que ele retorne o nome do gatilho (sem o #) em vez do valor, para o valor você deve usar triggerValue()
+
+## 4.0.60
+
+- Remoção do novo sistema DNS em eu.jeedom.link seguindo muitos operadores que proíbem fluxos http2 permanentes
+
+## 4.0.59
+
+- Bugs corrigidos em widgets de tempo
+- Aumento do número de senhas ruins antes do banimento (evita problemas com o aplicativo da web ao girar chaves da API)
+
+## 4.0.57
+
+- Reforço da segurança do cookie
+- Usando cromo (se instalado) para relatórios
+- Corrigido um problema com o cálculo do tempo de estado em widgets se o fuso horário jeedom não for o mesmo do navegador
+- Correções de bugs
+
+## 4.0.55
+
+- O novo dns (\*. Eu.jeedom.link) torna-se o DNS primário (o DNS antigo ainda funciona)
+
+## 4.0.54
+
+- Início da atualização para o novo site de documentação
+
+## 4.0.53
+
+- Bug fix.
+
+## 4.0.52
+
+- Correção de bug (atualização para fazer absolutamente se você estiver na versão 4.0.51).
+
+## 4.0.51
+
+- Correções de bugs.
+- Otimização do futuro sistema DNS.
+
+## 4.0.49
+
+- Possibilidade de escolher o motor Jeedom TTS e possibilidade de ter plugins que oferecem um novo motor TTS.
+- Suporte aprimorado de webview no aplicativo móvel.
+- Correções de bugs.
+- Atualizando o documento.
+
+## 4.0.47
+
+- Testador de expressão aprimorado.
+- Atualizando o repositório no smart.
+- Correções de bugs.
+
+## 4.0,44
+
+- Traduções melhoradas.
+- Correções de bugs.
+- Restauração de backup em nuvem aprimorada.
+- A restauração da nuvem agora recupera apenas o backup local, deixando a opção de fazer o download ou restaurá-lo.
+
+## 4.0.43
+
+- Traduções melhoradas.
+- Bugs corrigidos em modelos de cenário.
+
+## 4.0.0
+- Redesenho completo do tema (Core 2019 Light / Dark / Legacy).
+- Possibilidade de mudar o tema automaticamente dependendo do tempo.
+- No celular, o tema pode mudar dependendo do brilho (Requer para ativar *sensor extra genérico* no chrome, página chrome://flags).<br/><br/>
+- Melhoria e reorganização do menu principal.
+- Menu de plugins : A lista de categorias e plugins agora está classificada em ordem alfabética.
+- Menu Ferramentas : Adicione um botão para acessar o testador de expressão.
+- Menu Ferramentas : Adicionando um botão para acessar as variáveis.<br/><br/>
+- Os campos de pesquisa agora suportam acentos.
+- Os campos de pesquisa (painel, cenários, objetos, widgets, interações, plug-ins) agora estão ativos quando a página é aberta, permitindo que você digite uma pesquisa diretamente.
+- Adicionado um botão X nos campos de pesquisa para cancelar a pesquisa.
+- Durante uma pesquisa, a chave *escapar* cancelar pesquisa.
+- Painel de instrumentos : No modo de edição, o controle de pesquisa e seus botões são desativados e se tornam fixos.
+- Painel de instrumentos : No modo de edição, um clique de um botão *expandir* à direita dos objetos redimensiona os ladrilhos do objeto para a altura do mais alto. Ctrl + clique os reduz à altura do mais baixo.
+- Painel de instrumentos : A execução do comando em um bloco agora é sinalizada pelo botão *Atualizar*. Se não houver nenhum no bloco, ele aparecerá durante a execução.
+- Painel de instrumentos : Os blocos indicam um comando de informação (historizado, que irá abrir a janela Histórico) ou ação ao passar o mouse.
+- Painel de instrumentos : A janela de histórico agora permite que você abra este histórico em Análise / Histórico.
+- Painel de instrumentos : A janela de histórico mantém sua posição / dimensões ao reabrir outro histórico.
+- Janela Configuração de Comando: Ctrl + clique em "Salvar" fecha a janela após.
+- Janela Configuração do equipamento: Ctrl + clique em "Salvar" fecha a janela após.
+- Adicionar informações de uso ao excluir um dispositivo.
+- Objetos : Adicionada opção para usar cores personalizadas.
+- Objetos : Adição de um menu contextual nas guias (mudança rápida de objeto).
+- Interações : Adição de um menu contextual nas guias (mudança rápida de interação).
+- Plugins : Adição de um menu contextual nas abas (troca rápida de equipamento).
+- Plugins : Na página de gerenciamento de plug-ins, um ponto laranja indica que os plug-ins em versão não estável.
+- Melhorias na tabela com filtro e opção de classificação.
+- Possibilidade de atribuir um ícone a uma interação.
+- Cada página do Jeedom agora tem um título no idioma da interface (guia do navegador).
+- Prevenção de preenchimento automático em campos 'Código de acesso''.
+- Gestão de funções *Página anterior / próxima página* do navegador.<br/><br/>
+- Widgets : Redesenho do sistema de widgets (menu Ferramentas / Widgets).
+- Widgets : Possibilidade de substituir um widget por outro em todos os comandos que o utilizam.
+- Widgets : Possibilidade de atribuir widgets a vários comandos.
+- Widgets : Adicionar um widget de informação numérica horizontal.
+- Widgets : Adicionar um widget de informação numérica vertical.
+- Widgets : Adição de um widget de bússola / vento numérico (obrigado @thanaus).
+- Widgets : Adicionado um widget numérico de informações de chuva (obrigado @thanaus)
+- Widgets : Exibição do widget do obturador de informações / ação proporcional ao valor.<br/><br/>
+- Configuração : Melhoria e reorganização de guias.
+- Configuração : Adição de muitos *dicas* (aide).
+- Configuração : Adicionar um motor de pesquisa.
+- Configuração : Adicionado um botão para esvaziar o cache de widgets (guia Cache).
+- Configuração : Adicionada uma opção para desativar o cache de widgets (guia Cache).
+- Configuração : Possibilidade de centrar verticalmente o conteúdo dos tiles (guia Interface).
+- Configuração : Adicionou um parâmetro para a eliminação global de logs (guia Pedidos).
+- Configuração : Mudança de #message# à #subject# em Configuração / Logs / Mensagens para evitar a duplicação da mensagem.
+- Configuração : Possibilidade nos resumos de adicionar uma exclusão de pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo de médias de temperatura se um sensor não reportou nada por mais de 30min será excluído do cálculo)<br/><br/>
+- Cenas : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
+- Cenas : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Nemhum*).
+- Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
+- Cenas : Adição de uma função de pesquisa em blocos de código. Pesquisa : Ctrl + F e Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
+- Cenas : Possibilidade de condensar os blocos.
+- Cenas : A ação 'Adicionar bloco' muda para a guia Cenário, se necessário.
+- Cenas : Novas funções de copiar / colar em bloco. Ctrl + clique para cortar / substituir.
+- Cenas : Um novo bloco não é mais adicionado ao final do cenário, mas após o bloco onde você estava antes de clicar, determinado pelo último campo que você clicou.
+- Cenas : Configurando um sistema Desfazer / Refazer (Ctrl + Shift + Z / Ctrl + Shift + Y).
+- Cenas : Remover compartilhamento de cenário.
+- Cenas : Melhoria da janela de gerenciamento do modelo de cenário.<br/><br/>
+- Análise / Equipamento : Adição de um motor de busca (guia Baterias, pesquisa por nomes e pais).
+- Análise / Equipamento : A zona do dia do calendário / equipamento agora pode ser clicada para acessar diretamente a (s) troca (s) de bateria).
+- Análise / Equipamento : Adicionando um campo de pesquisa.<br/><br/>
+- Update Center : Aviso na guia 'Core e plug-ins' e / ou 'Outros' se uma atualização estiver disponível. Mude para 'Outros' se necessário.
+- Update Center : diferenciação por versão (estável, beta, ...).
+- Update Center : adição de uma barra de progresso durante a atualização.<br/><br/>
+- Resumo Automation : O histórico de exclusões agora está disponível em uma guia (Resumo - Histórico).
+- Resumo Automation : Redesenho completo, possibilidade de solicitar objetos, equipamentos, pedidos.
+- Resumo Automation : Adicionando equipamentos e IDs de pedido, para exibir e pesquisar.
+- Resumo Automation : Exportação CSV de objeto pai, id, equipamento e seu id, comando.
+- Resumo Automation : Possibilidade de tornar visível ou não um ou mais comandos.<br/><br/>
+- Projeto : Possibilidade de especificar a ordem (posição) do *Projetos* e *Projetos 3D* (Editar, Configurar Design).
+- Projeto : Adição de um campo CSS personalizado nos elementos do *Projeto*.
+- Projeto : Movidas as opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Projeto*. Isso para simplificar a interface e permitir ter diferentes parâmetros por *Projeto*.
+- Projeto : Movendo e redimensionando componentes em *Projeto* leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
+- Iluminação geral (estilos css / inline, refatoração, etc.) e melhorias de desempenho.
+- Remova Font Awesome 4 para manter apenas Font Awesome 5.
+- Atualização de libs : jquery 3.4.1, CodeMiror 5,46.0, tableorter 2.31.1.
+- Inúmeras correções de bugs.
+- Adição de um sistema de configuração em massa (usado na página Equipamento para configurar alertas de comunicações neles)
+- Adição de compatibilidade global do DNS Jeedom com uma conexão à Internet 4G.
+- Correção de segurança
+
+>**IMPORTANTE**
+>
+>Se após a atualização você tiver um erro no Dashboard, tente reiniciar sua caixa para que ela leve em consideração as novas adições de componentes.
+
+>**IMPORTANTE**
+>
+>O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+
+

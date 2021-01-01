@@ -101,7 +101,6 @@ Mobile WebApp
     width: 40px;
     height: 20px;
     bottom: 2px;
-    margin: 0 0 -5px 15px
   }
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] > center > div:not(.widthx2) > label.binarySwitch {
     float: unset !important;
