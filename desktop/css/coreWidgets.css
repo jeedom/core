@@ -294,6 +294,7 @@ Desktop
 
 /* ____________________binarySwitch */
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
+    max-width: 40px;
     margin-left: 5px;
     margin-right: 5px;
     height: 22px !important;
