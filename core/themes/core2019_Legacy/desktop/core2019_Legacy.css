@@ -84,6 +84,9 @@ i.cursor {
 [data-category=energy] .btn {
   background-color: var(--cat-energy-BtnColor) !important;
 }
+[data-category=""] .btn {
+  background-color: var(--cat-other-BtnColor) !important;
+}
 
 .scenario-widget.scenario .btn {
   background-color: var(--cat-scenario-BtnColor) !important;
@@ -163,6 +166,7 @@ div.cmd-widget div[class^="content"] {
 .scenario-widget .iconCmd,
 .eqLogic-widget .iconCmd,
 .eqLogic-widget .cmdName,
+.eqLogic-widget .value,
 .eqLogic-widget .cmdStats,
 .eqLogic-widget :not(.tableCmdcss) .cmd:not(.label) .state,
 .eqLogic-widget .cmd {
@@ -202,11 +206,8 @@ div[data-subtype=select] select {
 
 .hgauge-value,
 .vgauge-value,
-.shuttergauge-value{
-  background: var(--linkHoverLight-color) !important;
-}
-.state.valueshutter strong {
-  color: var(--link-color) !important;
+.shuttergauge-value {
+  background: var(--linkHoverLight-color);
 }
 
 .highcharts-data-label > span > span {
@@ -222,7 +223,9 @@ div[data-subtype=select] select {
 :not(.gauge) > .highcharts-container .highcharts-axis-line { stroke: var(--linkHoverLight-color)!important; }
 :not(.gauge) > .highcharts-container .highcharts-tick { stroke: var(--linkHoverLight-color)!important; }
 .highcharts-axis-labels text tspan { fill: var(--linkHoverLight-color)!important; }
-
+.arcgauge .highcharts-color-0 {
+  fill: var(--linkHoverLight-color);
+}
 [data-subtype=slider] > div > span,
 span[style*="transform: translate(-50%, 150%)"] {
   color: var(--linkHoverLight-color);
@@ -233,4 +236,3 @@ span[style*="transform: translate(-50%, 150%)"] {
 .widget-compass-needle:after {
   border-top: 22px solid var(--linkHoverLight-color);
 }
-
