@@ -302,9 +302,11 @@ Desktop
 
 /* ____________________binarySwitch */
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {
+    max-width: 40px;
     margin-left: 5px;
     margin-right: 5px;
     height: 22px !important;
+    line-height: 22px;
   }
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs.widthx2 {
     min-width: 140px;
@@ -315,8 +317,7 @@ Desktop
     float: right;
     width: 40px;
     height: 20px;
-    bottom: 3px;
-    margin-bottom: -5px;
+    top: 2px;
   }
   .content-xs:not(.widthx2) label.binarySwitch {
     margin-left: 47px !important;

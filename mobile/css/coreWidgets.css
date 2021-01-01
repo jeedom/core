@@ -106,9 +106,8 @@ Mobile WebApp
     display: inline-block;
     float: right;
     width: 40px;
-    height: 20px;
+    height: 22px;
     bottom: 2px;
-    margin: 0 0 -5px 15px
   }
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] > center > div:not(.widthx2) > label.binarySwitch {
     float: unset !important;
@@ -127,7 +126,7 @@ Mobile WebApp
     height: 16px;
     width: 16px;
     left: 4px;
-    bottom: 2px;
+    bottom: 3px;
     background-color: var(--link-color);
     transition: .4s;
     border-radius: 50%;
