@@ -20,11 +20,14 @@ if (!isConnect('admin')) {
 }
 $cmd = cmd::byId(init('cmd_id'));
 if (!is_object($cmd)) {
-  throw new Exception('{{Commande non trouvé}}'.' : ' . init('cmd_id'));
+  throw new Exception('{{Commande non trouvée}}'.' : ' . init('cmd_id'));
 }
 global $JEEDOM_INTERNAL_CONFIG;
+
+$cmdInfo = jeedom::toHumanReadable(utils::o2a($cmd));
+$cmdInfo['eqLogicName'] = $cmd->getEqLogic()->getName();
 sendVarToJS([
-  'cmdInfo' => jeedom::toHumanReadable(utils::o2a($cmd)),
+  'cmdInfo' => $cmdInfo,
   'cmdInfoSearchString' => urlencode(str_replace('#', '', $cmd->getHumanName())),
   'cmdInfoString' => $cmd->getHumanName()
 ]);
@@ -797,6 +800,16 @@ $(function() {
   if ($('body').attr('data-page') == "widgets") {
     $('a[href="#cmd_display"]').click()
   }
+
+  //modal title:
+  var title = '{{Configuration commande}}'
+  title += ' : ' + cmdInfo.eqLogicName
+  title += ' <span class="cmdName">[' + cmdInfo.name + '] <em>(' + cmdInfo.type + ')</em></span>'
+  $('#cmdConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
+  if ($('#eqLogicConfigureTab').length) {
+    $('#cmdConfigureTab').parents('.ui-dialog').css('top', "50px")
+  }
+
   //widgets default if empty:
   var dashWidget = $('select[data-l2key="dashboard"]')
   if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())

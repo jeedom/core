@@ -39,7 +39,7 @@ sendVarToJS([
   </span>
 </div>
 
-<ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs" role="tablist" id="eqLogicConfigureTab">
   <li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
   <?php if ($eqLogic->widgetPossibility('custom')) {
     ?>
@@ -444,6 +444,12 @@ $(function() {
   if ($('body').attr('data-page')=="eqAnalyse") {
     $('a[href="#eqLogic_alert"]').click()
   }
+
+  //modal title:
+  var title = "{{Configuration de l'équipement}}"
+  title += ' : ' + eqLogicInfo.name
+  title += ' <span class="cmdName"><em>(' + eqLogicInfo.eqType_name + ')</em></span>'
+  $('#eqLogicConfigureTab').parents('.ui-dialog').find('.ui-dialog-title').html(title)
 
   //check some values:
   var nbColumn = $('input[data-l2key="layout::dashboard::table::nbColumn"]').val()
