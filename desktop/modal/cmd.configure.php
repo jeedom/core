@@ -338,39 +338,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
             <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
               <select class="cmdAttr form-control" data-l1key="generic_type">
-                <option value="">{{Aucun}}</option>
                 <?php
-                $groups = array();
-                foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
-                  if (strtolower($cmd->getType()) != strtolower($info['type'])) {
-                    continue;
-                  }
-                  $info['key'] = $key;
-                  if (!isset($groups[$info['family']])) {
-                    $groups[$info['family']][0] = $info;
-                  } else {
-                    array_push($groups[$info['family']], $info);
-                  }
-                }
-                ksort($groups);
-                $optgroup = '';
-                foreach ($groups as $group) {
-                  usort($group, function($a, $b) {
-                    return strcmp($a['name'], $b['name']);
-                  });
-                  foreach ($group as $key => $info) {
-                    if ($key == 0) {
-                      $optgroup .= '<optgroup label="' . $info['family'] . '">';
-                    }
-                    $name = $info['name'];
-                    if (isset($info['noapp']) && $info['noapp']) {
-                      $name .= ' '.'{{(Non géré par Application Mobile)}}';
-                    }
-                    $optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
-                  }
-                  $optgroup .= '</optgroup>';
-                }
-                if ($optgroup != '') echo $optgroup;
+                  echo $cmd->getGenericTypeSelectOptions();
                 ?>
               </select>
             </div>
@@ -651,7 +620,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
                     ?>
                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-                      <option value="default">Défaut</option>
                       <?php
                         echo $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
                       ?>
@@ -663,7 +631,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
                     ?>
                     <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-                      <option value="default">Défaut</option>';
                       <?php
                         echo $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
                       ?>

@@ -1165,41 +1165,76 @@ class cmd {
 			$_availWidgets = self::availableWidget($_version);
 		}
 		$display = '<option value="default">Défaut</option>';
-      	if (is_array($_availWidgets[$this->getType()]) && is_array($_availWidgets[$this->getType()][$this->getSubType()]) && count($_availWidgets[$this->getType()][$this->getSubType()]) > 0) {
-        $types = array();
-        foreach ($_availWidgets[$this->getType()][$this->getSubType()] as $key => $info) {
-          if (isset($info['type'])) {
-            $info['key'] = $key;
-            if (!isset($types[$info['type']])) {
-              $types[$info['type']][0] = $info;
-            } else {
-              array_push($types[$info['type']], $info);
-            }
-          }
-        }
+		if (is_array($_availWidgets[$this->getType()]) && is_array($_availWidgets[$this->getType()][$this->getSubType()]) && count($_availWidgets[$this->getType()][$this->getSubType()]) > 0) {
+		$types = array();
+		foreach ($_availWidgets[$this->getType()][$this->getSubType()] as $key => $info) {
+			if (isset($info['type'])) {
+			$info['key'] = $key;
+			if (!isset($types[$info['type']])) {
+				$types[$info['type']][0] = $info;
+			} else {
+				array_push($types[$info['type']], $info);
+			}
+			}
+		}
 
-        ksort($types);
-        foreach ($types as $type) {
-          usort($type, function($a, $b) {
-            return strcmp($a['name'], $b['name']);
-          });
-          foreach ($type as $key => $widget) {
-            if ($widget['name'] == 'default') {
-              continue;
-            }
-            if ($key == 0) {
-              $display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
-            }
-            if (isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
-              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
-            } else {
-              $display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
-            }
-          }
-          $display .= '</optgroup>';
-        }
-        return $display;
-      }
+		ksort($types);
+		foreach ($types as $type) {
+			usort($type, function($a, $b) {
+			return strcmp($a['name'], $b['name']);
+			});
+			foreach ($type as $key => $widget) {
+			if ($widget['name'] == 'default') {
+				continue;
+			}
+			if ($key == 0) {
+				$display .= '<optgroup label="' . ucfirst($widget['type']) . '">';
+			}
+			if (isset($widget['location']) && $widget['location'] != 'core' && $widget['location'] != 'custom') {
+				$display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['location']).'/'.ucfirst($widget['name']) . '</option>';
+			} else {
+				$display .= '<option value="'.$widget['location'].'::' . $widget['name'].'">' . ucfirst($widget['name']) . '</option>';
+			}
+			}
+			$display .= '</optgroup>';
+		}
+		return $display;
+		}
+	}
+	public function getGenericTypeSelectOptions() {
+		$display = '<option value="">{{Aucun}}</option>';
+		$groups = array();
+		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
+			if (strtolower($this->getType()) != strtolower($info['type'])) {
+			continue;
+			}
+			$info['key'] = $key;
+			if (!isset($groups[$info['family']])) {
+			$groups[$info['family']][0] = $info;
+			} else {
+			array_push($groups[$info['family']], $info);
+			}
+		}
+		ksort($groups);
+		$optgroup = '';
+		foreach ($groups as $group) {
+			usort($group, function($a, $b) {
+			return strcmp($a['name'], $b['name']);
+			});
+			foreach ($group as $key => $info) {
+			if ($key == 0) {
+				$optgroup .= '<optgroup label="' . $info['family'] . '">';
+			}
+			$name = $info['name'];
+			if (isset($info['noapp']) && $info['noapp']) {
+				$name .= ' '.'{{(Non géré par Application Mobile)}}';
+			}
+			$optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
+			}
+			$optgroup .= '</optgroup>';
+		}
+		if ($optgroup != '') $display .= $optgroup;
+		return $display;
 	}
 
 	public function getWidgetHelp($_version='dashboard', $_widgetName='') {

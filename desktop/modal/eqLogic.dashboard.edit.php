@@ -232,13 +232,18 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
               $display .= '<table class="table table-bordered table-condensed">';
 
+              //generix type:
+              $display .= '<tr><td>{{Type générique}}</td>';
+              $display .= '<td colspan="2"><select class="input-sm '.$thisclassAttrib.'" data-l1key="generic_type">';
+              $display .= $cmd->getGenericTypeSelectOptions();
+              $display .= '</select></td></tr>';
+
               //visible and td widths:
-              $display .= '<tr><td style="width:40%"><label class="control-label">{{Visible}}</label><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" style="float: right"/></td>';
+              $display .= '<tr><td style="width:40%">{{Visible}}<input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" style="float: right"/></td>';
               $display .= '<td style="width:30%"><i class="fas fa-desktop"></i></td>';
               $display .= '<td style="width:30%"><i class="fas fa-tablet-alt"></i></td></tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Widget}}</label></td>';
-
+              $display .= '<tr><td>{{Widget}}</td>';
               //select dashboard widget
               $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm '.$thisclassAttrib.'" data-l1key="template" data-l2key="dashboard">';
               $display .= $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
@@ -250,28 +255,28 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '</select></td>';
               $display .= '</tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Afficher le nom}}</label></td>';
+              $display .= '<tr><td>{{Afficher le nom}}</td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOndashboard" checked></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
               $display .= '</tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Afficher le nom ET l\'icône}}</label></td>';
+              $display .= '<tr><td>{{Afficher le nom ET l\'icône}}</td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
               $display .= '</tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Afficher les statistiques}}</label></td>';
+              $display .= '<tr><td>{{Afficher les statistiques}}</td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
               $display .= '</tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Retour à la ligne avant le widget}}</label></td>';
+              $display .= '<tr><td>{{Retour à la ligne avant le widget}}</td>';
               $display .= '<td colspan="2"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Retour à la ligne après le widget}}</label></td>';
+              $display .= '<tr><td>{{Retour à la ligne après le widget}}</td>';
               $display .= '<td colspan="2"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
 
-              $display .= '<tr><td><label class="control-label">{{Paramètres optionnels sur le widget:}}</label></td>';
+              $display .= '<tr><td>{{Paramètres optionnels sur le widget:}}</td>';
               $display .= '<td colspan="2"><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
 
               $display .= '<tr><td colspan="3"><div class="optionalParamHelp '.$thisclassAttrib.'"></div></td></tr>';
