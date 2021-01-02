@@ -134,7 +134,7 @@ function setTheme() {
 
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en-US">
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
