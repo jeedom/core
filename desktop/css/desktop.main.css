@@ -4107,6 +4107,7 @@ Theme Core 2021 @Jeedom
   #md_modal {
     padding-left: 15px !important;
     padding-right: 15px !important;
+    width: calc(100% - 30px) !important;
   }
   #div_confPlugin {
     height: auto !important;
