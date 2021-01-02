@@ -260,6 +260,12 @@ label {
 .ui-input-text::after {
   background-color: transparent !important;
 }
+.ui-input-text::placeholder {
+  color: var(--placeholder-color) !important;
+}
+.ui-input-text > input {
+  color: var(--txt-color) !important;
+}
 
 .eqLogic.eqLogic-widget .ui-input-text :not(textarea) {
   padding: 0 !important;

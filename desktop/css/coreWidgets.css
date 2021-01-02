@@ -327,6 +327,14 @@ Desktop
     display: inline;
     margin-right: 2px;
   }
+  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] input {
+    width: 70px !important;
+    font-size: 12px;
+    padding: 2px;
+  }
+  div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="value"] .ui-button-icon.ui-icon {
+    margin-top: -8px;
+  }
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
     font-size: 1.2em;
   }

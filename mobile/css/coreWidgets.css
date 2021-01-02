@@ -139,6 +139,7 @@ Mobile WebApp
   .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
     width: 55px;
     opacity: 1 !important;
+    color: var(--txt-color) !important;
   }
   .cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
     margin-top: 5px;

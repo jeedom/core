@@ -10,6 +10,7 @@
 ### Nouveautés / Améliorations
 
 - **Synthèse** : Possibilité de paramétrage des objets pour aller vers un *design* ou une *vue* depuis la synthèse.
+- **Dashboard** : La fenêtre de configuration d'un équipement (mode édition) permet maintenant de configurer les widgets mobile et les types génériques.
 - **Analyse / Historique** : Possibilité de comparer un historique sur une période donnée.
 - **Analyse / Equipements** : Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné.
 - **Analyse / Logs** : Numérotation des lignes des logs. Possibilité d'afficher le log brut.
@@ -28,6 +29,8 @@
 - Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard.
 - De nombreux Widgets Core acceptent maintenant des paramètres optionnels de couleur. (slider horizontal et vertical, jauge, compass, rain, shutter, templates slider, etc.).
 - Les Widgets Core avec affichage d'un *time* supportent maintenant un paramètre optionnel **time : date** pour afficher une date relative (Hier à 16h48, Lundi dernier à 14h00, etc).
+- Les Widgets de type curseur (action) acceptent maintenant un paramètre optionnel *step* pour définir le pas de changement au curseur.
+- Le Widget **action.slider.value** est maintenant disponible en desktop, avec un paramètre optionnel *noslider*, ce qui en fait un *input* simple.
 
 # Changelog Jeedom V4.1
 
@@ -61,7 +64,7 @@
 - **Scénario** : Ajout de la fonction age (donne l'âge de la valeur de la commande).
 - **Scénario** : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
 - **Scénario** : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
-- **Scénario** : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
+- **Scénario** : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Equipements).
 - **Scénario** : Affichage d'un *warning* si aucun déclencheur n'est configuré.
 - **Scénario** : Bugfix des *select* sur les copier/coller de bloc.
 - **Scénario** : Copier/coller de bloc entre différents scénarios.
