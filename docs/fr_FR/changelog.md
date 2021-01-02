@@ -30,7 +30,7 @@
 - **Scénario** : Ajout de la fonction age (donne l'âge de la valeur de la commande).
 - **Scénario** : *stateChanges()* accepte maintenant la période *today* (de minuit à maintenant), *yesterday* et *day* (pour 1 day).
 - **Scénario** : Fonctions *statistics(), average(), max(), min(), tendance(), duration()* : Bugfix sur la période *yesterday*, et accepte maintenant *day* (pour 1 day).
-- **Scénario** : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Commandes).
+- **Scénario** : Possibilité de désactiver le système de quote automatique (Réglages → Système → Configuration : Equipements).
 - **Scénario** : Affichage d'un *warning* si aucun déclencheur n'est configuré.
 - **Scénario** : Bugfix des *select* sur les copier/coller de bloc.
 - **Scénario** : Copier/coller de bloc entre différents scénarios.
