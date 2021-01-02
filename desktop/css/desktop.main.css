@@ -4087,6 +4087,12 @@ Theme Core 2021 @Jeedom
   #div_displayEqLogicConfigure #commands .cmdConfig table tr > td:not(:first-child) {
     text-align: center;
   }
+  #div_displayEqLogicConfigure .btn-warning.bt_cmdConfig + .collapse {
+    border-left: 1px solid var(--al-warning-color);
+  }
+  #div_displayEqLogicConfigure .btn-info.bt_cmdConfig + .collapse {
+    border-left: 1px solid var(--al-info-color);
+  }
   .ui-autocomplete .ui-menu-item-wrapper,
   .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
     cursor: pointer;

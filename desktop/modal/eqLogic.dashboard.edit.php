@@ -227,7 +227,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="id"></span>';
               $display .= '<span class="'.$thisclassAttrib.' hidden" data-l1key="name"></span>';
 
-              $display .= '<a class="btn btn-default btn-xs cursor bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">'.$cmd->getName().' ('.$cmd->getType().' | '.$cmd->getSubType().')</a>';
+              if ($cmd->getType() == 'info') {
+                $display .= '<a class="btn btn-default btn-info btn-xs cursor bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">'.$cmd->getName().' ('.$cmd->getType().' | '.$cmd->getSubType().')</a>';
+              } else {
+                $display .= '<a class="btn btn-default btn-warning btn-xs cursor bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">'.$cmd->getName().' ('.$cmd->getType().' | '.$cmd->getSubType().')</a>';
+              }
 
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
               $display .= '<table class="table table-bordered table-condensed">';
@@ -375,8 +379,8 @@ function setModal() {
     height = 700
     modal.width(width).height(height)
     modal.position({
-      my: "center",
-      at: "center",
+      my: "right",
+      at: "right-50",
       of: window
     })
     $('#md_modal').height(height-100)
