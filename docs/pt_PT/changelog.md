@@ -30,7 +30,7 @@
 - **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
 - **Cenas** : *stateChanges()* agora aceite o período *Hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
 - **Cenas** : FUNÇÕES *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
-- **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Commandes).
+- **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
 - **Cenas** : Visualizando um *Aviso* se nenhum gatilho estiver configurado.
 - **Cenas** : Correção de bug de *selecionar* em bloco copiar / colar.
 - **Cenas** : Copiar / colar do bloco entre diferentes cenários.

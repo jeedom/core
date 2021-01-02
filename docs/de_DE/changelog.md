@@ -30,7 +30,7 @@
 - **Szenario** : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
 - **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum *Heute* (Mitternacht bis jetzt), *gestern* und *Tag* (für 1 Tag).
 - **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum *gestern*, und jetzt akzeptieren *Tag* (für 1 Tag).
-- **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Commandes).
+- **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Equipements).
 - **Szenario** : Anzeigen a *Warnung* wenn kein Trigger konfiguriert ist.
 - **Szenario** : Bugfix von *wählen* auf Block kopieren / einfügen.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.

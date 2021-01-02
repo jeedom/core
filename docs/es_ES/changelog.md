@@ -30,7 +30,7 @@
 - **Guión** : Adición de la función de edad (da la edad del valor del pedido).
 - **Guión** : *stateChanges()* ahora acepta el periodo *Hoy* (medianoche hasta ahora), *ayer* y *dia* (por 1 día).
 - **Guión** : Funciones *estadísticas (), promedio (), máximo (), mínimo (), tendencia (), duración()* : Bugfix durante el período *ayer*, y acepta ahora *dia* (por 1 día).
-- **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Commandes).
+- **Guión** : Posibilidad de desactivar el sistema de cotización automática (Configuración → Sistema → Configuración : Equipements).
 - **Guión** : Viendo un *Advertencia* si no se configura ningún activador.
 - **Guión** : Corrección de errores de *Seleccione* en el bloque copiar / pegar.
 - **Guión** : Copiar / pegar bloque entre diferentes escenarios.
