@@ -28,7 +28,7 @@ jeedom.config.locales = {
             year: 'A '
         },
         calendar: {
-            lastDay: '[Hier à] <br> HH:mm',
+            lastDay: '[Hier à] HH:mm',
             sameDay: '[A] HH:mm',
             nextDay: '[Demain à] <br> HH:mm',
             lastWeek: 'ddd [dernier] <br> [à] HH:mm',
@@ -47,9 +47,9 @@ jeedom.config.locales = {
             year: 'Y '
         },
         calendar: {
-            lastDay: '[Yesterday at] <br> HH:mm',
+            lastDay: '[Yda at] HH:mm',
             sameDay: '[At] HH:mm',
-            nextDay: '[Tomorrow at] <br> HH:mm',
+            nextDay: '[Tmw at] HH:mm',
             lastWeek: '[Last] ddd <br> [at] HH:mm',
             nextWeek: 'ddd [at] <br> HH:mm',
             sameElse: 'YYYY-MM-DD'
