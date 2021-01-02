@@ -122,8 +122,7 @@ $(function() {
           className: 'widget-context-menu',
           callback: function(key, options, event) {
             if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
-              url = 'index.php?v=d&p=widgets&id=' + options.commands[key].id
-              window.open(url).focus()
+              window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
             } else {
               printWidget(options.commands[key].id)
             }
