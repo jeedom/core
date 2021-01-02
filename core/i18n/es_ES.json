@@ -125,7 +125,7 @@
     },
     "mobile\/html\/home.html": {
         "Equipements": "Dispositivos",
-        "3d": "",
+        "3d": "3d",
         "Vues": "Vistas",
         "Design": "Diseño",
         "Messages": "Mensajes",
@@ -1640,7 +1640,7 @@
         "Beta (Plus d'accès au support)": "Beta (más acceso a soporte)",
         "Release (Plus d'accès au support)": "Lanzamiento (más acceso a soporte)",
         "Stable": "Estable",
-        "Release Candidate V4": "",
+        "Release Candidate V4": "Release Candidate V4",
         "Vérifier automatiquement si il y a des mises à jour": "Comprobar automáticamente si hay actualizaciones",
         "Activer": "Activar",
         "Tester\/Synchroniser": "Prueba \/ Sincronizar",
@@ -2798,7 +2798,7 @@
         "Redémarrage": "Reanudar",
         "Rotation": "Rotación",
         "Sur sa base": "Sobre su base",
-        "Robot": "",
+        "Robot": "Robot",
         "Ne pas tenir compte de cette commande": "Ignora este comando"
     },
     "core\/com\/http.com.php": {
@@ -3113,7 +3113,7 @@
         "English": "Inglés",
         "Deutsch": "Aleman",
         "Español": "Español",
-        "Pусский": "",
+        "Pусский": "Pусский",
         "Bahasa Indonesia": "Bahasa indonesia",
         "Italiano": "Italiano",
         "Compatibilité matériel": "Compatibilidad de hardware",
