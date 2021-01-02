@@ -24,7 +24,7 @@
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
-      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value)

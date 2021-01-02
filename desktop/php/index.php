@@ -158,6 +158,8 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
 	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
+	include_file('3rdparty', 'nouislider/nouislider', 'js');
+	include_file('3rdparty', 'nouislider/nouislider', 'css');
 	?>
 	<script>
 	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';

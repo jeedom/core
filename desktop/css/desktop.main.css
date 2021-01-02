@@ -4080,6 +4080,8 @@ Theme Core 2021 @Jeedom
   #div_displayEqLogicConfigure #commands div.optionalParamHelp,
   #div_displayCmdConfigure #optionalParamHelp {
     padding-left: 10px;
+    line-height: 16px;
+    font-size: 13px;
     color: var(--al-info-color);
   }
   #div_displayEqLogicConfigure #commands .cmdConfig table tr > td:not(:first-child) {

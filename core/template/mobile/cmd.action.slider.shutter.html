@@ -7,25 +7,34 @@
       </div>
     </div>
     <div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
-    <div class="slider full-width-slider ui-slider">
-      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" data-role="none"/>
-    </div>
+    <div id="widget_slider#id#" class="slider full-width-slider"></div>
   </center>
   <script>
-    $('.cmd[data-cmd_id=#id#] input').slider({
-      create: function(event, ui) {
-        if ($.issetWidgetOptParam('#color#', 'color')) {
-          $(event.target.parentNode).find('div.ui-slider-bg').style('background-color', '#color#', 'important')
-          $(event.target.parentNode).find('a.ui-slider-handle').style('background-color', '#color#', 'important')
-        }
-      }
+    var step#id# = 1
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+    }
+    var mySlider#id# = $.createWidgetSlider({
+      sliderDiv: document.getElementById('widget_slider#id#'),
+      state: #state#,
+      min: #minValue#,
+      max: #maxValue#,
+      step: step#id#,
+      tooltips: true,
+      format: true,
+      unite: '#unite#'
     })
 
-    $('.cmd[data-cmd_uid=#uid#]').on({
-      'slidestop': function(event, ui) {
-      jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}})
-      }
-    }, '.slider')
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+    }
+
+    mySlider#id#.on('end', function(values, handle) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '')}})
+    })
+
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_uid=#uid#]')
       var height = ((_options.display_value - #minValue#) * 100) / (#maxValue# - #minValue#)
@@ -36,8 +45,9 @@
       }
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value)
-      cmd.find('.slider input').value(_options.display_value)
+      mySlider#id#.set(_options.display_value)
     }
+
     $('.cmd[data-cmd_uid=#uid#] .shuttergauge-bckg').off().on('click', function() {
       shutterPos = $('.cmd[data-cmd_uid=#uid#] .state strong').first().html()
       if (shutterPos > 50) {
@@ -48,9 +58,5 @@
     })
 
     jeedom.cmd.update['#id#']({display_value: '#state#'})
-
-    if ($.issetWidgetOptParam('#color#', 'color')) {
-      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
-    }
   </script>
 </div>

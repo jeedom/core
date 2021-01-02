@@ -46,10 +46,12 @@ Desktop
     line-height: 14px;
     margin: 0;
     position: relative;
-    text-align: center;
   }
-  div.cmd-widget .content-xs .slider {
-    margin-top: 8px;
+  div.cmd-widget .content-xs .slider.noUi-vertical {
+    margin-top: 5px;
+  }
+  div.cmd-widget .content-xs .slider.noUi-horizontal {
+    margin-top: 12px;
     margin-bottom: 12px;
   }
   div.cmd-widget .content-sm {
@@ -204,6 +206,8 @@ Desktop
     background-color: var(--link-color) !important;
     background-image: none !important;
     border-radius: 2px !important;
+    border-color: transparent !important;
+    box-shadow: none;
   }
   .ui-slider.ui-slider-vertical .ui-slider-range {
     left: -0.5px;
@@ -229,6 +233,83 @@ Desktop
     bottom: -14px;
     right: -15px;
     width: 25px;
+  }
+
+/* v4.2 nouislider */
+  div.cmd-widget .slider.noUi-horizontal {
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+  }
+  div.cmd-widget .slider.noUi-horizontal .noUi-base {
+    width: 70px;
+  }
+  div.cmd-widget .slider.noUi-vertical .noUi-base {
+    width: 7px;
+    height: 55px;
+  }
+  div.cmd-widget .slider .noUi-connects {
+    background: var(--el-defaultColor) !important;
+    border-radius: 0
+  }
+  div.cmd-widget .slider.noUi-horizontal .noUi-connects {
+    height: 5px;
+  }
+  div.cmd-widget .slider.noUi-vertical .noUi-connects {
+    width: 5px;
+  }
+  div.cmd-widget .slider .noUi-connects > .noUi-connect {
+    background: var(--link-color);
+  }
+  div.cmd-widget .slider.noUi-horizontal .noUi-connects > .noUi-connect {
+    height: 7px !important;
+  }
+  div.cmd-widget .slider.noUi-vertical .noUi-connects > .noUi-connect {
+    width: 8px !important;
+  }
+  div.cmd-widget .slider,
+  div.cmd-widget .slider .noUi-handle {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+  div.cmd-widget .slider .noUi-handle {
+    top: -4.5px;
+    height: 1.3em;
+    width: 1.3em;
+    border-radius: 50%;
+    background: var(--link-color);
+    left: 0;
+  }
+  div.cmd-widget .slider .noUi-handle:before,
+  div.cmd-widget .slider .noUi-handle::after {
+    display: none;
+  }
+  div.cmd-widget .slider .noUi-tooltip {
+    display: none;
+    font-family: 'Roboto';
+    font-size: 12px;
+    border: none;
+    background: var(--btnEq-default-color);
+    color: var(--link-color);
+  }
+  div.cmd-widget .slider.noUi-horizontal .noUi-tooltip {
+    bottom: 100%;
+  }
+  div.cmd-widget .slider.noUi-vertical .noUi-tooltip {
+    right: 120%;
+  }
+  div.cmd-widget .slider .noUi-active .noUi-tooltip {
+    display: block;
+  }
+  div.cmd-widget .slider .noUi-handle {
+    cursor: pointer;
+    outline: none;
+  }
+  div.cmd-widget .slider.noUi-vertical .noUi-handle {
+    left: -11.5px;
+  }
+  div.cmd-widget .slider .noUi-handle:focus {
+    outline: none;
   }
 
 /* ____________________Specifics */
@@ -454,8 +535,8 @@ Desktop
     left: -7px;
   }
   .shuttergauge .slider {
-    width: 60px;
-    top: 16px !important;
+    left: 40px;
+    top: 18px !important;
   }
   .shuttergauge .slider.ui-slider-vertical {
     position: absolute;
@@ -471,7 +552,7 @@ Desktop
   }
 
   .shuttergauge .timeCmd {
-    position: relative;
+    bottom: 1px;
     margin-left: -15px !important;
   }
   .hgauge .content-sm {

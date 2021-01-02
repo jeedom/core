@@ -9,6 +9,8 @@ Mobile WebApp
   }
 
   div.cmd-widget div.cmdStats {
+    display: inline-block;
+    width: 100%;
     min-height: 24px;
   }
 
@@ -34,6 +36,65 @@ Mobile WebApp
     border:none !important;
   }
 
+  /* v4.2 nouislider */
+  div.cmd-widget .slider {
+    margin-top: 8px !important;
+    margin-bottom: 10px !important;
+    background: transparent;
+  }
+  div.cmd-widget .slider .noUi-base {
+    width: calc(100% - 88px);
+  }
+  div.cmd-widget .slider.full-width-slider .noUi-base {
+    width: calc(100% - 28px);
+  }
+  div.cmd-widget .slider .noUi-connects {
+    top: 5px;
+    height: 7px;
+    right: 5px !important;
+    background: var(--el-defaultColor) !important;
+  }
+  div.cmd-widget .slider .noUi-connects {
+    width: calc(100% + 12px);
+  }
+  div.cmd-widget .slider .noUi-connects > .noUi-connect {
+    top: -5px;
+    height: 20px !important;
+    background: var(--link-color);
+  }
+  div.cmd-widget .slider.noUi-horizontal,
+  div.cmd-widget .slider .noUi-handle {
+    border: none;
+    box-shadow: none;
+  }
+  div.cmd-widget .slider .noUi-handle {
+    top: -3px;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    background: var(--link-color);
+  }
+  div.cmd-widget .slider .noUi-handle:before,
+  div.cmd-widget .slider .noUi-handle::after {
+    display: none;
+  }
+  div.cmd-widget .slider .noUi-tooltip {
+    display: none;
+    border: none;
+    background: var(--btnEq-default-color);
+    color: var(--link-color);
+  }
+  div.cmd-widget .slider .noUi-active .noUi-tooltip {
+    display: block;
+  }
+  div.cmd-widget .slider .noUi-handle {
+    cursor: pointer;
+    outline: none;
+  }
+  div.cmd-widget .slider .noUi-handle:focus {
+    outline: none;
+  }
+
   /* less space under arc gauges */
   .gauge.cursor{ height: 85px !important; }
   .container-fluid.cmd-widget { min-height: 85px !important; }
@@ -52,14 +113,16 @@ Mobile WebApp
   path.highcharts-graph {
     stroke-width: 1;
   }
+
   .ui-slider-track .ui-btn.ui-slider-handle {
     margin-top: -9px;
+    -ms-touch-action: none;
     touch-action: none;
   }
-  .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
+    .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
     position: absolute;
     left: 0;
-    height: 7px !important;
+    height: 6px !important;
     background-color: var(--link-color) !important;
   }
 
@@ -80,9 +143,6 @@ Mobile WebApp
   .cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
     margin-top: 5px;
     height: 50px;
-  }
-  .cmd.cmd-widget[data-type="info"][data-subtype="binary"][data-template="shutter"] {
-    height: 100px;
   }
   .cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
     height: 100px;
@@ -152,9 +212,6 @@ Mobile WebApp
   }
 
 /* ____________________others */
-  div.shuttergauge-chart + div.cmdStats {
-    margin-top: -22px;
-  }
   .hgauge-value,
   .shuttergauge-value {
     background: var(--link-color);
@@ -190,7 +247,8 @@ Mobile WebApp
     width: 100% !important;
     height: 120px;
   }
-  .timeShuttergauge {
+  div.cmd-widget.timeShuttergauge {
+    display: table;
     height: 140px;
   }
   .shuttergauge-bckg {
@@ -203,7 +261,7 @@ Mobile WebApp
   .shuttergauge-chart {
     display: inline-block;
     text-align: center !important;
-    min-height: 85px;
+    min-height: 65px;
   }
   .shuttergauge-state {
     font-size: 16px;
@@ -214,16 +272,10 @@ Mobile WebApp
     margin: 0 auto;
   }
   .shuttergauge-state .timeCmd {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
+    margin-top: 25px;
   }
   .shuttergauge .slider {
     margin-top: -20px;
-  }
-  .timeShuttergauge .slider {
-    margin-top: 0px !important;
   }
 
 /* ____________________Compass */
@@ -277,7 +329,7 @@ Mobile WebApp
   }
 
 /* ____________________Rain */
-  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] {
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] > .widget-rain-container {
     width: 90px;
     margin: 5px;
     padding: 0;

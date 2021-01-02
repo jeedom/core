@@ -2,36 +2,43 @@
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <span class="cursor iconCmd"></span>
-    <div class="slider full-width-slider ui-slider">
-      <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" data-role="none"/>
-    </div>
+    <div id="widget_slider#id#" class="slider full-width-slider"></div>
     <span class="timeCmd value #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
   </center>
   <script>
-    $('.cmd[data-cmd_id=#id#] input').slider({
-      create: function(event, ui) {
-        if ($.issetWidgetOptParam('#color#', 'color')) {
-          $(event.target.parentNode).find('div.ui-slider-bg').style('background-color', '#color#', 'important')
-          $(event.target.parentNode).find('a.ui-slider-handle').style('background-color', '#color#', 'important')
-        }
-      }
+    var step#id# = 1
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+    }
+    var mySlider#id# = $.createWidgetSlider({
+      sliderDiv: document.getElementById('widget_slider#id#'),
+      state: #state#,
+      min: #minValue#,
+      max: #maxValue#,
+      step: step#id#,
+      tooltips: true,
+      format: true,
+      unite: '#unite#'
     })
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+    }
 
     $('.cmd[data-cmd_id=#id#] .iconCmd').on('click', function() {
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
-        jeedom.cmd.execute({id: '#id#', value: {slider:value }})
+        jeedom.cmd.execute({id: '#id#', value: {slider: value }})
       } else {
         var value = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
         jeedom.cmd.execute({id: '#id#', value: {slider: value}})
       }
     })
 
-    $('.cmd[data-cmd_uid=#uid#]').on({
-      'slidestop': function(event, ui) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: event.target.value}})
-      }
-    }, '.slider')
+    mySlider#id#.on('end', function(values, handle) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '')}})
+    })
 
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
@@ -44,10 +51,10 @@
       } else {
         cmd.find('.timeCmd').remove()
       }
-      cmd.find('.slider input').value(_options.display_value)
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       var stateValue = ('#state#' == '') ? 0 : parseInt(_options.display_value)
+      mySlider#id#.set(stateValue)
       if (stateValue > minValue) {
         cmd.find('.iconCmd').empty().append("#_icon_on_#").attr('data-state', 'on')
       } else {

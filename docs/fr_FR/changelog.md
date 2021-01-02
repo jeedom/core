@@ -29,26 +29,6 @@
 - De nombreux Widgets Core acceptent maintenant des paramètres optionnels de couleur. (slider horizontal et vertical, jauge, compass, rain, shutter, templates slider, etc.).
 - Les Widgets Core avec affichage d'un *time* supportent maintenant un paramètre optionnel **time : date** pour afficher une date relative (Hier à 16h48, Lundi dernier à 14h00, etc).
 
-### Déprécié
-
-- Suppression de la lib jwerty pour du vanillaJS (gestion des raccourcis clavier). Conservée en v4.2 pour les plugins susceptibles de l'utiliser, elle sera supprimée en v4.3.
-
-### En cours de test / développement
-
-#### Coloration des logs et traduction
-
-- `\core\configjeedom.config.php` : $JEEDOM_SCLOG_TEXT reprend les valeurs colorées pour la traduction. Vérifiez les retours de log manquant et les incorporer si nécessaire.
-- Utilisé dans les class php `cmd` `scenario` `scenarioElement` `scenarioExpression` `scenarioSubElement`
-- Utilisé dans les appels ajax `scenario` et `log`
-
-#### Aide sur les template widget dashboard
-
-- Système de traduction qui actuellement ne scanne pas core/template/dashboard et /mobile :
-- > Scanner core/template/dashboard et tout mettre dans le i18n.json avec le path "core\/template\/widgets.html"
-
-#### Documentation à adapter aux nouvelles options / fonctions
-
-
 # Changelog Jeedom V4.1
 
 ## 4.1.0

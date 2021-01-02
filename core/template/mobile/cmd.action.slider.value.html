@@ -1,25 +1,44 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="value" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-  <div class="slider">
-    <input type="number" data-type="range" min="#minValue#" max="#maxValue#" value="#state#" data-highlight="true" data-role="none"/>
-  </div>
+  <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="0.5" id="sliderInput#id#">
+  <div id="widget_slider#id#" class="slider full-width-slider"></div>
   <script>
-    $('.cmd[data-cmd_id=#id#] input').slider({
-      create: function(event, ui) {
-        if ($.issetWidgetOptParam('#color#', 'color')) {
-          $(event.target.parentNode).find('div.ui-slider-bg').style('background-color', '#color#', 'important')
-          $(event.target.parentNode).find('a.ui-slider-handle').style('background-color', '#color#', 'important')
-        }
-      }
+    var step#id# = 0.5
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+      $("#sliderInput#id#").attr('step', step#id#)
+    }
+    var mySlider#id# = $.createWidgetSlider({
+      sliderDiv: document.getElementById('widget_slider#id#'),
+      state: #state#,
+      min: #minValue#,
+      max: #maxValue#,
+      step: step#id#,
+      tooltips: false
     })
 
-    $('.cmd[data-cmd_uid=#uid#]').on({
-      'slidestop': function(event, ui) {
-        jeedom.cmd.execute({id: '#id#', value: {slider: event.target.value}})
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+    }
+
+    var inputNumber#id# = document.getElementById('sliderInput#id#')
+    inputNumber#id#.addEventListener('change', function() {
+      mySlider#id#.set(this.value)
+      jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
+    })
+    mySlider#id#.on('update', function(values, handle) {
+      var value = values[handle]
+      if (values[handle]) {
+        inputNumber#id#.value = values[handle]
       }
-    }, '.slider')
+    })
+    mySlider#id#.on('end', function(values, handle) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle]}})
+    })
 
     jeedom.cmd.update['#id#'] = function(_options) {
-      $(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value)
+      inputNumber#id#.value = _options.display_value
+      mySlider#id#.set(_options.display_value)
     }
   </script>
 </div>

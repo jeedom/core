@@ -706,9 +706,39 @@ function init(_value, _default) {
   }
 })(jQuery);
 
+  /**************WIDGETS*****************************/
 (function($) {
   $.issetWidgetOptParam = function(_def, _param) {
     if (_def != '#'+_param+'#') return true
     return false
+  }
+
+  $.createWidgetSlider = function(_options) {
+    var createOptions = {
+      start: [_options.state],
+      connect: [true, false],
+      step: _options.step,
+      range: {
+        'min': _options.min,
+        'max': _options.max
+      },
+      tooltips: _options.tooltips
+    }
+
+    if (isset(_options.format) && _options.format == true) {
+      createOptions.format = {
+        from: Number,
+        to: function(value) {
+            return (Math.round(value * (100/_options.step)) / (100/_options.step)  + ' ' +  _options.unite)
+        }
+      }
+    }
+
+    if (isset(_options.vertical) && _options.vertical == true) {
+      createOptions.orientation = 'vertical'
+      createOptions.direction = 'rtl'
+    }
+
+    return noUiSlider.create(_options.sliderDiv, createOptions)
   }
 })(jQuery)

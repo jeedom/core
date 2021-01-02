@@ -60,6 +60,9 @@ Mobile Legacy
 .eqLogic.eqLogic-widget[data-category=energy] .ui-btn {
   background-color: var(--cat-energy-BtnColor) !important;
 }
+.eqLogic.eqLogic-widget[data-category=""] .ui-btn {
+  background-color: var(--cat-other-BtnColor) !important;
+}
 
 .scenario-widget.scenario .changeScenarioState,
 .scenario-widget.scenario .changeScenarioState i {
@@ -161,8 +164,8 @@ p.state,
 
 .hgauge-value,
 .vgauge-value,
-.shuttergauge-value{
-  background: var(--linkHoverLight-color) !important;
+.shuttergauge-value {
+  background: var(--linkHoverLight-color);
 }
 
 .tableCmd,
@@ -218,6 +221,10 @@ p.state,
 
 
 /* widgets specific */
-.widget-compass-needle:after {
+.widget-compass-needle {
   border-top: 22px solid var(--linkHoverLight-color);
+}
+div.cmd-widget .slider .noUi-connects > .noUi-connect,
+div.cmd-widget .slider .noUi-handle {
+  background: var(--linkHoverLight-color);
 }
