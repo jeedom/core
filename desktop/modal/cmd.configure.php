@@ -709,7 +709,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           </tbody>
         </table>
 
-        <br/><br/>
         <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
           ?>
           <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
@@ -721,9 +720,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
             <thead class="table table-bordered">
               <tr>
-                <th>Nom</th>
-                <th>Valeur</th>
-                <th>Action</th>
+                <th style="width: 20%">Nom</th>
+                <th style="width: 80%">Valeur</th>
+                <th style="width: 1px">Action</th>
               </tr>
             </thead>
             <tbody>

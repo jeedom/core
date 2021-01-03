@@ -96,7 +96,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   $echo .= '<input class="form-control value" value="' . $value . '" />';
                   $echo .= '</td>';
                   $echo .= '<td>';
-                  $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> Supprimer</a>';
+                  $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> {{Supprimer}}</a>';
                   $echo .= '</td>';
                   $echo .= '</tr>';
                 }
@@ -236,16 +236,16 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
               $display .= '<table class="table table-bordered table-condensed">';
 
-              //generix type:
-              $display .= '<tr><td>{{Type générique}}</td>';
-              $display .= '<td colspan="2"><select class="input-sm '.$thisclassAttrib.'" data-l1key="generic_type">';
-              $display .= $cmd->getGenericTypeSelectOptions();
-              $display .= '</select></td></tr>';
-
               //visible and td widths:
               $display .= '<tr><td style="width:40%">{{Visible}}<input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="isVisible" style="float: right"/></td>';
               $display .= '<td style="width:30%"><i class="fas fa-desktop"></i></td>';
               $display .= '<td style="width:30%"><i class="fas fa-tablet-alt"></i></td></tr>';
+
+              //generic type:
+              $display .= '<tr><td>{{Type générique}}</td>';
+              $display .= '<td colspan="2"><select class="input-sm '.$thisclassAttrib.'" data-l1key="generic_type">';
+              $display .= $cmd->getGenericTypeSelectOptions();
+              $display .= '</select></td></tr>';
 
               $display .= '<tr><td>{{Widget}}</td>';
               //select dashboard widget
@@ -281,7 +281,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
 
               $display .= '<tr><td>{{Paramètres optionnels sur le widget:}}</td>';
-              $display .= '<td colspan="2"><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';
+              $display .= '<td colspan="2"><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></td></tr>';
 
               $display .= '<tr><td colspan="3"><div class="optionalParamHelp '.$thisclassAttrib.'"></div></td></tr>';
 
@@ -293,7 +293,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   $display .= '</td>';
                   $display .= '<td colspan="2">';
                   $display .= '<input class="input-sm value" value="' . $value . '" style="width: calc(100% - 30px);"/>';
-                  $display .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i></a>';
+                  $display .= '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fas fa-times"></i></a>';
                   $display .= '</td>';
                   $display .= '</tr>';
                 }
@@ -490,7 +490,7 @@ $('#bt_addTileParameters').off().on('click', function() {
   tr += '<input class="form-control value" />'
   tr += '</td>'
   tr += '<td>'
-  tr += '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> Supprimer</a>'
+  tr += '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> {{Supprimer}}</a>'
   tr += '</td>'
   tr += '</tr>'
   $('#table_widgetParameters tbody').append(tr)
@@ -542,7 +542,7 @@ $('.addWidgetParametersCmd').on('click', function() {
   tr += '</td>'
   tr += '<td colspan="2">'
   tr += '<input class="input-sm value" style="width: calc(100% - 30px);"/>'
-  tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i></a>'
+  tr += '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fas fa-times"></i></a>'
   tr += '</td>'
   tr += '</tr>'
   $(this).closest('.collapse').find('table').append(tr)
