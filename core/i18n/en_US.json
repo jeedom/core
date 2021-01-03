@@ -46,7 +46,7 @@
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refresh",
         "Principal": "Main",
-        "Timelines": ""
+        "Timelines": "Timelines"
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Refresh",
@@ -1349,7 +1349,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Principal": "Main",
-        "Timelines": "",
+        "Timelines": "Timelines",
         "Rafraîchir": "Refresh",
         "Configuration": "Configuration"
     },
@@ -1670,7 +1670,7 @@
         "Push": "Push",
         "URL de push globale": "Global push URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL to call when updating value of commands. <br> You can use the following tags: <br> #value# (command value), #cmd_id# (command id) and #cmd_name# (command  name)",
-        "InfluxDB": "",
+        "InfluxDB": "InfluxDB",
         "URL du serveur InfluxDB": "InfluxDB server URL",
         "Mettez ici l'URL du serveur InfluxDB": "Put here the URL of the InfluxDB server",
         "Port du serveur InfluxDB": "InfluxDB server port",
@@ -1732,7 +1732,7 @@
         "Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles": "Allow same plugin daemon start at less than 30s intervals",
         "LDAP": "LDAP",
         "Activer l'authentification LDAP": "Enable LDAP authentication",
-        "Samba4": "",
+        "Samba4": "Samba4",
         "tls": "TLS",
         "Hôte": "Host",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "URL used to contact the database, specifying the type of connection (e.g. ldap(s):\/\/URL)",
@@ -2210,10 +2210,10 @@
         "Rechercher": "Search",
         "Tables": "Tables",
         "Taille": "Size",
-        "Select Variables": "",
-        "Select eqLogics": "",
-        "Select eqLogics configuration": "",
-        "Select cmd id 1": "",
+        "Select Variables": "Select Variables",
+        "Select eqLogics": "Select eqLogics",
+        "Select eqLogics configuration": "Select eqLogics configuration",
+        "Select cmd id 1": "Select cmd id 1",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "Ok"
     },
@@ -3809,12 +3809,12 @@
     },
     "core\/class\/user.class.php": {
         "LDAP Authentification": "LDAP Authentification",
-        "Connection LDAP Error": "",
+        "Connection LDAP Error": "Connection LDAP Error",
         "LDAP Connection OK": "LDAP Connection OK",
-        "start TLS KO": "",
-        "start TLS OK": "",
+        "start TLS KO": "start TLS KO",
+        "start TLS OK": "start TLS OK",
         "LDAP bind user - login\/password denied": "LDAP bind user - login \/ password denied",
-        "LDAP Bind user - OK": "",
+        "LDAP Bind user - OK": "LDAP Bind user - OK",
         "LDAP Profile Check - [WARNING] None filter was set, \"'.$_login.'\"  authenticated as an administrator": "LDAP Profile Check - [WARNING] None filter was set, \"'. $ _ Login.'\" Authenticated as an administrator",
         "LDAP Profile Check - [WARNING] No profile has been set for the ": "LDAP Profile Check - [WARNING] No profile has been set for the",
         " user in the LDAP": "user in the LDAP",
