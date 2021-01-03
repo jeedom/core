@@ -242,10 +242,12 @@ Desktop
   }
   div.cmd-widget .slider.noUi-horizontal .noUi-base {
     width: 70px;
+    z-index: 20;
   }
   div.cmd-widget .slider.noUi-vertical .noUi-base {
     width: 7px;
     height: 55px;
+    z-index: 20;
   }
   div.cmd-widget .slider .noUi-connects {
     background: var(--el-defaultColor) !important;

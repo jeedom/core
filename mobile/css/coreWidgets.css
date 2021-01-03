@@ -44,6 +44,7 @@ Mobile WebApp
   }
   div.cmd-widget .slider .noUi-base {
     width: calc(100% - 88px);
+    z-index: 20;
   }
   div.cmd-widget .slider.full-width-slider .noUi-base {
     width: calc(100% - 28px);
