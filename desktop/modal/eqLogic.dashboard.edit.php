@@ -69,7 +69,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         <h3 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Paramètres optionnels sur la tuile}}</a>
           <span>
-            <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> Ajouter</a>
+            <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
           </span>
         </h3>
       </div>
@@ -275,10 +275,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               $display .= '</tr>';
 
               $display .= '<tr><td>{{Retour à la ligne avant le widget}}</td>';
-              $display .= '<td colspan="2"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineBefore" /></td></tr>';
 
               $display .= '<tr><td>{{Retour à la ligne après le widget}}</td>';
-              $display .= '<td colspan="2"><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
+              $display .= '<td><input type="checkbox" class="'.$thisclassAttrib.'" data-l1key="display" data-l2key="forceReturnLineAfter" /></td></tr>';
 
               $display .= '<tr><td>{{Paramètres optionnels sur le widget:}}</td>';
               $display .= '<td colspan="2"><a class="btn btn-xs addWidgetParametersCmd pull-right" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a></td></tr>';

@@ -601,7 +601,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         <table class="table table-bordered table-condensed">
           <thead>
             <tr>
-              <th style="width:200px;"></th>
+              <th style="width:30%;"></th>
               <?php
               $display = '';
               foreach ($configEqDisplayType as $key => $value) {
@@ -639,7 +639,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   ?>
                 </td>
                 <td style="width: 1px;">
-                  <a class="btn btn-default btn-sm" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
+                  <a class="btn btn-default btn-xs" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
                 </td>
               </tr>
             <?php }
@@ -698,25 +698,22 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <?php
             }
             ?>
+            <tr>
+              <td>{{Retour à la ligne forcé avant le widget}}</td>
+              <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" /></td>
+            </tr>
+            <tr>
+              <td>{{Retour à la ligne forcé après le widget}}</td>
+              <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" /></td>
+            </tr>
           </tbody>
         </table>
-
-        <div class="form-group">
-          <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Retour à la ligne forcé avant le widget}}</label>
-          <div class="col-xs-1">
-            <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" />
-          </div>
-          <label class="col-xs-2 control-label">{{Après le widget}}</label>
-          <div class="col-xs-1">
-            <input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" />
-          </div>
-        </div>
 
         <br/><br/>
         <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
           ?>
           <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
-            <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> Ajouter</a>
+            <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
           </legend>
 
           <div id="optionalParamHelp"></div>
