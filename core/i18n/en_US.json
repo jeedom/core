@@ -46,7 +46,7 @@
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refresh",
         "Principal": "Main",
-        "Timelines": "Timelines"
+        "Timelines": ""
     },
     "mobile\/js\/deamon.js": {
         "Rafraichir": "Refresh",
@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Impossible de trouver le design 3D": "Could not find the 3D design",
         "Général": "Main",
         "Composants": "Components",
         "Supprimer": "Delete",
@@ -952,10 +953,10 @@
         "Code d'accès": "Access code",
         "Icône": "Icon",
         "Choisir": "Select",
-        "Model 3D": "3D model",
+        "Modèle 3D": "3d model",
         "Envoyer": "Send",
         "Couleur du fond": "Background color",
-        "Puissance eclairage général (0.4 defaut)": "General lighting power (0.4 default)",
+        "Puissance éclairage général (Défaut : 0.4)": "General lighting power (Default: 0.4)",
         "ID": "ID",
         "Nom object": "Object name",
         "Type": "Type",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Informations": "Information"
+        "Configuration du design 3D": "3D design setup",
+        "Créer un nouveau design 3D": "Create a new 3D design",
+        "Afficher tous les objets du design 3D": "Show all 3D design objects",
+        "Informations": "Information",
+        "Edition": "Editing",
+        "Plein écran": "Full screen"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -1343,7 +1349,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Principal": "Main",
-        "Timelines": "Timelines",
+        "Timelines": "",
         "Rafraîchir": "Refresh",
         "Configuration": "Configuration"
     },
@@ -1422,6 +1428,14 @@
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Erreur sur la vérification des mises à jour : ": "Error checking for updates:",
+        "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant": "Since your current system is functioning correctly and is no longer performing enough to be able to continue to do so under the best conditions in the future, we invite you not to update the Jeedom core anymore",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart en cliquant sur le bouton": "In order to be able to access future updates of the core, please upgrade the Linux environment of your Smart box by clicking on the button",
+        "Mettre à niveau": "Upgrade",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "In order to be able to access future updates of the core, please upgrade the Linux environment of your box to",
+        "Debian 10 Buster": "Debian 10 Buster",
+        "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "It is advisable to carry out a new installation in Debian 10 Buster then to restore your last Jeedom backup rather than directly updating the OS from the command line. To consult",
+        "la documentation d\\'installation": "installation documentation",
+        "pour plus d\\'informations": "for more information",
         "Dernière vérification : ": "Last check:",
         "Vérifier les mises à jour": "Check for updates",
         "Sauvegarder": "Save",
@@ -1656,7 +1670,7 @@
         "Push": "Push",
         "URL de push globale": "Global push URL",
         "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL to call when updating value of commands. <br> You can use the following tags: <br> #value# (command value), #cmd_id# (command id) and #cmd_name# (command  name)",
-        "InfluxDB": "InfluxDB",
+        "InfluxDB": "",
         "URL du serveur InfluxDB": "InfluxDB server URL",
         "Mettez ici l'URL du serveur InfluxDB": "Put here the URL of the InfluxDB server",
         "Port du serveur InfluxDB": "InfluxDB server port",
@@ -1718,7 +1732,7 @@
         "Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles": "Allow same plugin daemon start at less than 30s intervals",
         "LDAP": "LDAP",
         "Activer l'authentification LDAP": "Enable LDAP authentication",
-        "Samba4": "Samba4",
+        "Samba4": "",
         "tls": "TLS",
         "Hôte": "Host",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "URL used to contact the database, specifying the type of connection (e.g. ldap(s):\/\/URL)",
@@ -2196,10 +2210,10 @@
         "Rechercher": "Search",
         "Tables": "Tables",
         "Taille": "Size",
-        "Select Variables": "Select Variables",
-        "Select eqLogics": "Select eqLogics",
-        "Select eqLogics configuration": "Select eqLogics configuration",
-        "Select cmd id 1": "Select cmd id 1",
+        "Select Variables": "",
+        "Select eqLogics": "",
+        "Select eqLogics configuration": "",
+        "Select cmd id 1": "",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "Ok"
     },
@@ -2457,6 +2471,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3D plan configuration",
+        "Nom du design 3D ?": "Name of the 3D design?",
         "Configuration de l\\'objet": "Object configuration"
     },
     "desktop\/js\/view.js": {
@@ -3216,12 +3231,20 @@
         "Distance": "Range",
         "Bouton": "Button",
         "Volume": "Volume",
+        "Status": "Status",
+        "Album": "Album",
+        "Artiste": "Artist",
+        "Titre": "Title",
+        "Power": "Power",
         "Chaine": "Chain",
         "Pause": "Pause",
         "Lecture": "Play",
         "Stop": "Stop",
         "Suivant": "Next",
         "Précedent": "Previous",
+        "On": "We",
+        "Muet": "Mute",
+        "Non Muet": "Not mute",
         " Générique": "Generic",
         "Vitesse ventilateur": "Fan speed",
         "Ventilateur": "Fan",
@@ -3786,12 +3809,12 @@
     },
     "core\/class\/user.class.php": {
         "LDAP Authentification": "LDAP Authentification",
-        "Connection LDAP Error": "Connection LDAP Error",
+        "Connection LDAP Error": "",
         "LDAP Connection OK": "LDAP Connection OK",
-        "start TLS KO": "start TLS KO",
-        "start TLS OK": "start TLS OK",
+        "start TLS KO": "",
+        "start TLS OK": "",
         "LDAP bind user - login\/password denied": "LDAP bind user - login \/ password denied",
-        "LDAP Bind user - OK": "LDAP Bind user - OK",
+        "LDAP Bind user - OK": "",
         "LDAP Profile Check - [WARNING] None filter was set, \"'.$_login.'\"  authenticated as an administrator": "LDAP Profile Check - [WARNING] None filter was set, \"'. $ _ Login.'\" Authenticated as an administrator",
         "LDAP Profile Check - [WARNING] No profile has been set for the ": "LDAP Profile Check - [WARNING] No profile has been set for the",
         " user in the LDAP": "user in the LDAP",
@@ -3964,7 +3987,7 @@
         "Changement de l\\'icone du scénario : ": "Change of scenario icon:",
         "[Wait] Condition valide par dépassement de temps : ": "[Wait] Condition valid on timeout:",
         "[Wait] Condition valide : ": "[Wait] Valid condition:",
-        "Pause de ": "Break from",
+        "Pause de ": "Pause of",
         " seconde(s)": "second(s)",
         "Aucune durée trouvée pour l\\'action sleep ou la durée n\\'est pas valide : ": "No duration found for the sleep action or the duration is not valid:",
         "Action stop": "Stop action",
@@ -4151,7 +4174,15 @@
         "Dernier lancement": "Last launch",
         "Min": "Min",
         "Moyenne": "Average",
-        "Max": "Max"
+        "Max": "Max",
+        "Nord": "North",
+        "Nord-Est": "Northeast",
+        "Est": "Is",
+        "Sud-Est": "South East",
+        "Sud": "South",
+        "Sud-Ouest": "South West",
+        "Ouest": "Where is",
+        "Nord-Ouest": "North West"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Duration"

@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Impossible de trouver le design 3D": "",
         "Général": "コモン",
         "Composants": "コンポーネント",
         "Supprimer": "取り除きます",
@@ -952,10 +953,10 @@
         "Code d'accès": "アクセスコード",
         "Icône": "アイコン",
         "Choisir": "選択",
-        "Model 3D": "3Dモデル",
+        "Modèle 3D": "",
         "Envoyer": "送ります",
         "Couleur du fond": "背景色",
-        "Puissance eclairage général (0.4 defaut)": "一般照明パワー（デフォルトは0.4）",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "",
         "Nom object": "名前オブジェクト",
         "Type": "タイプ",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Informations": "情報"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "情報",
+        "Edition": "版",
+        "Plein écran": "全画面"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "トグルナビゲーション",
@@ -1422,6 +1428,14 @@
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Erreur sur la vérification des mises à jour : ": "",
+        "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant": "",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart en cliquant sur le bouton": "",
+        "Mettre à niveau": "",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "",
+        "Debian 10 Buster": "",
+        "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "",
+        "la documentation d\\'installation": "",
+        "pour plus d\\'informations": "",
         "Dernière vérification : ": "最終確認：",
         "Vérifier les mises à jour": "更新を確認する",
         "Sauvegarder": "セーブ",
@@ -2457,6 +2471,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3Dプラン構成",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "オブジェクトの構成"
     },
     "desktop\/js\/view.js": {
@@ -3216,12 +3231,20 @@
         "Distance": "",
         "Bouton": "",
         "Volume": "ボリューム",
+        "Status": "ステータス",
+        "Album": "",
+        "Artiste": "",
+        "Titre": "タイトル",
+        "Power": "",
         "Chaine": "",
         "Pause": "休止",
         "Lecture": "",
         "Stop": "ストップ",
         "Suivant": "",
         "Précedent": "前",
+        "On": "",
+        "Muet": "",
+        "Non Muet": "",
         " Générique": "",
         "Vitesse ventilateur": "",
         "Ventilateur": "",
@@ -4151,7 +4174,15 @@
         "Dernier lancement": "最後の打ち上げ",
         "Min": "低いです",
         "Moyenne": "平均",
-        "Max": "マックス"
+        "Max": "マックス",
+        "Nord": "",
+        "Nord-Est": "",
+        "Est": "あります",
+        "Sud-Est": "",
+        "Sud": "",
+        "Sud-Ouest": "",
+        "Ouest": "",
+        "Nord-Ouest": ""
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "期間"

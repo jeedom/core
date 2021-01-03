@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Impossible de trouver le design 3D": "",
         "Général": "Главная",
         "Composants": "компоненты",
         "Supprimer": "удаление",
@@ -952,10 +953,10 @@
         "Code d'accès": "Код доступа",
         "Icône": "Иконка",
         "Choisir": "Выбрать",
-        "Model 3D": "3D модель",
+        "Modèle 3D": "",
         "Envoyer": "Отправить",
         "Couleur du fond": "Цвет фона",
-        "Puissance eclairage général (0.4 defaut)": "Общая мощность освещения (0,4 по умолчанию)",
+        "Puissance éclairage général (Défaut : 0.4)": "",
         "ID": "Идентификатор",
         "Nom object": "Наименование объекта",
         "Type": "Тип",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
-        "Informations": "Информация"
+        "Configuration du design 3D": "",
+        "Créer un nouveau design 3D": "",
+        "Afficher tous les objets du design 3D": "",
+        "Informations": "Информация",
+        "Edition": "издание",
+        "Plein écran": "Полноэкранный режим"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Включить\/выключить навигацию",
@@ -1422,6 +1428,14 @@
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Erreur sur la vérification des mises à jour : ": "",
+        "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant": "",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart en cliquant sur le bouton": "",
+        "Mettre à niveau": "",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "",
+        "Debian 10 Buster": "",
+        "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "",
+        "la documentation d\\'installation": "",
+        "pour plus d\\'informations": "",
         "Dernière vérification : ": "Последняя проверка:",
         "Vérifier les mises à jour": "Проверить наличие обновлений",
         "Sauvegarder": "Сохранить",
@@ -2457,6 +2471,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Настройка 3D-карты",
+        "Nom du design 3D ?": "",
         "Configuration de l\\'objet": "Объект конфигурации \\ «s"
     },
     "desktop\/js\/view.js": {
@@ -3216,12 +3231,20 @@
         "Distance": "",
         "Bouton": "",
         "Volume": "Громкость",
+        "Status": "Статус",
+        "Album": "",
+        "Artiste": "",
+        "Titre": "Название",
+        "Power": "",
         "Chaine": "",
         "Pause": "Пауза",
         "Lecture": "",
         "Stop": "Стоп",
         "Suivant": "",
         "Précedent": "предыдущий",
+        "On": "",
+        "Muet": "",
+        "Non Muet": "",
         " Générique": "",
         "Vitesse ventilateur": "",
         "Ventilateur": "",
@@ -4151,7 +4174,15 @@
         "Dernier lancement": "Последний запуск",
         "Min": "Мин",
         "Moyenne": "Средний",
-        "Max": "Макс"
+        "Max": "Макс",
+        "Nord": "",
+        "Nord-Est": "",
+        "Est": "является",
+        "Sud-Est": "",
+        "Sud": "",
+        "Sud-Ouest": "",
+        "Ouest": "",
+        "Nord-Ouest": ""
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Продолжительность"

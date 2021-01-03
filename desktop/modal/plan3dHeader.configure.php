@@ -21,7 +21,7 @@ if (!isConnect('admin')) {
 
 $plan3dHeader = plan3dHeader::byId(init('plan3dHeader_id'));
 if (!is_object($plan3dHeader)) {
-  throw new Exception('Impossible de trouver le plan');
+  throw new Exception('{{Impossible de trouver le design 3D}}');
 }
 sendVarToJS([
   'id' => $plan3dHeader->getId(),
@@ -70,7 +70,7 @@ sendVarToJS([
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-4 control-label">{{Model 3D}}</label>
+            <label class="col-lg-4 control-label">{{Modèle 3D}}</label>
             <div class="col-lg-8">
               <span class="btn btn-default btn-file">
                 <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
@@ -84,7 +84,7 @@ sendVarToJS([
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-4 control-label">{{Puissance eclairage général (0.4 defaut)}}</label>
+            <label class="col-lg-4 control-label">{{Puissance éclairage général (Défaut : 0.4)}}</label>
             <div class="col-lg-2">
               <input type="number" min="0" step="0.1" class="plan3dHeaderAttr form-control" data-l1key="configuration" data-l2key="globalLightPower" />
             </div>

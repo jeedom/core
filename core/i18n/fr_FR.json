@@ -943,6 +943,7 @@
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Impossible de trouver le design 3D": "Impossible de trouver le design 3D",
         "Général": "Général",
         "Composants": "Composants",
         "Supprimer": "Supprimer",
@@ -952,10 +953,10 @@
         "Code d'accès": "Code d'accès",
         "Icône": "Icône",
         "Choisir": "Choisir",
-        "Model 3D": "Model 3D",
+        "Modèle 3D": "Modèle 3D",
         "Envoyer": "Envoyer",
         "Couleur du fond": "Couleur du fond",
-        "Puissance eclairage général (0.4 defaut)": "Puissance eclairage général (0.4 defaut)",
+        "Puissance éclairage général (Défaut : 0.4)": "Puissance éclairage général (Défaut : 0.4)",
         "ID": "ID",
         "Nom object": "Nom object",
         "Type": "Type",
@@ -1281,7 +1282,12 @@
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Informations": "Informations"
+        "Configuration du design 3D": "Configuration du design 3D",
+        "Créer un nouveau design 3D": "Créer un nouveau design 3D",
+        "Afficher tous les objets du design 3D": "Afficher tous les objets du design 3D",
+        "Informations": "Informations",
+        "Edition": "Edition",
+        "Plein écran": "Plein écran"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Toggle navigation",
@@ -1422,6 +1428,14 @@
     "desktop\/php\/update.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Erreur sur la vérification des mises à jour : ": "Erreur sur la vérification des mises à jour : ",
+        "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant": "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart en cliquant sur le bouton": "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart en cliquant sur le bouton",
+        "Mettre à niveau": "Mettre à niveau",
+        "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers",
+        "Debian 10 Buster": "Debian 10 Buster",
+        "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter",
+        "la documentation d\\'installation": "la documentation d\\'installation",
+        "pour plus d\\'informations": "pour plus d\\'informations",
         "Dernière vérification : ": "Dernière vérification : ",
         "Vérifier les mises à jour": "Vérifier les mises à jour",
         "Sauvegarder": "Sauvegarder",
@@ -2457,6 +2471,7 @@
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configuration du plan 3D",
+        "Nom du design 3D ?": "Nom du design 3D ?",
         "Configuration de l\\'objet": "Configuration de l\\'objet"
     },
     "desktop\/js\/view.js": {
@@ -3216,12 +3231,20 @@
         "Distance": "Distance",
         "Bouton": "Bouton",
         "Volume": "Volume",
+        "Status": "Status",
+        "Album": "Album",
+        "Artiste": "Artiste",
+        "Titre": "Titre",
+        "Power": "Power",
         "Chaine": "Chaine",
         "Pause": "Pause",
         "Lecture": "Lecture",
         "Stop": "Stop",
         "Suivant": "Suivant",
         "Précedent": "Précedent",
+        "On": "On",
+        "Muet": "Muet",
+        "Non Muet": "Non Muet",
         " Générique": " Générique",
         "Vitesse ventilateur": "Vitesse ventilateur",
         "Ventilateur": "Ventilateur",
@@ -4151,7 +4174,15 @@
         "Dernier lancement": "Dernier lancement",
         "Min": "Min",
         "Moyenne": "Moyenne",
-        "Max": "Max"
+        "Max": "Max",
+        "Nord": "Nord",
+        "Nord-Est": "Nord-Est",
+        "Est": "Est",
+        "Sud-Est": "Sud-Est",
+        "Sud": "Sud",
+        "Sud-Ouest": "Sud-Ouest",
+        "Ouest": "Ouest",
+        "Nord-Ouest": "Nord-Ouest"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Durée"

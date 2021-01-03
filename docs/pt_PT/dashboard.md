@@ -3,7 +3,7 @@
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-O painel é uma das páginas principais do Jeedom, exibe um relatório de toda a sua automação residencial.
+O painel é uma das páginas principais do Jeedom, ele exibe um relatório de toda a sua automação residencial.
 Este relatório (diferente das visualizações e designs) é gerado automaticamente pela Jeedom e inclui todos os objetos visíveis e seus equipamentos.
 
 ![Painel de instrumentos](../images/doc-dashboard-legends.png)
@@ -71,4 +71,4 @@ Em cada objeto, à direita de seu nome e resumo, dois ícones permitem que você
 > - Clique no relógio (barra de menus) : Abra a linha do tempo.
 > - Clique no nome do Jeedom (barra de menus) : Abre Configurações → Sistema → Configuração.
 > - Clique em ? (Barra de menus) : Abre a ajuda na página atual.
-> - Escape em um campo de pesquisa : Limpe o campo e cancele esta pesquisa .
+> - Escape em um campo de pesquisa : Limpe o campo e cancele esta pesquisa.

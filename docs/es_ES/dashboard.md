@@ -3,7 +3,7 @@
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-El tablero de instrumentos es una de las páginas principales de Jeedom, muestra un informe de toda la automatización de su hogar.
+El tablero es una de las páginas principales de Jeedom, muestra un informe de toda su domótica.
 Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jeedom e incluye todos los objetos visibles y sus equipos.
 
 ![Salpicadero](../images/doc-dashboard-legends.png)
@@ -71,4 +71,4 @@ En cada objeto, a la derecha de su nombre y resumen, dos iconos le permiten alin
 > - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 > - Haga clic en el nombre de Jeedom (barra de menú) : Abre Configuración → Sistema → Configuración.
 > - Haga clic en ? (Barra de menú) : Abre la ayuda en la página actual.
-> - Escapar en un campo de investigación : Borrar el campo y cancelar esta búsqueda .
+> - Escapar en un campo de investigación : Borrar el campo y cancelar esta búsqueda.

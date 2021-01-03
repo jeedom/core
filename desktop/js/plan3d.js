@@ -61,7 +61,7 @@ $('#bt_showAllObject').on('click',function(){
     success : function(data){
       for(var i in data){
         var object = scene.getObjectByName(data[i].name);
-        if(object){
+        if (object) {
           object.visible = true
         }
       }
@@ -74,7 +74,7 @@ $('#bt_plan3dHeaderConfigure').on('click',function(){
 });
 
 $('#bt_plan3dHeaderAdd').on('click',function(){
-  bootbox.prompt("Nom ?", function (result) {
+  bootbox.prompt("{{Nom du design 3D ?}}", function (result) {
     if (result !== null) {
       jeedom.plan3d.saveHeader({
         plan3dHeader: {name: result},
