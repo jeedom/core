@@ -67,7 +67,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
         <h3 class="panel-title">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Paramètres optionnels sur la tuile}}</a>
           <span>
-            <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> Ajouter</a>
+            <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
           </span>
         </h3>
       </div>
