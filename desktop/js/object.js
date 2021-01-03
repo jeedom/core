@@ -549,6 +549,7 @@ function addEqlogicsInfo(_id, _objName, _summay) {
         panel += '<div class="panel-heading">'
         panel += '<h3 class="panel-title">'
         panel += '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#eqlogicId-'+thisId+'">'+thisEqName+'</a>'
+        panel += '<span><a href="index.php?v=d&p='+thisEq.eqType_name+'&m='+thisEq.eqType_name+'&id='+thisId+'" class="pull-right"><i class="fas fa-external-link-alt"></i></a></span>'
         panel += '</h3>'
         panel += '</div>'
         panel += '<div id="eqlogicId-'+thisId+'" class="panel-collapse collapse">'
