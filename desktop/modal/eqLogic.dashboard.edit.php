@@ -94,7 +94,7 @@ $cmd_widgetDashboard = cmd::availableWidget('dashboard');
                   $echo .= '<input class="form-control value" value="' . $value . '" />';
                   $echo .= '</td>';
                   $echo .= '<td>';
-                  $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> Supprimer</a>';
+                  $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> {{Supprimer}}</a>';
                   $echo .= '</td>';
                   $echo .= '</tr>';
                 }
@@ -491,7 +491,7 @@ $('#bt_addTileParameters').off().on('click', function() {
   tr += '<input class="form-control value" />'
   tr += '</td>'
   tr += '<td>'
-  tr += '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> Supprimer</a>'
+  tr += '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> {{Supprimer}}</a>'
   tr += '</td>'
   tr += '</tr>'
   $('#table_widgetParameters tbody').append(tr)
