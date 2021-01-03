@@ -157,7 +157,7 @@ Theme Core 2021 @Jeedom
   .navbar-fixed-top .visible-xs-inline-block {
     max-width: calc(100% - 150px) !important;
     max-height: 38px !important;
-    overflow: hidden;
+    overflow: auto;
   }
 
   /* navbar top modales on hover */
@@ -879,10 +879,24 @@ Theme Core 2021 @Jeedom
   }
 
   /* summary */
-  .objectSummaryParent {
+  .objectSummaryContainer.objectSummaryglobal,
+  span.objectDashLegend .objectSummaryContainer {
+    display: inline-flex;
+    justify-content: center;
+  }
+  .objectSummaryglobal > .objectSummaryParent,
+  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent {
+    display: inline-flex;
     color: var(--txt-color) !important;
+    margin: 0 2px;
+  }
+  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent {
     font-size: 12px;
-    margin-right: 4px;
+  }
+  .objectSummaryglobal > .objectSummaryParent > sup,
+  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent > sup {
+    top: 0;
+    margin: 0 2px;
   }
 
 /* ____________________OVERVIEW */
@@ -2332,14 +2346,26 @@ Theme Core 2021 @Jeedom
     background-color: transparent !important;
   }
 
+  .visible-xs-inline-block .objectSummaryglobal {
+    position: relative;
+    top: 8px;
+    display: inline-block;
+    max-height: 60px;
+    font-size: 12px;
+    word-break: break-word;
+    line-height: 27px;
+    overflow: auto;
+  }
+
   .navbar-nav.navbar-right .objectSummaryglobal {
     position: relative;
     display: inline-block;
     max-width: 340px;
-    top: -5px;
-    overflow: hidden;
+    max-height: 45px;
+    top: -8px;
     word-break: break-word;
-    line-height: 16px;
+    line-height: 23px;
+    overflow: auto;
   }
 
   div.panel {

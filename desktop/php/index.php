@@ -275,7 +275,7 @@ function setTheme() {
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<div class="center"><span class="visible-xs-inline-block" style="margin-top:10px;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></div>
+						<div class="center"><span class="visible-xs-inline-block"><?php echo jeeObject::getGlobalHtmlSummary(); ?></span></div>
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
@@ -504,7 +504,7 @@ function setTheme() {
 										<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
 									</li>
 								<?php } ?>
-								<li class="hidden-sm"><a style="cursor:default;"><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
+								<li class="hidden-sm"><a><?php echo jeeObject::getGlobalHtmlSummary(); ?></a></li>
 								<li class="hidden-sm navTime">
 									<a href="index.php?v=d&p=timeline">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
