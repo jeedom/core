@@ -2,6 +2,12 @@
 Changelog Jeedom V4
 =========
 
+4.0.62
+=====
+
+- Nouvelle migration buster + kernel pour la smart et la Pro v2
+- Verification version OS lors de mise à jour importantes de Jeedom
+
 4.0.61
 =====
 
