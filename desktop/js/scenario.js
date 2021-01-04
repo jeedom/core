@@ -1042,11 +1042,12 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
   var expressions = $(this).closest('.expressions')
   $("#div_scenarioElement").sortable({
     cursor: "move",
+    grid: [5, 15],
     items: ".sortable",
+    appendTo: $("#div_scenarioElement"),
     zIndex: 0,
     opacity: 0.5,
     forcePlaceholderSize: true,
-    forceHelperSize: true,
     placeholder: "sortable-placeholder",
     start: function(event, ui) {
       $('.dropdown.open').removeClass('open')
@@ -1119,7 +1120,7 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable")
       ui.item.attr('style', '')
-      modifyWithoutSave = true;
+      modifyWithoutSave = true
     }
   })
   $("#div_scenarioElement").sortable("enable")
@@ -1310,7 +1311,7 @@ function printScenario(_id) {
       }
       $('.scenario_link').append(html)
       if (data.elements.length == 0) {
-        $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+        $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
       }
       actionOptions = []
       var elements = ''
