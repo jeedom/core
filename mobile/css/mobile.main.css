@@ -1456,12 +1456,28 @@ a.ui-table-columntoggle-btn {
   #table_message td.plugin:before {
     content: 'Source: ';
   }
-
-  #table_message td.message {
+   #table_message td:last-of-type {
     background: var(--bg-modal-color);
     border-bottom: 1px solid var(--al-info-color);
   }
+   #table_message td.message:before {
+    content: "\f2b6   ";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    font-size: 14px;
+    margin-left: -42px;
+    margin-right: 20px;
+  }
+  #table_message td.occurrences:before {
+    content: "\f01e   ";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    font-size: 14px;
+    margin-left: -42px;
+    margin-right: 20px;
+  }
 }
+
 @media only screen and (min-width:30em) {
   #table_message th {
     display: table-cell;

@@ -56,7 +56,7 @@ function getAllMessage(_plugin) {
         tbody += '<td class="datetime">' + messages[i].date + '</td>'
         tbody += '<td class="plugin">' + messages[i].plugin + '</td>'
         tbody += '<td class="message">' + $('<textarea />').html(messages[i].message).text() + '</td>'
-        tbody += '<td class="occurrences">' + ( messages[i].occurrences === null ? '' : messages[i].occurrences ) + '</td>'
+        tbody += '<td class="occurrences">' + ( messages[i].occurrences === null ? '1' : messages[i].occurrences ) + '</td>'
         tbody += '</tr>'
       }
       $('#table_message tbody').empty().html(tbody)
