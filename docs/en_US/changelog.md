@@ -30,7 +30,7 @@
 - **Scenario** : Addition of the age function (gives the age of the value of the order).
 - **Scenario** : *stateChanges()* now accept the period *Today* (midnight to now), *yesterday* and *day* (for 1 day).
 - **Scenario** : Functions *statistics (), average (), max (), min (), trend (), duration()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
-- **Scenario** : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Commandes).
+- **Scenario** : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Equipements).
 - **Scenario** : Viewing a *Warning* if no trigger is configured.
 - **Scenario** : Bugfix of *select* on block copy / paste.
 - **Scenario** : Copy / paste of block between different scenarios.
