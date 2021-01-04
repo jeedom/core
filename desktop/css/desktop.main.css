@@ -354,6 +354,11 @@ Theme Core 2021 @Jeedom
 
 
   @media screen and (max-width: 767px) {
+    #summaryGlobalMain {
+      right: 70px !important;
+      max-width: calc(100vw - 180px) !important;
+    }
+
     /* clicking interaction */
     #jeedomMenuBar ul.navbar-nav li ul li {
       padding-top: 2px;
@@ -879,11 +884,20 @@ Theme Core 2021 @Jeedom
   }
 
   /* summary */
-  .objectSummaryContainer.objectSummaryglobal,
-  span.objectDashLegend .objectSummaryContainer {
-    display: inline-flex;
-    justify-content: center;
+
+  #summaryGlobalMain {
+    position: absolute;
+    display: inline-block;
+    top: 15px;
+    right: 205px;
+    width: 100%;
+    max-height: 28px;
+    text-align: right;
+    word-break: break-word;
+    line-height: 28px;
+    overflow: auto;
   }
+
   .objectSummaryglobal > .objectSummaryParent,
   span.objectDashLegend .objectSummaryContainer > .objectSummaryParent {
     display: inline-flex;
@@ -895,8 +909,8 @@ Theme Core 2021 @Jeedom
   }
   .objectSummaryglobal > .objectSummaryParent > sup,
   span.objectDashLegend .objectSummaryContainer > .objectSummaryParent > sup {
-    top: 0;
     margin: 0 2px;
+    margin-top: 9px;
   }
 
 /* ____________________OVERVIEW */
@@ -2169,6 +2183,11 @@ Theme Core 2021 @Jeedom
     padding: 6px 7px;
     height: 22px;
   }
+  #bt_messageModal,
+  #bt_nbUpdateNavbar {
+    width: 32px;
+    padding: 15px 6px
+  }
 
   button .fas.fa-plus-circle {
     font-size: 10px;
@@ -2344,28 +2363,6 @@ Theme Core 2021 @Jeedom
   }
   .navbar-nav.navbar-right > li a:hover {
     background-color: transparent !important;
-  }
-
-  .visible-xs-inline-block .objectSummaryglobal {
-    position: relative;
-    top: 8px;
-    display: inline-block;
-    max-height: 60px;
-    font-size: 12px;
-    word-break: break-word;
-    line-height: 27px;
-    overflow: auto;
-  }
-
-  .navbar-nav.navbar-right .objectSummaryglobal {
-    position: relative;
-    display: inline-block;
-    max-width: 340px;
-    max-height: 45px;
-    top: -8px;
-    word-break: break-word;
-    line-height: 23px;
-    overflow: auto;
   }
 
   div.panel {
@@ -4558,7 +4555,7 @@ Theme Core 2021 @Jeedom
       --lineheight: 1.4em;
     }
 
-    .navbar-nav.navbar-right .objectSummaryglobal {
+    #summaryGlobalMain {
       max-width: 340px;
     }
 
@@ -4606,7 +4603,7 @@ Theme Core 2021 @Jeedom
     }
     .panel-title,
     legend {
-      font-size: 14px !important;
+      font-size: 16px !important;
     }
   }
 
@@ -4620,20 +4617,14 @@ Theme Core 2021 @Jeedom
   }
 
   @media screen and (max-width: 1200px) {
-    .navbar-nav.navbar-right .objectSummaryglobal {
-      max-width: calc(100vw - 630px);
+    #summaryGlobalMain {
+      max-width: calc(100vw - 600px);
     }
   }
 
   @media screen and (min-width: 1199px) {
-    .navbar-nav.navbar-right .objectSummaryglobal {
-      max-width: calc(100vw - 880px);
-    }
-  }
-
-  @media screen and (min-width: 1680px) {
-    .navbar-nav.navbar-right .objectSummaryglobal {
-      max-width: 820px;
+    #summaryGlobalMain {
+      max-width: calc(100vw - 850px);
     }
   }
 
@@ -4651,6 +4642,11 @@ Theme Core 2021 @Jeedom
   }
 
   @media screen and (max-width: 992px) {
+    #summaryGlobalMain {
+      right: 75px;
+      max-width: calc(100vw - 450px);
+    }
+
     .objectListContainer div.cursor > center > i,
     .interactListContainer div.cursor > center > i,
     .scenarioListContainer div.cursor > center  > i,

@@ -543,13 +543,10 @@ span.summaryMenu > span,
 #div_displayEquipement .objectSummaryParent,
 span.summaryMenu .objectSummaryParent {
   font-size: 16px;
-  margin: 3px;
-  display: inline-flex;
 }
 #div_displayEquipement .objectSummaryParent > sup {
   font-size: 12px;
   margin-top: -5px;
-  display: flex;
 }
 #bottompanel_objectList .objectSummaryParent,
 .ui-listview .objectSummaryParent {
@@ -641,6 +638,9 @@ span.summaryMenu .objectSummaryParent {
 .objectSummaryglobal .objectSummaryParent {
   font-size: 14px;
   font-weight: 400;
+}
+.objectSummaryParent {
+  margin: 0 2px;
 }
 
 
