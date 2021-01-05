@@ -170,9 +170,9 @@ function addCron(_cron) {
   tr += '<td>'
   tr += init(_cron.pid)
   tr += '</td>'
-  tr += '<td>'
+  tr += '<td class="center">'
   tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" '+disabled+' /></span> '
-  tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;" />'
+  tr += '<input class="cronAttr input-xs" data-l1key="deamonSleepTime" style="width : 50px;" />'
   tr += '</td>'
   tr += '<td class="center">'
   if (init(_cron.deamon) == 0) {
@@ -181,7 +181,7 @@ function addCron(_cron) {
   tr += '</td>'
   tr += '<td><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>'
   tr += '<td><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>'
-  tr += '<td><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>'
+  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="schedule" '+disabled+' /></td>'
   tr += '<td>'
   if (init(_cron.deamon) == 0) {
     tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />'

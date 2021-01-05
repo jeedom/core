@@ -173,13 +173,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Valeur minimum (défaut : 0)}}</label>
                   <div class="col-xs-2">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="minValue" />
+                    <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Valeur maximum (défaut : 100)}}</label>
                   <div class="col-xs-2">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="maxValue" />
+                    <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" />
                   </div>
                 </div>
               <?php }?>

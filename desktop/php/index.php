@@ -145,10 +145,12 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<script>
-	var clientDatetime = new Date();
-	var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
-	var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
-	var serverDatetime = <?php echo getmicrotime(); ?>;
+		var clientDatetime = new Date();
+		var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
+		var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
+		var serverDatetime = <?php echo getmicrotime(); ?>;
+		JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
+		JEEDOM_AJAX_TOKEN='';
 	</script>
 	<?php
 	include_file('core', 'icon.inc', 'php');
@@ -160,12 +162,6 @@ function setTheme() {
 	include_file('3rdparty', 'jquery/jquery.min', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
-	?>
-	<script>
-	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='';
-	</script>
-	<?php
 	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 	include_file('core', 'core', 'js');
 	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
@@ -219,7 +215,7 @@ function setTheme() {
 
 	setTheme();
 
-	if(init('report') == 1){
+	if (init('report') == 1) {
 		include_file('desktop', 'report', 'css');
 	}
 	if (init('rescue', 0) == 0 && $configs['enableCustomCss'] == 1) {
