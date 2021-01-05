@@ -16,13 +16,14 @@
 
 "use strict"
 
+var $tableCron = $('#table_cron')
 printCron()
 printListener()
 initTableSorter(false)
-var $tableCron = $('#table_cron')
-setTimeout(function() {
-  $tableCron.find('th[data-column="0"]').trigger('sort')
-}, 100)
+$tableCron[0].config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
+$tableCron.trigger('applyWidgets')
+  .trigger('resizableReset')
+  .trigger('sorton', [[[0,0]]])
 
 document.onkeydown = function(event) {
   if (getOpenedModal()) return
@@ -131,18 +132,21 @@ $('#div_pageContainer').off('change','.cronAttr').on('change','.cronAttr:visible
   modifyWithoutSave = true
 })
 
+/***********************CRONS*****************************/
 function printCron() {
   $.showLoading()
   jeedom.cron.all({
     success: function(data) {
       $.showLoading()
-      $('#table_cron tbody').empty()
+      $tableCron.find('tbody').empty()
       var tr = []
       for (var i in data) {
         tr.push(addCron(data[i]))
       }
       $('#table_cron tbody').append(tr)
+
       $tableCron.trigger("update")
+
       modifyWithoutSave = false
       setTimeout(function() {
         modifyWithoutSave = false
@@ -159,37 +163,37 @@ function addCron(_cron) {
     disabled ='disabled'
   }
   var tr = '<tr id="' + init(_cron.id) + '">'
-  tr += '<td style="min-width:50px;"><span class="cronAttr label label-info" data-l1key="id"></span></td>'
-  tr += '<td class="center" style="min-width:65px;">'
+  tr += '<td><span class="cronAttr label label-info" data-l1key="id"></span></td>'
+  tr += '<td class="center">'
   tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked '+disabled+'/>'
   tr += '</td>'
-  tr += '<td style="min-width:52px;">'
+  tr += '<td>'
   tr += init(_cron.pid)
   tr += '</td>'
-  tr += '<td style="min-width:100px;">'
+  tr += '<td>'
   tr += '<input type="checkbox" class="cronAttr" data-l1key="deamon" '+disabled+' /></span> '
   tr += '<input class="cronAttr form-control input-sm" data-l1key="deamonSleepTime" style="width : 50px; display : inline-block;" />'
   tr += '</td>'
-  tr += '<td class="center" style="min-width:80px;">'
+  tr += '<td class="center">'
   if (init(_cron.deamon) == 0) {
     tr += '<input type="checkbox" class="cronAttr" data-l1key="once" /></span> '
   }
   tr += '</td>'
-  tr += '<td style="min-width:75px;"><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>'
-  tr += '<td style="min-width:85px;"><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>'
-  tr += '<td style="min-width:142px;"><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>'
-  tr += '<td style="min-width:115px;">'
+  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="class" '+disabled+' /></td>'
+  tr += '<td><input class="form-control cronAttr input-sm" data-l1key="function" '+disabled+' /></td>'
+  tr += '<td><input class="cronAttr form-control input-sm" data-l1key="schedule" '+disabled+' /></td>'
+  tr += '<td>'
   if (init(_cron.deamon) == 0) {
     tr += '<input class="form-control cronAttr input-sm" data-l1key="timeout" />'
   }
   tr += '</td>'
-  tr += '<td style="min-width:148px;">'
+  tr += '<td>'
   tr += init(_cron.lastRun)
   tr += '</td>'
-  tr += '<td style="min-width:120px;">'
+  tr += '<td>'
   tr += init(_cron.runtime,'0')+'s'
   tr += '</td>'
-  tr += '<td style="min-width:60px;">'
+  tr += '<td>'
   var label = 'label label-info'
   var state = init(_cron.state)
   if (init(_cron.state) == 'run') {
@@ -211,7 +215,7 @@ function addCron(_cron) {
   tr += '<span class="' + label + '">' + state + '</span>'
   tr += '</td>'
 
-  tr += '<td style="width:85px;">'
+  tr += '<td>'
   if (init(_cron.id) != '') {
     tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> '
   }
@@ -226,13 +230,12 @@ function addCron(_cron) {
   tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>'
   tr += '</td>'
   tr += '</tr>'
-  $tableCron.trigger("update")
   var result = $(tr)
   result.setValues(_cron, '.cronAttr')
   return result
 }
 
-
+/***********************LISTENERS*****************************/
 function printListener() {
   $.showLoading()
   jeedom.listener.all({
@@ -280,8 +283,7 @@ $('#table_listener').off('click','.removeListener').on('click','.removeListener'
   })
 })
 
-/***********************DEAMON*****************************/
-
+/***********************DEAMONS*****************************/
 getDeamonState()
 
 $('#bt_refreshDeamon').on('click',function() {

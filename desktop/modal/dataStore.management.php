@@ -159,7 +159,7 @@ $(function() {
         $('#div_dataStoreManagementAlert').showAlert({message: error.message, level: 'danger'})
       },
       success: function(data) {
-        $('#table_dataStore tbody').empty()
+        $tableDataStore.find('tbody').empty()
         var tr = ''
         for (var i in data) {
           tr += getDatastoreTr(data[i])
