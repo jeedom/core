@@ -56,7 +56,7 @@ include_file('3rdparty', 'animate/animate', 'js');
 						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt"></i> {{Connecter Jeedom au Market}}</button>
 					</div>
 					<div class="submit">
-						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-times"></i></i> {{Ignorer}}</button>
+						<button class="dark btn-lg" id="bt_ignore_market"><i class="fas fa-times"></i></i> {{Ignorer}}</button>
 					</div>
 					<div class="resetPassword">
 						<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
