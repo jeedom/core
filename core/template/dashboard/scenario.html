@@ -1,14 +1,15 @@
 <div class="scenario scenario-widget allowResize" data-scenario_id="#id#" data-version="#version#" style="width: #width#;height: #height#;">
-  <center class="widget-name"><a href="#scenarioLink#" class="tooltips" title="{{Dernier lancement}} : #lastLaunch#">#name#</a></center>
+  <center class="widget-name"><a href="#scenarioLink#">#name#</a></center>
   <div class="#isVerticalAlign#">
     <center>
-      <span class="iconCmd">#icon#</span>
-    </center>
-    <center>
+      <div class="iconCmd">#icon#</div>
       <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="activate" title="{{Activer}}"><i class="fa fa-power-off"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="deactivate" title="{{Desactiver}}"><i class="fa fa-power-off"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
+      <div class="value">
+        <span id="lastLaunch#id#" class="timeCmd label">#lastLaunch#</span>
+      </div>
     </center>
   </div>
   <script>
@@ -25,6 +26,8 @@
     })
 
     jeedom.scenario.update['#id#'] = function(_options) {
+      $('#lastLaunch#id#').html(_options.lastLaunch)
+
       if (typeof _options.icon != 'undefined' && _options.icon != '') {
         $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append(_options.icon)
       }

@@ -12,6 +12,9 @@
       <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="activate"><i class="fa fa-power-off"></i></a>
       <a class="ui-btn ui-mini ui-btn-inline waves-effect waves-button changeScenarioState" data-state="deactivate"><i class="fa fa-power-off"></i></a>
     </span>
+    <div class="value">
+      <span id="lastLaunch#id#" class="timeCmd label">#lastLaunch#</span>
+    </div>
   </center>
   <script>
     $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
@@ -27,6 +30,7 @@
     })
 
     jeedom.scenario.update['#id#'] =function(_options) {
+      $('#lastLaunch#id#').html(_options.lastLaunch)
       if (typeof _options.icon != 'undefined' && _options.icon != '') {
         $('.scenario[data-scenario_id=#id#] .state').empty().append(_options.icon)
       }

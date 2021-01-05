@@ -690,10 +690,12 @@ Theme Core 2021 @Jeedom
     background: rgb(var(--bg-color));
     position: relative;
     padding: 2px 5px !important;
-    display: block;
-    max-width: 75px;
     font-size: 11px !important;
     margin-top: 4px;
+  }
+  .eqLogic-widget .timeCmd.label {
+    display: block;
+    max-width: 75px;
   }
   .timeCmd.label:first-letter {
     text-transform: uppercase;
@@ -706,6 +708,9 @@ Theme Core 2021 @Jeedom
   }
   .scenario-widget {
     max-width: 75%;
+  }
+  .scenario-widget .iconCmd {
+    margin-top: 7px;
   }
   .eqLogic-widget .btn,
   .eqLogic-widget .btn-default,
