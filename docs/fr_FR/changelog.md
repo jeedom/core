@@ -107,6 +107,12 @@
 
 ## 4.0.61
 
+- Nouvelle migration buster + kernel pour la smart et la Pro v2
+- Verification version OS lors de mise à jour importantes de Jeedom
+
+
+## 4.0.61
+
 - Correction d'un soucis lors de l'application d'un template de scénario
 - Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique)
 - Correction d'un soucis sur l'archivage des historique si le mode de lissage était à jamais
