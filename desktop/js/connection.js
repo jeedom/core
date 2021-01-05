@@ -141,6 +141,10 @@ $('#bt_login_validate_market').on('click', function() {
   })
 })
 
+$('#bt_ignore_market').on('click', function() {
+  window.location.reload();
+})
+
 $('#bt_compte_market').on('click', function() {
   window.open(
     'https://www.jeedom.com/market/index.php?v=d&p=register',
@@ -170,21 +174,21 @@ $('#in_change_passwordToo').keypress(function(event) {
 $(document).ready(function() {
   var theme = 'core/themes/core2019_Light/desktop/core2019_Light.css'
   $('#bootstrap_theme_css').attr('href', theme)
-
+  
   document.title = 'Jeedom - Login'
-
+  
   $(".veen .login-btn button").click(function() {
     $('.veen .wrapper').removeClass('move')
     $('.body').css('background','#ff4931')
     $(".veen .rgstr-btn button").removeClass('active')
     $(this).addClass('active')
   })
-
+  
   window.setTimeout(function() {
     $('.veen').removeClass('zoomIn')
     $('.btn_help').removeClass('bounceInUp')
   }, 5000)
-
+  
   window.setTimeout(function() {
     window.setInterval(function() {
       $('.btn_help').animateCss('shake')
@@ -193,7 +197,7 @@ $(document).ready(function() {
       },3000)
     },5000)
   }, 10000)
-
+  
 })
 
 // Function //
