@@ -407,41 +407,20 @@ user::isBan();
 								<input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight"/>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
-							<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="showBackgroundImg"/>
-							</div>
-							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Flou des fonds des objets}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
-							</div>
-						</div>
+
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
+                        	<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" />
+							</div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -466,6 +445,46 @@ user::isBan();
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
+							</div>
+						</div>
+
+						<legend>{{Options}}</legend>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
+							</div>
+						</div>
+                        <div class="form-group">
+							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey" data-l1key="showBackgroundImg"/>
+							</div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Flou des fonds des objets}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" />
+							</div>
+						</div>
+                        <div class="form-group">
+						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Position des notifications}}</label>
+                          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                              <select class="form-control configKey" data-l1key="interface::toast::position">
+                                  <option value="toast-top-left">{{En haut à gauche}}</option>
+                                  <option value="toast-top-center">{{En haut au centre}}</option>
+                                  <option value="toast-top-right">{{En haut à droite}}</option>
+                                  <option value="toast-bottom-right">{{En bas à droite}}</option>
+                                  <option value="toast-bottom-left">{{En bas à gauche}}</option>
+                              </select>
+                          </div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée des notifications}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde}}."></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" />
 							</div>
 						</div>
 
@@ -511,6 +530,7 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" />
 							</div>
 						</div>
+
 					</fieldset>
 				</form>
 			</div>

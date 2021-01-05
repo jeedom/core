@@ -260,16 +260,20 @@ $(function() {
   toastr.options = {
     "closeButton": true,
     "debug": false,
-    "positionClass": "toast-top-right",
-    "onclick": null,
+    "positionClass": jeedom.theme['interface::toast::position'],
     "showDuration": "300",
     "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
+    "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
+    "extendedTimeOut": "1500",
     "showEasing": "swing",
     "hideEasing": "linear",
     "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
+    "hideMethod": "fadeOut",
+    "progressBar": true,
+    "onclick": function() {
+      window.toastr.clear()
+      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
+    }
   }
 
   setTimeout(function() {

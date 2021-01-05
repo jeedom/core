@@ -4385,6 +4385,21 @@ Theme Core 2021 @Jeedom
     padding: 5px !important;
   }
 
+  #toast-container > div {
+    color: var(--linkHoverLight-color);
+    background-color: var(--al-info-color);
+    border-radius: var(--border-radius) ;
+    box-shadow: none;
+  }
+  #toast-container div.toast-progress {
+    background-color: var(--sc-formTxt-color);
+    opacity: 1;
+  }
+  #toast-container > div.toast:hover {
+    box-shadow: none;
+  }
+
+
 /* ______TooltipSter */
   .tooltipWrapper {
     display: none;

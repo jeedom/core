@@ -71,20 +71,22 @@ class jeedom {
 			'logo_mobile_light',
 			'logo_mobile_dark',
 			'objectBackgroundBlur',
-			'theme_displayAsTable'
+			'theme_displayAsTable',
+          	'interface::toast::position',
+          	'interface::toast::duration'
 		);
 
 		$return = config::byKeys($key);
 		$return['current_desktop_theme'] = $return['default_bootstrap_theme'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
-		if($return['theme_changeAccordingTime'] == 1 && (date('Gi')<intval(str_replace(':','',$return['theme_start_day_hour'])) || date('Gi')>intval(str_replace(':','',$return['theme_end_day_hour'])))){
+		if ($return['theme_changeAccordingTime'] == 1 && (date('Gi')<intval(str_replace(':','',$return['theme_start_day_hour'])) || date('Gi')>intval(str_replace(':','',$return['theme_end_day_hour'])))) {
 			$return['current_desktop_theme'] = $return['default_bootstrap_theme_night'];
 			$return['current_mobile_theme'] = $return['mobile_theme_color_night'];
 		}
 
 		$css_convert = array();
 		$return['css'] = array();
-		if($return['interface::advance::enable'] == 1){
+		if ($return['interface::advance::enable'] == 1) {
 			$css_convert['css::background-opacity'] = '--opacity';
 			$css_convert['css::border-radius'] = '--border-radius';
 		}
@@ -92,26 +94,26 @@ class jeedom {
 
 		$css = config::byKeys(array_keys($css_convert));
 		foreach ($css as $key => $value) {
-			if($value == ''){
+			if ($value == '') {
 				continue;
 			}
-			if(isset($css_convert[$key])){
+			if (isset($css_convert[$key])) {
 				$return['css'][$css_convert[$key]] = $value;
 			}
 		}
-		if(count($return['css']) > 0){
+		if (count($return['css']) > 0) {
 			foreach ($return['css'] as $key => &$value) {
 				switch ($key) {
 					case '--border-radius':
-					if($value == ''){
+					if ($value == '') {
 						$value=0;
-					}else if($value > 1){
+					} else if($value > 1) {
 						$value = 1;
 					}
 					$value.='rem';
 					break;
 					case '--objectBackgroundBlur':
-					if($value == ''){
+					if ($value == '') {
 						$value=0;
 					}
 					$value.='px';
