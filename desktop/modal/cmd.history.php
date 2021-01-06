@@ -174,7 +174,7 @@ function setModal() {
         var yExtremes = chart.yAxis[0].getExtremes()
         var min = yExtremes.dataMin / 1.005
         var max = yExtremes.dataMax * 1.005
-        chart.yAxis[0].setExtremes(min, max, true, true)
+        chart.yAxis[0].setExtremes(min, max, true, false)
       } catch(error) {}
 
         modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)

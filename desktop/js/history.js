@@ -480,7 +480,7 @@ function setChartYExtremes() {
     if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max ) max = axis.getExtremes().dataMax
   })
   chart.yAxis.forEach((axis, index) => {
-    axis.setExtremes(min / 1.005, max * 1.005)
+    axis.setExtremes(min / 1.005, max * 1.005, true, false)
   })
 }
 
@@ -489,8 +489,8 @@ function setChartXExtremes() {
   try {
     var xExtremes0 = chart.xAxis[0].getExtremes()
     var xExtremes1 = chart.xAxis[1].getExtremes()
-    chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin))
-    chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax)
+    chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
+    chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
     chart.update({
       navigator: { enabled: false },
       scrollbar: { enabled: false }

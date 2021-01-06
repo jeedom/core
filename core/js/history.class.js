@@ -313,7 +313,7 @@ jeedom.history.drawChart = function(_params) {
                   if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max ) max = axis.getExtremes().dataMax
                 })
                 jeedom.history.chart[_params.el].chart.yAxis.forEach((axis, index) => {
-                  event.target.yAxis[index].setExtremes(min / 1.005, max * 1.005, true, true)
+                  event.target.yAxis[index].setExtremes(min / 1.005, max * 1.005, true, false)
                 })
               }, 250)
             }
