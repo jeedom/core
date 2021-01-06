@@ -481,7 +481,7 @@ user::isBan();
                               </select>
                           </div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée des notifications}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde}}."></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
 								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" />
