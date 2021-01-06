@@ -7,6 +7,7 @@
       <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="deactivate" title="{{Desactiver}}"><i class="fa fa-power-off"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
+      <a class="btn btn-default btn-sm scenario_ViewLog" data-state="stop"><i class="far fa-file"></i></a>
       <div class="value">
         <span id="lastLaunch#id#" class="timeCmd label">#lastLaunch#</span>
       </div>
@@ -23,6 +24,10 @@
           $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>')
         }
       })
+    })
+
+    $('.scenario[data-scenario_id=#id#] .scenario_ViewLog').off('click').on('click', function (event) {
+      $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=#id#').dialog('open')
     })
 
     jeedom.scenario.update['#id#'] = function(_options) {
