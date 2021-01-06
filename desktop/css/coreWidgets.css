@@ -294,6 +294,9 @@ Desktop
     background: var(--btnEq-default-color);
     color: var(--link-color);
   }
+  div.cmd-widget .slider .noUi-handle:hover .noUi-tooltip {
+    display: block;
+  }
   div.cmd-widget .slider.noUi-horizontal .noUi-tooltip {
     bottom: 100%;
   }
