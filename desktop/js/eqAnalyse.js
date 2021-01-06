@@ -155,7 +155,7 @@ function displayDeadCmd() {
         }
       }
       $tableDeadCmd.find('tbody').empty().append(tr)
-      $tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '300px', '', '180px']
+      $tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
       $tableDeadCmd.trigger('update')
         .trigger('applyWidgets')
         .trigger('resizableReset')
