@@ -693,8 +693,13 @@ function initPage() {
     }, 0)
   })
 
-  setTimeout(function() { initTooltips() }, 750)
-  if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
+  setTimeout(function() {
+    initTooltips()
+  }, 750)
+  
+  try {
+    if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
+  } catch {}
 }
 
 var __OBSERVER__ = null
