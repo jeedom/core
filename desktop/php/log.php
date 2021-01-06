@@ -59,13 +59,13 @@ natcasesort($list_logfile);
 			<span class="input-group-btn" style="display: inline;">
 				<span class="label-sm">{{Log brut}}</span>
 				<input type="checkbox" id="brutlog" />
-				<input class="form-control roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" style="width: 200px; float: none;"/>
-				<a id="bt_resetGlobalLogSearch" class="btn"><i class="fas fa-times"></i></a>
-				<a class="btn btn-warning" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
-				</a><a class="btn btn-success" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
-				</a><a class="btn btn-warning" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}
-				</a><a class="btn btn-danger" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}
-				</a><a class="btn btn-danger roundedRight" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
+				<input class="form-control input-sm roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" style="width: 200px; float: none;"/>
+				<a id="bt_resetGlobalLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
+				<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
+				</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
+				</a><a class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}
+				</a><a class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}
+				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
 			</span>
 		</div>
 		<pre id='pre_globallog' style='overflow: auto; height: calc(100% - 50px);width:100%;margin-top: 5px;'></pre>
