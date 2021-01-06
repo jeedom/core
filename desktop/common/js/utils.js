@@ -701,7 +701,9 @@ function initPage() {
   setTimeout(function() {
     initTooltips()
   }, 750)
-  if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
+  try {
+    if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
+  } catch {}
   initDisplayAsTable()
 }
 
