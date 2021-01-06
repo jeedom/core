@@ -711,7 +711,7 @@ $divScenario.on('click', '.bt_showElse', function(event) {
     $(this).closest('.element').children('.subElementELSE').show()
   } else {
     if ($(this).closest('.element').children('.subElementELSE').children('.expressions').children('.expression').length>0) {
-      $('#div_alert').showAlert({message:"{{Le bloc Sinon ne peut être supprimé s'il contient des éléments.}}", level: 'danger'})
+      $('#div_alert').showAlert({message:"{{Le bloc Sinon ne peut être masqué s'il contient des éléments.}}", level: 'danger'})
       return
     }
     $(this).children('i').removeClass('fa-sort-up').addClass('fa-sort-down')
@@ -1026,7 +1026,14 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
     }
   }
 
-  if(event.ctrlKey || event.metaKey) {
+  //Synch collapsed elements:
+  pastedElement.find('i.fa-eye-slash').each(function() {
+    $(this).parents('.element').first().addClass('elementCollapse')
+  })
+
+  updateElseToggle()
+
+  if (event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
 
@@ -2082,11 +2089,19 @@ bt_redo.off('click').on('click', function() {
 function reloadStack(loadStack) {
   $('#div_scenarioElement').empty()
   actionOptions = []
-    var elements = ''
-    for (var i in loadStack) {
-      elements += addElement(loadStack[i])
-    }
+  var elements = ''
+  for (var i in loadStack) {
+    elements += addElement(loadStack[i])
+  }
+
   $('#div_scenarioElement').append(elements)
+
+  //Synch collapsed elements:
+  $('i.fa-eye-slash').each(function() {
+    $(this).parents('.element').first().addClass('elementCollapse')
+  })
+
+  updateElseToggle()
   setScenarioActionsOptions()
 }
 
