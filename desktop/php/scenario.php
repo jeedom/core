@@ -400,6 +400,7 @@ sendVarToJs('initSearch', init('search', 0));
 
 <?php
 include_file('desktop', 'scenario', 'js');
+include_file('3rdparty', 'codemirror/mode/php/php', 'js');
 include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
 include_file('3rdparty', 'codemirror/addon/search/search', 'js');
 include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
