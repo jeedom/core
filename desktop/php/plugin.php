@@ -10,7 +10,6 @@ sendVarToJS([
   'pluginCategories' => $JEEDOM_INTERNAL_CONFIG['plugin']['category']
 ]);
 $plugins_list = plugin::listPlugin(false, true);
-
 ?>
 
 <div id='div_alertPluginConfiguration'></div>
@@ -61,6 +60,7 @@ $plugins_list = plugin::listPlugin(false, true);
           <?php
           foreach ((plugin::listPlugin()) as $plugin) {
             $inactive = ($plugin->isActive()) ? '' : 'inactive';
+            if (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) $inactive .= ' displayAsTable';
             $div = '<div class="pluginDisplayCard cursor '.$inactive.'" data-pluginPath="' . $plugin->getFilepath() . '" data-plugin_id="' . $plugin->getId() . '">';
             $div .= '<center>';
             $div .= '<img src="' . $plugin->getPathImgIcon() . '" />';
@@ -79,7 +79,8 @@ $plugins_list = plugin::listPlugin(false, true);
 
             $div .= '<span class="hiddenAsCard displayTableRight">';
               $div .= '<span>'.$plugin->getCategory().'</span>';
-              $div .= '<a class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></a>';
+              $div .= '<a class="btn btn-default btn-xs bt_gotoPluginConf"><i class="fas fa-wrench"></i></a> ';
+              $div .= ' <a class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></a>';
             $div .= '</span>';
 
             $div .= '</div>';
@@ -103,7 +104,9 @@ $plugins_list = plugin::listPlugin(false, true);
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
-          <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}}</h3></div>
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <a class="btn btn-info btn-xs pull-right openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</a></h3>
+          </div>
           <div class="panel-body">
             <div id="div_plugin_toggleState"></div>
             <form class="form-horizontal">
@@ -114,9 +117,6 @@ $plugins_list = plugin::listPlugin(false, true);
                     <span id="span_plugin_category"></span>
                   </div>
                   <label class="col-sm-2 control-label"></label>
-                  <div class="col-sm-4">
-                    <a class="btn btn-success btn-xs openPluginPage" style="position:relative;top:-2px;"><i class="fas fa-share"></i> {{Ouvrir}}</a>
-                  </div>
                 </div>
 
                 <div class="form-group">
