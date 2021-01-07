@@ -2075,7 +2075,8 @@
         "Connexion": "ログイン",
         "J'ai perdu mon mot de passe": "パスワードを紛失しました",
         "En créer un !": "作成してください！",
-        "Connecter Jeedom au Market": "Jeedomを市場に接続する"
+        "Connecter Jeedom au Market": "Jeedomを市場に接続する",
+        "Ignorer": "Ignorer"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401-不正アクセス"
@@ -2856,6 +2857,7 @@
         "Arrêté": "逮捕",
         "Jamais": "今までに",
         "Inactif": "不活発",
+        "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "イベント",
         "Choisir une commande": "注文する",
         "Choisir une variable": "変数を選択してください",

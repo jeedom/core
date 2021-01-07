@@ -2075,7 +2075,8 @@
         "Connexion": "Bağlantı",
         "J'ai perdu mon mot de passe": "Şifremi kaybettim",
         "En créer un !": "En créer un !",
-        "Connecter Jeedom au Market": "Connecter Jeedom au Market"
+        "Connecter Jeedom au Market": "Connecter Jeedom au Market",
+        "Ignorer": "Ignorer"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
@@ -2856,6 +2857,7 @@
         "Arrêté": "Durduruldu",
         "Jamais": "Hiçbir zaman",
         "Inactif": "Pasif",
+        "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "Olay",
         "Choisir une commande": "Komuta seçin",
         "Choisir une variable": "Değişken seçin",

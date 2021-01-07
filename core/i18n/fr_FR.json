@@ -2075,7 +2075,8 @@
         "Connexion": "Connexion",
         "J'ai perdu mon mot de passe": "J'ai perdu mon mot de passe",
         "En créer un !": "En créer un !",
-        "Connecter Jeedom au Market": "Connecter Jeedom au Market"
+        "Connecter Jeedom au Market": "Connecter Jeedom au Market",
+        "Ignorer": "Ignorer"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
@@ -2856,6 +2857,7 @@
         "Arrêté": "Arrêté",
         "Jamais": "Jamais",
         "Inactif": "Inactif",
+        "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "Evénement",
         "Choisir une commande": "Choisir une commande",
         "Choisir une variable": "Choisir une variable",

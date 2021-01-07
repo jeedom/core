@@ -1373,7 +1373,7 @@ function printScenario(_id) {
       }
       $('.scenario_link').append(html)
       if (data.elements.length == 0) {
-        $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>Pour constituer votre scénario veuillez ajouter des blocs</span></center>')
+        $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
       }
       actionOptions = []
       var elements = ''

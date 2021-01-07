@@ -2075,7 +2075,8 @@
         "Connexion": "Соединение",
         "J'ai perdu mon mot de passe": "Я потерял пароль",
         "En créer un !": "Создать один!",
-        "Connecter Jeedom au Market": "Подключите Jeedom к рынку"
+        "Connecter Jeedom au Market": "Подключите Jeedom к рынку",
+        "Ignorer": "Ignorer"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
@@ -2856,6 +2857,7 @@
         "Arrêté": "арестованный",
         "Jamais": "Никогда",
         "Inactif": "неактивный",
+        "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "событие",
         "Choisir une commande": "Выберите заказ",
         "Choisir une variable": "Выберите переменную",

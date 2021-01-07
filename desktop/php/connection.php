@@ -1,6 +1,6 @@
 <?php
-	include_file('3rdparty', 'animate/animate', 'css');
-	include_file('3rdparty', 'animate/animate', 'js');
+include_file('3rdparty', 'animate/animate', 'css');
+include_file('3rdparty', 'animate/animate', 'js');
 ?>
 
 <div id="wrap">
@@ -53,7 +53,10 @@
 						<label>{{Mot de passe}}</label>
 					</div>
 					<div class="submit">
-						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt" ></i> {{Connecter Jeedom au Market}}</button>
+						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt"></i> {{Connecter Jeedom au Market}}</button>
+					</div>
+					<div class="submit">
+						<button class="dark btn-lg" id="bt_ignore_market"><i class="fas fa-times"></i></i> {{Ignorer}}</button>
 					</div>
 					<div class="resetPassword">
 						<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
@@ -83,9 +86,9 @@
 </div>
 
 <?php
-	if (config::byKey('product_connection_BG')) {
-		echo "<style>";
-		echo "body {";
+if (config::byKey('product_connection_BG')) {
+	echo "<style>";
+	echo "body {";
 		echo "background-image: url(".config::byKey('product_connection_BG').") !important;";
 		echo "background-position: center !important;";
 		echo "background-repeat: no-repeat !important;";
@@ -97,9 +100,9 @@
 		echo "body { background:".config::byKey('product_connection_color')." !important;}";
 		echo "</style>";
 	}elseif(config::byKey('product_btn_login_color')){
-	echo "<style>";
-	echo "#bt_login_validate { background:".config::byKey('product_connection_color')." !important; border-color:".config::byKey('product_connection_color')." !important; }";
-	echo "</style>";
+		echo "<style>";
+		echo "#bt_login_validate { background:".config::byKey('product_connection_color')." !important; border-color:".config::byKey('product_connection_color')." !important; }";
+		echo "</style>";
 	}
 	if(stristr(config::byKey('product_name'), 'Jeedom') == false){
 		echo "<style>";
@@ -108,4 +111,5 @@
 	}
 	include_file('desktop', 'connection', 'css');
 	include_file('desktop', 'connection', 'js');
-?>
+	?>
+	
