@@ -391,7 +391,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="theme_end_day_hour"/>
 							</div>
-							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
 								<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control" tooltip="{{Supprimer le cookie de thème.}}"><i class="fas fa-eraser"></i>&nbsp;&nbsp;{{Cookie}}</a>
 							</div>
 						</div>
@@ -711,26 +711,26 @@ user::isBan();
 					<fieldset>
 						<legend>{{Timeline}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre maximum d'évènements sur chaque Timeline}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Nombre maximum d'évènements sur chaque Timeline}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<input type="text" class="configKey form-control" data-l1key="timeline::maxevent"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Supprimer tous les évènements de la Timeline}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent" ><i class="fas fa-trash"></i> {{Supprimer}}</a>
 							</div>
 						</div>
 						<legend>{{Messages}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
-							<div class="col-sm-1">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Ajouter un message à chaque erreur dans les logs}}</label>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								<input type="checkbox" class="configKey" data-l1key="addMessageForErrorLog" checked/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Action sur message}}</label>
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Action sur message}}</label>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 								<a class="btn btn-sm btn-success" id="bt_addActionOnMessage"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
 							</div>
@@ -760,13 +760,13 @@ user::isBan();
 								$div = '';
 								foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
 									$div .= '<div class="form-group">';
-									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
+									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Ajouter un message à chaque}} ' . $value['name'] . '</label>';
 									$div .= '<div class="col-sm-1">';
 									$div .= '<input type="checkbox" class="configKey" data-l1key="alert::addMessageOn' . ucfirst($level) . '"/>';
 									$div .= '</div>';
 									$div .= '</div>';
 									$div .= '<div class="form-group">';
-									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
+									$div .= '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">{{Commande sur}} ' . $value['name'] . '</label>';
 									$div .= '<div class="col-lg-4 col-md-6 col-sm-6 col-xs-8">';
 									$div .= '<div class="input-group">';
 									$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd" />';
@@ -1941,7 +1941,7 @@ user::isBan();
 								$div .= '</span>';
 								$div .= '</div>';
 								$div .= '</div>';
-								$div .= '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">{{Accès API}}</label>';
+								$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
 								$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">';
 								$div .= '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
 								$div .= '<option value="enable">{{Activé}}</option>';
@@ -1950,11 +1950,12 @@ user::isBan();
 								$div .= '<option value="disable">{{Désactivé}}</option>';
 								$div .= '</select>';
 								$div .= '</div>';
-								$div .= '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">{{Ne pas autoriser les methodes générales}}</label>';
-								$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">';
+								$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas autoriser les methodes générales}}</label>';
+								$div .= '<div class="col-lg-1 col-md-1 col-sm-2 col-xs-6">';
 								$div .= '<input type="checkbox" class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::restricted" />';
 								$div .= '</select>';
 								$div .= '</div>';
+								$div .= '<div class="visible-xs col-xs-12"><br/></div>';
 								$div .= '</div>';
 							}
 							echo $div;
@@ -1970,42 +1971,42 @@ user::isBan();
 					<fieldset>
 						<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de Jeedom.}}"></i></sup>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
 								<a id="bt_logConsistency" class="btn btn-success" target="_blank" title="{{Ouvrir le log Consistency.}}"><i class="far fa-file"></i> {{Log}}</a>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Rétablissement des droits des dossiers et fichiers}}
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-terminal"></i> {{Rétablissement des droits des dossiers et fichiers}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Permet de réappliquer les bons droits sur les fichiers.}}"></i></sup>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_cleanFileSystemRight" style="width:50%;"><i class="fas fa-terminal"></i> {{Vérifier}}</a>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-box-open"></i> {{Vérification des packages système}}
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-box-open"></i> {{Vérification des packages système}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que les packages nécessaires sont bien installés.}}"></i></sup>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_checkPackage" style="width:50%;"><i class="fas fa-box-open"></i> {{Vérifier}}</a>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Vérification de la base de données}}
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-database"></i> {{Vérification de la base de données}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que la base de données est conforme à ce qui est attendu.}}"></i></sup>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Vérifier}}</a>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Nettoyage de la base de données}}<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-database"></i> {{Nettoyage de la base de données}}<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Nettoyer}}</a>
 							</div>
 						</div>

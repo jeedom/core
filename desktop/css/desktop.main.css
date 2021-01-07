@@ -407,6 +407,12 @@ Theme Core 2021 @Jeedom
       height: auto;
       overflow-x: hidden;
     }
+    [class*="col-"] {
+      right: 3px;
+    }
+    .control-label {
+      line-height: 26px !important;
+    }
   }
 
 /* ______Links */
@@ -906,6 +912,7 @@ Theme Core 2021 @Jeedom
     word-break: break-word;
     line-height: 28px;
     overflow: auto;
+    font-size: 13px;
   }
 
   .objectSummaryglobal > .objectSummaryParent,
@@ -2528,6 +2535,9 @@ Theme Core 2021 @Jeedom
     font-weight: 300;
   }
 
+  fieldset {
+    margin: 0 14px;
+  }
   fieldset > div {
     padding-left: 1em;
   }
@@ -2554,6 +2564,10 @@ Theme Core 2021 @Jeedom
     position: relative;
     padding-left: 1em !important;
     padding-right: 1em !important;
+  }
+
+  .form-group label {
+    margin-bottom: 0;
   }
 
   .eqLogic-widget [class*="col-"] {
@@ -2598,6 +2612,7 @@ Theme Core 2021 @Jeedom
     margin : 0;
     vertical-align: middle;
   }
+
   input.knob {
     color: var(--txt-color) !important;
   }
@@ -4260,6 +4275,7 @@ Theme Core 2021 @Jeedom
     background: transparent !important;
     border: none!important;
     padding: 0em;
+    width: 100%;
   }
   .jqAlert {
     padding: 5px 30px;
