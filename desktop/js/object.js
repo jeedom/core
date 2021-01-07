@@ -463,7 +463,7 @@ function addSummaryInfo(_el, _summary) {
   div += '<div class="col-sm-4 has-success">'
   div += '<div class="input-group">'
   div += '<span class="input-group-btn">'
-  div += '<input type="checkbox" class="summaryAttr checkbox-inline roundedLeft" data-l1key="enable" checked title="{{Activer}}" />'
+  div += '<input type="checkbox" class="summaryAttr roundedLeft" data-l1key="enable" checked title="{{Activer}}" />'
   div += '<a class="btn btn-default bt_removeSummary btn-sm"><i class="fas fa-minus-circle"></i></a>'
   div += '</span>'
   div += '<input class="summaryAttr form-control input-sm" data-l1key="cmd" />'
@@ -473,7 +473,7 @@ function addSummaryInfo(_el, _summary) {
   div += '</div>'
   div += '</div>'
   div += '<div class="col-sm-2 has-success">'
-  div += '<label><input type="checkbox" class="summaryAttr checkbox-inline" data-l1key="invert" />{{Inverser}}</label>'
+  div += '<label><input type="checkbox" class="summaryAttr" data-l1key="invert" />{{Inverser}}</label>'
   div += '</div>'
   div += '</div>'
   _el.find('.div_summary').append(div)

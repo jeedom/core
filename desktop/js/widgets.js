@@ -307,7 +307,7 @@ function loadTemplateConfiguration(_template,_data) {
           replace += '<div class="input-group">'
           if (widget_parameters_opt[data.replace[i]]) {
             if (widget_parameters_opt[data.replace[i]].type == 'checkbox') {
-              replace += '<input type="checkbox" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>'
+              replace += '<input type="checkbox" class="widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>'
             } else if(widget_parameters_opt[data.replace[i]].type == 'number') {
               replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_'+data.replace[i]+'_#"/>'
             } else if(widget_parameters_opt[data.replace[i]].type == 'input') {

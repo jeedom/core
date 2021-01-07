@@ -140,7 +140,7 @@ sendVarToJs('initSearch', init('search', 0));
 	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
 		<div class="input-group floatingbar" style="display:inline-flex">
 			<span class="input-group-btn">
-				<span id="span_ongoing" class="label" style="position:relative; margin-right:4px;"></span>
+				<span id="span_ongoing" class="label label-sm"></span>
 
 				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
 				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>

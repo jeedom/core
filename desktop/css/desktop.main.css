@@ -769,7 +769,12 @@ Theme Core 2021 @Jeedom
   }
   .label-sm {
     font-size: 12px !important;
-    padding: 2px 4px;
+    padding: 2px 8px;
+  }
+  .input-group .label-sm {
+    position: relative;
+    top: 4px;
+    margin: 0 5px;
   }
   .label:empty,
   .label-sm:empty{
@@ -933,6 +938,7 @@ Theme Core 2021 @Jeedom
     background-repeat: no-repeat !important;
     color: rgb(var(--contrast-color)) !important;
     margin: 5px;
+    line-height: 24px;
   }
   .objectPreview .topPreview > .name > i {
     color: var(--link-color);
@@ -1611,6 +1617,7 @@ Theme Core 2021 @Jeedom
   }
   .control-label {
     font-weight: 500;
+    line-height: 28px;
   }
 
   pre {
@@ -1751,7 +1758,7 @@ Theme Core 2021 @Jeedom
   }
   div[class*="ListContainer"].containerAsTable > div.cursor i,
   div.eqLogicThumbnailContainer.containerAsTable > div.cursor i {
-    font-size: 16px !important;
+    font-size: 18px !important;
     margin-left: 18px;
   }
   div[class*="ListContainer"].containerAsTable > div.cursor > span,
@@ -1759,7 +1766,6 @@ Theme Core 2021 @Jeedom
     min-height: 22px;
     margin-left: 8px;
     font-size: 16px;
-    font-weight: 500;
     line-height: 20px;
     padding-right: 18px;
     white-space: nowrap;
@@ -2169,15 +2175,20 @@ Theme Core 2021 @Jeedom
   button:focus {
     outline:0 !important;
   }
+  .form-control.btn {
+    padding: 6px 8px;
+  }
   .btn {
     font-size: 12px;
     border: none;
     padding: 7px 8px;
     height: 32px;
+    line-height: 18px;
   }
   .btn-sm {
     height: 28px;
     padding: 5px 8px;
+    line-height: 16px;
   }
   .btn-xs {
     height: 22px !important;
@@ -2185,7 +2196,7 @@ Theme Core 2021 @Jeedom
   }
 
   .badge {
-    padding: 6px 7px;
+    padding: 3px 7px;
     height: 22px;
   }
   #bt_messageModal,
@@ -2499,8 +2510,9 @@ Theme Core 2021 @Jeedom
     top: 0 !important;
   }
   .form-group {
-    margin-bottom: 3px;
+    margin-bottom: 2px;
     vertical-align: middle !important;
+    line-height: 26px;
   }
 
   .form-control {
@@ -2584,6 +2596,7 @@ Theme Core 2021 @Jeedom
     border-color: transparent !important;
     border-image-width: 0 !important;
     margin : 0;
+    vertical-align: middle;
   }
   input.knob {
     color: var(--txt-color) !important;
@@ -2653,12 +2666,10 @@ Theme Core 2021 @Jeedom
   .input-group {
     margin-bottom: 1.2px;
   }
-  .form-horizontal .checkbox-inline {
-    padding-top: 0px !important;
-  }
-
-  .checkbox-inline > input[type=checkbox] {
-    margin-top: -2px;
+  .form-horizontal .checkbox-inline,
+  .form-horizontal .radio-inline {
+    padding-top: 0 !important;
+    vertical-align: baseline;
   }
 
   /* custom universal select */
@@ -2748,14 +2759,7 @@ Theme Core 2021 @Jeedom
     display: none;
   }
 
-  .input-xs {
-    padding: 0 5px !important;
-  }
-
   /* custom checkbox ! */
-  .input-group-btn {
-    font-size: 16px !important;
-  }
   .has-success .checkbox-inline {
     color: var(--link-color) !important;
   }
@@ -2775,12 +2779,20 @@ Theme Core 2021 @Jeedom
     position: relative;
     margin: 0 1rem 0 0;
     cursor: pointer;
-    top : 5px;
     min-height : 0px !important;
+    vertical-align: middle;
   }
   td > input[type=checkbox],
   td > center > input[type=checkbox] {
     top: initial;
+  }
+  .checkbox input[type=checkbox],
+  .checkbox-inline input[type=checkbox],
+  .radio input[type=radio],
+  .radio-inline input[type=radio] {
+    position: absolute;
+    margin-top: 6px !important;
+    margin-left: -20px;
   }
   input[type=checkbox],
   input[type=radio] {
@@ -2796,7 +2808,7 @@ Theme Core 2021 @Jeedom
   }
   input[type=radio] {
     -webkit-border-radius: 1em !important;
-    margin-top: 3px !important;
+    margin-top: 4px !important;
   }
   input[type=checkbox]:checked:after {
     font-family: "Font Awesome 5 Free";
@@ -2812,9 +2824,6 @@ Theme Core 2021 @Jeedom
   input[type=radio]:checked {
     background: var(--txt-color) !important;
     -webkit-background-size: 28px 28px;
-  }
-  input[type=checkbox].summaryAttr {
-    margin-top: -12px;
   }
 
   /* select multiple */
@@ -3087,6 +3096,14 @@ Theme Core 2021 @Jeedom
   table.table-condensed tbody tr > td {
     vertical-align: middle !important;
   }
+  table.table-condensed tbody td .checkbox-inline {
+    line-height: 26px;
+  }
+  table.table-condensed tbody td .checkbox-inline > input[type="checkbox"]:checked::after {
+    margin-top: -4px;
+  }
+
+
   #table_packages tbody td > span.label {
     display: block;
   }
@@ -3543,12 +3560,12 @@ Theme Core 2021 @Jeedom
   .element .bt_showElse > i.fa-sort-down {
     position: relative;
     display: inline-block !important;
-    top: -12px !important;
+    top: -6px !important;
   }
   .element .bt_showElse > i.fa-sort-up {
     position: relative;
     display: inline-block !important;
-    top: -3px !important;
+    top: 3px !important;
   }
 
   .element .subElementAttr {
