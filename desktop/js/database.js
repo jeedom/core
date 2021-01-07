@@ -49,7 +49,7 @@ $('.bt_dbCommand').off('click').on('click',function() {
     success : function(result) {
       $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
       $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-      $('.row-overflow > div').css('overflow','auto')
+      $('#in_specificCommand').val(command)
     }
   })
 })
@@ -66,7 +66,6 @@ $('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',
       $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
       $('#in_specificCommand').value(command)
       $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-      $('.row-overflow > div').css('overflow','auto')
     }
   })
 })
@@ -82,7 +81,6 @@ $('#bt_validateSpecifiCommand').off('click').on('click',function() {
     success : function(result) {
       $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
       $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-      $('.row-overflow > div').css('overflow','auto')
       $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command+'">'+command+'</a></li>')
       var kids = $('#ul_listSqlHistory').children()
       if (kids.length >= 10) {
@@ -104,7 +102,7 @@ $('#in_specificCommand').keypress(function(event) {
       success : function(result) {
         $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
         $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-        $('.row-overflow > div').css('overflow','auto')
+
         if ($('.bt_dbCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined) {
           $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>')
         }
