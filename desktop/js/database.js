@@ -53,7 +53,9 @@ function dbExecuteCommand(_command, _addToList) {
       $('#in_specificCommand').val(_command)
 
       if (_addToList) {
-        $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+_command+'">'+_command+'</a></li>')
+        if ($('.bt_dbCommand[data-command="'+_command.replace(/"/g, '\\"')+'"]').html() == undefined) {
+          $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+_command.replace(/"/g, '\\"')+'">'+_command+'</a></li>')
+        }
         var kids = $('#ul_listSqlHistory').children()
         if (kids.length >= 10) {
           kids.last().remove()
