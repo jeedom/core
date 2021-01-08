@@ -141,6 +141,10 @@ $('#bt_login_validate_market').on('click', function() {
   })
 })
 
+$('#bt_ignore_market').on('click', function() {
+  window.location.reload();
+})
+
 $('#bt_compte_market').on('click', function() {
   window.open(
     'https://www.jeedom.com/market/index.php?v=d&p=register',
