@@ -85,3 +85,41 @@ function dbGenerateTableFromResponse(_response) {
   result += '</tbody></table>'
   return result
 }
+
+//*************************SQL constructor**************************
+
+$('#sqlFrom').off('change').on('change',function() {
+  var selectedTable = $(this).val()
+  for (var table in _tableList_) {
+    if (table == selectedTable) {
+      var options = ''
+      for (var col in _tableList_[table]) {
+        options += '<option value="'+_tableList_[table][col]+'">'+_tableList_[table][col]+'</option>'
+      }
+      $('#sqlWhere').empty().append(options)
+      break
+    }
+  }
+})
+
+$('#checksqlwhere').off('change').on('change',function() {
+  if (!$(this).is(':checked')) {
+    $('#sqlWhere, #sqlLike, #sqlLikeValue').addClass('disabled')
+  } else {
+    $('#sqlWhere, #sqlLike, #sqlLikeValue').removeClass('disabled')
+  }
+})
+
+$('#bt_validateDynamicCommand').off('click').on('click',function() {
+  var command = 'SELECT '
+  command += $('#sql_selector').val() + ' FROM '
+  command += '`' + $('#sqlFrom').val() + '`'
+
+  if ($('#checksqlwhere').is(':checked')) {
+    command += ' WHERE '
+    command += '`' + $('#sqlWhere').val() + '`'
+    command += ' ' + $('#sqlLike').value()
+    command += ' ' + $('#sqlLikeValue').val()
+  }
+  dbExecuteCommand(command, true)
+})
