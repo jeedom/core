@@ -17,6 +17,50 @@
 "use strict"
 
 var $divCommandResult = $('#div_commandResult')
+
+$('.bt_dbCommand').off('click').on('click',function() {
+  var command = $(this).attr('data-command')
+  dbExecuteCommand(command, false)
+})
+
+$('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',function() {
+  var command = $(this).attr('data-command')
+  dbExecuteCommand(command, false)
+})
+
+$('#bt_validateSpecificCommand').off('click').on('click',function() {
+  var command = $('#in_specificCommand').val()
+  dbExecuteCommand(command, true)
+})
+$('#in_specificCommand').keypress(function(event) {
+  $('#bt_validateSpecificCommand').trigger('click')
+})
+
+function dbExecuteCommand(_command, _addToList) {
+  if (!isset(_addToList)) _addToList = false
+
+  $.clearDivContent('div_commandResult')
+  jeedom.db({
+    command : _command,
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(result) {
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+_command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
+      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
+      $('#in_specificCommand').val(_command)
+
+      if (_addToList) {
+        $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+_command+'">'+_command+'</a></li>')
+        var kids = $('#ul_listSqlHistory').children()
+        if (kids.length >= 10) {
+          kids.last().remove()
+        }
+      }
+    }
+  })
+}
+
 function dbGenerateTableFromResponse(_response) {
   var result = '<table class="table table-condensed table-bordered">'
   result += '<thead>'
@@ -37,80 +81,3 @@ function dbGenerateTableFromResponse(_response) {
   result += '</tbody></table>'
   return result
 }
-
-$('.bt_dbCommand').off('click').on('click',function() {
-  var command = $(this).attr('data-command')
-  $divCommandResult.empty()
-  jeedom.db({
-    command : command,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(result) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
-      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-      $('#in_specificCommand').val(command)
-    }
-  })
-})
-
-$('#ul_listSqlHistory').off('click','.bt_dbCommand').on('click','.bt_dbCommand',function() {
-  var command = $(this).attr('data-command')
-  $divCommandResult.empty()
-  jeedom.db({
-    command : command,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(result) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
-      $('#in_specificCommand').value(command)
-      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-    }
-  })
-})
-
-$('#bt_validateSpecifiCommand').off('click').on('click',function() {
-  var command = $('#in_specificCommand').value()
-  $divCommandResult.empty()
-  jeedom.db({
-    command : command,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success : function(result) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
-      $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-      $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command+'">'+command+'</a></li>')
-      var kids = $('#ul_listSqlHistory').children()
-      if (kids.length >= 10) {
-        kids.last().remove()
-      }
-    }
-  })
-})
-
-$('#in_specificCommand').keypress(function(event) {
-  if (event.which == 13) {
-    var command = $('#in_specificCommand').value()
-    $divCommandResult.empty()
-    jeedom.db({
-      command : command,
-      error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-      },
-      success : function(result) {
-        $('#h3_executeCommand').empty().append('{{Commande : }}"'+command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
-        $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
-
-        if ($('.bt_dbCommand[data-command="'+command.replace(/"/g, '\\"')+'"]').html() == undefined) {
-          $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+command.replace(/"/g, '\\"')+'">'+command+'</a></li>')
-        }
-        var kids = $('#ul_listSqlHistory').children()
-        if (kids.length >= 10) {
-          kids.last().remove()
-        }
-      }
-    })
-  }
-})
