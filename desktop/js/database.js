@@ -33,7 +33,9 @@ $('#bt_validateSpecificCommand').off('click').on('click',function() {
   dbExecuteCommand(command, true)
 })
 $('#in_specificCommand').keypress(function(event) {
-  $('#bt_validateSpecificCommand').trigger('click')
+  if (event.which == 13) {
+    $('#bt_validateSpecificCommand').trigger('click')
+  }
 })
 
 function dbExecuteCommand(_command, _addToList) {
