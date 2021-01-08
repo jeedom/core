@@ -576,7 +576,6 @@ Theme Core 2021 @Jeedom
     border-bottom: 1px solid var(--el-defaultColor);
   }
   [data-page=display] #div_pageContainer #displaytab ul > li input {
-    top: 2px;
     border: 1px solid rgba(100, 100, 100, 0.5);
     font-size: 12px !important;
   }
@@ -763,6 +762,7 @@ Theme Core 2021 @Jeedom
   .pull-left {
     float: left!important;
     margin-right: 3px;
+    text-align: left !important;
   }
   .btn.action {
     margin-top: 2px;
@@ -2889,13 +2889,21 @@ Theme Core 2021 @Jeedom
   #div_pageContainer > .row.row-overflow > .col-xs-12 {
     margin-bottom: 0;
   }
+
+  #searchResult {
+    padding: 20px;
+  }
+  #searchResult:empty {
+    display: none;
+  }
+  #searchResult,
   .tab-content {
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
     padding-bottom: 12px !important;
     min-height: 120px;
     height: unset !important;
-    max-height:calc(100% - 50px);
-    overflow:auto;
+    max-height: calc(100% - 50px);
+    overflow: auto;
     overflow-x: hidden;
   }
   #scenariotab {
@@ -3517,6 +3525,9 @@ Theme Core 2021 @Jeedom
   }
   .subElement .subElementIF .bt_sortable {
     left: 6px;
+  }
+  .expressionACTION .bt_sortable {
+    top: 4px;
   }
   .element .bt_collapse {
     position: absolute;

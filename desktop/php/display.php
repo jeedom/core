@@ -154,7 +154,7 @@ function jeedom_displayObjectGroup($object=-1) {
 						<span class="label label-default">{{Nombre d'objets :}} <?php echo count($display_objects) ?></span>
 						<span class="label label-info">{{Nombre d'équipements :}} <?php echo $nbEqlogic ?></span>
 						<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
-						<span title="{{Afficher les éléments inactifs}}"><label class="checkbox-inline"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</label></span>
+						<span title="{{Afficher les éléments inactifs}}"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</span>
 					</div>
 					<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
 				</div>

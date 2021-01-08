@@ -385,11 +385,11 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème principal de}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="theme_start_day_hour"/>
+								<input type="text" class="configKey form-control isdatepicker" data-l1key="theme_start_day_hour"/>
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="theme_end_day_hour"/>
+								<input type="text" class="configKey form-control isdatepicker" data-l1key="theme_end_day_hour"/>
 							</div>
 							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
 								<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control" tooltip="{{Supprimer le cookie de thème.}}"><i class="fas fa-eraser"></i>&nbsp;&nbsp;{{Cookie}}</a>
@@ -470,16 +470,16 @@ user::isBan();
 							</div>
 						</div>
                         <div class="form-group">
-						<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Position des notifications}}</label>
-                          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                              <select class="form-control configKey" data-l1key="interface::toast::position">
-                                  <option value="toast-top-left">{{En haut à gauche}}</option>
-                                  <option value="toast-top-center">{{En haut au centre}}</option>
-                                  <option value="toast-top-right">{{En haut à droite}}</option>
-                                  <option value="toast-bottom-right">{{En bas à droite}}</option>
-                                  <option value="toast-bottom-left">{{En bas à gauche}}</option>
-                              </select>
-                          </div>
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Position des notifications}}</label>
+                          	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+                              	<select class="form-control configKey" data-l1key="interface::toast::position">
+                                  	<option value="toast-top-left">{{En haut à gauche}}</option>
+                                  	<option value="toast-top-center">{{En haut au centre}}</option>
+                                  	<option value="toast-top-right">{{En haut à droite}}</option>
+                                  	<option value="toast-bottom-right">{{En bas à droite}}</option>
+                                  	<option value="toast-bottom-left">{{En bas à gauche}}</option>
+                              	</select>
+                          	</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée des notifications}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
@@ -530,7 +530,6 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" />
 							</div>
 						</div>
-
 					</fieldset>
 				</form>
 			</div>
@@ -585,7 +584,6 @@ user::isBan();
 						</div>
 					</fieldset>
 				</form>
-
 				<div class="row">
 					<div class="col-sm-6">
 						<legend>{{Gestion avancée}}</legend>
@@ -601,19 +599,19 @@ user::isBan();
 						</table>
 						<form class="form-horizontal">
 							<fieldset>
-								<div class="form-group col-xs-12 has-error">
+								<div class="form-group has-error">
 									<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
 									<div class="col-xs-4">
 										<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
 									</div>
 								</div>
-								<div class="form-group col-xs-12">
+								<div class="form-group">
 									<label class="col-xs-6 control-label">{{Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)}}</label>
 									<div class="col-xs-6">
 										<input type="text"  class="configKey form-control" data-l1key="network::localip" />
 									</div>
 								</div>
-								<div class="form-group col-xs-12">
+								<div class="form-group">
 									<label class="col-xs-6 control-label">{{MTU spécifique pour le DNS (expert)}}</label>
 									<div class="col-xs-6">
 										<input class="configKey form-control" data-l1key="market::dns::mtu" />
@@ -921,7 +919,7 @@ user::isBan();
 				<legend>{{Equipements}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
-						<div class="col-lg-12 form-group">
+						<div class="form-group">
 							<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Échecs avant désactivation}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'échecs avant désactivation de l'équipement (0: pas de désactivation).}}"></i></sup>
 							</label>
@@ -930,10 +928,10 @@ user::isBan();
 							</div>
 							<br/><br/>
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="form-group">
 							<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Seuil des piles}}</label>
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="form-group">
 							<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Si le niveau de charge passe en dessous de (%)}}"></i></sup>
 								<sub>%</sub>
@@ -943,7 +941,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-warning">{{Warning}}</label>
 						</div>
-						<div class="col-lg-12 form-group">
+						<div class="form-group">
 							<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Si le niveau de charge passe en dessous de (%)}}"></i></sup>
 								<sub>%</sub>
@@ -1930,10 +1928,10 @@ user::isBan();
 									continue;
 								}
 								$div .=  '<div class="form-group">';
-								$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Clé API}} '.$plugin->getName().' ';
+								$div .= '<label class="col-xs-12 control-label pull-left">{{Clé API}} '.$plugin->getName().' ';
 								$div .= '<sup><i class="fas fa-question-circle" tooltip="{{Clé API pour le plugin}} '.$plugin->getName().'"></i></sup>';
 								$div .= '</label>';
-								$div .= '<div class="col-lg-2 col-md-2 col-sm-8 col-xs-12">';
+								$div .= '<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">';
 								$div .= '<div class="input-group">';
 								$div .= '<input class="span_apikey roundedLeft form-control" readonly value="' . config::byKey('api', $plugin->getId()) . '" />';
 								$div .= '<span class="input-group-btn">';
@@ -1941,8 +1939,8 @@ user::isBan();
 								$div .= '</span>';
 								$div .= '</div>';
 								$div .= '</div>';
-								$div .= '<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>';
-								$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">';
+								$div .= '<label class="col-lg-2 col-md-2 col-sm-2 col-xs-6 control-label">{{Accès API}}</label>';
+								$div .= '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
 								$div .= '<select class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::mode">';
 								$div .= '<option value="enable">{{Activé}}</option>';
 								$div .= '<option value="whiteip">{{IP blanche}}</option>';
@@ -1951,7 +1949,7 @@ user::isBan();
 								$div .= '</select>';
 								$div .= '</div>';
 								$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ne pas autoriser les methodes générales}}</label>';
-								$div .= '<div class="col-lg-1 col-md-1 col-sm-2 col-xs-6">';
+								$div .= '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">';
 								$div .= '<input type="checkbox" class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::restricted" />';
 								$div .= '</select>';
 								$div .= '</div>';
