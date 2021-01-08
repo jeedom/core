@@ -75,7 +75,6 @@ class DB {
 		} else {
 			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type);
 		}
-
 	}
 
 	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL) {
@@ -286,7 +285,7 @@ class DB {
 		foreach ($fields as $property) {
 			foreach ($_filters as $key => $value) {
 				if ($property == $key && $value != '') {
-					// traitement à faire sur value pour obtenir l'opérateur
+					// treat value to get operator
 					$thereIsOperator = false;
 					$operatorInformation = array(
 						'index' => -1,
@@ -318,10 +317,10 @@ class DB {
 			}
 		}
 		if ($where != ' WHERE ') {
-			$where = substr($where, 0, strlen($where) - 5); // on enlève le dernier ' AND '
+			$where = substr($where, 0, strlen($where) - 5); // remove last ' AND '
 			$query .= $where;
 		}
-		// si values contient id, on sait qu'il n'y aura au plus qu'une valeur
+		// if values contains id, one value only
 		return self::Prepare($query . ';', $values, in_array('id', $values) ? self::FETCH_TYPE_ROW : self::FETCH_TYPE_ALL);
 	}
 
@@ -619,7 +618,6 @@ class DB {
 		}
 		return $return;
 	}
-
 
 	public static function compareTable($_table){
 		try {
