@@ -48,7 +48,7 @@ function dbExecuteCommand(_command, _addToList) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(result) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}"'+_command+'" - {{Temps d\'éxécution}} : '+result.time+'s')
+      $('#h3_executeCommand').empty().append('{{Commande : }}"'+_command+'"<br/>{{Temps d\'éxécution}} : '+result.time+'s')
       $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
       $('#in_specificCommand').val(_command)
 
@@ -85,6 +85,16 @@ function dbGenerateTableFromResponse(_response) {
   result += '</tbody></table>'
   return result
 }
+
+//*************************SQL result top scrollbar handler**************************
+$(function() {
+  window.onresize = function() {
+    var tHeight = $('#dbCommands').height() + $('#jeedomMenuBar').height() + 15
+    $('#div_commandResult').height($(window).height() - tHeight)
+  }
+  $(window).trigger('resize')
+})
+
 
 //*************************SQL constructor**************************
 $('#sqlOperation').off('change').on('change',function() {
@@ -127,6 +137,7 @@ $('#sqlOperation').off('change').on('change',function() {
       $('#checksqlwhere').prop('checked', true ).trigger('change')
       break
   }
+  $(window).trigger('resize')
 })
 
 $('#sqlTable').off('change').on('change',function() {
@@ -140,6 +151,7 @@ $('#sqlTable').off('change').on('change',function() {
   if (['INSERT', 'UPDATE'].includes($('#sqlOperation').value())) {
     defineSQLsetGroup()
   }
+  $(window).trigger('resize')
 })
 
 $('#checksqlwhere').off('change').on('change',function() {

@@ -30,95 +30,99 @@ sendVarToJS('_tableList_', $tableList);
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT id, name, configuration FROM eqLogic">{{Select eqLogics configuration}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM cmd WHERE id=1">{{Select cmd id 1}}</a></li>
       </ul>
-      <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande à gauche ou éxécutez une commande personnalisée ci-dessous}}</div>
+      <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande ci dessus ou éxécutez une commande personnalisée.}}</div>
     </div>
   </div>
   <div class="col-lg-10 col-md-9 col-sm-8" style="height: calc(100vh - 150px); padding-right: 0 !important; padding-top: 5px;">
-    <label style="width: 100%;"><i class="fas fa-database"></i> {{Constructeur SQL}}
-      <div class="input-group pull-right" style="display:inline-flex; right: -8px;">
-        <span class="input-group-btn">
-          <a id="bt_writeDynamicCommand" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
-          </a><a id="bt_execDynamicCommand" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
-        </span>
+    <div id="dbCommands">
+      <label style="width: 100%;"><i class="fas fa-database"></i> {{Constructeur SQL}}
+        <div class="input-group pull-right" style="display:inline-flex; right: -8px;">
+          <span class="input-group-btn">
+            <a id="bt_writeDynamicCommand" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
+            </a><a id="bt_execDynamicCommand" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
+          </span>
+        </div>
+      </label>
+
+      <div id="dynamicsql" class="content">
+        <form class="form-horizontal">
+          <fieldset>
+
+            <!-- SQL UI OPERATION selector-->
+            <div class="form-group">
+              <div class="col-md-2 col-xs-3">
+                <select id="sqlOperation" class="form-control input-sm info">
+                  <option value="SELECT">SELECT</option>
+                  <option value="INSERT">INSERT</option>
+                  <option value="UPDATE">UPDATE</option>
+                  <option value="DELETE">DELETE</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 col-xs-3">
+                <input id="sql_selector" class="form-control input-sm" type="text" value="*" placeholder="* or col1,col2,..."/>
+              </div>
+              <label id="lblFrom" class="col-md-2 col-xs-2 control-label">FROM</label>
+              <div class="col-md-3 col-xs-4">
+                <select id="sqlTable" class="form-control input-sm">
+                  <?php
+                  $options = '';
+                  foreach ($tableList as $table => $cols) {
+                      $options .= '<option value="'.$table.'">'.$table.'</option>';
+                  }
+                  echo $options;
+                  ?>
+                </select>
+              </div>
+            </div>
+
+            <!-- SQL UI SET-->
+            <div id="sqlSetGroup" class="form-group" style="display: none;">
+              <label class="col-xs-12">SET</label>
+            </div>
+
+            <!-- SQL UI WHERE-->
+            <div id="sqlWhereGroup" class="form-group">
+              <label class="col-md-2 col-xs-3 control-label">
+                <input id="checksqlwhere" type="checkbox"/>WHERE
+              </label>
+              <div class="col-md-2 col-xs-3">
+                <select id="sqlWhere" class="form-control input-sm disabled">
+                  <?php
+                  $options = '';
+                  foreach ($tableList['cmd'] as $col) {
+                      $options .= '<option value="'.$col['colName'].'">'.$col['colName'].'</option>';
+                  }
+                  echo $options;
+                  ?>
+                </select>
+              </div>
+              <div class="col-md-1 col-xs-3">
+                <select id="sqlLike" class="form-control input-sm disabled">
+                  <option value="=">=</option>
+                  <option value="LIKE">LIKE</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-xs-3">
+                <input id="sqlLikeValue" class="form-control input-sm disabled" type="text" value="" placeholder="int or 'string', like % wildcard"/>
+              </div>
+            </div>
+
+          </fieldset>
+        </form>
       </div>
-    </label>
 
-    <div id="dynamicsql" class="content">
-      <form class="form-horizontal">
-        <fieldset>
-
-          <!-- SQL UI OPERATION selector-->
-          <div class="form-group">
-            <div class="col-md-2 col-xs-3">
-              <select id="sqlOperation" class="form-control input-sm info">
-                <option value="SELECT">SELECT</option>
-                <option value="INSERT">INSERT</option>
-                <option value="UPDATE">UPDATE</option>
-                <option value="DELETE">DELETE</option>
-              </select>
-            </div>
-
-            <div class="col-md-4 col-xs-3">
-              <input id="sql_selector" class="form-control input-sm" type="text" value="*" placeholder="* or col1,col2,..."/>
-            </div>
-            <label id="lblFrom" class="col-md-2 col-xs-2 control-label">FROM</label>
-            <div class="col-md-3 col-xs-4">
-              <select id="sqlTable" class="form-control input-sm">
-                <?php
-                $options = '';
-                foreach ($tableList as $table => $cols) {
-                    $options .= '<option value="'.$table.'">'.$table.'</option>';
-                }
-                echo $options;
-                ?>
-              </select>
-            </div>
-          </div>
-
-          <!-- SQL UI SET-->
-          <div id="sqlSetGroup" class="form-group" style="display: none;">
-            <label class="col-xs-12">SET</label>
-          </div>
-
-          <!-- SQL UI WHERE-->
-          <div id="sqlWhereGroup" class="form-group">
-            <label class="col-md-2 col-xs-3 control-label">
-              <input id="checksqlwhere" type="checkbox"/>WHERE
-            </label>
-            <div class="col-md-2 col-xs-3">
-              <select id="sqlWhere" class="form-control input-sm disabled">
-                <?php
-                $options = '';
-                foreach ($tableList['cmd'] as $col) {
-                    $options .= '<option value="'.$col['colName'].'">'.$col['colName'].'</option>';
-                }
-                echo $options;
-                ?>
-              </select>
-            </div>
-            <div class="col-md-1 col-xs-3">
-              <select id="sqlLike" class="form-control input-sm disabled">
-                <option value="=">=</option>
-                <option value="LIKE">LIKE</option>
-              </select>
-            </div>
-            <div class="col-md-6 col-xs-3">
-              <input id="sqlLikeValue" class="form-control input-sm disabled" type="text" value="" placeholder="int or 'string', like % wildcard"/>
-            </div>
-          </div>
-
-        </fieldset>
-      </form>
+      <label><i class="fas fa-database"></i> {{Commande SQL}}</label>
+      <div class="input-group content">
+        <input id="in_specificCommand" class="form-control input-sm" type="text"/>
+        <div class="input-group-btn">
+          <a id="bt_validateSpecificCommand" class="btn btn-warning btn-sm"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
+        </div>
+      </div>
     </div>
 
-    <label><i class="fas fa-database"></i> {{Commande SQL}}</label>
-    <div class="input-group content">
-      <input id="in_specificCommand" class="form-control" type="text"/>
-      <div class="input-group-btn">
-        <a id="bt_validateSpecificCommand" class="btn btn-warning"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
-      </div>
-    </div>
-    <div id="div_commandResult" style="height: auto; overflow: auto; margin-top: 5px;"></div>
+    <!-- SQL RESULT -->
+    <div id="div_commandResult" style="overflow: auto;"></div>
   </div>
 </div>
 
