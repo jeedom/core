@@ -906,7 +906,7 @@ Theme Core 2021 @Jeedom
     position: absolute;
     display: inline-block;
     top: 15px;
-    right: 205px;
+    right: 245px;
     width: 100%;
     max-height: 28px;
     text-align: right;
@@ -4683,7 +4683,7 @@ Theme Core 2021 @Jeedom
 
   @media screen and (max-width: 1200px) {
     #summaryGlobalMain {
-      max-width: calc(100vw - 600px);
+      max-width: calc(100vw - 630px);
     }
   }
 
@@ -4708,8 +4708,8 @@ Theme Core 2021 @Jeedom
 
   @media screen and (max-width: 992px) {
     #summaryGlobalMain {
-      right: 75px;
-      max-width: calc(100vw - 450px);
+      right: 115px;
+      max-width: calc(100vw - 490px);
     }
 
     .objectListContainer div.cursor > center > i,
