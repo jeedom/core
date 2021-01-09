@@ -87,18 +87,58 @@ function dbGenerateTableFromResponse(_response) {
 }
 
 //*************************SQL constructor**************************
+$('#sqlOperation').off('change').on('change',function() {
+  var operation = $(this).value()
+  switch (operation) {
+    case 'SELECT':
+      $(this).removeClass('warning danger').addClass('info')
+      $('#sql_selector').parent().show()
+      $('#lblFrom').show().text('FROM')
 
-$('#sqlFrom').off('change').on('change',function() {
-  var selectedTable = $(this).val()
-  for (var table in _tableList_) {
-    if (table == selectedTable) {
-      var options = ''
-      for (var col in _tableList_[table]) {
-        options += '<option value="'+_tableList_[table][col]+'">'+_tableList_[table][col]+'</option>'
-      }
-      $('#sqlWhere').empty().append(options)
+      $('#sqlSetGroup').hide()
+      $('#sqlWhereGroup').show()
       break
-    }
+    case 'INSERT':
+      $(this).removeClass('info danger').addClass('warning')
+      $('#sql_selector').parent().hide()
+      $('#lblFrom').show().text('INTO')
+
+      $('#sqlSetGroup').show()
+      $('#sqlWhereGroup').hide()
+      defineSQLsetGroup()
+      break
+    case 'UPDATE':
+      $(this).removeClass('info warning').addClass('danger')
+      $('#sql_selector').parent().hide()
+      $('#lblFrom').hide()
+
+      $('#sqlSetGroup').show()
+      $('#sqlWhereGroup').show()
+      $('#checksqlwhere').prop('checked', true ).trigger('change')
+      defineSQLsetGroup()
+      break
+    case 'DELETE':
+      $(this).removeClass('info warning').addClass('danger')
+      $('#sql_selector').parent().hide()
+      $('#lblFrom').show().text('FROM')
+
+      $('#sqlSetGroup').hide()
+      $('#sqlWhereGroup').show()
+      $('#checksqlwhere').prop('checked', true ).trigger('change')
+      break
+  }
+})
+
+$('#sqlTable').off('change').on('change',function() {
+  var selectedTable = $(this).value()
+  var options = ''
+  for (var col in _tableList_[selectedTable]) {
+    options += '<option value="'+_tableList_[selectedTable][col]['colName']+'">'+_tableList_[selectedTable][col]['colName']+'</option>'
+  }
+  $('#sqlWhere').empty().append(options)
+
+  if (['INSERT', 'UPDATE'].includes($('#sqlOperation').value())) {
+    defineSQLsetGroup()
   }
 })
 
@@ -110,16 +150,95 @@ $('#checksqlwhere').off('change').on('change',function() {
   }
 })
 
-$('#bt_validateDynamicCommand').off('click').on('click',function() {
-  var command = 'SELECT '
-  command += $('#sql_selector').val() + ' FROM '
-  command += '`' + $('#sqlFrom').val() + '`'
+$('#bt_writeDynamicCommand').off('click').on('click',function() {
+  var sqlString = constructSQLstring()
+  $('#in_specificCommand').val(sqlString)
+})
 
-  if ($('#checksqlwhere').is(':checked')) {
+$('#bt_execDynamicCommand').off('click').on('click',function() {
+  var sqlString = constructSQLstring()
+  $('#in_specificCommand').val(sqlString)
+  dbExecuteCommand(sqlString, true)
+})
+
+function constructSQLstring() {
+  var operation = $('#sqlOperation').value()
+  var command = operation
+
+  switch (operation) {
+    case 'SELECT':
+      command += $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
+      break
+    case 'INSERT':
+      command += ' INTO ' + $('#sqlTable').val()
+      break
+    case 'UPDATE':
+      command += ' ' + $('#sqlTable').val() + ' SET '
+      break
+    case 'DELETE':
+      command += ' FROM `' + $('#sqlTable').val() + '`'
+      break
+  }
+  if (operation == 'INSERT') {
+    var col, cols, value, values
+    cols = values = ''
+    $('#sqlSetOptions input.sqlSetter').each(function() {
+      col = $(this).attr('id')
+      value = $(this).val()
+      if (value != '') {
+        cols += '`' + col + '`,'
+        values += value + ','
+      }
+    })
+    command += ' (' + cols.slice(0, -1) + ') VALUES (' + values.slice(0, -1) + ')'
+  }
+
+  if (operation == 'UPDATE') {
+    var col, value, isNull
+    $('#sqlSetOptions input.sqlSetter').each(function() {
+      col = $(this).attr('id')
+      value = $(this).val()
+      isNull = $(this).closest('.form-group').find('.checkSqlColNull').is(':checked')
+      if (value != '') {
+        command += '`' + col + '`=' + value + ','
+      } else if (isNull) {
+        command += '`' + col + '`= NULL,'
+      }
+    })
+    command = command.slice(0, -1)
+  }
+
+  if (['SELECT', 'UPDATE', 'DELETE'].includes(operation) && $('#checksqlwhere').is(':checked') && $('#sqlLikeValue').val() != '') {
     command += ' WHERE '
     command += '`' + $('#sqlWhere').val() + '`'
     command += ' ' + $('#sqlLike').value()
     command += ' ' + $('#sqlLikeValue').val()
   }
-  dbExecuteCommand(command, true)
-})
+
+  return command
+}
+
+function defineSQLsetGroup() {
+  var selectedTable = $('#sqlTable').value()
+  var operation = $('#sqlOperation').value()
+  var options = '<div id="sqlSetOptions">'
+  var name, type, extra
+  for (var col in _tableList_[selectedTable]) {
+    name = _tableList_[selectedTable][col]['colName']
+    type = _tableList_[selectedTable][col]['colType']
+    extra = _tableList_[selectedTable][col]['colExtra']
+    options += '<div class="form-group">'
+    if (extra == 'auto_increment') {
+      options += '<label class="col-xs-2 control-label warning">' + name + '</label>'
+      options += '<div class="col-xs-8"><input id="'+ name +'" class="form-control disabled input-sm" type="text" value="" placeholder="'+ type +' (auto-increment)" disabled/></div>'
+    } else {
+      options += '<label class="col-xs-2 control-label">' + name + '</label>'
+      options += '<div class="col-xs-8"><input id="'+ name +'" class="form-control sqlSetter input-sm" type="text" value="" placeholder="'+ type +'"/></div>'
+      if (operation == 'UPDATE') options += '<label class="col-xs-2"><input class="checkSqlColNull" type="checkbox"/>Null</label>'
+    }
+    options += '</div>'
+  }
+  options += '</div>'
+
+  $('#sqlSetGroup > label').empty().append(options.slice(0, -1))
+}

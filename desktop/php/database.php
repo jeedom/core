@@ -4,14 +4,15 @@ if (!isConnect('admin')) {
 }
 global $CONFIG;
 //get all tables and their columns:
-$sqlQuery = "select TABLE_NAME, COLUMN_NAME from information_schema.columns where table_schema = '".$CONFIG['db']['dbname']."' order by table_name,ordinal_position";
+$sqlQuery = "select TABLE_NAME, COLUMN_NAME, DATA_TYPE, EXTRA from information_schema.columns where table_schema = '".$CONFIG['db']['dbname']."' order by table_name,ordinal_position";
 $result = DB::prepare($sqlQuery, array(), DB::FETCH_TYPE_ALL);
+
 $tableList = array();
-foreach($result as $res){
+foreach($result as $res) {
   if (!is_array($tableList[$res['TABLE_NAME']])) {
     $tableList[$res['TABLE_NAME']] = array();
   }
-  $tableList[$res['TABLE_NAME']][] = $res['COLUMN_NAME'];
+  $tableList[$res['TABLE_NAME']][] = array(colName => $res['COLUMN_NAME'], colType => $res['DATA_TYPE'], colExtra => $res['EXTRA']);
 }
 sendVarToJS('_tableList_', $tableList);
 ?>
@@ -29,24 +30,40 @@ sendVarToJS('_tableList_', $tableList);
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT id, name, configuration FROM eqLogic">{{Select eqLogics configuration}}</a></li>
         <li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="SELECT * FROM cmd WHERE id=1">{{Select cmd id 1}}</a></li>
       </ul>
+      <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande à gauche ou éxécutez une commande personnalisée ci-dessous}}</div>
     </div>
   </div>
   <div class="col-lg-10 col-md-9 col-sm-8" style="height: calc(100vh - 150px); padding-right: 0 !important; padding-top: 5px;">
-    <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande à gauche ou éxécutez une commande personnalisée ci-dessous}}</div>
+    <label style="width: 100%;"><i class="fas fa-database"></i> {{Constructeur SQL}}
+      <div class="input-group pull-right" style="display:inline-flex; right: -8px;">
+        <span class="input-group-btn">
+          <a id="bt_writeDynamicCommand" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
+          </a><a id="bt_execDynamicCommand" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
+        </span>
+      </div>
+    </label>
 
-    <label>{{Constructeur SQL}}</label>
-    <a id="bt_validateDynamicCommand" class="btn btn-warning btn-sm pull-right" style="margin-right: 0;margin-top: -5px;"><i class="fas fa-check"></i> {{OK}}</a>
-    <div id="dynamicsql">
+    <div id="dynamicsql" class="content">
       <form class="form-horizontal">
         <fieldset>
+
+          <!-- SQL UI OPERATION selector-->
           <div class="form-group">
-            <label class="col-md-2 col-xs-3 control-label">SELECT</label>
-            <div class="col-md-4 col-xs-3">
-              <input id="sql_selector" class="form-control input-sm" value="*"/>
+            <div class="col-md-2 col-xs-3">
+              <select id="sqlOperation" class="form-control input-sm info">
+                <option value="SELECT">SELECT</option>
+                <option value="INSERT">INSERT</option>
+                <option value="UPDATE">UPDATE</option>
+                <option value="DELETE">DELETE</option>
+              </select>
             </div>
-            <label class="col-md-2 col-xs-2 control-label">FROM</label>
+
+            <div class="col-md-4 col-xs-3">
+              <input id="sql_selector" class="form-control input-sm" type="text" value="*" placeholder="* or col1,col2,..."/>
+            </div>
+            <label id="lblFrom" class="col-md-2 col-xs-2 control-label">FROM</label>
             <div class="col-md-3 col-xs-4">
-              <select id="sqlFrom" class="form-control input-sm">
+              <select id="sqlTable" class="form-control input-sm">
                 <?php
                 $options = '';
                 foreach ($tableList as $table => $cols) {
@@ -57,7 +74,14 @@ sendVarToJS('_tableList_', $tableList);
               </select>
             </div>
           </div>
-          <div class="form-group">
+
+          <!-- SQL UI SET-->
+          <div id="sqlSetGroup" class="form-group" style="display: none;">
+            <label class="col-xs-12">SET</label>
+          </div>
+
+          <!-- SQL UI WHERE-->
+          <div id="sqlWhereGroup" class="form-group">
             <label class="col-md-2 col-xs-3 control-label">
               <input id="checksqlwhere" type="checkbox"/>WHERE
             </label>
@@ -66,7 +90,7 @@ sendVarToJS('_tableList_', $tableList);
                 <?php
                 $options = '';
                 foreach ($tableList['cmd'] as $col) {
-                    $options .= '<option value="'.$col.'">'.$col.'</option>';
+                    $options .= '<option value="'.$col['colName'].'">'.$col['colName'].'</option>';
                 }
                 echo $options;
                 ?>
@@ -79,7 +103,7 @@ sendVarToJS('_tableList_', $tableList);
               </select>
             </div>
             <div class="col-md-6 col-xs-3">
-              <input id="sqlLikeValue" class="form-control input-sm disabled" value=""/>
+              <input id="sqlLikeValue" class="form-control input-sm disabled" type="text" value="" placeholder="int or 'string', like % wildcard"/>
             </div>
           </div>
 
@@ -87,11 +111,11 @@ sendVarToJS('_tableList_', $tableList);
       </form>
     </div>
 
-    <label>{{Commande SQL}}</label>
-    <div class="input-group">
-      <input id="in_specificCommand" class="form-control" />
+    <label><i class="fas fa-database"></i> {{Commande SQL}}</label>
+    <div class="input-group content">
+      <input id="in_specificCommand" class="form-control" type="text"/>
       <div class="input-group-btn">
-        <a id="bt_validateSpecificCommand" class="btn btn-warning"><i class="fas fa-check"></i> {{OK}}</a>
+        <a id="bt_validateSpecificCommand" class="btn btn-warning"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
       </div>
     </div>
     <div id="div_commandResult" style="height: auto; overflow: auto; margin-top: 5px;"></div>
