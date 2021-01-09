@@ -179,7 +179,7 @@ function constructSQLstring() {
 
   switch (operation) {
     case 'SELECT':
-      command += $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
+      command += ' ' + $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
       break
     case 'INSERT':
       command += ' INTO ' + $('#sqlTable').val()
