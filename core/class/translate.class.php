@@ -19,16 +19,27 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../php/core.inc.php';
 
+/*
+//DEBUG ONLY
+require_once  'utils.class.php';
+require_once  'scenarioExpression.class.php';
+require_once  'log.class.php';
+require_once  'message.class.php';
+
+//log::add('debug_translate', 'error', 'loadTranslation: '.json_encode($test));
+*/
+
 class translate {
 	/*     * *************************Attributs****************************** */
-	
+
 	protected static $translation = array();
 	protected static $language = null;
 	private static $config = null;
 	private static $pluginLoad = array();
-	
+	private static $widgetLoad = array();
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
 			self::$config = config::byKeys(array('language'));
@@ -38,7 +49,7 @@ class translate {
 		}
 		return $_default;
 	}
-	
+
 	public static function getTranslation($_plugin) {
 		if (!isset(self::$translation[self::getLanguage()])) {
 			self::$translation[self::getLanguage()] = array();
@@ -49,11 +60,18 @@ class translate {
 		}
 		return self::$translation[self::getLanguage()];
 	}
-	
+
+	public static function getWidgetTranslation($_widget) {
+		if (!isset(self::$widgetLoad[$_widget])) {
+			self::$widgetLoad[$_widget][$_widget] = array_merge(self::$translation[self::getLanguage()]['core/template/widgets.html'], self::loadTranslation($_widget));
+		}
+		return self::$widgetLoad[$_widget];
+	}
+
 	public static function sentence($_content, $_name, $_backslash = false) {
 		return self::exec("{{" . $_content . "}}", $_name, $_backslash);
 	}
-	
+
 	public static function getPluginFromName($_name) {
 		if (strpos($_name, 'plugins/') === false) {
 			return 'core';
@@ -67,16 +85,17 @@ class translate {
 		}
 		return $matches[1];
 	}
-	
+
 	public static function exec($_content, $_name = '', $_backslash = false) {
 		if ($_content == '' || $_name == '') {
 			return $_content;
 		}
 		$language = self::getLanguage();
-		
+
 		if ($language == 'fr_FR') {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
+
 		if (substr($_name, 0, 1) == '/') {
 			if (strpos($_name, 'plugins') !== false) {
 				$_name = substr($_name, strpos($_name, 'plugins'));
@@ -89,7 +108,18 @@ class translate {
 				}
 			}
 		}
-		$translate = self::getTranslation(self::getPluginFromName($_name));
+
+		//is a custom user widget:
+		if (substr($_name, 0, 12) == 'customtemp::') {
+			$translate = self::getWidgetTranslation($_name);
+			if (empty($translate[$_name])) {
+				return preg_replace("/{{(.*?)}}/s", '$1', $_content);
+			}
+		} else {
+			$translate = self::getTranslation(self::getPluginFromName($_name));
+		}
+
+		//replacing {{content parts}} by $translate parts:
 		$replace = array();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
 		foreach ($matches[1] as $text) {
@@ -121,12 +151,16 @@ class translate {
 		}
 		return str_replace(array_keys($replace), $replace, $_content);
 	}
-	
+
 	public static function getPathTranslationFile($_language) {
 		return __DIR__ . '/../i18n/' . $_language . '.json';
 	}
-	
-	public static function loadTranslation($_plugin = null) {
+
+	public static function getWidgetPathTranslationFile($_widgetName) {
+		return __DIR__ . '/../../data/customTemplates/i18n/' . $_widgetName . '.json';
+	}
+
+	public static function loadTranslation($_plugin=null) {
 		$return = array();
 		if ($_plugin == null || $_plugin == 'core') {
 			$filename = self::getPathTranslationFile(self::getLanguage());
@@ -140,24 +174,34 @@ class translate {
 				$return = array_merge($return, plugin::getTranslation($plugin, self::getLanguage()));
 			}
 		} else {
-			$return = array_merge($return, plugin::getTranslation($_plugin, self::getLanguage()));
+			//is non core widget:
+			if (substr($_plugin, 0, 12) == 'customtemp::') {
+				$filename = self::getWidgetPathTranslationFile(str_replace('customtemp::', '', $_plugin));
+				if (file_exists($filename)) {
+					$content = file_get_contents($filename);
+					return is_json($content, array())[self::getLanguage()];
+				} else {
+					return array([self::getLanguage()] => array());
+				}
+			} else {
+				return array_merge($return, plugin::getTranslation($_plugin, self::getLanguage()));
+			}
 		}
-		
+
 		return $return;
 	}
-	
+
 	public static function getLanguage() {
 		if (self::$language == null) {
 			self::$language = self::getConfig('language', 'fr_FR');
 		}
 		return self::$language;
-		
 	}
-	
+
 	public static function setLanguage($_langage) {
-		self::$language = $_langage;
+		self::$language = $_langage ;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
 }
 

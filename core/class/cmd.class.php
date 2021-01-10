@@ -1238,14 +1238,21 @@ class cmd {
 	}
 
 	public function getWidgetHelp($_version='dashboard', $_widgetName='') {
-		$widgetCode = $this->getWidgetTemplateCode($_version, false, $_widgetName);
+		$widget = $this->getWidgetTemplateCode($_version, false, $_widgetName);
+		$widgetCode = $widget['template'];
+		$isCorewidget = $widget['isCoreWidget'];
+
 		if (strpos($widgetCode, '</template>') !== false) {
 			$widgetHelp = explode('</template>', $widgetCode)[0];
 			$widgetHelp = explode('<template>', $widgetHelp)[1];
 			if ($widgetHelp == '') {
 				return '<em>'.__('Aucun paramètre optionnel disponible.', __FILE__).'</em>.';
 			} else {
-				return translate::exec($widgetHelp, 'core/template/widgets.html');
+				if ($isCorewidget) {
+					return translate::exec($widgetHelp, 'core/template/widgets.html');
+				} else {
+					return translate::exec($widgetHelp, $widget['widgetName']);
+				}
 			}
 		} else {
 			return '<em>'.__('Aucune description trouvée pour ce Widget.', __FILE__).'</em>.';
@@ -1290,12 +1297,14 @@ class cmd {
 				}
 			} elseif ($name[0] == 'customtemp') {
 				$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
-				if (file_exists(__DIR__ . '/../../data/customTemplates/' . $_version . '/'. $template_name .'.html')) {
-					$template = file_get_contents(__DIR__ . '/../../data/customTemplates/' . $_version . '/'. $template_name .'.html');
+				$path = __DIR__ . '/../../data/customTemplates/' . $_version . '/'. $template_name;
+				if (file_exists($path .'.html')) {
+					$template = file_get_contents($path .'.html');
 					if ($_clean) {
 						$template = $this->cleanWidgetCode($template);
 					}
-					return $template;
+					//return widgetName key for translate:
+					return array('template' => $template, 'isCoreWidget' => false, 'widgetName' => 'customtemp::'.$template_name);
 				}
 			} elseif($name[0] != 'core'){
 				$plugin_id  = $name[0];
@@ -1378,7 +1387,7 @@ class cmd {
 		if ($_clean) {
 			$template = $this->cleanWidgetCode($template);
 		}
-		return $template;
+		return array('template' => $template, 'isCoreWidget' => true);
 	}
 
 	public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
@@ -1404,7 +1413,7 @@ class cmd {
 		return array($val,$div);
 	}
 
-	public function toHtml($_version = 'dashboard', $_options = '') {
+	public function toHtml($_version='dashboard', $_options='') {
 		$_version = jeedom::versionAlias($_version);
 		$html = '';
 		$replace = array(
@@ -1453,7 +1462,10 @@ class cmd {
 		if ($this->getDisplay('showIconAndName' . $_version, 0) == 1) {
 			$replace['#name_display#'] = $this->getDisplay('icon') . ' ' . $this->getName();
 		}
-		$template = $this->getWidgetTemplateCode($_version);
+		$widget = $this->getWidgetTemplateCode($_version);
+		$template = $widget['template'];
+		$isCorewidget = $widget['isCoreWidget'];
+
 		if ($_options != '') {
 			$options = jeedom::toHumanReadable($_options);
 			$options = is_json($options, $options);
@@ -1535,7 +1547,11 @@ class cmd {
 				}
 			}
 			$template = template_replace($replace, $template);
-			return translate::exec($template, 'core/template/widgets.html');
+			if ($isCorewidget) {
+				return translate::exec($template, 'core/template/widgets.html');
+			} else {
+				return translate::exec($template, $widget['widgetName']);
+			}
 		}
 
 		if ($this->getType() == 'action') {
@@ -1599,7 +1615,11 @@ class cmd {
 			}
 
 			$template = template_replace($replace, $template);
-			return translate::exec($template, 'core/template/widgets.html');
+			if ($isCorewidget) {
+				return translate::exec($template, 'core/template/widgets.html');
+			} else {
+				return translate::exec($template, $widget['widgetName']);
+			}
 		}
 	}
 

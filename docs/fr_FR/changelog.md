@@ -23,6 +23,7 @@
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
+- **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
 
 ### Widgets Core
 
