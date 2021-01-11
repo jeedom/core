@@ -4129,14 +4129,13 @@ Theme Core 2021 @Jeedom
     padding-right: 13px !important;
   }
   .ui-dialog-content > div:not(.alert):not(.jqAlert) {
-    /*! background: transparent !important; */
+    background: transparent !important;
   }
   .ui-widget-content:not(.slider){
     color: var(--txt-color) !important;
     background: transparent !important;
     border: none!important;
     padding: 0em;
-    width: 100%;
   }
   .jqAlert {
     padding: 5px 30px;
