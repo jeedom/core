@@ -920,19 +920,15 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Échecs avant désactivation}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-12 control-label">{{Échecs avant désactivation}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'échecs avant désactivation de l'équipement (0: pas de désactivation).}}"></i></sup>
 							</label>
 							<div class="col-lg-1 col-sm-1 col-xs-4">
 								<input type="text"  class="configKey form-control" data-l1key="numberOfTryBeforeEqLogicDisable" />
 							</div>
-							<br/><br/>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-sm-4 col-xs-12 control-label">{{Seuil des piles}}</label>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-12 control-label">{{Seuil des piles}}<i class="warning jeedom-batterie1" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Si le niveau de charge passe en dessous de (%)}}"></i></sup>
 								<sub>%</sub>
 							</label>
@@ -942,7 +938,7 @@ user::isBan();
 							<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-warning">{{Warning}}</label>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-sm-4 col-xs-12 control-label"><i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-12 control-label">{{Seuil des piles}}<i class="danger jeedom-batterie0" style="font-size:36px;vertical-align: middle;"></i> {{Inférieur à}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Si le niveau de charge passe en dessous de (%)}}"></i></sup>
 								<sub>%</sub>
 							</label>
@@ -958,58 +954,52 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Afficher les statistiques sur les widgets}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="checkbox"  class="configKey" data-l1key="displayStatsWidget" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Période de calcul pour min, max, moyenne}}
 								<sub>h</sub>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="historyCalculPeriod" />
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période de calcul pour la tendance}}
+							<label class="col-lg-3 col-md-4 col-sm-6 col-xs-6 control-label">{{Période de calcul pour la tendance}}
 								<sub>h</sub>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="historyCalculTendance" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Délai avant archivage}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Délai avant archivage}}
 								<sub>h</sub>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="historyArchiveTime" />
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Archiver par paquet de}}
+							<label class="col-lg-3 col-md-4 col-sm-6 col-xs-6 control-label">{{Archiver par paquet de}}
 								<sub>h</sub>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="historyArchivePackage" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Seuil de calcul de tendance bas}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMin" />
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-3 col-md-4 col-sm-6 col-xs-6 control-label">{{Seuil de calcul de tendance haut}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="historyCalculTendanceThresholddMax" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="history::defautShowPeriod">
 									<option value="-6 month">{{6 mois}}</option>
 									<option value="-3 month">{{3 mois}}</option>
@@ -1020,8 +1010,8 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
+							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="historyPurge">
 									<option value="">{{Jamais}}</option>
 									<option value="-1 day">{{1 jour}}</option>
@@ -1042,10 +1032,10 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{URL de push globale}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{URL de push globale}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"></i></sup>
 							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<div class="col-lg-5 col-md-6 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="cmdPushUrl">
 							</div>
 						</div>
@@ -1056,64 +1046,53 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{URL du serveur InfluxDB}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici l'URL du serveur InfluxDB}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{URL du serveur InfluxDB}}</label>
+							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="cmdInfluxURL">
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Port du serveur InfluxDB}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le port du serveur InfluxDB}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-2 col-md-3 col-sm-6 col-xs-6 control-label">{{Port du serveur InfluxDB}}</label>
+							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="cmdInfluxPort">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nom de la base}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le nom de la base}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Nom de la base}}</label>
+							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="cmdInfluxTable">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{User de la base}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le user de la base}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Utilisateur de la base}}</label>
+							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="cmdInfluxUser">
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Mot de passe de la base}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici le mot de passe de la base}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+							<label class="col-lg-2 col-md-3 col-sm-6 col-xs-6 control-label">{{Mot de passe de la base}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 								<input type="text"  class="configKey form-control inputPassword" data-l1key="cmdInfluxPass">
 							</div>
 						</div>
-						<label class="col-xs-4 control-label">{{Actions}}</label>
-						<div class="col-xs-8">
+						<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Actions}}</label>
+						<div class="col-xs-6">
 							<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 							<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
 						</div>
 					</fieldset>
 				</form>
 
-				<legend>{{Divers}}</legend>
+				<legend>{{Expressions}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quoter automatiquement les expressions}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
+							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
 							</div>
 						</div>
 					</fieldset>
 				</form>
+				<br/>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="repporttab">
