@@ -2075,7 +2075,8 @@
         "Connexion": "Einloggen",
         "J'ai perdu mon mot de passe": "Ich habe mein Passwort verloren",
         "En créer un !": "Erstellen Sie eine!",
-        "Connecter Jeedom au Market": "Verbinde Jeedom mit dem Markt"
+        "Connecter Jeedom au Market": "Verbinde Jeedom mit dem Markt",
+        "Ignorer": "Ignorieren"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"

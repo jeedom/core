@@ -105,6 +105,12 @@
 
 # Registro de cambios Jeedom V4.0
 
+## 4.0.62
+
+- Nueva migración de kernel buster + para smart y Pro v2
+- Verificación de la versión del sistema operativo durante las actualizaciones importantes de Jeedom
+
+
 ## 4.0.61
 
 - Se solucionó un problema al aplicar una plantilla de escenario

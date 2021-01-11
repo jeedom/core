@@ -105,6 +105,12 @@
 
 # Changelog Jeedom V4.0
 
+## 4.0.62
+
+- New buster + kernel migration for smart and Pro v2
+- Verification of the OS version during important Jeedom updates
+
+
 ## 4.0.61
 
 - Fixed a problem when applying a scenario template

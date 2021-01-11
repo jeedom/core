@@ -105,6 +105,12 @@
 
 # Changelog Jeedom V4.0
 
+## 4.0.62
+
+- Neue Buster + Kernel-Migration für Smart und Pro v2
+- Überprüfung der Betriebssystemversion bei wichtigen Jeedom-Updates
+
+
 ## 4.0.61
 
 - Ein Problem beim Anwenden einer Szenariovorlage wurde behoben

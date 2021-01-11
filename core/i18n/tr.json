@@ -2075,7 +2075,8 @@
         "Connexion": "Bağlantı",
         "J'ai perdu mon mot de passe": "Şifremi kaybettim",
         "En créer un !": "En créer un !",
-        "Connecter Jeedom au Market": "Connecter Jeedom au Market"
+        "Connecter Jeedom au Market": "Connecter Jeedom au Market",
+        "Ignorer": "Ignorer"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"

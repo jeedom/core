@@ -105,6 +105,12 @@
 
 # Changelog Jeedom V4.0
 
+## 4.0.62
+
+- Nova migração buster + kernel para smart e Pro v2
+- Verificação da versão do sistema operacional durante atualizações importantes do Jeedom
+
+
 ## 4.0.61
 
 - Corrigido um problema ao aplicar um modelo de cenário
