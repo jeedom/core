@@ -107,7 +107,7 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 }
 
 jeedom.history.changePoint = function(_params) {
-  var paramsRequired = ['cmd_id','datetime','value','oldValue'];
+  var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue'];
   var paramsSpecifics = {
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'});
@@ -124,6 +124,8 @@ jeedom.history.changePoint = function(_params) {
             cmd_id: _params.cmd_id,
             el: i,
             dateRange: jeedom.history.chart[i].cmd[_params.cmd_id].dateRange,
+            dateStart: _params.dateStart,
+            dateEnd: _params.dateEnd,
             option: jeedom.history.chart[i].cmd[_params.cmd_id].option
           });
         }
@@ -147,6 +149,30 @@ jeedom.history.changePoint = function(_params) {
     oldValue : _params.oldValue
   };
   $.ajax(paramsAJAX);
+}
+
+jeedom.history.modalchangePoint = function(event, _this, _params) {
+  var deviceInfo = getDeviceType()
+  if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
+  if ($('#md_modal2').is(':visible')) return
+  if ($('#md_modal1').is(':visible')) return
+  if (typeof isComparing !== 'undefined' && isComparing == true) return
+
+  var id = _this.series.userOptions.id
+  var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
+  var value = _this.y
+  bootbox.prompt("{{Edition de la série :}} <b>" + _this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
+    if (result !== null) {
+      jeedom.history.changePoint({
+        cmd_id: id,
+        datetime: datetime,
+        oldValue: value,
+        value: result,
+        dateStart: _params.dateStart,
+        dateEnd: _params.dateEnd
+      })
+    }
+  })
 }
 
 jeedom.history.drawChart = function(_params) {
@@ -449,20 +475,7 @@ jeedom.history.drawChart = function(_params) {
             point: {
               events: {
                 click: function(event) {
-                  var deviceInfo = getDeviceType();
-                  if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
-                  if ($('#md_modal2').is(':visible')) return
-                  if ($('#md_modal1').is(':visible')) return
-                  if (typeof isComparing !== 'undefined' && isComparing == true) return
-
-                  var id = this.series.userOptions.id;
-                  var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x);
-                  var value = this.y;
-                  bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
-                    if (result !== null) {
-                      jeedom.history.changePoint({cmd_id: id, datetime: datetime,oldValue:value, value: result});
-                    }
-                  });
+                  jeedom.history.modalchangePoint(event, this, data.result)
                 }
               }
             }
@@ -509,24 +522,7 @@ jeedom.history.drawChart = function(_params) {
             point: {
               events: {
                 click: function(event) {
-                  var deviceInfo = getDeviceType();
-                  if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') {
-                    return
-                  }
-                  if ($('#md_modal2').is(':visible')) {
-                    return
-                  }
-                  if ($('#md_modal1').is(':visible')) {
-                    return
-                  }
-                  var id = this.series.userOptions.id;
-                  var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x)
-                  var value = this.y
-                  bootbox.prompt("{{Edition de la série :}} <b>" + this.series.name + "</b> {{et du point de}} <b>" + datetime + "</b> ({{valeur :}} <b>" + value + "</b>) ? {{Ne rien mettre pour supprimer la valeur}}", function(result) {
-                    if (result !== null) {
-                      jeedom.history.changePoint({cmd_id: id, datetime: datetime,oldValue:value, value: result})
-                    }
-                  })
+                  jeedom.history.modalchangePoint(event, this, data.result)
                 }
               }
             }
