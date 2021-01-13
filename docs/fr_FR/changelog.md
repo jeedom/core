@@ -109,6 +109,7 @@
 	- Menu Analyse : Ctrl Clic / Clic Centre sur *Temps réel* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 	- Menu Outils : Ctrl Clic / Clic Centre sur *Notes*, *Testeur expression*, *Variables*, *Recherche* : Ouvre la fenêtre dans un nouvel onglet, en pleine page.
 - Bloc code, Éditeur de fichier, Personnalisation avancée : Adaptation thème Dark.
+- Amélioration de la fenêtre de sélection d'image.
 
 ### WebApp
 - Intégration de la nouvelle page Synthèse.
