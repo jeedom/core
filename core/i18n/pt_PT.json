@@ -279,7 +279,7 @@
         "Gestion automatique": "Gerenciamento automático",
         "Dernier lancement": "último lançamento",
         "Local": "Local",
-        "OK": "Ok",
+        "OK": "OK",
         "NOK": "NOK",
         "Désactiver": "Desativar",
         "Activer": "Ativar"
@@ -385,7 +385,7 @@
         "Installation": "Instalação",
         "Dernière installation": "última Instalação",
         "Local": "Local",
-        "OK": "Ok",
+        "OK": "OK",
         "NOK": "NOK",
         "Installation en cours": "Instalação em progresso",
         "Relancer": "Reviver"
@@ -1242,7 +1242,7 @@
         "Etape 3 : vérification": "Etapa 3: verificação",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Digite o código fornecido para verificação e ativação da autenticação dupla",
         "Code de test": "Código de teste",
-        "OK": "Ok",
+        "OK": "OK",
         "Configuration réussie": "Configuração bem-sucedida",
         "Code invalide": "Código inválido"
     },
@@ -1253,7 +1253,7 @@
         "Port configuré": "Porta configurada",
         "Aucune santé spécifique": "Sem saúde específica",
         "Dépendances": "Dependências",
-        "OK": "Ok",
+        "OK": "OK",
         "NOK": "NOK",
         "En cours": "Contínuo",
         "Configuration démon": "Configuração do daemon",
@@ -1952,7 +1952,6 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        ".$title.": ". $ title.",
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
         "Importer": "Importar",
@@ -2436,7 +2435,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Rechercher": "Pesquisa",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Clique em um pedido à esquerda ou digite um pedido personalizado abaixo",
-        "OK": "Ok"
+        "OK": "OK"
     },
     "desktop\/js\/update.js": {
         "Options": "Opções",
@@ -2641,7 +2640,7 @@
         "Administrateur": "Administrador",
         "Utilisateur": "Do utilizador",
         "Utilisateur limité": "Usuário limitado",
-        "OK": "Ok",
+        "OK": "OK",
         "Désactiver": "Desativar",
         "NOK": "NOK",
         "Renouveler la clef API": "Renove Key API",
@@ -3718,7 +3717,6 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Não",
         "La commande n\\'a pas pu être trouvée : ": "Não foi possível encontrar o comando:",
-        " => ": "=>",
         "Impossible de traduire la couleur en code hexadécimal :": "Incapaz de traduzir cor em código hexadecimal:",
         "Le nom de la commande ne peut pas être vide :": "O nome do comando não pode estar vazio:",
         "Le type de la commande ne peut pas être vide :": "O tipo do comando não pode estar vazio:",
@@ -3760,7 +3758,7 @@
         "Commande retour interactions": "Comando de retorno de interação",
         "Commande sur ": "Personalizado",
         "Système à jour": "Atualização do sistema",
-        "OK": "Ok",
+        "OK": "OK",
         "Cron actif": "Cron ativa",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Erro de cron: os cron estão desativados. Vá para Configurações -> Sistema -> Mecanismo de tarefas para reativá-los",
@@ -3768,7 +3766,6 @@
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Cenário de erro: todos os cenários estão desativados. Vá em Ferramentas -> Cenários para reativar",
         "Démarré": "Começado",
         "Date système (dernière heure enregistrée)": "Data System (hora do último gravado)",
-        "OK ": "Ok",
         "Si la derniere heure enregistrée est fausse, il faut la remettre à zéro": "Se a última hora gravada for falsa, ela deve ser redefinida",
         "Droits sudo": "Sudo direitos",
         "Appliquez les droits root à Jeedom": "Aplicar direitos de root ao Jeedom",
@@ -3994,7 +3991,6 @@
         "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('nome', 'núcleo', 'JEEDOM'). ']",
         "Aucun": "Não",
         "L\\'équipement n\\'a pas pu être trouvé : ": "Não foi possível encontrar o equipamento:",
-        " => ": "=>",
         "Le": "O",
         "inconnue": "Desconhecido",
         "Seuil manuel défini": "Conjunto de limites manual",
@@ -4065,7 +4061,6 @@
         "Activation du scénario : ": "Activação do cenário:",
         "Remise à zéro des statuts des SI du scénario : ": "Redefinindo os status de IS do cenário para zero:",
         "Affectation de la variable ": "Atribuição da variável",
-        " => ": "=>",
         "Suppression de la variable ": "Excluir variável",
         "Commande introuvable - Vérifiez l\\'id : ": "Pedido não encontrado - Verifique o ID:",
         "Demande ": "Aplicação",
@@ -4191,7 +4186,8 @@
         "Post-installation de ": "Pós-Instalação",
         "Suppression des fichiers inutiles...": "Excluindo arquivos desnecessários",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Não foi possível instalar o plug-in. O nome do plug-in é diferente do ID ou o plug-in não está formado corretamente. Entre em contato com o autor",
-        "END UPDATE SUCCESS\\n": "FINALIZAR SUCESSO DE ATUALIZAÇÃO \\ n",
+        "OK": "OK",
+        "END UPDATE SUCCESS": "END UPDATE SUCCESS",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Verificar atualizações desabilitadas, atualizações e reinstalações no",
         "Le logical ID ne peut pas être vide": "O ID lógico não pode estar vazio"
     },

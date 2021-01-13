@@ -279,7 +279,7 @@
         "Gestion automatique": "Automatisches management",
         "Dernier lancement": "Letzter Start",
         "Local": "Lokal",
-        "OK": "Ok",
+        "OK": "In Ordnung",
         "NOK": "NOK",
         "Désactiver": "Deactivate",
         "Activer": "Aktivieren"
@@ -385,7 +385,7 @@
         "Installation": "Installation",
         "Dernière installation": "Letzte Installation",
         "Local": "Lokal",
-        "OK": "Ok",
+        "OK": "In Ordnung",
         "NOK": "NOK",
         "Installation en cours": "Installation läuft",
         "Relancer": "Beleben"
@@ -1242,7 +1242,7 @@
         "Etape 3 : vérification": "Schritt 3: Überprüfung",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Bitte geben Sie den Code ein, der zur Überprüfung und Aktivierung der doppelten Authentifizierung bereitgestellt wird",
         "Code de test": "Testcode",
-        "OK": "Ok",
+        "OK": "In Ordnung",
         "Configuration réussie": "Konfiguration erfolgreich",
         "Code invalide": "Ungültiger Code"
     },
@@ -1253,7 +1253,7 @@
         "Port configuré": "Konfigurierter Port",
         "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "Dépendances": "Nebengebäude",
-        "OK": "Ok",
+        "OK": "In Ordnung",
         "NOK": "NOK",
         "En cours": "In Bearbeitung",
         "Configuration démon": "Daemon-Konfiguration",
@@ -1952,7 +1952,6 @@
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        ".$title.": "$ title.",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Importer": "Import",
@@ -2436,7 +2435,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Rechercher": "Suchen nach",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
-        "OK": "Ok"
+        "OK": "In Ordnung"
     },
     "desktop\/js\/update.js": {
         "Options": "Optionen",
@@ -2641,7 +2640,7 @@
         "Administrateur": "Verwalter",
         "Utilisateur": "Nutzer",
         "Utilisateur limité": "Begrenzter Benutzer",
-        "OK": "Ok",
+        "OK": "In Ordnung",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
         "Renouveler la clef API": "Erneuern Sie den API-Schlüssel",
@@ -3718,7 +3717,6 @@
     "core\/class\/cmd.class.php": {
         "Aucun": "Nein",
         "La commande n\\'a pas pu être trouvée : ": "Der Befehl konnte nicht gefunden werden:",
-        " => ": "=>",
         "Impossible de traduire la couleur en code hexadécimal :": "Farbe kann nicht in hexadezimalen Code übersetzt werden:",
         "Le nom de la commande ne peut pas être vide :": "Der Name des Befehls darf nicht leer sein:",
         "Le type de la commande ne peut pas être vide :": "Der Befehlstyp darf nicht leer sein:",
@@ -3760,7 +3758,7 @@
         "Commande retour interactions": "Interaktionsrückgabebefehl",
         "Commande sur ": "Bestellen Sie am",
         "Système à jour": "Aktuelles System",
-        "OK": "Ok",
+        "OK": "In Ordnung",
         "Cron actif": "Active Cron",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Cron-Fehler: Cron sind deaktiviert. Gehen Sie zu Administration -> Cron-System, um sie wieder zu aktivieren",
@@ -3768,7 +3766,6 @@
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Szenariofehler: Alle Szenarien sind deaktiviert. Gehen Sie zu Tools -> Szenarien, um sie wieder zu aktivieren",
         "Démarré": "Gestartet",
         "Date système (dernière heure enregistrée)": "Systemdatum (letzte aufgezeichnete Zeit)",
-        "OK ": "Ok",
         "Si la derniere heure enregistrée est fausse, il faut la remettre à zéro": "Wenn die zuletzt aufgezeichnete Stunde falsch ist, muss sie zurückgesetzt werden",
         "Droits sudo": "Sudo-Rechte",
         "Appliquez les droits root à Jeedom": "Wenden Sie Root-Rechte auf Jeedom an",
@@ -3994,7 +3991,6 @@
         "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('name', 'core', 'JEEDOM'). ']",
         "Aucun": "Nein",
         "L\\'équipement n\\'a pas pu être trouvé : ": "Die Ausrüstung konnte nicht gefunden werden:",
-        " => ": "=>",
         "Le": "Die",
         "inconnue": "unbekannt",
         "Seuil manuel défini": "Manueller Schwellenwert eingestellt",
@@ -4065,7 +4061,6 @@
         "Activation du scénario : ": "Aktivierung des Szenarios:",
         "Remise à zéro des statuts des SI du scénario : ": "Zurücksetzen des IS-Status des Szenarios auf Null:",
         "Affectation de la variable ": "Zuordnung der Variablen",
-        " => ": "=>",
         "Suppression de la variable ": "Variable löschen",
         "Commande introuvable - Vérifiez l\\'id : ": "Bestellung nicht gefunden - Überprüfen Sie die ID:",
         "Demande ": "Anwendung",
@@ -4191,7 +4186,8 @@
         "Post-installation de ": "Nachinstallation von",
         "Suppression des fichiers inutiles...": "Unnötige Dateien löschen",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Das Plugin kann nicht installiert werden. Der Name des Plugins unterscheidet sich von der ID oder das Plugin ist nicht richtig gebildet. Bitte kontaktieren Sie den Autor",
-        "END UPDATE SUCCESS\\n": "END UPDATE SUCCESS \\ n",
+        "OK": "In Ordnung",
+        "END UPDATE SUCCESS": "END UPDATE ERFOLG",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Nach deaktivierten Updates, Updates und Neuinstallationen suchen",
         "Le logical ID ne peut pas être vide": "Die logische ID darf nicht leer sein"
     },
