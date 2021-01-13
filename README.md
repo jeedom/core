@@ -1,3 +1,4 @@
+
 <img align="right" src="https://www.jeedom.com/site/logo.png" width="100">
 
 [![GitHub license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/jeedom/core/blob/master/LICENSE)
@@ -46,6 +47,16 @@ Vous retrouverez [ici](https://doc.jeedom.com/fr_FR/installation/) toute les pos
 Vous trouverez un *changelog* complet, par version ici : [changelog](https://doc.jeedom.com/fr_FR/core/4.1/changelog).
 
 *You will find changelog per version here: [changelog](https://doc.jeedom.com/en_US/core/4.1/changelog).*
+
+# Développeurs
+
+[Contribuer au développement de Jeedom](https://doc.jeedom.com/fr_FR/contribute/)
+
+[Développement de plugin](https://doc.jeedom.com/fr_FR/dev/)
+
+*[Contribute to the development of Jeedom](https://doc.jeedom.com/en_US/contribute/)*
+
+*[Plugin development](https://doc.jeedom.com/en_US/dev/)*
 
 <br/>
 
