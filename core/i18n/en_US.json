@@ -279,7 +279,7 @@
         "Gestion automatique": "Automatic management",
         "Dernier lancement": "Last launch",
         "Local": "Local",
-        "OK": "Okay",
+        "OK": "OK",
         "NOK": "NOK",
         "Désactiver": "Deactivate",
         "Activer": "Activate"
@@ -385,7 +385,7 @@
         "Installation": "Installation",
         "Dernière installation": "Last installation",
         "Local": "Local",
-        "OK": "Okay",
+        "OK": "OK",
         "NOK": "NOK",
         "Installation en cours": "Loading installation",
         "Relancer": "Restart"
@@ -1242,7 +1242,7 @@
         "Etape 3 : vérification": "Step 3: verification",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Please enter the code provided for verification and activation of double authentication",
         "Code de test": "Test code",
-        "OK": "Okay",
+        "OK": "OK",
         "Configuration réussie": "Configuration successful",
         "Code invalide": "Invalid code"
     },
@@ -1253,7 +1253,7 @@
         "Port configuré": "Configured port",
         "Aucune santé spécifique": "No specific health",
         "Dépendances": "Dependencies",
-        "OK": "Okay",
+        "OK": "OK",
         "NOK": "NOK",
         "En cours": "In progress",
         "Configuration démon": "Daemon configuration",
@@ -2435,7 +2435,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Rechercher": "Search",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
-        "OK": "Okay"
+        "OK": "OK"
     },
     "desktop\/js\/update.js": {
         "Options": "Options",
@@ -2640,7 +2640,7 @@
         "Administrateur": "Administrator",
         "Utilisateur": "User",
         "Utilisateur limité": "Limited user",
-        "OK": "Okay",
+        "OK": "OK",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
         "Renouveler la clef API": "Renew the API key",
@@ -3758,7 +3758,7 @@
         "Commande retour interactions": "Interaction return command",
         "Commande sur ": "Command on",
         "Système à jour": "System up to date",
-        "OK": "Okay",
+        "OK": "OK",
         "Cron actif": "Active Cron",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Cron error: crons are disabled. Go to Settings -> System -> Task engine to reactivate them",

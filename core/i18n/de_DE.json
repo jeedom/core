@@ -279,7 +279,7 @@
         "Gestion automatique": "Automatisches management",
         "Dernier lancement": "Letzter Start",
         "Local": "Lokal",
-        "OK": "In Ordnung",
+        "OK": "Ok",
         "NOK": "NOK",
         "Désactiver": "Deactivate",
         "Activer": "Aktivieren"
@@ -385,7 +385,7 @@
         "Installation": "Installation",
         "Dernière installation": "Letzte Installation",
         "Local": "Lokal",
-        "OK": "In Ordnung",
+        "OK": "Ok",
         "NOK": "NOK",
         "Installation en cours": "Installation läuft",
         "Relancer": "Beleben"
@@ -1242,7 +1242,7 @@
         "Etape 3 : vérification": "Schritt 3: Überprüfung",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Bitte geben Sie den Code ein, der zur Überprüfung und Aktivierung der doppelten Authentifizierung bereitgestellt wird",
         "Code de test": "Testcode",
-        "OK": "In Ordnung",
+        "OK": "Ok",
         "Configuration réussie": "Konfiguration erfolgreich",
         "Code invalide": "Ungültiger Code"
     },
@@ -1253,7 +1253,7 @@
         "Port configuré": "Konfigurierter Port",
         "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "Dépendances": "Nebengebäude",
-        "OK": "In Ordnung",
+        "OK": "Ok",
         "NOK": "NOK",
         "En cours": "In Bearbeitung",
         "Configuration démon": "Daemon-Konfiguration",
@@ -2435,7 +2435,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Rechercher": "Suchen nach",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
-        "OK": "In Ordnung"
+        "OK": "Ok"
     },
     "desktop\/js\/update.js": {
         "Options": "Optionen",
@@ -2640,7 +2640,7 @@
         "Administrateur": "Verwalter",
         "Utilisateur": "Nutzer",
         "Utilisateur limité": "Begrenzter Benutzer",
-        "OK": "In Ordnung",
+        "OK": "Ok",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
         "Renouveler la clef API": "Erneuern Sie den API-Schlüssel",
@@ -3758,7 +3758,7 @@
         "Commande retour interactions": "Interaktionsrückgabebefehl",
         "Commande sur ": "Bestellen Sie am",
         "Système à jour": "Aktuelles System",
-        "OK": "In Ordnung",
+        "OK": "Ok",
         "Cron actif": "Active Cron",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Cron-Fehler: Cron sind deaktiviert. Gehen Sie zu Administration -> Cron-System, um sie wieder zu aktivieren",
