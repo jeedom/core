@@ -484,8 +484,8 @@ class update {
 			$this->setLocalVersion($_infos['localVersion']);
 		}
 		$this->save();
-		log::add('update', 'alert', __("OK\n", __FILE__));
-		log::add('update', 'alert', __("END UPDATE SUCCESS\n", __FILE__));
+		log::add('update', 'alert', __("OK", __FILE__)."\n");
+		log::add('update', 'alert', "END UPDATE SUCCESS", __FILE__)."\n");
 	}
 
 	public static function getLastAvailableVersion() {

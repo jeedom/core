@@ -1481,7 +1481,7 @@ class scenarioExpression {
 					} catch (Error $ex) {
 						$result = $options['value'];
 					}
-					$this->setLog($scenario, __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . __(' => ', __FILE__) . $options['value'] . ' = ' . $result);
+					$this->setLog($scenario, __('Affectation de la variable ', __FILE__) . $this->getOptions('name') . ' => ' . $options['value'] . ' = ' . $result);
 					$dataStore = new dataStore();
 					$dataStore->setKey($this->getOptions('name'));
 					$dataStore->setValue($result);

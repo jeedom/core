@@ -576,7 +576,7 @@ class cmd {
 	public static function byString($_string) {
 		$cmd = self::byId(str_replace('#', '', self::humanReadableToCmd($_string)));
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . __(' => ', __FILE__) . self::humanReadableToCmd($_string));
+			throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . ' => ' . self::humanReadableToCmd($_string));
 		}
 		return $cmd;
 	}
