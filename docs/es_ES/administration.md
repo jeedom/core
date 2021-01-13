@@ -10,7 +10,7 @@ Aunque muchos, la mayoría de los parámetros están configurados por defecto.
 En esta pestaña encontramos información general sobre Jeedom :
 
 - **Nombre de tu Jeedom** : Identifica tu Jeedom, especialmente en el mercado. Se puede reutilizar en escenarios o para identificar una copia de seguridad.
-- **Idioma** : Lenguaje usado en tu Jeedom.
+- **Lengua** : Lenguaje usado en tu Jeedom.
 - **Sistema** : Tipo de hardware en el que está instalado el sistema donde se ejecuta su Jeedom.
 - **Generar traducciones** : Genere traducciones, tenga cuidado, esto puede ralentizar su sistema. Opción especialmente útil para desarrolladores.
 - **Dia y hora** : Elige tu zona horaria. Puedes hacer clic en **Forzar la sincronización de la hora** para restaurar la hora incorrecta que se muestra en la esquina superior derecha.
@@ -23,7 +23,7 @@ En esta pestaña encontramos información general sobre Jeedom :
 A continuación, varios parámetros que centralizan la información que pueden usar los complementos, evitando tener que ingresarlos en cada complemento.
 
 - Contacto : Latitud, longitud y altitud de su hogar / sitio.
-- Dirección : Dirección postal de su hogar / sitio.
+- Habla a : Dirección postal de su hogar / sitio.
 - Diverso : Superficie y número de ocupantes de su hogar / sitio.
 
 ## Pestaña interfaz
@@ -48,7 +48,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 - **Activar** : Active el uso de las siguientes opciones.
 - **Transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Ronda** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
+- **Redondo** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
 - **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz.
 
 
@@ -81,14 +81,14 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
     - Marque la casilla habilitar proxy.
     - **Dirección proxy** : Ingrese la dirección del proxy,
     - **Puerto proxy** : Ingrese el puerto proxy,
-    - **Login** : Ingrese el inicio de sesión proxy,
+    - **Iniciar sesión** : Ingrese el inicio de sesión proxy,
     - **Contraseña** : Ingrese la contraseña.
 
-> **Punta**
+> **Propina**
 >
 > Si está en HTTPS, el puerto es 443 (predeterminado) y en HTTP el puerto es 80 (predeterminado). Para usar HTTPS desde el exterior, ahora está disponible en el mercado un complemento de letencrypt.
 
-> **Punta**
+> **Propina**
 >
 > Para saber si necesita establecer un valor en el campo **Complementar**, mire, cuando inicie sesión en Jeedom en su navegador de Internet, si necesita agregar / Jeedom (o lo que sea) después de la IP.
 
@@ -97,7 +97,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
     - **Usando Jeedom DNS** : activa Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio)).
     - **Estado de DNS** : Estado HTTP HTTP.
-    - **Gestión** : permite detener y reiniciar el servicio DNS de Jeedom.
+    - **Administración** : permite detener y reiniciar el servicio DNS de Jeedom.
 
 > **Importante**
 >
@@ -120,16 +120,16 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 
 ### Alertes
 
-- **Agregar un mensaje a cada tiempo de espera** : Agregue un mensaje en el centro de mensajes si cae un dispositivo **Tiempo de espera**.
-- **Orden de tiempo de espera** : Comando de tipo **Mensaje** para ser usado si un equipo está en **Tiempo de espera**.
-- **Agregue un mensaje a cada batería en Advertencia** : Agregue un mensaje en el centro de mensajes si un dispositivo tiene el nivel de batería en **Advertencia**.
-- **Comando de batería en Advertencia** : Comando de tipo **Mensaje** para ser usado si el equipo tiene el nivel de batería **Advertencia**.
-- **Agregue un mensaje a cada batería en peligro** : Agregue un mensaje en el centro de mensajes si un dispositivo tiene el nivel de batería en **Peligro**.
-- **Comando con batería en peligro** : Comando de tipo **Mensaje** para ser usado si el equipo tiene el nivel de batería **Peligro**.
-- **Agregue un mensaje a cada Advertencia** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **Advertencia**.
-- **Comando de advertencia** : Comando de tipo **Mensaje** para usar si un pedido entra en alerta **Advertencia**.
-- **Agregue un mensaje a cada peligro** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **Peligro**.
-- **Comando en peligro** : Comando de tipo **Mensaje** para usar si un pedido entra en alerta **Peligro**.
+- **Agregar un mensaje a cada tiempo de espera** : Agregue un mensaje en el centro de mensajes si cae un dispositivo **se acabó el tiempo**.
+- **Orden de tiempo de espera** : Comando de tipo **mensaje** para ser usado si un equipo está en **se acabó el tiempo**.
+- **Agregue un mensaje a cada batería en Advertencia** : Agregue un mensaje en el centro de mensajes si un dispositivo tiene el nivel de batería en **advertencia**.
+- **Comando de batería en Advertencia** : Comando de tipo **mensaje** para ser usado si el equipo tiene el nivel de batería **advertencia**.
+- **Agregue un mensaje a cada batería en peligro** : Agregue un mensaje en el centro de mensajes si un dispositivo tiene el nivel de batería en **peligro**.
+- **Comando con batería en peligro** : Comando de tipo **mensaje** para ser usado si el equipo tiene el nivel de batería **peligro**.
+- **Agregue un mensaje a cada Advertencia** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **advertencia**.
+- **Comando de advertencia** : Comando de tipo **mensaje** para usar si un pedido entra en alerta **advertencia**.
+- **Agregue un mensaje a cada peligro** : Agregue un mensaje en el centro de mensajes si un pedido entra en alerta **peligro**.
+- **Comando en peligro** : Comando de tipo **mensaje** para usar si un pedido entra en alerta **peligro**.
 
 ### Logs
 
@@ -144,16 +144,20 @@ A continuación encontrará una tabla para administrar con precisión el nivel d
 
 Agregar resúmenes de objetos. Esta información se muestra en la parte superior derecha de la barra de menú de Jeedom, o al lado de los objetos :
 
-- **Clave** : Clave para el resumen, especialmente para no tocar.
-- **Nombre** : Nombre abstracto.
+- **Llave** : Clave para el resumen, especialmente para no tocar.
+- **Apellido** : Nombre abstracto.
 - **Cálculo** : Método de cálculo, puede ser de tipo :
     - **Suma** : suma los diferentes valores,
-    - **Media** : valores promedio,
+    - **Promedio** : valores promedio,
     - **Texto** : muestra el valor literalmente (especialmente para aquellos de tipo string).
 - **Icono** : Ícono de resumen.
+- **Si el icono es nulo** : Icono de resumen si su valor es 0. Le permite especificar un icono diferente como el obturador cerrado, la luz apagada, etc.
 - **Unidad** : Unidad de resumen.
+- **Número oculto** : Nunca muestra el valor de resumen (el número a la derecha del).
+- ** Ocultar número si es cero** : Se usa para ocultar el valor de resumen, solo si es 0. Por lo tanto, podemos desear tener el icono de la contraventana abierto con su número y el icono de la contraventana cerrado sin el número cuando todas las contraventanas estén cerradas.
 - **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
-- **Mostrar si el valor es 0** : Marque esta casilla para mostrar el valor, incluso cuando sea 0.
+- **Si no** : Mostrar resumen incluso cuando su valor sea 0.
+- **Ignorar si** : Ignore un pedido para este resumen si no se ha actualizado durante x minutos.
 - **Enlace a un virtual** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen.
 - **Eliminar resumen** : El último botón, en el extremo derecho, elimina el resumen de la línea.
 
@@ -207,13 +211,13 @@ Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráf
 - **Profundidad para los comandos** : Lo mismo para pedidos.
 - **Profundidad para las variables** : Lo mismo para las variables.
 - **Prerender parámetro** : Le permite actuar sobre el diseño del gráfico.
-- **Parámetro de representación** : ídem.
+- **Parámetro de representación** : Mismo.
 
 ## Pestaña interacciones
 
 Esta pestaña le permite establecer parámetros globales relacionados con las interacciones que encontrará en Herramientas → Interacciones.
 
-> **Punta**
+> **Propina**
 >
 > Para activar el registro de interacción, vaya a la pestaña Configuración → Sistema → Configuración : Registros, luego verifique **Depurar** en la lista de abajo. Atención : los registros serán muy detallados !
 
@@ -231,9 +235,9 @@ Aquí tienes tres parámetros :
 
 ### Interacción automática, contextuales y de alerta
 
--   La **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible.
+-   Los **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible.
 
--   La **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
+-   Los **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
     - *Jeedom manteniendo el contexto :*
         - *Vosotras* : Cuanto esta el en el cuarto ?
         - *Jeedom* : Temperatura 25.2 ° C
@@ -272,7 +276,7 @@ Aquí están las diferentes opciones disponibles :
 
 - **Activar la autenticación LDAP** : habilitar la autenticación a través de un AD (LDAP).
 - **Host** : servidor que aloja el AD.
-- **Dominio** : dominio de su AD.
+- **Campo** : dominio de su AD.
 - **DN base** : DN base de su AD.
 - **Nombre de usuario** : nombre de usuario para que Jeedom inicie sesión en AD.
 - **Contraseña** : contraseña para que Jeedom se conecte a AD.
@@ -321,7 +325,7 @@ Depósito utilizado para conectar Jeedom a Github.
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
-- **Dirección** : Dirección du Mercado.(https://www.Jeedom.com/market).
+- **Habla a** : Habla a du Mercado.(https://www.Jeedom.com/market).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
 - **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de que se estrelle entre ellos)).
@@ -330,7 +334,7 @@ Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamen
 
 #### Samba
 
-Depósito que permite enviar automáticamente una copia de seguridad de Jeedom en un recurso compartido de Samba (ex : NAS Synology).
+Depósito que permite enviar automáticamente una copia de seguridad de Jeedom en un recurso compartido de Samba (ex : NAS de Synology).
 
 - **\ [Copia de seguridad \] IP** : IP del servidor Samba.
 - **\ [Copia de seguridad \] Usuario** : Nombre de usuario para la conexión (las conexiones anónimas no son posibles). El usuario debe tener derechos de lectura Y escritura en el directorio de destino.
@@ -392,7 +396,7 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 - **Discapacitado** : La clave API no se puede usar,
 - **IP en blanco** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : Redes),
 - **Localhost** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
-- **Activado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
+- **Habilitado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 
 Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado, algunos complementos como mobile o jeelink necesitan absolutamente métodos básicos)
 

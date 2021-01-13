@@ -58,13 +58,13 @@ Durante um backup, o Jeedom fará backup de todos os seus arquivos e do banco de
 
 No nível do protocolo, apenas o Z-Wave (OpenZwave) é um pouco diferente porque não é possível salvar as inclusões. Eles estão diretamente incluídos no controlador, portanto, você deve manter o mesmo controlador para encontrar seus módulos Zwave.
 
-> **NOTA**
+> **Nota**
 >
 > Não é feito backup do sistema no qual o Jeedom está instalado. Se você alterou as configurações deste sistema (inclusive via SSH), cabe a você encontrar uma maneira de recuperá-las se tiver alguma dúvida. Da mesma forma, os anexos também não são, então você terá que reinstalá-los após uma restauração
 
 # Backup em nuvem
 
-O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado. Isso permite que você os restaure facilmente e certifique-se de não perdê-los. O Market mantém os últimos 6 backups. Para se inscrever basta ir à sua página **Perfil** no mercado e depois na guia **meus backups**. Você pode, nesta página, recuperar um backup ou comprar uma assinatura (por 1, 3, 6 ou 12 meses).
+O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado. Isso permite que você os restaure facilmente e certifique-se de não perdê-los. O Market mantém os últimos 6 backups. Para se inscrever basta ir à sua página **perfil** no mercado e depois na guia **meus backups**. Você pode, nesta página, recuperar um backup ou comprar uma assinatura (por 1, 3, 6 ou 12 meses).
 
 > **Dica**
 >

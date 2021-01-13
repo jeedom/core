@@ -6,11 +6,11 @@ Você também pode manipular os plugins, a saber : baixar, atualizar e ativá-lo
 
 Existe, portanto, uma lista de plugins em ordem alfabética e um link para o mercado.
 - Os plug-ins desativados ficam acinzentados.
-- Plugins que não estão na versão *Estável* temos um ponto laranja na frente do nome.
+- Plugins que não estão na versão *estábulo* temos um ponto laranja na frente do nome.
 
 Ao clicar em um plug-in, você acessa sua configuração. Na parte superior, você encontra o nome do plug-in e, entre parênteses, seu nome em Jeedom (ID) e, finalmente, o tipo de versão instalada (estável, beta).
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Ao baixar um plug-in, ele é desativado por padrão. Então você tem que ativá-lo sozinho.
 
@@ -26,7 +26,7 @@ Aqui você tem três botões :
 
 Em um navegador, vá para o [Mercado](https://market.jeedom.com).
 Faça login em sua conta.
-Clique em um plug-in e escolha *Instale estável* onde *Instalar beta* (se sua conta do Market permitir).
+Clique em um plug-in e escolha *Instale estável* ou *Instalar beta* (se sua conta do Market permitir).
 
 Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
 
@@ -56,15 +56,15 @@ Depois de encontrar o plug-in desejado, basta clicar nele para abrir o arquivo. 
     - **Instale estável** : permite instalar o plugin em sua versão estável.
     - **Instalar beta** : permite instalar o plugin em sua versão beta (apenas para betatesters).
     - **Instalar pro** : permite instalar a versão pro (muito pouco usado).
-    - **Remover** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
+    - **Retirar** : se o plug-in estiver instalado no momento, esse botão permite removê-lo.
 
 Abaixo, você encontrará a descrição do plug-in, a compatibilidade (se o Jeedom detectar uma incompatibilidade, ele o notificará), as opiniões sobre o plug-in (você pode anotá-lo aqui) e informações adicionais (o autor, a pessoa que fez a atualização mais recente, um link para o documento, o número de downloads). À direita, você encontrará um botão "Changelog" que permite ter todo o histórico de modificações, um botão "Documentação" que se refere à documentação do plugin. Então você tem o idioma disponível e as várias informações na data da última versão estável.
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Não é realmente recomendável colocar um plug-in beta em um Jeedom não beta, pois muitos problemas operacionais podem resultar.
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Alguns plugins são cobrados; nesse caso, o plug-in oferecerá que você o compre. Depois de concluído, é necessário aguardar cerca de dez minutos (tempo de validação do pagamento) e retornar ao arquivo do plug-in para instalá-lo normalmente.
 
@@ -89,37 +89,40 @@ Ao clicar no ícone de um plugin, você abre sua página de configuração.
 - **Documentação** : Permite acesso direto à página de documentação do plug-in.
 - **Changelog** : Vamos ver o log de alterações do plugin, se existir.
 - **Detalhes** : Permite encontrar a página do plug-in no mercado.
-- **Remover** : Remova o plugin do seu Jeedom. Observe que isso também remove permanentemente todos os equipamentos deste plugin.
+- **Retirar** : Remova o plugin do seu Jeedom. Observe que isso também remove permanentemente todos os equipamentos deste plugin.
 
 ### Abaixo à esquerda, há uma área **Estado** com :
 
-- **Estado** : Permite ver o status do plug-in (ativo / inativo)).
-- **Versão** : A versão do plug-in instalado.
-- **Autor** : O autor do plugin.
-- **Ação** : Permite ativar ou desativar o plug-in.
-- **Versão Jeedom** : Indica a versão mínima do Jeedom necessária para o plug-in.
+- **Status** : Permite ver o status do plug-in (ativo / inativo)).
+- **Categoria** : A categoria do plugin, indicando em qual submenu encontrá-lo.
+- **Autor** : O autor do plugin, link para o mercado e os plugins deste autor.
 - **Licença** : Indica a licença do plug-in, que geralmente será AGPL.
+
+- **Açao** : Permite ativar ou desativar o plug-in. O botão **Abrir** Permite que você vá diretamente para a página do plugin.
+- **Versão** : A versão do plug-in instalado.
+- **Pré-requisitos** : Indica a versão mínima do Jeedom necessária para o plug-in.
+
 
 ### À direita, encontramos a área **Log e monitoramento** o que permite definir :
 
 - O nível de logs específicos para o plug-in (encontramos essa mesma possibilidade em Administração → Configuração na guia logs, na parte inferior da página).
 - Exibir logs do plug-in.
-- Batimento cardíaco : A cada 5 minutos, o Jeedom verifica se pelo menos um dispositivo de plug-in se comunicou nos últimos X minutos (se você deseja desativar a funcionalidade, basta colocar 0).
+- Batimento cardiaco : A cada 5 minutos, o Jeedom verifica se pelo menos um dispositivo de plug-in se comunicou nos últimos X minutos (se você deseja desativar a funcionalidade, basta colocar 0).
 - Reiniciar demônio : Se o hertbeat der errado, o Jeedom reiniciará o daemon.
 
 Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serão exibidas abaixo das áreas mencionadas acima.
 
 ### Dependências :
 
-- **Nome** : Geralmente será local.
-- **Estado** : Status de dependência, OK ou NOK.
+- **Último nome** : Geralmente será local.
+- **Status** : Status de dependência, OK ou NOK.
 - **Instalação** : Permite instalar ou reinstalar dependências (se você não fizer isso manualmente e elas estiverem NOK, o Jeedom cuidará de si mesmo depois de um tempo).
 - **última Instalação** : Data da última instalação da dependência.
 
 ### Demônio :
 
-- **Nome** : Geralmente será local.
-- **Estado** : Status do daemon, OK ou NOK.
+- **Último nome** : Geralmente será local.
+- **Status** : Status do daemon, OK ou NOK.
 - **Configuração** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
 - **(Reiniciar** : Permite iniciar ou reiniciar o demônio.
 - **Parar** : Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado).

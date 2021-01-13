@@ -30,7 +30,7 @@ Once you click on it, you get these different options :
 - **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving !).
 - **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
-> **IMPORTANT**
+> **Important**
 >
 > Before an update, by default, Jeedom will make a backup. In the event of a problem when applying an update, Jeedom will automatically restore the backup made just before. This principle is only valid for Jeedom updates and not for plugin updates.
 
@@ -42,7 +42,7 @@ Once you click on it, you get these different options :
 
 The table contains the versions of the Core and installed plugins.
 
-The plugins have a badge next to their name, specifying their version, green in color *Stable*, or orange in *Beta* Or other.
+The plugins have a badge next to their name, specifying their version, green in color *stable*, or orange in *beta* Or other.
 
 - **Status** : OK or NOK.
 - **Last name** : Name and origin of the plugin
@@ -57,7 +57,7 @@ On each line, you can use the following functions:
 - **Update** : Allows you to update the element (if it has an update).
 - **Changelog** : Allows access to the list of changes in the update.
 
-> **IMPORTANT**
+> **Important**
 >
 > If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
@@ -70,7 +70,7 @@ On each line, you can use the following functions:
 
 During or after an update, this tab allows you to read the log of this update in real time.
 
-> **NOTE**
+> **Note**
 >
 > This log normally ends with *[END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
 

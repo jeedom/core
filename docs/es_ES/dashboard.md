@@ -3,10 +3,10 @@
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-El tablero de instrumentos es una de las páginas principales de Jeedom, muestra un informe de toda la automatización de su hogar.
+El tablero es una de las páginas principales de Jeedom, muestra un informe de toda su domótica.
 Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jeedom e incluye todos los objetos visibles y sus equipos.
 
-![Salpicadero](../images/doc-dashboard-legends.png)
+![Tablero](../images/doc-dashboard-legends.png)
 
 - 1 : Menú principal de Jeedom.
 - 2 : Resumen global.
@@ -19,7 +19,7 @@ Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jee
 - 9 : Equipo de azulejos.
 - 10 : Solicitar widget.
 
-> **Punta**
+> **Propina**
 >
 > El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. Puede modificar este orden en esta página arrastrando y soltando.
 
@@ -37,7 +37,7 @@ Al mover el mouse sobre un pedido, aparece un marcador de color en la parte infe
 
 Además, puede hacer clic en el título del mosaico (el nombre del equipo) para abrir directamente la página de configuración de este equipo.
 
-> **Punta**
+> **Propina**
 >
 > Es posible ir directamente a un solo objeto en su domótica, a través del menú **Inicio → Panel de control → Nombre del objeto**.
 > Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
@@ -51,7 +51,7 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 
 - Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
 - Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
-- Un clic en la información *tiempo* de un comando de acción muestra el historial del comando (si está historizado).
+- Un clic en la información *hora* de un comando de acción muestra el historial del comando (si está historizado).
 
 
 ## Modo de edición
@@ -66,9 +66,9 @@ En cada objeto, a la derecha de su nombre y resumen, dos iconos le permiten alin
 
 ## Barra de menú Jeedom
 
-> **Punta**
+> **Propina**
 >
 > - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
 > - Haga clic en el nombre de Jeedom (barra de menú) : Abre Configuración → Sistema → Configuración.
-> - Haga clic en ? (Barra de menú) : Abre la ayuda en la página actual.
-> - Escapar en un campo de investigación : Borrar el campo y cancelar esta búsqueda .
+> - Haga clic en ? (Barra de menú) : Abrir ayuda en la página actual.
+> - Escapar en un campo de investigación : Borrar el campo y cancelar esta búsqueda.

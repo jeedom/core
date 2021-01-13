@@ -9,7 +9,7 @@ La página de Preferencias le permite configurar ciertos comportamientos de Jeed
 
 Define ciertos comportamientos de interfaz
 
-- **Página predeterminada** : Página para mostrar de forma predeterminada para mostrar cuando se conecta a una computadora de escritorio o móvil.
+- **Página predeterminada** : Página que se mostrará de forma predeterminada al conectarse a una computadora de escritorio o un dispositivo móvil.
 - **Objeto predeterminado** : Objeto para mostrar por defecto al llegar al Tablero / móvil.
 
 - **Vista predeterminada** : Ver para mostrar de forma predeterminada a la llegada en el Panel de control / móvil.
@@ -27,9 +27,9 @@ Define ciertos comportamientos de interfaz
 
 ## Pestaña de seguridad
 
-- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*). Tenga en cuenta que la autenticación doble solo se solicitará para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código.
+- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*). Tenga en cuenta que solo se solicitará la doble autenticación para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código.
 
-  **Importante** si durante la configuración de la autenticación doble tiene un error, debe verificar que Jeedom (consulte la página de salud) y su teléfono estén al mismo tiempo (una diferencia de 1 minuto es suficiente para que no funcione).
+  **Importante** si durante la configuración de la doble autenticación tienes un error, es necesario comprobar que Jeedom (ver en la página de salud) y tu teléfono están bien al mismo tiempo (1 min de diferencia es suficiente para que no funcione).
 
 - **Contraseña** : Le permite cambiar su contraseña (no olvide volver a escribirla a continuación)).
 
@@ -37,9 +37,9 @@ Define ciertos comportamientos de interfaz
 
 ### Sesiones activas
 
-Aquí tiene la lista de sus sesiones conectadas actualmente, su ID, su IP, así como la fecha de la última comunicación. Al hacer clic en &quot;Desconectar&quot; esto desconectará al usuario. Atención, si está en un dispositivo registrado, esto también eliminará la grabación.
+Aquí tiene la lista de sus sesiones conectadas actualmente, su ID, su IP, así como la fecha de la última comunicación. Al hacer clic en &quot;Desconectar&quot; esto desconectará al usuario. Tenga cuidado si está en un dispositivo registrado, esto también eliminará el registro.
 
-### Dispositivo registrado
+### Dispositivos registrados
 
 Aquí encontrará la lista de todos los dispositivos registrados (que se conectan sin autenticación) a su Jeedom, así como la fecha del último uso.
 Aquí puede eliminar el registro de un dispositivo. Atención, no lo desconecta, solo impedirá su reconexión automática.

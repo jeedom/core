@@ -6,7 +6,7 @@ O sistema de interação no Jeedom permite executar ações a partir de comandos
 Esses pedidos podem ser obtidos por :
 
 - SMS : envie um SMS para iniciar comandos (ação) ou faça uma pergunta (informações).
-- Cat : Telegrama, Slack, etc.
+- Gato : Telegrama, Slack, etc.
 - Vocal : dite uma frase com Siri, Google Now, SARAH etc. Para iniciar comandos (ação) ou fazer uma pergunta (informações).
 - HTTP : inicie uma URL HTTP contendo o texto (ex. Tasker, Slack) para iniciar comandos (ação) ou fazer uma pergunta (informações).
 
@@ -52,17 +52,17 @@ A página de configuração consiste em várias guias e botões :
 
 - **Frases** : Exibe o número de frases da interação (um clique nelas mostra a você).
 - **Registro** : Registra a interação atual.
-- **Remover** : Excluir interação atual.
-- **Duplicar** : Duplicar a interação atual.
+- **Retirar** : Excluir interação atual.
+- **Duplicado** : Duplicar a interação atual.
 
 ### Guia Geral
 
-- **Nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
+- **Último nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
 - **Grupo** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
-- **Ativos** : Permite ativar ou desativar a interação.
-- **Aplicação** : A sentença do modelo de geração (obrigatório).
+- **Ativo** : Permite ativar ou desativar a interação.
+- **Solicitação** : A sentença do modelo de geração (obrigatório).
 - **Sinônimo** : Permite definir sinônimos nos nomes dos comandos.
-- **Réponse** : A resposta para fornecer.
+- **Resposta** : A resposta para fornecer.
 - **Aguarde antes de responder (s))** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
 - **Conversão binária** : Converte valores binários em abertos / fechados, por exemplo (apenas para comandos do tipo de informações binárias).
 - **Usuários autorizados** : Limita a interação a certos usuários (logins separados por \|).
@@ -83,7 +83,7 @@ Use se você deseja direcionar um ou mais comandos específicos ou passar parâm
 
 #### Exemples
 
-> **NOTA**
+> **Nota**
 >
 > As capturas de tela podem ser diferentes em vista dos desenvolvimentos.
 
@@ -163,7 +163,7 @@ Como podemos ver aqui, mantive quase a mesma estrutura para a solicitação (é 
 
 O campo **Conversão binária** deve conter 2 respostas : primeiro a resposta se o valor do comando for 0, então uma barra vertical "\|" separação e, finalmente, a resposta se o comando vale 1. Aqui as respostas são simplesmente não e sim, mas poderíamos colocar uma frase um pouco mais longa.
 
-> **Aviso**
+> **Atenção**
 >
 > Tags não funcionam em conversões binárias.
 
@@ -285,7 +285,7 @@ Então podemos ver uma regexp :
 
 Isso permite que você exclua todos os comandos que possuem uma dessas palavras em suas frases
 
-> **NOTA**
+> **Nota**
 >
 > O regexp aqui é uma versão simplificada para fácil utilização. Portanto, podemos usar expressões tradicionais ou expressões simplificadas, como neste exemplo.
 
@@ -297,9 +297,9 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Aplicação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Réponse : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ação : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *ordem*.
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Solicitação : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Açao : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *depósito*.
 
-> **NOTA**
+> **Nota**
 >
 > Podemos usar qualquer tag, exceto as já usadas pelo Jeedom, pode haver várias para controlar, por exemplo, vários comandos. Observe também que todas as tags são passadas para os cenários iniciados pela interação (no entanto, é necessário que o cenário esteja em "Executar em primeiro plano"").
 
@@ -350,6 +350,6 @@ As interações fazem muitas coisas em particular. Você pode programar uma aç�
 
 ![interact23](../images/interact23.JPG)
 
-> **NOTA**
+> **Nota**
 >
 > Você notará na resposta a tag \#value\# isto contém, no caso de uma interação programada, o tempo efetivo de programação

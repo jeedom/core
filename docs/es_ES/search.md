@@ -3,7 +3,7 @@
 
 Jeedom ofrece un buscador interno.
 
-![Buscar](./images/search_intro.gif)
+![Investigación](./images/search_intro.gif)
 
 Puedes hacer búsquedas de diferentes tipos :
 
@@ -13,12 +13,12 @@ Seleccione un dispositivo con el icono a la derecha del campo.
 
 El motor se mostrará en las tablas a continuación :
 
-- La **Escenarios** usando este equipo.
-- La **Diseños** mostrando este equipo.
-- La **Vistas** mostrando este equipo.
-- La **Interacciones** usando este equipo.
-- Los otros **Dispositivos** usando este equipo.
-- La **Comandos** usando este equipo.
+- Los **Escenarios** usando este equipo.
+- Los **diseños** mostrando este equipo.
+- Los **puntos de vista** mostrando este equipo.
+- Los **interacciones** usando este equipo.
+- Los otros **equipo** usando este equipo.
+- Los **pedidos** usando este equipo.
 
 ## Por orden
 
@@ -26,12 +26,12 @@ Seleccione un pedido con el icono a la derecha del campo.
 
 El motor se mostrará en las tablas a continuación :
 
-- La **Escenarios** usando este comando.
-- La **Diseños** mostrando este comando.
-- La **Vistas** mostrando este comando.
-- La **Interacciones** usando este comando.
-- La **Dispositivos** usando este comando.
-- Los otros **Comandos** usando este comando.
+- Los **Escenarios** usando este comando.
+- Los **diseños** mostrando este comando.
+- Los **puntos de vista** mostrando este comando.
+- Los **interacciones** usando este comando.
+- Los **equipo** usando este comando.
+- Los otros **pedidos** usando este comando.
 
 ## Por variable
 
@@ -39,10 +39,10 @@ Seleccione una variable de la lista desplegable.
 
 El motor se mostrará en las tablas a continuación :
 
-- La **Escenarios** usando esta variable.
-- La **Interacciones** usando esta variable.
-- La **Dispositivos** usando esta variable.
-- La **Comandos** usando esta variable.
+- Los **Escenarios** usando esta variable.
+- Los **interacciones** usando esta variable.
+- Los **equipo** usando esta variable.
+- Los **pedidos** usando esta variable.
 
 ## Por plugin
 
@@ -50,54 +50,54 @@ Seleccione un complemento de la lista desplegable.
 
 El motor se mostrará en las tablas a continuación :
 
-- La **Escenarios** usando este complemento.
-- La **Diseños** mostrando este complemento.
-- La **Vistas** mostrando este complemento.
-- La **Interacciones** usando este complemento.
-- La **Dispositivos** usando este complemento.
-- La **Comandos** usando este complemento.
+- Los **Escenarios** usando este complemento.
+- Los **diseños** mostrando este complemento.
+- Los **puntos de vista** mostrando este complemento.
+- Los **interacciones** usando este complemento.
+- Los **equipo** usando este complemento.
+- Los **pedidos** usando este complemento.
 
 ## Por palabra
 
-Ingrese una cadena de caracteres en el campo de búsqueda. Validar con *Entrar* o con el botón *Buscar*.
+Ingrese una cadena de caracteres en el campo de búsqueda. Validar con *entrar* o con el botón *Buscar*.
 
 El motor se mostrará en las tablas a continuación :
 
-- La **Escenarios** usando esta cuerda.
+- Los **Escenarios** usando esta cuerda.
 	Buscar en expresiones, comentarios, bloques de código.
-- La **Interacciones** usando esta cuerda.
+- Los **interacciones** usando esta cuerda.
 	Buscar en campos *Solicitud*.
-- La **Dispositivos** usando esta cuerda.
-	Buscar en campos *nombre*, *Id. lógico*, *eqType*, *como*, *Etiquetas*.
-- La **Comandos** usando esta cuerda.
-	Buscar en campos *nombre*, *Id. lógico*, *eqType*, *tipo_genérico*, .
-- La **Notas** usando esta cuerda.
+- Los **equipo** usando esta cuerda.
+	Buscar en campos *nombre*, *logicId*, *eqType*, *¿Cómo? 'O' ¿Qué*, *etiquetas*.
+- Los **pedidos** usando esta cuerda.
+	Buscar en campos *nombre*, *logicId*, *eqType*, *tipo_genérico*, .
+- Los **notas** usando esta cuerda.
 	Búsqueda de texto de notas.
 
 ## Por ID
 
-Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con *Entrar* o con el botón *Buscar*.
+Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con *entrar* o con el botón *Buscar*.
 
 El motor se mostrará en las tablas a continuación :
 
-- El **Escenario** tener esta identificación.
-- El **Diseño** tener esta identificación.
-- El **Vista** tener esta identificación.
+- Los **Escenario** tener esta identificación.
+- Los **diseño** tener esta identificación.
+- Los **ver** tener esta identificación.
 - L'**Interacción** tener esta identificación.
-- L'**Dispositivos** tener esta identificación.
-- El **Comando** tener esta identificación.
-- El **Nota** tener esta identificación.
+- L'**equipo** tener esta identificación.
+- Los **ordenado** tener esta identificación.
+- Los **Nota** tener esta identificación.
 
 ## Resultados
 
 Para cada tipo de resultado, permite acciones:
 - **Escenarios** : Abra el registro del escenario o vaya a la página del escenario, con la búsqueda activa del término buscado.
-- **Diseños** : Mostrar diseño.
-- **Vistas** : Mostrar vista.
-- **Interacciones** : Abra la página de configuración de interacción.
-- **Dispositivos** : Abra la página de configuración del equipo.
-- **Comandos** : Abrir la configuración del pedido.
-- **Notas** : Nota abierta.
+- **diseños** : Mostrar diseño.
+- **puntos de vista** : Mostrar vista.
+- **interacciones** : Abra la página de configuración de interacción.
+- **equipo** : Abra la página de configuración del equipo.
+- **pedidos** : Abrir la configuración del pedido.
+- **notas** : Nota abierta.
 
 Cada una de estas opciones abre una pestaña diferente en su navegador para no perder la búsqueda actual.
 

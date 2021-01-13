@@ -8,7 +8,7 @@ These commands can be obtained by :
 - SMS : send an SMS to launch commands (action) or ask a question (info).
 - Cat : Telegram, Slack, etc.
 - Vocal : dictate a phrase with Siri, Google Now, SARAH, etc. To launch commands (action) or ask a question (info).
-- D'informations sont indispensables à la bonne compréhension de : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
+- HTTP : launch an HTTP URL containing the text (ex. Tasker, Slack) to launch commands (action) or ask a question (info).
 
 The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, etc.
 
@@ -51,7 +51,7 @@ We can also define a command to execute if for example the interaction is not li
 The configuration page consists of several tabs and buttons :
 
 - **Sentences** : Displays the number of sentences of the interaction (a click on them shows you).
-- **Save** : Record the current interaction.
+- **Record** : Record the current interaction.
 - **Remove** : Delete current interaction.
 - **Duplicate** : Duplicates the current interaction.
 
@@ -83,7 +83,7 @@ Use if you want to target one or more specific commands or pass specific paramet
 
 #### Exemples
 
-> **NOTE**
+> **Note**
 >
 > The screenshots may be different in view of developments.
 
@@ -285,7 +285,7 @@ So we can see a regexp :
 
 This allows you to delete all commands that have one of these words in their sentence
 
-> **NOTE**
+> **Note**
 >
 > The regexp here is a simplified version for easy use. We can therefore either use traditional expressions or use simplified expressions as in this example.
 
@@ -297,9 +297,9 @@ It is possible to control a lamp as a percentage (dimmer) or a thermostat with t
 
 ![interact022](../images/interact022.png)
 
-As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *Instructions*.
+As we can see, there is here in the request the tag **\#consigne\#** (you can put what you want) which is included in the drive control to apply the desired value. To do this, we have 3 parts : \* Request : in which we create a tag that will represent the value that will be sent to the interaction. \* Reply : we reuse the tag for the response to be sure that Jeedom correctly understood the request. \* Action : we put an action on the lamp we want to drive and in the value we pass it our tag *deposit*.
 
-> **NOTE**
+> **Note**
 >
 > We can use any tag except those already used by Jeedom, there can be several to control for example several commands. Note also that all the tags are passed to the scenarios launched by the interaction (it is however necessary that the scenario is in "Execute in foreground").
 
@@ -350,6 +350,6 @@ Interactions do a lot of things in particular. You can program an action dynamic
 
 ![interact23](../images/interact23.JPG)
 
-> **NOTE**
+> **Note**
 >
 > You will notice in the response the tag \#value\# this contains, in the case of a programmed interaction, the effective programming time

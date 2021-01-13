@@ -5,8 +5,8 @@
 When opening a page (Dashboard, Scenarios, etc.) the focus is on the search field. You can therefore directly type a search without further action.
 
 - Click on the clock (menu bar) : Open the Timeline.
-- Click on the name of the Jeedom (menu bar)  : Opens **Settings → System → Configuration**.
-- Click on ?  (Toolbar)  : Opens help on the current page.
+- Click on the name of the Jeedom (menu bar)  : Open **Settings → System → Configuration**.
+- Click on ?  (Toolbar)  : Open help on the current page.
 - Escape on a research field : Empty the search field and cancel it.
 
 ### Dashboard
@@ -72,7 +72,7 @@ In a Code block :
 - Ctrl S on a plugin configuration : Save.
 - Ctrl Click or Click Center on a plugin : Open plugin management in a new browser tab.
 
-### Plugins / *Plugin*
+### Plugins / *plugin*
 - On a device, Ctrl S  : Save.
 - On a device, Right click on a tab : Contextual menu to go directly to another device.
 - Ctrl Click or Center Click on a device: Open the plugin equipment in a new browser tab.
@@ -85,8 +85,8 @@ In a Code block :
 - Ctrl Shift E on a design : Entering or leaving edit mode.
 
 ### Home automation analysis / summary
-- Ctrl Click on icon *Open* (recherche) : Open all objects and equipment.
-- Ctrl Click on icon *Close* (recherche) : Closes all objects and equipment.
+- Ctrl Click on icon *To open* (recherche) : Open all objects and equipment.
+- Ctrl Click on icon *To close* (recherche) : Closes all objects and equipment.
 
 ### Analysis / History
 If several curves are displayed :
@@ -98,8 +98,8 @@ If several curves are displayed :
 - Ctrl Click on a legend : Show only this history.
 - Alt Click on a legend : Show all history.
 
-### Equipment Configuration window
+### Equipment configuration window
 - Ctrl Click on Save : Save and close window.
 
-### Command Configuration window
+### Command Configuration Window
 - Ctrl Click on Save : Save and close window.

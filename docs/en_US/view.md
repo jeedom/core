@@ -24,7 +24,7 @@ On a View, we find :
 
 ## Adding / Editing a view
 
-The principle is quite simple : a View is made up of areas. Each zone is of type *Graphic*, *Widget* or *Table*. Depending on this type, you can add graphics, equipment, or commands to it.
+The principle is quite simple : a View is made up of areas. Each zone is of type *graphic*, *widget* or *board*. Depending on this type, you can add graphics, equipment, or commands to it.
 
 - On the left of the page we find the list of Views as well as a creation button.
 - A button at the top right allows you to edit the Current View (Configuration).
@@ -89,7 +89,7 @@ Here you have the buttons :
 - **Add column** : Add a column to the table.
 - **Add line** : Add a row to the table.
 
-> **NOTE**
+> **Note**
 >
 > It is possible to reorganize the rows by dragging and dropping but not the columns.
 

@@ -59,7 +59,7 @@ This tab allows you to see all the defined alerts, you will find in a table the 
 This tab allows you to see at a glance if you have orphaned commands used through Jeedom. An orphan command is a command used somewhere but which no longer exists. We will find here all of these commands, such as for example :
 
 - Orphan commands used in the body of a scenario.
-- those used to trigger a scenario.
+- Those used to trigger a scenario.
 
 And used in many other places like (not exhaustive) :
 - The interactions.
@@ -67,6 +67,8 @@ And used in many other places like (not exhaustive) :
 - In pre or post action of a command.
 - In action on command status.
 - In some plugins.
+
+If the id of the orphan order is still present in the deletion history (available in Analysis / Home automation summary), its old name and date of deletion will be displayed.
 
 > **Tip**
 >

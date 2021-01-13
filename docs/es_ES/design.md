@@ -4,7 +4,7 @@
 Esta página le permite configurar la visualización de toda su domótica de una manera muy fina.
 Lleva tiempo pero su único límite es tu imaginación.
 
-> **Punta**
+> **Propina**
 >
 > Es posible ir directamente a un diseño gracias al submenú.
 
@@ -28,8 +28,8 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
 - **Agregar área** : Permite agregar una zona transparente en la que se puede hacer clic que podrá ejecutar una serie de acciones durante un clic (dependiendo o no del estado de otro comando)).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
-- **Viendo**
-    - **No** : No muestra ninguna cuadrícula.
+- **Monitor**
+    - **Ninguna** : No muestra ninguna cuadrícula.
     - **10x10** : Muestra una cuadrícula de 10 por 10.
     - **15x15** : Muestra una cuadrícula de 15 por 15.
     - **20x20** : Muestra una cuadrícula de 20 por 20.
@@ -40,7 +40,7 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Crea un diseño** : Le permite agregar un nuevo diseño.
 - **Diseño duplicado** : Duplica el diseño actual.
 - **Configura el diseño** : Acceso a la configuración del diseño.
-- **Guardar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
+- **Salvar** : Guarde el diseño (nota, también hay copias de seguridad automáticas durante ciertas acciones).
 
 > **Importante**
 >
@@ -116,7 +116,7 @@ Le permite elegir los comandos para graficar.
 - **Frontera** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 - **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
 - **Alineación de texto** : le permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Grasa** : texto en negrita.
+- **Gordo** : texto en negrita.
 - **Texto** : Texto en código HTML que estará en el elemento.
 
 > **Importante**
@@ -139,7 +139,7 @@ Le permite elegir los comandos para graficar.
 - **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Alineación de texto** : Le permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Grasa** : Texto en negrita.
+- **Gordo** : Texto en negrita.
 
 ## Equipement
 
@@ -149,7 +149,7 @@ Le permite elegir los comandos para graficar.
 - **Ocultar nombre** : Marque para ocultar el nombre del equipo.
 - **Color de fondo** : Le permite elegir un color de fondo personalizado, mostrar el equipo con un fondo transparente o usar el color predeterminado.
 - **Color del texto** : Le permite elegir un color de fondo personalizado o usar el color predeterminado.
-- **Redondeado** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo.
+- **Redondeo** : Valor en píxeles del redondeo de los ángulos del mosaico del equipo.
 - **Frontera** : Definición CSS de un borde de mosaico de equipo. Ex : 1px negro sólido.
 - **Opacidad** : Opacidad del mosaico del equipo, entre 0 y 1. Atención : se debe definir un color de fondo.
 - **CSS personalizado** : Reglas CSS para aplicar en el equipo.
@@ -178,7 +178,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 ### Configuraciones de pantalla específicas
 
-- **Visualización** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
+- **Fijar** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
 - **Imagen** : Enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
@@ -219,7 +219,7 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Permite redondear los ángulos, no olvides poner el%.
 - **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
-- **Grasa** : Texto en negrita.
+- **Gordo** : Texto en negrita.
 
 ## FAQ
 

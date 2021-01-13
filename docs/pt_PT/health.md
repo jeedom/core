@@ -4,7 +4,7 @@
 A página Jeedom Health permite que você tenha uma visão geral rápida do status de saúde de seu Jeedom.
 Também indica (se os plugins o usarem) o estado de saúde do plug-in.
 
-> **NOTA**
+> **Nota**
 >
 > Clique no ícone no canto superior direito para acessar a referência do seu Jeedom.
 
@@ -22,10 +22,10 @@ Abaixo, você encontra a saúde de cada plug-in, um clique no nome do plug-in fo
 -   Exibição da página de configuração do plug-in.
 -   Estado geral do plug-in.
 
-> **NOTA**
+> **Nota**
 >
 > Os ícones podem variar dependendo do plugin.
 
-> **NOTA**
+> **Nota**
 >
 > Geralmente quando a linha está verde, está tudo bem e quando está vermelha, há um problema.

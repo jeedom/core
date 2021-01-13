@@ -3,19 +3,19 @@
 
 ## Timeline
 
-A página Timeline permite que você exiba eventos cronologicamente, como mudanças de pedidos *Informações*, gatilhos de comando *Ação*, e execuções de cenários.
+A página Timeline permite que você exiba eventos cronologicamente, como mudanças de pedidos *informação*, gatilhos de comando *açao*, e execuções de cenários.
 
 Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo dos comandos ou cenários desejados, para que esses eventos ocorram.
 
-- **Cenas** : Diretamente na página do cenário ou na página de resumo do cenário para fazê-lo em massa".
-- **Ordem** : Na configuração avançada do comando ou na configuração do histórico para fazê-lo em "massa".
+- **Cenário** : Diretamente na página do cenário ou na página de resumo do cenário para fazê-lo em massa".
+- **Encomendado** : Na configuração avançada do comando ou na configuração do histórico para fazê-lo em "massa".
 
-![Cronograma](images/timeline_intro.jpg)
+![Linha do tempo](images/timeline_intro.jpg)
 
-A linha do tempo *Principal* sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo *Ficheiro*. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
-Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do botão *Legal*.
+A linha do tempo *A Principal* sempre contém todos os eventos. No entanto, você pode filtrar a linha do tempo *pasta*. Em cada local em que você ativa a linha do tempo, você terá um campo para inserir o nome de uma pasta, existente ou não.
+Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do botão *Atualizar*.
 
-> **NOTA**
+> **Nota**
 >
 > Se você não usar mais uma pasta, ela aparecerá na lista enquanto existirem eventos vinculados a essa pasta. Ele desaparecerá da lista por si só.
 
@@ -25,7 +25,7 @@ Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do
 
 Depois de ativar o rastreamento na linha do tempo dos comandos e cenários desejados, você poderá vê-los aparecer na linha do tempo.
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Você precisa aguardar novos eventos após ativar o rastreamento na linha do tempo antes de vê-los aparecer.
 

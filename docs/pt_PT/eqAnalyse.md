@@ -59,7 +59,7 @@ Essa guia permite ver todos os alertas definidos; você encontrará em uma tabel
 Essa guia permite ver rapidamente se você possui comandos órfãos usados pelo Jeedom. Um comando órfão é um comando usado em algum lugar, mas que não existe mais. Vamos encontrar aqui todos esses comandos, como por exemplo :
 
 - Comandos órfãos usados no corpo de um cenário.
-- aqueles usados para desencadear um cenário.
+- Aqueles usados para desencadear um cenário.
 
 E usado em muitos outros lugares como (não exaustivo) :
 - Interações.
@@ -67,6 +67,8 @@ E usado em muitos outros lugares como (não exaustivo) :
 - Na ação anterior ou posterior a um pedido.
 - Em ação no status do pedido.
 - Em alguns plugins.
+
+Se o id do pedido órfão ainda estiver presente no histórico de exclusão (disponível em Análise / Resumo de automação residencial), seu antigo nome e data de exclusão serão exibidos.
 
 > **Dica**
 >

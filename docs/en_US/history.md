@@ -19,7 +19,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 >
 > If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. Why ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
 
-> **IMPORTANT**
+> **Important**
 >
 > Of course, this archiving principle only applies to digital type commands; on binary type commands, Jeedom keeps only the dates of change of state.
 
@@ -36,12 +36,12 @@ There are several ways to access the history :
 
 If you display a graph via the history page, you have access to several display options, above the graph :
 
-- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* IN *Settings → System → Configuration / Equipment*.
+- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* in *Settings → System → Configuration / Equipment*.
 - **Group** : Offers several grouping options (Sum per hour, etc.).
-- **Display type** : Display in *Line*, *Area*, or *Bar*. Option saved on the order and used from the Dashboard.
+- **Display type** : Display in *Line*, *Area*, or *Closed off*. Option saved on the order and used from the Dashboard.
 - **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
 - **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
-- **Compare** : Compare the curve between different periods. The comparison is made according to the displayed period. If the period is one week, the comparison will be made over -1 week, -2 week, etc.
+- **Compare** : Compare the curve between different periods.
 
 
 > **Tip**
@@ -70,7 +70,7 @@ The history page gives access to some additional options
 
 #### Calculated history
 
-Allows you to display a curve according to a calculation on several commands (you can do almost everything, + - / \* absolute value… see PHP documentation for certain functions).
+Allows to display a curve according to a calculation on several commands (you can pretty much do anything, + - / \* absolute value ... see PHP documentation for some functions).
 Ex :
 abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)
 

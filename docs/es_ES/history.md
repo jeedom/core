@@ -15,7 +15,7 @@ El archivo de datos le permite a Jeedom reducir la cantidad de datos almacenados
 
 El archivado es una tarea que comienza de noche y compacta los datos recuperados durante el día. De forma predeterminada, Jeedom recupera todos los datos anteriores de 2 horas y crea paquetes de 1 hora (ya sea un promedio, un mínimo o un máximo dependiendo de la configuración). Así que aquí tenemos dos parámetros, uno para el tamaño del paquete y otro para saber cuándo hacerlo (por defecto, estos son paquetes de 1 hora con datos que tienen más de 2 horas de antigüedad).
 
-> **Punta**
+> **Propina**
 >
 > Si ha seguido bien, debe tener una alta precisión solo en las últimas 2 horas. Sin embargo, cuando me conecto a las 5 p.m., tengo precisión en las últimas 17 horas. Por qué ? De hecho, para evitar consumir recursos innecesariamente, la tarea de archivo se lleva a cabo solo una vez al día, por la noche.
 
@@ -36,15 +36,15 @@ Hay varias formas de acceder al historial :
 
 Si muestra un gráfico a través de la página del historial, tiene acceso a varias opciones de visualización, arriba del gráfico :
 
-- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* DENTRO DE *Configuración → Sistema → Configuración / Equipo*.
-- **Agrupar** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
-- **Tipo de visualización** : Mostrar en *Línea*, *área*, o *Bar*. Opción guardada en el pedido y utilizada desde el Tablero.
-- **Cambio** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* dentro *Configuración → Sistema → Configuración / Equipo*.
+- **Grupo** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
+- **Tipo de visualización** : Mostrar en *Línea*, *Zona*, o *Cerrada*. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Variación** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Escalera** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
-- **Comparar** : Compara la curva entre diferentes períodos. La comparación se realiza según el período mostrado. Si el período es de una semana, la comparación se realizará durante -1 semana, -2 semanas, etc.
+- **Comparar** : Compara la curva entre diferentes períodos.
 
 
-> **Punta**
+> **Propina**
 >
 > Si visualiza varias curvas al mismo tiempo:
 > - Haga clic en una leyenda debajo del gráfico para mostrar / ocultar esta curva.
@@ -59,10 +59,10 @@ También puede mostrar los gráficos en las vistas (veremos aquí las opciones d
 Una vez que se activan los datos, puede elegir :
 - **Color** : El color de la curva.
 - **Tipo** : El tipo de gráfico (área, línea o columna).
-- **Escala** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
+- **Escalera** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
 - **Escalera** : Muestra la curva como una escalera o una pantalla continua.
-- **Montón** : Apila los valores de las curvas (ver abajo el resultado).
-- **Cambio** : Muestra la diferencia de valor del punto anterior.
+- **Apilar** : Apila los valores de las curvas (ver abajo el resultado).
+- **Variación** : Muestra la diferencia de valor del punto anterior.
 
 ### Opción en la página del historial
 
@@ -70,13 +70,13 @@ La página del historial da acceso a algunas opciones adicionales
 
 #### Historia calculada
 
-Le permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer casi todo, + - / \* valor absoluto ... consulte la documentación de PHP para ciertas funciones).
+Permite mostrar una curva de acuerdo con un cálculo en varios comandos (puede hacer prácticamente cualquier cosa, + - / \* valor absoluto ... consulte la documentación de PHP para algunas funciones).
 Ex :
 abs(*\ [Jardín \] \ [Higrometría \] \ [Temperatura \]* - *\ [Espacio vital \] \ [Higrometría \] \ [Temperatura \]*)
 
 También tiene acceso a una gestión de fórmulas de cálculo que le permite guardarlas para volver a mostrarlas más fácilmente.
 
-> **Punta**
+> **Propina**
 >
 > Simplemente haga clic en el nombre del objeto para desplegarlo y muestre los comandos históricos que se pueden mostrar.
 
@@ -84,7 +84,7 @@ También tiene acceso a una gestión de fórmulas de cálculo que le permite gua
 
 Frente a cada dato que se puede mostrar, encontrará dos íconos :
 
-- **Cubo de basura** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
+- **Bote de basura** : Le permite eliminar los datos grabados; Al hacer clic, Jeedom pregunta si eliminar los datos antes de una fecha determinada o todos los datos.
 - **Flecha** : Permite la exportación CSV de datos históricos.
 
 ### Eliminación de valor inconsistente

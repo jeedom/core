@@ -8,11 +8,11 @@ Estas órdenes pueden ser obtenidas por :
 - SMS : enviar un SMS para iniciar comandos (acción) o hacer una pregunta (información).
 - Gato : Telegram, Slack, etc.
 - Vocal : dicta una frase con Siri, Google Now, SARAH, etc. Para iniciar comandos (acción) o hacer una pregunta (información).
-- Http : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
+- HTTP : lanzar una URL HTTP que contenga el texto (ej. Tasker, Slack) para iniciar comandos (acción) o hacer una pregunta (información).
 
 El valor de las interacciones radica en la integración simplificada en otros sistemas como teléfonos inteligentes, tabletas, otras cajas de automatización del hogar, etc.
 
-> **Punta**
+> **Propina**
 >
 > Puede abrir una interacción haciendo :
 > - Haga clic en uno de ellos.
@@ -34,7 +34,7 @@ En la parte superior de la página, hay 3 botones :
 - **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prueba** : Abre un diálogo para escribir y probar una oración.
 
-> **Punta**
+> **Propina**
 >
 > Si tiene una interacción que genera las oraciones para las luces, por ejemplo, y agrega un nuevo módulo de control de luz, tendrá que regenerar todas las interacciones o ir a la interacción en cuestión y guardarla nuevamente para crear las oraciones de este nuevo módulo.
 
@@ -51,15 +51,15 @@ También podemos definir un comando para ejecutar si, por ejemplo, la interacci�
 La página de configuración consta de varias pestañas y botones :
 
 - **Frases** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **Registro** : Grabar la interacción actual.
-- **Remove** : Eliminar interacción actual.
-- **Duplicado** : Duplica la interacción actual.
+- **Grabar** : Grabar la interacción actual.
+- **Eliminar** : Eliminar interacción actual.
+- **Duplicar** : Duplica la interacción actual.
 
 ### Pestaña General
 
 - **Apellido** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
 - **Grupo** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
-- **Bienes** : Habilita o deshabilita la interacción.
+- **Activo** : Habilita o deshabilita la interacción.
 - **Solicitud** : La oración modelo generadora (requerida).
 - **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
@@ -103,7 +103,7 @@ Podemos imaginar hacer lo mismo con varias acciones para encender varias lámpar
 
 En los 2 ejemplos anteriores, la oración modelo es idéntica pero las acciones que resultan de ella cambian de acuerdo con lo que está configurado en la parte "Acción", por lo tanto, ya con una simple interacción con una sola oración podemos imaginar acciones combinadas entre varios comandos y diversos escenarios (también podemos activar escenarios en la parte de acción de las interacciones).
 
-> **Punta**
+> **Propina**
 >
 > Para agregar un escenario, cree una nueva acción, escriba &quot;escenario&quot; sin acento, presione la tecla de tabulación en su teclado para que aparezca el selector de escenario.
 
@@ -242,7 +242,7 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 ![interact017](../images/interact017.png)
 
-Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *Julie*\|si hay alguien en la sala *Julie*"
+Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *julia*\|si hay alguien en la sala *julia*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *Consigna*.
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
 
 > **Nota**
 >

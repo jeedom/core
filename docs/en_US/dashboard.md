@@ -70,5 +70,5 @@ On each object, to the right of its name and summary, two icons allow you to ali
 >
 > - Click on the clock (menu bar) : Open the Timeline.
 > - Click on the name of the Jeedom (menu bar) : Opens Settings → System → Configuration.
-> - Click on ? (Toolbar) : Opens help on the current page.
-> - Escape on a research field : Clear the field and cancel this search .
+> - Click on ? (Toolbar) : Open help on the current page.
+> - Escape on a research field : Clear the field and cancel this search.

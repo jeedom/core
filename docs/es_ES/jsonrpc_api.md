@@ -125,7 +125,7 @@ Configuraciones:
 
 -   nombre de cadena
 
--   int father\_id = null
+-   int padre\_id = null
 
 -   int isVisible = 0
 
@@ -158,7 +158,7 @@ Configuraciones:
 
 -   clave de cuerda : (opcional), clave del resumen deseado, si está vacío, entonces Jeedom devuelve el resumen de todas las claves
 
-API JSON EqLogic
+API JSON de EqLogic
 ================
 
 eqLogic::all
@@ -412,7 +412,7 @@ Configuraciones:
 
 -   int id : ID del escenario en el que importar (vacío si la creación)
 
--   string humanName : *nombre humano* del escenario (vacío si creación)
+-   cadena humanName : *nombre humano* del escenario (vacío si creación)
 
 -   importación de matriz : escenario (del campo escenario de exportación::export)
 
@@ -441,7 +441,7 @@ Configuraciones:
 
 -   inicio de cadena : número de línea en el que comenzar a leer
 
--   string nbLine : cantidad de líneas para recuperar
+-   cadena nbLine : cantidad de líneas para recuperar
 
 log::add
 --------
@@ -456,7 +456,7 @@ Configuraciones:
 
 -   mensaje de cadena : mensaje de texto para escribir
 
--   string logicalId : Id. lógico del mensaje generado
+-   string logicId : Id. lógico del mensaje generado
 
 
 log::list
@@ -540,7 +540,7 @@ Configuraciones:
 
 -   acción de cuerda : action
 
--   string logicalId : logicalId
+-   string logicId : logicalId
 
 message::removeAll
 ------------------
@@ -559,7 +559,7 @@ Configuraciones:
 
 -   consulta (frase de solicitud)
 
--   int reply\_cmd = NULL : ID de comando para usar para responder,
+-   int respuesta\_cmd = NULL : ID de comando para usar para responder,
     si no especifica, entonces Jeedom le devuelve la respuesta en el json
 
 interactQuery::all
@@ -754,7 +754,7 @@ Ejemplos de API JSON
 =================
 
 Aquí hay un ejemplo del uso de la API. Para el siguiente ejemplo
-Yo uso [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+yo suelo [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
 Recuperando la lista de objetos :

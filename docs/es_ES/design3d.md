@@ -4,7 +4,7 @@
 Esta página le permite crear una vista 3D de su hogar que puede reaccionar dependiendo del estado de la información variada en su domótica.
 
 
-> **Punta**
+> **Propina**
 >
 > Es posible ir directamente a un diseño 3D gracias al submenú.
 
@@ -45,7 +45,7 @@ Haga clic en el botón &quot;enviar&quot; en el nivel &quot;Modelo 3D&quot; y se
 >
 > Debes tener un archivo zip.
 
-> **Punta**
+> **Propina**
 >
 > Una vez que se haya importado el archivo (puede ser bastante largo dependiendo del tamaño del archivo), debe actualizar la página para ver el resultado (F5).
 
@@ -64,7 +64,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 ### Luz
 
-- Estatus : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
+- Estado : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
 - Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad))
 
 ### Texte
@@ -89,7 +89,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
 - Translation
 	- Activar : activa la traducción al abrir (puerta corredera / tipo de ventana))
-	- Significado : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
+	- Sentido : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
 	- Repetición : de forma predeterminada, la Puerta / Ventana se mueve una vez que su dimensión en la dirección dada, pero puede aumentar este valor
 - Ocultar cuando la puerta / ventana está abierta
 	- Activar : Oculta el elemento si la puerta / ventana está abierta
@@ -109,6 +109,6 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 Si la condición es válida, permite dar el color elegido al elemento. Puedes poner tantos colores / condiciones como quieras.
 
-> **Punta**
+> **Propina**
 >
 > Las condiciones se evalúan en orden, se tomará la primera que sea verdadera, por lo tanto, las siguientes no se evaluarán

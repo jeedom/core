@@ -3,7 +3,7 @@
 
 O **Objetos** permitem definir a estrutura em árvore da sua automação residencial.
 
-Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mais facilmente identificável. Dizemos então que o objeto é o **Pai** equipamento.
+Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mais facilmente identificável. Dizemos então que o objeto é o **pai** equipamento.
 
 Para dar livre escolha à personalização, você pode nomear esses objetos como desejar. Normalmente, definiremos as diferentes partes de sua casa, como o nome dos quartos (esta também é a configuração recomendada).
 
@@ -40,17 +40,23 @@ Ao clicar em um objeto, você acessa sua página de configuração. Quaisquer qu
 
 Aqui estão as diferentes características para configurar um objeto :
 
+#### Configurações :
+
 - **Nome do objeto** : O nome do seu objeto.
-- **Pai** : Indica o pai do objeto atual, isso permite definir uma hierarquia entre os objetos. Por exemplo : A sala está relacionada ao apartamento. Um objeto pode ter apenas um pai, mas vários objetos podem ter o mesmo pai.
-- **Visivél** : Marque esta caixa para tornar este objeto visível.
+- **Objeto pai** : Indica o pai do objeto atual, isso permite definir uma hierarquia entre os objetos. Por exemplo : A sala está relacionada ao apartamento. Um objeto pode ter apenas um pai, mas vários objetos podem ter o mesmo pai.
+- **Visível** : Marque esta caixa para tornar este objeto visível.
 - **Esconder o painel de instrumentos** : Marque esta caixa para ocultar o objeto no painel. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
-- **Ocultar no resumo'** : Marque esta caixa para ocultar o objeto no resumo'. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
-- **ícone** : Permite escolher um ícone para o seu objeto.
-- **Cores personalizadas** : Ativa a consideração dos dois parâmetros de cores opcionais.
+- **Ocultar no resumo** : Marque esta caixa para ocultar o objeto no resumo'. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
+- **Ação de síntese** : Aqui você pode indicar uma vista ou desenho para ir ao clicar no objeto do Resumo. *Padrão : Painel de controle*.
+
+#### Exibição :
+
+- **Ícone** : Permite escolher um ícone para o seu objeto.
+- **Cores personalizadas** : Ativa a consideração dos dois parâmetros de cores personalizadas abaixo.
 - **Cor tag** : Permite escolher a cor do objeto e o equipamento a ele conectado.
 - **Texto tag Cor** : Permite escolher a cor do texto do objeto. Este texto estará sobre o **Cor tag**. Você escolhe uma cor para tornar o texto legível.
-- **Imagem** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
-- **Somente na síntese** : Permite colocar uma imagem para a síntese sem ser usada como imagem de fundo.
+- **Somente na síntese** : Permite que você coloque uma imagem para a Síntese sem que seja usada como imagem de fundo, especialmente na página *Painel de controle* deste objeto.
+- **Cenário** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
 
 > **Dica**
 >
@@ -62,7 +68,7 @@ Aqui estão as diferentes características para configurar um objeto :
 
 > **Dica**
 >
-> Quando um dispositivo é criado e nenhum pai foi definido, ele terá como pai : **Nemhum**.
+> Quando um dispositivo é criado e nenhum pai foi definido, ele terá como pai : **Não**.
 
 ## Guia Resumo
 
@@ -95,11 +101,11 @@ Se um ou mais resumos já estiverem definidos, o seletor aparece em laranja, com
 
 A visão geral permite visualizar todos os objetos no Jeedom, bem como suas configurações :
 
-- **ID** : Object ID.
+- **EU IRIA** : Object ID.
 - **Objeto** : Nome do objeto.
 - **Pai** : Nome do objeto pai.
-- **Visivél** : Visibilidade do objeto.
-- **Mascarado** : Indica se o objeto está oculto no painel.
+- **Visível** : Visibilidade do objeto.
+- **Mascarar** : Indica se o objeto está oculto no painel.
 - **Resumo definido** : Indica o número de pedidos por resumo. O que está em azul é levado em consideração no resumo global.
 - **Resumo do painel oculto** : Indica resumos ocultos no painel.
 - **Resumo para celular oculto** : Mostrar resumos ocultos no celular.

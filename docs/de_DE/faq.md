@@ -1,5 +1,5 @@
 # FAQ
-**Einstellungen → Version : Faq**
+**Einstellungen → Version : FAQ**
 
 ### Jeedom benötigt ein Abonnement ?
 Nein, Jeedom ist vollständig nutzbar, ohne dass ein Abonnement erforderlich ist. Es werden jedoch Dienste für Backups oder Anrufe / SMS angeboten, die jedoch wirklich optional sind.
@@ -14,13 +14,13 @@ Jeedom verfügt über eine mobile Version, die für Mobilgeräte und Tablets gee
 Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und auch danach, wenn Sie sie nicht geändert haben), lauten der Standardbenutzername und das Standardkennwort admin / admin. Bei der ersten Verbindung wird dringend empfohlen, diese Kennungen zu ändern, um die Sicherheit zu erhöhen.
 
 ### Ich kann mich nicht mehr mit meinem Jeedom verbinden
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [hier](https://doc.jeedom.com/de_DE/howto/reset.password).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [Hier](https://doc.jeedom.com/de_DE/howto/reset.password).
 
 ### Ich sehe nicht alle meine Geräte im Dashboard
 Dies liegt häufig daran, dass die Ausrüstung einem Objekt zugeordnet ist, das nicht der Sohn oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dieses in Ihrem Profil konfigurieren).
 
 ### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
-Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier](shortcuts.md).
+Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [Hier](shortcuts.md).
 
 ### Können wir Ausrüstungsbestellungen nachbestellen? ?
 Ja, es ist möglich, ziehen Sie einfach die Befehle Ihres Objekts in die Konfiguration und legen Sie sie dort ab.
@@ -42,13 +42,13 @@ Sie befinden sich im Ordner / var / www / html / backup
 
 ### Können wir Jeedom in https setzen? ?
 Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
-benutze einfach die [DNS Jeedom](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
+benutze einfach die [Jeedom DNS](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
 ### So verbinden Sie sich in SSH ?
 Hier ist ein [Dokumentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
-- Benutzername : "root ", Passwort : "Mjeedom96"
-- Benutzername : "jeedom ", Passwort : "Mjeedom96"
+- Nutzername : "root ", Passwort : "Mjeedom96"
+- Nutzername : "jeedom ", Passwort : "Mjeedom96"
 - Oder was Sie in die Installation einfügen, wenn Sie in DIY sind
 
 Beachten Sie, dass beim Schreiben des Passworts nichts auf dem Bildschirm angezeigt wird. Dies ist normal.
@@ -142,7 +142,7 @@ Oder konsultieren Sie das Protokoll : /var/log/mysql/error.log
 
 ### Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
 Bei einer DIY-Installation ist das normal. In SSH müssen Sie den Befehl visudo ausführen und am Ende der Datei hinzufügen : www-data ALL = (ALL)
-NOPASSWD: Alle.
+NOPASSWD: ALLE.
 
 `` `{.bash}
 sudo service apache2 neu starten
@@ -188,7 +188,7 @@ rm -rf / root / tmp / core-master
 ### Ich habe den Fehler in Szenario_Ausführung MYSQL_ATTR_INIT_COMMAND
 Bei der Verwaltung des Jeedom-Teils OS / DB muss dann in der Systemkonsole vorgenommen werden :
 `` ''
-ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+Ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 `` ''
 
 ### Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : "E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden"

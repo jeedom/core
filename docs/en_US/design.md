@@ -8,7 +8,7 @@ It takes time but its only limit is your imagination.
 >
 > It is possible to go directly to a design thanks to the submenu.
 
-> **IMPORTANT**
+> **Important**
 >
 > All actions are done by right clicking on this page, be careful to do it well in the design. When creating, you must do it in the middle of the page (to be sure of being on the design).
 
@@ -28,7 +28,7 @@ In the menu (right click), we find the following actions :
 - **Add image / camera** : Allows you to add a picture or a stream from a camera.
 - **Add area** : Allows to add a clickable transparent zone which will be able to execute a series of actions during a click (depending or not on the status of another command).
 - **Add summary** : Adds information from an object or general summary.
-- **Viewing**
+- **Display**
     - **Any** : Does not display any grid.
     - **10x10** : Displays a 10 by 10 grid.
     - **15x15** : Displays a grid of 15 by 15.
@@ -42,7 +42,7 @@ In the menu (right click), we find the following actions :
 - **Configure the design** : Access to the configuration of the design.
 - **Save** : Save the design (note, there are also automatic backups during certain actions).
 
-> **IMPORTANT**
+> **Important**
 >
 > The configuration of the design elements is done by a click on them.
 
@@ -65,7 +65,7 @@ Found here :
 
 ## General configuration of elements
 
-> **NOTE**
+> **Note**
 >
 > Depending on the type of item, options may change.
 
@@ -119,7 +119,7 @@ Allows you to choose the commands to grapher.
 - **Fat** : bold text.
 - **Text** : Text in HTML code that will be in the element.
 
-> **IMPORTANT**
+> **Important**
 >
 > If you put HTML code (in particular Javascript), be careful to check it before because you can if there is an error in it or if it overwrites a Jeedom component completely crash the design and it will only have to delete it directly into the database.
 
@@ -149,7 +149,7 @@ Allows you to choose the commands to grapher.
 - **Hide name** : Check to hide the name of the equipment.
 - **Background color** : Allows you to choose a custom background color, or to display the equipment with a transparent background, or to use the default color.
 - **Text color** : Lets you choose a custom background color, or use the default color.
-- **Rounded** : Value in pixels of the rounding of the angles of the equipment tile.
+- **Rounding** : Value in pixels of the rounding of the angles of the equipment tile.
 - **Border** : CSS definition of an equipment tile border. Ex : 1px solid black.
 - **Opacity** : Opacity of the equipment tile, between 0 and 1. Warning : a background color must be defined.
 - **Custom CSS** : CSS rules to apply on the equipment.

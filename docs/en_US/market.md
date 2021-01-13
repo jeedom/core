@@ -27,7 +27,7 @@ For developers :
 For the pros :
 - **Installer email account** : Your professional contact email.
 - **Support requests recipient** : know who will receive support emails (end customer, installer or both).
-    - **TOS**
+    - **CGU**
 - **User** : general conditions of use (be careful to read them because they commit you).
 - **Developer** : terms of use for developers.
     - **Tickets**
@@ -57,8 +57,8 @@ For the pros :
     - **Last name** : The name you want to give to your Jeedom (can be found in the backup name if you have the cloud backup subscription).
     - **State** : Lets see the state of the Jeedom in question.
     - **Local / remote IP** : IP or address of this Jeedom, configure in Jeedom, if you do not put anything it will be the last known IP.
-    - **Dns** : Allows you to customize the name of your DNS.
-    - **URLs** : List the different Jeedom access URLs.
+    - **DNS** : Allows you to customize the name of your DNS.
+    - **Url** : List the different Jeedom access URLs.
     - **DNS server** : Tells you the DNS server to which you are attached.
     - **DNS status** : Allows you to see the status of the DNS.
     - **Creation date** : Date of creation of this Jeedom on your Market account (as a reminder, this is done automatically when you link it to the Market).
@@ -82,7 +82,7 @@ On this tab you can consult your SMS / Calls balance (usable with the Phone mark
 
 Here you find all your purchases and you can request the return of the invoice or receipt email.
 
-> **IMPORTANT**
+> **Important**
 >
 > If you buy an official plugin you will receive an invoice. However for a third party plugin it is a receipt, for the invoice you have to ask the developer.
 

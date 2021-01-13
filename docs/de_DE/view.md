@@ -4,7 +4,7 @@
 Mit Ansichten können Sie benutzerdefinierte Ansichten erstellen.
 Es ist nicht so leistungsfähig wie die Designs, ermöglicht jedoch in wenigen Minuten eine individuellere Anzeige als das Dashboard mit Geräten für verschiedene Objekte, Grafiken oder Steuerelemente.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können die Standardansicht in Ihrem Profil auswählen, wenn Sie auf das Ansichtsmenü klicken.
 
@@ -18,13 +18,13 @@ Auf einer Ansicht finden wir :
 - Der Bleistift auf der rechten Seite zum Bearbeiten der Reihenfolge und Größe des Geräts auf die gleiche Weise wie das Dashboard.
 - Ein Knopf *Komplette Ausgabe* So können Sie die Zonen und Elemente der Ansicht bearbeiten.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können diese Option in Ihrem Profil so ändern, dass die Liste der Ansichten standardmäßig angezeigt wird.
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Grafik*, *Widget* oder *Tabelle*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Grafik*, *Widget* oder *Tafel*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
 
 - Auf der linken Seite finden Sie die Liste der Ansichten sowie eine Schaltfläche zum Erstellen.
 - Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht (Konfiguration) bearbeiten).
@@ -33,7 +33,7 @@ Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist
 - Eine Schaltfläche zum Speichern dieser Ansicht.
 - Eine Schaltfläche zum Löschen dieser Ansicht.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können die Reihenfolge der Zonen durch Ziehen und Ablegen verschieben.
 
@@ -50,11 +50,11 @@ In einer Zone für Gerätetypen können Sie Geräte hinzufügen :
 
 - **Ausrüstung hinzufügen** : Ermöglicht das Hinzufügen / Ändern von Geräten, die im Bereich angezeigt werden sollen.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können ein Gerät direkt löschen, indem Sie auf den Papierkorb links davon klicken.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Es ist möglich, die Reihenfolge der Kacheln im Bereich durch Ziehen und Ablegen zu ändern.
 
@@ -69,16 +69,16 @@ In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folge
 Wenn Sie die Taste drücken **Kurve hinzufügen**, Jeedom zeigt die Liste der historischen Befehle an und Sie können den hinzuzufügenden auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
 - **Mülleimer** : Befehl aus Diagramm entfernen.
-- **Name** : Name des zu zeichnenden Befehls.
+- **Familienname, Nachname** : Name des zu zeichnenden Befehls.
 - **Farbe** : Farbe der Kurve.
-- **Typ** : Art der Kurve.
+- **Art** : Art der Kurve.
 - **Gruppe** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
-- **Maßstab** : Skalieren (rechts oder links) der Kurve.
+- **Leiter** : Skalieren (rechts oder links) der Kurve.
 - **Treppe** : Zeigt die Treppenkurve an.
 - **Stapel** : Stapelt die Kurve mit den anderen Kurventypen.
-- **Veränderung** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
+- **Variation** : Zeichnen Sie nur Variationen mit dem vorherigen Wert.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können die Reihenfolge der Grafiken im Bereich durch Ziehen und Ablegen ändern.
 
@@ -89,7 +89,7 @@ Hier haben Sie die Schaltflächen :
 - **Spalte hinzufügen** : Fügen Sie der Tabelle eine Spalte hinzu.
 - **Zeile hinzufügen** : Fügen Sie der Tabelle eine Zeile hinzu.
 
-> **Notiz**
+> **Hinweis**
 >
 > Es ist möglich, die Zeilen durch Ziehen und Ablegen neu zu organisieren, nicht jedoch die Spalten.
 

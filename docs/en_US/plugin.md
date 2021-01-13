@@ -6,11 +6,11 @@ You can also manipulate the plugins, namely : download, update and activate them
 
 There is therefore a list of plugins in alphabetical order and a link to the market.
 - Disabled plugins are grayed out.
-- Plugins that are not in version *Stable* we have an orange dot in front of their name.
+- Plugins that are not in version *stable* we have an orange dot in front of their name.
 
 By clicking on a plugin, you access its configuration. At the top, you find the name of the plugin, then in parentheses, its name in Jeedom (ID) and finally, the type of installed version (stable, beta).
 
-> **IMPORTANT**
+> **Important**
 >
 > When downloading a plugin, it is disabled by default. So you have to activate it by yourself.
 
@@ -60,11 +60,11 @@ Once you have found the plugin you want, just click on it to bring up its file. 
 
 Below, you will find the description of the plugin, the compatibility (if Jeedom detects an incompatibility, it will notify you), the opinions on the plugin (you can note it here) and additional information (the author, the person who made the latest update, a link to the doc, the number of downloads). On the right you find a &quot;Changelog&quot; button which allows you to have all the history of modifications, a &quot;Documentation&quot; button which refers to the documentation of the plugin. Then you have the available language and the various information on the date of the last stable version.
 
-> **IMPORTANT**
+> **Important**
 >
 > It is really not recommended to put a beta plugin on a non beta Jeedom, a lot of operational problems can result.
 
-> **IMPORTANT**
+> **Important**
 >
 > Some plugins are chargeable, in this case the plugin will offer you to buy it. Once done, you have to wait about ten minutes (payment validation time), then return to the plugin file to install it normally.
 
@@ -94,11 +94,14 @@ By clicking on the icon of a plugin, you open its configuration page.
 ### Below left, there is an area **state** with :
 
 - **Status** : Allows you to see the status of the plugin (active / inactive).
-- **Version** : The version of the plugin installed.
-- **Author** : The plugin author.
-- **ACTION** : Allows you to enable or disable the plugin.
-- **Jeedom version** : Indicates the minimum Jeedom version required for the plugin.
+- **Category** : The category of the plugin, indicating in which sub-menu to find it.
+- **Author** : The author of the plugin, link to the market and the plugins of this author.
 - **Licence** : Indicates the license of the plugin which will generally be AGPL.
+
+- **Action** : Allows you to enable or disable the plugin. The button **To open** Allows you to go directly to the plugin page.
+- **Version** : The version of the plugin installed.
+- **Prerequisites** : Indicates the minimum Jeedom version required for the plugin.
+
 
 ### On the right, we find the area **Log and monitoring** which allows to define :
 
@@ -113,14 +116,14 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 - **Last name** : Generally will be local.
 - **Status** : Dependency status, OK or NOK.
-- **Setup** : Allows to install or reinstall dependencies (if you do not do it manually and they are NOK, Jeedom will take care of itself after a while).
+- **Installation** : Allows to install or reinstall dependencies (if you do not do it manually and they are NOK, Jeedom will take care of itself after a while).
 - **Last installation** : Date of last dependency installation.
 
 ### Devil :
 
 - **Last name** : Generally will be local.
 - **Status** : Daemon status, OK or NOK.
-- **D'actualité** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
+- **Configuration** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
 - **(To restart** : Allows you to launch or restart the demon.
 - **Stop** : Used to stop the daemon (Only in the case where automatic management is disabled).
 - **Automatic management** : Enables or disables automatic management (which allows Jeedom to manage the daemon itself and restart it if necessary. Unless otherwise indicated, it is advisable to leave automatic management active).

@@ -15,8 +15,8 @@ On each object, its background image and its summaries are displayed :
 
 Depending on the type of summary (key), visible in **Settings → System → Configuration / Summaries** :
 - On the top corner left : The name of the object.
-- Top right : Temperature (*Temperature*) and humidity (*humidity*).
-- Under the title : Alert (*security*) and Movement (*Motion*), colored green or red depending on whether there are any alerts / movements in progress.
+- Top right : Temperature (*temperature*) and humidity (*humidity*).
+- Under the title : Alert (*security*) and Movement (*motion*), colored green or red depending on whether there are any alerts / movements in progress.
 - Below : All other subject summaries.
 
 The configuration of the display of the object is done in **Tools → Objects** :
@@ -30,7 +30,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 >
 > The display order of objects is that of *Domotic overview*, that you can reorder (Analysis → Home automation summary).
 
-> **NOTE**
+> **Note**
 >
 > If an object does not have a summary defined, a button is displayed at the top right to access the configuration / summaries of the object.
 

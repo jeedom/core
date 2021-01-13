@@ -11,11 +11,11 @@ Dies ist in mehrere Teile gegliedert :
 Hier können Sie verschiedene Parameter Ihres Profils anpassen :
 
 - **Profil**
-    - **Login** : Ihr Login auf dem Markt kann nicht geändert werden.
-    - **Name** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
+    - **Anmeldung** : Ihr Login auf dem Markt kann nicht geändert werden.
+    - **Familienname, Nachname** : Ihr Name (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Vorname** : Ihr Vorname (diese Informationen sind nur nützlich, um E-Mails angenehmer zu gestalten).
     - **Benutzername im Forum** : Dein Benutzername im Forum.
-    - **E-Mail** : Ihre E-Mail.
+    - **Email** : Ihre E-Mail.
     - **Sprache** : Deine Sprache.
     - **Passwort &amp;&amp; Passwort bestätigen** : Ermöglicht das Ändern Ihres Passworts.
 
@@ -27,8 +27,8 @@ Für Entwickler :
 Für die Profis :
 - **Installer-E-Mail-Konto** : Ihre professionelle Kontakt-E-Mail.
 - **Supportanfragen Empfänger** : wissen, wer Support-E-Mails erhält (Endkunde, Installateur oder beides)).
-    - **TOS**
-- **Benutzer** : Allgemeine Nutzungsbedingungen (lesen Sie sie sorgfältig durch, da sie Sie verpflichten).
+    - **CGU**
+- **Nutzer** : Allgemeine Nutzungsbedingungen (lesen Sie sie sorgfältig durch, da sie Sie verpflichten).
 - **Entwickler** : Nutzungsbedingungen für Entwickler.
     - **Tickets**
 - **Anzahl der Tickets** : Anzahl der Tickets für den aktuellen Monat und Ihr Limit.
@@ -37,36 +37,36 @@ Für die Profis :
 - **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können).
     - **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen Rechte und Dienste.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Vergiss nicht zu sparen.
 
 ## Meine Jeedoms
 
-- **Ebene**
+- **Niveau**
     - **Jeedom** : Ihr Service Pack.
     - **Geben Sie eine Service Pack-Nummer ein** : Hier können Sie Ihre Service Pack-Nummer eingeben (diese finden Sie in der E-Mail, die Jeedom während Ihrer Bestellung gesendet hat).
 - **Installationsschlüssel**
     - **Anzahl der Installationsschlüssel** : Zeigt die Anzahl der Jeedom-Installationen an, die derzeit mit Ihrem Konto verknüpft sind, sowie das autorisierte Limit.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anforderungen.
 
 - **Meine Jeedoms** : Hier sind alle Ihre Jeedoms aufgelistet
-    - **Name** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Sicherungsnamen, wenn Sie über ein Cloud-Sicherungsabonnement verfügen).
+    - **Familienname, Nachname** : Der Name, den Sie Ihrem Jeedom geben möchten (finden Sie im Sicherungsnamen, wenn Sie über ein Cloud-Sicherungsabonnement verfügen).
     - **Zustand** : Sehen wir uns den Zustand des fraglichen Jeedom an.
     - **Lokale / Remote-IP** : IP oder Adresse dieses Jeedom, konfigurieren Sie in Jeedom. Wenn Sie nichts eingeben, ist dies die letzte bekannte IP.
-    - **Dns** : Ermöglicht das Anpassen des Namens Ihres DNS.
-    - **URLs** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
+    - **DNS** : Ermöglicht das Anpassen des Namens Ihres DNS.
+    - **Url** : Listen Sie die verschiedenen Jeedom-Zugriffs-URLs auf.
     - **DNS-Server** : Zeigt Ihnen den DNS-Server an, an den Sie angeschlossen sind.
     - **DNS-Status** : Hier können Sie den Status des DNS anzeigen.
     - **Erstellungsdatum** : Erstellungsdatum dieses Jeedom auf Ihrem Marktkonto (zur Erinnerung: Dies erfolgt automatisch, wenn Sie es mit dem Markt verknüpfen).
     - **Letztes Update** : Jeedom&#39;s letzte Kommunikation mit dem Markt.
     - **Hardware** : Jeedom Hardware-Name.
-    - **Version** : Jeedom Version installiert.
+    - **Ausführung** : Jeedom Version installiert.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Vergiss nicht zu sparen.
 

@@ -18,7 +18,7 @@ Esta API es muy fácil de usar mediante simples solicitudes HTTP a través de UR
 
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = escenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = escenario e id=#ID#&action=#ACTION#)
 
-- **identificación** : coincide con su id de escenario. El ID se puede encontrar en la página de escenario relevante, en "Herramientas" → "Escenarios", una vez que se ha seleccionado el escenario, junto al nombre de la pestaña "General"". Otra forma de encontrarlo : en "Herramientas" → "Escenarios", haga clic en "Descripción general".
+- **carné de identidad** : coincide con su id de escenario. El ID se puede encontrar en la página de escenario relevante, en "Herramientas" → "Escenarios", una vez que se ha seleccionado el escenario, junto al nombre de la pestaña "General"". Otra forma de encontrarlo : en "Herramientas" → "Escenarios", haga clic en "Descripción general".
 - **acción** : corresponde a la acción que desea aplicar. Los comandos disponibles son : "iniciar "," detener "," desactivar "y" activar "para iniciar, detener, desactivar o activar el escenario, respectivamente.
 - **etiquetas** \ [Opcional \] : si la acción es "inicio", puede pasar etiquetas al escenario (consulte la documentación sobre los escenarios) en el formulario etiquetas = toto% 3D1% 20tata% 3D2 (tenga en cuenta que% 20 corresponde a un espacio y% 3D a = ).
 
@@ -26,7 +26,7 @@ Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& ty
 
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cmd e id=#ID#)
 
-- **identificación** : corresponde a la identificación de lo que desea controlar o del que desea recibir información.
+- **carné de identidad** : corresponde a la identificación de lo que desea controlar o del que desea recibir información.
 
 La forma más fácil de obtener esta URL es ir a la página **Análisis → Resumen de domótica**, para buscar el pedido y luego abrir su configuración avanzada (el ícono de "engranaje") y allí, verá una URL que ya contiene todo lo que necesita según el tipo y el subtipo del pedido.
 
@@ -42,9 +42,9 @@ La forma más fácil de obtener esta URL es ir a la página **Análisis → Resu
 
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interactuar y consultar = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interactuar y consultar=#QUERY#)
 
-- **pregunta** : pregunta para hacerle a Jeedom.
+- **consulta** : pregunta para hacerle a Jeedom.
 - **utf8** \ [Opcional \] : le dice a Jeedom si codifica la consulta en utf8 antes de intentar responder.
-- **vacío Respuesta** \ [Opcional \] : 0 para que Jeedom responda incluso si no entendió, 1 de lo contrario.
+- **vacío Responder** \ [Opcional \] : 0 para que Jeedom responda incluso si no entendió, 1 de lo contrario.
 - **perfil** \ [Opcional \] : nombre de usuario de la persona que inicia la interacción.
 - **responder\_cmd** \ [Opcional \] : ID de pedido que se utilizará para responder a la solicitud.
 
@@ -81,7 +81,7 @@ Devuelve todos los objetos, equipos, comandos (y su valor si son información) e
 
 ## Variable
 
-Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*Valor*
+Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variable & name=#NAME#&value=)*VALOR*
 
 - **nombre** : nombre de la variable cuyo valor se desea (lectura del valor).
-- **valor** \ [Opcional \] : si se especifica "valor", la variable tomará este valor (escribir un valor).
+- **VALOR** \ [Opcional \] : si se especifica "valor", la variable tomará este valor (escribir un valor).

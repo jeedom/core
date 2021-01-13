@@ -16,7 +16,7 @@ Na abertura da página, se essa verificação tiver mais de duas horas, a Jeedom
 Você também pode usar o botão **Verificar atualizações** Para fazer isso manualmente.
 Se você deseja executar uma verificação manual, pode pressionar o botão "Verificar atualizações".
 
-O botão **Salvar** deve ser usado quando você alterar as opções na tabela abaixo, para especificar não atualizar determinados plugins, se necessário.
+O botão **Salve ** deve ser usado quando você alterar as opções na tabela abaixo, para especificar não atualizar determinados plugins, se necessário.
 
 ## Atualizar o núcleo
 
@@ -30,7 +30,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 - **Modo forçado** : Execute a atualização no modo forçado, ou seja, mesmo se houver um erro, o Jeedom continuará e não restaurará o backup. (Este modo desabilita o salvamento !).
 - **Update para reaplicar** : Permite reaplicar uma atualização. (NB : Nem todas as atualizações podem ser reaplicadas.)
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Antes de uma atualização, por padrão, o Jeedom fará um backup. No caso de um problema ao aplicar uma atualização, o Jeedom restaurará automaticamente o backup feito pouco antes. Esse princípio é válido apenas para atualizações do Jeedom e não para atualizações de plugins.
 
@@ -42,22 +42,22 @@ Depois de clicar nele, você obtém essas opções diferentes :
 
 A tabela contém as versões dos núcleos e plug-ins instalados.
 
-Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *Estável*, ou laranja em *beta* ou outro.
+Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *estábulo*, ou laranja em *beta* ou outro.
 
-- **Estado** : OK ou NOK.
-- **Nome** : Nome e origem do plug-in
+- **Status** : OK ou NOK.
+- **Último nome** : Nome e origem do plug-in
 - **Versão** : Indica a versão precisa do Core ou plugin.
 - **Opções** : Marque esta caixa se não desejar que este plugin seja atualizado durante a atualização global (Button **Atualizar**).
 
 Em cada linha, você pode usar as seguintes funções:
 
 - **Reinstalar** : Forçar reassentamento.
-- **Remover** : Permite desinstalá-lo.
+- **Retirar** : Permite desinstalá-lo.
 - **Verificar** : Consulte a fonte de atualizações para descobrir se uma nova atualização está disponível.
 - **Atualizar** : Permite atualizar o elemento (se houver uma atualização).
 - **Changelog** : Permite acesso à lista de alterações na atualização.
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Se o registro de alterações estiver vazio, mas você ainda tiver uma atualização, isso significa que a documentação foi atualizada. Portanto, não é necessário solicitar mudanças ao desenvolvedor, pois não há necessariamente. (geralmente é uma atualização da tradução, documentação).
 > O desenvolvedor do plugin também pode, em alguns casos, fazer correções simples, o que não requer necessariamente a atualização do registro de alterações.
@@ -70,7 +70,7 @@ Em cada linha, você pode usar as seguintes funções:
 
 Durante ou após uma atualização, essa guia permite que você leia o log dessa atualização em tempo real.
 
-> **NOTA**
+> **Nota**
 >
 > Esse log normalmente termina com *[FINALIZAR SUCESSO DE ATUALIZAÇÃO]*. Pode haver algumas linhas de erro nesse tipo de log, no entanto, a menos que haja um problema real após a atualização, nem sempre é necessário entrar em contato com o suporte para isso.
 
@@ -83,7 +83,7 @@ Uma vez conectado, este é o comando para executar :
 
 Os possíveis parâmetros são :
 
-- **modo** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
+- **moda** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
 - **Versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :

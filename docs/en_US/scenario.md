@@ -3,7 +3,7 @@
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-Real brain of home automation, the scenarios allow to interact with the real world in a way *smart*.
+Real brain of home automation, the scenarios allow to interact with the real world in a way *intelligent*.
 
 ## Gestion
 
@@ -11,7 +11,7 @@ You will find there the list of scenarios of your Jeedom, as well as functionali
 
 - **Add** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
-- **Overview** : Allows you to have an overview of all scenarios. You can change the values **active**, **Jeedom**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
+- **Overview** : Allows you to have an overview of all scenarios. You can change the values **active**, **visible**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
 
 ## My scenarios
 
@@ -36,7 +36,7 @@ Once on the configuration of a scenario, you have a contextual menu with the Rig
 After clicking on **Add**, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
 Before that, at the top of the page, there are some useful functions to manage this scenario :
 
-- **Id** : Next to the word **General**, this is the scenario identifier.
+- **ID** : Next to the word **General**, this is the scenario identifier.
 - **status** : *Stopped* or *In progress*, it indicates the current state of the scenario.
 - **Previous / next state** : Cancel / redo an action.
 - **Add block** : Allows you to add a block of the desired type to the scenario (see below).
@@ -51,7 +51,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Remove** : Delete scenario.
 - **Save** : Save the changes made.
 
-> **TIPS**
+> **Tips**
 >
 > Two tools will also be invaluable to you in setting up scenarios :
     > - The variables, visible in **Tools → Variables**
@@ -67,7 +67,7 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Name to display** : The name used for its display. Optional, if not completed, the name of the scenario is used.
 - **Group** : Allows you to organize the scenarios, by classifying them in groups (visible on the scenarios page and in their contextual menus).
 - **Active** : Activate the scenario. If not active, it will not be executed by Jeedom, regardless of the trigger mode.
-- **Jeedom** : Used to make the scenario visible (Dashboard).
+- **Visible** : Used to make the scenario visible (Dashboard).
 - **Parent object** : Assignment to a parent object. It will then be visible or not according to this parent.
 - **Timeout in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, the execution of the scenario is interrupted.
 - **Multi launch** : Check this box if you want the scenario to be able to be launched several times at the same time.
@@ -92,7 +92,7 @@ In the tab **General**, we find the main parameters of the scenario :
 
 ## Scenario tab
 
-This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **block** or a **Action**.
+This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **block** or a **action**.
 
 For more convenience and not having to constantly reorder the blocks in the scenario, adding a block is done after the field in which the mouse cursor is located.
 *For example, if you have ten blocks, and you click in the IF condition of the first block, the added block will be added after block, at the same level. If no field is active, it will be added at the end of the scenario.*
@@ -140,7 +140,7 @@ Three buttons are available on the right of this type of block to select an item
 - **Search a scenario** : Allows you to search for a scenario to test.
 - **Search for equipment** : Same for equipment.
 
-> **NOTE**
+> **Note**
 >
 > On blocks of type If / Then / Otherwise, circular arrows to the left of the condition field allow to activate or not the repetition of actions if the evaluation of the condition gives the same result as during the previous evaluation.
 
@@ -148,7 +148,7 @@ Three buttons are available on the right of this type of block to select an item
 >
 > There is a list of tags allowing access to variables from the scenario or another, or by the time, the date, a random number,… See below the chapters on commands and tags.
 
-Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **block** or a **Action** in the current block.
+Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **block** or a **action** in the current block.
 
 
 ### Block Code
@@ -158,12 +158,12 @@ The Code block allows you to execute php code. It is therefore very powerful but
 #### Access to controls (sensors and actuators)
 
 -  ``cmd::byString($string);`` : Returns the corresponding command object.
-    -   ``$string``: Link to the desired command : ``#[objet][Equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Active]#``)
+    -   ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Active]#``)
 -  ``cmd::byId($id);`` : Returns the corresponding command object.
     -  ``$id`` : Command ID.
 -  ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
     - ``$options`` : Options for the execution of the command (can be specific to the plugin). Basic options (command subtype) :
-        -  ``message`` : ``$option = array('title' => 'titre du Message , 'message' => 'Mon message');``
+        -  ``message`` : ``$option = array('title' => 'titre du message , 'message' => 'Mon message');``
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
@@ -372,7 +372,7 @@ The periods and intervals of these functions can also be used with [PHP expressi
 - ``Last Monday`` : last Monday at 00:00.
 - ``5 days ago`` : 5 days ago.
 - ``Yesterday noon`` : yesterday afternoon.
-- Etc..
+- Etc.
 
 Here are practical examples to understand the values returned by these different functions :
 
@@ -453,10 +453,10 @@ And practical examples :
 In addition to home automation commands, you have access to the following actions :
 
 - **Pause** (sleep) : Pause of x second (s).
-- **Variable** (variable) : Creation / modification of a variable or the value of a variable.
+- **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it)
-- **STOP** (stop) : Stop the scenario.
+- **Stop** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
 - **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
 - **Add a log** (log) : Allows you to add a message to the logs.
@@ -489,7 +489,7 @@ In addition to home automation commands, you have access to the following action
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 
-By clicking on the button **template** at the top of the page, you open the template management window.
+By clicking on the button **Template** at the top of the page, you open the template management window.
 
 From there, you have the possibility :
 
@@ -520,7 +520,7 @@ Go to the Jeedom configuration, then OS / DB and launch the file editor.
 
 Go to the data folder then php and click on the user.function.class.php file.
 
-It is in this *Class* that you can add your functions, there you will find an example of a basic function.
+It is in this *classroom* that you can add your functions, there you will find an example of a basic function.
 
 > **IMPORTANT**
 >

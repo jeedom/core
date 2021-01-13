@@ -4,7 +4,7 @@
 This page informs about all Jeedom application tasks running on the server.
 This page is to be used knowingly or at the request of technical support.
 
-> **IMPORTANT**
+> **Important**
 >
 > In case of mishandling on this page, any request for support may be refused.
 
@@ -26,7 +26,7 @@ In this table, we find :
 - **PID** : Indicates the current process ID.
 - **Devil** : If this box is &quot;yes&quot; then the task must always be in progress. Beside, you find the frequency of the daemon, it is advised never to modify this value and especially never to decrease it.
 - **Unique** : If it is &quot;yes&quot; then the task will launch once and then delete itself.
-- **Class** : PHP class called to execute the task (can be empty).
+- **Classroom** : PHP class called to execute the task (can be empty).
 - **Function** : PHP function called in the called class (or not if the class is empty).
 - **Programming** : Programming of the task in CRON format.
 - **Timeout** : Maximum task run time. If the task is a daemon then it will be automatically stopped and restarted at the end of the timeout.
@@ -34,10 +34,10 @@ In this table, we find :
 - **Last duration** : Last execution time of the task (a daemon will always be at 0s, don't worry about other tasks can be at 0s).
 - **Status** : Current status of the task (as a reminder, a daemon task is always "run"").
 
-- **ACTION** :
+- **Action** :
     - **Details** : See the cron in detail (as stored in base).
     - **Start / Stop** : Start or stop the task (depending on its status).
-    - **Suppression** : Delete task.
+    - **Deletion** : Delete task.
 
 
 ## Listener tab

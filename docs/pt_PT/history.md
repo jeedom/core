@@ -17,9 +17,9 @@ O arquivamento é uma tarefa que começa à noite e compacta os dados recuperado
 
 > **Dica**
 >
-> Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Porque ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
+> Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Por quê ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Obviamente, esse princípio de arquivamento se aplica apenas a comandos do tipo digital; nos comandos do tipo binário, o Jeedom mantém apenas as datas de mudança de estado.
 
@@ -36,12 +36,12 @@ Existem várias maneiras de acessar o histórico :
 
 Se você exibir um gráfico na página de histórico, terá acesso a várias opções de exibição, acima do gráfico :
 
-- **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* Dans *Configurações → Sistema → Configuração / Equipamento*.
+- **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* dentro *Configurações → Sistema → Configuração / Equipamento*.
 - **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em *Linha*, *área*, onde *Bar*. Opção salva no pedido e usada no Painel.
-- **Mudança** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
-- **Escada** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
-- **Comparar** : Compare a curva entre diferentes períodos. A comparação é feita de acordo com o período exibido. Se o período for de uma semana, a comparação será feita em -1 semana, -2 semana etc.
+- **Tipo de exibição** : Exibir em *Linha*, *Área*, ou *Fechado*. Opção salva no pedido e usada no Painel.
+- **Variação** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
+- **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
+- **Comparar** : Compare a curva entre diferentes períodos.
 
 
 > **Dica**
@@ -59,10 +59,10 @@ Você também pode exibir os gráficos nas visualizações (veremos aqui as opç
 Depois que os dados são ativados, você pode escolher :
 - **Cor** : A cor da curva.
 - **Tipo** : O tipo de gráfico (área, linha ou coluna).
-- **Escala** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
-- **Escada** : Exibe a curva como uma escada ou uma exibição contínua.
+- **Escada** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
+- **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua.
 - **Pilha** : Empilhe os valores das curvas (veja abaixo o resultado).
-- **Mudança** : Exibe a diferença de valor do ponto anterior.
+- **Variação** : Exibe a diferença de valor do ponto anterior.
 
 ### Opção na página do histórico
 
@@ -70,7 +70,7 @@ A página de histórico fornece acesso a algumas opções adicionais
 
 #### História calculado
 
-Permite exibir uma curva de acordo com um cálculo em vários comandos (você pode fazer quase tudo, + - / \* valor absoluto ... consulte a documentação do PHP para determinadas funções).
+Permite exibir uma curva de acordo com um cálculo em vários comandos (você pode fazer praticamente qualquer coisa, + - / \* valor absoluto ... consulte a documentação do PHP para algumas funções).
 Ex :
 abs(*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço vital]] [Higrometria \] \ [Temperatura \]*)
 

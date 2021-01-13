@@ -24,7 +24,7 @@ Below, several parameters that centralize information that can be used by plugin
 
 - Contact information : Latitude, Longitude and Altitude of your home / site.
 - Address : Mailing address of your home / site.
-- Miscellaneous : Surface and number of occupants of your home / site.
+- Various : Surface and number of occupants of your home / site.
 
 ## Interface tab
 
@@ -67,7 +67,7 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
     - **OK / NOK** : indicates if the internal network configuration is correct.
     - **Protocol** : the protocol to use, often HTTP.
     - **URL or IP address** : Jeedom IP to enter.
-    - **Port** : the port of the Jeedom web interface, generally 80.
+    - **Harbor** : the port of the Jeedom web interface, generally 80.
         Please note changing the port here does not change the actual Jeedom port which will remain the same.
     - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
 
@@ -120,16 +120,16 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 
 ### Alertes
 
-- **Add a message to each Timeout** : Add a message in the message center if a device falls in **Timeout**.
-- **Timeout command** : Type command **Message** to be used if an equipment is in **Timeout**.
-- **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **Warning**.
-- **Battery command in Warning** : Type command **Message** to be used if equipment at its battery level **Warning**.
-- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **Danger**.
-- **Command on Battery in Danger** : Type command **Message** to be used if equipment at its battery level **Danger**.
-- **Add a message to each Warning** : Add a message in the message center if a command goes on alert **Warning**.
-- **Command on Warning** : Type command **Message** to use if a command goes on alert **Warning**.
-- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **Danger**.
-- **Command on Danger** : Type command **Message** to use if a command goes on alert **Danger**.
+- **Add a message to each Timeout** : Add a message in the message center if a device falls in **timeout**.
+- **Timeout command** : Type command **message** to be used if an equipment is in **timeout**.
+- **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **warning**.
+- **Battery command in Warning** : Type command **message** to be used if equipment at its battery level **warning**.
+- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **danger**.
+- **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **danger**.
+- **Add a message to each Warning** : Add a message in the message center if a command goes on alert **warning**.
+- **Command on Warning** : Type command **message** to use if a command goes on alert **warning**.
+- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **danger**.
+- **Command on Danger** : Type command **message** to use if a command goes on alert **danger**.
 
 ### Logs
 
@@ -145,15 +145,19 @@ Below you will find a table for finely managing the log level of essential eleme
 Add object summaries. This information is displayed at the top right of the Jeedom menu bar, or next to objects :
 
 - **Key** : Key to the summary, especially not to touch.
-- **Name** : Abstract name.
+- **Last name** : Abstract name.
 - **Calculation** : Calculation method, can be of type :
     - **Sum** : sum the different values,
     - **Average** : averages values,
     - **Text** : display the value verbatim (especially for those of type string).
 - **Icon** : Summary icon.
+- **If null icon** : Summary icon if its value is 0. Allows you to specify a different icon like shutter closed, light off, etc.
 - **Unit** : Summary unit.
+- **Hide number** : Never displays the summary value (the number to the right of the).
+- ** Hide number if zero** : Used to hide the summary value, only if it is 0. We can thus wish to have the shutter icon open with their number, and the shutter icon closed without the number when all the shutters are closed.
 - **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
-- **Show if value is 0** : Check this box to display the value, even when it is 0.
+- **If no** : Show summary even when its value is 0.
+- **Ignore if** : Ignore an order for this summary if it has not been updated for x minutes.
 - **Link to a virtual** : Launches the creation of virtual command having for value those of the summary.
 - **Delete summary** : The last button, on the far right, deletes the summary from the line.
 
@@ -177,7 +181,7 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 - **Upper trend calculation threshold** : Same thing for the rise.
 - **Display period graphics by default** : Period which is used by default when you want to display the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
 
-> **NOTE**
+> **Note**
 >
 > The first parameter **Display widget statistics** is possible but disabled by default because it significantly extends the display time of the dashboard. If you activate this option, by default, Jeedom relies on data from the past 24 hours to calculate these statistics.
 > The trend calculation method is based on the least squares calculation (see [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for the detail).
@@ -215,13 +219,13 @@ This tab allows you to set global parameters concerning the interactions that yo
 
 > **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Be careful : the logs will then be very verbose !
+> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Warning : the logs will then be very verbose !
 
 ### Main
 
 Here you have three parameters :
 
-- **Sensibility** : there are 4 levels of correspondence (The sensitivity goes from 1 (corresponds exactly) to 99) for
+- **Sensitivity** : there are 4 levels of correspondence (The sensitivity goes from 1 (corresponds exactly) to 99) for
     -   1 word : match level for single word interactions.
     -   2 words : the match level for two-word interactions.
     -   3 words : the match level for three-word interactions.
@@ -244,9 +248,9 @@ Here you have three parameters :
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 -   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
     - *You* : Notify me if the living room temperature exceeds 25 ° C ?
-    - *Jeedom* : Ok (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
+    - *Jeedom* : Okay (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
-> **NOTE**
+> **Note**
 >
 > By default Jeedom will answer you by the same channel as the one you used to ask it to notify you. If it does not find one, it will then use the default command specified in this tab : **Default return command**.
 
@@ -272,7 +276,7 @@ Here are the different options available :
 
 - **Enable LDAP authentication** : enable authentication through an AD (LDAP).
 - **Host** : server hosting the AD.
-- **Domain** : domain of your AD.
+- **Field** : domain of your AD.
 - **DN base** : DN base of your AD.
 - **Username** : username for Jeedom to log into AD.
 - **Password** : password for Jeedom to connect to AD.
@@ -319,7 +323,7 @@ Deposit used to connect Jeedom to Github.
 
 #### Market
 
-Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Be careful : any request for support may be refused if you use a deposit other than this one.
+Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
 - **Address** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.
@@ -330,7 +334,7 @@ Deposit used to connect Jeedom to the market, it is strongly advised to use this
 
 #### Samba
 
-Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex : NAS Synology).
+Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex : Synology NAS).
 
 - **\ [Backup \] IP** : Samba server IP.
 - **\ [Backup \] User** : Username for connection (anonymous connections are not possible). The user must have read AND write rights on the destination directory.
@@ -338,12 +342,12 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 - **\ [Backup \] Sharing** : Path to sharing (be careful to stop at the sharing level).
 - **\ [Backup \] Path** : Path in the sharing (to put in relative), this must exist.
 
-> **NOTE**
+> **Note**
 >
 > If the path to your samba backup folder is :
 > \\\\ 192.168.0.1 \\ Backups \\ Home automation \\ Jeedom Then IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home automation / Jeedom
 
-> **NOTE**
+> **Note**
 >
 > When validating the Samba share, as described above, a new form of backup appears in the Settings → System → Backups section of Jeedom. By activating it, Jeedom will send it automatically during the next backup. A test is possible by performing a manual backup.
 

@@ -3,19 +3,19 @@
 
 ## Timeline
 
-The Timeline page allows you to chronologically display events, such as order changes *Info*, command triggers *Action*, and scenario executions.
+The Timeline page allows you to chronologically display events, such as order changes *info*, command triggers *action*, and scenario executions.
 
 To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
 
 - **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
-- **Command** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
+- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
 ![Timeline](images/timeline_intro.jpg)
 
-The timeline *Main* always contains all the events. However, you can filter the timeline by *Folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
+The timeline *Main* always contains all the events. However, you can filter the timeline by *folder*. At each place where you activate the timeline, you will have a field to enter the name of a folder, existing or not.
 You can then filter the timeline by this folder by selecting it to the left of the button *Refresh*.
 
-> **NOTE**
+> **Note**
 >
 > If you no longer use a folder, it will appear in the list as long as events linked to this folder exist. It will disappear from the list by itself.
 

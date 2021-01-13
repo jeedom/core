@@ -31,7 +31,7 @@ On the page you have three buttons :
 
 When clicking on &quot;Rights&quot; a window appears allowing you to manage user rights finely. The first tab displays the different equipment. The second presents the scenarios.
 
-> **IMPORTANT**
+> **Important**
 >
 > The profile must be limited otherwise no restrictions put here will be taken into account.
 
@@ -49,7 +49,7 @@ Displays the browser sessions active on your Jeedom, with user information, its 
 List the peripherals (computers, mobiles etc) which have recorded their authentication on your Jeedom.
 You can see which user, their IP, when, and delete the registration for this device.
 
-> **NOTE**
+> **Note**
 >
 > The same user may have registered different devices. For example, his desktop computer, laptop, mobile, etc.
 

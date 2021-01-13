@@ -36,9 +36,9 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, return **Jeedom**/**Invisible**,  **active**/**Inactive** selected equipment.
-- L'**ID** equipment.
-- The **Type** equipment : Identifier of the plugin to which it belongs.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **remove**, return **visible**/**invisible**,  **active**/**Inactive** selected equipment.
+- L'**id** equipment.
+- The **type** equipment : Identifier of the plugin to which it belongs.
 - The **last name** equipment.
 - **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
 - **Invisible** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
@@ -67,13 +67,13 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 
 The tab **Information** contains general information about the equipment and its controls :
 
-- **ID** : Unique identifier in the Jeedom database.
+- **Id** : Unique identifier in the Jeedom database.
 - **Last name** : Name of equipment.
 - **Logical ID** : Logical identifier of the equipment (can be empty).
 - **Object ID** : Unique identifier of the parent object (can be empty).
 - **Creation date** : Equipment creation date.
 - **Activate** : Check the box to activate the equipment (don't forget to save).
-- **Jeedom** : Check the box to make the equipment visible (don't forget to save).
+- **Visible** : Check the box to make the equipment visible (don't forget to save).
 - **Type** : Identifier of the plugin by which it was created.
 - **Failed attempt** : Number of failed consecutive communications attempts with the equipment.
 - **Date of last communication** : Date of the last communication of the equipment.
@@ -84,11 +84,11 @@ Below you will find a table with the list of equipment commands with, for each, 
 
 ### View tab
 
-In the tab **Viewing**, you will be able to configure certain tile display behaviors on the Dashboard or on mobile.
+In the tab **Display**, you will be able to configure certain tile display behaviors on the Dashboard or on mobile.
 
 #### Widget
 
--  **Jeedom** : Check the box to make the equipment visible.
+-  **Visible** : Check the box to make the equipment visible.
 - **Show name** : Check the box to display the name of the equipment on the tile.
 - **Display object name** : Check the box to display the name of the parent object of the equipment, next to the tile.
 
@@ -134,7 +134,7 @@ You can also manage the timeout, in minutes, of the equipment. For example, 30 t
 
 > **Tip**
 >
-> The global parameters are in **→ Settings → System Configuration : Logs** or **Facilities**
+> The global parameters are in **→ Settings → System Configuration : Logs** or **Equipment**
 
 ### Comment tab
 
@@ -155,7 +155,7 @@ First, at the top right, some buttons available :
 >
 > In a graphic, a double click on an element brings you to its configuration.
 
-> **NOTE**
+> **Note**
 >
 > Depending on the type of command, the information / actions displayed may change.
 
@@ -163,15 +163,15 @@ First, at the top right, some buttons available :
 
 The tab **Information** contains general information about the command :
 
-- **ID** : Unique identifier in the database.
+- **Id** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the command (can be empty).
 - **Last name** : Name of the command.
 - **Type** : Type of command (action or info).
 - **Subtype** : Command subtype (binary, digital, etc.)).
-- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **Action** and return the information for a **Info**.
+- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **info**.
 - **Unit** : Control unit.
 - **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
-- **Jeedom** : Check this box to make the command visible.
+- **Visible** : Check this box to make the command visible.
 - **Follow in the timeline** : Check this box to make this command visible in the timeline when it is used. You can specify a specific timeline in the field that appears if the option is checked.
 - **Prohibit in automatic interactions** : prohibits automatic interactions on this command
 - **Icon** : Allows you to change the command icon.
@@ -182,7 +182,7 @@ You also have three other orange buttons underneath :
 - **This command replaces the command** : Replace command with current command.
 - **Replace this command with the command** : Conversely, replace the command with another command.
 
-> **NOTE**
+> **Note**
 >
 > This kind of action replaces commands everywhere in Jeedom (scenario, interaction, command, equipment….).
 
@@ -199,8 +199,8 @@ Below, you will find the list of the different equipment, commands, scenarios or
 - **Action on value, if** : Lets do some sort of mini scenarios. You can, for example, say that if the value is worth more than 50 for 3 minutes, then you have to do such action. This allows, for example, to turn off a light X minutes after it has turned on.
 
 - **Historical**
-    - **Historicize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smooth** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **Maximum**, The **Minimum**, or **No**. **No** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, The **minimum**, or **No**. **No** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
@@ -210,7 +210,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Other**
     - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
-    - **Push URL** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
+    - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
 
 #### For an action command :
 
@@ -222,9 +222,9 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 ### Alerts tab
 
-Allows you to define an alert level (**Warning** or **Danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **Warning**.
+Allows you to define an alert level (**warning** or **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
 
-> **NOTE**
+> **Note**
 >
 > On the page **→ Settings → System Configuration : Logs**, you can configure a message type command that will allow Jeedom to notify you if the warning or danger threshold is reached.
 
@@ -233,10 +233,10 @@ Allows you to define an alert level (**Warning** or **Danger**) depending on cer
 In this part, you will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile.
 
 - **Widget** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from it).
-- **Jeedom** : Check to make the command visible.
+- **Visible** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Select **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
+- **Wrapped line before widget** : Tick **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 

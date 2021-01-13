@@ -158,7 +158,7 @@ Configurações:
 
 -   chave de cadeia : (opcional), chave do resumo desejado, se vazio, o Jeedom retorna o resumo de todas as chaves
 
-API JSON EqLogic
+EqLogic JSON API
 ================
 
 eqLogic::all
@@ -559,7 +559,7 @@ Configurações:
 
 -   consulta (frase de solicitação)
 
--   int reply\_cmd = NULL : ID do comando a ser usado para responder,
+-   resposta interna\_cmd = NULL : ID do comando a ser usado para responder,
     se não especificar, o Jeedom retornará a resposta para você no json
 
 interactQuery::all

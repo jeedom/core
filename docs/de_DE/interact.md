@@ -8,11 +8,11 @@ Diese Bestellungen erhalten Sie von :
 - SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info)).
 - Katze : Telegramm, Slack usw.
 - Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. Befehle starten (Aktion) oder eine Frage stellen (Info).
-- Http : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
+- HTTP : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können eine Interaktion öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -32,9 +32,9 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 
 - **Hinzufügen** : Ermöglicht das Erstellen neuer Interaktionen.
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
-- **Test** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
+- **Prüfung** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Wenn Sie eine Interaktion haben, die beispielsweise die Sätze für Lichter generiert, und Sie ein neues Lichtsteuermodul hinzufügen, müssen Sie entweder alle Interaktionen neu generieren oder zur betreffenden Interaktion gehen und sie erneut erstellen, um sie zu erstellen die Sätze dieses neuen Moduls.
 
@@ -51,17 +51,17 @@ Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise di
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
 - **Sätze** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
-- **Rekord** : Notieren Sie die aktuelle Interaktion.
+- **Aufzeichnung** : Notieren Sie die aktuelle Interaktion.
 - **Entfernen** : Aktuelle Interaktion löschen.
 - **Duplikat** : Dupliziert die aktuelle Interaktion.
 
 ### Registerkarte &quot;Allgemein&quot;
 
-- **Name** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
+- **Familienname, Nachname** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
 - **Gruppe** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
-- **Aktiva** : Aktiviert oder deaktiviert die Interaktion.
-- **Anwendung** : Der generierende Modellsatz (erforderlich).
-- **Synonym** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
+- **Aktiv** : Aktiviert oder deaktiviert die Interaktion.
+- **Anfrage** : Der generierende Modellsatz (erforderlich).
+- **Gleichbedeutend** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
 - **Warten Sie, bevor Sie antworten (s)** : Fügen Sie eine Verzögerung von X Sekunden hinzu, bevor Sie die Antwort generieren. So können Sie beispielsweise auf die Rückkehr eines Lampenstatus warten, bevor Sie beantwortet werden.
 - **Binäre Konvertierung** : Konvertiert beispielsweise Binärwerte in Öffnen / Schließen (nur für Befehle vom Typ Binärinfo)).
@@ -83,7 +83,7 @@ Verwenden Sie diese Option, wenn Sie einen oder mehrere bestimmte Befehle als Zi
 
 #### Exemples
 
-> **Notiz**
+> **Hinweis**
 >
 > Die Screenshots können im Hinblick auf Entwicklungen unterschiedlich sein.
 
@@ -103,7 +103,7 @@ Wir können uns sehr gut vorstellen, dasselbe mit mehreren Aktionen zu tun, um m
 
 In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus resultierenden Aktionen ändern sich entsprechend der Konfiguration im Teil "Aktion". Daher können wir uns bereits mit einer einfachen Interaktion mit einem einzelnen Satz Aktionen vorstellen, die zwischen diesen kombiniert werden verschiedene Befehle und verschiedene Szenarien (wir können auch Szenarien im Aktionsteil von Interaktionen auslösen).
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Um ein Szenario hinzuzufügen, erstellen Sie eine neue Aktion, schreiben Sie &quot;Szenario&quot; ohne Akzent und drücken Sie die Tabulatortaste auf Ihrer Tastatur, um die Szenarioauswahl aufzurufen.
 
@@ -285,7 +285,7 @@ Wir können also einen regulären Ausdruck sehen :
 
 Auf diese Weise können Sie alle Befehle löschen, deren Satz eines dieser Wörter enthält
 
-> **Notiz**
+> **Hinweis**
 >
 > Der reguläre Ausdruck hier ist eine vereinfachte Version zur einfachen Verwendung. Wir können daher entweder traditionelle Ausdrücke oder vereinfachte Ausdrücke wie in diesem Beispiel verwenden.
 
@@ -297,9 +297,9 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anwendung : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Anleitung*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Anzahlung*.
 
-> **Notiz**
+> **Hinweis**
 >
 > Wir können jedes Tag verwenden, außer denjenigen, die bereits von Jeedom verwendet werden. Es können mehrere verwendet werden, um beispielsweise mehrere Befehle zu steuern. Beachten Sie auch, dass alle Tags an die von der Interaktion gestarteten Szenarien übergeben werden (es ist jedoch erforderlich, dass sich das Szenario unter "Im Vordergrund ausführen" befindet").
 
@@ -350,6 +350,6 @@ Interaktionen machen insbesondere viele Dinge. Sie können eine Aktion dynamisch
 
 ![interact23](../images/interact23.JPG)
 
-> **Notiz**
+> **Hinweis**
 >
 > Sie werden in der Antwort das Tag \ bemerken#value\.# Dies enthält im Falle einer programmierten Interaktion die effektive Programmierzeit

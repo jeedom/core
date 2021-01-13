@@ -20,7 +20,7 @@ Depois que seu modelo 3D for criado, ele deverá ser exportado no formato OBJ. S
 >
 > Os arquivos devem estar na raiz do zip e não em uma subpasta.
 
-> **Atenção**
+> **ATENÇÃO**
 >
 > Um modelo 3D é bastante imponente (isso pode representar várias centenas de Mo). Quanto maior, maior o tempo de renderização no Jeedom.
 
@@ -37,11 +37,11 @@ Você pode nessa tela :
 
 Clique no botão "enviar" no nível "Modelo 3D" e selecione seu arquivo zip
 
-> **Atenção**
+> **ATENÇÃO**
 >
 > Jeedom autoriza a importação de um arquivo de 150mo no máximo !
 
-> **Atenção**
+> **ATENÇÃO**
 >
 > Você deve ter um arquivo zip.
 
@@ -64,7 +64,7 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 
 ### Luz
 
-- Estado : O controle do status da luz pode ser binário (0 ou 1), digital (0 a 100%) ou colorido
+- Status : O controle do status da luz pode ser binário (0 ou 1), digital (0 a 100%) ou colorido
 - Poder : potência da lâmpada (observe que isso pode não refletir a realidade))
 
 ### Texte
