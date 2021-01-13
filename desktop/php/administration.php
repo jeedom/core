@@ -1084,7 +1084,7 @@ user::isBan();
 					<fieldset>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
