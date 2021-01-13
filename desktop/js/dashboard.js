@@ -264,24 +264,6 @@ $('#div_pageContainer').on({
 }, '#dashOverviewPrev')
 
 
-
-$('#bt_displayObject').on('click', function () {
-  if (isEditing) return
-  if ($(this).attr('data-display') == 1) {
-    $('#div_displayObjectList').hide()
-    $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-9 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')
-    $('.div_displayEquipement').each(function () {
-      $(this).packery()
-    })
-    $(this).attr('data-display', 0)
-  } else {
-    $('#div_displayObjectList').show()
-    $('#div_displayObject').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-10 col-md-9 col-sm-8')
-    $('.div_displayEquipement').packery()
-    $(this).attr('data-display', 1)
-  }
-})
-
 $('#div_pageContainer').on({
   'click': function(event) {
     var eqId = $(this).closest('div.eqLogic-widget').attr('data-eqlogic_id')
