@@ -59,7 +59,7 @@ natcasesort($list_logfile);
 			<span class="input-group-btn" style="display: inline;">
 				<span class="label-sm">{{Log brut}}</span>
 				<input type="checkbox" id="brutlog" />
-				<input class="form-control input-sm roundedLeft" id="in_searchGlobalLog" placeholder="{{Rechercher}}" style="width: 200px; float: none;"/>
+				<input class="input-sm roundedLeft" id="in_searchGlobalLog" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
 				<a id="bt_resetGlobalLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
 				<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
 				</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
