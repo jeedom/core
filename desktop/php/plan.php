@@ -39,13 +39,7 @@ if (!is_object($planHeader)) {
 	<div class="container-fluid div_displayObject"></div>
 </div>
 
-<<<<<<< HEAD
 <?php 
 include_file('desktop/common', 'ui', 'js');
 include_file('desktop', 'plan', 'js');
-=======
-<?php
-  include_file('desktop', 'plan', 'js');
-  include_file('desktop/common', 'ui', 'js');
->>>>>>> ae1eea469533537422d87f2f1628def96ee5a1ad
 ?>
