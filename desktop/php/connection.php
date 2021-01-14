@@ -18,24 +18,24 @@ include_file('3rdparty', 'animate/animate', 'js');
 				<div id="login" tabindex="503" class="form-group">
 					<h3>Login</h3>
 					<div class="mail">
-						<input type="text" id="in_login_username">
 						<label>{{Nom d'utilisateur}}</label>
+						<input type="text" id="in_login_username">
 					</div>
 					<div class="passwd">
-						<input type="password" id="in_login_password">
 						<label>{{Mot de passe}}</label>
+						<input type="password" id="in_login_password">
 					</div>
 					<div class="passwd" id="div_twoFactorCode" style="display:none;">
-						<input type="text" id="in_twoFactorCode">
 						<label>{{Code à 2 facteurs}}</label>
+						<input type="text" id="in_twoFactorCode">
 					</div>
 					<div class="checkbox">
-						<input type="checkbox" style="top: -11px;" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
+						<input type="checkbox" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
 					</div>
-					<div class="submit">
+					<div class="submit center">
 						<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt" ></i> {{Connexion}}</button>
 					</div>
-					<div class="resetPassword">
+					<div class="resetPassword center">
 						<a href="https://doc.jeedom.com/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 					</div>
 				</div>
@@ -64,17 +64,17 @@ include_file('3rdparty', 'animate/animate', 'js');
 					<br/>
 				</div>
 				<div id="register" tabindex="500" class="form-group">
-					<h3>CHANGER VOTRE MOT DE PASSE</h3>
+					<h3>{{CHANGER VOTRE MOT DE PASSE}}</h3>
 					<div class="passwd">
 						<input type="password" autocomplete="new-password" id="in_change_password">
-						<label>Mot de passe</label>
+						<label>{{Mot de passe}}</label>
 					</div>
 					<div class="passwd">
 						<input type="password" autocomplete="new-password" id="in_change_passwordToo">
-						<label>Mot de passe</label>
+						<label>{{Mot de passe}}</label>
 					</div>
-					<div class="submit">
-						<button class="dark btn-lg" id="bt_change_validate">C'est parti !</button>
+					<div class="submit center">
+						<button class="dark btn-lg" id="bt_change_validate">{{C'est parti !}}</button>
 					</div>
 				</div>
 			</div>
