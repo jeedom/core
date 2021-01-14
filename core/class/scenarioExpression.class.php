@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenarioExpression {
 	/*     * *************************Attributs****************************** */
-
+	
 	private $id;
 	private $scenarioSubElement_id;
 	private $type;
@@ -30,15 +30,9 @@ class scenarioExpression {
 	private $options;
 	private $order;
 	private $_changed = false;
-	public static $_scLogTexts = null;
-
-	public function __construct() {
-		global $JEEDOM_SCLOG_TEXT;
-		self::$_scLogTexts = $JEEDOM_SCLOG_TEXT;
-	}
-
+	
 	/*     * ***********************Méthodes statiques*************************** */
-
+	
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -48,13 +42,13 @@ class scenarioExpression {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM ' . __CLASS__;
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byscenarioSubElementId($_scenarioSubElementId) {
 		$values = array(
 			'scenarioSubElement_id' => $_scenarioSubElementId,
@@ -65,7 +59,7 @@ class scenarioExpression {
 		ORDER BY `order`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function searchExpression($_expression, $_options = null, $_and = true) {
 		$values = array(
 			'expression' => '%' . $_expression . '%',
@@ -83,7 +77,7 @@ class scenarioExpression {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byElement($_element_id) {
 		$values = array(
 			'expression' => $_element_id,
@@ -94,7 +88,7 @@ class scenarioExpression {
 		AND `type`= "element"';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function getExpressionOptions($_expression, $_options) {
 		$replace = array(
 			'#uid#' => 'exp' . mt_rand(),
@@ -122,12 +116,12 @@ class scenarioExpression {
 				$replace[$value] = '';
 			}
 		}
-
+		
 		$return['html'] = template_replace($replace, $return['html']);
 		$return['html'] = translate::exec($return['html'], 'core/template/scenario/' . $_expression . '.default.html');
 		return $return;
 	}
-
+	
 	public static function humanAction($_action) {
 		$return = '';
 		if ($_action['cmd'] == 'scenario') {
@@ -176,19 +170,19 @@ class scenarioExpression {
 		}
 		return trim($return);
 	}
-
+	
 	/*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
 	public static function getDatesFromPeriod($_period = '1 hour') {
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
-
+		
 		if (ctype_digit($_period[0]) && !stristr($_period, "ago")) {
 			$_startTime = date('Y-m-d H:i:s', strtotime('-'.$_period));
 		} else {
 			$_startTime = date('Y-m-d H:i:s', strtotime($_period));
 		}
 		$_endTime = date('Y-m-d H:i:s');
-
+		
 		if ($_period == 'today') {
 			$_startTime = date('Y-m-d') . ' 00:00:00';
 		} elseif ($_period == 'yesterday') {
@@ -197,7 +191,7 @@ class scenarioExpression {
 		}
 		return array($_startTime, $_endTime);
 	}
-
+	
 	public static function randText($_sValue) {
 		$_sValue = self::setTags($_sValue);
 		$_aValue = explode(";", $_sValue);
@@ -216,7 +210,7 @@ class scenarioExpression {
 			return $_aValue;
 		}
 	}
-
+	
 	public static function scenario($_scenario) {
 		$id = str_replace(array('scenario', '#'), '', trim($_scenario));
 		$scenario = scenario::byId($id);
@@ -235,7 +229,7 @@ class scenarioExpression {
 		}
 		return -3;
 	}
-
+	
 	public static function eqEnable($_eqLogic_id) {
 		$id = str_replace(array('eqLogic', '#'), '', trim($_eqLogic_id));
 		$eqLogic = eqLogic::byId($id);
@@ -244,12 +238,12 @@ class scenarioExpression {
 		}
 		return $eqLogic->getIsEnable();
 	}
-
+	
 	public static function average($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
-
+		
 		if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
 			$values = array();
 			foreach ($args as $arg) {
@@ -263,9 +257,9 @@ class scenarioExpression {
 						try {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
-
+							
 						} catch (Error $ex) {
-
+							
 						}
 					}
 				}
@@ -276,11 +270,11 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-
+			
 			$dates = self::getDatesFromPeriod($_period);
 			$_startTime = $dates[0];
 			$_endTime = $dates[1];
-
+			
 			$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 			if (!isset($historyStatistique['avg']) || $historyStatistique['avg'] == '') {
 				return $cmd->execCmd();
@@ -288,7 +282,7 @@ class scenarioExpression {
 			return round($historyStatistique['avg'], 1);
 		}
 	}
-
+	
 	public static function averageBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -302,7 +296,7 @@ class scenarioExpression {
 		}
 		return round($historyStatistique['avg'], 1);
 	}
-
+	
 	public static function max($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
@@ -320,9 +314,9 @@ class scenarioExpression {
 						try {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
-
+							
 						} catch (Error $ex) {
-
+							
 						}
 					}
 				}
@@ -333,11 +327,11 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-
+			
 			$dates = self::getDatesFromPeriod($_period);
 			$_startTime = $dates[0];
 			$_endTime = $dates[1];
-
+			
 			$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 			if (!isset($historyStatistique['max']) || $historyStatistique['max'] == '') {
 				return round($cmd->execCmd(), 1);
@@ -345,7 +339,7 @@ class scenarioExpression {
 			return round($historyStatistique['max'], 1);
 		}
 	}
-
+	
 	public static function color_gradient($_from_color, $_to_color, $_min,$_max,$_value) {
 		if(!is_numeric($_value)){
 			$value = round(jeedom::evaluateExpression($_value));
@@ -382,7 +376,7 @@ class scenarioExpression {
 		}
 		return $RetVal[count($RetVal) - 1];
 	}
-
+	
 	public static function maxBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -396,7 +390,7 @@ class scenarioExpression {
 		}
 		return round($historyStatistique['max'], 1);
 	}
-
+	
 	public static function wait($_condition, $_timeout = 7200) {
 		$result = false;
 		$occurence = 0;
@@ -413,7 +407,7 @@ class scenarioExpression {
 		}
 		return 1;
 	}
-
+	
 	public static function min($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
@@ -431,9 +425,9 @@ class scenarioExpression {
 						try {
 							$values[] = evaluate($value);
 						} catch (Exception $ex) {
-
+							
 						} catch (Error $ex) {
-
+							
 						}
 					}
 				}
@@ -444,11 +438,11 @@ class scenarioExpression {
 			if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 				return '';
 			}
-
+			
 			$dates = self::getDatesFromPeriod($_period);
 			$_startTime = $dates[0];
 			$_endTime = $dates[1];
-
+			
 			$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 			if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 				return round($cmd->execCmd(), 1);
@@ -456,7 +450,7 @@ class scenarioExpression {
 			return round($historyStatistique['min'], 1);
 		}
 	}
-
+	
 	public static function minBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -470,7 +464,7 @@ class scenarioExpression {
 		}
 		return round($historyStatistique['min'], 1);
 	}
-
+	
 	public static function median() {
 		$args = func_get_args();
 		$values = array();
@@ -485,9 +479,9 @@ class scenarioExpression {
 					try {
 						$values[] = evaluate($value);
 					} catch (Exception $ex) {
-
+						
 					} catch (Error $ex) {
-
+						
 					}
 				}
 			}
@@ -501,7 +495,7 @@ class scenarioExpression {
 		sort($values);
 		return $values[round(count($values) / 2) - 1];
 	}
-
+	
 	public static function avg() {
 		$args = func_get_args();
 		$values = array();
@@ -516,9 +510,9 @@ class scenarioExpression {
 					try {
 						$values[] = evaluate($value);
 					} catch (Exception $ex) {
-
+						
 					} catch (Error $ex) {
-
+						
 					}
 				}
 			}
@@ -531,7 +525,7 @@ class scenarioExpression {
 		}
 		return array_sum($values)/count($values);
 	}
-
+	
 	public static function tendance($_cmd_id, $_period = '1 hour', $_threshold = '') {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd)) {
@@ -540,11 +534,11 @@ class scenarioExpression {
 		if ($cmd->getIsHistorized() == 0) {
 			return '';
 		}
-
+		
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
-
+		
 		$tendance = $cmd->getTendance($_startTime, $_endTime);
 		if ($_threshold != '') {
 			$maxThreshold = $_threshold;
@@ -561,11 +555,11 @@ class scenarioExpression {
 		}
 		return 0;
 	}
-
+	
 	public static function lastStateDuration($_cmd_id, $_value = null) {
 		return history::lastStateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
-
+	
 	public static function age($_cmd_id = '') {
 		$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
 		if (!is_object($cmd) || $cmd->getType() != 'info') {
@@ -574,7 +568,7 @@ class scenarioExpression {
 		$cmd->execCmd();
 		return strtotime('now') - strtotime($cmd->getCollectDate());
 	}
-
+	
 	public static function stateChanges($_cmd_id, $_value = null, $_period = '1 hour') {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
@@ -595,13 +589,13 @@ class scenarioExpression {
 				$_value = null;
 			}
 		}
-
+		
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
 		return history::stateChanges($cmd_id, $_value, $_startTime, $_endTime);
 	}
-
+	
 	public static function stateChangesBetween($_cmd_id, $_value, $_startDate, $_endDate = null) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
@@ -610,7 +604,7 @@ class scenarioExpression {
 			return '';
 		}
 		$cmd_id = $cmd->getId();
-
+		
 		$args = func_num_args();
 		if ($args == 3) {
 			$_startDate = func_get_arg(1);
@@ -619,10 +613,10 @@ class scenarioExpression {
 		}
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
-
+		
 		return history::stateChanges($cmd_id, $_value, $_startTime, $_endTime);
 	}
-
+	
 	public static function duration($_cmd_id, $_value, $_period = '1 hour', $_unit = 60, $_operator = '=') {
 		$cmd_id = str_replace('#', '', $_cmd_id);
 		if (!is_numeric($cmd_id)) {
@@ -636,10 +630,10 @@ class scenarioExpression {
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
-
+		
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
-
+		
 		$histories = $cmd->getHistory(date('Y-m-d H:i:s',strtotime($_startTime.' - 2 hours')),$_endTime);
 		if (count($histories) == 0) {
 			return '';
@@ -671,7 +665,7 @@ class scenarioExpression {
 		}
 		return floor($duration / $_unit);
 	}
-
+	
 	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate, $_unit = 60) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
@@ -679,18 +673,18 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-
+		
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
-
+		
 		$histories = $cmd->getHistory();
-
+		
 		$duration = 0;
 		$lastDuration = strtotime($histories[0]->getDatetime());
 		$lastValue = $histories[0]->getValue();
-
+		
 		foreach ($histories as $history) {
 			if ($history->getDatetime() >= $_startTime) {
 				if ($history->getDatetime() <= $_endTime) {
@@ -714,7 +708,7 @@ class scenarioExpression {
 		}
 		return floor($duration / $_unit);
 	}
-
+	
 	public static function lastBetween($_cmd_id, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -728,17 +722,17 @@ class scenarioExpression {
 		}
 		return round($historyStatistique['last'], 1);
 	}
-
+	
 	public static function statistics($_cmd_id, $_calc, $_period = '1 hour') {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-
+		
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
-
+		
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 			return $cmd->execCmd();
@@ -746,7 +740,7 @@ class scenarioExpression {
 		$_calc = str_replace(' ', '', $_calc);
 		return $historyStatistique[$_calc];
 	}
-
+	
 	public static function statisticsBetween($_cmd_id, $_calc, $_startDate, $_endDate) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
@@ -758,7 +752,7 @@ class scenarioExpression {
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startTime), self::setTags($_endTime));
 		return $historyStatistique[$_calc];
 	}
-
+	
 	public static function variable($_name, $_default = '') {
 		$_name = trim(trim(trim($_name), '"'));
 		$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, trim($_name));
@@ -768,20 +762,20 @@ class scenarioExpression {
 		}
 		return $_default;
 	}
-
+	
 	public static function stateDuration($_cmd_id, $_value = null) {
 		return history::stateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
-
+	
 	public static function lastChangeStateDuration($_cmd_id, $_value) {
 		return history::lastChangeStateDuration(str_replace('#', '', $_cmd_id), $_value);
 	}
-
+	
 	public static function odd($_value) {
 		$_value = intval(evaluate(self::setTags($_value)));
 		return ($_value % 2) ? 1 : 0;
 	}
-
+	
 	public static function lastScenarioExecution($_scenario_id) {
 		$scenario = scenario::byId(str_replace(array('#scenario', '#'), '', $_scenario_id));
 		if (!is_object($scenario)) {
@@ -789,7 +783,7 @@ class scenarioExpression {
 		}
 		return strtotime('now') - strtotime($scenario->getLastLaunch());
 	}
-
+	
 	public static function collectDate($_cmd_id, $_format = 'Y-m-d H:i:s') {
 		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
 		if (!is_object($cmd)) {
@@ -801,7 +795,7 @@ class scenarioExpression {
 		$cmd->execCmd();
 		return date($_format, strtotime($cmd->getCollectDate()));
 	}
-
+	
 	public static function valueDate($_cmd_id, $_format = 'Y-m-d H:i:s') {
 		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
 		if (!is_object($cmd)) {
@@ -810,7 +804,7 @@ class scenarioExpression {
 		$cmd->execCmd();
 		return date($_format, strtotime($cmd->getValueDate()));
 	}
-
+	
 	public static function lastCommunication($_eqLogic_id, $_format = 'Y-m-d H:i:s') {
 		$eqLogic = eqLogic::byId(trim(str_replace(array('#','#eqLogic','eqLogic'), '', eqLogic::fromHumanReadable('#' . str_replace('#', '', $_eqLogic_id) . '#'))));
 		if (!is_object($eqLogic)) {
@@ -818,7 +812,7 @@ class scenarioExpression {
 		}
 		return date($_format, strtotime($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s'))));
 	}
-
+	
 	public static function value($_cmd_id) {
 		$cmd = cmd::byId(trim(str_replace('#', '', cmd::humanReadableToCmd('#' . str_replace('#', '', $_cmd_id) . '#'))));
 		if (!is_object($cmd)) {
@@ -826,7 +820,7 @@ class scenarioExpression {
 		}
 		return $cmd->execCmd();
 	}
-
+	
 	public static function randomColor($_rangeLower, $_rangeHighter) {
 		$value = rand($_rangeLower, $_rangeHighter);
 		$color_range = 85;
@@ -852,7 +846,7 @@ class scenarioExpression {
 		$color->blue = (strlen($color->blue) == 1) ? '0' . $color->blue : $color->blue;
 		return '#' . $color->red . $color->green . $color->blue;
 	}
-
+	
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
@@ -864,7 +858,7 @@ class scenarioExpression {
 		}
 		return 0;
 	}
-
+	
 	public static function triggerValue(&$_scenario = null) {
 		if ($_scenario !== null) {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
@@ -874,7 +868,7 @@ class scenarioExpression {
 		}
 		return false;
 	}
-
+	
 	public static function round($_value, $_decimal = 0) {
 		$_value = self::setTags($_value);
 		try {
@@ -887,7 +881,7 @@ class scenarioExpression {
 		}
 		return round(floatval(str_replace(',', '.', $result)), $_decimal);
 	}
-
+	
 	public static function time_op($_time, $_value = 0 ) {
 		$_time = self::setTags($_time);
 		$_value = self::setTags($_value);
@@ -912,7 +906,7 @@ class scenarioExpression {
 		}
 		return $date->format('Gi');
 	}
-
+	
 	public static function time_between($_time, $_start, $_end) {
 		$_time = self::setTags($_time);
 		$_start = self::setTags($_start);
@@ -924,7 +918,7 @@ class scenarioExpression {
 		}
 		return $result;
 	}
-
+	
 	public static function time_diff($_date1, $_date2, $_format = 'd', $_rnd = 2) {
 		$d1 = self::setTags($_date1);
 		$date1 = new DateTime($d1);
@@ -954,7 +948,7 @@ class scenarioExpression {
 			default: return floor($dureeAbs/86400); // en jours
 		}
 	}
-
+	
 	public static function time($_value) {
 		$_value = self::setTags($_value);
 		try {
@@ -974,11 +968,11 @@ class scenarioExpression {
 			} else {
 				$result += 40;
 			}
-
+			
 		}
 		return $result;
 	}
-
+	
 	public static function formatTime($_time) {
 		$_time = self::setTags($_time);
 		if (strlen($_time) > 3) {
@@ -991,7 +985,7 @@ class scenarioExpression {
 			return '00h0' . substr($_time, 0, 1);
 		}
 	}
-
+	
 	public static function name($_type, $_cmd_id) {
 		$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
 		if (!is_object($cmd)) {
@@ -1014,7 +1008,7 @@ class scenarioExpression {
 		}
 		return __('Type inconnu', __FILE__);
 	}
-
+	
 	public static function getRequestTags($_expression) {
 		$return = array();
 		preg_match_all("/#([a-zA-Z0-9]*)#/", $_expression, $matches);
@@ -1100,7 +1094,7 @@ class scenarioExpression {
 		}
 		return array_merge($return,$new);
 	}
-
+	
 	public static function tag(&$_scenario = null, $_name, $_default = '') {
 		if ($_scenario == null) {
 			return $_default;
@@ -1111,7 +1105,7 @@ class scenarioExpression {
 		}
 		return $_default;
 	}
-
+	
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
 		if(config::byKey('expression::autoQuote','core',1) == 0){
 			$_quote = false;
@@ -1126,7 +1120,7 @@ class scenarioExpression {
 		if ($_scenario !== null && count($_scenario->getTags()) > 0) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
 		}
-
+		
 		if (is_object($_scenario)) {
 			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
 			if (is_object($cmd)) {
@@ -1211,7 +1205,7 @@ class scenarioExpression {
 		$return = cmd::cmdToValue(str_replace(array_keys($replace1), array_values($replace1), str_replace(array_keys($replace2), array_values($replace2), $_expression)), $_quote);
 		return $return;
 	}
-
+	
 	public static function createAndExec($_type, $_cmd, $_options = null) {
 		$scenarioExpression = new self();
 		$scenarioExpression->setType($_type);
@@ -1223,9 +1217,9 @@ class scenarioExpression {
 		}
 		return $scenarioExpression->execute();
 	}
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	public function checkBackground() {
 		if ($this->getOptions('background', 0) == 0) {
 			return;
@@ -1235,7 +1229,7 @@ class scenarioExpression {
 		}
 		return;
 	}
-
+	
 	public function execute(&$scenario = null) {
 		if ($scenario !== null && !$scenario->getDo()) {
 			return;
@@ -1317,9 +1311,9 @@ class scenarioExpression {
 						try {
 							$options['duration'] = intval(evaluate($options['duration']));
 						} catch (Exception $e) {
-
+							
 						} catch (Error $e) {
-
+							
 						}
 						if (is_int($options['duration']) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
@@ -1327,12 +1321,12 @@ class scenarioExpression {
 								usleep($options['duration'] * 1000000);
 								return;
 							}
-
+							
 							sleep($options['duration']);
 							return;
 						}
 					}
-					$this->setLog($scenario, self::$_scLogTexts['invalidDuration']['txt'] . $options['duration']);
+					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['invalidDuration']['txt'] . $options['duration']);
 					return;
 				} elseif ($this->getExpression() == 'stop') {
 					if ($scenario !== null) {
@@ -1372,7 +1366,7 @@ class scenarioExpression {
 				} elseif ($this->getExpression() == 'equipment' || $this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
 					if (!is_object($eqLogic)) {
-						throw new Exception(self::$_scLogTexts['unfoundEq']['txt'] . $this->getOptions('eqLogic'));
+						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEX']['unfoundEq']['txt'] . $this->getOptions('eqLogic'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'show':
@@ -1408,7 +1402,7 @@ class scenarioExpression {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 					}
 					if (!is_object($actionScenario)) {
-						throw new Exception(self::$_scLogTexts['unfoundScenario']['txt'] . $this->getOptions('scenario_id'));
+						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEX']['unfoundScenario']['txt'] . $this->getOptions('scenario_id'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
@@ -1423,11 +1417,11 @@ class scenarioExpression {
 						if (is_array($this->getOptions('tags'))) {
 							$actionScenario->setTags($this->getOptions('tags'));
 						}
-						$this->setLog($scenario, self::$_scLogTexts['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
+						$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 						if ($scenario !== null) {
-							return $actionScenario->launch('scenario', self::$_scLogTexts['startByScenario']['txt'] . $scenario->getHumanName());
+							return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEX']['startByScenario']['txt'] . $scenario->getHumanName());
 						} else {
-							return $actionScenario->launch('other', self::$_scLogTexts['startCausedBy']['txt']);
+							return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEX']['startCausedBy']['txt']);
 						}
 						break;
 						case 'startsync':
@@ -1442,11 +1436,11 @@ class scenarioExpression {
 						if (is_array($this->getOptions('tags'))) {
 							$actionScenario->setTags($this->getOptions('tags'));
 						}
-						$this->setLog($scenario, self::$_scLogTexts['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
+						$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 						if ($scenario !== null) {
-							return $actionScenario->launch('scenario', self::$_scLogTexts['startByScenario']['txt'] . $scenario->getHumanName(), true);
+							return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEX']['startByScenario']['txt'] . $scenario->getHumanName(), true);
 						} else {
-							return $actionScenario->launch('other', self::$_scLogTexts['startCausedBy']['txt'], true);
+							return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEX']['startCausedBy']['txt'], true);
 						}
 						break;
 						case 'stop':
@@ -1502,7 +1496,7 @@ class scenarioExpression {
 					$dataStore->save();
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
-
+					
 					//Recuperation des tags
 					$tags = $scenario->getTags();
 					if (isset($tags['#profile#']) === true) {
@@ -1510,10 +1504,10 @@ class scenarioExpression {
 						//si la commande contient #profile#
 						$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
 					}
-
+					
 					#Recherche de la commandeId avec le bon user
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
-
+					
 					if (!is_object($cmd)) {
 						throw new Exception(__('Commande introuvable - Vérifiez l\'id : ', __FILE__) . $this->getOptions('cmd'));
 					}
@@ -1586,11 +1580,11 @@ class scenarioExpression {
 					$options['name'] = str_replace(array('/'),array(''),$options['name']);
 					$tmp_file = jeedom::getTmpFolder('history_export').'/'.$options['name'].'.csv';
 					$cmd_parameters = array('files' => $tmp_file,'title' => $options['name'],'message' => $options['name']);
-
+					
 					$start = date('Y-m-d H:i:s',strtotime($options['start']));
 					$end = date('Y-m-d H:i:s',strtotime($options['end']));
 					$this->setLog($scenario, __('Export de l\'historique du ', __FILE__).$start.__(' au ', __FILE__).$end);
-
+					
 					$histories = array();
 					$cmdExportArray = explode('&&',$this->getOptions('cmd_export'));
 					foreach ($cmdExportArray as $cmdExport){
@@ -1600,9 +1594,9 @@ class scenarioExpression {
 						}
 						$histories += $cmd->getHistory($start,$end);
 					}
-
+					
 					file_put_contents($tmp_file,history::exportToCSV($histories));
-
+					
 					$cmdArray = explode('&&',$this->getOptions('cmd'));
 					foreach ($cmdArray as $cmdname){
 						$cmd = cmd::byId(str_replace('#', '', $cmdname));
@@ -1720,20 +1714,20 @@ class scenarioExpression {
 							return;
 						}
 					}
-
+					
 					$cmd = cmd::byId(str_replace('#', '', $this->getExpression()));
 					if (is_object($cmd)) {
 						if ($cmd->getSubtype() == 'slider' && isset($options['slider'])) {
 							$options['slider'] = evaluate($options['slider']);
 						}
 						if (is_array($options) && (count($options) > 1 || (isset($options['background']) && $options['background'] == 1))) {
-							$this->setLog($scenario, self::$_scLogTexts['execCmd']['txt'] . $cmd->getHumanName() . __(" avec comme option(s) : ", __FILE__) . json_encode($options));
+							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['execCmd']['txt'] . $cmd->getHumanName() . __(" avec comme option(s) : ", __FILE__) . json_encode($options));
 						} else {
-							$this->setLog($scenario, self::$_scLogTexts['execCmd']['txt'] . $cmd->getHumanName());
+							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['execCmd']['txt'] . $cmd->getHumanName());
 						}
 						return $cmd->execCmd($options);
 					}
-					$this->setLog($scenario, self::$_scLogTexts['unfoundCmd']['txt'] . $this->getExpression());
+					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['unfoundCmd']['txt'] . $this->getExpression());
 					return;
 				}
 			} elseif ($this->getType() == 'condition') {
@@ -1752,7 +1746,7 @@ class scenarioExpression {
 				$this->setLog($scenario, $message);
 				return $result;
 			} elseif ($this->getType() == 'code') {
-				$this->setLog($scenario, self::$_scLogTexts['execCode']['txt']);
+				$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['execCode']['txt']);
 				return eval($this->getExpression());
 			}
 		} catch (Exception $e) {
@@ -1761,17 +1755,17 @@ class scenarioExpression {
 			$this->setLog($scenario, $message . $e->getMessage());
 		}
 	}
-
+	
 	public function save() {
 		$this->checkBackground();
 		DB::save($this);
 		return true;
 	}
-
+	
 	public function remove() {
 		DB::remove($this);
 	}
-
+	
 	public function getAllId() {
 		$return = array(
 			'element' => array(),
@@ -1794,7 +1788,7 @@ class scenarioExpression {
 		$return['expression'] = array_merge($return['expression'], $result['expression']);
 		return $return;
 	}
-
+	
 	public function copy($_scenarioSubElement_id) {
 		$expressionCopy = clone $this;
 		$expressionCopy->setId('');
@@ -1809,11 +1803,11 @@ class scenarioExpression {
 		}
 		return $expressionCopy->getId();
 	}
-
+	
 	public function emptyOptions() {
 		$this->options = '';
 	}
-
+	
 	public function resetRepeatIfStatus() {
 		if ($this->getType() != 'element') {
 			return;
@@ -1823,7 +1817,7 @@ class scenarioExpression {
 			$element->resetRepeatIfStatus();
 		}
 	}
-
+	
 	public function export() {
 		$return = '';
 		if ($this->getType() == 'element') {
@@ -1865,98 +1859,98 @@ class scenarioExpression {
 			return '(code) ' . $this->getExpression();
 		}
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 	public function getId() {
 		return $this->id;
 	}
-
+	
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-
+	
 	public function getType() {
 		return $this->type;
 	}
-
+	
 	public function setType($_type) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
-
+	
 	public function getScenarioSubElement_id() {
 		return $this->scenarioSubElement_id;
 	}
-
+	
 	public function getSubElement() {
 		return scenarioSubElement::byId($this->getScenarioSubElement_id());
 	}
-
+	
 	public function setScenarioSubElement_id($_scenarioSubElement_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->scenarioSubElement_id,$_scenarioSubElement_id);
 		$this->scenarioSubElement_id = $_scenarioSubElement_id;
 		return $this;
 	}
-
+	
 	public function getSubtype() {
 		return $this->subtype;
 	}
-
+	
 	public function setSubtype($_subtype) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
 		$this->subtype = $_subtype;
 		return $this;
 	}
-
+	
 	public function getExpression() {
 		return $this->expression;
 	}
-
+	
 	public function setExpression($_expression) {
 		$_expression = jeedom::fromHumanReadable($_expression);
 		$this->_changed = utils::attrChanged($this->_changed,$this->expression,$_expression);
 		$this->expression = $_expression;
 		return $this;
 	}
-
+	
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-
+	
 	public function setOptions($_key, $_value) {
 		$options = utils::setJsonAttr($this->options, $_key, jeedom::fromHumanReadable($_value));
 		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
 		$this->options = 	$options;
 		return $this;
 	}
-
+	
 	public function getOrder() {
 		return $this->order;
 	}
-
+	
 	public function setOrder($_order) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 		$this->order = $_order;
 		return $this;
 	}
-
+	
 	public function setLog(&$_scenario, $log) {
 		if ($_scenario !== null && is_object($_scenario)) {
 			$_scenario->setLog($log);
 		}
 	}
-
+	
 	public function getChanged() {
 		return $this->_changed;
 	}
-
+	
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
+	
 }
