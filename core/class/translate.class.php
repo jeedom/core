@@ -62,6 +62,9 @@ class translate {
 	}
 
 	public static function getWidgetTranslation($_widget) {
+		if (!isset(self::$translation[self::getLanguage()]['core/template/widgets.html'])) {
+			self::$translation[self::getLanguage()]['core/template/widgets.html'] = array();
+		}
 		if (!isset(self::$widgetLoad[$_widget])) {
 			self::$widgetLoad[$_widget][$_widget] = array_merge(self::$translation[self::getLanguage()]['core/template/widgets.html'], self::loadTranslation($_widget));
 		}

@@ -342,8 +342,16 @@ class jeeObject {
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
 			}
+
 			$icon = $def[$key]['icon'];
-			if ($result == 0 && isset($def[$key]['iconnul'])) $icon = $def[$key]['iconnul'];
+			if (!isset($def[$key]['iconnul'])) {
+				$def[$key]['iconnul'] = $def[$key]['icon'];
+				$def[$key]['hidenumber'] = 0;
+				$def[$key]['hidenulnumber'] = 0;
+			} else {
+				if ($result == 0) $icon = $def[$key]['iconnul'];
+			}
+
 			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '" data-hidenulnumber="'. $def[$key]['hidenulnumber'] . '">';
 			if ($def[$key]['hidenumber'] == 1 || ($result == 0 && $def[$key]['hidenulnumber'] == 1)) {
 				$return .= $icon . ' <sup><span style="display:none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
@@ -795,7 +803,14 @@ class jeeObject {
 					$style = 'display:none;';
 				}
 				$icon = $value['icon'];
-				if ($result == 0 && isset($value['iconnul'])) $icon = $value['iconnul'];
+				if (!isset($value['iconnul'])) {
+					$value['iconnul'] = $value['icon'];
+					$value['hidenumber'] = 0;
+					$value['hidenulnumber'] = 0;
+				} else {
+					if ($result == 0) $icon = $value['iconnul'];
+				}
+
 				$return .= '<span style="' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="'. $value['hidenulnumber'] . '">';
 				if ($value['hidenumber'] == 1 || ($result == 0 && $value['hidenulnumber'] == 1)) {
 					$return .= $icon . ' <sup><span style="display: none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
