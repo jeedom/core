@@ -803,7 +803,14 @@ class jeeObject {
 					$style = 'display:none;';
 				}
 				$icon = $value['icon'];
-				if ($result == 0 && isset($value['iconnul'])) $icon = $value['iconnul'];
+				if (!isset($value['iconnul'])) {
+					$value['iconnul'] = $value['icon'];
+					$value['hidenumber'] = 0;
+					$value['hidenulnumber'] = 0;
+				} else {
+					if ($result == 0) $icon = $value['iconnul'];
+				}
+
 				$return .= '<span style="' . $style . '" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="'. $value['hidenulnumber'] . '">';
 				if ($value['hidenumber'] == 1 || ($result == 0 && $value['hidenulnumber'] == 1)) {
 					$return .= $icon . ' <sup><span style="display: none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
