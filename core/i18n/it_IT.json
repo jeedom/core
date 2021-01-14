@@ -2097,7 +2097,9 @@
         "J'ai perdu mon mot de passe": "Ho perso la mia password",
         "En créer un !": "Creane uno!",
         "Connecter Jeedom au Market": "Collega Jeedom al mercato",
-        "Configurer plus tard": "Configurer plus tard"
+        "Configurer plus tard": "Configurer plus tard",
+        "CHANGER VOTRE MOT DE PASSE": "CHANGER VOTRE MOT DE PASSE",
+        "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato"

@@ -2097,7 +2097,9 @@
         "J'ai perdu mon mot de passe": "Я потерял пароль",
         "En créer un !": "Создать один!",
         "Connecter Jeedom au Market": "Подключите Jeedom к рынку",
-        "Configurer plus tard": "Configurer plus tard"
+        "Configurer plus tard": "Configurer plus tard",
+        "CHANGER VOTRE MOT DE PASSE": "CHANGER VOTRE MOT DE PASSE",
+        "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ"
