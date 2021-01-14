@@ -62,7 +62,7 @@ if (!isConnect('admin')) {
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="alert alert-warning">
-				{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
+				{{Avant toute mise à jour, merci de consulter le}} <a id="bt_changelogCore" class="label label-info" target="_blank" href="https://doc.jeedom.com/fr_FR/core/3.3/changelog">{{changelog}}</a> {{du Core}}.
 			</div>
 			<div class="form-group">
 				<div class="form-group">
