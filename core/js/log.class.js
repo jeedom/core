@@ -197,24 +197,24 @@ jeedom.log.autoupdate = function (_params) {
     }
     return;
   }
+
   jeedom.log.get({
     log : _params.log,
     slaveId : _params.slaveId,
     global : (_params.callNumber == 1),
-    success : function(result){
-      var log = '';
-      var regex = /<br\s*[\/]?>/gi;
-      var pad, line
+    success : function(result) {
+      var log = ''
+      var line
       var isSysLog = (_params.display[0].id == 'pre_globallog') ? true : false
       var isScenaroLog = (_params.display[0].id == 'pre_scenariolog') ? true : false
+
       if ($.isArray(result)) {
+        //line by line, numbered for system log:
         for (var i in result.reverse()) {
           if (!isset(_params['search']) || _params['search'].value() == '' || result[i].toLowerCase().indexOf(_params['search'].value().toLowerCase()) != -1) {
             line = $.trim(result[i])
             if (isSysLog) {
-              pad = '000000000' + i
-              pad = pad.substr(pad.length-4)
-              log += pad + '|' + line + "\n"
+              log += i.padStart(4, 0) + '|' + line + "\n"
             } else {
               log += line + "\n"
             }
@@ -224,23 +224,28 @@ jeedom.log.autoupdate = function (_params) {
       if ($('#brutlog').is(':checked')) {
         _params.display.text(log)
       } else {
-        if (isScenaroLog) {
-          log = jeedom.log.scenarioColorReplace(log)
+        //is first call on heavy log:
+        if (log.length > 50000 && _params.callNumber == 1) {
+          $('#brutlog').prop('checked', true)
         } else {
-          log = jeedom.log.stringColorReplace(log)
+          if (isScenaroLog) {
+            log = jeedom.log.scenarioColorReplace(log)
+          } else {
+            log = jeedom.log.stringColorReplace(log)
+          }
         }
         _params.display.html(log)
       }
       _params.display.scrollTop(_params.display.height() + 200000);
-      if(jeedom.log.timeout !== null){
-        clearTimeout(jeedom.log.timeout);
+      if (jeedom.log.timeout !== null) {
+        clearTimeout(jeedom.log.timeout)
       }
       jeedom.log.timeout = setTimeout(function() {
         jeedom.log.autoupdate(_params)
-      }, 1000);
+      }, 1000)
     },
     error : function(){
-      if(jeedom.log.timeout !== null){
+      if (jeedom.log.timeout !== null) {
         clearTimeout(jeedom.log.timeout);
       }
       jeedom.log.timeout = setTimeout(function() {
