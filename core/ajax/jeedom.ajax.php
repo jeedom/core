@@ -108,12 +108,7 @@ try {
 			}else if (init('page') == 'plan3d') {
 				$page = 'design3d';
 			}
-			$version = '3.3';
-			if(strpos(jeedom::version(),'4.0') !== false){
-				$version = '4.0';
-			}elseif(strpos(jeedom::version(),'4.1') !== false){
-				$version = '4.1';
-			}
+          	$version = substr(jeedom::version(), 0, 3);
 			ajax::success('https://doc.jeedom.com/' . config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page).'?theme='.$theme);
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
