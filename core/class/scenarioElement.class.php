@@ -29,7 +29,6 @@ class scenarioElement {
 	private $order = 0;
 	private $_changed = false;
 	private $_subelement;
-	public static $_scLogTexts = null;
 	
 	/*     * ***********************Méthodes statiques*************************** */
 	
