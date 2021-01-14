@@ -299,7 +299,7 @@ function displayPlugin(_pluginId) {
           html += '<span class="label label-danger">{{Inactif}}</span>'
         }
         html += '</div>'
-        html += '<label class="col-sm-2 control-label"><i class="fas fa-exclamation"></i> {{Action}}</label>'
+        html += '<label class="col-sm-2 control-label">{{Action}}</label>'
         html += '<div class="col-sm-4">'
         if (data.activate == 1) {
           html += '<a class="btn btn-danger btn-xs togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Désactiver}}</a>'
