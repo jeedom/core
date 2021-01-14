@@ -1279,8 +1279,10 @@ function displayObject(_plan, _html, _noRender) {
   initEditOption(planEditOption.state)
 }
 
-//back to mobile home with three fingers on mobile:
 $(function() {
+  jeedomUI.setEqSignals()
+
+  //back to mobile home with three fingers on mobile:
   if ($('body').attr('data-device') == 'mobile') {
     $('body').on('touchstart', function(event) {
       if (event.touches.length == 3) {
