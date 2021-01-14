@@ -1071,7 +1071,7 @@ class cmd {
 		}
 		$eqLogic = $this->getEqLogic();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() != 1) {
-			throw new Exception($GLOBALS['JEEDOM_SCLOG_TEX']['disableEqNoExecCmd']['txt'] . $this->getHumanName());
+			throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['disableEqNoExecCmd']['txt'] . $this->getHumanName());
 		}
 		try {
 			if ($_options !== null && $_options !== '') {
@@ -1089,9 +1089,9 @@ class cmd {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEX']['execCmd']['txt'] . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
 			} else {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEX']['execCmd']['txt'] . $this->getHumanName());
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
 			}
 			
 			if ($this->getConfiguration('timeline::enable')) {

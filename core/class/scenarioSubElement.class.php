@@ -68,7 +68,7 @@ class scenarioSubElement {
 			return;
 		}
 		if ($this->getSubtype() == 'action') {
-			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['execAction']['txt'] . $this->getType());
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execAction']['txt'] . $this->getType());
 			$return = true;
 			foreach(($this->getExpression()) as $expression) {
 				$return = $expression->execute($_scenario);
@@ -76,7 +76,7 @@ class scenarioSubElement {
 			return $return;
 		}
 		if ($this->getSubtype() == 'condition') {
-			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['execCondition']['txt'] . $this->getType());
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execCondition']['txt'] . $this->getType());
 			foreach(($this->getExpression()) as $expression) {
 				return $expression->execute($_scenario);
 			}

@@ -139,7 +139,7 @@ class scenarioElement {
 			}
 			$result = $this->getSubElement('if')->execute($_scenario);
 			if (is_string($result) && strlen($result) > 1) {
-				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['invalidExpr']['txt'] . $result);
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result);
 				$expresssion_str = '';
 				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
 					foreach(($this->getSubElement('if')->getExpression()) as $expression) {
@@ -211,7 +211,7 @@ class scenarioElement {
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEX']['sheduleNow']['txt'] );
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduleNow']['txt'] );
 				system::php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
@@ -231,7 +231,7 @@ class scenarioElement {
 				$next = strtotime('+ ' . $time . ' min');
 				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->save();
-				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEX']['sheduledOn']['txt'] . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduledOn']['txt'] . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
 		} else if ($this->getType() == 'at') {
@@ -240,7 +240,7 @@ class scenarioElement {
 			}
 			$next = $this->getSubElement('at')->execute($_scenario);
 			if (!is_numeric($next) || $next < 0) {
-				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEX']['invalideShedule']['txt'] . $next);
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['invalideShedule']['txt'] . $next);
 			}
 			if ($next <= date('Gi')) {
 				$next = str_repeat('0', 4 - strlen($next)) . $next;
@@ -251,7 +251,7 @@ class scenarioElement {
 			}
 			$next = strtotime($next);
 			if ($next < strtotime('now')) {
-				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEX']['invalideShedule']['txt'] . date('Y-m-d H:i:00', $next));
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['invalideShedule']['txt'] . date('Y-m-d H:i:00', $next));
 			}
 			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
@@ -269,7 +269,7 @@ class scenarioElement {
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
-			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEX']['sheduledOn']['txt'] . date('Y-m-d H:i:00', $next));
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduledOn']['txt'] . date('Y-m-d H:i:00', $next));
 			return true;
 		}
 	}

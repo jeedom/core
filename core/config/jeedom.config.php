@@ -436,7 +436,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 	),
 ),
 );
-$GLOBALS['JEEDOM_SCLOG_TEX'] = array(
+$GLOBALS['JEEDOM_SCLOG_TEXT'] = array(
 	'startManual' 			=> array('txt' => __('Scénario lancé manuellement', __FILE__), 'replace' => '<label class="success">::</label>'),
 	'startAutoOnEvent'		=> array('txt' => __('Scénario exécuté automatiquement sur événement venant de : ', __FILE__), 'replace' => '<label class="success">::</label>'),
 	'startOnEvent'			=> array('txt' => __('Scénario exécuté sur événement', __FILE__), 'replace' => '<label class="success">::</label>'),

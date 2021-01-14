@@ -1326,7 +1326,7 @@ class scenarioExpression {
 							return;
 						}
 					}
-					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['invalidDuration']['txt'] . $options['duration']);
+					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['invalidDuration']['txt'] . $options['duration']);
 					return;
 				} elseif ($this->getExpression() == 'stop') {
 					if ($scenario !== null) {
@@ -1366,7 +1366,7 @@ class scenarioExpression {
 				} elseif ($this->getExpression() == 'equipment' || $this->getExpression() == 'equipement') {
 					$eqLogic = eqLogic::byId(str_replace(array('#eqLogic', '#'), '', $this->getOptions('eqLogic')));
 					if (!is_object($eqLogic)) {
-						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEX']['unfoundEq']['txt'] . $this->getOptions('eqLogic'));
+						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundEq']['txt'] . $this->getOptions('eqLogic'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'show':
@@ -1402,7 +1402,7 @@ class scenarioExpression {
 						$actionScenario = scenario::byId($this->getOptions('scenario_id'));
 					}
 					if (!is_object($actionScenario)) {
-						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEX']['unfoundScenario']['txt'] . $this->getOptions('scenario_id'));
+						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundScenario']['txt'] . $this->getOptions('scenario_id'));
 					}
 					switch ($this->getOptions('action')) {
 						case 'start':
@@ -1417,11 +1417,11 @@ class scenarioExpression {
 						if (is_array($this->getOptions('tags'))) {
 							$actionScenario->setTags($this->getOptions('tags'));
 						}
-						$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
+						$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 						if ($scenario !== null) {
-							return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEX']['startByScenario']['txt'] . $scenario->getHumanName());
+							return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
 						} else {
-							return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEX']['startCausedBy']['txt']);
+							return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
 						}
 						break;
 						case 'startsync':
@@ -1436,11 +1436,11 @@ class scenarioExpression {
 						if (is_array($this->getOptions('tags'))) {
 							$actionScenario->setTags($this->getOptions('tags'));
 						}
-						$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
+						$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . __(' options : ', __FILE__) . json_encode($actionScenario->getTags()));
 						if ($scenario !== null) {
-							return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEX']['startByScenario']['txt'] . $scenario->getHumanName(), true);
+							return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName(), true);
 						} else {
-							return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEX']['startCausedBy']['txt'], true);
+							return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'], true);
 						}
 						break;
 						case 'stop':
@@ -1721,13 +1721,13 @@ class scenarioExpression {
 							$options['slider'] = evaluate($options['slider']);
 						}
 						if (is_array($options) && (count($options) > 1 || (isset($options['background']) && $options['background'] == 1))) {
-							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['execCmd']['txt'] . $cmd->getHumanName() . __(" avec comme option(s) : ", __FILE__) . json_encode($options));
+							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $cmd->getHumanName() . __(" avec comme option(s) : ", __FILE__) . json_encode($options));
 						} else {
-							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['execCmd']['txt'] . $cmd->getHumanName());
+							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $cmd->getHumanName());
 						}
 						return $cmd->execCmd($options);
 					}
-					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['unfoundCmd']['txt'] . $this->getExpression());
+					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmd']['txt'] . $this->getExpression());
 					return;
 				}
 			} elseif ($this->getType() == 'condition') {
@@ -1746,7 +1746,7 @@ class scenarioExpression {
 				$this->setLog($scenario, $message);
 				return $result;
 			} elseif ($this->getType() == 'code') {
-				$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEX']['execCode']['txt']);
+				$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['execCode']['txt']);
 				return eval($this->getExpression());
 			}
 		} catch (Exception $e) {

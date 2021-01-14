@@ -49,7 +49,7 @@ try {
 	}
 	
 	if (init('action') == 'getScTranslations') {
-		ajax::success(json_encode($GLOBALS['JEEDOM_SCLOG_TEX']));
+		ajax::success(json_encode($GLOBALS['JEEDOM_SCLOG_TEXT']));
 	}
 	
 	if (init('action') == 'get') {

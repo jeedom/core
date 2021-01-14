@@ -278,11 +278,11 @@ class scenario {
 			if (is_object($_event)) {
 				$scenarios1 = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
-				$message = $GLOBALS['JEEDOM_SCLOG_TEX']['startAutoOnEvent']['txt'] . $_event->getHumanName();
+				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName();
 			} else {
 				$scenarios1 = self::byTrigger($_event);
 				$trigger = $_event;
-				$message = $GLOBALS['JEEDOM_SCLOG_TEX']['startOnEvent']['txt'] . ' : #' . $_event . '#';
+				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startOnEvent']['txt'] . ' : #' . $_event . '#';
 			}
 			if (is_array($scenarios1) && count($scenarios1) > 0) {
 				foreach ($scenarios1 as $scenario) {
@@ -292,7 +292,7 @@ class scenario {
 				}
 			}
 		} else {
-			$message = $GLOBALS['JEEDOM_SCLOG_TEX']['startAutoOnShedule']['txt'];
+			$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnShedule']['txt'];
 			$scenarios = scenario::schedule();
 			$trigger = 'schedule';
 			if (jeedom::isDateOk()) {
@@ -325,7 +325,7 @@ class scenario {
 			$runtime = strtotime('now') - strtotime($scenario->getLastLaunch());
 			if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0 && $runtime > $scenario->getTimeout()) {
 				$scenario->stop();
-				$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['stopTimeout']['txt'] . $scenario->getTimeout() . 's');
+				$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['stopTimeout']['txt'] . $scenario->getTimeout() . 's');
 				$scenario->persistLog();
 			}
 		}
@@ -345,18 +345,18 @@ class scenario {
 			return;
 		}
 		if ($scenario->getIsActive() == 0) {
-			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['disableNoSubtask']['txt']);
+			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableNoSubtask']['txt']);
 			$scenario->persistLog();
 			return;
 		}
 		$scenarioElement = scenarioElement::byId($_options['scenarioElement_id']);
-		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['startSubTask']['txt']);
+		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['startSubTask']['txt']);
 		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
 			$scenario->setTags($_options['tags']);
 			$scenario->setLog(__('Tags : ', __FILE__) . json_encode($scenario->getTags()));
 		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
-			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['toStartUnfound']['txt']);
+			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['toStartUnfound']['txt']);
 			$scenario->persistLog();
 			return;
 		}
@@ -364,7 +364,7 @@ class scenario {
 			sleep($_options['second'] - intval(date('s')));
 		}
 		$scenarioElement->getSubElement('do')->execute($scenario);
-		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['endSubTask']['txt']);
+		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['endSubTask']['txt']);
 		$scenario->persistLog();
 	}
 	/**
@@ -723,7 +723,7 @@ class scenario {
 					}
 					$this->setCache(array('startingTime' =>strtotime('now'),'state' => 'starting'));
 					if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
-						$this->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['launchScenarioSync']['txt']);
+						$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
 						return $this->execute($_trigger, $_message);
 					} else {
 						if (count($this->getTags()) != '') {
@@ -754,7 +754,7 @@ class scenario {
 						$this->setCache('tags', '');
 					}
 					if ($this->getIsActive() != 1) {
-						$this->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['disableScenario']['txt']  . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
+						$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
 						$this->setState('stop');
 						$this->setPID();
 						$this->persistLog();
@@ -762,7 +762,7 @@ class scenario {
 					}
 					if ($this->getConfiguration('timeDependency', 0) == 1) {
 						if(!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4)){
-							$this->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['launchScenario']['txt'] . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
+							$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
 							$this->setState('stop');
 							$this->setPID();
 							$this->persistLog();
@@ -814,7 +814,7 @@ class scenario {
 					}
 					$this->setState('stop');
 					$this->setPID();
-					$this->setLog($GLOBALS['JEEDOM_SCLOG_TEX']['finishOk']['txt']);
+					$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['finishOk']['txt']);
 					$this->persistLog();
 					return $this->getReturn();
 				}
