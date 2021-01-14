@@ -67,6 +67,7 @@ class dataStore {
 			$values['link_id'] = $_link_id;
 			$sql .= ' AND link_id=:link_id';
 		}
+		$sql .= ' ORDER BY `key`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
