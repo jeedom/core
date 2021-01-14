@@ -2,6 +2,10 @@
 Changelog
 =========
 
+3.3.55
+======
+- Stretch-Migrationstools für Smart verfügbar.
+
 3.3.54
 ======
 

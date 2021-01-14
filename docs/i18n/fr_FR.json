@@ -986,6 +986,8 @@
     },
     "changelog.md": {
         "Changelog": "Changelog",
+        "3.3.55": "3.3.55",
+        "outils de migration stretch pour smart disponible": "outils de migration stretch pour smart disponible",
         "3.3.54": "3.3.54",
         "Ajout d'un assistant de migration V4": "Ajout d'un assistant de migration V4",
         "Correction de bugs sur les backups cloud": "Correction de bugs sur les backups cloud",
