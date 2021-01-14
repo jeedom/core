@@ -21,14 +21,14 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class config {
 	/*     * *************************Attributs****************************** */
-
+	
 	private static $defaultConfiguration = array();
 	private static $cache = array();
 	private static $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username','ldap:password','ldap:host','ldap:username','dns::token','api');
 	private static $nocache = array('enableScenario');
-
+	
 	/*     * ***********************Methode static*************************** */
-
+	
 	public static function getDefaultConfiguration($_plugin = 'core') {
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			if ($_plugin == 'core') {
@@ -75,9 +75,9 @@ class config {
 				return true;
 			}
 		}
-
+		
 		$class = ($_plugin == 'core') ? 'config' : $_plugin;
-
+		
 		$function = 'preConfig_' . str_replace(array('::', ':','-'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
@@ -99,13 +99,13 @@ class config {
 		`value`=:value,
 		plugin=:plugin';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-
+		
 		$function = 'postConfig_' . str_replace(array('::', ':'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$class::$function($_value);
 		}
 	}
-
+	
 	/**
 	* Supprime une clef de la config
 	* @param string $_key nom de la clef à supprimer
@@ -133,7 +133,7 @@ class config {
 			}
 		}
 	}
-
+	
 	/**
 	* Retourne la valeur d'une clef
 	* @param string $_key nom de la clef dont on veut la valeur
@@ -152,7 +152,7 @@ class config {
 		WHERE `key`=:key
 		AND plugin=:plugin';
 		$value = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-		if (($value['value'] === '' || $value['value'] === null)) {
+		if (!is_array($value) || !isset($value['value']) || $value['value'] === '' || $value['value'] === null) {
 			$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 			if (isset($defaultConfiguration[$_plugin][$_key])) {
 				self::$cache[$_plugin . '::' . $_key] = $defaultConfiguration[$_plugin][$_key];
@@ -171,7 +171,7 @@ class config {
 		}
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
-
+	
 	public static function byKeys($_keys, $_plugin = 'core', $_default = '') {
 		if (!is_array($_keys) || count($_keys) == 0) {
 			return array();
@@ -217,7 +217,7 @@ class config {
 		}
 		return $return;
 	}
-
+	
 	public static function searchKey($_key, $_plugin = 'core') {
 		$values = array(
 			'plugin' => $_plugin,
@@ -240,7 +240,7 @@ class config {
 		}
 		return $results;
 	}
-
+	
 	public static function genKey($_car = 32) {
 		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -253,7 +253,7 @@ class config {
 		}
 		return $key;
 	}
-
+	
 	public static function getPluginEnable() {
 		$sql = 'SELECT `value`,`plugin`
 		FROM config
@@ -265,7 +265,7 @@ class config {
 		}
 		return $return;
 	}
-
+	
 	public static function getLogLevelPlugin() {
 		$sql = 'SELECT `value`,`key`
 		FROM config
@@ -277,9 +277,9 @@ class config {
 		}
 		return $return;
 	}
-
+	
 	/*     * *********************Generic check value************************* */
-
+	
 	public static function checkValueBetween($_value,$_min=null,$_max=null){
 		if($_min !== null && $_value<$_min){
 			return $_min;
@@ -292,9 +292,9 @@ class config {
 		}
 		return $_value;
 	}
-
+	
 	/*     * *********************Action sur config************************* */
-
+	
 	public static function postConfig_market_allowDns($_value){
 		if ($_value == 1) {
 			if (!network::dns_run()) {
@@ -306,18 +306,18 @@ class config {
 			}
 		}
 	}
-
+	
 	public static function postConfig_interface_advance_vertCentering($_value){
 		cache::flushWidget();
 	}
-
+	
 	public static function postConfig_object_summary($_value){
 		try {
 			foreach(jeeObject::all() as $object) {
 				$object->setChanged(true);
 				$object->cleanSummary();
 			}
-
+			
 			//force refresh all summaries:
 			$global = array();
 			$objects = jeeObject::all(true);
@@ -340,76 +340,77 @@ class config {
 						if ($result === null) continue;
 						$event['keys'][$key] = array('value' => $result);
 					} catch (Exception $e) {}
+					}
+					$events[] = $event;
 				}
-				$events[] = $event;
+				if (count($events) > 0) {
+					event::adds('jeeObject::summary::update', $events);
+				}
+			} catch (\Exception $e) {
+				
 			}
-			if (count($events) > 0) {
-				event::adds('jeeObject::summary::update', $events);
+		}
+		
+		public static function preConfig_historyArchivePackage($_value){
+			return self::checkValueBetween($_value,1);
+		}
+		
+		public static function preConfig_historyArchiveTime($_value){
+			return self::checkValueBetween($_value,2);
+		}
+		
+		public static function preConfig_market_password($_value) {
+			if (!is_sha1($_value)) {
+				return sha1($_value);
 			}
-		} catch (\Exception $e) {
-
+			return $_value;
 		}
-	}
-
-	public static function preConfig_historyArchivePackage($_value){
-		return self::checkValueBetween($_value,1);
-	}
-
-	public static function preConfig_historyArchiveTime($_value){
-		return self::checkValueBetween($_value,2);
-	}
-
-	public static function preConfig_market_password($_value) {
-		if (!is_sha1($_value)) {
-			return sha1($_value);
+		
+		public static function preConfig_widget_margin($_value) {
+			return self::checkValueBetween($_value,0);
 		}
-		return $_value;
-	}
-
-	public static function preConfig_widget_margin($_value) {
-		return self::checkValueBetween($_value,0);
-	}
-
-	public static function preConfig_widget_step_width($_value) {
-		return self::checkValueBetween($_value,1);
-	}
-
-	public static function preConfig_widget_step_height($_value) {
-		return self::checkValueBetween($_value,1);
-	}
-
-	public static function preConfig_css_background_opacity($_value) {
-		return self::checkValueBetween($_value,0,1);
-	}
-
-	public static function preConfig_css_border_radius($_value) {
-		return self::checkValueBetween($_value,0,1);
-	}
-
-	public static function preConfig_name($_value){
-		return str_replace(array('\\','/',"'",'"'),'',$_value);
-	}
-
-	public static function preConfig_info_latitude($_value){
-		return str_replace(',','.',$_value);
-	}
-
-	public static function preConfig_info_longitude($_value){
-		return str_replace(',','.',$_value);
-	}
-
-	public static function preConfig_tts_engine($_value){
-		try {
-			if($_value != config::byKey('tts::engine')){
-				rrmdir(jeedom::getTmpFolder('tts'));
+		
+		public static function preConfig_widget_step_width($_value) {
+			return self::checkValueBetween($_value,1);
+		}
+		
+		public static function preConfig_widget_step_height($_value) {
+			return self::checkValueBetween($_value,1);
+		}
+		
+		public static function preConfig_css_background_opacity($_value) {
+			return self::checkValueBetween($_value,0,1);
+		}
+		
+		public static function preConfig_css_border_radius($_value) {
+			return self::checkValueBetween($_value,0,1);
+		}
+		
+		public static function preConfig_name($_value){
+			return str_replace(array('\\','/',"'",'"'),'',$_value);
+		}
+		
+		public static function preConfig_info_latitude($_value){
+			return str_replace(',','.',$_value);
+		}
+		
+		public static function preConfig_info_longitude($_value){
+			return str_replace(',','.',$_value);
+		}
+		
+		public static function preConfig_tts_engine($_value){
+			try {
+				if($_value != config::byKey('tts::engine')){
+					rrmdir(jeedom::getTmpFolder('tts'));
+				}
+			} catch (\Exception $e) {
+				
 			}
-		} catch (\Exception $e) {
-
+			return $_value;
 		}
-		return $_value;
+		
+		/*     * *********************Methode d'instance************************* */
+		
+		/*     * **********************Getteur Setteur*************************** */
 	}
-
-	/*     * *********************Methode d'instance************************* */
-
-	/*     * **********************Getteur Setteur*************************** */
-}
+	
