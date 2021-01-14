@@ -346,6 +346,7 @@ class jeeObject {
 			$icon = $def[$key]['icon'];
 			if (!isset($def[$key]['iconnul'])) {
 				$def[$key]['iconnul'] = $def[$key]['icon'];
+				$def[$key]['hidenumber'] = 0;
 				$def[$key]['hidenulnumber'] = 0;
 			} else {
 				if ($result == 0) $icon = $def[$key]['iconnul'];
