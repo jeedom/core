@@ -621,21 +621,7 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
   }
 })
 
-$pageContainer.off('click','.eqLogic-widget .history').on('click','.eqLogic-widget .history', function(event) {
-  if (planEditOption.state == true) return false
-  event.stopImmediatePropagation()
-  event.stopPropagation()
-  if (event.ctrlKey || event.metaKey) {
-    var cmdIds = []
-    $(this).closest('.eqLogic.eqLogic-widget').find('.history[data-cmd_id]').each(function () {
-      cmdIds.push($(this).data('cmd_id'))
-    })
-    cmdIds = cmdIds.join('-')
-  } else {
-    var cmdIds = $(this).closest('.history[data-cmd_id]').data('cmd_id')
-  }
-  $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
-})
+jeedomUI.setHistoryModalHandler()
 
 /***********************************************************************************/
 function createNewDesign() {
