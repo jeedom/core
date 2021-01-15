@@ -80,10 +80,13 @@ $date = array(
 			</li>
 		</ul>
 		<ul id="ul_history" class="nav nav-list bs-sidenav">
-			<li class="nav-header"><i class="icon techno-courbes3"></i> {{Historique}}
+			<li>
+				<i class="icon techno-courbes3"></i> {{Historique}}
 				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top:-5px;padding: 5px 10px;margin-right: 3px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</li>
-			<li class="filter"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" /></li>
+			<li class="filter">
+				<input class="filter form-control input-sm" placeholder="{{Rechercher}}" />
+			</li>
 			<?php
 			$object_id = -1;
 			$historyAll = cmd::allHistoryCmd();

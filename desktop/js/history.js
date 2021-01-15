@@ -53,6 +53,82 @@ $(window).resize(function() {
   resizeDone = setTimeout(resizeDn, 100)
 })
 
+
+/************Left button list UI***********/
+$('#bt_validChangeDate').on('click',function() {
+  if (jeedom.history.chart['div_graph'] === undefined) return
+  $('.highcharts-plot-band').remove()
+  $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
+    if (serie.options && !isNaN(serie.options.id)) {
+      var cmd_id = serie.options.id
+      addChart(cmd_id, 0)
+      addChart(cmd_id, 1)
+    }
+  })
+})
+
+
+$('#bt_findCmdCalculHistory').on('click', function() {
+  jeedom.cmd.getSelectModal({cmd: {type: 'info',subType : 'numeric',isHistorized : 1}}, function(result) {
+    $('#in_calculHistory').atCaret('insert', result.human)
+  })
+})
+$('#bt_displayCalculHistory').on('click', function() {
+  var calcul = $('#in_calculHistory').value()
+  if (calcul != '') addChart(calcul, 1)
+})
+$('#bt_configureCalculHistory').on('click', function() {
+  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open')
+})
+
+
+$('#bt_openCmdHistoryConfigure').on('click', function() {
+  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
+})
+
+
+$(".li_history .history").on('click', function(event) {
+  $.hideAlert()
+  if (isComparing) return
+  if ($(this).closest('.li_history').hasClass('active')) {
+    $(this).closest('.li_history').removeClass('active')
+    addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
+  } else {
+    $(this).closest('.li_history').addClass('active')
+    addChart($(this).closest('.li_history').attr('data-cmd_id'), 1)
+  }
+  return false
+})
+
+
+$('.displayObject').on('click', function() {
+  var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
+  if (list.is(':visible')) {
+    $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+    list.hide()
+  } else {
+    $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+    list.show()
+  }
+})
+
+
+$(".li_history .remove").on('click', function() {
+  var bt_remove = $(this);
+  $.hideAlert();
+  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
+    if (result !== null) {
+      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result)
+    }
+  })
+})
+$(".li_history .export").on('click', function() {
+  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
+})
+
+
+
+/************Charting***********/
 function setChartOptions() {
   var _prop = 'disabled'
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
@@ -92,75 +168,6 @@ function setChartOptions() {
   $('#sel_groupingType, #sel_chartType').prop('disabled', _prop)
   resizeDn()
 }
-
-$('#bt_findCmdCalculHistory').on('click', function() {
-  jeedom.cmd.getSelectModal({cmd: {type: 'info',subType : 'numeric',isHistorized : 1}}, function(result) {
-    $('#in_calculHistory').atCaret('insert', result.human)
-  })
-})
-
-$('#bt_displayCalculHistory').on('click', function() {
-  var calcul = $('#in_calculHistory').value()
-  if (calcul != '') addChart(calcul, 1)
-})
-
-$('#bt_configureCalculHistory').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open')
-})
-
-$(".li_history .history").on('click', function(event) {
-  $.hideAlert()
-  if (isComparing) return
-  if ($(this).closest('.li_history').hasClass('active')) {
-    $(this).closest('.li_history').removeClass('active')
-    addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
-  } else {
-    $(this).closest('.li_history').addClass('active')
-    addChart($(this).closest('.li_history').attr('data-cmd_id'), 1)
-  }
-  return false
-})
-
-$(".li_history .remove").on('click', function() {
-  var bt_remove = $(this);
-  $.hideAlert();
-  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
-    if (result !== null) {
-      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result)
-    }
-  })
-})
-
-$('.displayObject').on('click', function() {
-  var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
-  if (list.is(':visible')) {
-    $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
-    list.hide()
-  } else {
-    $(this).find('i.fa').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
-    list.show()
-  }
-})
-
-$(".li_history .export").on('click', function() {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
-})
-
-$('#bt_openCmdHistoryConfigure').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
-})
-
-$('#bt_validChangeDate').on('click',function() {
-  if (jeedom.history.chart['div_graph'] === undefined) return
-  $('.highcharts-plot-band').remove()
-  $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
-    if (serie.options && !isNaN(serie.options.id)) {
-      var cmd_id = serie.options.id
-      addChart(cmd_id, 0)
-      addChart(cmd_id, 1)
-    }
-  })
-})
 
 function initHistoryTrigger() {
   $('#sel_groupingType').off('change').on('change', function() {
