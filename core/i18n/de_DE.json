@@ -1707,7 +1707,7 @@
         "Expressions": "Ausdrücke",
         "Quote automatique": "Automatisches Angebot",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "\"Und 'Zeichenfolgen in Ausdrücken automatisch verwalten (standardmäßig aktiviert)",
-        "Delai d'attente après génération de la page": "Wartezeit nach der Seitengenerierung",
+        "Délai d'attente après génération de la page": "Wartezeit nach der Seitengenerierung",
         "Nettoyer les rapports plus anciens de": "Bereinigen Sie ältere Berichte von",
         "Profondeur pour les scénarios": "Tiefe für Szenarien",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "Maximale Anzahl von Elementebenen, die in Timeline-Linkgrafiken angezeigt werden sollen",
@@ -1838,7 +1838,7 @@
         "Clé Market": "Markt schlüsse",
         "Clé Market de": "Schlüsselmarkt von",
         "Clé API pour le plugin": "API Schlüssel für das Plugin",
-        "Ne pas autoriser les methodes générales": "Lassen Sie keine allgemeinen Methoden zu",
+        "Ne pas autoriser les méthodes générales": "Lassen Sie keine allgemeinen Methoden zu",
         "Vérifications Système": "Systemprüfungen",
         "Vérification générale": "Allgemeine Überprüfung",
         "Permet de lancer le test de consistence de Jeedom.": "Starten wir den Jeedom-Konsistenztest",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Période de comparaison": "Vergleichszeitraum",
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht"
     },

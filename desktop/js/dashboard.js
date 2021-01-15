@@ -481,7 +481,7 @@ function getObjectHtml(_object_id) {
 $('#bt_editDashboardWidgetOrder').on('click',function() {
   if ($(this).attr('data-mode') == 1) {
     $('#md_modal').dialog('close')
-    $('.tooltipstered').tooltipster('enable')
+    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
     $.hideAlert()
     $(this).attr('data-mode', 0)
     editWidgetMode(0)
