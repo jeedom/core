@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.1
 
+## 4.1.18
+
+- Bugfix historiques sur les Designs.
+- Bugfix recherche dans Analyse / Historique.
+
 ## 4.1.0
 
 ### Pré-requis
