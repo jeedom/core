@@ -5,8 +5,8 @@ if (!isConnect('admin')) {
 $allObject = jeeObject::buildTree(null, false);
 $config_objSummary = config::byKey('object:summary');
 sendVarToJS([
-  'select_id' => init('id', '-1'),
-  'config_objSummary' => $config_objSummary
+	'select_id' => init('id', '-1'),
+	'config_objSummary' => $config_objSummary
 ]);
 
 $synthToActions = array(
@@ -35,13 +35,13 @@ $synthToActions = array(
 				<span class="txtColor">{{Vue d'ensemble}}</span>
 			</div>
 		</div>
-
+		
 		<legend><i class="fas fa-image"></i>  {{Mes objets}} <sub class="itemsNumber"></sub></legend>
 		<div class="input-group" style="margin-bottom:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
 			<div class="input-group-btn">
 				<a id="bt_resetObjectSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-                </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
+				</a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
 			</div>
 		</div>
 		<div id="objectPanel" class="panel">
@@ -67,7 +67,7 @@ $synthToActions = array(
 			</div>
 		</div>
 	</div>
-
+	
 	<div id="div_conf" class="col-xs-12 object" style="display: none;">
 		<div class="input-group floatingbar" style="display:inline-flex">
 			<span class="input-group-btn">
@@ -76,14 +76,14 @@ $synthToActions = array(
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 			</span>
 		</div>
-
+		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 			<li role="presentation"><a href="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé par équipements}}</a></li>
 		</ul>
-
+		
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
@@ -150,7 +150,7 @@ $synthToActions = array(
 									}
 									?>
 								</select>
-
+								
 								<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToPlan">
 									<?php
 									foreach ((planHeader::all()) as $plan) {
@@ -158,7 +158,7 @@ $synthToActions = array(
 									}
 									?>
 								</select>
-
+								
 								<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToPlan3d">
 									<?php
 									foreach ((plan3dHeader::all()) as $plan) {
@@ -170,7 +170,7 @@ $synthToActions = array(
 						</div>
 					</form>
 				</div>
-
+				
 				<div class="col-lg-6 col-md-6">
 					<form class="form-horizontal">
 						<legend><i class="fas fa-users-cog"></i> {{Affichage}}</legend>
@@ -232,14 +232,48 @@ $synthToActions = array(
 						</div>
 					</form>
 				</div>
+				
+				<form class="form-horizontal">
+					<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires}}</legend>
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-2 control-label">{{Type}}</label>
+						<div class="col-lg-2 col-xs-3">
+							<select class="objectAttr" data-l1key="configuration" data-l2key="info::type">
+								<option value="room">{{Pièce}}</option>
+								<option value="object">{{Objet}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-2 control-label">{{Superficie}} <sub>m²</sub></label>
+						<div class="col-lg-2 col-xs-3">
+							<input class="objectAttr" type="number" data-l1key="configuration" data-l2key="info::space"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-2 control-label">{{Orientation}}</label>
+						<div class="col-lg-2 col-xs-3">
+							<select class="objectAttr" data-l1key="configuration" data-l2key="info::orientation">
+								<option value="0">{{Nord}}</option>
+								<option value="45">{{Nord-Est}}</option>
+								<option value="90">{{Est}}</option>
+								<option value="135">{{Sud-Est}}</option>
+								<option value="180">{{Sud}}</option>
+								<option value="225">{{Sud-Ouest}}</option>
+								<option value="270">{{Ouest}}</option>
+								<option value="315">{{Nord-Ouest}}</option>
+							</select>
+						</div>
+					</div>
+				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="summarytab">
 				<?php
 				if (count($config_objSummary) == 0) {
 					echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 				} else {
-
+					
 					?>
 					<form class="form-horizontal">
 						<fieldset>
@@ -270,7 +304,7 @@ $synthToActions = array(
 								}
 								$echo .= '<td><a class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></a> <a class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></a></td>';
 								$echo .= '</tr>';
-
+								
 								$echo .= '<tr>';
 								$echo .= '<td style="cursor:default;">';
 								$echo .= '{{Masquer en desktop}}';
@@ -282,7 +316,7 @@ $synthToActions = array(
 								}
 								$echo .= '<td><a class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></a> <a class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></a></td>';
 								$echo .= '</tr>';
-
+								
 								$echo .= '<tr>';
 								$echo .= '<td>';
 								$echo .= '{{Masquer en mobile}}';
@@ -294,7 +328,7 @@ $synthToActions = array(
 								}
 								$echo .= '<td><a class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></a> <a class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></a></td>';
 								$echo .= '</tr>';
-
+								
 								echo $echo;
 								?>
 							</table>
@@ -337,7 +371,7 @@ $synthToActions = array(
 				}
 				?>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="eqlogicsTab" style="margin-bottom: 200px;">
 				<br/>
 				<div class="input-group" style="margin-bottom:5px;">
