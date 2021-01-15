@@ -24,6 +24,8 @@
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
+- **Objets** : Les plugins peuvent maintenant demander des parametres spécifique que les objets
+- **Utilisateurs** : Les plugins peuvent maintenant demander des parametres spécifique que les utilisateurs
 
 ### Widgets Core
 
