@@ -4,8 +4,8 @@ if (!isConnect('admin')) {
 }
 global $CONFIG;
 //get all tables and their columns:
-$sqlQuery = "select TABLE_NAME, COLUMN_NAME, DATA_TYPE, EXTRA from information_schema.columns where table_schema = '".$CONFIG['db']['dbname']."' order by table_name,ordinal_position";
-$result = DB::prepare($sqlQuery, array(), DB::FETCH_TYPE_ALL);
+$sqlQuery = "select TABLE_NAME, COLUMN_NAME, DATA_TYPE, EXTRA from information_schema.columns where table_schema=:db_name order by table_name,ordinal_position";
+$result = DB::prepare($sqlQuery, array('db_name' => $CONFIG['db']['dbname']), DB::FETCH_TYPE_ALL);
 
 $tableList = array();
 foreach($result as $res) {
@@ -43,11 +43,11 @@ sendVarToJS('_tableList_', $tableList);
           </span>
         </div>
       </label>
-
+      
       <div id="dynamicsql" class="content">
         <form class="form-horizontal">
           <fieldset>
-
+            
             <!-- SQL UI OPERATION selector-->
             <div class="form-group">
               <div class="col-md-2 col-xs-3">
@@ -58,7 +58,7 @@ sendVarToJS('_tableList_', $tableList);
                   <option value="DELETE">DELETE</option>
                 </select>
               </div>
-
+              
               <div class="col-md-4 col-xs-3">
                 <input id="sql_selector" class="form-control input-sm" type="text" value="*" placeholder="* or col1,col2,..."/>
               </div>
@@ -68,19 +68,19 @@ sendVarToJS('_tableList_', $tableList);
                   <?php
                   $options = '';
                   foreach ($tableList as $table => $cols) {
-                      $options .= '<option value="'.$table.'">'.$table.'</option>';
+                    $options .= '<option value="'.$table.'">'.$table.'</option>';
                   }
                   echo $options;
                   ?>
                 </select>
               </div>
             </div>
-
+            
             <!-- SQL UI SET-->
             <div id="sqlSetGroup" class="form-group" style="display: none;">
               <label class="col-xs-12">SET</label>
             </div>
-
+            
             <!-- SQL UI WHERE-->
             <div id="sqlWhereGroup" class="form-group">
               <label class="col-md-2 col-xs-3 control-label">
@@ -91,7 +91,7 @@ sendVarToJS('_tableList_', $tableList);
                   <?php
                   $options = '';
                   foreach ($tableList['cmd'] as $col) {
-                      $options .= '<option value="'.$col['colName'].'">'.$col['colName'].'</option>';
+                    $options .= '<option value="'.$col['colName'].'">'.$col['colName'].'</option>';
                   }
                   echo $options;
                   ?>
@@ -107,11 +107,11 @@ sendVarToJS('_tableList_', $tableList);
                 <input id="sqlLikeValue" class="form-control input-sm disabled" type="text" value="" placeholder="int or 'string', like % wildcard"/>
               </div>
             </div>
-
+            
           </fieldset>
         </form>
       </div>
-
+      
       <label><i class="fas fa-database"></i> {{Commande SQL}}</label>
       <div class="input-group content">
         <input id="in_specificCommand" class="form-control input-sm" type="text"/>
@@ -120,7 +120,7 @@ sendVarToJS('_tableList_', $tableList);
         </div>
       </div>
     </div>
-
+    
     <!-- SQL RESULT -->
     <div id="div_commandResult" style="overflow: auto;"></div>
   </div>
