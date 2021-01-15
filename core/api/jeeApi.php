@@ -120,7 +120,7 @@ if (init('type') != '') {
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4, IP : ', __FILE__) . getClientIp());
 		}
-		if (class_exists($type) && method_exists($type, 'event')) {
+		if ($type != 'object' && class_exists($type) && method_exists($type, 'event')) {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
 			$type::event();
 			die();
