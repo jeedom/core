@@ -265,6 +265,42 @@ $synthToActions = array(
 							<input class="objectAttr" type="number" data-l1key="configuration" data-l2key="info::space"/>
 						</div>
 					</div>
+					<?php 
+					try {
+						$plugins = plugin::listPlugin(true);
+						foreach ($plugins as $plugin) {
+							$specialAttributes = $plugin->getSpecialAttributes();
+							if(!isset($specialAttributes['object']) || !is_array($specialAttributes['object']) || count($specialAttributes['object']) == 0){
+								continue;
+							}
+							echo '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} '.$plugin->getName().'</legend>';
+							foreach ($specialAttributes['object'] as $key => $config) {
+								echo '<div class="form-group">';
+								echo '<label class="col-lg-2 col-xs-2 control-label">'.$config['name'][translate::getLanguage()].'</label>';
+								echo '<div class="col-lg-2 col-xs-3">';
+								switch ($config['type']) {
+									case 'input':
+									echo '<input class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'"/>';
+									break;
+									case 'number':
+									echo '<input type="number" class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'" min="'.(isset($config['min']) ? $config['min'] : '').'" max="'.(isset($config['max']) ? $config['max'] : '').'" />';
+									break;
+									case 'select':
+									echo '<select class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::'.$plugin->getId().'::'.$key.'">';
+									foreach ($config['values'] as $value) {
+										echo '<option value="'.$value['value'].'">'.$value['name'].'</option>';
+									}
+									echo '</select>';
+									break;
+								}
+								echo '</div>';
+								echo '</div>';
+							}
+						}
+					} catch (\Exception $e) {
+						
+					}
+					?>
 				</form>
 			</div>
 			
