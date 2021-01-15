@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 global $CONFIG;
 //get all tables and their columns:
-$sqlQuery = "select TABLE_NAME, COLUMN_NAME, DATA_TYPE, EXTRA from information_schema.columns where table_schema=:db_name order by table_name,ordinal_position";
+$sqlQuery = 'SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, EXTRA FROM information_schema.columns WHERE table_schema=:db_name ORDER BY table_name,ordinal_position';
 $result = DB::prepare($sqlQuery, array('db_name' => $CONFIG['db']['dbname']), DB::FETCH_TYPE_ALL);
 
 $tableList = array();
