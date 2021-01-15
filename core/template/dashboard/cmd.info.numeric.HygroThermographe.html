@@ -4,11 +4,17 @@
     <span class="intNumTemp fontDigital value"></span>
     <span class="decNumTemp fontDigital value"></span>
     <span class="uniteTemp fontDigital">°C</span>
+    <div class="cmdStats #hide_history#">
+      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
   </div>
   <div class="history" data-type="humidity">
     <span class="intNumHumidity fontDigital value"></span>
     <span class="decNumHumidity fontDigital value"></span>
     <span class="uniteHumidity fontDigital">%</span>
+    <div class="cmdStats #hide_history#">
+      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    </div>
   </div>
   <style>
     @font-face {
@@ -72,6 +78,16 @@
     <div>scale : 0.75 ({{Echelle du widget, entre 0 et 1}}).</div>
   </template>
   <script>
+    //stats:
+    if ('#generic_type#' == 'HUMIDITY') {
+      var html = $('.cmd[data-cmd_id=#id#]').find('.cmdStats').html()
+      if (!html.includes('#')) {
+        $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first .history[data-type=humidity] .cmdStats').html(html)
+      } else {
+        $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first .history[data-type=humidity] .cmdStats').remove()
+      }
+    }
+
     jeedom.cmd.update['#id#'] = function(_options) {
       var widget = $('.cmd[data-cmd_id=#id#]').closest('.eqLogic').find('.widget-hygrothermographe:first')
       if ('#generic_type#' == 'TEMPERATURE') {

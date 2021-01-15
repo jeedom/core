@@ -232,22 +232,21 @@ $synthToActions = array(
 						</div>
 					</form>
 				</div>
-				
 				<form class="form-horizontal">
 					<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires}}</legend>
 					<div class="form-group">
-						<label class="col-lg-2 col-xs-2 control-label">{{Type}}</label>
-						<div class="col-lg-2 col-xs-3">
-							<select class="objectAttr" data-l1key="configuration" data-l2key="info::type">
+						<label class="col-lg-2 col-xs-4 control-label">{{Type}}</label>
+						<div class="col-lg-3 col-xs-7">
+							<select class="form-control objectAttr" data-l1key="configuration" data-l2key="info::type">
 								<option value="room">{{Pièce}}</option>
 								<option value="object">{{Objet}}</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-xs-2 control-label">{{Orientation}}</label>
-						<div class="col-lg-2 col-xs-3">
-							<select class="objectAttr" data-l1key="configuration" data-l2key="info::orientation">
+						<label class="col-lg-2 col-xs-4 control-label">{{Orientation}}</label>
+						<div class="col-lg-3 col-xs-7">
+							<select class="form-control objectAttr" data-l1key="configuration" data-l2key="info::orientation">
 								<option value="0">{{Nord}}</option>
 								<option value="45">{{Nord-Est}}</option>
 								<option value="90">{{Est}}</option>
@@ -260,9 +259,9 @@ $synthToActions = array(
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-xs-2 control-label">{{Superficie}} <sub>m²</sub></label>
-						<div class="col-lg-2 col-xs-3">
-							<input class="objectAttr" type="number" data-l1key="configuration" data-l2key="info::space"/>
+						<label class="col-lg-2 col-xs-4 control-label">{{Superficie}} <sub>m²</sub></label>
+						<div class="col-lg-3 col-xs-7">
+							<input class="form-control objectAttr" type="number" data-l1key="configuration" data-l2key="info::space"/>
 						</div>
 					</div>
 					<?php 
