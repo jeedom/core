@@ -4,6 +4,7 @@
 
 - Bugfix historiques sur les Designs.
 - Bugfix recherche dans Analyse / Historique.
+- Bugfix recherche sur une variable, lien vers un équipement.
 
 ## 4.1.0
 
