@@ -1707,7 +1707,7 @@
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
-        "Delai d'attente après génération de la page": "Tempo di attesa dopo la generazione della pagina",
+        "Délai d'attente après génération de la page": "Tempo di attesa dopo la generazione della pagina",
         "Nettoyer les rapports plus anciens de": "Pulisci i rapporti più vecchi da",
         "Profondeur pour les scénarios": "Profondità per gli scenari",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "Numero massimo di livelli di elementi da visualizzare nella grafica dei collegamenti della sequenza temporale",
@@ -1838,7 +1838,7 @@
         "Clé Market": "Mercato chiave",
         "Clé Market de": "Mercato chiave di",
         "Clé API pour le plugin": "Chiave API per il plugin",
-        "Ne pas autoriser les methodes générales": "Ne pas autoriser les methodes générales",
+        "Ne pas autoriser les méthodes générales": "Ne pas autoriser les methodes générales",
         "Vérifications Système": "Vérifications Système",
         "Vérification générale": "Verifica generale",
         "Permet de lancer le test de consistence de Jeedom.": "Consente di avviare il test di coerenza Jeedom",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Configurazione di formule",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
         "Période de comparaison": "Période de comparaison",
         "Historique supprimé avec succès": "Storico cancellato con successo"
     },

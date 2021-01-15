@@ -1707,7 +1707,7 @@
         "Expressions": "Expresiones",
         "Quote automatique": "Cotización automática",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Administra automáticamente \"y\" cadenas en expresiones (habilitado de forma predeterminada)",
-        "Delai d'attente après génération de la page": "Tiempo de espera después de la generación de la página",
+        "Délai d'attente après génération de la page": "Tiempo de espera después de la generación de la página",
         "Nettoyer les rapports plus anciens de": "Limpiar informes anteriores de",
         "Profondeur pour les scénarios": "Profundidad para escenarios",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "Número máximo de niveles de elementos para mostrar en gráficos de enlace de línea de tiempo",
@@ -1838,7 +1838,7 @@
         "Clé Market": "Mercado clave",
         "Clé Market de": "Mercado clave de",
         "Clé API pour le plugin": "Clave API para el complemento",
-        "Ne pas autoriser les methodes générales": "No permita métodos generales",
+        "Ne pas autoriser les méthodes générales": "No permita métodos generales",
         "Vérifications Système": "Verificación sistema",
         "Vérification générale": "Verificación general",
         "Permet de lancer le test de consistence de Jeedom.": "Vamos a lanzar la prueba de consistencia Jeedom",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Configuración de fórmulas",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Période de comparaison": "Período de comparación",
         "Historique supprimé avec succès": "Historial eliminado correctamente"
     },

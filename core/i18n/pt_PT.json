@@ -1707,7 +1707,7 @@
         "Expressions": "Expressões",
         "Quote automatique": "Cotação Automática",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gerenciar automaticamente \"e\" strings em expressões (habilitado por padrão)",
-        "Delai d'attente après génération de la page": "Tempo de espera após a geração da página",
+        "Délai d'attente après génération de la page": "Tempo de espera após a geração da página",
         "Nettoyer les rapports plus anciens de": "Limpe relatórios mais antigos de",
         "Profondeur pour les scénarios": "Profundidade para cenários",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "Número máximo de níveis de itens a serem exibidos nos gráficos dos links da linha do tempo",
@@ -1838,7 +1838,7 @@
         "Clé Market": "Mercado Principal",
         "Clé Market de": "Mercado Principal de",
         "Clé API pour le plugin": "Chave de API para o plugin",
-        "Ne pas autoriser les methodes générales": "Não permitir métodos gerais",
+        "Ne pas autoriser les méthodes générales": "Não permitir métodos gerais",
         "Vérifications Système": "Verificações do sistema",
         "Vérification générale": "Verificação geral",
         "Permet de lancer le test de consistence de Jeedom.": "Vamos iniciar o teste de consistência Jeedom",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Configurando fórmulas",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Por favor indicar a data (Y-M d H: m: s) antes que ele deve remover história \\ 's",
         "Configuration de l'historique des commandes": "Controles de configuração História",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Por favor indicar a data (Y-M d H: m: s) antes que ele deve remover história \\ 's",
         "Période de comparaison": "Período de comparação",
         "Historique supprimé avec succès": "Histórico excluído com sucesso"
     },

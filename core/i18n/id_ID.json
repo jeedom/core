@@ -1707,7 +1707,7 @@
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
-        "Delai d'attente après génération de la page": "Delai d'attente après génération de la page",
+        "Délai d'attente après génération de la page": "Delai d'attente après génération de la page",
         "Nettoyer les rapports plus anciens de": "Nettoyer les rapports plus anciens de",
         "Profondeur pour les scénarios": "Mendalam untuk skenario",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario",
@@ -1838,7 +1838,7 @@
         "Clé Market": "Clé Market",
         "Clé Market de": "Clé Market de",
         "Clé API pour le plugin": "Clé API pour le plugin",
-        "Ne pas autoriser les methodes générales": "Ne pas autoriser les methodes générales",
+        "Ne pas autoriser les méthodes générales": "Ne pas autoriser les methodes générales",
         "Vérifications Système": "Vérifications Système",
         "Vérification générale": "Vérification générale",
         "Permet de lancer le test de consistence de Jeedom.": "Permet de lancer le test de consistence de Jeedom",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Konfigurasi rumus",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
         "Période de comparaison": "Période de comparaison",
         "Historique supprimé avec succès": "Sejarah berhasil dihapus"
     },

@@ -1707,7 +1707,7 @@
         "Expressions": "Expressions",
         "Quote automatique": "Automatic Quote",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Automatically manage \"and 'strings in expressions (enabled by default)",
-        "Delai d'attente après génération de la page": "Waiting time after page generation",
+        "Délai d'attente après génération de la page": "Waiting time after page generation",
         "Nettoyer les rapports plus anciens de": "Clean up reports older than",
         "Profondeur pour les scénarios": "Scenario depth",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "Maximum number of item levels to display in scenario link graphics",
@@ -1838,7 +1838,7 @@
         "Clé Market": "Market Key",
         "Clé Market de": "Market Key for",
         "Clé API pour le plugin": "API key for the plugin",
-        "Ne pas autoriser les methodes générales": "Do not allow general methods",
+        "Ne pas autoriser les méthodes générales": "Do not allow general methods",
         "Vérifications Système": "System Checks",
         "Vérification générale": "General verification",
         "Permet de lancer le test de consistence de Jeedom.": "Lets launch the Jeedom consistency test",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Configuration of calculation formulas",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Please provide the date (Y-m-d H:m:s) which must be removed before history",
         "Configuration de l'historique des commandes": "Commands history setup",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Please provide the date (Y-m-d H:m:s) which must be removed before history",
         "Période de comparaison": "Comparison period",
         "Historique supprimé avec succès": "History deleted successfully"
     },

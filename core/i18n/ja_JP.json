@@ -1707,7 +1707,7 @@
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
         "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
-        "Delai d'attente après génération de la page": "ページ生成後の待機時間",
+        "Délai d'attente après génération de la page": "ページ生成後の待機時間",
         "Nettoyer les rapports plus anciens de": "からの古いレポートをクリーンアップする",
         "Profondeur pour les scénarios": "シナリオの深さ",
         "Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario": "タイムラインリンクグラフィックスに表示するアイテムレベルの最大数",
@@ -1838,7 +1838,7 @@
         "Clé Market": "主要市場",
         "Clé Market de": "主要市場",
         "Clé API pour le plugin": "プラグインのAPIキー",
-        "Ne pas autoriser les methodes générales": "Ne pas autoriser les methodes générales",
+        "Ne pas autoriser les méthodes générales": "Ne pas autoriser les methodes générales",
         "Vérifications Système": "Vérifications Système",
         "Vérification générale": "一般的な検証",
         "Permet de lancer le test de consistence de Jeedom.": "Jeedom一貫性テストを起動します。",
@@ -2617,8 +2617,8 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "式の設定",
-        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
+        "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
         "Période de comparaison": "Période de comparaison",
         "Historique supprimé avec succès": "歴史は正常に削除しました"
     },
