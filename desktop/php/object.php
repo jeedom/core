@@ -87,150 +87,152 @@ $synthToActions = array(
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="objecttab">
 				<br/>
-				<div class="col-lg-6 col-md-6">
-					<form class="form-horizontal">
-						<legend><i class="fas fa-users-cog"></i> {{Paramètres}}</legend>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Nom de l'objet}}</label>
-							<div class="col-lg-5 col-xs-7">
-								<input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
-								<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<form class="form-horizontal">
+							<legend><i class="fas fa-users-cog"></i> {{Paramètres}}</legend>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Nom de l'objet}}</label>
+								<div class="col-lg-5 col-xs-7">
+									<input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
+									<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Objet parent}}</label>
-							<div class="col-lg-5 col-xs-7">
-								<select class="form-control objectAttr" data-l1key="father_id">
-									<?php echo jeeObject::getUISelectList(); ?>
-								</select>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Objet parent}}</label>
+								<div class="col-lg-5 col-xs-7">
+									<select class="form-control objectAttr" data-l1key="father_id">
+										<?php echo jeeObject::getUISelectList(); ?>
+									</select>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Visible}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Rendre cet objet visible ou non.}}"></i></sup>
-							</label>
-							<div class="col-lg-5 col-xs-7">
-								<input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Visible}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Rendre cet objet visible ou non.}}"></i></sup>
+								</label>
+								<div class="col-lg-5 col-xs-7">
+									<input class="objectAttr" type="checkbox" data-l1key="isVisible" checked/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Masquer sur le Dashboard}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
-							</label>
-							<div class="col-lg-5 col-xs-7">
-								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Masquer sur le Dashboard}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur le Dashboard. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
+								</label>
+								<div class="col-lg-5 col-xs-7">
+									<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnDashboard"/>
+								</div>
 							</div>
-						</div>
-						<br/>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Masquer sur la Synthèse}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur la Synthèse. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
-							</label>
-							<div class="col-lg-5 col-xs-7">
-								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnOverview"/>
+							<br/>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Masquer sur la Synthèse}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Masquer cet objet uniquement sur la Synthèse. Il restera visible, notamment dans la liste des objets.}}"></i></sup>
+								</label>
+								<div class="col-lg-5 col-xs-7">
+									<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnOverview"/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Action depuis la synthèse}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Sur la synthèse, définissez l'action au clic sur la vignette.}}"></i></sup>
-							</label>
-							<div class="col-lg-5 col-xs-7">
-								<select class="form-control objectAttr" data-l1key="configuration" data-l2key="synthToAction">
-									<?php
-									foreach ($synthToActions as $key => $value) {
-										echo '<option value="'.$key.'">'.$value.'</option>';
-									}
-									?>
-								</select>
-								<br/>
-								<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToView">
-									<?php
-									foreach ((view::all()) as $view) {
-										echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
-									}
-									?>
-								</select>
-								
-								<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToPlan">
-									<?php
-									foreach ((planHeader::all()) as $plan) {
-										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
-									}
-									?>
-								</select>
-								
-								<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToPlan3d">
-									<?php
-									foreach ((plan3dHeader::all()) as $plan) {
-										echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
-									}
-									?>
-								</select>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Action depuis la synthèse}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Sur la synthèse, définissez l'action au clic sur la vignette.}}"></i></sup>
+								</label>
+								<div class="col-lg-5 col-xs-7">
+									<select class="form-control objectAttr" data-l1key="configuration" data-l2key="synthToAction">
+										<?php
+										foreach ($synthToActions as $key => $value) {
+											echo '<option value="'.$key.'">'.$value.'</option>';
+										}
+										?>
+									</select>
+									<br/>
+									<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToView">
+										<?php
+										foreach ((view::all()) as $view) {
+											echo '<option value="'.$view->getId().'">'.$view->getName().'</option>';
+										}
+										?>
+									</select>
+									
+									<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToPlan">
+										<?php
+										foreach ((planHeader::all()) as $plan) {
+											echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+										}
+										?>
+									</select>
+									
+									<select class="form-control objectAttr hidden" data-l1key="configuration" data-l2key="synthToPlan3d">
+										<?php
+										foreach ((plan3dHeader::all()) as $plan) {
+											echo '<option value="'.$plan->getId().'">'.$plan->getName().'</option>';
+										}
+										?>
+									</select>
+								</div>
 							</div>
-						</div>
-					</form>
-				</div>
-				
-				<div class="col-lg-6 col-md-6">
-					<form class="form-horizontal">
-						<legend><i class="fas fa-users-cog"></i> {{Affichage}}</legend>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Icône}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icônes widgets colorées' dans Interface si nécessaire.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-xs-2">
-								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+						</form>
+					</div>
+					
+					<div class="col-lg-6 col-md-6">
+						<form class="form-horizontal">
+							<legend><i class="fas fa-users-cog"></i> {{Affichage}}</legend>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Icône}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Activer l'option 'Icônes widgets colorées' dans Interface si nécessaire.}}"></i></sup>
+								</label>
+								<div class="col-lg-2 col-md-2 col-xs-2">
+									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+								</div>
+								<div class="col-xs-2">
+									<div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+								</div>
 							</div>
-							<div class="col-xs-2">
-								<div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+							<br>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Couleurs personnalisées}}</label>
+								<div class="col-lg-5 col-xs-7">
+									<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor"/>
+								</div>
 							</div>
-						</div>
-						<br>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Couleurs personnalisées}}</label>
-							<div class="col-lg-5 col-xs-7">
-								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor"/>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Couleur du tag}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Couleur de l’objet et des équipements qui lui sont rattachés.}}"></i></sup>
+								</label>
+								<div class="col-lg-5 col-xs-7">
+									<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Couleur du tag}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Couleur de l’objet et des équipements qui lui sont rattachés.}}"></i></sup>
-							</label>
-							<div class="col-lg-5 col-xs-7">
-								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Couleur du texte du tag}}</label>
+								<div class="col-lg-5 col-xs-7">
+									<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Couleur du texte du tag}}</label>
-							<div class="col-lg-5 col-xs-7">
-								<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Seulement sur la synthèse}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{L'image de fond sera utilisée seulement sur la Synthèse.}}"></i></sup>
+								</label>
+								<div class="col-lg-8 col-xs-8">
+									<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useBackground"/>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Seulement sur la synthèse}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{L'image de fond sera utilisée seulement sur la Synthèse.}}"></i></sup>
-							</label>
-							<div class="col-lg-8 col-xs-8">
-								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useBackground"/>
+							<div class="form-group">
+								<label class="col-lg-4 col-xs-4 control-label">{{Image de fond}}</label>
+								<div class="col-lg-8 col-xs-8">
+									<span class="btn btn-default btn-file">
+										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+									</span>
+									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliotheque d'image}}</a>
+									<a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-xs-4 control-label">{{Image de fond}}</label>
-							<div class="col-lg-8 col-xs-8">
-								<span class="btn btn-default btn-file">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
-								</span>
-								<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliotheque d'image}}</a>
-								<a class="btn btn-danger" id="bt_removeBackgroundImage"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+							<div class="form-group">
+								<div class="col-lg-4 col-xs-4"></div>
+								<div class="col-lg-8 col-xs-8 objectImg">
+									<img src="" width="240px" height="auto" />
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-lg-4 col-xs-4"></div>
-							<div class="col-lg-8 col-xs-8 objectImg">
-								<img src="" width="240px" height="auto" />
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 				<form class="form-horizontal">
 					<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires}}</legend>
@@ -302,7 +304,6 @@ $synthToActions = array(
 					?>
 				</form>
 			</div>
-			
 			<div role="tabpanel" class="tab-pane" id="summarytab">
 				<?php
 				if (count($config_objSummary) == 0) {
