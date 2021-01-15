@@ -271,7 +271,7 @@ function cleanPath($path) {
 		}
 		
 	}
-	return ($path{0} == '/' ? '/' : '') . join('/', $out);
+	return ($path[0] == '/' ? '/' : '') . join('/', $out);
 }
 
 function getRootPath() {
