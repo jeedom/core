@@ -21,7 +21,7 @@ printUsers()
 
 document.onkeydown = function(event) {
   if (getOpenedModal()) return
-
+  
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $('#bt_saveUser').click()
@@ -198,7 +198,7 @@ function printUsers() {
         ligne += '</td>'
         ligne += '<td>'
         if (disable == '') {
-          ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-refresh"></i> {{Régénérer API}}</a>'
+          ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
           if (ldapEnable != '1') {
             ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
             ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
