@@ -245,12 +245,6 @@ $synthToActions = array(
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-lg-2 col-xs-2 control-label">{{Superficie}} <sub>m²</sub></label>
-						<div class="col-lg-2 col-xs-3">
-							<input class="objectAttr" type="number" data-l1key="configuration" data-l2key="info::space"/>
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-lg-2 col-xs-2 control-label">{{Orientation}}</label>
 						<div class="col-lg-2 col-xs-3">
 							<select class="objectAttr" data-l1key="configuration" data-l2key="info::orientation">
@@ -263,6 +257,12 @@ $synthToActions = array(
 								<option value="270">{{Ouest}}</option>
 								<option value="315">{{Nord-Ouest}}</option>
 							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 col-xs-2 control-label">{{Superficie}} <sub>m²</sub></label>
+						<div class="col-lg-2 col-xs-3">
+							<input class="objectAttr" type="number" data-l1key="configuration" data-l2key="info::space"/>
 						</div>
 					</div>
 				</form>
