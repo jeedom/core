@@ -2054,6 +2054,14 @@ Theme Core 2021 @Jeedom
   #timelineContainer .html .tml-cmd > span >span i {
     color: var(--linkHoverLight-color) !important;
   }
+  #timelineContainer ul .pull-right:not(.tml-folder) {
+    position: relative;
+    top: 4px;
+  }
+  #timelineContainer ul .tml-folder {
+    font-style: italic;
+     margin-right: 20px;
+  }
 
   #timelineContainer ul {
     padding-top: 15px;

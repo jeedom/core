@@ -80,7 +80,6 @@ function displayTimeline() {
         time = thisData.date.substring(11,19)
         thisDateTs = moment(thisData.date.substring(0,19)).unix()
         lineClass = ''
-
         if (prevDate != date) {
           isFirstOfDay = true
           prevDateTs = moment(prevDate + ' 00:00:00').unix()

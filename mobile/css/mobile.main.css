@@ -1056,6 +1056,9 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 #timelineContainer .html .tml-cmd > span >span i {
   color: var(--linkHoverLight-color) !important;
 }
+#timelineContainer ul .tml-folder {
+  display: none;
+}
 
 #timelineContainer ul {
   padding-top: 15px;
