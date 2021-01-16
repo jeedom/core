@@ -33,10 +33,11 @@ if(init('log','event') == 'event'){
 }
 ?>
 
-<span class="label label-info" id="span_lastUpdateCheck"></span>
-<div class="input-group pull-right" style="display:inline-flex">
-  <input class="form-control input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
-  <span class="input-group-btn">
+<div class="input-group pull-right">
+  <span class="input-group-btn" style="display: inline;">
+    <span class="label-sm">{{Log brut}}</span>
+    <input type="checkbox" id="brutlog" />
+    <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
     <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
     </a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
     </a><a class="btn btn-warning btn-sm" id="bt_logdisplayclearLog"><i class="fas fa-times"></i> {{Vider}}

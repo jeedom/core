@@ -773,6 +773,11 @@ Theme Core 2021 @Jeedom
     display: inline-block;
     padding: 4px 12px;
   }
+  .label-xs {
+    line-height: 12px;
+    font-size: 11px !important;
+    padding: 0 4px;
+  }
   .label-sm {
     font-size: 12px !important;
     padding: 2px 8px;
@@ -4550,6 +4555,7 @@ Theme Core 2021 @Jeedom
   }
   #pre_globallog,
   #pre_scenariolog,
+  #pre_eventlog,
   #pre_commandResult,
   #div_commandResult {
     font-family: "CamingoCode", monospace;
