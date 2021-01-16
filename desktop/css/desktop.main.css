@@ -4144,6 +4144,7 @@ Theme Core 2021 @Jeedom
   }
   #pre_globallog,
   #pre_scenariolog,
+  #pre_eventlog,
   #pre_commandResult,
   #div_commandResult {
     font-family: "CamingoCode", monospace;
