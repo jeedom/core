@@ -24,8 +24,8 @@
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
 - **OSDB-Einstellungen** : Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). Siehe Entwicklerdokument v4.2.
-- **Objekte** : Plugins können jetzt bestimmte Parameter als Objekte anfordern
-- **Benutzer** : Plugins können jetzt bestimmte Parameter anfordern, die Benutzer verwenden
+- **Objekte** : Plugins können jetzt bestimmte Parameter für Objekte anfordern.
+- **Benutzer** : Plugins können jetzt bestimmte Parameter von Benutzern anfordern.
 
 ### Kern-Widgets
 

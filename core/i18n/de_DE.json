@@ -765,6 +765,7 @@
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. ": "Bitte beachten Sie, dass Ihre Protokollstufe (Ereignis) niedriger als die Informationen ist, sodass Sie keine Echtzeit sehen können",
         "Configuration": "Konfiguration",
+        "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
         "Pause": "Pause",
         "Télécharger": "Download",

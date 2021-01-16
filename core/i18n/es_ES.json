@@ -765,6 +765,7 @@
     "desktop\/modal\/log.display.php": {
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. ": "Tenga en cuenta que su nivel de registro (evento) es inferior a la información, por lo que no puede ver en tiempo real",
         "Configuration": "Configuración ",
+        "Log brut": "Registro sin procesar",
         "Rechercher": "Buscar",
         "Pause": "Pausa",
         "Télécharger": "Descargar",
