@@ -16,11 +16,23 @@
 
 "use strict"
 
- $("#sel_plugin").on('change', function(event) {
+$(function() {
+  var msgHeight = $('#table_message > tbody > tr').length*21 + 130
+
+  var $modal = $('#md_modal')
+  $modal.dialog('open')
+  if (msgHeight < $modal.height()) {
+    $modal.dialog({
+      height: msgHeight
+    })
+  }
+})
+
+$("#sel_plugin").on('change', function(event) {
   $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&plugin=' + $('#sel_plugin').value() + '&ajax=1')
 })
 
- $("#bt_clearMessage").on('click', function(event) {
+$("#bt_clearMessage").on('click', function(event) {
   jeedom.message.clear({
     plugin: $('#sel_plugin').value(),
     error: function(error) {
@@ -53,3 +65,6 @@ $('#table_message').on({
     })
   }
 }, '.removeMessage')
+
+
+

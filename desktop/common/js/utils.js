@@ -485,14 +485,14 @@ function initJeedomModals() {
     closeText: '',
     height: (jQuery(window).height() - 125),
     width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-    position: {my: 'center bottom-50', at: 'center bottom', of: window},
+    position: {my: 'center top+80', at: 'center top', of: window},
     open: function() {
       $('body').css({overflow: 'hidden'})
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: (jQuery(window).height() - 125),
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center bottom-50', at: 'center bottom', of: window}
+        position: {my: 'center top+80', at: 'center top', of: window}
       })
       setTimeout(function() {initTooltips($('#md_modal'))}, 500)
     },
@@ -552,7 +552,7 @@ function initJeedomModals() {
   }
 }
 
-function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
+function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal', _open=true) {
   $(_button).on('click', function(event) {
     closeJeedomMenu()
     if (isEditing == true) return false
@@ -562,7 +562,8 @@ function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
       window.open(url).focus()
     } else {
       $(_modal).dialog('close')
-      $(_modal).dialog({title: _title}).load('index.php?v=d&modal='+_uri).dialog('open')
+      $(_modal).dialog({title: _title}).load('index.php?v=d&modal='+_uri)
+      if (_open) $(_modal).dialog('open')
     }
   })
   $(_button).on('mouseup', function(event) {
@@ -587,7 +588,7 @@ function setJeedomGlobalUI() {
   setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
   setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
   setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal')
+  setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal', false)
   setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
 
   $('#bt_gotoDashboard').on('click',function(event) {
@@ -651,7 +652,7 @@ function setJeedomGlobalUI() {
   })
 
   $('#bt_messageModal').on('click',function() {
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1')
   })
   $('#bt_jsErrorModal').on('click',function() {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
