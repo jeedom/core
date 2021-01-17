@@ -876,7 +876,12 @@ function datePickerInit() {
 
 //General functions__
 function normTextLower(_text) {
-  return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  try {
+    var result = _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  } catch(error) {
+    var result = ''
+  }
+  return result
 }
 
 function linkify(inputText) {
