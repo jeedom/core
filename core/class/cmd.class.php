@@ -567,7 +567,7 @@ class cmd {
 	public static function byString($_string) {
 		$cmd = self::byId(str_replace('#', '', self::humanReadableToCmd($_string)));
 		if (!is_object($cmd)) {
-			throw new Exception(__('La commande n\'a pas pu être trouvée : ', __FILE__) . $_string . ' => ' . self::humanReadableToCmd($_string));
+			throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmd']['txt'] .' : ' . $_string . ' => ' . self::humanReadableToCmd($_string));
 		}
 		return $cmd;
 	}
