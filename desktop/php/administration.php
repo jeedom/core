@@ -1084,7 +1084,7 @@ user::isBan();
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
-						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Delai d'attente après génération de la page}}
+						<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Délai d'attente après génération de la page}}
 							<sub>ms</sub>
 						</label>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
@@ -1907,7 +1907,7 @@ user::isBan();
 							$div .= '<option value="disable">{{Désactivé}}</option>';
 							$div .= '</select>';
 							$div .= '</div>';
-							$div .= '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">{{Ne pas autoriser les methodes générales}}</label>';
+							$div .= '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-12 control-label">{{Ne pas autoriser les méthodes générales}}</label>';
 							$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">';
 							$div .= '<input type="checkbox" class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::restricted" />';
 							$div .= '</select>';
