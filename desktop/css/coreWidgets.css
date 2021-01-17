@@ -457,6 +457,9 @@ Desktop
   }
 
 /* ____________________others */
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] {
+    text-align: center;
+  }
   .cmd-widget.widget-hygrothermographe {
     width: 220px;
     height: 220px;
