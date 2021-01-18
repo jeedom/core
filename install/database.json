@@ -1962,6 +1962,14 @@
           "extra": ""
         },
         {
+          "name": "updateDate",
+          "type": "datetime",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "source",
           "type": "varchar(127)",
           "null": "YES",

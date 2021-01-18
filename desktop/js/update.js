@@ -285,7 +285,7 @@ function printUpdate() {
       if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
     }
   })
-
+  
   jeedom.config.load({
     configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
     error: function(error) {
@@ -309,7 +309,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true
     }
   }
-
+  
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span></td>'
   tr += '<td>'
@@ -324,15 +324,17 @@ function addUpdate(_update) {
   if (_update.type == 'core' && _update.branch) {
     tr += ' <span class="label">' + _update.branch + '</span>'
   }
-
-  var _localVersion = _update.localVersion
-  if (_localVersion !== null && _localVersion.length > 19) _localVersion = _localVersion.substring(0,16) + '...'
-  var _remoteVersion = _update.remoteVersion
-  if (_remoteVersion !== null && _remoteVersion.length > 19) _remoteVersion = _remoteVersion.substring(0,16) + '...'
-
+  
+  if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0,16) + '...'
+  if (_update.remoteVersion !== null && _update.remoteVersion.length > 19) _update.remoteVersion = _update.remoteVersion.substring(0,16) + '...'
+  if(_update.updateDate == null){
+    _update.updateDate = 'N/A'
+  }
+  
   tr += '</td>'
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_localVersion+'</span></td>'
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_remoteVersion+'</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_update.localVersion+'</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_update.remoteVersion+'</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">'+_update.updateDate+'</span></td>'
   tr += '<td style="width:180px;">'
   if (_update.type != 'core') {
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span>{{Ne pas mettre à jour}}</span>'
@@ -451,14 +453,14 @@ function createUpdateObserver() {
       }
     })
   })
-
+  
   var observerConfig = {
     attributes: true,
     childList: true,
     characterData: true,
     subtree: true
   }
-
+  
   var targetNode = document.getElementById('pre_updateInfo')
   if (targetNode) _UpdateObserver_.observe(targetNode, observerConfig)
 }
@@ -469,7 +471,7 @@ function cleanUpdateLog() {
   if (prevUpdateText == currentUpdateText) return false
   var lines = currentUpdateText.split("\n")
   var l = lines.length
-
+  
   //update progress bar and clean text!
   var linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -480,13 +482,13 @@ function cleanUpdateLog() {
       break
     }
   }
-
+  
   var newLogText = ''
   for (var i=0; i < l; i++) {
     var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-
+    
     //check ok at end of line:
     if (line.endsWith('OK')) {
       var matches = line.match(/[. ]{1,}OK/g)
@@ -497,7 +499,7 @@ function cleanUpdateLog() {
         line = line.replace('OK', ' | OK')
       }
     }
-
+    
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -506,7 +508,7 @@ function cleanUpdateLog() {
       })
     }
     line = line.trim()
-
+    
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -527,7 +529,7 @@ function cleanUpdateLog() {
       line += ' | OK'
       lines[i+offset] = ''
     }
-
+    
     if (line != '') {
       newLogText += line + '\n'
       _pre_updateInfo_clean.value(newLogText)

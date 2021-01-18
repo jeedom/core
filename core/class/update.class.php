@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class update {
 	/*     * *************************Attributs****************************** */
-
+	
 	private $id;
 	private $type = 'plugin';
 	private $logicalId;
@@ -31,11 +31,12 @@ class update {
 	private $status;
 	private $configuration;
 	private $source = 'market';
+	private $updateDate;
 	private $_changeUpdate = false;
 	private $_changed = false;
-
+	
 	/*     * ***********************Méthodes statiques*************************** */
-
+	
 	public static function checkAllUpdate($_filter = '', $_findNewObject = true) {
 		$findCore = false;
 		if ($_findNewObject) {
@@ -84,7 +85,7 @@ class update {
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
 	}
-
+	
 	public static function listRepo() {
 		$return = array();
 		foreach (ls(__DIR__ . '/../repo', '*.repo.php') as $file) {
@@ -102,7 +103,7 @@ class update {
 		}
 		return $return;
 	}
-
+	
 	public static function repoById($_id) {
 		$class = 'repo_' . $_id;
 		$return = array(
@@ -113,7 +114,7 @@ class update {
 		$return['enable'] = config::byKey($_id . '::enable');
 		return $return;
 	}
-
+	
 	public static function updateAll($_filter = '') {
 		if ($_filter == 'core') {
 			foreach (self::byType($_filter) as $update) {
@@ -144,7 +145,7 @@ class update {
 			return $error;
 		}
 	}
-
+	
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -154,7 +155,7 @@ class update {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byStatus($_status) {
 		$values = array(
 			'status' => $_status,
@@ -164,7 +165,7 @@ class update {
 		WHERE status=:status';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byLogicalId($_logicalId) {
 		$values = array(
 			'logicalId' => $_logicalId,
@@ -174,7 +175,7 @@ class update {
 		WHERE logicalId=:logicalId';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byType($_type) {
 		$values = array(
 			'type' => $_type,
@@ -184,7 +185,7 @@ class update {
 		WHERE type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function byTypeAndLogicalId($_type, $_logicalId) {
 		$values = array(
 			'logicalId' => $_logicalId,
@@ -196,7 +197,7 @@ class update {
 		AND type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	/**
 	*
 	* @return array de tous les utilisateurs
@@ -212,7 +213,7 @@ class update {
 		$sql .= ' ORDER BY FIELD( `status`, "update","ok","depreciated") ASC,FIELD( `type`,"plugin","core") DESC, `name` ASC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-
+	
 	public static function nbNeedUpdate() {
 		$value = array(
 			'configuration' => '%"doNotUpdate":"1"%'
@@ -224,7 +225,7 @@ class update {
 		$result = DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 		return $result['count(*)'];
 	}
-
+	
 	public static function findNewUpdateObject() {
 		foreach((plugin::listPlugin()) as $plugin) {
 			$plugin_id = $plugin->getId();
@@ -264,13 +265,13 @@ class update {
 			}
 		}
 	}
-
+	
 	public static function listCoreUpdate() {
 		return ls(__DIR__ . '/../../install/update', '*');
 	}
-
+	
 	/*     * *********************Méthodes d'instance************************* */
-
+	
 	public function getInfo() {
 		if ($this->getType() != 'core') {
 			$class = 'repo_' . $this->getSource();
@@ -280,7 +281,7 @@ class update {
 		}
 		return array();
 	}
-
+	
 	public function doUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1  && $this->getType() != 'core') {
 			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
@@ -305,7 +306,7 @@ class update {
 				if ($info['path'] !== false) {
 					$tmp = $info['path'];
 					log::add('update', 'alert', __("OK\n", __FILE__));
-
+					
 					if (filesize($tmp) < 100) {
 						if(jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true){
 							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.', __FILE__));
@@ -338,7 +339,7 @@ class update {
 								shell_exec('sudo rm -rf ' . __DIR__ . '/../../plugins/' . $this->getLogicalId() . '/docs');
 							}
 						} catch (Exception $e) {
-
+							
 						}
 						if (!file_exists($cibDir . '/plugin_info')) {
 							$files = ls($cibDir, '*');
@@ -363,7 +364,7 @@ class update {
 		$this->refresh();
 		$this->checkUpdate();
 	}
-
+	
 	public function deleteObjet() {
 		if ($this->getType() == 'core') {
 			throw new Exception(__('Vous ne pouvez pas supprimer le core de Jeedom', __FILE__));
@@ -377,24 +378,24 @@ class update {
 							try {
 								$eqLogic->remove();
 							} catch (Exception $e) {
-
+								
 							} catch (Error $e) {
-
+								
 							}
 						}
 						try {
 							$plugin->setIsEnable(0);
 						} catch (Exception $e) {
-
+							
 						} catch (Error $e) {
-
+							
 						}
 					}
 					config::remove('*', $this->getLogicalId());
 				} catch (Exception $e) {
-
+					
 				} catch (Error $e) {
-
+					
 				}
 				break;
 			}
@@ -404,7 +405,7 @@ class update {
 					$class::deleteObjet($this);
 				}
 			} catch (Exception $e) {
-
+				
 			}
 			switch ($this->getType()) {
 				case 'plugin':
@@ -417,7 +418,7 @@ class update {
 			$this->remove();
 		}
 	}
-
+	
 	public function preInstallUpdate() {
 		if (!file_exists(__DIR__ . '/../../plugins')) {
 			mkdir(__DIR__ . '/../../plugins');
@@ -440,13 +441,13 @@ class update {
 					log::add('update', 'alert', __("OK\n", __FILE__));
 				}
 			} catch (Exception $e) {
-
+				
 			} catch (Error $e) {
-
+				
 			}
 		}
 	}
-
+	
 	public function postInstallUpdate($_infos) {
 		log::add('update', 'alert', __('Post-installation de ', __FILE__) . $this->getLogicalId() . '...');
 		try {
@@ -454,7 +455,7 @@ class update {
 				opcache_reset();
 			}
 		} catch (\Exception $e) {
-
+			
 		}
 		switch ($this->getType()) {
 			case 'plugin':
@@ -483,20 +484,21 @@ class update {
 		if (isset($_infos['localVersion'])) {
 			$this->setLocalVersion($_infos['localVersion']);
 		}
+		$this->setUpdateDate(datetime('Y-m-d H:i:s'));
 		$this->save();
 		log::add('update', 'alert', __("OK", __FILE__)."\n");
 		log::add('update', 'alert', __("END UPDATE SUCCESS", __FILE__)."\n");
 	}
-
+	
 	public static function getLastAvailableVersion() {
 		try {
 			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'V4-stable') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec());
 		} catch (Exception $e) {
-
+			
 		} catch (Error $e) {
-
+			
 		}
 		return null;
 	}
@@ -540,13 +542,13 @@ class update {
 					$class::checkUpdate($this);
 				}
 			} catch (Exception $ex) {
-
+				
 			} catch (Error $ex) {
-
+				
 			}
 		}
 	}
-
+	
 	public function preSave() {
 		if ($this->getLogicalId() == '') {
 			throw new Exception(__('Le logical ID ne peut pas être vide', __FILE__));
@@ -555,59 +557,59 @@ class update {
 			$this->setName($this->getLogicalId());
 		}
 	}
-
+	
 	public function save() {
 		return DB::save($this);
 	}
-
+	
 	public function postSave() {
 		if ($this->_changeUpdate) {
 			event::add('update::refreshUpdateNumber');
 		}
 	}
-
+	
 	public function remove() {
 		return DB::remove($this);
 	}
-
+	
 	public function postRemove() {
 		event::add('update::refreshUpdateNumber');
 	}
-
+	
 	public function refresh() {
 		DB::refresh($this);
 	}
-
+	
 	/*     * **********************Getteur Setteur*************************** */
-
+	
 	public function getId() {
 		return $this->id;
 	}
-
+	
 	public function getName() {
 		return $this->name;
 	}
-
+	
 	public function getStatus() {
 		return $this->status;
 	}
-
+	
 	public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-
+	
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-
+	
 	public function setName($_name) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
-
+	
 	public function setStatus($_status) {
 		if ($_status != $this->status) {
 			$this->_changeUpdate = true;
@@ -616,71 +618,81 @@ class update {
 		$this->status = $_status;
 		return $this;
 	}
-
+	
 	public function setConfiguration($_key, $_value) {
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
-
+	
 	public function getType() {
 		return $this->type;
 	}
-
+	
 	public function setType($_type) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
-
+	
 	public function getLocalVersion() {
 		return $this->localVersion;
 	}
-
+	
 	public function getRemoteVersion() {
 		return $this->remoteVersion;
 	}
-
+	
 	public function setLocalVersion($_localVersion) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->localVersion,$_localVersion);
 		$this->localVersion = $_localVersion;
 		return $this;
 	}
-
+	
 	public function setRemoteVersion($_remoteVersion) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->remoteVersion,$_remoteVersion);
 		$this->remoteVersion = $_remoteVersion;
 		return $this;
 	}
-
+	
 	public function getLogicalId() {
 		return $this->logicalId;
 	}
-
+	
 	public function setLogicalId($_logicalId) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;
 	}
-
+	
 	public function getSource() {
 		return $this->source;
 	}
-
+	
 	public function setSource($_source) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->source,$_source);
 		$this->source = $_source;
 		return $this;
 	}
-
+	
+	public function getUpdateDate() {
+		return $this->updateDate;
+	}
+	
+	public function setUpdateDate($_updateDate) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->updateDate,$_updateDate);
+		$this->updateDate = $_updateDate;
+		return $this;
+	}
+	
 	public function getChanged() {
 		return $this->_changed;
 	}
-
+	
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
+	
 }
