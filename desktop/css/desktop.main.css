@@ -975,7 +975,6 @@ Theme Core 2021 @Jeedom
   .objectPreview .objectSummaryParent,
   .objectPreview .objectSummaryParent i {
     font-size: 16px !important;
-    color: var(--link-color) !important;
   }
   .objectPreview .topPreview .objectSummaryParent {
     position: absolute;
