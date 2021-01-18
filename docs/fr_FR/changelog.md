@@ -5,6 +5,7 @@
 - Bugfix historiques sur les Designs.
 - Bugfix recherche dans Analyse / Historique.
 - Bugfix recherche sur une variable, lien vers un équipement.
+- Bugfix des résumés colorés sur la synthèse.
 - Ajout des options de groupement par heure pour les graphiques sur les vues.
 
 ## 4.1.0
