@@ -24,11 +24,11 @@
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
-- **Objets** : Les plugins peuvent maintenant demander des parametres spécifique que les objets
-- **Utilisateurs** : Les plugins peuvent maintenant demander des parametres spécifique que les utilisateurs
-- **Commande** : possibilité de faire un calcul sur une commande action de type slider avant execution de la commande
-- **Utilisateurs** : possibilité de gerer les profils des differents utilisateur Jeedom depuis la page de gestion des utilisateurs
-- **M%ise à jour** : le centre de mise à jour affiche desormais la date de derniere mise à jour
+- **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
+- **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs.
+- **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande
+- **Utilisateurs** : Possibilité de gérer les profils des différents utilisateur Jeedom depuis la page de gestion des utilisateurs
+- **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
 
 ### Widgets Core
 
