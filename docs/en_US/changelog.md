@@ -24,6 +24,8 @@
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
 - **OSDB settings** : Adding a dynamic SQL query constructor.
 - **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
+- **Objects** : Plugins can now request specific parameters on objects.
+- **Users** : Plugins can now request specific parameters from users.
 
 ### Core Widgets
 

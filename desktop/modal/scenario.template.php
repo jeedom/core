@@ -51,10 +51,10 @@ sendVarToJS('scenario_template_id', init('scenario_id'));
     <form class="form-horizontal">
       <legend><i class="fas fa-home"></i> {{Général}}</legend>
       <div class="form-group">
-        <label class="col-xs-2 control-label">{{Gérer}}</label>
-        <div class="col-xs-6">
-          <a class='btn btn-danger' id='bt_scenarioTemplateRemove'><i class="fas fa-times"></i> {{Supprimer}}</a>
-          <a class="btn btn-primary" id="bt_scenarioTemplateDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
+        <label class="col-xs-4 control-label">{{Gérer}}</label>
+        <div class="col-xs-8">
+          <a class="btn btn-sm btn-danger pull-right" id="bt_scenarioTemplateRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
+          <a class="btn btn-sm btn-primary pull-right" id="bt_scenarioTemplateDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}</a>
         </div>
       </div>
       <div id='div_scenarioTemplateParametreConfiguration' style='display:none;'>
@@ -161,9 +161,9 @@ $('#ul_scenarioTemplateList').on({
           html += '<div class="col-xs-4">'
           html += '<span class="templateScenarioAttr" data-l1key="begin" style="display : none;" >' + i + '</span>'
           html += '<div class="input-group">'
-          html += '<input class="form-control templateScenarioAttr" data-l1key="end" value="'+data[i]+'"/>'
+          html += '<input class="form-control templateScenarioAttr roundedLeft" data-l1key="end" value="'+data[i]+'"/>'
           html += '<span class="input-group-btn">'
-          html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd"><i class="fas fa-list-alt"></i></a>'
+          html += '<a class="btn btn-default cursor bt_scenarioTemplateSelectCmd roundedRight"><i class="fas fa-list-alt"></i></a>'
           html += '</span>'
           html += '</div>'
           html += '</div>'

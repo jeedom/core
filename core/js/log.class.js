@@ -257,10 +257,10 @@ jeedom.log.autoupdate = function (_params) {
 
 //Standard log replacement:
 jeedom.log.colorReplacement = {
-   '[INFO]' : '<span class="label label-sm label-info">INFO</span>',
-   '[DEBUG]' : '<span class="label label-sm label-success">DEBUG</span>',
-   '[ERROR]' : '<span class="label label-sm label-danger">ERROR</span>',
-   '[ALERT]' : '<span class="label label-sm label-warning">ALERT</span>',
+   '[INFO]' : '<span class="label label-xs label-info">INFO</span>',
+   '[DEBUG]' : '<span class="label label-xs label-success">DEBUG</span>',
+   '[ERROR]' : '<span class="label label-xs label-danger">ERROR</span>',
+   '[ALERT]' : '<span class="label label-xs label-warning">ALERT</span>',
    'WARNING' : '<span class="warning">WARNING</span>',
    'Erreur' : '<span class="danger">Erreur</span>',
    'OK': '<strong>OK</strong>',

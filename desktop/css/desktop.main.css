@@ -773,6 +773,11 @@ Theme Core 2021 @Jeedom
     display: inline-block;
     padding: 4px 12px;
   }
+  .label-xs {
+    line-height: 12px;
+    font-size: 11px !important;
+    padding: 0 4px;
+  }
   .label-sm {
     font-size: 12px !important;
     padding: 2px 8px;
@@ -2053,6 +2058,14 @@ Theme Core 2021 @Jeedom
 /* ______Timeline cards / history */
   #timelineContainer .html .tml-cmd > span >span i {
     color: var(--linkHoverLight-color) !important;
+  }
+  #timelineContainer ul .pull-right:not(.tml-folder) {
+    position: relative;
+    top: 4px;
+  }
+  #timelineContainer ul .tml-folder {
+    font-style: italic;
+     margin-right: 20px;
   }
 
   #timelineContainer ul {
@@ -4542,13 +4555,15 @@ Theme Core 2021 @Jeedom
   }
   #pre_globallog,
   #pre_scenariolog,
+  #pre_eventlog,
   #pre_commandResult,
   #div_commandResult {
     font-family: "CamingoCode", monospace;
     font-size: 13px;
     line-height: 14px;
   }
-  #pre_globallog span {
+  #pre_globallog span,
+  #pre_eventlog span {
       height: 12px;
       min-width: 50px;
       padding: 0 4px

@@ -127,12 +127,14 @@ class timeline {
   }
 
   public function getDisplay() {
+    $return = array();
+    $return['date'] = $this->getDatetime();
+    $return['type'] = $this->getType();
+    $return['group'] = $this->getSubtype();
+    $return['folder'] = $this->getFolder();
+
     switch ($this->getType()) {
       case 'cmd':
-        $return = array();
-        $return['date'] = $this->getDatetime();
-        $return['type'] = $this->getType();
-        $return['group'] = $this->getSubtype();
         $cmd = cmd::byId($this->getLink_id());
         if (!is_object($cmd)) {
           return null;
@@ -147,7 +149,7 @@ class timeline {
         $name = str_replace('<span class="label"', '<span class="label-sm"',  $name);
         if ($cmd->getType() == 'action') {
           $return['html'] = '<div class="tml-cmd" data-id="' . $this->getLink_id() . '">';
-          $return['html'] .= '<span>' . $name . '<i class="fas fa-cogs pull-right cursor bt_configureCmd" title="'.__('Configuration de la commande',__FILE__).'"></i></span>';
+          $return['html'] .= '<span>' . $name . ' <i class="fas fa-cogs pull-right cursor bt_configureCmd" title="'.__('Configuration de la commande',__FILE__).'"></i></span>';
           $return['html'] .= '</div>';
         } else {
           $class = 'info';
@@ -158,15 +160,12 @@ class timeline {
           $return['html'] .= ' <i class="fas fa-cogs pull-right cursor bt_configureCmd" title="'.__('Configuration de la commande',__FILE__).'"></i>';
           $return['html'] .= '<span>' . $name . '<i class="fas fa-chart-line pull-right cursor bt_historicCmd" title="'.__('Historique',__FILE__).'"></i>';
           $return['html'] .= ' <span class="label-sm label-'.$class.'">' .$this->getOptions('value') . '</span>';
+          if ($return['folder'] != 'main') $return['html'] .= ' <span class="tml-folder pull-right">' . $return['folder'] . '</span>';
           $return['html'] .= '</span>';
           $return['html'] .= '</div>';
         }
         break;
       case 'scenario':
-        $return = array();
-        $return['date'] = $this->getDatetime();
-        $return['group'] = 'scenario';
-        $return['type'] = $this->getType();
         $scenario = scenario::byId($this->getLink_id());
         if (!is_object($scenario)) {
           return null;
@@ -180,6 +179,7 @@ class timeline {
         $return['html'] .= ' <span class="label-sm label-info" title="'.__('Scénario déclenché par',__FILE__).'">' . $this->getOptions('trigger'). '</span>';
         $return['html'] .= ' <i class="fas fa-share pull-right cursor bt_gotoScenario" title="'.__('Aller au scénario',__FILE__).'"></i> ';
         $return['html'] .= ' <i class="fas fa-file-alt pull-right cursor bt_scenarioLog" title="'.__('Log du scénario',__FILE__).'"></i> ';
+        if ($return['folder'] != 'main') $return['html'] .= ' <span class="tml-folder pull-right">' . $return['folder'] . '</span>';
         $return['html'] .= '</div>';
         $return['html'] .= '</div>';
         break;
