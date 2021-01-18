@@ -621,8 +621,6 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
   }
 })
 
-jeedomUI.setHistoryModalHandler()
-
 /***********************************************************************************/
 function createNewDesign() {
   bootbox.prompt("{{Nom du design ?}}", function(result) {
@@ -1262,6 +1260,7 @@ function displayObject(_plan, _html, _noRender) {
 
 $(function() {
   jeedomUI.setEqSignals()
+  jeedomUI.setHistoryModalHandler()
 
   //back to mobile home with three fingers on mobile:
   if ($('body').attr('data-device') == 'mobile') {
