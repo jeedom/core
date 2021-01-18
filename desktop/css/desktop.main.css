@@ -4562,7 +4562,8 @@ Theme Core 2021 @Jeedom
     font-size: 13px;
     line-height: 14px;
   }
-  #pre_globallog span {
+  #pre_globallog span,
+  #pre_eventlog span {
       height: 12px;
       min-width: 50px;
       padding: 0 4px
