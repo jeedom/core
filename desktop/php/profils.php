@@ -2,9 +2,15 @@
 if (!isConnect()) {
 	throw new Exception('{{Error 401 Unauthorized');
 	}
-	@session_start();
-	$_SESSION['user']->refresh();
-	@session_write_close();
+	if(init('user_id') == ''){
+		@session_start();
+		$_SESSION['user']->refresh();
+		@session_write_close();
+		$user = $_SESSION['user'];
+	}else {
+		sendVarToJs('user_id',init('user_id'));
+		$user = user::byId(init('user_id'));
+	}
 	$homePageDesktop = array(
 		'core::dashboard' => '{{Dashboard}}',
 		'core::overview' => '{{Synthèse}}',
@@ -29,13 +35,15 @@ if (!isConnect()) {
 	}
 	$objectOptions = jeeObject::getUISelectList(false);
 	?>
-	
-	<div class="row row-overflow">
+	<div style="display: none;" id="div_alertProfils"></div>
+	<div class="row row-overflow" id="div_userProfils">
 		<div class="col-xs-12">
 			<a class="btn btn-sm btn-success floatingbar" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 			<ul class="nav nav-tabs" role="tablist">
 				<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
-				<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
+				<?php if(init('user_id') == ''){ ?>
+					<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
+				<?php } ?>
 			</ul>
 			
 			<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
@@ -242,128 +250,129 @@ if (!isConnect()) {
 						</fieldset>
 					</form>
 				</div>
-				
-				<div role="tabpanel" class="tab-pane" id="securitytab">
-					<br/>
-					<form class="form-horizontal">
-						<fieldset>
-							<legend><i class="fas fa-user-secret"></i> {{Utilisateur}}</legend>
-							<?php if (config::byKey('sso:allowRemoteUser') != 1) {
+				<?php if(init('user_id') == ''){ ?>
+					<div role="tabpanel" class="tab-pane" id="securitytab">
+						<br/>
+						<form class="form-horizontal">
+							<fieldset>
+								<legend><i class="fas fa-user-secret"></i> {{Utilisateur}}</legend>
+								<?php if (config::byKey('sso:allowRemoteUser') != 1) {
+									?>
+									<div class="form-group">
+										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+											<a class="btn btn-default btn-sm" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
+										</div>
+										<?php
+										if (	$user->getOptions('twoFactorAuthentification', 0) == 1) {
+											?>
+											<label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+												<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="twoFactorAuthentification" />
+											</div>
+										<?php }
+										?>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+											<input type="text" class="inputPassword userAttr form-control" data-l1key="password" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
+										<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+											<input type="text" class="inputPassword form-control" id="in_passwordCheck" />
+										</div>
+									</div>
+								<?php }
 								?>
 								<div class="form-group">
-									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
-									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-										<a class="btn btn-default btn-sm" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
-									</div>
-									<?php
-									if ($_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 1) {
-										?>
-										<label class="col-lg-1 col-md-2 col-sm-2 col-xs-2 control-label">{{Actif}}</label>
-										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-											<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="twoFactorAuthentification" />
-										</div>
-									<?php }
-									?>
-								</div>
-								
-								<div class="form-group">
-									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
+									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hash de l'utilisateur}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<input type="text" class="inputPassword userAttr form-control" data-l1key="password" />
+										<span class="userAttr" data-l1key="hash"></span>
+									</div>
+									<div class="col-lg-2 col-md-3 col-sm-3">
+										<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
-									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<input type="text" class="inputPassword form-control" id="in_passwordCheck" />
-									</div>
-								</div>
-							<?php }
-							?>
-							<div class="form-group">
-								<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hash de l'utilisateur}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<span class="userAttr" data-l1key="hash"></span>
-								</div>
-								<div class="col-lg-2 col-md-3 col-sm-3">
-									<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
-								</div>
-							</div>
-						</fieldset>
-					</form>
-					
-					<form class="form-horizontal">
-						<fieldset>
-							<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
-							<table class="table table-condensed table-bordered">
-								<thead>
-									<tr>
-										<th>{{ID}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$sessions = listSession();
-									if (count($sessions) > 0) {
-										foreach ($sessions as $id => $session) {
-											if ($session['user_id'] != $_SESSION['user']->getId()) {
-												continue;
+							</fieldset>
+						</form>
+						
+						<form class="form-horizontal">
+							<fieldset>
+								<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
+								<table class="table table-condensed table-bordered">
+									<thead>
+										<tr>
+											<th>{{ID}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$sessions = listSession();
+										if (count($sessions) > 0) {
+											foreach ($sessions as $id => $session) {
+												if ($session['user_id'] != 	$user->getId()) {
+													continue;
+												}
+												$tr = '';
+												$tr .= '<tr data-id="' . $id . '">';
+												$tr .= '<td>' . $id . '</td>';
+												$tr .= '<td>' . $session['ip'] . '</td>';
+												$tr .= '<td>' . $session['datetime'] . '</td>';
+												$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+												$tr .= '</tr>';
+												echo $tr;
 											}
+										}
+										?>
+									</tbody>
+								</table>
+							</fieldset>
+						</form>
+						
+						<form class="form-horizontal">
+							<fieldset>
+								<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+								<table class="table table-bordered table-condensed">
+									<thead>
+										<tr>
+											<th>{{Identification}}</th>
+											<th>{{IP}}</th>
+											<th>{{Date dernière utilisation}}</th>
+											<th>{{Action}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										foreach ((	$user->getOptions('registerDevice')) as $key => $value) {
 											$tr = '';
-											$tr .= '<tr data-id="' . $id . '">';
-											$tr .= '<td>' . $id . '</td>';
-											$tr .= '<td>' . $session['ip'] . '</td>';
-											$tr .= '<td>' . $session['datetime'] . '</td>';
-											$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+											$tr .= '<tr data-key="' . $key . '">';
+											$tr .= '<td title="'.$key.'">';
+											$tr .= substr($key, 0, 10) . '...';
+											$tr .= '</td>';
+											$tr .= '<td>';
+											$tr .= $value['ip'];
+											$tr .= '</td>';
+											$tr .= '<td>';
+											$tr .= $value['datetime'];
+											$tr .= '</td>';
+											$tr .= '<td>';
+											$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+											$tr .= '</td>';
 											$tr .= '</tr>';
 											echo $tr;
 										}
-									}
-									?>
-								</tbody>
-							</table>
-						</fieldset>
-					</form>
-					
-					<form class="form-horizontal">
-						<fieldset>
-							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-							<table class="table table-bordered table-condensed">
-								<thead>
-									<tr>
-										<th>{{Identification}}</th>
-										<th>{{IP}}</th>
-										<th>{{Date dernière utilisation}}</th>
-										<th>{{Action}}</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									foreach (($_SESSION['user']->getOptions('registerDevice')) as $key => $value) {
-										$tr = '';
-										$tr .= '<tr data-key="' . $key . '">';
-										$tr .= '<td title="'.$key.'">';
-										$tr .= substr($key, 0, 10) . '...';
-										$tr .= '</td>';
-										$tr .= '<td>';
-										$tr .= $value['ip'];
-										$tr .= '</td>';
-										$tr .= '<td>';
-										$tr .= $value['datetime'];
-										$tr .= '</td>';
-										$tr .= '<td>';
-										$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-										$tr .= '</td>';
-										$tr .= '</tr>';
-										echo $tr;
-									}
-									
-									?>
-								</tbody>
-							</table>
-						</fieldset>
-					</form>
-				</div>
+										
+										?>
+									</tbody>
+								</table>
+							</fieldset>
+						</form>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

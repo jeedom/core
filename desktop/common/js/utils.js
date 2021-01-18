@@ -18,12 +18,12 @@
 
 $(function() {
   $(document)
-    .ajaxStart(function () {
-        $.showLoading()
-    })
-    .ajaxStop(function () {
-        $.hideLoading()
-    })
+  .ajaxStart(function () {
+    $.showLoading()
+  })
+  .ajaxStop(function () {
+    $.hideLoading()
+  })
 })
 
 //cmd update:
@@ -77,9 +77,9 @@ function loadPage(_url, _noPushHistory) {
     document.location.href = _url
     return
   }
-
+  
   closeJeedomMenu()
-
+  
   if ($('.context-menu-root').length > 0) {
     try {
       $.contextMenu('destroy')
@@ -87,11 +87,11 @@ function loadPage(_url, _noPushHistory) {
       $('.context-menu-root').remove()
     }
   }
-
+  
   try {
     $(".ui-dialog-content").dialog("close")
   } catch(e) {}
-
+  
   if (!isset(_noPushHistory) || _noPushHistory == false) {
     try {
       if (PREVIOUS_PAGE == null) {
@@ -104,7 +104,7 @@ function loadPage(_url, _noPushHistory) {
       }
     } catch(e) {}
   }
-
+  
   if (isset(bootbox)) bootbox.hideAll()
   $.hideAlert()
   datePickerDestroy()
@@ -112,16 +112,16 @@ function loadPage(_url, _noPushHistory) {
   jeedom.scenario.update = []
   printEqLogic = undefined
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
-
+  
   $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
-
+  
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
   } else {
     var n = _url.lastIndexOf("#")
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
-
+  
   jeedomBackgroundImg = null
   $('.backgroundforJeedom').css({
     'background-image':'',
@@ -129,12 +129,12 @@ function loadPage(_url, _noPushHistory) {
     'background-repeat':'no-repeat',
     'background-size':'cover'
   })
-
+  
   $.clearDivContent('div_pageContainer')
   isEditing = false
   $('body').off('mouseenter mouseleave')
   $('#div_pageContainer').off()
-
+  
   $('#div_pageContainer').load(url, function() {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
@@ -150,12 +150,12 @@ function loadPage(_url, _noPushHistory) {
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
     }
-
+    
     setTimeout(function() {
       modifyWithoutSave = false
     }, 500)
   })
-
+  
   setTimeout(function() {
     //scenarios uses special tooltips not requiring destroy.
     if ($('body').attr('data-page') != 'scenario') {
@@ -167,7 +167,7 @@ function loadPage(_url, _noPushHistory) {
       }
     }
   }, 500)
-
+  
   return
 }
 
@@ -175,7 +175,7 @@ $(function() {
   var $body = $('body')
   if (getDeviceType()['type'] == 'desktop') userDeviceType = 'desktop'
   $body.attr('data-device', userDeviceType)
-
+  
   $.alertTrigger = function() {
     initRowOverflow()
   }
@@ -192,12 +192,12 @@ $(function() {
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
   })
-
+  
   //tab in url:
   if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
     $('.nav-tabs a[href="'+window.location.hash+'"]').click()
   }
-
+  
   //browser history:
   $body.on('shown.bs.tab','.nav-tabs a', function(event) {
     if (event.target.hash == '') {
@@ -237,25 +237,25 @@ $(function() {
     loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
     PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
   })
-
+  
   setJeedomTheme()
   changeJeedomThemeAuto()
-
+  
   setJeedomMenu()
   initJeedomModals()
   setJeedomGlobalUI()
-
+  
   $(window).resize(function() {
     initRowOverflow()
   })
-
+  
   initPage()
   if (jeedomBackgroundImg != null) {
     setBackgroundImg(jeedomBackgroundImg)
   } else {
     setBackgroundImg('')
   }
-
+  
   //options for notify()
   toastr.options = {
     "closeButton": true,
@@ -275,7 +275,7 @@ $(function() {
       $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
     }
   }
-
+  
   setTimeout(function() {
     initTooltips()
     createObserver()
@@ -287,17 +287,17 @@ $(function() {
 var BACKGROUND_IMG = ''
 function setJeedomTheme() {
   var $body = $('body')
-
+  
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
     $('#bootstrap_theme_css').attr('data-nochange', 1)
   }
-
+  
   if (jeedom.theme.currentTheme) {
     $body.attr('data-theme', jeedom.theme.currentTheme)
   }
-
+  
   //button event:
   $body.on('click', '#bt_switchTheme', function() {
     closeJeedomMenu()
@@ -306,7 +306,7 @@ function setJeedomTheme() {
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     $('#bootstrap_theme_css').attr('data-nochange', 1)
-
+    
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       $body.attr('data-theme', jeedom.theme.default_bootstrap_theme)
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/'+jeedom.theme.default_bootstrap_theme+'.css'
@@ -323,13 +323,13 @@ function setJeedomTheme() {
     setBackgroundImg(BACKGROUND_IMG)
     triggerThemechange()
   })
-
+  
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
     for (var i in jeedom.theme.css) {
       document.body.style.setProperty(i,jeedom.theme.css[i])
     }
   }
-
+  
   if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
     $body.attr('data-coloredIcons', 1)
   } else {
@@ -342,7 +342,7 @@ function changeJeedomThemeAuto() {
   if (typeof jeedom.theme.theme_changeAccordingTime == 'undefined' || jeedom.theme.theme_changeAccordingTime == 0) return
   if (typeof jeedom.theme.default_bootstrap_theme == 'undefined' || typeof jeedom.theme.default_bootstrap_theme_night == 'undefined') return
   if (jeedom.theme.default_bootstrap_theme == jeedom.theme.default_bootstrap_theme_night) return
-
+  
   checkThemechange()
   setInterval(function() {
     checkThemechange()
@@ -351,16 +351,16 @@ function changeJeedomThemeAuto() {
 
 function checkThemechange() {
   if (getCookie('currentTheme') == 'alternate' || $('#bootstrap_theme_css').attr('data-nochange') == 1) return
-
+  
   var theme = jeedom.theme.default_bootstrap_theme_night
   var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
   var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-
+  
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime) {
     theme  = jeedom.theme.default_bootstrap_theme
     themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
   }
-
+  
   var currentTheme = $('#bootstrap_theme_css').attr('href')
   if (currentTheme.indexOf('?md5') != -1) {
     currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
@@ -390,7 +390,7 @@ function triggerThemechange() {
       $('#homeLogoImg').attr('src', jeedom.theme.logo_light)
     }
   }
-
+  
   //trigger event for widgets:
   if ($('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
@@ -432,7 +432,7 @@ function setBackgroundImg(_path) {
 //Jeedom UI__
 function initJeedomModals() {
   $.fn.modal.Constructor.prototype.enforceFocus = function() {}
-
+  
   if (isset(jeedom_langage) ) {
     var lang = jeedom_langage.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
@@ -443,20 +443,20 @@ function initJeedomModals() {
       bootbox.setLocale('fr') //needed for date format
     }
   }
-
+  
   $('body').on('show', '.modal',function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   });
-
+  
   $('body').on('focusin','.bootbox-input', function(event) {
     event.stopPropagation()
   })
-
+  
   $('.bootbox.modal').on('shown.bs.modal', function() {
     $(this).find(".bootbox-accept").focus()
   })
-
+  
   $('#md_reportBug').dialog({
     autoOpen: false,
     modal: true,
@@ -478,7 +478,7 @@ function initJeedomModals() {
       emptyModal('md_reportBug')
     }
   })
-
+  
   $('#md_modal').dialog({
     autoOpen: false,
     modal: true,
@@ -500,7 +500,7 @@ function initJeedomModals() {
       emptyModal('md_modal')
     }
   })
-
+  
   $('#md_modal2').dialog({
     autoOpen: false,
     modal: true,
@@ -522,7 +522,7 @@ function initJeedomModals() {
       emptyModal('md_modal2')
     }
   })
-
+  
   $('#md_modal3').dialog({
     autoOpen: false,
     modal: true,
@@ -544,7 +544,7 @@ function initJeedomModals() {
       emptyModal('md_modal3')
     }
   })
-
+  
   function emptyModal(_id='') {
     if (_id == '') return
     $('body').css({overflow: 'inherit'})
@@ -578,19 +578,19 @@ function setJeedomGlobalUI() {
   if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
-
+  
   $(window).bind('beforeunload', function() {
     if (modifyWithoutSave) {
       return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
     }
   })
-
+  
   setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
   setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
   setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
   setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal', false)
   setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
-
+  
   $('#bt_gotoDashboard').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -598,7 +598,7 @@ function setJeedomGlobalUI() {
     }
     loadPage('index.php?v=d&p=dashboard')
   })
-
+  
   $('#bt_gotoView').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -606,7 +606,7 @@ function setJeedomGlobalUI() {
     }
     loadPage('index.php?v=d&p=view')
   })
-
+  
   $('#bt_gotoPlan').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -614,7 +614,7 @@ function setJeedomGlobalUI() {
     }
     loadPage('index.php?v=d&p=plan')
   })
-
+  
   $('#bt_gotoPlan3d').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -622,12 +622,12 @@ function setJeedomGlobalUI() {
     }
     loadPage('index.php?v=d&p=plan3d')
   })
-
+  
   $('#bt_jeedomAbout').on('click', function() {
     closeJeedomMenu()
     $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   })
-
+  
   $('#bt_getHelpPage').on('click',function() {
     jeedom.getDocumentationUrl({
       plugin: $(this).attr('data-plugin'),
@@ -641,7 +641,7 @@ function setJeedomGlobalUI() {
       }
     });
   })
-
+  
   $('.bt_reportBug').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
@@ -650,26 +650,26 @@ function setJeedomGlobalUI() {
     closeJeedomMenu()
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
   })
-
+  
   $('#bt_messageModal').on('click',function() {
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1')
   })
   $('#bt_jsErrorModal').on('click',function() {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
-
+  
   $('body').on('click', '.objectSummaryParent',function() {
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
     loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'))
   })
-
+  
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
     var el = $(this).closest('div').find('input')
     jeedom.getCronSelectModal({},function(result) {
       el.value(result.value)
     })
   })
-
+  
   //search input escape:
   $('body').on({
     'keydown': function(event) {
@@ -698,7 +698,7 @@ function initPage() {
       $(window).scrollTop(scrollHeight)
     }, 0)
   })
-
+  
   setTimeout(function() {
     initTooltips()
   }, 750)
@@ -711,13 +711,13 @@ function initPage() {
 function initDisplayAsTable() {
   var $buttonAsTable = $('#bt_displayAsTable')
   if ($buttonAsTable.length) {
-
+    
     if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
       $('#bt_displayAsTable').data('state', '1').addClass('active')
       $($buttonAsTable.data('card')).addClass('displayAsTable')
       $($buttonAsTable.data('container')).first().addClass('containerAsTable')
     }
-
+    
     $buttonAsTable.off('click').on('click', function () {
       if ($(this).data('state') == "0") {
         $(this).data('state', '1').addClass('active')
@@ -778,17 +778,17 @@ function initTooltips(_el) {
       me.tooltipster(TOOLTIPSOPTIONS)
       return;
     }
-
+    
     if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
       if (_el.is('[title]') && _el.hasClass('tooltipstered')){
         _el.tooltipster('destroy');
       }
       _el.tooltipster(TOOLTIPSOPTIONS)
     }
-
+    
     _el.find('.tooltipstered[title]').tooltipster('destroy')
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(TOOLTIPSOPTIONS)
-
+    
   }
 }
 
@@ -1039,7 +1039,7 @@ function closeJeedomMenu() {
   setTimeout(function() {
     $('#jeedomMenuBar .navbar-nav').removeClass('disabled')
   }, 250)
-
+  
   if ($(window).width() < 768) {
     $('#jeedomMenuBar .navbar-collapse.in').removeClass('in')
   }
@@ -1070,14 +1070,14 @@ function setJeedomMenu() {
     if ($(this).attr('target') == '_blank') {
       return
     }
-
+    
     if (!$(this).hasClass('navbar-brand')) closeJeedomMenu()
-
+    
     event.preventDefault()
     event.stopPropagation()
     loadPage($(this).attr('href'))
   })
-
+  
   //one submenu opened at a time in mobile:
   $('body').on('click', '#jeedomMenuBar .navbar-nav > li > input', function() {
     var checked = $(this).prop("checked")

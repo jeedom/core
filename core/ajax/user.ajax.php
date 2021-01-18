@@ -223,6 +223,16 @@ try {
 	}
 	
 	if (init('action') == 'get') {
+		if(init('id') != -1){
+			if (!isConnect('admin')) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__));
+			}
+			$user = user::byId(init('id'));
+			if(!is_object($user)){
+				throw new Exception(__('Utilisateur non trouvé : ',__FILE__).init('id'));
+			}
+			ajax::success(jeedom::toHumanReadable(utils::o2a($user)));
+		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($_SESSION['user'])));
 	}
 	

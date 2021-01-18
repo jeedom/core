@@ -27,6 +27,7 @@
 - **Objets** : Les plugins peuvent maintenant demander des parametres spécifique que les objets
 - **Utilisateurs** : Les plugins peuvent maintenant demander des parametres spécifique que les utilisateurs
 - **Commande** : possibilité de faire un calcul sur une commande action de type slider avant execution de la commande
+- **Utilisateurs** : possibilité de gerer les profils des differents utilisateur Jeedom depuis la page de gestion des utilisateurs
 
 ### Widgets Core
 

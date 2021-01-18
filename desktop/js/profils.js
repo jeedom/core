@@ -17,82 +17,76 @@
 "use strict"
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
-
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_saveProfils").click()
   }
 }
 
-$('#bt_configureTwoFactorAuthentification').on('click', function() {
-  var profil = $('#div_pageContainer').getValues('.userAttr')[0]
-  $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"}).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
-})
+
 
 $("#bt_saveProfils").on('click', function(event) {
   $.hideAlert()
-  var profil = $('#div_pageContainer').getValues('.userAttr')[0]
-  if (profil.password != $('#in_passwordCheck').value()) {
-    $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'})
-    return
-  }
-  jeedom.user.saveProfils({
-    profils: profil,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alert').showAlert({message: "{{Sauvegarde effectuée}}", level: 'success'})
-      jeedom.user.get({
-        error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        },
-        success: function(data) {
-          $('#div_pageContainer').setValues(data, '.userAttr')
-          modifyWithoutSave = false
-        }
-      })
+  var profil = $('#div_userProfils').getValues('.userAttr')[0]
+  if(!user_id){
+    if (profil.password != $('#in_passwordCheck').value()) {
+      $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'})
+      return
     }
-  })
+    jeedom.user.saveProfils({
+      profils: profil,
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        $('#div_alert').showAlert({message: "{{Sauvegarde effectuée}}", level: 'success'})
+        jeedom.user.get({
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $('#div_userProfils').setValues(data, '.userAttr')
+            modifyWithoutSave = false
+          }
+        })
+      }
+    })
+  }else{
+    profil.id = user_id;
+    jeedom.user.save({
+      users: [profil],
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        $('#div_alertProfils').showAlert({message: "{{Sauvegarde effectuée}}", level: 'success'})
+        jeedom.user.get({
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            modifyWithoutSave = false
+          }
+        })
+      }
+    })
+  }
   return false
 })
 
-$('#bt_genUserKeyAPI').on('click', function() {
-  var profil = $('#div_pageContainer').getValues('.userAttr')[0]
-  profil.hash = ''
-  jeedom.user.saveProfils({
-    profils: profil,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alert').showAlert({message: "{{Opération effectuée}}", level: 'success'})
-      jeedom.user.get({
-        error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        },
-        success: function(data) {
-          $('#div_pageContainer').setValues(data, '.userAttr')
-          modifyWithoutSave = false
-        }
-      })
-    }
-  })
-})
-
 jeedom.user.get({
+  id : (!user_id) ? -1 : user_id,
   error: function(error) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'})
   },
   success: function(data) {
-    $('#div_pageContainer').setValues(data, '.userAttr')
+    $('#div_userProfils').setValues(data, '.userAttr')
     $('#in_passwordCheck').value(data.password)
     modifyWithoutSave = false
   }
 })
 
-$('#div_pageContainer').off('change','.userAttr').on('change','.userAttr:visible',  function() {
+$('#div_userProfils').off('change','.userAttr').on('change','.userAttr:visible',  function() {
   modifyWithoutSave = true
 })
 
@@ -102,43 +96,72 @@ $('.bt_selectWarnMeCmd').on('click', function() {
   })
 })
 
-$('.bt_removeRegisterDevice').on('click', function() {
-  var key = $(this).closest('tr').attr('data-key')
-  jeedom.user.removeRegisterDevice({
-    key : key,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      modifyWithoutSave = false
-      window.location.reload()
-    }
+if(!user_id){
+  $('#bt_configureTwoFactorAuthentification').on('click', function() {
+    var profil = $('#div_userProfils').getValues('.userAttr')[0]
+    $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"}).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
   })
-})
-
-$('#bt_removeAllRegisterDevice').on('click', function() {
-  jeedom.user.removeRegisterDevice({
-    key : '',
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      modifyWithoutSave = false
-      window.location.reload()
-    }
+  
+  $('#bt_genUserKeyAPI').on('click', function() {
+    var profil = $('#div_userProfils').getValues('.userAttr')[0]
+    profil.hash = ''
+    jeedom.user.saveProfils({
+      profils: profil,
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        $('#div_alert').showAlert({message: "{{Opération effectuée}}", level: 'success'})
+        jeedom.user.get({
+          error: function(error) {
+            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          },
+          success: function(data) {
+            $('#div_userProfils').setValues(data, '.userAttr')
+            modifyWithoutSave = false
+          }
+        })
+      }
+    })
   })
-})
-
-
-$('.bt_deleteSession').on('click', function() {
-  var id = $(this).closest('tr').attr('data-id')
-  jeedom.user.deleteSession({
-    id : id,
-    error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      window.location.reload()
-    }
+  
+  $('.bt_removeRegisterDevice').on('click', function() {
+    var key = $(this).closest('tr').attr('data-key')
+    jeedom.user.removeRegisterDevice({
+      key : key,
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(data) {
+        modifyWithoutSave = false
+        window.location.reload()
+      }
+    })
   })
-})
+  
+  $('#bt_removeAllRegisterDevice').on('click', function() {
+    jeedom.user.removeRegisterDevice({
+      key : '',
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(data) {
+        modifyWithoutSave = false
+        window.location.reload()
+      }
+    })
+  })
+  
+  $('.bt_deleteSession').on('click', function() {
+    var id = $(this).closest('tr').attr('data-id')
+    jeedom.user.deleteSession({
+      id : id,
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(data) {
+        window.location.reload()
+      }
+    })
+  })
+}

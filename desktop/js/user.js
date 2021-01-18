@@ -204,6 +204,7 @@ function printUsers() {
             ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
           }
           ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fas fa-align-right"></i> {{Droits}}</a>'
+          ligne += '<a class="btn btn-xs btn-default pull-right bt_manage_profils" style="margin-bottom : 5px;"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
         }
         ligne += '</td>'
         ligne += '</tr>'
@@ -220,6 +221,10 @@ function printUsers() {
 
 $('#table_user').on( 'click','.bt_manage_restrict_rights', function() {
   $('#md_modal').dialog({title: "{{Gestion des droits}}"}).load('index.php?v=d&modal=user.rights&id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open')
+})
+
+$('#table_user').on( 'click','.bt_manage_profils', function() {
+  $('#md_modal').dialog({title: "{{Gestion du profils}}"}).load('index.php?v=d&p=profils&ajax=1&user_id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open')
 })
 
 $('#table_user').on( 'click', '.bt_disableTwoFactorAuthentification',function() {
