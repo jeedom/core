@@ -24,8 +24,9 @@
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
 - **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
-- **Objetos** : Los complementos ahora pueden solicitar parámetros específicos en objetos.
-- **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos a los usuarios.
+- **Objetos** : Los complementos ahora pueden solicitar parámetros específicos como objetos
+- **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos que los usuarios
+- **Ordenado** : posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando
 
 ### Widgets principales
 

@@ -24,8 +24,9 @@
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
-- **Objetos** : Plugins agora podem solicitar parâmetros específicos em objetos.
-- **Comercial** : Plugins agora podem solicitar parâmetros específicos dos usuários.
+- **Objetos** : Plugins agora podem solicitar parâmetros específicos como objetos
+- **Comercial** : Plugins agora podem solicitar parâmetros específicos que os usuários
+- **Encomendado** : possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando
 
 ### Widgets principais
 
