@@ -484,7 +484,7 @@ class update {
 		if (isset($_infos['localVersion'])) {
 			$this->setLocalVersion($_infos['localVersion']);
 		}
-		$this->setUpdateDate(datetime('Y-m-d H:i:s'));
+		$this->setUpdateDate(date('Y-m-d H:i:s'));
 		$this->save();
 		log::add('update', 'alert', __("OK", __FILE__)."\n");
 		log::add('update', 'alert', __("END UPDATE SUCCESS", __FILE__)."\n");
