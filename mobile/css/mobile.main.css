@@ -1555,7 +1555,7 @@ a.ui-table-columntoggle-btn {
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 14px !important;
-  color: var(--link-color) !important;
+  color: var(--link-color);
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;
