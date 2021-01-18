@@ -1454,6 +1454,7 @@
         "Nom": "Nama",
         "Version installée": "Version installée",
         "Dernière version": "Dernière version",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "Pilihan",
         "Actions": "Tindakan",
         "Log :": "Log :",
@@ -2670,7 +2671,9 @@
         "Supprimer": "Menghapus",
         "Mot de passe": "Password",
         "Droits": "Droits",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
@@ -2785,9 +2788,9 @@
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "Otentikasi langkah 2",
         "Les deux mots de passe ne sont pas identiques": "Kedua password tidak identik",
         "Sauvegarde effectuée": "Backup dibuat",
+        "Authentification 2 étapes": "Otentikasi langkah 2",
         "Opération effectuée": "Operasi dilakukan"
     },
     "desktop\/js\/administration.js": {

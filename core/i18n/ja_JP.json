@@ -1454,6 +1454,7 @@
         "Nom": "表題",
         "Version installée": "インストール済みバージョン",
         "Dernière version": "最新バージョン",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "オプション",
         "Actions": "株式",
         "Log :": "ログ：",
@@ -2670,7 +2671,9 @@
         "Supprimer": "取り除きます",
         "Mot de passe": "パスワード",
         "Droits": "権利",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "プラグイン構成",
@@ -2785,9 +2788,9 @@
         "Problème lors de la lecture du fichier.": "ファイルの読み取りに問題があります。"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "2段階認証",
         "Les deux mots de passe ne sont pas identiques": "2つのパスワードは同一ではありません",
         "Sauvegarde effectuée": "バックアップ完了",
+        "Authentification 2 étapes": "2段階認証",
         "Opération effectuée": "実行された操作"
     },
     "desktop\/js\/administration.js": {

@@ -1454,6 +1454,7 @@
         "Nom": "İsim",
         "Version installée": "Version installée",
         "Dernière version": "Dernière version",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "Opsiyonlar",
         "Actions": "Işlemler",
         "Log :": "Log :",
@@ -2670,7 +2671,9 @@
         "Supprimer": "Sil",
         "Mot de passe": "Şifre",
         "Droits": "Haklar",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Eklentinin ayarları",
@@ -2785,9 +2788,9 @@
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "2 aşamalı kimlik dogrulama",
         "Les deux mots de passe ne sont pas identiques": "Şifreleriniz aynı değil",
         "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
+        "Authentification 2 étapes": "2 aşamalı kimlik dogrulama",
         "Opération effectuée": "Operasyon uygulandı"
     },
     "desktop\/js\/administration.js": {

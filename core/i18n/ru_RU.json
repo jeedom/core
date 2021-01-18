@@ -1454,6 +1454,7 @@
         "Nom": "Имя",
         "Version installée": "Version installée",
         "Dernière version": "Dernière version",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "Опции",
         "Actions": "акции",
         "Log :": "Log :",
@@ -2670,7 +2671,9 @@
         "Supprimer": "удаление",
         "Mot de passe": "Пароль",
         "Droits": "права",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Конфигурация плагина",
@@ -2785,9 +2788,9 @@
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "Двухэтапная аутентификация",
         "Les deux mots de passe ne sont pas identiques": "Два пароля не идентичны",
         "Sauvegarde effectuée": "Резервное копирование завершено",
+        "Authentification 2 étapes": "Двухэтапная аутентификация",
         "Opération effectuée": "Операция выполнена"
     },
     "desktop\/js\/administration.js": {

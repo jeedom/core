@@ -1454,6 +1454,7 @@
         "Nom": "Name",
         "Version installée": "Installed version",
         "Dernière version": "Last version",
+        "Dernière mise à jour": "Last update",
         "Options": "Options",
         "Actions": "Actions",
         "Log :": "Log:",
@@ -2670,7 +2671,9 @@
         "Supprimer": "Delete",
         "Mot de passe": "Password",
         "Droits": "Rights",
-        "Gestion des droits": "Rights management"
+        "Profils": "Profiles",
+        "Gestion des droits": "Rights management",
+        "Gestion du profils": "Profile management"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -2785,9 +2788,9 @@
         "Problème lors de la lecture du fichier.": "Problem reading the file"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "2-step authentication",
         "Les deux mots de passe ne sont pas identiques": "The two passwords are not identical",
         "Sauvegarde effectuée": "Backup completed",
+        "Authentification 2 étapes": "2-step authentication",
         "Opération effectuée": "Operation performed"
     },
     "desktop\/js\/administration.js": {

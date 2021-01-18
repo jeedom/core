@@ -27,6 +27,8 @@
 - **Objects** : Plugins can now request specific parameters as objects
 - **Users** : Plugins can now request specific parameters that users
 - **Ordered** : possibility of making a calculation on a command action of type slider before execution of the command
+- **Users** : possibility of managing the profiles of different Jeedom users from the user management page
+- **Update** : the update center now displays the date of the last update
 
 ### Core Widgets
 

@@ -27,6 +27,8 @@
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos como objetos
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos que los usuarios
 - **Ordenado** : posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando
+- **Usuarios** : posibilidad de gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios
+- **Actualización** : el centro de actualizaciones ahora muestra la fecha de la última actualización
 
 ### Widgets principales
 

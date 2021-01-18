@@ -1454,6 +1454,7 @@
         "Nom": "Nome",
         "Version installée": "Versione installata",
         "Dernière version": "Ultima versione",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "Opzioni",
         "Actions": "Stock",
         "Log :": "Log:",
@@ -2670,7 +2671,9 @@
         "Supprimer": "Rimuovere",
         "Mot de passe": "Password",
         "Droits": "Diritti",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configurazione del plugin",
@@ -2785,9 +2788,9 @@
         "Problème lors de la lecture du fichier.": "Problema durante la lettura del file"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "Autenticazione in 2 passaggi",
         "Les deux mots de passe ne sont pas identiques": "Le due password non sono identiche",
         "Sauvegarde effectuée": "Backup completato",
+        "Authentification 2 étapes": "Autenticazione in 2 passaggi",
         "Opération effectuée": "Operazione eseguita"
     },
     "desktop\/js\/administration.js": {

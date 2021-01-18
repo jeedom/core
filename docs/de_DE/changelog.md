@@ -27,6 +27,8 @@
 - **Objekte** : Plugins können jetzt bestimmte Parameter als Objekte anfordern
 - **Benutzer** : Plugins können jetzt bestimmte Parameter anfordern, die Benutzer verwenden
 - **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen
+- **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer über die Benutzerverwaltungsseite
+- **Aktualisieren** : Das Update Center zeigt jetzt das Datum des letzten Updates an
 
 ### Kern-Widgets
 
