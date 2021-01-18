@@ -1088,6 +1088,9 @@ class cmd {
 			if ($this->getSubType() == 'color' && isset($options['color']) && substr($options['color'], 0, 1) != '#') {
 				$options['color'] = cmd::convertColor($options['color']);
 			}
+			if ($this->getSubType() == 'slider' && isset($options['slider']) && $this->getConfiguration('calculValueOffset') != '') {
+				$options['slider'] = jeedom::evaluateExpression(str_replace('#value#', $options['slider'], $this->getConfiguration('calculValueOffset')));
+			}
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
 				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
 			} else {

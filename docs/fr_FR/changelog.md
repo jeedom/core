@@ -26,6 +26,7 @@
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
 - **Objets** : Les plugins peuvent maintenant demander des parametres spécifique que les objets
 - **Utilisateurs** : Les plugins peuvent maintenant demander des parametres spécifique que les utilisateurs
+- **Commande** : possibilité de faire un calcul sur une commande action de type slider avant execution de la commande
 
 ### Widgets Core
 
