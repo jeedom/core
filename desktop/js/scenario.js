@@ -768,6 +768,9 @@ $divScenario.on('click', '.bt_collapse', function(event) {
       } else {
         //comment
         txt = _el.find('.expression textarea').val()
+        if (typeof txt === 'object') {
+          txt = JSON.stringify(expression.expression)
+        }
         txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
         if (!txt) txt = _el.find('.expression input.form-control').val()
       }
@@ -1845,9 +1848,9 @@ function addSubElement(_subElement) {
     retour += '<div>'
     retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
     if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-      retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+      retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
     } else {
-      retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tou).}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+      retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
     }
     retour += '</div>'
     retour += '<div>'
@@ -1855,9 +1858,12 @@ function addSubElement(_subElement) {
     var expression = {type: 'comment'}
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0]
+      if (typeof expression.expression === 'object') {
+        expression.expression = JSON.stringify(expression.expression, null, 2)
+      }
       var txt = expression.expression.substring(0,200)
       txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
-      retour += '<div class="blocPreview">'+txt+'</div>'
+      retour += '<div class="blocPreview">' + txt + '</div>'
     } else {
       retour += '<div class="blocPreview"></div>'
     }
