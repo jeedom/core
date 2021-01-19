@@ -662,7 +662,7 @@ function setJeedomGlobalUI() {
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
 
     var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
-    if (window.location.href.includes('&btover=1')) {
+    if (window.location.href.includes('&btover=1') || ($('body').attr('data-page') != "dashboard" && userProfils.homePage == 'core::overview')) {
       url += '&btover=1'
     }
     loadPage(url)
