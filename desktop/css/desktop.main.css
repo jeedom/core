@@ -4576,7 +4576,9 @@ Theme Core 2021 @Jeedom
   #pre_eventlog span {
       height: 12px;
       min-width: 60px;
-      padding: 0 4px
+      padding: 0px 4px;
+      margin-bottom: -1px !important;
+      line-height: 10px;
   }
   #pre_scenariolog label,
   #pre_scenariolog span {
