@@ -1084,6 +1084,10 @@ Theme Core 2021 @Jeedom
   [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object span {
     cursor: pointer !important;
   }
+  [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object > span {
+    margin-left: 30px;
+  }
+
   [data-page="dashboard"] #dashOverviewPrev .objectSummaryglobal {
     padding-left: 25px;
   }

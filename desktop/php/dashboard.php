@@ -135,11 +135,7 @@ foreach ($objectTree as $_object) {
 			$div .= '<div class="cursor li_object"><a data-object_id="' . $_object->getId() . '" data-href="'.$dataHref.'">';
 			$div .= '<span style="position:relative;left:' . $margin . 'px;">'.$_object->getHumanName(true, true) . '</a></span>';
 
-			//summary:
-			$html = '<span class="objectSummaryglobal">';
-			$html .= $summaryCache[$_object->getId()];
-			$html .= '</span>';
-			$div .= $html;
+			$div .= $summaryCache[$_object->getId()];
 			$div .= '</div>';
 		}
 		$div .= '</div>';
