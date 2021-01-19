@@ -853,7 +853,7 @@ function initTableSorter(filter) {
 function initHelp() {
   $('.help').each(function() {
     if ($(this).attr('data-help') != undefined) {
-      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'></i></sup>')
+      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'"></i></sup>')
     }
   })
 }
