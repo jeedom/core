@@ -123,69 +123,69 @@ try {
 	if (init('action') == 'updateAll') {
 		unautorizedInDemo();
 		jeedom::update(json_decode(init('options', '{}'), true));
-			ajax::success();
-		}
-
-		if (init('action') == 'save') {
-			unautorizedInDemo();
-			$new = false;
-			$update_json = json_decode(init('update'), true);
-			if (isset($update_json['id'])) {
-				$update = update::byId($update_json['id']);
-			}
-			if (isset($update_json['logicalId'])) {
-				$update = update::byLogicalId($update_json['logicalId']);
-			}
-			if (!isset($update) || !is_object($update)) {
-				$update = new update();
-				$new = true;
-			}
-			$old_update = $update;
-			utils::a2o($update, $update_json);
-			$update->save();
-			try {
-				$update->doUpdate();
-			} catch (Exception $e) {
-				if ($new) {
-					throw $e;
-				} else {
-					$update = $old_update;
-					$update->save();
-				}
-			}
-			ajax::success(utils::o2a($update));
-		}
-
-		if (init('action') == 'saves') {
-			unautorizedInDemo();
-			utils::processJsonObject('update', init('updates'));
-			ajax::success();
-		}
-
-		if (init('action') == 'preUploadFile') {
-			unautorizedInDemo();
-			$uploaddir = '/tmp';
-			if (!file_exists($uploaddir)) {
-				throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
-			}
-			if (!isset($_FILES['file'])) {
-				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
-			}
-			if (filesize($_FILES['file']['tmp_name']) > 100000000) {
-				throw new Exception(__('Le fichier est trop gros (maximum 100Mo)', __FILE__));
-			}
-			$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
-			if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
-				throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
-			}
-			if (!file_exists($uploaddir . '/' . $filename)) {
-				throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
-			}
-			ajax::success($uploaddir . '/' . $filename);
-		}
-
-		throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
-		/*     * *********Catch exeption*************** */
-	} catch (Exception $e) {
-		ajax::error(displayException($e), $e->getCode());
+		ajax::success();
 	}
+
+	if (init('action') == 'save') {
+		unautorizedInDemo();
+		$new = false;
+		$update_json = json_decode(init('update'), true);
+		if (isset($update_json['id'])) {
+			$update = update::byId($update_json['id']);
+		}
+		if (isset($update_json['logicalId'])) {
+			$update = update::byLogicalId($update_json['logicalId']);
+		}
+		if (!isset($update) || !is_object($update)) {
+			$update = new update();
+			$new = true;
+		}
+		$old_update = $update;
+		utils::a2o($update, $update_json);
+		$update->save();
+		try {
+			$update->doUpdate();
+		} catch (Exception $e) {
+			if ($new) {
+				throw $e;
+			} else {
+				$update = $old_update;
+				$update->save();
+			}
+		}
+		ajax::success(utils::o2a($update));
+	}
+
+	if (init('action') == 'saves') {
+		unautorizedInDemo();
+		utils::processJsonObject('update', init('updates'));
+		ajax::success();
+	}
+
+	if (init('action') == 'preUploadFile') {
+		unautorizedInDemo();
+		$uploaddir = '/tmp';
+		if (!file_exists($uploaddir)) {
+			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 100Mo)', __FILE__));
+		}
+		$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
+		}
+		if (!file_exists($uploaddir . '/' . $filename)) {
+			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
+		}
+		ajax::success($uploaddir . '/' . $filename);
+	}
+
+	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	/*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+	ajax::error(displayException($e), $e->getCode());
+}
