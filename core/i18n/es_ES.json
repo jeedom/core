@@ -2487,7 +2487,8 @@
         "Fichier supprimé avec succès": "Archivo eliminado con éxito",
         "Le sous-type ne peut être vide": "El subtipo no puede estar vacío",
         "Le nom ne peut être vide": "El nombre no puede estar vacío",
-        "Options": "Opciones"
+        "Options": "Opciones",
+        "Nom du fichier ?": "Nombre del archivo ?"
     },
     "desktop\/js\/plugin.js": {
         "Configuration du plugin": "Configuración del complemento",
@@ -2681,8 +2682,8 @@
         "Jeedom benchmark": "Punto de referencia de Jeedom"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration Affichage": "Configuración de pantalla",
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Estás en modo de edición. Puede mover los mosaicos, cambiar su tamaño y editar los comandos (orden, widget) con el botón a la derecha del título. No olvide salir del modo de edición para guardar"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Estás en modo de edición. Puede mover los mosaicos, cambiar su tamaño y editar los comandos (orden, widget) con el botón a la derecha del título. No olvide salir del modo de edición para guardar",
+        "Configuration Affichage": "Configuración de pantalla"
     },
     "desktop\/js\/plan.js": {
         "Designs": "Diseños",
@@ -2945,8 +2946,6 @@
         "A": "A las",
         "FAIRE": "HACER",
         "CODE": "CODIGO",
-        "Masquer ce bloc.<br>Ctrl+click: tou).": "Esconde este bloque. <br> Ctrl + clic: tou)",
-        "Afficher ce bloc.<br>Ctrl+click: tou).": "Muestra este bloque. <br> Ctrl + clic: tou)",
         "COMMENTAIRE": "COMENTARIO",
         "ACTION": "ACCIÓN",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Eliminar este bloque. <br> Ctrl + Click: Eliminar sin confirmación",

@@ -2487,7 +2487,8 @@
         "Fichier supprimé avec succès": "File eliminato con successo",
         "Le sous-type ne peut être vide": "Il sottotipo non può essere vuoto",
         "Le nom ne peut être vide": "Il nome non può essere vuoto",
-        "Options": "Opzioni"
+        "Options": "Opzioni",
+        "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -2681,8 +2682,8 @@
         "Jeedom benchmark": "Punto di riferimento Jeedom"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration Affichage": "Configuration Affichage",
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder",
+        "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
         "Designs": "Disegni",
@@ -2945,8 +2946,6 @@
         "A": "La",
         "FAIRE": "FARE",
         "CODE": "Codice",
-        "Masquer ce bloc.<br>Ctrl+click: tou).": "Nascondi questo blocco. <br> Ctrl + clic: tou)",
-        "Afficher ce bloc.<br>Ctrl+click: tou).": "Mostra questo blocco. <br> Ctrl + clic: tou)",
         "COMMENTAIRE": "COMMENTO",
         "ACTION": "AZIONE",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Elimina questo blocco. <br> Ctrl + clic: Elimina senza conferma",
