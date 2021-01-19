@@ -6,6 +6,7 @@
 - Bugfix recherche dans Analyse / Historique.
 - Bugfix recherche sur une variable, lien vers un équipement.
 - Bugfix des résumés colorés sur la synthèse.
+- Bugfix sur les commentaires de scénario avec json.
 - Ajout des options de groupement par heure pour les graphiques sur les vues.
 - Conservation du contexte de la synthèse au clic sur les résumés.
 
