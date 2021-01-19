@@ -658,11 +658,11 @@ function setJeedomGlobalUI() {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
-  $('body').on('click', '.objectSummaryParent',function() {
+  $('body').on('click', '.objectSummaryParent', function() {
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
 
-    var url = 'index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id')
-    if (window.location.href.includes('&btover=1') {
+    var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
+    if (window.location.href.includes('&btover=1')) {
       url += '&btover=1'
     }
     loadPage(url)
