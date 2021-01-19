@@ -7,6 +7,7 @@
 - Bugfix recherche sur une variable, lien vers un équipement.
 - Bugfix des résumés colorés sur la synthèse.
 - Ajout des options de groupement par heure pour les graphiques sur les vues.
+- Conservation du contexte de la synthèse au clic sur les résumés.
 
 ## 4.1.0
 
