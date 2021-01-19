@@ -4564,7 +4564,7 @@ Theme Core 2021 @Jeedom
   #pre_globallog span,
   #pre_eventlog span {
       height: 12px;
-      min-width: 50px;
+      min-width: 60px;
       padding: 0 4px
   }
   #pre_scenariolog label,
