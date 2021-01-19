@@ -112,6 +112,7 @@ foreach ($objectTree as $_object) {
 	<?php
 	//display previews:
 	if (init('btover', 0) != 0) { //overview
+		$divSummaries = '<div id="dashOverviewPrevSummaries">';
 		$div = '<div id="dashOverviewPrev" class="overview" style="display:none;">';
 		foreach ($objectTree as $_object) {
 			if ($_object->getConfiguration('hideOnOverview') == 1) continue;
@@ -124,8 +125,10 @@ foreach ($objectTree as $_object) {
 			$div .= '<span class="name cursor">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
 			$div .= '</div>';
 			$div .= '</div>';
+
+			$divSummaries .= $summaryCache[$_object->getId()];
 		}
-		$div .= '</div>';
+		$div .= $divSummaries.'</div></div>';
 		echo $div;
 	} else { //dashboard
 		$div = '<div id="dashOverviewPrev" class="dashboard" style="display:none;">';

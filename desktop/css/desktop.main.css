@@ -921,7 +921,8 @@ Theme Core 2021 @Jeedom
   }
 
   .objectSummaryglobal > .objectSummaryParent,
-  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent {
+  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent,
+  #dashOverviewPrevSummaries .objectSummaryContainer > .objectSummaryParent {
     display: inline-flex;
     color: var(--txt-color) !important;
     margin: 0 2px;
@@ -930,9 +931,19 @@ Theme Core 2021 @Jeedom
     font-size: 12px;
   }
   .objectSummaryglobal > .objectSummaryParent > sup,
-  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent > sup {
+  span.objectDashLegend .objectSummaryContainer > .objectSummaryParent > sup,
+  #dashOverviewPrevSummaries .objectSummaryContainer > .objectSummaryParent > sup {
     margin: 0 2px;
     margin-top: 9px;
+  }
+
+  #dashOverviewPrevSummaries .objectSummaryContainer {
+    position: absolute;
+    max-width: 80%;
+    background: rgba(var(--bg-color), var(--opacity));
+    padding: 4px 8px;
+    margin: 35px 10px 0 15px;
+    z-index: 20;
   }
 
 /* ____________________OVERVIEW */
