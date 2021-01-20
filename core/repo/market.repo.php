@@ -22,19 +22,20 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_market {
 	/*     * *************************Attributs****************************** */
-
+	
 	public static $_name = 'Market';
-
+	
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => true,
 		'hasConfiguration' => true,
 		'proxy' => true,
 		'hasStore' => true,
+		'urlStore' => 'address',
 		'test' => true,
 		'pullInstall' => true,
 	);
-
+	
 	private $id;
 	private $name;
 	private $type;
@@ -66,9 +67,9 @@ class repo_market {
 	private $hardwareCompatibility;
 	private $nbInstall;
 	private $allowVersion = array();
-
+	
 	/*     * ***********************Méthodes statiques*************************** */
-
+	
 	public static function getConfigurationOption(){
 		return array(
 			'configuration' => array(
@@ -105,7 +106,7 @@ class repo_market {
 			),
 		);
 	}
-
+	
 	public static function pullInstall(){
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('register::pluginToInstall')) {
@@ -141,13 +142,13 @@ class repo_market {
 				$update->doUpdate();
 				$nbInstall++;
 			} catch (\Exception $e) {
-
+				
 			}
 		}
 		config::save('market::lastDatetimePluginInstall',$results['datetime']);
 		return array('number' => $nbInstall);
 	}
-
+	
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
 			if (count($_update) < 1) {
@@ -181,7 +182,7 @@ class repo_market {
 		$_update->setRemoteVersion($market_info['datetime']);
 		$_update->save();
 	}
-
+	
 	public static function downloadObject($_update) {
 		$market = repo_market::byLogicalIdAndType($_update->getLogicalId(), $_update->getType());
 		if (is_object($market)) {
@@ -191,7 +192,7 @@ class repo_market {
 		}
 		return array('path' => $file, 'localVersion' => $market->getDatetime($_update->getConfiguration('version', 'stable')));
 	}
-
+	
 	public static function deleteObjet($_update) {
 		try {
 			$market = repo_market::byLogicalIdAndType($_update->getLogicalId(), $_update->getType());
@@ -209,12 +210,12 @@ class repo_market {
 				$market->remove();
 			}
 		} catch (Exception $e) {
-
+			
 		} catch (Error $e) {
-
+			
 		}
 	}
-
+	
 	public static function objectInfo($_update) {
 		return array(
 			'doc' => 'https://doc.jeedom.com',
@@ -222,9 +223,9 @@ class repo_market {
 			'display' => 'https://market.jeedom.com/index.php?v=d&p=market&type=plugin&plugin_id=' . $_update->getLogicalId(),
 		);
 	}
-
+	
 	/*     * ***********************BACKUP*************************** */
-
+	
 	public static function backup_flysystem(){
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => config::byKey('service::backup::url'),
@@ -235,7 +236,7 @@ class repo_market {
 		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
 		return new League\Flysystem\Filesystem($adapter);
 	}
-
+	
 	public static function backup_createFolderIsNotExist() {
 		$filesystem =self::backup_flysystem();
 		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username'));
@@ -252,7 +253,7 @@ class repo_market {
 			$filesystem->createDir('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')));
 		}
 	}
-
+	
 	public static function backup_send($_path) {
 		if (!config::byKey('service::backup::enable')) {
 			throw new Exception(__('Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?', __FILE__));
@@ -283,7 +284,7 @@ class repo_market {
 			throw $e;
 		}
 	}
-
+	
 	public static function backup_clean($_path) {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
@@ -327,8 +328,8 @@ class repo_market {
 			}
 		}
 	}
-
-
+	
+	
 	public static function backup_list() {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return array();
@@ -342,7 +343,7 @@ class repo_market {
 		}
 		return array_reverse($result);
 	}
-
+	
 	public static function backup_restore($_backup) {
 		$backup_dir = calculPath(config::byKey('backup::path'));
 		if (!file_exists($backup_dir)) {
@@ -366,9 +367,9 @@ class repo_market {
 		unlink($backup_dir.'/'.$_backup);
 		rrmdir('/tmp/jeedom_gnupg');
 	}
-
+	
 	/*     * ***********************CRON*************************** */
-
+	
 	public static function cronHourly() {
 		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - (24 * 3600))) {
 			return;
@@ -377,10 +378,10 @@ class repo_market {
 		try {
 			self::test();
 		} catch (Exception $e) {
-
+			
 		}
 	}
-
+	
 	public static function cron5() {
 		try {
 			if(config::byKey('service::monitoring::enable')){
@@ -408,12 +409,12 @@ class repo_market {
 				}
 			}
 		} catch (Exception $e) {
-
+			
 		}
 	}
-
+	
 	/*     * ***********************INFO*************************** */
-
+	
 	public static function getInfo($_logicalId, $_version = 'stable') {
 		$returns = array();
 		if (is_array($_logicalId) && is_array($_version) && count($_logicalId) == count($_version)) {
@@ -422,7 +423,7 @@ class repo_market {
 			} else {
 				$markets = self::byLogicalId($_logicalId);
 			}
-
+			
 			$returns = array();
 			$countLogicalId = count($_logicalId);
 			for ($i = 0; $i < $countLogicalId; $i++) {
@@ -438,14 +439,14 @@ class repo_market {
 					$return['status'] = 'ok';
 					return $return;
 				}
-
+				
 				if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 					$return['owner']['market'] = 1;
 				} else {
 					$return['owner']['market'] = 0;
 				}
 				$return['market'] = 0;
-
+				
 				try {
 					if (isset($markets[$logicalId])) {
 						$market = $markets[$logicalId];
@@ -489,14 +490,14 @@ class repo_market {
 			$return['status'] = 'ok';
 			return $return;
 		}
-
+		
 		if (config::byKey('market::username') != '' && config::byKey('market::password') != '') {
 			$return['owner']['market'] = 1;
 		} else {
 			$return['owner']['market'] = 0;
 		}
 		$return['market'] = 0;
-
+		
 		try {
 			if (is_array($_logicalId)) {
 				$market = repo_market::byLogicalIdAndType($_logicalId['logicalId'], $_logicalId['type']);
@@ -529,9 +530,9 @@ class repo_market {
 		}
 		return $return;
 	}
-
+	
 	/*     * ***********************UTILS*************************** */
-
+	
 	public static function saveTicket($_ticket) {
 		$jsonrpc = self::getJsonRpc();
 		$_ticket['user_plugin'] = '';
@@ -557,7 +558,7 @@ class repo_market {
 		}
 		return $jsonrpc->getResult();
 	}
-
+	
 	public static function supportAccess($_enable = true, $_key = '') {
 		$jsonrpc = self::getJsonRpc();
 		$url = network::getNetworkAccess('external') . '/index.php?auth=' . $_key;
@@ -565,7 +566,7 @@ class repo_market {
 			throw new Exception($jsonrpc->getErrorMessage());
 		}
 	}
-
+	
 	public static function getPassword() {
 		$password = config::byKey('market::password');
 		if (!is_sha1($password)) {
@@ -573,7 +574,7 @@ class repo_market {
 		}
 		return $password;
 	}
-
+	
 	public static function test() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::test')) {
@@ -582,14 +583,14 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function getPurchaseInfo() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('purchase::getInfo')) {
 			return $market->getResult();
 		}
 	}
-
+	
 	public static function distinctCategorie($_type) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
@@ -598,13 +599,13 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function getJsonRpc() {
 		$internalIp = '';
 		try {
 			$internalIp = network::getNetworkAccess('internal', 'ip');
 		} catch (Exception $e) {
-
+			
 		}
 		$uname = shell_exec('uname -a');
 		if (config::byKey('market::username') == '' || config::byKey('market::password') == '') {
@@ -639,7 +640,7 @@ class repo_market {
 		}
 		return $jsonrpc;
 	}
-
+	
 	public static function postJsonRpc(&$_result) {
 		config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		if (is_array($_result)) {
@@ -742,13 +743,13 @@ class repo_market {
 		if (isset($_arrayMarket['hardwareCompatibility'])) {
 			$market->hardwareCompatibility = json_encode($_arrayMarket['hardwareCompatibility'], JSON_UNESCAPED_UNICODE);
 		}
-
+		
 		$market->setRealcost($_arrayMarket['realCost']);
 		if (!isset($_arrayMarket['isAuthor'])) {
 			$_arrayMarket['isAuthor'] = true;
 		}
 		$market->setIsAuthor($_arrayMarket['isAuthor']);
-
+		
 		if (isset($_arrayMarket['parameters']) && is_array($_arrayMarket['parameters'])) {
 			foreach ($_arrayMarket['parameters'] as $key => $value) {
 				$market->setParameters($key, $value);
@@ -756,7 +757,7 @@ class repo_market {
 		}
 		return $market;
 	}
-
+	
 	public static function byId($_id) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byId', array('id' => $_id))) {
@@ -765,10 +766,10 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function byLogicalId($_logicalId) {
 		$market = self::getJsonRpc();
-
+		
 		if (is_array($_logicalId)) {
 			$options = $_logicalId;
 			$timeout = 240;
@@ -791,7 +792,7 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function byLogicalIdAndType($_logicalId, $_type = '') {
 		$market = self::getJsonRpc();
 		if (is_array($_logicalId)) {
@@ -817,7 +818,7 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function byMe() {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byAuthor', array())) {
@@ -832,7 +833,7 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function byStatusAndType($_status, $_type) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byStatusAndType', array('status' => $_status, 'type' => $_type))) {
@@ -848,7 +849,7 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function byStatus($_status) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byStatus', array('status' => $_status))) {
@@ -863,7 +864,7 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	public static function byFilter($_filter) {
 		$market = self::getJsonRpc();
 		if ($market->sendRequest('market::byFilter', $_filter)) {
@@ -878,16 +879,16 @@ class repo_market {
 			throw new Exception($market->getError(), $market->getErrorCode());
 		}
 	}
-
+	
 	/*     * *********************Methode d'instance************************* */
-
+	
 	public function setRating($_rating) {
 		$market = self::getJsonRpc();
 		if (!$market->sendRequest('market::setRating', array('rating' => $_rating, 'id' => $this->getId()))) {
 			throw new Exception($market->getError());
 		}
 	}
-
+	
 	public function getRating($_key = 'average') {
 		$rating = $this->rating;
 		if (isset($rating[$_key])) {
@@ -895,7 +896,7 @@ class repo_market {
 		}
 		return 0;
 	}
-
+	
 	public function install($_version = 'stable') {
 		$tmp_dir = jeedom::getTmpFolder('market');
 		$tmp = $tmp_dir . '/' . $this->getLogicalId() . '.zip';
@@ -908,7 +909,7 @@ class repo_market {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
 		}
-
+		
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
 		log::add('update', 'alert', __('URL ', __FILE__) . $url);
@@ -928,7 +929,7 @@ class repo_market {
 		}
 		return false;
 	}
-
+	
 	public function remove() {
 		$cache = cache::byKey('market::info::' . $this->getLogicalId());
 		if (is_object($cache)) {
@@ -936,7 +937,7 @@ class repo_market {
 		}
 		switch ($this->getType()) {
 			case 'plugin':
-
+			
 			break;
 			default:
 			$type = $this->getType();
@@ -946,7 +947,7 @@ class repo_market {
 			break;
 		}
 	}
-
+	
 	public function save() {
 		$cache = cache::byKey('market::info::' . $this->getLogicalId());
 		if (is_object($cache)) {
@@ -1016,272 +1017,273 @@ class repo_market {
 			}
 			$update->checkUpdate();
 		}
-
+		
 		/*     * **********************Getteur Setteur*************************** */
-
+		
 		public function getId() {
 			return $this->id;
 		}
-
+		
 		public function getName() {
 			return $this->name;
 		}
-
+		
 		public function getType() {
 			return $this->type;
 		}
-
+		
 		public function getDatetime($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->datetime, $_key, $_default);
 		}
-
+		
 		public function setDatetime($_key, $_value) {
 			$this->datetime = utils::setJsonAttr($this->datetime, $_key, $_value);
 			return $this;
 		}
-
+		
 		public function getDescription() {
 			return $this->description;
 		}
-
+		
 		public function getCategorie() {
 			return $this->categorie;
 		}
-
+		
 		public function getVersion() {
 			return $this->version;
 		}
-
+		
 		public function getUser_id() {
 			return $this->user_id;
 		}
-
+		
 		public function getDownloaded() {
 			return $this->downloaded;
 		}
-
+		
 		public function setId($id) {
 			$this->id = $id;
 			return $this;
 		}
-
+		
 		public function setName($name) {
 			$this->name = $name;
 			return $this;
 		}
-
+		
 		public function setType($type) {
 			$this->type = $type;
 			return $this;
 		}
-
+		
 		public function setDescription($description) {
 			$this->description = $description;
 			return $this;
 		}
-
+		
 		public function setCategorie($categorie) {
 			$this->categorie = $categorie;
 			return $this;
 		}
-
+		
 		public function setVersion($version) {
 			$this->version = $version;
 			return $this;
 		}
-
+		
 		public function setUser_id($user_id) {
 			$this->user_id = $user_id;
 			return $this;
 		}
-
+		
 		public function setDownloaded($downloaded) {
 			$this->downloaded = $downloaded;
 			return $this;
 		}
-
+		
 		public function getStatus($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->status, $_key, $_default);
 		}
-
+		
 		public function setStatus($_key, $_value) {
 			$this->status = utils::setJsonAttr($this->status, $_key, $_value);
 			return $this;
 		}
-
+		
 		public function getLink($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->link, $_key, $_default);
 		}
-
+		
 		public function setLink($_key, $_value) {
 			$this->link = utils::setJsonAttr($this->link, $_key, $_value);
 			return $this;
 		}
-
+		
 		public function getLanguage($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->language, $_key, $_default);
 		}
-
+		
 		public function setLanguage($_key, $_value) {
 			$this->language = utils::setJsonAttr($this->language, $_key, $_value);
 			return $this;
 		}
-
+		
 		public function getImg($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->img, $_key, $_default);
 		}
-
+		
 		public function getAuthor() {
 			return $this->author;
 		}
-
+		
 		public function setAuthor($author) {
 			$this->author = $author;
 			return $this;
 		}
-
+		
 		public function getChangelog() {
 			return $this->changelog;
 		}
-
+		
 		public function setChangelog($changelog) {
 			$this->changelog = $changelog;
 			return $this;
 		}
-
+		
 		public function getNbInstall() {
 			return $this->nbInstall;
 		}
-
+		
 		public function setNbInstall($nbInstall) {
 			$this->nbInstall = $nbInstall;
 			return $this;
 		}
-
+		
 		public function getLogicalId() {
 			return $this->logicalId;
 		}
-
+		
 		public function setLogicalId($logicalId) {
 			$this->logicalId = $logicalId;
 			return $this;
 		}
-
+		
 		public function getPrivate() {
 			return $this->private;
 		}
-
+		
 		public function setPrivate($private) {
 			$this->private = $private;
 			return $this;
 		}
-
+		
 		public function getIsAuthor() {
 			return $this->isAuthor;
 		}
-
+		
 		public function setIsAuthor($isAuthor) {
 			$this->isAuthor = $isAuthor;
 			return $this;
 		}
-
+		
 		public function getUtilization() {
 			return $this->utilization;
 		}
-
+		
 		public function setUtilization($utilization) {
 			$this->utilization = $utilization;
 			return $this;
 		}
-
+		
 		public function getPurchase() {
 			return $this->purchase;
 		}
-
+		
 		public function setPurchase($purchase) {
 			$this->purchase = $purchase;
 			return $this;
 		}
-
+		
 		public function getCost() {
 			return $this->cost;
 		}
-
+		
 		public function setCost($cost) {
 			$this->cost = $cost;
 			return $this;
 		}
-
+		
 		public function getRealcost() {
 			return $this->realcost;
 		}
-
+		
 		public function setRealcost($realcost) {
 			$this->realcost = $realcost;
 			return $this;
 		}
-
+		
 		public function getBuyer() {
 			return $this->buyer;
 		}
-
+		
 		public function setBuyer($buyer) {
 			$this->buyer = $buyer;
 			return $this;
 		}
-
+		
 		public function getCertification() {
 			return $this->certification;
 		}
-
+		
 		public function setCertification($certification) {
 			$this->certification = $certification;
 			return $this;
 		}
-
+		
 		public function getDoc() {
 			return $this->doc;
 		}
-
+		
 		public function setDoc($doc) {
 			$this->doc = $doc;
 			return $this;
 		}
-
+		
 		public function getUpdateBy() {
 			return $this->updateBy;
 		}
-
+		
 		public function setUpdateBy($updateBy) {
 			$this->updateBy = $updateBy;
 			return $this;
 		}
-
+		
 		public function getAllowVersion() {
 			return $this->allowVersion;
 		}
-
+		
 		public function setAllowVersion($allowVersion) {
 			$this->allowVersion = $allowVersion;
 			return $allowVersion;
 		}
-
+		
 		public function getHardwareCompatibility($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->hardwareCompatibility, $_key, $_default);
 		}
-
+		
 		public function setHardwareCompatibility($_key, $_value) {
 			$this->hardwareCompatibility = utils::setJsonAttr($this->hardwareCompatibility, $_key, $_value);
 			return $this;
 		}
-
+		
 		public function getParameters($_key = '', $_default = '') {
 			return utils::getJsonAttr($this->parameters, $_key, $_default);
 		}
-
+		
 		public function setParameters($_key, $_value) {
 			$this->parameters = utils::setJsonAttr($this->parameters, $_key, $_value);
 			return $this;
 		}
-
+		
 	}
+	
