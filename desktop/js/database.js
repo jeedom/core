@@ -182,10 +182,10 @@ function constructSQLstring() {
       command += ' ' + $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
       break
     case 'INSERT':
-      command += ' INTO ' + $('#sqlTable').val()
+      command += ' INTO `' + $('#sqlTable').val() + '`'
       break
     case 'UPDATE':
-      command += ' ' + $('#sqlTable').val() + ' SET '
+      command += ' `' + $('#sqlTable').val() + '` SET '
       break
     case 'DELETE':
       command += ' FROM `' + $('#sqlTable').val() + '`'
@@ -212,7 +212,7 @@ function constructSQLstring() {
       value = $(this).val()
       isNull = $(this).closest('.form-group').find('.checkSqlColNull').is(':checked')
       if (value != '') {
-        command += '`' + col + '`=' + value + ','
+        command += '`' + col + '`= ' + value + ','
       } else if (isNull) {
         command += '`' + col + '`= NULL,'
       }
