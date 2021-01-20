@@ -167,6 +167,7 @@ $(function() {
     getJeedomLog(1, 'update')
   }
   $('#md_specifyUpdate').removeClass('hidden')
+  $('#table_update').trigger('sorton', [[[0,0]]])
 })
 
 function checkAllUpdate() {
@@ -278,14 +279,14 @@ function printUpdate() {
       for (var i in data) {
         if (!isset(data[i].status)) continue
         if (data[i].type == 'core' || data[i].type == 'plugin') {
-          tr_update.push(addUpdate(data[i]));
+          tr_update.push(addUpdate(data[i]))
         }
       }
       $('#table_update tbody').empty().append(tr_update).trigger('update');
-      if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)');
+      if (hasUpdate) $('li a[href="#coreplugin"] i').style('color', 'var(--al-warning-color)')
     }
   })
-  
+
   jeedom.config.load({
     configuration: {"update::lastCheck":0},
     error: function(error) {
@@ -309,7 +310,7 @@ function addUpdate(_update) {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') hasUpdate = true
     }
   }
-  
+
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
   tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span></td>'
   tr += '<td>'
@@ -324,13 +325,13 @@ function addUpdate(_update) {
   if (_update.type == 'core' && _update.branch) {
     tr += ' <span class="label">' + _update.branch + '</span>'
   }
-  
+
   if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0,16) + '...'
   if (_update.remoteVersion !== null && _update.remoteVersion.length > 19) _update.remoteVersion = _update.remoteVersion.substring(0,16) + '...'
   if(_update.updateDate == null){
     _update.updateDate = 'N/A'
   }
-  
+
   tr += '</td>'
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_update.localVersion+'</span></td>'
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_update.remoteVersion+'</span></td>'
@@ -453,14 +454,14 @@ function createUpdateObserver() {
       }
     })
   })
-  
+
   var observerConfig = {
     attributes: true,
     childList: true,
     characterData: true,
     subtree: true
   }
-  
+
   var targetNode = document.getElementById('pre_updateInfo')
   if (targetNode) _UpdateObserver_.observe(targetNode, observerConfig)
 }
@@ -471,7 +472,7 @@ function cleanUpdateLog() {
   if (prevUpdateText == currentUpdateText) return false
   var lines = currentUpdateText.split("\n")
   var l = lines.length
-  
+
   //update progress bar and clean text!
   var linesRev = lines.slice().reverse()
   for(var i=0; i < l; i++) {
@@ -482,13 +483,13 @@ function cleanUpdateLog() {
       break
     }
   }
-  
+
   var newLogText = ''
   for (var i=0; i < l; i++) {
     var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
-    
+
     //check ok at end of line:
     if (line.endsWith('OK')) {
       var matches = line.match(/[. ]{1,}OK/g)
@@ -499,7 +500,7 @@ function cleanUpdateLog() {
         line = line.replace('OK', ' | OK')
       }
     }
-    
+
     //remove points ...
     matches = line.match(/[.]{2,}/g)
     if (matches) {
@@ -508,7 +509,7 @@ function cleanUpdateLog() {
       })
     }
     line = line.trim()
-    
+
     //check ok on next line, escaping progress inbetween:
     var offset = 1
     if (lines[i+1].startsWith('[PROGRESS]')) {
@@ -529,7 +530,7 @@ function cleanUpdateLog() {
       line += ' | OK'
       lines[i+offset] = ''
     }
-    
+
     if (line != '') {
       newLogText += line + '\n'
       _pre_updateInfo_clean.value(newLogText)
