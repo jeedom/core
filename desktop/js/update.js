@@ -287,12 +287,12 @@ function printUpdate() {
   })
   
   jeedom.config.load({
-    configuration: {"update::lastCheck":0,"update::lastDateCore": 0},
+    configuration: {"update::lastCheck":0},
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      $('#span_lastUpdateCheck').attr('title','{{Dernière mise à jour du core : }}' + data['update::lastDateCore']).value(data['update::lastCheck'])
+      $('#span_lastUpdateCheck').attr('title','{{Dernière verification des mises à jour}}').value(data['update::lastCheck'])
     }
   })
 }

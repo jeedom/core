@@ -219,7 +219,16 @@ try {
 					echo 'Cleaning '.$folder."\n";
 					shell_exec('find /var/www/html/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 				}
-				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
+				try {
+					$update = update::byType('core');
+					if(is_object($update)){
+						$update->setUpdateDate(date('Y-m-d H:i:s'));
+						$update->save();
+					}
+				} catch (\Exception $e) {
+					
+				}
+				
 			} catch (Exception $e) {
 				if (init('force') != 1) {
 					throw $e;
