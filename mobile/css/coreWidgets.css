@@ -51,7 +51,7 @@ Mobile WebApp
   }
   div.cmd-widget .slider .noUi-connects {
     top: 5px;
-    height: 7px;
+    height: 6px;
     right: 5px !important;
     background: var(--el-defaultColor) !important;
   }
@@ -70,8 +70,8 @@ Mobile WebApp
   }
   div.cmd-widget .slider .noUi-handle {
     top: -3px;
-    height: 23px;
-    width: 23px;
+    height: 22px;
+    width: 22px;
     border-radius: 50%;
     background: var(--link-color);
   }
@@ -235,7 +235,7 @@ Mobile WebApp
     min-height: 26px;
   }
   .hgauge-value {
-    height: 10px;
+    height: 8px;
     position: absolute;
     left: 0;
     margin-top: -4px;
