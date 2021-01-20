@@ -24,9 +24,11 @@
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
 - **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
-- **Objetos** : Los complementos ahora pueden solicitar parámetros específicos como objetos
-- **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos que los usuarios
-- **Ordenado** : posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando
+- **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
+- **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
+- **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando
+- **Usuarios** : Posibilidad de gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios
+- **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 
 ### Widgets principales
 

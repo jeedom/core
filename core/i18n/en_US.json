@@ -648,7 +648,7 @@
         "Mise à jour par": "Updated by",
         "Valeurs possibles": "Possible values",
         "Valeur": "Value",
-        "Date collecte": "Collection date",
+        "Date collecte": "Collect date",
         "Date valeur": "Value date",
         "URL directe": "Direct URL",
         "Unité": "Unit",
@@ -1454,6 +1454,7 @@
         "Nom": "Name",
         "Version installée": "Installed version",
         "Dernière version": "Last version",
+        "Dernière mise à jour": "Last update",
         "Options": "Options",
         "Actions": "Actions",
         "Log :": "Log:",
@@ -2486,7 +2487,8 @@
         "Fichier supprimé avec succès": "File successfully deleted",
         "Le sous-type ne peut être vide": "Subtype cannot be empty",
         "Le nom ne peut être vide": "Name cannot be empty",
-        "Options": "Options"
+        "Options": "Options",
+        "Nom du fichier ?": "File name ?"
     },
     "desktop\/js\/plugin.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -2670,7 +2672,9 @@
         "Supprimer": "Delete",
         "Mot de passe": "Password",
         "Droits": "Rights",
-        "Gestion des droits": "Rights management"
+        "Profils": "Profiles",
+        "Gestion des droits": "Rights management",
+        "Gestion du profils": "Profile management"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Plugin configuration",
@@ -2678,8 +2682,8 @@
         "Jeedom benchmark": "Jeedom benchmark"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration Affichage": "Display Configuration",
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode. You can move the tiles, resize them, and edit the commands (order, widget) with the button to the right of the title. Don't forget to exit edit mode to save"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "You are in edit mode. You can move the tiles, resize them, and edit the commands (order, widget) with the button to the right of the title. Don't forget to exit edit mode to save",
+        "Configuration Affichage": "Display Configuration"
     },
     "desktop\/js\/plan.js": {
         "Designs": "Designs",
@@ -2785,9 +2789,9 @@
         "Problème lors de la lecture du fichier.": "Problem reading the file"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "2-step authentication",
         "Les deux mots de passe ne sont pas identiques": "The two passwords are not identical",
         "Sauvegarde effectuée": "Backup completed",
+        "Authentification 2 étapes": "2-step authentication",
         "Opération effectuée": "Operation performed"
     },
     "desktop\/js\/administration.js": {
@@ -2942,8 +2946,6 @@
         "A": "AT",
         "FAIRE": "DO",
         "CODE": "CODE",
-        "Masquer ce bloc.<br>Ctrl+click: tou).": "Hide this block. <br> Ctrl + click: tou)",
-        "Afficher ce bloc.<br>Ctrl+click: tou).": "Show this block. <br> Ctrl + click: tou)",
         "COMMENTAIRE": "COMMENT",
         "ACTION": "ACTION",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Delete this block. <br> Ctrl + Click: Delete without confirmation",

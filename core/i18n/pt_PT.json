@@ -1454,6 +1454,7 @@
         "Nom": "Nome",
         "Version installée": "Versão instalada",
         "Dernière version": "Versão mais recente",
+        "Dernière mise à jour": "Última atualização",
         "Options": "Opções",
         "Actions": "Estoque",
         "Log :": "Log:",
@@ -2486,7 +2487,8 @@
         "Fichier supprimé avec succès": "Arquivo excluído com sucesso",
         "Le sous-type ne peut être vide": "O subtipo não pode estar vazio",
         "Le nom ne peut être vide": "O nome não pode estar vazio",
-        "Options": "Opções"
+        "Options": "Opções",
+        "Nom du fichier ?": "Nome do arquivo ?"
     },
     "desktop\/js\/plugin.js": {
         "Configuration du plugin": "Configuração de plug-in",
@@ -2670,7 +2672,9 @@
         "Supprimer": "Retirar",
         "Mot de passe": "Senha",
         "Droits": "Direitos",
-        "Gestion des droits": "Gerenciamento de direitos"
+        "Profils": "Perfis",
+        "Gestion des droits": "Gerenciamento de direitos",
+        "Gestion du profils": "Gerenciamento de perfil"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Configuração de plug-in",
@@ -2678,8 +2682,8 @@
         "Jeedom benchmark": "Jeedom referência"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration Affichage": "Configuração de exibição",
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Você está no modo de edição. Você pode mover os blocos, redimensioná-los e editar os comandos (ordem, widget) com o botão à direita do título. Não se esqueça de sair do modo de edição para salvar"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Você está no modo de edição. Você pode mover os blocos, redimensioná-los e editar os comandos (ordem, widget) com o botão à direita do título. Não se esqueça de sair do modo de edição para salvar",
+        "Configuration Affichage": "Configuração de exibição"
     },
     "desktop\/js\/plan.js": {
         "Designs": "Projetos",
@@ -2785,9 +2789,9 @@
         "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "Autenticação os passos 2",
         "Les deux mots de passe ne sont pas identiques": "As duas senhas não são idênticas",
         "Sauvegarde effectuée": "Backup feito",
+        "Authentification 2 étapes": "Autenticação os passos 2",
         "Opération effectuée": "Operação realizada"
     },
     "desktop\/js\/administration.js": {
@@ -2942,8 +2946,6 @@
         "A": "à",
         "FAIRE": "FAÇA",
         "CODE": "CÓDIGO",
-        "Masquer ce bloc.<br>Ctrl+click: tou).": "Oculte este bloco. <br> Ctrl + clique: tou)",
-        "Afficher ce bloc.<br>Ctrl+click: tou).": "Mostre este bloco. <br> Ctrl + clique: tou)",
         "COMMENTAIRE": "Commentaire",
         "ACTION": "Ação",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Exclua este bloco. <br> Ctrl + Clique: Excluir sem confirmação",

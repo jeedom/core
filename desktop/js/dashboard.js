@@ -16,6 +16,7 @@
 
 "use strict"
 
+var isEditing = false
 if (SEL_SUMMARY != '') {
   $('#bt_displayObject, #bt_editDashboardWidgetOrder').parent().remove()
 }
@@ -60,7 +61,7 @@ $(function() {
   jeedomUI.setHistoryModalHandler()
 })
 
-var isEditing = false
+
 //searching
 $('#in_searchDashboard').off('keyup').on('keyup',function() {
   if (isEditing) return
@@ -126,6 +127,7 @@ $('#bt_resetDashboardSearch').on('click', function () {
   $('#dashTopBar button.dropdown-toggle').removeClass('warning')
   $('#in_searchDashboard').val('').keyup()
 })
+
 
 //category filters
 $('#categoryfilter').on('click', function(event) {
@@ -224,7 +226,35 @@ function filterByCategory() {
   $('#div_displayObject div.div_displayEquipement').packery()
 }
 
-//Overview preview click or center-click
+
+//Preview in Synthesis context:
+$(function() {
+  $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide().addClass('shadowed')
+})
+$('#dashOverviewPrev').on({
+  'mouseenter': function(event) {
+
+    $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()
+
+    var width = $(window).width()
+    var position = $(this).position()
+    var css = {top: position.top}
+    if (position.left > width / 2) {
+      css.left = 'unset'
+      css.right = width - (position.left + 160)
+    } else {
+      css.left = position.left
+      css.right = 'unset'
+    }
+
+    $('.objectSummaryContainer.objectSummary'+$(this).attr('data-object_id')).show().css(css)
+
+  }
+}, '.objectPreview')
+
+
+
+
 $('.objectPreview, .objectPreview .name').off('click').on('click', function (event) {
   var url = 'index.php?v=d&p=dashboard&object_id='+$(this).closest('.objectPreview').attr('data-object_id')+'&childs=0'+'&btover=1'
   if (event.ctrlKey || event.metaKey) {
@@ -241,6 +271,7 @@ $('.objectPreview, .objectPreview .name').off('mouseup').on('mouseup', function 
     $('.objectPreview[data-object_id="'+id+'"] .name').trigger(jQuery.Event('click', {ctrlKey: true}))
   }
 })
+
 var btOverviewTimer
 $('#div_pageContainer').on({
   'mouseenter': function(event) {
@@ -248,29 +279,49 @@ $('#div_pageContainer').on({
       btOverviewTimer = setTimeout(function() {
         $('#dashOverviewPrev').show(350)
       }, 300)
-
     }
   }
 }, '#bt_overview')
+
 $('#div_pageContainer').on({
   'mouseleave': function(event) {
     clearTimeout(btOverviewTimer)
   }
 }, '#bt_overview')
+
 $('#div_pageContainer').on({
   'mouseleave': function(event) {
     $('#dashOverviewPrev').hide(350)
+    $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()
   }
 }, '#dashOverviewPrev')
 
 
-$('#div_pageContainer').on({
-  'click': function(event) {
-    var eqId = $(this).closest('div.eqLogic-widget').attr('data-eqlogic_id')
-    $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
-  }
-}, '.editOptions')
 
+
+//Preview in Dashboard context:
+$('.li_object').on('click',function() {
+  $('.div_object').parent().removeClass('hideByObjectSel')
+  var object_id = $(this).find('a').attr('data-object_id')
+  if ($('.div_object[data-object_id='+object_id+']').html() != undefined) {
+    jeedom.object.getImgPath({
+      id : object_id,
+      success : function(_path) {
+        setBackgroundImg(_path)
+      }
+    })
+    $('#dashOverviewPrev .li_object').removeClass('active')
+    $(this).addClass('active')
+    displayChildObject(object_id, false)
+    addOrUpdateUrl('object_id', object_id)
+  } else {
+    loadPage($(this).find('a').attr('data-href'))
+  }
+})
+
+
+
+//Edit mode:
 var _draggingId = false
 var _orders = {}
 function editWidgetMode(_mode,_save) {
@@ -365,7 +416,54 @@ function editWidgetMode(_mode,_save) {
       .prop('readonly', true)
   }
 }
+$('#bt_editDashboardWidgetOrder').on('click',function() {
+  if ($(this).attr('data-mode') == 1) {
+    $('#md_modal').dialog('close')
+    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
+    $.hideAlert()
+    $(this).attr('data-mode', 0)
+    editWidgetMode(0)
+    $(this).css('color','black')
+    $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').hide()
+    $('.counterReorderJeedom').remove()
+    $('.div_displayEquipement').packery()
+  } else {
+    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('disable')
+    $(this).attr('data-mode',1)
+    $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').show()
+    $('div.div_object  .bt_editDashboardTilesAutoResizeUp').off('click').on('click', function() {
+      var id_object = $(this).attr('id').replace('expandTiles_object_', '')
+      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
+      var arHeights = []
+      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
+        var h = $(this).height()
+        arHeights.push(h)
+      })
+      var maxHeight = Math.max(...arHeights)
+      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
+        $(this).height(maxHeight)
+      })
+      objectContainer.packery()
+    })
+    $('div.div_object  .bt_editDashboardTilesAutoResizeDown').off('click').on('click', function() {
+      var id_object = $(this).attr('id').replace('compressTiles_object_', '')
+      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
+      var arHeights = []
+      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
+        var h = $(this).height()
+        arHeights.push(h)
+      })
+      var maxHeight = Math.min(...arHeights)
+      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
+        $(this).height(maxHeight)
+      })
+      objectContainer.packery()
+    })
+    editWidgetMode(1)
+  }
+})
 
+//Dashboard or summary:
 var summaryObjEqs = []
 function getObjectHtmlFromSummary(_object_id) {
   if (_object_id == null) return
@@ -478,72 +576,6 @@ function getObjectHtml(_object_id) {
   })
 }
 
-$('#bt_editDashboardWidgetOrder').on('click',function() {
-  if ($(this).attr('data-mode') == 1) {
-    $('#md_modal').dialog('close')
-    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
-    $.hideAlert()
-    $(this).attr('data-mode', 0)
-    editWidgetMode(0)
-    $(this).css('color','black')
-    $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').hide()
-    $('.counterReorderJeedom').remove()
-    $('.div_displayEquipement').packery()
-  } else {
-    $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('disable')
-    $(this).attr('data-mode',1)
-    $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').show()
-    $('div.div_object  .bt_editDashboardTilesAutoResizeUp').off('click').on('click', function() {
-      var id_object = $(this).attr('id').replace('expandTiles_object_', '')
-      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
-      var arHeights = []
-      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
-        var h = $(this).height()
-        arHeights.push(h)
-      })
-      var maxHeight = Math.max(...arHeights)
-      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
-        $(this).height(maxHeight)
-      })
-      objectContainer.packery()
-    })
-    $('div.div_object  .bt_editDashboardTilesAutoResizeDown').off('click').on('click', function() {
-      var id_object = $(this).attr('id').replace('compressTiles_object_', '')
-      var objectContainer = $('#div_ob'+id_object+'.div_displayEquipement')
-      var arHeights = []
-      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
-        var h = $(this).height()
-        arHeights.push(h)
-      })
-      var maxHeight = Math.min(...arHeights)
-      objectContainer.find('div.eqLogic-widget, div.scenario-widget').each(function(index, element) {
-        $(this).height(maxHeight)
-      })
-      objectContainer.packery()
-    })
-    editWidgetMode(1)
-  }
-})
-
-$('.li_object').on('click',function() {
-  $('.div_object').parent().removeClass('hideByObjectSel')
-  var object_id = $(this).find('a').attr('data-object_id')
-  if ($('.div_object[data-object_id='+object_id+']').html() != undefined) {
-    jeedom.object.getImgPath({
-      id : object_id,
-      success : function(_path) {
-        setBackgroundImg(_path)
-      }
-    })
-    $('#dashOverviewPrev .li_object').removeClass('active')
-    $(this).addClass('active')
-    displayChildObject(object_id, false)
-    addOrUpdateUrl('object_id', object_id)
-  } else {
-    loadPage($(this).find('a').attr('data-href'))
-  }
-})
-
 function displayChildObject(_object_id, _recursion) {
   if (_recursion === false) {
     $('.div_object').parent('.col-md-12').addClass('hideByObjectSel').hide()
@@ -554,3 +586,10 @@ function displayChildObject(_object_id, _recursion) {
     displayChildObject($(this).attr('data-object_id'), true)
   })
 }
+
+$('#div_pageContainer').on({
+  'click': function(event) {
+    var eqId = $(this).closest('div.eqLogic-widget').attr('data-eqlogic_id')
+    $('#md_modal').dialog({title: "{{Configuration Affichage}}"}).load('index.php?v=d&modal=eqLogic.dashboard.edit&eqLogic_id='+eqId).dialog('open')
+  }
+}, '.editOptions')

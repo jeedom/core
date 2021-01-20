@@ -135,7 +135,7 @@ function setModal() {
     //check previous size/pos:
     var datas = modal.data()
     if (datas && datas.width && datas.height && datas.top && datas.left) {
-      modal.width(datas.width).height(datas.height).css('top',datas.top).css('left',datas.left)
+      modal.width(datas.width).height(datas.height).css({'top': datas.top, 'left': datas.left})
       modalContent.width(datas.width-26).height(datas.height-40)
       resizeHighChartModal()
     } else if ($(window).width() > 860) {

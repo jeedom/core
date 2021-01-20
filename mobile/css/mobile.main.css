@@ -1028,11 +1028,12 @@ div.ui-header.ui-bar-inherit > a[data-rel=back]{
 }
 
 #pre_globallog span {
-  height: 12px;
-  min-width: 50px;
+  height: 11px;
+  min-width: 55px;
   padding: 0 4px;
   display: inline-block;
   text-align: center;
+  line-height: 11px;
 }
 #pre_scenariolog label,
 #pre_scenariolog span {
@@ -1555,7 +1556,7 @@ a.ui-table-columntoggle-btn {
 .objectPreview .objectSummaryParent,
 .objectPreview .objectSummaryParent i {
   font-size: 14px !important;
-  color: var(--link-color) !important;
+  color: var(--link-color);
 }
 .objectPreview .topPreview .objectSummaryParent {
   position: absolute;

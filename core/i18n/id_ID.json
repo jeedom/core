@@ -1454,6 +1454,7 @@
         "Nom": "Nama",
         "Version installée": "Version installée",
         "Dernière version": "Dernière version",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "Pilihan",
         "Actions": "Tindakan",
         "Log :": "Log :",
@@ -2486,7 +2487,8 @@
         "Fichier supprimé avec succès": "Fichier supprimé avec succès",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
-        "Options": "Pilihan"
+        "Options": "Pilihan",
+        "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -2670,7 +2672,9 @@
         "Supprimer": "Menghapus",
         "Mot de passe": "Password",
         "Droits": "Droits",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Konfigurasi Plugin",
@@ -2678,8 +2682,8 @@
         "Jeedom benchmark": "Jeedom patokan"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration Affichage": "Configuration Affichage",
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder",
+        "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
         "Designs": "Desain",
@@ -2785,9 +2789,9 @@
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "Otentikasi langkah 2",
         "Les deux mots de passe ne sont pas identiques": "Kedua password tidak identik",
         "Sauvegarde effectuée": "Backup dibuat",
+        "Authentification 2 étapes": "Otentikasi langkah 2",
         "Opération effectuée": "Operasi dilakukan"
     },
     "desktop\/js\/administration.js": {
@@ -2942,8 +2946,6 @@
         "A": "à",
         "FAIRE": "MEMBUAT",
         "CODE": "Kode",
-        "Masquer ce bloc.<br>Ctrl+click: tou).": "Masquer ce bloc.<br>Ctrl+click: tou)",
-        "Afficher ce bloc.<br>Ctrl+click: tou).": "Afficher ce bloc.<br>Ctrl+click: tou)",
         "COMMENTAIRE": "Commentaire",
         "ACTION": "Tindakan",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation",

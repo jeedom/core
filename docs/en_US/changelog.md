@@ -24,9 +24,11 @@
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
 - **OSDB settings** : Adding a dynamic SQL query constructor.
 - **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
-- **Objects** : Plugins can now request specific parameters as objects
-- **Users** : Plugins can now request specific parameters that users
-- **Ordered** : possibility of making a calculation on a command action of type slider before execution of the command
+- **Objects** : Plugins can now request specific parameters specific to objects.
+- **Users** : Plugins can now request specific parameters specific to users.
+- **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command
+- **Users** : Possibility of managing the profiles of different Jeedom users from the user management page
+- **Updates Center** : Update Center now displays the date of the last update.
 
 ### Core Widgets
 

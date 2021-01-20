@@ -483,6 +483,7 @@ if (typeof(sel_plugin_id) !== "undefined" && sel_plugin_id != -1) {
   } else {
     $container.find('.pluginDisplayCard').first().click()
   }
+  initTooltips()
 }
 
 $('#bt_returnToThumbnailDisplay').on('click', function() {

@@ -17,7 +17,7 @@
 "use strict"
 
 $(function() {
-  var msgHeight = $('#table_message > tbody > tr').length*21 + 130
+  var msgHeight = $('#table_message > tbody > tr').length*23 + 130
 
   var $modal = $('#md_modal')
   $modal.dialog('open')

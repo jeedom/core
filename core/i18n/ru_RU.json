@@ -1454,6 +1454,7 @@
         "Nom": "Имя",
         "Version installée": "Version installée",
         "Dernière version": "Dernière version",
+        "Dernière mise à jour": "Dernière mise à jour",
         "Options": "Опции",
         "Actions": "акции",
         "Log :": "Log :",
@@ -2486,7 +2487,8 @@
         "Fichier supprimé avec succès": "Fichier supprimé avec succès",
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
-        "Options": "Опции"
+        "Options": "Опции",
+        "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
         "Configuration du plugin": "Configuration du plugin",
@@ -2670,7 +2672,9 @@
         "Supprimer": "удаление",
         "Mot de passe": "Пароль",
         "Droits": "права",
-        "Gestion des droits": "Gestion des droits"
+        "Profils": "Profils",
+        "Gestion des droits": "Gestion des droits",
+        "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
         "Configuration du plugin": "Конфигурация плагина",
@@ -2678,8 +2682,8 @@
         "Jeedom benchmark": "Тест Jeedom"
     },
     "desktop\/js\/dashboard.js": {
-        "Configuration Affichage": "Configuration Affichage",
-        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder"
+        "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder": "Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder",
+        "Configuration Affichage": "Configuration Affichage"
     },
     "desktop\/js\/plan.js": {
         "Designs": "конструкции",
@@ -2785,9 +2789,9 @@
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/profils.js": {
-        "Authentification 2 étapes": "Двухэтапная аутентификация",
         "Les deux mots de passe ne sont pas identiques": "Два пароля не идентичны",
         "Sauvegarde effectuée": "Резервное копирование завершено",
+        "Authentification 2 étapes": "Двухэтапная аутентификация",
         "Opération effectuée": "Операция выполнена"
     },
     "desktop\/js\/administration.js": {
@@ -2942,8 +2946,6 @@
         "A": "В определенное время",
         "FAIRE": "MAKE",
         "CODE": "КОД",
-        "Masquer ce bloc.<br>Ctrl+click: tou).": "Скрыть этот блок <br> Ctrl + клик: ту)",
-        "Afficher ce bloc.<br>Ctrl+click: tou).": "Показать этот блок. <br> Ctrl + клик: ту)",
         "COMMENTAIRE": "КОММЕНТАРИЙ",
         "ACTION": "ДЕЙСТВИЯ",
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Удалить этот блок. <br> Ctrl + Click: Удалить без подтверждения",
