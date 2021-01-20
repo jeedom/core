@@ -220,7 +220,7 @@ try {
 					shell_exec('find /var/www/html/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 				}
 				try {
-					$update = update::byType('core');
+					$update = update::byLogicalId('jeedom');
 					if(is_object($update)){
 						$update->setUpdateDate(date('Y-m-d H:i:s'));
 						$update->save();
