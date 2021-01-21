@@ -26,8 +26,8 @@
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
 - **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
 - **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs.
-- **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande
-- **Utilisateurs** : Possibilité de gérer les profils des différents utilisateur Jeedom depuis la page de gestion des utilisateurs
+- **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
+- **Utilisateurs** : Possibilité de gérer les profils des différents utilisateur Jeedom depuis la page de gestion des utilisateurs.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
 
 ### Widgets Core
