@@ -42,7 +42,7 @@ $google2fa_url = $google2fa->getQRCodeInline(
     <hr/>
     {{Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,}} <?php echo config::byKey('product_name'); ?> {{prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).}}
     <hr/>
-    {{A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.}}
+    {{A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.}}
   </div>
 
 </div>
