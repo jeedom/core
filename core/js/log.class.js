@@ -19,9 +19,9 @@
 jeedom.log = function () {
 };
 
-jeedom.log.timeout = null;
-
-jeedom.log.currentAutoupdate = [];
+jeedom.log.timeout = null
+jeedom.log.currentAutoupdate = []
+jeedom.log.coloredThreshold = 200000
 
 jeedom.log.list = function (_params) {
   var paramsRequired = [];
@@ -225,7 +225,7 @@ jeedom.log.autoupdate = function (_params) {
         _params.display.text(log)
       } else {
         //is first call on heavy log:
-        if (log.length > 50000 && _params.callNumber == 1) {
+        if (log.length > jeedom.log.coloredThreshold && _params.callNumber == 1) {
           $('#brutlog').prop('checked', true)
         } else {
           if (isScenaroLog) {
