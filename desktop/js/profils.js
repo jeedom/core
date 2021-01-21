@@ -23,12 +23,10 @@ document.onkeydown = function(event) {
   }
 }
 
-
-
 $("#bt_saveProfils").on('click', function(event) {
   $.hideAlert()
   var profil = $('#div_userProfils').getValues('.userAttr')[0]
-  if(!user_id){
+  if (!user_id) {
     if (profil.password != $('#in_passwordCheck').value()) {
       $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'})
       return
@@ -51,7 +49,7 @@ $("#bt_saveProfils").on('click', function(event) {
         })
       }
     })
-  }else{
+  } else {
     profil.id = user_id;
     jeedom.user.save({
       users: [profil],
@@ -75,7 +73,7 @@ $("#bt_saveProfils").on('click', function(event) {
 })
 
 jeedom.user.get({
-  id : (!user_id) ? -1 : user_id,
+  id: (!user_id) ? -1 : user_id,
   error: function(error) {
     $('#div_alert').showAlert({message: error.message, level: 'danger'})
   },
@@ -96,12 +94,13 @@ $('.bt_selectWarnMeCmd').on('click', function() {
   })
 })
 
-if(!user_id){
-  $('#bt_configureTwoFactorAuthentification').on('click', function() {
+$('#bt_configureTwoFactorAuthentification').on('click', function() {
     var profil = $('#div_userProfils').getValues('.userAttr')[0]
     $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"}).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
   })
-  
+
+
+if (!user_id) {
   $('#bt_genUserKeyAPI').on('click', function() {
     var profil = $('#div_userProfils').getValues('.userAttr')[0]
     profil.hash = ''
@@ -124,11 +123,11 @@ if(!user_id){
       }
     })
   })
-  
+
   $('.bt_removeRegisterDevice').on('click', function() {
     var key = $(this).closest('tr').attr('data-key')
     jeedom.user.removeRegisterDevice({
-      key : key,
+      key: key,
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
@@ -138,10 +137,10 @@ if(!user_id){
       }
     })
   })
-  
+
   $('#bt_removeAllRegisterDevice').on('click', function() {
     jeedom.user.removeRegisterDevice({
-      key : '',
+      key: '',
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
@@ -151,11 +150,11 @@ if(!user_id){
       }
     })
   })
-  
+
   $('.bt_deleteSession').on('click', function() {
     var id = $(this).closest('tr').attr('data-id')
     jeedom.user.deleteSession({
-      id : id,
+      id: id,
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
