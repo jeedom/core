@@ -26,8 +26,8 @@
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). Siehe Entwicklerdokument v4.2.
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
-- **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen
-- **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer über die Benutzerverwaltungsseite
+- **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
+- **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer über die Benutzerverwaltungsseite.
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 
 ### Kern-Widgets

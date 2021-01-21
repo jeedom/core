@@ -26,8 +26,8 @@
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
-- **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando
-- **Comercial** : Possibilidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários
+- **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
+- **Comercial** : Possibilidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 
 ### Widgets principais
