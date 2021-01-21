@@ -1839,8 +1839,8 @@
         "Accès API": "Acceso API",
         "Clé Market": "Mercado clave",
         "Clé Market de": "Mercado clave de",
-        "Clé API pour le plugin": "Clave API para el complemento",
-        "Ne pas autoriser les méthodes générales": "No permita métodos generales",
+        "Accès restreint": "Restringido",
+        "Les appels API seront bloqués pour les méthodes du Core.": "Las llamadas a la API se bloquearán para los métodos Core",
         "Vérifications Système": "Verificación sistema",
         "Vérification générale": "Verificación general",
         "Permet de lancer le test de consistence de Jeedom.": "Vamos a lanzar la prueba de consistencia Jeedom",
@@ -1898,6 +1898,7 @@
         "Supprimer tous": "Borrar todos"
     },
     "desktop\/php\/profils.php": {
+        "Error 401 Unauthorized": "Error 401 no autorizado",
         "Dashboard": "Tablero",
         "Synthèse": "Síntesis",
         "Vue": "Ver",

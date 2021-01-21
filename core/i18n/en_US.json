@@ -1839,8 +1839,8 @@
         "Accès API": "API access",
         "Clé Market": "Market Key",
         "Clé Market de": "Market Key for",
-        "Clé API pour le plugin": "API key for the plugin",
-        "Ne pas autoriser les méthodes générales": "Do not allow general methods",
+        "Accès restreint": "Restricted",
+        "Les appels API seront bloqués pour les méthodes du Core.": "API calls will be blocked for Core methods",
         "Vérifications Système": "System Checks",
         "Vérification générale": "General verification",
         "Permet de lancer le test de consistence de Jeedom.": "Lets launch the Jeedom consistency test",
@@ -1898,6 +1898,7 @@
         "Supprimer tous": "Delete all"
     },
     "desktop\/php\/profils.php": {
+        "Error 401 Unauthorized": "Error 401 Unauthorized",
         "Dashboard": "Dashboard",
         "Synthèse": "Synthesis",
         "Vue": "View",

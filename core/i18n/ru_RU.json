@@ -1839,8 +1839,8 @@
         "Accès API": "доступ к API",
         "Clé Market": "Clé Market",
         "Clé Market de": "Clé Market de",
-        "Clé API pour le plugin": "Clé API pour le plugin",
-        "Ne pas autoriser les méthodes générales": "Ne pas autoriser les methodes générales",
+        "Accès restreint": "Accès restreint",
+        "Les appels API seront bloqués pour les méthodes du Core.": "Les appels API seront bloqués pour les méthodes du Core",
         "Vérifications Système": "Vérifications Système",
         "Vérification générale": "Vérification générale",
         "Permet de lancer le test de consistence de Jeedom.": "Permet de lancer le test de consistence de Jeedom",
@@ -1898,6 +1898,7 @@
         "Supprimer tous": "Удалить все"
     },
     "desktop\/php\/profils.php": {
+        "Error 401 Unauthorized": "Error 401 Unauthorized",
         "Dashboard": "Приборная панель",
         "Synthèse": "Synthèse",
         "Vue": "Просмотр",

@@ -1839,8 +1839,8 @@
         "Accès API": "APIへのアクセス",
         "Clé Market": "主要市場",
         "Clé Market de": "主要市場",
-        "Clé API pour le plugin": "プラグインのAPIキー",
-        "Ne pas autoriser les méthodes générales": "Ne pas autoriser les methodes générales",
+        "Accès restreint": "Accès restreint",
+        "Les appels API seront bloqués pour les méthodes du Core.": "Les appels API seront bloqués pour les méthodes du Core",
         "Vérifications Système": "Vérifications Système",
         "Vérification générale": "一般的な検証",
         "Permet de lancer le test de consistence de Jeedom.": "Jeedom一貫性テストを起動します。",
@@ -1898,6 +1898,7 @@
         "Supprimer tous": "すべて削除"
     },
     "desktop\/php\/profils.php": {
+        "Error 401 Unauthorized": "Error 401 Unauthorized",
         "Dashboard": "計器盤",
         "Synthèse": "合成",
         "Vue": "眺望",
