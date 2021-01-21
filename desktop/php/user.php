@@ -31,7 +31,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 				<th style="min-width: 120px;">{{Utilisateur}}</th>
 				<th style="width: 250px;">{{Actif}}</th>
 				<th>{{Profil}}</th>
-				<th>{{Clef API}}</th>
+				<th style="width: 15%;">{{Clef API}}</th>
 				<th>{{Double authentification}}</th>
 				<th>{{Dernière connexion}}</th>
 				<th>{{Actions}}</th>

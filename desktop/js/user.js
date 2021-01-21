@@ -21,7 +21,7 @@ printUsers()
 
 document.onkeydown = function(event) {
   if (getOpenedModal()) return
-  
+
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $('#bt_saveUser').click()
@@ -158,57 +158,62 @@ function printUsers() {
     success: function(data) {
       $('#table_user tbody').empty()
       var tr = []
-      var disable, ligne, result
+      var disable, userTR, result
       for (var i in data) {
         disable = ''
         if (data[i].login == 'internal_report' || data[i].login == 'jeedom_support') {
           disable = 'disabled'
         }
-        ligne = '<tr><td class="login">'
-        ligne += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>'
-        ligne += '<span class="userAttr" data-l1key="login"></span>'
-        ligne += '</td>'
-        ligne += '<td>'
-        ligne += '<span><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</span><br/>'
-        ligne += '<span><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" '+disable+' />{{Local}}</span>'
+        userTR = '<tr><td class="login">'
+        userTR += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>'
+        userTR += '<span class="userAttr" data-l1key="login"></span>'
+        userTR += '</td>'
+        userTR += '<td>'
+        userTR += '<span><input type="checkbox" class="userAttr" data-l1key="enable" '+disable+' />{{Actif}}</span><br/>'
+        userTR += '<span><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="localOnly" '+disable+' />{{Local}}</span>'
         if (data[i].profils == 'admin') {
-          ligne += '<br/><span><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotRotateHash" '+disable+' />{{Ne pas faire de rotation clef api}}</span>'
+          userTR += '<br/><span><input type="checkbox" class="userAttr" data-l1key="options" data-l2key="doNotRotateHash" '+disable+' />{{Ne pas faire de rotation clef api}}</span>'
         }
-        ligne += '</td>'
-        ligne += '<td style="width:175px;">'
-        ligne += '<select class="userAttr form-control input-sm" data-l1key="profils" '+disable+'>'
-        ligne += '<option value="admin">{{Administrateur}}</option>'
-        ligne += '<option value="user">{{Utilisateur}}</option>'
-        ligne += '<option value="restrict">{{Utilisateur limité}}</option>'
-        ligne += '</select>'
-        ligne += '</td>'
-        ligne += '<td style="width:320px">'
-        ligne += '<input class="userAttr form-control input-sm" data-l1key="hash" disabled />'
-        ligne += '</td>'
-        ligne += '<td>'
+        userTR += '</td>'
+        userTR += '<td>'
+        userTR += '<select class="userAttr form-control input-sm" data-l1key="profils" '+disable+'>'
+        userTR += '<option value="admin">{{Administrateur}}</option>'
+        userTR += '<option value="user">{{Utilisateur}}</option>'
+        userTR += '<option value="restrict">{{Utilisateur limité}}</option>'
+        userTR += '</select>'
+        userTR += '</td>'
+        userTR += '<td>'
+        userTR += '<input class="userAttr form-control input-sm" data-l1key="hash" disabled />'
+        userTR += '</td>'
+        userTR += '<td>'
         if (isset(data[i].options) && isset(data[i].options.twoFactorAuthentification) && data[i].options.twoFactorAuthentification == 1 && isset(data[i].options.twoFactorAuthentificationSecret) && data[i].options.twoFactorAuthentificationSecret != '') {
-          ligne += '<span class="label label-success" style="font-size:1em;">{{OK}}</span>'
-          ligne += ' <a class="btn btn-danger btn-xs bt_disableTwoFactorAuthentification"><i class="fas fa-times"></i> {{Désactiver}}</span>'
+          userTR += '<span class="label label-success">{{OK}}</span>'
+          userTR += ' <a class="btn btn-danger btn-xs bt_disableTwoFactorAuthentification"><i class="fas fa-times"></i> {{Désactiver}}</span>'
         } else {
-          ligne += '<span class="label label-danger" style="font-size:1em;">{{NOK}}</span>'
+          userTR += '<span class="label label-warning">{{NOK}}</span>'
         }
-        ligne += '</td>'
-        ligne += '<td>'
-        ligne += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>'
-        ligne += '</td>'
-        ligne += '<td>'
+        userTR += '</td>'
+        userTR += '<td>'
+        userTR += '<span class="userAttr" data-l1key="options" data-l2key="lastConnection"></span>'
+        userTR += '</td>'
+        userTR += '<td>'
         if (disable == '') {
-          ligne += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
+          userTR += '<div class="input-group pull-right">'
+          userTR += '<span class="input-group-btn">'
+
           if (ldapEnable != '1') {
-            ligne += '<a class="btn btn-xs btn-danger pull-right bt_del_user" style="margin-bottom : 5px;"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
-            ligne += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user" style="margin-bottom : 5px;"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
+            userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
+            userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
           }
-          ligne += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights" style="margin-bottom : 5px;"><i class="fas fa-align-right"></i> {{Droits}}</a>'
-          ligne += '<a class="btn btn-xs btn-default pull-right bt_manage_profils" style="margin-bottom : 5px;"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
+          userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
+          userTR += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights"><i class="fas fa-align-right"></i> {{Droits}}</a>'
+          userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
+
+          userTR += '</span></div>'
         }
-        ligne += '</td>'
-        ligne += '</tr>'
-        result = $(ligne)
+        userTR += '</td>'
+        userTR += '</tr>'
+        result = $(userTR)
         result.setValues(data[i], '.userAttr')
         tr.push(result)
       }
