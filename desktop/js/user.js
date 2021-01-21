@@ -28,6 +28,15 @@ document.onkeydown = function(event) {
   }
 }
 
+var $tableDevices = $('#tableDevices')
+$(function() {
+  initTableSorter()
+  $tableDevices[0].config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
+  $tableDevices.trigger('applyWidgets')
+    .trigger('resizableReset')
+    .trigger('sorton', [[[3,1]]])
+})
+
 $("#bt_addUser").on('click', function(event) {
   $.hideAlert()
   $('#in_newUserLogin').value('')

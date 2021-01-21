@@ -23,6 +23,16 @@ document.onkeydown = function(event) {
   }
 }
 
+var $modal = $('#md_modal')
+var $tableDevices = $('#tableDevices')
+$(function() {
+  initTableSorter()
+  $tableDevices[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
+  $tableDevices.trigger('applyWidgets')
+    .trigger('resizableReset')
+    .trigger('sorton', [[[2,1]]])
+})
+
 $("#bt_saveProfils").on('click', function(event) {
   $.hideAlert()
   var profil = $('#div_userProfils').getValues('.userAttr')[0]

@@ -308,7 +308,10 @@ $objectOptions = jeeObject::getUISelectList(false);
 							<table class="table table-condensed table-bordered">
 								<thead>
 									<tr>
-										<th>{{ID}}</th><th>{{IP}}</th><th>{{Date}}</th><th>{{Actions}}</th>
+										<th>{{ID}}</th>
+										<th>{{IP}}</th>
+										<th>{{Date}}</th>
+										<th style="width:80px;">{{Actions}}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -338,13 +341,13 @@ $objectOptions = jeeObject::getUISelectList(false);
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-							<table class="table table-bordered table-condensed">
+							<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
 								<thead>
 									<tr>
 										<th>{{Identification}}</th>
 										<th>{{IP}}</th>
 										<th>{{Date dernière utilisation}}</th>
-										<th>{{Action}}</th>
+										<th data-sorter="false" data-filter="false">{{Action}}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -353,7 +356,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 										$tr = '';
 										$tr .= '<tr data-key="' . $key . '">';
 										$tr .= '<td title="'.$key.'">';
-										$tr .= substr($key, 0, 10) . '...';
+										$tr .= substr($key, 0, 20) . '...';
 										$tr .= '</td>';
 										$tr .= '<td>';
 										$tr .= $value['ip'];
@@ -367,7 +370,6 @@ $objectOptions = jeeObject::getUISelectList(false);
 										$tr .= '</tr>';
 										echo $tr;
 									}
-
 									?>
 								</tbody>
 							</table>
