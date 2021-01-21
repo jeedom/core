@@ -1420,6 +1420,9 @@ a.ui-table-columntoggle-btn {
 }
 
 /* __________________________________________________________________________________________________________PREVIEW */
+#objectOverviewContainer .objectPreview {
+  background-position: center !important;
+}
 .objectPreview {
   position: relative;
   width: 320px;

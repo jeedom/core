@@ -10,7 +10,8 @@
 - Bugfix sur les updates de résumé sur les aperçus mode Dashboard.
 - Bugfix des éléments *image* sur un design.
 - Ajout des options de groupement par heure pour les graphiques sur les vues.
-- Conservation du contexte de la synthèse au clic sur les résumés.
+- Conservation du contexte de la Synthèse au clic sur les résumés.
+- Centrage des images de la Synthèse.
 
 ## 4.1.0
 

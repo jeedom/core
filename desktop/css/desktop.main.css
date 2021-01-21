@@ -891,6 +891,10 @@ Theme Core 2021 @Jeedom
   }
 
 /* ____________________OVERVIEW */
+  #objectOverviewContainer .objectPreview,
+  #dashOverviewPrev .objectPreview {
+    background-position: center !important;
+  }
   #objectOverviewContainer {
     text-align: center !important;
     margin:15px;
