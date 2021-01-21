@@ -6,6 +6,7 @@ if (init('user_id') == '') {
 	@session_start();
 	$_SESSION['user']->refresh();
 	@session_write_close();
+	sendVarToJs('user_id', -1);
 	$user = $_SESSION['user'];
 } else {
 	sendVarToJs('user_id', init('user_id'));
@@ -348,7 +349,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								</thead>
 								<tbody>
 									<?php
-									foreach ((	$user->getOptions('registerDevice')) as $key => $value) {
+									foreach (($user->getOptions('registerDevice')) as $key => $value) {
 										$tr = '';
 										$tr .= '<tr data-key="' . $key . '">';
 										$tr .= '<td title="'.$key.'">';
