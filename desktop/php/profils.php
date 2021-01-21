@@ -299,6 +299,7 @@ if (!isConnect()) {
 										<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
 									</div>
 								</div>
+								<<<<<<< HEAD
 							</fieldset>
 						</form>
 						
@@ -327,57 +328,141 @@ if (!isConnect()) {
 												$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
 												$tr .= '</tr>';
 												echo $tr;
-											}
-										}
-										?>
-									</tbody>
-								</table>
-							</fieldset>
-						</form>
-						
-						<form class="form-horizontal">
-							<fieldset>
-								<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-								<table class="table table-bordered table-condensed">
-									<thead>
-										<tr>
-											<th>{{Identification}}</th>
-											<th>{{IP}}</th>
-											<th>{{Date dernière utilisation}}</th>
-											<th>{{Action}}</th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-										foreach ((	$user->getOptions('registerDevice')) as $key => $value) {
-											$tr = '';
-											$tr .= '<tr data-key="' . $key . '">';
-											$tr .= '<td title="'.$key.'">';
-											$tr .= substr($key, 0, 10) . '...';
-											$tr .= '</td>';
-											$tr .= '<td>';
-											$tr .= $value['ip'];
-											$tr .= '</td>';
-											$tr .= '<td>';
-											$tr .= $value['datetime'];
-											$tr .= '</td>';
-											$tr .= '<td>';
-											$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
-											$tr .= '</td>';
-											$tr .= '</tr>';
-											echo $tr;
-										}
-										
-										?>
-									</tbody>
-								</table>
-							</fieldset>
-						</form>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-	</div>
-	
-	<?php include_file("desktop", "profils", "js");?>
-	
+												=======
+												<?php }
+												?>
+												<div class="form-group">
+												<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Hash de l'utilisateur}}</label>
+												<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+												<span class="userAttr" data-l1key="hash"></span>
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3">
+												<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
+												</div>
+												</div>
+												</fieldset>
+												</form>
+												
+												<form class="form-horizontal">
+												<fieldset>
+												<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
+												<table class="table table-condensed table-bordered">
+												<thead>
+												<tr>
+												<th>{{ID}}</th>
+												<th>{{IP}}</th>
+												<th>{{Date}}</th>
+												<th style="width:80px;">{{Actions}}</th>
+												</tr>
+												</thead>
+												<tbody>
+												<?php
+												$sessions = listSession();
+												if (count($sessions) > 0) {
+													foreach ($sessions as $id => $session) {
+														if ($session['user_id'] != 	$user->getId()) {
+															continue;
+															>>>>>>> 5b7d7b9f2a6a4f3284d5fd1cb5d01df6370be9d8
+														}
+													}
+													?>
+													</tbody>
+													</table>
+													</fieldset>
+													</form>
+													
+													<form class="form-horizontal">
+													<fieldset>
+													<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+													<table class="table table-bordered table-condensed">
+													<thead>
+													<tr>
+													<th>{{Identification}}</th>
+													<th>{{IP}}</th>
+													<th>{{Date dernière utilisation}}</th>
+													<th>{{Action}}</th>
+													</tr>
+													</thead>
+													<tbody>
+													<?php
+													foreach ((	$user->getOptions('registerDevice')) as $key => $value) {
+														$tr = '';
+														$tr .= '<tr data-key="' . $key . '">';
+														$tr .= '<td title="'.$key.'">';
+														$tr .= substr($key, 0, 10) . '...';
+														$tr .= '</td>';
+														$tr .= '<td>';
+														$tr .= $value['ip'];
+														$tr .= '</td>';
+														$tr .= '<td>';
+														$tr .= $value['datetime'];
+														$tr .= '</td>';
+														$tr .= '<td>';
+														$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+														$tr .= '</td>';
+														$tr .= '</tr>';
+														echo $tr;
+													}
+													<<<<<<< HEAD
+													
+													?>
+													</tbody>
+													</table>
+													</fieldset>
+													</form>
+													</div>
+													<?php } ?>
+													</div>
+													=======
+												}
+												?>
+												</tbody>
+												</table>
+												</fieldset>
+												</form>
+												
+												<form class="form-horizontal">
+												<fieldset>
+												<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+												<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
+												<thead>
+												<tr>
+												<th>{{Identification}}</th>
+												<th>{{IP}}</th>
+												<th>{{Date dernière utilisation}}</th>
+												<th data-sorter="false" data-filter="false">{{Action}}</th>
+												</tr>
+												</thead>
+												<tbody>
+												<?php
+												foreach (($user->getOptions('registerDevice')) as $key => $value) {
+													$tr = '';
+													$tr .= '<tr data-key="' . $key . '">';
+													$tr .= '<td title="'.$key.'">';
+													$tr .= substr($key, 0, 20) . '...';
+													$tr .= '</td>';
+													$tr .= '<td>';
+													$tr .= $value['ip'];
+													$tr .= '</td>';
+													$tr .= '<td>';
+													$tr .= $value['datetime'];
+													$tr .= '</td>';
+													$tr .= '<td>';
+													$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+													$tr .= '</td>';
+													$tr .= '</tr>';
+													echo $tr;
+												}
+												?>
+												</tbody>
+												</table>
+												</fieldset>
+												</form>
+												</div>
+												<?php } ?>
+												>>>>>>> 5b7d7b9f2a6a4f3284d5fd1cb5d01df6370be9d8
+												</div>
+												</div>
+												
+												<?php include_file("desktop", "profils", "js");?>
+												

@@ -19,43 +19,43 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
+	if (init('action') == 'getScTranslations') {
+		ajax::success(json_encode($GLOBALS['JEEDOM_SCLOG_TEXT']));
+	}
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'clear') {
 		unautorizedInDemo();
 		log::clear(init('log'));
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		log::remove(init('log'));
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'list') {
 		ajax::success(log::liste());
 	}
-	
+
 	if (init('action') == 'removeAll') {
 		unautorizedInDemo();
 		log::removeAll();
 		ajax::success();
 	}
-	
-	if (init('action') == 'getScTranslations') {
-		ajax::success(json_encode($GLOBALS['JEEDOM_SCLOG_TEXT']));
-	}
-	
+
 	if (init('action') == 'get') {
 		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
