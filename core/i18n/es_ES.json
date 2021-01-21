@@ -1236,7 +1236,7 @@
         ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": "Tenga en cuenta que se requerirá un dispositivo móvil para generar códigos de verificación",
         "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Instale una aplicación de autenticación en su dispositivo móvil. Si aún no ha instalado uno,",
         "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "admite las siguientes aplicaciones de autenticación: Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone)",
-        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "Tenga en cuenta que la doble autenticación solo es necesaria para las conexiones externas, por lo que no estará activa en una conexión local",
+        "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.": "Tenga en cuenta que la autenticación de dos factores solo es necesaria para conexiones externas, por lo que no estará activa en una conexión local",
         "Etape 2 : Configuration": "Paso 2: configuración",
         "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Abra y configure la aplicación de autenticación escaneando el código QR a continuación",
         "Vous pouvez aussi entrer manuellement le code suivant : ": "También puede ingresar manualmente el siguiente código:",

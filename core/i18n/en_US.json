@@ -1236,7 +1236,7 @@
         ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": "Please note that a mobile device will be required to generate verification codes",
         "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Please install an authentication app on your mobile device. If you haven't installed one yet,",
         "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "supports the following authentication applications: Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone)",
-        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "Note that double authentication is only necessary for external connections, so it will not be active on a local connection",
+        "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.": "Note that two-factor authentication is only necessary for external connections, so it will not be active on a local connection",
         "Etape 2 : Configuration": "Step 2: Configuration",
         "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Open and configure the authentication application by scanning the QR code below",
         "Vous pouvez aussi entrer manuellement le code suivant : ": "You can also manually enter the following code:",

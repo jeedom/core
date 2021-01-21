@@ -1236,7 +1236,7 @@
         ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": "。確認コードを生成するには、モバイルデバイスが必要になることに注意してください。",
         "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "モバイルデバイスに認証アプリをインストールしてください。まだインストールしていない場合は、",
         "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "次の認証アプリケーションをサポートしています：Google認証システム（Android、iOS、BlackBerry）、Microsoft認証システム（Android、iOS、Windows Phone）。",
-        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "二重認証は外部接続にのみ必要なため、ローカル接続ではアクティブにならないことに注意してください。",
+        "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.": "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale",
         "Etape 2 : Configuration": "ステップ2：設定",
         "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "以下のQRコードをスキャンして、認証アプリケーションを開いて構成します。",
         "Vous pouvez aussi entrer manuellement le code suivant : ": "次のコードを手動で入力することもできます。",

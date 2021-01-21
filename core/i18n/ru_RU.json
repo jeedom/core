@@ -1236,7 +1236,7 @@
         ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": ", Обратите внимание, что для создания кодов подтверждения потребуется мобильное устройство",
         "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Пожалуйста, установите приложение аутентификации на вашем мобильном устройстве. Если вы еще не установили один,",
         "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "поддерживает следующие приложения аутентификации: Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone)",
-        "A noter que la double authentification n'est necessaire que pour les connexions externe, elle ne sera donc pas active sur une connexion local.": "Обратите внимание, что двойная аутентификация необходима только для внешних подключений, поэтому она не будет активной для локального подключения",
+        "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.": "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale",
         "Etape 2 : Configuration": "Шаг 2: Конфигурация",
         "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Откройте и настройте приложение для аутентификации, отсканировав QR-код ниже",
         "Vous pouvez aussi entrer manuellement le code suivant : ": "Вы также можете вручную ввести следующий код:",
