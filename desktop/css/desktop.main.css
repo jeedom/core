@@ -124,6 +124,12 @@
     background-color: var(--al-info-color) !important;
     color: var(--linkHoverLight-color) !important;
   }
+  #bt_overview {
+    width: 35px;
+  }
+  #bt_overview[data-state="1"] {
+    background: var(--al-warning-color) !important;
+  }
 
   #div_alert {
     width: 100%;

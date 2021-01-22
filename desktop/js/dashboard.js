@@ -291,12 +291,27 @@ $('#div_pageContainer').on({
 
 $('#div_pageContainer').on({
   'mouseleave': function(event) {
-    $('#dashOverviewPrev').hide(350)
     $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()
+    if ($(this).attr('data-state') == 0) {
+      $('#dashOverviewPrev').hide(350)
+    }
   }
 }, '#dashOverviewPrev')
 
-
+$('#div_pageContainer').on({
+  'click': function(event) {
+    if ($(this).hasClass('clickable')) {
+      if ($(this).attr('data-state') == 0) {
+        $(this).attr('data-state', 1)
+        $('#dashOverviewPrev').show(350)
+      } else {
+        $(this).attr('data-state', 0)
+        $('#dashOverviewPrev').hide(350)
+      }
+    }
+    clearTimeout(btOverviewTimer)
+  }
+}, '#bt_overview')
 
 
 //Preview in Dashboard context:

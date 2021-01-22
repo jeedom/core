@@ -74,10 +74,10 @@ foreach ($objectTree as $_object) {
 		<div class="input-group-btn">
 			<?php
 			if (init('btover', 0) == 0) {?>
-				<a id="bt_overview" class="btn" style="width:35px"><i class="icon jeedomapp-fleche-bas-line"></i></a>
+				<a id="bt_overview" class="btn" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
 			<?php } else { ?>
 				<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>
-				</a><a id="bt_overview" class="btn" style="width:35px"><i class="icon jeedomapp-fleche-bas-line"></i></a>
+				</a><a id="bt_overview" class="btn clickable" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
 			<?php } ?>
 		</div>
 		<input class="form-control" id="in_searchDashboard" placeholder="Rechercher" autocomplete="off">
