@@ -1845,7 +1845,7 @@
     display: inline-flex !important;
     top: unset !important;
     font-size: 14px !important;
-    min-width: calc(100% - 40px) !important;
+    width: calc(100% - 70px) !important;
     min-height: 24px !important;
     max-height: 24px !important;
     height: 24px !important;
@@ -1933,7 +1933,7 @@
     max-width: 45vw;
     overflow: hidden;
     text-align: right;
-    z-index: 5;
+    z-index: 55;
   }
   div[class*="DisplayCard"].displayAsTable .displayTableRight > span {
     margin-right: 12px !important;

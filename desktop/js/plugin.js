@@ -24,7 +24,7 @@ Can also be called in modale, triggering plugin button click for direct access t
 var alert_div_plugin_configuration = null;
 $(function() {
   $('sub.itemsNumber').html('('+$('.pluginDisplayCard').length+')')
-  
+
   if ($('#md_modal').is(':visible')) {
     $('#bt_returnToThumbnailDisplay').hide()
     $('#div_confPlugin').addClass('col-lg-12').removeClass('col-md-9 col-sm-8')
@@ -32,11 +32,26 @@ $(function() {
   } else {
     alert_div_plugin_configuration = $('#div_alert')
   }
+
+  //is plugin id in url to go to configuration:
+  if (typeof(sel_plugin_id) !== "undefined" && sel_plugin_id != -1) {
+    if ($('#md_modal').is(':visible')) {
+      var $container = $('#md_modal #div_resumePluginList')
+    } else {
+      var $container = $('#div_resumePluginList')
+    }
+    if ($container.find('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
+      $container.find('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').click()
+    } else {
+      $container.find('.pluginDisplayCard').first().click()
+    }
+    initTooltips()
+  }
 })
 
 document.onkeydown = function(event) {
   if (getOpenedModal()) return
-  
+
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_savePluginConfig").click()
@@ -51,7 +66,7 @@ $('#in_searchPlugin').off('keyup').keyup(function() {
     return
   }
   search = normTextLower(search)
-  
+
   $('.pluginDisplayCard').hide()
   var text
   $('.pluginDisplayCard .name').each(function() {
@@ -65,38 +80,7 @@ $('#bt_resetPluginSearch').on('click', function() {
   $('#in_searchPlugin').val('').keyup()
 })
 
-
-//buttons:
-$('body').off('click','.bt_refreshPluginInfo').on('click','.bt_refreshPluginInfo', function() {
-  $('.pluginDisplayCard[data-plugin_id='+$('#span_plugin_id').text()+']').click()
-})
-
-$(".pluginDisplayCard").off('click').on('click', function(event) {
-  var pluginId = $(this).attr('data-plugin_id')
-  if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=plugin&id='+pluginId
-    window.open(url).focus()
-  } else {
-    displayPlugin(pluginId)
-  }
-  return false
-})
-$('div.pluginDisplayCard').off('mouseup').on('mouseup', function(event) {
-  event.stopPropagation()
-  event.preventDefault()
-  if (event.which == 2) {
-    event.preventDefault()
-    var pluginId = $(this).attr('data-plugin_id')
-    $('.pluginDisplayCard[data-plugin_id="'+pluginId+'"]').trigger(jQuery.Event('click', { ctrlKey: true, pluginId: pluginId }))
-  }
-})
-
 //displayAsTable open plugin:
-$('div.pluginDisplayCard .bt_gotoPluginConf').off('click').on('click', function(event) {
-  event.stopPropagation()
-  var pluginId = $(this).closest('div.pluginDisplayCard').attr('data-plugin_id')
-  $('#md_modal').dialog({title: "{{Configuration du plugin}}"}).load('index.php?v=d&p=plugin&ajax=1&id='+pluginId).dialog('open')
-})
 $('div.pluginDisplayCard .bt_openPluginPage').off('click').on('click', function(event) {
   event.stopPropagation()
   var pluginId = $(this).closest('div.pluginDisplayCard').attr('data-plugin_id')
@@ -144,7 +128,7 @@ function displayPlugin(_pluginId) {
     success: function(data) {
       $container.find('#span_plugin_id').html(data.id)
       $container.find('#span_plugin_name').html(data.name)
-      
+
       if (isset(data.update) && isset(data.update.localVersion)) {
         var localVer = data.update.localVersion
         if (localVer.length > 20) localVer = localVer.substring(0,20) + '...'
@@ -152,34 +136,34 @@ function displayPlugin(_pluginId) {
       } else {
         $container.find('#span_plugin_install_date').html('')
       }
-      
+
       $container.find('#span_plugin_license').html(data.license)
       if ($.trim(data.installation) == '' || $.trim(data.installation) == 'Aucune') {
         $container.find('#span_plugin_installation').closest('.panel').hide()
       } else {
         $container.find('#span_plugin_installation').html(data.installation).closest('.panel').show()
       }
-      
+
       if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)) {
         $container.find('#span_plugin_install_version').html(data.update.configuration.version)
       } else {
         $container.find('#span_plugin_install_version').html('')
       }
-      
+
       if (isset(data.author)) {
         $container.find('#span_plugin_author').html('<a href="https://market.jeedom.com/index.php?v=d&p=market&author='+data.author+'">'+data.author+'</a>')
       } else {
         $container.find('#span_plugin_author').html('')
       }
-      
+
       if (isset(data.category) && isset(pluginCategories[data.category])) {
         $container.find('#span_plugin_category').html(pluginCategories[data.category].name)
       } else {
         $container.find('#span_plugin_category').html('')
       }
-      
+
       $container.find('#div_state .openPluginPage').attr("href", 'index.php?v=d&m='+data.index+'&p='+data.index)
-      
+
       if (data.checkVersion != -1) {
         if (data.require <= jeedomVersion) {
           $container.find('#span_plugin_require').html('<span class="label label-success">' + data.require + '</span>')
@@ -189,7 +173,7 @@ function displayPlugin(_pluginId) {
       } else {
         $container.find('#span_plugin_require').html('<span class="label label-danger">' + data.require + '</span>')
       }
-      
+
       //dependencies and daemon divs:
       var $divPluginDependancy = $container.find('#div_plugin_dependancy')
       var $divPluginDeamon = $container.find('#div_plugin_deamon')
@@ -201,19 +185,19 @@ function displayPlugin(_pluginId) {
       } else {
         $divPluginDependancy.load('index.php?v=d&modal=plugin.dependancy&plugin_id='+data.id).closest('.panel').show()
       }
-      
+
       if (data.hasOwnDeamon == 0 || data.activate != 1) {
         $divPluginDeamon.closest('.panel').hide()
         $divPluginDependancy.closest('.panel').parent().removeClass('col-md-6')
       } else {
         $divPluginDeamon.load('index.php?v=d&modal=plugin.deamon&plugin_id='+data.id).closest('.panel').show()
       }
-      
+
       if ((data.hasDependency == 0 || data.activate != 1) && (data.hasOwnDeamon == 0 || data.activate != 1)) {
         $divPluginDependancy.closest('.panel').parent().remove()
         $divPluginDeamon.closest('.panel').parent().remove()
       }
-      
+
       //top right buttons:
       var $spanRightButton = $container.find('#span_right_button')
       $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
@@ -227,9 +211,9 @@ function displayPlugin(_pluginId) {
         $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="'+data.info.display+'"><i class="fas fa-book"></i> {{Détails}}</a>')
       }
       $spanRightButton.append('<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
-      
+
       $container.find('#div_configPanel').hide()
-      
+
       $container.find('#div_plugin_panel').empty()
       if (isset(data.display) && data.display != '') {
         var config_panel_html = '<div class="form-group">'
@@ -241,7 +225,7 @@ function displayPlugin(_pluginId) {
         $container.find('#div_configPanel').show()
         $container.find('#div_plugin_panel').append(config_panel_html)
       }
-      
+
       if (isset(data.mobile) && data.mobile != '') {
         var config_panel_html = '<div class="form-group">'
         config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau mobile}}</label>'
@@ -252,7 +236,7 @@ function displayPlugin(_pluginId) {
         $container.find('#div_configPanel').show()
         $container.find('#div_plugin_panel').append(config_panel_html)
       }
-      
+
       $container.find('#div_plugin_functionality').empty()
       count = 0
       var config_panel_html = '<div class="row">'
@@ -284,7 +268,7 @@ function displayPlugin(_pluginId) {
       config_panel_html += '</div>'
       config_panel_html += '</div>'
       $container.find('#div_plugin_functionality').append(config_panel_html)
-      
+
       $container.find('#div_plugin_toggleState').empty()
       if (data.checkVersion != -1) {
         var html = '<form class="form-horizontal"><fieldset>'
@@ -338,7 +322,7 @@ function displayPlugin(_pluginId) {
         log_conf += '</div>'
         log_conf += '</form>'
       }
-      
+
       log_conf += '<form class="form-horizontal">'
       log_conf += '<div class="form-group">'
       log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>'
@@ -353,10 +337,10 @@ function displayPlugin(_pluginId) {
       }
       log_conf += '</div>'
       log_conf += '</form>'
-      
+
       $container.find('#div_plugin_log').empty()
       $container.find('#div_plugin_log').append(log_conf)
-      
+
       var $divPluginConfiguration = $container.find('#div_plugin_configuration')
       $divPluginConfiguration.empty()
       if (data.checkVersion != -1) {
@@ -431,6 +415,66 @@ function displayPlugin(_pluginId) {
   })
 }
 
+
+//Plugin page:
+$('.pullInstall').on('click', function() {
+  jeedom.repo.pullInstall({
+    repo : $(this).attr('data-repo'),
+    error: function(error) {
+      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(data) {
+      alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Nombre de plugins installé : }}'+data.number, level: 'success'})
+    }
+  })
+})
+
+$('.gotoUrlStore').on('click', function() {
+  window.open($(this).attr('data-href'),'_blank');
+})
+
+$('#bt_addPluginFromOtherSource').on('click', function() {
+  $('#md_modal').dialog({title: "{{Ajouter un plugin}}"}).load('index.php?v=d&modal=update.add').dialog('open')
+})
+
+$('.pluginDisplayCard').off('click').on('click', function(event) {
+  var pluginId = $(this).attr('data-plugin_id')
+  if (event.ctrlKey || event.metaKey) {
+    var url = '/index.php?v=d&p=plugin&id='+pluginId
+    window.open(url).focus()
+  } else {
+    displayPlugin(pluginId)
+  }
+  return false
+})
+$('div.pluginDisplayCard').off('mouseup').on('mouseup', function(event) {
+  event.stopPropagation()
+  event.preventDefault()
+  if (event.which == 2) {
+    event.preventDefault()
+    var pluginId = $(this).attr('data-plugin_id')
+    $('.pluginDisplayCard[data-plugin_id="'+pluginId+'"]').trigger(jQuery.Event('click', { ctrlKey: true, pluginId: pluginId }))
+  }
+})
+
+
+
+//configuration page:
+$('#bt_returnToThumbnailDisplay').last().on('click', function() {
+  setTimeout(function() {
+    $('.nav li.active').removeClass('active')
+    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+  }, 500)
+  if (checkPageModified()) return
+  $('#div_resumePluginList').show()
+  $('#div_confPlugin').hide()
+  addOrUpdateUrl('id',null,'{{Gestion Plugins}} - '+JEEDOM_PRODUCT_NAME)
+})
+
+$('body').off('click','.bt_refreshPluginInfo').on('click','.bt_refreshPluginInfo', function() {
+  $('.pluginDisplayCard[data-plugin_id='+$('#span_plugin_id').text()+']').click()
+})
+
 $('#span_right_button').on({
   'click': function(event) {
     var _el = $(this)
@@ -471,59 +515,12 @@ $('#div_plugin_toggleState').on({
   }
 }, '.togglePlugin')
 
-//is plugin id in url to go to configuration:
-if (typeof(sel_plugin_id) !== "undefined" && sel_plugin_id != -1) {
-  if ($('#md_modal').is(':visible')) {
-    var $container = $('#md_modal #div_resumePluginList')
-  } else {
-    var $container = $('#div_resumePluginList')
-  }
-  if ($container.find('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').length != 0) {
-    $container.find('.pluginDisplayCard[data-plugin_id=' + sel_plugin_id + ']').click()
-  } else {
-    $container.find('.pluginDisplayCard').first().click()
-  }
-  initTooltips()
-}
-
-$('#bt_returnToThumbnailDisplay').on('click', function() {
-  setTimeout(function() {
-    $('.nav li.active').removeClass('active')
-    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
-  }, 500)
-  if (checkPageModified()) return
-  $('#div_resumePluginList').show()
-  $('#div_confPlugin').hide()
-  addOrUpdateUrl('id',null,'{{Gestion Plugins}} - '+JEEDOM_PRODUCT_NAME)
-})
-
 $("#bt_savePluginConfig").on('click', function(event) {
   savePluginConfig()
   return false
 })
 
-$('.displayStore').on('click', function() {
-  $('#md_modal').dialog({title: "{{Market}}"}).load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open')
-})
-
-$('.gotoUrlStore').on('click', function() {
-  window.open($(this).attr('data-href'),'_blank');
-})
-
-
-$('.pullInstall').on('click', function() {
-  jeedom.repo.pullInstall({
-    repo : $(this).attr('data-repo'),
-    error: function(error) {
-      alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Nombre de plugins installé : }}'+data.number, level: 'success'})
-    }
-  })
-})
-
-$('#div_pageContainer').off('change', '.configKey').on('change','.configKey:visible', function() {
+$('#div_resumePluginList').off('change', '.configKey').on('change', '.configKey:visible', function() {
   modifyWithoutSave = true
 })
 
@@ -568,13 +565,16 @@ $('#bt_savePluginLogConfig').off('click').on('click', function() {
   })
 })
 
-$('#div_plugin_log').on('click', '.bt_plugin_conf_view_log', function() {
-  if ($('#md_modal').is(':visible')) {
-    $('#md_modal2').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
-  } else {
-    $('#md_modal').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
+$('#div_configLog').on({
+  'click': function(event) {
+    console.log('log click')
+    if ($('#md_modal').is(':visible')) {
+      $('#md_modal2').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
+    } else {
+      $('#md_modal').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
+    }
   }
-})
+}, '.bt_plugin_conf_view_log')
 
 function savePluginConfig(_param) {
   jeedom.config.save({
@@ -616,6 +616,4 @@ function savePluginConfig(_param) {
   })
 }
 
-$('#bt_addPluginFromOtherSource').on('click', function() {
-  $('#md_modal').dialog({title: "{{Ajouter un plugin}}"}).load('index.php?v=d&modal=update.add').dialog('open')
-})
+
