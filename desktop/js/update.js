@@ -167,7 +167,11 @@ $(function() {
     getJeedomLog(1, 'update')
   }
   $('#md_specifyUpdate').removeClass('hidden')
-  $('#table_update').trigger('sorton', [[[0,0]]])
+
+  $('#table_update').on('sortEnd', function(e, t) {
+      $("#table_update tbody").prepend($('tr[data-type="core"]'))
+    })
+  $('#table_update').trigger('sorton', [[[0,1]]])
 })
 
 function checkAllUpdate() {
