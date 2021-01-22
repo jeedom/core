@@ -240,9 +240,12 @@ class system {
 		return self::$_installPackage[$_type];
 	}
 	
-	public static function checkAndInstall($_packages,$_fix = false,$_foreground = false){
+	public static function checkAndInstall($_packages,$_fix = false,$_foreground = false,$_plugin = ''){
 		$return = array();
 		foreach ($_packages as $type => $value) {
+			if($type == 'post-install' || $type == 'pre-install'){
+				continue;
+			}
 			$installPackage = self::getInstallPackage($type);
 			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
@@ -290,50 +293,126 @@ class system {
 		if(!$_fix){
 			return $return;
 		}
+		$count = 0;
 		$cmd = "set -x\n";
-		$cmd .= " echo '*******************Begin of package installation******************'\n";
+		$cmd .= "echo '*******************Begin of package installation******************'\n";
+		$progress_file = '/tmp/jeedom_install_in_progress';
+		if($_plugin != ''){
+			$progress_file .= "_$_plugin";
+		}
+		$cmd .= "touch $progress_file\n";
+		$count++;
+		$cmd .= "echo $count > $progress_file\n";
 		if($_foreground){
 			if(self::checkInstallationLog() != ''){
 				echo shell_exec(self::checkInstallationLog().' 2>&1');
 			}
 		}else{
 			$cmd .= self::checkInstallationLog();
+			$count++;
+			$cmd .= "echo $count > $progress_file\n";
 		}
 		if($_foreground){
 			echo shell_exec(self::getCmdSudo()." apt update 2>&1");
 		}else{
 			$cmd .= self::getCmdSudo()." apt update\n";
+			$count++;
+			$cmd .= "echo $count > $progress_file\n";
 		}
-		
+		if(isset($_packages['pre-install'])){
+			if(isset($_packages['pre-install']['script'])){
+				if($_foreground){
+					echo shell_exec('sudo '.__DIR__.'/../../'.$_packages['pre-install']['script'].' 2>&1');
+				}else{
+					$cmd .= "sudo ".__DIR__."/../../".$_packages['pre-install']['script']."\n";
+					$count++;
+					$cmd .= "echo $count > $progress_file\n";
+				}
+			}
+		}
+		$has_something_todo = false;
 		foreach ($return as $package => $info) {
 			if($info['status'] != 0 || $info['optional']){
 				continue;
 			}
+			$has_something_todo = true;
 			if($_foreground){
 				echo shell_exec(self::installPackage($info['type'],$info['name']).' 2>&1');
 			}else{
 				$cmd .= self::installPackage($info['type'],$info['name'])."\n";
+				$count++;
+				$cmd .= "echo $count > $progress_file\n";
 			}
 		}
-		if($_foreground){
+		if(isset($_packages['post-install'])){
+			if(isset($_packages['post-install']['restart_apache']) && $_packages['post-install']['restart_apache'] && $has_something_todo){
+				if($_foreground){
+					echo shell_exec('sudo systemctl restart apache2 2>&1');
+				}else{
+					$cmd .= "sudo systemctl restart apache2\n";
+					$count++;
+					$cmd .= "echo $count > $progress_file\n";
+				}
+			}
+			if(isset($_packages['post-install']['script'])){
+				$has_something_todo = true;
+				if($_foreground){
+					echo shell_exec('sudo '.__DIR__.'/../../'.$_packages['post-install']['script'].' 2>&1');
+				}else{
+					$cmd .= "sudo ".__DIR__."/../../".$_packages['post-install']['script']."\n";
+					$count++;
+					$cmd .= "echo $count > $progress_file\n";
+				}
+			}
+		}
+		if($_foreground || !$has_something_todo){
 			return;
 		}
-		$cmd .= " echo '*******************End of package installation******************'\n";
+		$cmd .= "rm $progress_file\n";
+		$cmd .= "echo '*******************End of package installation******************'\n";
 		if(file_exists('/tmp/jeedom_fix_package')){
 			shell_exec(system::getCmdSudo() .' rm /tmp/jeedom_fix_package');
 		}
 		file_put_contents('/tmp/jeedom_fix_package',$cmd);
-		self::launchScriptPackage();
+		self::launchScriptPackage($_plugin);
 	}
 	
-	public static function launchScriptPackage(){
+	public static function installPackageInProgress($_plugin = ''){
 		if(count(self::ps('dpkg')) > 0 || count(self::ps('apt')) > 0){
+			return true;
+		}
+		$progress_file = '/tmp/jeedom_install_in_progress';
+		if($_plugin != ''){
+			$progress_file .= "_$_plugin";
+		}
+		if(file_exists($progress_file)){
+			$mtime = filemtime($progress_file);
+			if($mtime > strtotime('now')){
+				shell_exec(self::getCmdSudo().' rm '.$progress_file);
+				return false;
+			}
+			if(strtotime('now') - $mtime > (30*60)){
+				shell_exec(self::getCmdSudo().' rm '.$progress_file);
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	public static function launchScriptPackage($_plugin = ''){
+		if(self::installPackageInProgress($_plugin)){
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours',__FILE__));
 		}
 		shell_exec(system::getCmdSudo() .' chmod +x /tmp/jeedom_fix_package');
 		if(class_exists('log')){
-			$log = log::getPathToLog('packages');
-			log::clear('packages');
+			if($_plugin != ''){
+				$log = log::getPathToLog($_plugin.'_packages');
+				log::clear($_plugin.'_packages');
+			}else{
+				$log = log::getPathToLog('packages');
+				log::clear('packages');
+			}
 		}else{
 			$log = '/tmp/jeedom_fix_package_log';
 		}

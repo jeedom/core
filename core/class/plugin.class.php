@@ -631,9 +631,6 @@ class plugin {
 	
 	public function dependancy_info($_refresh = false) {
 		$plugin_id = $this->getId();
-		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
-			return array('state' => 'nok', 'log' => 'nok');
-		}
 		$cache = cache::byKey('dependancy' . $this->getID());
 		if ($_refresh) {
 			$cache->remove();
@@ -642,6 +639,40 @@ class plugin {
 			if (is_array($return) && $return['state'] == 'ok') {
 				return $cache->getValue();
 			}
+		}
+		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
+			$return = array('log' => $plugin_id.'_packages');
+			$packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true));
+			$has_dep_to_install = false;
+			foreach ($packages as $package => $info) {
+				if($info['status'] != 0 || $info['optional']){
+					continue;
+				}
+				$has_dep_to_install = true;
+			}
+			$return['state'] = ($has_dep_to_install) ? 'nok' : 'ok';
+			$return['progress_file'] = '/tmp/jeedom_install_in_progress_'.$plugin_id;
+			if(file_exists($return['progress_file'])){
+				$progression = trim(file_get_contents($return['progress_file']));
+				if ($progression != '') {
+					$return['progression'] = $progression;
+				}
+				$return['state'] = 'in_progress';
+				if (config::byKey('lastDependancyInstallTime', $plugin_id) == '') {
+					config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
+				}
+				$return['duration'] = round((strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) / 60);
+			}else{
+				$return['duration'] = -1;
+			}
+			$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
+			if ($return['state'] == 'ok') {
+				cache::set('dependancy' . $this->getID(), $return);
+			}
+			return $return;
+		}
+		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_info')) {
+			return array('state' => 'nok', 'log' => 'nok');
 		}
 		$return = $plugin_id::dependancy_info();
 		if (!isset($return['log'])) {
@@ -678,9 +709,6 @@ class plugin {
 	*/
 	public function dependancy_install() {
 		$plugin_id = $this->getId();
-		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
-			return;
-		}
 		if (config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
@@ -690,6 +718,14 @@ class plugin {
 		if ($dependancy_info['state'] == 'in_progress') {
 			throw new Exception(__('Les dépendances sont déjà en cours d\'installation', __FILE__));
 		}
+		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true),true,false,$plugin_id);
+			$cache = cache::byKey('dependancy' . $this->getID());
+			$cache->remove();
+		}
+		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
+			return;
+		}
 		foreach (self::listPlugin(true) as $plugin) {
 			if ($plugin->getId() == $this->getId()) {
 				continue;
@@ -698,11 +734,6 @@ class plugin {
 			if ($dependancy_info['state'] == 'in_progress') {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
-		}
-		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
-			message::add($plugin_id, __('Attention : installation des packages lancée', __FILE__));
-			log::add($plugin_id, 'info', __('Lancement de l\'installation des packages, pour le suivre veuillez lire regarder le logs packages', __FILE__));
-			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true),true);
 		}
 		$cmd = $plugin_id::dependancy_install();
 		if (is_array($cmd) && count($cmd) == 2) {
