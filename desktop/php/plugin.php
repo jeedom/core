@@ -15,7 +15,7 @@ $plugins_list = plugin::listPlugin(false, true);
 <div id='div_alertPluginConfiguration'></div>
 
 <div class="row row-overflow">
-  <div class="col-xs-12" id="div_resumePluginList">
+  <div class="col-xs-12" id="div_resumePluginList" <?php if (init('id', '-1') != -1) echo 'style="display:none;"'?>>
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
     <div class="pluginListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
       <?php
@@ -83,13 +83,13 @@ $plugins_list = plugin::listPlugin(false, true);
             } else {
               $div .= '<span class="name">' . $plugin->getName() . '</span>';
             }
-            
+
             $div .= '<span class="hiddenAsCard displayTableRight">';
             $div .= '<span>'.$plugin->getCategory().'</span>';
             $div .= '<a class="btn btn-default btn-xs bt_gotoPluginConf"><i class="fas fa-wrench"></i></a> ';
             $div .= ' <a class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></a>';
             $div .= '</span>';
-            
+
             $div .= '</div>';
             echo $div;
           }
@@ -97,7 +97,7 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
   </div>
   <div class="col-xs-12" id="div_confPlugin" style="display:none;">
     <legend>
@@ -107,7 +107,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <span class="input-group-btn" id="span_right_button"></span>
       </div>
     </legend>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
@@ -125,7 +125,7 @@ $plugins_list = plugin::listPlugin(false, true);
                   </div>
                   <label class="col-sm-2 control-label"></label>
                 </div>
-                
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label">{{Auteur}}</label>
                   <div class="col-sm-4">
@@ -138,7 +138,7 @@ $plugins_list = plugin::listPlugin(false, true);
                     <span id="span_plugin_install_date"></span>
                   </div>
                 </div>
-                
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label">{{License}}</label>
                   <div class="col-sm-4">
@@ -151,7 +151,7 @@ $plugins_list = plugin::listPlugin(false, true);
                     <span id="span_plugin_require"></span>
                   </div>
                 </div>
-                
+
               </fieldset>
             </form>
           </div>
@@ -175,7 +175,7 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-success">
@@ -194,14 +194,14 @@ $plugins_list = plugin::listPlugin(false, true);
         </div>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-map"></i> {{Installation}}</h3></div>
       <div class="panel-body">
         <span id="span_plugin_installation"></span>
       </div>
     </div>
-    
+
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
@@ -213,7 +213,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="form-actions"></div>
       </div>
     </div>
-    
+
     <div class="row">
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-primary" id="div_functionalityPanel">
