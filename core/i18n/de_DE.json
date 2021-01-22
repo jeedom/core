@@ -4155,8 +4155,6 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "Sie müssen zwischen zwei Starts der Abhängigkeitsinstallation mindestens 60 Sekunden warten",
         "Les dépendances sont déjà en cours d\\'installation": "Die Abhängigkeiten werden bereits installiert",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "Die Abhängigkeiten eines anderen Plugins sind bereits in Bearbeitung. Bitte warten Sie, bis sie fertig sind:",
-        "Attention : installation des packages lancée": "Warnung: Installation von Paketen gestartet",
-        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "Starten Sie die Installation der Pakete. Lesen Sie dazu die Protokollpakete",
         "Attention : installation des dépendances lancée": "Achtung: Installation von Abhängigkeiten gestartet",
         "Veuillez exécuter le script :": "Bitte führen Sie das Skript aus:",
         "Aucun script ne correspond à votre type de Linux :": "Kein Skript entspricht Ihrem Linux-Typ:",

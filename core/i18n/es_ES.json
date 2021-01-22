@@ -4155,8 +4155,6 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "Debe esperar al menos 60 segundos entre dos lanzamientos de instalación de dependencias",
         "Les dépendances sont déjà en cours d\\'installation": "Las dependencias ya se están instalando",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "Las dependencias de otro complemento ya están en progreso, espere hasta que finalicen:",
-        "Attention : installation des packages lancée": "Advertencia: instalación de paquetes lanzados",
-        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "Lanzamiento de la instalación de los paquetes. Para seguirlo, lea los paquetes de registros",
         "Attention : installation des dépendances lancée": "Atención: se inició la instalación de dependencias",
         "Veuillez exécuter le script :": "Por favor ejecute el script:",
         "Aucun script ne correspond à votre type de Linux :": "Ningún script corresponde a su tipo de Linux:",
