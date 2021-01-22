@@ -66,20 +66,20 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 				</div>
 			</div>
 		</div>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
 			<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
-		
+
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="coreplugin">
-				
-				
+
+
 				<table class="table table-condensed table-bordered tablesorter" id="table_update">
 					<thead>
 						<tr>
-							<th data-sorter="false" style="width:50px;"></th>
+							<th style="width:50px;">{{Etat}}</th>
 							<th>{{Nom}}</th>
 							<th data-sorter="shortDate">{{Version installée}}</th>
 							<th data-sorter="shortDate">{{Dernière version}}</th>
@@ -99,14 +99,14 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="md_specifyUpdate" class="hidden" style="overflow-x: hidden;">
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
 						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
-					
+
 					<div class="form-group">
 						<div class="form-group">
 							<label class="col-xs-6 control-label">{{Pré-update}}
