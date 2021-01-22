@@ -4155,8 +4155,6 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "İki bağımlılık yükleme başlatması arasında en az 60 saniye beklemelisiniz",
         "Les dépendances sont déjà en cours d\\'installation": "Bağımlılıklar zaten kuruluyor",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies :",
-        "Attention : installation des packages lancée": "Attention : installation des packages lancée",
-        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages",
         "Attention : installation des dépendances lancée": "Dikkat: başlatılan bağımlılıkların kurulumu",
         "Veuillez exécuter le script :": "Lütfen betiği çalıştırın:",
         "Aucun script ne correspond à votre type de Linux :": "Linux türünüze karşılık gelen komut dosyası yok:",

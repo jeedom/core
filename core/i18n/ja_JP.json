@@ -4155,8 +4155,6 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances",
         "Les dépendances sont déjà en cours d\\'installation": "Les dépendances sont déjà en cours d\\'installation",
         "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies : ": "Les dépendances d\\'un autre plugin sont déjà en cours, veuillez attendre qu\\'elles soient finies :",
-        "Attention : installation des packages lancée": "Attention : installation des packages lancée",
-        "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages": "Lancement de l\\'installation des packages, pour le suivre veuillez lire regarder le logs packages",
         "Attention : installation des dépendances lancée": "Attention : installation des dépendances lancée",
         "Veuillez exécuter le script :": "Veuillez exécuter le script :",
         "Aucun script ne correspond à votre type de Linux :": "Aucun script ne correspond à votre type de Linux :",
