@@ -273,11 +273,12 @@ $('.objectPreview, .objectPreview .name').off('mouseup').on('mouseup', function 
 })
 
 var btOverviewTimer
+var $divPreview = $('#dashOverviewPrev')
 $('#div_pageContainer').on({
   'mouseenter': function(event) {
     if(!isEditing) {
       btOverviewTimer = setTimeout(function() {
-        $('#dashOverviewPrev').show(350)
+        $divPreview.show(350)
       }, 300)
     }
   }
@@ -292,8 +293,8 @@ $('#div_pageContainer').on({
 $('#div_pageContainer').on({
   'mouseleave': function(event) {
     $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()
-    if ($(this).attr('data-state') == 0) {
-      $('#dashOverviewPrev').hide(350)
+    if ($('#bt_overview').attr('data-state') == 0) {
+      $divPreview.hide(350)
     }
   }
 }, '#dashOverviewPrev')
@@ -303,10 +304,10 @@ $('#div_pageContainer').on({
     if ($(this).hasClass('clickable')) {
       if ($(this).attr('data-state') == 0) {
         $(this).attr('data-state', 1)
-        $('#dashOverviewPrev').show(350)
+        $divPreview.show(350)
       } else {
         $(this).attr('data-state', 0)
-        $('#dashOverviewPrev').hide(350)
+        $divPreview.hide(350)
       }
     }
     clearTimeout(btOverviewTimer)
