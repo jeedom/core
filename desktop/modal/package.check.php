@@ -28,7 +28,7 @@ foreach ((plugin::listPlugin(true,false,false,true)) as $plugin) {
 $datas = array();
 foreach ($result as $key => $packages) {
   foreach ($packages as $package => $info) {
-    if(!isset($data[$package])){
+    if(!isset($datas[$package])){
       $datas[$package] = $info;
       $datas[$package]['needBy'] = array($key);
     }else{
@@ -101,7 +101,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       
       $_echo .= '<td>';
       foreach ($info['needBy'] as $value) {
-        $_echo .= '<span class="label label-primary">'.$value.'</span>';
+        $_echo .= '<span class="label label-primary" style="display:inline-block;">'.$value.'</span> ';
       }
       $_echo .= '</td>';
       
