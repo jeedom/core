@@ -58,7 +58,7 @@ natcasesort($list_logfile);
 		<div class="input-group pull-right">
 			<span class="input-group-btn" style="display: inline;">
 				<span class="label-sm">{{Log brut}}</span>
-				<input type="checkbox" id="brutlog" />
+				<input type="checkbox" id="brutlogcheck" autoswitch="1"/>
 				<input class="input-sm roundedLeft" id="in_searchGlobalLog" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
 				<a id="bt_resetGlobalLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
 				<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}

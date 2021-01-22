@@ -30,7 +30,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 <div class="input-group pull-right">
   <span class="input-group-btn" style="display: inline;">
     <span class="label-sm">{{Log brut}}</span>
-    <input type="checkbox" id="brutlog" />
+    <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
     <input class="input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
     <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
     </a><a class="btn btn-warning btn-sm" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
@@ -42,6 +42,10 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 <pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 70px);width:100%;'></pre>
 
 <script>
+var $rawLogCheck = $('#brutlogcheck')
+$rawLogCheck.on('click').on('click', function () {
+  $rawLogCheck.attr('autoswitch', 0)
+})
 jeedom.log.autoupdate({
   log : 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
   display : $('#pre_scenariolog'),

@@ -221,21 +221,34 @@ jeedom.log.autoupdate = function (_params) {
           }
         }
       }
-      if ($('#brutlog').is(':checked')) {
-        _params.display.text(log)
-      } else {
-        //is first call on heavy log:
-        if (log.length > jeedom.log.coloredThreshold && _params.callNumber == 1) {
-          $('#brutlog').prop('checked', true)
+
+      var colorMe = false
+      var isAuto = ($rawLogCheck.attr('autoswitch') == 1) ? true : false
+      var isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
+
+      if (!$rawLogCheck.is(':checked') && !isLong) {
+        colorMe = true
+      } else if (isLong && !isAuto && !$rawLogCheck.is(':checked')) {
+        colorMe = true
+      } else if (isLong && isAuto && _params.callNumber == 1) {
+        colorMe = false
+        $rawLogCheck.prop('checked', true)
+      } else if (!isLong && isAuto && _params.callNumber == 1) {
+        colorMe = true
+        $rawLogCheck.prop('checked', false)
+      }
+
+      if (colorMe) {
+        if (isScenaroLog) {
+          log = jeedom.log.scenarioColorReplace(log)
         } else {
-          if (isScenaroLog) {
-            log = jeedom.log.scenarioColorReplace(log)
-          } else {
-            log = jeedom.log.stringColorReplace(log)
-          }
+          log = jeedom.log.stringColorReplace(log)
         }
         _params.display.html(log)
+      } else {
+        _params.display.text(log)
       }
+
       _params.display.scrollTop(_params.display.height() + 200000);
       if (jeedom.log.timeout !== null) {
         clearTimeout(jeedom.log.timeout)

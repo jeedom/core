@@ -18,6 +18,11 @@
 
 var $btGlobalLogStopStart = $('#bt_globalLogStopStart')
 
+var $rawLogCheck = $('#brutlogcheck')
+$rawLogCheck.on('click').on('click', function () {
+  $rawLogCheck.attr('autoswitch', 0)
+})
+
 $('#bt_downloadLog').click(function() {
   window.open('core/php/downloadFile.php?pathfile=log/' + $('.li_log.active').attr('data-log'), "_blank", null)
 })

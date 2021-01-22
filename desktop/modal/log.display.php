@@ -36,7 +36,7 @@ if(init('log','event') == 'event'){
 <div class="input-group pull-right">
   <span class="input-group-btn" style="display: inline;">
     <span class="label-sm">{{Log brut}}</span>
-    <input type="checkbox" id="brutlog" />
+    <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
     <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
     <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
     </a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
@@ -48,6 +48,11 @@ if(init('log','event') == 'event'){
 <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 90px);width:100%;'></pre>
 
 <script>
+var $rawLogCheck = $('#brutlogcheck')
+$rawLogCheck.on('click').on('click', function () {
+  $rawLogCheck.attr('autoswitch', 0)
+})
+
 jeedom.log.autoupdate({
   log : log_display_name,
   default_search : log_default_search,
