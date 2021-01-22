@@ -285,6 +285,7 @@ class system {
 					'needVersion' => isset($info['version']) ? $info['version'] : '',
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
+					'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
 					'fix' => ($found == 0) ?  self::installPackage($type,$package) : '',
 					'remark' => isset($info['remark']) ? __($info['remark'],'install/packages.json') : '',
 				);
@@ -334,7 +335,7 @@ class system {
 		}
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
-			if($info['status'] != 0 || $info['optional']){
+			if(($info['status'] != 0 && !$info['reinstall']) || $info['optional']){
 				continue;
 			}
 			$has_something_todo = true;
@@ -435,9 +436,9 @@ class system {
 			case 'apt':
 			return self::getCmdSudo().' apt install -o Dpkg::Options::="--force-confdef" -y '.$_package;
 			case 'pip2':
-			return self::getCmdSudo().' pip2 install '.$_package;
+			return self::getCmdSudo().' pip2 install --upgrade '.$_package;
 			case 'pip3':
-			return self::getCmdSudo().' pip3 install '.$_package;
+			return self::getCmdSudo().' pip3 install --upgrade '.$_package;
 		}
 	}
 	
