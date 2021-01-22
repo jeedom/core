@@ -1346,7 +1346,7 @@ class scenarioExpression {
 						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmd']['txt'] . $options['cmd']);
 					}
 					$cmd->event(jeedom::evaluateExpression($options['value']));
-					$this->setLog($scenario, __('Changement de ', __FILE__) . $cmd->getHumanName() . __(' à ', __FILE__) . $options['value']);
+					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . __(' à ', __FILE__) . $options['value']);
 					return;
 				} elseif ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
