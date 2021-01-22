@@ -302,7 +302,7 @@ class system {
 		}
 		$cmd .= "touch $progress_file\n";
 		$count++;
-		$cmd .= "echo $count > $progress_file\n";
+		$cmd .= 'echo '.$count.' > '.$progress_file."\n";
 		if($_foreground){
 			if(self::checkInstallationLog() != ''){
 				echo shell_exec(self::checkInstallationLog().' 2>&1');
@@ -310,23 +310,25 @@ class system {
 		}else{
 			$cmd .= self::checkInstallationLog();
 			$count++;
-			$cmd .= "echo $count > $progress_file\n";
+			$cmd .= 'echo '.$count.' > '.$progress_file."\n";
 		}
 		if($_foreground){
 			echo shell_exec(self::getCmdSudo()." apt update 2>&1");
 		}else{
 			$cmd .= self::getCmdSudo()." apt update\n";
 			$count++;
-			$cmd .= "echo $count > $progress_file\n";
+			$cmd .= 'echo '.$count.' > '.$progress_file."\n";
 		}
 		if(isset($_packages['pre-install'])){
 			if(isset($_packages['pre-install']['script'])){
 				if($_foreground){
+					echo shell_exec('sudo chmod +x '.__DIR__.'/../../'.$_packages['pre-install']['script'].' 2>&1');
 					echo shell_exec('sudo '.__DIR__.'/../../'.$_packages['pre-install']['script'].' 2>&1');
 				}else{
+					$cmd .= "sudo chmod +x ".__DIR__."/../../".$_packages['pre-install']['script']."\n";
 					$cmd .= "sudo ".__DIR__."/../../".$_packages['pre-install']['script']."\n";
 					$count++;
-					$cmd .= "echo $count > $progress_file\n";
+					$cmd .= 'echo '.$count.' > '.$progress_file."\n";
 				}
 			}
 		}
@@ -341,7 +343,7 @@ class system {
 			}else{
 				$cmd .= self::installPackage($info['type'],$info['name'])."\n";
 				$count++;
-				$cmd .= "echo $count > $progress_file\n";
+				$cmd .= 'echo '.$count.' > '.$progress_file."\n";
 			}
 		}
 		if(isset($_packages['post-install'])){
@@ -351,17 +353,19 @@ class system {
 				}else{
 					$cmd .= "sudo systemctl restart apache2\n";
 					$count++;
-					$cmd .= "echo $count > $progress_file\n";
+					$cmd .= 'echo'.$count.' > '.$progress_file."\n";
 				}
 			}
 			if(isset($_packages['post-install']['script'])){
 				$has_something_todo = true;
 				if($_foreground){
+					echo shell_exec('sudo chmod +x '.__DIR__.'/../../'.$_packages['post-install']['script'].' 2>&1');
 					echo shell_exec('sudo '.__DIR__.'/../../'.$_packages['post-install']['script'].' 2>&1');
 				}else{
+					$cmd .= "sudo chmod +x ".__DIR__."/../../".$_packages['post-install']['script']."\n";
 					$cmd .= "sudo ".__DIR__."/../../".$_packages['post-install']['script']."\n";
 					$count++;
-					$cmd .= "echo $count > $progress_file\n";
+					$cmd .= 'echo '.$count.' > '.$progress_file."\n";
 				}
 			}
 		}
