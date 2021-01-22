@@ -425,34 +425,13 @@ $('.pullInstall').on('click', function() {
     },
     success: function(data) {
       if (data.number > 0) {
-        promptEndUpdate()
+        jeedomReloadPrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
       } else {
         alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}', level: 'success'})
       }
     }
   })
 })
-function promptEndUpdate() {
-  bootbox.confirm({
-    title: '<h4><i class="success fas fa-check-circle"></i> {{De nouveaux plugins ont été installés.}}</h4>',
-    message: '{{Voulez vous recharger la page maintenant ?}}',
-    buttons: {
-      confirm: {
-        label: '{{Recharger}}',
-        className: 'btn-success'
-      },
-      cancel: {
-        label: '{{Rester sur la page}}',
-        className: 'btn-info'
-      }
-    },
-    callback: function(result) {
-      if (result) {
-        window.location.reload(true)
-      }
-    }
-  })
-}
 
 $('.gotoUrlStore').on('click', function() {
   window.open($(this).attr('data-href'),'_blank');

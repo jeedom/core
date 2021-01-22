@@ -1162,6 +1162,28 @@ function showHelpModal(_name, _plugin) {
   }
 }
 
+function jeedomReloadPrompt(_title) {
+  bootbox.confirm({
+    title: '<h4><i class="success fas fa-check-circle"></i> ' + _title + '</h4>',
+    message: '{{Voulez vous recharger la page maintenant ?}}',
+    buttons: {
+      confirm: {
+        label: '{{Recharger}}',
+        className: 'btn-success'
+      },
+      cancel: {
+        label: '{{Rester sur la page}}',
+        className: 'btn-info'
+      }
+    },
+    callback: function(result) {
+      if (result) {
+        window.location.reload(true)
+      }
+    }
+  })
+}
+
 function chooseIcon(_callback, _params) {
   if ($("#mod_selectIcon").length == 0) {
     $('#div_pageContainer').append('<div id="mod_selectIcon"></div>')

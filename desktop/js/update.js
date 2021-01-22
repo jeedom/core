@@ -223,7 +223,7 @@ function getJeedomLog(_autoUpdate, _log) {
               clearTimeout(alertTimeout)
             }
             _autoUpdate = 0
-            promptEndUpdate()
+            jeedomReloadPrompt('{{Mise(s) à jour terminée(s) avec succès.}}')
           }
           //update error:
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
@@ -246,28 +246,6 @@ function getJeedomLog(_autoUpdate, _log) {
       } else {
         $('#bt_' + _log + 'Jeedom .fa-refresh').hide()
         $('.bt_' + _log + 'Jeedom .fa-refresh').hide()
-      }
-    }
-  })
-}
-
-function promptEndUpdate() {
-  bootbox.confirm({
-    title: '<h4><i class="success fas fa-check-circle"></i> {{Mise(s) à jour terminée(s) avec succès.}}</h4>',
-    message: '{{Voulez vous recharger la page maintenant ?}}',
-    buttons: {
-      confirm: {
-        label: '{{Recharger}}',
-        className: 'btn-success'
-      },
-      cancel: {
-        label: '{{Rester sur la page}}',
-        className: 'btn-info'
-      }
-    },
-    callback: function(result) {
-      if (result) {
-        window.location.reload(true)
       }
     }
   })
