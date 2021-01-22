@@ -536,11 +536,13 @@ user::isBan();
 
 			<div role="tabpanel" class="tab-pane" id="networktab">
 				<br/>
-				<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer}} <?php echo config::byKey('product_name'); ?> {{de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre}} <?php echo config::byKey('product_name'); ?>
-				</div>
+				<fieldset>
+					<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer}} <?php echo config::byKey('product_name'); ?> {{de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre}} <?php echo config::byKey('product_name'); ?>
+					</div>
+				</fieldset>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Accès interne}}</legend>
+					<legend>{{Accès interne}}</legend>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
@@ -584,21 +586,22 @@ user::isBan();
 						</div>
 					</fieldset>
 				</form>
+
 				<div class="row">
 					<div class="col-sm-6">
-						<legend>{{Gestion avancée}}</legend>
-						<table id="networkInterfacesTable" class="table table-condensed table-bordered">
-							<thead>
-								<tr>
-									<th>{{Interface}}</th>
-									<th>{{IP}}</th>
-									<th>{{Mac}}</th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-						</table>
-						<form class="form-horizontal">
-							<fieldset>
+						<fieldset>
+							<legend>{{Gestion avancée}}</legend>
+							<table id="networkInterfacesTable" class="table table-condensed table-bordered">
+								<thead>
+									<tr>
+										<th>{{Interface}}</th>
+										<th>{{IP}}</th>
+										<th>{{Mac}}</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+							<form class="form-horizontal">
 								<div class="form-group has-error">
 									<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
 									<div class="col-xs-4">
@@ -617,8 +620,8 @@ user::isBan();
 										<input class="configKey form-control" data-l1key="market::dns::mtu" />
 									</div>
 								</div>
-							</fieldset>
-						</form>
+							</form>
+						</fieldset>
 					</div>
 					<div class="col-sm-6">
 						<form class="form-horizontal">
@@ -631,7 +634,7 @@ user::isBan();
 									if ($configs[$key . '::enable'] == 0) {
 										continue;
 									}
-									echo '<legend>{{DNS (proxy)}} ' . $value['name'] . '</legend>';
+									echo '<legend>{{Gestion DNS}} ' . $value['name'] . '</legend>';
 									if ($configs['dns::token'] == '') {
 										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le }}<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
 										continue;
@@ -666,7 +669,7 @@ user::isBan();
 						</form>
 						<form class="form-horizontal">
 							<fieldset>
-								<legend>{{Utiliser un proxy pour le market}}</legend>
+								<legend>{{Utiliser un proxy pour le Market}}</legend>
 								<div class="form-group">
 									<label class="col-xs-4 control-label">{{Activer le proxy}}</label>
 									<div class="col-xs-1">
