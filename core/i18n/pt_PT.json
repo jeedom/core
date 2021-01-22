@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Enviar histórico",
         "Expressions": "Expressões",
         "Quote automatique": "Cotação Automática",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gerenciar automaticamente \"e\" strings em expressões (habilitado por padrão)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gerenciar automaticamente aspas para strings em expressões (habilitado por padrão)",
         "Délai d'attente après génération de la page": "Tempo de espera após a geração da página",
         "Nettoyer les rapports plus anciens de": "Limpe relatórios mais antigos de",
         "Profondeur pour les scénarios": "Profundidade para cenários",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nome do arquivo ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuração de plug-in",
         "Rafraichir": "Refrescar",
         "Documentation": "Documentação",
         "Changelog": "Changelog",
@@ -2521,16 +2520,15 @@
         "Logs": "Toras",
         "Heartbeat (min)": "Batimento cardíaco (min)",
         "Redémarrer démon": "Reiniciar demônio",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Tem certeza de que quer apagar este plugin?",
-        "Gestion Plugins": "Gerenciamento de plugins",
-        "Market": "Mercado",
         "Synchronisation réussi. Nombre de plugins installé : ": "Sincronização bem sucedida. Número de plugins instalados:",
+        "Ajouter un plugin": "Adicionar um plugin",
+        "Gestion Plugins": "Gerenciamento de plugins",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Tem certeza de que quer apagar este plugin?",
         "Sauvegarde de la configuration des panneaux effectuée": "De salvar a configuração dos painéis realizados",
         "Sauvegarde des fonctionalités effectuée": "A funcionalidade de backup realizado",
         "Sauvegarde de la configuration des logs effectuée": "Salvar a configuração dos logs realizados",
         "Log du plugin": "Plug-in log",
-        "Sauvegarde effectuée": "Backup feito",
-        "Ajouter un plugin": "Adicionar um plugin"
+        "Sauvegarde effectuée": "Backup feito"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configurando um mapa 3D",

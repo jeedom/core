@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Envoyer Historique",
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)",
         "Délai d'attente après génération de la page": "ページ生成後の待機時間",
         "Nettoyer les rapports plus anciens de": "からの古いレポートをクリーンアップする",
         "Profondeur pour les scénarios": "シナリオの深さ",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuration du plugin",
         "Rafraichir": "リフレッシュ",
         "Documentation": "ドキュメンテーション",
         "Changelog": "変更履歴",
@@ -2521,16 +2520,15 @@
         "Logs": "ログ",
         "Heartbeat (min)": "ハートビート（分）",
         "Redémarrer démon": "デーモンを再起動する",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "このプラグインを削除してもよろしいですか？",
-        "Gestion Plugins": "プラグイン管理",
-        "Market": "市場",
         "Synchronisation réussi. Nombre de plugins installé : ": "同期に成功しました。インストールされているプラグインの数：",
+        "Ajouter un plugin": "プラグインを追加する",
+        "Gestion Plugins": "プラグイン管理",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "このプラグインを削除してもよろしいですか？",
         "Sauvegarde de la configuration des panneaux effectuée": "実行されたパネルの構成の保存",
         "Sauvegarde des fonctionalités effectuée": "実行された機能バックアップ",
         "Sauvegarde de la configuration des logs effectuée": "ログ構成が保存されました",
         "Log du plugin": "プラグインログ",
-        "Sauvegarde effectuée": "バックアップ完了",
-        "Ajouter un plugin": "プラグインを追加する"
+        "Sauvegarde effectuée": "バックアップ完了"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3Dプラン構成",

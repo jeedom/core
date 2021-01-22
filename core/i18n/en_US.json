@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Send History",
         "Expressions": "Expressions",
         "Quote automatique": "Automatic Quote",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Automatically manage \"and 'strings in expressions (enabled by default)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Automatically manage quotation marks for strings in expressions (enabled by default)",
         "Délai d'attente après génération de la page": "Waiting time after page generation",
         "Nettoyer les rapports plus anciens de": "Clean up reports older than",
         "Profondeur pour les scénarios": "Scenario depth",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "File name ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Plugin configuration",
         "Rafraichir": "Refresh",
         "Documentation": "Documentation",
         "Changelog": "Changelog",
@@ -2521,16 +2520,15 @@
         "Logs": "Logs",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Restart daemon",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Are you sure you want to delete this plugin?",
-        "Gestion Plugins": "Plugins management",
-        "Market": "Market",
         "Synchronisation réussi. Nombre de plugins installé : ": "Synchronization successful. Number of plugins installed:",
+        "Ajouter un plugin": "Add a plugin",
+        "Gestion Plugins": "Plugins management",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Are you sure you want to delete this plugin?",
         "Sauvegarde de la configuration des panneaux effectuée": "Saving of the configuration of the panels carried out",
         "Sauvegarde des fonctionalités effectuée": "Functionality backup performed",
         "Sauvegarde de la configuration des logs effectuée": "Log configuration saved",
         "Log du plugin": "Plugin log",
-        "Sauvegarde effectuée": "Backup completed",
-        "Ajouter un plugin": "Add a plugin"
+        "Sauvegarde effectuée": "Backup completed"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3D plan configuration",

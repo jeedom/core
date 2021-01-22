@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Envoyer Historique",
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)",
         "Délai d'attente après génération de la page": "Delai d'attente après génération de la page",
         "Nettoyer les rapports plus anciens de": "Nettoyer les rapports plus anciens de",
         "Profondeur pour les scénarios": "Mendalam untuk skenario",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuration du plugin",
         "Rafraichir": "Menyegarkan",
         "Documentation": "Dokumentasi",
         "Changelog": "Changelog",
@@ -2521,16 +2520,15 @@
         "Logs": "Logs",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Apakah Anda yakin ingin menghapus plugin ini?",
-        "Gestion Plugins": "Gestion Plugins",
-        "Market": "Market",
         "Synchronisation réussi. Nombre de plugins installé : ": "Synchronisation réussi. Nombre de plugins installé :",
+        "Ajouter un plugin": "Menambahkan plugin",
+        "Gestion Plugins": "Gestion Plugins",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Apakah Anda yakin ingin menghapus plugin ini?",
         "Sauvegarde de la configuration des panneaux effectuée": "Menyimpan konfigurasi panel dilakukan",
         "Sauvegarde des fonctionalités effectuée": "Fungsi backup dilakukan",
         "Sauvegarde de la configuration des logs effectuée": "Menyimpan konfigurasi log dilakukan",
         "Log du plugin": "Log Plugin",
-        "Sauvegarde effectuée": "Backup dibuat",
-        "Ajouter un plugin": "Menambahkan plugin"
+        "Sauvegarde effectuée": "Backup dibuat"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Konfigurasi peta 3D",

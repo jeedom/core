@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Envoyer Historique",
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)",
         "Délai d'attente après génération de la page": "Delai d'attente après génération de la page",
         "Nettoyer les rapports plus anciens de": "Nettoyer les rapports plus anciens de",
         "Profondeur pour les scénarios": "Senaryolar için derinlik",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuration du plugin",
         "Rafraichir": "Yenile",
         "Documentation": "Belgeleme",
         "Changelog": "Değişiklikler",
@@ -2521,16 +2520,15 @@
         "Logs": "Loglar",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Eğer bu eklentiyi silmek istediğinizden emin misiniz?",
-        "Gestion Plugins": "Eklenti yönetimi",
-        "Market": "Pazar",
         "Synchronisation réussi. Nombre de plugins installé : ": "Synchronisation réussi. Nombre de plugins installé :",
+        "Ajouter un plugin": "Eklenti ekle",
+        "Gestion Plugins": "Eklenti yönetimi",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Eğer bu eklentiyi silmek istediğinizden emin misiniz?",
         "Sauvegarde de la configuration des panneaux effectuée": "Gerçekleştirilen panellerin yapılandırmasını kaydetme",
         "Sauvegarde des fonctionalités effectuée": "Özelliklerin kaydı oluştu",
         "Sauvegarde de la configuration des logs effectuée": "Log ayarlarının kaydı yapıldı",
         "Log du plugin": "Ekletinin log\\'u",
-        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi",
-        "Ajouter un plugin": "Eklenti ekle"
+        "Sauvegarde effectuée": "Yedekleme gerçekleştirildi"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "3D harita Yapılandırılması",

@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Envoyer Historique",
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)",
         "Délai d'attente après génération de la page": "Délai d'attente après génération de la page",
         "Nettoyer les rapports plus anciens de": "Nettoyer les rapports plus anciens de",
         "Profondeur pour les scénarios": "Profondeur pour les scénarios",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuration du plugin",
         "Rafraichir": "Rafraichir",
         "Documentation": "Documentation",
         "Changelog": "Changelog",
@@ -2521,16 +2520,15 @@
         "Logs": "Logs",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Êtes-vous sûr de vouloir supprimer ce plugin ?",
-        "Gestion Plugins": "Gestion Plugins",
-        "Market": "Market",
         "Synchronisation réussi. Nombre de plugins installé : ": "Synchronisation réussi. Nombre de plugins installé : ",
+        "Ajouter un plugin": "Ajouter un plugin",
+        "Gestion Plugins": "Gestion Plugins",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Êtes-vous sûr de vouloir supprimer ce plugin ?",
         "Sauvegarde de la configuration des panneaux effectuée": "Sauvegarde de la configuration des panneaux effectuée",
         "Sauvegarde des fonctionalités effectuée": "Sauvegarde des fonctionalités effectuée",
         "Sauvegarde de la configuration des logs effectuée": "Sauvegarde de la configuration des logs effectuée",
         "Log du plugin": "Log du plugin",
-        "Sauvegarde effectuée": "Sauvegarde effectuée",
-        "Ajouter un plugin": "Ajouter un plugin"
+        "Sauvegarde effectuée": "Sauvegarde effectuée"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configuration du plan 3D",

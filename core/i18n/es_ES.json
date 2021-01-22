@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Enviar historial",
         "Expressions": "Expresiones",
         "Quote automatique": "Cotización automática",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Administra automáticamente \"y\" cadenas en expresiones (habilitado de forma predeterminada)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Administra automáticamente las comillas para cadenas en expresiones (habilitado de forma predeterminada)",
         "Délai d'attente après génération de la page": "Tiempo de espera después de la generación de la página",
         "Nettoyer les rapports plus anciens de": "Limpiar informes anteriores de",
         "Profondeur pour les scénarios": "Profundidad para escenarios",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nombre del archivo ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuración del complemento",
         "Rafraichir": "Actualizar",
         "Documentation": "Documentación",
         "Changelog": "Cambios",
@@ -2521,16 +2520,15 @@
         "Logs": "Registros",
         "Heartbeat (min)": "Latido del corazón (min)",
         "Redémarrer démon": "Reiniciar demonio",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "¿Estás seguro de que deseas eliminar este complemento?",
-        "Gestion Plugins": "Gestión de complementos",
-        "Market": "Mercado",
         "Synchronisation réussi. Nombre de plugins installé : ": "Sincronización exitosa. Número de complementos instalados:",
+        "Ajouter un plugin": "Añadir un plugin",
+        "Gestion Plugins": "Gestión de complementos",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "¿Estás seguro de que deseas eliminar este complemento?",
         "Sauvegarde de la configuration des panneaux effectuée": "Almacenamiento de la configuración de los paneles realizados",
         "Sauvegarde des fonctionalités effectuée": "Guardado de características efectuada",
         "Sauvegarde de la configuration des logs effectuée": "Copia de seguridad de la configuracion de los logs hecho",
         "Log du plugin": "Registro del plugin",
-        "Sauvegarde effectuée": "Guardado correctamente",
-        "Ajouter un plugin": "Añadir un plugin"
+        "Sauvegarde effectuée": "Guardado correctamente"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Configuración de un mapa en 3D",

@@ -1709,7 +1709,7 @@
         "Envoyer Historique": "Envoyer Historique",
         "Expressions": "Expressions",
         "Quote automatique": "Quote automatique",
-        "Gérer automatiquement les &quot; et ' des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les \" et ' des chaines de caractères dans les expressions (activé par défaut)",
+        "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)",
         "Délai d'attente après génération de la page": "Delai d'attente après génération de la page",
         "Nettoyer les rapports plus anciens de": "Nettoyer les rapports plus anciens de",
         "Profondeur pour les scénarios": "Глубина для сценариев",
@@ -2493,7 +2493,6 @@
         "Nom du fichier ?": "Nom du fichier ?"
     },
     "desktop\/js\/plugin.js": {
-        "Configuration du plugin": "Configuration du plugin",
         "Rafraichir": "Обновить",
         "Documentation": "документация",
         "Changelog": "Изменения",
@@ -2521,16 +2520,15 @@
         "Logs": "Журналы",
         "Heartbeat (min)": "Heartbeat (min)",
         "Redémarrer démon": "Redémarrer démon",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Вы уверены, что хотите удалить этот плагин?",
-        "Gestion Plugins": "Gestion Plugins",
-        "Market": "Маркет",
         "Synchronisation réussi. Nombre de plugins installé : ": "Synchronisation réussi. Nombre de plugins installé :",
+        "Ajouter un plugin": "Добавить плагин",
+        "Gestion Plugins": "Gestion Plugins",
+        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Вы уверены, что хотите удалить этот плагин?",
         "Sauvegarde de la configuration des panneaux effectuée": "Сохранение конфигурации панелей, выполненных",
         "Sauvegarde des fonctionalités effectuée": "Функциональные возможности, выполняемые резервное копирование",
         "Sauvegarde de la configuration des logs effectuée": "Настройки логов сохранены",
         "Log du plugin": "Вход плагин",
-        "Sauvegarde effectuée": "Резервное копирование завершено",
-        "Ajouter un plugin": "Добавить плагин"
+        "Sauvegarde effectuée": "Резервное копирование завершено"
     },
     "desktop\/js\/plan3d.js": {
         "Configuration du plan 3D": "Настройка 3D-карты",
