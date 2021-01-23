@@ -21,10 +21,16 @@ var $btGlobalLogStopStart = $('#bt_globalLogStopStart')
 var $rawLogCheck = $('#brutlogcheck')
 $rawLogCheck.on('click').on('click', function () {
   $rawLogCheck.attr('autoswitch', 0)
-})
 
-$('#bt_downloadLog').click(function() {
-  window.open('core/php/downloadFile.php?pathfile=log/' + $('.li_log.active').attr('data-log'), "_blank", null)
+  var scroll = $('#pre_globallog').scrollTop()
+  jeedom.log.autoupdate({
+    log: $('li.li_log.active').attr('data-log'),
+    display: $('#pre_globallog'),
+    search: $('#in_searchGlobalLog'),
+    control: $btGlobalLogStopStart,
+    once: 1
+  })
+  $('#pre_globallog').scrollTop(scroll)
 })
 
 $(".li_log").on('click', function() {
@@ -48,6 +54,10 @@ $('#bt_resetLogFilterSearch').on('click', function () {
 
 $('#bt_resetGlobalLogSearch').on('click', function () {
   $('#in_searchGlobalLog').val('').keyup()
+})
+
+$('#bt_downloadLog').click(function() {
+  window.open('core/php/downloadFile.php?pathfile=log/' + $('.li_log.active').attr('data-log'), "_blank", null)
 })
 
 $("#bt_clearLog").on('click', function(event) {
@@ -87,6 +97,7 @@ $("#bt_removeAllLog").on('click', function(event) {
   })
 })
 
+//autoclick first log:
 $(function() {
   var logfile = getUrlVars('logfile')
   if ($('#div_displayLogList .li_log[data-log="'+logfile+'"]').length) {

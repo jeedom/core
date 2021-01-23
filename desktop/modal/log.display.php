@@ -37,6 +37,7 @@ if(init('log','event') == 'event'){
   <span class="input-group-btn" style="display: inline;">
     <span class="label-sm">{{Log brut}}</span>
     <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
+    <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
     <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
     <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
     </a><a class="btn btn-success btn-sm" id="bt_logdisplaydownloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
@@ -51,25 +52,35 @@ if(init('log','event') == 'event'){
 var $rawLogCheck = $('#brutlogcheck')
 $rawLogCheck.on('click').on('click', function () {
   $rawLogCheck.attr('autoswitch', 0)
+
+  var scroll = $('#pre_eventlog').scrollTop()
+  jeedom.log.autoupdate({
+    log: log_display_name,
+    display: $('#pre_eventlog'),
+    search: $('#in_eventLogSearch'),
+    control: $('#bt_eventLogStopStart'),
+    once: 1
+  })
+  $('#pre_eventlog').scrollTop(scroll)
 })
 
 jeedom.log.autoupdate({
-  log : log_display_name,
-  default_search : log_default_search,
-  display : $('#pre_eventlog'),
-  search : $('#in_eventLogSearch'),
-  control : $('#bt_eventLogStopStart'),
+  log: log_display_name,
+  default_search: log_default_search,
+  display: $('#pre_eventlog'),
+  search: $('#in_eventLogSearch'),
+  control: $('#bt_eventLogStopStart')
 })
 
 $("#bt_logdisplayclearLog").on('click', function(event) {
   jeedom.log.clear({
-    log : log_display_name,
+    log: log_display_name
   })
 })
 
 $("#bt_logdisplayremoveLog").on('click', function(event) {
   jeedom.log.remove({
-    log : log_display_name,
+    log: log_display_name
   })
 })
 

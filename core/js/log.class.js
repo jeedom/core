@@ -138,51 +138,55 @@ jeedom.log.clear = function (_params) {
 }
 
 jeedom.log.autoupdate = function (_params) {
-  if(!isset(_params.callNumber)){
-    _params.callNumber = 0;
+  if (!isset(_params['once'])) {
+    _params['once'] = 0
   }
-  if(!isset(_params.log)){
-    console.log('[jeedom.log.autoupdate] No logfile');
-    return;
+  if (!isset(_params.callNumber)) {
+    _params.callNumber = 0
   }
-  if(!isset(_params.display)){
-    console.log('[jeedom.log.autoupdate] No display');
-    return;
+  if (!isset(_params.log)) {
+    console.log('[jeedom.log.autoupdate] No logfile')
+    return
+  }
+  if (!isset(_params.display)) {
+    console.log('[jeedom.log.autoupdate] No display')
+    return
   }
   if (!_params['display'].is(':visible')) {
-    return;
+    return
   }
-  if(_params.callNumber > 0 && isset(_params['control']) && _params['control'].attr('data-state') != 1){
-    return;
+  if (_params.callNumber > 0 && isset(_params['control']) && _params['control'].attr('data-state') != 1) {
+    return
   }
-  if(_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')]) && jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')].log != _params.log){
-    return;
+  if (_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')]) && jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')].log != _params.log) {
+    return
   }
-  if(_params.callNumber == 0){
-    if(isset(_params.default_search)){
+  if (_params.callNumber == 0) {
+    if (isset(_params.default_search)) {
       _params['search'].value(_params.default_search);
-    }else{
+    } else {
       _params['search'].value('');
     }
     _params.display.scrollTop(_params.display.height() + 200000);
-    if(_params['control'].attr('data-state') == 0){
-      _params['control'].attr('data-state',1);
+    if (_params['control'].attr('data-state') == 0 && _params['once'] == 0) {
+      _params['control'].attr('data-state', 1);
     }
-    _params['control'].off('click').on('click',function(){
-      if($(this).attr('data-state') == 1){
+    _params['control'].off('click').on('click',function() {
+      if ($(this).attr('data-state') == 1) {
         $(this).attr('data-state',0);
         $(this).removeClass('btn-warning').addClass('btn-success');
         $(this).html('<i class="fa fa-play"></i> {{Reprendre}}');
-      }else{
+      } else {
         $(this).removeClass('btn-success').addClass('btn-warning');
         $(this).html('<i class="fa fa-pause"></i> {{Pause}}');
         $(this).attr('data-state',1);
         _params.display.scrollTop(_params.display.height() + 200000);
+        _params['once'] = 0;
         jeedom.log.autoupdate(_params);
       }
     });
 
-    _params['search'].off('keypress').on('keypress',function(){
+    _params['search'].off('keypress').on('keypress',function() {
       if(_params['control'].attr('data-state') == 0){
         _params['control'].trigger('click');
       }
@@ -191,18 +195,18 @@ jeedom.log.autoupdate = function (_params) {
   _params.callNumber++;
   jeedom.log.currentAutoupdate[_params.display.uniqueId().attr('id')] = {log : _params.log};
 
-  if(_params.callNumber > 0 && (_params.display.scrollTop() + _params.display.innerHeight() + 1) < _params.display[0].scrollHeight){
-    if(_params['control'].attr('data-state') == 1){
+  if (_params.callNumber > 0 && (_params.display.scrollTop() + _params.display.innerHeight() + 1) < _params.display[0].scrollHeight) {
+    if (_params['control'].attr('data-state') == 1) {
       _params['control'].trigger('click');
     }
     return;
   }
 
   jeedom.log.get({
-    log : _params.log,
-    slaveId : _params.slaveId,
-    global : (_params.callNumber == 1),
-    success : function(result) {
+    log: _params.log,
+    slaveId: _params.slaveId,
+    global: (_params.callNumber == 1),
+    success: function(result) {
       var log = ''
       var line
       var isSysLog = (_params.display[0].id == 'pre_globallog') ? true : false
@@ -249,15 +253,17 @@ jeedom.log.autoupdate = function (_params) {
         _params.display.text(log)
       }
 
-      _params.display.scrollTop(_params.display.height() + 200000);
-      if (jeedom.log.timeout !== null) {
-        clearTimeout(jeedom.log.timeout)
+      if (_params['once'] != 1) {
+        _params.display.scrollTop(_params.display.height() + 200000);
+        if (jeedom.log.timeout !== null) {
+          clearTimeout(jeedom.log.timeout)
+        }
+        jeedom.log.timeout = setTimeout(function() {
+          jeedom.log.autoupdate(_params)
+        }, 1000)
       }
-      jeedom.log.timeout = setTimeout(function() {
-        jeedom.log.autoupdate(_params)
-      }, 1000)
     },
-    error : function(){
+    error: function(){
       if (jeedom.log.timeout !== null) {
         clearTimeout(jeedom.log.timeout);
       }

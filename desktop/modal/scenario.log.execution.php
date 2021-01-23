@@ -31,6 +31,7 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
   <span class="input-group-btn" style="display: inline;">
     <span class="label-sm">{{Log brut}}</span>
     <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
+    <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
     <input class="input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
     <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
     </a><a class="btn btn-warning btn-sm" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
@@ -45,12 +46,24 @@ sendVarToJs('scenarioLog_scenario_id', init('scenario_id'));
 var $rawLogCheck = $('#brutlogcheck')
 $rawLogCheck.on('click').on('click', function () {
   $rawLogCheck.attr('autoswitch', 0)
+
+  var scroll = $('#pre_scenariolog').scrollTop()
+  jeedom.log.autoupdate({
+    log: 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
+    display: $('#pre_scenariolog'),
+    search: $('#in_scenarioLogSearch'),
+    control: $('#bt_scenarioLogStopStart'),
+    once: 1
+  })
+  $('#pre_scenariolog').scrollTop(scroll)
 })
+
+
 jeedom.log.autoupdate({
-  log : 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
-  display : $('#pre_scenariolog'),
-  search : $('#in_scenarioLogSearch'),
-  control : $('#bt_scenarioLogStopStart'),
+  log: 'scenarioLog/scenario'+scenarioLog_scenario_id+'.log',
+  display: $('#pre_scenariolog'),
+  search: $('#in_scenarioLogSearch'),
+  control: $('#bt_scenarioLogStopStart')
 })
 
 $('#bt_resetScenarioLogSearch').on('click', function () {
@@ -59,7 +72,7 @@ $('#bt_resetScenarioLogSearch').on('click', function () {
 
 $('#bt_scenarioLogEmpty').on('click', function() {
   jeedom.scenario.emptyLog({
-    id: <?php echo init('scenario_id') ?>,
+    id: scenarioLog_scenario_id,
     error: function(error) {
       $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'})
     },
