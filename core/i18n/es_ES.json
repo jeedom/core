@@ -3754,6 +3754,8 @@
         "Erreur lors de l\\'exécution de ": "Error al ejecutar",
         ". Détails : ": "Detalles:",
         " avec les paramètres ": "con los parámetros",
+        "Désactivation de <a href=": "<html>Desactivación de",
+        "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque no respondió o respondió incorrectamente durante los últimos 3 intentos",
         "Erreur exécution de la commande ": "Error de ejecución del comando",
         "Aucun paramètre optionnel disponible.": "No hay parámetros opcionales disponibles",
         "Aucune description trouvée pour ce Widget.": "No se encontró una descripción para este widget",

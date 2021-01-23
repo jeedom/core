@@ -3754,6 +3754,8 @@
         "Erreur lors de l\\'exécution de ": "Yürütülürken hata oluştu",
         ". Détails : ": "Detaylar:",
         " avec les paramètres ": "parametreler ile birlikde",
+        "Désactivation de <a href=": "Désactivation de <a href=",
+        "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
         "Erreur exécution de la commande ": "Komut yürütme hatası",
         "Aucun paramètre optionnel disponible.": "Aucun paramètre optionnel disponible",
         "Aucune description trouvée pour ce Widget.": "Aucune description trouvée pour ce Widget",

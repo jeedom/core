@@ -3754,6 +3754,8 @@
         "Erreur lors de l\\'exécution de ": "Fehler beim Ausführen",
         ". Détails : ": "Details:",
         " avec les paramètres ": "mit den Parametern",
+        "Désactivation de <a href=": "<html>Deaktivierung von",
+        "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "weil es in den letzten 3 Versuchen nicht oder falsch geantwortet hat",
         "Erreur exécution de la commande ": "Befehlsausführungsfehler",
         "Aucun paramètre optionnel disponible.": "Keine optionalen Parameter verfügbar",
         "Aucune description trouvée pour ce Widget.": "Für dieses Widget wurde keine Beschreibung gefunden",
