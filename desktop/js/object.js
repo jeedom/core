@@ -539,7 +539,7 @@ function addEqlogicsInfo(_id, _objName, _summay) {
       summarySelect += '</ul>'
 
       var nbEqs = eqLogics.length
-      var thisEq, thisId, thisEqName, panel, nbCmds, humanName
+      var thisEq, thisId, thisEqName, panel, nbCmds, ndCmdsInfo, humanName
       for (var i=0; i<nbEqs; i++) {
         thisEq = eqLogics[i]
         thisId = thisEq.id
@@ -556,9 +556,11 @@ function addEqlogicsInfo(_id, _objName, _summay) {
         panel += '<div class="panel-body">'
 
         nbCmds = thisEq.cmds.length
+        ndCmdsInfo = 0
         for (var j=0; j<nbCmds; j++) {
           if (thisEq.cmds[j].type != 'info') continue
 
+          ndCmdsInfo += 1
           humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
           panel += '<form class="form-horizontal">'
           panel += '<div class="form-group" data-cmdname="'+humanName+'">'
@@ -574,7 +576,7 @@ function addEqlogicsInfo(_id, _objName, _summay) {
         panel += '</div>'
         panel += '</div>'
 
-        $('#eqLogicsCmds').append(panel)
+        if (ndCmdsInfo > 0) $('#eqLogicsCmds').append(panel)
       }
 
       //set select values:
