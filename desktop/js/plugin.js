@@ -571,7 +571,6 @@ $('#bt_savePluginLogConfig').off('click').on('click', function() {
 
 $('#div_configLog').on({
   'click': function(event) {
-    console.log('log click')
     if ($('#md_modal').is(':visible')) {
       $('#md_modal2').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
     } else {
