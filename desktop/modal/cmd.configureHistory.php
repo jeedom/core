@@ -17,16 +17,8 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$count = array('history' => 0, 'timeline' => 0);
+$count = array('history' => config::getHistorizedCmdNum(), 'timeline' => config::getTimelinedCmdNum());
 $cmds = cmd::all();
-foreach ($cmds as $cmd) {
-  if ($cmd->getType() == 'info' && $cmd->getIsHistorized()) {
-    $count['history']++;
-  }
-  if ($cmd->getConfiguration('timeline::enable')) {
-    $count['timeline']++;
-  }
-}
 ?>
 
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
@@ -223,7 +215,7 @@ function setTableParser() {
 
 $(function() {
   setTableParser()
-  initTooltips($tableCmdConfigureHistory)
+  //initTooltips($tableCmdConfigureHistory)
   jeedom.timeline.autocompleteFolder()
   setTimeout(function() {
     $tableCmdConfigureHistory.closest('.ui-dialog').resize()
