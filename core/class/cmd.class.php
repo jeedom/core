@@ -1114,8 +1114,8 @@ class cmd {
 				$numberTryWithoutSuccess = $eqLogic->getStatus('numberTryWithoutSuccess', 0);
 				$eqLogic->setStatus('numberTryWithoutSuccess', $numberTryWithoutSuccess);
 				if ($numberTryWithoutSuccess >= config::byKey('numberOfTryBeforeEqLogicDisable')) {
-					$message = 'Désactivation de <a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getName();
-					$message .= '</a> car il n\'a pas répondu ou mal répondu lors des 3 derniers essais';
+					$message = __('Désactivation de <a href="', __FILE__) . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getName();
+					$message .= '</a> ' . __('car il n\'a pas répondu ou mal répondu lors des 3 derniers essais', __FILE__);
 					message::add($type, $message);
 					$eqLogic->setIsEnable(0);
 					$eqLogic->save();
