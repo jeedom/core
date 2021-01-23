@@ -22,7 +22,7 @@ $cmds = cmd::all();
 ?>
 
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
+<a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
 <div class="center">
   <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
 </div>
@@ -78,7 +78,7 @@ $cmds = cmd::all();
       //timeline:
       $tr .= '<td>';
       $tr .= '<input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="timeline::enable" '.(($cmd->getConfiguration('timeline::enable')) ? 'checked' : '').' />';
-      $tr .= ' <input class="cmdAttr input-sm form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
+      $tr .= ' <input class="cmdAttr input-xs form-control" data-l1key="configuration" data-l2key="timeline::folder" value="'.$cmd->getConfiguration('timeline::folder').'" style="width:80%;display:inline-block" placeholer="{{Dossier}}"/>';
       $tr .= '</td>';
 
       //Invert:
@@ -93,7 +93,7 @@ $cmds = cmd::all();
       if ($cmd->getType() == 'info' && $cmd->getSubType() == 'numeric') {
         $confHistorized = $cmd->getConfiguration('historizeMode');
         $tr .= '<div class="form-group">';
-        $tr .= '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historizeMode">';
+        $tr .= '<select class="form-control cmdAttr input-xs" data-l1key="configuration" data-l2key="historizeMode">';
         $tr .= '<option value="avg" '.(($confHistorized == 'avg') ? 'selected' : '').'>{{Moyenne}}</option>';
         $tr .= '<option value="min" '.(($confHistorized == 'min') ? 'selected' : '').'>{{Minimum}}</option>';
         $tr .= '<option value="max" '.(($confHistorized == 'max') ? 'selected' : '').'>{{Maximum}}</option>';
@@ -106,7 +106,7 @@ $cmds = cmd::all();
       $tr .= '<td>';
       if ($cmd->getType() == 'info') {
         $confHistoryPurge = $cmd->getConfiguration('historyPurge');
-        $tr .= '<select class="form-control cmdAttr input-sm" data-l1key="configuration" data-l2key="historyPurge">';
+        $tr .= '<select class="form-control cmdAttr input-xs" data-l1key="configuration" data-l2key="historyPurge">';
         $tr .= '<option value="-1 day" '.(($confHistoryPurge == '-1 day') ? 'selected' : '').'>{{1 jour}}</option>';
         $tr .= '<option value="-7 days" '.(($confHistoryPurge == '-7 days') ? 'selected' : '').'>{{7 jours}}</option>';
         $tr .= '<option value="-1 month" '.(($confHistoryPurge == '-1 month') ? 'selected' : '').'>{{1 mois}}</option>';
@@ -122,9 +122,9 @@ $cmds = cmd::all();
 
       //Actions:
       $tr .= '<td>';
-      $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
+      $tr .= '<a class="btn btn-default btn-xs pull-right cursor bt_configureHistoryAdvanceCmdConfiguration" data-id="'  .$cmd->getId(). '" title="{{Configuration de la commande}}"><i class="fas fa-cogs"></i></a>';
       if ($cmd->getType() == 'info') {
-        $tr .= '<a class="btn btn-default btn-sm pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
+        $tr .= '<a class="btn btn-default btn-xs pull-right cursor bt_configureHistoryExportData" data-id="' .$cmd->getId(). '" title="{{Exporter la commande}}"><i class="fas fa-share export"></i></a>';
       }
       $tr .= '</td>';
       $tr .= '</tr>';

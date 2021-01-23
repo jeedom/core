@@ -2539,7 +2539,7 @@
 
   .input-xs {
     height: 22px;
-    padding: 5px 5px;
+    padding: 1px 5px !important;
     font-size: 12px;
     line-height: 1.5;
   }
