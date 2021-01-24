@@ -22,7 +22,7 @@ if (!isConnect()) {
 
 <div id="div_alertObjectSummary"></div>
 <a class="btn btn-success pull-right btn-sm" id="bt_saveSummaryObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-<table class="table table-bordered table-condensed tablesorter" id="table_ObjectSummary">
+<table id="table_ObjectSummary" class="table table-bordered table-condensed tablesorter stickyHead">
   <thead>
     <tr>
       <th>{{ID}}</th>

@@ -26,7 +26,7 @@ sendVarToJS([
 
 <div style="display: none;" id="div_dataStoreManagementAlert"></div>
 <a class="btn btn-xs pull-right" id="bt_dataStoreManagementAdd" style="margin-bottom: 5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-<table id="table_dataStore" class="table table-condensed table-bordered tablesorter" style="width:100%; min-width:100%">
+<table id="table_dataStore" class="table table-condensed table-bordered tablesorter stickyHead" style="width:100%; min-width:100%">
   <thead>
     <tr>
       <th data-sorter="input">{{Nom}}</th>

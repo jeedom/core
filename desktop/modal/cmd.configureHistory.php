@@ -27,7 +27,7 @@ $cmds = cmd::all();
   <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
 </div>
 <br/>
-<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureHistory">
+<table id="table_cmdConfigureHistory" class="table table-bordered table-condensed tablesorter stickyHead">
   <thead>
     <tr>
       <th>{{Nom}}</th>

@@ -2838,6 +2838,11 @@
     top: 0;
     z-index: 5;
   }
+  table.tablesorter.stickyHead > thead {
+    position: sticky;
+    top: -14px;
+    z-index: 5;
+  }
 
   ul.nav.nav-tabs li,
   .nav-tabs > li > a {

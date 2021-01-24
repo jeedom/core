@@ -28,7 +28,7 @@ if (!isConnect()) {
   </span>
 </div>
 <br/><br/>
-<table class="table table-bordered table-condensed tablesorter" id="table_scenarioSummary">
+<table id="table_scenarioSummary" class="table table-bordered table-condensed tablesorter stickyHead">
   <thead>
     <tr>
       <th>{{ID}}</th>
