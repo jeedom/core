@@ -2206,7 +2206,7 @@
     right: 10px;
     padding: 5px;
     height: 40px !important;
-    z-index: 10;
+    z-index: 15;
     background: rgba(var(--panel-bg-color), var(--opacity));
   }
 
