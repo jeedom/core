@@ -207,7 +207,7 @@ class system {
 				if(strpos($infos[1],':') !== false){
 					$infos[1] = explode(':',$infos[1])[0];
 				}
-				self::$_installPackage[$_type][$infos[1]] = array(
+				self::$_installPackage[$_type][mb_strtolower($infos[1])] = array(
 					'version' => $infos[2]
 				);
 			}
@@ -219,7 +219,7 @@ class system {
 				if(!isset($infos[0]) || !isset($infos[1])){
 					continue;
 				}
-				self::$_installPackage[$_type][$infos[0]] = array(
+				self::$_installPackage[$_type][mb_strtolower($infos[0])] = array(
 					'version' => $infos[1]
 				);
 			}
@@ -231,7 +231,7 @@ class system {
 				if(!isset($infos[0])){
 					continue;
 				}
-				self::$_installPackage[$_type][$infos[0]] = array(
+				self::$_installPackage[$_type][mb_strtolower($infos[0])] = array(
 					'version' => $infos[1]
 				);
 			}
