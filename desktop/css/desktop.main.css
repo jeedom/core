@@ -668,6 +668,18 @@
   }
 
 /* ____________________DASHBOARD */
+  body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
+  body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
+    background: rgba(var(--eq-bg-color), 1) !important;
+    border-bottom: 1px solid var(--el-defaultColor) !important;
+  }
+  body[data-coloredcats="0"] div.eqLogic-widget .widget-name > .reportModeHidden,
+  body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
+  body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i {
+    color: var(--link-color) !important;
+  }
+
+
   [data-page="dashboard"] div.col-md-12:empty {
     display:none;
   }
@@ -4513,6 +4525,14 @@
   .tooltipster-sidetip .tooltipster-content {
     color: var(--linkHoverLight-color);
     padding: 2px 8px 4px 8px;
+  }
+
+  body[data-coloredcats="0"] .tooltipster-sidetip .tooltipster-box {
+    background: rgba(var(--eq-bg-color), 1) !important;
+    border: 1px solid var(--el-defaultColor) !important;
+  }
+  body[data-coloredcats="0"] .tooltipster-sidetip .tooltipster-content {
+    color: var(--link-color) !important;
   }
 
 /* ____________________ROUNDING */
