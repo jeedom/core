@@ -246,6 +246,29 @@ class system {
 			if($type == 'post-install' || $type == 'pre-install'){
 				continue;
 			}
+			if($type == 'npm'){
+				foreach ($_packages[$type] as $package => $info) {
+					exec('cd '.__DIR__.'/../../'.$package.';npm list', $output, $return_var);
+					$found = 0;
+					if($return_var == 0){
+						$found = 1;
+					}
+					$return[$type.'::'.$package] = array(
+						'name' => $package,
+						'status' => $found,
+						'version' => 'N/A',
+						'type' => $type,
+						'needUpdate' => '',
+						'needVersion' => '',
+						'alternative_found' => '',
+						'optional' => isset($info['optional']) ? $info['optional'] : false,
+						'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
+						'fix' => ($found == 0) ?  self::installPackage($type,$package) : '',
+						'remark' => isset($info['remark']) ? __($info['remark'],'install/packages.json') : '',
+					);
+				}
+				continue;
+			}
 			$installPackage = self::getInstallPackage($type);
 			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
@@ -442,6 +465,8 @@ class system {
 			return self::getCmdSudo().' pip2 install --upgrade '.$_package;
 			case 'pip3':
 			return self::getCmdSudo().' pip3 install --upgrade '.$_package;
+			case 'npm':
+			return 'cd '.__DIR__.'/../../'.$_package.';'.self::getCmdSudo().' npm install';
 		}
 	}
 	
