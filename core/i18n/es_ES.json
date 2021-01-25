@@ -1573,6 +1573,8 @@
         "Centre verticalement le contenu des tuiles": "Centrar verticalmente el contenido de los mosaicos",
         "Icônes widgets colorées": "Iconos de widgets coloridos",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloración de iconos de widgets según su estado. <br> Editable por escenario, setColoredIcon ('Coloración de icono')",
+        "Catégories colorées": "Categorías coloreadas",
+        "Colorisation du titre des tuiles en fonction de la catégorie.": "Coloración del título de los mosaicos según la categoría",
         "Options": "Opciones",
         "Affichage tableau": "Pantalla de mesa",
         "Affiche en mode tableau les pages du menu Outils et les plugins supportés.": "Muestra en modo tabla las páginas del menú Herramientas y los complementos admitidos",

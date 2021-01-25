@@ -1573,6 +1573,8 @@
         "Centre verticalement le contenu des tuiles": "Zentrieren Sie den Inhalt der Kacheln vertikal",
         "Icônes widgets colorées": "Bunte Widget-Symbole",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Färbung von Widget-Symbolen nach ihrem Status. <br> Nach Szenario bearbeitbar, setColoredIcon ('Symbolfärbung')",
+        "Catégories colorées": "Farbige Kategorien",
+        "Colorisation du titre des tuiles en fonction de la catégorie.": "Einfärbung des Titels der Fliesen nach Kategorie",
         "Options": "Optionen",
         "Affichage tableau": "Tabellenanzeige",
         "Affiche en mode tableau les pages du menu Outils et les plugins supportés.": "Zeigt im Tabellenmodus die Seiten des Menüs Extras und die unterstützten Plugins an",
