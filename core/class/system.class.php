@@ -434,6 +434,9 @@ class system {
 	public static function installPackage($_type,$_package){
 		switch ($_type) {
 			case 'apt':
+			if($_package == 'nodejs' || $_package == 'npm'){
+				return self::getCmdSudo().' chmod +x '.__DIR__.'/../../script/install_nodejs.sh;'.self::getCmdSudo().' '.__DIR__.'/../../script/install_nodejs.sh';
+			}
 			return self::getCmdSudo().' apt install -o Dpkg::Options::="--force-confdef" -y '.$_package;
 			case 'pip2':
 			return self::getCmdSudo().' pip2 install --upgrade '.$_package;
