@@ -41,11 +41,11 @@ class repo_url {
 		),
 		'configuration' => array(
 			'core::url' => array(
-				'name' => 'URL core Jeedom',
+				'name' => 'URL core',
 				'type' => 'input',
 			),
 			'core::version' => array(
-				'name' => 'URL version core Jeedom',
+				'name' => 'URL version core',
 				'type' => 'input',
 			),
 		),
