@@ -466,7 +466,10 @@ class system {
 			case 'pip3':
 			return self::getCmdSudo().' pip3 install --upgrade '.$_package;
 			case 'npm':
-			return 'cd '.__DIR__.'/../../'.$_package.';'.self::getCmdSudo().' npm install';
+			if(!file_exists(__DIR__.'/../../'.$_package)){
+				return '';
+			}
+			return 'cd '.__DIR__.'/../../'.$_package.';rm -rf node_modules;'.self::getCmdSudo().' npm install;chown -R www-data:www-data';
 		}
 	}
 	
