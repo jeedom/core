@@ -18,6 +18,7 @@
 - **Resumos** : Possibilidade de definir um ícone diferente quando o resumo for nulo (sem venezianas abertas, sem luz acesa, etc).
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
+- **Categorias coloridas** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
 - **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Plugins podem usar esta nova função principal.
 - **Blocos de Código** : (Editor de arquivos, cenários, personalização avançada) Função de fallback de código (*dobradura de código*). Atalhos Ctrl + Y e Ctrl + I.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.

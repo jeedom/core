@@ -1306,6 +1306,8 @@
         "Possibilité de définir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc": "Possibility to define a different icon when the summary is null (no shutters open, no light on, etc",
         "Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif": "Possibility to never display the number to the right of the icon, or only if it is positive",
         "Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé": "The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value",
+        "Catégories colorées": "Colored categories",
+        "Nouvelle option en configuration \/ interface pour ne pas colorer le bandeau de titre des équipements": "New option in configuration \/ interface to not color the title banner of the equipment",
         "Affichage en tableau": "Table display",
         "Réglages → Système → Configuration \/ Interface, Options": "Settings → System → Configuration \/ Interface, Options",
         "Scénarios": "Scenarios",

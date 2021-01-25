@@ -18,6 +18,7 @@
 - **Summaries** : Possibility to define a different icon when the summary is null (no shutters open, no light on, etc).
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
+- **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
 - **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
