@@ -446,6 +446,12 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
 							</div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Catégories colorées}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Colorisation du titre des tuiles en fonction de la catégorie.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" />
+							</div>
 						</div>
 
 						<legend>{{Options}}</legend>

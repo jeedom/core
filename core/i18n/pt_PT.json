@@ -1573,6 +1573,8 @@
         "Centre verticalement le contenu des tuiles": "Centralize verticalmente o conteúdo dos blocos",
         "Icônes widgets colorées": "Ícones de widget colorido",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloração de ícones de widget de acordo com seu estado. <br> Editável por cenário, setColoredIcon ('Coloração de ícone')",
+        "Catégories colorées": "Categorias coloridas",
+        "Colorisation du titre des tuiles en fonction de la catégorie.": "Colorização do título dos tiles de acordo com a categoria",
         "Options": "Opções",
         "Affichage tableau": "Exibir mesa",
         "Affiche en mode tableau les pages du menu Outils et les plugins supportés.": "Exibe no modo de tabela as páginas do menu Ferramentas e os plug-ins suportados",

@@ -335,6 +335,11 @@ function setJeedomTheme() {
   } else {
     $body.attr('data-coloredIcons', 0)
   }
+  if (typeof jeedom.theme['interface::advance::coloredcats'] != 'undefined' && jeedom.theme['interface::advance::coloredcats'] == '1') {
+    $body.attr('data-coloredcats', 1)
+  } else {
+    $body.attr('data-coloredcats', 0)
+  }
 }
 
 function changeJeedomThemeAuto() {
