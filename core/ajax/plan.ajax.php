@@ -254,16 +254,17 @@ try {
 			mkdir($uploaddir, 0777);
 		}
 		shell_exec('rm -rf ' . $uploaddir . '/*');
-		$name = sha512(base64_encode(file_get_contents($_FILES['file']['tmp_name']))) . $extension;
+		$fileName = sha512(base64_encode(file_get_contents($_FILES['file']['tmp_name']))) . $extension;
+		$filePath = $uploaddir . '/' . $fileName;
 		$img_size = getimagesize($_FILES['file']['tmp_name']);
-		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $name)) {
-			throw new Exception(__('Impossible de déplacer le fichier temporaire dans : ', __FILE__) . $uploaddir . '/' . $name);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire dans : ', __FILE__) . $uploaddir . '/' . $fileName);
 		}
 		$plan->setDisplay('width', $img_size[0]);
 		$plan->setDisplay('height', $img_size[1]);
-		$plan->setDisplay('path', 'data/plan/plan_' . $plan->getId() . '/' . $name);
+		$plan->setDisplay('path', 'data/plan/plan_' . $plan->getId() . '/' . $fileName);
 		$plan->save();
-		ajax::success();
+		ajax::success(array('filepath' => $filePath));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));

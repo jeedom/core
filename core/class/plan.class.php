@@ -146,6 +146,14 @@ class plan {
 	}
 
 	public function remove() {
+		$link_type = $this->getLink_type();
+		if ($this->getLink_type() == 'image') {
+			$imgPath = $this->getDisplay('path', '');
+			if ($imgPath != '') {
+				@unlink(str_replace('data/plan/', __DIR__ . '/../../data/plan/', $imgPath));
+				@rmdir(__DIR__ . '/../../data/plan/plan_'.$this->getId());
+			}
+		}
 		DB::remove($this);
 	}
 

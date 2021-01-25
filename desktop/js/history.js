@@ -141,13 +141,35 @@ $(".li_history .remove").on('click', function() {
   })
 })
 
+//search filter opening:
+$('body').on({
+  'keyup': function(event) {
+    if ($(this).value() == '') {
+      $('.cmdList').hide()
+      $('.displayObject').find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+    } else {
+      $('.cmdList').show()
+      //let filtering job gone:
+      setTimeout(function() {
+        $('.cmdList').each(function() {
+          if ($(this).find('.li_history:visible').length > 0) {
+            $('.displayObject[data-object_id=' + $(this).attr('data-object_id') + ']').find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+          } else {
+            $('.displayObject[data-object_id=' + $(this).attr('data-object_id') + ']').find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+          }
+        })
+      }, 250)
+    }
+  }
+}, 'ul li input.filter')
+
 $('.displayObject').on('click', function() {
   var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
   if (list.is(':visible')) {
-    $(this).find('i.fa').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+    $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
     list.hide()
   } else {
-    $(this).find('i.fa').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+    $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
     list.show()
   }
 })

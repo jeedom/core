@@ -103,6 +103,12 @@ sendVarToJS('id', $plan->getId());
         </div>
       </div>
     </div>
+    <div class="form-group link_type link_image">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4 planImg">
+        <img src="" width="240px" height="auto" />
+      </div>
+    </div>
     <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
       <label class="col-lg-4 control-label">{{Autoriser la fenêtre de zoom}}</label>
       <div class="col-lg-2">
@@ -544,9 +550,16 @@ sendVarToJS('id', $plan->getId());
     url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + id,
     dataType: 'json',
     done: function(e, data) {
-      if (plan.plan.state != 'ok') {
-        $('#div_alertPlanConfigure').showAlert({message: plan.plan.result, level: 'danger'})
+      if (data.result.state != 'ok') {
+        $('#div_alertPlanConfigure').showAlert({message: data.result.result, level: 'danger'})
         return
+      }
+      if (isset(data.result.result.filepath)) {
+        var filePath = data.result.result.filepath
+        filePath = '/data/plan/' + filePath.split('/data/plan/')[1]
+        $('.planImg img').attr('src',filePath).show()
+      } else {
+        $('.planImg img').hide()
       }
     }
   })
@@ -616,6 +629,9 @@ sendVarToJS('id', $plan->getId());
           for (var i in plan.plan.configuration.action_other) {
             addActionPlanConfigure(plan.plan.configuration.action_other[i],'other')
           }
+        }
+        if (plan.plan.link_type == 'image') {
+          $('#fd_planConfigure .planImg img').attr('src', plan.plan.display.path).show()
         }
         if (plan.plan.link_type == 'text') {
           var code = $('.planAttr[data-l1key=display][data-l2key=text]')

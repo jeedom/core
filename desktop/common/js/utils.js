@@ -653,9 +653,14 @@ function setJeedomGlobalUI() {
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
-  $('body').on('click', '.objectSummaryParent',function() {
+  $('body').on('click', '.objectSummaryParent', function() {
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
-    loadPage('index.php?v=d&p=dashboard&summary='+$(this).data('summary')+'&object_id='+$(this).data('object_id'))
+
+    var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
+    if (window.location.href.includes('&btover=1')) {
+      url += '&btover=1'
+    }
+    loadPage(url)
   })
 
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
@@ -848,7 +853,12 @@ function datePickerInit() {
 
 //General functions__
 function normTextLower(_text) {
-  return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  try {
+    var result = _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+  } catch(error) {
+    var result = ''
+  }
+  return result
 }
 
 function linkify(inputText) {

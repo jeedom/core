@@ -309,7 +309,7 @@ function searchFor_variable(_searchFor) {
           interactResult.push({'humanName':result[i].usedBy.interactDef[sc]['humanName'], 'id':result[i].usedBy.interactDef[sc]['id']})
         }
         for (var sc in result[i].usedBy.eqLogic) {
-          eqlogicResult.push({'humanName':result[i].usedBy.eqLogic[sc]['humanName'], 'id':result[i].usedBy.eqLogic[sc]['id']})
+          eqlogicResult.push({'humanName':result[i].usedBy.eqLogic[sc]['humanName'], 'id':result[i].usedBy.eqLogic[sc]['link']})
         }
         for (var sc in result[i].usedBy.cmd) {
           cmdResult.push({'humanName':result[i].usedBy.cmd[sc]['humanName'], 'id':result[i].usedBy.cmd[sc]['id']})
@@ -669,7 +669,7 @@ $('#table_ScenarioSearch').on({
     var url = 'index.php?v=d&p=scenario&id=' + tr.attr('data-id')
     if (searchType != 'plugin') {
       var searchFor = $('#in_searchFor_'+searchType).val()
-      url += '&search=' + searchFor.replace('#', '')
+      url += '&search=' + encodeURI(searchFor.replace('#', ''))
     }
     window.open(url).focus()
   }

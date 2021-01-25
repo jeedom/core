@@ -1,5 +1,18 @@
 # Changelog Jeedom V4.1
 
+## 4.1.18
+
+- Bugfix historiques sur les Designs.
+- Bugfix recherche dans Analyse / Historique.
+- Bugfix recherche sur une variable, lien vers un équipement.
+- Bugfix des résumés colorés sur la synthèse.
+- Bugfix sur les commentaires de scénario avec json.
+- Bugfix sur les updates de résumé sur les aperçus mode Dashboard.
+- Bugfix des éléments *image* sur un design.
+- Ajout des options de groupement par heure pour les graphiques sur les vues.
+- Conservation du contexte de la Synthèse au clic sur les résumés.
+- Centrage des images de la Synthèse.
+
 ## 4.1.0
 
 ### Pré-requis

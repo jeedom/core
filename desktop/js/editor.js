@@ -236,8 +236,15 @@ $('#bt_createFile').off('click').on('click', function() {
   if (editorType == 'widget') {
     $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open')
     $('#sel_widgetType').trigger('change')
+
+    $("#md_widgetCreate").keydown(function (event) {
+        if (event.keyCode == $.ui.keyCode.ENTER) {
+            $('#bt_widgetCreate').trigger('click')
+            return false
+        }
+    })
   } else {
-    bootbox.prompt("Nom du fichier ?", function(result) {
+    bootbox.prompt("{{Nom du fichier ?}}", function(result) {
       if (result !== null) {
         jeedom.createFile({
           path : CURRENT_FOLDER,
