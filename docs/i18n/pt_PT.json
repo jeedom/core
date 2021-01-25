@@ -1306,6 +1306,8 @@
         "Possibilité de définir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc": "Possibilidade de definir um ícone diferente quando o resumo for nulo (sem venezianas abertas, sem luz acesa, etc",
         "Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif": "Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo",
         "Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé": "A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo",
+        "Catégories colorées": "Categorias coloridas",
+        "Nouvelle option en configuration \/ interface pour ne pas colorer le bandeau de titre des équipements": "Nova opção de configuração \/ interface para não colorir o título do banner do equipamento",
         "Affichage en tableau": "Exibir mesa",
         "Réglages → Système → Configuration \/ Interface, Options": "Configurações → Sistema → Configuração \/ Interface, Opções",
         "Scénarios": "Cenários",

@@ -361,9 +361,17 @@ function initApplication(_reinit) {
         if (typeof jeedom.theme.theme_changeAccordingTime == undefined) {
           jeedom.theme.theme_changeAccordingTime = "0"
         }
-        $('body').attr('data-coloredIcons',0)
+
         if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
-          $('body').attr('data-coloredIcons',1)
+          $('body').attr('data-coloredIcons', 1)
+        } else {
+          $('body').attr('data-coloredIcons', 0)
+        }
+
+        if (typeof jeedom.theme['interface::advance::coloredcats'] != 'undefined' && jeedom.theme['interface::advance::coloredcats'] == '1') {
+          $('body').attr('data-coloredcats', 1)
+        } else {
+          $('body').attr('data-coloredcats', 0)
         }
 
         //set theme

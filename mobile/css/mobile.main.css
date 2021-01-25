@@ -495,6 +495,18 @@
   .cmd.refresh.spinning i {
     animation: spin-animation 1s infinite linear;
   }
+
+  body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
+  body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
+    background: rgba(var(--eq-bg-color), 1) !important;
+    border-bottom: 1px solid var(--el-defaultColor) !important;
+  }
+  body[data-coloredcats="0"] div.eqLogic-widget .widget-name > span,
+  body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
+  body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i {
+    color: var(--link-color) !important;
+  }
+
   @keyframes spin-animation {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(1turn); }
