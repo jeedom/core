@@ -236,6 +236,14 @@ class system {
 				);
 			}
 			break;
+			case 'npm':
+			$datas = json_decode(shell_exec('npm -g ls -json'),true);
+			foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
+				self::$_installPackage[$_type][mb_strtolower($key)] = array(
+					'version' => $value['version']
+				);
+			}
+			break;
 		}
 		return self::$_installPackage[$_type];
 	}
@@ -246,8 +254,9 @@ class system {
 			if($type == 'post-install' || $type == 'pre-install'){
 				continue;
 			}
-			if($type == 'npm'){
-				foreach ($_packages[$type] as $package => $info) {
+			$installPackage = self::getInstallPackage($type);
+			foreach ($_packages[$type] as $package => $info) {
+				if($type == 'npm' && strpos($package,'/') !== false){
 					exec('cd '.__DIR__.'/../../'.$package.';npm list', $output, $return_var);
 					$found = 0;
 					if($return_var == 0){
@@ -266,11 +275,8 @@ class system {
 						'fix' => ($found == 0) ?  self::installPackage($type,$package) : '',
 						'remark' => isset($info['remark']) ? __($info['remark'],'install/packages.json') : '',
 					);
+					continue;
 				}
-				continue;
-			}
-			$installPackage = self::getInstallPackage($type);
-			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
 				$alternative_found = '';
 				$version = '';
@@ -466,6 +472,9 @@ class system {
 			case 'pip3':
 			return self::getCmdSudo().' pip3 install --upgrade '.$_package;
 			case 'npm':
+			if(strpos($_package,'/') === false){
+				return self::getCmdSudo().' npm install --force -g '.$_package;
+			}
 			if(!file_exists(__DIR__.'/../../'.$_package)){
 				return '';
 			}
