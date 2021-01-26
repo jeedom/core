@@ -40,7 +40,6 @@
     })
 
     $('.cmd[data-cmd_id=#id#] .imgCmd').on('click', function() {
-      console.log('click')
       if ($(this).attr('data-state') == 'on') {
         var value = ('#minValue#' == '') ? 0 : parseInt('#minValue#');
         jeedom.cmd.execute({id: '#id#', value: {slider: value }})
