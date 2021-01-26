@@ -166,6 +166,8 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
 </table>
 
 <script>
+var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
+
 $('#bt_cmdConfigureCmdHistoryApply').on('click',function() {
   var cmds = []
   $tableCmdConfigureHistory.find('tbody tr').each(function() {
@@ -239,7 +241,6 @@ function setTableParser() {
 
 $(function() {
   initTableSorter()
-  var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
   $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '120px', '160px', '90px', '120px', '130px', '95px']
   $tableCmdConfigureHistory.trigger('resizableReset')
   $tableCmdConfigureHistory.width('100%')
