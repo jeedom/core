@@ -21,6 +21,8 @@ $count = array('history' => config::getHistorizedCmdNum(), 'timeline' => config:
 $cmds = cmd::all();
 sendVarToJs('CMDNUM', count($cmds));
 
+//Tablesorter parser:
+include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
 //Tablesorter pager plugin:
 include_file('3rdparty', 'jquery.tablesorter/extras/jquery.tablesorter.pager.min', 'js');
 include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'js');
@@ -225,15 +227,15 @@ function setTableParser() {
       return false
     },
     format: function(s) {
-      if (s == '') return '100000'
-      return s.replace(/-3 years/, 1095)
-        .replace(/-2 years/, 730)
-        .replace(/-1 year/, 365)
-        .replace(/-6 month/, 180)
-        .replace(/-3 month/, 90)
-        .replace(/-1 month/, 30)
-        .replace(/-7 days/, 7)
-        .replace(/-1 day/, 1)
+      if (s == '') return 100000
+      if (s == '-1 day') return 1
+      if (s == '-7 days') return 7
+      if (s == '-1 month') return 30
+      if (s == '-3 month') return 90
+      if (s == '-6 month') return 180
+      if (s == '-1 year') return 365
+      if (s == '-2 years') return 730
+      if (s == '-3 years') return 1095
     },
     type: 'numeric'
   })
@@ -244,6 +246,7 @@ $(function() {
   $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '120px', '160px', '90px', '120px', '130px', '95px']
   $tableCmdConfigureHistory.trigger('resizableReset')
   $tableCmdConfigureHistory.width('100%')
+  setTableParser()
 
   // initialize pager:
   var $pager = $('.pager')
@@ -272,7 +275,7 @@ $(function() {
     output: 'showing: {startRow} to {endRow} ({filteredRows})'
   })
 
-  setTableParser()
+
   if (CMDNUM < 500) {
     initTooltips($tableCmdConfigureHistory)
   }
