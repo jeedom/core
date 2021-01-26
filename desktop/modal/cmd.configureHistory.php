@@ -19,16 +19,40 @@ if (!isConnect('admin')) {
 }
 $count = array('history' => config::getHistorizedCmdNum(), 'timeline' => config::getTimelinedCmdNum());
 $cmds = cmd::all();
+sendVarToJs('CMDNUM', count($cmds));
+
+//Tablesorter pager plugin:
+include_file('3rdparty', 'jquery.tablesorter/extras/jquery.tablesorter.pager.min', 'js');
+include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'js');
 ?>
 
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
 <a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
 <div class="center">
-  <span class="label label-info">{{Commande(s) historisée(s) : }}<?php echo $count['history'] ?> - {{Commande(s) timeline : }}<?php echo $count['timeline'] ?></span>
+  <span class="label label-info">{{Commandes : }} <?php echo count($cmds) ?> | {{Commandes historisées : }}<?php echo $count['history'] ?> | {{Commandes timeline : }}<?php echo $count['timeline'] ?></span>
 </div>
 <br/>
+
 <table id="table_cmdConfigureHistory" class="table table-bordered table-condensed tablesorter stickyHead">
   <thead>
+    <tr>
+      <td colspan="9" data-sorter="false" data-filter="false">
+        <div class="pager">
+          <nav class="left" style="float:left;">
+            <a href="#" class="current">15</a> |
+            <a href="#">25</a> |
+            <a href="#">50</a> |
+            <a href="#">100</a>
+             {{par page}}
+          </nav>
+          <nav class="right" style="float:right;">
+            <span class="prev cursor"><i class="fas fa-arrow-left"></i></span>
+            <span class="pagecount"></span>
+            <span class="next cursor"><i class="fas fa-arrow-right"></i></span>
+          </nav>
+        </div>
+      </td>
+    </tr>
     <tr>
       <th>{{Nom}}</th>
       <th>{{Plugin}}</th>
@@ -39,16 +63,23 @@ $cmds = cmd::all();
         <a class="btn btn-danger btn-xs" id="bt_canceltimeline" style="width:22px;"><i class="fas fa-times"></i></a>
       </th>
       <th data-filter="false" data-sorter="checkbox">{{Inversée}}</th>
-      <th data-sorter="select-text">{{Mode de lissage}}</th>
-      <th class="extractor-select sorter-purges">{{Purge si plus vieux}}</th>
+      <th data-sorter="select-text">{{Lissage}}</th>
+      <th class="extractor-select sorter-purges">{{Purge}}</th>
       <th data-sorter="false" data-filter="false">{{Action}}</th>
     </tr>
+
   </thead>
   <tbody>
     <?php
     $tr = '';
+    $i = 0;
     foreach ($cmds as $cmd) {
-      $tr .= '<tr data-change="0" data-cmd_id="'.$cmd->getId(). '">';
+      if ($i <= 15) {
+        $tr .= '<tr data-change="0" data-cmd_id="'.$cmd->getId(). '">';
+      } else {
+        $tr .= '<tr data-change="0" data-cmd_id="'.$cmd->getId(). '" style="display: none;">';
+      }
+      $i++;
 
       //humanName:
       $tr .= '<td>';
@@ -135,25 +166,6 @@ $cmds = cmd::all();
 </table>
 
 <script>
-initTableSorter()
-
-var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
-$tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '95px', '160px', '90px', '120px', '130px', '95px']
-$tableCmdConfigureHistory.trigger('resizableReset')
-$tableCmdConfigureHistory.width('100%')
-
-$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
-  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
-})
-
-$(".bt_configureHistoryExportData").on('click', function() {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null)
-})
-
-$('.cmdAttr').on('change click', function() {
-  $(this).closest('tr').attr('data-change', '1')
-})
-
 $('#bt_cmdConfigureCmdHistoryApply').on('click',function() {
   var cmds = []
   $tableCmdConfigureHistory.find('tbody tr').each(function() {
@@ -172,6 +184,18 @@ $('#bt_cmdConfigureCmdHistoryApply').on('click',function() {
       $('#md_cmdConfigureHistory').showAlert({message: '{{Modifications sauvegardées avec succès}}', level: 'success'})
     }
   })
+})
+
+$('.bt_configureHistoryAdvanceCmdConfiguration').off('click').on('click', function() {
+  $('#md_modal2').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+})
+
+$(".bt_configureHistoryExportData").on('click', function() {
+  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).attr('data-id'), "_blank", null)
+})
+
+$('.cmdAttr').on('change click', function() {
+  $(this).closest('tr').attr('data-change', '1')
 })
 
 $('#bt_canceltimeline').on('click', function() {
@@ -214,11 +238,49 @@ function setTableParser() {
 }
 
 $(function() {
+  initTableSorter()
+  var $tableCmdConfigureHistory = $("#table_cmdConfigureHistory")
+  $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '120px', '160px', '90px', '120px', '130px', '95px']
+  $tableCmdConfigureHistory.trigger('resizableReset')
+  $tableCmdConfigureHistory.width('100%')
+
+  // initialize pager:
+  var $pager = $('.pager')
+  $.tablesorter.customPagerControls({
+    table          : $tableCmdConfigureHistory,   // point at correct table (string or jQuery object)
+    pager          : $pager,                      // pager wrapper (string or jQuery object)
+    pageSize       : '.left a',                   // container for page sizes
+    currentPage    : '.right a',                  // container for page selectors
+    ends           : 2,                           // number of pages to show of either end
+    aroundCurrent  : 1,                           // number of pages surrounding the current page
+    link           : '<a href="#">{page}</a>',    // page element; use {page} to include the page number
+    currentClass   : 'current',                   // current page class name
+    adjacentSpacer : '<span> | </span>',          // spacer for page numbers next to each other
+    distanceSpacer : '<span> &#133; <span>',      // spacer for page numbers away from each other (ellipsis = &#133;)
+    addKeyboard    : true,                        // use left,right,up,down,pageUp,pageDown,home, or end to change current page
+    pageKeyStep    : 10,                          // page step to use for pageUp and pageDown
+  })
+  $tableCmdConfigureHistory.tablesorterPager({
+    container: $pager,
+    size: 15,
+    savePages: false,
+    page: 0,
+    pageReset: 0,
+    removeRows: false,
+    countChildRows: false,
+    output: 'showing: {startRow} to {endRow} ({filteredRows})'
+  })
+
   setTableParser()
-  //initTooltips($tableCmdConfigureHistory)
-  jeedom.timeline.autocompleteFolder()
+  if (CMDNUM < 500) {
+    initTooltips($tableCmdConfigureHistory)
+  }
+  if (CMDNUM < 1000) {
+    jeedom.timeline.autocompleteFolder()
+  }
   setTimeout(function() {
     $tableCmdConfigureHistory.closest('.ui-dialog').resize()
   }, 500)
 })
+
 </script>

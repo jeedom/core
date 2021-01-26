@@ -3011,6 +3011,8 @@
     transition-property: background-color;
   }
 
+
+
   table.table-condensed tbody tr,
   table.table-condensed tbody td {
     height: 21px !important;
@@ -3028,6 +3030,12 @@
     margin-top: -4px;
   }
 
+  table.tablesorter .tablesorter-pager {
+    margin: 5px 0;
+  }
+  table.tablesorter .tablesorter-pager .current {
+    color: var(--al-info-color) !important;
+  }
 
   #table_packages tbody td > span.label {
     display: block;
