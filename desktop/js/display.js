@@ -453,8 +453,3 @@ $('#bt_emptyRemoveHistory').on('click',function() {
   })
 })
 
-$(function() {
-  setTimeout(function() {
-    setRemoveHistoryTable()
-  }, 500)
-})

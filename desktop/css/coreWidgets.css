@@ -13,6 +13,10 @@ Desktop
     padding: 0;
     min-width: 70px;
   }
+  div.cmd-widget + br {
+    margin: 7px;
+    display: block;
+  }
   .eqLogic-widget .tableCmdcss div.cmd-widget {
     min-width: unset;
   }
