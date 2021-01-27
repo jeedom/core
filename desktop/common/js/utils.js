@@ -108,6 +108,7 @@ function loadPage(_url, _noPushHistory) {
   if (isset(bootbox)) bootbox.hideAll()
   $.hideAlert()
   datePickerDestroy()
+  autocompleteDestroy()
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   printEqLogic = undefined
@@ -868,6 +869,9 @@ function initHelp() {
   })
 }
 
+function autocompleteDestroy() {
+  $('ul.ui-autocomplete, div.ui-helper-hidden-accessible').remove()
+}
 function datePickerDestroy() {
   $('.in_datepicker').datepicker( "destroy" )
   $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
