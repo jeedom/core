@@ -1394,7 +1394,7 @@ class jeedom {
 		system::php($cmd, true);
 	}
 
-	public static function cleanFileSytemRight() {
+	public static function cleanFileSystemRight() {
 		$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../*;';
 		$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . __DIR__ . '/../../*;';
 		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 665 {} +;';
