@@ -238,7 +238,7 @@ $('#dashOverviewPrev').on({
 
     var width = $(window).width()
     var position = $(this).position()
-    var css = {top: position.top}
+    var css = {top: position.top - 5}
     if (position.left > width / 2) {
       css.left = 'unset'
       css.right = width - (position.left + 160)
@@ -248,7 +248,6 @@ $('#dashOverviewPrev').on({
     }
 
     $('.objectSummaryContainer.objectSummary'+$(this).attr('data-object_id')).show().css(css)
-
   }
 }, '.objectPreview')
 
