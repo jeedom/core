@@ -204,6 +204,11 @@
     text-overflow: ellipsis;
     max-width: 105px;
   }
+  #jeedomMenuBar #configName > .cmdName {
+    min-width: 30px;
+    min-height: 18px;
+    display: block;
+  }
 
   .navbar,
   .navbar .container-fluid,

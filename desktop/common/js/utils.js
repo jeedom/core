@@ -1103,6 +1103,22 @@ function setJeedomMenu() {
     $('#jeedomMenuBar .navbar-nav > li > ul > li > input').prop("checked", false)
     $(this).prop("checked", checked)
   })
+
+  $('li.navTime #configName').on('click', function(event) {
+    if (event.originalEvent.ctrlKey) {
+      loadPage('index.php?v=d&p=system')
+      return false
+    }
+    if (event.originalEvent.altKey) {
+      loadPage('index.php?v=d&p=database')
+      return false
+    }
+    if (event.originalEvent.shiftKey) {
+      loadPage('index.php?v=d&p=editor')
+      return false
+    }
+    loadPage('index.php?v=d&p=administration#generaltab')
+  })
 }
 
 function positionEqLogic(_id, _preResize, _scenario) {
