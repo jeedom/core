@@ -55,6 +55,7 @@ function checkResumeEmpty() {
 }
 
 function colorizeSummary() {
+  if ($('body').attr('data-coloredicons') == 0) return
   var value
   $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
     value = $(this).html()

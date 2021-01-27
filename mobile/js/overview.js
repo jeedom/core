@@ -71,6 +71,7 @@ function initOverview() {
 }
 
 function colorizeSummary() {
+  if ($('body').attr('data-coloredicons') == 0) return
   $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
     var value = $(this).html()
     if (value == 0) {
