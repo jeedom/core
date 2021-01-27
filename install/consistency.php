@@ -368,7 +368,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	try {
 		echo "\nCheck filesystem right...";
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo "NOK\n";

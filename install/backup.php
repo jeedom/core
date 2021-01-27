@@ -38,7 +38,7 @@ try {
 	
 	try {
 		echo 'Vérification des droits sur les fichiers...';
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo "NOK\n";
@@ -228,7 +228,7 @@ try {
 	
 	try {
 		echo 'Vérification des droits sur les fichiers...';
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo "NOK\n";

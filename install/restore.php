@@ -78,7 +78,7 @@ try {
 	
 	try {
 		echo "Vérification des droits...";
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
