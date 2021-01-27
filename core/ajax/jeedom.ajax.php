@@ -409,7 +409,7 @@ try {
 
 	if (init('action') == 'cleanFileSystemRight') {
 		unautorizedInDemo();
-		ajax::success(jeedom::cleanFileSytemRight());
+		ajax::success(jeedom::cleanFileSystemRight());
 	}
 
 	if (init('action') == 'consistency') {
