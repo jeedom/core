@@ -722,6 +722,7 @@ class plugin {
 			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true),true,false,$plugin_id);
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
+			return;
 		}
 		if ($this->getHasDependency() != 1 || !method_exists($plugin_id, 'dependancy_install')) {
 			return;
