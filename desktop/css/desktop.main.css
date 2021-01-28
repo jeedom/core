@@ -675,7 +675,7 @@
 /* ____________________DASHBOARD */
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
-    background: rgba(var(--eq-bg-color), 1) !important;
+    background: transparent !important;
     border-bottom: 1px solid var(--el-defaultColor) !important;
   }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > .reportModeHidden,
@@ -2115,7 +2115,6 @@
     padding-top: 15px;
     list-style: none;
     padding-left: 130px;
-    background-color: rgb(var(--bg-color));
   }
   /*dotted vertical line:*/
   #timelineContainer ul:before {
@@ -2134,6 +2133,7 @@
     padding: 6px;
     border-radius: var(--border-radius);
     background-color: rgb(var(--eq-bg-color)) !important;
+    min-height: 28px;
   }
   #timelineContainer ul li > span.vertLine {
     position: absolute;
@@ -2199,6 +2199,7 @@
     padding-left: 50px;
     padding-right: 5px;
     border-radius: var(--border-radius) !important;
+    background: rgb(var(--eq-bg-color)) !important;
   }
   #timelineContainer div.date {
     position: absolute;
