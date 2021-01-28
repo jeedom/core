@@ -108,6 +108,7 @@ function loadPage(_url, _noPushHistory) {
   if (isset(bootbox)) bootbox.hideAll()
   $.hideAlert()
   datePickerDestroy()
+  autocompleteDestroy()
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   printEqLogic = undefined
@@ -868,6 +869,9 @@ function initHelp() {
   })
 }
 
+function autocompleteDestroy() {
+  $('ul.ui-autocomplete, div.ui-helper-hidden-accessible').remove()
+}
 function datePickerDestroy() {
   $('.in_datepicker').datepicker( "destroy" )
   $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
@@ -1098,6 +1102,22 @@ function setJeedomMenu() {
     var checked = $(this).prop("checked")
     $('#jeedomMenuBar .navbar-nav > li > ul > li > input').prop("checked", false)
     $(this).prop("checked", checked)
+  })
+
+  $('li.navTime #configName').on('click', function(event) {
+    if (event.originalEvent.ctrlKey) {
+      loadPage('index.php?v=d&p=system')
+      return false
+    }
+    if (event.originalEvent.altKey) {
+      loadPage('index.php?v=d&p=database')
+      return false
+    }
+    if (event.originalEvent.shiftKey) {
+      loadPage('index.php?v=d&p=editor')
+      return false
+    }
+    loadPage('index.php?v=d&p=administration#generaltab')
   })
 }
 

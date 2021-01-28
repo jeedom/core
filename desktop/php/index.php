@@ -102,7 +102,7 @@ function setTheme() {
 	$dataNoChange = false;
 	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
-	
+
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
@@ -212,9 +212,9 @@ function setTheme() {
 	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
-	
+
 	setTheme();
-	
+
 	if (init('report') == 1) {
 		include_file('desktop', 'report', 'css');
 	}
@@ -274,7 +274,7 @@ function setTheme() {
 					</div>
 					<nav class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
-							
+
 							<li class="cursor">
 								<a>
 									<i class="fas fa-home"></i> <span class="hidden-sm hidden-md">{{Accueil}}</span> <b class="caret"></b></span>
@@ -282,9 +282,9 @@ function setTheme() {
 								</a>
 								<input type="checkbox" id="drop-home">
 								<ul>
-									
+
 									<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
-									
+
 									<li>
 										<a id="bt_gotoDashboard" class="submenu">
 											<i class="fas fa-tachometer-alt"></i> {{Dashboard}}
@@ -301,7 +301,7 @@ function setTheme() {
 											?>
 										</ul>
 									</li>
-									
+
 									<li>
 										<a id="bt_gotoView" class="submenu">
 											<i class="far fa-image"></i> {{Vue}}
@@ -318,7 +318,7 @@ function setTheme() {
 										}
 										?>
 									</li>
-									
+
 									<li>
 										<a id="bt_gotoPlan" class="submenu">
 											<i class="fas fa-paint-brush"></i> {{Design}}
@@ -335,7 +335,7 @@ function setTheme() {
 										}
 										?>
 									</li>
-									
+
 									<li>
 										<a id="bt_gotoPlan3d" class="submenu">
 											<i class="fas fa-cubes"></i> {{Design 3D}}
@@ -355,7 +355,7 @@ function setTheme() {
 									<?php echo $panel_menu; ?>
 								</ul>
 							</li>
-							
+
 							<li class="cursor">
 								<a>
 									<i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b>
@@ -381,7 +381,7 @@ function setTheme() {
 									<?php } ?>
 								</ul>
 							</li>
-							
+
 							<?php if (isConnect('admin')) { ?>
 								<li class="cursor">
 									<a>
@@ -402,7 +402,7 @@ function setTheme() {
 									</ul>
 								</li>
 							<?php } ?>
-							
+
 							<?php if (isConnect('admin')) { ?>
 								<li class="cursor">
 									<a>
@@ -417,7 +417,7 @@ function setTheme() {
 									</ul>
 								</li>
 							<?php } ?>
-							
+
 							<li class="cursor">
 								<a>
 									<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span> <b class="caret"></b>
@@ -499,7 +499,7 @@ function setTheme() {
 									<a href="index.php?v=d&p=timeline">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
-									<a href="index.php?v=d&p=administration#generaltab">
+									<a id="configName" href="#">
 										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
 									</a>
 								</li>
@@ -579,4 +579,3 @@ function setTheme() {
 		<?php } ?>
 	</body>
 	</html>
-	
