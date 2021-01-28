@@ -224,8 +224,8 @@ try {
 		if(!file_exists($filepath)){
 			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
 		}
-		$planHeader->setConfiguration('desktopSizeX', $img_size[0]);
-		$planHeader->setConfiguration('desktopSizeY', $img_size[1]);
+		//$planHeader->setConfiguration('desktopSizeX', $img_size[0]);
+		//$planHeader->setConfiguration('desktopSizeY', $img_size[1]);
 		$planHeader->save();
 		ajax::success();
 	}
