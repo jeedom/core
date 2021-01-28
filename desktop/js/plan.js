@@ -1103,7 +1103,7 @@ function displayObject(_plan, _html, _noRender) {
           style['border-radius'] = '0px'
           style['box-shadow'] = 'none'
           if (_plan.link_type == 'eqLogic') {
-            another_css += css_selector+' .widget-name{background-color : transparent !important;}'
+            another_css += css_selector+' .widget-name{background-color : transparent !important;border:none!important;}'
             if (_plan.display['color-defaut'] == 0 && isset(_plan.css.color)) {
               another_css += css_selector+' .widget-name a{color : '+_plan.css.color+' !important;}'
               another_css += css_selector+' .state{color : '+_plan.css.color+' !important;}'
