@@ -17,12 +17,6 @@
 "use strict"
 
 var GLOBAL_ACTION_MODE = null
-$('#backgroundforJeedom').css({
-  'background-position':'bottom right',
-  'background-repeat':'no-repeat',
-  'background-size':'auto'
-})
-
 
 //searching
 $('#in_search').on('keyup',function() {

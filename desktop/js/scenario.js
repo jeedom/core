@@ -16,12 +16,6 @@
 
 "use strict"
 
-$('#backgroundforJeedom').css({
-  'background-position':'bottom right',
-  'background-repeat':'no-repeat',
-  'background-size':'auto'
-});
-
 var $divScenario = $('#div_editScenario')
 
 //searching
