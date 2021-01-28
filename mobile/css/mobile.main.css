@@ -247,7 +247,7 @@
 
   .ui-page-theme-a .ui-body-inherit {
     color: var(--link-color) !important;
-    background-color: var(--bg-modal-color) !important;
+    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   }
   label {
     color: var(--link-color) !important;
@@ -498,7 +498,7 @@
 
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
-    background: rgba(var(--eq-bg-color), 1) !important;
+    background: transparent !important;
     border-bottom: 1px solid var(--el-defaultColor) !important;
   }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > span,
@@ -669,7 +669,7 @@
 
   .ui-page-theme-a .ui-btn.ui-btn-raised {
     color: var(--link-color) !important;
-    background-color: rgb(var(--defaultBkg-color)) !important;
+    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
     box-shadow: none;
     line-height: 15px !important;
     min-height: 17px;
@@ -1077,7 +1077,6 @@
     padding-top: 15px;
     list-style: none;
     padding-left: 130px;
-    background-color: rgb(var(--bg-color));
   }
 
 /* dotted vertical line: */
@@ -1162,6 +1161,7 @@
     padding-left: 50px;
     padding-right: 5px;
     border-radius: var(--border-radius) !important;
+    background: rgb(var(--eq-bg-color)) !important;
   }
   #timelineContainer div.date {
     position: absolute;
