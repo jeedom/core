@@ -98,7 +98,7 @@
     color: var(--link-color);
   }
 
-  .backgroundforJeedom {
+  #backgroundforJeedom {
     width: 100%;
     height: calc(100% - 50px);
     z-index: -1;
@@ -110,10 +110,10 @@
     background-image: var(--dashBkg-url) !important;
     background-color: transparent !important;
   }
-  [data-page="dashboard"] .backgroundforJeedom {
+  [data-page="dashboard"] #backgroundforJeedom {
     filter: blur(var(--objectBackgroundBlur));
   }
-  [data-theme*="Dark"] .backgroundforJeedom {
+  [data-theme*="Dark"] #backgroundforJeedom {
     opacity : 0.6;
   }
 

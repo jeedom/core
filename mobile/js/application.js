@@ -40,7 +40,7 @@ $(function() {
 
   if (getUrlVars('app_mode') == 1) {
     APP_MODE = true
-    $('.backgroundforJeedom').height('100%').css('top','0')
+    $('#backgroundforJeedom').height('100%').css('top','0')
     $('#pagecontainer').prepend($('#searchContainer'))
     $('div[data-role=header]').remove()
     $('#searchContainer').css('top',0)
@@ -115,7 +115,7 @@ $(window).on('popstate', function(event) {
 
 //theming:
 var BACKGROUND_IMG = ''
-var $backForJeedom = $('.backgroundforJeedom')
+var $backForJeedom = $('#backgroundforJeedom')
 function setBackgroundImage(_path) {
   if (typeof jeedom.theme == 'undefined' || typeof jeedom.theme.showBackgroundImg  == 'undefined' || jeedom.theme.showBackgroundImg == 0) {
     return

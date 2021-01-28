@@ -674,7 +674,7 @@ function fullScreen(_mode) {
     })
     $('#wrap').css('margin-bottom', '0px')
     $('.div_backgroundPlan').height('auto')
-    $('.backgroundforJeedom').css('margin-top', '-50px').height('100%')
+    $('#backgroundforJeedom').css('margin-top', '-50px').height('100%')
 
   } else {
     $('header, footer').show()
@@ -685,7 +685,7 @@ function fullScreen(_mode) {
     })
     $('#wrap').css('margin-bottom', '15px')
     $('.div_backgroundPlan').height($('body').height())
-    $('.backgroundforJeedom').css('margin-top', '').height('')
+    $('#backgroundforJeedom').css('margin-top', '').height('')
   }
 }
 

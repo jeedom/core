@@ -34,7 +34,7 @@ body {
   margin: 0 !important;
   scrollbar-color: rgb(200, 200, 200) rgb(235, 235, 238) !important;
 }
-.backgroundforJeedom{
+#backgroundforJeedom{
   width:100%;
   height:calc(100% - 50px);
   z-index : -1;

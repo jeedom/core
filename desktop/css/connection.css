@@ -10,7 +10,7 @@ body {
 	overflow: hidden;
 }
 
-.backgroundforJeedom {
+#backgroundforJeedom {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
@@ -57,7 +57,7 @@ body {
 }
 .veen .splits p{
 	font-size: 15px;
-	
+
 }
 .veen button:active{
 	box-shadow: none;
@@ -101,7 +101,7 @@ body {
 .veen .wrapper #register{
 	transform: translateY(-80%) translateX(100%);
 	visibility: hidden;
-	
+
 }
 .veen .wrapper.move #register{
 	transform: translateY(-120%) translateX(0%);

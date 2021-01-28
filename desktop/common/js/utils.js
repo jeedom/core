@@ -33,6 +33,8 @@ var utid = 0
 var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
 
 var isEditing = false
+var BACKGROUND_IMG = null
+var $backForJeedom = $('#backgroundforJeedom')
 
 //js error in ! ui:
 var JS_ERROR = []
@@ -69,7 +71,6 @@ var PREVIOUS_PAGE = null
 var PREVIOUS_LOCATION = null
 var NO_POPSTAT = false
 var printEqLogic = undefined
-var jeedomBackgroundImg = null
 function loadPage(_url, _noPushHistory) {
   PREVIOUS_LOCATION = window.location.href
   if (checkPageModified()) return
@@ -123,8 +124,8 @@ function loadPage(_url, _noPushHistory) {
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
 
-  jeedomBackgroundImg = null
-  $('.backgroundforJeedom').css({
+  BACKGROUND_IMG = null
+  $backForJeedom.css({
     'background-image':'',
     'background-position':'center center',
     'background-repeat':'no-repeat',
@@ -143,8 +144,8 @@ function loadPage(_url, _noPushHistory) {
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
     initPage()
     $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
-    if (jeedomBackgroundImg !== null) {
-      setBackgroundImg(jeedomBackgroundImg)
+    if (BACKGROUND_IMG !== null) {
+      setBackgroundImg(BACKGROUND_IMG)
     } else {
       setBackgroundImg('')
     }
@@ -181,7 +182,7 @@ $(function() {
     initRowOverflow()
   }
   $body.attr('data-page', getUrlVars('p'))
-  $body.off('jeedom_page_load').on('jeedom_page_load',function() {
+  $body.off('jeedom_page_load').on('jeedom_page_load', function() {
     if (getUrlVars('saveSuccessFull') == 1) {
       $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
@@ -251,8 +252,8 @@ $(function() {
   })
 
   initPage()
-  if (jeedomBackgroundImg != null) {
-    setBackgroundImg(jeedomBackgroundImg)
+  if (BACKGROUND_IMG != null) {
+    setBackgroundImg(BACKGROUND_IMG)
   } else {
     setBackgroundImg('')
   }
@@ -285,7 +286,6 @@ $(function() {
 })
 
 //Jeedom theme__
-var BACKGROUND_IMG = ''
 function setJeedomTheme() {
   var $body = $('body')
 
@@ -414,7 +414,7 @@ function setBackgroundImg(_path) {
   BACKGROUND_IMG = _path
   if (_path === null) {
     document.body.style.setProperty('--dashBkg-url','url("")')
-    $('.backgroundforJeedom').css('background-image','url("")')
+    $backForJeedom.css('background-image','url("")')
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
@@ -427,10 +427,10 @@ function setBackgroundImg(_path) {
     if (['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1) {
       _path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg'
     }
-    $('.backgroundforJeedom').css('background-image','url("'+_path+'")')
+    $backForJeedom.css('background-image','url("'+_path+'")')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   } else {
-    $('.backgroundforJeedom').css('background-image','url("'+_path+'")')
+    $backForJeedom.css('background-image','url("'+_path+'")')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }
 }

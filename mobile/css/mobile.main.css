@@ -77,7 +77,7 @@
     background-color: rgba(var(--bg-color), var(--opacity))  !important;
   }
 
-  .backgroundforJeedom{
+  #backgroundforJeedom{
     width: 100%;
     height: calc(100% - 65px);
     position: fixed;
@@ -89,10 +89,10 @@
     background-image: var(--dashBkg-url) !important;
     background-color: transparent !important;
   }
-  [data-page="equipment"] .backgroundforJeedom {
+  [data-page="equipment"] #backgroundforJeedom {
     filter: blur(var(--objectBackgroundBlur));
   }
-  [data-theme*="Dark"] .backgroundforJeedom {
+  [data-theme*="Dark"] #backgroundforJeedom {
     opacity : 0.6;
   }
 

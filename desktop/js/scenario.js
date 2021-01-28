@@ -16,7 +16,7 @@
 
 "use strict"
 
-$('.backgroundforJeedom').css({
+$('#backgroundforJeedom').css({
   'background-position':'bottom right',
   'background-repeat':'no-repeat',
   'background-size':'auto'
