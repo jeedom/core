@@ -20,6 +20,7 @@
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
 - **Farbige Kategorien** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Plugins können diese neue Core-Funktion verwenden.
+- **Aufbau** : Möglichkeit, das Hintergrundbild auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft je nach Thema zu konfigurieren.
 - **Codeblöcke** : (Datei-Editor, Szenarien, erweiterte Anpassung) Code-Fallback-Funktion (*Code falten*). Tastenkombinationen Strg + Y und Strg + I.
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
