@@ -200,7 +200,7 @@ class system {
 			case 'apt':
 			$lines = explode("\n",shell_exec('dpkg -l | tail -n +6'));
 			foreach ($lines as $line) {
-				$infos = array_values(array_filter(explode("  ",$line)));
+				$infos = array_values(array_filter(explode(" ",$line)));
 				if(!isset($infos[1])){
 					continue;
 				}
@@ -215,7 +215,7 @@ class system {
 			case 'pip2':
 			$lines = explode("\n",shell_exec('pip2 list --format=columns | tail -n +3'));
 			foreach ($lines as $line) {
-				$infos = array_values(array_filter(explode("  ",$line)));
+				$infos = array_values(array_filter(explode(" ",$line)));
 				if(!isset($infos[0]) || !isset($infos[1])){
 					continue;
 				}
@@ -227,7 +227,7 @@ class system {
 			case 'pip3':
 			$lines = explode("\n",shell_exec('pip3 list --format=columns | tail -n +3'));
 			foreach ($lines as $line) {
-				$infos = array_values(array_filter(explode("  ",$line)));
+				$infos = array_values(array_filter(explode(" ",$line)));
 				if(!isset($infos[0])){
 					continue;
 				}
