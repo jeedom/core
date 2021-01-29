@@ -279,7 +279,7 @@
         "Gestion automatique": "Gerenciamento automático",
         "Dernier lancement": "último lançamento",
         "Local": "Local",
-        "OK": "OK",
+        "OK": "Ok",
         "NOK": "NOK",
         "Désactiver": "Desativar",
         "Activer": "Ativar"
@@ -385,7 +385,7 @@
         "Installation": "Instalação",
         "Dernière installation": "última Instalação",
         "Local": "Local",
-        "OK": "OK",
+        "OK": "Ok",
         "NOK": "NOK",
         "Installation en cours": "Instalação em progresso",
         "Relancer": "Reviver"
@@ -1245,7 +1245,7 @@
         "Etape 3 : vérification": "Etapa 3: verificação",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Digite o código fornecido para verificação e ativação da autenticação dupla",
         "Code de test": "Código de teste",
-        "OK": "OK",
+        "OK": "Ok",
         "Configuration réussie": "Configuração bem-sucedida",
         "Code invalide": "Código inválido"
     },
@@ -1256,7 +1256,7 @@
         "Port configuré": "Porta configurada",
         "Aucune santé spécifique": "Sem saúde específica",
         "Dépendances": "Dependências",
-        "OK": "OK",
+        "OK": "Ok",
         "NOK": "NOK",
         "En cours": "Contínuo",
         "Configuration démon": "Configuração do daemon",
@@ -2473,7 +2473,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Rechercher": "Pesquisa",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Clique em um pedido à esquerda ou digite um pedido personalizado abaixo",
-        "OK": "OK"
+        "OK": "Ok"
     },
     "desktop\/js\/update.js": {
         "Options": "Opções",
@@ -2679,7 +2679,7 @@
         "Administrateur": "Administrador",
         "Utilisateur": "Do utilizador",
         "Utilisateur limité": "Usuário limitado",
-        "OK": "OK",
+        "OK": "Ok",
         "Désactiver": "Desativar",
         "NOK": "NOK",
         "Supprimer": "Retirar",
@@ -3810,7 +3810,7 @@
         "Commande retour interactions": "Comando de retorno de interação",
         "Commande sur ": "Personalizado",
         "Système à jour": "Atualização do sistema",
-        "OK": "OK",
+        "OK": "Ok",
         "Cron actif": "Cron ativa",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Erro de cron: os cron estão desativados. Vá para Configurações -> Sistema -> Mecanismo de tarefas para reativá-los",
@@ -4229,7 +4229,7 @@
         "Post-installation de ": "Pós-Instalação",
         "Suppression des fichiers inutiles...": "Excluindo arquivos desnecessários",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Não foi possível instalar o plug-in. O nome do plug-in é diferente do ID ou o plug-in não está formado corretamente. Entre em contato com o autor",
-        "OK": "OK",
+        "OK": "Ok",
         "END UPDATE SUCCESS": "END UPDATE SUCCESS",
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur": "Verificar atualizações desabilitadas, atualizações e reinstalações no",
         "Le logical ID ne peut pas être vide": "O ID lógico não pode estar vazio"
