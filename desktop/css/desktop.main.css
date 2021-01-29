@@ -683,7 +683,7 @@
     background: transparent !important;
     border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
   }
-  body[data-coloredcats="0"] div.eqLogic-widget .widget-name > .reportModeHidden,
+  body[data-coloredcats="0"] div.eqLogic-widget .widget-name > a,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
   body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i,
   body[data-coloredcats="0"] div.eqLogic-widget > span.cmd.editOptions:after {
