@@ -213,26 +213,18 @@ class system {
 			}
 			break;
 			case 'pip2':
-			$lines = explode("\n",shell_exec('pip2 list --format=columns | tail -n +3'));
-			foreach ($lines as $line) {
-				$infos = array_values(array_filter(explode(" ",$line)));
-				if(!isset($infos[0]) || !isset($infos[1])){
-					continue;
-				}
-				self::$_installPackage[$_type][mb_strtolower($infos[0])] = array(
-					'version' => $infos[1]
+			$datas = json_decode(shell_exec('pip list --format=json'),true);
+			foreach ($datas as $value) {
+				self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					'version' => $value['version']
 				);
 			}
 			break;
 			case 'pip3':
-			$lines = explode("\n",shell_exec('pip3 list --format=columns | tail -n +3'));
-			foreach ($lines as $line) {
-				$infos = array_values(array_filter(explode(" ",$line)));
-				if(!isset($infos[0])){
-					continue;
-				}
-				self::$_installPackage[$_type][mb_strtolower($infos[0])] = array(
-					'version' => $infos[1]
+			$datas = json_decode(shell_exec('pip3 list --format=json'),true);
+			foreach ($datas as $value) {
+				self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					'version' => $value['version']
 				);
 			}
 			break;
