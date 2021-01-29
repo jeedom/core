@@ -28,10 +28,11 @@ if ('serviceWorker' in navigator) {
 var utid = 0
 var PANEL_SCROLL = 0
 var APP_MODE = false
-var BACKGROUND_IMG = ''
-var $backForJeedom = $('#backgroundforJeedom')
+var BACKGROUND_IMG = null
+var $backForJeedom = null
 $(function() {
   utid = Date.now()
+  $backForJeedom = $('#backgroundforJeedom')
 
   $(window).on('orientationchange', function(event) {
     //wait to get new width:
@@ -117,34 +118,37 @@ $(window).on('popstate', function(event) {
 
 //theming:
 function setBackgroundImage(_path) {
-  if (typeof jeedom.theme == 'undefined' || typeof jeedom.theme.showBackgroundImg  == 'undefined' || jeedom.theme.showBackgroundImg == 0) {
+  if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
-  $backForJeedom.css({
-    'background-image':'',
-    'background-position':'',
-    'background-repeat':'no-repeat'
-  })
   BACKGROUND_IMG = _path
   if (_path === null) {
     document.body.style.setProperty('--dashBkg-url','url("")')
-    $backForJeedom.css('background-image','url("") !important')
+    $backForJeedom.css('background-image','url("")')
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
-    _path = 'core/img/background/jeedom_abstract_01_'+mode+'.jpg'
-    if (['administration','profils'].indexOf($('body').attr('data-page')) != -1) {
-      _path = 'core/img/background/jeedom_abstract_03_'+mode+'.jpg'
+
+    var dataPage = $('body').attr('data-page')
+    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf(dataPage) != -1) {
+      _path = jeedom.theme['interface::background::analysis']
+    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf(dataPage) != -1) {
+      _path = jeedom.theme['interface::background::tools']
+    } else {
+      _path = jeedom.theme['interface::background::dashboard']
     }
-    if (['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1) {
-      _path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg'
+
+    if (_path.substring(0,4) == 'core') {
+      $backForJeedom.removeClass('custom')
+      _path += mode + '.jpg'
+    } else {
+      $backForJeedom.addClass('custom')
     }
-    $backForJeedom.css('background-image','url("'+_path+'") !important')
+
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   } else {
-    $backForJeedom.css('background-image','url("'+_path+'") !important')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }
 }
@@ -335,6 +339,8 @@ function initApplication(_reinit) {
         page('connection', 'Connexion')
         return
       }
+      document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
+      document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
       if (init(_reinit, false) == false) {
         document.title = data.result.product_name
         $('#favicon').attr("href", data.result.product_icon)
@@ -496,7 +502,6 @@ function page(_page, _title, _option, _plugin, _dialog) {
 
   $.showLoading()
   $('#searchContainer').hide()
-  setBackgroundImage('')
   try {
     $('#bottompanel').panel('close')
     $('#bottompanel_mainoption').panel('close')
@@ -577,6 +582,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
     $('#page').hide().load(page, function() {
       $('body').attr('data-page', _page)
       $('#page').trigger('create')
+      setBackgroundImage('')
       window.history.pushState('', '', 'index.php?v=m&p=home')
       var functionName = ''
       if (init(_plugin) != '') {

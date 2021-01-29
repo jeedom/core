@@ -104,17 +104,22 @@
     z-index: -1;
     position: fixed;
     opacity: 0.4;
+    opacity: var(--bkg-opacity-light);
     background-size: cover !important;
     background-position: right bottom !important;
     background-repeat: no-repeat;
     background-image: var(--dashBkg-url) !important;
     background-color: transparent !important;
   }
+  #backgroundforJeedom.custom {
+    background-position: center !important;
+  }
   [data-page="dashboard"] #backgroundforJeedom {
     filter: blur(var(--objectBackgroundBlur));
   }
   [data-theme*="Dark"] #backgroundforJeedom {
-    opacity : 0.6;
+    opacity: 0.6;
+    opacity: var(--bkg-opacity-dark);
   }
 
   #dashTopBar {
@@ -676,7 +681,7 @@
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
     background: transparent !important;
-    border-bottom: 1px solid var(--el-defaultColor) !important;
+    border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
   }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > .reportModeHidden,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,

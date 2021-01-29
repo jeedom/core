@@ -74,7 +74,12 @@ class jeedom {
 			'objectBackgroundBlur',
 			'theme_displayAsTable',
 			'interface::toast::position',
-			'interface::toast::duration'
+			'interface::toast::duration',
+			'interface::background::dashboard',
+			'interface::background::analysis',
+			'interface::background::tools',
+			'interface::background::opacitylight',
+			'interface::background::opacitydark'
 		);
 
 		$return = config::byKeys($key);
@@ -107,7 +112,7 @@ class jeedom {
 				switch ($key) {
 					case '--border-radius':
 					if ($value == '') {
-						$value=0;
+						$value = 0;
 					} else if($value > 1) {
 						$value = 1;
 					}
@@ -115,9 +120,9 @@ class jeedom {
 					break;
 					case '--objectBackgroundBlur':
 					if ($value == '') {
-						$value=0;
+						$value = 0;
 					}
-					$value.='px';
+					$value .= 'px';
 					break;
 				}
 			}

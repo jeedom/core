@@ -454,17 +454,9 @@ user::isBan();
 							</div>
 						</div>
 
-						<legend>{{Options}}</legend>
+						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
-							</div>
-						</div>
-                        <div class="form-group">
-							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="showBackgroundImg"/>
 							</div>
@@ -473,6 +465,63 @@ user::isBan();
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Dashboard}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet).}}"></i></sup>
+							</label>
+						    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+              					<span class="btn btn-default btn-file btn-xs">
+                					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="dashboard">
+              					</span>
+              					<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="dashboard"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+            				</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Analyse}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse.}}"></i></sup>
+							</label>
+						    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+              					<span class="btn btn-default btn-file btn-xs">
+                					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="analysis">
+              					</span>
+              					<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="analysis"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+            				</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Outils}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils.}}"></i></sup>
+							</label>
+						    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+              					<span class="btn btn-default btn-file btn-xs">
+                					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="tools">
+              					</span>
+              					<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="tools"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+            				</div>
+						</div>
+						<div class="form-group">
+                        	<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Light}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitylight" />
+							</div>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitydark" />
+							</div>
+						</div>
+
+						<legend>{{Options}}</legend>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
 							</div>
 						</div>
                         <div class="form-group">

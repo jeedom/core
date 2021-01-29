@@ -16,14 +16,17 @@
 
 "use strict"
 
+var BACKGROUND_IMG = null
+var $backForJeedom = null
 $(function() {
+  $backForJeedom = $('#backgroundforJeedom')
   $(document)
-  .ajaxStart(function () {
-    $.showLoading()
-  })
-  .ajaxStop(function () {
-    $.hideLoading()
-  })
+    .ajaxStart(function () {
+      $.showLoading()
+    })
+    .ajaxStop(function () {
+      $.hideLoading()
+    })
 })
 
 //cmd update:
@@ -33,8 +36,6 @@ var utid = 0
 var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
 
 var isEditing = false
-var BACKGROUND_IMG = null
-var $backForJeedom = $('#backgroundforJeedom')
 
 //js error in ! ui:
 var JS_ERROR = []
@@ -145,9 +146,9 @@ function loadPage(_url, _noPushHistory) {
     initPage()
     $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
     if (BACKGROUND_IMG !== null) {
-      setBackgroundImg(BACKGROUND_IMG)
+      setBackgroundImage(BACKGROUND_IMG)
     } else {
-      setBackgroundImg('')
+      setBackgroundImage('')
     }
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
@@ -177,6 +178,9 @@ $(function() {
   var $body = $('body')
   if (getDeviceType()['type'] == 'desktop') userDeviceType = 'desktop'
   $body.attr('data-device', userDeviceType)
+
+  document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
+  document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
   $.alertTrigger = function() {
     initRowOverflow()
@@ -253,9 +257,9 @@ $(function() {
 
   initPage()
   if (BACKGROUND_IMG != null) {
-    setBackgroundImg(BACKGROUND_IMG)
+    setBackgroundImage(BACKGROUND_IMG)
   } else {
-    setBackgroundImg('')
+    setBackgroundImage('')
   }
 
   //options for notify()
@@ -321,7 +325,7 @@ function setJeedomTheme() {
     $('#bootstrap_theme_css').attr('href', theme)
     $('#bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
-    setBackgroundImg(BACKGROUND_IMG)
+    setBackgroundImage(BACKGROUND_IMG)
     triggerThemechange()
   })
 
@@ -377,7 +381,7 @@ function checkThemechange() {
       $('#bootstrap_theme_css').attr('href', themeCss)
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-      setBackgroundImg(BACKGROUND_IMG)
+      setBackgroundImage(BACKGROUND_IMG)
       triggerThemechange()
     })
     .fail(function() {
@@ -407,7 +411,7 @@ function triggerThemechange() {
   }
 }
 
-function setBackgroundImg(_path) {
+function setBackgroundImage(_path) {
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
@@ -420,17 +424,25 @@ function setBackgroundImg(_path) {
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
-    _path = 'core/img/background/jeedom_abstract_01_'+mode+'.jpg'
-    if (['administration','profils'].indexOf($('body').attr('data-page')) != -1) {
-      _path = 'core/img/background/jeedom_abstract_03_'+mode+'.jpg'
+
+    var dataPage = $('body').attr('data-page')
+    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf(dataPage) != -1) {
+      _path = jeedom.theme['interface::background::analysis']
+    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf(dataPage) != -1) {
+      _path = jeedom.theme['interface::background::tools']
+    } else {
+      _path = jeedom.theme['interface::background::dashboard']
     }
-    if (['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1) {
-      _path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg'
+
+    if (_path.substring(0,4) == 'core') {
+      $backForJeedom.removeClass('custom')
+      _path += mode + '.jpg'
+    } else {
+      $backForJeedom.addClass('custom')
     }
-    $backForJeedom.css('background-image','url("'+_path+'")')
+
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   } else {
-    $backForJeedom.css('background-image','url("'+_path+'")')
     document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }
 }

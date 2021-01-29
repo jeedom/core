@@ -18,6 +18,7 @@ data/*
 !data/.htaccess
 !data/php
 !data/3d
+!data/backgrounds
 !data/view
 !data/img
 !data/object

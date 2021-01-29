@@ -76,9 +76,9 @@ if (view_id != '') {
     },
     success: function (html) {
       if (isset(html.raw) && isset(html.raw.img) && html.raw.img != '') {
-        setBackgroundImg(html.raw.img)
+        setBackgroundImage(html.raw.img)
       } else {
-        setBackgroundImg('')
+        setBackgroundImage('')
       }
 
       try {

@@ -266,6 +266,40 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
     setCookie('currentTheme', '', -1)
   })
 
+  $('.bt_uploadImage').each(function() {
+    $(this).fileupload({
+      replaceFileInput: false,
+      url: 'core/ajax/config.ajax.php?action=uploadImage&id=' + $(this).attr('data-page'),
+      dataType: 'json',
+      done: function(e, data) {
+        if (data.result.state != 'ok') {
+          $('#div_alert').showAlert({message: data.result.result, level: 'danger'})
+          return
+        }
+        $('#div_alert').showAlert({message: '{{Image enregistrée et configurée}}', level: 'success'})
+      }
+    })
+  })
+
+  $divConfig.on({
+    'click': function(event) {
+      var dataPage = $(this).attr('data-page')
+      bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
+        if (result) {
+          jeedom.config.removeImage({
+            id: dataPage,
+            error: function(error) {
+              $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            },
+            success: function() {
+              $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'})
+            },
+          })
+        }
+      })
+    }
+  }, '.bt_removeBackgroundImage')
+
 /**************************NETWORK***********************************/
   $divConfig.on({
     'change': function(event) {

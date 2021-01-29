@@ -29,7 +29,7 @@ $(function() {
       jeedom.object.getImgPath({
         id : rootObjectId,
         success : function(_path) {
-          setBackgroundImg(_path)
+          setBackgroundImage(_path)
         }
       })
     }
@@ -322,7 +322,7 @@ $('.li_object').on('click',function() {
     jeedom.object.getImgPath({
       id : object_id,
       success : function(_path) {
-        setBackgroundImg(_path)
+        setBackgroundImage(_path)
       }
     })
     $('#dashOverviewPrev .li_object').removeClass('active')
