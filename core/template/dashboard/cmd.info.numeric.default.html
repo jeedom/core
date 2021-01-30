@@ -19,7 +19,9 @@
       $('.cmd[data-cmd_id=#id#]')
         .attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
         .find('.state strong').first().text(_options.display_value)
-      $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value)
+      if ($('.cmd[data-cmd_uid=#uid#] .gauge').highcharts() !== undefined) {
+        $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value)
+      }
     }
 
     if (is_numeric('#state#')) {
