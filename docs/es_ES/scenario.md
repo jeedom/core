@@ -15,7 +15,7 @@ Allí encontrará la lista de escenarios de su Jeedom, así como las funcionalid
 
 ## Mis escenarios
 
-En esta sección encontrarás el **lista de escenarios** que creaste. Se clasifican según su **grupo**, posiblemente definido para cada uno de ellos. Cada escenario se muestra con su **apellido** y su **objeto padre**. Los **escenarios atenuados** son los que están deshabilitados.
+Encontrarás en esta parte **lista de escenarios** que creaste. Se clasifican según su **grupo**, posiblemente definido para cada uno de ellos. Cada escenario se muestra con su **apellido** y su **objeto padre**. Los **escenarios atenuados** son los que están deshabilitados.
 
 > **Propina**
 >
@@ -24,10 +24,10 @@ En esta sección encontrarás el **lista de escenarios** que creaste. Se clasifi
 > - Ctrl Clic o Clic Center para abrirlo en una nueva pestaña del navegador.
 
 Tiene un motor de búsqueda para filtrar la visualización de escenarios. La tecla Escape cancela la búsqueda.
-A la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom:
+A la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom :
 - La cruz para cancelar la búsqueda.
 - La carpeta abierta para desplegar todos los paneles y mostrar todos los escenarios.
-- La carpeta cerrada para doblar todos los paneles.
+- El respaldo cerrado para plegar todos los paneles.
 
 Una vez en la configuración de un escenario, tiene un menú contextual con clic derecho en las pestañas del escenario. También puede usar Ctrl Click o Click Center para abrir directamente otro escenario en una nueva pestaña del navegador.
 
@@ -45,8 +45,8 @@ Antes de eso, en la parte superior de la página, hay algunas funciones útiles 
 - **Vínculos** : Le permite ver el gráfico de los elementos relacionados con el escenario.
 - **Edición de texto** : Muestra una ventana que permite editar el escenario en forma de texto / json. No olvides guardar.
 - **Exportar** : Le permite obtener una versión de texto puro del escenario.
-- **Modelo** : Le permite acceder a las plantillas y aplicar una al mercado desde el mercado. (explicado al final de la página).
-- **Investigación** : Despliega un campo de búsqueda para buscar en el escenario. Esta búsqueda despliega los bloques colapsados si es necesario y los pliega nuevamente después de la búsqueda.
+- **Modelo** : Le permite acceder a las plantillas y aplicar una al escenario del Mercado (explicado en la parte inferior de la página).
+- **Investigación** : Despliega un campo de búsqueda para buscar en el escenario. Esta búsqueda despliega los bloques colapsados si es necesario y los pliega después de la búsqueda.
 - **Realizar** : Le permite iniciar el escenario manualmente (independientemente de los desencadenantes). Guardar de antemano para tener en cuenta las modificaciones.
 - **Eliminar** : Eliminar escenario.
 - **Salvar** : Guardar los cambios realizados.
@@ -69,13 +69,13 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 - **Activo** : Activa el escenario. Si no está activo, Jeedom no lo ejecutará, independientemente del modo de disparo.
 - **Visible** : Se utiliza para hacer visible el escenario (Panel de control).
 - **Objeto padre** : Asignación a un objeto padre. Entonces será visible o no según este padre.
-- **Tiempo de espera en segundos (0 = ilimitado)** : El tiempo máximo de ejecución permitido para este escenario. Más allá de este tiempo, la ejecución del escenario se interrumpe.
+- **Tiempo de espera en segundos (0 = ilimitado)** : El tiempo máximo de ejecución permitido para este escenario. Pasado este tiempo, se interrumpe la ejecución del escenario.
 - **Lanzamiento múltiple** : Marque esta casilla si desea que el escenario se pueda iniciar varias veces al mismo tiempo.
 >**IMPORTANTE**
 >
->El lanzamiento múltiple funciona por segundo, es decir que si tiene 2 lanzamientos en el mismo segundo sin marcar la casilla, todavía habrá 2 lanzamientos del escenario (cuando no debería). Del mismo modo, durante varios lanzamientos en el mismo segundo, es posible que ciertos lanzamientos pierdan las etiquetas. Conclusión DEBE ABSOLUTAMENTE evitar múltiples lanzamientos en los mismos segundos.
+>El lanzamiento múltiple funciona por segundo, es decir que si tienes 2 lanzamientos en el mismo segundo sin marcar la casilla, aún habrá 2 lanzamientos del escenario (aunque no debería). Asimismo, durante varios lanzamientos en el mismo segundo, algunos lanzamientos pueden perder las etiquetas. Conclusión debemos evitar ABSOLUTAMENTE lanzamientos múltiples en el mismo segundo.
 - **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable.
-- **Iniciar sesión** : El tipo de registro deseado para el escenario. Puede cortar el registro del escenario o, por el contrario, hacer que aparezca en Análisis → Tiempo real.
+- **Iniciar sesión** : El tipo de registro deseado para el escenario. Puede cortar los registros del escenario o por el contrario mostrarlo en Análisis → Tiempo real.
 - **Cronología** : Mantenga un seguimiento del escenario en la línea de tiempo (consulte el documento Historial).
 - **Icono** : Le permite elegir un icono para el escenario en lugar del icono estándar.
 - **Descripción** : Le permite escribir un pequeño texto para describir su escenario.
@@ -95,7 +95,7 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 Aquí es donde construirás tu escenario. Después de crear el escenario, su contenido está vacío, por lo que hará ... nada. Tienes que empezar con **Agregar bloque**, con el botón de la derecha. Una vez que se ha creado un bloque, puede agregar otro **bloquear** o un **acción**.
 
 Para mayor comodidad y no tener que reordenar constantemente los bloques en el escenario, se agrega un bloque después del campo en el que se encuentra el cursor del mouse.
-*Por ejemplo, si tiene diez bloques y hace clic en la condición IF del primer bloque, el bloque agregado se agregará después del bloque, en el mismo nivel. Si no hay ningún campo activo, se agregará al final del escenario.*
+*Por ejemplo, si tiene diez bloques y hace clic en la condición SI del primer bloque, el bloque agregado se agregará después de este bloque, en el mismo nivel. Si no hay ningún campo activo, se agregará al final del escenario.*
 
 > **Propina**
 >
@@ -109,7 +109,7 @@ Para mayor comodidad y no tener que reordenar constantemente los bloques en el e
 
 Aquí están los diferentes tipos de bloques disponibles :
 
-- **If / Then / O** : Le permite realizar acciones bajo condición (si esto, entonces eso).
+- **If / Then / O** : Permite que las acciones se lleven a cabo bajo condiciones (si esto, entonces eso).
 - **Acción** : Le permite lanzar acciones simples sin ninguna condición.
 - **Lazo** : Permite que las acciones se realicen repetidamente desde 1 hasta un número definido (o incluso el valor de un sensor, o un número aleatorio).
 - **Dentro** : Permite iniciar una acción en X minuto (s) (0 es un valor posible). La peculiaridad es que las acciones se inician en segundo plano, por lo que no bloquean el resto del escenario. Entonces es un bloque sin bloqueo.
@@ -167,14 +167,14 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### Acceso al registro
+#### Acceso a registros
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Nombre del archivo de registro.
     - ``level`` : [depuración], [información], [error], [evento].
     - ``message`` : Mensaje para escribir en los registros.
 
-#### Acceso al escenario
+#### Acceso a escenarios
 
 - ``$scenario->getName();`` : Devuelve el nombre del escenario actual.
 - ``$scenario->getGroup();`` : Devuelve el grupo de escenarios.
@@ -363,7 +363,7 @@ Hay varias funciones disponibles para el equipo :
 
 - ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el equipo dada como parámetro, el segundo parámetro opcional le permite especificar el formato de devolución (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado con respecto al valor en el rango color_start / color_end. El valor debe estar entre min_value y max_value.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado con respecto a un valor en el intervalo color_start / color_end. El valor debe estar entre min_value y max_value.
 
 Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php) como por ejemplo :
 
@@ -397,7 +397,7 @@ Aquí hay ejemplos prácticos para comprender los valores devueltos por estas di
 | ``stateChanges(prise,période)``        | Devuelve 3 : el enchufe cambió de estado 3 veces durante el período            |
 | ``stateChanges(prise,0,période)``      | Devuelve 2 : el zócalo se ha apagado (yendo a 0) dos veces durante el período                              |
 | ``stateChanges(prise,1,période)``      | Devuelve 1 : el enchufe se enciende (cambie a 1) una vez durante el período                              |
-| ``lastBetween(#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today)`` | Devuelve la última temperatura registrada ayer.                    |
+| ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Devuelve la última temperatura registrada ayer.                    |
 | ``variable(plop,10)``                  | Devuelve el valor de la variable plop o 10 si está vacía o no existe                         |
 | ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
 | ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
@@ -423,7 +423,7 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 - ``avg(commande1,commande2…​.commandeN)`` : Devuelve el promedio de los valores.
 - ``time_op(time,value)`` : Le permite realizar operaciones a tiempo, con tiempo = tiempo (ej : 1530) y valor = valor para sumar o restar en minutos.
 - ``time_between(time,start,end)`` : Se usa para probar si un tiempo está entre dos valores con ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Los valores iniciales y finales pueden estar a caballo entre la medianoche.
-- ``time_diff(date1,date2[,format, round])`` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La diferencia se devuelve en absoluto, a menos que especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). También puedes usar ``dhms`` quien no regresará ejemplo ``7j 2h 5min 46s``. El parámetro redondo opcional redondeado a x dígitos después del punto decimal (2 por defecto). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La diferencia se devuelve en absoluto, a menos que especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). También puedes usar ``dhms`` quien no devolverá ejemplo ``7j 2h 5min 46s``. El parámetro redondo opcional redondeado a x dígitos después del punto decimal (2 por defecto). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formatea el retorno de una cadena ``#time#``.
 - ``floor(time/ /60)`` : Convierte segundos a minutos o minutos a horas (``floor(time/ /3600)`` por segundos a horas).
 - ``convertDuration(secondes)`` : Convierte segundos a d / h / min / s.
@@ -455,7 +455,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variable** (variable) : Creación / modificación de una variable o el valor de una variable.
 - **Eliminar variable** (delete_variable) : Le permite eliminar una variable.
-- **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag). El comando "Restablecer a SI" permite restablecer el estado de "SI" (este estado se utiliza para la no repetición de las acciones de un "SI" si pasa por segunda vez consecutiva en él)
+- **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag). El comando "Restablecer a SI" permite restablecer el estado de "SI" (este estado se utiliza para la no repetición de las acciones de un "SI" si pasa por segunda vez consecutiva en él).
 - **Detener** (stop) : Detener el escenario.
 - **Esperar** (wait) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos (s).
 - **Ir al diseño** (gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
@@ -475,7 +475,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Evento** (event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
 - **Etiqueta** (tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
 - **Coloración de los iconos del tablero** (setColoredIcon) : permite activar o no la coloración de iconos en el tablero.
-- **Exportación histórica** (exportHistory) : permite exportar el historial en csv de un pedido en forma de archivo (envío por correo por ejemplo). Puede realizar más de un pedido (separados por &&). La selección del período se realiza en el formulario :
+- **Exportación histórica** (exportHistory) : permite exportar el historial en csv de un pedido en forma de archivo (envío por correo por ejemplo). Puede poner varios comandos (separados por &&). La selección del período se realiza en el formulario :
   - "-1 mes "=> -1 mes
   - "-1 día medianoche "=> -1 día a medianoche
   - "ahora "=> ahora

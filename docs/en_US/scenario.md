@@ -15,7 +15,7 @@ You will find there the list of scenarios of your Jeedom, as well as functionali
 
 ## My scenarios
 
-In this section you will find the **list of scenarios** that you created. They are classified according to their **group**, possibly defined for each of them. Each scenario is displayed with its **last name** and his **parent object**. The **grayed out scenarios** are the ones that are disabled.
+You will find in this part **list of scenarios** that you created. They are classified according to their **group**, possibly defined for each of them. Each scenario is displayed with its **last name** and his **parent object**. The **grayed out scenarios** are the ones that are disabled.
 
 > **Tip**
 >
@@ -24,10 +24,10 @@ In this section you will find the **list of scenarios** that you created. They a
 > - Ctrl Clic or Clic Center to open it in a new browser tab.
 
 You have a search engine to filter the display of scenarios. The Escape key cancels the search.
-To the right of the search field, three buttons found in several places in Jeedom:
+To the right of the search field, three buttons found in several places in Jeedom :
 - The cross to cancel the search.
-- The open folder to unfold all the panels and display all the scenarios.
-- The closed folder to fold all the panels.
+- The open folder to unfold all panels and display all scenarios.
+- The closed backrest to fold all the panels.
 
 Once on the configuration of a scenario, you have a contextual menu with the Right Click on the tabs of the scenario. You can also use a Ctrl Click or Click Center to directly open another scenario in a new browser tab.
 
@@ -45,7 +45,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Connections** : Allows you to view the graph of the elements related to the scenario.
 - **Text editing** : Displays a window allowing to edit the scenario in the form of text / json. Don&#39;t forget to save.
 - **Export** : Allows you to obtain a pure text version of the scenario.
-- **Template** : Allows you to access the templates and apply one to the scenario from the market. (explained at the bottom of the page).
+- **Template** : Allows you to access the templates and apply one to the scenario from the Market (explained at the bottom of the page).
 - **Research** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
 - **Perform** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
 - **Remove** : Delete scenario.
@@ -64,7 +64,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 In the tab **General**, we find the main parameters of the scenario :
 
 - **Scenario name** : The name of your scenario.
-- **Name to display** : The name used for its display. Optional, if not completed, the name of the scenario is used.
+- **Name to display** : The name used for its display. Optional, if not filled in, the name of the scenario is used.
 - **Group** : Allows you to organize the scenarios, by classifying them in groups (visible on the scenarios page and in their contextual menus).
 - **Active** : Activate the scenario. If not active, it will not be executed by Jeedom, regardless of the trigger mode.
 - **Visible** : Used to make the scenario visible (Dashboard).
@@ -73,9 +73,9 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Multi launch** : Check this box if you want the scenario to be able to be launched several times at the same time.
 >**IMPORTANT**
 >
->The multi-launch works by the second, that is to say that if you have 2 launches in the same second without the box checked there will still be 2 launches of the scenario (when it should not). Similarly during several launches in the same second it is possible that some launches lose the tags. Conclusion you MUST ABSOLUTELY avoid multiple launches in the same seconds.
+>The multi launch works per second, that is to say that if you have 2 launches in the same second without the box checked, there will still be 2 launches of the scenario (although it should not). Likewise, during several launches in the same second, some launches may lose the tags. Conclusion we must ABSOLUTELY avoid multiple launching in the same second.
 - **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
-- **Log** : The type of log desired for the scenario. You can cut the log of the scenario or on the contrary make it appear in Analysis → Real time.
+- **Log** : The type of log desired for the scenario. You can cut the scenario logs or on the contrary show it in Analysis → Real time.
 - **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
 - **Icon** : Allows you to choose an icon for the scenario instead of the standard icon.
 - **Description** : Allows you to write a small text to describe your scenario.
@@ -95,7 +95,7 @@ In the tab **General**, we find the main parameters of the scenario :
 This is where you will build your scenario. After creating the scenario, its content is empty, so it will do ... nothing. You have to start with **Add block**, with the button on the right. Once a block has been created, you can add another **block** or a **action**.
 
 For more convenience and not having to constantly reorder the blocks in the scenario, adding a block is done after the field in which the mouse cursor is located.
-*For example, if you have ten blocks, and you click in the IF condition of the first block, the added block will be added after block, at the same level. If no field is active, it will be added at the end of the scenario.*
+*For example, if you have ten blocks, and you click in the IF condition of the first block, the added block will be added after this block, at the same level. If no field is active, it will be added at the end of the scenario.*
 
 > **Tip**
 >
@@ -109,7 +109,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 
 Here are the different types of blocks available :
 
-- **If / Then / Or** : Allows you to perform actions under condition (if this, then that).
+- **If / Then / Or** : Allows actions to be carried out under conditions (if this, then that).
 - **Action** : Allows you to launch simple actions without any conditions.
 - **Loop** : Allows actions to be performed repeatedly from 1 to a defined number (or even the value of a sensor, or a random number…).
 - **In** : Allows to launch an action in X minute (s) (0 is a possible value). The peculiarity is that the actions are launched in the background, so they do not block the rest of the scenario. So it&#39;s a non-blocking block.
@@ -167,14 +167,14 @@ The Code block allows you to execute php code. It is therefore very powerful but
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### Access to log
+#### Access to logs
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Log file name.
     - ``level`` : [debug], [info], [error], [event].
     - ``message`` : Message to write in the logs.
 
-#### Access to scenario
+#### Access to scenarios
 
 - ``$scenario->getName();`` : Returns the name of the current scenario.
 - ``$scenario->getGroup();`` : Returns the scenario group.
@@ -363,7 +363,7 @@ Several functions are available for the equipment :
 
 - ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the equipment given as a parameter, the 2nd optional parameter allows you to specify the return format (details [here](http://php.net/manual/fr/function.date.php)). A return of -1 means that the equipment cannot be found.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated with respect to value in the range color_start / color_end. The value must be between min_value and max_value.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated with respect to a value in the interval color_start / color_end. The value must be between min_value and max_value.
 
 The periods and intervals of these functions can also be used with [PHP expressions](http://php.net/manual/fr/datetime.formats.relative.php) For example :
 
@@ -397,7 +397,7 @@ Here are practical examples to understand the values returned by these different
 | ``stateChanges(prise,période)``        | Returns 3 : the plug changed state 3 times during the period            |
 | ``stateChanges(prise,0,période)``      | Returns 2 : the socket has extinguished (going to 0) twice during the period                              |
 | ``stateChanges(prise,1,période)``      | Returns 1 : the plug is lit (change to 1) once during the period                              |
-| ``lastBetween(#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today)`` | Returns the last temperature recorded yesterday.                    |
+| ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Returns the last temperature recorded yesterday.                    |
 | ``variable(plop,10)``                  | Returns the value of the variable plop or 10 if it is empty or does not exist                         |
 | ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Returns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent                         |
 | ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Returns 300 if the scenario was started for the last time 5 min ago                                  |
@@ -455,7 +455,7 @@ In addition to home automation commands, you have access to the following action
 - **Pause** (sleep) : Pause of x second (s).
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
-- **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it)
+- **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it).
 - **Stop** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
 - **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
@@ -475,7 +475,7 @@ In addition to home automation commands, you have access to the following action
 - **Event** (event) : Allows you to push a value in an information type command arbitrarily.
 - **Tag** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
 - **Coloring of dashboard icons** (setColoredIcon) : allows to activate or not the coloring of icons on the dashboard.
-- **Historical export** (exportHistory) : allows to export the history in csv of an order in the form of a file (sending by mail for example). You can place more than one order (separated by &&). The selection of the period is made in the form :
+- **Historical export** (exportHistory) : allows to export the history in csv of an order in the form of a file (sending by mail for example). You can put several commands (separated by &&). The selection of the period is made in the form :
   - "-1 month "=> -1 month
   - "-1 day midnight "=> -1 day at midnight
   - "now "=> now
