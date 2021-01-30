@@ -6,6 +6,7 @@
 - Bugfix suppression de zone sur une Vue.
 - Bugfix erreur js pouvant apparaitre sur d'anciens navigateurs.
 - Bugfix cmd.info.numeric.default.html si commande non visible.
+- Bugfix page de connection. 
 
 ## 4.1.18
 
