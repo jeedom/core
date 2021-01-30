@@ -296,7 +296,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'MEDIA_NEXT' => array('name' => __('Suivant',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action'),
 		'MEDIA_PREVIOUS' => array('name' => __('Précedent',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action'),
 		'MEDIA_ON' => array('name' => __('On',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
-		'MEDIA_OFF' => array('name' => __('On',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
+		'MEDIA_OFF' => array('name' => __('Off',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
 		'MEDIA_MUTE' => array('name' => __('Muet',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
 		'MEDIA_UNMUTE' => array('name' => __('Non Muet',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true),
 		'GENERIC_INFO' => array('name' => __(' Générique',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'Info'),
@@ -453,17 +453,17 @@ $GLOBALS['JEEDOM_SCLOG_TEXT'] = array(
 	'startSubTask' 			=> array('txt' => __('************Lancement sous tâche**************', __FILE__), 'replace' => '<label class="success">::</label>'),
 	'endSubTask' 			=> array('txt' => __('************FIN sous tâche**************', __FILE__), 'replace' => '<label class="success">::</label>'),
 	'sheduleNow'			=> array('txt' => __(' lancement immédiat ', __FILE__), 'replace' => '<label class="success">::</label>'),
-	
+
 	'execAction'			=> array('txt' => __('Exécution du sous-élément de type [action] : ', __FILE__), 'replace' => '<label class="info">- ::</label>'),
 	'execCondition'			=> array('txt' => __('Exécution du sous-élément de type [condition] : ', __FILE__), 'replace' => '<label class="info">- ::</label>'),
-	
+
 	'execCmd'				=> array('txt' => __('Exécution de la commande ', __FILE__), 'replace' => '<label class="warning">:: </label>'),
 	'execCode'				=> array('txt' => __('Exécution d\'un bloc code', __FILE__), 'replace' => '<label class="warning">:: </label>'),
 	'launchScenario'		=> array('txt' => __('Lancement du scénario : ', __FILE__), 'replace' => '<label class="warning">:: </label>'),
 	'launchScenarioSync'	=> array('txt' => __('Lancement du scénario en mode synchrone', __FILE__), 'replace' => '<label class="warning">:: </label>'),
 	'task'					=> array('txt' => __('Tâche : ', __FILE__), 'replace' => '<label class="warning">:: </label>'),
 	'event'					=> array('txt' => __('Changement de ', __FILE__), 'replace' => '<label class="warning">:: </label>'),
-	
+
 	'stopTimeout'			=> array('txt' => __('Arrêt du scénario car il a dépassé son temps de timeout : ', __FILE__), 'replace' => '<label class="danger">:: </label>'),
 	'disableNoSubtask'		=> array('txt' => __('Scénario désactivé non lancement de la sous tâche', __FILE__), 'replace' => '<label class="danger">::</label>'),
 	'disableEqNoExecCmd'	=> array('txt' => __('Equipement désactivé - impossible d\'exécuter la commande : ', __FILE__), 'replace' => '<label class="danger">:: </label>'),
