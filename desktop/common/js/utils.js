@@ -727,7 +727,7 @@ function initPage() {
   }, 750)
   try {
     if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
-  } catch {}
+  } catch (error) {}
   initDisplayAsTable()
 }
 
