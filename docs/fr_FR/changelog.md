@@ -4,6 +4,7 @@
 ## 4.1.19
 
 - Bugfix suppression de zone sur une Vue.
+- Bugfix erreur js pouvant apparaitre sur d'anciens navigateurs.
 - Bugfix cmd.info.numeric.default.html si commande non visible.
 
 ## 4.1.18
