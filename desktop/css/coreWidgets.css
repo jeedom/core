@@ -469,28 +469,33 @@ Desktop
     height: 220px;
   }
 
-  .gauge {
-    position: relative;
-    width: 100px;
-    height: 42px;
-    margin: 0 auto;
+  div.arcgauge .gauge,
+  div.arcgauge .gaugeValue {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 90px;
+    height: 45px;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+    border: 5px solid var(--el-defaultColor);
+    border-bottom: 0 !important;
   }
-  .gauge .highcharts-pane {
-    fill: var(--el-defaultColor);
+  div.arcgauge .content-sm {
+    width: 90px;
+    height: 45px;
+    clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
   }
-
-  .arcgauge .highcharts-color-0 { fill: var(--link-color); }
-  .arcgauge .highcharts-data-label > span > span { font-size: 12px !important; color: var(--link-color) !important;}
+  div.arcgauge .gaugeValue {
+    border: 8px solid var(--link-color);
+    transform-origin: 45px 45px;
+    transform: scale(0.94) rotate(-180deg);
+  }
   .arcgauge .cmdStats {
     position: relative;
-    top: -2px;
+    top: 5px;
   }
-  .arcgauge .highcharts-background {
-    fill-opacity: 0 !important;
-  }
-  .gauge .highcharts-yaxis-grid {
-    display: none;
-  }
+
   .hgauge-value,
   .vgauge-value,
   .shuttergauge-value {
