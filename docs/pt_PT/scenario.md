@@ -15,7 +15,7 @@ Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades p
 
 ## Meus scripts
 
-Nesta seção, você encontrará o **lista de cenários** que você criou. Eles são classificados de acordo com seus **grupo**, possivelmente definido para cada um deles. Cada cenário é exibido com seus **último nome** e o dele **Objeto pai**. O **cenários esmaecidos** são os que estão desativados.
+Você encontrará nesta parte **lista de cenários** que você criou. Eles são classificados de acordo com seus **grupo**, possivelmente definido para cada um deles. Cada cenário é exibido com seus **último nome** e o dele **Objeto pai**. O **cenários esmaecidos** são os que estão desativados.
 
 > **Dica**
 >
@@ -24,10 +24,10 @@ Nesta seção, você encontrará o **lista de cenários** que você criou. Eles 
 > - Ctrl Clic ou Clic Center para abri-lo em uma nova guia do navegador.
 
 Você tem um mecanismo de pesquisa para filtrar a exibição de cenários. A tecla Escape cancela a pesquisa.
-À direita do campo de pesquisa, três botões encontrados em vários lugares no Jeedom:
+À direita do campo de pesquisa, três botões encontrados em vários lugares no Jeedom :
 - A cruz para cancelar a pesquisa.
 - A pasta aberta para desdobrar todos os painéis e exibir todos os cenários.
-- A pasta fechada para dobrar todos os painéis.
+- O encosto fechado para dobrar todos os painéis.
 
 Uma vez na configuração de um cenário, você tem um menu contextual com o botão direito do mouse nas guias do cenário. Você também pode usar um Ctrl Click ou Click Center para abrir diretamente outro cenário em uma nova guia do navegador.
 
@@ -45,8 +45,8 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 - **Conexões** : Permite visualizar o gráfico dos elementos relacionados ao cenário.
 - **Edição de texto** : Exibe uma janela que permite editar o cenário na forma de texto / json. Não esqueça de salvar.
 - **Exportar** : Permite obter uma versão em texto puro do cenário.
-- **Modelo** : Permite acessar os modelos e aplicar um ao cenário no mercado. (explicado na parte inferior da página).
-- **Pesquisa** : Desdobra um campo de pesquisa para pesquisar no cenário. Esta pesquisa desdobra os blocos recolhidos, se necessário, e os dobra novamente após a pesquisa.
+- **Modelo** : Permite que você acesse os modelos e aplique um ao cenário do Mercado (explicado no final da página).
+- **Pesquisa** : Desdobra um campo de pesquisa para pesquisar no cenário. Esta pesquisa desdobra os blocos recolhidos se necessário e os dobra de volta após a pesquisa.
 - **Realizar** : Permite iniciar o cenário manualmente (independentemente dos gatilhos). Salve antecipadamente para levar em conta as modificações.
 - **Retirar** : Excluir cenário.
 - **Salve ** : Salve as alterações feitas.
@@ -64,7 +64,7 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 Na aba **Geral**, encontramos os principais parâmetros do cenário :
 
 - **Nome do cenário** : O nome do seu cenário.
-- **Display Name** : O nome usado para sua exibição. Opcional, se não for concluído, o nome do cenário é usado.
+- **Display Name** : O nome usado para sua exibição. Opcional, se não preenchido, o nome do cenário é usado.
 - **Grupo** : Permite organizar os cenários, classificando-os em grupos (visíveis na página de cenários e em seus menus contextuais).
 - **Ativo** : Ativar o cenário. Se não estiver ativo, ele não será executado pelo Jeedom, independentemente do modo de disparo.
 - **Visível** : Usado para tornar o cenário visível (Painel).
@@ -73,9 +73,9 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 - **Multi lançamento** : Marque esta caixa se desejar que o cenário possa ser iniciado várias vezes ao mesmo tempo.
 >**IMPORTANTE**
 >
->O multi-lançamento funciona a partir do segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (quando não deve). Da mesma forma, durante vários lançamentos no mesmo segundo, é possível que alguns lançamentos percam as tags. Conclusão: você DEVE ABSOLUTAMENTE evitar vários lançamentos nos mesmos segundos.
+>O multi lançamento funciona por segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (embora não deva). Da mesma forma, durante vários lançamentos no mesmo segundo, alguns lançamentos podem perder as tags. Conclusão, devemos absolutamente evitar múltiplos lançamentos no mesmo segundo.
 - **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade na qual o cenário é iniciado, mas pode tornar o sistema instável.
-- **Registro** : O tipo de log desejado para o cenário. Você pode cortar o log do cenário ou, pelo contrário, fazê-lo aparecer em Análise → Tempo real.
+- **Registro** : O tipo de log desejado para o cenário. Você pode cortar os registros do cenário ou, ao contrário, mostrá-lo em Análise → Tempo real.
 - **Linha do tempo** : Mantenha um acompanhamento do cenário na linha do tempo (consulte Histórico doc).
 - **Ícone** : Permite escolher um ícone para o cenário em vez do ícone padrão.
 - **Descrição** : Permite que você escreva um pequeno texto para descrever seu cenário.
@@ -95,7 +95,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 É aqui que você criará seu cenário. Depois de criar o cenário, seu conteúdo está vazio, então ele fará ... nada. Você tem que começar com **Adicionar bloco**, com o botão à direita. Após a criação de um bloco, você pode adicionar outro **quadra** ou um **açao**.
 
 Para maior comodidade e não ter que reordenar constantemente os blocos no cenário, a adição de um bloco é feita após o campo em que o cursor do mouse está localizado.
-*Por exemplo, se você tiver dez blocos e clicar na condição SE do primeiro bloco, o bloco adicionado será adicionado após o bloco, no mesmo nível. Se nenhum campo estiver ativo, ele será adicionado no final do cenário.*
+*Por exemplo, se você tiver dez blocos e clicar na condição IF do primeiro bloco, o bloco adicionado será adicionado após este bloco, no mesmo nível. Se nenhum campo estiver ativo, ele será adicionado no final do cenário.*
 
 > **Dica**
 >
@@ -109,7 +109,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 
 Aqui estão os diferentes tipos de blocos disponíveis :
 
-- **If / Then / Ou** : Permite que você execute ações sob condição (se isso, então aquele).
+- **If / Then / Ou** : Permite que ações sejam realizadas sob condições (se este, então aquele).
 - **Açao** : Permite iniciar ações simples sem nenhuma condição.
 - **Ciclo** : Permite que ações sejam executadas repetidamente de 1 a um número definido (ou mesmo o valor de um sensor ou um número aleatório…).
 - **Dentro** : Permite iniciar uma ação em X minuto (s) (0 é um valor possível). A peculiaridade é que as ações são iniciadas em segundo plano, para que não bloqueiem o restante do cenário. Portanto, é um bloco sem bloqueio.
@@ -167,14 +167,14 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
         -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
         -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
-#### Acesso ao log
+#### Acesso a registros
 
 -  ``log::add('filename','level','message');``
     - ``filename`` : Nome do arquivo de log.
     - ``level`` : [depuração], [informações], [erro], [evento].
     - ``message`` : Mensagem para escrever nos logs.
 
-#### Acesso ao cenário
+#### Acesso a cenários
 
 - ``$scenario->getName();`` : Retorna o nome do cenário atual.
 - ``$scenario->getGroup();`` : Retorna o grupo de cenários.
@@ -280,7 +280,7 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 - ``#hostname#`` : Nome da máquina Jeedom.
 - ``#trigger#`` (obsoleto, melhor usar ``trigger()``) : Talvez o nome do comando que iniciou o cenário :
     - ``api`` se o lançamento foi acionado pela API,
-    - ``schedule`` se foi iniciado pela programação,
+    - ``schedule`` se foi iniciado por programação,
     - ``user`` se foi iniciado manualmente,
     - ``start`` para um lançamento na inicialização do Jeedom.
 - ``#trigger_value#`` (descontinuado, melhor usar triggerValue()) : Para o valor do comando que acionou o cenário
@@ -363,7 +363,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o equipamento dado como parâmetro; o 2º parâmetro opcional permite especificar o formato de retorno (detalhes [aqui](http://php.net/manual/fr/function.date.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada com relação ao valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 
 Os períodos e intervalos dessas funções também podem ser usados com [Expressões PHP](http://php.net/manual/fr/datetime.formats.relative.php) como por exemplo :
 
@@ -397,7 +397,7 @@ Aqui estão exemplos práticos para entender os valores retornados por essas dif
 | ``stateChanges(prise,période)``        | Retorna 3 : o plugue mudou de estado 3 vezes durante o período            |
 | ``stateChanges(prise,0,période)``      | Retorna 2 : o soquete apagou (passando para 0) duas vezes durante o período                              |
 | ``stateChanges(prise,1,période)``      | Retorna 1 : o plugue está aceso (mude para 1) uma vez durante o período                              |
-| ``lastBetween(#[Salle de bain][Hydrometrie][Humidité]#,Yesterday,Today)`` | Retorna a última temperatura registrada ontem.                    |
+| ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Retorna a última temperatura registrada ontem.                    |
 | ``variable(plop,10)``                  | Retorna o valor da variável plop ou 10 se estiver vazia ou não existir                         |
 | ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Retorna 1 em andamento, 0 se parado e -1 se desativado, -2 se o cenário não existir e -3 se o estado não for consistente                         |
 | ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Retorna 300 se o cenário foi iniciado pela última vez há 5 minutos                                  |
@@ -423,7 +423,7 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 - ``avg(commande1,commande2…​.commandeN)`` : Retorna a média dos valores.
 - ``time_op(time,value)`` : Permite executar operações dentro do prazo, com time = time (ex : 1530) e value = value para adicionar ou subtrair em minutos.
 - ``time_between(time,start,end)`` : Usado para testar se um tempo está entre dois valores com ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Os valores inicial e final podem chegar à meia-noite.
-- ``time_diff(date1,date2[,format, round])`` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAA / MM / DD HH:MM:SS). Por padrão, o método retorna a diferença em dia (s)). Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. A diferença é retornada em absoluto, a menos que você especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). Você também pode usar ``dhms`` quem não retornará exemplo ``7j 2h 5min 46s``. O parâmetro round opcional arredondado para x dígitos após o ponto decimal (2 por padrão). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAA / MM / DD HH:MM:SS). Por padrão, o método retorna a diferença em dia (s)). Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. A diferença é retornada em absoluto, a menos que você especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). Você também pode usar ``dhms`` quem não vai devolver exemplo ``7j 2h 5min 46s``. O parâmetro round opcional arredondado para x dígitos após o ponto decimal (2 por padrão). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formata o retorno de uma cadeia ``#time#``.
 - ``floor(time/60)`` : Converter segundos em minutos ou minutos em horas (``floor(time/3600)`` por segundos a horas).
 - ``convertDuration(secondes)`` : Converte segundos em d / h / min / s.
@@ -455,7 +455,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variável** (variable) : Criação / modificação de uma variável ou o valor de uma variável.
 - **Remover variável** (delete_variable) : Permite excluir uma variável.
-- **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele)
+- **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele).
 - **Pare** (stop) : Pára o script.
 - **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
 - **Vai o projeto** (gotodesign) : Alterar o design exibido em todos os navegadores pelo design solicitado.
@@ -475,7 +475,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
 - **Coloração de ícones do painel** (setColoredIcon) : permite ativar ou não a coloração de ícones no painel.
-- **Exportação histórica** (exportHistory) : permite exportar o histórico em csv de uma encomenda sob a forma de ficheiro (envio por correio por exemplo). Você pode fazer mais de um pedido (separado por &&). A seleção do período é feita no formulário :
+- **Exportação histórica** (exportHistory) : permite exportar o histórico em csv de uma encomenda sob a forma de ficheiro (envio por correio por exemplo). Você pode colocar vários comandos (separados por &&). A seleção do período é feita no formulário :
   - "-1 mês "=> -1 mês
   - "-1 dia à meia-noite "=> -1 dia à meia-noite
   - "agora "=> agora
@@ -489,7 +489,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 
 Essa funcionalidade permite transformar um cenário em um modelo para, por exemplo, aplicá-lo a outro Jeedom.
 
-Clicando no botão **Modelo** na parte superior da página, você abre a janela de gerenciamento de modelos.
+Clicando no botão **Modelo** no topo da página, você abre a janela de gerenciamento de modelos.
 
 A partir daí, você tem a possibilidade :
 
