@@ -93,6 +93,17 @@ i.cursor {
 }
 
 /* ___________________________________________________________DASHBOARD */
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
+body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
+}
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name > a,
+body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
+body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i,
+body[data-coloredcats="0"] div.eqLogic-widget > span.cmd.editOptions:after {
+  color: var(--linkHoverLight-color) !important;
+}
 
 #div_displayObject > a {
   background-color: var(--btnEq-default-color) !important;
