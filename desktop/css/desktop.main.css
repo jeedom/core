@@ -234,8 +234,8 @@
   .dropdown > a:hover {
     background-color: rgb(var(--defaultBkg-color)) !important;
   }
-  .dropdown-menu {
-    z-index: 10 !important;
+  .open > .dropdown-menu {
+    z-index: 990 !important;
     scrollbar-width: thin;
   }
   .dropdown-menu > li > a {

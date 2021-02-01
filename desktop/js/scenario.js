@@ -2024,8 +2024,8 @@ function getAddButton(_caret) {
   retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}'
   retour += '<span class="caret"></span>'
   retour += '</button>'
-  retour += '<ul class="dropdown-menu">'
 
+  retour += '<ul class="dropdown-menu">'
   retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
@@ -2034,8 +2034,8 @@ function getAddButton(_caret) {
   retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
-
   retour += '</ul>'
+
   retour += '</div>'
   if (_caret) {
     retour += '</span>'
