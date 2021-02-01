@@ -79,7 +79,7 @@
 
   #backgroundforJeedom {
     width: 100%;
-    height: calc(100% - 50px);
+    height: 100%;
     z-index: -1;
     position: fixed;
     background-color: transparent !important;
@@ -1110,7 +1110,7 @@
     margin-left: 30px ;
     padding: 6px;
     border-radius: var(--border-radius);
-    background-color: rgb(var(--eq-bg-color)) !important;
+    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   }
   #timelineContainer ul li > span.vertLine {
     position: absolute;
@@ -1176,7 +1176,7 @@
     padding-left: 50px;
     padding-right: 5px;
     border-radius: var(--border-radius) !important;
-    background: rgb(var(--eq-bg-color)) !important;
+    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   }
   #timelineContainer div.date {
     position: absolute;
