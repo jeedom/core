@@ -704,7 +704,7 @@ function initPage() {
   
   try {
     if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
-  } catch {}
+  } catch (error) {}
 }
 
 var __OBSERVER__ = null
