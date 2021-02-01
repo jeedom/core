@@ -333,7 +333,7 @@ class network {
 			$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
 		}
 		if(config::byKey('dns::remote') != ''){
-			$openvpn->setConfiguration('remote', config::byKey('	dns::remote'));
+			$openvpn->setConfiguration('remote', config::byKey('dns::remote'));
 		}
 		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
 		$openvpn->setConfiguration('password', config::byKey('dns::token'));
