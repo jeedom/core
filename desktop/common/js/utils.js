@@ -126,12 +126,6 @@ function loadPage(_url, _noPushHistory) {
   }
 
   BACKGROUND_IMG = null
-  $backForJeedom.css({
-    'background-image':'',
-    'background-position':'center center',
-    'background-repeat':'no-repeat',
-    'background-size':'cover'
-  })
 
   $.clearDivContent('div_pageContainer')
   isEditing = false
@@ -145,11 +139,16 @@ function loadPage(_url, _noPushHistory) {
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
     initPage()
     $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
-    if (BACKGROUND_IMG !== null) {
-      setBackgroundImage(BACKGROUND_IMG)
-    } else {
-      setBackgroundImage('')
+
+    //dashboard page on object will set its own background:
+    if (!_url.includes('dashboard&object_id')) {
+      if (BACKGROUND_IMG !== null) {
+        setBackgroundImage(BACKGROUND_IMG)
+      } else {
+        setBackgroundImage('')
+      }
     }
+
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
     }
@@ -412,39 +411,56 @@ function triggerThemechange() {
 }
 
 function setBackgroundImage(_path) {
+  //Exact same function desktop/mobile, only transitionJeedomBackground() differ
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
-  BACKGROUND_IMG = _path
   if (_path === null) {
-    document.body.style.setProperty('--dashBkg-url','url("")')
-    $backForJeedom.css('background-image','url("")')
+    $backForJeedom.find('#bottom').css('background-image', 'url("")').show()
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
 
-    var dataPage = $('body').attr('data-page')
-    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf(dataPage) != -1) {
+    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::analysis']
-    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf(dataPage) != -1) {
+    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::tools']
     } else {
       _path = jeedom.theme['interface::background::dashboard']
     }
 
-    if (_path.substring(0,4) == 'core') {
+    if (_path.substring(0, 4) == 'core') {
       $backForJeedom.removeClass('custom')
       _path += mode + '.jpg'
     } else {
       $backForJeedom.addClass('custom')
     }
-
-    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
+    transitionJeedomBackground(_path)
   } else {
-    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
+    transitionJeedomBackground(_path)
   }
+  BACKGROUND_IMG = _path
+}
+
+function transitionJeedomBackground(_path) {
+  if ($('body').attr('data-theme') == 'core2019_Dark') {
+    var opacity = $('body').style('--bkg-opacity-dark')
+  } else {
+    var opacity = $('body').style('--bkg-opacity-light')
+  }
+
+  if ($backForJeedom.find('#bottom').css('background-image').indexOf(_path) != -1 && $backForJeedom.find('#bottom').css('opacity') == opacity) {
+    return
+  }
+
+  _path = 'url("../../../../' + _path + '")'
+  $backForJeedom.find('#top').css('background-image', _path).fadeTo(350, opacity)
+  $backForJeedom.find('#bottom').fadeOut(350, 'swing', function() {
+    $(this).css('background-image', _path).show()
+    $backForJeedom.find('#top').hide()
+  })
 }
 
 //Jeedom UI__

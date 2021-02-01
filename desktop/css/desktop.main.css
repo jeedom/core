@@ -103,21 +103,30 @@
     height: calc(100% - 50px);
     z-index: -1;
     position: fixed;
-    opacity: 0.4;
+    background-color: transparent !important;
+  }
+  #backgroundforJeedom > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     opacity: var(--bkg-opacity-light);
     background-size: cover !important;
     background-position: right bottom !important;
     background-repeat: no-repeat;
-    background-image: var(--dashBkg-url) !important;
-    background-color: transparent !important;
   }
-  #backgroundforJeedom.custom {
+  #backgroundforJeedom > #top {
+    z-index: 2;
+  }
+  #backgroundforJeedom > #bottom {
+    z-index: 1
+  }
+  #backgroundforJeedom.custom > div {
     background-position: center !important;
   }
   [data-page="dashboard"] #backgroundforJeedom {
     filter: blur(var(--objectBackgroundBlur));
   }
-  [data-theme*="Dark"] #backgroundforJeedom {
+  [data-theme*="Dark"] #backgroundforJeedom > div {
     opacity: 0.6;
     opacity: var(--bkg-opacity-dark);
   }

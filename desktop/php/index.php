@@ -230,7 +230,10 @@ function setTheme() {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 <body>
-	<div id="backgroundforJeedom"></div>
+	<div id="backgroundforJeedom">
+		<div id="top"></div>
+		<div id="bottom"></div>
+	</div>
 	<div id="div_jeedomLoading" style="display:none;">
 		<div class="loadingBack"></div>
 		<div class="loadingSpinner"></div>

@@ -118,39 +118,41 @@ $(window).on('popstate', function(event) {
 
 //theming:
 function setBackgroundImage(_path) {
+  //Exact same function desktop/mobile, only transitionJeedomBackground() differ
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
-  BACKGROUND_IMG = _path
   if (_path === null) {
-    document.body.style.setProperty('--dashBkg-url','url("")')
-    $backForJeedom.css('background-image','url("")')
+    $backForJeedom.find('#bottom').css('background-image', 'url("")').show()
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
 
-    var dataPage = $('body').attr('data-page')
-    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf(dataPage) != -1) {
+    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::analysis']
-    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf(dataPage) != -1) {
+    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::tools']
     } else {
       _path = jeedom.theme['interface::background::dashboard']
     }
 
-    if (_path.substring(0,4) == 'core') {
+    if (_path.substring(0, 4) == 'core') {
       $backForJeedom.removeClass('custom')
       _path += mode + '.jpg'
     } else {
       $backForJeedom.addClass('custom')
     }
-
-    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
+    transitionJeedomBackground(_path)
   } else {
-    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
+    transitionJeedomBackground(_path)
   }
+  BACKGROUND_IMG = _path
+}
+
+function transitionJeedomBackground(_path) {
+  $backForJeedom.find('#bottom').css('background-image', 'url("../../../../' + _path + '")')
 }
 
 function switchTheme(themeConfig) {
