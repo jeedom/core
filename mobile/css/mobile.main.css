@@ -79,7 +79,7 @@
 
   #backgroundforJeedom {
     width: 100%;
-    height: calc(100% - 50px);
+    height: 100%;
     z-index: -1;
     position: fixed;
     background-color: transparent !important;
