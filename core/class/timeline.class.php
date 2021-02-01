@@ -40,6 +40,21 @@ class timeline {
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
 
+  public static function byDateRange($_startTime, $_endTime=null) {
+    if ($_endTime == null) {
+      $_endTime = $_startTime;
+    }
+    $values = array(
+      'startTime' => $_startTime,
+      'endTime' => $_endTime
+    );
+    $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+    FROM timeline
+    WHERE `datetime`>=:startTime
+    AND `datetime`<=:endTime';
+    return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+  }
+
   public static function byFolder($_folder = 'main') {
     self::cleaning();
     if($_folder == 'main'){
