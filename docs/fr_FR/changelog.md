@@ -3,6 +3,7 @@
 ## 4.1.20
 
 - Bugfix scroll horizontal sur les design.
+- Retour à trois doigts sur design en mobile seulement pour les utilisateurs administrateurs.
 
 ## 4.1.19
 
