@@ -1263,7 +1263,7 @@ $(function() {
   jeedomUI.setHistoryModalHandler()
 
   //back to mobile home with three fingers on mobile:
-  if ($('body').attr('data-device') == 'mobile') {
+  if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {
     $('body').on('touchstart', function(event) {
       if (event.touches.length == 3) {
         $('body').off('touchstart')
