@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.1
 
+## 4.1.20
+
+- Bugfix scroll horizontal sur les design.
 
 ## 4.1.19
 
