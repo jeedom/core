@@ -78,7 +78,11 @@ try {
 		jeedom::cleanFileSytemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
-		echo '***ERROR***' . $e->getMessage();
+		if (init('force') != 1) {
+			throw $e;
+		} else {
+			echo '***ERROR***' . $e->getMessage();
+		}
 	}
 	if (init('backup::before') == 1 && init('force') != 1) {
 		try {
