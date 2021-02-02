@@ -78,7 +78,7 @@ if (init('type') != '') {
 			}
 			$cmd->askResponse(init('response'));
 		}
-
+		
 		if ($type == 'cmd') {
 			if($_RESTRICTED){
 				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
@@ -270,20 +270,20 @@ try {
 		$request = file_get_contents("php://input");
 	}
 	log::add('api', 'info', $request . ' - IP :' . $IP);
-
+	
 	$jsonrpc = new jsonrpc($request);
-
+	
 	if (!jeedom::apiModeResult(config::byKey('api::core::jsonrpc::mode', 'core', 'enable'))) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action (JSON-RPC disable)', __FILE__), -32001);
 	}
-
+	
 	if ($jsonrpc->getJsonrpc() != '2.0') {
 		user::failedLogin();
 		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
 	}
-
+	
 	$params = $jsonrpc->getParams();
-
+	
 	if ($jsonrpc->getMethod() == 'user::useTwoFactorAuthentification') {
 		if (network::getUserLocation() == 'internal') {
 			$jsonrpc->makeSuccess(0);
@@ -294,7 +294,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($user->getOptions('twoFactorAuthentification', 0));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'user::getHash') {
 		if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
 			user::failedLogin();
@@ -316,11 +316,11 @@ try {
 		}
 		$jsonrpc->makeSuccess($user->getHash());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'ping') {
 		$jsonrpc->makeSuccess('pong');
 	}
-
+	
 	if (isset($params['session']) && $params['session']) {
 		ini_set('session.gc_maxlifetime', 24 * 3600);
 		ini_set('session.use_cookies', 1);
@@ -336,7 +336,7 @@ try {
 			$_USER_GLOBAL = $_SESSION['user'];
 		}
 	}
-
+	
 	if (!is_object($_USER_GLOBAL)) {
 		if (!isset($params['apikey']) && !isset($params['api'])) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
@@ -355,7 +355,7 @@ try {
 			@session_write_close();
 		}
 	}
-
+	
 	if($_RESTRICTED){
 		if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 			log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
@@ -369,7 +369,7 @@ try {
 		}
 		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
 	}
-
+	
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
 		unautorizedInDemo();
@@ -381,7 +381,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(config::byKey($params['key'], $params['plugin'], $params['default']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'config::save') {
 		unautorizedInDemo();
 		if (!isset($params['plugin'])) {
@@ -389,17 +389,17 @@ try {
 		}
 		$jsonrpc->makeSuccess(config::save($params['key'], $params['value'], $params['plugin']));
 	}
-
+	
 	/*             * ***********************Version********************************* */
 	if ($jsonrpc->getMethod() == 'version') {
 		$jsonrpc->makeSuccess(jeedom::version());
 	}
-
+	
 	/*             * ***********************isOk********************************* */
 	if ($jsonrpc->getMethod() == 'jeedom::isOk') {
 		$jsonrpc->makeSuccess(jeedom::isOK());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeedom::halt') {
 		unautorizedInDemo();
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
@@ -408,7 +408,7 @@ try {
 		jeedom::haltSystem();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeedom::reboot') {
 		unautorizedInDemo();
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
@@ -417,7 +417,7 @@ try {
 		jeedom::rebootSystem();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeedom::update') {
 		unautorizedInDemo();
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
@@ -426,7 +426,7 @@ try {
 		jeedom::update('', 0);
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeedom::backup') {
 		unautorizedInDemo();
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
@@ -435,12 +435,12 @@ try {
 		jeedom::backup(true);
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	/*             * ***********************Datetime********************************* */
 	if ($jsonrpc->getMethod() == 'datetime') {
 		$jsonrpc->makeSuccess(getmicrotime());
 	}
-
+	
 	/*             * ***********************changes********************************* */
 	if ($jsonrpc->getMethod() == 'event::changes') {
 		$longPolling = null;
@@ -453,19 +453,19 @@ try {
 		}
 		$jsonrpc->makeSuccess(event::changes($params['datetime'], $longPolling, $filter));
 	}
-
+	
 	/*             * ************************Plugin*************************** */
 	if ($jsonrpc->getMethod() == 'plugin::listPlugin') {
 		$activateOnly = (isset($params['activateOnly']) && $params['activateOnly'] == 1) ? true : false;
 		$orderByCaterogy = (isset($params['orderByCaterogy']) && $params['orderByCaterogy'] == 1) ? true : false;
 		$jsonrpc->makeSuccess(utils::o2a(plugin::listPlugin($activateOnly, $orderByCaterogy)));
 	}
-
+	
 	/*             * ************************Object*************************** */
 	if ($jsonrpc->getMethod() == 'jeeObject::all' || $jsonrpc->getMethod() == 'object::all') {
 		$jsonrpc->makeSuccess(utils::o2a(jeeObject::all()));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeeObject::byId' || $jsonrpc->getMethod() == 'object::byId') {
 		$object = jeeObject::byId($params['id']);
 		if (!is_object($object)) {
@@ -473,11 +473,11 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($object));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeeObject::full' || $jsonrpc->getMethod() == 'object::full') {
 		$jsonrpc->makeSuccess(jeeObject::fullData(array(),$_USER_GLOBAL));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeeObject::fullById' || $jsonrpc->getMethod() == 'object::fullById') {
 		$object = jeeObject::byId($params['id']);
 		if (!is_object($object)) {
@@ -498,7 +498,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($return);
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'jeeObject::save' || $jsonrpc->getMethod() == 'object::save') {
 		if($_PLUGIN_APIKEY){
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
@@ -517,9 +517,9 @@ try {
 		$object->save();
 		$jsonrpc->makeSuccess(utils::o2a($object));
 	}
-
+	
 	/*             * ************************Summary*************************** */
-
+	
 	if ($jsonrpc->getMethod() == 'summary::global') {
 		if (isset($params['key'])) {
 			$jsonrpc->makeSuccess(jeeObject::getGlobalSummary($params['key']));
@@ -531,7 +531,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($def);
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'summary::byId') {
 		$object = jeeObject::byId($params['id']);
 		if (!is_object($object)) {
@@ -545,30 +545,30 @@ try {
 		}
 		$jsonrpc->makeSuccess($object->getSummary($params['key'], $params['raw']));
 	}
-
+	
 	/*             * ************************Timeline*************************** */
-
+	
 	if ($jsonrpc->getMethod() == 'timeline::all') {
 		$jsonrpc->makeSuccess(utils::o2a(timeline::all()));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'timeline::listFolder') {
 		$jsonrpc->makeSuccess(timeline::listFolder());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'timeline::byFolder') {
 		$jsonrpc->makeSuccess(utils::o2a(timeline::byFolder($params['folder'])));
 	}
-
+	
 	/*             * ************************datastore*************************** */
-
+	
 	if ($jsonrpc->getMethod() == 'datastore::byTypeLinkIdKey') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(utils::o2a(dataStore::byTypeLinkIdKey($params['type'], $params['linkId'], $params['key'])));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'datastore::save') {
 		if($_PLUGIN_APIKEY){
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
@@ -585,7 +585,7 @@ try {
 		$dataStore->save();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	/*             * ************************Equipement*************************** */
 	if ($jsonrpc->getMethod() == 'eqLogic::all') {
 		$return = array();
@@ -597,7 +597,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($return));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'eqLogic::byType') {
 		$return = array();
 		foreach (eqLogic::byType($params['type']) as $eqLogic) {
@@ -608,7 +608,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($return));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'eqLogic::byObjectId') {
 		$return = array();
 		foreach (eqLogic::byObjectId($params['object_id']) as $eqLogic) {
@@ -619,7 +619,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($return));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'eqLogic::byId') {
 		$eqLogic = eqLogic::byId($params['id']);
 		if (!is_object($eqLogic)) {
@@ -630,7 +630,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($eqLogic));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'eqLogic::fullById') {
 		$eqLogic = eqLogic::byId($params['id']);
 		if (!is_object($eqLogic)) {
@@ -646,7 +646,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($return);
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'eqLogic::save') {
 		unautorizedInDemo();
 		if($_PLUGIN_APIKEY){
@@ -698,7 +698,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($eqLogic));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'eqLogic::byTypeAndId') {
 		$return = array();
 		foreach ($params['eqType'] as $eqType) {
@@ -715,7 +715,7 @@ try {
 			}
 			$return[$eqType] = $info_eqLogics;
 		}
-
+		
 		foreach ($params['id'] as $id) {
 			$eqLogic = eqLogic::byId($id);
 			if (is_object($_USER_GLOBAL) && !$eqLogic->hasRight('r',$_USER_GLOBAL)) {
@@ -728,9 +728,9 @@ try {
 			$return[$id] = $info_eqLogic;
 		}
 		$jsonrpc->makeSuccess($return);
-
+		
 	}
-
+	
 	/*             * ************************Commande*************************** */
 	if ($jsonrpc->getMethod() == 'cmd::all') {
 		$return = array();
@@ -742,7 +742,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($return);
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::byEqLogicId') {
 		$return = array();
 		foreach (cmd::byEqLogicId($params['eqLogic_id']) as $cmd) {
@@ -753,7 +753,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($return);
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::byId') {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
@@ -764,7 +764,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($cmd->exportApi());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::execCmd') {
 		$return = array();
 		if (is_array($params['id'])) {
@@ -817,7 +817,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($return);
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
@@ -828,7 +828,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
@@ -839,7 +839,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::getHistory') {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
@@ -850,7 +850,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($cmd->getHistory($params['startTime'], $params['endTime'])));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::save') {
 		unautorizedInDemo();
 		if($_PLUGIN_APIKEY){
@@ -878,7 +878,7 @@ try {
 		$cmd->save();
 		$jsonrpc->makeSuccess(utils::o2a($cmd));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'cmd::event') {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
@@ -893,7 +893,7 @@ try {
 		$cmd->event($params['value'],$params['datetime']);
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	/*             * ************************Scénario*************************** */
 	if ($jsonrpc->getMethod() == 'scenario::all') {
 		$scenarios = array();
@@ -905,7 +905,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($scenarios));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'scenario::byId') {
 		$scenario = scenario::byId($params['id']);
 		if (!is_object($scenario)) {
@@ -916,7 +916,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(utils::o2a($scenario));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'scenario::changeState') {
 		$scenario = scenario::byId($params['id']);
 		if (!is_object($scenario)) {
@@ -941,7 +941,7 @@ try {
 		}
 		throw new Exception(__('Le paramètre "state" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]', __FILE__));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'scenario::export') {
 		$scenario = scenario::byId($params['id']);
 		if (!is_object($scenario)) {
@@ -952,7 +952,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(array('humanName' => $scenario->getHumanName(), 'export' => $scenario->export('array')));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'scenario::import') {
 		unautorizedInDemo();
 		if (isset($params['id'])) {
@@ -994,7 +994,7 @@ try {
 		$scenario->save();
 		$jsonrpc->makeSuccess(utils::o2a($scenario));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'scenario::save') {
 		unautorizedInDemo();
 		if (isset($params['id'])) {
@@ -1010,7 +1010,7 @@ try {
 		$scenario->save();
 		$jsonrpc->makeSuccess(utils::o2a($scenario));
 	}
-
+	
 	/*             * ************************Log*************************** */
 	if ($jsonrpc->getMethod() == 'log::get') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
@@ -1018,7 +1018,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'log::add') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1026,7 +1026,7 @@ try {
 		if (!isset($params['logicalId'])) $params['logicalId'] = '';
 		$jsonrpc->makeSuccess(log::add($params['log'], $params['type'], $params['message'], $params['logicalId']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'log::list') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1036,7 +1036,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(log::liste($params['filtre']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'log::empty') {
 		if($_PLUGIN_APIKEY){
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
@@ -1046,7 +1046,7 @@ try {
 		}
 		$jsonrpc->makeSuccess(log::clear($params['log']));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'log::remove') {
 		if($_PLUGIN_APIKEY){
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
@@ -1057,7 +1057,7 @@ try {
 		unautorizedInDemo();
 		$jsonrpc->makeSuccess(log::remove($params['log']));
 	}
-
+	
 	/*             * ************************Messages*************************** */
 	if ($jsonrpc->getMethod() == 'message::removeAll') {
 		if($_PLUGIN_APIKEY){
@@ -1069,14 +1069,14 @@ try {
 		message::removeAll();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'message::all') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(utils::o2a(message::all()));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'message::add') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1085,7 +1085,7 @@ try {
 		if (!isset($params['logicalId'])) $params['logicalId'] = '';
 		$jsonrpc->makeSuccess(message::add($params['type'], $params['message'], $params['action'], $params['logicalId']));
 	}
-
+	
 	/*             * ************************Interact*************************** */
 	if ($jsonrpc->getMethod() == 'interact::tryToReply') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
@@ -1100,14 +1100,14 @@ try {
 		}
 		$jsonrpc->makeSuccess(interactQuery::tryToReply($params['query'], $params));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'interactQuery::all') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(utils::o2a(interactQuery::all()));
 	}
-
+	
 	/*             * ************************USB mapping*************************** */
 	if ($jsonrpc->getMethod() == 'jeedom::getUsbMapping') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
@@ -1117,7 +1117,7 @@ try {
 		$gpio = (isset($params['gpio'])) ? $params['gpio'] : false;
 		$jsonrpc->makeSuccess(jeedom::getUsbMapping($name, $gpio));
 	}
-
+	
 	/*             * ************************Plugin*************************** */
 	if ($jsonrpc->getMethod() == 'plugin::install') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
@@ -1137,7 +1137,7 @@ try {
 		$update->save();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::remove') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1155,7 +1155,7 @@ try {
 		$update->remove();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1166,7 +1166,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($plugin->dependancy_info());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1179,7 +1179,7 @@ try {
 		$plugin->dependancy_install();
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1190,7 +1190,7 @@ try {
 		}
 		$jsonrpc->makeSuccess($plugin->deamon_info());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1208,7 +1208,7 @@ try {
 		$plugin->deamon_start($params['forceRestart']);
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1221,7 +1221,7 @@ try {
 		$plugin->deamon_stop();
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1234,22 +1234,22 @@ try {
 		$plugin->deamon_changeAutoMode($params['mode']);
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	/*             * ************************Update*************************** */
 	if ($jsonrpc->getMethod() == 'update::all') {
-		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user','restrict'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(utils::o2a(update::all()));
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'update::nbNeedUpdate') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(update::nbNeedUpdate());
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'update::update') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1258,7 +1258,7 @@ try {
 		jeedom::update('', 0);
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'update::checkUpdate') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1266,7 +1266,7 @@ try {
 		update::checkAllUpdate();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'update::doUpdate') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1284,9 +1284,9 @@ try {
 		$update->doUpdate();
 		$jsonrpc->makeSuccess('ok');
 	}
-
+	
 	/*             * ************************Network*************************** */
-
+	
 	if ($jsonrpc->getMethod() == 'network::restartDns') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1296,7 +1296,7 @@ try {
 		network::dns_start();
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'network::stopDns') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1306,16 +1306,16 @@ try {
 		network::dns_stop();
 		$jsonrpc->makeSuccess();
 	}
-
+	
 	if ($jsonrpc->getMethod() == 'network::dnsRun') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(),array('admin','user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(network::dns_run());
 	}
-
+	
 	/*             * ************************************************************************ */
-
+	
 	if (isset($params['plugin']) && $params['plugin'] != '' && $params['plugin'] != 'core') {
 		log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
 		try {
