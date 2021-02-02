@@ -322,8 +322,8 @@ function setJeedomTheme() {
     $('#bootstrap_theme_css').attr('href', theme)
     $('#bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
-    setBackgroundImage(BACKGROUND_IMG)
     triggerThemechange()
+    setBackgroundImage('')
   })
 
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
