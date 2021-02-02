@@ -500,7 +500,7 @@ jeedom.history.drawChart = function(_params) {
             }
           }
 
-          if (init(_params.option.groupingType) == '') {
+          if (init(_params.option.groupingType) == '' && _params.option.graphType != 'column') {
             //continue value to now, dotted if last value older than one minute (ts in millisecond):
             var dateEnd = new Date(data.result.dateEnd)
             dateEnd.setTime( dateEnd.getTime() - dateEnd.getTimezoneOffset()*60*1000 )
