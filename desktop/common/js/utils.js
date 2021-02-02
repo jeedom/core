@@ -421,7 +421,7 @@ function setBackgroundImage(_path) {
       mode = 'dark'
     }
 
-    if (['dashboard', 'overview'].indexOf($('body').attr('data-page')) != -1) {
+    if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::dashboard']
     } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::analysis']
