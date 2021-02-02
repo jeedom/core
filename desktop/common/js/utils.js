@@ -423,12 +423,12 @@ function setBackgroundImage(_path) {
       mode = 'dark'
     }
 
-    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::analysis']
-    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::tools']
-    } else {
+    if (['dashboard', 'overview'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::dashboard']
+    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
+      _path = jeedom.theme['interface::background::analysis']
+    } else {
+      _path = jeedom.theme['interface::background::tools']
     }
 
     if (_path.substring(0, 4) == 'core') {
@@ -457,7 +457,7 @@ function transitionJeedomBackground(_path) {
 
   _path = 'url("../../../../' + _path + '")'
   $backForJeedom.find('#top').css('background-image', _path).fadeTo(350, opacity)
-  $backForJeedom.find('#bottom').fadeOut(350, 'swing', function() {
+  $backForJeedom.find('#bottom').fadeOut(300, 'linear', function() {
     $(this).css('background-image', _path).show()
     $backForJeedom.find('#top').hide()
   })

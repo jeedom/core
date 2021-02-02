@@ -130,12 +130,12 @@ function setBackgroundImage(_path) {
       mode = 'dark'
     }
 
-    if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::analysis']
-    } else if (['object', 'scenario', 'interact', 'widgets', 'plugin', 'administration', 'profils'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::tools']
-    } else {
+    if (['dashboard', 'overview'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::dashboard']
+    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
+      _path = jeedom.theme['interface::background::analysis']
+    } else {
+      _path = jeedom.theme['interface::background::tools']
     }
 
     if (_path.substring(0, 4) == 'core') {
