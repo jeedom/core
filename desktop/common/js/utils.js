@@ -116,8 +116,6 @@ function loadPage(_url, _noPushHistory) {
   printEqLogic = undefined
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
 
-  $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
-
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
   } else {

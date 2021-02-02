@@ -3998,6 +3998,7 @@
 
   /* design */
   body[data-page="plan"] #div_mainContainer {
+    padding: 0;
     overflow: hidden !important;
   }
   .div_backgroundPlan {
@@ -4031,6 +4032,21 @@
   .div_backgroundPlan .text-widget {
     background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
     color: var(--txt-color) !important;
+  }
+
+  body.fullscreen {
+    padding-top: 0;
+  }
+  body.fullscreen header,
+  body.fullscreen footer {
+    display: none;
+  }
+
+  body.fullscreen #backgroundforJeedom {
+    height: 100%;
+  }
+  body.fullscreen .div_backgroundPlan {
+    height: 100vh !important;
   }
 
   /* view data table */
