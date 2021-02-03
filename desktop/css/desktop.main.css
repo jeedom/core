@@ -1217,6 +1217,9 @@
   [data-type="plugin"] #div_pageContainer > div.eqLogic {
     margin-top: 5px;
   }
+  [data-type="plugin"] .eqLogicThumbnailDisplay {
+    overflow: unset !important;
+  }
   select.selectCmd {
     border: 0;
     vertical-align: middle;
