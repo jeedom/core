@@ -18,7 +18,7 @@ if (is_array($scenarioListGroup)) {
 //get all scenarios without group:
 $scenarioNoGroup = scenario::all(null);
 if (count($scenarioNoGroup) > 0) {
-	$scenarios[__('Aucun', __FILE__)] = scenario::all(null);
+	$scenarios['{{Aucun}}'] = scenario::all(null);
 	$hasScenario = true;
 }
 
@@ -27,7 +27,7 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 	$thisDiv = '';
 
 	if ($_group == '') {
-		$groupName = __('Aucun', __FILE__);
+		$groupName = '{{Aucun}}';
 		$href = '#config_none';
 		$id = 'config_none';
 	} else {
@@ -116,7 +116,7 @@ sendVarToJs('initSearch', init('search', 0));
 
 			$div .= '<div class="panel-group" id="accordionScenario">';
 			//No group first:
-			if (isset($scenarios[__('Aucun', __FILE__)]) && count($scenarios[__('Aucun', __FILE__)]) > 0) {
+			if (isset($scenarios['{{Aucun}}']) && count($scenarios['{{Aucun}}']) > 0) {
 				$div .= jeedom_displayScenarioGroup();
 			}
 			echo $div;
