@@ -98,7 +98,7 @@ mod_insertCmd.getSubType = function() {
 
 mod_insertCmd.changeObjectCmd = function(_select, _options) {
   jeedom.object.getEqLogic({
-    id: _select.value(),
+    id: (_select.value() == '' ? -1 : _select.value()),
     orderByName : true,
     onlyHasCmds : _options.cmd,
     error: function(error) {
