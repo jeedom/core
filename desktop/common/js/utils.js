@@ -116,8 +116,6 @@ function loadPage(_url, _noPushHistory) {
   printEqLogic = undefined
   if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
 
-  $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
-
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
   } else {
@@ -324,8 +322,8 @@ function setJeedomTheme() {
     $('#bootstrap_theme_css').attr('href', theme)
     $('#bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
-    setBackgroundImage(BACKGROUND_IMG)
     triggerThemechange()
+    setBackgroundImage('')
   })
 
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
@@ -423,7 +421,7 @@ function setBackgroundImage(_path) {
       mode = 'dark'
     }
 
-    if (['dashboard', 'overview'].indexOf($('body').attr('data-page')) != -1) {
+    if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::dashboard']
     } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::analysis']

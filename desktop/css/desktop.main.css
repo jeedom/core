@@ -1217,6 +1217,9 @@
   [data-type="plugin"] #div_pageContainer > div.eqLogic {
     margin-top: 5px;
   }
+  [data-type="plugin"] .eqLogicThumbnailDisplay {
+    overflow: unset !important;
+  }
   select.selectCmd {
     border: 0;
     vertical-align: middle;
@@ -3998,6 +4001,7 @@
 
   /* design */
   body[data-page="plan"] #div_mainContainer {
+    padding: 0;
     overflow: hidden !important;
   }
   .div_backgroundPlan {
@@ -4031,6 +4035,21 @@
   .div_backgroundPlan .text-widget {
     background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
     color: var(--txt-color) !important;
+  }
+
+  body.fullscreen {
+    padding-top: 0;
+  }
+  body.fullscreen header,
+  body.fullscreen footer {
+    display: none;
+  }
+
+  body.fullscreen #backgroundforJeedom {
+    height: 100%;
+  }
+  body.fullscreen .div_backgroundPlan {
+    height: 100vh !important;
   }
 
   /* view data table */
