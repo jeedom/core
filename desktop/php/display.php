@@ -42,7 +42,7 @@ function jeedom_displayObjectGroup($object=-1) {
 		$_index = 'none';
 		$numParents = 0;
 		$objectId = -1;
-		$objectName = __('Aucun', __FILE__);
+		$objectName = '{{Aucun}}';
 		$objecUseCustomColor = 0;
 		$objectIcon = '<i class="far fa-circle"></i>';
 	} else {
