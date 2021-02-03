@@ -153,6 +153,32 @@ $(function() {
   catch(err) {}
 })
 
+$('.interactAttr[data-l1key=group]').autocomplete({
+  source: function(request, response, url) {
+    $.ajax({
+      type: 'POST',
+      url: 'core/ajax/interact.ajax.php',
+      data: {
+        action: 'autoCompleteGroup',
+        term: request.term
+      },
+      dataType: 'json',
+      global: false,
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error)
+      },
+      success: function(data) {
+        if (data.state != 'ok') {
+          $('#div_alert').showAlert({message: data.result, level: 'danger'})
+          return
+        }
+        response(data.result)
+      }
+    })
+  },
+  minLength: 1,
+})
+
 $('#bt_chooseIcon').on('click', function() {
   var _icon = false
   if ( $('div[data-l2key="icon"] > i').length ) {

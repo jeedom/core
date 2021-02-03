@@ -157,7 +157,7 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 					<div class="form-group">
 						<label class="col-sm-2 col-xs-2 control-label">{{Groupe}}</label>
 						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="group" placeholder=""/>
+							<input class="form-control interactAttr" type="text" data-l1key="group" placeholder="{{Groupe de l'interaction}}"/>
 						</div>
 					</div>
 					<div class="form-group">
