@@ -218,7 +218,7 @@
         "Composant supprimée": "Componente removido",
         "Configuration du composant": "Configuração de componentes",
         "Image supprimée": "Imagem excluída",
-        "Design sauvegardé": "Projeto salvo"
+        "Design sauvegardé": "Desenho salvo"
     },
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Adicionar",
@@ -1224,7 +1224,8 @@
         "Information binaire": "Informação binária",
         "Action on": "Acção sobre",
         "Action off": "Ação off",
-        "Sélectionner un mot-clé": "Selecione uma palavra-chave"
+        "Sélectionner un mot-clé": "Selecione uma palavra-chave",
+        "Design sauvegardé": "Desenho salvo"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "O depósito está inativo:",
@@ -2040,8 +2041,8 @@
         "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Não",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Aucun": "Não",
         "Gestion": "Gestão",
         "Ajouter": "Adicionar",
         "Activer scénarios": "Habilitar cenários",

@@ -1224,7 +1224,8 @@
         "Information binaire": "Ikili bilgi",
         "Action on": "Işlem on",
         "Action off": "Işlem off",
-        "Sélectionner un mot-clé": "Anahtar kelime seçin"
+        "Sélectionner un mot-clé": "Anahtar kelime seçin",
+        "Design sauvegardé": "Design sauvegardé"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Le dépôt est inactif :",
@@ -2040,8 +2041,8 @@
         "Annuler": "Iptal et"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Hiçbir",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Aucun": "Hiçbir",
         "Gestion": "Idare",
         "Ajouter": "Ekle",
         "Activer scénarios": "Senaryolara olanak",

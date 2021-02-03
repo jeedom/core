@@ -1224,7 +1224,8 @@
         "Information binaire": "Informazioni binarie",
         "Action on": "Azione sulla",
         "Action off": "Azione off",
-        "Sélectionner un mot-clé": "Seleziona una parola chiave"
+        "Sélectionner un mot-clé": "Seleziona una parola chiave",
+        "Design sauvegardé": "Design sauvegardé"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Le dépôt est inactif :",
@@ -2040,8 +2041,8 @@
         "Annuler": "Cancella"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Nessuno",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Aucun": "Nessuno",
         "Gestion": "Gestione",
         "Ajouter": "Aggiungi",
         "Activer scénarios": "Attiva scenari",
