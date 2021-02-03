@@ -88,11 +88,11 @@ step_3_database() {
   echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
   
-  service_action status mysql > /dev/null 2>&1
+  service_action status mysql
   if [ $? -ne 0 ]; then
-    service_action start mysql > /dev/null 2>&1
+    service_action start mysql
   fi
-  service_action status mysql > /dev/null 2>&1
+  service_action status mysql
   if [ $? -ne 0 ]; then
     echo "${ROUGE}Ne peut lancer mysql - Annulation${NORMAL}"
     exit 1
