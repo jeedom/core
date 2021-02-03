@@ -564,31 +564,6 @@ sendVarToJS('id', $plan->getId());
     }
   })
 
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
-    if ($(this).value() == 1) {
-      $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
-    }
-  })
-
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
-    if ($(this).value() != '#000000') {
-      $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
-    }
-  })
-
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=color]', function() {
-    if ($(this).value() != '#000000') {
-      $('.planAttr[data-l1key=display][data-l2key=color-defaut]').value(0)
-    }
-  })
-
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
-    if ($(this).value() == 1) {
-      $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0)
-      $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000')
-    }
-  })
-
   editor = []
 
   $('#bt_chooseIcon').on('click', function() {
@@ -606,6 +581,7 @@ sendVarToJS('id', $plan->getId());
     save()
   })
 
+  //load and set settings (call before any change event set):
   if (isset(id) && id != '') {
     jeedom.plan.byId({
       id : id,
@@ -614,7 +590,7 @@ sendVarToJS('id', $plan->getId());
       },
       success: function(plan) {
         plan_configure_plan = plan
-        $('.link_type:not(.link_'+plan.plan.link_type+')').remove()
+        $('.link_type:not(.link_' + plan.plan.link_type + ')').remove()
         $('#fd_planConfigure').setValues(plan.plan, '.planAttr')
         if (isset(plan.plan.configuration.action_on)) {
           for (var i in plan.plan.configuration.action_on) {
@@ -648,9 +624,44 @@ sendVarToJS('id', $plan->getId());
             }, 1)
           }
         }
+        setPlanUI_Events()
       }
     })
   }
+
+
+
+  function setPlanUI_Events() {
+    //background : not default if transparent:
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+      if ($(this).value() == 1) {
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').prop('checked', false)
+      }
+    })
+
+    //background: not default/transparent if colored:
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+      if ($(this).value() != '#000000') {
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').prop('checked', false)
+        $('.planAttr[data-l1key=display][data-l2key=background-transparent]').prop('checked', false)
+      }
+    })
+
+    //background: not transparent if default
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+      if ($(this).value() == 1) {
+        $('.planAttr[data-l1key=display][data-l2key=background-transparent]').prop('checked', false)
+      }
+    })
+
+    //text: not default if colored:
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=color]', function() {
+      if ($(this).value() != '#000000') {
+        $('.planAttr[data-l1key=display][data-l2key=color-defaut]').prop('checked', false)
+      }
+    })
+  }
+
 
   function save() {
     var plans = $('#fd_planConfigure').getValues('.planAttr')
@@ -672,7 +683,7 @@ sendVarToJS('id', $plan->getId());
         $('#div_alertPlanConfigure').showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
-        $('#div_alertPlanConfigure').showAlert({message: 'Design sauvegardé', level: 'success'})
+        $('#div_alertPlanConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'})
         jeedom.plan.byId({
           id : plans[0].id,
           error: function(error) {
@@ -682,7 +693,7 @@ sendVarToJS('id', $plan->getId());
             if (plan_configure_plan.plan.link_type == 'summary' && plan_configure_plan !== null && plan_configure_plan.plan.link_id) {
               $('.div_displayObject .summary-widget[data-summary_id=' + plan_configure_plan.plan.link_id + ']').remove()
             }
-            displayObject(plan.plan,plan.html,false)
+            displayObject(plan.plan, plan.html, false)
             $('#fd_planConfigure').closest("div.ui-dialog-content").dialog("close")
           }
         })

@@ -869,15 +869,16 @@ function displayPlan(_code) {
       $divDisplayObject.empty()
       .append('<div id="div_grid" class="container-fluid" style="display:none;"></div>')
       .height('auto').width('auto')
+      //general design configuration:
       if (isset(data.image)) {
         $divDisplayObject.append(data.image)
       }
       if (isset(data.configuration.backgroundTransparent) && data.configuration.backgroundTransparent == 1) {
-        $divDisplayObject.css('background-color','transparent')
+        $divDisplayObject.css('background-color', 'transparent')
       } else if (isset(data.configuration.backgroundColor)) {
-        $divDisplayObject.css('background-color',data.configuration.backgroundColor)
+        $divDisplayObject.css('background-color', data.configuration.backgroundColor)
       } else {
-        $divDisplayObject.css('background-color','#ffffff')
+        $divDisplayObject.css('background-color', '#ffffff')
       }
       if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
         $divDisplayObject.height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX)
@@ -905,6 +906,7 @@ function displayPlan(_code) {
         })
       }
 
+      //display design components:
       $divDisplayObject.find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove()
       jeedom.plan.byPlanHeader({
         id: planHeader_id,
