@@ -2,8 +2,9 @@
 
 ## 4.1.20
 
-- Bugfix scroll horizontal sur les design.
-- Retour à trois doigts sur design en mobile seulement pour les utilisateurs administrateurs.
+- Bugfix scroll horizontal sur les designs.
+- Bugfix scroll sur les pages équipements de plugins.
+- Retour à trois doigts sur les designs en mobile maintenant limité aux profils administrateur.
 
 ## 4.1.19
 
