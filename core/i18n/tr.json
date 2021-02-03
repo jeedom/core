@@ -2441,9 +2441,9 @@
         "Avec la période": "Avec la période"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "Hiçbir",
         "$value['name']": "$ Değer [ 'name']",
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Aucun": "Hiçbir",
         "Configuration avancée": "Gelişmiş ayarlar",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
         "Désélectionner les équipements": "Désélectionner les équipements",

@@ -2441,9 +2441,9 @@
         "Avec la période": "Avec la période"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "Tak ada",
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Aucun": "Tak ada",
         "Configuration avancée": "Konfigurasi lanjutan",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
         "Désélectionner les équipements": "Désélectionner les équipements",

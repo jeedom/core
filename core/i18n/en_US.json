@@ -2441,9 +2441,9 @@
         "Avec la période": "With the period"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "None",
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Aucun": "None",
         "Configuration avancée": "Advanced configuration",
         "Aller sur la configuration de l\\'objet": "Go to the object configuration",
         "Désélectionner les équipements": "Unselect equipments",

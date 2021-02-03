@@ -218,7 +218,7 @@
         "Composant supprimée": "Componente eliminado",
         "Configuration du composant": "Configuración de componentes",
         "Image supprimée": "Imagen suprimida",
-        "Design sauvegardé": "Diseño guardado"
+        "Design sauvegardé": "Diseño salvado"
     },
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Añadir",
@@ -2441,9 +2441,9 @@
         "Avec la période": "Con el periodo"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "No",
         "$value['name']": "Valor $ [ 'nombre']",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Aucun": "No",
         "Configuration avancée": "Configuración avanzada",
         "Aller sur la configuration de l\\'objet": "Ir a la configuración del objeto",
         "Désélectionner les équipements": "Deseleccionar equipo",

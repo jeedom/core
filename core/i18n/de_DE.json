@@ -2441,9 +2441,9 @@
         "Avec la période": "Mit der Zeit"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "Nein",
         "$value['name']": "$ Wert [ 'name']",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Aucun": "Nein",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Aller sur la configuration de l\\'objet": "Gehen Sie zur Konfiguration des Objekts",
         "Désélectionner les équipements": "Deaktivieren Sie die Ausrüstung",
