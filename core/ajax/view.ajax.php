@@ -80,7 +80,9 @@ try {
 		$view_ajax = json_decode(init('view'), true);
 		utils::a2o($view, $view_ajax);
 		$view->save();
-		$view->removeviewZone();
+		if (isset($view_ajax['zones']){
+			$view->removeviewZone();
+		}
 		if (isset($view_ajax['zones']) && count($view_ajax['zones']) > 0) {
 			foreach ($view_ajax['zones'] as $viewZone_info) {
 				$viewZone = new viewZone();
