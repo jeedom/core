@@ -1224,7 +1224,8 @@
         "Information binaire": "Binary information",
         "Action on": "On action",
         "Action off": "Off action",
-        "Sélectionner un mot-clé": "Select a keyword"
+        "Sélectionner un mot-clé": "Select a keyword",
+        "Design sauvegardé": "Saved design"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "The deposit is inactive:",
@@ -2040,8 +2041,8 @@
         "Annuler": "Cancel"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Aucun": "None",
         "Gestion": "Management",
         "Ajouter": "Add",
         "Activer scénarios": "Enable scenarios",

@@ -1224,7 +1224,8 @@
         "Information binaire": "Binäre Informationen",
         "Action on": "Aktion auf",
         "Action off": "Aktion aus",
-        "Sélectionner un mot-clé": "Schlüsselwort auswählen"
+        "Sélectionner un mot-clé": "Schlüsselwort auswählen",
+        "Design sauvegardé": "Gespeichertes Design"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Die Anzahlung ist inaktiv:",
@@ -2040,8 +2041,8 @@
         "Annuler": "Abbrechen"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Nein",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Aucun": "Nein",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Activer scénarios": "Szenarien aktivieren",

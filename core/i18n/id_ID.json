@@ -1224,7 +1224,8 @@
         "Information binaire": "Informasi biner",
         "Action on": "Aksi",
         "Action off": "Aksi off",
-        "Sélectionner un mot-clé": "Pilih kata kunci"
+        "Sélectionner un mot-clé": "Pilih kata kunci",
+        "Design sauvegardé": "Design sauvegardé"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Le dépôt est inactif :",
@@ -2040,8 +2041,8 @@
         "Annuler": "Tidak jadi"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Aucun": "Tak ada",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
         "Activer scénarios": "Mengaktifkan skenario",
