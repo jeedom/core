@@ -4,6 +4,7 @@
 
 - Bugfix scroll horizontal sur les designs.
 - Bugfix scroll sur les pages équipements de plugins.
+- Bugfix des paramétrages de couleurs sur les liens vue/design sur un Design.
 - Retour à trois doigts sur les designs en mobile maintenant limité aux profils administrateur.
 
 ## 4.1.19
@@ -11,7 +12,7 @@
 - Bugfix suppression de zone sur une Vue.
 - Bugfix erreur js pouvant apparaitre sur d'anciens navigateurs.
 - Bugfix cmd.info.numeric.default.html si commande non visible.
-- Bugfix page de connexion. 
+- Bugfix page de connexion.
 
 ## 4.1.18
 

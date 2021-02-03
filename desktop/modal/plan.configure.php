@@ -564,31 +564,6 @@ sendVarToJS('id', $plan->getId());
     }
   })
 
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
-    if ($(this).value() == 1) {
-      $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
-    }
-  })
-
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
-    if ($(this).value() != '#000000') {
-      $('.planAttr[data-l1key=display][data-l2key=background-defaut]').value(0)
-    }
-  })
-
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=color]', function() {
-    if ($(this).value() != '#000000') {
-      $('.planAttr[data-l1key=display][data-l2key=color-defaut]').value(0)
-    }
-  })
-
-  $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
-    if ($(this).value() == 1) {
-      $('.planAttr[data-l1key=display][data-l2key=background-transparent]').value(0)
-      $('.planAttr[data-l1key=css][data-l2key=background-color]').value('#000000')
-    }
-  })
-
   editor = []
 
   $('#bt_chooseIcon').on('click', function() {
@@ -605,6 +580,7 @@ sendVarToJS('id', $plan->getId());
     save()
   })
 
+  //load and set settings (call before any change event set):
   if (isset(id) && id != '') {
     jeedom.plan.byId({
       id : id,
@@ -647,6 +623,38 @@ sendVarToJS('id', $plan->getId());
             }, 1)
           }
         }
+        setPlanUI_Events()
+      }
+    })
+  }
+
+  function setPlanUI_Events() {
+    //background : not default if transparent:
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-transparent]', function() {
+      if ($(this).value() == 1) {
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').prop('checked', false)
+      }
+    })
+
+    //background: not default/transparent if colored:
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=background-color]', function() {
+      if ($(this).value() != '#000000') {
+        $('.planAttr[data-l1key=display][data-l2key=background-defaut]').prop('checked', false)
+        $('.planAttr[data-l1key=display][data-l2key=background-transparent]').prop('checked', false)
+      }
+    })
+
+    //background: not transparent if default
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=display][data-l2key=background-defaut]', function() {
+      if ($(this).value() == 1) {
+        $('.planAttr[data-l1key=display][data-l2key=background-transparent]').prop('checked', false)
+      }
+    })
+
+    //text: not default if colored:
+    $('#fd_planConfigure').on('change','.planAttr[data-l1key=css][data-l2key=color]', function() {
+      if ($(this).value() != '#000000') {
+        $('.planAttr[data-l1key=display][data-l2key=color-defaut]').prop('checked', false)
       }
     })
   }

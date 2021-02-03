@@ -234,7 +234,7 @@ class plan {
 			if ($this->getDisplay('color-defaut', 1) == 1) {
 				$html .= '<a>';
 			} else {
-				$html .= '<a style="color:' . $this->getCss('color', '') . '!important">';
+				$html .= '<a style="color:' . $this->getCss('color', '') . '!important;">';
 			}
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
@@ -246,7 +246,11 @@ class plan {
 		} else if ($linkType == 'view') {
 			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
 			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" >';
-			$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', '') . '">';
+			if ($this->getDisplay('color-defaut', 1) == 1) {
+				$html .= '<a href="' . $link . '" class="noOnePageLoad">';
+			} else {
+				$html .= '<a href="' . $link . '" class="noOnePageLoad" style="color:' . $this->getCss('color', '') . '!important;">';
+			}
 			$html .= $this->getDisplay('icon') . ' ' . $this->getDisplay('name');
 			$html .= '</a>';
 			$html .= '</span>';
