@@ -74,7 +74,7 @@ if (!isConnect()) {
 
   mod_insertEqLogic.changeObjectEqLogic = function(_select) {
     jeedom.object.getEqLogic({
-      id: _select.value(),
+      id: (_select.value() == '' ? -1 : _select.value()),
       orderByName : true,
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
