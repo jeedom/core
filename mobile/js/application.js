@@ -31,6 +31,7 @@ var APP_MODE = false
 var BACKGROUND_IMG = null
 var $backForJeedom = null
 var TAPHOLD = false
+$.event.special.tap.emitTapOnTaphold = false
 
 $(function() {
   utid = Date.now()
@@ -57,31 +58,22 @@ $(function() {
   initApplication()
   
   $('body').on('taphold', '.objectSummaryAction', function(e) {
-    TAPHOLD = true;
-    e.preventDefault();
     panel(false)
     $('#bottompanel_objectList').panel('close')
     let object_id = $(this).attr('data-object_id');
     let summary = $(this).attr('data-summary');
     modal('mobile/modal/summary.action.html',function(){
       initSummaryAction(object_id,summary)
-      setTimeout(function(){TAPHOLD=false;},1000)
     });
   });
   
   $('body').on('tap','.link',function(e) {
-    if(e.type == 'taphold' || TAPHOLD) {
-      return
-    }
     modal(false)
     panel(false)
     page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   })
   
   $('body').on('tap','.objectSummaryParent',function(e) {
-    if(e.type == 'taphold' || TAPHOLD) {
-      return
-    }
     modal(false)
     panel(false)
     page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
