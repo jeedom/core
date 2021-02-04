@@ -28,43 +28,43 @@
       waterSvg#id# = waterSvg#id#.replace("fill='#00bbcc'", "fill='#color#'")
     }
     var waterSvg64#id# = window.btoa(waterSvg#id#)
-    var cmd_#id# = $('.cmd[data-cmd_id=#id#]')
-    cmd_#id#.find('.widget-rain-water').css('background', "url('data:image/svg+xml;base64," + waterSvg64#id# + "')")
+    var cmd#id# = $('.cmd[data-cmd_id=#id#]')
+    cmd#id#.find('.widget-rain-water').css('background', "url('data:image/svg+xml;base64," + waterSvg64#id# + "')")
 
     jeedom.cmd.update['#id#'] = function(_options) {
-      cmd_#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
+      cmd#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
 
       var value_#id# = parseFloat(_options.display_value)
-      cmd_#id#.find('.value').empty().append(value_#id#)
+      cmd#id#.find('.value').empty().append(value_#id#)
 
       var minValue_#id# = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue_#id# = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       if (value_#id# >= maxValue_#id#) {
         value_#id# = maxValue_#id#
-        cmd_#id#.find('.value').css('color','var(--al-danger-color)')
+        cmd#id#.find('.value').css('color','var(--al-danger-color)')
       } else {
-        cmd_#id#.find('.value').css('color','')
+        cmd#id#.find('.value').css('color','')
       }
       var height_#id# = ((value_#id# - minValue_#id#) * 100) / (maxValue_#id# - minValue_#id#)
       height_#id# = Math.round(parseFloat(height_#id#) * 10) / 10
-      cmd_#id#.find('.widget-rain-water').height(height_#id#+'%')
+      cmd#id#.find('.widget-rain-water').height(height_#id#+'%')
 
       if ('#showRange#' == '1') {
-        cmd_#id#.find('.plage').empty().append(minValue_#id# + ' | ' + maxValue_#id#)
+        cmd#id#.find('.plage').empty().append(minValue_#id# + ' | ' + maxValue_#id#)
       }
     }
 
     if ($.issetWidgetOptParam('#scale#', 'scale')) {
-      var rainContainer_#id# = cmd_#id#.find('.widget-rain-container')
+      var rainContainer_#id# = cmd#id#.find('.widget-rain-container')
       rainContainer_#id#.attr('style', 'height:' + rainContainer_#id#.height() * '#scale#' + 'px !important')
       rainContainer_#id#.width(rainContainer_#id#.width() * '#scale#')
       if ('#scale#' < '1') $('.cmd[data-cmd_id=#id#] .widget-rain-main').width(rainContainer_#id#.width() * '#scale#')
     }
     if ('#animate#' == '0') {
-      cmd_#id#.find('.widget-rain-water').css('animation','none')
+      cmd#id#.find('.widget-rain-water').css('animation','none')
     }
     if ('#showRange#' == '1') {
-      cmd_#id#.find('.plage').show()
+      cmd#id#.find('.plage').show()
     }
 
     jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
