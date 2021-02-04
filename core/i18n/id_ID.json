@@ -1224,7 +1224,8 @@
         "Information binaire": "Informasi biner",
         "Action on": "Aksi",
         "Action off": "Aksi off",
-        "Sélectionner un mot-clé": "Pilih kata kunci"
+        "Sélectionner un mot-clé": "Pilih kata kunci",
+        "Design sauvegardé": "Design sauvegardé"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Le dépôt est inactif :",
@@ -2040,8 +2041,8 @@
         "Annuler": "Tidak jadi"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Tak ada",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Aucun": "Tak ada",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
         "Activer scénarios": "Mengaktifkan skenario",
@@ -2162,6 +2163,7 @@
         "Actions": "Tindakan",
         "Nom": "Nama",
         "Groupe": "Kelompok",
+        "Groupe de l'interaction": "Groupe de l'interaction",
         "Actif": "Aktiva",
         "Icône": "Icon",
         "Choisir": "Memilih",
@@ -2439,9 +2441,9 @@
         "Avec la période": "Avec la période"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "Tak ada",
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Aucun": "Tak ada",
         "Configuration avancée": "Konfigurasi lanjutan",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
         "Désélectionner les équipements": "Désélectionner les équipements",

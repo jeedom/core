@@ -1224,7 +1224,8 @@
         "Information binaire": "バイナリ情報",
         "Action on": "上のアクション",
         "Action off": "アクションオフ",
-        "Sélectionner un mot-clé": "キーワードを選択"
+        "Sélectionner un mot-clé": "キーワードを選択",
+        "Design sauvegardé": "Design sauvegardé"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "デポジットは無効です：",
@@ -2040,8 +2041,8 @@
         "Annuler": "キャンセル"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "何でもありません",
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Aucun": "何でもありません",
         "Gestion": "管理",
         "Ajouter": "加えます",
         "Activer scénarios": "シナリオをアクティブにする",
@@ -2162,6 +2163,7 @@
         "Actions": "株式",
         "Nom": "表題",
         "Groupe": "グループ",
+        "Groupe de l'interaction": "Groupe de l'interaction",
         "Actif": "財産",
         "Icône": "アイコン",
         "Choisir": "選択",
@@ -2439,9 +2441,9 @@
         "Avec la période": "Avec la période"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "何でもありません",
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Aucun": "何でもありません",
         "Configuration avancée": "高度な構成",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
         "Désélectionner les équipements": "Désélectionner les équipements",

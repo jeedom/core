@@ -1224,7 +1224,8 @@
         "Information binaire": "Двоичная информация",
         "Action on": "Действие на",
         "Action off": "Действие выключено",
-        "Sélectionner un mot-clé": "Выберите ключевое слово"
+        "Sélectionner un mot-clé": "Выберите ключевое слово",
+        "Design sauvegardé": "Design sauvegardé"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Депозит неактивен:",
@@ -2040,8 +2041,8 @@
         "Annuler": "Отменить"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "Нет",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Aucun": "Нет",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
         "Activer scénarios": "Активировать сценарии",
@@ -2162,6 +2163,7 @@
         "Actions": "акции",
         "Nom": "Имя",
         "Groupe": "группа",
+        "Groupe de l'interaction": "Groupe de l'interaction",
         "Actif": "активы",
         "Icône": "Иконка",
         "Choisir": "Выбрать",
@@ -2439,9 +2441,9 @@
         "Avec la période": "Avec la période"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "Нет",
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Aucun": "Нет",
         "Configuration avancée": "Расширенные настройки",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
         "Désélectionner les équipements": "Désélectionner les équipements",

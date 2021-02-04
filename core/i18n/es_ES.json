@@ -1224,7 +1224,8 @@
         "Information binaire": "Información binaria",
         "Action on": "Acción on",
         "Action off": "Acción off",
-        "Sélectionner un mot-clé": "Seleccionar una palabra clave"
+        "Sélectionner un mot-clé": "Seleccionar una palabra clave",
+        "Design sauvegardé": "Diseño guardado"
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "El depósito está inactivo:",
@@ -2040,8 +2041,8 @@
         "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
-        "Aucun": "No",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Aucun": "No",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
         "Activer scénarios": "Activar escenas",
@@ -2162,6 +2163,7 @@
         "Actions": "Acciones",
         "Nom": "Nombre",
         "Groupe": "Grupo",
+        "Groupe de l'interaction": "Grupo de interacción",
         "Actif": "Activo",
         "Icône": "Icono",
         "Choisir": "Elegir",
@@ -2439,9 +2441,9 @@
         "Avec la période": "Con el periodo"
     },
     "desktop\/php\/display.php": {
-        "Aucun": "No",
         "$value['name']": "Valor $ [ 'nombre']",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Aucun": "No",
         "Configuration avancée": "Configuración avanzada",
         "Aller sur la configuration de l\\'objet": "Ir a la configuración del objeto",
         "Désélectionner les équipements": "Deseleccionar equipo",

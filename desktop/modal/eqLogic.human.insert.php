@@ -46,7 +46,6 @@ if (!isConnect()) {
 
   $('#table_mod_insertEqLogicValue_valueEqLogicToMessage').on({
     'change': function(event) {
-      console.log('change')
       mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options)
     }
   }, 'td.mod_insertEqLogicValue_object select')
@@ -74,7 +73,7 @@ if (!isConnect()) {
 
   mod_insertEqLogic.changeObjectEqLogic = function(_select) {
     jeedom.object.getEqLogic({
-      id: _select.value(),
+      id: (_select.value() == '' ? -1 : _select.value()),
       orderByName : true,
       error: function(error) {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
