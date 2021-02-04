@@ -3447,6 +3447,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Objet inconnu. Vérifiez l\\'ID": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "Objet inconnu. Vérifiez l\\'ID ": "Unbekanntes Objekt. Überprüfen Sie die ID",
+        "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
         "Vue inconnu. Vérifiez l\\'ID ": "Unbekannte Ansicht. Überprüfen Sie die ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
         "Extension du fichier non valide (autorisé .jpg .png) : ": "Ungültige Dateierweiterung (autorisierte .jpg .png):",
