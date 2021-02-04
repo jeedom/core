@@ -649,10 +649,16 @@ function modal(_name,_callback) {
     } else {
       $('#div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
-        $('#div_popup-popup').css({top:70,left:'15%'})
+        
+        $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
         if ('function' == typeof (_callback)) {
           _callback();
+          $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
         }
+        setTimeout(function(){
+          $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
+          $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
+        },200)
       });
     }
   } catch(e) {}
