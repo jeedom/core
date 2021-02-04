@@ -21,10 +21,14 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class ajax {
 	/*     * *************************Attributs****************************** */
-	
+
 	/*     * *********************Methode static ************************* */
-	
-	public static function init($_allowGetAction = array()) {
+
+    /**
+     * @param array $_allowGetAction
+     * @throws Exception
+     */
+    public static function init($_allowGetAction = array()) {
 		if (!headers_sent()) {
 			header('Content-Type: application/json');
 		}
@@ -32,22 +36,37 @@ class ajax {
 			throw new \Exception(__('Méthode non autorisé en GET : ',__FILE__).$_GET['action']);
 		}
 	}
-	
-	public static function getToken(){
+
+    /**
+     * @return string
+     */
+    public static function getToken(){
 		return '';
 	}
-	
-	public static function success($_data = '') {
+
+    /**
+     * @param string $_data
+     */
+    public static function success($_data = '') {
 		echo self::getResponse($_data);
 		die();
 	}
-	
-	public static function error($_data = '', $_errorCode = 0) {
+
+    /**
+     * @param string $_data
+     * @param int $_errorCode
+     */
+    public static function error($_data = '', $_errorCode = 0) {
 		echo self::getResponse($_data, $_errorCode);
 		die();
 	}
-	
-	public static function getResponse($_data = '', $_errorCode = null) {
+
+    /**
+     * @param string $_data
+     * @param null $_errorCode
+     * @return false|string
+     */
+    public static function getResponse($_data = '', $_errorCode = null) {
 		$isError = !(null === $_errorCode);
 		$return = array(
 			'state' => $isError ? 'error' : 'ok',

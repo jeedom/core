@@ -31,7 +31,13 @@ class dataStore {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws Exception
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -41,7 +47,15 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byTypeLinkIdKey($_type, $_link_id, $_key) {
+    /**
+     * @param $_type
+     * @param $_link_id
+     * @param $_key
+     * @return array|null
+     * @throws Exception
+     */
+    public static function byTypeLinkIdKey($_type, $_link_id, $_key): ?array
+    {
 		$values = array(
 			'type' => $_type,
 			'link_id' => $_link_id,
@@ -56,7 +70,14 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byTypeLinkId($_type, $_link_id = '') {
+    /**
+     * @param $_type
+     * @param string $_link_id
+     * @return array|null
+     * @throws Exception
+     */
+    public static function byTypeLinkId($_type, $_link_id = ''): ?array
+    {
 		$values = array(
 			'type' => $_type,
 		);
@@ -71,7 +92,14 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function removeByTypeLinkId($_type, $_link_id) {
+    /**
+     * @param $_type
+     * @param $_link_id
+     * @return bool
+     * @throws Exception
+     */
+    public static function removeByTypeLinkId($_type, $_link_id): bool
+    {
 		$datastores = self::byTypeLinkId($_type, $_link_id);
 		foreach ($datastores as $datastore) {
 			$datastore->remove();
@@ -81,7 +109,12 @@ class dataStore {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function preSave() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function preSave(): bool
+    {
 		$allowType = array('cmd', 'object', 'eqLogic', 'scenario');
 		if (!in_array($this->getType(), $allowType)) {
 			throw new Exception(__('Le type doit être un des suivants : ', __FILE__) . print_r($allowType, true));
@@ -101,12 +134,19 @@ class dataStore {
 		return true;
 	}
 
-	public function save() {
+    /**
+     * @return bool
+     */
+    public function save(): bool
+    {
 		DB::save($this);
 		return true;
 	}
 
-	public function postSave() {
+    /**
+     * @throws Exception
+     */
+    public function postSave() {
 		scenario::check('variable(' . $this->getKey().')');
 		$value_cmd =	cmd::byValue('variable(' . $this->getKey(), null, true);
 		if (is_array($value_cmd)) {
@@ -123,7 +163,15 @@ class dataStore {
 		DB::remove($this);
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+    /**
+     * @param array[] $_data
+     * @param int $_level
+     * @param null $_drill
+     * @return array[]
+     * @throws Exception
+     */
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
+    {
 		if ($_drill == null) {
 			$_drill = config::byKey('graphlink::dataStore::drill');
 		}
@@ -155,7 +203,13 @@ class dataStore {
 		return $_data;
 	}
 
-	public function getUsedBy($_array = false) {
+    /**
+     * @param false $_array
+     * @return array[]
+     * @throws Exception
+     */
+    public function getUsedBy($_array = false): array
+    {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'interactDef' => array(), 'scenario' => array());
 		$return['cmd'] = cmd::searchConfiguration(array('"cmd":"variable"%"name":"' . $this->getKey() . '"', 'variable(' . $this->getKey() . ')', 'variable(' . $this->getKey() . ',', '"name":"' . $this->getKey() . '"%"cmd":"variable"'));
 		$return['eqLogic'] = eqLogic::searchConfiguration(array('"cmd":"variable"%"name":"' . $this->getKey() . '"', 'variable(' . $this->getKey() . ')', 'variable(' . $this->getKey() . ',', '"name":"' . $this->getKey() . '"%"cmd":"variable"'));
@@ -176,54 +230,95 @@ class dataStore {
 
 	/*     * **********************Getteur Setteur*************************** */
 
-	public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
 
-	public function setId($_id) {
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): dataStore
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	public function getType() {
+    /**
+     * @return mixed
+     */
+    public function getType() {
 		return $this->type;
 	}
 
-	public function setType($_type) {
+    /**
+     * @param $_type
+     * @return $this
+     */
+    public function setType($_type): dataStore
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
 
-	public function getLink_id() {
+    /**
+     * @return mixed
+     */
+    public function getLink_id() {
 		return $this->link_id;
 	}
 
-	public function setLink_id($_link_id) {
+    /**
+     * @param $_link_id
+     * @return $this
+     */
+    public function setLink_id($_link_id): dataStore
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
 		$this->link_id = $_link_id;
 		return $this;
 	}
 
-	public function getKey() {
+    /**
+     * @return mixed
+     */
+    public function getKey() {
 		return $this->key;
 	}
 
-	public function setKey($_key) {
+    /**
+     * @param $_key
+     * @return $this
+     */
+    public function setKey($_key): dataStore
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->key,$_key);
 		$this->key = $_key;
 		return $this;
 	}
 
-	public function getValue($_default = '') {
+    /**
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getValue($_default = '') {
 		if ($this->value === '') {
 			return $_default;
 		}
 		return is_json($this->value, $this->value);
 	}
 
-	public function setValue($_value) {
+    /**
+     * @param $_value
+     * @return $this
+     */
+    public function setValue($_value): dataStore
+    {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
 		}
@@ -232,11 +327,19 @@ class dataStore {
 		return $this;
 	}
 
-	public function getChanged() {
+    /**
+     * @return mixed
+     */
+    public function getChanged() {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): dataStore
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

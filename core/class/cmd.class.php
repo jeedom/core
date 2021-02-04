@@ -61,7 +61,13 @@ class cmd {
 	);
 	/*     * ***********************Méthodes statiques*************************** */
 
-	private static function cast($_inputs, $_eqLogic = null) {
+    /**
+     * @param $_inputs
+     * @param null $_eqLogic
+     * @return array
+     */
+    private static function cast($_inputs, $_eqLogic = null): array
+    {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
 			if ($_eqLogic !== null) {
 				$_inputs->_eqLogic = $_eqLogic;
@@ -85,7 +91,13 @@ class cmd {
 		return $_inputs;
 	}
 
-	public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array
+     * @throws Exception
+     */
+    public static function byId($_id): array
+    {
 		if ($_id == '') {
 			return;
 		}
@@ -98,7 +110,13 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byIds($_ids) {
+    /**
+     * @param $_ids
+     * @return array
+     * @throws Exception
+     */
+    public static function byIds($_ids): array
+    {
 		if (!is_array($_ids) || count($_ids) == 0) {
 			return;
 		}
@@ -111,14 +129,25 @@ class cmd {
 		}
 	}
 
-	public static function all() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function all(): array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		ORDER BY id';
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function isHistorized($_state = true) {
+    /**
+     * @param bool $_state
+     * @return array
+     * @throws Exception
+     */
+    public static function isHistorized($_state = true): array
+    {
 		$values = array(
 			'isHistorized' => ($_state) ? 1 : 0
 		);
@@ -129,7 +158,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function allHistoryCmd() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function allHistoryCmd(): array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
@@ -149,7 +183,17 @@ class cmd {
 		return array_merge($result1, $result2);
 	}
 
-	public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null, $_has_generic_type = null) {
+    /**
+     * @param $_eqLogic_id
+     * @param null $_type
+     * @param null $_visible
+     * @param null $_eqLogic
+     * @param null $_has_generic_type
+     * @return array
+     * @throws Exception
+     */
+    public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null, $_has_generic_type = null): array
+    {
 		$values = array();
 		if (is_array($_eqLogic_id)) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -177,7 +221,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__), $_eqLogic);
 	}
 
-	public static function byLogicalId($_logical_id, $_type = null) {
+    /**
+     * @param $_logical_id
+     * @param null $_type
+     * @return array
+     * @throws Exception
+     */
+    public static function byLogicalId($_logical_id, $_type = null): array
+    {
 		$values = array(
 			'logicalId' => $_logical_id,
 		);
@@ -192,7 +243,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byGenericType($_generic_type, $_eqLogic_id = null, $_one = false) {
+    /**
+     * @param $_generic_type
+     * @param null $_eqLogic_id
+     * @param false $_one
+     * @return array
+     * @throws Exception
+     */
+    public static function byGenericType($_generic_type, $_eqLogic_id = null, $_one = false): array
+    {
 		if (is_array($_generic_type)) {
 			$in = '';
 			foreach ($_generic_type as $value) {
@@ -221,7 +280,13 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function searchByString($_search) {
+    /**
+     * @param $_search
+     * @return array
+     * @throws Exception
+     */
+    public static function searchByString($_search): array
+    {
 		$values = array(
 			'search' => '%'.$_search.'%'
 		);
@@ -231,7 +296,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function searchConfiguration($_configuration, $_eqType = null) {
+    /**
+     * @param $_configuration
+     * @param null $_eqType
+     * @return array
+     * @throws Exception
+     */
+    public static function searchConfiguration($_configuration, $_eqType = null): array
+    {
 		if (!is_array($_configuration)) {
 			$values = array(
 				'configuration' => '%' . $_configuration . '%',
@@ -259,7 +331,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function searchDisplay($_display, $_eqType = null) {
+    /**
+     * @param $_display
+     * @param null $_eqType
+     * @return array
+     * @throws Exception
+     */
+    public static function searchDisplay($_display, $_eqType = null): array
+    {
 		if (!is_array($_display)) {
 			$values = array(
 				'display' => '%' . $_display . '%',
@@ -287,7 +366,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function searchConfigurationEqLogic($_eqLogic_id, $_configuration, $_type = null) {
+    /**
+     * @param $_eqLogic_id
+     * @param $_configuration
+     * @param null $_type
+     * @return array
+     * @throws Exception
+     */
+    public static function searchConfigurationEqLogic($_eqLogic_id, $_configuration, $_type = null): array
+    {
 		$values = array(
 			'configuration' => '%' . $_configuration . '%',
 			'eqLogic_id' => $_eqLogic_id,
@@ -303,7 +390,16 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function searchTemplate($_template, $_eqType = null, $_type = null, $_subtype = null) {
+    /**
+     * @param $_template
+     * @param null $_eqType
+     * @param null $_type
+     * @param null $_subtype
+     * @return array
+     * @throws Exception
+     */
+    public static function searchTemplate($_template, $_eqType = null, $_type = null, $_subtype = null): array
+    {
 		$values = array(
 			'template' => '%' . $_template . '%',
 		);
@@ -326,7 +422,16 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false, $_type = null) {
+    /**
+     * @param $_eqLogic_id
+     * @param $_logicalId
+     * @param false $_multiple
+     * @param null $_type
+     * @return array
+     * @throws Exception
+     */
+    public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false, $_type = null): array
+    {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
 			'logicalId' => $_logicalId,
@@ -345,7 +450,16 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqLogicIdAndGenericType($_eqLogic_id, $_generic_type, $_multiple = false, $_type = null) {
+    /**
+     * @param $_eqLogic_id
+     * @param $_generic_type
+     * @param false $_multiple
+     * @param null $_type
+     * @return array
+     * @throws Exception
+     */
+    public static function byEqLogicIdAndGenericType($_eqLogic_id, $_generic_type, $_multiple = false, $_type = null): array
+    {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
 			'generic_type' => $_generic_type,
@@ -364,7 +478,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byValue($_value, $_type = null, $_onlyEnable = false) {
+    /**
+     * @param $_value
+     * @param null $_type
+     * @param false $_onlyEnable
+     * @return array
+     * @throws Exception
+     */
+    public static function byValue($_value, $_type = null, $_onlyEnable = false): array
+    {
 		$values = array(
 			'value' => $_value,
 			'search' => '%#' . $_value . '#%',
@@ -396,7 +518,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeEqLogicNameCmdName($_eqType_name, $_eqLogic_name, $_cmd_name) {
+    /**
+     * @param $_eqType_name
+     * @param $_eqLogic_name
+     * @param $_cmd_name
+     * @return array
+     * @throws Exception
+     */
+    public static function byTypeEqLogicNameCmdName($_eqType_name, $_eqLogic_name, $_cmd_name): array
+    {
 		$values = array(
 			'eqType_name' => $_eqType_name,
 			'eqLogic_name' => $_eqLogic_name,
@@ -411,7 +541,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byEqLogicIdCmdName($_eqLogic_id, $_cmd_name) {
+    /**
+     * @param $_eqLogic_id
+     * @param $_cmd_name
+     * @return array
+     * @throws Exception
+     */
+    public static function byEqLogicIdCmdName($_eqLogic_id, $_cmd_name): array
+    {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
 			'cmd_name' => $_cmd_name,
@@ -423,7 +560,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectNameEqLogicNameCmdName($_object_name, $_eqLogic_name, $_cmd_name) {
+    /**
+     * @param $_object_name
+     * @param $_eqLogic_name
+     * @param $_cmd_name
+     * @return array
+     * @throws Exception
+     */
+    public static function byObjectNameEqLogicNameCmdName($_object_name, $_eqLogic_name, $_cmd_name): array
+    {
 		$values = array(
 			'eqLogic_name' => $_eqLogic_name,
 			'cmd_name' => (html_entity_decode($_cmd_name) != '') ? html_entity_decode($_cmd_name) : $_cmd_name,
@@ -449,7 +594,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byObjectNameCmdName($_object_name, $_cmd_name) {
+    /**
+     * @param $_object_name
+     * @param $_cmd_name
+     * @return array
+     * @throws Exception
+     */
+    public static function byObjectNameCmdName($_object_name, $_cmd_name): array
+    {
 		$values = array(
 			'object_name' => $_object_name,
 			'cmd_name' => $_cmd_name,
@@ -463,7 +615,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeSubType($_type, $_subType = '') {
+    /**
+     * @param $_type
+     * @param string $_subType
+     * @return array
+     * @throws Exception
+     */
+    public static function byTypeSubType($_type, $_subType = ''): array
+    {
 		$values = array(
 			'type' => $_type,
 		);
@@ -477,7 +636,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function cmdToHumanReadable($_input) {
+    /**
+     * @param $_input
+     * @return mixed|string|string[]
+     * @throws ReflectionException
+     */
+    public static function cmdToHumanReadable($_input) {
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);
@@ -514,7 +678,12 @@ class cmd {
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
-	public static function humanReadableToCmd($_input) {
+    /**
+     * @param $_input
+     * @return array|false|mixed|string|string[]
+     * @throws ReflectionException
+     */
+    public static function humanReadableToCmd($_input) {
 		$isJson = false;
 		if (is_json($_input)) {
 			$isJson = true;
@@ -564,7 +733,12 @@ class cmd {
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
-	public static function byString($_string) {
+    /**
+     * @param $_string
+     * @return mixed
+     * @throws ReflectionException
+     */
+    public static function byString($_string) {
 		$cmd = self::byId(str_replace('#', '', self::humanReadableToCmd($_string)));
 		if (!is_object($cmd)) {
 			throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmd']['txt'] .' : ' . $_string . ' => ' . self::humanReadableToCmd($_string));
@@ -572,7 +746,13 @@ class cmd {
 		return $cmd;
 	}
 
-	public static function cmdToValue($_input, $_quote = false) {
+    /**
+     * @param $_input
+     * @param false $_quote
+     * @return array|string|string[]
+     * @throws ReflectionException
+     */
+    public static function cmdToValue($_input, $_quote = false) {
 		if(config::byKey('expression::autoQuote','core',1) == 0){
 			$_quote = false;
 		}
@@ -636,13 +816,24 @@ class cmd {
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
-	public static function allType() {
+    /**
+     * @return array|null
+     * @throws Exception
+     */
+    public static function allType(): ?array
+    {
 		$sql = 'SELECT distinct(type) as type
 		FROM cmd';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
-	public static function allSubType($_type = '') {
+    /**
+     * @param string $_type
+     * @return array|null
+     * @throws Exception
+     */
+    public static function allSubType($_type = ''): ?array
+    {
 		$values = array();
 		$sql = 'SELECT distinct(subType) as subtype';
 		if ($_type != '') {
@@ -653,13 +844,23 @@ class cmd {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
-	public static function allUnite() {
+    /**
+     * @return array|null
+     * @throws Exception
+     */
+    public static function allUnite(): ?array
+    {
 		$sql = 'SELECT distinct(unite) as unite
 		FROM cmd';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
-	public static function convertColor($_color) {
+    /**
+     * @param $_color
+     * @return mixed
+     * @throws Exception
+     */
+    public static function convertColor($_color) {
 		$colors = config::byKey('convertColor');
 		if (isset($colors[$_color])) {
 			return $colors[$_color];
@@ -667,7 +868,12 @@ class cmd {
 		throw new Exception(__('Impossible de traduire la couleur en code hexadécimal :', __FILE__) . $_color);
 	}
 
-	public static function availableWidget($_version) {
+    /**
+     * @param $_version
+     * @return array
+     */
+    public static function availableWidget($_version): array
+    {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$path = __DIR__ . '/../../data/customTemplates/' . $_version;
@@ -778,14 +984,23 @@ class cmd {
 		return $return;
 	}
 
-	public static function returnState($_options) {
+    /**
+     * @param $_options
+     * @throws Exception
+     */
+    public static function returnState($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (is_object($cmd)) {
 			$cmd->event($cmd->getConfiguration('returnStateValue', 0));
 		}
 	}
 
-	public static function deadCmd() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function deadCmd(): array
+    {
 		$return = array();
 		foreach((cmd::all()) as $cmd) {
 			if (is_array($cmd->getConfiguration('actionCheckCmd', ''))) {
@@ -819,7 +1034,11 @@ class cmd {
 		return $return;
 	}
 
-	public static function cmdAlert($_options) {
+    /**
+     * @param $_options
+     * @throws Exception
+     */
+    public static function cmdAlert($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (!is_object($cmd)) {
 			return;
@@ -832,7 +1051,12 @@ class cmd {
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
-	public function formatValue($_value, $_quote = false) {
+    /**
+     * @param $_value
+     * @param false $_quote
+     * @return float|int|string
+     */
+    public function formatValue($_value, $_quote = false) {
 		if (is_array($_value) || is_object($_value)) {
 			return '';
 		}
@@ -913,19 +1137,36 @@ class cmd {
 		return $_value;
 	}
 
-	public function getLastValue() {
+    /**
+     * @return array|bool|mixed|string
+     */
+    public function getLastValue() {
 		return $this->getConfiguration('lastCmdValue', null);
 	}
 
-	public function dontRemoveCmd() {
+    /**
+     * @return bool
+     */
+    public function dontRemoveCmd(): bool
+    {
 		return false;
 	}
 
-	public function getTableName() {
+    /**
+     * @return string
+     */
+    public function getTableName(): string
+    {
 		return 'cmd';
 	}
 
-	public function save($_direct = false) {
+    /**
+     * @param false $_direct
+     * @return bool
+     * @throws Exception
+     */
+    public function save($_direct = false): bool
+    {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
 		}
@@ -979,11 +1220,18 @@ class cmd {
 		return true;
 	}
 
-	public function refresh() {
+    /**
+     * @throws Exception
+     */
+    public function refresh() {
 		DB::refresh($this);
 	}
 
-	public function remove() {
+    /**
+     * @return bool
+     */
+    public function remove(): bool
+    {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$eqLogic = $this->getEqLogic();
@@ -997,11 +1245,20 @@ class cmd {
 		return DB::remove($this);
 	}
 
-	public function execute($_options = array()) {
+    /**
+     * @param array $_options
+     * @return bool
+     */
+    public function execute($_options = array()): bool
+    {
 		return false;
 	}
 
-	private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
+    /**
+     * @param array $_values
+     * @param string $_type
+     */
+    private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
 		if (!is_array($this->getConfiguration($_type)) || count($this->getConfiguration($_type)) == 0) {
 			return;
 		}
@@ -1037,11 +1294,17 @@ class cmd {
 		}
 	}
 
-	public function preExecCmd($_values = array()) {
+    /**
+     * @param array $_values
+     */
+    public function preExecCmd($_values = array()) {
 		$this->pre_postExecCmd($_values, 'jeedomPreExecCmd');
 	}
 
-	public function postExecCmd($_values = array()) {
+    /**
+     * @param array $_values
+     */
+    public function postExecCmd($_values = array()) {
 		$this->pre_postExecCmd($_values, 'jeedomPostExecCmd');
 	}
 
@@ -1152,7 +1415,14 @@ class cmd {
 	}
 
 	// Used by modals eqLogic.dashboard.edit and cmd.configure
-	public function getWidgetsSelectOptions($_version='dashboard', $_availWidgets=false) {
+
+    /**
+     * @param string $_version
+     * @param false $_availWidgets
+     * @return string
+     */
+    public function getWidgetsSelectOptions($_version='dashboard', $_availWidgets=false): string
+    {
 		if (!$_availWidgets) {
 			$_availWidgets = self::availableWidget($_version);
 		}
@@ -1193,7 +1463,12 @@ class cmd {
 			return $display;
 		}
 	}
-	public function getGenericTypeSelectOptions() {
+
+    /**
+     * @return string
+     */
+    public function getGenericTypeSelectOptions(): string
+    {
 		$display = '<option value="">{{Aucun}}</option>';
 		$groups = array();
 		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
@@ -1229,7 +1504,12 @@ class cmd {
 		return $display;
 	}
 
-	public function getWidgetHelp($_version='dashboard', $_widgetName='') {
+    /**
+     * @param string $_version
+     * @param string $_widgetName
+     * @return string|string[]|null
+     */
+    public function getWidgetHelp($_version='dashboard', $_widgetName='') {
 		$widget = $this->getWidgetTemplateCode($_version, false, $_widgetName);
 		$widgetCode = $widget['template'];
 		$isCorewidget = $widget['isCoreWidget'];
@@ -1251,13 +1531,24 @@ class cmd {
 		}
 	}
 
-	public function cleanWidgetCode($_template) {
+    /**
+     * @param $_template
+     * @return string|string[]
+     */
+    public function cleanWidgetCode($_template) {
 		$_template = preg_replace('/<template>[\s\S]+?<\/template>/', '', $_template);
 		$_template = str_replace(array('<template>', '</template>'), '', $_template);
 		return $_template;
 	}
 
-	public function getWidgetTemplateCode($_version='dashboard', $_clean=true, $_widgetName='') {
+    /**
+     * @param string $_version
+     * @param bool $_clean
+     * @param string $_widgetName
+     * @return array
+     */
+    public function getWidgetTemplateCode($_version='dashboard', $_clean=true, $_widgetName=''): array
+    {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$_version = jeedom::versionAlias($_version);
 		$replace = null;
@@ -1382,7 +1673,15 @@ class cmd {
 		return array('template' => $template, 'isCoreWidget' => true);
 	}
 
-	public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False){
+    /**
+     * @param $_value
+     * @param int $_decimal
+     * @param string $_unit
+     * @param false $_space
+     * @return array
+     */
+    public static function autoValueArray($_value, $_decimal=99, $_unit = '', $_space = False): array
+    {
 		$_unit=str_replace ("\"","",$_unit);
 		$_unit=str_replace ("\'","",$_unit);
 		if(array_keys(self::$_unite_conversion) > 0 && array_key_exists($_unit,self::$_unite_conversion)){
@@ -1395,7 +1694,14 @@ class cmd {
 		}
 	}
 
-	private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10){
+    /**
+     * @param $_value
+     * @param int $_mod
+     * @param int $_maxdiv
+     * @return array
+     */
+    private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10): array
+    {
 		$val=floatval($_value);
 		$div=0;
 		while($val > $_mod && $div <$_maxdiv){
@@ -1405,7 +1711,13 @@ class cmd {
 		return array($val,$div);
 	}
 
-	public function toHtml($_version='dashboard', $_options='') {
+    /**
+     * @param string $_version
+     * @param string $_options
+     * @return string|string[]|null
+     * @throws Exception
+     */
+    public function toHtml($_version='dashboard', $_options='') {
 		$_version = jeedom::versionAlias($_version);
 		$html = '';
 		$replace = array(
@@ -1615,7 +1927,13 @@ class cmd {
 		}
 	}
 
-	public function event($_value, $_datetime = null, $_loop = 1) {
+    /**
+     * @param $_value
+     * @param null $_datetime
+     * @param int $_loop
+     * @throws Exception
+     */
+    public function event($_value, $_datetime = null, $_loop = 1) {
 		if ($_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
@@ -1720,7 +2038,10 @@ class cmd {
 		}
 	}
 
-	public function checkReturnState($_value) {
+    /**
+     * @param $_value
+     */
+    public function checkReturnState($_value) {
 		if (is_numeric($this->getConfiguration('returnStateTime')) && $this->getConfiguration('returnStateTime') > 0 && $_value != $this->getConfiguration('returnStateValue') && trim($this->getConfiguration('returnStateValue')) != '') {
 			$cron = cron::byClassAndFunction('cmd', 'returnState', array('cmd_id' => intval($this->getId())));
 			if (!is_object($cron)) {
@@ -1737,7 +2058,10 @@ class cmd {
 		}
 	}
 
-	public function checkCmdAlert($_value) {
+    /**
+     * @param $_value
+     */
+    public function checkCmdAlert($_value) {
 		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime', 0))) {
 			return;
 		}
@@ -1789,7 +2113,13 @@ class cmd {
 		}
 	}
 
-	public function checkAlertLevel($_value, $_allowDuring = true, $_checkLevel = 'none') {
+    /**
+     * @param $_value
+     * @param bool $_allowDuring
+     * @param string $_checkLevel
+     * @return array|bool|int|mixed|string
+     */
+    public function checkAlertLevel($_value, $_allowDuring = true, $_checkLevel = 'none') {
 		if ($this->getType() != 'info' || ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '')) {
 			return 'none';
 		}
@@ -1843,7 +2173,11 @@ class cmd {
 		return $returnLevel;
 	}
 
-	public static function duringAlertLevel($_options) {
+    /**
+     * @param $_options
+     * @throws Exception
+     */
+    public static function duringAlertLevel($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (!is_object($cmd)) {
 			return;
@@ -1861,7 +2195,12 @@ class cmd {
 		}
 	}
 
-	public function actionAlertLevel($_level, $_value) {
+    /**
+     * @param $_level
+     * @param $_value
+     * @throws Exception
+     */
+    public function actionAlertLevel($_level, $_value) {
 		if ($this->getType() != 'info') {
 			return;
 		}
@@ -1917,7 +2256,10 @@ class cmd {
 		}
 	}
 
-	public function pushUrl($_value) {
+    /**
+     * @param $_value
+     */
+    public function pushUrl($_value) {
 		$url = $this->getConfiguration('jeedomPushUrl');
 		if ($url == '') {
 			$url = config::byKey('cmdPushUrl');
@@ -1946,7 +2288,12 @@ class cmd {
 		}
 	}
 
-	public function computeInfluxData($_value, $_timestamp = '') {
+    /**
+     * @param $_value
+     * @param string $_timestamp
+     * @return \InfluxDB\Point|string
+     */
+    public function computeInfluxData($_value, $_timestamp = '') {
 		$point='';
 		try {
 			$cmdname = $this->getHumanName();
@@ -2002,7 +2349,11 @@ class cmd {
 		return $point;
 	}
 
-	public function getInflux($_cmdId=null) {
+    /**
+     * @param null $_cmdId
+     * @return \InfluxDB\Database|string|void
+     */
+    public function getInflux($_cmdId=null) {
 		try{
 			if ($_cmdId){
 				$cmd=cmd::byId($_cmdId);
@@ -2038,7 +2389,10 @@ class cmd {
 		return '';
 	}
 
-	public function pushInflux($_value=null) {
+    /**
+     * @param null $_value
+     */
+    public function pushInflux($_value=null) {
 		try{
 			$database=cmd::getInflux($this->getId());
 			if ($database == ''){
@@ -2055,20 +2409,20 @@ class cmd {
 		return;
 	}
 
-	public function dropInfluxDatabase() {
-		try{
-			$database=cmd::getInflux();
-			if ($database == ''){
-				return;
-			}
-			$database->drop();
-		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' => ' . $e->getMessage());
-		}
-		return;
-	}
+    public function dropInfluxDatabase() {
+        try{
+            $database=cmd::getInflux();
+            if ($database == ''){
+                return;
+            }
+            $database->drop();
+        } catch (Exception $e) {
+            log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' => ' . $e->getMessage());
+        }
+        return;
+    }
 
-	public function dropInflux() {
+    public function dropInflux() {
 		try{
 			$database=cmd::getInflux($this->getId());
 			if ($database == ''){
@@ -2087,7 +2441,11 @@ class cmd {
 		cmd::historyInflux('all');
 	}
 
-	public function sendHistoryInflux($_params) {
+    /**
+     * @param $_params
+     * @throws Exception
+     */
+    public function sendHistoryInflux($_params) {
 		$cmds=array();
 		if ($_params['cmd_id'] == 'all') {
 			foreach (cmd::byTypeSubType('info') as $cmd){
@@ -2133,7 +2491,10 @@ class cmd {
 		}
 	}
 
-	public function historyInflux($_type='') {
+    /**
+     * @param string $_type
+     */
+    public function historyInflux($_type='') {
 		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('sendHistoryInflux');
@@ -2149,7 +2510,14 @@ class cmd {
 		return;
 	}
 
-	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
+    /**
+     * @param $_response
+     * @param string $_plugin
+     * @param string $_network
+     * @return string
+     */
+    public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external'): string
+    {
 		$token = $this->getCache('ask::token', config::genKey());
 		$this->setCache(array('ask::count' => 0, 'ask::token' => $token));
 		$return = network::getNetworkAccess($_network) . '/core/api/jeeApi.php?';
@@ -2162,7 +2530,12 @@ class cmd {
 		return $return;
 	}
 
-	public function askResponse($_response) {
+    /**
+     * @param $_response
+     * @return bool
+     */
+    public function askResponse($_response): bool
+    {
 		if ($this->getCache('ask::variable', 'none') == 'none') {
 			return false;
 		}
@@ -2180,11 +2553,20 @@ class cmd {
 		return true;
 	}
 
-	public function emptyHistory($_date = '') {
+    /**
+     * @param string $_date
+     * @return array|null
+     */
+    public function emptyHistory($_date = ''): ?array
+    {
 		return history::emptyHistory($this->getId(), $_date);
 	}
 
-	public function addHistoryValue($_value, $_datetime = '') {
+    /**
+     * @param $_value
+     * @param string $_datetime
+     */
+    public function addHistoryValue($_value, $_datetime = '') {
 		if ($this->getIsHistorized() == 1 && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
 			$history = new history();
 			$history->setCmd_id($this->getId());
@@ -2194,25 +2576,46 @@ class cmd {
 		}
 	}
 
-	public function getStatistique($_startTime, $_endTime) {
+    /**
+     * @param $_startTime
+     * @param $_endTime
+     * @return array
+     */
+    public function getStatistique($_startTime, $_endTime): array
+    {
 		if ($this->getType() != 'info' || $this->getType() == 'string') {
 			return array();
 		}
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 
-	public function getTemporalAvg($_startTime, $_endTime) {
+    /**
+     * @param $_startTime
+     * @param $_endTime
+     * @return array|float|int
+     */
+    public function getTemporalAvg($_startTime, $_endTime) {
 		if ($this->getType() != 'info' || $this->getType() == 'string') {
 			return array();
 		}
 		return history::getTemporalAvg($this->getId(), $_startTime, $_endTime);
 	}
 
-	public function getTendance($_startTime, $_endTime) {
+    /**
+     * @param $_startTime
+     * @param $_endTime
+     * @return float|int
+     */
+    public function getTendance($_startTime, $_endTime) {
 		return history::getTendance($this->getId(), $_startTime, $_endTime);
 	}
 
-	public function getCmdValue() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function getCmdValue(): bool
+    {
 		$cmd = self::byId(str_replace('#', '', $this->getValue()));
 		if (is_object($cmd)) {
 			return $cmd;
@@ -2220,7 +2623,13 @@ class cmd {
 		return false;
 	}
 
-	public function getHumanName($_tag = false, $_prettify = false) {
+    /**
+     * @param false $_tag
+     * @param false $_prettify
+     * @return string
+     */
+    public function getHumanName($_tag = false, $_prettify = false): string
+    {
 		$name = '';
 		$eqLogic = $this->getEqLogic();
 		if (is_object($eqLogic)) {
@@ -2234,19 +2643,44 @@ class cmd {
 		return $name;
 	}
 
-	public function getHistory($_dateStart = null, $_dateEnd = null,$_groupingType = null) {
+    /**
+     * @param null $_dateStart
+     * @param null $_dateEnd
+     * @param null $_groupingType
+     * @return array
+     */
+    public function getHistory($_dateStart = null, $_dateEnd = null, $_groupingType = null): array
+    {
 		return history::all($this->id, $_dateStart, $_dateEnd,$_groupingType);
 	}
 
-	public function getOldest() {
+    /**
+     * @return array
+     */
+    public function getOldest(): array
+    {
 		return history::getOldestValue($this->id);
 	}
 
-	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {
+    /**
+     * @param null $_dateStart
+     * @param null $_dateEnd
+     * @param string $_period
+     * @param int $_offset
+     * @return array|null
+     */
+    public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0): ?array
+    {
 		return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period, $_offset);
 	}
 
-	public function widgetPossibility($_key = '', $_default = true) {
+    /**
+     * @param string $_key
+     * @param bool $_default
+     * @return array|bool|mixed
+     * @throws ReflectionException
+     */
+    public function widgetPossibility($_key = '', $_default = true) {
 		$class = new ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
 		$return = array();
@@ -2293,7 +2727,12 @@ class cmd {
 		return $return;
 	}
 
-	public function export() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function export(): array
+    {
 		$cmd = clone $this;
 		$cmd->setId('');
 		$cmd->setOrder('');
@@ -2328,7 +2767,11 @@ class cmd {
 		return $return;
 	}
 
-	public function getDirectUrlAccess() {
+    /**
+     * @return string
+     */
+    public function getDirectUrlAccess(): string
+    {
 		$url = '/core/api/jeeApi.php?apikey=' . config::byKey('api') . '&type=cmd&id=' . $this->getId();
 		if ($this->getType() == 'action') {
 			switch ($this->getSubType()) {
@@ -2349,7 +2792,13 @@ class cmd {
 		return network::getNetworkAccess('external') . $url;
 	}
 
-	public function checkAccessCode($_code) {
+    /**
+     * @param $_code
+     * @return bool
+     * @throws Exception
+     */
+    public function checkAccessCode($_code): bool
+    {
 		if ($this->getType() != 'action' || trim($this->getConfiguration('actionCodeAccess')) == '') {
 			return true;
 		}
@@ -2364,13 +2813,25 @@ class cmd {
 		return false;
 	}
 
-	public function exportApi() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function exportApi(): array
+    {
 		$return = utils::o2a($this);
 		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd() : $this->getConfiguration('lastCmdValue', null);
 		return $return;
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+    /**
+     * @param array[] $_data
+     * @param int $_level
+     * @param null $_drill
+     * @return array[]
+     */
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
+    {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::cmd::drill');
 		}
@@ -2412,7 +2873,13 @@ class cmd {
 		return $_data;
 	}
 
-	public function getUsedBy($_array = false) {
+    /**
+     * @param false $_array
+     * @return array[]
+     * @throws Exception
+     */
+    public function getUsedBy($_array = false): array
+    {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = self::searchConfiguration('#' . $this->getId() . '#');
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
@@ -2429,11 +2896,19 @@ class cmd {
 		return $return;
 	}
 
-	public function getUse() {
+    /**
+     * @return array
+     */
+    public function getUse(): array
+    {
 		return jeedom::getTypeUse(jeedom::fromHumanReadable(json_encode(utils::o2a($this))));
 	}
 
-	public function hasRight($_user = null) {
+    /**
+     * @param null $_user
+     * @return mixed
+     */
+    public function hasRight($_user = null) {
 		if ($this->getType() == 'action') {
 			return $this->getEqLogic()->hasRight('x', $_user);
 		} else {
@@ -2443,76 +2918,128 @@ class cmd {
 
 	/*     * **********************Getteur Setteur*************************** */
 
-	public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
 
-	public function getName() {
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
 
-	public function getGeneric_type() {
+    /**
+     * @return mixed
+     */
+    public function getGeneric_type() {
 		return $this->generic_type;
 	}
 
-	public function setGeneric_type($_generic_type) {
+    /**
+     * @param $_generic_type
+     * @return $this
+     */
+    public function setGeneric_type($_generic_type): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->generic_type,$_generic_type);
 		$this->generic_type = $_generic_type;
 		return $this;
 	}
 
-	public function getType() {
+    /**
+     * @return mixed
+     */
+    public function getType() {
 		return $this->type;
 	}
 
-	public function getSubType() {
+    /**
+     * @return mixed
+     */
+    public function getSubType() {
 		return $this->subType;
 	}
 
-	public function getEqType_name() {
+    /**
+     * @return mixed
+     */
+    public function getEqType_name() {
 		return $this->eqType;
 	}
 
-	public function getEqLogic_id() {
+    /**
+     * @return mixed
+     */
+    public function getEqLogic_id() {
 		return $this->eqLogic_id;
 	}
 
-	public function getIsHistorized() {
+    /**
+     * @return int
+     */
+    public function getIsHistorized(): int
+    {
 		return $this->isHistorized;
 	}
 
-	public function getUnite() {
+    /**
+     * @return string
+     */
+    public function getUnite(): string
+    {
 		return $this->unite;
 	}
 
-	public function getEqLogic() {
+    /**
+     * @return null
+     */
+    public function getEqLogic() {
 		if ($this->_eqLogic === null) {
 			$this->setEqLogic(eqLogic::byId($this->eqLogic_id));
 		}
 		return $this->_eqLogic;
 	}
 
-	public function setEqLogic($_eqLogic) {
+    /**
+     * @param $_eqLogic
+     * @return $this
+     */
+    public function setEqLogic($_eqLogic): cmd
+    {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
 	}
 
-	public function getEventOnly() {
+    /**
+     * @return int
+     */
+    public function getEventOnly(): int
+    {
 		return 1;
 	}
 
-	public function setId($_id = '') {
+    /**
+     * @param string $_id
+     * @return $this
+     */
+    public function setId($_id = ''): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	/**
-	*
-	* @param type $name
-	* @return $this
-	*/
-	public function setName($_name) {
+    /**
+     *
+     * @param $_name
+     * @return $this
+     */
+	public function setName($_name): cmd
+    {
 		$_name = substr(cleanComponanteName($_name),0,127);
 		if ($this->name != $_name) {
 			$this->_needRefreshWidget = true;
@@ -2522,7 +3049,12 @@ class cmd {
 		return $this;
 	}
 
-	public function setType($_type) {
+    /**
+     * @param $_type
+     * @return $this
+     */
+    public function setType($_type): cmd
+    {
 		if ($this->type != $_type) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -2531,7 +3063,12 @@ class cmd {
 		return $this;
 	}
 
-	public function setSubType($_subType) {
+    /**
+     * @param $_subType
+     * @return $this
+     */
+    public function setSubType($_subType): cmd
+    {
 		if ($this->subType != $_subType) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -2540,19 +3077,34 @@ class cmd {
 		return $this;
 	}
 
-	public function setEqLogic_id($_eqLogic_id) {
+    /**
+     * @param $_eqLogic_id
+     * @return $this
+     */
+    public function setEqLogic_id($_eqLogic_id): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->eqLogic_id,$_eqLogic_id);
 		$this->eqLogic_id = $_eqLogic_id;
 		return $this;
 	}
 
-	public function setIsHistorized($_isHistorized) {
+    /**
+     * @param $_isHistorized
+     * @return $this
+     */
+    public function setIsHistorized($_isHistorized): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->isHistorized,$_isHistorized);
 		$this->isHistorized = $_isHistorized;
 		return $this;
 	}
 
-	public function setUnite($_unite) {
+    /**
+     * @param $_unite
+     * @return $this
+     */
+    public function setUnite($_unite): cmd
+    {
 		if ($this->unite != $_unite) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -2561,15 +3113,29 @@ class cmd {
 		return $this;
 	}
 
-	public function setEventOnly($eventOnly) {
+    /**
+     * @param $eventOnly
+     */
+    public function setEventOnly($eventOnly) {
 		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
-	public function getTemplate($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getTemplate($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->template, $_key, $_default);
 	}
 
-	public function setTemplate($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setTemplate($_key, $_value): cmd
+    {
 		if(($_key == 'dashboard' || $_key == 'mobile') && $_value != 'default' && strpos($_value,'::') === false){
 			$_value = 'core::'.$_value;
 		}
@@ -2581,11 +3147,22 @@ class cmd {
 		return $this;
 	}
 
-	public function getConfiguration($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): cmd
+    {
 		if ($_key == 'actionCodeAccess' && $_value != '') {
 			if (!is_sha1($_value) && !is_sha512($_value)) {
 				$_value = sha512($_value);
@@ -2597,11 +3174,22 @@ class cmd {
 		return $this;
 	}
 
-	public function getDisplay($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setDisplay($_key, $_value): cmd
+    {
 		if ($this->getDisplay($_key) !== $_value) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -2610,11 +3198,22 @@ class cmd {
 		return $this;
 	}
 
-	public function getAlert($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getAlert($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->alert, $_key, $_default);
 	}
 
-	public function setAlert($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setAlert($_key, $_value): cmd
+    {
 		$alert = utils::setJsonAttr($this->alert, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->alert,$alert );
 		$this->alert = $alert;
@@ -2622,45 +3221,82 @@ class cmd {
 		return $this;
 	}
 
-	public function getCollectDate() {
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getCollectDate(): string
+    {
 		if($this->_collectDate == '' && $this->getType() == 'info'){
 			$this->execCmd();
 		}
 		return $this->_collectDate;
 	}
 
-	public function setCollectDate($_collectDate) {
+    /**
+     * @param $_collectDate
+     * @return $this
+     */
+    public function setCollectDate($_collectDate): cmd
+    {
 		$this->_collectDate = $_collectDate;
 		return $this;
 	}
 
-	public function getValueDate() {
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getValueDate(): string
+    {
 		if($this->_valueDate == '' && $this->getType() == 'info'){
 			$this->execCmd();
 		}
 		return $this->_valueDate;
 	}
 
-	public function setValueDate($_valueDate) {
+    /**
+     * @param $_valueDate
+     * @return $this
+     */
+    public function setValueDate($_valueDate): cmd
+    {
 		$this->_valueDate = $_valueDate;
 		return $this;
 	}
 
-	public function getValue() {
+    /**
+     * @return null
+     */
+    public function getValue() {
 		return $this->value;
 	}
 
-	public function setValue($_value) {
+    /**
+     * @param $_value
+     * @return $this
+     */
+    public function setValue($_value): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->value,$_value);
 		$this->value = $_value;
 		return $this;
 	}
 
-	public function getIsVisible() {
+    /**
+     * @return int
+     */
+    public function getIsVisible(): int
+    {
 		return $this->isVisible;
 	}
 
-	public function setIsVisible($isVisible) {
+    /**
+     * @param $isVisible
+     * @return $this
+     */
+    public function setIsVisible($isVisible): cmd
+    {
 		if ($this->isVisible != $isVisible) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -2669,14 +3305,23 @@ class cmd {
 		return $this;
 	}
 
-	public function getOrder() {
+    /**
+     * @return int
+     */
+    public function getOrder(): int
+    {
 		if ($this->order == '') {
 			return 0;
 		}
 		return $this->order;
 	}
 
-	public function setOrder($order) {
+    /**
+     * @param $order
+     * @return $this
+     */
+    public function setOrder($order): cmd
+    {
 		if ($this->order != $order) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
@@ -2685,41 +3330,77 @@ class cmd {
 		return $this;
 	}
 
-	public function getLogicalId() {
+    /**
+     * @return mixed
+     */
+    public function getLogicalId() {
 		return $this->logicalId;
 	}
 
-	public function setLogicalId($_logicalId) {
+    /**
+     * @param $_logicalId
+     * @return $this
+     */
+    public function setLogicalId($_logicalId): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;
 	}
 
-	public function getEqType() {
+    /**
+     * @return mixed
+     */
+    public function getEqType() {
 		return $this->eqType;
 	}
 
-	public function setEqType($_eqType) {
+    /**
+     * @param $_eqType
+     * @return $this
+     */
+    public function setEqType($_eqType): cmd
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->eqType,$_eqType);
 		$this->eqType = $_eqType;
 		return $this;
 	}
 
-	public function getCache($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
 		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
-	public function setCache($_key, $_value = null) {
+    /**
+     * @param $_key
+     * @param null $_value
+     * @return $this
+     */
+    public function setCache($_key, $_value = null): cmd
+    {
 		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 		return $this;
 	}
 
-	public function getChanged() {
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): cmd
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

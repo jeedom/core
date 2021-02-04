@@ -41,11 +41,17 @@ class DB {
 		}
 	}
 
-	public static function getLastInsertId() {
+    /**
+     * @return mixed
+     */
+    public static function getLastInsertId() {
 		return self::getConnection()->lastInsertId();
 	}
 
-	public static function getConnection() {
+    /**
+     * @return null
+     */
+    public static function getConnection() {
 		if(self::$connection == null){
 			self::initConnection();
 		}else if (self::$lastConnection + 120 < strtotime('now')) {
@@ -62,7 +68,17 @@ class DB {
 		return self::$connection;
 	}
 
-	public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL) {
+    /**
+     * @param $_procName
+     * @param $_params
+     * @param $_fetch_type
+     * @param null $_className
+     * @param null $_fetch_opt
+     * @return array|null
+     * @throws Exception
+     */
+    public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL): ?array
+    {
 		$bind_params = '';
 		foreach ($_params as $value) {
 			$bind_params .= '?, ';
@@ -77,7 +93,17 @@ class DB {
 		}
 	}
 
-	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL) {
+    /**
+     * @param $_query
+     * @param $_params
+     * @param int $_fetchType
+     * @param int $_fetch_param
+     * @param null $_fetch_opt
+     * @return array|null
+     * @throws Exception
+     */
+    public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL): ?array
+    {
 		$stmt = self::getConnection()->prepare($_query);
 		$res = NULL;
 		if ($stmt != false && $stmt->execute($_params) != false) {
@@ -125,7 +151,10 @@ class DB {
 		trigger_error('DB : Cloner cet objet n\'est pas permis', E_USER_ERROR);
 	}
 
-	public static function optimize() {
+    /**
+     * @throws Exception
+     */
+    public static function optimize() {
 		$tables = self::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
 		foreach ($tables as $table) {
 			$table = array_values($table);
@@ -146,14 +175,18 @@ class DB {
 		self::getConnection()->rollBack();
 	}
 
-	/**
-	* Saves an entity inside the repository. If the entity is new a new row
-	* will be created. If the entity is not new the row will be updated.
-	*
-	* @param object $object
-	* @return boolean
-	*/
-	public static function save($object, $_direct = false, $_replace = false) {
+    /**
+     * Saves an entity inside the repository. If the entity is new a new row
+     * will be created. If the entity is not new the row will be updated.
+     *
+     * @param object $object
+     * @param bool $_direct
+     * @param bool $_replace
+     * @return boolean
+     * @throws Exception
+     */
+	public static function save(object $object, $_direct = false, $_replace = false): bool
+    {
 		if (!$_direct && method_exists($object, 'preSave')) {
 			$object->preSave();
 		}
@@ -234,7 +267,13 @@ class DB {
 		return (null !== $res && false !== $res);
 	}
 
-	public static function refresh($object) {
+    /**
+     * @param $object
+     * @return bool
+     * @throws ReflectionException
+     */
+    public static function refresh($object): bool
+    {
 		if (!self::getField($object, 'id')) {
 			throw new Exception('DB ne peut rafraîchir l\'objet sans son ID');
 		}
@@ -267,13 +306,14 @@ class DB {
 		return true;
 	}
 
-	/**
-	* Retourne une liste d'objets ou un objet en fonction de filtres
-	* @param $_filters Filtres à appliquer
-	* @param $_object Objet sur lequel appliquer les filtres
-	* @return Objet ou liste d'objets correspondant à la requête
-	*/
-	public static function getWithFilter(array $_filters, $_object) {
+    /***
+     * Retourne une liste d'objets ou un objet en fonction de filtres
+     * @param array $_filters Filtres à appliquer
+     * @param $_object Objet sur lequel appliquer les filtres
+     * @return Objet ou liste d'objets correspondant à la requête
+     * @throws Exception
+     */
+	public static function getWithFilter(array $_filters, Objet $_object) {
 		// operators have to remain in this order. If you put '<' before '<=', algorithm won't make the difference & will think a '<=' is a '<'
 		$operators = array('!=', '<=', '>=', '<', '>', 'NOT LIKE', 'LIKE', '=');
 		$fields = self::getFields($_object);
@@ -324,13 +364,15 @@ class DB {
 		return self::Prepare($query . ';', $values, in_array('id', $values) ? self::FETCH_TYPE_ROW : self::FETCH_TYPE_ALL);
 	}
 
-	/**
-	* Deletes an entity.
-	*
-	* @param object $object
-	* @return boolean
-	*/
-	public static function remove($object) {
+    /**
+     * Deletes an entity.
+     *
+     * @param object $object
+     * @return boolean
+     * @throws Exception
+     */
+	public static function remove(object $object): bool
+    {
 		if (method_exists($object, 'preRemove')) {
 			if ($object->preRemove() === false) {
 				return false;
@@ -362,19 +404,26 @@ class DB {
 		return null !== $res && false !== $res;
 	}
 
-	public static function checksum($_table) {
+    /**
+     * @param $_table
+     * @return mixed
+     * @throws Exception
+     */
+    public static function checksum($_table) {
 		$sql = 'CHECKSUM TABLE ' . $_table;
 		$result = self::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['Checksum'];
 	}
 
-	/**
-	* Lock an entity.
-	*
-	* @param object $object
-	* @return boolean
-	*/
-	public static function lock($object) {
+    /**
+     * Lock an entity.
+     *
+     * @param object $object
+     * @return boolean
+     * @throws Exception
+     */
+	public static function lock(object $object): bool
+    {
 		if (method_exists($object, 'preLock')) {
 			if ($object->preLock() === false) {
 				return false;
@@ -397,26 +446,27 @@ class DB {
 		return null !== $res && false !== $res;
 	}
 
-	/**
-	* Returns the name of the table where to save entities.
-	*
-	* @return string
-	*/
-	private static function getTableName($object) {
+    /**
+     * Returns the name of the table where to save entities.
+     *
+     * @param $object
+     * @return string
+     */
+	private static function getTableName($object): string
+    {
 		if (method_exists($object, 'getTableName')) {
 			return $object->getTableName();
 		}
 		return get_class($object);
 	}
 
-	/**
-	*
-	*
-	* @param type $object
-	* @return type
-	* @throws RuntimeException
-	*/
-	private static function getFields($object) {
+    /**
+     * @param $object
+     * @return array
+     * @throws ReflectionException
+     */
+    private static function getFields($object): array
+    {
 		$table = is_string($object) ? $object : self::getTableName($object);
 		if (isset(self::$fields[$table])) {
 			return self::$fields[$table];
@@ -436,15 +486,16 @@ class DB {
 		return self::$fields[$table];
 	}
 
-	/**
-	* Forces the value of a field of a given object, even if this field is
-	* not accessible.
-	*
-	* @param object $object The entity to alter
-	* @param string $field The name of the member to alter
-	* @param mixed $value The value to give to the member
-	*/
-	private static function setField($object, $field, $value) {
+    /**
+     * Forces the value of a field of a given object, even if this field is
+     * not accessible.
+     *
+     * @param object $object The entity to alter
+     * @param string $field The name of the member to alter
+     * @param mixed $value The value to give to the member
+     * @throws ReflectionException
+     */
+	private static function setField(object $object, string $field, $value) {
 		$method = 'set' . ucfirst($field);
 		if (method_exists($object, $method)) {
 			$object->$method($value);
@@ -460,15 +511,14 @@ class DB {
 		}
 	}
 
-	/**
-	* Builds the elements for an SQL query. It will return two lists, the
-	* first being the list of parts "key=:key" to inject in the SQL, the
-	* second being the mapping of these parameters to the values.
-	*
-	* @param type $object
-	* @return type
-	*/
-	private static function buildQuery($object) {
+
+    /**
+     * @param $object
+     * @return array
+     * @throws ReflectionException
+     */
+    private static function buildQuery($object): array
+    {
 		$parameters = array();
 		$sql = array();
 		foreach (self::getFields($object) as $field) {
@@ -487,7 +537,8 @@ class DB {
 	* @return type
 	* @throws RuntimeException if the getter is not defined
 	*/
-	private static function getField($object, $field) {
+	private static function getField($object, $field): ?type
+    {
 		$retval = null;
 		$method = 'get' . ucfirst($field);
 		if (method_exists($object, $method)) {
@@ -513,7 +564,8 @@ class DB {
 	* @param  object $object
 	* @return ReflectionClass
 	*/
-	private static function getReflectionClass($object) {
+	private static function getReflectionClass($object): ReflectionClass
+    {
 		$reflections = array();
 		$uuid = spl_object_hash($object);
 		if (!isset($reflections[$uuid])) {
@@ -522,7 +574,14 @@ class DB {
 		return $reflections[$uuid];
 	}
 
-	public static function buildField($_class, $_prefix = '') {
+    /**
+     * @param $_class
+     * @param string $_prefix
+     * @return string
+     * @throws ReflectionException
+     */
+    public static function buildField($_class, $_prefix = ''): string
+    {
 		$fields = array();
 		foreach (self::getFields($_class) as $field) {
 			if ('_' !== $field[0]) {
@@ -536,9 +595,18 @@ class DB {
 		return implode(', ', $fields);
 	}
 
-	/*************************DB ANALYZER***************************/
+	/* ************************ DB ANALYZER ************************** */
 
-	public static function compareAndFix($_database,$_table='all',$_verbose = false,$_loop=0){
+    /**
+     * @param $_database
+     * @param string $_table
+     * @param false $_verbose
+     * @param int $_loop
+     * @return bool
+     * @throws Exception
+     */
+    public static function compareAndFix($_database, $_table='all', $_verbose = false, $_loop=0): bool
+    {
 		$result = DB::compareDatabase($_database);
 		$error = '';
 		foreach ($result as $tname => $tinfo) {
@@ -611,7 +679,12 @@ class DB {
 		return true;
 	}
 
-	public static function compareDatabase($_database){
+    /**
+     * @param $_database
+     * @return array
+     */
+    public static function compareDatabase($_database): array
+    {
 		$return = array();
 		foreach ($_database['tables'] as $table) {
 			$return = array_merge($return,self::compareTable($table));
@@ -619,7 +692,13 @@ class DB {
 		return $return;
 	}
 
-	public static function compareTable($_table){
+    /**
+     * @param $_table
+     * @return array[]|string[][]
+     * @throws Exception
+     */
+    public static function compareTable($_table): array
+    {
 		try {
 			$describes = DB::Prepare('describe `'.$_table['name'].'`',array(),DB::FETCH_TYPE_ALL);
 		} catch (\Exception $e) {
@@ -733,7 +812,12 @@ class DB {
 		return $return;
 	}
 
-	public static function prepareIndexCompare($indexes){
+    /**
+     * @param $indexes
+     * @return array
+     */
+    public static function prepareIndexCompare($indexes): array
+    {
 		$return = array();
 		foreach ($indexes as $index) {
 			if($index['Key_name'] == 'PRIMARY'){
@@ -752,7 +836,14 @@ class DB {
 		return $return;
 	}
 
-	public static function compareField($_ref_field,$_real_field,$_table_name){
+    /**
+     * @param $_ref_field
+     * @param $_real_field
+     * @param $_table_name
+     * @return string[][]
+     */
+    public static function compareField($_ref_field, $_real_field, $_table_name): array
+    {
 		$return = array($_ref_field['name'] => array('status' => 'ok','sql' => ''));
 		if($_ref_field['type'] != $_real_field['Type']){
 			$return[$_ref_field['name']]['status'] = 'nok';
@@ -777,7 +868,15 @@ class DB {
 		return $return;
 	}
 
-	public static function compareIndex($_ref_index,$_real_index,$_table_name,$_forceRebuild = false){
+    /**
+     * @param $_ref_index
+     * @param $_real_index
+     * @param $_table_name
+     * @param false $_forceRebuild
+     * @return string[][]
+     */
+    public static function compareIndex($_ref_index, $_real_index, $_table_name, $_forceRebuild = false): array
+    {
 		$return = array($_ref_index['Key_name'] => array('status' => 'ok','presql' => '','sql' => ''));
 		if($_ref_index['Non_unique'] != $_real_index['Non_unique']){
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
@@ -798,7 +897,12 @@ class DB {
 		return $return;
 	}
 
-	public static function buildDefinitionField($_field){
+    /**
+     * @param $_field
+     * @return string
+     */
+    public static function buildDefinitionField($_field): string
+    {
 		$return = ' '.$_field['type'];
 		if($_field['null'] == 'NO'){
 			$return .= ' NOT NULL';
@@ -814,7 +918,13 @@ class DB {
 		return $return;
 	}
 
-	public static function buildDefinitionIndex($_index,$_table_name){
+    /**
+     * @param $_index
+     * @param $_table_name
+     * @return string
+     */
+    public static function buildDefinitionIndex($_index, $_table_name): string
+    {
 		if($_index['Non_unique'] == 0){
 			$return = 'CREATE UNIQUE INDEX `'.$_index['Key_name'].'` ON `'.$_table_name.'`'.' (';
 		}else{

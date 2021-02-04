@@ -29,7 +29,11 @@ class config {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getDefaultConfiguration($_plugin = 'core') {
+    /**
+     * @param string $_plugin
+     * @return array|false|mixed
+     */
+    public static function getDefaultConfiguration($_plugin = 'core') {
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			if ($_plugin == 'core') {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
@@ -49,14 +53,17 @@ class config {
 		}
 		return self::$defaultConfiguration[$_plugin];
 	}
-	/**
-	* Save key to config
-	* @param string $_key
-	* @param string | object | array $_value
-	* @param string $_plugin
-	* @return boolean
-	*/
-	public static function save($_key, $_value, $_plugin = 'core') {
+
+    /**
+     * Save key to config
+     * @param string $_key
+     * @param string | object | array $_value
+     * @param string $_plugin
+     * @return boolean
+     * @throws Exception
+     */
+	public static function save(string $_key, $_value, $_plugin = 'core'): bool
+    {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
 		}
@@ -106,12 +113,15 @@ class config {
 		}
 	}
 
-	/**
-	* Delete key from config
-	* @param string $_key nom de la clef à supprimer
-	* @return boolean vrai si ok faux sinon
-	*/
-	public static function remove($_key, $_plugin = 'core') {
+    /**
+     * Delete key from config
+     * @param string $_key nom de la clef à supprimer
+     * @param string $_plugin
+     * @return boolean vrai si ok faux sinon
+     * @throws Exception
+     */
+	public static function remove(string $_key, $_plugin = 'core'): bool
+    {
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(
 				'plugin' => $_plugin,
@@ -134,12 +144,17 @@ class config {
 		}
 	}
 
-	/**
-	* Get config by key
-	* @param string $_key nom de la clef dont on veut la valeur
-	* @return string valeur de la clef
-	*/
-	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
+    /**
+     * Get config by key
+     * @param string $_key nom de la clef dont on veut la valeur
+     * @param string $_plugin
+     * @param string $_default
+     * @param bool $_forceFresh
+     * @return string valeur de la clef
+     * @throws Exception
+     */
+	public static function byKey(string $_key, $_plugin = 'core', $_default = '', $_forceFresh = false): string
+    {
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key,self::$nocache)) {
 			return self::$cache[$_plugin . '::' . $_key];
 		}
@@ -172,7 +187,15 @@ class config {
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
 
-	public static function byKeys($_keys, $_plugin = 'core', $_default = '') {
+    /**
+     * @param $_keys
+     * @param string $_plugin
+     * @param string $_default
+     * @return array
+     * @throws Exception
+     */
+    public static function byKeys($_keys, $_plugin = 'core', $_default = ''): array
+    {
 		if (!is_array($_keys) || count($_keys) == 0) {
 			return array();
 		}
@@ -218,7 +241,14 @@ class config {
 		return $return;
 	}
 
-	public static function searchKey($_key, $_plugin = 'core') {
+    /**
+     * @param $_key
+     * @param string $_plugin
+     * @return array|null
+     * @throws Exception
+     */
+    public static function searchKey($_key, $_plugin = 'core'): ?array
+    {
 		$values = array(
 			'plugin' => $_plugin,
 			'key' => '%' . $_key . '%',
@@ -241,7 +271,13 @@ class config {
 		return $results;
 	}
 
-	public static function genKey($_car = 32) {
+    /**
+     * @param int $_car
+     * @return string
+     * @throws Exception
+     */
+    public static function genKey($_car = 32): string
+    {
 		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
@@ -254,7 +290,12 @@ class config {
 		return $key;
 	}
 
-	public static function getPluginEnable() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function getPluginEnable(): array
+    {
 		$sql = 'SELECT `value`,`plugin`
 		FROM config
 		WHERE `key`=\'active\'';
@@ -266,7 +307,12 @@ class config {
 		return $return;
 	}
 
-	public static function getLogLevelPlugin() {
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function getLogLevelPlugin(): array
+    {
 		$sql = 'SELECT `value`,`key`
 		FROM config
 		WHERE `key` LIKE \'log::level::%\'';
@@ -280,7 +326,14 @@ class config {
 
 	/*     * *********************Generic check value************************* */
 
-	public static function checkValueBetween($_value,$_min=null,$_max=null){
+    /**
+     * @param $_value
+     * @param null $_min
+     * @param null $_max
+     * @return int|null
+     */
+    public static function checkValueBetween($_value, $_min=null, $_max=null): ?int
+    {
 		if($_min !== null && $_value<$_min){
 			return $_min;
 		}
@@ -295,7 +348,11 @@ class config {
 
 	/*     * *********************Action sur config************************* */
 
-	public static function postConfig_market_allowDns($_value){
+    /**
+     * @param $_value
+     * @throws Exception
+     */
+    public static function postConfig_market_allowDns($_value){
 		if ($_value == 1) {
 			if (!network::dns_run()) {
 				network::dns_start();
@@ -307,11 +364,17 @@ class config {
 		}
 	}
 
-	public static function postConfig_interface_advance_vertCentering($_value){
+    /**
+     * @param $_value
+     */
+    public static function postConfig_interface_advance_vertCentering($_value){
 		cache::flushWidget();
 	}
 
-	public static function postConfig_object_summary($_value){
+    /**
+     * @param $_value
+     */
+    public static function postConfig_object_summary($_value){
 		try {
 			foreach(jeeObject::all() as $object) {
 				$object->setChanged(true);
@@ -351,54 +414,98 @@ class config {
 		}
 	}
 
-	public static function preConfig_historyArchivePackage($_value){
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_historyArchivePackage($_value): ?int
+    {
 		return self::checkValueBetween($_value,1);
 	}
 
-	public static function preConfig_historyArchiveTime($_value){
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_historyArchiveTime($_value): ?int
+    {
 		return self::checkValueBetween($_value,2);
 	}
 
-	public static function preConfig_market_password($_value) {
-		if (!is_sha1($_value)) {
-			return sha1($_value);
-		}
-		return $_value;
-	}
-
-	public static function preConfig_widget_margin($_value) {
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_widget_margin($_value): ?int
+    {
 		return self::checkValueBetween($_value,0);
 	}
 
-	public static function preConfig_widget_step_width($_value) {
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_widget_step_width($_value): ?int
+    {
 		return self::checkValueBetween($_value,1);
 	}
 
-	public static function preConfig_widget_step_height($_value) {
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_widget_step_height($_value): ?int
+    {
 		return self::checkValueBetween($_value,1);
 	}
 
-	public static function preConfig_css_background_opacity($_value) {
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_css_background_opacity($_value): ?int
+    {
 		return self::checkValueBetween($_value,0,1);
 	}
 
-	public static function preConfig_css_border_radius($_value) {
+    /**
+     * @param $_value
+     * @return int|null
+     */
+    public static function preConfig_css_border_radius($_value): ?int
+    {
 		return self::checkValueBetween($_value,0,1);
 	}
 
-	public static function preConfig_name($_value){
+    /**
+     * @param $_value
+     * @return string|string[]
+     */
+    public static function preConfig_name($_value){
 		return str_replace(array('\\','/',"'",'"'),'',$_value);
 	}
 
-	public static function preConfig_info_latitude($_value){
+    /**
+     * @param $_value
+     * @return string|string[]
+     */
+    public static function preConfig_info_latitude($_value){
 		return str_replace(',','.',$_value);
 	}
 
-	public static function preConfig_info_longitude($_value){
+    /**
+     * @param $_value
+     * @return string|string[]
+     */
+    public static function preConfig_info_longitude($_value){
 		return str_replace(',','.',$_value);
 	}
 
-	public static function preConfig_tts_engine($_value){
+    /**
+     * @param $_value
+     * @return mixed
+     */
+    public static function preConfig_tts_engine($_value){
 		try {
 			if($_value != config::byKey('tts::engine')){
 				rrmdir(jeedom::getTmpFolder('tts'));
@@ -410,13 +517,21 @@ class config {
 	}
 
 	/*     * *********************Stats************************************* */
-	public static function getHistorizedCmdNum(){
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    public static function getHistorizedCmdNum(){
 		$sql = 'SELECT COUNT(*) FROM `cmd` WHERE `isHistorized` = 1';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		return $result[0]['COUNT(*)'];
 	}
 
-	public static function getTimelinedCmdNum(){
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    public static function getTimelinedCmdNum(){
 		$sql = 'SELECT COUNT(*) FROM `cmd` WHERE `configuration` LIKE \'%"timeline::enable":"1"%\'';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		return $result[0]['COUNT(*)'];

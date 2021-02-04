@@ -21,22 +21,34 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class cache {
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $cache = null;
-	
+
 	private $key;
 	private $value = null;
 	private $lifetime = 0;
 	private $datetime;
 	private $options = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function getFolder() {
+
+    /**
+     * @return string
+     */
+    public static function getFolder(): string
+    {
 		return jeedom::getTmpFolder('cache');
 	}
-	
-	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @param int $_lifetime
+     * @param null $_options
+     * @return bool
+     */
+    public static function set($_key, $_value, $_lifetime = 0, $_options = null): bool
+    {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}
@@ -49,15 +61,24 @@ class cache {
 		}
 		return $cache->save();
 	}
-	
-	public static function delete($_key) {
+
+    /**
+     * @param $_key
+     */
+    public static function delete($_key) {
 		$cache = cache::byKey($_key);
 		if (is_object($cache)) {
 			$cache->remove();
 		}
 	}
-	
-	public static function stats($_details = false) {
+
+    /**
+     * @param false $_details
+     * @return array|null
+     * @throws Exception
+     */
+    public static function stats($_details = false): ?array
+    {
 		$return = self::getCache()->getStats();
 		$return['count'] = __('Inconnu', __FILE__);
 		$engine = config::byKey('cache::engine');
@@ -92,12 +113,13 @@ class cache {
 		}
 		return $return;
 	}
-	/**
-	* @name getCache()
-	* @access public
-	* @static
-	* @return type
-	*/
+
+    /**
+     * @return type
+     * @throws Exception
+     * @access public
+     * @static
+     */
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;
@@ -141,13 +163,15 @@ class cache {
 		}
 		return self::$cache;
 	}
-	
-	/**
-	*
-	* @param type $_key
-	* @return type
-	*/
-	public static function byKey($_key) {
+
+    /**
+     *
+     * @param $_key
+     * @return cache
+     * @throws Exception
+     */
+	public static function byKey($_key): cache
+    {
 		$cache = self::getCache()->fetch($_key);
 		if (!is_object($cache)) {
 			$cache = (new self())
@@ -156,38 +180,42 @@ class cache {
 		}
 		return $cache;
 	}
-	
-	public static function exist($_key) {
+
+    public static function exist($_key): bool
+    {
 		return is_object(self::getCache()->fetch($_key));
 	}
-	
-	public static function flush() {
-		self::getCache()->deleteAll();
-		shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
-	}
-	
-	
-	public static function flushWidget() {
+
+    public static function flush() {
+        self::getCache()->deleteAll();
+        shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
+    }
+
+    public static function flushWidget() {
 		foreach((eqLogic::all()) as $eqLogic) {
 			try {
 				$eqLogic->emptyCacheWidget();
 			} catch (Exception $e) {
-				
+
 			}
 		}
 		foreach((scenario::all()) as $scenario) {
 			try {
 				$scenario->emptyCacheWidget();
 			} catch (Exception $e) {
-				
+
 			}
 		}
 	}
-	
-	public static function search() {
+
+    /**
+     * @return array
+     */
+    public static function search(): array
+    {
 		return array();
 	}
-	
+
 	public static function persist() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
@@ -208,12 +236,16 @@ class cache {
 			$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . $cache_dir . ' 2>&1 > /dev/null';
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
-			
+
 		}
-		
+
 	}
-	
-	public static function isPersistOk() {
+
+    /**
+     * @return bool
+     */
+    public static function isPersistOk(): bool
+    {
 		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 			return true;
 		}
@@ -226,7 +258,7 @@ class cache {
 		}
 		return true;
 	}
-	
+
 	public static function restore() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
@@ -251,7 +283,7 @@ class cache {
 		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
 	}
-	
+
 	public static function clean() {
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
@@ -387,10 +419,14 @@ class cache {
 			}
 		}
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
-	public function save() {
+
+    /**
+     * @return bool
+     */
+    public function save(): bool
+    {
 		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
@@ -398,64 +434,111 @@ class cache {
 			return self::getCache()->save($this->getKey(), $this, $this->getLifetime());
 		}
 	}
-	
+
 	public function remove() {
 		try {
 			self::getCache()->delete($this->getKey());
 		} catch (Exception $e) {
-			
+
 		}
 	}
-	
-	public function hasExpired() {
+
+	public function hasExpired(): bool
+    {
 		return true;
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
-	public function getKey() {
+
+    /**
+     * @return mixed
+     */
+    public function getKey() {
 		return $this->key;
 	}
-	
-	public function setKey($key) {
+
+    /**
+     * @param $key
+     * @return $this
+     */
+    public function setKey($key): cache
+    {
 		$this->key = $key;
 		return $this;
 	}
-	
-	public function getValue($_default = '') {
+
+    /**
+     * @param string $_default
+     * @return string
+     */
+    public function getValue($_default = ''): string
+    {
 		return ($this->value === null || (is_string($this->value) && trim($this->value) === '')) ? $_default : $this->value;
 	}
-	
-	public function setValue($value) {
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setValue($value): cache
+    {
 		$this->value = $value;
 		return $this;
 	}
-	
-	public function getLifetime() {
+
+    /**
+     * @return int
+     */
+    public function getLifetime(): int
+    {
 		return $this->lifetime;
 	}
-	
-	public function setLifetime($lifetime) {
+
+    /**
+     * @param $lifetime
+     * @return $this
+     */
+    public function setLifetime($lifetime): cache
+    {
 		$this->lifetime = $lifetime;
 		return $this;
 	}
-	
-	public function getDatetime() {
+
+    /**
+     * @return mixed
+     */
+    public function getDatetime() {
 		return $this->datetime;
 	}
-	
-	public function setDatetime($datetime) {
+
+    /**
+     * @param $datetime
+     * @return $this
+     */
+    public function setDatetime($datetime): cache
+    {
 		$this->datetime = $datetime;
 		return $this;
 	}
-	
-	public function getOptions($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-	
-	public function setOptions($_key, $_value = null) {
+
+    /**
+     * @param $_key
+     * @param null $_value
+     * @return $this
+     */
+    public function setOptions($_key, $_value = null): cache
+    {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
-	
+
 }
