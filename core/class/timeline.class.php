@@ -80,7 +80,8 @@ class timeline {
     $sql .= 't1.subtype = t2.subtype AND ';
     $sql .= 't1.datetime = t2.datetime AND ';
     $sql .= 't1.options = t2.options AND ';
-    $sql .= 't1.folder = t2.folder';
+    $sql .= 't1.folder = t2.folder AND ';
+    $sql .= 't1.link_id = t2.link_id';
     DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 
     //clean:
