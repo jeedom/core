@@ -6,30 +6,24 @@
   </center>
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
-      var cmd#id# = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' == '1') {
-        if ('#time#' == 'date') {
-          jeedom.cmd.displayDuration(_options.valueDate, cmd#id#.find('.timeCmd'), 'date')
-        } else {
-          jeedom.cmd.displayDuration(_options.valueDate, cmd#id#.find('.timeCmd'))
-        }
-      } else {
-        cmd#id#.find('.timeCmd').remove()
-      }
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      if ('#_time_widget_#' != '1') cmd.find('.timeCmd').parent().remove()
 
       if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          cmd#id#.hide();
+          cmd.hide();
         } else {
-          cmd#id#.show()
-          cmd#id#.find('.iconCmd').empty().append("#_icon_on_#")
+          cmd.show()
+          cmd.find('.iconCmd').empty().append("#_icon_on_#")
+          if ('#_time_widget_#' == '1') jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
         }
       } else if (['0', 0, 'off'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          cmd#id#.hide()
+          cmd.hide()
         } else {
-          cmd#id#.show()
-          cmd#id#.find('.iconCmd').empty().append("#_icon_off_#")
+          cmd.show()
+          cmd.find('.iconCmd').empty().append("#_icon_off_#")
+          if ('#_time_widget_#' == '1') jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
         }
       }
     }
