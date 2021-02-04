@@ -28,7 +28,7 @@ if (!method_exists($class, 'byId')) {
 
 $object = $class::byId(init('id'));
 if (!is_object($object)) {
-  throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $class);
+  throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . init('id'));
 }
 
 $array = utils::o2a($object);
