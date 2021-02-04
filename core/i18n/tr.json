@@ -171,6 +171,10 @@
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
     },
+    "desktop\/modal\/summary.action.php": {
+        "L\\'objet n\\'existe pas : ": "L\\'objet n\\'existe pas :",
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
     "desktop\/modal\/object.summary.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Sauvegarder": "Kaydet",
@@ -2997,6 +3001,7 @@
         "Recherche": "Recherche",
         "A propos": "Hakkında",
         "Erreur Javascript": "Erreur Javascript",
+        "Action sur résumé": "Action sur résumé",
         "Voulez vous recharger la page maintenant ?": "Voulez vous recharger la page maintenant ?",
         "Recharger": "Recharger",
         "Rester sur la page": "Rester sur la page",

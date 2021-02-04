@@ -171,6 +171,10 @@
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
     },
+    "desktop\/modal\/summary.action.php": {
+        "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
+        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+    },
     "desktop\/modal\/object.summary.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Sauvegarder": "Speichern",
@@ -2997,6 +3001,7 @@
         "Recherche": "Suche",
         "A propos": "Über",
         "Erreur Javascript": "Javascript-Fehler",
+        "Action sur résumé": "Aktion auf Zusammenfassung",
         "Voulez vous recharger la page maintenant ?": "Möchten Sie die Seite jetzt neu laden?",
         "Recharger": "Neu laden",
         "Rester sur la page": "Bleib auf der Seite",
