@@ -1033,15 +1033,16 @@ jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
     return true
   }
 
-  var tsDate = moment(_date).unix() * 1000
-
   if (_el.attr('data-interval') != undefined) {
     clearInterval(_el.attr('data-interval'))
   }
 
+  var tsDate = moment(_date).unix() * 1000
+  var now = Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
+
   var interval = 10000
-  //_date in past or now ?
-  if (tsDate < (Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime)) {
+  //_past more than one second ?
+  if (now - tsDate > 1000) {
     var duration = moment.duration(moment() - moment(_date))
     var durationSec = duration._milliseconds / 1000
     if (durationSec > 86399) {
@@ -1050,10 +1051,10 @@ jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
       interval = 60000
     }
     var durationString = jeedom.cmd.formatMomentDuration(duration)
-    _el.empty().append(durationString)
   } else {
-    _el.empty().append("0"+jeedom.config.locales[jeedom_langage].duration.second)
+    var durationString = "0"+jeedom.config.locales[jeedom_langage].duration.second
   }
+  _el.empty().append(durationString)
 
   //set refresh interval:
   var myinterval = setInterval(function() {
