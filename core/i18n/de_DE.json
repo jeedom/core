@@ -371,7 +371,7 @@
     "desktop\/modal\/object.display.php": {
         "La classe demandée n\\'existe pas : ": "Die angeforderte Klasse existiert nicht:",
         "La classe demandée n\\'a pas de méthode byId : ": "Die angeforderte Klasse hat keine byId-Methode:",
-        "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
+        "L\\'objet n\\'existe pas : ": "Das Objekt existiert nicht:",
         "L\\'objet n\\'a aucun élément : ": "Das Objekt hat keine Elemente:",
         "Scénario : ": "Szenario:"
     },
