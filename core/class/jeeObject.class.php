@@ -372,6 +372,7 @@ class jeeObject {
 		if (!isset($def[$_key])) {
 			return;
 		}
+		global $JEEDOM_INTERNAL_CONFIG;
 		try {
 			$plugin = plugin::byId('virtual');
 			if (!is_object($plugin)) {
@@ -410,24 +411,24 @@ class jeeObject {
 			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));
 		}
 		
-		$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
-		if (!is_object($virtual)) {
-			$virtual = new virtual();
-			$virtual->setName(__('Résumé Global', __FILE__));
-			$virtual->setIsVisible(0);
-			$virtual->setIsEnable(1);
+		$virtualGlobal = eqLogic::byLogicalId('summaryglobal', 'virtual');
+		if (!is_object($virtualGlobal)) {
+			$virtualGlobal = new virtual();
+			$virtualGlobal->setName(__('Résumé Global', __FILE__));
+			$virtualGlobal->setIsVisible(0);
+			$virtualGlobal->setIsEnable(1);
 		}
-		$virtual->setIsEnable(1);
-		$virtual->setLogicalId('summaryglobal');
-		$virtual->setEqType_name('virtual');
-		$virtual->save();
-		$cmd = $virtual->getCmd('info', $_key);
+		$virtualGlobal->setIsEnable(1);
+		$virtualGlobal->setLogicalId('summaryglobal');
+		$virtualGlobal->setEqType_name('virtual');
+		$virtualGlobal->save();
+		$cmd = $virtualGlobal->getCmd('info', $_key);
 		if (!is_object($cmd)) {
 			$cmd = new virtualCmd();
 			$cmd->setName($def[$_key]['name']);
 			$cmd->setIsHistorized(1);
 		}
-		$cmd->setEqLogic_id($virtual->getId());
+		$cmd->setEqLogic_id($virtualGlobal->getId());
 		$cmd->setLogicalId($_key);
 		$cmd->setType('info');
 		if ($def[$_key]['calcul'] == 'text') {
@@ -476,10 +477,93 @@ class jeeObject {
 			}
 			$cmd->setUnite($def[$_key]['unit']);
 			$cmd->save();
+			
+			$eqLogics = $object->getEqLogicBySummary($_key, true,false);
+			$cmd_genericType = array();
+			foreach ($eqLogics as $eqLogic) {
+				foreach ($eqLogic->getCmd() as $cmd) {
+					if($cmd->getGeneric_type() == ''){
+						continue;
+					}
+					if(!isset($cmd_genericType[$cmd->getGeneric_type()])){
+						$cmd_genericType[$cmd->getGeneric_type()] = array();
+					}
+					$cmd_genericType[$cmd->getGeneric_type()][] = $cmd->getId();
+				}
+			}
+			foreach ($cmd_genericType as $genericType => $cmds) {
+				if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['subtype'])){
+					continue;
+				}
+				$cmd = $virtual->getCmd('action', $_key.'::action::'.$genericType);
+				if (!is_object($cmd)) {
+					$cmd = new virtualCmd();
+					$cmd->setName($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setIsHistorized(0);
+				}
+				$cmd->setEqLogic_id($virtual->getId());
+				$cmd->setLogicalId($_key.'::action::'.$genericType);
+				$cmd->setType('action');
+				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['subtype']);
+				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
+				$cmd->setConfiguration('summary::object_id',$object->getId());
+				$cmd->setConfiguration('summary::generic_type',$genericType);
+				$cmd->setConfiguration('summary::key',$_key);
+				$cmd->save();
+				
+				$cmd = $virtualGlobal->getCmd('action', $_key.'::action::'.$genericType);
+				if (!is_object($cmd)) {
+					$cmd = new virtualCmd();
+					$cmd->setName($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setIsHistorized(0);
+				}
+				$cmd->setEqLogic_id($virtualGlobal->getId());
+				$cmd->setLogicalId($_key.'::action::'.$genericType);
+				$cmd->setType('action');
+				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['subtype']);
+				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
+				$cmd->setConfiguration('summary::object_id','global');
+				$cmd->setConfiguration('summary::generic_type',$genericType);
+				$cmd->setConfiguration('summary::key',$_key);
+				$cmd->save();
+			}
+		}
+	}
+	
+	public static function actionOnSummary($_cmd,$_options = null){
+		if($_cmd->getConfiguration('summary::object_id') == 'global'){
+			foreach((jeeObject::all()) as $object) {
+				if ($object->getConfiguration('summary::global::' . $_cmd->getConfiguration('summary::key'), 0) == 0) {
+					continue;
+				}
+				$object->summaryAction($_cmd,$_options);
+			}
+		}else{
+			$object = self::byId($_cmd->getConfiguration('summary::object_id'));
+			if(!is_object($object)){
+				throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $_cmd->getConfiguration('summary::object_id'));
+			}
+			$object->summaryAction($_cmd,$_options);
 		}
 	}
 	
 	/*     * *********************Méthodes d'instance************************* */
+	
+	public function summaryAction($_cmd,$_options = null){
+		$eqLogics = $this->getEqLogicBySummary($_cmd->getConfiguration('summary::key'), true,false);
+		foreach ($eqLogics as $eqLogic) {
+			foreach ($eqLogic->getCmd() as $cmd) {
+				if($cmd->getGeneric_type() == '' || $cmd->getGeneric_type() != $_cmd->getConfiguration('summary::generic_type')){
+					continue;
+				}
+				try {
+					$cmd->execCmd($_options);
+				} catch (\Exception $e) {
+					
+				}
+			}
+		}
+	}
 	
 	public function getTableName() {
 		return 'object';
