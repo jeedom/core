@@ -8,11 +8,7 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' == '1') {
-        if ('#time#' == 'date') {
-          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), 'date')
-        } else {
-          jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'))
-        }
+        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
       } else {
         cmd.find('.timeCmd').remove()
       }
