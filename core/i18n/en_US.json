@@ -367,7 +367,7 @@
     "desktop\/modal\/object.display.php": {
         "La classe demandée n\\'existe pas : ": "The requested class does not exist:",
         "La classe demandée n\\'a pas de méthode byId : ": "The requested class has no byId method:",
-        "L\\'objet n\\'existe pas : ": "The object does not exist:",
+        "L\\'objet n\\'existe pas : ": "Object does not exist:",
         "L\\'objet n\\'a aucun élément : ": "The object has no elements:",
         "Scénario : ": "Scenario:"
     },
@@ -4248,6 +4248,7 @@
         "Le plugin virtuel doit être actif": "Virtual plugin must be active",
         "Résumé Global": "Global Summary",
         "Résumé": "Summary",
+        "L\\'objet n\\'existe pas : ": "Object does not exist:",
         "Problème dans l\\'arbre des objets": "Problem in the object tree",
         "L\\'objet ne peut pas être son propre parent": "Object cannot be its own parent",
         "Objet": "Object"
