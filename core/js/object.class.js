@@ -62,7 +62,7 @@ jeedom.object.getEqLogicsFromSummary = function(_params) {
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
-
+  
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: "getEqLogicsFromSummary",
@@ -224,6 +224,27 @@ jeedom.object.byId = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.object.getActionSummary = function(_params) {
+  var paramsRequired = ['object_id','summary'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/object.ajax.php';
+  paramsAJAX.data = {
+    action: 'getActionSummary',
+    object_id: _params.object_id,
+    summary: _params.summary,
+    version: _params.version || 'dashboard'
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.object.setOrder = function(_params) {
   var paramsRequired = ['objects'];
   var paramsSpecifics = {};
@@ -251,7 +272,7 @@ jeedom.object.summaryUpdate = function(_params) {
   var keySpan = null;
   var updated = null;
   var icon = null;
-
+  
   for (var i in _params) {
     object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
@@ -280,7 +301,7 @@ jeedom.object.summaryUpdate = function(_params) {
           }
           summarySpan.find('i').remove()
           summarySpan.show().prepend(icon)
-
+          
           //update number:
           if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
             keySpan.empty()

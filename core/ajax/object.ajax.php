@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-
+	
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
+	
 	ajax::init(array('uploadImage'));
-
+	
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -38,7 +38,7 @@ try {
 		$object->remove();
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'byId') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -46,12 +46,12 @@ try {
 		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
-
+	
 	if (init('action') == 'createSummaryVirtual') {
 		jeeObject::createSummaryToVirtual(init('key'));
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'all') {
 		$objects = jeeObject::buildTree(null,init('onlyVisible',true));
 		if (init('onlyHasEqLogic') != '') {
@@ -66,7 +66,7 @@ try {
 		}
 		ajax::success(utils::o2a($objects));
 	}
-
+	
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -83,7 +83,7 @@ try {
 		$object->save();
 		ajax::success(utils::o2a($object));
 	}
-
+	
 	if (init('action') == 'getChild') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -92,7 +92,29 @@ try {
 		$return = utils::o2a($object->getChild());
 		ajax::success($return);
 	}
-
+	
+	if (init('action') == 'getActionSummary') {
+		if(init('object_id') == ''){
+			$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
+		}else{
+			$virtual = eqLogic::byLogicalId('summary' . init('object_id'), 'virtual');
+		}
+		if(!is_object($virtual)){
+			throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . init('object_id'));
+		}
+		$removeCmd = array();
+		foreach ($virtual->getCmd() as $cmd) {
+			if($cmd->getType() == 'action' && $cmd->getConfiguration('summary::key') == init('summary')){
+				continue;
+			}
+			$removeCmd[] = $cmd->getId();
+		}
+		ajax::success(array(
+			'html' => $virtual->toHtml(init('version')),
+			'removeCmd' => $removeCmd
+		));
+	}
+	
 	if (init('action') == 'getEqLogicsFromSummary') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
@@ -101,7 +123,7 @@ try {
 		$return = $object->getEqLogicsFromSummary(init('summary'), init('onlyEnable'), init('onlyVisible'));
 		ajax::success($return);
 	}
-
+	
 	function jeeAjax_objectToHtml($_id=-1, $_version='dashboard', $_category='all', $_tag='all', $_summary='') {
 		$html = array();
 		if ($_summary == '') {
@@ -172,7 +194,7 @@ try {
 			ajax::success($html);
 		}
 	}
-
+	
 	if (init('action') == 'setOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -188,7 +210,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'getSummaryHtml') {
 		if (init('ids') != '') {
 			$return = array();
@@ -221,7 +243,7 @@ try {
 			ajax::success($info_object);
 		}
 	}
-
+	
 	if (init('action') == 'removeImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -235,7 +257,7 @@ try {
 		$object->setImage('sha512', '');
 		$object->save();
 		@rrmdir(__DIR__ . '/../../core/img/object');
-
+		
 		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
 		if (count($files)  > 0) {
 			foreach ($files as $file) {
@@ -244,7 +266,7 @@ try {
 		}
 		ajax::success();
 	}
-
+	
 	if (init('action') == 'uploadImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -271,7 +293,7 @@ try {
 			$upfilepath = init('file');
 		}
 		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
-
+		
 		if (count($files)  > 0) {
 			foreach ($files as $file) {
 				unlink(__DIR__ . '/../../data/object/'.$file);
@@ -288,7 +310,7 @@ try {
 		$object->save();
 		ajax::success(array('filepath' => $filepath));
 	}
-
+	
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

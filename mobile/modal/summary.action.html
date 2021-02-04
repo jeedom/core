@@ -1,0 +1,19 @@
+<div id="div_summaryAction"></div>
+
+<script>
+  function initSummaryAction(_object_id,_summary){
+    jeedom.object.getActionSummary({
+      object_id : _object_id,
+      summary : _summary,
+      version : 'mobile',
+      success : function(data){
+        $('#div_summaryAction').empty().html(data.html).trigger('create');
+        setTimeout(function(){
+          for(var i in data.removeCmd){
+            $('#div_summaryAction .cmd[data-cmd_id='+data.removeCmd[i]+']').remove();
+          }
+        }, 10);
+      }
+    })
+  }
+</script>
