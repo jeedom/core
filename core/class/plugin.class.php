@@ -689,11 +689,6 @@ class plugin {
 				throw new Exception(__('Les dépendances d\'un autre plugin sont déjà en cours, veuillez attendre qu\'elles soient finies : ', __FILE__) . $plugin->getId());
 			}
 		}
-		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
-			message::add($plugin_id, __('Attention : installation des packages lancée', __FILE__));
-			log::add($plugin_id, 'info', __('Lancement de l\'installation des packages, pour le suivre veuillez lire regarder le logs packages', __FILE__));
-			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json'),true),true);
-		}
 		$cmd = $plugin_id::dependancy_install();
 		if (is_array($cmd) && count($cmd) == 2) {
 			$script = str_replace('#stype#', system::get('type'), $cmd['script']);
