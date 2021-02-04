@@ -367,7 +367,7 @@
     "desktop\/modal\/object.display.php": {
         "La classe demandée n\\'existe pas : ": "Die angeforderte Klasse existiert nicht:",
         "La classe demandée n\\'a pas de méthode byId : ": "Die angeforderte Klasse hat keine byId-Methode:",
-        "L\\'objet n\\'existe pas : ": "Das Objekt existiert nicht:",
+        "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
         "L\\'objet n\\'a aucun élément : ": "Das Objekt hat keine Elemente:",
         "Scénario : ": "Szenario:"
     },
@@ -4248,6 +4248,7 @@
         "Le plugin virtuel doit être actif": "Das virtuelle Plugin muss aktiv sein",
         "Résumé Global": "Globale Zusammenfassung",
         "Résumé": "Zusammenfassung",
+        "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
         "Problème dans l\\'arbre des objets": "Problem im Objektbaum",
         "L\\'objet ne peut pas être son propre parent": "Das Objekt kann kein eigenes übergeordnetes Objekt sein",
         "Objet": "Objekt"
