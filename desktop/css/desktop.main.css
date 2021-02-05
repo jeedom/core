@@ -1100,6 +1100,10 @@ Theme Core 2021 @Jeedom
     background-color: var(--form-bg-color);
   }
 
+  [data-page="dashboard"] #dashOverviewPrev .topPreview .name {
+    max-width: 100%;
+  }
+
   [data-page="dashboard"] #div_displayObject {
     margin-bottom: 2em;
   }
