@@ -28,18 +28,29 @@ class view {
 	private $order;
 	private $image;
 	private $configuration;
-	private $_changed = false;
+	private bool $_changed = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function all() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM view
 		ORDER BY `order`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$value = array(
 			'id' => $_id,
 		);
@@ -49,7 +60,14 @@ class view {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByUse($_type, $_id) {
+    /**
+     * @param $_type
+     * @param $_id
+     * @return array
+     * @throws ReflectionException
+     */
+    public static function searchByUse($_type, $_id): array
+    {
 		$return = array();
 		$viewDatas = viewData::byTypeLinkId($_type, $_id);
 		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
@@ -70,7 +88,14 @@ class view {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function report($_format = 'pdf', $_parameters = array()) {
+    /**
+     * @param string $_format
+     * @param array $_parameters
+     * @return string
+     * @throws Exception
+     */
+    public function report($_format = 'pdf', $_parameters = array()): string
+    {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=view';
 		$url .= '&view_id=' . $this->getId();
 		$url .= '&report=1';
@@ -79,34 +104,58 @@ class view {
 		}
 		return report::generate($url, 'view', $this->getId(), $_format, $_parameters);
 	}
-	/**
-	*
-	* @throws Exception
-	*/
-	public function presave() {
+
+    /**
+     * @throws Exception
+     */
+    public function presave() {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom de la vue ne peut pas être vide', __FILE__));
 		}
 	}
 
-	public function save() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+    {
 		return DB::save($this);
 	}
 
-	public function remove() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function remove(): bool
+    {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'view'));
 		return DB::remove($this);
 	}
 
-	public function getviewZone() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public function getviewZone(): ?array
+    {
 		return viewZone::byView($this->getId());
 	}
 
-	public function removeviewZone() {
+    /**
+     * @return array|null
+     * @throws Exception
+     */
+    public function removeviewZone(): ?array
+    {
 		return viewZone::removeByViewId($this->getId());
 	}
 
-	public function getImgLink() {
+    /**
+     * @return string
+     */
+    public function getImgLink(): string
+    {
 		if ($this->getImage('sha512') == '') {
 			return '';
 		}
@@ -114,13 +163,24 @@ class view {
 		return 'data/view/' . $filename;
 	}
 
-	public function toArray() {
+    /**
+     * @return array
+     * @throws ReflectionException
+     */
+    public function toArray(): array
+    {
 		$return = utils::o2a($this, true);
 		$return['img'] = $this->getImgLink();
 		return $return;
 	}
 
-	public function toAjax($_version = 'dashboard', $_html = false) {
+    /**
+     * @param string $_version
+     * @param false $_html
+     * @return array|object|string
+     * @throws ReflectionException
+     */
+    public function toAjax($_version = 'dashboard', $_html = false) {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
 		foreach(($this->getViewZone()) as $viewZone) {
@@ -207,7 +267,14 @@ class view {
 		return jeedom::toHumanReadable($return);
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+    /**
+     * @param array[] $_data
+     * @param int $_level
+     * @param int $_drill
+     * @return array|array[]|void
+     */
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3): array
+    {
 		if (isset($_data['node']['view' . $this->getId()])) {
 			return;
 		}
@@ -233,66 +300,124 @@ class view {
 
 	/*     * **********************Getteur Setteur*************************** */
 
-	public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
 
-	public function setId($_id) {
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): view
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	public function getName() {
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
 
-	public function setName($_name) {
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): view
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
 
-	public function getOrder($_default = null) {
+    /**
+     * @param null $_default
+     * @return int|mixed|string|null
+     */
+    public function getOrder($_default = null) {
 		if ($this->order == '' || !is_numeric($this->order)) {
 			return $_default;
 		}
 		return $this->order;
 	}
 
-	public function setOrder($_order) {
+    /**
+     * @param $_order
+     * @return $this
+     */
+    public function setOrder($_order): view
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 		$this->order = $_order;
 		return $this;
 	}
 
-	public function getDisplay($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setDisplay($_key, $_value): view
+    {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 		return $this;
 	}
 
-	public function getImage($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getImage($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->image, $_key, $_default);
 	}
 
-	public function setImage($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setImage($_key, $_value): view
+    {
 		$image = utils::setJsonAttr($this->image, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->image,$image);
 		$this->image = $image;
 		return $this;
 	}
 
-	public function getConfiguration($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): view
+    {
 		if ($_key == 'accessCode' && $_value != '' && !is_sha512($_value)) {
 			$_value = sha512($_value);
 		}
@@ -302,11 +427,20 @@ class view {
 		return $this;
 	}
 
-	public function getChanged() {
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): view
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

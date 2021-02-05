@@ -723,6 +723,7 @@ class jeedom
 
     /**
      * @param false $_background
+     * @throws Exception
      */
     public static function backup($_background = false)
     {
@@ -771,6 +772,7 @@ class jeedom
     /**
      * @param string $_backup
      * @param false $_background
+     * @throws Exception
      */
     public static function restore($_backup = '', $_background = false)
     {
@@ -790,6 +792,7 @@ class jeedom
 
     /**
      * @param array $_options
+     * @throws Exception
      */
     public static function update($_options = array())
     {
@@ -811,6 +814,7 @@ class jeedom
      * @param string $_key
      * @param false $_default
      * @return array|mixed|string
+     * @throws Exception
      */
     public static function getConfiguration($_key = '', $_default = false)
     {
@@ -961,6 +965,7 @@ class jeedom
 
     /**
      * @return bool
+     * @throws Exception
      */
     public static function isStarted(): bool
     {
@@ -1004,6 +1009,7 @@ class jeedom
     /**
      * @param $_event
      * @param false $_forceSyncMode
+     * @throws ReflectionException
      */
     public static function event($_event, $_forceSyncMode = false)
     {

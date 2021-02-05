@@ -21,13 +21,20 @@ require_once __DIR__ . '/../php/core.inc.php';
 
 class utils {
 	/*     * *************************Attributs****************************** */
-	
-	private static $properties = array();
+
+	private static array $properties = array();
 	private static $jeedom_encryption = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function attrChanged($_changed,$_old,$_new){
+
+    /**
+     * @param $_changed
+     * @param $_old
+     * @param $_new
+     * @return bool
+     */
+    public static function attrChanged($_changed, $_old, $_new): bool
+    {
 		if($_changed){
 			return true;
 		}
@@ -39,8 +46,15 @@ class utils {
 		}
 		return ($_old != $_new);
 	}
-	
-	public static function o2a($_object, $_noToArray = false) {
+
+    /**
+     * @param $_object
+     * @param false $_noToArray
+     * @return array
+     * @throws ReflectionException
+     */
+    public static function o2a($_object, $_noToArray = false): array
+    {
 		if (is_array($_object)) {
 			$return = array();
 			foreach ($_object as $object) {
@@ -75,8 +89,13 @@ class utils {
 		}
 		return $array;
 	}
-	
-	public static function a2o(&$_object, $_data) {
+
+    /**
+     * @param $_object
+     * @param $_data
+     * @throws ReflectionException
+     */
+    public static function a2o(&$_object, $_data) {
 		if (is_array($_data)) {
 			foreach ($_data as $key => $value) {
 				$method = 'set' . ucfirst($key);
@@ -108,8 +127,14 @@ class utils {
 			}
 		}
 	}
-	
-	public static function processJsonObject($_class, $_ajaxList, $_dbList = null) {
+
+    /**
+     * @param $_class
+     * @param $_ajaxList
+     * @param null $_dbList
+     * @throws ReflectionException
+     */
+    public static function processJsonObject($_class, $_ajaxList, $_dbList = null) {
 		if (!is_array($_ajaxList)) {
 			if (is_json($_ajaxList)) {
 				$_ajaxList = json_decode($_ajaxList, true);
@@ -123,7 +148,7 @@ class utils {
 			}
 			$_dbList = $_class::all();
 		}
-		
+
 		$enableList = array();
 		foreach ($_ajaxList as $ajaxObject) {
 			$object = $_class::byId($ajaxObject['id']);
@@ -140,8 +165,14 @@ class utils {
 			}
 		}
 	}
-	
-	public static function setJsonAttr($_attr, $_key, $_value = null) {
+
+    /**
+     * @param $_attr
+     * @param $_key
+     * @param null $_value
+     * @return array|bool|mixed
+     */
+    public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
 			if (!is_array($_attr)) {
 				$_attr = is_json($_attr, array());
@@ -159,8 +190,14 @@ class utils {
 		}
 		return $_attr;
 	}
-	
-	public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
+
+    /**
+     * @param $_attr
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
 		if (is_array($_attr)) {
 			if ($_key == '') {
 				return $_attr;
@@ -189,9 +226,13 @@ class utils {
 		}
 		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
-	
+
 	/*     * ******************Encrypt/decrypt*************************** */
-	public static function getEncryptionPassword(){
+    /**
+     * @return false|string|null
+     * @throws Exception
+     */
+    public static function getEncryptionPassword(){
 		if(self::$jeedom_encryption == null){
 			if(!file_exists(__DIR__.'/../../data/jeedom_encryption.key')){
 				file_put_contents(__DIR__.'/../../data/jeedom_encryption.key',config::genKey());
@@ -200,8 +241,15 @@ class utils {
 		}
 		return self::$jeedom_encryption;
 	}
-	
-	public static function encrypt($plaintext, $password = null) {
+
+    /**
+     * @param $plaintext
+     * @param null $password
+     * @return string
+     * @throws Exception
+     */
+    public static function encrypt($plaintext, $password = null): string
+    {
 		if($plaintext == ''){
 			return $plaintext;
 		}
@@ -216,8 +264,14 @@ class utils {
 		$hmac = hash_hmac('sha256', $ciphertext.$iv, hash('sha256', $password, true), true);
 		return 'crypt:'.base64_encode($iv.$hmac.$ciphertext);
 	}
-	
-	public static function decrypt($ciphertext, $password = null) {
+
+    /**
+     * @param $ciphertext
+     * @param null $password
+     * @return false|string|null
+     * @throws Exception
+     */
+    public static function decrypt($ciphertext, $password = null) {
 		if($password == null){
 			$password = self::getEncryptionPassword();
 		}
@@ -228,8 +282,8 @@ class utils {
 		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48).substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
 		return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
 }

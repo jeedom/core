@@ -22,10 +22,10 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class config {
 	/*     * *************************Attributs****************************** */
 
-	private static $defaultConfiguration = array();
-	private static $cache = array();
-	private static $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username','ldap:password','ldap:host','ldap:username','dns::token','api');
-	private static $nocache = array('enableScenario');
+	private static array $defaultConfiguration = array();
+	private static array $cache = array();
+	private static array $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username','ldap:password','ldap:host','ldap:username','dns::token','api');
+	private static array $nocache = array('enableScenario');
 
 	/*     * ***********************Methode static*************************** */
 
@@ -117,10 +117,10 @@ class config {
      * Delete key from config
      * @param string $_key nom de la clef à supprimer
      * @param string $_plugin
-     * @return boolean vrai si ok faux sinon
+     * @return array|bool
      * @throws Exception
      */
-	public static function remove(string $_key, $_plugin = 'core'): bool
+	public static function remove(string $_key, $_plugin = 'core')
     {
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(

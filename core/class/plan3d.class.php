@@ -400,6 +400,7 @@ class plan3d {
 
     /**
      * @return array|null
+     * @throws ReflectionException
      */
     public function getPlan3dHeader(): ?array
     {

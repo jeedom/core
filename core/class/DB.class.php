@@ -28,7 +28,7 @@ class DB {
 
 	private static $connection = null;
 	private static $lastConnection;
-	private static $fields = array();
+	private static array $fields = array();
 
 	/*     * **************  Fonctions statiques  ***************** */
 
@@ -309,11 +309,12 @@ class DB {
     /***
      * Retourne une liste d'objets ou un objet en fonction de filtres
      * @param array $_filters Filtres à appliquer
-     * @param $_object Objet sur lequel appliquer les filtres
-     * @return Objet ou liste d'objets correspondant à la requête
+     * @param $_object
+     * @return array|
      * @throws Exception
      */
-	public static function getWithFilter(array $_filters, Objet $_object) {
+	public static function getWithFilter(array $_filters, $_object): ?array
+    {
 		// operators have to remain in this order. If you put '<' before '<=', algorithm won't make the difference & will think a '<=' is a '<'
 		$operators = array('!=', '<=', '>=', '<', '>', 'NOT LIKE', 'LIKE', '=');
 		$fields = self::getFields($_object);
@@ -528,16 +529,15 @@ class DB {
 		return array($sql, $parameters);
 	}
 
-	/**
-	* Returns the value of a field of a given object. It'll try to use a
-	* getter first if defined. If not defined, we'll use the reflection API.
-	*
-	* @param type $object
-	* @param type $field
-	* @return type
-	* @throws RuntimeException if the getter is not defined
-	*/
-	private static function getField($object, $field): ?type
+    /**
+     * Returns the value of a field of a given object. It'll try to use a
+     * getter first if defined. If not defined, we'll use the reflection API.
+     *
+     * @param $object
+     * @param $field
+     * @return false|mixed|string|null
+     */
+	private static function getField($object, $field)
     {
 		$retval = null;
 		$method = 'get' . ucfirst($field);
@@ -558,13 +558,13 @@ class DB {
 		return $retval;
 	}
 
-	/**
-	* Returns the reflection class for the given object.
-	*
-	* @param  object $object
-	* @return ReflectionClass
-	*/
-	private static function getReflectionClass($object): ReflectionClass
+    /**
+     * Returns the reflection class for the given object.
+     *
+     * @param object $object
+     * @return ReflectionClass
+     */
+	private static function getReflectionClass(object $object): ReflectionClass
     {
 		$reflections = array();
 		$uuid = spl_object_hash($object);
@@ -682,6 +682,7 @@ class DB {
     /**
      * @param $_database
      * @return array
+     * @throws Exception
      */
     public static function compareDatabase($_database): array
     {

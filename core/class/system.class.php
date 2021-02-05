@@ -19,21 +19,25 @@
 /* * ***************************Includes********************************* */
 
 class system {
-	
-	private static $_installPackage = array();
-	private static $_packageUpdateMake = false;
-	private static $_distrib = null;
-	private static $_command = array(
+
+	private static array $_installPackage = array();
+	private static bool $_packageUpdateMake = false;
+	private static ?string $_distrib = null;
+	private static array $_command = array(
 		'suse' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
 		'sles' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' zypper in --non-interactive ', 'www-uid' => 'wwwrun', 'www-gid' => 'www', 'type' => 'zypper'),
 		'redhat' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' yum install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'yum'),
 		'fedora' => array('cmd_check' => ' rpm -qa | grep ', 'cmd_install' => ' dnf install ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'dnf'),
 		'debian' => array('cmd_check' => ' dpkg --get-selections | grep -v deinstall | grep ', 'cmd_install' => ' apt-get install -y ', 'www-uid' => 'www-data', 'www-gid' => 'www-data', 'type' => 'apt'),
 	);
-	
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function loadCommand() {
+
+    /**
+     * @return string[][]
+     */
+    public static function loadCommand(): array
+    {
 		if (file_exists(__DIR__ . '/../../config/system_cmd.json')) {
 			$content = file_get_contents(__DIR__ . '/../../config/system_cmd.json');
 			if (is_json($content)) {
@@ -42,12 +46,12 @@ class system {
 		}
 		return self::$_command;
 	}
-	
-	/**
-	*
-	* @return string/object self::
-	*/
-	public static function getDistrib() {
+
+    /**
+     * @return string|null
+     */
+    public static function getDistrib(): ?string
+    {
 		self::loadCommand();
 		if (isset(self::$_command['custom'])) {
 			return 'custom';
@@ -63,8 +67,13 @@ class system {
 		}
 		return self::$_distrib;
 	}
-	
-	public static function get($_key = '') {
+
+    /**
+     * @param string $_key
+     * @return string
+     */
+    public static function get($_key = ''): string
+    {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
 			$return = self::$_command[self::getDistrib()][$_key];
@@ -81,8 +90,13 @@ class system {
 		}
 		return $return;
 	}
-	
-	public static function getCmdSudo() {
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function getCmdSudo(): string
+    {
 		if(!class_exists('jeedom')){
 			return 'sudo ';
 		}
@@ -91,16 +105,27 @@ class system {
 		}
 		return 'sudo ';
 	}
-	
-	public static function fuserk($_port, $_protocol = 'tcp') {
+
+    /**
+     * @param $_port
+     * @param string $_protocol
+     * @throws Exception
+     */
+    public static function fuserk($_port, $_protocol = 'tcp') {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
 		}
 	}
-	
-	public static function ps($_find, $_without = null) {
+
+    /**
+     * @param $_find
+     * @param null $_without
+     * @return array
+     */
+    public static function ps($_find, $_without = null): array
+    {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
 		if ($_without != null) {
@@ -131,7 +156,7 @@ class system {
 					$info[$order[$i]] = trim($value);
 				} else {
 					$info[end($order)] = $info[end($order)] . ' ' . trim($value);
-					
+
 				}
 				$i++;
 			}
@@ -139,8 +164,15 @@ class system {
 		}
 		return $return;
 	}
-	
-	public static function kill($_find = '', $_kill9 = true) {
+
+    /**
+     * @param string $_find
+     * @param bool $_kill9
+     * @return bool|void
+     * @throws Exception
+     */
+    public static function kill($_find = '', $_kill9 = true): bool
+    {
 		if (trim($_find) == '') {
 			return;
 		}
@@ -169,15 +201,26 @@ class system {
 		}
 		exec($cmd);
 	}
-	
-	public static function php($arguments, $_sudo = false) {
+
+    /**
+     * @param $arguments
+     * @param false $_sudo
+     * @return string
+     * @throws Exception
+     */
+    public static function php($arguments, $_sudo = false): string
+    {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
 		}
 		return exec('php ' . $arguments);
 	}
-	
-	public static function getArch(){
+
+    /**
+     * @return string
+     */
+    public static function getArch(): string
+    {
 		$arch = php_uname('m');
 		if($arch == 'x86_64'){
 			return 'amd64';
@@ -190,8 +233,13 @@ class system {
 		}
 		return $arch;
 	}
-	
-	public static function getInstallPackage($_type){
+
+    /**
+     * @param $_type
+     * @return array
+     */
+    public static function getInstallPackage($_type): array
+    {
 		if(isset(self::$_installPackage[$_type])){
 			return self::$_installPackage[$_type];
 		}
@@ -239,8 +287,17 @@ class system {
 		}
 		return self::$_installPackage[$_type];
 	}
-	
-	public static function checkAndInstall($_packages,$_fix = false,$_foreground = false,$_plugin = ''){
+
+    /**
+     * @param $_packages
+     * @param false $_fix
+     * @param false $_foreground
+     * @param string $_plugin
+     * @return array
+     * @throws Exception
+     */
+    public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = ''): array
+    {
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			if($type == 'post-install' || $type == 'pre-install'){
@@ -402,8 +459,14 @@ class system {
 		file_put_contents('/tmp/jeedom_fix_package',$cmd);
 		self::launchScriptPackage($_plugin);
 	}
-	
-	public static function installPackageInProgress($_plugin = ''){
+
+    /**
+     * @param string $_plugin
+     * @return bool
+     * @throws Exception
+     */
+    public static function installPackageInProgress($_plugin = ''): bool
+    {
 		if(count(self::ps('dpkg')) > 0 || count(self::ps('apt')) > 0){
 			return true;
 		}
@@ -425,8 +488,12 @@ class system {
 		}
 		return false;
 	}
-	
-	public static function launchScriptPackage($_plugin = ''){
+
+    /**
+     * @param string $_plugin
+     * @throws Exception
+     */
+    public static function launchScriptPackage($_plugin = ''){
 		if(self::installPackageInProgress($_plugin)){
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours',__FILE__));
 		}
@@ -451,8 +518,15 @@ class system {
 			exec('echo "/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1" | '.system::getCmdSudo().' at now');
 		}
 	}
-	
-	public static function installPackage($_type,$_package){
+
+    /**
+     * @param $_type
+     * @param $_package
+     * @return string
+     * @throws Exception
+     */
+    public static function installPackage($_type, $_package): string
+    {
 		switch ($_type) {
 			case 'apt':
 			if($_package == 'nodejs' || $_package == 'npm'){
@@ -473,8 +547,12 @@ class system {
 			return 'cd '.__DIR__.'/../../'.$_package.';rm -rf node_modules;'.self::getCmdSudo().' npm install;chown -R www-data:www-data';
 		}
 	}
-	
-	public static function checkInstallationLog(){
+
+    /**
+     * @return string
+     */
+    public static function checkInstallationLog(): string
+    {
 		if(class_exists('log')){
 			$log = log::getPathToLog('packages');
 		}else{
@@ -488,5 +566,5 @@ class system {
 		}
 		return '';
 	}
-	
+
 }

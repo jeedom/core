@@ -23,16 +23,16 @@ class cron {
 	/*     * *************************Attributs****************************** */
 
 	private $id;
-	private $enable = 1;
-	private $class = '';
+	private int $enable = 1;
+	private string $class = '';
 	private $function;
-	private $schedule = '';
-	private $timeout;
-	private $deamon = 0;
-	private $deamonSleepTime;
+	private string $schedule = '';
+	private string $timeout;
+	private int $deamon = 0;
+	private string $deamonSleepTime;
 	private $option;
-	private $once = 0;
-	private $_changed = false;
+	private int $once = 0;
+	private bool $_changed = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -55,10 +55,10 @@ class cron {
     /**
      * Get cron object associate to id
      * @param int $_id
-     * @return object
+     * @return array|object
      * @throws Exception
      */
-	public static function byId($_id): object
+	public static function byId($_id)
     {
 		$value = array(
 			'id' => $_id,
@@ -74,10 +74,10 @@ class cron {
      * @param string $_class
      * @param string $_function
      * @param string $_option
-     * @return object
+     * @return array|object
      * @throws Exception
      */
-	public static function byClassAndFunction($_class, $_function, $_option = ''): object
+	public static function byClassAndFunction(string $_class, string $_function, $_option = '')
     {
 		$value = array(
 			'class' => $_class,
@@ -95,15 +95,16 @@ class cron {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+
     /**
-     *
-     * @param type $_class
-     * @param type $_function
+     * @param $_class
+     * @param $_function
      * @param string $_option
-     * @return type
+     * @return array|null
+     * @throws ReflectionException
      * @throws Exception
      */
-	public static function searchClassAndFunction($_class, $_function, $_option = ''): type
+    public static function searchClassAndFunction($_class, $_function, $_option = ''): ?array
     {
 		$value = array(
 			'class' => $_class,
@@ -176,10 +177,11 @@ class cron {
 		fclose($fp);
 	}
 
-	/**
-	* Return the current pid of jeecron or empty if not running
-	* @return int
-	*/
+    /**
+     * Return the current pid of jeecron or empty if not running
+     * @return int
+     * @throws Exception
+     */
 	public static function getPidFile() {
 		$path = jeedom::getTmpFolder() . '/jeeCron.pid';
 		if (file_exists($path)) {
@@ -236,10 +238,11 @@ class cron {
 		$this->setPID();
 	}
 
-	/**
-	* Save cron object
-	* @return boolean
-	*/
+    /**
+     * Save cron object
+     * @return boolean
+     * @throws Exception
+     */
 	public function save(): bool
     {
 		DB::save($this, false, true);
@@ -384,10 +387,11 @@ class cron {
 		return true;
 	}
 
-	/**
-	* Check if it's time to launch cron
-	* @return boolean
-	*/
+    /**
+     * Check if it's time to launch cron
+     * @return boolean
+     * @throws Exception
+     */
 	public function isDue(): bool
     {
 		if(((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4){
@@ -460,6 +464,7 @@ class cron {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function toArray(): array
     {
@@ -721,6 +726,7 @@ class cron {
      * @param string $_key
      * @param string $_default
      * @return array|bool|mixed|string
+     * @throws Exception
      */
     public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('cronCacheAttr' . $this->getId())->getValue();
@@ -730,6 +736,7 @@ class cron {
     /**
      * @param $_key
      * @param null $_value
+     * @throws Exception
      */
     public function setCache($_key, $_value = null) {
 		cache::set('cronCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cronCacheAttr' . $this->getId())->getValue(), $_key, $_value));

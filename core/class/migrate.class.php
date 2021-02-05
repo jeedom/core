@@ -187,6 +187,7 @@ class migrate {
 
     /**
      * @return string
+     * @throws Exception
      */
     public static function renameImage(): string
     {
@@ -208,6 +209,7 @@ class migrate {
 
     /**
      * @return string
+     * @throws Exception
      */
     public static function execKernel(): string
     {

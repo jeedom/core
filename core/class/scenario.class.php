@@ -24,38 +24,39 @@ class scenario {
 
 	private $id;
 	private $name;
-	private $isActive = 1;
-	private $group = '';
+	private int $isActive = 1;
+	private string $group = '';
 	private $mode;
 	private $schedule;
 	private $scenarioElement;
 	private $trigger;
 	private $_log;
-	private $timeout = 0;
+	private int $timeout = 0;
 	private $object_id = null;
-	private $isVisible = 0;
+	private int $isVisible = 0;
 	private $display;
-	private $order = 9999;
+	private int $order = 9999;
 	private $description;
 	private $configuration;
 	private static $_templateArray;
-	private $_elements = array();
-	private $_changeState = false;
-	private $_realTrigger = '';
-	private $_return = true;
-	private $_tags = array();
-	private $_do = true;
-	private $_changed = false;
+	private array $_elements = array();
+	private bool $_changeState = false;
+	private string $_realTrigger = '';
+	private bool $_return = true;
+	private array $_tags = array();
+	private bool $_do = true;
+	private bool $_changed = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
     /**
      * Renvoie un objet scenario
      * @param int $_id id du scenario voulu
-     * @return scenario object scenario
+     * @return array|scenario
      * @throws ReflectionException
+     * @throws Exception
      */
-	public static function byId($_id): scenario
+	public static function byId($_id)
     {
 		$values = array(
 			'id' => $_id,
@@ -85,6 +86,7 @@ class scenario {
      * @param string $_group
      * @return array [] scenario object scenario
      * @throws ReflectionException
+     * @throws Exception
      */
 	public static function all($_group = ''): array
     {
@@ -292,8 +294,9 @@ class scenario {
     /**
      * @param null $_event
      * @param false $_forceSyncMode
-     * @return bool
+     * @return bool|void
      * @throws ReflectionException
+     * @throws Exception
      */
     public static function check($_event = null, $_forceSyncMode = false): bool
     {
@@ -859,6 +862,7 @@ class scenario {
     /**
      * @param $_name
      * @return scenario
+     * @throws ReflectionException
      */
     public function copy($_name): scenario
     {
@@ -941,9 +945,11 @@ class scenario {
 		$mc->remove();
 	}
 
+
     /**
      * @param false $_only_class
-     * @return string|string[]|type
+     * @return array|bool|mixed|string|string[]
+     * @throws Exception
      */
     public function getIcon($_only_class = false) {
 		if ($_only_class) {
@@ -1159,6 +1165,7 @@ class scenario {
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function isDue(): bool
     {
@@ -1298,6 +1305,7 @@ class scenario {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function getElement(): array
     {
@@ -1530,6 +1538,7 @@ class scenario {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function toArray(): array
     {
@@ -1544,7 +1553,7 @@ class scenario {
      * @param array[] $_data
      * @param int $_level
      * @param null $_drill
-     * @return array[]
+     * @return array|array[]|void
      * @throws Exception
      */
     public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
@@ -1658,10 +1667,12 @@ class scenario {
 		return $this->name;
 	}
 
+
     /**
-     * @return type
+     * @return array|bool|mixed|string
+     * @throws Exception
      */
-    public function getState(): type
+    public function getState()
     {
 		return $this->getCache('state');
 	}
@@ -1682,10 +1693,12 @@ class scenario {
 		return $this->group;
 	}
 
+
     /**
-     * @return type
+     * @return array|bool|mixed|string
+     * @throws Exception
      */
-    public function getLastLaunch(): type
+    public function getLastLaunch()
     {
 		return $this->getCache('lastLaunch');
 	}
@@ -1758,6 +1771,7 @@ class scenario {
 
     /**
      * @param $lastLaunch
+     * @throws Exception
      */
     public function setLastLaunch($lastLaunch) {
 		$this->setCache('lastLaunch', $lastLaunch);
@@ -1823,6 +1837,7 @@ class scenario {
 
     /**
      * @return array|bool|mixed|string
+     * @throws Exception
      */
     public function getPID() {
 		return $this->getCache('pid');
@@ -1830,6 +1845,7 @@ class scenario {
 
     /**
      * @param string $pid
+     * @throws Exception
      */
     public function setPID($pid = '') {
 		$this->setCache('pid', $pid);

@@ -259,6 +259,8 @@ class listener {
      * @param $_event
      * @param $_value
      * @param null $_datetime
+     * @throws Exception
+     * @throws Exception
      */
     public function run($_event, $_value, $_datetime = null) {
 		$option = array();
@@ -281,6 +283,7 @@ class listener {
      * @param $_event
      * @param $_value
      * @param string $_datetime
+     * @throws Exception
      */
     public function execute($_event, $_value, $_datetime = '') {
 		try {

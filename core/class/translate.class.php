@@ -32,15 +32,22 @@ require_once  'message.class.php';
 class translate {
 	/*     * *************************Attributs****************************** */
 
-	protected static $translation = array();
-	protected static $language = null;
-	private static $config = null;
-	private static $pluginLoad = array();
-	private static $widgetLoad = array();
+	protected static array $translation = array();
+	protected static ?string $language = null;
+	private static ?string $config = null;
+	private static array $pluginLoad = array();
+	private static array $widgetLoad = array();
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getConfig($_key, $_default = '') {
+    /**
+     * @param $_key
+     * @param string $_default
+     * @return string
+     * @throws Exception
+     */
+    public static function getConfig($_key, $_default = ''): string
+    {
 		if (self::$config === null) {
 			self::$config = config::byKeys(array('language'));
 		}
@@ -50,7 +57,13 @@ class translate {
 		return $_default;
 	}
 
-	public static function getTranslation($_plugin) {
+    /**
+     * @param $_plugin
+     * @return array
+     * @throws Exception
+     */
+    public static function getTranslation($_plugin): array
+    {
 		if (!isset(self::$translation[self::getLanguage()])) {
 			self::$translation[self::getLanguage()] = array();
 		}
@@ -61,7 +74,12 @@ class translate {
 		return self::$translation[self::getLanguage()];
 	}
 
-	public static function getWidgetTranslation($_widget) {
+    /**
+     * @param $_widget
+     * @return mixed
+     * @throws Exception
+     */
+    public static function getWidgetTranslation($_widget) {
 		if (!isset(self::$translation[self::getLanguage()]['core/template/widgets.html'])) {
 			self::$translation[self::getLanguage()]['core/template/widgets.html'] = array();
 		}
@@ -71,11 +89,22 @@ class translate {
 		return self::$widgetLoad[$_widget];
 	}
 
-	public static function sentence($_content, $_name, $_backslash = false) {
+    /**
+     * @param $_content
+     * @param $_name
+     * @param false $_backslash
+     * @return string|string[]|null
+     */
+    public static function sentence($_content, $_name, $_backslash = false) {
 		return self::exec("{{" . $_content . "}}", $_name, $_backslash);
 	}
 
-	public static function getPluginFromName($_name) {
+    /**
+     * @param $_name
+     * @return string
+     */
+    public static function getPluginFromName($_name): string
+    {
 		if (strpos($_name, 'plugins/') === false) {
 			return 'core';
 		}
@@ -89,7 +118,14 @@ class translate {
 		return $matches[1];
 	}
 
-	public static function exec($_content, $_name = '', $_backslash = false) {
+    /**
+     * @param $_content
+     * @param string $_name
+     * @param false $_backslash
+     * @return string|string[]|null
+     * @throws Exception
+     */
+    public static function exec($_content, $_name = '', $_backslash = false) {
 		if ($_content == '' || $_name == '') {
 			return $_content;
 		}
@@ -155,15 +191,30 @@ class translate {
 		return str_replace(array_keys($replace), $replace, $_content);
 	}
 
-	public static function getPathTranslationFile($_language) {
+    /**
+     * @param $_language
+     * @return string
+     */
+    public static function getPathTranslationFile($_language): string
+    {
 		return __DIR__ . '/../i18n/' . $_language . '.json';
 	}
 
-	public static function getWidgetPathTranslationFile($_widgetName) {
+    /**
+     * @param $_widgetName
+     * @return string
+     */
+    public static function getWidgetPathTranslationFile($_widgetName): string
+    {
 		return __DIR__ . '/../../data/customTemplates/i18n/' . $_widgetName . '.json';
 	}
 
-	public static function loadTranslation($_plugin=null) {
+    /**
+     * @param null $_plugin
+     * @return array|array[]|bool|mixed
+     * @throws Exception
+     */
+    public static function loadTranslation($_plugin=null) {
 		$return = array();
 		if ($_plugin == null || $_plugin == 'core') {
 			$filename = self::getPathTranslationFile(self::getLanguage());
@@ -194,14 +245,22 @@ class translate {
 		return $return;
 	}
 
-	public static function getLanguage() {
+    /**
+     * @return string|null
+     * @throws Exception
+     */
+    public static function getLanguage(): ?string
+    {
 		if (self::$language == null) {
 			self::$language = self::getConfig('language', 'fr_FR');
 		}
 		return self::$language;
 	}
 
-	public static function setLanguage($_langage) {
+    /**
+     * @param $_langage
+     */
+    public static function setLanguage($_langage) {
 		self::$language = $_langage ;
 	}
 

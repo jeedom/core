@@ -40,7 +40,8 @@ class ajax {
     /**
      * @return string
      */
-    public static function getToken(){
+    public static function getToken(): string
+    {
 		return '';
 	}
 

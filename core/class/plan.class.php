@@ -30,7 +30,7 @@ class plan {
 	private $display;
 	private $css;
 	private $configuration;
-	private $_changed = false;
+	private bool $_changed = false;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -295,7 +295,7 @@ class plan {
 
     /**
      * @param string $_version
-     * @return array
+     * @return array|void
      * @throws ReflectionException
      */
     public function getHtml($_version = 'dashboard'): array
@@ -422,6 +422,7 @@ class plan {
 
     /**
      * @return array|null
+     * @throws ReflectionException
      */
     public function getPlanHeader(): ?array
     {

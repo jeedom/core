@@ -136,6 +136,7 @@ class dataStore {
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function save(): bool
     {
@@ -167,7 +168,7 @@ class dataStore {
      * @param array[] $_data
      * @param int $_level
      * @param null $_drill
-     * @return array[]
+     * @return array|array[]|void
      * @throws Exception
      */
     public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array

@@ -25,22 +25,34 @@ class timeline {
   private $id;
   private $name;
   private $type;
-  private $folder = 'main';
+  private string $folder = 'main';
   private $subtype;
   private $link_id;
   private $datetime;
   private $options;
-  private $_changed = false;
+  private bool $_changed = false;
 
   /*     * ***********************Méthodes statiques*************************** */
 
-  public static function all() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+  {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function byDateRange($_startTime, $_endTime=null) {
+    /**
+     * @param $_startTime
+     * @param null $_endTime
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byDateRange($_startTime, $_endTime=null): ?array
+  {
     if ($_endTime == null) {
       $_endTime = $_startTime;
     }
@@ -55,7 +67,13 @@ class timeline {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function byFolder($_folder = 'main') {
+    /**
+     * @param string $_folder
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byFolder($_folder = 'main'): ?array
+  {
     self::cleaning();
     if($_folder == 'main'){
       $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -71,7 +89,13 @@ class timeline {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+  {
     $values = array(
       'id' => $_id,
     );
@@ -81,7 +105,11 @@ class timeline {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function cleaning($_all = false) {
+    /**
+     * @param false $_all
+     * @throws Exception
+     */
+    public static function cleaning($_all = false) {
     //reset:
     if ($_all) {
       $sql = 'DELETE FROM timeline';
@@ -113,7 +141,12 @@ class timeline {
     DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
   }
 
-  public static function listFolder(){
+    /**
+     * @return string[]
+     * @throws Exception
+     */
+    public static function listFolder(): array
+  {
     $sql = 'SELECT DISTINCT(folder) as folder
     FROM timeline';
     $sql .= ' ORDER BY folder';
@@ -145,16 +178,29 @@ class timeline {
     }
   }
 
-  public function save() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+  {
     DB::save($this);
     return true;
   }
 
-  public function remove() {
+    /**
+     * @throws Exception
+     */
+    public function remove() {
     DB::remove($this);
   }
 
-  public function getDisplay() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public function getDisplay(): ?array
+  {
     $return = array();
     $return['date'] = $this->getDatetime();
     $return['type'] = $this->getType();
@@ -217,83 +263,151 @@ class timeline {
 
   /*     * **********************Getteur Setteur*************************** */
 
-  public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
     return $this->id;
   }
 
-  public function getName() {
+    /**
+     * @return mixed
+     */
+    public function getName() {
     return $this->name;
   }
 
-  public function getLink_id() {
+    /**
+     * @return mixed
+     */
+    public function getLink_id() {
     return $this->link_id;
   }
 
-  public function getType() {
+    /**
+     * @return mixed
+     */
+    public function getType() {
     return $this->type;
   }
 
-  public function getFolder() {
+    /**
+     * @return string
+     */
+    public function getFolder(): string
+  {
     return $this->folder;
   }
 
-  public function getSubtype() {
+    /**
+     * @return mixed
+     */
+    public function getSubtype() {
     return $this->subtype;
   }
 
-  public function getDatetime() {
+    /**
+     * @return mixed
+     */
+    public function getDatetime() {
     return $this->datetime;
   }
 
-  public function getOptions($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getOptions($_key = '', $_default = '') {
     return utils::getJsonAttr($this->options, $_key, $_default);
   }
 
-  public function setId($_id = '') {
+    /**
+     * @param string $_id
+     * @return $this
+     */
+    public function setId($_id = ''): timeline
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
     $this->id = $_id;
     return $this;
   }
 
-  public function setName($_name) {
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): timeline
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
     $this->name = $_name;
     return $this;
   }
 
-  public function setType($_type) {
+    /**
+     * @param $_type
+     * @return $this
+     */
+    public function setType($_type): timeline
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
     $this->type = $_type;
     return $this;
   }
 
-  public function setFolder($_folder) {
+    /**
+     * @param $_folder
+     * @return $this
+     */
+    public function setFolder($_folder): timeline
+  {
     $_folder = trim(trim(trim($_folder),','));
     $this->_changed = utils::attrChanged($this->_changed,$this->folder,$_folder);
     $this->folder = $_folder;
     return $this;
   }
 
-  public function setSubtype($_subtype) {
+    /**
+     * @param $_subtype
+     * @return $this
+     */
+    public function setSubtype($_subtype): timeline
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
     $this->subtype = $_subtype;
     return $this;
   }
 
-  public function setDatetime($_datetime) {
+    /**
+     * @param $_datetime
+     * @return $this
+     */
+    public function setDatetime($_datetime): timeline
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->datetime,$_datetime);
     $this->datetime = $_datetime;
     return $this;
   }
 
-  public function setOptions($_key, $_value = null) {
+    /**
+     * @param $_key
+     * @param null $_value
+     * @return $this
+     */
+    public function setOptions($_key, $_value = null): timeline
+  {
     $options = utils::setJsonAttr($this->options, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
     $this->options = $options;
     return $this;
   }
 
-  public function setLink_id($_link_id = '') {
+    /**
+     * @param string $_link_id
+     * @return $this
+     */
+    public function setLink_id($_link_id = ''): timeline
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
     $this->link_id = $_link_id;
     return $this;

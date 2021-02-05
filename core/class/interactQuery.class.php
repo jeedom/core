@@ -26,7 +26,7 @@ class interactQuery {
 	private $interactDef_id;
 	private $query;
 	private $actions;
-	private $_changed = false;
+	private bool $_changed = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -304,6 +304,7 @@ class interactQuery {
      * @param null $_data
      * @return array
      * @throws ReflectionException
+     * @throws Exception
      */
     public static function findInQuery($_type, $_query, $_data = null): array
     {
@@ -762,13 +763,13 @@ class interactQuery {
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (isset($data['object']) && is_object($current['object'])) {
-			$humanName = self::replaceForContextual($current['object']->getName(), $data['object']->getName(), $humanName);
+			$humanName = interactQuery::replaceForContextual($current['object']::getName(), $data['object']->getName(), $humanName);
 		}
 		if (isset($data['cmd']) && is_object($current['cmd'])) {
-			$humanName = self::replaceForContextual($current['cmd']->getName(), $data['cmd']->getName(), $humanName);
+			$humanName = interactQuery::replaceForContextual($current['cmd']::getName(), $data['cmd']->getName(), $humanName);
 		}
 		if (isset($data['eqLogic']) && is_object($current['eqLogic'])) {
-			$humanName = self::replaceForContextual($current['eqLogic']->getName(), $data['eqLogic']->getName(), $humanName);
+			$humanName = interactQuery::replaceForContextual($current['eqLogic']::getName(), $data['eqLogic']->getName(), $humanName);
 		}
 		$reply = self::pluginReply($humanName, $_parameters);
 		if ($reply !== null) {
@@ -790,7 +791,7 @@ class interactQuery {
      * @param $_in
      * @return string|string[]
      */
-    public function replaceForContextual($_replace, $_by, $_in) {
+    public static function replaceForContextual($_replace, $_by, $_in) {
 		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), str_replace($_replace, $_by, $_in));
 	}
 

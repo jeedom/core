@@ -42,7 +42,8 @@ class report {
      * @return string
      * @throws Exception
      */
-    public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {
+    public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()): string
+    {
 		if(!is_string($_format)){
 			$_format = 'png';
 		}

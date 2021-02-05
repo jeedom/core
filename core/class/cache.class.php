@@ -17,6 +17,9 @@
 */
 
 /* * ***************************Includes********************************* */
+
+use Doctrine\Common\Cache\FilesystemCache;
+
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class cache {
@@ -25,8 +28,8 @@ class cache {
 	private static $cache = null;
 
 	private $key;
-	private $value = null;
-	private $lifetime = 0;
+	private ?string $value = null;
+	private int $lifetime = 0;
 	private $datetime;
 	private $options = null;
 
@@ -34,6 +37,7 @@ class cache {
 
     /**
      * @return string
+     * @throws Exception
      */
     public static function getFolder(): string
     {
@@ -46,6 +50,7 @@ class cache {
      * @param int $_lifetime
      * @param null $_options
      * @return bool
+     * @throws Exception
      */
     public static function set($_key, $_value, $_lifetime = 0, $_options = null): bool
     {
@@ -64,6 +69,7 @@ class cache {
 
     /**
      * @param $_key
+     * @throws Exception
      */
     public static function delete($_key) {
 		$cache = cache::byKey($_key);
@@ -115,7 +121,7 @@ class cache {
 	}
 
     /**
-     * @return type
+     * @return FilesystemCache|\Doctrine\Common\Cache\MemcachedCache|\Doctrine\Common\Cache\RedisCache|null
      * @throws Exception
      * @access public
      * @static
@@ -135,10 +141,10 @@ class cache {
 		}
 		switch ($engine) {
 			case 'FilesystemCache':
-			self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+			self::$cache = new FilesystemCache(self::getFolder());
 			break;
 			case 'PhpFileCache':
-			self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+			self::$cache = new FilesystemCache(self::getFolder());
 			break;
 			case 'MemcachedCache':
 			$memcached = new Memcached();
@@ -158,7 +164,7 @@ class cache {
 			self::$cache->setRedis($redis);
 			break;
 			default:
-			self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+			self::$cache = new FilesystemCache(self::getFolder());
 			break;
 		}
 		return self::$cache;
@@ -243,6 +249,7 @@ class cache {
 
     /**
      * @return bool
+     * @throws Exception
      */
     public static function isPersistOk(): bool
     {
@@ -424,6 +431,7 @@ class cache {
 
     /**
      * @return bool
+     * @throws Exception
      */
     public function save(): bool
     {

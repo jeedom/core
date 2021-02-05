@@ -24,24 +24,35 @@ class widgets {
 
   private $id;
   private $name;
-  private $type = 'action';
+  private string $type = 'action';
   private $subtype;
   private $template;
   private $replace;
   private $test;
   private $display;
-  private $_changed = false;
+  private bool $_changed = false;
 
   /*     * ***********************Méthodes statiques*************************** */
 
-  public static function all() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+  {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM widgets
     ORDER BY name';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+  {
     $values = array(
       'id' => $_id,
     );
@@ -51,7 +62,15 @@ class widgets {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function byTypeSubtypeAndName($_type, $_subtype, $_name) {
+    /**
+     * @param $_type
+     * @param $_subtype
+     * @param $_name
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byTypeSubtypeAndName($_type, $_subtype, $_name): ?array
+  {
     $values = array(
       'type' => $_type,
       'subtype' => $_subtype,
@@ -65,7 +84,11 @@ class widgets {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function listTemplate(){
+    /**
+     * @return array
+     */
+    public static function listTemplate(): array
+  {
     $return = array();
     $files = ls(__DIR__ . '/../template/dashboard', 'cmd.*', false, array('files', 'quiet'));
     foreach ($files as $file) {
@@ -114,7 +137,12 @@ class widgets {
     return $return;
   }
 
-  public static function getTemplateConfiguration($_template){
+    /**
+     * @param $_template
+     * @return array|false[]|void
+     */
+    public static function getTemplateConfiguration($_template): array
+    {
     $iscustom = false;
     if(!file_exists(__DIR__ . '/../template/dashboard/'.$_template.'.html')){
       $iscustom = true;
@@ -139,7 +167,15 @@ class widgets {
     return $return;
   }
 
-  public static function replacement($_version,$_replace,$_by){
+    /**
+     * @param $_version
+     * @param $_replace
+     * @param $_by
+     * @return int
+     * @throws Exception
+     */
+    public static function replacement($_version, $_replace, $_by): int
+  {
     $cmds = cmd::searchTemplate($_version.'":"'.$_replace.'"');
     if(!is_array($cmds) || count($cmds) == 0){
       return 0;
@@ -163,7 +199,10 @@ class widgets {
     }
   }
 
-  public function preUpdate(){
+    /**
+     * @throws ReflectionException
+     */
+    public function preUpdate(){
     $widgets = self::byId($this->getId());
     if($widgets->getName() != $this->getName()){
       $usedBy = $widgets->getUsedBy();
@@ -195,7 +234,8 @@ class widgets {
     }
   }
 
-  public function save() {
+  public function save(): bool
+  {
     DB::save($this);
     return true;
   }
@@ -212,7 +252,10 @@ class widgets {
     }
   }
 
-  public function remove() {
+    /**
+     * @throws Exception
+     */
+    public function remove() {
     $usedBy = $this->getUsedBy();
     if(is_array($usedBy) && count($usedBy) > 0){
       foreach ($usedBy as $cmd) {
@@ -228,7 +271,12 @@ class widgets {
     DB::remove($this);
   }
 
-  public function getUsedBy(){
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function getUsedBy(): array
+  {
     $return = array();
     $return = array_merge(
       cmd::searchTemplate('dashboard":"custom::'.$this->getName().'"'),
@@ -243,84 +291,156 @@ class widgets {
 
   /*     * **********************Getteur Setteur*************************** */
 
-  public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
     return $this->id;
   }
 
-  public function getName() {
+    /**
+     * @return mixed
+     */
+    public function getName() {
     return $this->name;
   }
 
-  public function getType() {
+    /**
+     * @return string
+     */
+    public function getType(): string
+  {
     return $this->type;
   }
 
-  public function getSubtype() {
+    /**
+     * @return mixed
+     */
+    public function getSubtype() {
     return $this->subtype;
   }
 
-  public function getTemplate() {
+    /**
+     * @return mixed
+     */
+    public function getTemplate() {
     return $this->template;
   }
 
-  public function getReplace($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getReplace($_key = '', $_default = '') {
     return utils::getJsonAttr($this->replace, $_key, $_default);
   }
 
-  public function getTest($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getTest($_key = '', $_default = '') {
     return utils::getJsonAttr($this->test, $_key, $_default);
   }
 
-  public function setId($_id = '') {
+    /**
+     * @param string $_id
+     * @return $this
+     */
+    public function setId($_id = ''): widgets
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
     $this->id = $_id;
     return $this;
   }
 
-  public function setName($_name) {
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): widgets
+  {
     $_name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $_name);
     $this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
     $this->name = $_name;
     return $this;
   }
 
-  public function setType($_type) {
+    /**
+     * @param $_type
+     * @return $this
+     */
+    public function setType($_type): widgets
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
     $this->type = $_type;
     return $this;
   }
 
-  public function setSubtype($_subtype) {
+    /**
+     * @param $_subtype
+     * @return $this
+     */
+    public function setSubtype($_subtype): widgets
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
     $this->subtype = $_subtype;
     return $this;
   }
 
-  public function setTemplate($_template) {
+    /**
+     * @param $_template
+     * @return $this
+     */
+    public function setTemplate($_template): widgets
+  {
     $this->_changed = utils::attrChanged($this->_changed,$this->template,$_template);
     $this->template = $_template;
     return $this;
   }
 
-  public function setReplace($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setReplace($_key, $_value): widgets
+  {
     $replace = utils::setJsonAttr($this->replace, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->replace,$replace);
     $this->replace = $replace;
     return $this;
   }
 
-  public function setTest($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setTest($_key, $_value): widgets
+  {
     $test = utils::setJsonAttr($this->test, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->test,$test);
     $this->test = $test;
     return $this;
   }
 
-  public function getDisplay($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getDisplay($_key = '', $_default = '') {
     return utils::getJsonAttr($this->display, $_key, $_default);
   }
 
-  public function setDisplay($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     */
+    public function setDisplay($_key, $_value) {
     if ($this->getDisplay($_key) != $_value) {
       $this->_needRefreshWidget = true;
     }

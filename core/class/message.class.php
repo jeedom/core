@@ -28,7 +28,7 @@ class message {
 	private $plugin;
 	private $message;
 	private $action;
-	private $_changed = false;
+	private bool $_changed = false;
 	private $occurrences;
 
 	/*     * ***********************Methode static*************************** */
@@ -39,6 +39,7 @@ class message {
      * @param string $_action
      * @param string $_logicalId
      * @param bool $_writeMessage
+     * @throws Exception
      */
     public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
@@ -189,7 +190,7 @@ class message {
 
     /**
      * @param bool $_writeMessage
-     * @return bool
+     * @return bool|void
      * @throws Exception
      */
     public function save($_writeMessage = true): bool

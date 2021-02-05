@@ -1602,6 +1602,7 @@ class eqLogic {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function toArray(): array
     {
@@ -1624,7 +1625,7 @@ class eqLogic {
      * @param array[] $_data
      * @param int $_level
      * @param null $_drill
-     * @return array[]
+     * @return array|array[]|void
      * @throws Exception
      */
     public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
@@ -1673,6 +1674,7 @@ class eqLogic {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function getUse(): array
     {
@@ -1766,6 +1768,7 @@ class eqLogic {
 
     /**
      * @return null
+     * @throws ReflectionException
      */
     public function getObject() {
 		if ($this->_object === null) {
@@ -2181,6 +2184,7 @@ class eqLogic {
      * @param string $_key
      * @param string $_default
      * @return array|bool|mixed|string
+     * @throws Exception
      */
     public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue();
@@ -2190,6 +2194,7 @@ class eqLogic {
     /**
      * @param $_key
      * @param null $_value
+     * @throws Exception
      */
     public function setCache($_key, $_value = null) {
 		cache::set('eqLogicCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('eqLogicCacheAttr' . $this->getId())->getValue(), $_key, $_value));
@@ -2199,6 +2204,7 @@ class eqLogic {
      * @param string $_key
      * @param string $_default
      * @return array|bool|mixed|string
+     * @throws Exception
      */
     public function getStatus($_key = '', $_default = '') {
 		$status = cache::byKey('eqLogicStatusAttr' . $this->getId())->getValue();

@@ -25,14 +25,14 @@ class jeeObject {
 	protected $id;
 	protected $name;
 	protected $father_id = null;
-	protected $isVisible = 1;
+	protected int $isVisible = 1;
 	protected $position;
 	protected $configuration;
 	protected $display;
 	protected $image;
-	protected $_child = array();
-	protected $_changed = false;
-	protected $_summaryChanged = false;
+	protected array $_child = array();
+	protected bool $_changed = false;
+	protected bool $_summaryChanged = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -642,6 +642,7 @@ class jeeObject {
     /**
      * @param $_cmd
      * @param null $_options
+     * @throws ReflectionException
      */
     public function summaryAction($_cmd, $_options = null){
 		$eqLogics = $this->getEqLogicBySummary($_cmd->getConfiguration('summary::key'), true,false);
@@ -878,9 +879,10 @@ class jeeObject {
     /**
      * @param bool $_onlyEnable
      * @param false $_onlyVisible
-     * @return type
+     * @return array|null
+     * @throws ReflectionException
      */
-    public function getScenario($_onlyEnable = true, $_onlyVisible = false): type
+    public function getScenario($_onlyEnable = true, $_onlyVisible = false): ?array
     {
 		return scenario::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible);
 	}
@@ -1118,7 +1120,7 @@ class jeeObject {
      * @param array[] $_data
      * @param int $_level
      * @param null $_drill
-     * @return array[]
+     * @return array|array[]|void
      * @throws ReflectionException
      */
     public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
@@ -1182,6 +1184,7 @@ class jeeObject {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function toArray(): array
     {

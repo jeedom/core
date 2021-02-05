@@ -25,7 +25,8 @@ class network {
      * @return string
      * @throws Exception
      */
-    public static function getUserLocation() {
+    public static function getUserLocation(): string
+    {
 		$client_ip = self::getClientIp();
 		$jeedom_ip = self::getNetworkAccess('internal', 'ip', '', false);
 		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
@@ -50,7 +51,8 @@ class network {
     /**
      * @return mixed|string
      */
-    public static function getClientIp() {
+    public static function getClientIp(): string
+    {
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			return $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
@@ -262,7 +264,8 @@ class network {
      * @return bool
      * @throws Exception
      */
-    public static function test($_mode = 'external', $_timeout = 5) {
+    public static function test($_mode = 'external', $_timeout = 5): bool
+    {
 		if (config::byKey('network::disableMangement') == 1 && $_mode == 'external') {
 			return true;
 		}
@@ -407,7 +410,8 @@ class network {
      * @return false
      * @throws Exception
      */
-    public static function dns_run() {
+    public static function dns_run(): bool
+    {
 		if (config::byKey('dns::token') == '') {
 			return false;
 		}
@@ -448,7 +452,8 @@ class network {
      * @param $port
      * @return bool
      */
-    public static function portOpen($host, $port) {
+    public static function portOpen($host, $port): bool
+    {
 		$fp = @fsockopen($host, $port, $errno, $errstr, 0.1);
 		if (!is_resource($fp)){
 			return false;
@@ -459,6 +464,7 @@ class network {
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public static function getInterfacesInfo() {
 		return json_decode(shell_exec(system::getCmdSudo() . "ip -j a"),true);

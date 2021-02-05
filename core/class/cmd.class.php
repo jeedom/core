@@ -17,6 +17,9 @@
 */
 
 /* * ***************************Includes********************************* */
+
+use InfluxDB\Point;
+
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 /*
@@ -32,26 +35,26 @@ class cmd {
 	protected $generic_type;
 	protected $eqType;
 	protected $name;
-	protected $order;
+	protected int $order;
 	protected $type;
 	protected $subType;
 	protected $eqLogic_id;
-	protected $isHistorized = 0;
-	protected $unite = '';
+	protected int $isHistorized = 0;
+	protected string $unite = '';
 	protected $configuration;
 	protected $template;
 	protected $display;
 	protected $value = null;
-	protected $isVisible = 1;
+	protected int $isVisible = 1;
 	protected $alert;
-	protected $_collectDate = '';
-	protected $_valueDate = '';
+	protected string $_collectDate = '';
+	protected string $_valueDate = '';
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	protected $_needRefreshAlert;
-	protected $_changed = false;
-	private static $_templateArray = array();
-	private static $_unite_conversion = array(
+	protected bool $_changed = false;
+	private static array $_templateArray = array();
+	private static array $_unite_conversion = array(
 		'*W'=> array(1000,'W','kW','MW'),
 		'*io'=> array(1024,'io','Kio','Mio','Gio','Tio'),
 		'*o'=> array(1000,'o','Ko','Mo','Go','To'),
@@ -93,10 +96,10 @@ class cmd {
 
     /**
      * @param $_id
-     * @return array
+     * @return array|void|null
      * @throws Exception
      */
-    public static function byId($_id): array
+    public static function byId($_id): ?array
     {
 		if ($_id == '') {
 			return;
@@ -112,7 +115,7 @@ class cmd {
 
     /**
      * @param $_ids
-     * @return array
+     * @return array|void
      * @throws Exception
      */
     public static function byIds($_ids): array
@@ -871,6 +874,7 @@ class cmd {
     /**
      * @param $_version
      * @return array
+     * @throws ReflectionException
      */
     public static function availableWidget($_version): array
     {
@@ -1090,12 +1094,10 @@ class cmd {
 						} else {
 							$_value = jeedom::evaluateExpression(str_replace('#value#', $_value, $this->getConfiguration('calculValueOffset')));
 						}
-					} catch (Exception $ex) {
-
-					} catch (Error $ex) {
+					} catch (Exception | Error $ex) {
 
 					}
-				}
+                }
 				$value = strtolower($_value);
 				if ($value == 'on' || $value == 'high' || $value == 'true' || $value === true) {
 					return 1;
@@ -1229,6 +1231,7 @@ class cmd {
 
     /**
      * @return bool
+     * @throws ReflectionException
      */
     public function remove(): bool
     {
@@ -1257,6 +1260,7 @@ class cmd {
     /**
      * @param array $_values
      * @param string $_type
+     * @throws Exception
      */
     private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
 		if (!is_array($this->getConfiguration($_type)) || count($this->getConfiguration($_type)) == 0) {
@@ -1296,6 +1300,7 @@ class cmd {
 
     /**
      * @param array $_values
+     * @throws Exception
      */
     public function preExecCmd($_values = array()) {
 		$this->pre_postExecCmd($_values, 'jeedomPreExecCmd');
@@ -1303,20 +1308,20 @@ class cmd {
 
     /**
      * @param array $_values
+     * @throws Exception
      */
     public function postExecCmd($_values = array()) {
 		$this->pre_postExecCmd($_values, 'jeedomPostExecCmd');
 	}
 
-	/**
-	*
-	* @param type $_options
-	* @param type $_sendNodeJsEvent
-	* @param type $_quote
-	* @return command result
-	* @throws Exception
-	*/
-	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
+    /**
+     * @param null $_options
+     * @param false $_sendNodeJsEvent
+     * @param false $_quote
+     * @return array|bool|float|int|mixed|string|string[]
+     * @throws ReflectionException
+     */
+    public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
 		if ($this->getType() == 'info') {
 			$state = $this->getCache(array('collectDate', 'valueDate', 'value'));
 			if(isset($state['collectDate'])){
@@ -1420,6 +1425,7 @@ class cmd {
      * @param string $_version
      * @param false $_availWidgets
      * @return string
+     * @throws ReflectionException
      */
     public function getWidgetsSelectOptions($_version='dashboard', $_availWidgets=false): string
     {
@@ -1508,6 +1514,7 @@ class cmd {
      * @param string $_version
      * @param string $_widgetName
      * @return string|string[]|null
+     * @throws ReflectionException
      */
     public function getWidgetHelp($_version='dashboard', $_widgetName='') {
 		$widget = $this->getWidgetTemplateCode($_version, false, $_widgetName);
@@ -1546,6 +1553,7 @@ class cmd {
      * @param bool $_clean
      * @param string $_widgetName
      * @return array
+     * @throws ReflectionException
      */
     public function getWidgetTemplateCode($_version='dashboard', $_clean=true, $_widgetName=''): array
     {
@@ -2040,6 +2048,7 @@ class cmd {
 
     /**
      * @param $_value
+     * @throws Exception
      */
     public function checkReturnState($_value) {
 		if (is_numeric($this->getConfiguration('returnStateTime')) && $this->getConfiguration('returnStateTime') > 0 && $_value != $this->getConfiguration('returnStateValue') && trim($this->getConfiguration('returnStateValue')) != '') {
@@ -2060,6 +2069,7 @@ class cmd {
 
     /**
      * @param $_value
+     * @throws Exception
      */
     public function checkCmdAlert($_value) {
 		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime', 0))) {
@@ -2118,6 +2128,7 @@ class cmd {
      * @param bool $_allowDuring
      * @param string $_checkLevel
      * @return array|bool|int|mixed|string
+     * @throws Exception
      */
     public function checkAlertLevel($_value, $_allowDuring = true, $_checkLevel = 'none') {
 		if ($this->getType() != 'info' || ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '')) {
@@ -2258,6 +2269,7 @@ class cmd {
 
     /**
      * @param $_value
+     * @throws ReflectionException
      */
     public function pushUrl($_value) {
 		$url = $this->getConfiguration('jeedomPushUrl');
@@ -2291,7 +2303,8 @@ class cmd {
     /**
      * @param $_value
      * @param string $_timestamp
-     * @return \InfluxDB\Point|string
+     * @return Point|string
+     * @throws Exception
      */
     public function computeInfluxData($_value, $_timestamp = '') {
 		$point='';
@@ -2352,6 +2365,7 @@ class cmd {
     /**
      * @param null $_cmdId
      * @return \InfluxDB\Database|string|void
+     * @throws Exception
      */
     public function getInflux($_cmdId=null) {
 		try{
@@ -2391,6 +2405,7 @@ class cmd {
 
     /**
      * @param null $_value
+     * @throws Exception
      */
     public function pushInflux($_value=null) {
 		try{
@@ -2406,8 +2421,7 @@ class cmd {
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
-		return;
-	}
+    }
 
     public function dropInfluxDatabase() {
         try{
@@ -2419,7 +2433,6 @@ class cmd {
         } catch (Exception $e) {
             log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' => ' . $e->getMessage());
         }
-        return;
     }
 
     public function dropInflux() {
@@ -2434,8 +2447,7 @@ class cmd {
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' commande : '.$this->getHumanName().' => ' . $e->getMessage());
 		}
-		return;
-	}
+    }
 
 	public function historyInfluxAll (){
 		cmd::historyInflux('all');
@@ -2507,14 +2519,14 @@ class cmd {
 		$cron->setOnce(1);
 		$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
 		$cron->save();
-		return;
-	}
+    }
 
     /**
      * @param $_response
      * @param string $_plugin
      * @param string $_network
      * @return string
+     * @throws Exception
      */
     public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external'): string
     {
@@ -2556,6 +2568,7 @@ class cmd {
     /**
      * @param string $_date
      * @return array|null
+     * @throws Exception
      */
     public function emptyHistory($_date = ''): ?array
     {
@@ -2565,6 +2578,7 @@ class cmd {
     /**
      * @param $_value
      * @param string $_datetime
+     * @throws Exception
      */
     public function addHistoryValue($_value, $_datetime = '') {
 		if ($this->getIsHistorized() == 1 && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
@@ -2580,6 +2594,7 @@ class cmd {
      * @param $_startTime
      * @param $_endTime
      * @return array
+     * @throws Exception
      */
     public function getStatistique($_startTime, $_endTime): array
     {
@@ -2593,6 +2608,7 @@ class cmd {
      * @param $_startTime
      * @param $_endTime
      * @return array|float|int
+     * @throws ReflectionException
      */
     public function getTemporalAvg($_startTime, $_endTime) {
 		if ($this->getType() != 'info' || $this->getType() == 'string') {
@@ -2605,6 +2621,7 @@ class cmd {
      * @param $_startTime
      * @param $_endTime
      * @return float|int
+     * @throws ReflectionException
      */
     public function getTendance($_startTime, $_endTime) {
 		return history::getTendance($this->getId(), $_startTime, $_endTime);
@@ -2648,6 +2665,7 @@ class cmd {
      * @param null $_dateEnd
      * @param null $_groupingType
      * @return array
+     * @throws ReflectionException
      */
     public function getHistory($_dateStart = null, $_dateEnd = null, $_groupingType = null): array
     {
@@ -2656,6 +2674,7 @@ class cmd {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function getOldest(): array
     {
@@ -2668,6 +2687,7 @@ class cmd {
      * @param string $_period
      * @param int $_offset
      * @return array|null
+     * @throws ReflectionException
      */
     public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0): ?array
     {
@@ -2769,6 +2789,7 @@ class cmd {
 
     /**
      * @return string
+     * @throws Exception
      */
     public function getDirectUrlAccess(): string
     {
@@ -2828,7 +2849,8 @@ class cmd {
      * @param array[] $_data
      * @param int $_level
      * @param null $_drill
-     * @return array[]
+     * @return array|array[]|void
+     * @throws Exception
      */
     public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
     {
@@ -2898,6 +2920,7 @@ class cmd {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function getUse(): array
     {
@@ -2996,6 +3019,7 @@ class cmd {
 
     /**
      * @return null
+     * @throws ReflectionException
      */
     public function getEqLogic() {
 		if ($this->_eqLogic === null) {
@@ -3370,6 +3394,7 @@ class cmd {
      * @param string $_key
      * @param string $_default
      * @return array|bool|mixed|string
+     * @throws Exception
      */
     public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
@@ -3380,6 +3405,7 @@ class cmd {
      * @param $_key
      * @param null $_value
      * @return $this
+     * @throws Exception
      */
     public function setCache($_key, $_value = null): cmd
     {

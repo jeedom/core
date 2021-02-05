@@ -22,13 +22,14 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class event {
 	/*     * *************************Attributs****************************** */
 
-	private static $limit = 250;
+	private static int $limit = 250;
 	private static $_fd = null;
 
 	/*     * ***********************Methode static*************************** */
 
     /**
      * @return bool|null
+     * @throws Exception
      */
     public static function getFileDescriptorLock(): ?bool
     {

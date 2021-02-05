@@ -21,24 +21,35 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class viewData {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
-	private $order = 0;
+	private int $order = 0;
 	private $viewZone_id;
 	private $type;
 	private $link_id;
 	private $configuration;
-	private $_changed = false;
-	
+	private bool $_changed = false;
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function all() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM viewData';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byId($_id) {
+
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$value = array(
 			'id' => $_id,
 		);
@@ -47,8 +58,15 @@ class viewData {
 		WHERE id=:id';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byTypeLinkId($_type, $_link_id) {
+
+    /**
+     * @param $_type
+     * @param $_link_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byTypeLinkId($_type, $_link_id): ?array
+    {
 		$value = array(
 			'type' => $_type,
 			'link_id' => $_link_id,
@@ -60,8 +78,14 @@ class viewData {
 		ORDER BY `order`';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byviewZoneId($_viewZone_id) {
+
+    /**
+     * @param $_viewZone_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byviewZoneId($_viewZone_id): ?array
+    {
 		$value = array(
 			'viewZone_id' => $_viewZone_id,
 		);
@@ -71,8 +95,14 @@ class viewData {
 		ORDER BY `order`';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function searchByConfiguration($_search) {
+
+    /**
+     * @param $_search
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchByConfiguration($_search): ?array
+    {
 		$value = array(
 			'search' => '%' . $_search . '%',
 		);
@@ -81,107 +111,194 @@ class viewData {
 		WHERE configuration LIKE :search';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function removeByTypeLinkId($_type, $_link_id) {
+
+    /**
+     * @param $_type
+     * @param $_link_id
+     * @return bool
+     * @throws ReflectionException
+     */
+    public static function removeByTypeLinkId($_type, $_link_id): bool
+    {
 		$viewDatas = self::byTypeLinkId($_type, $_link_id);
 		foreach ($viewDatas as $viewData) {
 			$viewData->remove();
 		}
 		return true;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
-	public function save() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+    {
 		return DB::save($this);
 	}
-	
-	public function remove() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function remove(): bool
+    {
 		return DB::remove($this);
 	}
-	
-	public function getviewZone() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public function getviewZone(): ?array
+    {
 		return viewZone::byId($this->getviewZone_id());
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
-	
-	public function setId($_id) {
+
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): viewData
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
-	public function getOrder() {
+
+    /**
+     * @return int
+     */
+    public function getOrder(): int
+    {
 		return $this->order;
 	}
-	
-	public function setOrder($_order) {
+
+    /**
+     * @param $_order
+     * @return $this
+     */
+    public function setOrder($_order): viewData
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 		$this->order = $_order;
 		return $this;
 	}
-	
-	public function getviewZone_id() {
+
+    /**
+     * @return mixed
+     */
+    public function getviewZone_id() {
 		return $this->viewZone_id;
 	}
-	
-	public function setviewZone_id($_viewZone_id) {
+
+    /**
+     * @param $_viewZone_id
+     * @return $this
+     */
+    public function setviewZone_id($_viewZone_id): viewData
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->viewZone_id,$_viewZone_id);
 		$this->viewZone_id = $_viewZone_id;
 		return $this;
 	}
-	
-	public function getType() {
+
+    /**
+     * @return mixed
+     */
+    public function getType() {
 		return $this->type;
 	}
-	
-	public function setType($_type) {
+
+    /**
+     * @param $_type
+     * @return $this
+     */
+    public function setType($_type): viewData
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
-	
-	public function getLink_id() {
+
+    /**
+     * @return mixed
+     */
+    public function getLink_id() {
 		return $this->link_id;
 	}
-	
-	public function setLink_id($_link_id) {
+
+    /**
+     * @param $_link_id
+     * @return $this
+     */
+    public function setLink_id($_link_id): viewData
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
 		$this->link_id = $_link_id;
 		return $this;
 	}
-	
-	public function getLinkObject() {
+
+    /**
+     * @return bool
+     */
+    public function getLinkObject(): bool
+    {
 		$type = $this->getType();
 		if (class_exists($type)) {
 			return $type::byId($this->getLink_id());
 		}
 		return false;
 	}
-	
-	public function getConfiguration($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-	
-	public function setConfiguration($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): viewData
+    {
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
-	
-	public function getChanged() {
+
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
-	
-	public function setChanged($_changed) {
+
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): viewData
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
+
 }

@@ -521,6 +521,7 @@ class interactDef {
 
     /**
      * @return array
+     * @throws ReflectionException
      */
     public function generateQueryVariant(): array
     {
@@ -709,9 +710,9 @@ class interactDef {
      * @param array[] $_data
      * @param int $_level
      * @param int $_drill
-     * @return array[]
+     * @return array|array[]|void
      */
-    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3): array
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3)
     {
 		if (isset($_data['node']['interactDef' . $this->getId()])) {
 			return;

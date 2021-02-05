@@ -26,7 +26,7 @@ class history
     protected $cmd_id;
     protected $value;
     protected $datetime;
-    protected $_changed = false;
+    protected bool $_changed = false;
     protected string $_tableName = 'history';
 
     /*     * ***********************Methode static*************************** */

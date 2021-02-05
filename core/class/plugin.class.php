@@ -1122,6 +1122,7 @@ class plugin {
 
     /**
      * @return array|null
+     * @throws ReflectionException
      */
     public function getUpdate(): ?array
     {
@@ -1209,6 +1210,7 @@ class plugin {
      * @param string $_name
      * @param string $_default
      * @return string
+     * @throws ReflectionException
      */
     public function getInfo($_name = '', $_default = ''): string
     {

@@ -21,23 +21,28 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class update {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
-	private $type = 'plugin';
+	private string $type = 'plugin';
 	private $logicalId;
 	private $name;
 	private $localVersion;
 	private $remoteVersion;
 	private $status;
 	private $configuration;
-	private $source = 'market';
+	private string $source = 'market';
 	private $updateDate;
-	private $_changeUpdate = false;
-	private $_changed = false;
-	
+	private bool $_changeUpdate = false;
+	private bool $_changed = false;
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
-	public static function checkAllUpdate($_filter = '', $_findNewObject = true) {
+
+    /**
+     * @param string $_filter
+     * @param bool $_findNewObject
+     * @throws Exception
+     */
+    public static function checkAllUpdate($_filter = '', $_findNewObject = true) {
 		$findCore = false;
 		if ($_findNewObject) {
 			self::findNewUpdateObject();
@@ -85,8 +90,13 @@ class update {
 		}
 		config::save('update::lastCheck', date('Y-m-d H:i:s'));
 	}
-	
-	public static function listRepo() {
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public static function listRepo(): array
+    {
 		$return = array();
 		foreach (ls(__DIR__ . '/../repo', '*.repo.php') as $file) {
 			if (substr_count($file, '.') != 2) {
@@ -103,8 +113,14 @@ class update {
 		}
 		return $return;
 	}
-	
-	public static function repoById($_id) {
+
+    /**
+     * @param $_id
+     * @return array
+     * @throws Exception
+     */
+    public static function repoById($_id): array
+    {
 		$class = 'repo_' . $_id;
 		$return = array(
 			'name' => $class::$_name,
@@ -114,8 +130,14 @@ class update {
 		$return['enable'] = config::byKey($_id . '::enable');
 		return $return;
 	}
-	
-	public static function updateAll($_filter = '') {
+
+    /**
+     * @param string $_filter
+     * @return bool
+     * @throws Exception
+     */
+    public static function updateAll($_filter = ''): bool
+    {
 		if ($_filter == 'core') {
 			foreach (self::byType($_filter) as $update) {
 				$update->doUpdate();
@@ -145,8 +167,14 @@ class update {
 			return $error;
 		}
 	}
-	
-	public static function byId($_id) {
+
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -155,8 +183,14 @@ class update {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byStatus($_status) {
+
+    /**
+     * @param $_status
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byStatus($_status): ?array
+    {
 		$values = array(
 			'status' => $_status,
 		);
@@ -165,8 +199,14 @@ class update {
 		WHERE status=:status';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byLogicalId($_logicalId) {
+
+    /**
+     * @param $_logicalId
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byLogicalId($_logicalId): ?array
+    {
 		$values = array(
 			'logicalId' => $_logicalId,
 		);
@@ -175,8 +215,14 @@ class update {
 		WHERE logicalId=:logicalId';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byType($_type) {
+
+    /**
+     * @param $_type
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byType($_type): ?array
+    {
 		$values = array(
 			'type' => $_type,
 		);
@@ -185,8 +231,15 @@ class update {
 		WHERE type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byTypeAndLogicalId($_type, $_logicalId) {
+
+    /**
+     * @param $_type
+     * @param $_logicalId
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byTypeAndLogicalId($_type, $_logicalId): ?array
+    {
 		$values = array(
 			'logicalId' => $_logicalId,
 			'type' => $_type,
@@ -197,12 +250,15 @@ class update {
 		AND type=:type';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	/**
-	*
-	* @return array de tous les utilisateurs
-	*/
-	public static function all($_filter = '') {
+
+    /**
+     *
+     * @param string $_filter
+     * @return array de tous les utilisateurs
+     * @throws ReflectionException
+     */
+	public static function all($_filter = ''): array
+    {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM `update`';
@@ -213,8 +269,12 @@ class update {
 		$sql .= ' ORDER BY FIELD( `status`, "update","ok","depreciated") ASC,FIELD( `type`,"plugin","core") DESC, `name` ASC';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function nbNeedUpdate() {
+
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    public static function nbNeedUpdate() {
 		$value = array(
 			'configuration' => '%"doNotUpdate":"1"%'
 		);
@@ -225,8 +285,11 @@ class update {
 		$result = DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 		return $result['count(*)'];
 	}
-	
-	public static function findNewUpdateObject() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public static function findNewUpdateObject() {
 		foreach((plugin::listPlugin()) as $plugin) {
 			$plugin_id = $plugin->getId();
 			$update = self::byTypeAndLogicalId('plugin', $plugin_id);
@@ -265,14 +328,23 @@ class update {
 			}
 		}
 	}
-	
-	public static function listCoreUpdate() {
+
+    /**
+     * @return array
+     */
+    public static function listCoreUpdate(): array
+    {
 		return ls(__DIR__ . '/../../install/update', '*');
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
-	public function getInfo() {
+
+    /**
+     * @return array
+     * @throws Exception
+     */
+    public function getInfo(): array
+    {
 		if ($this->getType() != 'core') {
 			$class = 'repo_' . $this->getSource();
 			if (class_exists($class) && method_exists($class, 'objectInfo') && config::byKey($this->getSource() . '::enable') == 1) {
@@ -281,8 +353,11 @@ class update {
 		}
 		return array();
 	}
-	
-	public function doUpdate() {
+
+    /**
+     * @throws Exception
+     */
+    public function doUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1  && $this->getType() != 'core') {
 			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
 			return;
@@ -306,7 +381,7 @@ class update {
 				if ($info['path'] !== false) {
 					$tmp = $info['path'];
 					log::add('update', 'alert', __("OK\n", __FILE__));
-					
+
 					if (filesize($tmp) < 100) {
 						if(jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true){
 							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.', __FILE__));
@@ -339,7 +414,7 @@ class update {
 								shell_exec('sudo rm -rf ' . __DIR__ . '/../../plugins/' . $this->getLogicalId() . '/docs');
 							}
 						} catch (Exception $e) {
-							
+
 						}
 						if (!file_exists($cibDir . '/plugin_info')) {
 							$files = ls($cibDir, '*');
@@ -364,8 +439,11 @@ class update {
 		$this->refresh();
 		$this->checkUpdate();
 	}
-	
-	public function deleteObjet() {
+
+    /**
+     * @throws Exception
+     */
+    public function deleteObjet() {
 		if ($this->getType() == 'core') {
 			throw new Exception(__('Vous ne pouvez pas supprimer le core de Jeedom', __FILE__));
 		} else {
@@ -378,24 +456,24 @@ class update {
 							try {
 								$eqLogic->remove();
 							} catch (Exception $e) {
-								
+
 							} catch (Error $e) {
-								
+
 							}
 						}
 						try {
 							$plugin->setIsEnable(0);
 						} catch (Exception $e) {
-							
+
 						} catch (Error $e) {
-							
+
 						}
 					}
 					config::remove('*', $this->getLogicalId());
 				} catch (Exception $e) {
-					
+
 				} catch (Error $e) {
-					
+
 				}
 				break;
 			}
@@ -405,7 +483,7 @@ class update {
 					$class::deleteObjet($this);
 				}
 			} catch (Exception $e) {
-				
+
 			}
 			switch ($this->getType()) {
 				case 'plugin':
@@ -418,8 +496,11 @@ class update {
 			$this->remove();
 		}
 	}
-	
-	public function preInstallUpdate() {
+
+    /**
+     * @throws Exception
+     */
+    public function preInstallUpdate() {
 		if (!file_exists(__DIR__ . '/../../plugins')) {
 			mkdir(__DIR__ . '/../../plugins');
 			@chown(__DIR__ . '/../../plugins', system::get('www-uid'));
@@ -441,21 +522,25 @@ class update {
 					log::add('update', 'alert', __("OK\n", __FILE__));
 				}
 			} catch (Exception $e) {
-				
+
 			} catch (Error $e) {
-				
+
 			}
 		}
 	}
-	
-	public function postInstallUpdate($_infos) {
+
+    /**
+     * @param $_infos
+     * @throws ReflectionException
+     */
+    public function postInstallUpdate($_infos) {
 		log::add('update', 'alert', __('Post-installation de ', __FILE__) . $this->getLogicalId() . '...');
 		try {
 			if(function_exists('opcache_reset')){
 				opcache_reset();
 			}
 		} catch (\Exception $e) {
-			
+
 		}
 		switch ($this->getType()) {
 			case 'plugin':
@@ -489,24 +574,28 @@ class update {
 		log::add('update', 'alert', __("OK", __FILE__)."\n");
 		log::add('update', 'alert', __("END UPDATE SUCCESS", __FILE__)."\n");
 	}
-	
-	public static function getLastAvailableVersion() {
+
+    /**
+     * @return string|null
+     */
+    public static function getLastAvailableVersion(): ?string
+    {
 		try {
 			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'V4-stable') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec());
 		} catch (Exception $e) {
-			
+
 		} catch (Error $e) {
-			
+
 		}
 		return null;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function checkUpdate() {
+
+    /**
+     * @throws Exception
+     */
+    public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
 			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__).' ' . $this->getLogicalId());
 			return;
@@ -542,14 +631,17 @@ class update {
 					$class::checkUpdate($this);
 				}
 			} catch (Exception $ex) {
-				
+
 			} catch (Error $ex) {
-				
+
 			}
 		}
 	}
-	
-	public function preSave() {
+
+    /**
+     * @throws Exception
+     */
+    public function preSave() {
 		if ($this->getLogicalId() == '') {
 			throw new Exception(__('Le logical ID ne peut pas être vide', __FILE__));
 		}
@@ -557,60 +649,108 @@ class update {
 			$this->setName($this->getLogicalId());
 		}
 	}
-	
-	public function save() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+    {
 		return DB::save($this);
 	}
-	
-	public function postSave() {
+
+    /**
+     * @throws Exception
+     */
+    public function postSave() {
 		if ($this->_changeUpdate) {
 			event::add('update::refreshUpdateNumber');
 		}
 	}
-	
-	public function remove() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function remove(): bool
+    {
 		return DB::remove($this);
 	}
-	
-	public function postRemove() {
+
+    /**
+     * @throws Exception
+     */
+    public function postRemove() {
 		event::add('update::refreshUpdateNumber');
 	}
-	
-	public function refresh() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public function refresh() {
 		DB::refresh($this);
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
-	
-	public function getName() {
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
-	
-	public function getStatus() {
+
+    /**
+     * @return mixed
+     */
+    public function getStatus() {
 		return $this->status;
 	}
-	
-	public function getConfiguration($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-	
-	public function setId($_id) {
+
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
-	public function setName($_name) {
+
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
-	
-	public function setStatus($_status) {
+
+    /**
+     * @param $_status
+     * @return $this
+     */
+    public function setStatus($_status): update
+    {
 		if ($_status != $this->status) {
 			$this->_changeUpdate = true;
 			$this->_changed = true;
@@ -618,81 +758,142 @@ class update {
 		$this->status = $_status;
 		return $this;
 	}
-	
-	public function setConfiguration($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): update
+    {
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
-	
-	public function getType() {
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
 		return $this->type;
 	}
-	
-	public function setType($_type) {
+
+    /**
+     * @param $_type
+     * @return $this
+     */
+    public function setType($_type): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
-	
-	public function getLocalVersion() {
+
+    /**
+     * @return mixed
+     */
+    public function getLocalVersion() {
 		return $this->localVersion;
 	}
-	
-	public function getRemoteVersion() {
+
+    /**
+     * @return mixed
+     */
+    public function getRemoteVersion() {
 		return $this->remoteVersion;
 	}
-	
-	public function setLocalVersion($_localVersion) {
+
+    /**
+     * @param $_localVersion
+     * @return $this
+     */
+    public function setLocalVersion($_localVersion): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->localVersion,$_localVersion);
 		$this->localVersion = $_localVersion;
 		return $this;
 	}
-	
-	public function setRemoteVersion($_remoteVersion) {
+
+    /**
+     * @param $_remoteVersion
+     * @return $this
+     */
+    public function setRemoteVersion($_remoteVersion): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->remoteVersion,$_remoteVersion);
 		$this->remoteVersion = $_remoteVersion;
 		return $this;
 	}
-	
-	public function getLogicalId() {
+
+    /**
+     * @return mixed
+     */
+    public function getLogicalId() {
 		return $this->logicalId;
 	}
-	
-	public function setLogicalId($_logicalId) {
+
+    /**
+     * @param $_logicalId
+     * @return $this
+     */
+    public function setLogicalId($_logicalId): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;
 	}
-	
-	public function getSource() {
+
+    /**
+     * @return string
+     */
+    public function getSource(): string
+    {
 		return $this->source;
 	}
-	
-	public function setSource($_source) {
+
+    /**
+     * @param $_source
+     * @return $this
+     */
+    public function setSource($_source): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->source,$_source);
 		$this->source = $_source;
 		return $this;
 	}
-	
-	public function getUpdateDate() {
+
+    /**
+     * @return mixed
+     */
+    public function getUpdateDate() {
 		return $this->updateDate;
 	}
-	
-	public function setUpdateDate($_updateDate) {
+
+    /**
+     * @param $_updateDate
+     * @return $this
+     */
+    public function setUpdateDate($_updateDate): update
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->updateDate,$_updateDate);
 		$this->updateDate = $_updateDate;
 		return $this;
 	}
-	
-	public function getChanged() {
+
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
-	
-	public function setChanged($_changed) {
+
+	public function setChanged($_changed): update
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
+
 }

@@ -25,7 +25,7 @@ class note {
 	private $id;
 	private $name;
 	private $text;
-	private $_changed = false;
+	private bool $_changed = false;
 
 	/*     * ***********************Methode static*************************** */
 

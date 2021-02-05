@@ -32,7 +32,7 @@ class log {
 	/*     * *************************Attributs****************************** */
 
 	private static array $logger = array();
-	private static $config = null;
+	private static ?string $config = null;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -153,6 +153,7 @@ class log {
 
     /**
      * @param string $_log
+     * @throws Exception
      */
     public static function chunk($_log = '') {
 		$paths = array();
@@ -233,7 +234,8 @@ class log {
     /**
      * Vide le fichier de log
      * @param $_log
-     * @return bool
+     * @return bool|void
+     * @throws Exception
      */
 	public static function clear($_log): bool
     {
@@ -248,7 +250,8 @@ class log {
     /**
      * Vide le fichier de log
      * @param $_log
-     * @return bool
+     * @return bool|void
+     * @throws Exception
      */
 	public static function remove($_log): bool
     {
@@ -265,6 +268,7 @@ class log {
 
     /**
      * @return bool
+     * @throws Exception
      */
     public static function removeAll(): bool
     {
@@ -328,12 +332,13 @@ class log {
 		return $return;
 	}
 
-	/**
-	* Fixe le niveau de rapport d'erreurs PHP
-	* @param int $log_level
-	* @since 2.1.4
-	* @author KwiZeR <kwizer@kw12er.com>
-	*/
+    /**
+     * Fixe le niveau de rapport d'erreurs PHP
+     * @param int $log_level
+     * @throws Exception
+     * @since 2.1.4
+     * @author KwiZeR <kwizer@kw12er.com>
+     */
 	public static function define_error_reporting($log_level) {
 		switch ($log_level) {
 			case logger::DEBUG:
