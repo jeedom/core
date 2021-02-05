@@ -87,9 +87,9 @@ $('#in_searchImgSelector').on('keyup',function(){
   var search = $(this).value()
   var text = null
   if (search != '') {
-    search = normTextLower(search)
+    search = jeedomUtils.normTextLower(search)
     $('.imgDesc').each(function() {
-      text = normTextLower($(this).text())
+      text = jeedomUtils.normTextLower($(this).text())
       if (text.indexOf(search) == -1) {
         $(this).closest('.divImgSel').hide()
       }

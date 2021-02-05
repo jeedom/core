@@ -217,7 +217,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-			
+
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -237,7 +237,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-			
+
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -269,7 +269,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 
 <style>
@@ -303,8 +303,8 @@ $('body').setValues(market_display_info, '.marketAttr');
 
 $('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - '+market_display_info_category);
 
-$('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-$('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+$('.marketAttr[data-l1key=description]').html(jeedomUtils.linkify(market_display_info.description));
+$('.marketAttr[data-l1key=utilization]').html(jeedomUtils.linkify(market_display_info.utilization));
 
 $('#bt_paypalClick').on('click', function () {
 	$(this).hide();
@@ -325,7 +325,7 @@ $('.bt_installFromMarket').on('click', function () {
 			if(market_display_info.type == 'plugin'){
 				bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
 					if (result) {
-						loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+						jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId);
 					}
 				});
 			}
@@ -335,7 +335,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-	
+
 });
 
 $('#bt_removeFromMarket').on('click', function () {

@@ -77,7 +77,7 @@ $("#bt_removeLog").on('click', function(event) {
   jeedom.log.remove({
     log : $('.li_log.active').attr('data-log'),
     success: function(data) {
-      loadPage('index.php?v=d&p=log');
+      jeedomUtils.loadPage('index.php?v=d&p=log');
     }
   })
 })
@@ -90,7 +90,7 @@ $("#bt_removeAllLog").on('click', function(event) {
           $('#div_alertError').showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
-          loadPage('index.php?v=d&p=log')
+          jeedomUtils.loadPage('index.php?v=d&p=log')
         }
       })
     }

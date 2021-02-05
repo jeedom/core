@@ -39,7 +39,7 @@ for (var i in planHeader) {
 
 if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   document.onkeydown = function(event) {
-    if (getOpenedModal()) return
+    if (jeedomUtils.getOpenedModal()) return
 
     if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
       event.preventDefault()
@@ -56,7 +56,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   }
 } else {
   document.onkeydown = function(event) {
-    if (getOpenedModal()) return
+    if (jeedomUtils.getOpenedModal()) return
 
     if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
       event.preventDefault()
@@ -354,7 +354,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 },
                 success: function(data) {
                   planHeader_id = data.id
-                  loadPage('index.php?v=d&p=plan&plan_id=' + data.id)
+                  jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + data.id)
                 },
               })
             }
@@ -572,7 +572,7 @@ $pageContainer.on('mouseenter','.zone-widget.zoneEqLogic.zoneEqLogicOnFly', func
         var html = $(data.html).css('position','absolute')
         html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
         el.empty().append(html)
-        positionEqLogic(el.attr('data-eqLogic_id'),false)
+        jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'),false)
         if (deviceInfo.type == 'desktop') {
           el.off('mouseleave').on('mouseleave',function() {
             el.empty()
@@ -594,7 +594,7 @@ $pageContainer.on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function
       global:false,
       success:function(data) {
         el.empty().append($(data.html).css('position','absolute'))
-        positionEqLogic(el.attr('data-eqLogic_id'))
+        jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'))
         if (deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')) {
           el.off('mouseleave').on('mouseleave',function() {
             el.empty()
@@ -925,9 +925,9 @@ function displayPlan(_code) {
             $pageContainer.append(style_css)
             style_css  =''
           } catch(e) {}
-          addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom')
+          jeedomUtils.addOrUpdateUrl('plan_id',planHeader_id,data.name+' - Jeedom')
           initEditOption(planEditOption.state)
-          initReportMode()
+          jeedomUtils.initReportMode()
           $(window).scrollTop(0)
         }
       })
@@ -1117,7 +1117,7 @@ function displayObject(_plan, _html, _noRender) {
 
   if (_plan.css['opacity'] && _plan.css['opacity'] !== '' && style['background-color'] && style['background-color'] != 'transparent') {
     if (style['background-color'].indexOf('#') != -1) {
-      var rgb = hexToRgb(style['background-color'])
+      var rgb = jeedomUtils.hexToRgb(style['background-color'])
       style['background-color'] = 'rgba('+rgb.r+','+rgb.g+','+rgb.b+','+_plan.css['opacity']+')'
     }else{
       style['background-color'] = style['background-color'].replace(')', ','+_plan.css['opacity']+')').replace('rgb', 'rgba')

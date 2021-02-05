@@ -64,7 +64,7 @@ if (jeedom.history.chart['div_graph'] != undefined) {
 }
 
 $.hideAlert()
-datePickerInit()
+jeedomUtils.datePickerInit()
 
 var _showLegend = (cmdIds.length > 1) ? true : false
 var done = cmdIds.length
@@ -106,7 +106,7 @@ function setModal() {
     })
 
     $('#bt_openInHistory').on('click', function() {
-      loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
+      jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
 
     $('.highcharts-legend-item').on('click',function(event) {

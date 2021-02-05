@@ -38,7 +38,7 @@ $('#timelineContainer ul').on('click','.bt_scenarioLog', function() {
 })
 
 $('#timelineContainer ul').on('click','.bt_gotoScenario', function() {
-  loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'))
+  jeedomUtils.loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'))
 })
 
 $('#timelineContainer ul').on('click','.bt_historicCmd', function() {

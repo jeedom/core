@@ -109,7 +109,7 @@ sendVarToJs('edit_type',$type);
 </table>
 
 <script>
-initTableSorter()
+jeedomUtils.initTableSorter()
 
 $('#bt_saveMassEdit').off('click').on('click',function() {
   jeedom.massEditSave({

@@ -38,7 +38,7 @@ function getObjectHtml(_object_id) {
         console.log(err)
       }
       setTimeout(function(){
-        positionEqLogic()
+        jeedomUtils.positionEqLogic()
         $('.div_displayEquipement').packery().disableSelection()
         $("input").click(function() { $(this).focus() })
         $("textarea").click(function() { $(this).focus() })

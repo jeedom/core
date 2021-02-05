@@ -26,12 +26,12 @@ $('#in_searchScenario').keyup(function() {
     $('.scenarioDisplayCard').show()
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   $('.panel-collapse').attr('data-show',0)
   $('.scenarioDisplayCard').hide()
   var text
   $('.scenarioDisplayCard .name').each(function() {
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.scenarioDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show',1)
@@ -74,14 +74,14 @@ $('#in_searchInsideScenario').keyup(function() {
     })
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
 
   //search code blocks:
   var cmEditor, code, cursor
   $('#div_scenarioElement div.elementCODE').each(function() {
     try {
       cmEditor = $(this).find('div.CodeMirror.CodeMirror-wrap').get(0).CodeMirror
-      code = normTextLower(cmEditor.getValue())
+      code = jeedomUtils.normTextLower(cmEditor.getValue())
       if (code.indexOf(search) >= 0) {
         $(this).removeClass('elementCollapse')
         cursor = cmEditor.getSearchCursor(search , CodeMirror.Pos(cmEditor.firstLine(), 0), {caseFold: true, multiline: true})
@@ -97,7 +97,7 @@ $('#in_searchInsideScenario').keyup(function() {
   //search in expressions:
   var text
   $('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').each(function() {
-    text = normTextLower($(this).val())
+    text = jeedomUtils.normTextLower($(this).val())
     if (text.indexOf(search) >= 0) {
       $(this).addClass('insideSearch')
       $(this).parents('.element').removeClass('elementCollapse')
@@ -213,7 +213,7 @@ $("#bt_addScenario").off('click').on('click', function(event) {
           }
           modifyWithoutSave = false
           resetUndo()
-          loadPage(url)
+          jeedomUtils.loadPage(url)
         }
       })
     }
@@ -227,7 +227,7 @@ $("#bt_changeAllScenarioState").off('click').on('click', function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function() {
-      loadPage('index.php?v=d&p=scenario')
+      jeedomUtils.loadPage('index.php?v=d&p=scenario')
     }
   })
 })
@@ -246,7 +246,7 @@ $('#bt_scenarioTab').on('click',function() {
   $('#in_searchInsideScenario').prop( "disabled", false )
   setTimeout(function() {
     setEditors()
-    taAutosize()
+    jeedomUtils.taAutosize()
     updateElseToggle()
   }, 50)
 })
@@ -281,17 +281,17 @@ $('#bt_scenarioThumbnailDisplay').off('click').on('click', function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
   }, 500)
-  if (checkPageModified()) return
+  if (jeedomUtils.checkPageModified()) return
 
   $('#div_editScenario').hide()
   $('#scenarioThumbnailDisplay').show()
-  addOrUpdateUrl('id',null,'{{Scénario}} - ' + JEEDOM_PRODUCT_NAME)
+  jeedomUtils.addOrUpdateUrl('id',null,'{{Scénario}} - ' + JEEDOM_PRODUCT_NAME)
 })
 
 
 /* ---------Scenario UI---------- */
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -376,7 +376,7 @@ $('#bt_chooseIcon').on('click', function() {
     _icon = $('div[data-l2key="icon"] > i').attr('class')
     _icon = '.' + _icon.replace(' ', '.')
   }
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.scenarioAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   },{icon:_icon})
   modifyWithoutSave = true
@@ -540,7 +540,7 @@ $("#bt_copyScenario").off('click').on('click', function() {
           $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
-          loadPage('index.php?v=d&p=scenario&id=' + data.id)
+          jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + data.id)
         }
       })
     }
@@ -629,7 +629,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
         success: function() {
           modifyWithoutSave = false
           resetUndo()
-          loadPage('index.php?v=d&p=scenario')
+          jeedomUtils.loadPage('index.php?v=d&p=scenario')
         }
       })
     }
@@ -855,7 +855,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human)
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
         expression.find('.expressionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
         updateTooltips()
       })
     }
@@ -916,7 +916,7 @@ $divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
     expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
     jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
       expression.find('.expressionOptions').html(html)
-      taAutosize()
+      jeedomUtils.taAutosize()
     })
   })
 })
@@ -951,7 +951,7 @@ $divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]'
     var expression = el.closest('.expression').getValues('.expressionAttr')
     jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function(html) {
       el.closest('.expression').find('.expressionOptions').html(html)
-      taAutosize()
+      jeedomUtils.taAutosize()
       updateTooltips()
     })
   }
@@ -1216,7 +1216,7 @@ function setScenarioActionsOptions() {
         $('#'+data[i].id).append(data[i].html.html)
       }
       $.hideLoading()
-      taAutosize()
+      jeedomUtils.taAutosize()
     }
   })
 }
@@ -1331,11 +1331,11 @@ function printScenario(_id) {
       jeedom.scenario.setAutoComplete()
       updateElementCollpase()
       updateElseToggle()
-      taAutosize()
+      jeedomUtils.taAutosize()
       var title = ''
       if (data.name) title = data.name +' - Jeedom'
       var hash = window.location.hash
-      addOrUpdateUrl('id',data.id,title)
+      jeedomUtils.addOrUpdateUrl('id',data.id,title)
       if (hash == '') {
         $('.nav-tabs a[href="#generaltab"]').click()
       } else {
@@ -1386,7 +1386,7 @@ function saveScenario(_callback) {
       if (window.location.hash != '') {
         url += window.location.hash
       }
-      loadPage(url)
+      jeedomUtils.loadPage(url)
       if (typeof _callback == 'function') {
         _callback()
       }
@@ -1498,7 +1498,7 @@ function addExpression(_expression) {
     retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" tooltip="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
     retour += '</span>'
     retour += '</div></div>'
-    var actionOption_id = uniqId()
+    var actionOption_id = jeedomUtils.uniqId()
     retour += '<div class="col-xs-7 expressionOptions"  id="'+actionOption_id+'">'
     retour += '</div>'
     actionOptions.push({
@@ -2002,7 +2002,7 @@ function updateTooltips() {
   $('[tooltip]:not(.tooltipstered)').each(function() {
     $(this).attr('title', $(this).attr('tooltip'))
   })
-  $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
+  $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
 }
 
 function getAddButton(_caret) {
@@ -2074,13 +2074,13 @@ var bt_undo = $('#bt_undo')
 var bt_redo = $('#bt_redo')
 
 bt_undo.off('click').on('click', function() {
-  if (!getOpenedModal()) {
+  if (!jeedomUtils.getOpenedModal()) {
     undo()
     PREV_FOCUS = null
   }
 })
 bt_redo.off('click').on('click', function() {
-  if (!getOpenedModal()) {
+  if (!jeedomUtils.getOpenedModal()) {
     redo()
     PREV_FOCUS = null
   }

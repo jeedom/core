@@ -59,7 +59,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     <?php }
     ?>
   </ul>
-  
+
   <div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
     <div role="tabpanel" class="tab-pane active" id="cmd_information">
       <br/>
@@ -252,7 +252,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           </form>
         </div>
       </div>
-      
+
       <form class="form-horizontal">
         <fieldset id="fd_cmdUsedBy">
           <legend><i class="fas fa-search"></i> {{Utilisé par}}</legend>
@@ -347,7 +347,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         </fieldset>
       </form>
       <?php if ($cmd->getType() == 'action') {?>
-        
+
         <form class="form-horizontal">
           <fieldset>
             <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
@@ -390,7 +390,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
               </div>
             </div>
-            
+
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -398,10 +398,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div id="div_actionCheckCmd"></div>
-            
+
             <script type="text/javascript">
             $("#div_actionCheckCmd").sortable({axis: "y", cursor: "move", items: ".actionCheckCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-            
+
             $('#bt_addActionCheckCmd').off('click').on('click',function(){
               addActionCmd({}, 'actionCheckCmd','{{Action}}');
             });
@@ -440,7 +440,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div id="div_actionPostExecCmd"></div>
-            
+
             <script type="text/javascript">
             $("#div_actionPostExecCmd").sortable({axis: "y", cursor: "move", items: ".actionPostExecCmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
             $('#bt_addActionPostExecCmd').off('click').on('click',function(){
@@ -450,7 +450,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           </fieldset>
         </form>
       <?php }?>
-      
+
       <?php if ($cmd->getType() == 'info' && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['visible']) {
         ?>
         <form class="form-horizontal">
@@ -592,7 +592,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       </div>
     <?php }
     ?>
-    
+
     <?php if ($cmd->widgetPossibility('custom')) {
       ?>
       <div role="tabpanel" class="tab-pane" id="cmd_display">
@@ -708,15 +708,15 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             </tr>
           </tbody>
         </table>
-        
+
         <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
           ?>
           <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
             <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
           </legend>
-          
+
           <div id="optionalParamHelp"></div>
-          
+
           <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
             <thead class="table table-bordered">
               <tr>
@@ -754,7 +754,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     <?php }
     ?>
   </div>
-  
+
   <div id="md_cmdConfigureSelectMultiple" title="{{Sélection multiple de commandes}}"></div>
 </div>
 
@@ -763,7 +763,7 @@ $(function() {
   if ($('body').attr('data-page') == "widgets") {
     $('a[href="#cmd_display"]').click()
   }
-  
+
   //modal title:
   var title = '{{Configuration commande}}'
   title += ' : ' + cmdInfo.eqLogicName
@@ -772,13 +772,13 @@ $(function() {
   if ($('#eqLogicConfigureTab').length) {
     $('#cmdConfigureTab').parents('.ui-dialog').css('top', "50px")
   }
-  
+
   //widgets default if empty:
   var dashWidget = $('select[data-l2key="dashboard"]')
   if (dashWidget.val()==null) dashWidget.val($('select[data-l2key="dashboard"] option:first').val())
   var mobileWidget = $('select[data-l2key="mobile"]')
   if (mobileWidget.val()==null) mobileWidget.val($('select[data-l2key="mobile"] option:first').val())
-  
+
   //format update linked cmds:
   var spanValues = $('#cmd_information .cmdAttr[data-l1key="value"]')
   var values = spanValues.html()
@@ -807,11 +807,11 @@ $(function() {
       }
     })
   }
-  
+
   jeedom.timeline.autocompleteFolder()
-  
+
   displayWidgetHelp($('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').val())
-  
+
   $('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').off('change').on('change',function() {
     displayWidgetHelp($(this).val())
   })
@@ -849,7 +849,7 @@ $('.cmdAttr[data-l2key="influx::enable"]').off('change').on('change',function() 
 
 $('#cmdConfigureTab').off('click').on('click',function() {
   setTimeout(function() {
-    taAutosize()
+    jeedomUtils.taAutosize()
   }, 100)
 })
 
@@ -1033,7 +1033,7 @@ if (isset(cmdInfo.configuration.jeedomPostExecCmd) && $.isArray(cmdInfo.configur
     addActionCmd(cmdInfo.configuration.jeedomPostExecCmd[i], 'actionPostExecCmd','{{Action}}')
   }
 }
-taAutosize()
+jeedomUtils.taAutosize()
 
 $('#bt_cmdConfigureSave').on('click', function(event) {
   var cmd = $('#div_displayCmdConfigure').getValues('.cmdAttr')[0]
@@ -1094,7 +1094,7 @@ $('#cmd_configuration').on({
       el.value(result.human)
       jeedom.cmd.displayActionOption(el.value(), '', function(html) {
         el.closest('.' + type).find('.actionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
       })
     })
   }
@@ -1108,7 +1108,7 @@ $('#cmd_configuration').on({
       el.value(result.human)
       jeedom.cmd.displayActionOption(el.value(), '', function(html) {
         el.closest('.' + type).find('.actionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
       })
     })
   }
@@ -1121,7 +1121,7 @@ $('#cmd_configuration').on({
     var el = $(this)
     jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
       el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
+      jeedomUtils.taAutosize()
     })
   }
 }, '.cmdAction.expressionAttr[data-l1key=cmd]')
@@ -1157,7 +1157,7 @@ function addActionCmd(_action, _type, _name) {
   div += '</div>'
   $('#div_' + _type).append(div)
   $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
-  
+
   jeedom.scenario.setAutoComplete({parent: $('#div_'+_type), type:'cmd'})
 }
 
@@ -1174,7 +1174,7 @@ $('#bt_cmdConfigureSaveOn').on('click',function() {
   })
   cmd = {display : cmd.display,template : cmd.template }
   $('#md_cmdConfigureSelectMultiple').dialog({title: "{{Appliquer ce widget à}}"}).load('index.php?v=d&modal=cmd.selectMultiple&cmd_id='+cmdInfo.id, function() {
-    initTableSorter()
+    jeedomUtils.initTableSorter()
     $('#bt_cmdConfigureSelectMultipleAlertToogle').off('click').on('click', function() {
       var state = false
       if ($(this).attr('data-state') == 0) {
@@ -1187,7 +1187,7 @@ $('#bt_cmdConfigureSaveOn').on('click',function() {
         $('#table_cmdConfigureSelectMultiple tbody tr .selectMultipleApplyCmd:visible').value(0)
       }
     });
-    
+
     $('#bt_cmdConfigureSelectMultipleAlertApply').off().on('click', function() {
       $('#table_cmdConfigureSelectMultiple tbody tr').each(function() {
         if ($(this).find('.selectMultipleApplyCmd').prop('checked')) {
@@ -1209,7 +1209,7 @@ $('#bt_cmdConfigureSaveOn').on('click',function() {
 
 $('#bt_cmdConfigureChooseIcon').on('click', function() {
   var iconeGeneric = $(this).closest('.iconeGeneric')
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     iconeGeneric.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   })
 })

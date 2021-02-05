@@ -42,7 +42,7 @@ if (!isConnect('admin')) {
 			setTimeout('reboot_jeedom(rebooti)', 10000);
 			$('#progressbar_reboot').width('5%');
 		}else{
-			loadPage('index.php?v=d&p=dashboard');
+			jeedomUtils.loadPage('index.php?v=d&p=dashboard');
 		}
 	});
 

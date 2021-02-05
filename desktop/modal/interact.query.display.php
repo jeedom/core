@@ -48,5 +48,5 @@ if (count($interactQueries) == 0) {
 </table>
 
 <script>
-  initTableSorter()
+  jeedomUtils.initTableSorter()
 </script>

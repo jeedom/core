@@ -20,7 +20,7 @@
 printUsers()
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -30,7 +30,7 @@ document.onkeydown = function(event) {
 
 var $tableDevices = $('#tableDevices')
 $(function() {
-  initTableSorter()
+  jeedomUtils.initTableSorter()
   $tableDevices[0].config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
   $tableDevices.trigger('applyWidgets')
     .trigger('resizableReset')
@@ -153,7 +153,7 @@ $('#bt_supportAccess').on('click',function() {
     },
     success: function(data) {
       modifyWithoutSave = false
-      loadPage('index.php?v=d&p=user')
+      jeedomUtils.loadPage('index.php?v=d&p=user')
     }
   })
 })
@@ -261,7 +261,7 @@ $('.bt_deleteSession').on('click',function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      loadPage('index.php?v=d&p=user')
+      jeedomUtils.loadPage('index.php?v=d&p=user')
     }
   })
 })
@@ -276,7 +276,7 @@ $('.bt_removeRegisterDevice').on('click',function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      loadPage('index.php?v=d&p=user')
+      jeedomUtils.loadPage('index.php?v=d&p=user')
     }
   })
 })
@@ -288,7 +288,7 @@ $('#bt_removeAllRegisterDevice').on('click',function() {
     },
     success: function(data) {
       modifyWithoutSave = false
-      loadPage('index.php?v=d&p=user')
+      jeedomUtils.loadPage('index.php?v=d&p=user')
     }
   })
 })

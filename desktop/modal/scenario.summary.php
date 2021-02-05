@@ -51,7 +51,7 @@ if (!isConnect()) {
 
 <script>
 var $tableScSummary = $('#table_scenarioSummary')
-initTableSorter()
+jeedomUtils.initTableSorter()
 refreshScenarioSummary()
 $tableScSummary[0].config.widgetOptions.resizable_widths = ['40px', '', '70px', '170px', '62px', '80px', '70px', '70px', '90px', '155px', '85px']
 $tableScSummary.trigger('applyWidgets')

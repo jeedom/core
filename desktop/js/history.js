@@ -35,7 +35,7 @@ $(function() {
       })
     }
   }
-  datePickerInit()
+  jeedomUtils.datePickerInit()
   setChartOptions()
 })
 

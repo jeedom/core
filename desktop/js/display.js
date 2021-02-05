@@ -37,7 +37,7 @@ $('#in_search').on('keyup',function() {
       if(search == '*') return
       search = search.substr(1)
     }
-    search = normTextLower(search)
+    search = jeedomUtils.normTextLower(search)
     var eqLogic, eqParent, eqId, cmd, cmdId
     var eqName, type, category, cmdName
     $('.eqLogic').each(function() {
@@ -63,9 +63,9 @@ $('#in_search').on('keyup',function() {
           }
         })
       } else {
-        eqName = normTextLower(eqLogic.attr('data-name'))
-        type = normTextLower(eqLogic.attr('data-type'))
-        category = normTextLower(eqLogic.attr('data-translate-category'))
+        eqName = jeedomUtils.normTextLower(eqLogic.attr('data-name'))
+        type = jeedomUtils.normTextLower(eqLogic.attr('data-type'))
+        category = jeedomUtils.normTextLower(eqLogic.attr('data-translate-category'))
         if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0 && category.indexOf(search) < 0) {
           eqLogic.hide()
         } else {
@@ -74,7 +74,7 @@ $('#in_search').on('keyup',function() {
         eqLogic.find('.cmd').each(function() {
           cmd = $(this)
           cmdName = cmd.attr('data-name')
-          cmdName = normTextLower(cmdName)
+          cmdName = jeedomUtils.normTextLower(cmdName)
           if (cmdName.indexOf(search) >= 0) {
             eqParent.find('div.panel-collapse').addClass('in')
             eqLogic.show()
@@ -287,7 +287,7 @@ $('[aria-controls="historytab"]').on('click',function() {
 
 function setRemoveHistoryTable() {
   var $tableRemoveHistory = $('#table_removeHistory')
-  initTableSorter()
+  jeedomUtils.initTableSorter()
   $tableRemoveHistory[0].config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
   $tableRemoveHistory.trigger('applyWidgets')
     .trigger('resizableReset')
@@ -365,7 +365,7 @@ $('#bt_removeEqlogic').on('click',function() {
           $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
         success : function() {
-          loadPage('index.php?v=d&p=display')
+          jeedomUtils.loadPage('index.php?v=d&p=display')
         }
       })
     }
@@ -387,7 +387,7 @@ $('.bt_setIsVisible').on('click',function() {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success : function() {
-        loadPage('index.php?v=d&p=display')
+        jeedomUtils.loadPage('index.php?v=d&p=display')
       }
     })
   }
@@ -406,7 +406,7 @@ $('.bt_setIsVisible').on('click',function() {
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success : function() {
-        loadPage('index.php?v=d&p=display')
+        jeedomUtils.loadPage('index.php?v=d&p=display')
       }
     })
   }
@@ -426,7 +426,7 @@ $('.bt_setIsEnable').on('click',function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success : function() {
-      loadPage('index.php?v=d&p=display')
+      jeedomUtils.loadPage('index.php?v=d&p=display')
     }
   })
 })

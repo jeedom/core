@@ -28,7 +28,7 @@ if (getUrlVars('fullscreen') == '1') {
   $('#wrap').css('margin-bottom', '0px');
   $('#div_colPlan3d').height($('html').height());
 }
-initRowOverflow();
+jeedomUtils.initRowOverflow();
 var container, scene, camera, renderer, controls;
 var SCREEN_WIDTH = $('#div_display3d').width();
 var SCREEN_HEIGHT = $('#div_display3d').height();
@@ -111,10 +111,10 @@ $('body').on('cmd::update',function(_event,_options){
 })
 
 window.addEventListener('resize', function(){
-  if(getUrlVars('fullscreen') == '1'){
+  if (getUrlVars('fullscreen') == '1') {
     $('#div_colPlan3d').height($('html').height());
-  }else{
-    initRowOverflow();
+  } else {
+    jeedomUtils.initRowOverflow();
   }
   SCREEN_WIDTH = $('#div_display3d').width();
   SCREEN_HEIGHT = $('#div_display3d').height();
@@ -165,7 +165,7 @@ function handleClick3d(event){
       success: function (data) {
         if(data.html){
           $('#md_plan3dWidget').empty().append(data.html)
-          positionEqLogic();
+          jeedomUtils.positionEqLogic();
         }
       }
     });
@@ -444,11 +444,11 @@ jeedom3d.text.update = function(_options) {
 }
 
 jeedom3d.text.generate = function(_options,_object,_text){
-  var borderColor = hexToRgb(_options.configuration['3d::widget::text::bordercolor']);
+  var borderColor = jeedomUtils.hexToRgb(_options.configuration['3d::widget::text::bordercolor']);
   borderColor.a = parseFloat(_options.configuration['3d::widget::text::bordertransparency']);
-  var backgroundColor = hexToRgb(_options.configuration['3d::widget::text::backgroundcolor']);
+  var backgroundColor = jeedomUtils.hexToRgb(_options.configuration['3d::widget::text::backgroundcolor']);
   backgroundColor.a = parseFloat(_options.configuration['3d::widget::text::backgroundtransparency']);
-  var textColor = hexToRgb(_options.configuration['3d::widget::text::textcolor']);
+  var textColor = jeedomUtils.hexToRgb(_options.configuration['3d::widget::text::textcolor']);
   textColor.a = parseFloat(_options.configuration['3d::widget::text::texttransparency']);
   var spritey = jeedom3d.text.makeTextSprite(_text,
     {

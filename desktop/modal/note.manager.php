@@ -85,7 +85,7 @@ $('#ul_noteList').on('click','.li_noteDisplay',function() {
     success: function(note) {
       $('#div_noteManagerDisplay .noteAttr').value('')
       $('#div_noteManagerDisplay').setValues(note, '.noteAttr')
-      taAutosize()
+      jeedomUtils.taAutosize()
     }
   })
 })
@@ -125,7 +125,7 @@ $('#bt_noteManagerRemove').on('click',function() {
 
 $(function() {
   updateNoteList()
-  taAutosize()
+  jeedomUtils.taAutosize()
   if (note_id != '') {
     setTimeout(function(){
       $('li.li_noteDisplay[data-id="'+note_id+'"]').trigger('click')

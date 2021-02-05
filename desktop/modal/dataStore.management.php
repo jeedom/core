@@ -47,7 +47,7 @@ var $tableDataStore = $('#table_dataStore')
 var $modal = $('#md_modal')
 
 $(function() {
-  initTableSorter()
+  jeedomUtils.initTableSorter()
   refreshDataStoreMangementTable()
   $tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
   $tableDataStore.trigger('applyWidgets')

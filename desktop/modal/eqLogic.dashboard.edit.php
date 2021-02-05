@@ -359,7 +359,7 @@ $(function() {
   })
 
   setTableLayoutSortable()
-  initTooltips()
+  jeedomUtils.initTooltips()
   initPickers()
 
   //layout default or table for cmd order:

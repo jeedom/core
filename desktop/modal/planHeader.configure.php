@@ -188,7 +188,7 @@ $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', f
 })
 
 $('#bt_chooseIcon').on('click', function() {
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.planHeaderAttr[data-l1key=configuration][data-l2key=icon]').empty().append(_icon)
   })
 })
@@ -202,7 +202,7 @@ $('#bt_uploadImage').fileupload({
       $('#div_alertPlanHeaderConfigure').showAlert({message: data.result.result, level: 'danger'})
       return
     }
-    loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id)
+    jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id)
   }
 })
 
@@ -227,7 +227,7 @@ $('#bt_saveConfigurePlanHeader').on('click', function() {
     success: function() {
       $('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'})
       $('#div_pageContainer').data('editOption.state', false)
-      loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id)
+      jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id)
     }
   })
 })

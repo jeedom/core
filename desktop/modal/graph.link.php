@@ -116,7 +116,7 @@ function render() {
     ui.append(img)
     $(ui).on('dblclick',function() {
       if (node.data.url != 'undefined') {
-        loadPage(node.data.url)
+        jeedomUtils.loadPage(node.data.url)
       }
     })
     $(ui).hover(function() {
@@ -161,7 +161,7 @@ function render() {
   setTimeout(function() {
     renderer.pause()
     renderer.reset()
-    initTooltips()
+    jeedomUtils.initTooltips()
   }, parseInt(renderGraph))
 }
 </script>

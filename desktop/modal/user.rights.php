@@ -102,7 +102,7 @@ sendVarToJs('user_rights', utils::o2a($user));
 
 <script>
 $('#div_tabUserRights').setValues(user_rights, '.userAttr')
-initTableSorter()
+jeedomUtils.initTableSorter()
 
 $("#bt_usersRightsSave").on('click', function(event) {
   jeedom.user.save({

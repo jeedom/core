@@ -467,7 +467,7 @@ sendVarToJS('id', $plan->getId());
         el.value(result.human);
         jeedom.cmd.displayActionOption(el.value(), '', function(html) {
           el.closest('.' + type).find('.actionOptions').html(html)
-          taAutosize()
+          jeedomUtils.taAutosize()
         })
       })
     }
@@ -478,7 +478,7 @@ sendVarToJS('id', $plan->getId());
     var el = $(this)
     jeedom.cmd.displayActionOption(el.value(), '', function(html) {
       el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
+      jeedomUtils.taAutosize()
     })
   })
 
@@ -488,7 +488,7 @@ sendVarToJS('id', $plan->getId());
       expression.find('.expressionAttr[data-l1key=cmd]').value(result.human)
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=cmd]').value(), '', function(html) {
         expression.find('.actionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
       })
     })
   })
@@ -521,7 +521,7 @@ sendVarToJS('id', $plan->getId());
     div += '</div>'
     $('#div_planConfigureAction' + _type).append(div)
     $('#div_planConfigureAction' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
-    taAutosize()
+    jeedomUtils.taAutosize()
   }
 
   $('#bt_planConfigureAddEqLogic').on('click', function() {
@@ -567,7 +567,7 @@ sendVarToJS('id', $plan->getId());
   editor = []
 
   $('#bt_chooseIcon').on('click', function() {
-    chooseIcon(function(_icon) {
+    jeedomUtils.chooseIcon(function(_icon) {
       $('.planAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
     })
   })

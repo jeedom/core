@@ -121,7 +121,7 @@ if (!isConnect()) {
 </table>
 
 <script>
-initTableSorter()
+jeedomUtils.initTableSorter()
 
 $('#table_ObjectSummary .bt_removeObject').on('click', function(event) {
   $.hideAlert()

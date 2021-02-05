@@ -377,7 +377,7 @@ $(function () {
 		event: "sporty"
 	});
 	$("img.lazy").trigger("sporty");
-	initTableSorter();
+	jeedomUtils.initTableSorter();
 
 	setTimeout(function () {
 		$('#table_market tbody tr.install').hide();
