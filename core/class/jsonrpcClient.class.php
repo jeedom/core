@@ -19,42 +19,45 @@
 class jsonrpcClient {
 	/*     * ********Attributs******************* */
 
-	private $errorCode = 9999;
-	private $errorMessage = 'No error';
-	private $error = 'No error';
+	private int $errorCode = 9999;
+	private string $errorMessage = 'No error';
+	private string $error = 'No error';
 	private $result;
 	private $rawResult;
-	private $apikey = '';
+	private string $apikey = '';
 	private $options = array();
 	private $apiAddr;
-	private $cb_function = '';
-	private $cb_class = '';
-	private $certificate_path = '';
-	private $noSslCheck = false;
+	private string $cb_function = '';
+	private string $cb_class = '';
+	private string $certificate_path = '';
+	private bool $noSslCheck = false;
 
 	/*     * ********Static******************* */
 
 	/**
 	 *
-	 * @param type $_apiAddr
-	 * @param type $_apikey
-	 * @param type $_options
+	 * @param $_apiAddr
+	 * @param $_apikey
+	 * @param $_options
 	 */
 	public function __construct($_apiAddr, $_apikey, $_options = array()) {
 		$this->apiAddr = $_apiAddr;
 		$this->apikey = $_apikey;
 		$this->options = $_options;
 	}
-	/**
-	 *
-	 * @param type $_method
-	 * @param array $_params
-	 * @param int $_timeout
-	 * @param type $_file
-	 * @param int $_maxRetry
-	 * @return boolean
-	 */
-	public function sendRequest($_method, $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2) {
+
+    /**
+     *
+     * @param $_method
+     * @param null $_params
+     * @param int $_timeout
+     * @param null $_file
+     * @param int $_maxRetry
+     * @return boolean
+     * @throws Exception
+     */
+	public function sendRequest($_method, $_params = null, $_timeout = 15, $_file = null, $_maxRetry = 2): bool
+    {
 		$_params['apikey'] = $this->apikey;
 		$_params = array_merge($_params, $this->options);
 		$request = array(
@@ -106,7 +109,15 @@ class jsonrpcClient {
 		}
 	}
 
-	private function send($_request, $_timeout = 15, $_file = null, $_maxRetry = 2) {
+    /**
+     * @param $_request
+     * @param int $_timeout
+     * @param null $_file
+     * @param int $_maxRetry
+     * @return bool|string
+     * @throws Exception
+     */
+    private function send($_request, $_timeout = 15, $_file = null, $_maxRetry = 2) {
 		if ($_file !== null) {
 			if (version_compare(phpversion(), '5.5.0', '>=')) {
 				foreach ($_file as $key => $value) {
@@ -139,7 +150,7 @@ class jsonrpcClient {
 				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 			}
 			if(config::byKey('proxyEnabled')) {
-				if(config::byKey('proxyAddress') == ''){ 
+				if(config::byKey('proxyAddress') == ''){
 				// throw new Exception(__('renseigne l\'adresse', __FILE__));
 				$this->error = 'Erreur address ';
 			} else if (config::byKey('proxyPort') == ''){
@@ -151,7 +162,7 @@ class jsonrpcClient {
 					curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'proxyLogin:proxyPassword');
 				}
 				log::add('Connection', 'debug', $ch);
-			} 
+			}
 		}
 			$response = curl_exec($ch);
 			$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -181,63 +192,119 @@ class jsonrpcClient {
 
 	/*     * ********Getteur Setteur******************* */
 
-	public function getError() {
+    /**
+     * @return string
+     */
+    public function getError(): string
+    {
 		return $this->error;
 	}
 
-	public function getResult() {
+    /**
+     * @return mixed
+     */
+    public function getResult() {
 		return $this->result;
 	}
 
-	public function getRawResult() {
+    /**
+     * @return mixed
+     */
+    public function getRawResult() {
 		return $this->rawResult;
 	}
 
-	public function getErrorCode() {
+    /**
+     * @return int
+     */
+    public function getErrorCode(): int
+    {
 		return $this->errorCode;
 	}
 
-	public function getErrorMessage() {
+    /**
+     * @return string
+     */
+    public function getErrorMessage(): string
+    {
 		return $this->errorMessage;
 	}
 
-	public function getCb_function() {
+    /**
+     * @return string
+     */
+    public function getCb_function(): string
+    {
 		return $this->cb_function;
 	}
 
-	public function getCb_class() {
+	public function getCb_class(): string
+    {
 		return $this->cb_class;
 	}
 
-	public function setCb_function($cb_function) {
+    /**
+     * @param $cb_function
+     * @return $this
+     */
+    public function setCb_function($cb_function): jsonrpcClient
+    {
 		$this->cb_function = $cb_function;
 		return $this;
 	}
 
-	public function setCb_class($cb_class) {
+    /**
+     * @param $cb_class
+     * @return $this
+     */
+    public function setCb_class($cb_class): jsonrpcClient
+    {
 		$this->cb_class = $cb_class;
 		return $this;
 	}
 
-	public function setCertificate_path($certificate_path) {
+    /**
+     * @param $certificate_path
+     * @return $this
+     */
+    public function setCertificate_path($certificate_path): jsonrpcClient
+    {
 		$this->certificate_path = $certificate_path;
 		return $this;
 	}
 
-	public function getCertificate_path() {
+    /**
+     * @return string
+     */
+    public function getCertificate_path(): string
+    {
 		return $this->certificate_path;
 	}
 
-	public function setDisable_ssl_verifiy($noSslCheck) {
+    /**
+     * @param $noSslCheck
+     * @return $this
+     */
+    public function setDisable_ssl_verifiy($noSslCheck): jsonrpcClient
+    {
 		$this->noSslCheck = $noSslCheck;
 		return $this;
 	}
 
-	public function getNoSslCheck() {
+    /**
+     * @return bool
+     */
+    public function getNoSslCheck(): bool
+    {
 		return $this->noSslCheck;
 	}
 
-	public function setNoSslCheck($noSslCHeck) {
+    /**
+     * @param $noSslCHeck
+     * @return $this
+     */
+    public function setNoSslCheck($noSslCHeck): jsonrpcClient
+    {
 		$this->noSslCheck = $noSslCHeck;
 		return $this;
 	}

@@ -21,21 +21,30 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class event {
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $limit = 250;
 	private static $_fd = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function getFileDescriptorLock() {
+
+    /**
+     * @return bool|null
+     */
+    public static function getFileDescriptorLock(): ?bool
+    {
 		if (self::$_fd === null) {
 			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
 			@chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
 		}
 		return self::$_fd;
 	}
-	
-	public static function add($_event, $_option = array()) {
+
+    /**
+     * @param $_event
+     * @param array $_option
+     * @throws Exception
+     */
+    public static function add($_event, $_option = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
@@ -49,8 +58,13 @@ class event {
 			flock($fd, LOCK_UN);
 		}
 	}
-	
-	public static function adds($_event, $_values = array()) {
+
+    /**
+     * @param $_event
+     * @param array $_values
+     * @throws Exception
+     */
+    public static function adds($_event, $_values = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
@@ -67,8 +81,13 @@ class event {
 			flock($fd, LOCK_UN);
 		}
 	}
-	
-	public static function cleanEvent($_events) {
+
+    /**
+     * @param $_events
+     * @return array
+     */
+    public static function cleanEvent($_events): array
+    {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
 		$find = array();
 		$events = array_values($_events);
@@ -106,12 +125,25 @@ class event {
 		}
 		return array_values($events);
 	}
-	
-	public static function orderEvent($a, $b) {
+
+    /**
+     * @param $a
+     * @param $b
+     * @return mixed
+     */
+    public static function orderEvent($a, $b) {
 		return ($a['datetime'] - $b['datetime']);
 	}
-	
-	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
+
+    /**
+     * @param $_datetime
+     * @param null $_longPolling
+     * @param null $_filter
+     * @return array
+     * @throws Exception
+     */
+    public static function changes($_datetime, $_longPolling = null, $_filter = null): array
+    {
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return['result']) > 0) {
 			return $return;
@@ -132,8 +164,15 @@ class event {
 		$return['result'] = self::cleanEvent($return['result']);
 		return $return;
 	}
-	
-	private static function filterEvent($_data = array(), $_filter = null) {
+
+    /**
+     * @param array $_data
+     * @param null $_filter
+     * @return array
+     * @throws Exception
+     */
+    private static function filterEvent($_data = array(), $_filter = null): array
+    {
 		if ($_filter == null) {
 			return $_data;
 		}
@@ -150,8 +189,14 @@ class event {
 		}
 		return $return;
 	}
-	
-	private static function changesSince($_datetime) {
+
+    /**
+     * @param $_datetime
+     * @return array
+     * @throws Exception
+     */
+    private static function changesSince($_datetime): array
+    {
 		$now = getmicrotime();
 		if($_datetime > $now){
 			$_datetime = $now;
@@ -175,8 +220,8 @@ class event {
 		$return['result'] = array_reverse($return['result']);
 		return $return;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
 }

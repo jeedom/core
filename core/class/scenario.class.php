@@ -49,12 +49,14 @@ class scenario {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	/**
-	* Renvoie un objet scenario
-	* @param int  $_id id du scenario voulu
-	* @return scenario object scenario
-	*/
-	public static function byId($_id) {
+    /**
+     * Renvoie un objet scenario
+     * @param int $_id id du scenario voulu
+     * @return scenario object scenario
+     * @throws ReflectionException
+     */
+	public static function byId($_id): scenario
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -64,7 +66,13 @@ class scenario {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byString($_string) {
+    /**
+     * @param $_string
+     * @return scenario
+     * @throws ReflectionException
+     */
+    public static function byString($_string): scenario
+    {
 		$scenario = self::byId(str_replace('#scenario', '', self::fromHumanReadable($_string)));
 		if (!is_object($scenario)) {
 			throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmd']['txt'] . ' : ' . $_string . ' => ' . self::fromHumanReadable($_string));
@@ -72,11 +80,14 @@ class scenario {
 		return $scenario;
 	}
 
-	/**
-	* Renvoie tous les objets scenario
-	* @return [] scenario object scenario
-	*/
-	public static function all($_group = '') {
+    /**
+     * Renvoie tous les objets scenario
+     * @param string $_group
+     * @return array [] scenario object scenario
+     * @throws ReflectionException
+     */
+	public static function all($_group = ''): array
+    {
 		$values = array();
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
@@ -129,11 +140,15 @@ class scenario {
 			return array_merge($result1, $result2);
 		}
 	}
-	/**
-	* return all scenarios ordered by [group][objectName][scenarioName]
-	* @return [] array of scenario object
-	*/
-	public static function allOrderedByGroupObjectName($_asGroup=false) {
+
+    /**
+     * return all scenarios ordered by [group][objectName][scenarioName]
+     * @param bool $_asGroup
+     * @return array [] array of scenario object
+     * @throws ReflectionException
+     */
+	public static function allOrderedByGroupObjectName($_asGroup=false): array
+    {
 		$scenarioList = array();
 		$scenarios = array();
 
@@ -175,11 +190,13 @@ class scenario {
 		}
 		return $scenarioList;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public static function schedule() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function schedule(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
 		WHERE `mode` != "provoke"
@@ -188,12 +205,14 @@ class scenario {
 		AND isActive=1';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	/**
-	*
-	* @param type $_group
-	* @return type
-	*/
-	public static function listGroup($_group = null) {
+
+    /**
+     * @param null $_group
+     * @return array|null
+     * @throws Exception
+     */
+    public static function listGroup($_group = null): ?array
+    {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
 		FROM scenario';
@@ -204,12 +223,15 @@ class scenario {
 		$sql .= ' ORDER BY `group`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
-	/**
-	*
-	* @param type $_cmd_id
-	* @return type
-	*/
-	public static function byTrigger($_cmd_id, $_onlyEnable = true) {
+
+    /**
+     * @param $_cmd_id
+     * @param bool $_onlyEnable
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byTrigger($_cmd_id, $_onlyEnable = true): ?array
+    {
 		$values = array(
 			'cmd_id' => '%#' . $_cmd_id . '#%',
 		);
@@ -222,12 +244,14 @@ class scenario {
 		$sql .= ' AND `trigger` LIKE :cmd_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	/**
-	*
-	* @param type $_element_id
-	* @return type
-	*/
-	public static function byElement($_element_id) {
+
+    /**
+     * @param $_element_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byElement($_element_id): ?array
+    {
 		$values = array(
 			'element_id' => '%"' . $_element_id . '"%',
 		);
@@ -236,14 +260,16 @@ class scenario {
 		WHERE `scenarioElement` LIKE :element_id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	/**
-	*
-	* @param type $_object_id
-	* @param type $_onlyEnable
-	* @param type $_onlyVisible
-	* @return type
-	*/
-	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false) {
+
+    /**
+     * @param $_object_id
+     * @param bool $_onlyEnable
+     * @param false $_onlyVisible
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false): ?array
+    {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario';
@@ -262,13 +288,15 @@ class scenario {
 		$sql .= ' ORDER BY `order`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	/**
-	*
-	* @param type $_event
-	* @param type $_forceSyncMode
-	* @return boolean
-	*/
-	public static function check($_event = null, $_forceSyncMode = false) {
+
+    /**
+     * @param null $_event
+     * @param false $_forceSyncMode
+     * @return bool
+     * @throws ReflectionException
+     */
+    public static function check($_event = null, $_forceSyncMode = false): bool
+    {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -313,7 +341,10 @@ class scenario {
 		return true;
 	}
 
-	public static function control() {
+    /**
+     * @throws ReflectionException
+     */
+    public static function control() {
 		foreach((scenario::all()) as $scenario) {
 			if ($scenario->getState() != 'in progress') {
 				continue;
@@ -331,12 +362,11 @@ class scenario {
 		}
 	}
 
-	/**
-	*
-	* @param array $_options
-	* @return type
-	*/
-	public static function doIn($_options) {
+    /**
+     * @param $_options
+     * @throws ReflectionException
+     */
+    public static function doIn($_options) {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -367,10 +397,11 @@ class scenario {
 		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['endSubTask']['txt']);
 		$scenario->persistLog();
 	}
-	/**
-	*
-	*/
-	public static function cleanTable() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public static function cleanTable() {
 		$ids = array(
 			'element' => array(),
 			'subelement' => array(),
@@ -407,7 +438,13 @@ class scenario {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		}
 
-	public static function consystencyCheck($_needsReturn = false) {
+    /**
+     * @param false $_needsReturn
+     * @return array
+     * @throws ReflectionException
+     */
+    public static function consystencyCheck($_needsReturn = false): array
+    {
 		$return = array();
 		$scenarios = self::all();
 		foreach ($scenarios as $scenario) {
@@ -468,14 +505,8 @@ class scenario {
 		}
 	}
 
-	/**
-	* @name byGroupNameObjectNameScenarioName()
-	* @param object $_object_name
-	* @param type $_group_name
-	* @param type $_scenario_name
-	* @return type
-	*/
-	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name) {
+	public static function byObjectNameGroupNameScenarioName($_object_name, $_group_name, $_scenario_name): ?array
+    {
 		$values = array(
 			'scenario_name' => html_entity_decode($_scenario_name),
 		);
@@ -517,12 +548,12 @@ class scenario {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	/**
-	* @name toHumanReadable()
-	* @param object $_input
-	* @return string
-	*/
-	public static function toHumanReadable($_input) {
+    /**
+     * @param $_input
+     * @return array|string|string[]
+     * @throws ReflectionException
+     */
+    public static function toHumanReadable($_input) {
 		if (is_object($_input)) {
 			$reflections = array();
 			$uuid = spl_object_hash($_input);
@@ -557,12 +588,13 @@ class scenario {
 		}
 		return $text;
 	}
-	/**
-	*
-	* @param type $_input
-	* @return type
-	*/
-	public static function fromHumanReadable($_input) {
+
+    /**
+     * @param $_input
+     * @return array|false|mixed|string|string[]
+     * @throws ReflectionException
+     */
+    public static function fromHumanReadable($_input) {
 		$isJson = false;
 		if (is_json($_input)) {
 			$isJson = true;
@@ -610,12 +642,14 @@ class scenario {
 
 		return $text;
 	}
-	/**
-	*
-	* @param type $searchs
-	* @return type
-	*/
-	public static function searchByUse($searchs) {
+
+    /**
+     * @param $searchs
+     * @return array
+     * @throws ReflectionException
+     */
+    public static function searchByUse($searchs): array
+    {
 		$return = array();
 		$expressions = array();
 		$scenarios = array();
@@ -653,23 +687,24 @@ class scenario {
 		}
 		return $return;
 	}
-	/**
-	*
-	* @param type $_template
-	* @return type
-	*/
-	public static function getTemplate() {
+
+    /**
+     * @return array
+     */
+    public static function getTemplate(): array
+    {
 		$path = __DIR__ . '/../../data/scenario';
 		return ls($path, '*.json', false, array('files', 'quiet'));
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
-	/**
-	*
-	* @param type $_event
-	* @return boolean
-	*/
-	public function testTrigger($_event) {
+
+    /**
+     * @param $_event
+     * @return bool
+     */
+    public function testTrigger($_event): bool
+    {
 		foreach(($this->getTrigger()) as $trigger) {
 			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
 			if ($trigger == $_event) {
@@ -680,14 +715,15 @@ class scenario {
 		}
 		return false;
 	}
-	/**
-	*
-	* @param type $_trigger
-	* @param type $_message
-	* @param type $_forceSyncMode
-	* @return boolean
-	*/
-	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
+
+    /**
+     * @param string $_trigger
+     * @param string $_message
+     * @param false $_forceSyncMode
+     * @return bool|type|void
+     * @throws Exception
+     */
+    public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
@@ -738,13 +774,14 @@ class scenario {
 		}
 		return true;
 	}
-	/**
-	*
-	* @param type $_trigger
-	* @param type $_message
-	* @return type
-	*/
-	public function execute($_trigger = '', $_message = '') {
+
+    /**
+     * @param string $_trigger
+     * @param string $_message
+     * @return bool|type|void
+     * @throws Exception
+     */
+    public function execute($_trigger = '', $_message = '') {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -818,12 +855,13 @@ class scenario {
 		$this->persistLog();
 		return $this->getReturn();
 	}
-	/**
-	*
-	* @param type $_name
-	* @return \scenario
-	*/
-	public function copy($_name) {
+
+    /**
+     * @param $_name
+     * @return scenario
+     */
+    public function copy($_name): scenario
+    {
 		$scenarioCopy = clone $this;
 		$scenarioCopy->setName($_name);
 		$scenarioCopy->setId('');
@@ -839,12 +877,13 @@ class scenario {
 		}
 		return $scenarioCopy;
 	}
-	/**
-	*
-	* @param type $_version
-	* @return string
-	*/
-	public function toHtml($_version) {
+
+    /**
+     * @param $_version
+     * @return string|string[]|null
+     * @throws Exception
+     */
+    public function toHtml($_version) {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
@@ -891,21 +930,22 @@ class scenario {
 		}
 		return $html;
 	}
-	/**
-	*
-	*/
-	public function emptyCacheWidget() {
+
+    /**
+     * @throws Exception
+     */
+    public function emptyCacheWidget() {
 		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
 		$mc->remove();
 		$mc = cache::byKey('scenarioHtmlmobile' . $this->getId());
 		$mc->remove();
 	}
-	/**
-	*
-	* @param type $_only_class
-	* @return string
-	*/
-	public function getIcon($_only_class = false) {
+
+    /**
+     * @param false $_only_class
+     * @return string|string[]|type
+     */
+    public function getIcon($_only_class = false) {
 		if ($_only_class) {
 			switch ($this->getState()) {
 				case 'starting':
@@ -937,18 +977,19 @@ class scenario {
 		}
 		return '<i class="fas fa-times"></i>';
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getLinkToConfiguration() {
+
+    /**
+     * @return string
+     */
+    public function getLinkToConfiguration(): string
+    {
 		return 'index.php?v=d&p=scenario&id=' . $this->getId();
 	}
-	/**
-	*
-	* @throws Exception
-	*/
-	public function preSave() {
+
+    /**
+     * @throws Exception
+     */
+    public function preSave() {
 		if ($this->getTimeout() == '' || !is_numeric($this->getTimeout())) {
 			$this->setTimeout(0);
 		}
@@ -965,17 +1006,18 @@ class scenario {
 			$this->setConfiguration('logmode', 'default');
 		}
 	}
-	/**
-	*
-	*/
+
 	public function postInsert() {
 		$this->setState('stop');
 		$this->setPID();
 	}
-	/**
-	*
-	*/
-	public function save() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+    {
 		if ($this->getLastLaunch() == '' && ($this->getMode() == 'schedule' || $this->getMode() == 'all')) {
 			$calculateScheduleDate = $this->calculateScheduleDate();
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
@@ -988,17 +1030,20 @@ class scenario {
 		}
 		return true;
 	}
-	/**
-	*
-	*/
-	public function refresh() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public function refresh() {
 		DB::refresh($this);
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function remove() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function remove(): bool
+    {
 		viewData::removeByTypeLinkId('scenario', $this->getId());
 		dataStore::removeByTypeLinkId('scenario', $this->getId());
 		foreach(($this->getElement()) as $element) {
@@ -1012,13 +1057,15 @@ class scenario {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'scenario'));
 		return DB::remove($this);
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_private
-	* @return boolean
-	*/
-	public function removeData($_key, $_private = false) {
+
+    /**
+     * @param $_key
+     * @param false $_private
+     * @return bool
+     * @throws Exception
+     */
+    public function removeData($_key, $_private = false): bool
+    {
 		if ($_private) {
 			$dataStore = dataStore::byTypeLinkIdKey('scenario', $this->getId(), $_key);
 		} else {
@@ -1029,14 +1076,15 @@ class scenario {
 		}
 		return true;
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_value
-	* @param bool $_private
-	* @return boolean
-	*/
-	public function setData($_key, $_value, $_private = false) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @param false $_private
+     * @return bool
+     */
+    public function setData($_key, $_value, $_private = false): bool
+    {
 		$dataStore = new dataStore();
 		$dataStore->setType('scenario');
 		$dataStore->setKey($_key);
@@ -1050,7 +1098,15 @@ class scenario {
 		return true;
 	}
 
-	public function getData($_key, $_private = false, $_default = '') {
+    /**
+     * @param $_key
+     * @param false $_private
+     * @param string $_default
+     * @return string
+     * @throws Exception
+     */
+    public function getData($_key, $_private = false, $_default = ''): string
+    {
 		if ($_private) {
 			$dataStore = dataStore::byTypeLinkIdKey('scenario', $this->getId(), $_key);
 		} else {
@@ -1061,11 +1117,12 @@ class scenario {
 		}
 		return $_default;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function calculateScheduleDate() {
+
+    /**
+     * @return string[]
+     */
+    public function calculateScheduleDate(): array
+    {
 		$calculatedDate = array('prevDate' => '', 'nextDate' => '');
 		if (is_array($this->getSchedule())) {
 			$calculatedDate_tmp = array('prevDate' => '', 'nextDate' => '');
@@ -1099,11 +1156,12 @@ class scenario {
 		}
 		return $calculatedDate;
 	}
-	/**
-	*
-	* @return boolean
-	*/
-	public function isDue() {
+
+    /**
+     * @return bool
+     */
+    public function isDue(): bool
+    {
 		if(((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4){
 			return false;
 		}
@@ -1177,11 +1235,12 @@ class scenario {
 		}
 		return false;
 	}
-	/**
-	*
-	* @return boolean
-	*/
-	public function running() {
+
+    /**
+     * @return bool
+     */
+    public function running(): bool
+    {
 		if (intval($this->getPID()) > 0 && posix_getsid(intval($this->getPID())) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'scenario_id=' . $this->getId()) !== false)) {
 			return true;
 		}
@@ -1190,12 +1249,13 @@ class scenario {
 		}
 		return false;
 	}
-	/**
-	*
-	* @return boolean
-	* @throws Exception
-	*/
-	public function stop() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function stop(): bool
+    {
 		$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenario_id":' . $this->getId());
 		if (is_array($crons)) {
 			foreach ($crons as $cron) {
@@ -1235,11 +1295,12 @@ class scenario {
 		$this->setState('stop');
 		return true;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getElement() {
+
+    /**
+     * @return array
+     */
+    public function getElement(): array
+    {
 		if (count($this->_elements) > 0) {
 			return $this->_elements;
 		}
@@ -1265,12 +1326,13 @@ class scenario {
 		}
 		return array();
 	}
-	/**
-	*
-	* @param type $_mode
-	* @return type
-	*/
-	public function export($_mode = 'text') {
+
+    /**
+     * @param string $_mode
+     * @return array|string
+     * @throws ReflectionException
+     */
+    public function export($_mode = 'text') {
 		if ($_mode == 'text') {
 			$return = '';
 			$return .= '- Nom du scénario : ' . $this->getName() . "\n";
@@ -1354,23 +1416,23 @@ class scenario {
 		}
 		return $return;
 	}
-	/**
-	*
-	* @return object
-	*/
-	public function getObject() {
+
+	public function getObject(): ?array
+    {
 		return jeeObject::byId($this->object_id);
 	}
-	/**
-	*
-	* @param type $_complete
-	* @param type $_noGroup
-	* @param type $_tag
-	* @param type $_prettify
-	* @param type $_withoutScenarioName
-	* @return string
-	*/
-	public function getHumanName($_complete=true, $_noGroup=false, $_tag=false, $_prettify=false, $_withoutScenarioName=false, $_object_name=true) {
+
+    /**
+     * @param bool $_complete
+     * @param false $_noGroup
+     * @param false $_tag
+     * @param false $_prettify
+     * @param false $_withoutScenarioName
+     * @param bool $_object_name
+     * @return string
+     */
+    public function getHumanName($_complete=true, $_noGroup=false, $_tag=false, $_prettify=false, $_withoutScenarioName=false, $_object_name=true): string
+    {
 		//$_complete : add None if no tag or no group
 		//$_noGroup: add group name
 		//$_tag: html label with custom color
@@ -1418,12 +1480,14 @@ class scenario {
 		}
 		return $name;
 	}
-	/**
-	*
-	* @param type $_right
-	* @return boolean
-	*/
-	public function hasRight($_right, $_user = null) {
+
+    /**
+     * @param $_right
+     * @param null $_user
+     * @return bool
+     */
+    public function hasRight($_right, $_user = null): bool
+    {
 		if ($_user != null) {
 			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
 				return true;
@@ -1444,12 +1508,11 @@ class scenario {
 		}
 		return false;
 	}
-	/**
-	*
-	* @param type $_partial
-	* @return type
-	*/
-	public function persistLog($_partial = false) {
+
+    /**
+     * @param false $_partial
+     */
+    public function persistLog($_partial = false) {
 		if ($this->getConfiguration('logmode', 'default') == 'none') {
 			return;
 		}
@@ -1464,25 +1527,28 @@ class scenario {
 			file_put_contents($path, "------------------------------------\n" . $this->getLog(), FILE_APPEND);
 		}
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function toArray() {
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
 		$return = utils::o2a($this, true);
 		$cache = $this->getCache(array('state', 'lastLaunch'));
 		$return['state'] = $cache['state'];
 		$return['lastLaunch'] = $cache['lastLaunch'];
 		return $return;
 	}
-	/**
-	*
-	* @param type $_data
-	* @param type $_level
-	* @param type $_drill
-	* @return string
-	*/
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+
+    /**
+     * @param array[] $_data
+     * @param int $_level
+     * @param null $_drill
+     * @return array[]
+     * @throws Exception
+     */
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null): array
+    {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::scenario::drill');
 		}
@@ -1529,20 +1595,24 @@ class scenario {
 		addGraphLink($this, 'scenario', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		return $_data;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getUse() {
+
+    /**
+     * @return array
+     * @throws ReflectionException
+     */
+    public function getUse(): array
+    {
 		$json = jeedom::fromHumanReadable(json_encode($this->export('array')));
 		return jeedom::getTypeUse($json);
 	}
-	/**
-	*
-	* @param array $_array
-	* @return type
-	*/
-	public function getUsedBy($_array = false) {
+
+    /**
+     * @param false $_array
+     * @return array[]
+     * @throws ReflectionException
+     */
+    public function getUsedBy($_array = false): array
+    {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
 		$return['eqLogic'] = eqLogic::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
@@ -1573,64 +1643,70 @@ class scenario {
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
-	/**
-	*
-	* @return int
-	*/
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
-	/**
-	*
-	* @return string
-	*/
-	public function getName() {
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getState() {
+
+    /**
+     * @return type
+     */
+    public function getState(): type
+    {
 		return $this->getCache('state');
 	}
-	/**
-	*
-	* @return bool
-	*/
-	public function getIsActive() {
+
+    /**
+     * @return int
+     */
+    public function getIsActive(): int
+    {
 		return $this->isActive;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getGroup() {
+
+    /**
+     * @return string
+     */
+    public function getGroup(): string
+    {
 		return $this->group;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getLastLaunch() {
+
+    /**
+     * @return type
+     */
+    public function getLastLaunch(): type
+    {
 		return $this->getCache('lastLaunch');
 	}
-	/**
-	*
-	* @param int $id
-	* @return $this
-	*/
-	public function setId($_id) {
+
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): scenario
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	/**
-	*
-	* @param type $name
-	* @return $this
-	*/
-	public function setName($_name) {
+
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): scenario
+    {
 		$_name = cleanComponanteName($_name);
 		if ($_name != $this->getName()) {
 			$this->_changeState = true;
@@ -1639,12 +1715,13 @@ class scenario {
 		$this->name = $_name;
 		return $this;
 	}
-	/**
-	*
-	* @param type $isActive
-	* @return $this
-	*/
-	public function setIsActive($_isActive) {
+
+    /**
+     * @param $_isActive
+     * @return $this
+     */
+    public function setIsActive($_isActive): scenario
+    {
 		if ($_isActive != $this->getIsActive()) {
 			$this->_changeState = true;
 			$this->_changed = true;
@@ -1652,12 +1729,13 @@ class scenario {
 		$this->isActive = $_isActive;
 		return $this;
 	}
-	/**
-	*
-	* @param type $group
-	* @return $this
-	*/
-	public function setGroup($_group) {
+
+    /**
+     * @param $_group
+     * @return $this
+     */
+    public function setGroup($_group): scenario
+    {
 		if ($_group != $this->getGroup()) {
 			$this->_changeState = true;
 			$this->_changed = true;
@@ -1665,68 +1743,76 @@ class scenario {
 		$this->group = $_group;
 		return $this;
 	}
-	/**
-	*
-	* @param type $state
-	*/
-	public function setState($state) {
+
+    /**
+     * @param $state
+     * @throws Exception
+     */
+    public function setState($state) {
 		if ($this->getCache('state') != $state) {
 			$this->emptyCacheWidget();
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $state, 'lastLaunch' => $this->getLastLaunch()));
 		}
 		$this->setCache('state', $state);
 	}
-	/**
-	*
-	* @param type $lastLaunch
-	*/
-	public function setLastLaunch($lastLaunch) {
+
+    /**
+     * @param $lastLaunch
+     */
+    public function setLastLaunch($lastLaunch) {
 		$this->setCache('lastLaunch', $lastLaunch);
 	}
 
-	public function getMode() {
+    /**
+     * @return mixed
+     */
+    public function getMode() {
 		return $this->mode;
 	}
-	/**
-	*
-	* @param type $mode
-	* @return $this
-	*/
-	public function setMode($_mode) {
+
+    /**
+     * @param $_mode
+     * @return $this
+     */
+    public function setMode($_mode): scenario
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->mode,$_mode);
 		$this->mode = $_mode;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getOrder() {
+
+    /**
+     * @return int
+     */
+    public function getOrder(): int
+    {
 		return $this->order;
 	}
-	/**
-	*
-	* @param type $mode
-	* @return $this
-	*/
-	public function setOrder($_order) {
+
+    /**
+     * @param $_order
+     * @return $this
+     */
+    public function setOrder($_order): scenario
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 		$this->order = $_order;
 		return $this;
 	}
-	/**
-	*
-	* @return string/object
-	*/
-	public function getSchedule() {
+
+    /**
+     * @return array|bool|mixed
+     */
+    public function getSchedule() {
 		return is_json($this->schedule, $this->schedule);
 	}
-	/**
-	*
-	* @param type $schedule
-	* @return $this
-	*/
-	public function setSchedule($_schedule) {
+
+    /**
+     * @param $_schedule
+     * @return $this
+     */
+    public function setSchedule($_schedule): scenario
+    {
 		if (is_array($_schedule)) {
 			$_schedule = json_encode($_schedule, JSON_UNESCAPED_UNICODE);
 		}
@@ -1734,33 +1820,34 @@ class scenario {
 		$this->schedule = $_schedule;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getPID() {
+
+    /**
+     * @return array|bool|mixed|string
+     */
+    public function getPID() {
 		return $this->getCache('pid');
 	}
-	/**
-	*
-	* @param type $pid
-	*/
-	public function setPID($pid = '') {
+
+    /**
+     * @param string $pid
+     */
+    public function setPID($pid = '') {
 		$this->setCache('pid', $pid);
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getScenarioElement() {
+
+    /**
+     * @return array|bool|mixed
+     */
+    public function getScenarioElement() {
 		return is_json($this->scenarioElement, $this->scenarioElement);
 	}
-	/**
-	*
-	* @param type $scenarioElement
-	* @return $this
-	*/
-	public function setScenarioElement($_scenarioElement) {
+
+    /**
+     * @param $_scenarioElement
+     * @return $this
+     */
+    public function setScenarioElement($_scenarioElement): scenario
+    {
 		if (is_array($_scenarioElement)) {
 			$_scenarioElement = json_encode($_scenarioElement, JSON_UNESCAPED_UNICODE);
 		}
@@ -1768,19 +1855,21 @@ class scenario {
 		$this->scenarioElement = $_scenarioElement;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getTrigger() {
+
+    /**
+     * @return array|bool|mixed
+     */
+    public function getTrigger() {
 		return is_json($this->trigger, array($this->trigger));
 	}
-	/**
-	*
-	* @param type $trigger
-	* @return $this
-	*/
-	public function setTrigger($_trigger) {
+
+    /**
+     * @param $_trigger
+     * @return $this
+     * @throws ReflectionException
+     */
+    public function setTrigger($_trigger): scenario
+    {
 		if (is_array($_trigger)) {
 			$_trigger = json_encode($_trigger, JSON_UNESCAPED_UNICODE);
 		}
@@ -1789,38 +1878,40 @@ class scenario {
 		$this->trigger = $_trigger;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getLog() {
+
+    /**
+     * @return mixed
+     */
+    public function getLog() {
 		return $this->_log;
 	}
-	/**
-	*
-	* @param type $log
-	*/
-	public function setLog($log) {
+
+    /**
+     * @param $log
+     */
+    public function setLog($log) {
 		$this->_log .= '[' . date('Y-m-d H:i:s') . '][SCENARIO] ' . $log . "\n";
 		if ($this->getConfiguration('logmode', 'default') == 'realtime') {
 			$this->persistLog(true);
 			$this->_log = '';
 		}
 	}
-	/**
-	*
-	* @param type $_default
-	* @return type
-	*/
-	public function getTimeout($_default = 0) {
+
+    /**
+     * @param int $_default
+     * @return int
+     */
+    public function getTimeout($_default = 0): int
+    {
 		return $this->timeout;
 	}
-	/**
-	*
-	* @param string $timeout
-	* @return $this
-	*/
-	public function setTimeout($_timeout) {
+
+    /**
+     * @param $_timeout
+     * @return $this
+     */
+    public function setTimeout($_timeout): scenario
+    {
 		if ($_timeout === '' || is_nan(intval($_timeout)) || $_timeout < 1) {
 			$_timeout = 0;
 		}
@@ -1828,34 +1919,35 @@ class scenario {
 		$this->timeout = $_timeout;
 		return $this;
 	}
-	/**
-	*
-	* @param type $_default
-	* @return type
-	*/
-	public function getObject_id($_default = null) {
+
+    /**
+     * @param null $_default
+     * @return int|mixed|string|null
+     */
+    public function getObject_id($_default = null) {
 		if ($this->object_id == '' || !is_numeric($this->object_id)) {
 			return $_default;
 		}
 		return $this->object_id;
 	}
-	/**
-	*
-	* @param type $_default
-	* @return type
-	*/
-	public function getIsVisible($_default = 0) {
+
+    /**
+     * @param int $_default
+     * @return int|mixed|string
+     */
+    public function getIsVisible($_default = 0) {
 		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
 			return $_default;
 		}
 		return $this->isVisible;
 	}
-	/**
-	*
-	* @param type $object_id
-	* @return $this
-	*/
-	public function setObject_id($object_id = null) {
+
+    /**
+     * @param null $object_id
+     * @return $this
+     */
+    public function setObject_id($object_id = null): scenario
+    {
 		if ($object_id != $this->getObject_id()) {
 			$this->_changeState = true;
 			$this->_changed = true;
@@ -1863,163 +1955,182 @@ class scenario {
 		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
 		return $this;
 	}
-	/**
-	*
-	* @param type $isVisible
-	* @return $this
-	*/
-	public function setIsVisible($_isVisible) {
+
+    /**
+     * @param $_isVisible
+     * @return $this
+     */
+    public function setIsVisible($_isVisible): scenario
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->isVisible,$_isVisible);
 		$this->isVisible = $_isVisible;
 		return $this;
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_default
-	* @return type
-	*/
-	public function getDisplay($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_value
-	* @return $this
-	*/
-	public function setDisplay($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setDisplay($_key, $_value): scenario
+    {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getDescription() {
+
+    /**
+     * @return mixed
+     */
+    public function getDescription() {
 		return $this->description;
 	}
-	/**
-	*
-	* @param type $description
-	* @return $this
-	*/
-	public function setDescription($_description) {
+
+    /**
+     * @param $_description
+     * @return $this
+     */
+    public function setDescription($_description): scenario
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->description,$_description);
 		$this->description = $_description;
 		return $this;
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_default
-	* @return type
-	*/
-	public function getConfiguration($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_value
-	* @return $this
-	*/
-	public function setConfiguration($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): scenario
+    {
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getRealTrigger() {
+
+    /**
+     * @return string
+     */
+    public function getRealTrigger(): string
+    {
 		return $this->_realTrigger;
 	}
-	/**
-	*
-	* @param type $_realTrigger
-	* @return $this
-	*/
-	public function setRealTrigger($_realTrigger) {
+
+    /**
+     * @param $_realTrigger
+     * @return $this
+     */
+    public function setRealTrigger($_realTrigger): scenario
+    {
 		$this->_realTrigger = $_realTrigger;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getReturn() {
+
+    /**
+     * @return bool
+     */
+    public function getReturn(): bool
+    {
 		return $this->_return;
 	}
-	/**
-	*
-	* @param type $_return
-	* @return $this
-	*/
-	public function setReturn($_return) {
+
+    /**
+     * @param $_return
+     * @return $this
+     */
+    public function setReturn($_return): scenario
+    {
 		$this->_return = $_return;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getTags() {
+
+    /**
+     * @return array
+     */
+    public function getTags(): array
+    {
 		return $this->_tags;
 	}
-	/**
-	*
-	* @param type $_tags
-	* @return $this
-	*/
-	public function setTags($_tags) {
+
+	public function setTags($_tags): scenario
+    {
 		$this->_tags = $_tags;
 		return $this;
 	}
-	/**
-	*
-	* @return type
-	*/
-	public function getDo() {
+
+    /**
+     * @return bool
+     */
+    public function getDo(): bool
+    {
 		return $this->_do;
 	}
-	/**
-	*
-	* @param type $_do
-	* @return $this
-	*/
-	public function setDo($_do) {
+
+    /**
+     * @param $_do
+     * @return $this
+     */
+    public function setDo($_do): scenario
+    {
 		$this->_do = $_do;
 		return $this;
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_default
-	* @return type
-	*/
-	public function getCache($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     * @throws Exception
+     */
+    public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('scenarioCacheAttr' . $this->getId())->getValue();
 		return utils::getJsonAttr($cache, $_key, $_default);
 	}
-	/**
-	*
-	* @param type $_key
-	* @param type $_value
-	*/
-	public function setCache($_key, $_value = null) {
+
+    /**
+     * @param $_key
+     * @param null $_value
+     * @throws Exception
+     */
+    public function setCache($_key, $_value = null) {
 		cache::set('scenarioCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
-	public function getChanged() {
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): scenario
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

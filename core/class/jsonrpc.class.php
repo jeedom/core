@@ -20,22 +20,22 @@
 
 class jsonrpc {
 	/*     * ********Attributs******************* */
-	
+
 	private $jsonrpc;
 	private $method;
 	private $params;
 	private $id = 99999;
-	private $startTime;
-	private $applicationName;
-	private $additionnalParams = array();
-	
+	private float $startTime;
+	private string $applicationName;
+	private array $additionnalParams = array();
+
 	/*     * ********Static******************* */
-	
-	/**
-	*
-	* @param string $_jsonrpc
-	*/
-	public function __construct($_jsonrpc) {
+
+    /**
+     *
+     * @param string $_jsonrpc
+     */
+	public function __construct(string $_jsonrpc) {
 		$this->startTime = getmicrotime();
 		$this->applicationName = 'Unknown';
 		$jsonrpc = json_decode($_jsonrpc, true);
@@ -52,8 +52,12 @@ class jsonrpc {
 			$this->id = $jsonrpc['id'];
 		}
 	}
-	
-	public function makeError($_code, $_message) {
+
+    /**
+     * @param $_code
+     * @param $_message
+     */
+    public function makeError($_code, $_message) {
 		$return = array(
 			'jsonrpc' => '2.0',
 			'id' => $this->id,
@@ -70,8 +74,11 @@ class jsonrpc {
 		}
 		exit;
 	}
-	
-	public function makeSuccess($_result = 'ok') {
+
+    /**
+     * @param string $_result
+     */
+    public function makeSuccess($_result = 'ok') {
 		$return = array(
 			'jsonrpc' => '2.0',
 			'id' => $this->id,
@@ -85,47 +92,84 @@ class jsonrpc {
 		}
 		exit;
 	}
-	
+
 	/*     * ********Getteur Setteur******************* */
-	
-	public function getStartTime() {
+
+    /**
+     * @return float
+     */
+    public function getStartTime(): float
+    {
 		return $this->startTime;
 	}
-	
-	public function getApplicationName() {
+
+    /**
+     * @return string
+     */
+    public function getApplicationName(): string
+    {
 		return $this->applicationName;
 	}
-	
-	public function getJsonrpc() {
+
+    /**
+     * @return mixed
+     */
+    public function getJsonrpc() {
 		return $this->jsonrpc;
 	}
-	
-	public function getMethod() {
+
+    /**
+     * @return string
+     */
+    public function getMethod(): string
+    {
 		return $this->method;
 	}
-	
-	public function getParams() {
+
+    /**
+     * @return array
+     */
+    public function getParams(): array
+    {
 		return $this->params;
 	}
-	
-	public function getId() {
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
 		return $this->id;
 	}
-	
-	public function setApplicationName($applicationName) {
+
+    /**
+     * @param $applicationName
+     * @return $this
+     */
+    public function setApplicationName($applicationName): jsonrpc
+    {
 		$this->applicationName = $applicationName;
 		return $this;
 	}
-	
-	public function getAdditionnalParams($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getAdditionnalParams($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->additionnalParams, $_key, $_default);
 	}
-	
-	public function setAdditionnalParams($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     */
+    public function setAdditionnalParams($_key, $_value) {
 		if (in_array($_key, array('result', 'jsonrpc', 'id'))) {
 			return;
 		}
 		$this->additionnalParams = utils::setJsonAttr($this->additionnalParams, $_key, $_value);
 	}
-	
+
 }

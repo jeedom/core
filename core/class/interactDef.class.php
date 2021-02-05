@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class interactDef {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $filtres;
@@ -33,11 +33,17 @@ class interactDef {
 	private $group;
 	private $actions;
 	private $display;
-	private $_changed = false;
-	
+	private bool $_changed = false;
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
-	public static function byId($_id) {
+
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -46,8 +52,14 @@ class interactDef {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function all($_group = '') {
+
+    /**
+     * @param string $_group
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all($_group = ''): ?array
+    {
 		$values = array();
 		if ($_group === '') {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -67,8 +79,14 @@ class interactDef {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function listGroup($_group = null) {
+
+    /**
+     * @param null $_group
+     * @return array|null
+     * @throws Exception
+     */
+    public static function listGroup($_group = null): ?array
+    {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
 		FROM interactDef';
@@ -79,8 +97,13 @@ class interactDef {
 		$sql .= ' ORDER BY `group`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
-	
-	public static function generateTextVariant($_text) {
+
+    /**
+     * @param $_text
+     * @return array
+     */
+    public static function generateTextVariant($_text): array
+    {
 		$return = array();
 		preg_match_all("/(\[.*?\])/", $_text, $words);
 		if (count($words[1]) == 0) {
@@ -99,8 +122,14 @@ class interactDef {
 		}
 		return $return;
 	}
-	
-	public static function searchByQuery($_query) {
+
+    /**
+     * @param $_query
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchByQuery($_query): ?array
+    {
 		$values = array(
 			'query' => '%' . $_query . '%',
 		);
@@ -109,14 +138,23 @@ class interactDef {
 		WHERE query LIKE :query';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function regenerateInteract() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public static function regenerateInteract() {
 		foreach((self::all()) as $interactDef) {
 			$interactDef->save();
 		}
 	}
-	
-	public static function getTagFromQuery($_def, $_query) {
+
+    /**
+     * @param $_def
+     * @param $_query
+     * @return array
+     */
+    public static function getTagFromQuery($_def, $_query): array
+    {
 		$_def = self::sanitizeQuery(trim($_def));
 		$_query = self::sanitizeQuery(trim($_query));
 		$options = array();
@@ -143,16 +181,26 @@ class interactDef {
 		}
 		return $options;
 	}
-	
-	public static function sanitizeQuery($_query) {
+
+    /**
+     * @param $_query
+     * @return string
+     */
+    public static function sanitizeQuery($_query): string
+    {
 		$_query = str_replace(array("\'"), array("'"), $_query);
 		$_query = preg_replace('/\s+/', ' ', $_query);
 		$_query = ucfirst(strtolower($_query));
 		$_query = strtolower(sanitizeAccent($_query));
 		return $_query;
 	}
-	
-	public static function deadCmd() {
+
+    /**
+     * @return array
+     * @throws ReflectionException
+     */
+    public static function deadCmd(): array
+    {
 		$return = array();
 		foreach((interactDef::all()) as $interact) {
 			//var_dump($interact->getActions('cmd'));
@@ -180,8 +228,13 @@ class interactDef {
 		}
 		return $return;
 	}
-	
-	public static function cleanInteract() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function cleanInteract(): ?array
+    {
 		$list_id = array();
 		foreach((self::all()) as $interactDef) {
 			$list_id[$interactDef->getId()] = $interactDef->getId();
@@ -191,8 +244,14 @@ class interactDef {
 			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
 	}
-	
-	public static function searchByUse($_search) {
+
+    /**
+     * @param $_search
+     * @return array
+     * @throws ReflectionException
+     */
+    public static function searchByUse($_search): array
+    {
 		$return = array();
 		if (!is_array($_search)) {
 			$values = array(
@@ -228,10 +287,16 @@ class interactDef {
 		}
 		return $return;
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
-	public function checkQuery($_query) {
+
+    /**
+     * @param $_query
+     * @return bool
+     * @throws Exception
+     */
+    public function checkQuery($_query): bool
+    {
 		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
 			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n|y| )|( |^)la (a|e|u|i|o)|( |^)le (a|e|u|i|o)|( |^)du (a|e|u|i|o)/i";
 			if (preg_match($exclude_regexp, $_query)) {
@@ -370,20 +435,23 @@ class interactDef {
 		}
 		return true;
 	}
-	
-	public function selectReply() {
+
+    /**
+     * @return mixed
+     */
+    public function selectReply() {
 		$replies = self::generateTextVariant($this->getReply());
 		$random = rand(0, count($replies) - 1);
 		return $replies[$random];
 	}
-	
-	public function preInsert() {
+
+    public function preInsert() {
 		if ($this->getReply() == '') {
 			$this->setReply('#valeur#');
 		}
 		$this->setEnable(1);
 	}
-	
+
 	public function preSave() {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
@@ -392,16 +460,24 @@ class interactDef {
 			$this->setFiltres('eqLogic_id', 'all');
 		}
 	}
-	
-	public function save() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+    {
 		if ($this->getQuery() == '') {
 			throw new Exception(__('La commande (demande) ne peut pas être vide', __FILE__));
 		}
 		DB::save($this);
 		return true;
 	}
-	
-	public function postSave() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public function postSave() {
 		$queries = $this->generateQueryVariant();
 		interactQuery::removeByInteractDefId($this->getId());
 		if ($this->getEnable()) {
@@ -424,20 +500,30 @@ class interactDef {
 		}
 		self::cleanInteract();
 	}
-	
-	public function remove() {
+
+    /**
+     * @throws Exception
+     */
+    public function remove() {
 		DB::remove($this);
 	}
-	
-	public function preRemove() {
+
+    public function preRemove() {
 		interactQuery::removeByInteractDefId($this->getId());
 	}
-	
-	public function postRemove() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public function postRemove() {
 		self::cleanInteract();
 	}
-	
-	public function generateQueryVariant() {
+
+    /**
+     * @return array
+     */
+    public function generateQueryVariant(): array
+    {
 		$inputs = self::generateTextVariant($this->getQuery());
 		$return = array();
 		$object_filter = $this->getFiltres('object');
@@ -468,7 +554,7 @@ class interactDef {
 						if (isset($visible_filter['eqLogic']) && $visible_filter['eqLogic'] == 1 && $eqLogic->getIsVisible() != 1) {
 							continue;
 						}
-						
+
 						$category_ok = true;
 						if (is_array($category_filter)) {
 							$category_ok = false;
@@ -507,7 +593,7 @@ class interactDef {
 									continue;
 								}
 							}
-							
+
 							$replace = array(
 								'#objet#' => strtolower($object->getName()),
 								'#commande#' => strtolower($cmd->getName()),
@@ -530,14 +616,14 @@ class interactDef {
 							$return[$query] = array(
 								'query' => $query,
 								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#', 'options' => $options)),
-								
+
 							);
 						}
 					}
 				}
 			}
 		}
-		
+
 		if (count($return) == 0) {
 			foreach ($inputs as $input) {
 				$return[] = array(
@@ -570,8 +656,15 @@ class interactDef {
 		}
 		return $return;
 	}
-	
-	public static function generateSynonymeVariante($_text, $_synonymes, $_deep = 0) {
+
+    /**
+     * @param $_text
+     * @param $_synonymes
+     * @param int $_deep
+     * @return array
+     */
+    public static function generateSynonymeVariante($_text, $_synonymes, $_deep = 0): array
+    {
 		$return = array();
 		if (count($_synonymes) == 0) {
 			return $return;
@@ -593,19 +686,33 @@ class interactDef {
 		}
 		return $return;
 	}
-	
-	public function getLinkToConfiguration() {
+
+    /**
+     * @return string
+     */
+    public function getLinkToConfiguration(): string
+    {
 		return 'index.php?v=d&p=interact&id=' . $this->getId();
 	}
-	
-	public function getHumanName() {
+
+    /**
+     * @return mixed
+     */
+    public function getHumanName() {
 		if ($this->getName() != '') {
 			return $this->getName();
 		}
 		return $this->getQuery();
 	}
-	
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+
+    /**
+     * @param array[] $_data
+     * @param int $_level
+     * @param int $_drill
+     * @return array[]
+     */
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3): array
+    {
 		if (isset($_data['node']['interactDef' . $this->getId()])) {
 			return;
 		}
@@ -628,130 +735,239 @@ class interactDef {
 			'url' => 'index.php?v=d&p=interact&id=' . $this->getId(),
 		);
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
-	
-	public function setId($_id) {
+
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
-	public function getQuery() {
+
+    /**
+     * @return mixed
+     */
+    public function getQuery() {
 		return $this->query;
 	}
-	
-	public function setQuery($_query) {
+
+    /**
+     * @param $_query
+     * @return $this
+     */
+    public function setQuery($_query): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->query,$_query);
 		$this->query = $_query;
 		return $this;
 	}
-	
-	public function getReply() {
+
+    /**
+     * @return mixed
+     */
+    public function getReply() {
 		return $this->reply;
 	}
-	
-	public function setReply($_reply) {
+
+    /**
+     * @param $_reply
+     * @return $this
+     */
+    public function setReply($_reply): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->reply,$_reply);
 		$this->reply = $_reply;
 		return $this;
 	}
-	
-	public function getPerson() {
+
+    /**
+     * @return mixed
+     */
+    public function getPerson() {
 		return $this->person;
 	}
-	
-	public function setPerson($_person) {
+
+    /**
+     * @param $_person
+     * @return $this
+     */
+    public function setPerson($_person): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->person,$_person);
 		$this->person = $_person;
 		return $this;
 	}
-	
-	public function getOptions($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-	
-	public function setOptions($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setOptions($_key, $_value): interactDef
+    {
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
 		$this->options = $options;
 		return $this;
 	}
-	
-	public function getFiltres($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getFiltres($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->filtres, $_key, $_default);
 	}
-	
-	public function setFiltres($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setFiltres($_key, $_value): interactDef
+    {
 		$filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->filtres,$filtres);
 		$this->filtres = $filtres;
 		return $this;
 	}
-	
-	public function getEnable() {
+
+    /**
+     * @return mixed
+     */
+    public function getEnable() {
 		return $this->enable;
 	}
-	
-	public function setEnable($_enable) {
+
+    /**
+     * @param $_enable
+     * @return $this
+     */
+    public function setEnable($_enable): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
 		$this->enable = $_enable;
 		return $this;
 	}
-	
-	public function getName() {
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
-	
-	public function setName($_name) {
+
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
-	
-	public function getGroup() {
+
+    /**
+     * @return mixed
+     */
+    public function getGroup() {
 		return $this->group;
 	}
-	
-	public function setGroup($_group) {
+
+    /**
+     * @param $_group
+     * @return $this
+     */
+    public function setGroup($_group): interactDef
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->group,$_group);
 		$this->group = $_group;
 		return $this;
 	}
-	
-	public function getActions($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getActions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->actions, $_key, $_default);
 	}
-	
-	public function setActions($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setActions($_key, $_value): interactDef
+    {
 		$actions = utils::setJsonAttr($this->actions, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->actions,$actions);
 		$this->actions = $actions;
 		return $this;
 	}
-	
-	public function getDisplay($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
-	
-	public function setDisplay($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setDisplay($_key, $_value): interactDef
+    {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 		return $this;
 	}
-	
-	public function getChanged() {
+
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
-	
-	public function setChanged($_changed) {
+
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): interactDef
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
+
 }

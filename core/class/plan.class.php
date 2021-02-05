@@ -34,7 +34,13 @@ class plan {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -44,7 +50,13 @@ class plan {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byPlanHeaderId($_planHeader_id) {
+    /**
+     * @param $_planHeader_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byPlanHeaderId($_planHeader_id): ?array
+    {
 		$values = array(
 			'planHeader_id' => $_planHeader_id,
 		);
@@ -54,7 +66,14 @@ class plan {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byLinkTypeLinkId($_link_type, $_link_id) {
+    /**
+     * @param $_link_type
+     * @param $_link_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byLinkTypeLinkId($_link_type, $_link_id): ?array
+    {
 		$values = array(
 			'link_type' => $_link_type,
 			'link_id' => $_link_id,
@@ -66,7 +85,15 @@ class plan {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byLinkTypeLinkIdPlanHeaderId($_link_type, $_link_id, $_planHeader_id) {
+    /**
+     * @param $_link_type
+     * @param $_link_id
+     * @param $_planHeader_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byLinkTypeLinkIdPlanHeaderId($_link_type, $_link_id, $_planHeader_id): ?array
+    {
 		$values = array(
 			'link_type' => $_link_type,
 			'link_id' => $_link_id,
@@ -80,7 +107,15 @@ class plan {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function removeByLinkTypeLinkIdPlanHeaderId($_link_type, $_link_id, $_planHeader_id) {
+    /**
+     * @param $_link_type
+     * @param $_link_id
+     * @param $_planHeader_id
+     * @return array|null
+     * @throws Exception
+     */
+    public static function removeByLinkTypeLinkIdPlanHeaderId($_link_type, $_link_id, $_planHeader_id): ?array
+    {
 		$values = array(
 			'link_type' => $_link_type,
 			'link_id' => $_link_id,
@@ -93,13 +128,24 @@ class plan {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function all() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM plan';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByDisplay($_search) {
+    /**
+     * @param $_search
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchByDisplay($_search): ?array
+    {
 		$value = array(
 			'search' => '%' . $_search . '%',
 		);
@@ -109,7 +155,14 @@ class plan {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByConfiguration($_search, $_not = '') {
+    /**
+     * @param $_search
+     * @param string $_not
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchByConfiguration($_search, $_not = ''): ?array
+    {
 		$value = array(
 			'search' => '%' . $_search . '%',
 			'not' => $_not,
@@ -123,7 +176,10 @@ class plan {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function preInsert() {
+    /**
+     * @throws Exception
+     */
+    public function preInsert() {
 		if ($this->getCss('z-index') == '') {
 			$this->setCss('z-index', 1000);
 		}
@@ -141,11 +197,17 @@ class plan {
 		}
 	}
 
-	public function save() {
+    /**
+     * @throws Exception
+     */
+    public function save() {
 		DB::save($this);
 	}
 
-	public function remove() {
+    /**
+     * @throws Exception
+     */
+    public function remove() {
 		$link_type = $this->getLink_type();
 		if ($this->getLink_type() == 'image') {
 			$imgPath = $this->getDisplay('path', '');
@@ -157,7 +219,12 @@ class plan {
 		DB::remove($this);
 	}
 
-	public function copy() {
+    /**
+     * @return plan
+     * @throws Exception
+     */
+    public function copy(): plan
+    {
 		$planCopy = clone $this;
 		$planCopy->setId('');
 		$planCopy->setLink_id('');
@@ -167,7 +234,11 @@ class plan {
 		return $planCopy;
 	}
 
-	public function getLink() {
+    /**
+     * @return array|mixed|scenario|void|null
+     * @throws ReflectionException
+     */
+    public function getLink() {
 		if ($this->getLink_type() == 'eqLogic') {
 			$eqLogic = eqLogic::byId($this->getLink_id());
 			return $eqLogic;
@@ -200,7 +271,11 @@ class plan {
 		}
 	}
 
-	public function doAction($_action) {
+    /**
+     * @param $_action
+     * @throws Exception
+     */
+    public function doAction($_action) {
 		foreach ($this->getConfiguration('action_' . $_action) as $action) {
 			try {
 				$cmd = cmd::byId(str_replace('#', '', $action['cmd']));
@@ -218,7 +293,13 @@ class plan {
 		}
 	}
 
-	public function getHtml($_version = 'dashboard') {
+    /**
+     * @param string $_version
+     * @return array
+     * @throws ReflectionException
+     */
+    public function getHtml($_version = 'dashboard'): array
+    {
 		$linkType = $this->getLink_type();
 		if (in_array($linkType, array('eqLogic', 'cmd', 'scenario'))) {
 			$link = $this->getLink();
@@ -339,101 +420,190 @@ class plan {
 		}
 	}
 
-	public function getPlanHeader() {
+    /**
+     * @return array|null
+     */
+    public function getPlanHeader(): ?array
+    {
 		return planHeader::byId($this->getPlanHeader_id());
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
 
-	public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
 
-	public function getLink_type() {
+    /**
+     * @return mixed
+     */
+    public function getLink_type() {
 		return $this->link_type;
 	}
 
-	public function getLink_id() {
+    /**
+     * @return mixed
+     */
+    public function getLink_id() {
 		return $this->link_id;
 	}
 
-	public function getPosition($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getPosition($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->position, $_key, $_default);
 	}
 
-	public function getDisplay($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function getCss($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getCss($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->css, $_key, $_default);
 	}
 
-	public function setId($_id) {
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): plan
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	public function setLink_type($_link_type) {
+    /**
+     * @param $_link_type
+     * @return $this
+     */
+    public function setLink_type($_link_type): plan
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->link_type,$_link_type);
 		$this->link_type = $_link_type;
 		return $this;
 	}
 
-	public function setLink_id($_link_id) {
+    /**
+     * @param $_link_id
+     * @return $this
+     */
+    public function setLink_id($_link_id): plan
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
 		$this->link_id = $_link_id;
 		return $this;
 	}
 
-	public function setPosition($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setPosition($_key, $_value): plan
+    {
 		$position = utils::setJsonAttr($this->position, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->position,$position);
 		$this->position = $position;
 		return $this;
 	}
 
-	public function setDisplay($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setDisplay($_key, $_value): plan
+    {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
 		$this->display = $display;
 		return $this;
 	}
 
-	public function setCss($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setCss($_key, $_value): plan
+    {
 		$css = utils::setJsonAttr($this->css, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->css,$css);
 		$this->css = $css;
 		return $this;
 	}
 
-	public function getPlanHeader_id() {
+    /**
+     * @return mixed
+     */
+    public function getPlanHeader_id() {
 		return $this->planHeader_id;
 	}
 
-	public function setPlanHeader_id($_planHeader_id) {
+    /**
+     * @param $_planHeader_id
+     * @return $this
+     */
+    public function setPlanHeader_id($_planHeader_id): plan
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->planHeader_id,$_planHeader_id);
 		$this->planHeader_id = $_planHeader_id;
 		return $this;
 	}
 
-	public function getConfiguration($_key = '', $_default = '') {
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
-	public function setConfiguration($_key, $_value) {
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): plan
+    {
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
 
-	public function getChanged() {
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): plan
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

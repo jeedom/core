@@ -32,15 +32,15 @@ class message {
 	private $occurrences;
 
 	/*     * ***********************Methode static*************************** */
-	/**
-	*
-	* @param type $_type
-	* @param type $_message
-	* @param type $_action
-	* @param type $_logicalId
-	* @param type $_writeMessage
-	*/
-	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
+
+    /**
+     * @param $_type
+     * @param $_message
+     * @param string $_action
+     * @param string $_logicalId
+     * @param bool $_writeMessage
+     */
+    public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);
 		$message = (new message())
 		->setPlugin(secureXSS($_type))
@@ -51,7 +51,15 @@ class message {
 		$message->save($_writeMessage);
 	}
 
-	public static function removeAll($_plugin = '', $_logicalId = '', $_search = false) {
+    /**
+     * @param string $_plugin
+     * @param string $_logicalId
+     * @param false $_search
+     * @return bool
+     * @throws Exception
+     */
+    public static function removeAll($_plugin = '', $_logicalId = '', $_search = false): bool
+    {
 		$values = array();
 		$sql = 'DELETE FROM message';
 		if ($_plugin != '') {
@@ -72,14 +80,24 @@ class message {
 		return true;
 	}
 
-	public static function nbMessage() {
+    /**
+     * @return mixed
+     * @throws Exception
+     */
+    public static function nbMessage() {
 		$sql = 'SELECT count(*)
 		FROM message';
 		$count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $count['count(*)'];
 	}
 
-	public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -89,7 +107,14 @@ class message {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byPluginLogicalId($_plugin, $_logicalId) {
+    /**
+     * @param $_plugin
+     * @param $_logicalId
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byPluginLogicalId($_plugin, $_logicalId): ?array
+    {
 		$values = array(
 			'logicalId' => $_logicalId,
 			'plugin' => $_plugin,
@@ -101,7 +126,14 @@ class message {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function removeByPluginLogicalId($_plugin, $_logicalId) {
+    /**
+     * @param $_plugin
+     * @param $_logicalId
+     * @return array|null
+     * @throws Exception
+     */
+    public static function removeByPluginLogicalId($_plugin, $_logicalId): ?array
+    {
 		$values = array(
 			'logicalId' => $_logicalId,
 			'plugin' => $_plugin,
@@ -112,7 +144,13 @@ class message {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}
 
-	public static function byPlugin($_plugin) {
+    /**
+     * @param $_plugin
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byPlugin($_plugin): ?array
+    {
 		$values = array(
 			'plugin' => $_plugin,
 		);
@@ -123,13 +161,23 @@ class message {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function listPlugin() {
+    /**
+     * @return array|null
+     * @throws Exception
+     */
+    public static function listPlugin(): ?array
+    {
 		$sql = 'SELECT DISTINCT(plugin)
 		FROM message';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
-	public static function all() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM message
 		ORDER BY date DESC
@@ -139,7 +187,13 @@ class message {
 
 	/*     * *********************Methode d'instance************************* */
 
-	public function save($_writeMessage = true) {
+    /**
+     * @param bool $_writeMessage
+     * @return bool
+     * @throws Exception
+     */
+    public function save($_writeMessage = true): bool
+    {
 		if ($this->getMessage() == '') {
 			return;
 		}
@@ -219,82 +273,145 @@ class message {
 		return true;
 	}
 
-	public function remove() {
+    /**
+     * @throws Exception
+     */
+    public function remove() {
 		DB::remove($this);
 		event::add('message::refreshMessageNumber');
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
 
-	public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
 
-	public function getDate() {
+    /**
+     * @return mixed
+     */
+    public function getDate() {
 		return $this->date;
 	}
 
-	public function getPlugin() {
+    /**
+     * @return mixed
+     */
+    public function getPlugin() {
 		return $this->plugin;
 	}
 
-	public function getMessage() {
+    /**
+     * @return mixed
+     */
+    public function getMessage() {
 		return $this->message;
 	}
 
-	public function getAction() {
+    /**
+     * @return mixed
+     */
+    public function getAction() {
 		return $this->action;
 	}
 
-	public function getOccurrences() {
+    /**
+     * @return mixed
+     */
+    public function getOccurrences() {
 		return $this->occurrences;
 	}
 
-	public function setId($_id) {
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): message
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	public function setDate($_date) {
+    /**
+     * @param $_date
+     * @return $this
+     */
+    public function setDate($_date): message
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->date,$_date);
 		$this->date = $_date;
 		return $this;
 	}
 
-	public function setPlugin($_plugin) {
+    /**
+     * @param $_plugin
+     * @return $this
+     */
+    public function setPlugin($_plugin): message
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->plugin,$_plugin);
 		$this->plugin = $_plugin;
 		return $this;
 	}
 
-	public function setMessage($_message) {
+    /**
+     * @param $_message
+     * @return $this
+     */
+    public function setMessage($_message): message
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->message,$_message);
 		$this->message = $_message;
 		return $this;
 	}
 
-	public function setAction($_action) {
+    /**
+     * @param $_action
+     * @return $this
+     */
+    public function setAction($_action): message
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->action,$_action);
 		$this->action = $_action;
 		return $this;
 	}
 
-	public function getLogicalId() {
+    /**
+     * @return mixed
+     */
+    public function getLogicalId() {
 		return $this->logicalId;
 	}
 
-	public function setLogicalId($_logicalId) {
+    /**
+     * @param $_logicalId
+     * @return $this
+     */
+    public function setLogicalId($_logicalId): message
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->logicalId,$_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;
 	}
 
-	public function getChanged() {
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): message
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

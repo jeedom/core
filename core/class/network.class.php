@@ -20,8 +20,12 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class network {
-	
-	public static function getUserLocation() {
+
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function getUserLocation() {
 		$client_ip = self::getClientIp();
 		$jeedom_ip = self::getNetworkAccess('internal', 'ip', '', false);
 		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
@@ -42,8 +46,11 @@ class network {
 		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
 	}
-	
-	public static function getClientIp() {
+
+    /**
+     * @return mixed|string
+     */
+    public static function getClientIp() {
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			return $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
@@ -55,8 +62,16 @@ class network {
 		}
 		return '';
 	}
-	
-	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {
+
+    /**
+     * @param string $_mode
+     * @param string $_protocol
+     * @param string $_default
+     * @param false $_test
+     * @return false|mixed|string|string[]
+     * @throws Exception
+     */
+    public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {
 		if ($_mode == 'auto') {
 			$_mode = self::getUserLocation();
 		}
@@ -101,7 +116,7 @@ class network {
 				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
-			
+
 		}
 		if ($_mode == 'dnsjeedom') {
 			return config::byKey('jeedom::url');
@@ -182,7 +197,7 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
-			
+
 			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
@@ -198,8 +213,12 @@ class network {
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 		}
 	}
-	
-	public static function checkConf($_mode = 'external') {
+
+    /**
+     * @param string $_mode
+     * @throws Exception
+     */
+    public static function checkConf($_mode = 'external') {
 		if (config::byKey($_mode . 'Protocol') == '') {
 			config::save($_mode . 'Protocol', 'http://');
 		}
@@ -236,8 +255,14 @@ class network {
 			}
 		}
 	}
-	
-	public static function test($_mode = 'external', $_timeout = 5) {
+
+    /**
+     * @param string $_mode
+     * @param int $_timeout
+     * @return bool
+     * @throws Exception
+     */
+    public static function test($_mode = 'external', $_timeout = 5) {
 		if (config::byKey('network::disableMangement') == 1 && $_mode == 'external') {
 			return true;
 		}
@@ -272,10 +297,14 @@ class network {
 		}
 		return true;
 	}
-	
+
 	/*     * *********************DNS************************* */
-	
-	public static function dns_create() {
+
+    /**
+     * @return array|mixed|openvpn|void
+     * @throws ReflectionException
+     */
+    public static function dns_create() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -355,9 +384,11 @@ class network {
 		}
 		return $openvpn;
 	}
-	
-	
-	public static function dns_start() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public static function dns_start() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -371,8 +402,12 @@ class network {
 		}
 		$cmd->execCmd();
 	}
-	
-	public static function dns_run() {
+
+    /**
+     * @return false
+     * @throws Exception
+     */
+    public static function dns_run() {
 		if (config::byKey('dns::token') == '') {
 			return false;
 		}
@@ -390,8 +425,11 @@ class network {
 		}
 		return $cmd->execCmd();
 	}
-	
-	public static function dns_stop() {
+
+    /**
+     * @throws ReflectionException
+     */
+    public static function dns_stop() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -402,10 +440,15 @@ class network {
 		}
 		$cmd->execCmd();
 	}
-	
+
 	/*     * *********************Network management************************* */
-	
-	public static function portOpen($host, $port) {
+
+    /**
+     * @param $host
+     * @param $port
+     * @return bool
+     */
+    public static function portOpen($host, $port) {
 		$fp = @fsockopen($host, $port, $errno, $errstr, 0.1);
 		if (!is_resource($fp)){
 			return false;
@@ -413,12 +456,18 @@ class network {
 		fclose($fp);
 		return true;
 	}
-	
-	public static function getInterfacesInfo() {
+
+    /**
+     * @return mixed
+     */
+    public static function getInterfacesInfo() {
 		return json_decode(shell_exec(system::getCmdSudo() . "ip -j a"),true);
 	}
-	
-	public static function cron5() {
+
+    /**
+     * @throws Exception
+     */
+    public static function cron5() {
 		if (config::byKey('network::disableMangement') == 1) {
 			return;
 		}

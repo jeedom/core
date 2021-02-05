@@ -21,7 +21,11 @@ require_once dirname(__FILE__) . '/../../core/php/core.inc.php';
 
 class migrate {
 
-	public static function usbTry(){
+    /**
+     * @return array
+     */
+    public static function usbTry(): array
+    {
 		//log::remove('migrate');
 		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			if(phpversion() < 7){
@@ -75,7 +79,12 @@ class migrate {
 		return array('statut' => $statut, 'space' => $space, 'minSpace' => $minSize);
 	}
 
-	public static function backupToUsb() {
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function backupToUsb(): string
+    {
 		$mediaLink = '/media/migrate/Backup';
 		log::remove('migrate');
 		exec('sudo rm '.$mediaLink.'/*');
@@ -96,7 +105,12 @@ class migrate {
 		}
 	}
 
-	public static function imageToUsb() {
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function imageToUsb(): string
+    {
 		migrate::kernelToUsb();
 		$mediaLink = '/media/migrate';
 		log::remove('migrate');
@@ -131,7 +145,12 @@ class migrate {
 		}
 	}
 
-	public static function kernelToUsb() {
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function kernelToUsb(): string
+    {
 		$mediaLink = '/media/migrate';
 		log::remove('migrate');
 		$jsonrpc = repo_market::getJsonRpc();
@@ -166,20 +185,32 @@ class migrate {
 		return $returnKernel;
 	}
 
-	public static function renameImage(){
+    /**
+     * @return string
+     */
+    public static function renameImage(): string
+    {
 		$mediaLink = '/media/migrate';
 		exec('sudo mv '.$mediaLink.'/backupJeedomDownload.tar.gz '.$mediaLink.'/backupJeedom.tar.gz');
 		log::remove('migrate');
 		return 'ok';
 	}
 
-	public static function renameKernel(){
+    /**
+     * @return string
+     */
+    public static function renameKernel(): string
+    {
 		$mediaLink = '/media/migrate';
 		exec('sudo mv '.$mediaLink.'/kernelDownload.tar.gz '.$mediaLink.'/kernel.tar.gz');
 		return 'ok';
 	}
 
-	public static function execKernel(){
+    /**
+     * @return string
+     */
+    public static function execKernel(): string
+    {
 		$mediaLink = '/media/migrate';
 		exec('sudo rm /media/boot/multiboot/mb_kernel/*');
 		exec('sudo tar -xzvf '.$mediaLink.'/kernel.tar.gz -C /media/boot/multiboot/mb_kernel');
@@ -187,7 +218,12 @@ class migrate {
 		return 'ok';
 	}
 
-	public static function finalisation(){
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function finalisation(): string
+    {
 		migrate::usbTry();
 		$mediaLink = '/media/migrate';
 		$mediaLinkBackup = $mediaLink.'/Backup';
@@ -201,7 +237,12 @@ class migrate {
 		return 'ok';
 	}
 
-	public static function GoBackupInstall(){
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public static function GoBackupInstall(): string
+    {
 		$backups = jeedom::listBackup();
 		foreach ($backups as $backup) {
 			$lienBackup = $backup;
@@ -210,7 +251,10 @@ class migrate {
 		return 'ok';
 	}
 
-	public static function freeSpaceUsb(){
+    /**
+     * @return float|int
+     */
+    public static function freeSpaceUsb(){
 		$mediaLink = '/media/migrate';
 		return disk_free_space($mediaLink)/1024;
 	}

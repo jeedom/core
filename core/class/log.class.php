@@ -26,17 +26,24 @@ use Monolog\Logger;
 
 class log {
 	/*     * *************************Constantes****************************** */
-	
+
 	const DEFAULT_MAX_LINE = 200;
-	
+
 	/*     * *************************Attributs****************************** */
-	
-	private static $logger = array();
+
+	private static array $logger = array();
 	private static $config = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function getConfig($_key, $_default = '') {
+
+    /**
+     * @param $_key
+     * @param string $_default
+     * @return string
+     * @throws Exception
+     */
+    public static function getConfig($_key, $_default = ''): string
+    {
 		if (self::$config === null) {
 			self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog')));
 		}
@@ -45,8 +52,14 @@ class log {
 		}
 		return $_default;
 	}
-	
-	public static function getLogger($_log) {
+
+    /**
+     * @param $_log
+     * @return Logger
+     * @throws Exception
+     */
+    public static function getLogger($_log): Logger
+    {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
@@ -68,8 +81,13 @@ class log {
 		self::$logger[$_log]->pushHandler($handler);
 		return self::$logger[$_log];
 	}
-	
-	public static function getLogLevel($_log) {
+
+    /**
+     * @param $_log
+     * @return int|string
+     * @throws Exception
+     */
+    public static function getLogLevel($_log) {
 		$specific_level = self::getConfig('log::level::' . $_log);
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
@@ -86,25 +104,33 @@ class log {
 		}
 		return self::getConfig('log::level');
 	}
-	
-	public static function convertLogLevel($_level = 100) {
+
+    /**
+     * @param int $_level
+     * @return string
+     */
+    public static function convertLogLevel($_level = 100): string
+    {
 		if ($_level > logger::EMERGENCY) {
 			return 'none';
 		}
 		try {
 			return strtolower(Logger::getLevelName($_level));
 		} catch (Exception $e) {
-			
+
 		}
 	}
-	
-	/**
-	* Ajoute un message dans les log et fait en sorte qu'il n'y
-	* ai jamais plus de 1000 lignes
-	* @param string $_type type du message à mettre dans les log
-	* @param string $_message message à mettre dans les logs
-	*/
-	public static function add($_log, $_type, $_message, $_logicalId = '') {
+
+    /**
+     * Ajoute un message dans les log et fait en sorte qu'il n'y
+     * ai jamais plus de 1000 lignes
+     * @param $_log
+     * @param string $_type type du message à mettre dans les log
+     * @param string $_message message à mettre dans les logs
+     * @param string $_logicalId
+     * @throws Exception
+     */
+	public static function add($_log, string $_type, string $_message, $_logicalId = '') {
 		if (trim($_message) == '') {
 			return;
 		}
@@ -120,12 +146,15 @@ class log {
 					@message::add($_log, $_message, '', $_logicalId);
 				}
 			} catch (Exception $e) {
-				
+
 			}
 		}
 	}
-	
-	public static function chunk($_log = '') {
+
+    /**
+     * @param string $_log
+     */
+    public static function chunk($_log = '') {
 		$paths = array();
 		if ($_log != '') {
 			$paths = array(self::getPathToLog($_log));
@@ -145,8 +174,12 @@ class log {
 			}
 		}
 	}
-	
-	public static function chunkLog($_path) {
+
+    /**
+     * @param $_path
+     * @throws Exception
+     */
+    public static function chunkLog($_path) {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
@@ -157,7 +190,7 @@ class log {
 		try {
 			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		} catch (\Exception $e) {
-			
+
 		}
 		@chown($_path, system::get('www-uid'));
 		@chgrp($_path, system::get('www-gid'));
@@ -171,25 +204,39 @@ class log {
 			com_shell::execute(system::getCmdSudo() . ' rm -f ' . $_path);
 		}
 	}
-	
-	public static function getPathToLog($_log = 'core') {
+
+    /**
+     * @param string $_log
+     * @return string
+     */
+    public static function getPathToLog($_log = 'core'): string
+    {
 		return __DIR__ . '/../../log/' . $_log;
 	}
-	
-	/**
-	* Autorisation de vide le fichier de log
-	*/
-	public static function authorizeClearLog($_log, $_subPath = '') {
+
+
+    /**
+     * Autorisation de vide le fichier de log
+     *
+     * @param $_log
+     * @param string $_subPath
+     * @return bool
+     */
+    public static function authorizeClearLog($_log, $_subPath = ''): bool
+    {
 		$path = self::getPathToLog($_subPath . $_log);
 		return !((strpos($_log, '.htaccess') !== false)
 		|| (!file_exists($path) || !is_file($path)))
 		;
 	}
-	
-	/**
-	* Vide le fichier de log
-	*/
-	public static function clear($_log) {
+
+    /**
+     * Vide le fichier de log
+     * @param $_log
+     * @return bool
+     */
+	public static function clear($_log): bool
+    {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
 			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . '> /dev/null 2>&1;cat /dev/null > ' . $path);
@@ -197,11 +244,14 @@ class log {
 		}
 		return;
 	}
-	
-	/**
-	* Vide le fichier de log
-	*/
-	public static function remove($_log) {
+
+    /**
+     * Vide le fichier de log
+     * @param $_log
+     * @return bool
+     */
+	public static function remove($_log): bool
+    {
 		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
 			self::clear($_log);
 			return;
@@ -212,8 +262,12 @@ class log {
 			return true;
 		}
 	}
-	
-	public static function removeAll() {
+
+    /**
+     * @return bool
+     */
+    public static function removeAll(): bool
+    {
 		foreach (array('', 'scenarioLog/') as $logPath) {
 			$logs = ls(self::getPathToLog($logPath), '*');
 			foreach ($logs as $log) {
@@ -222,15 +276,14 @@ class log {
 		}
 		return true;
 	}
-	
-	/*
-	*
-	* @param string $_log
-	* @param int $_begin
-	* @param int $_nbLines
-	* @return boolean|array
-	*/
-	public static function get($_log = 'core', $_begin, $_nbLines) {
+
+    /**
+     * @param string $_log
+     * @param $_begin
+     * @param $_nbLines
+     * @return array|false
+     */
+    public static function get($_log = 'core', $_begin, $_nbLines) {
 		self::chunk($_log);
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
@@ -256,8 +309,13 @@ class log {
 		}
 		return $page;
 	}
-	
-	public static function liste($_filtre = null) {
+
+    /**
+     * @param null $_filtre
+     * @return array
+     */
+    public static function liste($_filtre = null): array
+    {
 		$return = array();
 		foreach (ls(self::getPathToLog(''), '*') as $log) {
 			if ($_filtre !== null && strpos($log, $_filtre) === false) {
@@ -269,7 +327,7 @@ class log {
 		}
 		return $return;
 	}
-	
+
 	/**
 	* Fixe le niveau de rapport d'erreurs PHP
 	* @param int $log_level
@@ -302,16 +360,22 @@ class log {
 			throw new Exception('log::level invalide ("' . $log_level . '")');
 		}
 	}
-	
-	public static function exception($e) {
+
+    /**
+     * @param $e
+     * @return string
+     * @throws Exception
+     */
+    public static function exception($e): string
+    {
 		if (self::getConfig('log::level') > 100) {
 			return $e->getMessage();
 		} else {
 			return print_r($e, true);
 		}
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
 }

@@ -21,6 +21,6 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class historyArch extends history {
 
-	protected $_tableName = 'historyArch';
+	protected string $_tableName = 'historyArch';
 
 }

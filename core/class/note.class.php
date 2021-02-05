@@ -29,7 +29,13 @@ class note {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function byId($_id) {
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -39,7 +45,12 @@ class note {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function all() {
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM note
 		ORDER BY name';
@@ -47,22 +58,39 @@ class note {
 	}
 	/*     * *********************Methode d'instance************************* */
 
-	public function preSave() {
+    /**
+     * @throws Exception
+     */
+    public function preSave() {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom de la note ne peut être vide', __FILE__));
 		}
 	}
 
-	public function save() {
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function save(): bool
+    {
 		DB::save($this);
 		return true;
 	}
 
-	public function remove() {
+    /**
+     * @throws Exception
+     */
+    public function remove() {
 		DB::remove($this);
 	}
 
-	public static function searchByString($_search) {
+    /**
+     * @param $_search
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchByString($_search): ?array
+    {
 		$values = array(
 				'search' => '%'.$_search.'%'
 			);
@@ -74,41 +102,74 @@ class note {
 
 	/*     * **********************Getteur Setteur*************************** */
 
-	public function getId() {
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
 
-	public function getName() {
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
 
-	public function getText() {
+    /**
+     * @return mixed
+     */
+    public function getText() {
 		return $this->text;
 	}
 
-	public function setId($_id) {
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): note
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	public function setName($_name) {
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): note
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
 
-	public function setText($_text) {
+    /**
+     * @param $_text
+     * @return $this
+     */
+    public function setText($_text): note
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->text,$_text);
 		$this->text = $_text;
 		return $this;
 	}
 
-	public function getChanged() {
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): note
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}

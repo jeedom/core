@@ -21,16 +21,22 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class plan3dHeader {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $configuration;
-	private $order = 9999;
-	private $_changed = false;
-	
+	private int $order = 9999;
+	private bool $_changed = false;
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
-	public static function byId($_id) {
+
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$values = array(
 			'id' => $_id,
 		);
@@ -39,20 +45,28 @@ class plan3dHeader {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function all() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM plan3dHeader
 		ORDER BY `order`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	/**
-	*
-	* @param type $_type
-	* @param type $_id
-	* @return type
-	*/
-	public static function searchByUse($_type, $_id) {
+
+    /**
+     *
+     * @param $_type
+     * @param $_id
+     * @return array
+     * @throws ReflectionException
+     */
+	public static function searchByUse($_type, $_id): array
+    {
 		$return = array();
 		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
 		$plan3ds = array_merge(plan3d::byLinkTypeLinkId($_type, $_id), plan3d::searchByConfiguration($search, 'eqLogic'));
@@ -65,20 +79,29 @@ class plan3dHeader {
 		}
 		return $return;
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
-	public function preSave() {
+
+    /**
+     * @throws Exception
+     */
+    public function preSave() {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom du l\'objet ne peut pas être vide', __FILE__));
 		}
 	}
-	
-	public function save() {
+
+    /**
+     * @throws Exception
+     */
+    public function save() {
 		DB::save($this);
 	}
-	
-	public function remove() {
+
+    /**
+     * @throws Exception
+     */
+    public function remove() {
 		$cibDir = __DIR__ . '/../../' . $this->getConfiguration('path', '');
 		if (file_exists($cibDir) && $this->getConfiguration('path', '') != '') {
 			rrmdir($cibDir);
@@ -86,12 +109,24 @@ class plan3dHeader {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'plan3d'));
 		DB::remove($this);
 	}
-	
-	public function getPlan3d() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public function getPlan3d(): ?array
+    {
 		return plan3d::byPlan3dHeaderId($this->getId());
 	}
-	
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
+
+    /**
+     * @param array[] $_data
+     * @param int $_level
+     * @param int $_drill
+     * @return array|array[]|void
+     */
+    public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3): array
+    {
 		if (isset($_data['node']['plan3d' . $this->getId()])) {
 			return;
 		}
@@ -114,47 +149,82 @@ class plan3dHeader {
 			'url' => 'index.php?v=d&p=plan3d&plan3d_id=' . $this->getId(),
 		);
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
-	
-	public function getName() {
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
 		return $this->name;
 	}
-	
-	public function getOrder() {
+
+    /**
+     * @return int|string
+     */
+    public function getOrder() {
 		if ($this->order == '' || !is_numeric($this->order)) {
 			return 0;
 		}
 		return $this->order;
 	}
-	
-	public function setId($_id) {
+
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): plan3dHeader
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
-	public function setName($_name) {
+
+    /**
+     * @param $_name
+     * @return $this
+     */
+    public function setName($_name): plan3dHeader
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
-	
-	public function setOrder($_order) {
+
+    /**
+     * @param $_order
+     * @return $this
+     */
+    public function setOrder($_order): plan3dHeader
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 		$this->order = $_order;
 		return $this;
 	}
-	
-	public function getConfiguration($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-	
-	public function setConfiguration($_key, $_value) {
+
+    /**
+     * @param $_key
+     * @param $_value
+     * @return $this
+     */
+    public function setConfiguration($_key, $_value): plan3dHeader
+    {
 		if ($_key == 'accessCode' && $_value != '' && !is_sha512($_value)) {
 			$_value = sha512($_value);
 		}
@@ -163,14 +233,23 @@ class plan3dHeader {
 		$this->configuration = $configuration;
 		return $this;
 	}
-	
-	public function getChanged() {
+
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
-	
-	public function setChanged($_changed) {
+
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): plan3dHeader
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
+
 }

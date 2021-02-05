@@ -21,16 +21,28 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class report {
 	/*     * *************************Attributs****************************** */
-	
+
 	/*     * ***********************Methode static*************************** */
-	public static function clean() {
+    /**
+     * @throws Exception
+     */
+    public static function clean() {
 		if (!file_exists(__DIR__ . '/../../data/report')) {
 			return;
 		}
 		shell_exec('find ' . __DIR__ . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
 	}
-	
-	public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {
+
+    /**
+     * @param $_url
+     * @param $_type
+     * @param $_name
+     * @param string $_format
+     * @param array $_parameter
+     * @return string
+     * @throws Exception
+     */
+    public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {
 		if(!is_string($_format)){
 			$_format = 'png';
 		}
@@ -66,5 +78,5 @@ class report {
 		com_shell::execute($cmd);
 		return $out;
 	}
-	
+
 }

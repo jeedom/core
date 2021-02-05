@@ -21,17 +21,20 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class listener {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $event;
 	private $class;
 	private $function;
 	private $option;
-	private $_changed = false;
-	
+	private bool $_changed = false;
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
-	public static function clean(){
+
+    /**
+     * @throws Exception
+     */
+    public static function clean(){
 		foreach((self::all()) as $listener) {
 			$events = $listener->getEvent();
 			if(count($events) > 0){
@@ -51,14 +54,25 @@ class listener {
 			}
 		}
 	}
-	
-	public static function all() {
+
+    /**
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function all(): ?array
+    {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byId($_id) {
+
+    /**
+     * @param $_id
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byId($_id): ?array
+    {
 		$value = array(
 			'id' => $_id,
 		);
@@ -67,8 +81,14 @@ class listener {
 		WHERE id=:id';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byClass($_class) {
+
+    /**
+     * @param $_class
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byClass($_class): ?array
+    {
 		$value = array(
 			'class' => $_class,
 		);
@@ -77,8 +97,16 @@ class listener {
 		WHERE class=:class';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byClassAndFunction($_class, $_function, $_option = '') {
+
+    /**
+     * @param $_class
+     * @param $_function
+     * @param string $_option
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byClassAndFunction($_class, $_function, $_option = ''): ?array
+    {
 		$value = array(
 			'class' => $_class,
 			'function' => $_function,
@@ -94,8 +122,16 @@ class listener {
 		}
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function searchClassFunctionOption($_class, $_function, $_option = '') {
+
+    /**
+     * @param $_class
+     * @param $_function
+     * @param string $_option
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchClassFunctionOption($_class, $_function, $_option = ''): ?array
+    {
 		$value = array(
 			'class' => $_class,
 			'function' => $_function,
@@ -108,8 +144,16 @@ class listener {
 		AND `option` LIKE :option';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function byClassFunctionAndEvent($_class, $_function, $_event) {
+
+    /**
+     * @param $_class
+     * @param $_function
+     * @param $_event
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function byClassFunctionAndEvent($_class, $_function, $_event): ?array
+    {
 		$value = array(
 			'class' => $_class,
 			'function' => $_function,
@@ -122,8 +166,15 @@ class listener {
 		AND event=:event';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function removeByClassFunctionAndEvent($_class, $_function, $_event, $_option = '') {
+
+    /**
+     * @param $_class
+     * @param $_function
+     * @param $_event
+     * @param string $_option
+     * @throws Exception
+     */
+    public static function removeByClassFunctionAndEvent($_class, $_function, $_event, $_option = '') {
 		$value = array(
 			'class' => $_class,
 			'function' => $_function,
@@ -140,8 +191,14 @@ class listener {
 		}
 		DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 	}
-	
-	public static function searchEvent($_event) {
+
+    /**
+     * @param $_event
+     * @return array|null
+     * @throws ReflectionException
+     */
+    public static function searchEvent($_event): ?array
+    {
 		if (strpos($_event, '#') !== false) {
 			$value = array(
 				'event' => '%' . $_event . '%',
@@ -156,8 +213,14 @@ class listener {
 		WHERE `event` LIKE :event';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public static function check($_event, $_value, $_datetime = null) {
+
+    /**
+     * @param $_event
+     * @param $_value
+     * @param null $_datetime
+     * @throws ReflectionException
+     */
+    public static function check($_event, $_value, $_datetime = null) {
 		$listeners = self::searchEvent($_event);
 		if (is_array($listeners) && count($listeners) > 0) {
 			foreach ($listeners as $listener) {
@@ -165,8 +228,12 @@ class listener {
 			}
 		}
 	}
-	
-	public static function backgroundCalculDependencyCmd($_event) {
+
+    /**
+     * @param $_event
+     * @throws Exception
+     */
+    public static function backgroundCalculDependencyCmd($_event) {
 		if (count(cmd::byValue($_event, 'info')) == 0) {
 			return;
 		}
@@ -174,17 +241,26 @@ class listener {
 		$cmd .= ' event_id=' . $_event;
 		system::php($cmd . ' >> /dev/null 2>&1 &');
 	}
-	
-	public function getName() {
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
 		if ($this->getClass() != '') {
 			return $this->getClass() . '::' . $this->getFunction() . '()';
 		}
 		return $this->getFunction() . '()';
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
-	public function run($_event, $_value, $_datetime = null) {
+
+    /**
+     * @param $_event
+     * @param $_value
+     * @param null $_datetime
+     */
+    public function run($_event, $_value, $_datetime = null) {
 		$option = array();
 		if (count($this->getOption()) > 0) {
 			$option = $this->getOption();
@@ -200,8 +276,13 @@ class listener {
 			system::php($cmd . ' >> ' . log::getPathToLog('listener_execution') . ' 2>&1 &');
 		}
 	}
-	
-	public function execute($_event, $_value, $_datetime = '') {
+
+    /**
+     * @param $_event
+     * @param $_value
+     * @param string $_datetime
+     */
+    public function execute($_event, $_value, $_datetime = '') {
 		try {
 			$option = array();
 			if (count($this->getOption()) > 0) {
@@ -234,30 +315,48 @@ class listener {
 			log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
 		}
 	}
-	
-	public function preSave() {
+
+    /**
+     * @throws Exception
+     */
+    public function preSave() {
 		if ($this->getFunction() == '') {
 			throw new Exception(__('La fonction ne peut pas être vide', __FILE__));
 		}
 	}
-	
-	public function save($_once = false) {
+
+    /**
+     * @param false $_once
+     * @return bool
+     * @throws Exception
+     */
+    public function save($_once = false): bool
+    {
 		if ($_once) {
 			self::removeByClassFunctionAndEvent($this->getClass(), $this->getFunction(), $this->event, $this->getOption());
 		}
 		DB::save($this);
 		return true;
 	}
-	
-	public function remove() {
+
+    /**
+     * @return bool
+     * @throws Exception
+     */
+    public function remove(): bool
+    {
 		return DB::remove($this);
 	}
-	
+
 	public function emptyEvent() {
 		$this->event = array();
 	}
-	
-	public function addEvent($_id, $_type = 'cmd') {
+
+    /**
+     * @param $_id
+     * @param string $_type
+     */
+    public function addEvent($_id, $_type = 'cmd') {
 		$event = $this->getEvent();
 		if (!is_array($event)) {
 			$event = array();
@@ -270,68 +369,116 @@ class listener {
 		}
 		$this->setEvent($event);
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
-	public function getId() {
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
 		return $this->id;
 	}
-	
-	public function getEvent() {
+
+    /**
+     * @return array|bool|mixed
+     */
+    public function getEvent() {
 		return is_json($this->event, array());
 	}
-	
-	public function getClass() {
+
+    /**
+     * @return mixed
+     */
+    public function getClass() {
 		return $this->class;
 	}
-	
-	public function getFunction() {
+
+    /**
+     * @return mixed
+     */
+    public function getFunction() {
 		return $this->function;
 	}
-	
-	public function getOption($_key = '', $_default = '') {
+
+    /**
+     * @param string $_key
+     * @param string $_default
+     * @return array|bool|mixed|string
+     */
+    public function getOption($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->option, $_key, $_default);
 	}
-	
-	public function setId($_id) {
+
+    /**
+     * @param $_id
+     * @return $this
+     */
+    public function setId($_id): listener
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
-	public function setEvent($_event) {
+
+	public function setEvent($_event): listener
+    {
 		$event = json_encode($_event, JSON_UNESCAPED_UNICODE);
 		$this->_changed = utils::attrChanged($this->_changed,$this->event,$event);
 		$this->event = $event;
 		return $this;
 	}
-	
-	public function setClass($_class) {
+
+    /**
+     * @param $_class
+     * @return $this
+     */
+    public function setClass($_class): listener
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->class,$_class);
 		$this->class = $_class;
 		return $this;
 	}
-	
-	public function setFunction($_function) {
+
+    /**
+     * @param $_function
+     * @return $this
+     */
+    public function setFunction($_function): listener
+    {
 		$this->_changed = utils::attrChanged($this->_changed,$this->function,$_function);
 		$this->function = $_function;
 		return $this;
 	}
-	
-	public function setOption($_key, $_value = '') {
+
+    /**
+     * @param $_key
+     * @param string $_value
+     * @return $this
+     */
+    public function setOption($_key, $_value = ''): listener
+    {
 		$option = utils::setJsonAttr($this->option, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->option,$option);
 		$this->option = $option;
 		return $this;
 	}
-	
-	public function getChanged() {
+
+    /**
+     * @return bool
+     */
+    public function getChanged(): bool
+    {
 		return $this->_changed;
 	}
-	
-	public function setChanged($_changed) {
+
+    /**
+     * @param $_changed
+     * @return $this
+     */
+    public function setChanged($_changed): listener
+    {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
+
 }
