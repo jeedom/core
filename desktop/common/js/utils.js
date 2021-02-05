@@ -1118,11 +1118,11 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   if (_id != undefined) {
     var widget = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
     widget.css({'margin': '0px', 'padding': '0px'})
-    if ($(this).width() == 0) {
-      $(this).width('230')
+    if (widget.width() == 0) {
+      widget.width('230')
     }
-    if ($(this).height() == 0) {
-      $(this).height('110')
+    if (widget.height() == 0) {
+      widget.height('110')
     }
     if (init(_preResize, true)) {
       widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']))
@@ -1146,7 +1146,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
         $(this).height('110')
       }
       $(this).width(jeedomUtils.calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
-      .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
+        .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
       if (!$(this).hasClass($(this).attr('data-category'))) {
         $(this).addClass($(this).attr('data-category'))
       }
