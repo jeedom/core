@@ -29,7 +29,7 @@ $(function() {
       jeedom.object.getImgPath({
         id : rootObjectId,
         success : function(_path) {
-          setBackgroundImage(_path)
+          jeedomUtils.setBackgroundImage(_path)
         }
       })
     }
@@ -75,27 +75,27 @@ $('#in_searchDashboard').off('keyup').on('keyup',function() {
     return
   }
 
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   var match, text
   $('div.eqLogic-widget').each(function() {
     match = false
-    text = normTextLower($(this).find('.widget-name').text())
+    text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
 
     if ($(this).attr('data-tags') != undefined) {
-      text = normTextLower($(this).attr('data-tags'))
+      text = jeedomUtils.normTextLower($(this).attr('data-tags'))
       if (text.indexOf(search) >= 0) match = true
     }
     if ($(this).attr('data-category') != undefined) {
-      text = normTextLower($(this).attr('data-category'))
+      text = jeedomUtils.normTextLower($(this).attr('data-category'))
       if (text.indexOf(search) >= 0) match = true
     }
     if ($(this).attr('data-eqType') != undefined) {
-      text = normTextLower($(this).attr('data-eqType'))
+      text = jeedomUtils.normTextLower($(this).attr('data-eqType'))
       if (text.indexOf(search) >= 0) match = true
     }
     if ($(this).attr('data-translate-category') != undefined) {
-      text = normTextLower($(this).attr('data-translate-category'))
+      text = jeedomUtils.normTextLower($(this).attr('data-translate-category'))
       if (text.indexOf(search) >= 0) match = true
     }
 
@@ -107,7 +107,7 @@ $('#in_searchDashboard').off('keyup').on('keyup',function() {
   })
   $('div.scenario-widget').each(function() {
     match = false
-    text = normTextLower($(this).find('.widget-name').text())
+    text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
     if (match) {
       $(this).show()
@@ -260,7 +260,7 @@ $('.objectPreview, .objectPreview .name').off('click').on('click', function (eve
   if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
-    loadPage(url)
+    jeedomUtils.loadPage(url)
   }
   return false
 })
@@ -323,15 +323,15 @@ $('.li_object').on('click',function() {
     jeedom.object.getImgPath({
       id : object_id,
       success : function(_path) {
-        setBackgroundImage(_path)
+        jeedomUtils.setBackgroundImage(_path)
       }
     })
     $('#dashOverviewPrev .li_object').removeClass('active')
     $(this).addClass('active')
     displayChildObject(object_id, false)
-    addOrUpdateUrl('object_id', object_id)
+    jeedomUtils.addOrUpdateUrl('object_id', object_id)
   } else {
-    loadPage($(this).find('a').attr('data-href'))
+    jeedomUtils.loadPage($(this).find('a').attr('data-href'))
   }
 })
 
@@ -366,18 +366,19 @@ function editWidgetMode(_mode,_save) {
       .val('')
       .prop('readonly', false)
   } else {
-    jeedom.cmd.disableExecute = true
     jeedomUI.isEditing = true
+    jeedom.cmd.disableExecute = true
     resetCategoryFilter()
     $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
 
     //show orders:
+    var value
     $('.jeedomAlreadyPosition.ui-draggable').each( function() {
-      var value = $(this).attr('data-order')
+      value = $(this).attr('data-order')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
       } else {
-        $(this).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+        $(this).prepend('<span class="counterReorderJeedom pull-left">'+value+'</span>')
       }
     })
 
@@ -403,21 +404,21 @@ function editWidgetMode(_mode,_save) {
     //set resizables:
     divEquipements.find('div.eqLogic-widget.allowResize').resizable({
       resize: function( event, ui ) {
-        positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.div_displayEquipement').packery()
       },
       stop: function( event, ui ) {
-        positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.div_displayEquipement').packery()
       }
     })
     divEquipements.find('div.scenario-widget.allowResize').resizable({
       resize: function( event, ui ) {
-        positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.div_displayEquipement').packery()
       },
       stop: function( event, ui ) {
-        positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.div_displayEquipement').packery()
       }
     })
@@ -521,7 +522,7 @@ function getObjectHtmlFromSummary(_object_id) {
 
             //is last ajax:
             if (nbEqs == 0) {
-              positionEqLogic()
+              jeedomUtils.positionEqLogic()
               $divDisplayEq.packery()
               if ($divDisplayEq.find('div.eqLogic-widget:visible, div.scenario-widget:visible').length == 0) {
                 $divDisplayEq.closest('.div_object').remove()
@@ -558,7 +559,7 @@ function getObjectHtml(_object_id) {
           return
         }
       }
-      positionEqLogic()
+      jeedomUtils.positionEqLogic()
       var container = $divDisplayEq.packery()
 
       var packData = $divDisplayEq.data('packery')

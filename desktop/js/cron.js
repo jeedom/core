@@ -19,14 +19,14 @@
 var $tableCron = $('#table_cron')
 printCron()
 printListener()
-initTableSorter(false)
+jeedomUtils.initTableSorter(false)
 $tableCron[0].config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
 $tableCron.trigger('applyWidgets')
   .trigger('resizableReset')
   .trigger('sorton', [[[0,0]]])
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()

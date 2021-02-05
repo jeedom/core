@@ -16,7 +16,7 @@
 
 "use strict"
 
-positionEqLogic()
+jeedomUtils.positionEqLogic()
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
 
 //update tablesorter on tab click:
@@ -44,7 +44,7 @@ $('.alertListContainer').packery({
 
 $('.alerts, .batteries').on('click', function() {
   setTimeout(function() {
-    positionEqLogic()
+    jeedomUtils.positionEqLogic()
     $('.alertListContainer').packery({
       itemSelector: ".eqLogic-widget",
       gutter : 2
@@ -67,13 +67,13 @@ $('#in_search').off('keyup').on('keyup', function() {
     $eqlogics.show()
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   var match, text
   $eqlogics.each(function() {
     match = false
-    text = normTextLower($(this).find('.widget-name').text())
+    text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
     if (text.indexOf(search) >= 0) match = true
-    text = normTextLower($(this).find('.widget-name span').text())
+    text = jeedomUtils.normTextLower($(this).find('.widget-name span').text())
     if (text.indexOf(search) >= 0) match = true
     if (match) {
       $(this).show()
@@ -108,7 +108,7 @@ $(function() {
     $('a[href="#alertEqlogic"] > i').addClass('warning')
   }
 
-  initTableSorter()
+  jeedomUtils.initTableSorter()
 })
 
 function getRemoveCmd(_id) {

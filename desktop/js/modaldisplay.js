@@ -37,7 +37,7 @@ $(function () {
   $('#modalDisplay').empty().load(url, function(data) {
     $('body').attr('data-page',getUrlVars('p'))
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
-    initPage()
+    jeedomUtils.initPage()
     $('body').trigger('jeedom_page_load')
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()

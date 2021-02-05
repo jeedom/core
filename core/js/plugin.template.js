@@ -18,7 +18,7 @@ $('body').attr('data-type', 'plugin')
 $('.nav-tabs a:not(.eqLogicAction)').first().click()
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -172,11 +172,11 @@ $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off
     $('.nav li.active').removeClass('active')
     $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
   }, 500)
-  if (checkPageModified()) return
+  if (jeedomUtils.checkPageModified()) return
   $('.eqLogic').hide()
   $('.eqLogicThumbnailDisplay').show()
   $(this).closest('ul').find('li').removeClass('active')
-  addOrUpdateUrl('id',null,)
+  jeedomUtils.addOrUpdateUrl('id',null,)
 })
 
 $(".eqLogicDisplayCard").on('click', function(event) {
@@ -239,7 +239,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           }
         }, '.cmd .cmdAttr[data-l1key=subType]')
 
-        addOrUpdateUrl('id',data.id)
+        jeedomUtils.addOrUpdateUrl('id',data.id)
         $.hideLoading()
         modifyWithoutSave = false
         setTimeout(function(){
@@ -285,7 +285,7 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
                 }
               }
               url += 'id=' + data.id + '&saveSuccessFull=1'
-              loadPage(url)
+              jeedomUtils.loadPage(url)
               bootbox.hideAll()
             }
           })
@@ -333,7 +333,7 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
       if (document.location.toString().match('#')) {
         url += '#' + document.location.toString().split('#')[1]
       }
-      loadPage(url)
+      jeedomUtils.loadPage(url)
       modifyWithoutSave = false
     }
   })
@@ -379,7 +379,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
                 }
                 modifyWithoutSave = false
                 url += 'removeSuccessFull=1'
-                loadPage(url)
+                jeedomUtils.loadPage(url)
               }
             })
           }
@@ -410,7 +410,7 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
           }
           modifyWithoutSave = false
           url += 'id=' + _data.id + '&saveSuccessFull=1'
-          loadPage(url)
+          jeedomUtils.loadPage(url)
         }
       })
     }
@@ -430,10 +430,10 @@ $('#in_searchEqlogic').off('keyup').keyup(function() {
     return
   }
   $('.eqLogicDisplayCard').hide()
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   var text
   $('.eqLogicDisplayCard .name').each(function() {
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.eqLogicDisplayCard').show()
     }
@@ -456,7 +456,7 @@ $('.cmdAction[data-action=add]').on('click', function() {
 
 $('#div_pageContainer').on('click', '.cmd .cmdAction[data-l1key=chooseIcon]', function() {
   var cmd = $(this).closest('.cmd')
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     cmd.find('.cmdAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
     modifyWithoutSave = true
   })

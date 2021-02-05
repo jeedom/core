@@ -26,7 +26,7 @@ document.onkeydown = function(event) {
 var $modal = $('#md_modal')
 var $tableDevices = $('#tableDevices')
 $(function() {
-  initTableSorter()
+  jeedomUtils.initTableSorter()
   $tableDevices[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
   $tableDevices.trigger('applyWidgets')
     .trigger('resizableReset')
@@ -133,7 +133,7 @@ if (profils_user_id == -1) {
       }
     })
   })
-  
+
   $('.bt_removeRegisterDevice').on('click', function() {
     var key = $(this).closest('tr').attr('data-key')
     jeedom.user.removeRegisterDevice({
@@ -147,7 +147,7 @@ if (profils_user_id == -1) {
       }
     })
   })
-  
+
   $('#bt_removeAllRegisterDevice').on('click', function() {
     jeedom.user.removeRegisterDevice({
       key: '',
@@ -160,7 +160,7 @@ if (profils_user_id == -1) {
       }
     })
   })
-  
+
   $('.bt_deleteSession').on('click', function() {
     var id = $(this).closest('tr').attr('data-id')
     jeedom.user.deleteSession({

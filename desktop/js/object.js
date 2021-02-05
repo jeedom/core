@@ -17,7 +17,7 @@
 "use strict"
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -46,12 +46,12 @@ $('#in_searchObject').keyup(function() {
     $('.objectDisplayCard').show()
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
 
   $('.objectDisplayCard').hide()
   var text
   $('.objectDisplayCard .name').each(function() {
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.objectDisplayCard').show()
     }
@@ -121,10 +121,10 @@ $('#bt_returnToThumbnailDisplay').on('click',function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
   }, 500)
-  if (checkPageModified()) return
+  if (jeedomUtils.checkPageModified()) return
   $('#div_conf').hide()
   $('#div_resumeObjectList').show()
-  addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME)
+  jeedomUtils.addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME)
 })
 
 $(".objectDisplayCard").off('click').on('click', function(event) {
@@ -237,12 +237,12 @@ function loadObjectConfiguration(_id) {
         var objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
 
         if (!objectBkgdColor === undefined) {
-          objectBkgdColor = rgbToHex(objectBkgdColor)
+          objectBkgdColor = jeedomUtils.rgbToHex(objectBkgdColor)
         } else {
           objectBkgdColor = '#696969'
         }
         if (!objectTxtColor === undefined) {
-          objectTxtColor = rgbToHex(objectTxtColor)
+          objectTxtColor = jeedomUtils.rgbToHex(objectTxtColor)
         } else {
           objectTxtColor = '#ebebeb'
         }
@@ -293,7 +293,7 @@ function loadObjectConfiguration(_id) {
       addEqlogicsInfo(_id, data.name, summary)
 
       var hash = window.location.hash
-      addOrUpdateUrl('id',data.id)
+      jeedomUtils.addOrUpdateUrl('id',data.id)
       if (hash == '') {
         $('.nav-tabs a[href="#objecttab"]').click()
       } else {
@@ -317,7 +317,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
         },
         success: function(data) {
           modifyWithoutSave = false
-          loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1')
+          jeedomUtils.loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1')
           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
         }
       })
@@ -373,7 +373,7 @@ $("#bt_removeObject").on('click', function(event) {
         },
         success: function() {
           modifyWithoutSave = false
-          loadPage('index.php?v=d&p=object&removeSuccessFull=1')
+          jeedomUtils.loadPage('index.php?v=d&p=object&removeSuccessFull=1')
         }
       })
     }
@@ -394,7 +394,7 @@ $('#bt_chooseIcon').on('click', function() {
       color = class_icon[1]
     }
   }
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   },{icon:icon,color:color})
   modifyWithoutSave = true
@@ -485,11 +485,11 @@ $('#in_searchCmds').keyup(function() {
     $('#eqLogicsCmds .panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   $('#eqLogicsCmds .panel-collapse').attr('data-show', 0)
   var text
   $('#eqLogicsCmds .form-group').each(function() {
-    text = normTextLower($(this).attr('data-cmdname'))
+    text = jeedomUtils.normTextLower($(this).attr('data-cmdname'))
     if (text.indexOf(search) >= 0) {
       $(this).closest('.panel-collapse').attr('data-show',1)
     }

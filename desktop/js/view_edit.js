@@ -17,7 +17,7 @@
 "use strict"
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -48,7 +48,7 @@ $("#ul_view").sortable({
 }).sortable("enable")
 
 $('#bt_chooseIcon').on('click', function() {
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   })
 })
@@ -105,7 +105,7 @@ $("#bt_addView").on('click', function(event) {
           $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
-          loadPage('index.php?v=d&p=view_edit&view_id=' + data.id)
+          jeedomUtils.loadPage('index.php?v=d&p=view_edit&view_id=' + data.id)
         }
       })
     }
@@ -176,7 +176,7 @@ $("#bt_removeView").on('click', function(event) {
         },
         success: function() {
           modifyWithoutSave = false
-          loadPage('index.php?v=d&p=view_edit')
+          jeedomUtils.loadPage('index.php?v=d&p=view_edit')
         }
       })
     }

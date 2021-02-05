@@ -116,7 +116,7 @@ if (!isConnect()) {
 
 <script>
   var $tableViewData = $('#table_addViewData')
-  initTableSorter()
+  jeedomUtils.initTableSorter()
   $tableViewData[0].config.widgetOptions.resizable_widths = ['50px', '150px', '', '645px']
   $tableViewData.trigger('applyWidgets')
     .trigger('resizableReset')

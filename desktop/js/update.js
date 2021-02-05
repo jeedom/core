@@ -153,7 +153,7 @@ $('#bt_saveUpdate').on('click',function() {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-      loadPage('index.php?v=d&p=update&saveSuccessFull=1')
+      jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
     }
   })
 })
@@ -223,7 +223,7 @@ function getJeedomLog(_autoUpdate, _log) {
               clearTimeout(alertTimeout)
             }
             _autoUpdate = 0
-            jeedomReloadPrompt('{{Mise(s) à jour terminée(s) avec succès.}}')
+            jeedomUtils.reloadPagePrompt('{{Mise(s) à jour terminée(s) avec succès.}}')
           }
           //update error:
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {

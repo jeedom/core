@@ -214,14 +214,14 @@ var tableCmdSearch = $('#table_CmdSearch')
 var tableNoteSearch = $('#table_NoteSearch')
 var tableStore = [tableScSearch, tablePlanSearch, tableViewSearch, tableInteractSearch, tableEqlogicSearch, tableCmdSearch, tableNoteSearch]
 
-initTableSorter()
+jeedomUtils.initTableSorter()
 tableStore.forEach(function(table){
   table[0].config.widgetOptions.resizable_widths = ['', '100px', '100px']
   table.trigger('applyWidgets')
   table.trigger('resizableReset')
   table.trigger('sorton', [[[0,0]]])
 })
-initTooltips()
+jeedomUtils.initTooltips()
 /* ------            Search UI            -------*/
 function emptyResultTables() {
   $('#div_alertModalSearch').hide()
@@ -499,7 +499,7 @@ function showScenariosResult(_scenarios, _empty=true) {
     tr += '</tr>'
     tableScSearch.find('tbody').append(tr)
     tableScSearch.trigger("update")
-    initTooltips(tableScSearch)
+    jeedomUtils.initTooltips(tableScSearch)
   }
 }
 
@@ -524,7 +524,7 @@ function showPlansResult(_plans, _empty=true) {
     tr += '</tr>'
     tablePlanSearch.find('tbody').append(tr)
     tablePlanSearch.trigger("update")
-    initTooltips(tablePlanSearch)
+    jeedomUtils.initTooltips(tablePlanSearch)
   }
 }
 
@@ -549,7 +549,7 @@ function showViewsResult(_views, _empty=true) {
     tr += '</tr>'
     tableViewSearch.find('tbody').append(tr)
     tableViewSearch.trigger("update")
-    initTooltips(tableViewSearch)
+    jeedomUtils.initTooltips(tableViewSearch)
   }
 }
 
@@ -574,7 +574,7 @@ function showInteractsResult(_Interacts, _empty=true) {
     tr += '</tr>'
     tableInteractSearch.find('tbody').append(tr)
     tableInteractSearch.trigger("update")
-    initTooltips(tableInteractSearch)
+    jeedomUtils.initTooltips(tableInteractSearch)
   }
 }
 
@@ -600,7 +600,7 @@ function showEqlogicsResult(_Eqlogics, _empty=true) {
     tr += '</tr>'
     tableEqlogicSearch.find('tbody').append(tr)
     tableEqlogicSearch.trigger("update")
-    initTooltips(tableEqlogicSearch)
+    jeedomUtils.initTooltips(tableEqlogicSearch)
   }
 }
 
@@ -625,7 +625,7 @@ function showCmdsResult(_Cmds, _empty=true) {
     tr += '</tr>'
     tableCmdSearch.find('tbody').append(tr)
     tableCmdSearch.trigger("update")
-    initTooltips(tableCmdSearch)
+    jeedomUtils.initTooltips(tableCmdSearch)
   }
 }
 
@@ -650,7 +650,7 @@ function showNotesResult(_Notes, _empty=true) {
     tr += '</tr>'
     tableNoteSearch.find('tbody').append(tr)
     tableNoteSearch.trigger("update")
-    initTooltips(tableNoteSearch)
+    jeedomUtils.initTooltips(tableNoteSearch)
   }
 }
 

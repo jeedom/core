@@ -39,7 +39,7 @@ $("#bt_clearMessage").on('click', function(event) {
     },
     success: function() {
       $("#table_message tbody").remove()
-      refreshMessageNumber()
+      jeedom.refreshMessageNumber()
     }
   })
 })
@@ -59,7 +59,7 @@ $('#table_message').on({
       success: function() {
         tr.remove();
         $("#table_message").trigger("update")
-        refreshMessageNumber()
+        jeedom.refreshMessageNumber()
       }
     })
   }

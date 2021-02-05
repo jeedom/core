@@ -77,9 +77,9 @@ if (view_id != '') {
     },
     success: function (html) {
       if (isset(html.raw) && isset(html.raw.img) && html.raw.img != '') {
-        setBackgroundImage(html.raw.img)
+        jeedomUtils.setBackgroundImage(html.raw.img)
       } else {
-        setBackgroundImage('')
+        jeedomUtils.setBackgroundImage('')
       }
 
       try {
@@ -99,8 +99,8 @@ if (view_id != '') {
       }
 
       setTimeout(function() {
-        initReportMode()
-        positionEqLogic()
+        jeedomUtils.initReportMode()
+        jeedomUtils.positionEqLogic()
         $('.eqLogicZone').disableSelection()
         $('input', 'textarea', 'select').click(function() { $(this).focus() })
 
@@ -186,7 +186,7 @@ function editWidgetMode(_mode, _save) {
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
       } else {
-        $(this).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+        $(this).prepend('<span class="counterReorderJeedom pull-left">'+value+'</span>')
       }
     })
 
@@ -213,22 +213,22 @@ function editWidgetMode(_mode, _save) {
     $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
       grid: [ 2, 2 ],
       resize: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.eqLogicZone').packery()
       },
       stop: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.eqLogicZone').packery()
       }
     })
     $('.eqLogicZone .scenario-widget.allowResize').resizable({
       grid: [ 2, 2 ],
       resize: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.eqLogicZone').packery()
       },
       stop: function(event, ui) {
-        positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
+        jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.eqLogicZone').packery()
       }
     })

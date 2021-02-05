@@ -174,7 +174,7 @@ $('#bt_upload3dModel').fileupload({
 })
 
 $('#bt_chooseIcon').on('click', function() {
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').empty().append(_icon)
   })
 })

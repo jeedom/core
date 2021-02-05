@@ -168,6 +168,7 @@ function setTheme() {
 	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
 	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
+	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 	include_file('core', 'js.inc', 'php');
 	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
 	include_file('3rdparty', 'highstock/highstock', 'js');
@@ -176,7 +177,6 @@ function setTheme() {
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
 	include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
 	include_file('desktop/common', 'utils', 'js');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
 	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
 	include_file('3rdparty', 'jwerty/jwerty', 'js');
 	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');

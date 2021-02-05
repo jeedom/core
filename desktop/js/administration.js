@@ -20,7 +20,7 @@ var actionOptions = []
 var $divConfig = $('#config')
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -71,16 +71,16 @@ $('#in_searchConfig').keyup(function() {
   if (search.length < 3) return
   $('.nav-tabs.nav-primary, .tab-content').hide()
 
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   var text, tooltip, tabId, tabName, el, searchId
   var tabsArr = []
   var thisTabLink
   $('.form-group > .control-label').each(function() {
     thisTabLink = false
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     tooltip = $(this).find('sup i').attr('tooltip')
     if (tooltip) {
-      tooltip = normTextLower(tooltip)
+      tooltip = jeedomUtils.normTextLower(tooltip)
     } else {
       tooltip = ''
     }
@@ -125,7 +125,7 @@ function updateTooltips() {
   $('[tooltip]:not(.tooltipstered)').each(function() {
     $(this).attr('title', $(this).attr('tooltip'))
   })
-  $('[tooltip]:not(.tooltipstered)').tooltipster(TOOLTIPSOPTIONS)
+  $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
 }
 $('#bt_resetConfigSearch').on('click', function() {
   $('#in_searchConfig').val('').keyup()
@@ -223,7 +223,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           $('#div_alert').showAlert({message: data.result, level: 'danger'})
           return
         }
-        loadPage('index.php?v=d&p=administration')
+        jeedomUtils.loadPage('index.php?v=d&p=administration')
       }
     })
   })
@@ -244,7 +244,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           $('#div_alert').showAlert({message: data.result, level: 'danger'})
           return
         }
-        loadPage('index.php?v=d&p=administration')
+        jeedomUtils.loadPage('index.php?v=d&p=administration')
       }
     })
   })
@@ -256,7 +256,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
         $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
-        loadPage('index.php?v=d&p=administration')
+        jeedomUtils.loadPage('index.php?v=d&p=administration')
       }
     })
   })
@@ -353,7 +353,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           },
           success: function(data) {
             modifyWithoutSave = false
-            loadPage('index.php?v=d&p=administration&panel=config_network')
+            jeedomUtils.loadPage('index.php?v=d&p=administration&panel=config_network')
           }
         })
       }
@@ -374,7 +374,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           },
           success: function(data) {
             modifyWithoutSave = false
-            loadPage('index.php?v=d&p=administration&panel=config_network')
+            jeedomUtils.loadPage('index.php?v=d&p=administration&panel=config_network')
           }
         })
       }
@@ -428,7 +428,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
             for (var i in data) {
               $('#'+data[i].id).append(data[i].html.html)
             }
-            taAutosize()
+            jeedomUtils.taAutosize()
           }
         })
       }
@@ -462,7 +462,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
     div += '</span>'
     div += '</div>'
     div += '</div>'
-    var actionOption_id = uniqId()
+    var actionOption_id = jeedomUtils.uniqId()
     div += '<div class="col-sm-5 actionOptions" id="'+actionOption_id+'"></div>'
     div += '</div>'
     $('#div_actionOnMessage').append(div)
@@ -489,7 +489,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
       if (expression[0] && expression[0].options) {
         jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
           el.closest('.actionOnMessage').find('.actionOptions').html(html)
-          taAutosize()
+          jeedomUtils.taAutosize()
         })
       }
     }
@@ -502,7 +502,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
         el.value(result.human)
         jeedom.cmd.displayActionOption(el.value(), '', function(html) {
           el.closest('.actionOnMessage').find('.actionOptions').html(html)
-          taAutosize()
+          jeedomUtils.taAutosize()
         })
       })
     }
@@ -515,7 +515,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
         el.value(result.human)
         jeedom.cmd.displayActionOption(el.value(), '', function(html) {
           el.closest('.actionOnMessage').find('.actionOptions').html(html)
-          taAutosize()
+          jeedomUtils.taAutosize()
         })
       })
     }
@@ -554,7 +554,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           color = class_icon[1]
         }
       }
-      chooseIcon(function(_icon) {
+      jeedomUtils.chooseIcon(function(_icon) {
         objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon)
       },{icon:icon,color:color})
       modifyWithoutSave = true
@@ -576,7 +576,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           color = class_icon[1]
         }
       }
-      chooseIcon(function(_icon) {
+      jeedomUtils.chooseIcon(function(_icon) {
         objectSummary.find('.objectSummaryAttr[data-l1key=iconnul]').empty().append(_icon)
       },{icon:icon,color:color})
       modifyWithoutSave = true

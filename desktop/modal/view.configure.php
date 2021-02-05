@@ -87,7 +87,7 @@ $('#bt_chooseIcon').on('click', function() {
       color = class_icon[1]
     }
   }
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.viewAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   },{icon:icon,color:color})
 })

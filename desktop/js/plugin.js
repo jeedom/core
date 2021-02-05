@@ -45,12 +45,12 @@ $(function() {
     } else {
       $container.find('.pluginDisplayCard').first().click()
     }
-    initTooltips()
+    jeedomUtils.initTooltips()
   }
 })
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -65,12 +65,12 @@ $('#in_searchPlugin').off('keyup').keyup(function() {
     $('.pluginDisplayCard').show()
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
 
   $('.pluginDisplayCard').hide()
   var text
   $('.pluginDisplayCard .name').each(function() {
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.pluginDisplayCard').show()
     }
@@ -88,7 +88,7 @@ $('div.pluginDisplayCard .bt_openPluginPage').off('click').on('click', function(
   if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
-    loadPage(url)
+    jeedomUtils.loadPage(url)
   }
   return false
 })
@@ -406,10 +406,10 @@ function displayPlugin(_pluginId) {
       $container.find('#div_confPlugin').show()
       modifyWithoutSave = false
       if (!$('#md_modal').is(':visible')) {
-        addOrUpdateUrl('id', $container.find('#span_plugin_id').text(), data.name + ' - ' + JEEDOM_PRODUCT_NAME)
+        jeedomUtils.addOrUpdateUrl('id', $container.find('#span_plugin_id').text(), data.name + ' - ' + JEEDOM_PRODUCT_NAME)
       }
       setTimeout(function() {
-        initTooltips($container.find("#div_confPlugin"))
+        jeedomUtils.initTooltips($container.find("#div_confPlugin"))
       }, 500)
     }
   })
@@ -425,7 +425,7 @@ $('.pullInstall').on('click', function() {
     },
     success: function(data) {
       if (data.number > 0) {
-        jeedomReloadPrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
+        jeedomUtils.reloadPagePrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
       } else {
         alert_div_plugin_configuration.showAlert({message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}', level: 'success'})
       }
@@ -469,10 +469,10 @@ $('#bt_returnToThumbnailDisplay').last().on('click', function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
   }, 500)
-  if (checkPageModified()) return
+  if (jeedomUtils.checkPageModified()) return
   $('#div_resumePluginList').show()
   $('#div_confPlugin').hide()
-  addOrUpdateUrl('id',null,'{{Gestion Plugins}} - '+JEEDOM_PRODUCT_NAME)
+  jeedomUtils.addOrUpdateUrl('id',null,'{{Gestion Plugins}} - '+JEEDOM_PRODUCT_NAME)
 })
 
 $('body').off('click','.bt_refreshPluginInfo').on('click','.bt_refreshPluginInfo', function() {
@@ -491,7 +491,7 @@ $('#span_right_button').on({
             alert_div_plugin_configuration.showAlert({message: error.message, level: 'danger'})
           },
           success: function() {
-            loadPage('index.php?v=d&p=plugin')
+            jeedomUtils.loadPage('index.php?v=d&p=plugin')
           }
         })
       }

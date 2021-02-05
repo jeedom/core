@@ -95,5 +95,5 @@ if ($class == 'cron' && $array['class'] == 'scenario' && $array['function'] == '
 </form>
 
 <script>
-taAutosize()
+  jeedomUtils.taAutosize()
 </script>

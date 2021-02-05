@@ -62,7 +62,7 @@ jeedom.object.getEqLogicsFromSummary = function(_params) {
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  
+
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: "getEqLogicsFromSummary",
@@ -272,7 +272,7 @@ jeedom.object.summaryUpdate = function(_params) {
   var keySpan = null;
   var updated = null;
   var icon = null;
-  
+
   for (var i in _params) {
     object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
@@ -301,7 +301,7 @@ jeedom.object.summaryUpdate = function(_params) {
           }
           summarySpan.find('i').remove()
           summarySpan.show().prepend(icon)
-          
+
           //update number:
           if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
             keySpan.empty()
@@ -368,7 +368,7 @@ jeedom.object.getImgPath = function(_params){
         return '';
       }
       if (isset(data.configuration.useBackground) && data.configuration.useBackground == 1) {
-        setBackgroundImage('')
+        jeedomUtils.setBackgroundImage('')
         return
       }
       _params.success(data.img);

@@ -242,7 +242,7 @@ function setTableParser() {
 }
 
 $(function() {
-  initTableSorter()
+  jeedomUtils.initTableSorter()
   $tableCmdConfigureHistory[0].config.widgetOptions.resizable_widths = ['', '120px', '115px', '120px', '160px', '90px', '120px', '130px', '95px']
   $tableCmdConfigureHistory.trigger('resizableReset')
   $tableCmdConfigureHistory.width('100%')
@@ -277,7 +277,7 @@ $(function() {
 
 
   if (CMDNUM < 500) {
-    initTooltips($tableCmdConfigureHistory)
+    jeedomUtils.initTooltips($tableCmdConfigureHistory)
   }
   if (CMDNUM < 1000) {
     jeedom.timeline.autocompleteFolder()

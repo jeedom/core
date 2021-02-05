@@ -429,7 +429,7 @@ $('#in_searchIconSelector').on('keyup',function() {
     $('.iconCategory').show()
     var search = $(this).value()
     if (search != '') {
-        search = normTextLower(search)
+        search = jeedomUtils.normTextLower(search)
         $('.iconDesc').each(function() {
             if ($(this).text().indexOf(search) == -1) {
                 $(this).closest('.divIconSel').hide()

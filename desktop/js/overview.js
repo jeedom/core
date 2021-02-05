@@ -110,7 +110,7 @@ $('#div_pageContainer').on({
   'click': function(event) {
     var objectId = $(this).closest('.objectPreview').data('object_id')
     var url = 'index.php?v=d&p=object&id='+objectId+'#summarytab'
-    loadPage(url)
+    jeedomUtils.loadPage(url)
   }
 }, '.objectPreview .bt_config')
 
@@ -139,7 +139,7 @@ $('.objectPreview').off('click').on('click', function (event) {
   if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
-    loadPage(url)
+    jeedomUtils.loadPage(url)
   }
   return false
 })
@@ -165,7 +165,7 @@ $('.objectPreview .name').off('click').on('click', function (event) {
   if (event.ctrlKey || event.metaKey) {
     window.open(url).focus()
   } else {
-    loadPage(url)
+    jeedomUtils.loadPage(url)
   }
   return false
 })
@@ -187,10 +187,10 @@ $("#md_overviewSummary").dialog({
   position: {my: 'left top', at: 'left+19 top+96', of: window},
   open: function() {
     $('.ui-widget-overlay.ui-front').css('display', 'none')
-    //catch infos updates by main mutationobserver (loadpage disconnect/reconnect it):
-    if (__OBSERVER__) {
+    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
+    if (jeedomUtils.OBSERVER) {
       var summaryModal = document.getElementById('summaryEqlogics')
-      __OBSERVER__.observe(summaryModal, _observerConfig_)
+      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
     }
   },
   beforeClose: function(event, ui) {
@@ -309,7 +309,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
               modal.width(fullWidth + 26).height(fullHeight + 50)
               modalContent.width(fullWidth).height(fullHeight)
 
-              initTooltips($('#md_overviewSummary'))
+              jeedomUtils.initTooltips($('#md_overviewSummary'))
             }
           }
         })

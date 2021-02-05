@@ -72,7 +72,7 @@ jeedom.changes = function(){
     },
     error: function(_error){
       if(typeof(user_id) != "undefined" && jeedom.connect == 100){
-        notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
+        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
       }
       jeedom.connect++;
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
@@ -93,7 +93,6 @@ jeedom.changes = function(){
   };
   $.ajax(paramsAJAX);
 }
-
 
 jeedom.init = function () {
   jeedom.datetime = serverDatetime;
@@ -188,16 +187,61 @@ jeedom.init = function () {
     $('body').attr('data-coloredIcons',_state);
   });
   $('body').on('message::refreshMessageNumber', function (_event,_options) {
-    refreshMessageNumber();
+    jeedom.refreshMessageNumber();
   });
   $('body').on('update::refreshUpdateNumber', function (_event,_options) {
-    refreshUpdateNumber();
+    jeedom.refreshUpdateNumber();
   });
   $('body').on('notify', function (_event,_options) {
-    notify(_options.title, _options.message, _options.theme);
+    jeedom.notify(_options.title, _options.message, _options.theme);
   });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
+  }
+}
+
+jeedom.MESSAGE_NUMBER
+jeedom.refreshMessageNumber = function() {
+  jeedom.message.number({
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(_number) {
+      jeedom.MESSAGE_NUMBER = _number;
+      if (_number == 0 || _number == '0') {
+        $('#span_nbMessage').hide()
+      } else {
+        $('#span_nbMessage').html(_number).show()
+      }
+    }
+  })
+}
+
+jeedom.UPDATE_NUMBER
+jeedom.refreshUpdateNumber = function() {
+  jeedom.update.number({
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(_number) {
+      jeedom.UPDATE_NUMBER = _number;
+      if (_number == 0 || _number == '0') {
+        $('#span_nbUpdate').hide()
+      } else {
+        $('#span_nbUpdate').html(_number).show()
+      }
+    }
+  })
+}
+
+jeedom.notify = function(_title, _text, _class_name) {
+  if (_title == '' && _text == '') {
+    return true
+  }
+  if (isset(_class_name) != '' && isset(toastr[_class_name])) {
+    toastr[_class_name](_text, _title)
+  } else {
+    toastr.info(_text, _title)
   }
 }
 

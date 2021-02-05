@@ -32,7 +32,7 @@ var widget_parameters_opt = {
 }
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -54,12 +54,12 @@ $('#in_searchWidgets').keyup(function() {
     $('.widgetsDisplayCard').show()
     return;
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
   $('.widgetsDisplayCard').hide()
   $('.panel-collapse').attr('data-show',0)
   var text
   $('.widgetsDisplayCard .name').each(function() {
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.widgetsDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show',1)
@@ -141,14 +141,14 @@ $('#bt_chooseIcon').on('click', function() {
     _icon = $('div[data-l2key="icon"] > i').attr('class')
     _icon = '.' + _icon.replace(' ', '.')
   }
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.widgetsAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   },{icon:_icon})
   modifyWithoutSave = true
 })
 
 $('#bt_editCode').off('click').on('click', function() {
-  loadPage('index.php?v=d&p=editor&type=widget')
+  jeedomUtils.loadPage('index.php?v=d&p=editor&type=widget')
 })
 
 $('#bt_replaceWidget').off('click').on('click',function() {
@@ -173,7 +173,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
 
   $('#md_modal').dialog({title: "{{Appliquer ce widget à}}"})
   .load('index.php?v=d&modal=cmd.selectMultiple&type='+$('.widgetsAttr[data-l1key=type]').value()+'&subtype='+$('.widgetsAttr[data-l1key=subtype]').value(), function() {
-    initTableSorter()
+    jeedomUtils.initTableSorter()
 
     $('#table_cmdConfigureSelectMultiple tbody tr').each(function( index ) {
       if (checkedId.includes($(this).data('cmd_id'))) {
@@ -266,7 +266,7 @@ $('.selectWidgetSubType').off('change').on('change',function() {
 
 $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', function() {
   var bt = $(this)
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.form-group').find('.widgetsAttr[data-l1key=replace]').value(_icon)
   },{img:true})
   modifyWithoutSave = true
@@ -274,7 +274,7 @@ $('#div_templateReplace').off('click','.chooseIcon').on('click','.chooseIcon', f
 
 $('#div_templateTest').off('click','.chooseIcon').on('click','.chooseIcon', function() {
   var bt = $(this)
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     bt.closest('.input-group').find('.testAttr').value(_icon)
   },{img:true})
   modifyWithoutSave = true
@@ -356,10 +356,10 @@ $('#bt_returnToThumbnailDisplay').on('click',function() {
     $('.nav li.active').removeClass('active')
     $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
   }, 500)
-  if (checkPageModified()) return
+  if (jeedomUtils.checkPageModified()) return
   $('#div_conf').hide()
   $('#div_widgetsList').show()
-  addOrUpdateUrl('id',null,'{{Widgets}} - '+JEEDOM_PRODUCT_NAME)
+  jeedomUtils.addOrUpdateUrl('id',null,'{{Widgets}} - '+JEEDOM_PRODUCT_NAME)
 })
 
 $('#bt_widgetsAddTest').off('click').on('click', function(event) {
@@ -417,7 +417,7 @@ function printWidget(_id) {
         template += 'tmplicon'
       }
       loadTemplateConfiguration(template,data)
-      addOrUpdateUrl('id',data.id)
+      jeedomUtils.addOrUpdateUrl('id',data.id)
       modifyWithoutSave = false
       jeedom.widgets.getPreview({
         id: data.id,
@@ -485,7 +485,7 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
         },
         success: function(data) {
           modifyWithoutSave = false
-          loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1')
+          jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1')
           $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
         }
       })
@@ -605,7 +605,7 @@ $("#bt_mainImportWidgets").change(function(event) {
                   $('#div_alert').showAlert({message: error.message, level: 'danger'});
                 },
                 success: function(data) {
-                  loadPage('index.php?v=d&p=widgets&id=' + objectData.id+ '&saveSuccessFull=1');
+                  jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id+ '&saveSuccessFull=1');
                 }
               })
             }

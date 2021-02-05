@@ -20,7 +20,7 @@ var actionOptions = []
 var $interactListContainer = $('.interactListContainer')
 
 document.onkeydown = function(event) {
-  if (getOpenedModal()) return
+  if (jeedomUtils.getOpenedModal()) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -42,14 +42,14 @@ $('#in_searchInteract').keyup(function() {
     $('.interactDisplayCard').show()
     return
   }
-  search = normTextLower(search)
+  search = jeedomUtils.normTextLower(search)
 
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide()
   $('.panel-collapse').attr('data-show',0)
   var text
   $('.interactDisplayCard .name').each(function() {
-    text = normTextLower($(this).text())
+    text = jeedomUtils.normTextLower($(this).text())
     if (text.indexOf(search) >= 0) {
       $(this).closest('.interactDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show',1)
@@ -185,7 +185,7 @@ $('#bt_chooseIcon').on('click', function() {
     _icon = $('div[data-l2key="icon"] > i').attr('class')
     _icon = '.' + _icon.replace(' ', '.')
   }
-  chooseIcon(function(_icon) {
+  jeedomUtils.chooseIcon(function(_icon) {
     $('.interactAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
   },{icon:_icon})
   modifyWithoutSave = true
@@ -202,10 +202,10 @@ $('.displayInteracQuery').on('click', function() {
 })
 
 $('#bt_interactThumbnailDisplay').on('click', function() {
-  if (checkPageModified()) return
+  if (jeedomUtils.checkPageModified()) return
   $('#div_conf').hide()
   $('#interactThumbnailDisplay').show()
-  addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME)
+  jeedomUtils.addOrUpdateUrl('id',null,'{{Interactions}} - '+JEEDOM_PRODUCT_NAME)
 })
 
 $('.interactDisplayCard').off('click').on('click', function(event) {
@@ -243,7 +243,7 @@ $('#bt_duplicate').on('click', function() {
         },
         success: function(data) {
           modifyWithoutSave = false;
-          loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
+          jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
         }
       })
     }
@@ -340,7 +340,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function() {
         },
         success: function(data) {
           modifyWithoutSave = false;
-          loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
+          jeedomUtils.loadPage('index.php?v=d&p=interact&id=' + data.id + '&saveSuccessFull=1')
         }
       })
     }
@@ -358,7 +358,7 @@ $("#bt_removeInteract").on('click', function() {
         },
         success: function() {
           modifyWithoutSave = false
-          loadPage('index.php?v=d&p=interact&removeSuccessFull=1')
+          jeedomUtils.loadPage('index.php?v=d&p=interact&removeSuccessFull=1')
         }
       })
     }
@@ -377,7 +377,7 @@ $('#div_conf').on({
     var el = $(this)
     jeedom.cmd.displayActionOption($(this).value(), init(expression[0].options), function(html) {
       el.closest('.' + type).find('.actionOptions').html(html)
-      taAutosize()
+      jeedomUtils.taAutosize()
     })
   }
 }, '.cmdAction.expressionAttr[data-l1key=cmd]')
@@ -390,7 +390,7 @@ $('#div_conf').on({
       el.value(result.human)
       jeedom.cmd.displayActionOption(el.value(), '', function(html) {
         el.closest('.' + type).find('.actionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
       })
     })
   }
@@ -404,7 +404,7 @@ $('#div_conf').on({
       el.value(result.human)
       jeedom.cmd.displayActionOption(el.value(), '', function(html) {
         el.closest('.' + type).find('.actionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
       })
     })
   }
@@ -418,7 +418,7 @@ $('#div_conf').on({
       el.value(result.human)
       jeedom.cmd.displayActionOption(el.value(), '', function(html) {
         el.closest('.' + type).find('.actionOptions').html(html)
-        taAutosize()
+        jeedomUtils.taAutosize()
       })
     })
   }
@@ -486,10 +486,10 @@ function printInteract(_id) {
           addAction(data.actions.cmd[i], 'action','{{Action}}');
         }
       }
-      taAutosize()
+      jeedomUtils.taAutosize()
 
       var hash = window.location.hash
-      addOrUpdateUrl('id',data.id)
+      jeedomUtils.addOrUpdateUrl('id',data.id)
       if (hash == '') {
         $('.nav-tabs a[href="#generaltab"]').click()
       } else {
@@ -508,7 +508,7 @@ function printInteract(_id) {
               $('#'+data[i].id).append(data[i].html.html)
             }
           }
-          taAutosize()
+          jeedomUtils.taAutosize()
         }
       })
       modifyWithoutSave = false
@@ -537,7 +537,7 @@ function addAction(_action, _type, _name) {
   div += '</span>'
   div += '</div>'
   div += '</div>'
-  var actionOption_id = uniqId()
+  var actionOption_id = jeedomUtils.uniqId()
   div += '<div class="col-sm-7 actionOptions" id="'+actionOption_id+'"></div>'
   $('#div_' + _type).append(div)
   $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
