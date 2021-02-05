@@ -11,9 +11,7 @@
     "league/flysystem-webdav": "*",
     "league/oauth2-client": "*",
     "matthiasmullie/minify": "*",
-    "pragmarx/google2fa-qrcode": "^1.0",
-    "ext-pdo": "*",
-    "ext-json": "*"
+    "pragmarx/google2fa-qrcode": "^1.0"
   },
   "license": "GPL",
   "config": {

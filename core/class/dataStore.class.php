@@ -31,10 +31,11 @@ class dataStore {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
+
     /**
      * @param $_id
      * @return array|null
-     * @throws Exception
+     * @throws ReflectionException
      */
     public static function byId($_id): ?array
     {
