@@ -3447,6 +3447,7 @@
         "401 - Accès non autorisé": "401-不正アクセス",
         "Objet inconnu. Vérifiez l\\'ID": "不明なオブジェクト。 IDを確認してください",
         "Objet inconnu. Vérifiez l\\'ID ": "不明なオブジェクト。 IDを確認してください",
+        "L\\'objet n\\'existe pas : ": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID ": "不明なビュー。 IDを確認してください",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
         "Extension du fichier non valide (autorisé .jpg .png) : ": "Extension du fichier non valide (autorisé .jpg .png) :",

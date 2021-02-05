@@ -16,11 +16,10 @@
 
 "use strict"
 
-var _draggingId = false
-var _orders = {}
-
 var jeedomUI = {}
-
+jeedomUI.draggingId = false
+jeedomUI.orders = {}
+jeedomUI.isEditing = false
 /*
 @dashboard
 @view
@@ -28,19 +27,19 @@ draggable call to reorder/insert drag
 */
 jeedomUI.orderItems = function(_container, _orderAttr='data-order') {
   var itemElems = _container.packery('getItemElements')
-  var _draggingOrder = _orders[_draggingId]
+  var _draggingOrder = jeedomUI.orders[jeedomUI.draggingId]
   var _newOrders = {}
   $(itemElems).each( function(i, itemElem ) {
     _newOrders[$(this).attr('data-editId')] = i + 1
   })
-  var _draggingNewOrder = _newOrders[_draggingId]
-  //----->moved _draggingId from _draggingOrder to _draggingNewOrder
+  var _draggingNewOrder = _newOrders[jeedomUI.draggingId]
+  //----->moved jeedomUI.draggingId from _draggingOrder to _draggingNewOrder
 
   //rearrange that better:
   var _finalOrder = {}
   for (var [id, order] of Object.entries(_newOrders)) {
     if (order <= _draggingNewOrder) _finalOrder[id] = order
-    if (order > _draggingNewOrder) _finalOrder[id] = _orders[id] + 1
+    if (order > _draggingNewOrder) _finalOrder[id] = jeedomUI.orders[id] + 1
   }
 
   //set dom positions:
@@ -62,7 +61,7 @@ jeedomUI.orderItems = function(_container, _orderAttr='data-order') {
   $(itemElems).each(function(i, itemElem) {
     $(itemElem).attr(_orderAttr, i + 1)
     var value = i + 1
-    if (isEditing) {
+    if (jeedomUI.isEditing) {
       if ($(itemElem).find(".counterReorderJeedom").length) {
         $(itemElem).find(".counterReorderJeedom").text(value)
       } else {
@@ -201,22 +200,22 @@ infos/actions tile signals
 jeedomUI.setEqSignals = function() {
   $('body').off('mouseenter').off('mouseleave')
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
-    if(!isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalAction')
+    if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalAction')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"][data-subtype!="select"]', function (event) {
-    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction')
+    if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction')
   })
   .on('mouseenter','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
-    if(!isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalInfo')
+    if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').addClass('eqSignalInfo')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget.history[data-type="info"]', function (event) {
-    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo')
+    if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo')
   })
   .on('mouseenter','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
-    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
+    if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalAction').addClass('eqSignalInfo')
   })
   .on('mouseleave','div.eqLogic-widget .cmd-widget[data-type="action"] .timeCmd', function (event) {
-    if(!isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
+    if(!jeedomUI.isEditing) $(this).closest('div.eqLogic-widget').removeClass('eqSignalInfo').addClass('eqSignalAction')
   })
 }
 
@@ -227,7 +226,7 @@ Handle history modal openning on infos
 */
 jeedomUI.setHistoryModalHandler = function() {
   $('#div_pageContainer').off('click', '.history, .timeCmd.history').on('click', '.history, .timeCmd.history', function (event) {
-    if (isEditing) return false
+    if (jeedomUI.isEditing) return false
     event.stopImmediatePropagation()
     event.stopPropagation()
     if ((event.ctrlKey || event.metaKey) && $(this).closest('div.eqLogic.eqLogic-widget').html() != undefined) {

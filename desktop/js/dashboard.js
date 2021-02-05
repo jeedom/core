@@ -16,7 +16,7 @@
 
 "use strict"
 
-var isEditing = false
+
 if (SEL_SUMMARY != '') {
   $('#bt_displayObject, #bt_editDashboardWidgetOrder').parent().remove()
 }
@@ -57,6 +57,7 @@ $(function() {
     $('input', 'textarea', 'select').click(function() { $(this).focus() })
   }, 750)
 
+  jeedomUI.isEditing = false
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
 })
@@ -64,7 +65,7 @@ $(function() {
 
 //searching
 $('#in_searchDashboard').off('keyup').on('keyup',function() {
-  if (isEditing) return
+  if (jeedomUI.isEditing) return
   var search = $(this).value()
   $('.div_object:not(.hideByObjectSel)').show()
   if (search == '') {
@@ -122,7 +123,7 @@ $('#in_searchDashboard').off('keyup').on('keyup',function() {
   $('.div_displayEquipement').packery()
 })
 $('#bt_resetDashboardSearch').on('click', function () {
-  if (isEditing) return
+  if (jeedomUI.isEditing) return
   $('#categoryfilter li .catFilterKey').prop("checked", true)
   $('#dashTopBar button.dropdown-toggle').removeClass('warning')
   $('#in_searchDashboard').val('').keyup()
@@ -275,7 +276,7 @@ var btOverviewTimer
 var $divPreview = $('#dashOverviewPrev')
 $('#div_pageContainer').on({
   'mouseenter': function(event) {
-    if(!isEditing) {
+    if(!jeedomUI.isEditing) {
       btOverviewTimer = setTimeout(function() {
         $divPreview.show(350)
       }, 300)
@@ -337,8 +338,6 @@ $('.li_object').on('click',function() {
 
 
 //Edit mode:
-var _draggingId = false
-var _orders = {}
 function editWidgetMode(_mode,_save) {
   if (!isset(_mode)) {
     if ($('#bt_editDashboardWidgetOrder').attr('data-mode') != undefined && $('#bt_editDashboardWidgetOrder').attr('data-mode') == 1) {
@@ -350,7 +349,7 @@ function editWidgetMode(_mode,_save) {
   var divEquipements = $('div.div_displayEquipement')
   if (_mode == 0) {
     jeedom.cmd.disableExecute = false
-    isEditing = false
+    jeedomUI.isEditing = false
     $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').removeClass('disabled')
     if (!isset(_save) || _save) {
       jeedomUI.saveWidgetDisplay({dashboard : 1})
@@ -368,7 +367,7 @@ function editWidgetMode(_mode,_save) {
       .prop('readonly', false)
   } else {
     jeedom.cmd.disableExecute = true
-    isEditing = true
+    jeedomUI.isEditing = true
     resetCategoryFilter()
     $('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
 
@@ -394,10 +393,10 @@ function editWidgetMode(_mode,_save) {
       disabled: false,
       distance: 10,
       start: function(event, ui) {
-        _draggingId = $(this).attr('data-editId')
-        _orders = {}
+        jeedomUI.draggingId = $(this).attr('data-editId')
+        jeedomUI.orders = {}
         $(this).parent().find('.ui-draggable').each(function(i, itemElem ) {
-          _orders[_draggingId] = parseInt($(this).attr('data-order'))
+          jeedomUI.orders[jeedomUI.draggingId] = parseInt($(this).attr('data-order'))
         })
       }
     })

@@ -20,11 +20,11 @@ var $summaryContainer = null
 var modal = null
 var modalContent = null
 
-//infos/actions tile signals:
-var isEditing = false
-jeedomUI.setEqSignals()
-
 $(function() {
+  //infos/actions tile signals:
+  jeedomUI.isEditing = false
+  jeedomUI.setEqSignals()
+
   //move to top summary:
   var parent
   $('.objectPreview').each(function() {
