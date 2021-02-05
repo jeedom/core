@@ -5,6 +5,7 @@
 - Bugfix scroll horizontal sur les designs.
 - Bugfix scroll sur les pages équipements de plugins.
 - Bugfix des paramétrages de couleurs sur les liens vue/design sur un Design.
+- Bugfix et optimisation de la Timeline.
 - Retour à trois doigts sur les designs en mobile maintenant limité aux profils administrateur.
 
 ## 4.1.19
