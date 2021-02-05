@@ -940,7 +940,7 @@ Theme Core 2021 @Jeedom
   .objectPreview > .topPreview > .name {
     font-size: 16px;
     font-weight: 300;
-    max-width: 195px;
+    max-width: calc(100% - 95px);
     width: -webkit-fill-available;
     max-height: 30px !important;
     overflow: hidden;
