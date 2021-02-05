@@ -15,7 +15,7 @@ function initEqanalyse() {
         div += eqLogics[i].html
       }
       $('#div_displayAlert').empty().html(div).trigger('create')
-      setTileSize('.eqLogic')
+      jeedomUtils.setTileSize('.eqLogic')
       setTimeout(function() {
         $('#div_displayAlert').packery({gutter : 0})
       }, 100)
@@ -32,14 +32,14 @@ function initEqanalyse() {
           }
           $('#div_displayBattery').empty().html(div).trigger('create')
           $('ul[data-role=nd2tabs]').tabs()
-          setTileSize('.eqLogic')
+          jeedomUtils.setTileSize('.eqLogic')
         }
       })
     }
   })
 
   $('body').on('orientationChanged', function(event, _orientation) {
-    setTileSize('.eqLogic')
+    jeedomUtils.setTileSize('.eqLogic')
     $('#div_displayAlert').packery({gutter : 0})
   })
 }

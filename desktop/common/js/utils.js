@@ -285,6 +285,7 @@ $(function() {
   }, 1)
 })
 
+
 //Jeedom theme__
 jeedomUtils.setJeedomTheme = function() {
   var $body = $('body')

@@ -19,7 +19,7 @@ function initTimeline() {
         rightPanel += '<li><a class="changeTimelineFolder" href="#" data-value="'+data[i]+'">'+data[i]+'</a></li>'
       }
       rightPanel += '</ul>'
-      panel(rightPanel)
+      jeedomUtils.loadPanel(rightPanel)
       $('.changeTimelineFolder').off('click').on('click',function() {
         $('.changeTimelineFolder').removeClass('active')
         $(this).addClass('active')

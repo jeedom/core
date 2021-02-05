@@ -8,7 +8,7 @@ var $bottomPanelAnalyseActions
 var $bottomPanelOtherActions
 
 function initHome() {
-  refreshMessageNumber()
+  jeedomUtils.refreshMessageNumber()
 
   //set other analyse:
   $bottomPanelAnalyseActions = $('#bottompanel_analyseActionList')
@@ -166,7 +166,7 @@ function initHome() {
           $('#div_alert').showAlert({message: data.result, level: 'danger'})
           return
         }
-        initApplication()
+        jeedomUtils.initApplication()
       }
     })
   })
