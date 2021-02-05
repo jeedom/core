@@ -7,6 +7,7 @@
       summary : _summary,
       version : 'mobile',
       success : function(data){
+        $('#div_summaryAction .eqLogic-widget').attr('data-eqLogic_id',-1);
         $('#div_summaryAction').empty().html(data.html).trigger('create');
         setTimeout(function(){
           for(var i in data.removeCmd){

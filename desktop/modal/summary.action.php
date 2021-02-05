@@ -40,8 +40,9 @@ echo '</div>';
 ?>
 <script>
 setTimeout(function(){
+  $('#div_summaryAction .eqLogic-widget').attr('data-eqLogic_id',-1);
   $('#div_summaryAction .widget-name').remove();
-  $('#div_summaryAction .eqLogic-widget').width('100%')
+  $('#div_summaryAction .eqLogic-widget').width('100%');
   for(var i in summary_cmd_to_remove){
     $('#div_summaryAction .cmd[data-cmd_id='+summary_cmd_to_remove[i]+']').remove();
   }
