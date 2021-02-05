@@ -1197,6 +1197,10 @@
   [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object:hover {
     background-color: var(--form-bg-color);
   }
+  
+  [data-page="dashboard"] #dashOverviewPrev .topPreview .name {
+    max-width: 100%;
+  }
 
   [data-page="dashboard"] #div_displayObject {
     margin-bottom: 2em;
