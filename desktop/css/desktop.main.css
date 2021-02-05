@@ -1040,7 +1040,7 @@
     height: 28px;
   }
   .objectPreview > .topPreview > .name {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 300;
     max-width: calc(100% - 95px);
     width: -webkit-fill-available;
