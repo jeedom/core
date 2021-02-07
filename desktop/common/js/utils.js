@@ -587,7 +587,9 @@ jeedomUtils.initJeedomModals = function() {
 jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_modal', _open=true) {
   $(_button).on('click', function(event) {
     jeedomUtils.closeJeedomMenu()
-    if (jeedomUI.isEditing == true) return false
+    try {
+      if (jeedomUI.isEditing == true) return false
+    } catch (error) {}
     if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
