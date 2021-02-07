@@ -473,6 +473,13 @@ try {
 						if (!is_object($cmd)) {
 							$cmd = new $typeCmd();
 						}
+
+						if (isset($cmd_info['display']['parameters'])) {
+							$keys = array_map('trim', array_keys($cmd_info['display']['parameters']));
+							$values = array_map('trim', array_values($cmd_info['display']['parameters']));
+							$cmd_info['display']['parameters'] = array_combine($keys, $values);
+						}
+
 						$cmd->setEqLogic_id($eqLogic->getId());
 						$cmd->setOrder($cmd_order);
 						utils::a2o($cmd, $cmd_info);
