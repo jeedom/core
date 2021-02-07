@@ -378,7 +378,7 @@ jeedomUtils.checkThemechange = function() {
       $('#bootstrap_theme_css').attr('href', themeCss)
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-      jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
+      jeedomUtils.setBackgroundImage('')
       jeedomUtils.triggerThemechange()
     })
     .fail(function() {
