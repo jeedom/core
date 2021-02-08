@@ -199,7 +199,7 @@ function constructSQLstring() {
       value = $(this).val()
       if (value != '') {
         cols += '`' + col + '`,'
-        values += '\''+value + '\','
+        values += ''+value + ','
       }
     })
     command += ' (' + cols.slice(0, -1) + ') VALUES (' + values.slice(0, -1) + ')'
@@ -224,7 +224,7 @@ function constructSQLstring() {
     command += ' WHERE '
     command += '`' + $('#sqlWhere').val() + '`'
     command += ' ' + $('#sqlLike').value()
-    command += ' \'' + $('#sqlLikeValue').val()+'\''
+    command += ' ' + $('#sqlLikeValue').val()
   }
   
   return command
