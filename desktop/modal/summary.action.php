@@ -18,34 +18,44 @@
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-if(init('object_id') == ''){
+if (init('object_id') == '') {
   $virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
-}else{
+} else {
   $virtual = eqLogic::byLogicalId('summary' . init('object_id'), 'virtual');
 }
-if(!is_object($virtual)){
+if (!is_object($virtual)) {
   throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . init('object_id'));
 }
 $removeCmd = array();
 foreach ($virtual->getCmd() as $cmd) {
-  if($cmd->getType() == 'action' && $cmd->getConfiguration('summary::key') == init('summary')){
+  if ($cmd->getType() == 'action' && $cmd->getConfiguration('summary::key') == init('summary')) {
     continue;
   }
   $removeCmd[] = $cmd->getId();
 }
-echo '<div id="div_summaryAction">';
-echo $virtual->toHtml('dashboard');
-sendVarToJs('summary_cmd_to_remove',$removeCmd );
-echo '</div>';
+sendVarToJs('summary_cmd_to_remove', $removeCmd);
+
+echo '<div id="div_summaryAction">'.$virtual->toHtml('dashboard').'</div>';
 ?>
 <script>
-setTimeout(function(){
-  $('#div_summaryAction .eqLogic-widget').attr('data-eqLogic_id',-1);
-  $('#div_summaryAction .widget-name').remove();
-  $('#div_summaryAction .eqLogic-widget').width('100%');
-  for(var i in summary_cmd_to_remove){
-    $('#div_summaryAction .cmd[data-cmd_id='+summary_cmd_to_remove[i]+']').remove();
-  }
-  $('#md_modal').dialog({height: $('#div_summaryAction .eqLogic-widget').height() + 80})
-}, 10);
+  setTimeout(function() {
+    var $divSummaryAction = $('#div_summaryAction')
+    //eqLogic UI:
+    $divSummaryAction.find('.widget-name').remove()
+    $divSummaryAction.find('.eqLogic-widget').attr('data-eqLogic_id', -1)
+    $divSummaryAction.find('.eqLogic-widget .verticalAlign').removeClass('verticalAlign')
+
+    //remove commands:
+    for (var i in summary_cmd_to_remove) {
+      $divSummaryAction.find('.cmd[data-cmd_id='+summary_cmd_to_remove[i]+']').remove()
+    }
+
+    //modal:
+    $('#md_modal').parent('.ui-dialog').addClass('summaryActionMain')
+    $('#md_modal').dialog({
+      height: $divSummaryAction.find('.eqLogic-widget').height() + 45,
+      width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 5
+      })
+  }, 10)
+
 </script>
