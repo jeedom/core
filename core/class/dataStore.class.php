@@ -164,7 +164,7 @@ class dataStore {
 			array('action' => 'variable(' . $this->getKey() . ')', 'option' => 'variable(' . $this->getKey() . ')'),
 			array('action' => 'variable(' . $this->getKey() . ',', 'option' => 'variable(' . $this->getKey() . ','),
 			array('action' => 'variable', 'option' => ':"'.$this->getKey().'",', 'and' => true),
-			array('action' => 'ask', 'option' => ':"'.$this->getKey().'",', 'and' => true),
+			array('action' => 'ask', 'option' => 'variable":"'.$this->getKey().'",', 'and' => true),
 		));
 		if ($_array) {
 			foreach ($return as &$value) {
