@@ -693,9 +693,9 @@ jeedomUtils.setJeedomGlobalUI = function() {
   })
 
   $('body').on('click', '.objectSummaryParent', function() {
-    if (event.ctrlKey) {
-      return;
-    }
+    //action summary:
+    if (event.ctrlKey) return
+
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
 
     var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
@@ -705,12 +705,12 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.loadPage(url)
   })
 
-  $('body').on('click', '.objectSummaryAction', function() {
+  $('body').on('click', '.objectSummaryAction', function(event) {
     if (!event.ctrlKey) {
-      return;
+      return
     }
     $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id')).dialog('open')
-  });
+  })
 
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
     var el = $(this).closest('div').find('input')

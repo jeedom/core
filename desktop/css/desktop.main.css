@@ -992,6 +992,41 @@
     z-index: 20;
   }
 
+  /* action summary */
+  div.ui-dialog.summaryActionMain > div.ui-dialog-content,
+  div.ui-dialog.summaryActionMain #md_modal {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: unset !important;
+  }
+
+  div.ui-dialog.summaryActionMain > div.ui-dialog-titlebar {
+    line-height: 12px;
+    background: rgba(var(--defaultBkg-color), 0.95) !important;
+  }
+  div.ui-dialog.summaryActionMain .ui-dialog-titlebar-close::before {
+    color: var(--link-color) !important;
+  }
+  div.ui-dialog.summaryActionMain .ui-dialog-title {
+    font-weight: 300;
+    color: var(--link-color) !important;
+  }
+  div.ui-dialog.summaryActionMain .ui-dialog-title::before {
+    content: '';
+  }
+  div.ui-dialog.summaryActionMain .ui-dialog-titlebar-close {
+    margin-top: -27px;
+    margin-right: -5px;
+  }
+
+  #div_summaryAction div.eqLogic-widget {
+    position: relative;
+    top: 5px;
+    height: unset !important;
+    padding: 3px;
+  }
+
+
 /* ____________________OVERVIEW */
   #objectOverviewContainer .objectPreview,
   #dashOverviewPrev .objectPreview {
@@ -1197,7 +1232,7 @@
   [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object:hover {
     background-color: var(--form-bg-color);
   }
-  
+
   [data-page="dashboard"] #dashOverviewPrev .topPreview .name {
     max-width: 100%;
   }

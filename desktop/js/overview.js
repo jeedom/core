@@ -116,6 +116,9 @@ $('#div_pageContainer').on({
 
 $('#objectOverviewContainer').on({
   'click': function(event) {
+    //action summary:
+    if (event.ctrlKey) return
+
     event.stopPropagation()
     event.preventDefault()
     var objectId = $(this).closest('.objectPreview').attr('data-object_id')
