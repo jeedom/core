@@ -568,7 +568,7 @@ class jeeObject {
 				try {
 					$cmd->execCmd($_options);
 				} catch (\Exception $e) {
-					
+					log::add('cmd','error',$cmd->getHumanName().' '.$e->getMessage());
 				}
 			}
 		}
