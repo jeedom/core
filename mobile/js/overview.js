@@ -62,9 +62,9 @@ function initOverview() {
 
       $('.objectPreview').off('click').on('click', function(event) {
         if (event.target !== this) return
-        modal(false)
-        panel(false)
-        page('equipment', $(this).data('title'), $(this).data('option').toString())
+        jeedomUtils.loadModal(false)
+        jeedomUtils.loadPanel(false)
+        jeedomUtils.loadPage('equipment', $(this).data('title'), $(this).data('option').toString())
       })
     }
   })

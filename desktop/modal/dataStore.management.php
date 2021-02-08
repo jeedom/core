@@ -126,7 +126,7 @@ function getDatastoreTr(_datastore=false) {
 
   thisTr += '<td>'
   if (_datastore) {
-    thisTr += '<span style="display : none;">' + _datastore.value + '</span><input class="form-control input-sm value" value="' + _datastore.value + '" />'
+    thisTr += '<span style="display : none;">' + _datastore.value + '</span><input class="form-control input-sm value" value="' + _datastore.value.replaceAll('\"', '&quot;') + '" />'
   } else {
     thisTr += '<input class="form-control input-sm value" value="" />'
   }

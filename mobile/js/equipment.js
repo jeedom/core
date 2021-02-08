@@ -62,7 +62,7 @@ function initEquipment(_object_id) {
         }
       }
       li += '</ul>'
-      panel(li)
+      jeedomUtils.loadPanel(li)
       jeedom.object.summaryUpdate(summaries)
     }
   })
@@ -71,7 +71,7 @@ function initEquipment(_object_id) {
     jeedom.object.getImgPath({
       id : _object_id,
       success : function(_path) {
-        setBackgroundImage(_path)
+        jeedomUtils.setBackgroundImage(_path)
       }
     })
     if (summary != '') {
@@ -85,7 +85,7 @@ function initEquipment(_object_id) {
 
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
-    setTileSize('.eqLogic, .scenario')
+    jeedomUtils.setTileSize('.eqLogic, .scenario')
     $('#div_displayEquipement > .objectHtml, .div_displayEquipement .objectHtml').packery({gutter :0})
   })
 
@@ -98,23 +98,23 @@ function initEquipment(_object_id) {
       $('.objectHtml').packery()
       return
     }
-    search = normTextLower(search)
+    search = jeedomUtils.normTextLower(search)
     var match
     $('div.eqLogic-widget').each(function() {
       match = false
-      if (match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
+      if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
-      if (match || ($(this).attr('data-tags') != undefined && normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)) {
+      if (match || ($(this).attr('data-tags') != undefined && jeedomUtils.normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-category') != undefined && normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
+      if (match ||($(this).attr('data-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-eqType') != undefined && normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
+      if (match ||($(this).attr('data-eqType') != undefined && jeedomUtils.normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-translate-category') != undefined && normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
+      if (match ||($(this).attr('data-translate-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
         match = true
       }
       if (match) {
@@ -125,7 +125,7 @@ function initEquipment(_object_id) {
     })
     $('.scenario-widget').each(function() {
       match = false
-      if (match || normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
+      if (match || jeedomUtils.normTextLower($(this).find('.widget-name').text()).indexOf(search) >= 0) {
         match = true
       }
       if (match) {
@@ -198,7 +198,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         $('#div_displayEquipement').empty().html(div).trigger('create')
         jeedom.object.summaryUpdate([{object_id:_objectId}])
       }
-      setTileSize('.eqLogic, .scenario')
+      jeedomUtils.setTileSize('.eqLogic, .scenario')
       $('#div_displayEquipement .objectHtml').packery({gutter :0})
       setTimeout(function() {
         $('#div_displayEquipement .objectHtml').packery({gutter :0})
@@ -269,7 +269,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
             nbEqs--
             //is last ajax:
             if (nbEqs == 0) {
-              setTileSize('.eqLogic')
+              jeedomUtils.setTileSize('.eqLogic')
               $('#div_displayEquipement').trigger('create')
               setTimeout(function() {
                 $('#div_displayEquipement .objectHtml').packery({gutter :0})

@@ -1560,7 +1560,7 @@
   .objectPreview > .topPreview > .name {
     font-size: 16px;
     font-weight: 300;
-    max-width: 240px;
+    max-width: calc(100% - 98px);
     max-height: 30px !important;
     overflow: hidden;
     display: inline-block;

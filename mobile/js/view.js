@@ -18,7 +18,7 @@ function initView(_view_id) {
         li += '<li><a href="#" class="link" data-page="view" data-title="'+ icon.replace(/\"/g, "\'") + ' ' + views[i].name + '" data-option="' + views[i].id + '">'+ icon + ' ' + views[i].name + '</a></li>'
       }
       li += '</ul>'
-      panel(li)
+      jeedomUtils.loadPanel(li)
     }
   })
 
@@ -45,7 +45,7 @@ function initView(_view_id) {
       } else {
         $('.chartContainer').width(((deviceInfo.width / 2) - 20))
       }
-      setTileSize('.eqLogic, .scenario')
+      jeedomUtils.setTileSize('.eqLogic, .scenario')
       $('.eqLogicZone').packery({gutter : 0})
       var screenWidth = $(window).width() - 5
       $('.div_viewZone .table-responsive').each(function(){
@@ -62,9 +62,9 @@ function initView(_view_id) {
 
 function displayView(html) {
   if (isset(html.raw) && isset(html.raw.img) && html.raw.img != '') {
-    setBackgroundImage(html.raw.img)
+    jeedomUtils.setBackgroundImage(html.raw.img)
   } else {
-    setBackgroundImage('')
+    jeedomUtils.setBackgroundImage('')
   }
   try {
     $.clearDivContent('div_displayView')
@@ -80,7 +80,7 @@ function displayView(html) {
   } else {
     $('.chartContainer').width(((deviceInfo.width / 2) - 20))
   }
-  setTileSize('.eqLogic, .scenario')
+  jeedomUtils.setTileSize('.eqLogic, .scenario')
   $('.eqLogicZone').packery({gutter : 0})
   setTimeout(function(){
     $('.eqLogicZone').packery({gutter : 0})

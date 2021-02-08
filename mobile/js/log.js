@@ -2,6 +2,8 @@
 
 $('body').attr('data-page', 'log')
 
+var $rawLogCheck = $('#brutlogcheck')
+
 function initLog(_log) {
   $('#bt_eraseLogSearch').insertAfter($('#in_globalLogSearch'))
   $('#pre_globallog').empty()
@@ -15,7 +17,7 @@ function initLog(_log) {
         li += '<li><a href="#" class="link" data-page="log" data-title="<i class=\'far fa-file\'></i> '+_data[i]+'" data-option="'+_data[i]+'"><span><i class=\'fa fa-file\'></i> '+_data[i]+'</a></li>'
       }
       li += '</ul>'
-      panel(li)
+      jeedomUtils.loadPanel(li)
     }
   })
 

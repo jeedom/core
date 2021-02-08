@@ -26,6 +26,8 @@ $(function() {
   jeedomUI.setHistoryModalHandler()
 })
 
+var modifyWithoutSave = false
+
 $('#div_pageContainer').on('click','.bt_gotoViewZone',function() {
   var top = $('.div_displayViewContainer').scrollTop()+ $('.lg_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60
   $('.div_displayViewContainer').animate({ scrollTop: top}, 500)
@@ -57,12 +59,12 @@ $('#bt_editViewWidgetOrder').off('click').on('click',function() {
   if ($(this).attr('data-mode') == 1) {
     $('#md_modal').dialog('close')
     $.hideAlert()
-    $(this).attr('data-mode',0)
+    $(this).attr('data-mode', 0)
     $('.counterReorderJeedom').remove()
     editWidgetMode(0)
   } else {
     $('#div_alert').showAlert({message: "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.}}", level: 'info'})
-    $(this).attr('data-mode',1)
+    $(this).attr('data-mode', 1)
     editWidgetMode(1)
   }
 })
@@ -202,6 +204,7 @@ function editWidgetMode(_mode, _save) {
       disabled: false,
       distance: 10,
       start: function(event, ui) {
+        modifyWithoutSave = true
         jeedomUI.draggingId = $(this).attr('data-editId')
         jeedomUI.orders = {}
         $(this).parent().find('.ui-draggable').each( function(i, itemElem ) {
@@ -212,6 +215,9 @@ function editWidgetMode(_mode, _save) {
     //set resizables:
     $('.eqLogicZone .eqLogic-widget.allowResize').resizable({
       grid: [ 2, 2 ],
+      start: function(event, ui) {
+        modifyWithoutSave = true
+      },
       resize: function(event, ui) {
         jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.eqLogicZone').packery()
@@ -223,6 +229,9 @@ function editWidgetMode(_mode, _save) {
     })
     $('.eqLogicZone .scenario-widget.allowResize').resizable({
       grid: [ 2, 2 ],
+      start: function(event, ui) {
+        modifyWithoutSave = true
+      },
       resize: function(event, ui) {
         jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.eqLogicZone').packery()

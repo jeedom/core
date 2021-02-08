@@ -285,6 +285,7 @@ $(function() {
   }, 1)
 })
 
+
 //Jeedom theme__
 jeedomUtils.setJeedomTheme = function() {
   var $body = $('body')
@@ -377,7 +378,7 @@ jeedomUtils.checkThemechange = function() {
       $('#bootstrap_theme_css').attr('href', themeCss)
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-      jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
+      jeedomUtils.setBackgroundImage('')
       jeedomUtils.triggerThemechange()
     })
     .fail(function() {
@@ -586,7 +587,9 @@ jeedomUtils.initJeedomModals = function() {
 jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_modal', _open=true) {
   $(_button).on('click', function(event) {
     jeedomUtils.closeJeedomMenu()
-    if (jeedomUI.isEditing == true) return false
+    try {
+      if (jeedomUI.isEditing == true) return false
+    } catch (error) {}
     if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
@@ -1117,11 +1120,11 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   if (_id != undefined) {
     var widget = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
     widget.css({'margin': '0px', 'padding': '0px'})
-    if ($(this).width() == 0) {
-      $(this).width('230')
+    if (widget.width() == 0) {
+      widget.width('230')
     }
-    if ($(this).height() == 0) {
-      $(this).height('110')
+    if (widget.height() == 0) {
+      widget.height('110')
     }
     if (init(_preResize, true)) {
       widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']))
@@ -1145,7 +1148,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
         $(this).height('110')
       }
       $(this).width(jeedomUtils.calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
-      .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
+        .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
       if (!$(this).hasClass($(this).attr('data-category'))) {
         $(this).addClass($(this).attr('data-category'))
       }

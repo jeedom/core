@@ -9,7 +9,7 @@ function initHealth() {
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug" ></i> {{Démons}}</a></li>'
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fas fa-cogs" ></i> {{Crons}}</a></li>'
   rightPanel += '</ul>'
-  panel(rightPanel)
+  jeedomUtils.loadPanel(rightPanel)
   getHealth()
 }
 

@@ -9,7 +9,7 @@ function initCron() {
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug" ></i> {{Démons}}</a></li>'
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a></li>'
   rightPanel += '</ul>'
-  panel(rightPanel)
+  jeedomUtils.loadPanel(rightPanel)
   getCronState()
 }
 

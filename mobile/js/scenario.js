@@ -68,7 +68,7 @@ function initScenario() {
       //size and pack:
       setTimeout(function() {
         deviceInfo = getDeviceType()
-        setTileSize('.scenario')
+        jeedomUtils.setTileSize('.scenario')
       }, 100)
     }
   })
@@ -84,14 +84,14 @@ function initScenario() {
 
   $('body').on('orientationChanged', function(event, _orientation) {
     deviceInfo = getDeviceType()
-    setTileSize('.scenario')
+    jeedomUtils.setTileSize('.scenario')
   })
 
   //searching:
   $('#in_searchDashboard').off('keyup').on('keyup',function() {
     $('.groupContainer').hide()
     var search = $(this).value()
-    search = normTextLower(search)
+    search = jeedomUtils.normTextLower(search)
     if (search == '') {
       $('.scenario-widget').show()
       return
@@ -99,7 +99,7 @@ function initScenario() {
     var match, text
     $('.scenario-widget').each(function() {
       match = false
-      text = normTextLower($(this).find('.widget-name').text())
+      text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
       if (match || text.indexOf(search) >= 0) {
         match = true;
       }

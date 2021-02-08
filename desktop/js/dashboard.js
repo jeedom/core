@@ -16,7 +16,6 @@
 
 "use strict"
 
-
 if (SEL_SUMMARY != '') {
   $('#bt_displayObject, #bt_editDashboardWidgetOrder').parent().remove()
 }
@@ -62,6 +61,7 @@ $(function() {
   jeedomUI.setHistoryModalHandler()
 })
 
+var modifyWithoutSave = false
 
 //searching
 $('#in_searchDashboard').off('keyup').on('keyup',function() {
@@ -373,7 +373,7 @@ function editWidgetMode(_mode,_save) {
 
     //show orders:
     var value
-    $('.jeedomAlreadyPosition.ui-draggable').each( function() {
+    $('.jeedomAlreadyPosition').each( function() {
       value = $(this).attr('data-order')
       if ($(this).find(".counterReorderJeedom").length) {
         $(this).find(".counterReorderJeedom").text(value)
@@ -394,6 +394,7 @@ function editWidgetMode(_mode,_save) {
       disabled: false,
       distance: 10,
       start: function(event, ui) {
+        modifyWithoutSave = true
         jeedomUI.draggingId = $(this).attr('data-editId')
         jeedomUI.orders = {}
         $(this).parent().find('.ui-draggable').each(function(i, itemElem ) {
@@ -403,21 +404,27 @@ function editWidgetMode(_mode,_save) {
     })
     //set resizables:
     divEquipements.find('div.eqLogic-widget.allowResize').resizable({
-      resize: function( event, ui ) {
+      start: function(event, ui) {
+        modifyWithoutSave = true
+      },
+      resize: function(event, ui) {
         jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.div_displayEquipement').packery()
       },
-      stop: function( event, ui ) {
+      stop: function(event, ui) {
         jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
         ui.element.closest('.div_displayEquipement').packery()
       }
     })
     divEquipements.find('div.scenario-widget.allowResize').resizable({
-      resize: function( event, ui ) {
+      start: function(event, ui) {
+        modifyWithoutSave = true
+      },
+      resize: function(event, ui) {
         jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.div_displayEquipement').packery()
       },
-      stop: function( event, ui ) {
+      stop: function(event, ui) {
         jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
         ui.element.closest('.div_displayEquipement').packery()
       }

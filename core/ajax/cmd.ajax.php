@@ -271,6 +271,11 @@ try {
 		if (!is_object($cmd)) {
 			$cmd = new cmd();
 		}
+		if (isset($cmd_ajax['display']['parameters'])) {
+			$keys = array_map('trim', array_keys($cmd_ajax['display']['parameters']));
+			$values = array_map('trim', array_values($cmd_ajax['display']['parameters']));
+			$cmd_ajax['display']['parameters'] = array_combine($keys, $values);
+		}
 		utils::a2o($cmd, $cmd_ajax);
 		$cmd->save();
 		ajax::success(utils::o2a($cmd));

@@ -238,11 +238,17 @@ jeedom.notify = function(_title, _text, _class_name) {
   if (_title == '' && _text == '') {
     return true
   }
-  if (isset(_class_name) != '' && isset(toastr[_class_name])) {
-    toastr[_class_name](_text, _title)
+  if (typeof toastr !== 'undefined') {
+    if (isset(_class_name) != '' && isset(toastr[_class_name])) {
+      toastr[_class_name](_text, _title)
+    } else {
+      toastr.info(_text, _title)
+    }
   } else {
-    toastr.info(_text, _title)
+    //no toastr in mobile
+    jeedomUtils.notify(_title, _text)
   }
+
 }
 
 jeedom.getStringUsedBy = function (_params) {

@@ -948,16 +948,16 @@ class cmd {
 			$this->setGeneric_type($this->getDisplay('generic_type'));
 			$this->setDisplay('generic_type', null);
 		}
-		if($this->getTemplate('dashboard','') == ''){
+		if ($this->getTemplate('dashboard','') == '') {
 			$this->setTemplate('dashboard','default');
 		}
-		if($this->getTemplate('mobile','') == ''){
+		if ($this->getTemplate('mobile','') == '') {
 			$this->setTemplate('mobile','default');
 		}
-		if($this->getType() == 'action' && $this->getIsHistorized() == 1){
+		if ($this->getType() == 'action' && $this->getIsHistorized() == 1) {
 			$this->setIsHistorized(0);
 		}
-		if($this->getIsHistorized() == 0){
+		if ($this->getIsHistorized() == 0) {
 			$this->setDisplay('showStatsOnmobile',0);
 			$this->setDisplay('showStatsOndashboard',0);
 		}

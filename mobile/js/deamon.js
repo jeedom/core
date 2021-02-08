@@ -9,7 +9,7 @@ function initDeamon() {
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fas fa-cogs" ></i> {{Crons}}</a></li>'
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a></li>'
   rightPanel += '</ul>'
-  panel(rightPanel)
+  jeedomUtils.loadPanel(rightPanel)
   getDeamonState()
 }
 

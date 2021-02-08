@@ -65,7 +65,7 @@ jeedomUI.orderItems = function(_container, _orderAttr='data-order') {
       if ($(itemElem).find(".counterReorderJeedom").length) {
         $(itemElem).find(".counterReorderJeedom").text(value)
       } else {
-        $(itemElem).prepend('<span class="counterReorderJeedom pull-left" style="margin-top: 3px;margin-left: 3px;">'+value+'</span>')
+        $(itemElem).prepend('<span class="counterReorderJeedom pull-left">'+value+'</span>')
       }
     }
   })

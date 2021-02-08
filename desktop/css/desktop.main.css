@@ -1042,7 +1042,7 @@
   .objectPreview > .topPreview > .name {
     font-size: 16px;
     font-weight: 300;
-    max-width: 195px;
+    max-width: calc(100% - 95px);
     width: -webkit-fill-available;
     max-height: 30px !important;
     overflow: hidden;
@@ -1196,6 +1196,10 @@
   }
   [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object:hover {
     background-color: var(--form-bg-color);
+  }
+  
+  [data-page="dashboard"] #dashOverviewPrev .topPreview .name {
+    max-width: 100%;
   }
 
   [data-page="dashboard"] #div_displayObject {

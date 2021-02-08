@@ -6,7 +6,7 @@ function initMessage() {
   var rightPanel = '<ul data-role="listview" class="ui-icon-alt">'
   rightPanel += '<li><a id="bt_clearMessage" href="#"><i class="far fa-trash-alt"></i> {{Vider}}</a></li>'
   rightPanel += '</ul>'
-  panel(rightPanel)
+  jeedomUtils.loadPanel(rightPanel)
 
   getAllMessage()
 

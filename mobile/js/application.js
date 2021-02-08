@@ -1,5 +1,9 @@
 "use strict"
 
+var jeedomUtils = {}
+jeedomUtils.backgroundIMG = null
+jeedomUtils._elBackground = null
+
 $(function() {
   $(document)
   .ajaxStart(function () {
@@ -28,75 +32,71 @@ if ('serviceWorker' in navigator) {
 var utid = 0
 var PANEL_SCROLL = 0
 var APP_MODE = false
-var BACKGROUND_IMG = null
-var $backForJeedom = null
 var TAPHOLD = false
 $.event.special.tap.emitTapOnTaphold = false
 
 $(function() {
   utid = Date.now()
-  $backForJeedom = $('#backgroundforJeedom')
-  
+  jeedomUtils._elBackground = $('#backgroundforJeedom')
+
   $(window).on('orientationchange', function(event) {
     //wait to get new width:
     window.setTimeout(function() {
       $('body').trigger('orientationChanged', [event.orientation])
     }, 200)
   })
-  
+
   if (getUrlVars('app_mode') == 1) {
     APP_MODE = true
-    $backForJeedom.height('100%').css('top','0')
+    jeedomUtils._elBackground.height('100%').css('top','0')
     $('#pagecontainer').prepend($('#searchContainer'))
     $('div[data-role=header]').remove()
     $('#searchContainer').css('top',0)
     $('#bt_eraseSearchInput').css('top',0)
     $('#pagecontainer').append('<a href="#bottompanel" id="bt_bottompanel" class="ui-btn ui-btn-inline ui-btn-fab ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" style="position:fixed;bottom:10px;right:10px;"><i class="fas fa-bars" style="position:relative;top:-3px"></i></a>')
   }
-  
+
   window.addEventListener("contextmenu", function(e) { e.preventDefault(); })
-  initApplication()
-  
+  jeedomUtils.initApplication()
+
   $('body').on('taphold', '.objectSummaryAction', function(e) {
-    panel(false)
+    jeedomUtils.loadPanel(false)
     $('#bottompanel_objectList').panel('close')
     let object_id = $(this).attr('data-object_id');
     let summary = $(this).attr('data-summary');
-    modal('mobile/modal/summary.action.html',function(){
+    jeedomUtils.loadModal('mobile/modal/summary.action.html',function(){
       initSummaryAction(object_id,summary)
     });
   });
-  
+
   $('body').on('tap','.link',function(e) {
-    modal(false)
-    panel(false)
-    page($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
+    jeedomUtils.loadModal(false)
+    jeedomUtils.loadPanel(false)
+    jeedomUtils.loadPage($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   })
-  
+
   $('body').on('tap','.objectSummaryParent',function(e) {
-    modal(false)
-    panel(false)
-    page('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
+    jeedomUtils.loadModal(false)
+    jeedomUtils.loadPanel(false)
+    jeedomUtils.loadPage('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
   })
-  
-  
-  
+
   $('body').on('click','.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
     mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
-    
+
     mainOpt.panel('open')
     $(document).scrollTop(PANEL_SCROLL)
   })
-  
+
   $('body').on('click','#bt_warnmeCmd', function() {
-    page('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')}, null, true)
+    jeedomUtils.loadPage('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')}, null, true)
   })
-  
+
   $('body').on('click','#bt_switchTheme', function() {
-    switchTheme(jeedom.theme)
+    jeedomUtils.switchTheme(jeedom.theme)
     $('#bottompanel_otherActionList').panel('close')
   })
 })
@@ -108,20 +108,20 @@ $(window).on('popstate', function(event) {
   if ($('.ui-popup-container:not(.ui-popup-hidden)').length > 0) return
   event.preventDefault()
   if (PAGE_HISTORY.length <= 1) return
-  
+
   PAGE_HISTORY.pop()
   var history_page = PAGE_HISTORY.pop()
   if (!history_page || !history_page.page) {
     return
   }
-  modal(false)
-  panel(false)
+  jeedomUtils.loadModal(false)
+  jeedomUtils.loadPanel(false)
   if (!history_page.option) {
-    page(history_page.page, history_page.title)
+    jeedomUtils.loadPage(history_page.page, history_page.title)
   } else if (!history_page.plugin) {
-    page(history_page.page, history_page.title, history_page.option)
+    jeedomUtils.loadPage(history_page.page, history_page.title, history_page.option)
   } else {
-    page(history_page.page, history_page.title, history_page.option, history_page.plugin)
+    jeedomUtils.loadPage(history_page.page, history_page.title, history_page.option, history_page.plugin)
   }
   if (history_page.scroll) {
     setTimeout(function() {
@@ -131,19 +131,19 @@ $(window).on('popstate', function(event) {
 })
 
 //theming:
-function setBackgroundImage(_path) {
+jeedomUtils.setBackgroundImage = function(_path) {
   //Exact same function desktop/mobile, only transitionJeedomBackground() differ
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
   if (_path === null) {
-    $backForJeedom.find('#bottom').css('background-image', 'url("")').show()
+    jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("")').show()
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
-    
+
     if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::dashboard']
     } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
@@ -151,29 +151,29 @@ function setBackgroundImage(_path) {
     } else {
       _path = jeedom.theme['interface::background::tools']
     }
-    
+
     if (_path.substring(0, 4) == 'core') {
-      $backForJeedom.removeClass('custom')
+      jeedomUtils._elBackground.removeClass('custom')
       _path += mode + '.jpg'
     } else {
-      $backForJeedom.addClass('custom')
+      jeedomUtils._elBackground.addClass('custom')
     }
-    transitionJeedomBackground(_path)
+    jeedomUtils.transitionJeedomBackground(_path)
   } else {
-    transitionJeedomBackground(_path)
+    jeedomUtils.transitionJeedomBackground(_path)
   }
-  BACKGROUND_IMG = _path
+  jeedomUtils.backgroundIMG = _path
 }
 
-function transitionJeedomBackground(_path) {
-  $backForJeedom.find('#bottom').css('background-image', 'url("../../../../' + _path + '")')
+jeedomUtils.transitionJeedomBackground = function(_path) {
+  jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("../../../../' + _path + '")')
 }
 
-function switchTheme(themeConfig) {
+jeedomUtils.switchTheme = function(themeConfig) {
   var theme = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/' + themeConfig.mobile_theme_color_night + '.css'
   var themeShadows = 'core/themes/' + themeConfig.mobile_theme_color_night + '/mobile/shadows.css'
   var themeCook = 'alternate'
-  
+
   if ($('#jQMnDColor').attr('href') == theme) {
     $('body').attr('data-theme', themeConfig.mobile_theme_color)
     theme = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/' + themeConfig.mobile_theme_color + '.css'
@@ -184,15 +184,15 @@ function switchTheme(themeConfig) {
     $('#jQMnDColor').attr('href', theme).attr('data-nochange',1)
     $('body').attr('data-theme', themeConfig.mobile_theme_color_night)
   }
-  
+
   setCookie('currentThemeMobile', themeCook, 0.3)
-  
+
   if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
-  setBackgroundImage(BACKGROUND_IMG)
-  triggerThemechange()
+  jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
+  jeedomUtils.triggerThemechange()
 }
 
-function triggerThemechange() {
+jeedomUtils.triggerThemechange = function() {
   //set jeedom logo:
   var currentTheme = $('body').attr('data-theme')
   if (currentTheme.endsWith('Dark')) {
@@ -210,11 +210,11 @@ function triggerThemechange() {
   }
 }
 
-function changeThemeAuto(_ambiantLight){
+jeedomUtils.changeThemeAuto = function(_ambiantLight){
   if (typeof jeedom.theme == 'undefined') return
   if (typeof jeedom.theme.mobile_theme_color_night == 'undefined' || typeof jeedom.theme.mobile_theme_color == 'undefined') return
   if (jeedom.theme.mobile_theme_color == jeedom.theme.mobile_theme_color_night) return
-  
+
   if (jeedom.theme.mobile_theme_useAmbientLight == "1" && 'AmbientLightSensor' in window) {
     const sensor = new AmbientLightSensor()
     sensor.onreading = () => {
@@ -244,8 +244,8 @@ function changeThemeAuto(_ambiantLight){
           if ($('#jQMnDColor').attr('href') != themeCss) {
             $('body').attr('data-theme',theme)
             $('#jQMnDColor').attr('href', themeCss)
-            setBackgroundImage(BACKGROUND_IMG)
-            triggerThemechange()
+            jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
+            jeedomUtils.triggerThemechange()
           }
         }, 500)
       }
@@ -253,19 +253,19 @@ function changeThemeAuto(_ambiantLight){
     sensor.start()
   } else if (jeedom.theme.theme_changeAccordingTime == "1") {
     setInterval(function() {
-      checkThemechange()
+      jeedomUtils.checkThemechange()
     }, 60000)
   }
 }
 
-function checkThemechange() {
+jeedomUtils.checkThemechange = function() {
   var $jQMnDColor = $('#jQMnDColor')
   if ($jQMnDColor.attr('data-nochange') == 1) return
-  
+
   var defaultTheme = jeedom.theme.mobile_theme_color
   var defaultThemeCss = 'core/themes/' + defaultTheme + '/mobile/' + defaultTheme + '.css'
   if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == $jQMnDColor.attr('href')) return
-  
+
   var theme = jeedom.theme.mobile_theme_color_night
   var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
   var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes())
@@ -276,13 +276,13 @@ function checkThemechange() {
   if ($jQMnDColor.attr('href') != themeCss) {
     $('body').attr('data-theme',theme)
     $('#jQMnDColor').attr('href', themeCss)
-    setBackgroundImage(BACKGROUND_IMG)
-    triggerThemechange()
+    jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
+    jeedomUtils.triggerThemechange()
   }
 }
 
 
-function insertHeader(rel, href, size=null, media=null, id=null, type=null) {
+jeedomUtils.insertHeader = function(rel, href, size=null, media=null, id=null, type=null) {
   var link = document.createElement('link')
   link.rel = rel
   link.href = href
@@ -323,7 +323,7 @@ var userProfils
 var deviceInfo
 var defaultMobilePage = null
 
-function initApplication(_reinit) {
+jeedomUtils.initApplication = function(_reinit) {
   $.ajax({
     type: 'POST',
     url: 'core/ajax/jeedom.ajax.php',
@@ -338,21 +338,21 @@ function initApplication(_reinit) {
     success: function (data) {
       jeedom.theme = data.result
       jeedom_langage = data.result.langage
-      insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
-      insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
-      insertHeader("shortcut icon",jeedom.theme.product_icon, "128x128")
-      insertHeader("icon",jeedom.theme.product_icon, "128x128")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 320px)")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 320px) and (-webkit-device-pixel-ratio: 2)")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 768px) and (orientation: portrait)")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 768px) and (orientation: landscape)")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)")
-      insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)")
+      jeedomUtils.insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
+      jeedomUtils.insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
+      jeedomUtils.insertHeader("shortcut icon",jeedom.theme.product_icon, "128x128")
+      jeedomUtils.insertHeader("icon",jeedom.theme.product_icon, "128x128")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 320px)")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 320px) and (-webkit-device-pixel-ratio: 2)")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 768px) and (orientation: portrait)")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 768px) and (orientation: landscape)")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)")
+      jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, null, "(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)")
       if (data.state != 'ok' || (isset(data.result.connected) && data.result.connected == false)) {
-        modal(false)
-        panel(false)
-        page('connection', 'Connexion')
+        jeedomUtils.loadModal(false)
+        jeedomUtils.loadPanel(false)
+        jeedomUtils.loadPage('connection', 'Connexion')
         return
       }
       document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
@@ -360,8 +360,8 @@ function initApplication(_reinit) {
       if (init(_reinit, false) == false) {
         document.title = data.result.product_name
         $('#favicon').attr("href", data.result.product_icon)
-        modal(false)
-        panel(false)
+        jeedomUtils.loadModal(false)
+        jeedomUtils.loadPanel(false)
         /*************Initialisation environement********************/
         serverDatetime  = data.result.serverDatetime
         var clientDatetime = new Date()
@@ -383,19 +383,19 @@ function initApplication(_reinit) {
         if (typeof jeedom.theme.theme_changeAccordingTime == undefined) {
           jeedom.theme.theme_changeAccordingTime = "0"
         }
-        
+
         if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
           $('body').attr('data-coloredIcons', 1)
         } else {
           $('body').attr('data-coloredIcons', 0)
         }
-        
+
         if (typeof jeedom.theme['interface::advance::coloredcats'] != 'undefined' && jeedom.theme['interface::advance::coloredcats'] == '1') {
           $('body').attr('data-coloredcats', 1)
         } else {
           $('body').attr('data-coloredcats', 0)
         }
-        
+
         //set theme
         var widget_shadow = true
         var useAdvance = 0
@@ -424,13 +424,13 @@ function initApplication(_reinit) {
           $('#jQMnDColor').attr('href', themeCSS).attr('data-nochange',1)
         }
         $('#jQMnDColor').attr('href', themeCSS)
-        
-        changeThemeAuto()
-        checkThemechange()
+
+        jeedomUtils.changeThemeAuto()
+        jeedomUtils.checkThemechange()
         if (widget_shadow) {
-          insertHeader("stylesheet", themeShadowCSS, null, null, 'shadows_theme_css', 'text/css')
+          jeedomUtils.insertHeader("stylesheet", themeShadowCSS, null, null, 'shadows_theme_css', 'text/css')
         }
-        
+
         //custom:
         if (isset(data.result.custom) && data.result.custom != null) {
           if (isset(data.result.custom.css) && data.result.custom.css) {
@@ -440,36 +440,36 @@ function initApplication(_reinit) {
             include.push('mobile/custom/custom.js')
           }
         }
-        
-        triggerThemechange()
+
+        jeedomUtils.triggerThemechange()
         for(var i in plugins){
           if (plugins[i].eventjs == 1) {
             include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
           }
         }
-        
+
         $.get("core/php/icon.inc.php", function (data) {
           $("head").append(data)
           $.include(include, function() {
             deviceInfo = getDeviceType()
             jeedom.object.summaryUpdate([{object_id:'global'}])
-            
+
             if (APP_MODE) {
-              page('home', 'Accueil')
+              jeedomUtils.loadPage('home', 'Accueil')
             } else {
               if (getUrlVars('p') == 'view') {
-                page('view', 'Vue',getUrlVars('view_id'));
+                jeedomUtils.loadPage('view', 'Vue',getUrlVars('view_id'));
               } else if (isset(userProfils) && userProfils != null && isset(userProfils.homePageMobile) && userProfils.homePageMobile != 'home') {
                 var res = userProfils.homePageMobile.split("::")
                 if (res[0] == 'core') {
                   switch (res[1]) {
                     case 'overview':
                     defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
-                    page(defaultMobilePage)
+                    jeedomUtils.loadPage(defaultMobilePage)
                     break
                     case 'dashboard':
                     defaultMobilePage = ['equipment', userProfils.defaultMobileObjectName, userProfils.defaultMobileObject]
-                    page(defaultMobilePage)
+                    jeedomUtils.loadPage(defaultMobilePage)
                     break
                     case 'plan':
                     defaultMobilePage = null
@@ -477,17 +477,17 @@ function initApplication(_reinit) {
                     break
                     case 'view':
                     defaultMobilePage = ['view', userProfils.defaultMobileViewName, userProfils.defaultMobileView]
-                    page(defaultMobilePage)
+                    jeedomUtils.loadPage(defaultMobilePage)
                     break
                   }
                 } else {
-                  page(res[1], 'Plugin', '', res[0])
+                  jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
                 }
               } else {
-                page('home', '{{Accueil}}')
+                jeedomUtils.loadPage('home', '{{Accueil}}')
               }
             }
-            
+
             if (APP_MODE) {
               $('#pagecontainer').css('padding-top',0)
             } else {
@@ -500,14 +500,14 @@ function initApplication(_reinit) {
   })
 }
 
-function page(_page, _title, _option, _plugin, _dialog) {
+jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   //handle default mobile home switching:
   if (Array.isArray(_page)) {
     _title = _page[1]
     _option = _page[2]
     _page = _page[0]
   }
-  
+
   //handle browser history:
   if (PAGE_HISTORY[PAGE_HISTORY.length - 1]) {
     PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop()
@@ -515,7 +515,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
   if (!isset(_dialog) || !_dialog) {
     PAGE_HISTORY.push({page : _page, title : _title,option : _option, plugin : _plugin})
   }
-  
+
   $.showLoading()
   $('#searchContainer').hide()
   try {
@@ -523,7 +523,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
     $('#bottompanel_mainoption').panel('close')
     $('.ui-popup').popup('close')
   } catch (e) {
-    
+
   }
   if (isset(_title)) {
     if (!isset(_dialog) || !_dialog) {
@@ -566,7 +566,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
   }
-  
+
   if (isset(_dialog) && _dialog) {
     $('#popupDialog .content').load(page, function() {
       var functionName = ''
@@ -598,7 +598,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
     $('#page').hide().load(page, function() {
       $('body').attr('data-page', _page)
       $('#page').trigger('create')
-      setBackgroundImage('')
+      jeedomUtils.setBackgroundImage('')
       window.history.pushState('', '', 'index.php?v=m&p=home')
       var functionName = ''
       if (init(_plugin) != '') {
@@ -606,7 +606,7 @@ function page(_page, _title, _option, _plugin, _dialog) {
       } else {
         functionName = 'init' + _page.charAt(0).toUpperCase() + _page.substring(1).toLowerCase()
       }
-      
+
       if ('function' == typeof (window[functionName])) {
         if (init(_option) != '') {
           window[functionName](_option)
@@ -627,21 +627,21 @@ function page(_page, _title, _option, _plugin, _dialog) {
       $('#page').fadeIn(400)
     })
   }
-  
+
   setTimeout(function() {
     if ($.active == 0) $.hideLoading()
   }, 1500)
 }
 
-function modal(_name,_callback) {
-  try{
+jeedomUtils.loadModal = function(_name,_callback) {
+  try {
     if (_name === false) {
       $('#div_popup').empty().popup("close")
       $("[data-role=popup]").popup("close")
     } else {
       $('#div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
-        
+
         $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
         if ('function' == typeof (_callback)) {
           _callback();
@@ -650,13 +650,13 @@ function modal(_name,_callback) {
         setTimeout(function(){
           $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
           $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
-        },200)
-      });
+        }, 200)
+      })
     }
   } catch(e) {}
 }
 
-function panel(_content) {
+jeedomUtils.loadPanel = function(_content) {
   try{
     if (_content === false) {
       $('#bottompanel').empty().trigger('create')
@@ -686,24 +686,24 @@ $(document).on('panelclose', function(event) {
   $(document).scrollTop(PANEL_SCROLL)
 })
 
-var MESSAGE_NUMBER = null
-function refreshMessageNumber() {
+jeedomUtils.MESSAGE_NUMBER = null
+jeedomUtils.refreshMessageNumber = function() {
   jeedom.message.number({
     success: function (_number) {
-      MESSAGE_NUMBER = _number
+      jeedomUtils.MESSAGE_NUMBER = _number
       $('.span_nbMessage').html(_number)
     }
   })
 }
 
-function notify(_title, _text) {
+jeedomUtils.notify = function(_title, _text) {
   new $.nd2Toast({
     message :  _title+'. '+_text,
     ttl : 3000
   })
 }
 
-function setTileSize(_filter) {
+jeedomUtils.setTileSize = function(_filter) {
   if (typeof jeedom.theme['widget::margin'] == 'undefined') {
     jeedom.theme['widget::margin'] = 4
   }
@@ -729,10 +729,10 @@ function init(_value, _default) {
   return _value
 }
 
-function normTextLower(_text) {
+jeedomUtils.normTextLower = function(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
 
-//deprecated:
+//deprecated, remove v4.2
 function refreshUpdateNumber() {}
 function positionEqLogic(_id) {}
