@@ -1022,8 +1022,13 @@
   #div_summaryAction div.eqLogic-widget {
     position: relative;
     top: 5px;
+    left: 2px;
     height: unset !important;
     padding: 3px;
+  }
+
+  span.objectSummaryAction > i:hover {
+    color: var(--al-warning-color) !important;
   }
 
 
