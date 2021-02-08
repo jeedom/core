@@ -529,6 +529,7 @@ jeedomUtils.initJeedomModals = function() {
       setTimeout(function() {jeedomUtils.initTooltips($('#md_modal'))}, 500)
     },
     beforeClose: function(event, ui) {
+      $(this).parent('.ui-dialog').removeClass('summaryActionMain')
       emptyModal('md_modal')
     }
   })
