@@ -709,6 +709,8 @@ jeedomUtils.setJeedomGlobalUI = function() {
     if (!event.ctrlKey) {
       return
     }
+    jeedomUtils.mouseX = event.originalEvent.x
+    jeedomUtils.mouseY = event.originalEvent.y
     $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id')).dialog('open')
   })
 

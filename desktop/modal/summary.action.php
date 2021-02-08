@@ -56,6 +56,10 @@ echo '<div id="div_summaryAction">'.$virtual->toHtml('dashboard').'</div>';
       height: $divSummaryAction.find('.eqLogic-widget').height() + 45,
       width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 5
       })
+    $('#md_modal').parent('.ui-dialog').css({
+      top: jeedomUtils.mouseY - 20,
+      left: jeedomUtils.mouseX - $('#md_modal').parent('.ui-dialog').width() / 2
+    })
   }, 10)
 
 </script>
