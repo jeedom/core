@@ -40,7 +40,7 @@ $('#in_specificCommand').keypress(function(event) {
 
 function dbExecuteCommand(_command, _addToList) {
   if (!isset(_addToList)) _addToList = false
-
+  
   $.clearDivContent('div_commandResult')
   jeedom.db({
     command : _command,
@@ -51,7 +51,7 @@ function dbExecuteCommand(_command, _addToList) {
       $('#h3_executeCommand').empty().append('{{Commande : }}"'+_command+'"<br/>{{Temps d\'éxécution}} : '+result.time+'s')
       $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
       $('#in_specificCommand').val(_command)
-
+      
       if (_addToList) {
         if ($('.bt_dbCommand[data-command="'+_command.replace(/"/g, '\\"')+'"]').html() == undefined) {
           $('#ul_listSqlHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_dbCommand" data-command="'+_command.replace(/"/g, '\\"')+'">'+_command+'</a></li>')
@@ -73,7 +73,7 @@ function dbGenerateTableFromResponse(_response) {
     result += '<th>'+i+'</th>'
   }
   result += '</tr></thead>'
-
+  
   result += '<tbody>'
   for (var i in _response) {
     result += '<tr>'
@@ -101,41 +101,41 @@ $('#sqlOperation').off('change').on('change',function() {
   var operation = $(this).value()
   switch (operation) {
     case 'SELECT':
-      $(this).removeClass('warning danger').addClass('info')
-      $('#sql_selector').parent().show()
-      $('#lblFrom').show().text('FROM')
-
-      $('#sqlSetGroup').hide()
-      $('#sqlWhereGroup').show()
-      break
+    $(this).removeClass('warning danger').addClass('info')
+    $('#sql_selector').parent().show()
+    $('#lblFrom').show().text('FROM')
+    
+    $('#sqlSetGroup').hide()
+    $('#sqlWhereGroup').show()
+    break
     case 'INSERT':
-      $(this).removeClass('info danger').addClass('warning')
-      $('#sql_selector').parent().hide()
-      $('#lblFrom').show().text('INTO')
-
-      $('#sqlSetGroup').show()
-      $('#sqlWhereGroup').hide()
-      defineSQLsetGroup()
-      break
+    $(this).removeClass('info danger').addClass('warning')
+    $('#sql_selector').parent().hide()
+    $('#lblFrom').show().text('INTO')
+    
+    $('#sqlSetGroup').show()
+    $('#sqlWhereGroup').hide()
+    defineSQLsetGroup()
+    break
     case 'UPDATE':
-      $(this).removeClass('info warning').addClass('danger')
-      $('#sql_selector').parent().hide()
-      $('#lblFrom').hide()
-
-      $('#sqlSetGroup').show()
-      $('#sqlWhereGroup').show()
-      $('#checksqlwhere').prop('checked', true ).trigger('change')
-      defineSQLsetGroup()
-      break
+    $(this).removeClass('info warning').addClass('danger')
+    $('#sql_selector').parent().hide()
+    $('#lblFrom').hide()
+    
+    $('#sqlSetGroup').show()
+    $('#sqlWhereGroup').show()
+    $('#checksqlwhere').prop('checked', true ).trigger('change')
+    defineSQLsetGroup()
+    break
     case 'DELETE':
-      $(this).removeClass('info warning').addClass('danger')
-      $('#sql_selector').parent().hide()
-      $('#lblFrom').show().text('FROM')
-
-      $('#sqlSetGroup').hide()
-      $('#sqlWhereGroup').show()
-      $('#checksqlwhere').prop('checked', true ).trigger('change')
-      break
+    $(this).removeClass('info warning').addClass('danger')
+    $('#sql_selector').parent().hide()
+    $('#lblFrom').show().text('FROM')
+    
+    $('#sqlSetGroup').hide()
+    $('#sqlWhereGroup').show()
+    $('#checksqlwhere').prop('checked', true ).trigger('change')
+    break
   }
   $(window).trigger('resize')
 })
@@ -147,7 +147,7 @@ $('#sqlTable').off('change').on('change',function() {
     options += '<option value="'+_tableList_[selectedTable][col]['colName']+'">'+_tableList_[selectedTable][col]['colName']+'</option>'
   }
   $('#sqlWhere').empty().append(options)
-
+  
   if (['INSERT', 'UPDATE'].includes($('#sqlOperation').value())) {
     defineSQLsetGroup()
   }
@@ -176,20 +176,20 @@ $('#bt_execDynamicCommand').off('click').on('click',function() {
 function constructSQLstring() {
   var operation = $('#sqlOperation').value()
   var command = operation
-
+  
   switch (operation) {
     case 'SELECT':
-      command += ' ' + $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
-      break
+    command += ' ' + $('#sql_selector').val() + ' FROM `' + $('#sqlTable').val() + '`'
+    break
     case 'INSERT':
-      command += ' INTO `' + $('#sqlTable').val() + '`'
-      break
+    command += ' INTO `' + $('#sqlTable').val() + '`'
+    break
     case 'UPDATE':
-      command += ' `' + $('#sqlTable').val() + '` SET '
-      break
+    command += ' `' + $('#sqlTable').val() + '` SET '
+    break
     case 'DELETE':
-      command += ' FROM `' + $('#sqlTable').val() + '`'
-      break
+    command += ' FROM `' + $('#sqlTable').val() + '`'
+    break
   }
   if (operation == 'INSERT') {
     var col, cols, value, values
@@ -199,12 +199,12 @@ function constructSQLstring() {
       value = $(this).val()
       if (value != '') {
         cols += '`' + col + '`,'
-        values += value + ','
+        values += '\''+value + '\','
       }
     })
     command += ' (' + cols.slice(0, -1) + ') VALUES (' + values.slice(0, -1) + ')'
   }
-
+  
   if (operation == 'UPDATE') {
     var col, value, isNull
     $('#sqlSetOptions input.sqlSetter').each(function() {
@@ -219,14 +219,14 @@ function constructSQLstring() {
     })
     command = command.slice(0, -1)
   }
-
+  
   if (['SELECT', 'UPDATE', 'DELETE'].includes(operation) && $('#checksqlwhere').is(':checked') && $('#sqlLikeValue').val() != '') {
     command += ' WHERE '
     command += '`' + $('#sqlWhere').val() + '`'
     command += ' ' + $('#sqlLike').value()
-    command += ' ' + $('#sqlLikeValue').val()
+    command += ' \'' + $('#sqlLikeValue').val()+'\''
   }
-
+  
   return command
 }
 
@@ -251,6 +251,6 @@ function defineSQLsetGroup() {
     options += '</div>'
   }
   options += '</div>'
-
+  
   $('#sqlSetGroup > label').empty().append(options.slice(0, -1))
 }
