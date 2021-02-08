@@ -722,6 +722,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
     })
   })
 
+  //close all modales on outside click
+  $('body').on('click', '.ui-widget-overlay', function(event) {
+    $(".ui-dialog-content").dialog("close")
+  })
+
   //search input escape:
   $('body').on({
     'keydown': function(event) {
