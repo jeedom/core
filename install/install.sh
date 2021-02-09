@@ -237,7 +237,7 @@ step_8_jeedom_customization() {
     sed -i 's/opcache.enable=0/opcache.enable=1/g' ${file} > /dev/null 2>&1
     sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
     sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
-    sed -i 's/memory_limit = 128M/memory_limit = 256M/g' ${file} > /dev/null 2>&1
+    sed -i 's/memory_limit = 128M/memory_limit = 512M/g' ${file} > /dev/null 2>&1
   done
   
   a2dismod status
