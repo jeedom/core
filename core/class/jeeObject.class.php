@@ -428,7 +428,7 @@ class jeeObject {
 			$virtualGlobal->setIsEnable(1);
 		}
 		$virtualGlobal->setIsEnable(1);
-		$virtualGlobal->setConfiguration('isSummary',1);
+		$virtualGlobal->setConfiguration('icon','virtual_summary_icon');
 		$virtualGlobal->setLogicalId('summaryglobal');
 		$virtualGlobal->setEqType_name('virtual');
 		$virtualGlobal->save();
@@ -468,8 +468,8 @@ class jeeObject {
 			$virtual->setLogicalId('summary' . $object->getId());
 			$virtual->setEqType_name('virtual');
 			$virtual->setObject_id($object->getId());
+			$virtual->setConfiguration('icon','virtual_summary_icon');
 			$virtual->save();
-			$virtual->setConfiguration('isSummary',1);
 			$object->setConfiguration('summary_virtual_id', $virtual->getId());
 			$object->save();
 			$cmd = $virtual->getCmd('info', $_key);
@@ -509,7 +509,7 @@ class jeeObject {
 				$cmd = $virtual->getCmd('action', $_key.'::action::'.$genericType);
 				if (!is_object($cmd)) {
 					$cmd = new virtualCmd();
-					$cmd->setName($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setName($def[$_key]['name'].' '.$JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
 					$cmd->setIsHistorized(0);
 				}
 				$cmd->setEqLogic_id($virtual->getId());
@@ -525,7 +525,7 @@ class jeeObject {
 				$cmd = $virtualGlobal->getCmd('action', $_key.'::action::'.$genericType);
 				if (!is_object($cmd)) {
 					$cmd = new virtualCmd();
-					$cmd->setName($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setName($def[$_key]['name'].' '.$JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
 					$cmd->setIsHistorized(0);
 				}
 				$cmd->setEqLogic_id($virtualGlobal->getId());
