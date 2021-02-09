@@ -1219,7 +1219,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   if ($("#mod_selectIcon").length == 0) {
     $('#div_pageContainer').append('<div id="mod_selectIcon"></div>')
     $("#mod_selectIcon").dialog({
-      title: '{{Choisissez une icône}}',
+      title: '{{Choisir une illustration}}',
       closeText: '',
       autoOpen: false,
       modal: true,
@@ -1245,14 +1245,19 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
     var icon = _params.icon
     var replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
     replaceAr.forEach(function(element) {
-      icon = icon.replace(element, '')
+      if (icon.includes(element)) {
+        icon = icon.replace(element, '')
+        _params.color = element
+      }
     })
-    icon = icon.trim().replace(new RegExp('  ', 'g'), ' ')
-    icon = icon.trim().replace(new RegExp(' ', 'g'), '.')
+    icon = icon.trim().split(' ').join('.')
     url += '&selectIcon=' + icon
   }
   if (_params && _params.color) {
     url += '&colorIcon=' + _params.color
+  }
+  if (_params && _params.object_id) {
+    url += '&object_id=' + _params.object_id
   }
   $('#mod_selectIcon').empty().load(url,function() {
     $("#mod_selectIcon").dialog('option', 'buttons', {

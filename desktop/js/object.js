@@ -113,7 +113,38 @@ $('#bt_graphObject').on('click', function() {
 })
 
 $('#bt_libraryBackgroundImage').on('click', function() {
-  $('#md_modal').dialog({title: "{{Bibliotheque d'images}}"}).load('index.php?v=d&modal=object.img.selector&object_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open')
+  jeedomUtils.chooseIcon(function(_icon) {
+    $('.objectImg').show().find('img').replaceWith(_icon)
+    $('.objectImg img').attr('width', '240px')
+    jeedom.object.uploadImage({
+      id : $('.objectAttr[data-l1key=id]').value(),
+      file : $('.objectImg img').data('filename'),
+      error: function (error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function (data) {
+        $('#div_alert').showAlert({message: '{{Image de fond appliquée avec succès}}', level: 'success'})
+      }
+    })
+  },{object_id:$('.objectAttr[data-l1key=id]').value()})
+})
+
+$('#bt_removeBackgroundImage').off('click').on('click', function() {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir enlever l\'image de fond de cet objet ?}}', function(result) {
+    if (result) {
+      jeedom.object.removeImage({
+        id: $('.objectAttr[data-l1key=id]').value(),
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function() {
+          $('.objectImg').hide()
+          $('#div_alert').showAlert({message: '{{Image de fond enlevée}}', level: 'success'})
+        },
+      })
+    }
+  })
+  return false
 })
 
 $('#bt_returnToThumbnailDisplay').on('click',function() {
@@ -144,28 +175,9 @@ $('.objectDisplayCard').off('mouseup').on('mouseup', function(event) {
   }
 })
 
-$('#bt_removeBackgroundImage').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'image de cet objet ?}}', function(result) {
-    if (result) {
-      jeedom.object.removeImage({
-        id: $('.objectAttr[data-l1key=id]').value(),
-        error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        },
-        success: function() {
-          $('.objectImg img').hide()
-          $('#bt_removeBackgroundImage').addClass('disabled')
-          $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'})
-        },
-      })
-    }
-  })
-  return false
-})
-
 $('select[data-l2key="synthToAction"]').off().on('change',function() {
-  $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').addClass('hidden')
-  $('select[data-l2key="'+$(this).val()+'"]').removeClass('hidden')
+  $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').parent().addClass('hidden')
+  $('select[data-l2key="'+$(this).val()+'"]').parent().removeClass('hidden')
 })
 
 function printObject(_id) {
@@ -194,13 +206,11 @@ function loadObjectConfiguration(_id) {
       if (isset(data.result.result.filepath)) {
         var filePath = data.result.result.filepath
         filePath = '/data/object/' + filePath.split('/data/object/')[1]
-        $('.objectImg img').attr('src',filePath).show()
-        $('#bt_removeBackgroundImage').removeClass('disabled')
+        $('.objectImg').show().find('img').attr('src',filePath)
       } else {
-        $('.objectImg img').hide()
-        $('#bt_removeBackgroundImage').addClass('disabled')
+        $('.objectImg').hide()
       }
-      $('#div_alert').showAlert({message: '{{Image ajoutée}}', level: 'success'})
+      $('#div_alert').showAlert({message: '{{Image de fond ajoutée avec succès}}', level: 'success'})
     }
   })
 
@@ -227,7 +237,7 @@ function loadObjectConfiguration(_id) {
         $('.objectAttr[data-l1key=configuration][data-l2key=useBackground]').prop('checked', false)
       }
       if (!isset(data.configuration.synthToAction)) {
-        $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').addClass('hidden')
+        $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').parent().addClass('hidden')
         $('select[data-l2key="synthToAction"]').val('synthToDashboard')
       }
 
@@ -263,11 +273,9 @@ function loadObjectConfiguration(_id) {
       $('.tabnumber').empty()
 
       if (isset(data.img) && data.img != '') {
-        $('.objectImg img').attr('src',data.img).show()
-        $('#bt_removeBackgroundImage').removeClass('disabled')
+        $('.objectImg').show().find('img').attr('src',data.img)
       } else {
-        $('.objectImg img').hide()
-        $('#bt_removeBackgroundImage').addClass('disabled')
+        $('.objectImg').hide()
       }
 
       //set summary tab:
@@ -560,7 +568,7 @@ function addEqlogicsInfo(_id, _objName, _summay) {
           panel += '<div class="form-group" data-cmdname="'+humanName+'">'
           panel += '<label class="col-sm-5 control-label">'+humanName+'</label>'
           panel += '<div class="col-sm-2">'
-            panel += summarySelect
+          panel += summarySelect
           panel += '</div>'
           panel += '<div class="col-sm-5 buttontext"></div>'
           panel += '</div>'

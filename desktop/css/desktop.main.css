@@ -1263,81 +1263,69 @@
     height: 2em;
   }
 
-  #tabicon .divIconSel {
-    text-align: center;
-    min-width: 100px;
-    width: 100px;
-    height: 75px;
-    overflow: hidden;
-    border: none;
+  #mod_selectIcon .imgContainer {
+    padding-top: 20px;
   }
 
-  #tabicon .iconSel {
-    line-height: 1.4;
-    font-size: 1.5em;
+  #mod_selectIcon .iconSel {
+    font-size: 2em;
   }
 
-  #tabicon .iconSelected,
-  #tabimg .iconSelected {
+  #mod_selectIcon .iconSelected {
     background-color: var(--objectBkgd-color);
     color: white;
   }
 
-  #tabicon .imgContainer img {
-    max-width: 120px;
-    max-height: 70px;
-    padding: 10px;
-  }
-
-  #tabicon .divImgSel {
-    min-width: 120px;
-    width: 120px;
-    height: 115px !important;
-    overflow: hidden !important;
-    text-align: center;
-  }
-
-  #tabimg .imgContainer {
-    padding-top: 32px;
-    display:flex;
-    align-items:flex-start;
-  }
-
-  #tabimg .imgContainer img {
+  #mod_selectIcon #tabimg .imgContainer img {
     width: auto;
     height: auto;
     max-width:80px;
     max-height:80px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
   }
 
-  #tabimg #div_treeFolder {
-    height:100%;
-    min-width:180px;
+  #mod_selectIcon #tabobjectbg .imgContainer img {
+    width: auto;
+    height: auto;
+    max-width:120px;
+    max-height:100px;
   }
 
-  #tabimg #div_imageGallery {
+  #mod_selectIcon .div_imageGallery {
     height:100%;
-    margin-left:15px;
     display:flex;
     flex-wrap:wrap;
   }
 
-  #tabimg .divImgSel {
-    height:140px;
-    min-width:120px;
+  #mod_selectIcon .divIconSel {
+    height:90px;
+    width:90px;
+    overflow: hidden;
+    margin: 0 0.25%;
+  }
+
+  #mod_selectIcon .divImgSel {
+    height:120px;
+    width:120px;
+    overflow: hidden;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content: flex-end;
   }
 
-  #tabicon .iconDesc,
-  #tabimg .iconDesc {
+  #mod_selectIcon .divBgSel {
+    height:120px;
+    width:140px;
+    overflow: hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: flex-end;
+    padding-bottom:20px;
+  }
+
+  #mod_selectIcon .iconDesc {
     font-size: 0.8em;
-    word-wrap: break-word;
   }
 
   /* object/scenario/interact/plugin pages */
