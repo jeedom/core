@@ -378,11 +378,10 @@
     }
     #mod_selectIcon .div_treeFolder[id^="treeFolder-"] > ul {
       position: fixed;
-      overflow: hidden;
-      display: contents;
+      width:180px
     }
     #mod_selectIcon .div_imageGallery {
-      width:calc(100% - 225px);
+      width:calc(100% - 200px);
     }
   }
 

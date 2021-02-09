@@ -86,7 +86,7 @@ sendVarToJS([
     </div>
 
     <div role="tabpanel" class="tab-pane" id="tabimg">
-      <span class="btn btn-default btn-file pull-right">
+      <span class="btn btn-default btn-file" style="position:absolute;right:25px;top:45px;">
         <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImg" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
       </span>
       <div class="imgContainer">
