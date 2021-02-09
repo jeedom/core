@@ -1012,7 +1012,7 @@
     top: 5px;
     left: 2px;
     height: unset !important;
-    padding: 3px;
+    padding: 0;
     background: transparent !important;
     box-shadow: none;
   }

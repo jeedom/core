@@ -70,8 +70,8 @@ sendVarToJS([
 
   //Set modal:
   $('#md_modal').dialog({
-    height: $divSummaryAction.find('.eqLogic-widget').height() + 15,
-    width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 5
+    height: $divSummaryAction.find('.eqLogic-widget').outerHeight(true) + 12,
+    width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 8
   })
 
   var mouseY = jeedomUtils.mouseY - 20
