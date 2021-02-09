@@ -427,7 +427,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
         eqLogic.empty().html(html.children()).trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
-          setTileSize('.eqLogic');
+          jeedomUtils.setTileSize('.eqLogic');
         } else {
           if (typeof editWidgetMode == 'function') {
             editWidgetMode();

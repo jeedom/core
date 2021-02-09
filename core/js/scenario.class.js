@@ -267,7 +267,7 @@ jeedom.scenario.refreshValue = function (_params) {
       $('.scenario[data-scenario_id=' + params.scenario_id + ']').empty().html($(result).children());
       if ($.mobile) {
         $('.scenario[data-scenario_id=' + params.scenario_id + ']').trigger("create");
-        setTileSize('.scenario');
+        jeedomUtils.setTileSize('.scenario');
       }
     }
   };
