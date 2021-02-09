@@ -213,7 +213,7 @@ function printFileFolder(_path, jstreeId) {
               for (var i in matches) {
                 var selected = (iconClasses && iconClasses[2] === matches[i]) ? ' iconSelected':''
                 div += '<div class="divIconSel text-center'+selected+'">';
-                div += '<span class="cursor iconSel"><i class=\'icon ' +matches[i]+ ' ' +$('#sel_colorIcon').value()+ '\'></i></span><br/><span class="iconDesc">' +matches[i]+ '</span>';
+                div += '<span class="cursor iconSel"><i class=\'icon ' +matches[i]+ ' ' +$('#sel_colorIcon').value()+ '\'></i></span><br/><span class="iconDesc">' +matches[i].replace(category+'-', '')+ '</span>';
                 div += '</div>';
               }
               $('#'+jstreeId).siblings('.div_imageGallery').append(div)
