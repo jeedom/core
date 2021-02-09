@@ -182,7 +182,7 @@
         "Objet": "Objeto",
         "Parent": "Pai",
         "Visible": "Visivél",
-        "Masquer": "Ocultar",
+        "Masquer": "Esconder",
         "sur le Dashboard": "no painel",
         "sur la Synthèse": "na síntese",
         "Résumé Défini": "Resumo definido",
@@ -1195,7 +1195,7 @@
         "Appliquer le css personnalisé sur": "Aplicar css personalizado em",
         "Commandes": "Comandos",
         "Commande": "Ordem",
-        "Masquer": "Ocultar",
+        "Masquer": "Esconder",
         "Taille de la police": "Tamanho da fonte",
         "Alignement du texte": "Alinhamento de texto",
         "Par defaut": "Por padrão",
@@ -4337,7 +4337,7 @@
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visivél",
-        "Masquer": "Ocultar",
+        "Masquer": "Esconder",
         "Activer": "Ativar",
         "Désactiver": "Desativar"
     },
@@ -4349,7 +4349,7 @@
         "Sélectionner un équipement": "Selecione o equipamento",
         "Action": "Açao",
         "Visible": "Visivél",
-        "Masquer": "Ocultar",
+        "Masquer": "Esconder",
         "Activer": "Ativar",
         "Désactiver": "Desativar"
     },

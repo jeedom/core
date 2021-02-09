@@ -182,7 +182,7 @@
         "Objet": "Objeto",
         "Parent": "Pariente",
         "Visible": "Visible",
-        "Masquer": "Esconder",
+        "Masquer": "Ocultar",
         "sur le Dashboard": "En el Dashboard",
         "sur la Synthèse": "en la síntesis",
         "Résumé Défini": "Resumen definido",
@@ -1195,7 +1195,7 @@
         "Appliquer le css personnalisé sur": "Aplicar CSS personalizado en",
         "Commandes": "Comandos",
         "Commande": "Comando",
-        "Masquer": "Esconder",
+        "Masquer": "Ocultar",
         "Taille de la police": "Tamaño de fuente",
         "Alignement du texte": "Alineación de texto",
         "Par defaut": "Por defecto",
@@ -4337,7 +4337,7 @@
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
-        "Masquer": "Esconder",
+        "Masquer": "Ocultar",
         "Activer": "Activar",
         "Désactiver": "Desactivar"
     },
@@ -4349,7 +4349,7 @@
         "Sélectionner un équipement": "Seleccionar dispositivo",
         "Action": "Acción",
         "Visible": "Visible",
-        "Masquer": "Esconder",
+        "Masquer": "Ocultar",
         "Activer": "Activar",
         "Désactiver": "Desactivar"
     },

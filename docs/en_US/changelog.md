@@ -44,6 +44,35 @@
 
 # Changelog Jeedom V4.1
 
+
+## 4.1.20
+
+- Bugfix horizontal scroll on designs.
+- Bugfix scroll on the plugins equipment pages.
+- Bugfix of the color settings on the view / design links on a Design.
+- Bugfix and optimization of the Timeline.
+- Three-fingered review of mobile designs now limited to administrator profiles.
+
+## 4.1.19
+
+- Bugfix deletion of zone on a View.
+- Bugfix js error that can appear on old browsers.
+- Bugfix cmd.info.numeric.default.html if command not visible.
+- Bugfix login page.
+
+## 4.1.18
+
+- Historical Bugfix on Designs.
+- Bugfix searches in Analysis / History.
+- Bugfix search on a variable, link to a device.
+- Bugfix of colored summaries on synthesis.
+- Bugfix on scenario comments with json.
+- Bugfix on summary updates on Dashboard mode previews.
+- Bugfix of elements *picture* on a design.
+- Added grouping options by time for charts on views.
+- Conservation of the Synthesis context when clicking on the summaries.
+- Centering of Synthesis images.
+
 ## 4.1.0
 
 ### Prerequisites

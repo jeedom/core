@@ -44,6 +44,35 @@
 
 # Changelog Jeedom V4.1
 
+
+## 4.1.20
+
+- Bugfix horizontale Schriftrolle auf Designs.
+- Bugfix-Bildlauf auf den Ausrüstungsseiten der Plugins.
+- Bugfix der Farbeinstellungen in den Ansichts- / Design-Links eines Designs.
+- Bugfix und Optimierung der Timeline.
+- Die Überprüfung von mobilen Designs mit drei Fingern ist jetzt auf Administratorprofile beschränkt.
+
+## 4.1.19
+
+- Bugfix Löschung der Zone in einer Ansicht.
+- Bugfix js Fehler, der in alten Browsern auftreten kann.
+- Bugfix cmd.info.numeric.default.HTML, wenn Befehl nicht sichtbar ist.
+- Bugfix-Anmeldeseite.
+
+## 4.1.18
+
+- Historischer Bugfix für Designs.
+- Bugfix-Suche in Analyse / Verlauf.
+- Bugfix-Suche nach einer Variablen, Link zu einem Gerät.
+- Bugfix von farbigen Zusammenfassungen zur Synthese.
+- Bugfix für Szenariokommentare mit json.
+- Bugfix bei Zusammenfassungsaktualisierungen in der Vorschau des Dashboard-Modus.
+- Bugfix von Elementen *Bild* auf ein Design.
+- Gruppierungsoptionen nach Zeit für Diagramme in Ansichten hinzugefügt.
+- Beibehaltung des Synthesekontexts beim Klicken auf die Zusammenfassungen.
+- Zentrierung von Synthesebildern.
+
 ## 4.1.0
 
 ### Voraussetzungen

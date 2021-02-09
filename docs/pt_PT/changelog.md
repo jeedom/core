@@ -44,6 +44,35 @@
 
 # Registro de alterações Jeedom V4.1
 
+
+## 4.1.20
+
+- Correção de bug na rolagem horizontal em designs.
+- Correção de bug para rolagem nas páginas de plugins de equipamentos.
+- Correção de bug das configurações de cor nos links de visualização / design em um desenho.
+- Correção de bugs e otimização da linha do tempo.
+- Revisão com três dedos de designs móveis agora limitada a perfis de administrador.
+
+## 4.1.19
+
+- Correção de bug na exclusão de zona em uma visualização.
+- Correção de erro de js que pode aparecer em navegadores antigos.
+- Bugfix cmd.info.numeric.default.html se o comando não estiver visível.
+- Página de login de correção de bug.
+
+## 4.1.18
+
+- Correção de bug histórico em designs.
+- Busca de correção de bug em Análise / Histórico.
+- Correção de bug na pesquisa de uma variável, link para um dispositivo.
+- Correção de bugs de resumos coloridos na síntese.
+- Correção de bug em comentários de cenário com json.
+- Correção de bug em atualizações de resumo em visualizações do modo Painel.
+- Bugfix de elementos *cenário* em um design.
+- Adicionadas opções de agrupamento por tempo para gráficos em visualizações.
+- Conservação do contexto de síntese ao clicar nos resumos.
+- Centralização de imagens de síntese.
+
 ## 4.1.0
 
 ### Pré-requisitos

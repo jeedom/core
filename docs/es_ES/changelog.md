@@ -44,6 +44,35 @@
 
 # Registro de cambios Jeedom V4.1
 
+
+## 4.1.20
+
+- Corrección de errores de desplazamiento horizontal en diseños.
+- Corrección de errores de desplazamiento en las páginas de equipos de complementos.
+- Corrección de errores de la configuración de color en los enlaces de vista / diseño en un diseño.
+- Corrección de errores y optimización de la línea de tiempo.
+- Revisión de diseños móviles con tres dedos ahora limitada a perfiles de administrador.
+
+## 4.1.19
+
+- Eliminación de corrección de errores de zona en una vista.
+- Error de corrección de errores js que puede aparecer en navegadores antiguos.
+- Corrección de error cmd.info.numeric.default.html si el comando no está visible.
+- Página de inicio de sesión de corrección de errores.
+
+## 4.1.18
+
+- Corrección de errores históricos en diseños.
+- Búsquedas de corrección de errores en Análisis / Historial.
+- Búsqueda de corrección de errores en una variable, enlace a un dispositivo.
+- Corrección de errores de resúmenes en color sobre síntesis.
+- Corrección de errores en los comentarios del escenario con json.
+- Corrección de errores en las actualizaciones resumidas en las vistas previas del modo Panel.
+- Corrección de errores de elementos *imagen* en un diseño.
+- Se agregaron opciones de agrupación por tiempo para gráficos en vistas.
+- Conservación del contexto de síntesis al hacer clic en los resúmenes.
+- Centrado de imágenes de síntesis.
+
 ## 4.1.0
 
 ### Prerrequisitos
