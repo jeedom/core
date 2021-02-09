@@ -377,8 +377,11 @@
       display: block !important;
     }
     #mod_selectIcon .div_treeFolder[id^="treeFolder-"] > ul {
-      position: fixed;
-      width: 15%;
+      position:fixed;
+      width: 200px;
+    }
+    #mod_selectIcon .div_imageGallery {
+      width:calc(100% - 225px);
     }
   }
 
@@ -1269,6 +1272,8 @@
 
   #mod_selectIcon .imgContainer {
     padding-top: 20px;
+    display:flex;
+    justify-content: space-between;
   }
 
   #mod_selectIcon .iconSel {
@@ -1296,7 +1301,6 @@
 
   #mod_selectIcon .div_imageGallery {
     height:100%;
-    margin-left:17%;
     display:flex;
     flex-wrap:wrap;
   }
