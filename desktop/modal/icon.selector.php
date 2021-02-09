@@ -63,7 +63,7 @@ sendVarToJS([
   <?php if (!$objectId) { ?>
     <div role="tabpanel" class="tab-pane active" id="tabicon">
       <div class="imgContainer">
-        <div id="treeFolder-icon" class="div_treeFolder col-sm-3 col-md-2">
+        <div id="treeFolder-icon" class="div_treeFolder">
           <ul id="ul_Folder-bg">
             <?php
             $scanPaths = array('/var/www/html/core/css/icon', '/var/www/html/data/fonts');
@@ -80,7 +80,7 @@ sendVarToJS([
             ?>
           </ul>
         </div>
-        <div class="div_imageGallery col-sm-9 col-md-10">
+        <div class="div_imageGallery">
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@ sendVarToJS([
         <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImg" type="file" name="file" multiple="multiple" data-path="" style="display: inline-block;">
       </span>
       <div class="imgContainer">
-        <div id="treeFolder-img" class="div_treeFolder col-sm-3 col-md-2">
+        <div id="treeFolder-img" class="div_treeFolder">
           <ul id="ul_Folder-img">
             <?php
             $rootPath = __DIR__ . '/../../data/';
@@ -100,14 +100,14 @@ sendVarToJS([
             ?>
           </ul>
         </div>
-        <div class="div_imageGallery col-sm-9 col-md-10">
+        <div class="div_imageGallery">
         </div>
       </div>
     </div>
   <?php } else { ?>
     <div role="tabpanel" class="tab-pane active" id="tabobjectbg">
       <div class="imgContainer">
-        <div id="treeFolder-bg" class="div_treeFolder col-sm-3 col-md-2">
+        <div id="treeFolder-bg" class="div_treeFolder">
           <ul id="ul_Folder-bg">
             <?php
             $rootPath = __DIR__.'/../../core/img/object_background/';
@@ -117,7 +117,7 @@ sendVarToJS([
             ?>
           </ul>
         </div>
-        <div class="div_imageGallery col-sm-9 col-md-10">
+        <div class="div_imageGallery">
         </div>
       </div>
     </div>

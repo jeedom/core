@@ -376,6 +376,10 @@
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li > ul:hover {
       display: block !important;
     }
+    #mod_selectIcon .div_treeFolder[id^="treeFolder-"] > ul {
+      position: fixed;
+      width: 15%;
+    }
   }
 
 
@@ -1292,6 +1296,7 @@
 
   #mod_selectIcon .div_imageGallery {
     height:100%;
+    margin-left:17%;
     display:flex;
     flex-wrap:wrap;
   }
