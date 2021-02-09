@@ -299,6 +299,7 @@ jeedom.log.getScTranslations({
   success : function(result) {
     jeedom.log.colorScReplacement = JSON.parse(result)
     jeedom.log.colorScReplacement[' Start : '] = {'txt': ' Start : ', 'replace': '<strong> -- Start : </strong>'}
+    jeedom.log.colorScReplacement['Log :'] = {'txt': 'Log :', 'replace': '<span class="success">&ensp;&ensp;&ensp;Log :</span>'}
   },
   error : function() {
     console.log('Unable to get jeedom scenario traductions')
