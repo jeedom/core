@@ -440,6 +440,7 @@ function editWidgetMode(_mode,_save) {
 }
 $('#bt_editDashboardWidgetOrder').on('click',function() {
   if ($(this).attr('data-mode') == 1) {
+    modifyWithoutSave = false
     $('#md_modal').dialog('close')
     $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
     $.hideAlert()

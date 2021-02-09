@@ -166,6 +166,7 @@ function editWidgetMode(_mode, _save) {
   }
   var divEquipements = $('.div_displayView')
   if (_mode == 0 || _mode == '0') {
+    modifyWithoutSave = false
     jeedomUI.isEditing = false
     jeedom.cmd.disableExecute = false
 
