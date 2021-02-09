@@ -377,8 +377,9 @@
       display: block !important;
     }
     #mod_selectIcon .div_treeFolder[id^="treeFolder-"] > ul {
-      position:fixed;
-      width: 200px;
+      position: fixed;
+      overflow: hidden;
+      display: contents;
     }
     #mod_selectIcon .div_imageGallery {
       width:calc(100% - 225px);
@@ -1274,6 +1275,13 @@
     padding-top: 20px;
     display:flex;
     justify-content: space-between;
+  }
+  #mod_selectIcon li.jstree-leaf > a {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  #mod_selectIcon li.jstree-leaf[aria-selected="true"] {
+    font-weight: bold;
   }
 
   #mod_selectIcon .iconSel {
