@@ -42,33 +42,42 @@ sendVarToJS([
 <div id="div_summaryAction"></div>
 
 <script>
-var $divSummaryAction = $('#div_summaryAction')
+  var $divSummaryAction = $('#div_summaryAction')
 
-//remove commands prior to DOM injection:
-var $eqLogic = $(decodeURIComponent(edqlogicHtml.replace(/\+/g, ' ')))
-for (var i in summary_cmd_to_remove) {
-  $eqLogic.find('.cmd.cmd-widget[data-cmd_id='+summary_cmd_to_remove[i]+']').remove()
-}
-//eqLogic UI:
-$eqLogic.find('.widget-name').remove()
-$eqLogic.attr('data-eqLogic_id', -1)
-$eqLogic.find('.verticalAlign').removeClass('verticalAlign')
+  //remove commands prior to DOM injection:
+  var $eqLogic = $(decodeURIComponent(edqlogicHtml.replace(/\+/g, ' ')))
+  for (var i in summary_cmd_to_remove) {
+    $eqLogic.find('.cmd.cmd-widget[data-cmd_id='+summary_cmd_to_remove[i]+']').remove()
+  }
+  //eqLogic UI:
+  $eqLogic.find('.widget-name').remove()
+  $eqLogic.attr('data-eqLogic_id', -1)
+  $eqLogic.find('.verticalAlign').removeClass('verticalAlign')
 
-$divSummaryAction.prepend($eqLogic)
+  $divSummaryAction.prepend($eqLogic)
 
-//modal:
-$('#md_modal').parent('.ui-dialog').addClass('summaryActionMain')
-$('#md_modal').dialog('open')
-$('#md_modal').dialog({
-  height: $divSummaryAction.find('.eqLogic-widget').height() + 45,
-  width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 5
+  //modal:
+  $('#md_modal').parent('.ui-dialog').addClass('summaryActionMain')
+  $('#md_modal').dialog('open')
+
+  //calcul commands width:
+  $eqLogic = $divSummaryAction.find('.eqLogic-widget')
+  var eqWidth = 0
+  $eqLogic.find('.cmd-widget').each(function() {
+    eqWidth += $(this).outerWidth(true) + 5
   })
+  $eqLogic.css('width', eqWidth)
 
-var mouseY = jeedomUtils.mouseY - 20
-if (mouseY < 55) mouseY = 55
-$('#md_modal').parent('.ui-dialog').css({
-  top: mouseY,
-  left: jeedomUtils.mouseX - $('#md_modal').parent('.ui-dialog').width() / 2
-})
+  $('#md_modal').dialog({
+    height: $divSummaryAction.find('.eqLogic-widget').height() + 15,
+    width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 5
+    })
+
+  var mouseY = jeedomUtils.mouseY - 20
+  if (mouseY < 55) mouseY = 55
+  $('#md_modal').parent('.ui-dialog').css({
+    top: mouseY,
+    left: jeedomUtils.mouseX - $('#md_modal').parent('.ui-dialog').width() / 2
+  })
 
 </script>
