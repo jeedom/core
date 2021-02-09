@@ -64,10 +64,10 @@ $('#md_modal').dialog({
   width: $divSummaryAction.find('.eqLogic-widget').outerWidth(true) + 5
   })
 
-var top = jeedomUtils.mouseY - 20
-if (top < 55) top = 55
+var mouseY = jeedomUtils.mouseY - 20
+if (mouseY < 55) mouseY = 55
 $('#md_modal').parent('.ui-dialog').css({
-  top: top,
+  top: mouseY,
   left: jeedomUtils.mouseX - $('#md_modal').parent('.ui-dialog').width() / 2
 })
 
