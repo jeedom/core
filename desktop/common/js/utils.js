@@ -687,9 +687,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
   })
 
   $('#bt_messageModal').on('click',function() {
+    jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1')
   })
   $('#bt_jsErrorModal').on('click',function() {
+    jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
@@ -712,7 +714,8 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
     jeedomUtils.mouseX = event.originalEvent.x
     jeedomUtils.mouseY = event.originalEvent.y
-    $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id')).dialog('open')
+    jeedomUtils.closeModal()
+    $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id'))
   })
 
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
@@ -1287,6 +1290,21 @@ jeedomUtils.getOpenedModal = function() {
     }
   })
   return _return
+}
+
+jeedomUtils.closeModal = function(_modals='') {
+  if (_modals == '') {
+    _modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
+  }
+  if (!Array.isArray(_modals)) {
+    _modals = [_modals]
+  }
+  _modals.forEach(function(_modal) {
+    try {
+      $('#'+_modal).dialog('close')
+    } catch (error) {}
+
+  })
 }
 
 //Extensions__

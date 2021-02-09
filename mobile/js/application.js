@@ -62,26 +62,26 @@ $(function() {
   $('body').on('taphold', '.objectSummaryAction', function(e) {
     jeedomUtils.loadPanel(false)
     $('#bottompanel_objectList').panel('close')
-    let object_id = $(this).attr('data-object_id');
-    let summary = $(this).attr('data-summary');
-    jeedomUtils.loadModal('mobile/modal/summary.action.html',function(){
-      initSummaryAction(object_id,summary)
-    });
-  });
+    let object_id = $(this).attr('data-object_id')
+    let summary = $(this).attr('data-summary')
+    jeedomUtils.loadModal('mobile/modal/summary.action.html',function() {
+      initSummaryAction(object_id, summary)
+    })
+  })
 
-  $('body').on('tap','.link',function(e) {
+  $('body').on('tap', '.link',function(e) {
     jeedomUtils.loadModal(false)
     jeedomUtils.loadPanel(false)
     jeedomUtils.loadPage($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   })
 
-  $('body').on('tap','.objectSummaryParent',function(e) {
+  $('body').on('tap', '.objectSummaryParent',function(e) {
     jeedomUtils.loadModal(false)
     jeedomUtils.loadPanel(false)
-    jeedomUtils.loadPage('equipment', '{{Résumé}}', $(this).data('object_id')+':'+$(this).data('summary'))
+    jeedomUtils.loadPage('equipment', '{{Résumé}}', $(this).data('object_id') + ':' + $(this).data('summary'))
   })
 
-  $('body').on('click','.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
+  $('body').on('click', '.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
@@ -91,11 +91,11 @@ $(function() {
     $(document).scrollTop(PANEL_SCROLL)
   })
 
-  $('body').on('click','#bt_warnmeCmd', function() {
+  $('body').on('click', '#bt_warnmeCmd', function() {
     jeedomUtils.loadPage('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')}, null, true)
   })
 
-  $('body').on('click','#bt_switchTheme', function() {
+  $('body').on('click', '#bt_switchTheme', function() {
     jeedomUtils.switchTheme(jeedom.theme)
     $('#bottompanel_otherActionList').panel('close')
   })
@@ -633,7 +633,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   }, 1500)
 }
 
-jeedomUtils.loadModal = function(_name,_callback) {
+jeedomUtils.loadModal = function(_name, _callback) {
   try {
     if (_name === false) {
       $('#div_popup').empty().popup("close")
@@ -642,14 +642,14 @@ jeedomUtils.loadModal = function(_name,_callback) {
       $('#div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
 
-        $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
+        $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
         if ('function' == typeof (_callback)) {
-          _callback();
-          $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
+          _callback()
+          $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
         }
         setTimeout(function(){
-          $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
-          $('#div_popup-popup').css({top:70,left:($('body').width() - $('#div_popup-popup').width())/2})
+          $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
+          $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
         }, 200)
       })
     }
@@ -736,3 +736,6 @@ jeedomUtils.normTextLower = function(_text) {
 //deprecated, remove v4.2
 function refreshUpdateNumber() {}
 function positionEqLogic(_id) {}
+
+//deprecated, remove v4.3
+var page = jeedomUtils.loadPage

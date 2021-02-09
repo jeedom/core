@@ -981,15 +981,13 @@
   }
 
   #searchContainer {
-    width: 100%;
-    z-index: 900;
     position: fixed;
     top: 65px;
     left: 0;
     height: 35px !important;
     width: 100%;
-    z-index: 900;
     box-sizing: border-box;
+    z-index: 900;
   }
   #in_searchDashboard,
   #in_globalLogSearch {
@@ -1352,6 +1350,10 @@
   }
   #popupDialog-popup {
     background-color: var(--bg-modal-color);
+  }
+  #div_summaryAction div.eqLogic-widget {
+    z-index: 1200 !important;
+    position: relative !important;
   }
 
 
