@@ -999,24 +999,8 @@
     padding: 0 !important;
     width: unset !important;
   }
-
   div.ui-dialog.summaryActionMain > div.ui-dialog-titlebar {
-    line-height: 12px;
-    background: rgba(var(--defaultBkg-color), 0.95) !important;
-  }
-  div.ui-dialog.summaryActionMain .ui-dialog-titlebar-close::before {
-    color: var(--link-color) !important;
-  }
-  div.ui-dialog.summaryActionMain .ui-dialog-title {
-    font-weight: 300;
-    color: var(--link-color) !important;
-  }
-  div.ui-dialog.summaryActionMain .ui-dialog-title::before {
-    content: '';
-  }
-  div.ui-dialog.summaryActionMain .ui-dialog-titlebar-close {
-    margin-top: -27px;
-    margin-right: -5px;
+    display: none;
   }
 
   #div_summaryAction div.eqLogic-widget {
