@@ -428,6 +428,7 @@ class jeeObject {
 			$virtualGlobal->setIsEnable(1);
 		}
 		$virtualGlobal->setIsEnable(1);
+		$virtualGlobal->setConfiguration('isSummary',1);
 		$virtualGlobal->setLogicalId('summaryglobal');
 		$virtualGlobal->setEqType_name('virtual');
 		$virtualGlobal->save();
