@@ -469,6 +469,7 @@ class jeeObject {
 			$virtual->setEqType_name('virtual');
 			$virtual->setObject_id($object->getId());
 			$virtual->save();
+			$virtual->setConfiguration('isSummary',1);
 			$object->setConfiguration('summary_virtual_id', $virtual->getId());
 			$object->save();
 			$cmd = $virtual->getCmd('info', $_key);
