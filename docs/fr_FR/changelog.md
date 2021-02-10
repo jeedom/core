@@ -256,6 +256,13 @@
 - Correction de bugs sur les templates de scénario.
 
 ## 4.0.0
+
+### Pré-requis
+
+- Debian 9 Stretch
+
+### Nouveautés / Améliorations
+
 - Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
 - En mobile, le thème peut changer en fonction de la luminosité (Nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags).<br/><br/>
@@ -329,18 +336,23 @@
 - Design : Ajout d'un champs CSS personnalisé sur les éléments du *design*.
 - Design : Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
 - Design : Le déplacement et le redimensionnement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
-- Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
-- Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
-- Mise à jour des libs : jquery 3.4.1 , CodeMiror 5.46.0, tablesorter 2.31.1.
-- Nombreuses corrections de bugs.
 - Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
+
+### Autres
+
+- **Lib** : Update jquery 3.4.1
+- **Lib** : Update CodeMiror 5.46.0
+- **Lib** : Update tablesorter 2.31.1
+- Allègement général (css / inline styles, refactoring, etc.) et améliorations des performances.
 - Ajout de la compatibilité global du DNS Jeedom avec une connexion internet 4G.
-- Correction de sécurité
+- Nombreuses corrections de bugs.
+- Corrections de sécurité.
+
+### Changements
+
+- Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
+- Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >**IMPORTANT**
 >
->Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte.
-
->**IMPORTANT**
->
->Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+> Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte.
