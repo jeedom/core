@@ -376,13 +376,6 @@
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li > ul:hover {
       display: block !important;
     }
-    #mod_selectIcon .div_treeFolder[id^="treeFolder-"] > ul {
-      position: fixed;
-      width:180px
-    }
-    #mod_selectIcon .div_imageGallery {
-      width:calc(100% - 200px);
-    }
   }
 
 
@@ -1272,15 +1265,19 @@
 
   #mod_selectIcon .imgContainer {
     padding-top: 20px;
+  }
+
+  #mod_selectIcon .div_treeFolder {
+    position:absolute;
+    width:160px;
+  }
+
+  #mod_selectIcon .div_imageGallery {
+    height:100%;
+    width:calc(100% - 175px);
+    margin-left: 175px;
     display:flex;
-    justify-content: space-between;
-  }
-  #mod_selectIcon li.jstree-leaf > a {
-    max-width: 100%;
-    overflow: hidden;
-  }
-  #mod_selectIcon li.jstree-leaf[aria-selected="true"] {
-    font-weight: bold;
+    flex-wrap:wrap;
   }
 
   #mod_selectIcon .iconSel {
@@ -1306,39 +1303,32 @@
     max-height:100px;
   }
 
-  #mod_selectIcon .div_imageGallery {
-    height:100%;
-    display:flex;
-    flex-wrap:wrap;
-  }
-
   #mod_selectIcon .divIconSel {
-    height:90px;
-    width:90px;
+    height:80px;
+    width:80px;
     overflow: hidden;
     margin: 0 0.25%;
   }
 
   #mod_selectIcon .divImgSel {
-    height:120px;
-    width:120px;
-    overflow: hidden;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content: flex-end;
+    height:130px;
+    width:100px;
   }
 
   #mod_selectIcon .divBgSel {
-    height:120px;
+    height:100px;
     width:140px;
-    overflow: hidden;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content: flex-end;
-    padding-bottom:20px;
   }
+
+  #mod_selectIcon .divImgSel,
+  #mod_selectIcon .divBgSel {
+  overflow: hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: flex-end;
+  padding-bottom:10px;
+}
 
   #mod_selectIcon .iconDesc {
     font-size: 0.8em;
@@ -3191,6 +3181,7 @@
     background-color: transparent;
     border-right: 2.5px solid var(--logo-primary-color);
     box-shadow: none;
+    font-weight: bold;
   }
   .jstree li a {
     width: 90% !important;
