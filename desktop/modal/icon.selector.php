@@ -45,13 +45,13 @@ sendVarToJS([
   <div id="mySearch" class="input-group" style="margin-left:6px;margin-top:6px">
     <div class="input-group-btn">
       <select class="form-control roundedLeft" style="width:200px;display:none;" id="sel_colorIcon">
-        <option disabled>-- {{Colorisation des icônes}} --</option>
-        <option value="">{{Aucune}}</option>
-        <option value="icon_blue">{{Bleue}}</option>
-        <option value="icon_yellow">{{Jaune}}</option>
-        <option value="icon_orange">{{Orange}}</option>
-        <option value="icon_red">{{Rouge}}</option>
-        <option value="icon_green">{{Verte}}</option>
+        <option disabled>---{{Couleur des icônes}}---</option>
+        <option value="">{{Aucune couleur}}</option>
+        <option value="icon_blue" class="icon_blue">{{Icônes bleues}}</option>
+        <option value="icon_yellow" class="icon_yellow">{{Icônes jaunes}}</option>
+        <option value="icon_orange" class="icon_orange">{{Icônes oranges}}</option>
+        <option value="icon_red" class="icon_red">{{Icônes rouges}}</option>
+        <option value="icon_green" class="icon_green">{{Icônes vertes}}</option>
       </select>
     </div>
     <input class="form-control" placeholder="{{Rechercher}}" id="in_searchIconSelector">
