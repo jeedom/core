@@ -3736,6 +3736,7 @@ Theme Core 2021 @Jeedom
   }
   body[data-page="plan"] #div_mainContainer {
     overflow: hidden !important;
+    height: unset !important;
   }
   .div_backgroundPlan {
     height: calc(100vh - 50px) !important;
@@ -3759,6 +3760,16 @@ Theme Core 2021 @Jeedom
   .div_backgroundPlan .text-widget {
     background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
     color: var(--txt-color) !important;
+  }
+
+  body[data-device="mobile"][data-page="plan"] {
+    padding: 0;
+  }
+  body[data-device="mobile"][data-page="plan"] #div_mainContainer {
+    margin: 0 !important;
+  }
+  body[data-device="mobile"][data-page="plan"] div.div_backgroundPlan {
+    height: 100% !important;
   }
 
   /* view data table */

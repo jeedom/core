@@ -652,10 +652,11 @@ function fullScreen(_mode) {
     $('#div_mainContainer').css({
       'margin-top' : '-50px',
       'overflow-y' : 'inherit',
-      'overflow-x' : 'inherit'
+      'overflow-x' : 'inherit',
+      'height' : '100vh'
     })
     $('#wrap').css('margin-bottom', '0px')
-    $('.div_backgroundPlan').height('auto')
+    $('.div_backgroundPlan').attr('style', 'height: 100vh !important')
     $('.backgroundforJeedom').css('margin-top', '-50px').height('100%')
 
   } else {
