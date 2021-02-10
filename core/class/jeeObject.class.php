@@ -503,7 +503,7 @@ class jeeObject {
 				}
 			}
 			foreach ($cmd_genericType as $genericType => $cmds) {
-				if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['subtype'])){
+				if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary_subtype'])){
 					continue;
 				}
 				$cmd = $virtual->getCmd('action', $_key.'::action::'.$genericType);
@@ -515,7 +515,7 @@ class jeeObject {
 				$cmd->setEqLogic_id($virtual->getId());
 				$cmd->setLogicalId($_key.'::action::'.$genericType);
 				$cmd->setType('action');
-				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['subtype']);
+				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary_subtype']);
 				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
 				$cmd->setConfiguration('summary::object_id',$object->getId());
 				$cmd->setConfiguration('summary::generic_type',$genericType);
@@ -531,7 +531,7 @@ class jeeObject {
 				$cmd->setEqLogic_id($virtualGlobal->getId());
 				$cmd->setLogicalId($_key.'::action::'.$genericType);
 				$cmd->setType('action');
-				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['subtype']);
+				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary_subtype']);
 				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
 				$cmd->setConfiguration('summary::object_id','global');
 				$cmd->setConfiguration('summary::generic_type',$genericType);
