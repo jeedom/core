@@ -403,9 +403,9 @@ $('#bt_chooseIcon').on('click', function() {
     }
   }
   jeedomUtils.chooseIcon(function(_icon) {
+    modifyWithoutSave = true
     $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-  },{icon:icon,color:color})
-  modifyWithoutSave = true
+  }, {icon:icon,color:color})
 })
 
 $('#div_pageContainer').off('change','.objectAttr').on('change','.objectAttr:visible', function() {

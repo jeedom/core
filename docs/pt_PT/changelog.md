@@ -18,6 +18,7 @@
 - **Resumos** : Possibilidade de definir um ícone diferente quando o resumo for nulo (sem venezianas abertas, sem luz acesa, etc).
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
+- **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
 - **Categorias coloridas** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
 - **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Plugins podem usar esta nova função principal.
 - **Configuração** : Possibilidade de configurar o papel de parede nas páginas Dashboard, Analysis, Tools e sua opacidade dependendo do tema.
@@ -42,6 +43,35 @@
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 
 # Registro de alterações Jeedom V4.1
+
+
+## 4.1.20
+
+- Correção de bug na rolagem horizontal em designs.
+- Correção de bug para rolagem nas páginas de plugins de equipamentos.
+- Correção de bug das configurações de cor nos links de visualização / design em um desenho.
+- Correção de bugs e otimização da linha do tempo.
+- Revisão com três dedos de designs móveis agora limitada a perfis de administrador.
+
+## 4.1.19
+
+- Correção de bug na exclusão de zona em uma visualização.
+- Correção de erro de js que pode aparecer em navegadores antigos.
+- Bugfix cmd.info.numeric.default.html se o comando não estiver visível.
+- Página de login de correção de bug.
+
+## 4.1.18
+
+- Correção de bug histórico em designs.
+- Busca de correção de bug em Análise / Histórico.
+- Correção de bug na pesquisa de uma variável, link para um dispositivo.
+- Correção de bugs de resumos coloridos na síntese.
+- Correção de bug em comentários de cenário com json.
+- Correção de bug em atualizações de resumo em visualizações do modo Painel.
+- Bugfix de elementos *cenário* em um design.
+- Adicionadas opções de agrupamento por tempo para gráficos em visualizações.
+- Conservação do contexto de síntese ao clicar nos resumos.
+- Centralização de imagens de síntese.
 
 ## 4.1.0
 
@@ -226,6 +256,13 @@
 - Bugs corrigidos em modelos de cenário.
 
 ## 4.0.0
+
+### Pré-requisitos
+
+- Debian 9 Stretch
+
+### Notícias / Melhorias
+
 - Redesenho completo do tema (Core 2019 Light / Dark / Legacy).
 - Possibilidade de mudar o tema automaticamente dependendo do tempo.
 - No celular, o tema pode mudar dependendo do brilho (Requer para ativar *sensor extra genérico* no cromo, página do cromo://flags).<br/><br/>
@@ -299,18 +336,23 @@
 - Projeto : Adição de um campo CSS personalizado nos elementos do *Projeto*.
 - Projeto : Movidas as opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Projeto*. Isso para simplificar a interface e permitir ter diferentes parâmetros por *Projeto*.
 - Projeto : Movendo e redimensionando componentes em *Projeto* leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
-- Iluminação geral (estilos css / inline, refatoração, etc.) e melhorias de desempenho.
-- Remova Font Awesome 4 para manter apenas Font Awesome 5.
-- Atualizando libs : jquery 3.4.1, CodeMiror 5,46.0, tableorter 2.31.1.
-- Inúmeras correções de bugs.
 - Adição de um sistema de configuração em massa (usado na página Equipamento para configurar alertas de comunicações neles)
+
+### Autres
+
+- **Lib** : Atualize o jquery 3.4.1
+- **Lib** : Atualizar CodeMiror 5.46.0
+- **Lib** : Atualizar o tablesorter 2.31.1
+- Iluminação geral (estilos css / inline, refatoração, etc.) e melhorias de desempenho.
 - Adição de compatibilidade global do Jeedom DNS com uma conexão de internet 4G.
-- Correção de segurança
+- Inúmeras correções de bugs.
+- Correções de segurança.
+
+### Changements
+
+- Remova Font Awesome 4 para manter apenas Font Awesome 5.
+- O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >**IMPORTANTE**
 >
->Se após a atualização você tiver um erro no Dashboard, tente reiniciar sua caixa para que ela leve em consideração as novas adições de componentes.
-
->**IMPORTANTE**
->
->O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+> Se após a atualização você tiver um erro no Dashboard, tente reiniciar sua caixa para que ela leve em consideração as novas adições de componentes.

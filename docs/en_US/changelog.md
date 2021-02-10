@@ -18,6 +18,7 @@
 - **Summaries** : Possibility to define a different icon when the summary is null (no shutters open, no light on, etc).
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
+- **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
 - **Configuration** : Possibility to configure the wallpaper on the Dashboard, Analysis, Tools pages and their opacity depending on the theme.
@@ -42,6 +43,35 @@
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
 
 # Changelog Jeedom V4.1
+
+
+## 4.1.20
+
+- Bugfix horizontal scroll on designs.
+- Bugfix scroll on the plugins equipment pages.
+- Bugfix of the color settings on the view / design links on a Design.
+- Bugfix and optimization of the Timeline.
+- Three-fingered review of mobile designs now limited to administrator profiles.
+
+## 4.1.19
+
+- Bugfix deletion of zone on a View.
+- Bugfix js error that can appear on old browsers.
+- Bugfix cmd.info.numeric.default.html if command not visible.
+- Bugfix login page.
+
+## 4.1.18
+
+- Historical Bugfix on Designs.
+- Bugfix searches in Analysis / History.
+- Bugfix search on a variable, link to a device.
+- Bugfix of colored summaries on synthesis.
+- Bugfix on scenario comments with json.
+- Bugfix on summary updates on Dashboard mode previews.
+- Bugfix of elements *picture* on a design.
+- Added grouping options by time for charts on views.
+- Conservation of the Synthesis context when clicking on the summaries.
+- Centering of Synthesis images.
 
 ## 4.1.0
 
@@ -226,6 +256,13 @@
 - Fixed bugs on scenario templates.
 
 ## 4.0.0
+
+### Prerequisites
+
+- Debian 9 Stretch
+
+### News / Improvements
+
 - Complete theme redesign (Core 2019 Light / Dark / Legacy).
 - Possibility to change the theme automatically depending on the time.
 - In mobile, the theme may change depending on the brightness (Requires to activate *generic extra sensor* in chrome, chrome page://flags).<br/><br/>
@@ -299,18 +336,23 @@
 - Design : Addition of a custom CSS field on the elements of the *design*.
 - Design : Moved the display options in Design of the advanced configuration, in the display parameters from the *Design*. This in order to simplify the interface, and to allow to have different parameters by *Design*.
 - Design : Moving and resizing components on *Design* takes their size into account, with or without magnetization.<br/><br/>
-- General lightening (css / inline styles, refactoring, etc.) and performance improvements.
-- Remove Font Awesome 4 to keep only Font Awesome 5.
-- Updating libs : jquery 3.4.1, CodeMiror 5.46.0, tablesorter 2.31.1.
-- Numerous bug fixes.
 - Addition of a mass configuration system (used on the Equipment page to configure Communications Alerts on them)
+
+### Autres
+
+- **Lib** : Update jquery 3.4.1
+- **Lib** : Update CodeMiror 5.46.0
+- **Lib** : Update tablesorter 2.31.1
+- General lightening (css / inline styles, refactoring, etc.) and performance improvements.
 - Addition of global compatibility of Jeedom DNS with a 4G internet connection.
-- Security fix
+- Numerous bug fixes.
+- Security fixes.
+
+### Changements
+
+- Remove Font Awesome 4 to keep only Font Awesome 5.
+- The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the features have been taken internally on the core). More information [here](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >**IMPORTANT**
 >
->If after the update you have an error on the Dashboard, try to restart your box so that it takes the new additions of components into account.
-
->**IMPORTANT**
->
->The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the features have been taken internally on the core). More information [here](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+> If after the update you have an error on the Dashboard, try to restart your box so that it takes the new additions of components into account.

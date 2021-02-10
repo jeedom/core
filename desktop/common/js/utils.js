@@ -1247,7 +1247,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
     replaceAr.forEach(function(element) {
       if (icon.includes(element)) {
         icon = icon.replace(element, '')
-        _params.color = element
+        _params.color = (!_params.color) ? element : _params.color;
       }
     })
     icon = icon.trim().split(' ').join('.')

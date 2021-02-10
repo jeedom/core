@@ -18,6 +18,7 @@
 - **Zusammenfassungen** : Möglichkeit, ein anderes Symbol zu definieren, wenn die Zusammenfassung null ist (keine Fensterläden geöffnet, kein Licht an usw.)).
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
+- **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Farbige Kategorien** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Plugins können diese neue Core-Funktion verwenden.
 - **Aufbau** : Möglichkeit, das Hintergrundbild auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft je nach Thema zu konfigurieren.
@@ -42,6 +43,35 @@
 - Das Widget **action.slider.value** ist jetzt auf dem Desktop mit einem optionalen Parameter verfügbar *Noslider*, was macht es ein *Eingang* einfach.
 
 # Changelog Jeedom V4.1
+
+
+## 4.1.20
+
+- Bugfix horizontale Schriftrolle auf Designs.
+- Bugfix-Bildlauf auf den Ausrüstungsseiten der Plugins.
+- Bugfix der Farbeinstellungen in den Ansichts- / Design-Links eines Designs.
+- Bugfix und Optimierung der Timeline.
+- Die Überprüfung von mobilen Designs mit drei Fingern ist jetzt auf Administratorprofile beschränkt.
+
+## 4.1.19
+
+- Bugfix Löschung der Zone in einer Ansicht.
+- Bugfix js Fehler, der in alten Browsern auftreten kann.
+- Bugfix cmd.info.numeric.default.HTML, wenn Befehl nicht sichtbar ist.
+- Bugfix-Anmeldeseite.
+
+## 4.1.18
+
+- Historischer Bugfix für Designs.
+- Bugfix-Suche in Analyse / Verlauf.
+- Bugfix-Suche nach einer Variablen, Link zu einem Gerät.
+- Bugfix von farbigen Zusammenfassungen zur Synthese.
+- Bugfix für Szenariokommentare mit json.
+- Bugfix bei Zusammenfassungsaktualisierungen in der Vorschau des Dashboard-Modus.
+- Bugfix von Elementen *Bild* auf ein Design.
+- Gruppierungsoptionen nach Zeit für Diagramme in Ansichten hinzugefügt.
+- Beibehaltung des Synthesekontexts beim Klicken auf die Zusammenfassungen.
+- Zentrierung von Synthesebildern.
 
 ## 4.1.0
 
@@ -226,6 +256,13 @@
 - Fehler in Szenariovorlagen behoben.
 
 ## 4.0.0
+
+### Voraussetzungen
+
+- Debian 9 Stretch
+
+### Neuigkeiten / Verbesserungen
+
 - Komplette Neugestaltung des Themas (Core 2019 Light / Dark / Legacy)).
 - Möglichkeit, das Thema je nach Zeit automatisch zu ändern.
 - In Mobilgeräten kann sich das Thema je nach Helligkeit ändern (Aktivierung erforderlich) *generischer zusätzlicher Sensor* in Chrom, Chrom Seite://flags).<br/><br/>
@@ -299,18 +336,23 @@
 - Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
 - Design : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Design*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Design*.
 - Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
-- Allgemeine Aufhellung (CSS / Inline-Stile, Refactoring usw.) und Leistungsverbesserungen.
-- Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
-- Libs aktualisieren : jquery 3.4.1, CodeMiror 5.46.0, Tablesorter 2.31.1.
-- Zahlreiche Fehlerbehebungen.
 - Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um Kommunikationswarnungen darauf zu konfigurieren)
+
+### Autres
+
+- **Lib** : Aktualisieren Sie jquery 3.4.1
+- **Lib** : Aktualisieren Sie CodeMiror 5.46.0
+- **Lib** : Tablesorter aktualisieren 2.31.1
+- Allgemeine Aufhellung (CSS / Inline-Stile, Refactoring usw.) und Leistungsverbesserungen.
 - Hinzufügung der globalen Kompatibilität von Jeedom DNS mit einer 4G-Internetverbindung.
-- Sicherheitsupdate
+- Zahlreiche Fehlerbehebungen.
+- Sicherheitskorrekturen.
+
+### Changements
+
+- Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
+- Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [Hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >**WICHTIG**
 >
->Wenn nach dem Update ein Fehler im Dashboard auftritt, versuchen Sie, Ihre Box neu zu starten, damit die neuen Ergänzungen von Komponenten berücksichtigt werden.
-
->**WICHTIG**
->
->Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [Hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+> Wenn nach dem Update ein Fehler im Dashboard auftritt, versuchen Sie, Ihre Box neu zu starten, damit die neuen Ergänzungen von Komponenten berücksichtigt werden.

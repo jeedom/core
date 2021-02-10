@@ -18,6 +18,7 @@
 - **Resúmenes** : Posibilidad de definir un icono diferente cuando el resumen es nulo (sin persianas abiertas, sin luz encendida, etc).
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
+- **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
 - **Categorías coloreadas** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
 - **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función principal.
 - **Configuración** : Posibilidad de configurar el fondo de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema.
@@ -42,6 +43,35 @@
 - El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
 
 # Registro de cambios Jeedom V4.1
+
+
+## 4.1.20
+
+- Corrección de errores de desplazamiento horizontal en diseños.
+- Corrección de errores de desplazamiento en las páginas de equipos de complementos.
+- Corrección de errores de la configuración de color en los enlaces de vista / diseño en un diseño.
+- Corrección de errores y optimización de la línea de tiempo.
+- Revisión de diseños móviles con tres dedos ahora limitada a perfiles de administrador.
+
+## 4.1.19
+
+- Eliminación de corrección de errores de zona en una vista.
+- Error de corrección de errores js que puede aparecer en navegadores antiguos.
+- Corrección de error cmd.info.numeric.default.html si el comando no está visible.
+- Página de inicio de sesión de corrección de errores.
+
+## 4.1.18
+
+- Corrección de errores históricos en diseños.
+- Búsquedas de corrección de errores en Análisis / Historial.
+- Búsqueda de corrección de errores en una variable, enlace a un dispositivo.
+- Corrección de errores de resúmenes en color sobre síntesis.
+- Corrección de errores en los comentarios del escenario con json.
+- Corrección de errores en las actualizaciones resumidas en las vistas previas del modo Panel.
+- Corrección de errores de elementos *imagen* en un diseño.
+- Se agregaron opciones de agrupación por tiempo para gráficos en vistas.
+- Conservación del contexto de síntesis al hacer clic en los resúmenes.
+- Centrado de imágenes de síntesis.
 
 ## 4.1.0
 
@@ -226,6 +256,13 @@
 - Errores corregidos en las plantillas de escenarios.
 
 ## 4.0.0
+
+### Prerrequisitos
+
+- Debian 9 Stretch
+
+### Noticias / Mejoras
+
 - Rediseño completo del tema (Core 2019 Light / Dark / Legacy).
 - Posibilidad de cambiar el tema automáticamente en función de la hora.
 - En el móvil, el tema puede cambiar dependiendo del brillo (Requiere activar *sensor adicional genérico* en cromo, página de cromo://flags).<br/><br/>
@@ -299,18 +336,23 @@
 - Diseño : Adición de un campo CSS personalizado en los elementos del *diseño*.
 - Diseño : Se movieron las opciones de visualización en Diseño de la configuración avanzada, en los parámetros de visualización de la *Diseño*. Esto con el fin de simplificar la interfaz y permitir tener diferentes parámetros mediante *Diseño*.
 - Diseño : Mover y cambiar el tamaño de componentes en *Diseño* tiene en cuenta su tamaño, con o sin magnetización.<br/><br/>
-- Aligeramiento general (estilos CSS / en línea, refactorización, etc.) y mejoras de rendimiento.
-- Elimine Font Awesome 4 para mantener solo Font Awesome 5.
-- Actualizando libs : jquery 3.4.1, CodeMiror 5.46.0, clasificador de tabla 2.31.1.
-- Numerosas correcciones de errores.
 - Adición de un sistema de configuración masiva (utilizado en la página Equipo para configurar alertas de comunicaciones en ellos)
+
+### Autres
+
+- **Lib** : Actualización de jquery 3.4.1
+- **Lib** : Actualizar CodeMiror 5.46.0
+- **Lib** : Actualizar tablesorter 2.31.1
+- Aligeramiento general (estilos CSS / en línea, refactorización, etc.) y mejoras de rendimiento.
 - Adición de compatibilidad global de Jeedom DNS con una conexión a Internet 4G.
-- Corrección de seguridad
+- Numerosas correcciones de errores.
+- Correcciones de seguridad.
+
+### Changements
+
+- Elimine Font Awesome 4 para mantener solo Font Awesome 5.
+- El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [aquí](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
 
 >**IMPORTANTE**
 >
->Si después de la actualización tiene un error en el Tablero, intente reiniciar su caja para que tenga en cuenta las nuevas adiciones de componentes.
-
->**IMPORTANTE**
->
->El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [aquí](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
+> Si después de la actualización tiene un error en el Tablero, intente reiniciar su caja para que tenga en cuenta las nuevas adiciones de componentes.
