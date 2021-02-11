@@ -1274,8 +1274,8 @@
 
   #mod_selectIcon .div_imageGallery {
     height:100%;
-    width:calc(100% - 175px);
-    margin-left: 175px;
+    width:calc(100% - 180px);
+    margin-left: 180px;
     display:flex;
     flex-wrap:wrap;
   }
