@@ -429,13 +429,15 @@ if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
 	copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
 }
 if(!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')){
+	$cmd = '';
 	if(!file_exists('/etc/systemd/system/mariadb.service.d')){
-		exec('sudo mkdir /etc/systemd/system/mariadb.service.d');
+		$cmd .= 'sudo mkdir /etc/systemd/system/mariadb.service.d;';
 	}
-	exec('sudo chmod 777 -R /etc/systemd/system/mariadb.service.d');
-	exec('sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf');
-	exec('sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf');
-	exec('sudo systemctl daemon-reload');
+	$cmd .='sudo chmod 777 -R /etc/systemd/system/mariadb.service.d;';
+	$cmd .='sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf;';
+	$cmd .='sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf;';
+	$cmd .='sudo systemctl daemon-reload;';
+	exec($cmd);
 }
 
 cache::set('hour', strtotime('UTC'));
