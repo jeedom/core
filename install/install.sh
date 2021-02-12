@@ -57,6 +57,8 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
+  apt-get update
+  apt-get -y install software-properties-common
   add-apt-repository non-free
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
@@ -65,7 +67,6 @@ step_2_mainpackage() {
   apt-get -y install visudo
   apt-get -y install git python python-pip
   apt-get -y install python3 python3-pip
-  apt-get -y install software-properties-common
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
   apt-get -y install xvfb cutycapt xauth
