@@ -60,6 +60,7 @@ step_2_mainpackage() {
   apt-get update
   apt-get -y install software-properties-common
   add-apt-repository non-free
+  apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
