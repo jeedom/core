@@ -30,8 +30,9 @@ $remove_history = jeedom::getRemovehistory();
 $plugin_enable = config::getPluginEnable();
 
 function jeedom_displayObjectGroup($object=-1) {
+	global $JEEDOM_INTERNAL_CONFIG;
 	global $display_objects, $display_eqlogics, $display_cmds;
-
+	
 	if (!is_object($object) && $object == -1) {
 		$_index = 'none';
 		$numParents = 0;
@@ -48,7 +49,7 @@ function jeedom_displayObjectGroup($object=-1) {
 		$objecUseCustomColor = $object->getConfiguration('useCustomColor');
 		$objectIcon = $object->getDisplay('icon');
 	}
-
+	
 	$div = '';
 	//hierarchy decay:
 	if ($numParents > 0) {
@@ -76,11 +77,11 @@ function jeedom_displayObjectGroup($object=-1) {
 	$div .= '<i class="fas fa-check-square pull-right cursor objectSelectEqlogics" title="{{Sélectionner les équipements}}"></i>';
 	$div .= '</h3>';
 	$div .= '</div>';
-
+	
 	//inner panel:
 	$div .= '<div id="config_'.$_index.'" class="panel-collapse collapse">';
 	$div .= '<div class="panel-body">';
-
+	
 	//eqLogics ul with cmds ul inside:
 	$div .= '<ul class="eqLogicSortable">';
 	foreach ($display_eqlogics[$objectId] as $eqLogic) {
@@ -104,7 +105,7 @@ function jeedom_displayObjectGroup($object=-1) {
 			$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
 			$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';
 		}
-
+		
 		//cmds ul:
 		$div .= '<ul class="cmdSortable" style="display:none;" >';
 		foreach ($display_cmds[$eqLogic->getId()] as $cmd) {
@@ -145,7 +146,7 @@ function jeedom_displayObjectGroup($object=-1) {
 			<li role="presentation" class="active"><a href="#displaytab" aria-controls="displaytab" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Résumé}}</a></li>
 			<li role="presentation"><a href="#historytab" aria-controls="historytab" role="tab" data-toggle="tab"><i class="fas fa-trash"></i> {{Historique de suppression}}</a></li>
 		</ul>
-
+		
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="displaytab">
 				<br/>
@@ -169,21 +170,21 @@ function jeedom_displayObjectGroup($object=-1) {
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="panel-group" id="accordionObject">
 					<?php
 					//No parent objects:
 					if (count($display_eqlogics[-1]) > 0) {
 						echo jeedom_displayObjectGroup(-1);
 					}
-
+					
 					foreach ($display_objects as $object) {
 						echo jeedom_displayObjectGroup($object);
 					}
 					?>
 				</div>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="historytab">
 				<div id="div_alertRemoveHistory"></div>
 				<a class="btn btn-danger btn-sm floatingbar" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
@@ -207,31 +208,31 @@ function jeedom_displayObjectGroup($object=-1) {
 								$tr .= '<td>';
 								switch ($remove['type']) {
 									case 'cmd':
-										$tr .= '<i class="fas fa-terminal"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="fas fa-terminal"></i> '.$remove['type'];
+									break;
 									case 'eqLogic':
-										$tr .= '<i class="fas fa-cog"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="fas fa-cog"></i> '.$remove['type'];
+									break;
 									case 'object':
-										$tr .= '<i class="far fa-object-group"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="far fa-object-group"></i> '.$remove['type'];
+									break;
 									case 'scenario':
-										$tr .= '<i class="fas fa-cogs"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="fas fa-cogs"></i> '.$remove['type'];
+									break;
 									case 'plan':
-										$tr .= '<i class="fas fa-paint-brush"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="fas fa-paint-brush"></i> '.$remove['type'];
+									break;
 									case 'plan3d':
-										$tr .= '<i class="fas fa-cubes"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="fas fa-cubes"></i> '.$remove['type'];
+									break;
 									case 'view':
-										$tr .= '<i class="far fa-image"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="far fa-image"></i> '.$remove['type'];
+									break;
 									case 'user':
-										$tr .= '<i class="fas fa-users"></i> '.$remove['type'];
-										break;
+									$tr .= '<i class="fas fa-users"></i> '.$remove['type'];
+									break;
 									default:
-										$tr .= $remove['type'];
+									$tr .= $remove['type'];
 								}
 								$tr .= '</td>';
 								$tr .= '<td>';
