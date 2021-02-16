@@ -259,7 +259,7 @@
         },
         {
           "name": "value",
-          "type": "text",
+          "type": "mediumtext",
           "null": "YES",
           "key": "",
           "default": null,
