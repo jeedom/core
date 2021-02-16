@@ -54,7 +54,7 @@
         },
         {
           "name": "configuration",
-          "type": "text",
+          "type": "mediumtext",
           "null": "YES",
           "key": "",
           "default": null,
@@ -495,7 +495,7 @@
         },
         {
           "name": "configuration",
-          "type": "text",
+          "type": "mediumtext",
           "null": "YES",
           "key": "",
           "default": null,
