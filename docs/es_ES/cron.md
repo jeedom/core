@@ -1,81 +1,55 @@
-Il informe de toutes les tâches applicatives Jeedom qui tournent sur le
-serveur. Ce menu est à utiliser en connaissance de cause ou à la
-demande du support technique.
+# Motor de tareas
+**Configuración → Sistema → Motor de tareas**
+
+Esta página informa sobre todas las tareas de la aplicación Jeedom que se ejecutan en el servidor.
+Esta página se debe utilizar a sabiendas o a pedido del soporte técnico.
 
 > **Importante**
 >
-> En caso de mal manejo de esta página, cualquier solicitud
-> Soporte puede ser negado.
+> En caso de mal manejo en esta página, cualquier solicitud de soporte puede ser rechazada.
 
-Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâches**
-:
+## Pestaña Cron
 
-# Cron
+En la parte superior derecha, tienes :
 
-En la parte superior, a la derecha, tienes:
+- **Deshabilitar sistema cron** : un botón para desactivar o reactivar todas las tareas (si las desactiva todas, nada funcionará en su Jeedom).
+- **Fresco** : Actualiza la tabla de tareas.
+- **Añadir** : Agregar un trabajo cron manualmente.
+- **Salvar** : Guarda tus cambios.
 
--   **Deshabilitar el sistema cron** : un botón para deshabilitar o
-    réactiver toutes les tâches (si vous les désactivez toutes, plus
-    nada será funcional con su Jeedom)
+A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo que se recomienda no modificar nunca la información en esta página)).
 
--   **Rafraîchir** : un bouton pour rafraîchir le tableau des tâches
+En esta tabla, encontramos :
 
--   **Agregar** : un botón para agregar una tarea cron
+- **\#** : ID de tarea, útil para vincular un proceso en ejecución con lo que realmente hace.
+- **Activo** : Indica si la tarea está activa (puede ser iniciada por Jeedom) o no.
+- **PID** : Indica la ID del proceso actual.
+- **Demonio** : Si este cuadro es &quot;sí&quot;, la tarea siempre debe estar en progreso. Además, encontrará la frecuencia del demonio, se recomienda no modificar nunca este valor y, especialmente, nunca disminuirlo.
+- **Unico** : Si es &quot;sí&quot;, la tarea se iniciará una vez y luego se eliminará.
+- **Clase** : Clase PHP llamada para ejecutar la tarea (puede estar vacía).
+- **Función** : Función PHP llamada en la clase llamada (o no si la clase está vacía).
+- **Programación** : Programación de la tarea en formato CRON.
+- **Se acabó el tiempo** : Máximo tiempo de ejecución de tareas. Si la tarea es un demonio, se detendrá y reiniciará automáticamente al final del tiempo de espera.
+- **Último lanzamiento** : Fecha del último lanzamiento de la tarea.
+- **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes porque otras tareas pueden estar en 0s).
+- **Estado** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se "ejecuta"").
 
--   **Enregistrer** : un bouton pour enregistrer vos modifications.
-
-En-dessous, vous avez le tableau de toutes les tâches existantes
-(attention, certaines tâches peuvent lancer des sous-tâches, il est donc
-vivement recommandé de ne jamais modifier d’informations sur cette
-page). Dans ce tableau, on retrouve :
-
--   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
-    proceso que gira y lo que realmente hace
-
--   **Acción**: un botón para iniciar o detener la tarea basada
-    de son statut et un bouton pour voir le cron dans le détail (tel que stocké en base)
-
--   **Actif** : indique si la tâche est active (peut être lancée
-    por Jeedom) o no
-
--   **PID** : indica el proceso ID actual
-
--   **Deamon** : si esta casilla es "sí", la tarea siempre debe
-    estar en curso. Al lado, encuentras la frecuencia del deamon, es
-    aconsejado de no tocar nunca este valor y sobre todo nunca
-    disminuirla
-
--   **Único** : si es "sí" la tarea se ejecutará una vez
-    y se eliminará
-
--   **Classe** : classe PHP appelée pour exécuter la tâche (peut
-    estar vacío)
-
--   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
-    si la clase esta vacia)
-
--   **Programación**: la programación de la tarea en formato CRON
-
--   **Timeout** : durée maximale de fonctionnement de la tâche. Si la
-    tarea es un deamon por lo que se detendrá automáticamente y
-    reiniciado al final del timeout
-
--   **Último lanzamiento** : fecha de lanzamiento de la última tarea
-
--   **Dernière durée** : dernière durée pour accomplir la tâche (un
-    démon sera toujours à 0s, il ne faut pas s’inquiéter d’autres tâches
-    puede estar en 0s)
-
--   **Estado** : estado actual de la tarea (a modo de recordatorio, una tarea deamon
-    todavía está en "run")
-
--   **Suppression** : permet de supprimer la tâche
+- **Acción** :
+    - **Detalles** : Ver el cron en detalle (como se almacena en la base).
+    - **Comenzar / Parar** : Iniciar o detener la tarea (dependiendo de su estado).
+    - **Supresión** : Eliminar tarea.
 
 
-# Listener
+## Pestaña Oyente
 
-Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évènement (mise à jour d'une commande...)
+Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un comando...).
 
-# Deamons
+## Pestaña demonio
 
-Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de les arrêter ou les redémarrer.
+Tabla resumen de los demonios con su estado, la fecha del último lanzamiento y la posibilidad de
+- Iniciar / reiniciar un demonio.
+- Detener un demonio si la gestión automática está desactivada.
+- Habilitar / deshabilitar la gestión automática de un demonio.
+
+> Tip
+> Los demonios de complementos deshabilitados no aparecen en esta página.

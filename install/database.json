@@ -46,7 +46,7 @@
         },
         {
           "name": "name",
-          "type": "varchar(45)",
+          "type": "varchar(127)",
           "null": "YES",
           "key": "MUL",
           "default": null,
@@ -54,7 +54,7 @@
         },
         {
           "name": "configuration",
-          "type": "text",
+          "type": "mediumtext",
           "null": "YES",
           "key": "",
           "default": null,
@@ -235,20 +235,6 @@
               "Sub_part": null
             }
           }
-        },
-        "logicalId_eqLogicID": {
-          "Key_name": "logicalId_eqLogicID",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "eqLogic_id",
-              "Sub_part": null
-            },
-            "2": {
-              "column": "logicalId",
-              "Sub_part": null
-            }
-          }
         }
       }
     },
@@ -273,7 +259,7 @@
         },
         {
           "name": "value",
-          "type": "text",
+          "type": "mediumtext",
           "null": "YES",
           "key": "",
           "default": null,
@@ -351,7 +337,7 @@
         },
         {
           "name": "option",
-          "type": "varchar(511)",
+          "type": "text",
           "null": "YES",
           "key": "",
           "default": null,
@@ -367,8 +353,8 @@
         }
       ],
       "indexes": {
-        "type": {
-          "Key_name": "type",
+        "logicalId_Type": {
+          "Key_name": "class",
           "Non_unique": "1",
           "columns": {
             "1": {
@@ -378,11 +364,11 @@
           }
         },
         "logicalId_Type": {
-          "Key_name": "logicalId_Type",
+          "Key_name": "function",
           "Non_unique": "1",
           "columns": {
             "1": {
-              "column": "class",
+              "column": "function",
               "Sub_part": null
             }
           }
@@ -509,7 +495,7 @@
         },
         {
           "name": "configuration",
-          "type": "text",
+          "type": "mediumtext",
           "null": "YES",
           "key": "",
           "default": null,
@@ -520,14 +506,6 @@
           "type": "tinyint(1)",
           "null": "YES",
           "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "eqReal_id",
-          "type": "int(11)",
-          "null": "YES",
-          "key": "MUL",
           "default": null,
           "extra": ""
         },
@@ -649,20 +627,6 @@
             }
           }
         },
-        "logica_id_eqTypeName": {
-          "Key_name": "logica_id_eqTypeName",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            },
-            "2": {
-              "column": "eqType_name",
-              "Sub_part": null
-            }
-          }
-        },
         "object_id": {
           "Key_name": "object_id",
           "Non_unique": "1",
@@ -683,26 +647,6 @@
             }
           }
         },
-        "eqReal_id": {
-          "Key_name": "eqReal_id",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "eqReal_id",
-              "Sub_part": null
-            }
-          }
-        },
-        "logicalId": {
-          "Key_name": "logicalId",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            }
-          }
-        },
         "generic_type": {
           "Key_name": "generic_type",
           "Non_unique": "1",
@@ -719,115 +663,6 @@
           "columns": {
             "1": {
               "column": "tags",
-              "Sub_part": null
-            }
-          }
-        }
-      }
-    },
-    {
-      "name": "eqReal",
-      "fields": [
-        {
-          "name": "id",
-          "type": "int(11)",
-          "null": "NO",
-          "key": "PRI",
-          "default": null,
-          "extra": "auto_increment"
-        },
-        {
-          "name": "logicalId",
-          "type": "varchar(45)",
-          "null": "YES",
-          "key": "MUL",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "name",
-          "type": "varchar(45)",
-          "null": "YES",
-          "key": "UNI",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "type",
-          "type": "varchar(45)",
-          "null": "NO",
-          "key": "MUL",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "configuration",
-          "type": "text",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        },
-        {
-          "name": "cat",
-          "type": "varchar(45)",
-          "null": "YES",
-          "key": "",
-          "default": null,
-          "extra": ""
-        }
-      ],
-      "indexes": {
-        "name_UNIQUE": {
-          "Key_name": "name_UNIQUE",
-          "Non_unique": "0",
-          "columns": {
-            "1": {
-              "column": "name",
-              "Sub_part": null
-            }
-          }
-        },
-        "logicalId": {
-          "Key_name": "logicalId",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            }
-          }
-        },
-        "type": {
-          "Key_name": "type",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "type",
-              "Sub_part": null
-            }
-          }
-        },
-        "logicalId_Type": {
-          "Key_name": "logicalId_Type",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "logicalId",
-              "Sub_part": null
-            },
-            "2": {
-              "column": "type",
-              "Sub_part": null
-            }
-          }
-        },
-        "name": {
-          "Key_name": "name",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "name",
               "Sub_part": null
             }
           }
@@ -928,16 +763,6 @@
             },
             "2": {
               "column": "datetime",
-              "Sub_part": null
-            }
-          }
-        },
-        "cmd_id_index": {
-          "Key_name": "cmd_id_index",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "cmd_id",
               "Sub_part": null
             }
           }
@@ -1264,7 +1089,7 @@
         },
         {
           "name": "name",
-          "type": "varchar(45)",
+          "type": "varchar(127)",
           "null": "NO",
           "key": "UNI",
           "default": null,
@@ -1809,16 +1634,6 @@
             }
           }
         },
-        "group": {
-          "Key_name": "group",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "group",
-              "Sub_part": null
-            }
-          }
-        },
         "fk_scenario_object1_idx": {
           "Key_name": "fk_scenario_object1_idx",
           "Non_unique": "1",
@@ -2147,6 +1962,14 @@
           "extra": ""
         },
         {
+          "name": "updateDate",
+          "type": "datetime",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
           "name": "source",
           "type": "varchar(127)",
           "null": "YES",
@@ -2390,16 +2213,6 @@
             }
           }
         },
-        "fk_data_zone1_idx": {
-          "Key_name": "fk_data_zone1_idx",
-          "Non_unique": "1",
-          "columns": {
-            "1": {
-              "column": "viewZone_id",
-              "Sub_part": null
-            }
-          }
-        },
         "order": {
           "Key_name": "order",
           "Non_unique": "1",
@@ -2494,7 +2307,7 @@
         },
         {
           "name": "name",
-          "type": "varchar(255)",
+          "type": "varchar(191)",
           "null": "NO",
           "key": "",
           "default": null,
@@ -2564,6 +2377,87 @@
             },
             "3": {
               "column": "name",
+              "Sub_part": null
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "timeline",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "folder",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "type",
+          "type": "varchar(27)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "subtype",
+          "type": "varchar(27)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "link_id",
+          "type": "varchar(27)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "datetime",
+          "type": "datetime",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "datetime": {
+          "Key_name": "datetime",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "datetime",
               "Sub_part": null
             }
           }

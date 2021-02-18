@@ -1,56 +1,65 @@
 <div class="scenario scenario-widget allowResize" data-scenario_id="#id#" data-version="#version#" style="width: #width#;height: #height#;">
-  <center class="widget-name"><a href="#scenarioLink#" class="tooltips" title="Dernier lancement : #lastLaunch#">#name#</a></center>
+  <center class="widget-name"><a href="#scenarioLink#">#name#</a></center>
   <div class="#isVerticalAlign#">
     <center>
-      <span class="iconCmd">#icon#</span>
-    </center>
-    <center>
-      <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="activate" title="Activer"><i class="fa fa-power-off"></i></a>
-      <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="deactivate" title="Desactiver"><i class="fa fa-power-off"></i></a>
+      <div class="iconCmd">#icon#</div>
+      <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="activate" title="{{Activer}}"><i class="fa fa-power-off"></i></a>
+      <a class="btn btn-default btn-sm changeScenarioState tooltips" data-state="deactivate" title="{{Desactiver}}"><i class="fa fa-power-off"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState" data-state="start"><i class="fa fa-play"></i></a>
       <a class="btn btn-default btn-sm changeScenarioState" data-state="stop"><i class="fa fa-stop"></i></a>
+      <a class="btn btn-default btn-sm scenario_ViewLog"><i class="far fa-file"></i></a>
+      <div class="value">
+        <span id="lastLaunch#id#" class="timeCmd label">#lastLaunch#</span>
+      </div>
     </center>
   </div>
   <script>
-    $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function () {
-      $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
+      $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>')
       jeedom.scenario.changeState({
         id: $(this).closest('.scenario').attr('data-scenario_id'),
         state: $(this).attr('data-state'),
         error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
-          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>');
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-times"></i>')
         }
-      });
-    });
-    jeedom.scenario.update['#id#'] =function(_options){
-      if(typeof _options.icon != 'undefined' && _options.icon != ''){
-        $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append(_options.icon);
+      })
+    })
+
+    $('.scenario[data-scenario_id=#id#] .scenario_ViewLog').off('click').on('click', function (event) {
+      $('#md_modal2').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=#id#').dialog('open')
+    })
+
+    jeedom.scenario.update['#id#'] = function(_options) {
+      $('#lastLaunch#id#').html(_options.lastLaunch)
+
+      if (typeof _options.icon != 'undefined' && _options.icon != '') {
+        $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append(_options.icon)
       }
-      $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide();
-      if(!isset(_options.isActive)){
-        _options.isActive = '#isActive#';
+      $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide()
+      if (!isset(_options.isActive)) {
+        _options.isActive = '#isActive#'
       }
-      if(!isset(_options.state)){
-        _options.state = '#state#';
+      if (!isset(_options.state)) {
+        _options.state = '#state#'
       }
       if (typeof _options.isActive == 'undefined' || _options.isActive == '1') {
-        $('.scenario[data-scenario_id=#id#]').removeClass('disabled');
+        $('.scenario[data-scenario_id=#id#]').removeClass('inactive')
         if (_options.state == 'in progress' || _options.state == 'starting') {
-          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>');
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show();
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
-        }else if (_options.state == 'error' || _options.state == 'stop') {
-          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#');
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show();
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show();
+          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>')
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show()
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show()
+        } else {
+          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#')
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show()
+          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show()
         }
       } else {
-        $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#');
-        $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show();
-        $('.scenario[data-scenario_id=#id#]').addClass('disabled');
+        $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#')
+        $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show()
+        $('.scenario[data-scenario_id=#id#]').addClass('inactive')
       }
     }
-    jeedom.scenario.update['#id#']({isActive:'#isActive#',state:'#state#',lastLaunch:'#lastLaunch#',icon:'#icon#'});
+    jeedom.scenario.update['#id#']({isActive: '#isActive#', state: '#state#', lastLaunch: '#lastLaunch#', icon: '#icon#'})
   </script>
 </div>

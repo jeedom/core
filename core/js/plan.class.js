@@ -75,7 +75,7 @@ jeedom.plan.save = function (_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  
+
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {

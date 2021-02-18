@@ -52,11 +52,11 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'all') {
-		$dataStores = dataStore::byTypeLinkId(init('type'));
+	function jeeAjax_datastoreReturn($_datastores=[], $_usedBy=0) {
+		if (!is_array($_datastores)) $_datastores = array($_datastores);
 		$return = array();
-		if (init('usedBy') == 1) {
-			foreach ($dataStores as $datastore) {
+		if ($_usedBy == 1) {
+			foreach ($_datastores as $datastore) {
 				$info_datastore = utils::o2a($datastore);
 				$info_datastore['usedBy'] = array(
 					'scenario' => array(),
@@ -66,22 +66,36 @@ try {
 				);
 				$usedBy = $datastore->getUsedBy();
 				foreach ($usedBy['scenario'] as $scenario) {
-					$info_datastore['usedBy']['scenario'][] = $scenario->getHumanName();
+					$info_datastore['usedBy']['scenario'][] = ['humanNameTag'=>$scenario->getHumanName(true, false, true), 'humanName'=>$scenario->getHumanName(), 'link'=>$scenario->getLinkToConfiguration(), 'id'=>$scenario->getId()];
 				}
 				foreach ($usedBy['eqLogic'] as $eqLogic) {
-					$info_datastore['usedBy']['eqLogic'][] = $eqLogic->getHumanName();
+					$info_datastore['usedBy']['eqLogic'][] = ['humanName'=>$eqLogic->getHumanName(), 'link'=>$eqLogic->getLinkToConfiguration(), 'id'=>$eqLogic->getId()];
 				}
 				foreach ($usedBy['cmd'] as $cmd) {
-					$info_datastore['usedBy']['cmd'][] = $cmd->getHumanName();
+					$info_datastore['usedBy']['cmd'][] = ['humanName'=>$cmd->getHumanName(), 'link'=>$cmd->getEqLogic()->getLinkToConfiguration(), 'id'=>$cmd->getId()];
 				}
 				foreach ($usedBy['interactDef'] as $interactDef) {
-					$info_datastore['usedBy']['interactDef'][] = $interactDef->getHumanName();
+					$info_datastore['usedBy']['interactDef'][] = ['humanName'=>$interactDef->getHumanName(), 'link'=>$interactDef->getLinkToConfiguration(), 'id'=>$interactDef->getId()];
 				}
 				$return[] = $info_datastore;
 			}
 		} else {
-			$return = utils::o2a($dataStore);
+			$return = utils::o2a($_datastores);
 		}
+		return $return;
+	}
+	if (init('action') == 'byTypeLinkIdKey') {
+		$key = trim(init('key'));
+		$dataStore = dataStore::byTypeLinkIdKey(init('type'), init('linkId'), $key);
+		if (!is_object($dataStore)) {
+			throw new Exception(__('Dépôt de données inconnu.', __FILE__) . $key);
+		}
+		$return = jeeAjax_datastoreReturn($dataStore, init('usedBy'));
+		ajax::success($return);
+	}
+	if (init('action') == 'all') {
+		$dataStores = dataStore::byTypeLinkId(init('type'));
+		$return = jeeAjax_datastoreReturn($dataStores, init('usedBy'));
 		ajax::success($return);
 	}
 
@@ -90,4 +104,3 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
 }
-?>

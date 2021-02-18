@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @console */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,25 +19,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-  header("Statut: 404 Page non trouvée");
-  header('HTTP/1.0 404 Not Found');
-  $_SERVER['REDIRECT_STATUS'] = 404;
-  echo "<h1>404 Non trouvé</h1>";
-  echo "La page que vous demandez ne peut être trouvée.";
-  exit();
-}
+require_once dirname(__DIR__).'/core/php/console.php';
 set_time_limit(1800);
 
 echo "[START CLEANING]\n";
-if (isset($argv)) {
-  foreach ($argv as $arg) {
-    $argList = explode('=', $arg);
-    if (isset($argList[0]) && isset($argList[1])) {
-      $_GET[$argList[0]] = $argList[1];
-    }
-  }
-}
+
 try {
   require_once __DIR__ . '/../core/php/core.inc.php';
   
@@ -58,38 +47,6 @@ try {
       'showObjectNameOndview',
       'showObjectNameOnmview'
     )
-  );
-  
-  $removeFolders = array(
-    __DIR__ . '/../3rdparty/font-awesome',
-    __DIR__ . '/../manifest.json',
-    __DIR__ . '/../manifest.webmanifest',
-    __DIR__ . '/../core/css/core.css',
-    __DIR__ . '/../js/plugin.ajax.js',
-    __DIR__ . '/../core/themes/amber',
-    __DIR__ . '/../core/themes/blue',
-    __DIR__ . '/../core/themes/brown',
-    __DIR__ . '/../core/themes/cyan',
-    __DIR__ . '/../core/themes/darksobre',
-    __DIR__ . '/../core/themes/deep_orange',
-    __DIR__ . '/../core/themes/deep_purple',
-    __DIR__ . '/../core/themes/green',
-    __DIR__ . '/../core/themes/grey',
-    __DIR__ . '/../core/themes/light_blue',
-    __DIR__ . '/../core/themes/light_green',
-    __DIR__ . '/../core/themes/lime',
-    __DIR__ . '/../core/themes/orange',
-    __DIR__ . '/../core/themes/pink',
-    __DIR__ . '/../core/themes/purple',
-    __DIR__ . '/../core/themes/red',
-    __DIR__ . '/../core/themes/teal',
-    __DIR__ . '/../core/themes/yellow',
-    __DIR__ . '/../desktop/css/commun.css',
-    __DIR__ . '/../desktop/css/dashboard.css',
-    __DIR__ . '/../desktop/css/futur.css',
-    __DIR__ . '/../desktop/modal/eqLogic.displayWidget.php',
-    __DIR__ . '/../desktop/modal/remove.history.php',
-    __DIR__ . '/../mobile/css/commun.css',
   );
   
   $nb_cleaning = 0;
@@ -181,10 +138,23 @@ try {
     $eqLogic->save(true);
   }
   
-  foreach ($removeFolders as $folder) {
-    if(file_exists($folder)){
-      rrmdir($folder);
+  
+  $sql = 'select cmd_id from history group by cmd_id';
+  $results1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+  $sql = 'select cmd_id from historyArch group by cmd_id';
+  $results2 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+  $cmd_histories = array_flip(array_column($results1,'cmd_id')) + array_flip(array_column($results2,'cmd_id'));
+  foreach ($cmd_histories as $id => $value) {
+    $cmd = cmd::byId($id);
+    if(is_object($cmd) && $cmd->getIsHistorized() == 1){
+      continue;
     }
+    $values = array('cmd_id' => $id);
+    echo 'Remove history for cmd : '.$id."\n";
+    $sql = 'delete from history where cmd_id=:cmd_id';
+    DB::Prepare($sql,$values, DB::FETCH_TYPE_ROW);
+    $sql = 'delete from historyArch where cmd_id=:cmd_id';
+    DB::Prepare($sql,$values, DB::FETCH_TYPE_ROW);
   }
   
   

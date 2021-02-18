@@ -6,8 +6,10 @@ $rootPath = __DIR__ . '/../../';
 if(init('type') == 'widget'){
 	$rootPath = __DIR__ . '/../../data/customTemplates/';
 }
-sendVarToJS('rootPath', $rootPath);
-sendVarToJS('editorType', init('type'));
+sendVarToJS([
+	'rootPath' => $rootPath,
+	'editorType' => init('type')
+]);
 global $JEEDOM_INTERNAL_CONFIG;
 ?>
 
@@ -31,24 +33,25 @@ global $JEEDOM_INTERNAL_CONFIG;
 			</ul>
 		</div>
 	</div>
-	
+
 	<div class="col-lg-2">
 		<legend><i class="far fa-file"></i> {{Fichiers}}</legend>
 		<div id="div_fileList" style="list-style-type: none;"></div>
 	</div>
-	
-	<div class="col-lg-8">
-		<legend><i class="fas fa-edit"></i> {{Edition}} <span class="success" id="span_editorFileName"></span>
-			<div class="input-group pull-right" style="display:inline-flex">
-				<span class="input-group-btn">
-					<a class="btn btn-sm roundedLeft" id="bt_createFile" style="position:relative;top:-6px;"><i class="far fa-file"></i> {{Nouveau}}</a><a class="btn btn-success btn-sm" id="bt_saveFile" style="position:relative;top:-6px;"><i class="fas fa-check"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_deleteFile" style="position:relative;top:-6px;"><i class="fas fa-times"></i> {{Supprimer}}</a>
-				</span>
-			</div>
-		</legend>
-		<textarea class="form-control" id="ta_fileContent"></textarea>
+
+	<div id="editorContainer" class="col-lg-8">
+		<div id="editorOptions">
+			<legend><i class="fas fa-edit"></i> {{Edition}} <span class="success" id="span_editorFileName"></span>
+				<div class="input-group pull-right" style="display:inline-flex">
+					<span class="input-group-btn">
+						<a class="btn btn-sm roundedLeft" id="bt_createFile" style="position:relative;top:-6px;"><i class="far fa-file"></i> {{Nouveau}}</a><a class="btn btn-success btn-sm" id="bt_saveFile" style="position:relative;top:-6px;"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a><a class="btn btn-danger btn-sm roundedRight" id="bt_deleteFile" style="position:relative;top:-6px;"><i class="fas fa-times"></i> {{Supprimer}}</a>
+					</span>
+				</div>
+			</legend>
+		</div>
+		<textarea class="form-control hidden" id="ta_fileContent"></textarea>
 	</div>
 </div>
-
 
 <div id="md_widgetCreate" style="overflow-x: hidden;">
 	<form class="form-horizontal">
@@ -68,7 +71,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 					<select  id="sel_widgetType">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							echo '<option value="'.$key.'"><a>{{'.$value['name'].'}}</option>';
+							echo '<option value="'.$key.'"><a>'.$value['name'].'</option>';
 						}
 						?>
 					</select>
@@ -82,7 +85,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 							<?php
 							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
 								foreach ($value['subtype'] as $skey => $svalue) {
-									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>{{'.$svalue['name'].'}}</option>';
+									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>'.$svalue['name'].'</option>';
 								}
 							}
 							?>
@@ -101,9 +104,24 @@ global $JEEDOM_INTERNAL_CONFIG;
 						<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
 					</div>
 				</div>
-			</fieldset>
-		</form>
-		
-	</div>
-	<?php include_file("desktop", "editor", "js");?>
-	
+			</div>
+		</fieldset>
+	</form>
+</div>
+<?php
+	include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+	include_file("desktop", "editor", "js");
+	include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
+	include_file('3rdparty', 'codemirror/addon/search/search', 'js');
+	include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
+	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
+	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
+
+	include_file('3rdparty', 'codemirror/addon/fold/brace-fold', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/comment-fold', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/foldcode', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/indent-fold', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
+	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
+?>
+

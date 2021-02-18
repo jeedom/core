@@ -1,153 +1,100 @@
-Las vistas pueden simplemente crear una vista personalizada. este
-no es tan potente como los diseños pero permite alguna
-minutos para tener una vista personalizada.
+# Vues
+**Inicio → Ver**
 
-Las vistas son accesibles desde el menú Inicio → Vista:
+Las vistas le permiten crear vistas personalizadas.
+No es tan potente como los diseños, pero permite en pocos minutos tener una pantalla más personalizada que el Tablero, con equipos de diferentes objetos, gráficos o controles.
 
-> **Tip**
+> **Propina**
 >
-> Es posible ir directamente a una vista por el submenú.
+> Puede elegir la vista predeterminada en su perfil al hacer clic en el menú de vista.
 
-> **Tip**
+## Principe
+
+También puede colocar mosaicos de equipo, gráficos (que pueden estar compuestos de varios datos) o zonas de tabla (que contienen los widgets de los comandos).
+
+En una vista, encontramos :
+
+- Un botón en la parte superior izquierda para mostrar u ocultar la lista de Vistas, así como el botón para agregar uno.
+- El lápiz a la derecha para editar el orden y el tamaño del equipo, de la misma manera que el Tablero.
+- Un botón *Edición completada* permitiendo editar las zonas y elementos de la Vista.
+
+> **Propina**
 >
-> Se puede elegir un perfil en la vista por defecto cuando se hace clic
-> El menú de vistas.
+> Puede, en su perfil, modificar esta opción para que la lista de Vistas sea visible por defecto.
 
-los puntos de vista
-========
+## Agregar / Editar una vista
 
-Se puede poner como muchos widgets, los gráficos (que pueden ser
-compuesto de varios datos) o áreas de tabla (que contienen
-órdenes widgets).
+El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *gráfico*, *widget* o *tablero*. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
 
-En esta página, hay un botón de arriba a la izquierda para mostrar u
-ocultar las vistas de lista y el botón para añadir una
-(Jeedom pregunte por su nombre y le enviará a la página de edición):
+- A la izquierda de la página encontramos la lista de Vistas, así como un botón de creación.
+- Un botón en la parte superior derecha le permite editar la Vista actual (Configuración).
+- Un botón para agregar una zona. Luego se le preguntará el nombre y el tipo de zona.
+- Un botón *Ver el resultado*, para salir del modo de edición completo y mostrar esta Vista.
+- Un botón que permite guardar esta Vista.
+- Un botón que permite eliminar esta Vista.
 
-> **Tip**
+> **Propina**
 >
-> Puede editar su perfil de esto a la lista
-> Vistas visibles por defecto.
+> Puede mover el orden de las zonas arrastrando y soltando.
 
-Un botón de arriba a la derecha le permite editar la vista actual.
+En cada zona tienes las siguientes opciones generales :
 
-Añadir puntos de vista / Editar
-=======================
+- **Anchura** : Define el ancho del área (solo en modo escritorio). 1 para el ancho de 1/12 del navegador, 12 para el ancho total.
+- Un botón que permite agregar un elemento a esta zona, dependiendo del tipo de zona (ver abajo).
+- **Editar** : Le permite cambiar el nombre de la zona.
+- **Eliminar** : Eliminar la zona.
 
-El principio es muy simple: una vista se compone de zonas (se puede
-poner tantas como desee). Cada zona está gráficamente tipo de widget
-o una tabla, dependiendo del tipo que puede poner los widgets
-equipos, control o gráficos en el mismo.
+### Zona de tipo de equipo
 
-> **Tip**
+Una zona de tipo de equipo le permite agregar equipo :
+
+- **Agregar dispositivo** : Le permite agregar / modificar equipos para mostrar en el área.
+
+> **Propina**
 >
-> Puede moverse por las zonas de arrastrar / soltar.
+> Puede eliminar un elemento del equipo directamente haciendo clic en el bote de basura a la izquierda.
 
-A la izquierda de la página se encuentra la lista de vistas y una
-botón añadir.
-
-En el centro tiene un botón para cambiar el nombre de una vista, botón de añadir
-zona, un botón para ver el resultado, un botón para guardar y
-un botón para borrar la vista.
-
-Después de hacer clic en el botón añadir área Jeedom preguntará
-su nombre y tipo.
-
-En cada zona dispone de las siguientes opciones generales:
-
--   ** ** Anchura: establece el ancho de la zona (en el modo de
-    Sólo escritorio)
-
--   ** ** Editar: Cambiar el nombre de la zona
-
--   ** ** Eliminar: Eliminar la zona
-
-zona tipo de widget
--------------------
-
-Un tipo de widget de casilla para añadir widgets:
-
--   ** ** Añadir componente: añadir / editar los widgets
-    mostrado en el área
-
-> **Tip**
+> **Propina**
 >
-> Puede eliminar un widget directamente haciendo clic en el
-> Basura antes de ella.
+> Es posible cambiar el orden de los mosaicos en el área arrastrando y soltando.
 
-> **Tip**
+
+### Área de tipo gráfico
+
+Un área de tipo gráfico le permite agregar gráficos a su vista, tiene las siguientes opciones :
+
+- **Período** : Le permite elegir el período de visualización de los gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año o todos).
+- **Agregar curva** : Agregar / editar gráficos.
+
+Cuando presionas el botón **Agregar curva**, Jeedom muestra la lista de pedidos históricos y puede elegir el que desea agregar. Una vez hecho esto, tiene acceso a las siguientes opciones :
+
+- **Bote de basura** : Eliminar comando del gráfico.
+- **Apellido** : Nombre del comando para dibujar.
+- **Color** : Color de la curva.
+- **Tipo** : Tipo de curva.
+- **Grupo** : Permite la agrupación de datos (tipo máximo por día).
+- **Escalera** : Escala (derecha o izquierda) de la curva.
+- **Escalera** : Muestra la curva de la escalera.
+- **Apilar** : Apila la curva con las curvas de otro tipo.
+- **Variación** : Solo dibuja variaciones con el valor anterior.
+
+> **Propina**
 >
-> Puede cambiar el orden de los widgets en la zona
-> Arrastrar / soltar.
+> Puede cambiar el orden de los gráficos en el área arrastrando y soltando.
 
-Una vez que el widget botón añadir prisa, se obtiene una ventana
-que le pedirá para agregar el widget
+### Área de tipo de matriz
 
-gráfico tipo de zona
-----------------------
+Aqui tienes los botones :
 
-Un nuevo cuadro gráfico para añadir gráficos a la vista,
-que tiene las siguientes opciones:
-
--   ** ** Periodo: Elija periodo pantalla
-    gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año, o todos)
-
--   ** ** Añadir curva: añadir / modificar los gráficos
-
-Cuando se pulsa las listas "Añadir curva de" botón Jeedom
-de pedidos congelados y se puede elegir la (s) para añadir una
-Una vez hecho esto usted tiene las siguientes opciones:
-
--   ** ** Papelera: borra el gráfico de control
-
--   ** ** Nombre: nombre del comando graphée
-
--   ** ** color: el color de la curva
-
--   ** ** Tipo: tipo de curva
-
--   ** ** Grupo: le permite agrupar los datos (estándar máximo
-    por día)
-
--   **Escala**: escala (derecha o izquierda) de la curva
-
--   ** ** Escalera: muestra la curva de escalera
-
--   Pila ** **: apilar la curva con el otro tipo de curva
-    montón
-
--   ** ** Variación: gráfico sólo cambia con el valor
-    anterior
-
-> **Tip**
->
-> Es posible cambiar el orden de las cartas en la zona
-> Arrastrar / soltar.
-
-zona de tipo mesa
---------------------
-
-Aquí tienes los botones:
-
--   ** ** Añadir Columna: añade una columna a la tabla
-
--   ** ** Añadir línea: añadir una línea en la tabla
+- **Agregar columna** : Agregar una columna a la tabla.
+- **Agregar línea** : Agregar una fila a la tabla.
 
 > **Nota**
 >
-> Puede régoraniser líneas de arrastrar / soltar, pero no
-> Columnas
+> Es posible reorganizar las filas arrastrando y soltando, pero no las columnas.
 
-Una vez que añadir sus líneas / columnas se puede añadir
-información en los cuadros:
+Una vez que haya agregado sus filas / columnas, puede agregar información en los cuadros :
 
--   ** ** texto: acaba de escribir el texto
-
--   Html ** **: todo el código HTML (JavaScript posible, pero
-    desaconseja)
-
--   ** ** Reproductor de control: el botón a la derecha le permite elegir
-    Comando de mostrar (reloj que muestra el widget
-    control)
-
-
+- Un texto.
+- Código HTML (javascript posible pero desaconsejado)).
+- El widget de una orden : El botón de la derecha le permite elegir el comando para mostrar.

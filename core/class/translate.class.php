@@ -19,26 +19,37 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../php/core.inc.php';
 
+/*
+//DEBUG ONLY
+require_once  'utils.class.php';
+require_once  'scenarioExpression.class.php';
+require_once  'log.class.php';
+require_once  'message.class.php';
+
+//log::add('debug_translate', 'error', 'loadTranslation: '.json_encode($test));
+*/
+
 class translate {
 	/*     * *************************Attributs****************************** */
-	
+
 	protected static $translation = array();
 	protected static $language = null;
 	private static $config = null;
 	private static $pluginLoad = array();
-	
+	private static $widgetLoad = array();
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
-			self::$config = config::byKeys(array('language', 'generateTranslation'));
+			self::$config = config::byKeys(array('language'));
 		}
 		if (isset(self::$config[$_key])) {
 			return self::$config[$_key];
 		}
 		return $_default;
 	}
-	
+
 	public static function getTranslation($_plugin) {
 		if (!isset(self::$translation[self::getLanguage()])) {
 			self::$translation[self::getLanguage()] = array();
@@ -49,11 +60,21 @@ class translate {
 		}
 		return self::$translation[self::getLanguage()];
 	}
-	
+
+	public static function getWidgetTranslation($_widget) {
+		if (!isset(self::$translation[self::getLanguage()]['core/template/widgets.html'])) {
+			self::$translation[self::getLanguage()]['core/template/widgets.html'] = array();
+		}
+		if (!isset(self::$widgetLoad[$_widget])) {
+			self::$widgetLoad[$_widget][$_widget] = array_merge(self::$translation[self::getLanguage()]['core/template/widgets.html'], self::loadTranslation($_widget));
+		}
+		return self::$widgetLoad[$_widget];
+	}
+
 	public static function sentence($_content, $_name, $_backslash = false) {
 		return self::exec("{{" . $_content . "}}", $_name, $_backslash);
 	}
-	
+
 	public static function getPluginFromName($_name) {
 		if (strpos($_name, 'plugins/') === false) {
 			return 'core';
@@ -67,16 +88,17 @@ class translate {
 		}
 		return $matches[1];
 	}
-	
+
 	public static function exec($_content, $_name = '', $_backslash = false) {
 		if ($_content == '' || $_name == '') {
 			return $_content;
 		}
 		$language = self::getLanguage();
-		
-		if ($language == 'fr_FR' && self::getConfig('generateTranslation') != 1) {
+
+		if ($language == 'fr_FR') {
 			return preg_replace("/{{(.*?)}}/s", '$1', $_content);
 		}
+
 		if (substr($_name, 0, 1) == '/') {
 			if (strpos($_name, 'plugins') !== false) {
 				$_name = substr($_name, strpos($_name, 'plugins'));
@@ -89,48 +111,59 @@ class translate {
 				}
 			}
 		}
-		$modify = false;
-		$translate = self::getTranslation(self::getPluginFromName($_name));
+
+		//is a custom user widget:
+		if (substr($_name, 0, 12) == 'customtemp::') {
+			$translate = self::getWidgetTranslation($_name);
+			if (empty($translate[$_name])) {
+				return preg_replace("/{{(.*?)}}/s", '$1', $_content);
+			}
+		} else {
+			$translate = self::getTranslation(self::getPluginFromName($_name));
+		}
+
+		//replacing {{content parts}} by $translate parts:
 		$replace = array();
 		preg_match_all("/{{(.*?)}}/s", $_content, $matches);
 		foreach ($matches[1] as $text) {
 			if (trim($text) == '') {
-				$replace["{{" . $text . "}}"] = $text;
+				$replace['{{' . $text . '}}'] = $text;
 			}
-			if (isset($translate[$_name]) && isset($translate[$_name][$text])) {
-				$replace["{{" . $text . "}}"] = $translate[$_name][$text];
+			if (isset($translate[$_name]) && isset($translate[$_name][$text]) && $translate[$_name][$text] != '') {
+				$replace['{{' . $text . '}}'] = ltrim($translate[$_name][$text],'##');
+			}else if(strpos($text,"'") !== false && isset($translate[$_name]) && isset($translate[$_name][str_replace("'","\'",$text)]) && $translate[$_name][str_replace("'","\'",$text)] != ''){
+				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][str_replace("'","\'",$text)],'##');
 			}
-			if (!isset($replace["{{" . $text . "}}"]) && isset($translate['common']) && isset($translate['common'][$text])) {
-				$replace["{{" . $text . "}}"] = $translate['common'][$text];
+			if (!isset($replace['{{' . $text . '}}']) && isset($translate['common']) && isset($translate['common'][$text])) {
+				$replace['{{' . $text . '}}'] = $translate['common'][$text];
 			}
-			if (!isset($replace["{{" . $text . "}}"])) {
+			if (!isset($replace['{{' . $text . '}}'])) {
 				if (strpos($_name, '#') === false) {
-					$modify = true;
 					if (!isset($translate[$_name])) {
 						$translate[$_name] = array();
 					}
 					$translate[$_name][$text] = $text;
 				}
 			}
-			if ($_backslash && isset($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = str_replace("'", "\'", str_replace("\'", "'", $replace["{{" . $text . "}}"]));
+			if ($_backslash && isset($replace['{{' . $text . '}}'])) {
+				$replace['{{' . $text . '}}'] = str_replace("'", "\'", str_replace("\'", "'", $replace['{{' . $text . '}}']));
 			}
-			if (!isset($replace["{{" . $text . "}}"]) || is_array($replace["{{" . $text . "}}"])) {
-				$replace["{{" . $text . "}}"] = $text;
+			if (!isset($replace['{{' . $text . '}}']) || is_array($replace['{{' . $text . '}}'])) {
+				$replace['{{' . $text . '}}'] = $text;
 			}
-		}
-		if ($language == 'fr_FR' && $modify) {
-			static::$translation[self::getLanguage()] = $translate;
-			self::saveTranslation($language);
 		}
 		return str_replace(array_keys($replace), $replace, $_content);
 	}
-	
+
 	public static function getPathTranslationFile($_language) {
 		return __DIR__ . '/../i18n/' . $_language . '.json';
 	}
-	
-	public static function loadTranslation($_plugin = null) {
+
+	public static function getWidgetPathTranslationFile($_widgetName) {
+		return __DIR__ . '/../../data/customTemplates/i18n/' . $_widgetName . '.json';
+	}
+
+	public static function loadTranslation($_plugin=null) {
 		$return = array();
 		if ($_plugin == null || $_plugin == 'core') {
 			$filename = self::getPathTranslationFile(self::getLanguage());
@@ -144,54 +177,34 @@ class translate {
 				$return = array_merge($return, plugin::getTranslation($plugin, self::getLanguage()));
 			}
 		} else {
-			$return = array_merge($return, plugin::getTranslation($_plugin, self::getLanguage()));
+			//is non core widget:
+			if (substr($_plugin, 0, 12) == 'customtemp::') {
+				$filename = self::getWidgetPathTranslationFile(str_replace('customtemp::', '', $_plugin));
+				if (file_exists($filename)) {
+					$content = file_get_contents($filename);
+					return is_json($content, array())[self::getLanguage()];
+				} else {
+					return array([self::getLanguage()] => array());
+				}
+			} else {
+				return array_merge($return, plugin::getTranslation($_plugin, self::getLanguage()));
+			}
 		}
-		
+
 		return $return;
 	}
-	
-	public static function saveTranslation() {
-		$core = array();
-		$plugins = array();
-		foreach (self::getTranslation(self::getLanguage()) as $page => $translation) {
-			if (strpos($page, 'plugins/') === false) {
-				$core[$page] = $translation;
-			} else {
-				$plugin = substr($page, strpos($page, 'plugins/') + 8);
-				$plugin = substr($plugin, 0, strpos($plugin, '/'));
-				if(trim($plugin) == '' || trim($plugin) == 'core'){
-					continue;
-				}
-				if (!isset($plugins[$plugin])) {
-					$plugins[$plugin] = array();
-				}
-				$plugins[$plugin][$page] = $translation;
-			}
-		}
-		file_put_contents(self::getPathTranslationFile(self::getLanguage()), json_encode($core, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-		foreach ($plugins as $plugin_name => $translation) {
-			try {
-				plugin::saveTranslation($plugin_name, self::getLanguage(), $translation);
-			} catch (Exception $e) {
-				
-			} catch (Error $e) {
-				
-			}
-		}
-	}
-	
+
 	public static function getLanguage() {
 		if (self::$language == null) {
 			self::$language = self::getConfig('language', 'fr_FR');
 		}
 		return self::$language;
-		
 	}
-	
+
 	public static function setLanguage($_langage) {
-		self::$language = $_langage;
+		self::$language = $_langage ;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
 }
 

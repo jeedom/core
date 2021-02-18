@@ -12,7 +12,6 @@ if (init('logicalId') != '' && init('type') != '') {
 if (!isset($market)) {
 	throw new Exception('404 not found');
 }
-include_file('3rdparty', 'bootstrap.rating/bootstrap.rating', 'js');
 include_file('3rdparty', 'slick/slick.min', 'js');
 include_file('3rdparty', 'slick/slick', 'css');
 include_file('3rdparty', 'slick/slick-theme', 'css');
@@ -96,7 +95,7 @@ sendVarToJS('market_display_info', $market_array);
 				$purchase_info = repo_market::getPurchaseInfo();
 				if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
 					?>
-					<a class="btn btn-default" href='https://www.jeedom.com/market/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
+					<a class="btn btn-default" href='<?php echo config::byKey('market::address'); ?>/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
 					<?php
 					if ($market->getCertification() !== 'Premium') {
 						echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
@@ -133,8 +132,11 @@ sendVarToJS('market_display_info', $market_array);
 	</div>
 </div>
 <?php
-if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy') {
+if ($market->getCertification() != 'Officiel' && $market->getCertification() != 'Premium' && $market->getCertification() != 'Legacy' && $market->getCertification() != 'Partenaire') {
 	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée}}</div>';
+}
+if ($market->getStatus('stable') == 0) {
+	echo '<div class="alert alert-warning">{{Attention ce plugin n\'est disponible qu\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\'installant}}</div>';
 }
 $compatibilityHardware = $market->getHardwareCompatibility();
 if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && isset($compatibilityHardware[jeedom::getHardwareName()]) && $compatibilityHardware[jeedom::getHardwareName()] != 1) {
@@ -165,8 +167,8 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 <div class='row'>
 	<div class='col-sm-6'>
 		<legend>{{Description}}
-			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getDoc() ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
-			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo $market->getChangelog() ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
+			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'),$market->getDoc()) ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
+			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'),$market->getChangelog()) ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
 			<br/>
 		</legend>
 		<span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
@@ -174,6 +176,9 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='col-sm-6'>
 		<legend>{{Compatibilité plateforme}}</legend>
 		<?php
+		if ($market->getHardwareCompatibility('v4') == 1) {
+			echo '<img src="core/img/logo_market_v4.png" style="width:60px;height:60px;" />';
+		}
 		if ($market->getHardwareCompatibility('diy') == 1) {
 			echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
 		}
@@ -199,17 +204,6 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 					<span class="marketAttr" data-l1key="rating" style="font-size: 4em;"></span>/5
 				</center>
 			</div>
-			<div class='col-sm-6'>
-				<?php if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {?>
-					<div class="form-group">
-						<label class="col-sm-4 control-label">{{Ma Note}}</label>
-						<div class="col-sm-8">
-							<span><input style="display:none;" type="number" class="rating" id="in_myRating" data-max="5" data-empty-value="0" data-min="1" data-clearable="Effacer" value="<?php echo $market->getRating('user') ?>" /></span>
-						</div>
-					</div><br/>
-				<?php }
-				?>
-			</div>
 		</div>
 	</div>
 	<div class='col-sm-6'>
@@ -223,7 +217,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	<div class='row'>
 		<div class="col-sm-12">
 			<legend>{{Informations complementaires}}</legend>
-			
+
 			<div class='col-sm-2'>
 				<label class="control-label">{{Taille}}</label><br/>
 				<span><?php echo $market->getParameters('size'); ?></span>
@@ -231,11 +225,11 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			<div class='col-sm-2'>
 				<label class="control-label">{{Lien}}</label><br/>
 				<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fa fa-youtube"></i> Video</a><br/>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br/>
 				<?php }
 				?>
 				<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fa fa-users"></i> Forum</a><br/>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br/>
 				<?php }
 				?>
 			</div>
@@ -243,7 +237,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				<label class="control-label">{{Installation}}</label>
 				<span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
 			</div>
-			
+
 			<div class='col-sm-1'>
 				<label class="control-label">{{Type}}</label><br/>
 				<span class="marketAttr" data-l1key="type"></span>
@@ -251,21 +245,21 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			<div class='col-sm-2'>
 				<label class="control-label">{{Langue disponible}}</label><br/>
 				<?php
-				echo '<img src="core/img/francais.png" width="30" />';
+				echo '<img src="core/img/langFlags/francais.png" width="30" />';
 				if ($market->getLanguage('en_US') == 1) {
-					echo '<img src="core/img/anglais.png" width="30" />';
+					echo '<img src="core/img/langFlags/anglais.png" width="30" />';
 				}
 				if ($market->getLanguage('de_DE') == 1) {
-					echo '<img src="core/img/allemand.png" width="30" />';
+					echo '<img src="core/img/langFlags/allemand.png" width="30" />';
 				}
 				if ($market->getLanguage('sp_SP') == 1) {
-					echo '<img src="core/img/espagnol.png" width="30" />';
+					echo '<img src="core/img/langFlags/espagnol.png" width="30" />';
 				}
 				if ($market->getLanguage('ru_RU') == 1) {
-					echo '<img src="core/img/russe.png" width="30" />';
+					echo '<img src="core/img/langFlags/russe.png" width="30" />';
 				}
 				if ($market->getLanguage('it_IT') == 1) {
-					echo '<img src="core/img/italien.png" width="30" />';
+					echo '<img src="core/img/langFlags/italien.png" width="30" />';
 				}
 				?>
 			</div>
@@ -275,7 +269,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 
 <style>
@@ -309,8 +303,8 @@ $('body').setValues(market_display_info, '.marketAttr');
 
 $('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - '+market_display_info_category);
 
-$('.marketAttr[data-l1key=description]').html(linkify(market_display_info.description));
-$('.marketAttr[data-l1key=utilization]').html(linkify(market_display_info.utilization));
+$('.marketAttr[data-l1key=description]').html(jeedomUtils.linkify(market_display_info.description));
+$('.marketAttr[data-l1key=utilization]').html(jeedomUtils.linkify(market_display_info.utilization));
 
 $('#bt_paypalClick').on('click', function () {
 	$(this).hide();
@@ -331,7 +325,7 @@ $('.bt_installFromMarket').on('click', function () {
 			if(market_display_info.type == 'plugin'){
 				bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
 					if (result) {
-						loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+						jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId);
 					}
 				});
 			}
@@ -341,7 +335,7 @@ $('.bt_installFromMarket').on('click', function () {
 			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
 		}
 	});
-	
+
 });
 
 $('#bt_removeFromMarket').on('click', function () {

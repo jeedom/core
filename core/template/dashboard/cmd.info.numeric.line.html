@@ -1,25 +1,26 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="numeric" data-template="line" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
-	<div class="content-xs">
-		<span class="cmdName #hide_name#">#name_display# </span> <strong class="state"></strong> #unite#
-	</div>
-	<script>
-		jeedom.cmd.update['#id#'] = function(_options) {
-			var cmd = $('.cmd[data-cmd_id=#id#]')
-			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-			cmd.find('.state').empty().append(_options.display_value);
-			if(_options.alertLevel){
-				if(_options.alertLevel == 'warning'){
-					cmd.find('.content-xs').addClass('label label-warning')
-					cmd.attr('data-alertlevel','warning');
-				}else if(_options.alertLevel == 'danger'){
-					cmd.find('.content-xs').addClass('label label-danger')
-					cmd.attr('data-alertlevel','danger');
-				}else{
-					cmd.find('.content-xs').removeClass('label label-warning label-danger')
-					cmd.attr('data-alertlevel','none');
-				}
-			}
-		}
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
-	</script>
+  <div class="content-xs">
+    <span class="cmdName #hide_name#">#name_display# </span> <strong class="state"></strong> #unite#
+  </div>
+  <template></template>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+      cmd.find('.state').empty().append(_options.display_value);
+      if(_options.alertLevel){
+        if(_options.alertLevel == 'warning'){
+          cmd.find('.content-xs').addClass('label label-warning')
+          cmd.attr('data-alertlevel','warning');
+        }else if(_options.alertLevel == 'danger'){
+          cmd.find('.content-xs').addClass('label label-danger')
+          cmd.attr('data-alertlevel','danger');
+        }else{
+          cmd.find('.content-xs').removeClass('label label-warning label-danger')
+          cmd.attr('data-alertlevel','none');
+        }
+      }
+    }
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+  </script>
 </div>

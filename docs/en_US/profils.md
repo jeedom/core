@@ -1,110 +1,45 @@
-La page Profil vous permet de configurer certains comportements de
-Jeedom spécifiques à l’utilisateur : page d’accueil, thèmes de la
-version desktop, de la version mobile, des graphiques…​ Elle permet
-aussi de changer votre mot de passe.
+# Preferences
+**Settings → Preferences**
 
-You find it at the top right by clicking on the icon man
-then Profile (followed by your login).
+The Preferences page allows you to configure certain user-specific Jeedom behaviors.
 
-Thèmes
-======
+## Preferences tab
 
-The themes panel allows you to adjust interface settings:
+### Interface
 
--   **Desktop** : thèmes à utiliser en mode desktop, attention seul le
-    default theme is officially supported by Jeedom
+Defines certain interface behaviors
 
--   **Mobile color**: allows to choose the color of the interface
-    (here everything is supported)
+- **Default page** : Page to display by default when connecting to desktop or mobile.
+- **Default object** : Object to display by default upon arrival on the Dashboard / mobile.
 
--   **Desktop Graphic**: Set the default theme for
-    graphics in desktop mode
+- **Default view** : View to display by default upon arrival on the Dashboard / mobile.
+- **Unfold the view panel** : Used to make the view menu (left) visible on the views by default.
 
--   **Mobile Chart**: Set the default theme for
-    mobile graphics
+- **Default design** : Design to display by default upon arrival on the Dashboard / mobile.
+- **Full Screen Design** : Default display in full screen upon arrival on designs.
 
--   **Opacity with Dashboard widgets**: gives opacity
-    (between 0 and 1) widgets on the dashboard
+- **Default 3D design** : 3D design to display by default when arriving on the Dashboard / mobile.
+- **Full screen 3D design** : Default display in full screen upon arrival on 3D designs.
 
--   **Opacity with Design widgets**: gives opacity
-    (between 0 and 1) widgets on the designs
+### Notifications
 
--   **Opacity with View widgets**: allows to give the opacity (between
-    0 and 1) widgets on views
+- **User notification command** : Default command to join you (message type command).
 
--   **Opacity with Mobile widgets**: gives opacity
-    (between 0 and 1) mobile widgets
+## Security tab
 
-Interface
----------
+- **2-step authentication** : allows to configure authentication in 2 steps (as a reminder, it is a code changing every X seconds which is displayed on a mobile application, type *google authentificator*). Note that double authentication will only be requested for external connections. For local connections, the code will therefore not be requested.
 
-Allows you to define certain interface behaviors:
+  **Important** if during the configuration of the double authentication you have an error, it is necessary to check that Jeedom (see on the health page) and your phone are well at the same time (1 min of difference is enough for it not to work).
 
--   **General**
+- **Password** : Allows you to change your password (do not forget to retype it below).
 
-    -   **Show menus**: tells Jeedom to display the panel
-        left, when it exists, as a reminder this panel is
-        disponible sur la plupart des pages des plugins, ainsi que la
-        page des scénarii, des interactions, des objets…​.
+- **User hash** : Your user API key.
 
--   **Page par défaut** : page par défaut à afficher lors de la
-    connexion en desktop/mobile
+### Active sessions
 
--   **Objet par défaut sur le dashboard** : objet à afficher par défaut
-    lors de l’arrivée sur le dashboard/mobile
+Here you have the list of your currently connected sessions, their ID, their IP as well as the date of last communication. By clicking on &quot;Disconnect&quot; this will disconnect the user. Be careful if it is on a registered device, this will also delete the registration.
 
--   **Vue par défaut** : vue à afficher par défaut lors de l’arrivée sur
-    le dashboard/mobile
+### Registered devices
 
--   **Design par défaut** : design à afficher par défaut lors de
-    l’arrivée sur le dashboard/mobile
-
-    -   **Plein écran** : affichage par défaut en plein écran lors de
-        l’arrivée sur les designs
-
--   **Dashboard**
-
-    -   **Déplier le panneau des scénarii** : permet de rendre visible
-        par défaut le menu des scénarii (à droite) sur le dashboard
-
-    -   **Déplier le panneau des objets** : permet de rendre visible par
-        défaut le menu des objets (à gauche) sur le dashboard
-
--   **Vue**
-
-    -   **Déplier le panneau des vues** : permet de rendre visible par
-        défaut le menu des vues (à gauche) sur les vues
-
-Sécurité
---------
-
--   **Authentification en 2 étapes** : permet de configurer
-    l’authentification en 2 étapes (pour rappel, c’est un code changeant
-    toutes les X secondes qui s’affiche sur une application mobile, type
-    google authentificator). A noter que la double authentification ne sera demandée que pour les connexions externe. Pour les connexion local le code ne sera donc pas demandé. Important si lors de la configuration de la double authentification vous avez une erreur vérifier que jeedom (voir sur la page santé) et votre téléphone sont bien à la meme heure (1 min de difference suffit pour que ca ne marche pas)
-
--   **Mot de passe** : permet de changer votre mot de passe (ne pas
-    oublier de le retaper en dessous)
-
--   **Hash de l’utilisateur** : votre clef API d’utilisateur
-
-### Sessions actives
-
-Vous avez ici la liste de vos sessions actuellement connecté, leur ID,
-leur IP ainsi que la date de derniere communication. En cliquant sur
-"Déconnecter" cela déconnectera l’utilisateur. Attention si il est sur
-un péripherique enregistré cela supprimera églagement l’enregistrement.
-
-### Péripherique enregistrés
-
-Vous retrouvez ici la liste de tous les péripheriques enregistré (qui se
-connecte sans authentification) à votre Jeedom ainsi que la date de
-derniere utilisation. Vous pouvez ici supprimer l’enregistrement d’un
-peripherique. Attention cela ne le deconnecte pas mais empechera juste
-sa reconnection automatique.
-
-Notifications
--------------
-
--   **Commande de notification utilisateur** : Commande par défaut pour
-    vous joindre (commande de type message)
+Here you find the list of all registered devices (which connect without authentication) to your Jeedom as well as the date of last use.
+Here you can delete the registration of a device. Attention it does not disconnect it but will just prevent its automatic reconnection.

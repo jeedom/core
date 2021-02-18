@@ -19,22 +19,22 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'getEqLogicObject') {
 		$object = jeeObject::byId(init('object_id'));
-		
+
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
 		$return = utils::o2a($object);
 		$return['eqLogic'] = array();
-		foreach ($object->getEqLogic() as $eqLogic) {
+		foreach(($object->getEqLogic()) as $eqLogic) {
 			if ($eqLogic->getIsVisible() == '1') {
 				$info_eqLogic = array();
 				$info_eqLogic['id'] = $eqLogic->getId();
@@ -46,7 +46,7 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'byId') {
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
@@ -54,7 +54,7 @@ try {
 		}
 		ajax::success(utils::o2a($eqLogic));
 	}
-	
+
 	if (init('action') == 'toHtml') {
 		if (init('ids') != '') {
 			$return = array();
@@ -84,10 +84,10 @@ try {
 			ajax::success($info_eqLogic);
 		}
 	}
-	
+
 	if (init('action') == 'htmlAlert') {
 		$return = array();
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			if ($eqLogic->getAlert() == '') {
 				continue;
 			}
@@ -100,13 +100,13 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'htmlBattery') {
 		$return = array();
 		$list = array();
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
-			if ($eqLogic->getStatus('battery', -2) != -2) {
+			if ($eqLogic->getIsEnable() && $eqLogic->getStatus('battery', -2) != -2) {
 				$list[] = $eqLogic;
 			}
 		}
@@ -123,7 +123,7 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'listByType') {
 		$return = array();
 		foreach (eqLogic::byType(init('type')) as $eqLogic) {
@@ -132,17 +132,37 @@ try {
 		}
 		ajax::success(array_values($return));
 	}
-	
+
 	if (init('action') == 'listByObjectAndCmdType') {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
 		ajax::success(eqLogic::listByObjectAndCmdType($object_id, init('typeCmd'), init('subTypeCmd')));
 	}
-	
+
 	if (init('action') == 'listByObject') {
 		$object_id = (init('object_id') != -1) ? init('object_id') : null;
-		ajax::success(utils::o2a(eqLogic::byObjectId($object_id, init('onlyEnable', true), init('onlyVisible', false), init('eqType_name', null), init('logicalId', null), init('orderByName', false))));
+		$getCmd = init('getCmd', false);
+		$return = eqLogic::byObjectId($object_id,
+										init('onlyEnable', true),
+										init('onlyVisible', false),
+										init('eqType_name', null),
+										init('logicalId', null),
+										init('orderByName', false),
+										is_json(init('onlyHasCmds', false), false)
+									);
+		if ($getCmd) {
+			$fullReturn = [];
+			for ($i=0; $i<count($return); $i++) {
+				$eqLogic = $return[$i];
+				$cmds = $eqLogic->getCmd();
+				$eq = utils::o2a($eqLogic);
+				$eq['cmds'] = utils::o2a($cmds);
+				$fullReturn[$i] = $eq;
+			}
+			ajax::success($fullReturn);
+		}
+		ajax::success(utils::o2a($return));
 	}
-	
+
 	if (init('action') == 'listByTypeAndCmdType') {
 		$results = eqLogic::listByTypeAndCmdType(init('type'), init('typeCmd'), init('subTypeCmd'));
 		$return = array();
@@ -160,7 +180,7 @@ try {
 		}
 		ajax::success($return);
 	}
-	
+
 	if (init('action') == 'setIsEnable') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -177,7 +197,7 @@ try {
 		$eqLogic->save(true);
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'setOrder') {
 		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
@@ -194,7 +214,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'removes') {
 		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
@@ -210,7 +230,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'setIsVisibles') {
 		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
@@ -227,7 +247,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'setIsEnables') {
 		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
@@ -244,7 +264,7 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'simpleSave') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -255,7 +275,7 @@ try {
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID ', __FILE__) . $eqLogicsSave['id']);
 		}
-		
+
 		if (!$eqLogic->hasRight('w')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
@@ -263,7 +283,7 @@ try {
 		$eqLogic->save();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'copy') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -278,17 +298,20 @@ try {
 		}
 		ajax::success(utils::o2a($eqLogic->copy(init('name'))));
 	}
-	
+
 	if (init('action') == 'getUseBeforeRemove') {
 		$used = array();
 		$eqLogic = eqLogic::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__));
+		}
 		$data = array('node' => array(), 'link' => array());
 		$data = $eqLogic->getLinkData($data, 0, 2);
 		$used = $data['node'];
 		if(isset($used['eqLogic'.$eqLogic->getId()])){
 			unset($used['eqLogic'.$eqLogic->getId()]);
 		}
-		foreach ($eqLogic->getCmd() as $cmd) {
+		foreach(($eqLogic->getCmd()) as $cmd) {
 			if(isset($used['cmd'.$cmd->getId()])){
 				unset($used['cmd'.$cmd->getId()]);
 			}
@@ -309,7 +332,68 @@ try {
 		}
 		ajax::success($used);
 	}
-	
+
+	if (init('action') == 'usedBy') {
+			if (!isConnect('admin')) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__));
+			}
+			$eqLogic = eqLogic::byId(init('id'));
+			if (!is_object($eqLogic)) {
+				throw new Exception(__('Equipement inconnu : ', __FILE__) . init('id'), 9999);
+			}
+			$result = $eqLogic->getUsedBy();
+			$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array(), 'interactDef' => array(), 'cmd' => array());
+			foreach ($result['cmd'] as $cmd) {
+				$info = utils::o2a($cmd);
+				$info['humanName'] = $cmd->getHumanName();
+				$info['link'] = $cmd->getEqLogic()->getLinkToConfiguration();
+				$info['linkId'] = $cmd->getId();
+				$return['cmd'][] = $info;
+			}
+			foreach ($result['eqLogic'] as $eqLogic) {
+				$info = utils::o2a($eqLogic);
+				$info['humanName'] = $eqLogic->getHumanName();
+				$info['link'] = $eqLogic->getLinkToConfiguration();
+				$info['linkId'] = $eqLogic->getId();
+				$return['eqLogic'][] = $info;
+			}
+			foreach ($result['scenario'] as $scenario) {
+				$info = utils::o2a($scenario);
+				$info['humanNameTag'] = $scenario->getHumanName(true, false, true);
+				$info['humanName'] = $scenario->getHumanName();
+				$info['link'] = $scenario->getLinkToConfiguration();
+				$info['linkId'] = $scenario->getId();
+				$return['scenario'][] = $info;
+			}
+			foreach ($result['plan'] as $plan) {
+				$info = utils::o2a($plan);
+				$info['name'] = $plan->getName();
+				$info['linkId'] = $plan->getId();
+				$return['plan'][] = $info;
+			}
+			foreach ($result['view'] as $view) {
+				$info = utils::o2a($view);
+				$info['name'] = $view->getName();
+				$info['linkId'] = $view->getId();
+				$return['view'][] = $info;
+			}
+			foreach ($result['interactDef'] as $interact) {
+				$info = utils::o2a($interact);
+				$info['humanName'] = $interact->getHumanName();
+				$info['link'] = $interact->getLinkToConfiguration();
+				$info['linkId'] = $interact->getId();
+				$return['interactDef'][] = $info;
+			}
+			foreach ($result['cmd'] as $cmd) {
+				$info = utils::o2a($cmd);
+				$info['humanName'] = $cmd->getHumanName();
+				$info['link'] = $cmd->getEqLogic()->getLinkToConfiguration();
+				$info['linkId'] = $cmd->getId();
+				$return['cmd'][] = $info;
+			}
+			ajax::success($return);
+		}
+
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
@@ -325,7 +409,7 @@ try {
 		$eqLogic->remove();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'get') {
 		$typeEqLogic = init('type');
 		if ($typeEqLogic == '' || !class_exists($typeEqLogic)) {
@@ -339,15 +423,15 @@ try {
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
 		ajax::success(jeedom::toHumanReadable($return));
 	}
-	
+
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		
+
 		$eqLogicsSave = json_decode(init('eqLogic'), true);
-		
+
 		foreach ($eqLogicsSave as $eqLogicSave) {
 			try {
 				if (!is_array($eqLogicSave)) {
@@ -378,7 +462,7 @@ try {
 				$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
 				$eqLogic->save();
 				$enableList = array();
-				
+
 				if (isset($eqLogicSave['cmd'])) {
 					$cmd_order = 0;
 					foreach ($eqLogicSave['cmd'] as $cmd_info) {
@@ -388,6 +472,11 @@ try {
 						}
 						if (!is_object($cmd)) {
 							$cmd = new $typeCmd();
+						}
+						if (isset($cmd_info['display']['parameters'])) {
+							$keys = array_map('trim', array_keys($cmd_info['display']['parameters']));
+							$values = array_map('trim', array_values($cmd_info['display']['parameters']));
+							$cmd_info['display']['parameters'] = array_combine($keys, $values);
 						}
 						$cmd->setEqLogic_id($eqLogic->getId());
 						$cmd->setOrder($cmd_order);
@@ -419,10 +508,10 @@ try {
 			ajax::success(utils::o2a($eqLogic));
 		}
 	}
-	
+
 	if (init('action') == 'getAlert') {
 		$alerts = array();
-		foreach (eqLogic::all() as $eqLogic) {
+		foreach((eqLogic::all()) as $eqLogic) {
 			if ($eqLogic->getAlert() == '') {
 				continue;
 			}
@@ -430,7 +519,7 @@ try {
 		}
 		ajax::success($alerts);
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

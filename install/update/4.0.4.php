@@ -15,12 +15,12 @@ foreach (cmd::all() as $cmd) {
         if(file_exists(__DIR__ . '/../../core/template/' . $version . '/'. $template_name .'.html')){
           $cmd->setTemplate($version,'core::'.$cmd->getTemplate($version, 'default'));
         }elseif(file_exists(__DIR__ . '/../../data/customTemplates/' . $version . '/'. $template_name .'.html')){
-          $cmd->setTemplate($version,'custom::'.$cmd->getTemplate($version, 'default'));
+          $cmd->setTemplate($version,'customtemp::'.$cmd->getTemplate($version, 'default'));
         }
       }
     }
   }
-  $cmd->save();
+  $cmd->save(true);
 }
 
 ?>

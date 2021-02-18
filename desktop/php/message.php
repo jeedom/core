@@ -14,7 +14,7 @@ if ($selectPlugin != '') {
 	<select id="sel_plugin" class="form-control input-sm roundedLeft" style="width: 200px;">
 		<option value="" selected>{{Tout}}</option>
 		<?php
-		foreach (message::listPlugin() as $plugin) {
+		foreach ((message::listPlugin()) as $plugin) {
 			if ($selectPlugin == $plugin['plugin']) {
 				echo '<option value="' . $plugin['plugin'] . '" selected>' . $plugin['plugin'] . '</option>';
 			} else {
@@ -32,7 +32,7 @@ if ($selectPlugin != '') {
 	<thead>
 		<tr>
 			<th data-sorter="false" data-filter="false"></th>
-			<th style="width:150px;">{{Date et heure}}</th>
+			<th style="width:150px;min-width:100px;">{{Date et heure}}</th>
 			<th>{{Source}}</th>
 			<th>{{Description}}</th>
 			<th data-sorter="false" data-filter="false">{{Action}}</th>
@@ -44,7 +44,7 @@ if ($selectPlugin != '') {
 		$trs = '';
 		foreach ($listMessage as $message) {
 			$trs .= '<tr data-message_id="' . $message->getId() . '">';
-			$trs .= '<td><center><i class="far fa-trash-alt cursor removeMessage"></i></center></td>';
+			$trs .= '<td><div class="center"><i class="far fa-trash-alt cursor removeMessage"></i></div></td>';
 			$trs .= '<td class="datetime">' . $message->getDate() . '</td>';
 			$trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
 			$trs .= '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';

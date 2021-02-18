@@ -34,7 +34,7 @@ body {
   margin: 0 !important;
   scrollbar-color: rgb(200, 200, 200) rgb(235, 235, 238) !important;
 }
-.backgroundforJeedom{
+#backgroundforJeedom{
   width:100%;
   height:calc(100% - 50px);
   z-index : -1;
@@ -167,13 +167,6 @@ legend {
 [data-page=display] .object legend {
   border-left: none;
 }
-[data-page=display] #div_pageContainer > div.packeryContainer legend,
-[data-page=display] #div_pageContainer > div.packeryContainer > div,
-[data-page=display] #div_pageContainer > div.packeryContainer > div > div {
-  padding: 5px !important;
-  margin: 0 !important;
-  border-left: none;
-}
 [data-page=display] #div_pageContainer ul > li {
   margin: 1.2px 0 !important;
   padding: 2px 5px !important;
@@ -238,6 +231,7 @@ legend {
 
 .reportModeVisible {
   color: white;
+  display: initial !important;
 }
 
 .timeCmd.label {
@@ -530,6 +524,10 @@ div[class*="DisplayCard"] .name > .label {
   color: rgb(254, 254, 254);
   font-size: 14px !important;
 }
+.eqLogic.eqLogic-widget .widget-name span.reportModeVisible {
+  font-size: 16px !important;
+}
+
 .scenarioDisplayCard > span > i {
   font-size: 3em !important;
 }
@@ -677,8 +675,11 @@ pre {
   background: rgb(247, 248, 248);
 }
 
+.div_rowZones {
+  background-color: rgb(252, 252, 254) !important;
+}
 .div_viewZone{
-  background-color: rgba(249, 249, 250, 1) !important;
+  background-color: rgb(232, 232, 234) !important;
 }
 
 .view-link-widget,
@@ -688,7 +689,10 @@ pre {
   display: inline-block;
   vertical-align: top;
 }
-
+.div_backgroundPlan .text-widget {
+  background-color: rgb(252, 252, 254) !important;
+  color: rgb(115, 115, 115) !important;
+}
 
 /* context menus */
 .context-menu-layer {
@@ -1376,6 +1380,7 @@ input[type=radio][disabled] {
   cursor: not-allowed
 }
 
+
 /* custom universal select */
 select,
 input[type=color] {
@@ -1389,7 +1394,14 @@ div[data-subtype=select] {
 :not(.form-group) > div[data-subtype=select] {
   width: 100% !important;
   min-width: 100% !important;
+  display: inline-table;
 }
+
+[data-page="plan"] div[data-subtype=select] {
+  min-width: unset !important;
+  width: 100px !important;
+}
+
 div[data-subtype=select] select {
   color: rgb(90, 90, 90) !important;
   font-weight: bold !important;
@@ -1411,18 +1423,7 @@ div[data-subtype=select]::after {
   position: absolute;
   pointer-events: none;
 }
-div[data-subtype=select]::after { /*  Custom dropdown arrow */
-  content: "\25BC";
-  font-size: 14px;
-  right: 2px;
-  top: 25%;
-  margin: 0 !important;
-}
-div[data-subtype=select] select option {
-  margin: 40px;
-  background-color: rgb(220, 220, 220) !important;
-  color: rgb(90, 90, 90) !important;
-}
+
 div[data-subtype=select][data-version=dplan] {
   font-size: 20px; /* no zoom on iOS */
   overflow: scroll;
@@ -1430,7 +1431,8 @@ div[data-subtype=select][data-version=dplan] {
   -webkit-transform: translateZ(0px);
 }
 select,
-input[type=text] {
+input[type=text],
+input[type=password]{
   border: 0 !important;
   background-color: rgb(224, 226, 226) !important;
   padding: 6px 12px !important;
@@ -1438,12 +1440,32 @@ input[type=text] {
 select option {
   color: rgb(90, 90, 90) !important;
   background-color: rgb(250, 250, 250) !important;
+  font-size: 13px;
+  font-family: 'Roboto', 'Verdana';
 }
 select optgroup {
-  color: rgb(115, 115, 115) !important;
+  color: rgb(90, 90, 90) !important;
   background-color: rgb(247, 248, 248) !important;
 }
-
+select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(115, 115, 115)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(100% - 7px) center !important;
+  background-size: 12px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+}
+body[data-theme*="Dark"] select:not(.expressionAttr) {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+}
+body[data-theme*="Legacy"] select:not(.expressionAttr) {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(240, 240, 240)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
+}
+select::-ms-expand {
+  display: none;
+}
 .input-xs {
   padding: 0 5px !important;
 }
@@ -1662,6 +1684,10 @@ hr {
 
 .tablesorter-filter {
   opacity: 0.45 !important;
+}
+
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
+  background-color: transparent !important;
 }
 
 
@@ -2005,7 +2031,7 @@ textarea {
   position: static;
 }
 .bs-sidebar {
-  background: rgba(235, 235, 238, 1) !important;;
+  background: rgba(235, 235, 238, 1) !important;
 }
 .bs-sidebar .label,
 .bs-sidebar .label > i {
@@ -2296,9 +2322,6 @@ div.cmd-widget[data-subtype="select"]::after {
   font-size: 14px;
   top: 5px!important;
   right: 5px;
-}
-div.eqLogic_layout_table table.tableCmd {
-  min-width: 100%;
 }
 div.eqLogic_layout_table table.tableCmd td {
   vertical-align: top;
@@ -2625,10 +2648,6 @@ div.vis-item-content {
   padding:0px !important;
   margin:0px !important;
 }
-.vis-timeline,
-.vis-timeline div {
-  border-color: rgb(160, 160, 160) !important;
-}
 
 .ui-dialog .ui-dialog-buttonpane {
   margin: 0;
@@ -2933,16 +2952,16 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -2950,11 +2969,11 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   #div_editScenario ul.nav.nav-tabs {
     margin-top: 30px !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -2981,7 +3000,7 @@ ul.dropdown-menu {
   .hidden-xs {
     display: none !important;
   }
-  
+
 }
 
 header a.navbar-brand {

@@ -19,13 +19,13 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	
+
 	ajax::init();
-	
+
 	if (init('action') == 'all') {
 		$results = utils::o2a(interactDef::all());
 		foreach ($results as &$result) {
@@ -38,21 +38,21 @@ try {
 					if (is_object($cmd)) {
 						$link_id .= cmd::cmdToHumanReadable('#' . $cmd->getId() . '# && ');
 					}
-					
+
 				}
 				$result['link_id'] = trim(trim($link_id), '&&');
 			}
 		}
 		ajax::success($results);
 	}
-	
+
 	if (init('action') == 'byId') {
 		$result = utils::o2a(interactDef::byId(init('id')));
 		$result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
 		$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
 		ajax::success(jeedom::toHumanReadable($result));
 	}
-	
+
 	if (init('action') == 'save') {
 		unautorizedInDemo();
 		$interact_json = jeedom::fromHumanReadable(json_decode(init('interact'), true));
@@ -66,12 +66,23 @@ try {
 		$interact->save();
 		ajax::success(utils::o2a($interact));
 	}
-	
+
+	if (init('action') == 'autoCompleteGroup') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$return = array();
+		foreach (interactDef::listGroup(init('term')) as $group) {
+			$return[] = $group['group'];
+		}
+		ajax::success($return);
+	}
+
 	if (init('action') == 'regenerateInteract') {
 		interactDef::regenerateInteract();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		$interact = interactDef::byId(init('id'));
@@ -81,7 +92,7 @@ try {
 		$interact->remove();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'changeState') {
 		unautorizedInDemo();
 		$interactQuery = interactQuery::byId(init('id'));
@@ -92,7 +103,7 @@ try {
 		$interactQuery->save();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'changeAllState') {
 		unautorizedInDemo();
 		$interactQueries = interactQuery::byInteractDefId(init('id'));
@@ -104,11 +115,11 @@ try {
 		}
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'execute') {
 		ajax::success(interactQuery::tryToReply(init('query')));
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

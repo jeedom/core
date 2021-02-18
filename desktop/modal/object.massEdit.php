@@ -1,4 +1,20 @@
 <?php
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -22,8 +38,9 @@ foreach (explode('|',init('fields')) as &$field) {
 }
 sendVarToJs('edit_type',$type);
 ?>
+
 <div id="div_alertMassEdit"></div>
-<a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check"></i> {{Sauvegarder}}</a>
+<a class="btn btn-success btn-xs pull-right" id="bt_saveMassEdit"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 <table class="table table-condensed tablesorter" id="table_massEdit">
   <thead>
     <tr>
@@ -51,57 +68,59 @@ sendVarToJs('edit_type',$type);
   </thead>
   <tbody>
     <?php
-    foreach ($type::all() as $object) {
+    foreach (($type::all()) as $object) {
       $data_object = utils::o2a($object);
-      echo '<tr class="editObject" data-id="'.$object->getId().'">';
-      echo '<td>';
-      echo '<input class="editObjectAttr" data-l1key="id" hidden value="'.$object->getId().'"></input>';
-      echo $object->getId();
-      echo '</td>';
+      $tr = '';
+      $tr .= '<tr class="editObject" data-id="'.$object->getId().'">';
+      $tr .= '<td>';
+      $tr .= '<input class="editObjectAttr" data-l1key="id" hidden value="'.$object->getId().'"></input>';
+      $tr .= $object->getId();
+      $tr .= '</td>';
       if(method_exists($type,'getEqType_name')){
-        echo '  <td>'.$object->getEqType_name().'</td>';
+        $tr .= '  <td>'.$object->getEqType_name().'</td>';
       }
-      echo '<td>';
-      echo $object->getHumanName();
-      echo '</td>';
+      $tr .= '<td>';
+      $tr .= $object->getHumanName();
+      $tr .= '</td>';
       foreach ($fields as $field) {
-        echo '<td>';
+        $tr .= '<td>';
         $value = $data_object;
         foreach ($field['path'] as $key) {
           $value = $value[$key];
         }
         switch ($field['type']) {
           case 'number':
-          echo '<input type="number" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
+          $tr .= '<input type="number" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
           case 'checkbox':
-          echo '<input type="checkbox" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
+          $tr .= '<input type="checkbox" class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
           default:
-          echo '<input class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
+          $tr .= '<input class="form-control input-xs editObjectAttr" '.$field['key'].' value="'.$value.'"></input>';
           break;
         }
-        echo '</td>';
+        $tr .= '</td>';
       }
-      echo '</tr>';
+      $tr .= '</tr>';
+      echo $tr;
     }
     ?>
   </tbody>
 </table>
 
 <script>
-initTableSorter();
+jeedomUtils.initTableSorter()
 
-$('#bt_saveMassEdit').off('click').on('click',function(){
+$('#bt_saveMassEdit').off('click').on('click',function() {
   jeedom.massEditSave({
     type : edit_type,
     objects : $('#table_massEdit .editObject').getValues('.editObjectAttr'),
-    error: function (error) {
+    error: function(error) {
       $('#div_alertMassEdit').showAlert({message: error.message, level: 'danger'})
     },
-    success : function(data){
+    success : function(data) {
       $('#div_alertMassEdit').showAlert({message: '{{Modification sauvegardées avec succès}}', level: 'success'})
     }
   })
-});
+})
 </script>

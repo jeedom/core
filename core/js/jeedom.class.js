@@ -22,6 +22,7 @@ jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
 jeedom.changes_timeout = null;
+var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;
@@ -71,7 +72,7 @@ jeedom.changes = function(){
     },
     error: function(_error){
       if(typeof(user_id) != "undefined" && jeedom.connect == 100){
-        notify('{{Erreur de connexion}}','{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
+        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
       }
       jeedom.connect++;
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
@@ -93,26 +94,38 @@ jeedom.changes = function(){
   $.ajax(paramsAJAX);
 }
 
-
 jeedom.init = function () {
   jeedom.datetime = serverDatetime;
   jeedom.display.version = 'desktop';
   if ($.mobile) {
     jeedom.display.version = 'mobile';
   }
+  var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
     lang: {
-      months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-      shortMonths: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-      weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
-    }
+      months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
+      shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
+      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
+    },
+    colors: [
+      cssComputedStyle.getPropertyValue('--al-info-color'),
+      cssComputedStyle.getPropertyValue('--al-warning-color'),
+      cssComputedStyle.getPropertyValue('--al-success-color'),
+      cssComputedStyle.getPropertyValue('--lb-yellow-color'),
+      cssComputedStyle.getPropertyValue('--al-primary-color'),
+      cssComputedStyle.getPropertyValue('--al-danger-color'),
+      cssComputedStyle.getPropertyValue('--scBlocCOM'),
+      cssComputedStyle.getPropertyValue('--scBlocFOR'),
+      cssComputedStyle.getPropertyValue('--scBlocACTION'),
+      cssComputedStyle.getPropertyValue('--scBlocAT')
+    ]
   });
+
+
   $('body').on('cmd::update', function (_event,_options) {
     jeedom.cmd.refreshValue(_options);
   });
-  
+
   $('body').on('scenario::update', function (_event,_options) {
     jeedom.scenario.refreshValue(_options);
   });
@@ -122,13 +135,14 @@ jeedom.init = function () {
   $('body').on('jeeObject::summary::update', function (_event,_options) {
     jeedom.object.summaryUpdate(_options);
   });
-  
+
   $('body').on('ui::update', function (_event,_options) {
     if(isset(_options.page) && _options.page != ''){
-      if(!$.mobile && getUrlVars('p') != _options.page){
-        return;
-      }
-      if($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE != _options.page){
+      if($.mobile){
+        if(!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _options.page){
+          return;
+        }
+      }else if(getUrlVars('p') != _options.page){
         return;
       }
     }
@@ -136,9 +150,8 @@ jeedom.init = function () {
       _options.container = 'body';
     }
     $(_options.container).setValues(_options.data, _options.type);
-    console.log(_options);
   });
-  
+
   $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
     if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
@@ -147,7 +160,7 @@ jeedom.init = function () {
       }
     }
   });
-  
+
   $('body').on('jeedom::alert', function (_event,_options) {
     if (!isset(_options.message) || $.trim(_options.message) == '') {
       if(isset(_options.page) && _options.page != ''){
@@ -174,17 +187,106 @@ jeedom.init = function () {
     $('body').attr('data-coloredIcons',_state);
   });
   $('body').on('message::refreshMessageNumber', function (_event,_options) {
-    refreshMessageNumber();
+    jeedom.refreshMessageNumber();
   });
   $('body').on('update::refreshUpdateNumber', function (_event,_options) {
-    refreshUpdateNumber();
+    jeedom.refreshUpdateNumber();
   });
   $('body').on('notify', function (_event,_options) {
-    notify(_options.title, _options.message, _options.theme);
+    jeedom.notify(_options.title, _options.message, _options.theme);
   });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
   }
+}
+
+jeedom.MESSAGE_NUMBER
+jeedom.refreshMessageNumber = function() {
+  jeedom.message.number({
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(_number) {
+      jeedom.MESSAGE_NUMBER = _number;
+      if (_number == 0 || _number == '0') {
+        $('#span_nbMessage').hide()
+      } else {
+        $('#span_nbMessage').html(_number).show()
+      }
+    }
+  })
+}
+
+jeedom.UPDATE_NUMBER
+jeedom.refreshUpdateNumber = function() {
+  jeedom.update.number({
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(_number) {
+      jeedom.UPDATE_NUMBER = _number;
+      if (_number == 0 || _number == '0') {
+        $('#span_nbUpdate').hide()
+      } else {
+        $('#span_nbUpdate').html(_number).show()
+      }
+    }
+  })
+}
+
+jeedom.notify = function(_title, _text, _class_name) {
+  if (_title == '' && _text == '') {
+    return true
+  }
+  if (typeof toastr !== 'undefined') {
+    if (isset(_class_name) != '' && isset(toastr[_class_name])) {
+      toastr[_class_name](_text, _title)
+    } else {
+      toastr.info(_text, _title)
+    }
+  } else {
+    //no toastr in mobile
+    jeedomUtils.notify(_title, _text)
+  }
+
+}
+
+jeedom.getStringUsedBy = function (_params) {
+  var paramsRequired = ['search'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'getStringUsedBy',
+    search: _params.search
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.getIdUsedBy = function (_params) {
+  var paramsRequired = ['search'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'getIdUsedBy',
+    search: _params.search
+  };
+  $.ajax(paramsAJAX);
 }
 
 jeedom.getConfiguration = function (_params) {
@@ -318,7 +420,6 @@ jeedom.dbcorrectTable = function (_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.rebootSystem = function (_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -333,6 +434,25 @@ jeedom.rebootSystem = function (_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'rebootSystem',
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.systemCorrectPackage = function (_params) {
+  var paramsRequired = ['package'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
+  paramsAJAX.data = {
+    action: 'systemCorrectPackage',
+    package : _params.package
   };
   $.ajax(paramsAJAX);
 };
@@ -452,10 +572,10 @@ jeedom.getSelectActionModal = function(_options, _callback){
   }
   mod_insertAction.setOptions(_options);
   $("#mod_insertActionValue").dialog('option', 'buttons', {
-    "Annuler": function() {
+    "{{Annuler}}": function() {
       $(this).dialog("close");
     },
-    "Valider": function() {
+    "{{Valider}}": function() {
       var retour = {};
       retour.action = {};
       retour.human = mod_insertAction.getValue();
@@ -488,7 +608,6 @@ jeedom.getGraphData = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.getDocumentationUrl = function (_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -505,10 +624,10 @@ jeedom.getDocumentationUrl = function (_params) {
     action: 'getDocumentationUrl',
     plugin: params.plugin || null,
     page: params.page || null,
+    theme: params.theme || null,
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.addWarnme = function(_params) {
   var paramsRequired = [];
@@ -529,44 +648,6 @@ jeedom.addWarnme = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
-
-jeedom.getTimelineEvents = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-  paramsAJAX.data = {
-    action: 'getTimelineEvents'
-  };
-  $.ajax(paramsAJAX);
-};
-
-jeedom.removeTimelineEvents = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
-  paramsAJAX.data = {
-    action: 'removeTimelineEvents'
-  };
-  $.ajax(paramsAJAX);
-};
-
 
 jeedom.getFileFolder = function(_params) {
   var paramsRequired = ['type','path'];
@@ -627,7 +708,6 @@ jeedom.setFileContent = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.deleteFile = function(_params) {
   var paramsRequired = ['path'];
   var paramsSpecifics = {};
@@ -667,7 +747,6 @@ jeedom.createFile = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.emptyRemoveHistory = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
@@ -705,7 +784,7 @@ jeedom.version = function(_params) {
 };
 
 jeedom.removeImageIcon = function(_params) {
-  var paramsRequired = ['filename'];
+  var paramsRequired = ['filepath'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -718,7 +797,7 @@ jeedom.removeImageIcon = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'removeImageIcon',
-    filename : _params.filename
+    filepath : _params.filepath
   };
   $.ajax(paramsAJAX);
 };
@@ -776,7 +855,6 @@ jeedom.cleanDatabase = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.massEditSave = function(_params) {
   var paramsRequired = ['type','objects'];

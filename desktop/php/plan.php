@@ -28,13 +28,18 @@ if (!is_object($planHeader) && count($planHeaders) > 0) {
 	$planHeader = $planHeaders[0];
 }
 if (!is_object($planHeader)) {
-	echo '<div class="alert alert-danger">{{Aucun design n\'existe, cliquez <a id="bt_createNewDesign" class="cursor">ici</a> pour en créer une.}}</div>';
+	echo '<div class="alert alert-warning">{{Aucun design n\'existe, cliquez}}'.' <a id="bt_createNewDesign" class="cursor label alert-info">{{ici}} </a> {{pour en créer un.}}</div>';
 	sendVarToJS('planHeader_id', -1);
 } else {
 	sendVarToJS('planHeader_id', $planHeader->getId());
 }
 ?>
+
 <div class="div_backgroundPlan">
-	<div class="container-fluid div_displayObject" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;"></div>
+	<div class="container-fluid div_displayObject"></div>
 </div>
-<?php include_file('desktop', 'plan', 'js');?>
+
+<?php 
+include_file('desktop/common', 'ui', 'js');
+include_file('desktop', 'plan', 'js');
+?>

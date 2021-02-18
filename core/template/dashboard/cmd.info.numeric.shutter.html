@@ -1,4 +1,4 @@
-<div class="cmd cmd-widget shuttergauge cursor #history#" data-type="info" data-subtype="numeric" data-template="shutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+<div class="cmd cmd-widget shuttergauge #history#" data-type="info" data-subtype="numeric" data-template="shutter" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="title #hide_name#">
     <div class="cmdName">#name_display#</div>
   </div>
@@ -13,20 +13,27 @@
     <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
   <div class="cmdStats #hide_history#">
-    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
-
+  <template>
+    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+  </template>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       var cmd = $('.cmd[data-cmd_id=#id#]')
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
       var height = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
+      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       height = 100 - (Math.round(parseFloat(height) * 10) / 10)
       cmd.find('.shuttergauge-value').height(height+'%')
       cmd.find('.state strong').first().text(_options.display_value)
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'})
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+    }
   </script>
 </div>

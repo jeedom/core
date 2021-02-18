@@ -1,14 +1,58 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="value" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-	<div class="slider">
-		<input type="range" min="#minValue#" max="#maxValue#" data-theme="a" value="#state#"/>
-	</div>
-	<script>
-		$("body").undelegate(".cmd[data-cmd_uid=#uid#] .slider");
-		$("body").delegate(".cmd[data-cmd_uid=#uid#] .slider",'slidestop', function (event, ui) {
-			jeedom.cmd.execute({id: '#id#', value: {slider: $(".cmd[data-cmd_uid=#uid#] .slider input").value()}});
-		});
-		jeedom.cmd.update['#id#'] = function(_options){
-			$(".cmd[data-cmd_id=#id#] .slider input").value(_options.display_value);
-		}
-	</script>
+  <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="0.5" id="sliderInput#id#">
+  <div id="widget_slider#id#" class="slider full-width-slider"></div>
+  <script>
+    var $inputNumber#id# = $('#sliderInput#id#')
+    var step#id# = 0.5
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+      $inputNumber#id#.attr('step', step#id#)
+    }
+    if ('#noslider#' != '1') {
+      var mySlider#id# = $.createWidgetSlider({
+        sliderDiv: document.getElementById('widget_slider#id#'),
+        state: ('#state#' == '') ? #minValue# : '#state#',
+        min: #minValue#,
+        max: #maxValue#,
+        step: step#id#,
+        tooltips: false
+      })
+
+      if ($.issetWidgetOptParam('#color#', 'color')) {
+        $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+        $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+      }
+
+      mySlider#id#.on('update', function(values, handle) {
+        var value = values[handle]
+        if (values[handle]) {
+          if (parseInt(values[handle]) == parseFloat(values[handle])) {
+            $inputNumber#id#.val(parseInt(values[handle]))
+          } else {
+            $inputNumber#id#.val(parseFloat(values[handle]))
+          }
+        }
+      })
+
+      mySlider#id#.on('end', function(values, handle) {
+        jeedom.cmd.execute({id: '#id#', value: {slider: values[handle]}})
+      })
+    }
+
+    $inputNumber#id#.on('change', function(event) {
+      if ('#noslider#' != '1') mySlider#id#.set(this.value)
+      jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
+    })
+
+    $inputNumber#id#.on('keydown', function(event) {
+      if (event.which === 38 || event.which === 40) {
+        event.preventDefault()
+      }
+    })
+
+    jeedom.cmd.update['#id#'] = function(_options) {
+      if ('#noslider#' != '1') $inputNumber#id#.val(_options.display_value)
+      mySlider#id#.set(_options.display_value)
+    }
+  </script>
 </div>

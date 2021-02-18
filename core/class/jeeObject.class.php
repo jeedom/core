@@ -37,7 +37,7 @@ class jeeObject {
 	/*     * ***********************Méthodes statiques*************************** */
 	
 	public static function byId($_id) {
-		if ($_id == '') {
+		if ($_id == '' || $_id == -1) {
 			return;
 		}
 		$values = array(
@@ -59,13 +59,18 @@ class jeeObject {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public static function all($_onlyVisible = false) {
+	public static function all($_onlyVisible=false, $_byPosition=false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object ';
 		if ($_onlyVisible) {
 			$sql .= ' WhERE isVisible = 1';
 		}
-		$sql .= ' ORDER BY position,name,father_id';
+		if (!$_byPosition) {
+			$sql .= ' ORDER BY father_id, position, name';
+		} else {
+			$sql .= ' ORDER BY position, father_id, name';
+		}
+		
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
@@ -121,17 +126,31 @@ class jeeObject {
 		return $return;
 	}
 	
-	public static function fullData($_restrict = array()) {
+	public static function getUISelectList($_none=true) {
+		$allObject = self::buildTree(null, false);
+		$options = '';
+		if ($_none) $options .= '<option value="">'.__('Aucun', __FILE__).'</option>';
+		foreach ($allObject as $object) {
+			$decay = $object->getConfiguration('parentNumber');
+			$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
+		}
+		return $options;
+	}
+	
+	public static function fullData($_restrict = array(),$_user = null) {
 		$return = array();
 		foreach (jeeObject::all(true) as $object) {
 			if (!isset($_restrict['object']) || !is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
 				foreach ($object->getEqLogic(true, true) as $eqLogic) {
+					if (is_object($_user) && !$eqLogic->hasRight('r',$_user)) {
+						continue;
+					}
 					if (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()])) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
-						foreach ($eqLogic->getCmd() as $cmd) {
+						foreach(($eqLogic->getCmd()) as $cmd) {
 							if (!isset($_restrict['cmd']) || !is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
 								$cmd_return = utils::o2a($cmd);
 								if ($cmd->getType() == 'info') {
@@ -161,7 +180,7 @@ class jeeObject {
 	
 	public static function deadCmd() {
 		$return = array();
-		foreach (jeeObject::all() as $object) {
+		foreach((jeeObject::all()) as $object) {
 			$sumaries = $object->getConfiguration('summary');
 			if(!is_array($sumaries) || count($sumaries) < 1){
 				continue;
@@ -288,15 +307,12 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 	
-	public static function getGlobalHtmlSummary($_version = 'dashboard') {
-		$cache = cache::byKey('globalSummaryHtml' . $_version);
-		if ($cache->getValue() != '') {
-			return $cache->getValue();
-		}
+	public static function getGlobalHtmlSummary($_version='dashboard') {
+		$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 		$objects = self::all();
 		$def = config::byKey('object:summary');
 		$values = array();
-		$return = '<span class="objectSummaryglobal" data-version="' . $_version . '">';
+		$return = '<span class="objectSummaryContainer objectSummaryglobal" data-version="' . $_version . '">';
 		foreach ($def as $key => $value) {
 			foreach ($objects as $object) {
 				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
@@ -312,8 +328,6 @@ class jeeObject {
 				$values[$key] = array_merge($values[$key], $result);
 			}
 		}
-		$margin = ($_version == 'dashboard') ? 4 : 2;
-		
 		foreach ($values as $key => $value) {
 			if (count($value) == 0) {
 				continue;
@@ -329,9 +343,30 @@ class jeeObject {
 			if ($allowDisplayZero == 0 && $result == 0) {
 				$style = 'display:none;';
 			}
-			$return .= '<span class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="" style="margin-right:' . $margin . 'px;' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '">';
-			$return .= $def[$key]['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup>';
-			$return .= '</span>';
+			
+			$icon = $def[$key]['icon'];
+			if (!isset($def[$key]['iconnul'])) {
+				$def[$key]['iconnul'] = $def[$key]['icon'];
+				$def[$key]['hidenumber'] = 0;
+				$def[$key]['hidenulnumber'] = 0;
+			} else {
+				if ($result == 0) $icon = $def[$key]['iconnul'];
+			}
+			$classSummaryAction = '';
+			if(is_object($virtual)){
+				foreach ($virtual->getCmd('action') as $cmd) {
+					if($cmd->getConfiguration('summary::key') == $key){
+						$classSummaryAction = 'objectSummaryAction';
+						break;
+					}
+				}
+			}
+			$return .= '<span class="objectSummaryParent '.$classSummaryAction.' cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '" data-hidenulnumber="'. $def[$key]['hidenulnumber'] . '">';
+			if ($def[$key]['hidenumber'] == 1 || ($result == 0 && $def[$key]['hidenulnumber'] == 1)) {
+				$return .= $icon . ' <sup><span style="display:none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
+			} else {
+				$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
+			}
 		}
 		$return = trim($return) . '</span>';
 		cache::set('globalSummaryHtml' . $_version, $return);
@@ -346,6 +381,7 @@ class jeeObject {
 		if (!isset($def[$_key])) {
 			return;
 		}
+		global $JEEDOM_INTERNAL_CONFIG;
 		try {
 			$plugin = plugin::byId('virtual');
 			if (!is_object($plugin)) {
@@ -384,24 +420,25 @@ class jeeObject {
 			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));
 		}
 		
-		$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
-		if (!is_object($virtual)) {
-			$virtual = new virtual();
-			$virtual->setName(__('Résumé Global', __FILE__));
-			$virtual->setIsVisible(0);
-			$virtual->setIsEnable(1);
+		$virtualGlobal = eqLogic::byLogicalId('summaryglobal', 'virtual');
+		if (!is_object($virtualGlobal)) {
+			$virtualGlobal = new virtual();
+			$virtualGlobal->setName(__('Résumé Global', __FILE__));
+			$virtualGlobal->setIsVisible(0);
+			$virtualGlobal->setIsEnable(1);
 		}
-		$virtual->setIsEnable(1);
-		$virtual->setLogicalId('summaryglobal');
-		$virtual->setEqType_name('virtual');
-		$virtual->save();
-		$cmd = $virtual->getCmd('info', $_key);
+		$virtualGlobal->setIsEnable(1);
+		$virtualGlobal->setConfiguration('icon','virtual_summary_icon');
+		$virtualGlobal->setLogicalId('summaryglobal');
+		$virtualGlobal->setEqType_name('virtual');
+		$virtualGlobal->save();
+		$cmd = $virtualGlobal->getCmd('info', $_key);
 		if (!is_object($cmd)) {
 			$cmd = new virtualCmd();
 			$cmd->setName($def[$_key]['name']);
 			$cmd->setIsHistorized(1);
 		}
-		$cmd->setEqLogic_id($virtual->getId());
+		$cmd->setEqLogic_id($virtualGlobal->getId());
 		$cmd->setLogicalId($_key);
 		$cmd->setType('info');
 		if ($def[$_key]['calcul'] == 'text') {
@@ -412,7 +449,7 @@ class jeeObject {
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
 		
-		foreach (jeeObject::all() as $object) {
+		foreach((jeeObject::all()) as $object) {
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
@@ -431,6 +468,7 @@ class jeeObject {
 			$virtual->setLogicalId('summary' . $object->getId());
 			$virtual->setEqType_name('virtual');
 			$virtual->setObject_id($object->getId());
+			$virtual->setConfiguration('icon','virtual_summary_icon');
 			$virtual->save();
 			$object->setConfiguration('summary_virtual_id', $virtual->getId());
 			$object->save();
@@ -450,10 +488,93 @@ class jeeObject {
 			}
 			$cmd->setUnite($def[$_key]['unit']);
 			$cmd->save();
+			
+			$eqLogics = $object->getEqLogicBySummary($_key, true,false);
+			$cmd_genericType = array();
+			foreach ($eqLogics as $eqLogic) {
+				foreach ($eqLogic->getCmd() as $cmd) {
+					if($cmd->getGeneric_type() == ''){
+						continue;
+					}
+					if(!isset($cmd_genericType[$cmd->getGeneric_type()])){
+						$cmd_genericType[$cmd->getGeneric_type()] = array();
+					}
+					$cmd_genericType[$cmd->getGeneric_type()][] = $cmd->getId();
+				}
+			}
+			foreach ($cmd_genericType as $genericType => $cmds) {
+				if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype'])){
+					continue;
+				}
+				$cmd = $virtual->getCmd('action', $_key.'::action::'.$genericType);
+				if (!is_object($cmd)) {
+					$cmd = new virtualCmd();
+					$cmd->setName($def[$_key]['name'].' '.$JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setIsHistorized(0);
+				}
+				$cmd->setEqLogic_id($virtual->getId());
+				$cmd->setLogicalId($_key.'::action::'.$genericType);
+				$cmd->setType('action');
+				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype']);
+				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
+				$cmd->setConfiguration('summary::object_id',$object->getId());
+				$cmd->setConfiguration('summary::generic_type',$genericType);
+				$cmd->setConfiguration('summary::key',$_key);
+				$cmd->save();
+				
+				$cmd = $virtualGlobal->getCmd('action', $_key.'::action::'.$genericType);
+				if (!is_object($cmd)) {
+					$cmd = new virtualCmd();
+					$cmd->setName($def[$_key]['name'].' '.$JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setIsHistorized(0);
+				}
+				$cmd->setEqLogic_id($virtualGlobal->getId());
+				$cmd->setLogicalId($_key.'::action::'.$genericType);
+				$cmd->setType('action');
+				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype']);
+				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
+				$cmd->setConfiguration('summary::object_id','global');
+				$cmd->setConfiguration('summary::generic_type',$genericType);
+				$cmd->setConfiguration('summary::key',$_key);
+				$cmd->save();
+			}
+		}
+	}
+	
+	public static function actionOnSummary($_cmd,$_options = null){
+		if($_cmd->getConfiguration('summary::object_id') == 'global'){
+			foreach((jeeObject::all()) as $object) {
+				if ($object->getConfiguration('summary::global::' . $_cmd->getConfiguration('summary::key'), 0) == 0) {
+					continue;
+				}
+				$object->summaryAction($_cmd,$_options);
+			}
+		}else{
+			$object = self::byId($_cmd->getConfiguration('summary::object_id'));
+			if(!is_object($object)){
+				throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $_cmd->getConfiguration('summary::object_id'));
+			}
+			$object->summaryAction($_cmd,$_options);
 		}
 	}
 	
 	/*     * *********************Méthodes d'instance************************* */
+	
+	public function summaryAction($_cmd,$_options = null){
+		$eqLogics = $this->getEqLogicBySummary($_cmd->getConfiguration('summary::key'), true,false);
+		foreach ($eqLogics as $eqLogic) {
+			foreach ($eqLogic->getCmd() as $cmd) {
+				if($cmd->getGeneric_type() == '' || $cmd->getGeneric_type() != $_cmd->getConfiguration('summary::generic_type')){
+					continue;
+				}
+				try {
+					$cmd->execCmd($_options);
+				} catch (\Exception $e) {
+					log::add('cmd','error',$cmd->getHumanName().' '.$e->getMessage());
+				}
+			}
+		}
+	}
 	
 	public function getTableName() {
 		return 'object';
@@ -462,6 +583,8 @@ class jeeObject {
 	public function checkTreeConsistency($_fathers = array()) {
 		$father = $this->getFather();
 		if (!is_object($father)) {
+			$this->setFather_id(null);
+			$this->save(true);
 			return;
 		}
 		if (in_array($this->getFather_id(), $_fathers)) {
@@ -474,7 +597,7 @@ class jeeObject {
 	
 	public function preSave() {
 		if (is_numeric($this->getFather_id()) && $this->getFather_id() == $this->getId()) {
-			throw new Exception(__('L\'objet ne peut pas être son propre père', __FILE__));
+			throw new Exception(__('L\'objet ne peut pas être son propre parent', __FILE__));
 		}
 		$this->checkTreeConsistency();
 		$this->setConfiguration('parentNumber', $this->parentNumber());
@@ -487,17 +610,19 @@ class jeeObject {
 		if ($this->getConfiguration('mobile::summaryTextColor') == '') {
 			$this->setConfiguration('mobile::summaryTextColor', '');
 		}
+		if ($this->getDisplay('icon') == '') {
+			$this->setConfiguration('icon', '<i class="far fa-lemon"></i>');
+		}
 	}
 	
-	public function save() {
+	public function save($_direct = false) {
 		if($this->_changed){
 			cache::set('globalSummaryHtmldashboard', '');
 			cache::set('globalSummaryHtmlmobile', '');
 			$this->setCache('summaryHtmldashboard', '');
 			$this->setCache('summaryHtmlmobile', '');
 		}
-		DB::save($this);
-		return true;
+		return DB::save($this, $_direct);
 	}
 	
 	public function getChild($_visible = true) {
@@ -519,7 +644,7 @@ class jeeObject {
 	
 	public function getChilds() {
 		$return = array();
-		foreach ($this->getChild() as $child) {
+		foreach(($this->getChild()) as $child) {
 			$return[] = $child;
 			$return = array_merge($return, $child->getChilds());
 		}
@@ -544,6 +669,39 @@ class jeeObject {
 		return $eqLogics;
 	}
 	
+	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+		$def = config::byKey('object:summary');
+		if ($_summary == '' || !isset($def[$_summary])) {
+			return null;
+		}
+		$summaries = $this->getConfiguration('summary');
+		if (!isset($summaries[$_summary])) {
+			return array();
+		}
+		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
+		$return = array();
+		$ids = array();
+		foreach ($summaries[$_summary] as $infos) {
+			if (isset($infos['enable']) && $infos['enable'] != 1) {
+				continue;
+			}
+			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
+			if (is_object($cmd)) {
+				$id = $cmd->getEqLogic_id();
+				//no duplicate:
+				if (in_array($id, $ids)) continue;
+				array_push($ids, $id);
+				$eqLogic = eqLogic::byId($id);
+				if (is_object($eqLogic)) {
+					if ($_onlyEnable && $eqLogic->getIsEnable() == 0) continue;
+					if ($_onlyVisible && $eqLogic->getIsVisible() == 0) continue;
+					$return[] = utils::o2a($eqLogic);
+				}
+			}
+		}
+		return $return;
+	}
+	
 	public function getEqLogicBySummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
 		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
@@ -556,7 +714,7 @@ class jeeObject {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$eqLogics_id = array();
 		foreach ($summaries[$_summary] as $infos) {
-			if(isset($infos['enable']) && $infos['enable'] != 1){
+			if (isset($infos['enable']) && $infos['enable'] != 1) {
 				continue;
 			}
 			$cmd = cmd::byId(str_replace('#', '', $infos['cmd']));
@@ -587,6 +745,23 @@ class jeeObject {
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		$sql = 'UPDATE scenario set object_id= NULL where object_id=:object_id';
 		DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+		$childs = $this->getChild(false);
+		if (is_array($childs) && count($childs) > 0) {
+			foreach ($childs as $child) {
+				try {
+					$child->setFather_id($this->getFather_id());
+					$child->save();
+				} catch (\Exception $e) {
+					
+				}
+			}
+		}
+		$files = ls(__DIR__ . '/../../data/object/','object'.$this->getId().'-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/object/'.$file);
+			}
+		}
 	}
 	
 	public function remove() {
@@ -630,6 +805,21 @@ class jeeObject {
 		}
 	}
 	
+	public function cleanSummary(){
+		$def = config::byKey('object:summary');
+		$summaries = $this->getConfiguration('summary');
+		if(!is_array($summaries) || count($summaries) == 0){
+			return;
+		}
+		foreach ($summaries as $key => $value) {
+			if(!isset($def[$key])){
+				unset($summaries[$key]);
+			}
+		}
+		$this->setConfiguration('summary',$summaries);
+		$this->save();
+	}
+	
 	public function getSummary($_key = '', $_raw = false) {
 		$def = config::byKey('object:summary');
 		if ($_key == '' || !isset($def[$_key])) {
@@ -640,27 +830,36 @@ class jeeObject {
 			return null;
 		}
 		$values = array();
-		foreach ($summaries[$_key] as $infos) {
+		foreach ($summaries[$_key] as &$infos) {
 			if (isset($infos['enable']) && $infos['enable'] == 0) {
 				continue;
 			}
-			$cmd = cmd::byId(str_replace('#','',$infos['cmd']));
-			if(!is_object($cmd)){
+			preg_match_all("/#([0-9]*)#/", $infos['cmd'], $matches);
+			if (count($matches[1]) == 0) {
 				continue;
 			}
-			if($cmd->getType() != 'info'){
+			$cmds = cmd::byIds($matches[1]);
+			if(count($cmds) == 0){
 				continue;
 			}
-			if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
-				continue;
-			}
-			$value = $cmd->execCmd();
-			if(isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0){
-				if((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)){
-					continue;
+			foreach ($cmds as $cmd) {
+				if($cmd->getType() != 'info'){
+					continue(2);
 				}
+				if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
+					continue(2);
+				}
+				$value = $cmd->execCmd();
+				if(isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0){
+					if((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)){
+						continue(2);
+					}
+				}
+				$infos['cmd'] = str_replace('#'.$cmd->getId().'#',$value,$infos['cmd']);
 			}
+			$value = evaluate($infos['cmd']);
 			
+			$value = trim($value,'"');
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;
 			}
@@ -681,11 +880,9 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 	
-	public function getHtmlSummary($_version = 'dashboard') {
-		if (trim($this->getCache('summaryHtml' . $_version)) != '') {
-			return $this->getCache('summaryHtml' . $_version);
-		}
-		$return = '<span class="objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
+	public function getHtmlSummary($_version='dashboard') {
+		$virtual = eqLogic::byLogicalId('summary' . $this->getId(), 'virtual');
+		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => $value) {
 			if ($this->getConfiguration('summary::hide::' . $_version . '::' . $key, 0) == 1) {
@@ -701,7 +898,29 @@ class jeeObject {
 				if ($allowDisplayZero == 0 && $result == 0) {
 					$style = 'display:none;';
 				}
-				$return .= '<span style="margin-right:5px;'.$style.'" class="objectSummaryParent cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '">' . $value['icon'] . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</span></sup>';
+				$icon = $value['icon'];
+				if (!isset($value['iconnul'])) {
+					$value['iconnul'] = $value['icon'];
+					$value['hidenumber'] = 0;
+					$value['hidenulnumber'] = 0;
+				} else {
+					if ($result == 0) $icon = $value['iconnul'];
+				}
+				$classSummaryAction = '';
+				if(is_object($virtual)){
+					foreach ($virtual->getCmd('action') as $cmd) {
+						if($cmd->getConfiguration('summary::key') == $key){
+							$classSummaryAction = 'objectSummaryAction';
+							break;
+						}
+					}
+				}
+				$return .= '<span style="' . $style . '" class="objectSummaryParent '.$classSummaryAction.' cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="'. $value['hidenulnumber'] . '">';
+				if ($value['hidenumber'] == 1 || ($result == 0 && $value['hidenulnumber'] == 1)) {
+					$return .= $icon . ' <sup><span style="display: none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
+				} else {
+					$return .= $icon . ' <sup><span class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
+				}
 			}
 		}
 		$return = trim($return) . '</span>';
@@ -795,7 +1014,7 @@ class jeeObject {
 	}
 	
 	public function setName($_name) {
-		$_name = cleanComponanteName($_name);
+		$_name = substr(cleanComponanteName($_name),0,127);
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;

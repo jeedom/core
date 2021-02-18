@@ -27,25 +27,13 @@ date_default_timezone_set('UTC');
 // $baseUri = '/';
 
 /**
- * Database
+ * Database.
  *
  * Feel free to switch this to MySQL, it will definitely be better for higher
  * concurrency.
  */
 $pdo = new \PDO('sqlite:data/db.sqlite');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-/**
- * Mapping PHP errors to exceptions.
- *
- * While this is not strictly needed, it makes a lot of sense to do so. If an
- * E_NOTICE or anything appears in your code, this allows SabreDAV to intercept
- * the issue and send a proper response back to the client (HTTP/1.1 500).
- */
-function exception_error_handler($errno, $errstr, $errfile, $errline) {
-    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-}
-set_error_handler("exception_error_handler");
 
 // Autoloader
 require_once 'vendor/autoload.php';
@@ -62,7 +50,7 @@ $carddavBackend = new \Sabre\CardDAV\Backend\PDO($pdo);
 $caldavBackend = new \Sabre\CalDAV\Backend\PDO($pdo);
 
 /**
- * The directory tree
+ * The directory tree.
  *
  * Basically this is an array which contains the 'top-level' directories in the
  * WebDAV server.
@@ -78,7 +66,9 @@ $nodes = [
 
 // The object tree needs in turn to be passed to the server class
 $server = new \Sabre\DAV\Server($nodes);
-if (isset($baseUri)) $server->setBaseUri($baseUri);
+if (isset($baseUri)) {
+    $server->setBaseUri($baseUri);
+}
 
 // Plugins
 $server->addPlugin(new \Sabre\DAV\Auth\Plugin($authBackend));
@@ -98,4 +88,4 @@ $server->addPlugin(new \Sabre\CardDAV\Plugin());
 $server->addPlugin(new \Sabre\CardDAV\VCFExportPlugin());
 
 // And off we go!
-$server->exec();
+$server->start();

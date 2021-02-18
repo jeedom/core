@@ -79,10 +79,15 @@ jeedom.view.toHtml = function (_params) {
 jeedom.view.handleViewAjax = function (_params) {
   var result = {html: '', scenario: [], cmd: [], eqLogic: []};
   var colIdx = 0
+  var viewZone = null;
+  var div_class = null;
+  var div_id = null;
+  var viewData = null;
+  var configuration = null;
   for (var i in _params.view.viewZone) {
-    var viewZone = _params.view.viewZone[i];
+    viewZone = _params.view.viewZone[i];
     if (colIdx == 0 ) result.html += '<div class="col-xs-12 div_rowZones">';
-    var div_class = 'div_viewZone ';
+    div_class = 'div_viewZone ';
     if (!$.mobile) {
       div_class +=' col-xs-12 col-sm-'+init(viewZone.configuration.zoneCol,12);
     }
@@ -91,12 +96,12 @@ jeedom.view.handleViewAjax = function (_params) {
     }
     result.html += '<div class="'+div_class+'">';
     result.html += '<legend class="lg_viewZone" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
-    var div_id = 'div_viewZone' + viewZone.id + Date.now();
+    div_id = 'div_viewZone' + viewZone.id + Date.now();
     /*         * *****************viewZone widget***************** */
     if (viewZone.type == 'widget') {
       result.html += '<div id="' + div_id + '" class="eqLogicZone" data-viewZone-id="'+viewZone.id+'">';
       for (var j in viewZone.viewData) {
-        var viewData = viewZone.viewData[j];
+        viewData = viewZone.viewData[j];
         result.html += viewData.html;
         result[viewData.type].push(viewData.id);
       }
@@ -105,17 +110,17 @@ jeedom.view.handleViewAjax = function (_params) {
       result.html += '<div id="' + div_id + '" class="chartContainer">';
       result.html += '<script>';
       for (var j in viewZone.viewData) {
-        var viewData = viewZone.viewData[j];
-        var configuration = json_encode(viewData.configuration);
+        viewData = viewZone.viewData[j];
+        configuration = json_encode(viewData.configuration);
         result.html += 'jeedom.history.drawChart({noError:true,cmd_id : ' + viewData.link_id + ',el : "' + div_id + '",dateRange : "' + viewZone.configuration.dateRange + '",option : jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
       }
       result.html += '</script>';
       result.html += '</div>';
     }else if (viewZone.type == 'table') {
-      result.html += viewZone.html;;
+      result.html += viewZone.html;
     }
     result.html += '</div>';
-
+    
     colIdx += parseInt(init(viewZone.configuration.zoneCol,12))
     if (colIdx > 11) colIdx = 0
     if (colIdx == 0 ) result.html += '</div>';
@@ -156,13 +161,11 @@ jeedom.view.save = function (_params) {
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
-  console.log(_params);
   paramsAJAX.data = {
     action: 'save',
     view_id: _params.id,
     view: json_encode(_params.view),
   };
-  console.log(paramsAJAX);
   $.ajax(paramsAJAX);
 }
 
@@ -185,8 +188,8 @@ jeedom.view.get = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.view.setEqLogicOrder = function (_params) {
-  var paramsRequired = ['eqLogics'];
+jeedom.view.setComponentOrder = function (_params) {
+  var paramsRequired = ['components'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -198,8 +201,8 @@ jeedom.view.setEqLogicOrder = function (_params) {
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
-    action: 'setEqLogicOrder',
-    eqLogics: json_encode(_params.eqLogics),
+    action: 'setComponentOrder',
+    components: json_encode(_params.components),
   };
   $.ajax(paramsAJAX);
 }

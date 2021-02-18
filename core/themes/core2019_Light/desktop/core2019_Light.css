@@ -9,13 +9,6 @@ span.cursor > i,
 i.cursor {
   color: var(--link-color) !important;
 }
-a:hover,
-a:active,
-a:focus {
-  color: var(--linkHover-color) !important;
-  text-decoration: none !important;
-  outline: none;
-}
 
 .panel-default .panel-title {
   color: var(--linkHover-color) !important;
@@ -65,6 +58,9 @@ a:focus {
 [data-category=light]>.widget-name {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+[data-category=opening]>.widget-name {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 [data-category=multimedia]>.widget-name {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -87,10 +83,8 @@ a:focus {
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject,
-#bt_displaySummaries {
+#dashTopBar > div > a,
+#dashTopBar button {
   background-color: var(--btnEq-default-color) !important;
 }
 
@@ -106,8 +100,3 @@ a:focus {
   color: var(--txt-color) !important;
 }
 
-/* CodeMirror */
-.expressions .CodeMirror-wrap,
-body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.88 !important; }
-body:not([data-page="editor"]) .CodeMirror-focused,
-body:not([data-page="editor"]) .CodeMirror-selected { background: rgb(185,185,185) !important; }

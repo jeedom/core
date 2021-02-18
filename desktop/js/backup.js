@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -14,172 +13,177 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-jwerty.key('ctrl+s/⌘+s', function (e) {
-  e.preventDefault();
-  $("#bt_saveBackup").click();
-});
 
-$("#bt_saveBackup").on('click', function (event) {
-  $.hideAlert();
+"use strict"
+
+document.onkeydown = function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    $("#bt_saveBackup").click()
+  }
+}
+
+$("#bt_saveBackup").on('click', function(event) {
+  $.hideAlert()
   jeedom.config.save({
     configuration: $('#backup').getValues('.configKey')[0],
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function () {
+    success: function() {
       jeedom.config.load({
         configuration: $('#backup').getValues('.configKey')[0],
         plugin: 'core',
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function (data) {
-          $('#backup').setValues(data, '.configKey');
-          modifyWithoutSave = false;
-          $('#div_alert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'});
+        success: function(data) {
+          $('#backup').setValues(data, '.configKey')
+          modifyWithoutSave = false
+          $('#div_alert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$(".bt_backupJeedom").on('click', function (event) {
-  var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} '+JEEDOM_PRODUCT_NAME+' {{? Une fois lancée cette opération ne peut être annulée}}', function (result) {
+$(".bt_backupJeedom").on('click', function(event) {
+  var el = $(this)
+  bootbox.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} '+JEEDOM_PRODUCT_NAME+' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
-      $.hideAlert();
-      el.find('.fa-refresh').show();
+      $.hideAlert()
+      el.find('.fa-sync').show()
       jeedom.backup.backup({
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          getJeedomLog(1, 'backup');
+        success: function() {
+          getJeedomLog(1, 'backup')
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$("#bt_restoreJeedom").on('click', function (event) {
-  var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} '+JEEDOM_PRODUCT_NAME+' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}}<span style="color:red;font-weight: bold;">IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours.</span>', function (result) {
+$("#bt_restoreJeedom").on('click', function(event) {
+  var el = $(this)
+  bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} '+JEEDOM_PRODUCT_NAME+' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}}<span style="color:red;font-weight: bold;">IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours.</span>', function(result) {
     if (result) {
-      $.hideAlert();
-      el.find('.fa-refresh').show();
+      $.hideAlert()
+      el.find('.fa-sync').show()
       jeedom.backup.restoreLocal({
         backup: $('#sel_restoreBackup').value(),
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          getJeedomLog(1, 'restore');
+        success: function() {
+          getJeedomLog(1, 'restore')
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$("#bt_removeBackup").on('click', function (event) {
-  var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ?', function (result) {
+$("#bt_removeBackup").on('click', function(event) {
+  var el = $(this)
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ?', function(result) {
     if (result) {
-      el.find('.fa-refresh').show();
+      el.find('.fa-sync').show()
       jeedom.backup.remove({
         backup: $('#sel_restoreBackup').value(),
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          updateListBackup();
-          $('#div_alert').showAlert({message: '{{Sauvegarde supprimée avec succès}}', level: 'success'});
+        success: function() {
+          updateListBackup()
+          $('#div_alert').showAlert({message: '{{Sauvegarde supprimée avec succès}}', level: 'success'})
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$('#bt_downloadBackup').on('click', function () {
-  window.open('core/php/downloadFile.php?pathfile=' + $('#sel_restoreBackup').value(), "_blank", null);
-});
+$('#bt_downloadBackup').on('click', function() {
+  window.open('core/php/downloadFile.php?pathfile=' + $('#sel_restoreBackup').value(), "_blank", null)
+})
 
 $('#bt_uploadBackup').fileupload({
   dataType: 'json',
   replaceFileInput: false,
-  done: function (e, data) {
+  done: function(e, data) {
     if (data.result.state != 'ok') {
-      $('#div_alert').showAlert({message: data.result.result, level: 'danger'});
-      return;
+      $('#div_alert').showAlert({message: data.result.result, level: 'danger'})
+      return
     }
-    updateListBackup();
-    $('#div_alert').showAlert({message: '{{Fichier(s) ajouté(s) avec succès}}', level: 'success'});
+    updateListBackup()
+    $('#div_alert').showAlert({message: '{{Fichier(s) ajouté(s) avec succès}}', level: 'success'})
   }
-});
+})
 
-$(".bt_uploadCloudBackup").on('click', function (event) {
-  var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} '+JEEDOM_PRODUCT_NAME+' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function (result) {
+$(".bt_uploadCloudBackup").on('click', function(event) {
+  var el = $(this)
+  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} '+JEEDOM_PRODUCT_NAME+' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
-      el.find('.fa-refresh').show();
+      el.find('.fa-sync').show()
       jeedom.backup.uploadCloud({
         backup: $('#sel_restoreBackup').value(),
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          getJeedomLog(1, 'backupCloud');
+        success: function() {
+          getJeedomLog(1, 'backupCloud')
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$(".bt_restoreRepoBackup").on('click', function (event) {
+$(".bt_restoreRepoBackup").on('click', function(event) {
   var el = $(this);
-  bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} '+JEEDOM_PRODUCT_NAME+' {{avec la sauvegarde Cloud}} <b>' + $('#sel_restoreCloudBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée}}', function (result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir rapatrier la sauvegarde cloud}} <b>' + $('#sel_restoreCloudBackup option:selected').text() + '</b> ?', function(result) {
     if (result) {
-      el.find('.fa-refresh').show();
+      el.find('.fa-sync').show()
       jeedom.backup.restoreCloud({
         backup: el.closest('.repo').find('.sel_restoreCloudBackup').value(),
         repo: el.attr('data-repo'),
-        error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+        error: function(error) {
+          $('#div_alert').showAlert({message: error.message, level: 'danger'})
         },
-        success: function () {
-          getJeedomLog(1, 'restore');
+        success: function() {
+          updateListBackup()
+          $('#div_alert').showAlert({message: '{{Sauvegarde rapatrier avec succès}}', level: 'success'})
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
-$.showLoading();
+$.showLoading()
 jeedom.config.load({
   configuration: $('#backup').getValues('.configKey')[0],
-  error: function (error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'});
+  error: function(error) {
+    $('#div_alert').showAlert({message: error.message, level: 'danger'})
   },
-  success: function (data) {
-    $('#backup').setValues(data, '.configKey');
-    modifyWithoutSave = false;
+  success: function(data) {
+    $('#backup').setValues(data, '.configKey')
+    modifyWithoutSave = false
   }
-});
-updateListBackup();
+})
+updateListBackup()
 
-$('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function () {
-  modifyWithoutSave = true;
-});
+$('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function() {
+  modifyWithoutSave = true
+})
 
-$(".btn_closeInfo").on('click', function () {
+$(".btn_closeInfo").on('click', function() {
   $('.panel-backupinfo').addClass('hidden')
-  $('#pre_backupInfo').text('');
-});
-
-
+  $('#pre_backupInfo').text('')
+})
 
 
 /********************Log************************/
-
 function getJeedomLog(_autoUpdate, _log) {
   $.ajax({
     type: 'POST',
@@ -190,89 +194,89 @@ function getJeedomLog(_autoUpdate, _log) {
     },
     dataType: 'json',
     global: false,
-    error: function (request, status, error) {
-      setTimeout(function () {
+    error: function(request, status, error) {
+      setTimeout(function() {
         getJeedomLog(_autoUpdate, _log)
-      }, 1000);
+      }, 1000)
     },
-    success: function (data) {
+    success: function(data) {
       if (data.state != 'ok') {
-        setTimeout(function () {
+        setTimeout(function() {
           getJeedomLog(_autoUpdate, _log)
-        }, 1000);
-        return;
+        }, 1000)
+        return
       }
-      var log = '';
-      if($.isArray(data.result)){
+      var log = ''
+      if ($.isArray(data.result)) {
         for (var i in data.result.reverse()) {
-          log += data.result[i]+"\n";
-          if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1){
-            $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'});
-            if(_log == 'restore'){
-              jeedom.user.refresh();
+          log += data.result[i]+"\n"
+          if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
+            $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'})
+            if (_log == 'restore') {
+              jeedom.user.refresh()
             }
-            $('.bt_restoreRepoBackup .fa-refresh').hide();
-            _autoUpdate = 0;
+            $('.bt_restoreRepoBackup .fa-sync').hide()
+            _autoUpdate = 0
           }
-          if(data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1){
-            $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'});
-            if(_log == 'restore'){
-              jeedom.user.refresh();
+          if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
+            $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'})
+            if (_log == 'restore') {
+              jeedom.user.refresh()
             }
-            $('.bt_restoreRepoBackup .fa-refresh').hide();
-            _autoUpdate = 0;
+            $('.bt_restoreRepoBackup .fa-sync').hide()
+            _autoUpdate = 0
           }
         }
       }
-      $('#pre_backupInfo').text(log);
+      $('#pre_backupInfo').text(log)
       if (init(_autoUpdate, 0) == 1) {
-        setTimeout(function () {
+        setTimeout(function() {
           getJeedomLog(_autoUpdate, _log)
         }, 1000);
       } else {
-        $('#bt_' + _log + 'Jeedom .fa-refresh').hide();
-        $('.bt_' + _log + 'Jeedom .fa-refresh').hide();
+        $('#bt_' + _log + 'Jeedom .fa-sync').hide()
+        $('.bt_' + _log + 'Jeedom .fa-sync').hide()
         updateListBackup();
         for(var i in REPO_LIST){
-          updateRepoListBackup(REPO_LIST[i]);
+          updateRepoListBackup(REPO_LIST[i])
         }
       }
     }
-  });
+  })
 }
 
 function updateListBackup() {
   jeedom.backup.list({
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      var options = '';
+    success: function(data) {
+      var options = ''
       for (var i in data) {
-        options += '<option value="' + i + '">' + data[i] + '</option>';
+        options += '<option value="' + i + '">' + data[i] + '</option>'
       }
-      $('#sel_restoreBackup').html(options);
+      $('#sel_restoreBackup').html(options)
     }
-  });
+  })
 }
 
-for(var i in REPO_LIST){
-  updateRepoListBackup(REPO_LIST[i]);
+for (var i in REPO_LIST) {
+  updateRepoListBackup(REPO_LIST[i])
 }
 
 function updateRepoListBackup(_repo) {
   jeedom.repo.backupList({
     repo : _repo,
     global : false,
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
-      var options = '';
+    success: function(data) {
+      var options = ''
       for (var i in data) {
-        options += '<option value="' + data[i] + '">' + data[i] + '</option>';
+        options += '<option value="' + data[i] + '">' + data[i] + '</option>'
       }
-      $('.sel_restoreCloudBackup[data-repo='+_repo+']').empty().html(options);
+      $('.sel_restoreCloudBackup[data-repo='+_repo+']').empty().html(options)
     }
-  });
+  })
 }

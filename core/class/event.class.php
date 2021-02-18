@@ -30,7 +30,7 @@ class event {
 	public static function getFileDescriptorLock() {
 		if (self::$_fd === null) {
 			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
-			chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
+			@chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
 		}
 		return self::$_fd;
 	}
@@ -72,7 +72,12 @@ class event {
 		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
 		$find = array();
 		$events = array_values($_events);
+		$now = strtotime('now') + 300;
 		foreach ($events as $key => $event) {
+			if($event['datetime'] > $now){
+				unset($events[$key]);
+				continue;
+			}
 			if ($event['name'] == 'eqLogic::update') {
 				$id = 'eqLogic::update::' . $event['option']['eqLogic_id'];
 			} elseif ($event['name'] == 'cmd::update') {
@@ -82,8 +87,8 @@ class event {
 			} elseif ($event['name'] == 'jeeObject::summary::update') {
 				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
 				if(is_array($event['option']['keys']) && count($event['option']['keys']) > 0){
-					foreach ($event['option']['keys'] as $key => $value) {
-						$id .= $key;
+					foreach ($event['option']['keys'] as $key2 => $value) {
+						$id .= $key2;
 					}
 				}
 			} else {
@@ -147,6 +152,10 @@ class event {
 	}
 	
 	private static function changesSince($_datetime) {
+		$now = getmicrotime();
+		if($_datetime > $now){
+			$_datetime = $now;
+		}
 		$return = array('datetime' => $_datetime, 'result' => array());
 		$cache = cache::byKey('event');
 		$events = json_decode($cache->getValue('[]'), true);

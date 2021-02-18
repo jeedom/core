@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'health')
 
 function initHealth() {
@@ -7,7 +9,7 @@ function initHealth() {
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug" ></i> {{Démons}}</a></li>'
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="cron" data-title="{{Crons}}"><i class="fas fa-cogs" ></i> {{Crons}}</a></li>'
   rightPanel += '</ul>'
-  panel(rightPanel)
+  jeedomUtils.loadPanel(rightPanel)
   getHealth()
 }
 
@@ -18,18 +20,18 @@ $('#bt_refreshCron').on('click',function(){
 function getHealth(){
   $('#table_health tbody').empty()
   jeedom.health({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
       var html = ''
-      for(var i in data){
+      for (var i in data) {
         html += '<tr>'
         html += '<td>'
         html += data[i].name
         html += '</td>'
         if(data[i].state){
-          html += '<td class="alert alert-sucess">'
+          html += '<td class="alert alert-success">'
         }else{
           html += '<td class="alert alert-danger">'
         }

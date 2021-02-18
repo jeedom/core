@@ -91,6 +91,15 @@ class network {
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
 				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
+			if(config::byKey('internalPort', 'core', '') == ''){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			if(config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort', 'core', 80) == 80){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			if(config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort', 'core', 443) == 443){
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
 			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			
 		}
@@ -173,8 +182,18 @@ class network {
 				}
 				return config::byKey('externalProtocol');
 			}
+			
 			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
+			}
+			if(config::byKey('externalPort', 'core', '') == ''){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			if(config::byKey('externalProtocol') == 'http://' && config::byKey('externalPort', 'core', 80) == 80){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			if(config::byKey('externalProtocol') == 'https://' && config::byKey('externalPort', 'core', 443) == 443){
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') .'/'. trim(config::byKey('externalComplement'), '/'), '/');
 			}
 			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 		}
@@ -197,11 +216,19 @@ class network {
 			config::save($_mode . 'Complement', '');
 		}
 		if ($_mode == 'internal') {
-			foreach (self::getInterfaces() as $interface) {
-				if ($interface == 'lo') {
+			foreach ((self::getInterfacesInfo()) as $interface) {
+				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info'])) {
 					continue;
 				}
-				$ip = self::getInterfaceIp($interface);
+				$ip = null;
+				foreach ($interface['addr_info'] as $addr_info) {
+					if(isset($addr_info['family']) && $addr_info['family'] == 'inet'){
+						$ip = $addr_info['local'];
+					}
+				}
+				if($ip == null){
+					continue;
+				}
 				if (!netMatch('127.0.*.*', $ip) && $ip != '' && filter_var($ip, FILTER_VALIDATE_IP)) {
 					config::save('internalAddr', $ip);
 					break;
@@ -211,7 +238,7 @@ class network {
 	}
 	
 	public static function test($_mode = 'external', $_timeout = 5) {
-		if (config::byKey('network::disableMangement') == 1) {
+		if (config::byKey('network::disableMangement') == 1 && $_mode == 'external') {
 			return true;
 		}
 		if ($_mode == 'internal' && netMatch('127.0.*.*', self::getNetworkAccess($_mode, 'ip', '', false))) {
@@ -305,11 +332,15 @@ class network {
 		}else{
 			$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
 		}
+		if(config::byKey('dns::remote') != ''){
+			$openvpn->setConfiguration('remote', config::byKey('dns::remote'));
+		}
 		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
 		$openvpn->setConfiguration('password', config::byKey('dns::token'));
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
+		$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu '.config::byKey('market::dns::mtu'));
 		$openvpn->save($direct);
 		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
@@ -324,6 +355,7 @@ class network {
 		}
 		return $openvpn;
 	}
+	
 	
 	public static function dns_start() {
 		if (config::byKey('dns::token') == '') {
@@ -373,32 +405,17 @@ class network {
 	
 	/*     * *********************Network management************************* */
 	
-	public static function getInterfaceIp($_interface) {
-		$ip = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " | grep \"inet .*" . $_interface . "\" | awk '{print $2}' | cut -d '/' -f 1"));
-		if (filter_var($ip, FILTER_VALIDATE_IP)) {
-			return $ip;
+	public static function portOpen($host, $port) {
+		$fp = @fsockopen($host, $port, $errno, $errstr, 0.1);
+		if (!is_resource($fp)){
+			return false;
 		}
-		return false;
+		fclose($fp);
+		return true;
 	}
 	
-	public static function getInterfaceMac($_interface) {
-		$valid_mac = "([0-9A-F]{2}[:-]){5}([0-9A-F]{2})";
-		$mac = trim(shell_exec(system::getCmdSudo() . "ip addr show " . $_interface . " 2>&1 | grep ether | awk '{print $2}'"));
-		if (preg_match("/" . $valid_mac . "/i", $mac)) {
-			return $mac;
-		}
-		return false;
-	}
-	
-	public static function getInterfaces() {
-		$result = explode("\n", shell_exec(system::getCmdSudo() . "ip -o link show | awk -F': ' '{print $2}'"));
-		foreach ($result as $value) {
-			if (trim($value) == '') {
-				continue;
-			}
-			$return[] = $value;
-		}
-		return $return;
+	public static function getInterfacesInfo() {
+		return json_decode(shell_exec(system::getCmdSudo() . "ip -j a"),true);
 	}
 	
 	public static function cron5() {

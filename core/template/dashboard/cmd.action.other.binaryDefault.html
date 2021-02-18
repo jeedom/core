@@ -2,16 +2,17 @@
   <div class="content-xs">
     <span class="iconCmd"></span>
   </div>
+  <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+    jeedom.cmd.update['#id#'] = function(_options) {
+      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           $('.cmd[data-cmd_id=#id#]').hide()
         } else {
           $('.cmd[data-cmd_id=#id#]').show()
           $('.cmd[data-cmd_id=#id#] .iconCmd').empty().append('<i class="fas fa-check"></i>')
         }
-      } else {
+      } else if (['0', 0, 'off'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           $('.cmd[data-cmd_id=#id#]').hide()
         } else {
@@ -21,8 +22,9 @@
       }
     }
     jeedom.cmd.update['#id#']({display_value:'#state#'})
+
     $('.cmd[data-cmd_uid=#uid#] .iconCmd').off().on('click', function () {
       jeedom.cmd.execute({id: '#id#'})
-    });
+    })
   </script>
 </div>

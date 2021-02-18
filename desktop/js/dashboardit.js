@@ -14,40 +14,39 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-$('#div_treeObject').off('click').on('select_node.jstree', function (node, selected) {
+"use strict"
+
+$('#div_treeObject').off('click').on('select_node.jstree', function(node, selected) {
   if (selected.node.a_attr['data-object_id'] != undefined) {
-    object_id = selected.node.a_attr['data-object_id'];
-    $('.div_displayEquipement').parent().empty().append('<legend>'+selected.node.a_attr['data-name']+'</legend><div class="div_displayEquipement"></div>');
-    getObjectHtml(object_id);
+    var object_id = selected.node.a_attr['data-object_id']
+    $('.div_displayEquipement').parent().empty().append('<legend>'+selected.node.a_attr['data-name']+'</legend><div class="div_displayEquipement"></div>')
+    getObjectHtml(object_id)
   }
-});
+})
 
-
-function getObjectHtml(_object_id){
+function getObjectHtml(_object_id) {
   jeedom.object.toHtml({
     id: _object_id,
     version: 'dashboard',
-    error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (html) {
+    success: function(html) {
       try {
-        $('.div_displayEquipement').html(html);
-      }catch(err) {
-        console.log(err);
+        $('.div_displayEquipement').html(html)
+      } catch(err) {
+        console.log(err)
       }
       setTimeout(function(){
-        positionEqLogic();
-        $('.div_displayEquipement').packery();
-        $('.div_displayEquipement').disableSelection();
-        $("input").click(function() { $(this).focus(); });
-        $("textarea").click(function() { $(this).focus(); });
-        $("select").click(function() { $(this).focus(); });
-      },10);
+        jeedomUtils.positionEqLogic()
+        $('.div_displayEquipement').packery().disableSelection()
+        $("input").click(function() { $(this).focus() })
+        $("textarea").click(function() { $(this).focus() })
+        $("select").click(function() { $(this).focus() })
+      }, 10)
     }
-  });
+  })
 }
-
 
 $("#div_treeObject").jstree({
   "search" : {
@@ -55,8 +54,8 @@ $("#div_treeObject").jstree({
     show_only_matches_children : true,
   },
   "plugins" : [ "search" ]
-});
+})
 
-$('#in_searchObject').keyup(function () {
-  $('#div_treeObject').jstree(true).search($('#in_searchObject').val());
-});
+$('#in_searchObject').keyup(function() {
+  $('#div_treeObject').jstree(true).search($('#in_searchObject').val())
+})

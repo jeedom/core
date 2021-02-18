@@ -1,141 +1,95 @@
-Description
-===========
+# Update Center
+**Settings → System → Update Center**
 
-Le **centre de mise à jour** permet de mettre à jour toutes les
-fonctionnalités de Jeedom, incluant le logiciel de base (core), les
-plugins, les widgets, etc. D’autres fonctions de gestion des extensions
-sont diponibles (supprimer, réinstaller, vérifier, etc.)
 
-The Update Center page
-================================
+The **Update Center** allows you to update all of Jeedom&#39;s functionality, including the core software and its plugins.
+Other extension management functions are available (delete, reinstall, check, etc.).
 
-Elle est accessible par le menu **Réglages → Système → Centre de mise à
-jour** et se composent de 3 onglets et une partie haute.
 
-Les fonctions du haut de la page. 
----------------------------------
+## Functions of the page
 
-En haut de la page, indépendant de l'onglet, se trouvent les boutons de commande. 
-Jeedom se connecte périodiquement au Market pour voir si des mises à jour
-sont disponibles (la date de dernière vérification est indiquée en haut
-à gauche de la page). Si vous voulez réaliser une vérification manuelle,
-vous pouvez appuyer sur le bouton "Vérifier les mises à jour".
+At the top of the page, independent of the tab, are the control buttons.
 
-Le bouton **Mettre à jour** permet de mettre à jour l’ensemble de
-Jeedom. Une fois que vous avez cliqué dessus, on obtient ces différentes
-options :
--   **Pré-update** : Permet de mettre à jour le script de mise à jour avant
-    applicatifs des nouvelles mises à jour.
+Jeedom periodically connects to the Market to see if updates are available. The date of the last check is indicated at the top left of the page.
 
--   **Sauvegarder avant** : Effectue une sauvegarde de Jeedom avant
-    d’effectuer la mise à jour.
+At the opening of the page, if this verification is more than two hours old, Jeedom automatically redo a verification.
+You can also use the button **Check for updates** To do it manually.
+If you want to perform a manual check, you can press the button "Check for updates".
 
--   **Mettre à jour les plugins** : Permet d’inclure les plugins dans la
-    mise à jour.
+The button **Save** is to be used when you change the options in the table below, to specify not to update certain plugins if necessary.
 
--   **Mettre à jour le core** : Permet d’inclure le noyau de Jeedom dans
-    la mise à jour.
+## Update the Core
 
--   **Mode forcé** : Effectue la mise à jour en mode forcé, c’est-à-dire
-    que, même s’il y a une erreur, Jeedom continue et ne restaurera pas
-    la sauvegarde. (Ce mode désactive la sauvegarde !)
+The button **Update** allows you to update the Core, plugins, or both.
+Once you click on it, you get these different options :
+- **Pre-update** : Allows you to update the update script before applying the new updates. Generally used at the request of the support.
+- **Save before** : Back up Jeedom before updating. The backup is performed locally only (neither Market nor Samba).
+- **Update plugins** : Allows you to include plugins in the update.
+- **Update the Core** : Allows you to include the Jeedom kernel (the Core) in the update.
 
--   **Mise à jour à réappliquer** : Permet de réappliquer une mise
-    à jour. (NB : Toutes les mises à jour ne peuvent pas être réappliquées.)
+- **Forced mode** : Perform the update in forced mode, that is to say that, even if there is an error, Jeedom will continue and will not restore the backup. (This mode disables saving !).
+- **Update to reapply** : Allows you to re-apply an update. (NB : Not all updates can be re-applied.)
 
 > **Important**
 >
-> Avant une mise à jour, par défaut, Jeedom va faire une sauvegarde. En
-> cas de souci lors de l’application d’une mise à jour, Jeedom va
-> automatiquement restaurer la sauvegarde faite juste avant. Ce principe
-> n’est valable que pour les mises à jour de Jeedom et non des plugins.
+> Before an update, by default, Jeedom will make a backup. In the event of a problem when applying an update, Jeedom will automatically restore the backup made just before. This principle is only valid for Jeedom updates and not for plugin updates.
 
 > **Tip**
 >
-> Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous
-> en propose pas.
+> You can force an update of Jeedom, even if it does not offer one.
 
-Onglets Core et Plugins et l'onglet Autres
-------------------------------------------
+## Core and Plugins tabs
 
-Ces deux onglets similaires, se composent d'un tableau :
+The table contains the versions of the Core and installed plugins.
 
--   **Core et Plugins** : Contient le logiciel de base de Jeedom (core) et la
-    liste des plugins installés.
+The plugins have a badge next to their name, specifying their version, green in color *stable*, or orange in *beta* Or other.
 
--   **Autres** : Contient les widgets, les scripts, etc.
+- **Status** : OK or NOK.
+- **Last name** : Name and origin of the plugin
+- **Version** : Indicates the precise version of the Core or plugin.
+- **Options** : Check this box if you do not want this plugin to be updated during the global update (Button **Update**).
 
-Vous y trouverez les informations suivants : \* **Statut** : OK ou NOK.
-Permet de connaître l’état actuel du plugin. \* **Nom** : Vous y
-trouverez la provenance de l’élément, le type d’élément et son nom. \*
-**Version**: Indique la version précise de l’élément. \***Options** :
-Cochez cette case si vous ne souhaitez pas que cet élément soit mis à
-jour lors de la mise à jour générale (Bouton **Mettre à jour**).
+On each line, you can use the following functions:
 
-> **Tip**
->
-> Pour chaque tableau, la première ligne permet de filter suivant
-> le nom des éléments présents.
-
-Sur chaque ligne, vous pouvez utiliser les fonctions suivantes pour
-chaque élément :
-
--   **Réinstaller** : Force la réinstallation.
-
--   **Supprimer** : Permet de le désinstaller.
-
--   **Vérifier** : Interroge la source des mises à jour pour savoir si
-    une nouvelle mise à jour est disponible.
-
--   **Mettre à jour** : Permet de mettre à jour l’élément (si celui-ci a
-    une mise à jour).
-
--   **Changelog** : Permet d’accéder à la liste des changements de la
-    mise à jour.
+- **Reinstate** : Force resettlement.
+- **Remove** : Allows you to uninstall it.
+- **Check** : Query source for updates to find out if a new update is available.
+- **Update** : Allows you to update the element (if it has an update).
+- **Changelog** : Allows access to the list of changes in the update.
 
 > **Important**
 >
-> Si le changelog est vide mais que vous avez tout de même une mise à
-> jour, cela signifie que c’est la documentation qui a été mise à jour.
-> Il n’est donc pas nécessaire de demander au développeur les
-> changements, vu qu’il n’y en a pas forcément. (c’est souvent une mise
-> à jour de la traduction, de la documentation)
+> If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
+> The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
 
 > **Tip**
 >
-> A noter que "core : jeedom" signifie "la mise à jour du logiciel de
-> base Jeedom".
+> When you launch an update, a progress bar appears above the table. Avoid other manipulations during the update.
 
-Onglet Logs
------------
+## Information tab
 
-Onglet vers lequel vous êtes automatiquement basculé en cas d'installation
-de mise à jour, il vous permet de suivre tout ce qui se passe durant la mise
-à jour du core, comme des plugins.
+During or after an update, this tab allows you to read the log of this update in real time.
 
+> **Note**
+>
+> This log normally ends with *[END UPDATE SUCCESS]*. There may be some error lines in this type of log, however, unless there is a real problem after update, it is not always necessary to contact support for this.
 
-Mise à jour en ligne de commande 
-================================
+## Command line update
 
-Il est possible de faire une mise à jour de Jeedom directement en SSH.
-Une fois connecté, voilà la commande à effectuer :
+It is possible to update Jeedom directly in SSH.
+Once connected, this is the command to perform :
 
-    sudo php /var/www/html/install/update.php
+``````sudo php /var/www/html/install/update.php``````
 
-Les paramètres possibles sont :
+The possible parameters are :
 
--   **`mode`** : `force`, pour lancer une mise à jour en mode forcé (ne
-    tient pas compte des erreurs).
+- **fashion** : `force`, to launch an update in forced mode (ignores errors).
+- **Version** : Version number tracking, to re-apply changes from this version.
 
--   **`version`** : suivi du numéro de version, pour réappliquer les
-    changements depuis cette version.
+Here is an example of syntax to make a forced update by reapplying the changes since 4.0.04 :
 
-Voici un exemple de syntaxe pour faire une mise à jour forcée en
-réappliquant les changements depuis la 3.2.14 :
+``````sudo php  /var/www/html/install/update.php mode=force version=4.0.04``````
 
-    sudo php  /var/www/html/install/update.php mode=force version=3.2.14
+Attention, after an update on command line, it is necessary to re-apply the rights on the Jeedom folder :
 
-Attention, après une mise à jour en ligne de commande, il faut
-réappliquer les droits sur le dossier Jeedom :
-
-    chown -R www-data:www-data /var/www/html
+``````sudo chown -R www-data:www-data /var/www/html``````

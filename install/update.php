@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @console */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,25 +19,11 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Statut: 404 Page non trouvée");
-	header('HTTP/1.0 404 Not Found');
-	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Non trouvé</h1>";
-	echo "La page que vous demandez ne peut être trouvée.";
-	exit();
-}
+require_once dirname(__DIR__).'/core/php/console.php';
+
 set_time_limit(1800);
 echo "[START UPDATE]\n";
 $starttime = strtotime('now');
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_GET[$argList[0]] = $argList[1];
-		}
-	}
-}
 
 $update = false;
 $backup_ok = false;
@@ -86,7 +75,7 @@ try {
 	echo "[PROGRESS][5]\n";
 	try {
 		echo "Check rights...";
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERROR***' . $e->getMessage();
@@ -127,7 +116,7 @@ try {
 					if (file_exists($tmp)) {
 						unlink($tmp);
 					}
-					exec('wget --no-check-certificate --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
+					exec('wget --progress=dot --dot=mega ' . $url . ' -O ' . $tmp);
 				} else {
 					$class = 'repo_' . config::byKey('core::repo::provider');
 					if (!class_exists($class)) {
@@ -170,6 +159,9 @@ try {
 					throw new Exception('Unable to unzip file : ' . $tmp);
 				}
 				echo "OK\n";
+				if(disk_free_space($cibDir) < 10){
+					throw new Exception('Error no more free space on ' . $cibDir . '. Free space : ' . disk_free_space($cibDir));
+				}
 				echo "[PROGRESS][40]\n";
 				if (!file_exists($cibDir . '/core')) {
 					$files = ls($cibDir, '*');
@@ -208,20 +200,35 @@ try {
 				echo "[PROGRESS][45]\n";
 				echo "Moving files...";
 				$update_begin = true;
+				$file_copy = array();
 				rmove($cibDir . '/', __DIR__ . '/../', false, array(), true, array('log' => true, 'ignoreFileSizeUnder' => 1));
 				echo "OK\n";
 				echo "[PROGRESS][50]\n";
 				echo "Remove temporary files...";
 				rrmdir($tmp_dir);
 				try {
-					shell_exec('rm -rf ' . __DIR__ . '/../tests');
 					shell_exec('rm -rf ' . __DIR__ . '/../.travis.yml');
 					shell_exec('rm -rf ' . __DIR__ . '/../phpunit.xml.dist');
 				} catch (Exception $e) {
 					echo '***ERROR*** ' . $e->getMessage() . "\n";
 				}
 				echo "OK\n";
-				config::save('update::lastDateCore', date('Y-m-d H:i:s'));
+				echo "[PROGRESS][52]\n";
+				echo "Remove useless files...\n";
+				foreach (array('3rdparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
+					echo 'Cleaning '.$folder."\n";
+					shell_exec('find /var/www/html/'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
+				}
+				try {
+					$update = update::byLogicalId('jeedom');
+					if(is_object($update)){
+						$update->setUpdateDate(date('Y-m-d H:i:s'));
+						$update->save();
+					}
+				} catch (\Exception $e) {
+					
+				}
+				
 			} catch (Exception $e) {
 				if (init('force') != 1) {
 					throw $e;

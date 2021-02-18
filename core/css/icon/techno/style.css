@@ -1,12 +1,12 @@
 @font-face {
-	font-family: 'techno';
-	src:url('fonts/techno.eoty');
-	src:url('fonts/techno.eot') format('embedded-opentype'),
-		url('fonts/techno.woff') format('woff'),
-		url('fonts/techno.ttf') format('truetype'),
-		url('fonts/techno.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'techno';
+  src: url('fonts/techno.woff2') format('woff2'),
+       url('fonts/techno.woff') format('woff'),
+       url('fonts/techno.ttf') format('ttf'),
+       url('fonts/techno.eot') format('eot'),
+       url('fonts/techno.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="techno-"], [class*=" techno-"] {

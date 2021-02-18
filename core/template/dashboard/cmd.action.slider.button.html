@@ -13,34 +13,40 @@
       </span>
     </div>
   </div>
+  <template>
+    <div>step : 0.5 ({{Pas utilisé pour le changement de valeur}}).</div>
+  </template>
   <script>
     $('.cmd[data-cmd_uid=#uid#] .bt_plus').on('click', function () {
-      var max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#');
-      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#');
-      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) <= max - step ){
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) + step});
-        $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change');
+      var max = ('#maxValue#' == '') ?  Number.MAX_VALUE : parseFloat('#maxValue#')
+      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#')
+      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) <= max - step ) {
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) + step})
+        $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change')
       }
-    });
+    })
+
     $('.cmd[data-cmd_uid=#uid#] .bt_minus').on('click', function () {
-      var min = ('#minValue#' == '') ? Number.MIN_VALUE : parseFloat('#minValue#');
-      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#');
-      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) >= min + step){
-        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) - step});
-        $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change');
+      var min = ('#minValue#' == '') ? Number.MIN_VALUE : parseFloat('#minValue#')
+      var step = (isNaN(parseFloat('#step#'))) ?  0.5 : parseFloat('#step#')
+      if (parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) >= min + step) {
+        jeedom.cmd.update['#id#']({display_value:parseFloat($('.cmd[data-cmd_uid=#uid#] .in_value').val()) - step})
+        $('.cmd[data-cmd_uid=#uid#] .in_value').trigger('change')
       }
-    });
+    })
+
     $('.cmd[data-cmd_uid=#uid#] .in_value').on('change', function () {
       if (typeof timerHandle#uid# !== 'undefined') {
-        clearTimeout(timerHandle#uid#);
+        clearTimeout(timerHandle#uid#)
       }
       timerHandle#uid# = setTimeout(function() {
-        jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .in_value').val().replace("#unite#", "").replace(" ", "")}});
+        jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .in_value').val().replace("#unite#", "").replace(" ", "")}})
       }, 1000)
-    });
-    jeedom.cmd.update['#id#'] = function(_options){
-      $('.cmd[data-cmd_uid=#uid#] .in_value').val(_options.display_value+' #unite#');
+    })
+
+    jeedom.cmd.update['#id#'] = function(_options) {
+      $('.cmd[data-cmd_uid=#uid#] .in_value').val(_options.display_value+' #unite#')
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
   </script>
 </div>

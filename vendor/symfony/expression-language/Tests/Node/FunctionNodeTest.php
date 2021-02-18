@@ -11,8 +11,8 @@
 
 namespace Symfony\Component\ExpressionLanguage\Tests\Node;
 
-use Symfony\Component\ExpressionLanguage\Node\ConstantNode;
 use Symfony\Component\ExpressionLanguage\Node\FunctionNode;
+use Symfony\Component\ExpressionLanguage\Node\ConstantNode;
 use Symfony\Component\ExpressionLanguage\Node\Node;
 
 class FunctionNodeTest extends AbstractNodeTest
@@ -25,6 +25,13 @@ class FunctionNodeTest extends AbstractNodeTest
     }
 
     public function getCompileData()
+    {
+        return array(
+            array('foo("bar")', new FunctionNode('foo', new Node(array(new ConstantNode('bar')))), array('foo' => $this->getCallables())),
+        );
+    }
+
+    public function getDumpData()
     {
         return array(
             array('foo("bar")', new FunctionNode('foo', new Node(array(new ConstantNode('bar')))), array('foo' => $this->getCallables())),

@@ -1,3 +1,5 @@
+"use strict"
+
 $('body').attr('data-page', 'cron')
 
 function initCron() {
@@ -7,7 +9,7 @@ function initCron() {
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="deamon" data-title="{{Démons}}"><i class="fas fa-bug" ></i> {{Démons}}</a></li>'
   rightPanel += '<li><a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="health" data-title="{{Santé}}"><i class="icon divers-caduceus3" ></i> {{Santé}}</a></li>'
   rightPanel += '</ul>'
-  panel(rightPanel)
+  jeedomUtils.loadPanel(rightPanel)
   getCronState()
 }
 
@@ -18,12 +20,12 @@ $('#bt_refreshCron').on('click',function(){
 function getCronState() {
   $('#table_cron tbody').empty()
   jeedom.cron.all({
-    error: function (error) {
+    error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
-    success: function (data) {
+    success: function(data) {
      var html = ''
-     crons = data
+     var crons = data
      for(var i in crons){
        html += '<tr>'
        html += '<td>'

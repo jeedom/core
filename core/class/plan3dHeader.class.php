@@ -58,6 +58,9 @@ class plan3dHeader {
 		$plan3ds = array_merge(plan3d::byLinkTypeLinkId($_type, $_id), plan3d::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plan3ds as $plan3d) {
 			$plan3dHeader = $plan3d->get3dHeader();
+			if(!is_object($plan3dHeader)){
+				continue;
+			}
 			$return[$plan3dHeader->getId()] = $plan3dHeader;
 		}
 		return $return;

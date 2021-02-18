@@ -1,0 +1,77 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="value" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-xs">
+    <input type="number" min="#minValue#" max="#maxValue#" value="#state#" step="0.5" id="sliderInput#id#">
+    <div id="widget_slider#id#" class="slider"></div>
+  </div>
+  <template>
+    <div>color : rgb(20,20,20) ({{Couleur d'arrière plan}})</div>
+    <div>step : 0.5 ({{Pas utilisé pour le changement de valeur}})</div>
+    <div>noslider : 1 ({{Ne pas afficher le slider}})</div>
+  </template>
+  <script>
+    var $inputNumber#id# = $('#sliderInput#id#')
+    $('#sliderInput#id#').spinner({
+      icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n"},
+      stop: function(event, ui) {
+        if (event.currentTarget.id != 'sliderInput#id#') {
+          $inputNumber#id#.trigger('change')
+        }
+      }
+    })
+
+    var step#id# = 0.5
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+      $inputNumber#id#.attr('step', step#id#)
+    }
+
+    if ('#noslider#' != '1') {
+      var mySlider#id# = $.createWidgetSlider({
+        sliderDiv: document.getElementById('widget_slider#id#'),
+        state: ('#state#' == '') ? #minValue# : '#state#',
+        min: #minValue#,
+        max: #maxValue#,
+        step: step#id#,
+        tooltips: false
+      })
+
+      if ($.issetWidgetOptParam('#color#', 'color')) {
+        $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+        $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+      }
+
+      mySlider#id#.on('update', function(values, handle) {
+        var value = values[handle]
+        if (values[handle]) {
+          if (parseInt(values[handle]) == parseFloat(values[handle])) {
+            $inputNumber#id#.val(parseInt(values[handle]))
+          } else {
+            $inputNumber#id#.val(parseFloat(values[handle]))
+          }
+        }
+      })
+
+      mySlider#id#.on('end', function(values, handle) {
+        jeedom.cmd.execute({id: '#id#', value: {slider: values[handle]}})
+      })
+    }
+
+    $inputNumber#id#.on('focusout', function(event) {
+      if ('#noslider#' != '1') mySlider#id#.set(this.value)
+      jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
+    })
+
+    $inputNumber#id#.on('change', function(event) {
+      if ('#noslider#' != '1') mySlider#id#.set(this.value)
+      jeedom.cmd.execute({id: '#id#', value: {slider: this.value}})
+    })
+
+    jeedom.cmd.update['#id#'] = function(_options) {
+      $inputNumber#id#.val(_options.display_value)
+      if ('#noslider#' != '1') mySlider#id#.set(_options.display_value)
+    }
+  </script>
+</div>

@@ -1,77 +1,61 @@
-Hier ist die Seite, wo man die Liste der Benutzer definieren kann, die befugt
-sind, sich in Jeedom einzuloggen und auch ihre Administratorrechte
-definieren kann.
+# Utilisateurs
+**Einstellungen → System → Benutzer**
 
-Accessible par Réglages → Système → Utilisateurs.
+Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt sind, eine Verbindung zu Jeedom herzustellen, sowie deren Administratorrechte.
 
-Oben rechts haben Sie eine Schaltfläche zum Hinzufügen eines Benutzers,
-eine zum Speichern und eine Schaltfläche zum Öffnen eines Support-Zugriffs.
+Auf der Seite haben Sie drei Schaltflächen :
 
-Darunter haben Sie eine Tabelle :
+- Benutzer hinzufügen.
+- Sparen.
+- Öffnen Sie den Support-Zugriff.
 
--   **Benutzer** : der Anmeldename des Benutzers
+## Liste der Benutzer
 
--   **Aktiv** : zum Konto deaktivieren
+- **Benutzername** : Benutzer-ID.
+- **Aktiv** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
+- **Lokal** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
+- **Profil** : Ermöglicht die Auswahl des Benutzerprofils :
+    - **Administrator** : Der Benutzer erhält alle Rechte (Bearbeitung / Beratung) an Jeedom.
+    - **Nutzer** : Der Benutzer kann Dashboard, Ansichten, Designs usw. anzeigen. und auf Geräte / Kontrollen einwirken. Er hat jedoch weder Zugriff auf die Konfiguration der Steuerungen / Geräte noch auf die Konfiguration von Jeedom.
+    - **Begrenzter Benutzer** : Der Benutzer sieht nur das autorisierte Gerät (konfigurierbar mit der Schaltfläche "Rechte"").
+- **API-Schlüssel** : Persönlicher API-Schlüssel des Benutzers.
+- **Doppelte Authentifizierung** : Gibt an, ob die doppelte Authentifizierung aktiv ist (OK) oder nicht (NOK)).
+- **Datum der letzten Verbindung** : Datum der letzten Benutzeranmeldung. Bitte beachten Sie, dass dies das tatsächliche Verbindungsdatum ist. Wenn Sie also Ihren Computer speichern, wird das Verbindungsdatum nicht bei jeder Rückkehr aktualisiert.
+- **Rechte** : Benutzerrechte ändern.
+- **Passwort** : Ermöglicht das Ändern des Benutzerpassworts.
+- **Entfernen** : Benutzer entfernen.
+- **API-Schlüssel neu generieren** : Benutzer-API-Schlüssel neu generieren.
+- **Rechte verwalten** : Ermöglicht die Feinverwaltung von Benutzerrechten (beachten Sie, dass sich das Profil in "eingeschränkter Benutzer" befinden muss)").
 
--   **Lokal** : erlaubt die Benutzeranmeldung nur, wenn sie sich
-    im lokalen Netzwerk von Jeedom befinden
+## Rechteverwaltung
 
--   **Profil** : erlaubt ein Profil für den Benutzers auszuwählen :
-
-    -   **Administrator** : erhält alle Rechte für Jeedom
-
-    -   **Benutzer** : Kann das Armaturenbrett, die Ansichten, das Design usw. 
-        sehen und auf die Geräte/Befehle reagieren. Es besteht jedoch
-        keinen Zugriff auf die Konfiguration der Befehle/Geräte oder 
-        die Jeedom Konfiguration.
-
-    -   **Eingeschränkter Benutzer** : Der Benutzer sieht nur die 
-        genehmigten Geräte (konfigurierbar mit der Schaltfläche 
-        "Rechte")
-
--   **API-Schlüssel** : der persönlichen API-Schlüssel des Benutzers
-
--   **Doppelte Authentifizierung** : gibt an, ob die doppelte Authentifizierung 
-    aktiv ist (OK) oder nicht (NOK)
-
--   **Letzte Anmeldung** : Datum der letzten Anmeldung des Benutzers
-    bei Jeedom. Seien Sie vorsichtig, hier ist das tatsächliche 
-    Anmeldedatum. Wenn Sie Ihren Computer registrieren, wird
-    das Anmeldedatum bei jeder Rückkehr nicht aktualisiert.
-
--   **Passwort** : erlaubt das Passwort des Benutzers 
-    zu ändern
-
--   **Löschen** : um den Benutzer zu löschen
-
--   **Régénérer clef API** : régénère la clef API de l’utilisateur
-
--   **Rechte** : erlaubt, die Rechte des Benutzers genau zu
-    l’utilisateur (attention le profil doit être en
-    "Eingeschränkter Benutzer" sein)
-
-Rechteverwaltung
-==================
-
-Wenn Sie auf "Rechte verwalten" klicken, erscheint ein Fenster, in dem Sie
-die Rechte des Benutzers einstellen können. Die erste Registerkarte zeigt
-die verschiedenen Geräte an. Die zweite enthält die Szenarien.
+Wenn Sie auf &quot;Rechte&quot; klicken, wird ein Fenster angezeigt, in dem Sie die Benutzerrechte genau verwalten können. Auf der ersten Registerkarte werden die verschiedenen Geräte angezeigt. Der zweite zeigt die Szenarien.
 
 > **Wichtig**
 >
-> Das Profil muss eingeschränkt sein, ansonsten werden hier keine
-> Einschränkungen berücksichtigt
+> Das Profil muss eingeschränkt sein, da sonst keine hier aufgeführten Einschränkungen berücksichtigt werden.
 
-Sie erhalten eine Tabelle, die es ermöglicht, für jedes Gerät und jedes
-Szenario die Rechte des Benutzers festzulegen :
+Sie erhalten eine Tabelle, in der für jedes Gerät und jedes Szenario die Rechte des Benutzers definiert werden können :
+- **Nein** : Der Benutzer sieht die Ausrüstung / das Szenario nicht.
+- **Visualisierung** : Der Benutzer sieht die Ausrüstung / das Szenario, kann jedoch nicht darauf reagieren.
+- **Visualisierung und Ausführung** : Der Benutzer sieht die Ausrüstung / das Szenario und kann darauf reagieren (Anzünden einer Lampe, Starten des Szenarios usw.)).
 
--   **Keine** : Der Benutzer sieht das Gerät/Szenario nicht.
+## Aktive Sitzungen))
 
--   **Visualisierung** : Der Benutzer sieht das Gerät/Szenario, kann sie 
-    jedoch nicht verwenden
+Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, deren IP und seit wann an. Sie können den Benutzer über die Schaltfläche abmelden **Trennen**.
 
--   **Visualisierung und Ausführung** : Der Benutzer sieht das
-    Gerät/Szenario und kann sie verwenden (eine Lampe anschalten, Szenarien 
-    starten, etc.)
+## Registrierte Geräte)
+
+Listen Sie die Peripheriegeräte (Computer, Handys usw.) auf, deren Authentifizierung auf Ihrem Jeedom aufgezeichnet wurde.
+Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
+
+> **Hinweis**
+>
+> Der gleiche Benutzer hat möglicherweise verschiedene Geräte registriert. Zum Beispiel sein Desktop-Computer, Laptop, Handy usw.
+
+
+
+
+
 
 

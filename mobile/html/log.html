@@ -15,9 +15,14 @@
 			<a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button ui-mini" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}</a>
 		</div>
 	</div>
-	<input class="form-control" id="in_globalLogSearch" placeholder="{{Rechercher}}" />
+
+	</div>
+		<input class="hidden" type="checkbox" id="brutlogcheck" autoswitch="0" checked/>
+		<input class="form-control roundedLeft" id="in_globalLogSearch" placeholder="{{Rechercher}}" style="width:calc(100% - 42px);display: inline-block;"/>
+		<a id="bt_eraseLogSearch" class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight"><i class="fas fa-times"></i></a>
+    </div>
 </div>
 
-<pre id='pre_globallog' style='overflow: auto;width:100%;margin-top: 5px;'></pre>
+<pre id='pre_globallog' style="height: calc(100% - 145px)"></pre>
 
 <script src="core/php/getJS.php?file=mobile/js/log.js"></script>

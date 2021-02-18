@@ -37,7 +37,7 @@ if (init('log') == 1) {
 		$_SERVER['REDIRECT_STATUS'] = 404;
 		echo "<h1>404 Non trouvé</h1>";
 		echo "La page que vous demandez ne peut être trouvée.";
-		dei();
+		exit();
 	}
 	echo file_get_contents(__DIR__ . '/../log/jeedom_installation');
 	die();

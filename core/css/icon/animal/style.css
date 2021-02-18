@@ -1,12 +1,12 @@
 @font-face {
-	font-family: 'animal';
-	src:url('fonts/animal.eot');
-	src:url('fonts/animal.eot') format('embedded-opentype'),
-		url('fonts/animal.woff') format('woff'),
-		url('fonts/animal.ttf') format('truetype'),
-		url('fonts/animal.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'animal';
+  src: url('fonts/animal.woff2') format('woff2'),
+       url('fonts/animal.woff') format('woff'),
+       url('fonts/animal.ttf') format('ttf'),
+       url('fonts/animal.eot') format('eot'),
+       url('fonts/animal.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="animal-"], [class*=" animal-"] {

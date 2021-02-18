@@ -6,21 +6,21 @@ body {
 	transition: all .5s;
 	background-image: linear-gradient(to bottom right, rgba(147,204,1,0.6), rgba(147,204,1,1));
 	padding-top: 0;
-	height: 100% !important;		
+	height: 100% !important;
 	overflow: hidden;
 }
 
-.backgroundforJeedom {
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  position: fixed;
-  opacity: 0.2;
-  background-size: cover !important;
-  background-position: right bottom !important;
-  background-repeat: no-repeat;
-  background-image: var(--dashBkg-url) !important;
-  background-color: transparent !important;
+#backgroundforJeedom {
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	position: fixed;
+	opacity: 0.2;
+	background-size: cover !important;
+	background-position: right bottom !important;
+	background-repeat: no-repeat;
+	background-image: var(--dashBkg-url) !important;
+	background-color: transparent !important;
 }
 
 .veen {
@@ -69,7 +69,7 @@ body {
 	position: absolute;
 	width: 45%;
 	height: 120%;
-	min-height: 400px !important;
+	min-height: 600px !important;
 	top: -10%;
 	left: 2%;
 	background: #fff;
@@ -85,11 +85,15 @@ body {
 	background: #fff;
 }
 .veen .wrapper > .form-group:focus{
-  outline: none;
+	outline: none;
+}
+.veen .wrapper .submit {
+	padding-top: 10px !important;
 }
 .veen .wrapper #login{
 	padding-top: 20%;
 	visibility: visible;
+	text-align: left;
 }
 .veen .wrapper #market{
 	padding-top: 10%;
@@ -100,14 +104,14 @@ body {
 
 }
 .veen .wrapper.move #register{
-	transform: translateY(-80%) translateX(0%);
+	transform: translateY(-120%) translateX(0%);
 	visibility: visible;
 }
-.veen .wrapper.move #login{
+.veen .wrapper.move #login {
 	transform: translateX(-100%);
 	visibility: hidden;
 }
-.veen .wrapper .checkbox{
+.veen .wrapper .checkbox {
 	width: 100%;
 	height: 10px;
 }
@@ -116,14 +120,11 @@ body {
 	margin-bottom: 15px;
 }
 .veen .wrapper label{
-	position: absolute;
-	top: -7px;
 	font-size: 12px;
 	white-space: nowrap;
 	background: #fff;
 	text-align: left;
-	left: 15px;
-	padding: 0 5px;
+	padding: 0 15px;
 	color: #999;
 	pointer-events: none;
 }
@@ -184,14 +185,20 @@ body {
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  box-shadow: inset 0 0 0 50px #fff
+	box-shadow: inset 0 0 0 50px #fff
 }
 
 
 
 @media (max-width: 1520px){
-  .veen{
+	.veen{
 		width: 80%;
+	}
+}
+
+@media (max-width: 1000px){
+	.veen .wrapper #login{
+		padding-top: 10px;
 	}
 }
 

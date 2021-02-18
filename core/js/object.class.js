@@ -31,12 +31,7 @@ if (!isset(jeedom.object.cache.byId)) {
 
 jeedom.object.getEqLogic = function(_params) {
   var paramsRequired = ['id'];
-  var paramsSpecifics = {
-    pre_success: function(data) {
-      jeedom.object.cache.getEqLogic[_params.id] = data.result;
-      return data;
-    }
-  };
+  var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -44,17 +39,37 @@ jeedom.object.getEqLogic = function(_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.object.cache.getEqLogic[params.id])) {
-    params.success(jeedom.object.cache.getEqLogic[params.id]);
-    return;
-  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
   paramsAJAX.data = {
     action: "listByObject",
     object_id: _params.id,
     onlyEnable: _params.onlyEnable || 0,
-    orderByName : _params.orderByName || 0
+    orderByName : _params.orderByName || 0,
+    onlyHasCmds : json_encode(_params.onlyHasCmds) || 0
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.object.getEqLogicsFromSummary = function(_params) {
+  var paramsRequired = ['id', 'summary'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+
+  paramsAJAX.url = 'core/ajax/object.ajax.php';
+  paramsAJAX.data = {
+    action: "getEqLogicsFromSummary",
+    id: _params.id,
+    summary: _params.summary,
+    onlyEnable: _params.onlyEnable || '1',
+    onlyVisible : _params.onlyVisible || '0'
   };
   $.ajax(paramsAJAX);
 };
@@ -80,12 +95,16 @@ jeedom.object.all = function(_params) {
     params.success(jeedom.object.cache.all);
     return;
   }
+  if(_params.onlyVisible == undefined){
+    _params.onlyVisible = true
+  }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'all',
     onlyHasEqLogic : _params.onlyHasEqLogic || '',
-    searchOnchild : _params.searchOnchild || '1'
+    searchOnchild : _params.searchOnchild || '1',
+    onlyVisible : _params.onlyVisible
   };
   $.ajax(paramsAJAX);
 };
@@ -177,7 +196,6 @@ jeedom.object.save = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.object.byId = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {
@@ -206,6 +224,27 @@ jeedom.object.byId = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.object.getActionSummary = function(_params) {
+  var paramsRequired = ['object_id','summary'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/object.ajax.php';
+  paramsAJAX.data = {
+    action: 'getActionSummary',
+    object_id: _params.object_id,
+    summary: _params.summary,
+    version: _params.version || 'dashboard'
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.object.setOrder = function(_params) {
   var paramsRequired = ['objects'];
   var paramsSpecifics = {};
@@ -225,52 +264,72 @@ jeedom.object.setOrder = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.object.summaryUpdate = function(_params) {
   var objects = {};
   var sends = {};
-  for(var i in _params){
-    var object = $('.objectSummary' + _params[i].object_id);
+  var object = null;
+  var summarySpan = null;
+  var keySpan = null;
+  var updated = null;
+  var icon = null;
+
+  for (var i in _params) {
+    object = $('.objectSummary' + _params[i].object_id);
     if (object.html() == undefined || object.attr('data-version') == undefined) {
       continue;
     }
-    if(isset(_params[i]['keys'])){
-      var updated = false;
-      for(var j in _params[i]['keys']){
-        var keySpan = object.find('.objectSummary'+j);
-        if(keySpan.html() != undefined){
+    if (isset(_params[i]['keys'])) {
+      updated = false;
+      for (var key in _params[i]['keys']) {
+        summarySpan = object.find('.objectSummaryParent[data-summary="'+key+'"]')
+        keySpan = summarySpan.find('.objectSummary'+key);
+        if (summarySpan.html() != undefined) {
           updated = true;
-          if(keySpan.closest('.objectSummaryParent').attr('data-displayZeroValue') == 0 && _params[i]['keys'][j]['value'] === 0){
-            keySpan.closest('.objectSummaryParent').hide();
+          //hide if no display if nul:
+          if (summarySpan.attr('data-displayZeroValue') == 0 && _params[i]['keys'][key]['value'] === 0) {
+            summarySpan.hide();
             continue;
           }
-          if(_params[i]['keys'][j]['value'] === null){
+          if (_params[i]['keys'][key]['value'] === null) {
             continue;
           }
-          keySpan.closest('.objectSummaryParent').show();
-          keySpan.empty().append(_params[i]['keys'][j]['value']);
+          //update icon and value:
+          if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-iconnul') != '') {
+            icon = decodeURIComponent(summarySpan.attr('data-iconnul')).replaceAll('+', ' ')
+          } else {
+            icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
+          }
+          summarySpan.find('i').remove()
+          summarySpan.show().prepend(icon)
+
+          //update number:
+          if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
+            keySpan.empty()
+          } else {
+            keySpan.empty().append(_params[i]['keys'][key]['value']).show();
+          }
         }
       }
-      if(updated){
+      if ((updated && !isset(_params[i]['force'])) || (updated && _params[i]['force'] != 1)) {
         continue;
       }
     }
     objects[_params[i].object_id] = {object : object, version : object.attr('data-version')};
     sends[_params[i].object_id] = {version : object.attr('data-version')};
   }
-  if (Object.keys(objects).length == 0){
+  if (Object.keys(objects).length == 0) {
     return;
   }
   var paramsRequired = [];
   var paramsSpecifics = {
     global: false,
     success: function (result) {
-      for(var i in result){
+      for (var i in result) {
         objects[i].object.replaceWith($(result[i].html));
-        if($('.objectSummary' + i).closest('.objectSummaryHide') != []){
-          if($(result[i].html).html() == ''){
+        if ($('.objectSummary' + i).closest('.objectSummaryHide') != []) {
+          if ($(result[i].html).html() == '') {
             $('.objectSummary' + i).closest('.objectSummaryHide').hide();
-          }else{
+          } else {
             $('.objectSummary' + i).closest('.objectSummaryHide').show();
           }
         }
@@ -308,11 +367,14 @@ jeedom.object.getImgPath = function(_params){
       if(!isset(data.img)){
         return '';
       }
+      if (isset(data.configuration.useBackground) && data.configuration.useBackground == 1) {
+        jeedomUtils.setBackgroundImage('')
+        return
+      }
       _params.success(data.img);
     }
   });
 }
-
 
 jeedom.object.removeImage = function (_params) {
   var paramsRequired = ['id'];

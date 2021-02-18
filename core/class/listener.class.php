@@ -32,7 +32,7 @@ class listener {
 	/*     * ***********************Méthodes statiques*************************** */
 	
 	public static function clean(){
-		foreach (self::all() as $listener) {
+		foreach((self::all()) as $listener) {
 			$events = $listener->getEvent();
 			if(count($events) > 0){
 				$listener->emptyEvent();
@@ -86,7 +86,7 @@ class listener {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 			$value['option'] = $_option;
@@ -104,7 +104,7 @@ class listener {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener
 		WHERE class=:class
-		AND function=:function
+		AND `function`=:function
 		AND `option` LIKE :option';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -118,7 +118,7 @@ class listener {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM listener
 		WHERE class=:class
-		AND function=:function
+		AND `function`=:function
 		AND event=:event';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -131,7 +131,7 @@ class listener {
 		);
 		$sql = 'DELETE FROM listener
 		WHERE class=:class
-		AND function=:function
+		AND `function`=:function
 		AND event=:event';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);

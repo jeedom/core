@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @console */
+
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,14 +19,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Statut: 404 Page non trouvée");
-	header('HTTP/1.0 404 Not Found');
-	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Non trouvé</h1>";
-	echo "La page que vous demandez ne peut être trouvée.";
-	exit();
-}
+require_once __DIR__ . '/console.php';
 
 require_once __DIR__ . "/core.inc.php";
 

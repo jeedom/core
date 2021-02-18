@@ -7,7 +7,11 @@
   </center>
   <script>
     $(".cmd[data-cmd_uid=#uid#] .selectCmd").on('change', function () {
-      jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}});
-    });
+      jeedom.cmd.execute({id: '#id#', value: {select: $(this).value()}})
+    })
+
+    jeedom.cmd.update['#id#'] = function(_options) {
+      $(".cmd[data-cmd_uid=#uid#] .selectCmd").val(_options.display_value)
+    }
   </script>
 </span>

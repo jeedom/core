@@ -15,9 +15,143 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.config = function () {
-};
-
+jeedom.config = function() {};
+jeedom.config.locales = {
+    fr_FR: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'j ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        },
+        calendar: {
+            lastDay: '[Hier à] HH:mm',
+            sameDay: '[A] HH:mm',
+            nextDay: '[Demain à] <br> HH:mm',
+            lastWeek: 'ddd [dernier] <br> [à] HH:mm',
+            nextWeek: 'ddd [à] <br> HH:mm',
+            sameElse: 'YYYY-MM-DD'
+        }
+    },
+    en_US: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'd ',
+            week: 'W ',
+            month: 'M ',
+            year: 'Y '
+        },
+        calendar: {
+            lastDay: '[Yda at] HH:mm',
+            sameDay: '[At] HH:mm',
+            nextDay: '[Tmw at] HH:mm',
+            lastWeek: '[Last] ddd <br> [at] HH:mm',
+            nextWeek: 'ddd [at] <br> HH:mm',
+            sameElse: 'YYYY-MM-DD'
+        }
+    },
+    de_DE: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 's ',
+            day: 't ',
+            week: 'W ',
+            month: 'M ',
+            year: 'J '
+        }
+    },
+    es_ES: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'd ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        },
+        calendar: {
+            lastDay: '[Ayer a las] <br> HH:mm',
+            sameDay: '[A las] HH:mm',
+            nextDay: '[Mañana a las] <br> HH:mm',
+            lastWeek: '[El pasado] ddd <br> [a las] HH:mm',
+            nextWeek: 'ddd [a las] <br> HH:mm',
+            sameElse: 'YYYY-MM-DD'
+        }
+    },
+    it_IT: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'o ',
+            day: 'g ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        }
+    },
+    pt_PT: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'h ',
+            day: 'd ',
+            week: 'S ',
+            month: 'M ',
+            year: 'A '
+        }
+    },
+    ru_RU: {
+        duration: {
+            second: 's ',
+            minute: 'm ',
+            hour: 'c ',
+            day: 'd ',
+            week: 'N ',
+            month: 'M ',
+            year: 'G '
+        }
+    },
+    ja_JP: {
+        duration: {
+            second: 'ba ',
+            minute: 'b ',
+            hour: 'j ',
+            day: 'h ',
+            week: 'S ',
+            month: 'Ts ',
+            year: 'T '
+        }
+    },
+    id_ID: {
+        duration: {
+            second: 'd ',
+            minute: 'm ',
+            hour: 'j ',
+            day: 'm ',
+            week: 'H ',
+            month: 'B ',
+            year: 'T '
+        }
+    },
+    tr: {
+        duration: {
+            second: 's ',
+            minute: 'd ',
+            hour: 's ',
+            day: 'g ',
+            week: 'H ',
+            month: 'A ',
+            year: 'Y '
+        }
+    }
+}
 
 jeedom.config.save = function (_params) {
     var paramsRequired = ['configuration'];
@@ -78,4 +212,23 @@ jeedom.config.remove = function (_params) {
         plugin: _params.plugin || 'core'
     };
     $.ajax(paramsAJAX);
+};
+
+jeedom.config.removeImage = function (_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/config.ajax.php';
+  paramsAJAX.data = {
+    action: 'removeImage',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
 };

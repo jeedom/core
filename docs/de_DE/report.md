@@ -1,36 +1,44 @@
-Cette page permet de voir tous les rapports qui ont été générés par l'action report (voir documentation des scénarios).
+# Rapport
+**Analyse → Bericht**
 
-# Qu'est qu'un rapport ?
+Auf dieser Seite können Sie alle Berichte anzeigen, die von der Berichtsaktion generiert wurden (siehe Szenariodokumentation).
 
-Un rapport est une capture d'écran de l'interface de Jeedom à un instant T (la capture est adaptée pour ne pas prendre la barre de menu et autre élément inutile sur ce type d'utilisation).
+## Principe
 
-Vous pouvez le faire sur des vues, design, page de panel....
+Ein Bericht ist ein Screenshot der Jeedom-Schnittstelle zu einem Zeitpunkt t.
 
-Elle se déclenche à partir d'un scénario avec la commande report, vous pouvez choisir de vous faire envoyer ce rapport à l'aide d'une commande message (mail, télégram, etc.)
-
-# Utilisation
-
-Son utilisation est très simple vous sélectionnez si vous voulez voir :
-
--   les rapports des vues
--   les rapports des degins
--   les rapports des panels des plugins
-- les rapports sur les équipements (pour avoir un résumé de la batterie de chaque module)
-
-Ensuite vous sélectionnez le nom du rapport en question puis vous allez voir toutes les dates des rapports en mémoire
-
-> **Important**
+> **Hinweis**
 >
-> Une suppression automatique est faite par défaut pour les rapports de plus de 30 jours (vous pouvez configurer ce délai dans la configuration de Jeedom)
+> Diese Erfassung ist so angepasst, dass die Menüleiste und andere unnötige Elemente für diese Art der Verwendung nicht berücksichtigt werden.
 
-Une fois le rapport sélectionné vous pouvez le voir apparaitre, le retélécharger ou le supprimer.
+Sie können dies für Ansichten, Designs und Bedienfeldseiten tun....
 
-Vous pouvez aussi supprimer toutes les sauvegardes d'un rapport donné
+Die Generierung wird aus einem Szenario mit dem Befehl report ausgelöst.
+Sie können diesen Bericht mit einem Nachrichtenbefehl (E-Mail, Telegramm usw.) an Sie senden lassen).
 
-# FAQ
+## Utilisation
 
-> **Si vous avez une erreur du type Détails : cutycapt: error while loading shared libraries: libEGL.so: cannot open shared object file: No such file or directory**
+Die Verwendung ist sehr einfach. Wählen Sie links, wenn Sie sehen möchten :
+
+- Berichte anzeigen.
+- Entwurfsberichte.
+- Plugin-Panel-Berichte.
+- Geräteberichte (für eine Zusammenfassung der Batterie jedes Moduls).
+
+Wählen Sie dann den Namen des betreffenden Berichts aus. Sie sehen dann alle Daten der verfügbaren Berichte.
+
+> **Wichtig**
 >
-> Il faut en ssh ou dans Administration -> Configuration -> OS/DB -> Systeme -> Administration faire :
->sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so
->sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so
+> Das automatische Löschen erfolgt standardmäßig für Berichte, die älter als 30 Tage sind. Sie können diese Verzögerung in der Konfiguration von Jeedom konfigurieren.
+
+Sobald der Bericht ausgewählt ist, können Sie ihn anzeigen, herunterladen oder löschen.
+
+Sie können auch alle Sicherungen eines bestimmten Berichts löschen
+
+## FAQ
+
+> Wenn Sie einen Detailfehler haben :
+> *cutycapt: Fehler beim Laden von gemeinsam genutzten Bibliotheken: libEGL.so: freigegebene Objektdatei kann nicht geöffnet werden: Keine solche Datei oder Verzeichnis*
+> In ssh oder unter Einstellungen → System → Konfiguration : OS / DB / Systemadministration tun :
+> ``````sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so``````
+> ``````sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so``````

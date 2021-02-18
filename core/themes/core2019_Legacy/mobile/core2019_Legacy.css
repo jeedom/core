@@ -19,6 +19,9 @@ Mobile Legacy
 .eqLogic.eqLogic-widget[data-category=light] {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+.eqLogic.eqLogic-widget[data-category=opening] {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 .eqLogic.eqLogic-widget[data-category=multimedia] {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -48,11 +51,29 @@ Mobile Legacy
 .eqLogic.eqLogic-widget[data-category=light] .ui-btn {
   background-color: var(--cat-light-BtnColor) !important;
 }
+.eqLogic.eqLogic-widget[data-category=opening] .ui-btn {
+  background-color: var(--cat-opening-BtnColor) !important;
+}
 .eqLogic.eqLogic-widget[data-category=multimedia] .ui-btn {
   background-color: var(--cat-multimedia-BtnColor) !important;
 }
 .eqLogic.eqLogic-widget[data-category=energy] .ui-btn {
   background-color: var(--cat-energy-BtnColor) !important;
+}
+.eqLogic.eqLogic-widget[data-category=""] .ui-btn {
+  background-color: var(--cat-other-BtnColor) !important;
+}
+
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
+body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
+}
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name span,
+body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
+body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i,
+body[data-coloredcats="0"] div.eqLogic-widget > span.cmd.editOptions:after {
+  color: var(--linkHoverLight-color) !important;
 }
 
 .scenario-widget.scenario .changeScenarioState,
@@ -97,16 +118,20 @@ Mobile Legacy
   color: var(--eqTitle-color);
 }
 
-
+.ui-grid-a {
+  color: var(--link-color);
+}
 /* ___________________________________________________________EQs */
-.eqLogic.eqLogic-widget,
+
 .ui-overlay-a,
 .ui-page-theme-a,
 .ui-page-theme-a .ui-panel-wrapper,
-.cmdName {
-  color: var(--linkHoverLight-color) !important;
+{
+  color: var(--link-color) !important;
 }
 
+.eqLogic.eqLogic-widget,
+.cmdName,
 .state,
 .state i,
 p.state,
@@ -126,10 +151,6 @@ p.state,
 
 .objectSummaryParent {
   color: var(--link-color);
-}
-
-.ui-slider-bg {
-  background: linear-gradient(var(--el-defaultColor), var(--el-defaultColor)) fixed !important;
 }
 
 .clr-btn-red,
@@ -155,8 +176,8 @@ p.state,
 
 .hgauge-value,
 .vgauge-value,
-.shuttergauge-value{
-  background: var(--linkHoverLight-color) !important;
+.shuttergauge-value {
+  background: var(--linkHoverLight-color);
 }
 
 .tableCmd,
@@ -209,3 +230,14 @@ p.state,
   border-left: 4px solid var(--el-defaultColor) !important;
   border-right: 4px solid var(--el-defaultColor) !important;
 }
+
+
+/* widgets specific */
+.widget-compass-needle {
+  border-top: 22px solid var(--linkHoverLight-color);
+}
+div.cmd-widget .slider .noUi-connects > .noUi-connect,
+div.cmd-widget .slider .noUi-handle {
+  background: var(--linkHoverLight-color);
+}
+

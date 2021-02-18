@@ -1,11 +1,133 @@
 ChangeLog
 =========
 
-3.2.3 (2018-10-19)
+4.0.3 (2020-01-10)
+-------------------------
+* DAV: Streaming PROPFIND server implementation
+* DAVACL: Fix uppercase of NotAuthenticated class
+* CalDAV: Return only calendar objects owned by principal itself
+* CalDAV: Convert scheduling object data from resource to string
+* Browser Plugin: Fix content type guessing if setBaseUri is set to a folder
+
+
+4.0.2 (2019-10-18)
+-------------------------
+* Fix error with PHP 7.4
+* CardDAV: Fix content-type for Thunderbird
+
+
+4.0.1 (2019-08-20)
+-------------------------
+* TemporaryFileFilterPlugin: Fix Strict Error
+* CalDAV\Plugin: Fix null path
+
+
+4.0.0 (2019-07-01)
+-------------------------
+* Lock: Support lock timeout value Infinity 
+* Lock: Hide lock token in lock discovery when not set
+* BrowserPlugin: Show display name of nodes
+* FSExt: Fix folder (file) move issue if rename fails
+* IMipPlugin: Add sender name in invite mail headers
+* IMipPlugin: Fix email subject and recipient 
+* Fix issues with empty content-type header
+* Apply new code style
+* Fix for litmus test suite - test case: props propfind_invalid2
+* Depend on sabre/xml 2.0.1
+* Depend on sabre/http 5.0
+* Now supports PHP 7.3
+* Now requires PHP 7.
+* Using `strict_types` in every php file.
+* #896: Using the [sabre/event][evnt] `WildcardEmitter`. This allows event
+  handlers to listen to events using a wildcard.
+* #896: Event listeners that in the past listened to `beforeMethod` or `method`
+  no longer get called. They must listen to `beforeMethod:*` and `method:*` now.
+* #322: Imap authentication backend. (@c0d3z3r0).
+* #889: Support for selective property querying in CardDAV's addressbook-query.
+ (@DeepDiver1975).
+* #982: Make sure that files that are siblings of directories, are reported
+  as files (@nickvergessen)
+
+
+4.0.0-beta1 (2019-05-08)
+-------------------------
+* Lock: Support lock timeout value Infinity 
+* Lock: Hide lock token in lock discovery when not set
+* BrowserPlugin: Show display name of nodes
+* FSExt: Fix folder (file) move issue if rename fails
+* IMipPlugin: Add sender name in invite mail headers
+* IMipPlugin: Fix email subject and recipient 
+
+
+4.0.0-alpha5 (2018-10-15)
+-------------------------
+* Fix issues with empty content-type header
+
+
+4.0.0-alpha4 (2018-10-12)
+-------------------------
+* Apply new code style
+* Fix for litmus test suite - test case: props propfind_invalid2
+* Depend on sabre/xml 2.0.1
+
+
+4.0.0-alpha3 (2018-10-05)
+-------------------------
+* Fixes for PHP 7.3
+* Depend on sabre/http 5.0
+
+
+4.0.0-alpha2 (2018-09-27)
+-------------------------
+* Now supports PHP 7.3
+
+
+4.0.0-alpha1 (2018-06-05)
+-------------------------
+
+* Now requires PHP 7.
+* Using `strict_types` in every php file.
+* #896: Using the [sabre/event][evnt] `WildcardEmitter`. This allows event
+  handlers to listen to events using a wildcard.
+* #896: Event listeners that in the past listened to `beforeMethod` or `method`
+  no longer get called. They must listen to `beforeMethod:*` and `method:*` now.
+* #322: Imap authentication backend. (@c0d3z3r0).
+* #889: Support for selective property querying in CardDAV's addressbook-query.
+ (@DeepDiver1975).
+* #982: Make sure that files that are siblings of directories, are reported
+  as files (@nickvergessen)
+  
+
+3.3.0-alpha1 (2018-06-04)
+-------------------------
+
+* SimpleCollection can now take arrays and strings as argument for super
+  simple tree creation.
+* Added `Sabre\DAV\Server::start()`. This replaces `::exec()`. `::exec()`
+  is now deprecated, but we're keeping it around for a year or two to make
+  the transition easier.
+* `getChildren()` function in any collection may now return an iterator
+  instead of an array. This can result in memory savings for large
+  collections.
+* `Tree::getChildren()` now returns an Iterator instead of an array.
+* Added `$overrideName` to all `Sabre\DAV\FS` and `Sabre\DAV\FSExt` classes,
+  so users can specify under what name these nodes show up in the tree.
+* #889 Added support for filtering vCard properties in the addressbook-query
+  REPORT (@DeepDiver1975).
+* #918: Add a lot of sqlite indexes. This should speed up sqlite-based
+  installations quite a bit.
+* #982: Make sure that files that are siblings of directories, are reported
+  as files (@nickvergessen)
+* #1058: Don't open file resource on HEAD request (@icewind1991)
+* #1031: Fix copyNode for case of file named 0 (@phil-davis)
+
+
+3.2.3 (????-??-??)
 ------------------
 
 * #982: Make sure that files that are siblings of directories, are reported
   as files (@nickvergessen)
+  
 
 3.2.2 (2017-02-14)
 ------------------

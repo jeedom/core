@@ -1,29 +1,33 @@
 <div class="cmd cmd-widget cursor" data-type="action" data-subtype="other" data-template="tmpliconline" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="content-xs">
-    <span class="cmdName #hide_name#">#valueName# </span> <span class="iconCmdLine"></span>
+    <span class="cmdName #hide_name#">#valueName#</span> <span class="iconCmdLine"></span>
   </div>
+  <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      var cmd = $('.cmd[data-cmd_id=#id#]');
-      if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+
+      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
-          cmd.hide();
-        }else{
-          cmd.show();
-          cmd.find('.iconCmdLine').empty().append("#_icon_on_#");
+          cmd.hide()
+        } else {
+          cmd.show()
+          cmd.find('.iconCmdLine').empty().append("#_icon_on_#")
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
-          cmd.hide();
+          cmd.hide()
         }else{
-          cmd.show();
-          cmd.find('.iconCmdLine').empty().append("#_icon_off_#");
+          cmd.show()
+          cmd.find('.iconCmdLine').empty().append("#_icon_off_#")
         }
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-    $('.cmd[data-cmd_uid=#uid#] .iconCmdLine').off().on('click', function () {
-      jeedom.cmd.execute({id: '#id#'});
-    });
+
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+
+    $('.cmd[data-cmd_uid=#uid#] .iconCmdLine').off().on('click', function() {
+      jeedom.cmd.execute({id: '#id#'})
+    })
   </script>
 </div>

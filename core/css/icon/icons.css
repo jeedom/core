@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'animal';
-  src:url('animal/fonts/animal.eot');
-  src:url('animal/fonts/animal.eot') format('embedded-opentype'),
-  url('animal/fonts/animal.woff') format('woff'),
-  url('animal/fonts/animal.ttf') format('truetype'),
-  url('animal/fonts/animal.svg') format('svg');
+  src: url('animal/fonts/animal.woff2') format('woff2'),
+       url('animal/fonts/animal.woff') format('woff'),
+       url('animal/fonts/animal.ttf') format('ttf'),
+       url('animal/fonts/animal.eot') format('eot'),
+       url('animal/fonts/animal.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -38,11 +38,11 @@
 
 @font-face {
   font-family: 'divers';
-  src:url('divers/fonts/divers.eot');
-  src:url('divers/fonts/divers.eot') format('embedded-opentype'),
-  url('divers/fonts/divers.woff') format('woff'),
-  url('divers/fonts/divers.ttfz') format('truetype'),
-  url('divers/fonts/divers.svg') format('svg');
+  src: url('divers/fonts/divers.woff2') format('woff2'),
+       url('divers/fonts/divers.woff') format('woff'),
+       url('divers/fonts/divers.ttf') format('ttf'),
+       url('divers/fonts/divers.eot') format('eot'),
+       url('divers/fonts/divers.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -80,14 +80,13 @@
 .divers-svg:before {content: "\e614";}
 .divers-svg2:before {content: "\e615";}
 
-
 @font-face {
   font-family: 'fashion';
-  src:url('fashion/fonts/fashion.eot');
-  src:url('fashion/fonts/fashion.eot') format('embedded-opentype'),
-  url('fashion/fonts/fashion.woff') format('woff'),
-  url('fashion/fonts/fashion.ttf') format('truetype'),
-  url('fashion/fonts/fashion.svg') format('svg');
+  src: url('fashion/fonts/fashion.woff2') format('woff2'),
+       url('fashion/fonts/fashion.woff') format('woff'),
+       url('fashion/fonts/fashion.ttf') format('ttf'),
+       url('fashion/fonts/fashion.eot') format('eot'),
+       url('fashion/fonts/fashion.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -118,14 +117,13 @@
 .fashion-biretta:before {content: "\e60d";}
 .fashion-bikini4:before {content: "\e60e";}
 
-
 @font-face {
   font-family: 'jeedom';
-  src:url('jeedom/fonts/jeedom.eot');
-  src:url('jeedom/fonts/jeedom.eot') format('embedded-opentype'),
-  url('jeedom/fonts/jeedom.woff') format('woff'),
-  url('jeedom/fonts/jeedom.ttf') format('truetype'),
-  url('jeedom/fonts/jeedom.svg') format('svg');
+  src: url('jeedom/fonts/jeedom.woff2') format('woff2'),
+       url('jeedom/fonts/jeedom.woff') format('woff'),
+       url('jeedom/fonts/jeedom.ttf') format('ttf'),
+       url('jeedom/fonts/jeedom.eot') format('eot'),
+       url('jeedom/fonts/jeedom.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -192,14 +190,13 @@
 .jeedom-volet-ferme:before {content: "\e626";}
 .jeedom-volet-ouvert:before {content: "\e627";}
 
-
 @font-face {
   font-family: 'jeedom2';
-  src:url('jeedom2/fonts/jeedom2.eot');
-  src:url('jeedom2/fonts/jeedom2.eot') format('embedded-opentype'),
-  url('jeedom2/fonts/jeedom2.woff') format('woff'),
-  url('jeedom2/fonts/jeedom2.ttf') format('truetype'),
-  url('jeedom2/fonts/jeedom2.svg') format('svg');
+  src: url('jeedom2/fonts/jeedom2.woff2') format('woff2'),
+       url('jeedom2/fonts/jeedom2.woff') format('woff'),
+       url('jeedom2/fonts/jeedom2.ttf') format('ttf'),
+       url('jeedom2/fonts/jeedom2.eot') format('eot'),
+       url('jeedom2/fonts/jeedom2.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -272,14 +269,13 @@
 .jeedom2-case:before {content: "\e642";}
 
 
-
 @font-face {
   font-family: 'jeedomapp';
-  src:  url('jeedomapp/fonts/jeedomapp.eot');
-  src:  url('jeedomapp/fonts/jeedomapp.eot') format('embedded-opentype'),
-  url('jeedomapp/fonts/jeedomapp.ttf') format('truetype'),
-  url('jeedomapp/fonts/jeedomapp.woff') format('woff'),
-  url('jeedomapp/fonts/jeedomapp.svg') format('svg');
+  src: url('jeedomapp/fonts/jeedomapp.woff2') format('woff2'),
+       url('jeedomapp/fonts/jeedomapp.woff') format('woff'),
+       url('jeedomapp/fonts/jeedomapp.ttf') format('ttf'),
+       url('jeedomapp/fonts/jeedomapp.eot') format('eot'),
+       url('jeedomapp/fonts/jeedomapp.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -406,14 +402,13 @@
 .jeedomapp-bell:before {content: "\e606";}
 
 
-
 @font-face {
   font-family: 'loisir';
-  src:url('loisir/fonts/loisir.eot');
-  src:url('loisir/fonts/loisir.eot') format('embedded-opentype'),
-  url('loisir/fonts/loisir.woff') format('woff'),
-  url('loisir/fonts/loisir.ttf') format('truetype'),
-  url('loisir/fonts/loisir.svg') format('svg');
+  src: url('loisir/fonts/loisir.woff2') format('woff2'),
+       url('loisir/fonts/loisir.woff') format('woff'),
+       url('loisir/fonts/loisir.ttf') format('ttf'),
+       url('loisir/fonts/loisir.eot') format('eot'),
+       url('loisir/fonts/loisir.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -447,14 +442,13 @@
 .loisir-beach4:before {content: "\e60f";}
 
 
-
 @font-face {
   font-family: 'maison';
-  src:url('maison/fonts/maison.eot');
-  src:url('maison/fonts/maison.eot') format('embedded-opentype'),
-  url('maison/fonts/maison.woff') format('woff'),
-  url('maison/fonts/maison.ttf') format('truetype'),
-  url('maison/fonts/maison.svg') format('svg');
+  src: url('maison/fonts/maison.woff2') format('woff2'),
+       url('maison/fonts/maison.woff') format('woff'),
+       url('maison/fonts/maison.ttf') format('ttf'),
+       url('maison/fonts/maison.eot') format('eot'),
+       url('maison/fonts/maison.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -528,14 +522,13 @@
 
 
 
-
 @font-face {
   font-family: 'meteo';
-  src:url('meteo/fonts/meteo.eot');
-  src:url('meteo/fonts/meteo.eot') format('embedded-opentype'),
-  url('meteo/fonts/meteo.woff') format('woff'),
-  url('meteo/fonts/meteo.ttf') format('truetype'),
-  url('meteo/fonts/meteo.svg') format('svg');
+  src: url('meteo/fonts/meteo.woff2') format('woff2'),
+       url('meteo/fonts/meteo.woff') format('woff'),
+       url('meteo/fonts/meteo.ttf') format('ttf'),
+       url('meteo/fonts/meteo.eot') format('eot'),
+       url('meteo/fonts/meteo.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -563,14 +556,13 @@
 .meteo-nuage:before {content: "\e609";}
 .meteo-orage:before {content: "\e60a";}
 
-
 @font-face {
   font-family: 'nature';
-  src:url('nature/fonts/nature.eot');
-  src:url('nature/fonts/nature.eot0') format('embedded-opentype'),
-  url('nature/fonts/nature.woff') format('woff'),
-  url('nature/fonts/nature.ttf') format('truetype'),
-  url('nature/fonts/nature.svg') format('svg');
+  src: url('nature/fonts/nature.woff2') format('woff2'),
+       url('nature/fonts/nature.woff') format('woff'),
+       url('nature/fonts/nature.ttf') format('ttf'),
+       url('nature/fonts/nature.eot') format('eot'),
+       url('nature/fonts/nature.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -607,14 +599,13 @@
 .nature-drops1:before {content: "\e610";}
 .nature-autumn1:before {content: "\e611";}
 
-
 @font-face {
   font-family: 'nourriture';
-  src:url('nourriture/fonts/nourriture.eot');
-  src:url('nourriture/fonts/nourriture.eot') format('embedded-opentype'),
-  url('nourriture/fonts/nourriture.woff') format('woff'),
-  url('nourriture/fonts/nourriture.ttf') format('truetype'),
-  url('nourriture/fonts/nourriture.svg') format('svg');
+  src: url('nourriture/fonts/nourriture.woff2') format('woff2'),
+       url('nourriture/fonts/nourriture.woff') format('woff'),
+       url('nourriture/fonts/nourriture.ttf') format('ttf'),
+       url('nourriture/fonts/nourriture.eot') format('eot'),
+       url('nourriture/fonts/nourriture.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -649,14 +640,13 @@
 
 
 
-
 @font-face {
   font-family: 'personne';
-  src:url('personne/fonts/personne.eot');
-  src:url('personne/fonts/personne.eot') format('embedded-opentype'),
-  url('personne/fonts/personne.woff') format('woff'),
-  url('personne/fonts/personne.ttf') format('truetype'),
-  url('personne/fonts/personne.svg') format('svg');
+  src: url('personne/fonts/personne.woff2') format('woff2'),
+       url('personne/fonts/personne.woff') format('woff'),
+       url('personne/fonts/personne.ttf') format('ttf'),
+       url('personne/fonts/personne.eot') format('eot'),
+       url('personne/fonts/personne.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -689,14 +679,13 @@
 .personne-baby1:before {content: "\e609";}
 
 
-
 @font-face {
   font-family: 'securite';
-  src:url('securite/fonts/securite.eot');
-  src:url('securite/fonts/securite.eot') format('embedded-opentype'),
-  url('securite/fonts/securite.woff') format('woff'),
-  url('securite/fonts/securite.ttf') format('truetype'),
-  url('securite/fonts/securite.svg') format('svg');
+  src: url('securite/fonts/securite.woff2') format('woff2'),
+       url('securite/fonts/securite.woff') format('woff'),
+       url('securite/fonts/securite.ttf') format('ttf'),
+       url('securite/fonts/securite.eot') format('eot'),
+       url('securite/fonts/securite.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -715,14 +704,13 @@
 .securite-fbi:before {content: "\e601";}
 .securite-exit7:before {content: "\e602";}
 
-
 @font-face {
   font-family: 'techno';
-  src:url('techno/fonts/techno.eoty');
-  src:url('techno/fonts/techno.eot') format('embedded-opentype'),
-  url('techno/fonts/techno.woff') format('woff'),
-  url('techno/fonts/techno.ttf') format('truetype'),
-  url('techno/fonts/techno.svg') format('svg');
+  src: url('techno/fonts/techno.woff2') format('woff2'),
+       url('techno/fonts/techno.woff') format('woff'),
+       url('techno/fonts/techno.ttf') format('ttf'),
+       url('techno/fonts/techno.eot') format('eot'),
+       url('techno/fonts/techno.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -783,14 +771,13 @@
 .techno-bluetooth3:before {content: "\e60f";}
 
 
-
 @font-face {
   font-family: 'transport';
-  src:url('transport/fonts/transport.eot');
-  src:url('transport/fonts/transport.eot') format('embedded-opentype'),
-  url('transport/fonts/transport.woff') format('woff'),
-  url('transport/fonts/transport.ttf') format('truetype'),
-  url('transport/fonts/transport.svg') format('svg');
+  src: url('transport/fonts/transport.woff2') format('woff2'),
+       url('transport/fonts/transport.woff') format('woff'),
+       url('transport/fonts/transport.ttf') format('ttf'),
+       url('transport/fonts/transport.eot') format('eot'),
+       url('transport/fonts/transport.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }

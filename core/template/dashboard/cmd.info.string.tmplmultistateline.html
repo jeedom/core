@@ -1,28 +1,37 @@
 <div class="cmd cmd-widget #history#" data-type="info" data-subtype="string" data-template="tmplmultistateline" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-	<div class="title #hide_name#">
-		<div  class="cmdName">#name_display#</div>
-	</div>
-	<span class="iconCmd"></span>
-	<div class="value">
-		<span class="timeCmd#uid# timeCmd label label-default value"></span>
-	</div>
-	<script>
-		jeedom.cmd.update['#id#'] = function(_options){
-			var cmd = $('.cmd[data-cmd_id=#id#]');
-			if('#_time_widget_#' == '1'){
-				jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
-			}else{
-				cmd.find('.timeCmd').parent().remove();
-			}
-			var state = '';
-			cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate+'<br/>Valeur : '+_options.display_value+'#unite#');
-			#test#
-			cmd.find('.iconCmd').empty().append(state);
-		
-		}
-		jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-		$('body').on('changeThemeEvent', function (event, theme) {
-			$('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
-		});
-	</script>
+  <div class="content-xs">
+    <span class="cmdName #hide_name#">#name_display# </span> <span class="iconCmdLine"></span>
+  </div>
+  <div class="value">
+    <span class="timeCmd label label-default #history#" data-type="info"></span>
+  </div>
+  <template>
+    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
+  </template>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      if ('#_time_widget_#' == '1') {
+        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
+      } else {
+        cmd.find('.timeCmd').parent().remove()
+      }
+
+      cmd.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'#unite#')
+
+      try {
+        var state = ''
+        #test#
+        cmd.find('.iconCmd').empty().append(state)
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+
+    $('body').on('changeThemeEvent', function (event, theme) {
+      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme)
+    })
+  </script>
 </div>

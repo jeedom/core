@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.1.2 (2019-06-03)
+ Highstock JS v8.2.0 (2020-08-20)
 
  Indicator series type for Highstock
 
@@ -7,8 +7,8 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/dema",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,b,p,e){a.hasOwnProperty(b)||(a[b]=e.apply(null,p))}a=a?a._modules:{};b(a,"mixins/indicator-required.js",[a["parts/Globals.js"]],function(a){var b=a.error;return{isParentLoaded:function(a,
-e,n,k,h){if(a)return k?k(a):!0;b(h||this.generateMessage(n,e));return!1},generateMessage:function(a,b){return'Error: "'+a+'" indicator type requires "'+b+'" indicator loaded before. Please read docs: https://api.highcharts.com/highstock/plotOptions.'+a}}});b(a,"indicators/dema.src.js",[a["parts/Globals.js"],a["mixins/indicator-required.js"]],function(a,b){var p=a.isArray,e=a.seriesTypes.ema,n=a.correctFloat;a.seriesType("dema","ema",{},{init:function(){var a=arguments,h=this;b.isParentLoaded(e,"ema",
-h.type,function(b){b.prototype.init.apply(h,a)})},getEMA:function(a,b,c,l,u,f){return e.prototype.calculateEma(f||[],a,void 0===u?1:u,this.chart.series[0].EMApercent,b,void 0===l?-1:l,c)},getValues:function(a,b){var c=b.period,l=2*c,h=a.xData,f=a.yData,q=f?f.length:0,r=-1,k=[],v=[],w=[],g=0,t,x,y=[],d,m;a.EMApercent=2/(c+1);if(q<2*c-1)return!1;p(f[0])&&(r=b.index?b.index:0);a=e.prototype.accumulatePeriodPoints(c,r,f);b=a/c;a=0;for(d=c;d<q+2;d++)d<q+1&&(g=this.getEMA(f,x,b,r,d)[1],y.push(g)),x=g,d<
-l?a+=g:(d===l&&(b=a/c),g=y[d-c-1],t=this.getEMA([g],t,b)[1],m=[h[d-2],n(2*g-t)],k.push(m),v.push(m[0]),w.push(m[1]));return{values:k,xData:v,yData:w}}})});b(a,"masters/indicators/dema.src.js",[],function(){})});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/dema",["highcharts","highcharts/modules/stock"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,b,m,e){a.hasOwnProperty(b)||(a[b]=e.apply(null,m))}a=a?a._modules:{};c(a,"Mixins/IndicatorRequired.js",[a["Core/Utilities.js"]],function(a){var b=a.error;return{isParentLoaded:function(a,
+e,c,h,k){if(a)return h?h(a):!0;b(k||this.generateMessage(c,e));return!1},generateMessage:function(a,b){return'Error: "'+a+'" indicator type requires "'+b+'" indicator loaded before. Please read docs: https://api.highcharts.com/highstock/plotOptions.'+a}}});c(a,"Stock/Indicators/DEMAIndicator.js",[a["Core/Globals.js"],a["Core/Utilities.js"],a["Mixins/IndicatorRequired.js"]],function(a,b,c){var e=b.correctFloat,m=b.isArray;b=b.seriesType;var h=a.seriesTypes.ema;b("dema","ema",{},{init:function(){var a=
+arguments,b=this;c.isParentLoaded(h,"ema",b.type,function(k){k.prototype.init.apply(b,a)})},getEMA:function(a,b,c,e,l,f){return h.prototype.calculateEma(f||[],a,"undefined"===typeof l?1:l,this.chart.series[0].EMApercent,b,"undefined"===typeof e?-1:e,c)},getValues:function(a,b){var c=b.period,k=2*c,l=a.xData,f=a.yData,n=f?f.length:0,p=-1,r=[],t=[],u=[],g=0,v=[],d;a.EMApercent=2/(c+1);if(!(n<2*c-1)){m(f[0])&&(p=b.index?b.index:0);a=h.prototype.accumulatePeriodPoints(c,p,f);b=a/c;a=0;for(d=c;d<n+2;d++){d<
+n+1&&(g=this.getEMA(f,x,b,p,d)[1],v.push(g));var x=g;if(d<k)a+=g;else{d===k&&(b=a/c);g=v[d-c-1];var w=this.getEMA([g],w,b)[1];var q=[l[d-2],e(2*g-w)];r.push(q);t.push(q[0]);u.push(q[1])}}return{values:r,xData:t,yData:u}}}});""});c(a,"masters/indicators/dema.src.js",[],function(){})});
 //# sourceMappingURL=dema.js.map

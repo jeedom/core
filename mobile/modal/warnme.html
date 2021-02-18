@@ -1,54 +1,53 @@
 <div class="row">
-	<div class="col-xs-5">
-		<div class="box">
-			<select id="sel_mdwarnme_operator">
-				<option value=">">></option>
-				<option value="<"><</option>
-				<option value="=">=</option>
-				<option value="!=">!=</option>
-			</select>
-		</div>
-	</div>
-	<div class="col-xs-7">
-		<div class="box">
-			<label for="in_mdwarnme_operand">{{Valeur}}</label>
-			<input id="in_mdwarnme_operand" style="width: 100px;" />
-			<input id="in_mdwarnme_cmd_id" style="display: none;" />
-		</div>
-	</div>
+  <div class="col-xs-5">
+    <div class="box">
+      <select id="sel_mdwarnme_operator">
+        <option value=">"> > </option>
+        <option value="<"> < </option>
+        <option value="="> = </option>
+        <option value="!="> != </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-xs-7">
+    <div class="box">
+      <label for="in_mdwarnme_operand">{{Valeur}}</label>
+      <input id="in_mdwarnme_operand" style="width: 50%; height: 35px; background-color: var(--sc-formTxt-color);" />
+      <input id="in_mdwarnme_cmd_id" style="display: none;" />
+    </div>
+  </div>
 </div>
 <div class="row">
-	<div class="col-xs-7">
-		<a class="ui-btn ui-btn-raised clr-warning waves-effect waves-button waves-effect waves-button" id='bt_mdwarnme_cancel'>{{Annuler}}</a>
-	</div>
-	<div class="col-xs-5">
-		<a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" id='bt_mdwarnme_ok'>{{Ok}}</a>
-	</div>
+  <div class="col-xs-7">
+    <a class="ui-btn ui-btn-raised clr-warning waves-effect waves-button waves-effect waves-button" id='bt_mdwarnme_cancel'>{{Annuler}}</a>
+  </div>
+  <div class="col-xs-5">
+    <a class="ui-btn ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" id='bt_mdwarnme_ok'>{{Ok}}</a>
+  </div>
 </div>
 
 <script type="text/javascript">
+  function initWarnme(_params) {
+    $('#in_mdwarnme_cmd_id').value(_params.cmd_id)
+  }
+  $("#popupDialog").popup({ history: false })
 
-	function initWarnme(_params){
-		$('#in_mdwarnme_cmd_id').value(_params.cmd_id)
-	}
+  $('.ui-icon-delete[data-rel="back"]').remove()
+  $('#bt_mdwarnme_cancel').on('click', function() {
+    $('#popupDialog').popup('close')
+  })
 
-
-	$('#bt_mdwarnme_cancel').on('click',function(){
-		$('#popupDialog').popup('close');   
-	});
-
-	$('#bt_mdwarnme_ok').on('click',function(){
-		var test = '#value# '+$('#sel_mdwarnme_operator').value()+' '+$('#in_mdwarnme_operand').value();
-		jeedom.addWarnme({
-			test: test,
-			cmd_id: $('#in_mdwarnme_cmd_id').value(),
-			error: function (error) {
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function (messages) {
-				$('#popupDialog').popup('close'); 
-			}
-		});
-	});
+  $('#bt_mdwarnme_ok').on('click', function() {
+    var test = '#value# '+$('#sel_mdwarnme_operator').value()+' '+$('#in_mdwarnme_operand').value()
+    jeedom.addWarnme({
+      test: test,
+      cmd_id: $('#in_mdwarnme_cmd_id').value(),
+      error: function(error) {
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      },
+      success: function(messages) {
+        $('#popupDialog').popup('close')
+      }
+    })
+  })
 </script>
-

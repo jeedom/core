@@ -1,81 +1,55 @@
-Il informe de toutes les tâches applicatives Jeedom qui tournent sur le
-serveur. Ce menu est à utiliser en connaissance de cause ou à la
-demande du support technique.
+# Task-Engine
+**Einstellungen → System → Task Engine**
+
+Diese Seite informiert über alle Jeedom-Anwendungsaufgaben, die auf dem Server ausgeführt werden.
+Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwenden.
 
 > **Wichtig**
 >
-> Bei unsachgemäßer Handhabung auf dieser Seite kann ihnen jede
-> Support-Anfrage verweigert werden.
+> Im Falle eines Missbrauchs auf dieser Seite kann jede Anfrage nach Unterstützung abgelehnt werden.
 
-Pour y accéder, il faut aller dans **Réglages → Système → Moteur de tâches**
-:
+## Cron-Registerkarte
 
-# Cron
+Oben rechts haben Sie :
 
-En haut, à droite, vous avez :
+- **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
+- **Cool** : Aktualisiert die Aufgabentabelle.
+- **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
+- **Sparen** : Speichern Sie Ihre Änderungen.
 
--   **Désactiver le système cron** : un bouton pour désactiver ou
-    réactiver toutes les tâches (si vous les désactivez toutes, plus
-    rien ne sera fonctionnel sur votre Jeedom)
+Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
 
--   **Rafraîchir** : un bouton pour rafraîchir le tableau des tâches
+In dieser Tabelle finden wir :
 
--   **Ajouter** : un bouton pour ajouter une tâche cron
+- **\.#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
+- **Aktiv** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
+- **PID** : Zeigt die aktuelle Prozess-ID an.
+- **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
+- **Einzigartig** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
+- **Klassenzimmer** : PHP-Klasse, die aufgerufen wird, um die Aufgabe auszuführen (kann leer sein).
+- **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
+- **Programmierung** : Programmierung der Aufgabe im CRON-Format.
+- **Auszeit** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
+- **Letzter Start** : Datum des letzten Taskstarts.
+- **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
+- **Status** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
 
--   **Enregistrer** : un bouton pour enregistrer vos modifications.
-
-En-dessous, vous avez le tableau de toutes les tâches existantes
-(attention, certaines tâches peuvent lancer des sous-tâches, il est donc
-vivement recommandé de ne jamais modifier d’informations sur cette
-page). Dans ce tableau, on retrouve :
-
--   **\#** : ID de la tâche, peut être utile pour faire le lien entre un
-    processus qui tourne et ce qu’il fait vraiment
-
--   **Action** : un bouton pour lancer ou arrêter la tâche en fonction
-    de son statut et un bouton pour voir le cron dans le détail (tel que stocké en base)
-
--   **Actif** : indique si la tâche est active (peut être lancée
-    par Jeedom) ou non
-
--   **PID** : indique le process ID actuel
-
--   **Démon** : si cette case est à "oui" alors la tâche doit toujours
-    être en cours. A côté, vous retrouvez la fréquence du démon, il est
-    conseillé de ne jamais toucher cette valeur et surtout de ne jamais
-    la diminuer
-
--   **Unique** : si c’est à "oui" alors la tâche se lancera une fois
-    puis se supprimera
-
--   **Classe** : classe PHP appelée pour exécuter la tâche (peut
-    être vide)
-
--   **Fonction** : fonction PHP appelée dans la classe appelée (ou non
-    si la classe est vide)
-
--   **Programmation** : la programmation de la tâche au format CRON
-
--   **Timeout** : durée maximale de fonctionnement de la tâche. Si la
-    tâche est un démon alors elle sera automatiquement arrêtée et
-    redémarrée à la fin du timeout
-
--   **Dernier lancement** : date de dernier lancement de la tâche
-
--   **Dernière durée** : dernière durée pour accomplir la tâche (un
-    démon sera toujours à 0s, il ne faut pas s’inquiéter d’autres tâches
-    peuvent être à 0s)
-
--   **Statut** : état actuel de la tâche (pour rappel, une tâche démon
-    est toujours à "run")
-
--   **Suppression** : permet de supprimer la tâche
+- **Aktion** :
+    - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
+    - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status).
+    - **Streichung** : Aufgabe löschen.
 
 
-# Listener
+## Registerkarte &quot;Listener&quot;
 
-Les listeners sont juste visibles en lecture et permettent de voir les fonctions appelées sur un évènement (mise à jour d'une commande...)
+Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei einem Ereignis aufgerufenen Funktionen anzuzeigen (Aktualisierung eines Befehls)...).
 
-# Démons
+## Registerkarte Dämon
 
-Tableau de résumé des démons avec leur état, la date de dernier lancement ainsi que la possibilité de les arrêter ou les redémarrer.
+Übersichtstabelle der Dämonen mit ihrem Zustand, dem Datum des letzten Starts sowie der Möglichkeit von
+- Starten / Starten Sie einen Daemon neu.
+- Stoppen Sie einen Daemon, wenn die automatische Verwaltung deaktiviert ist.
+- Aktivieren / Deaktivieren der automatischen Verwaltung eines Daemons.
+
+> Tip
+> Dämonen deaktivierter Plugins werden auf dieser Seite nicht angezeigt.

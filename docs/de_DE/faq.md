@@ -1,296 +1,215 @@
-Erfordert Jeedom ein Abonnement ?
-=====================================
+# FAQ
+**Einstellungen → Version : FAQ**
 
-Nein, Jeedom ist voll nutzbar, ohne dass irgendwelches Abonnements
-benötigt wird. Allerdings gibt es Dienstleistungsangebot
-für Backups oder Anruf/SMS, aber diese sind Tatsächlich 
-optional.
+### Jeedom benötigt ein Abonnement ?
+Nein, Jeedom ist vollständig nutzbar, ohne dass ein Abonnement erforderlich ist. Es werden jedoch Dienste für Backups oder Anrufe / SMS angeboten, die jedoch wirklich optional sind.
 
-Benutzt Jeedom einen externen Server, um zu funktionieren ?
-==============================================================
+### Verwendet Jeedom externe Server zum Ausführen? ?
+Nein, Jeedom verwendet keine Cloud-Infrastruktur". Alles wird lokal erledigt und Sie benötigen unsere Server nicht, damit Ihre Installation funktioniert. Nur Dienste wie Market, Online Backup oder Jeedom DNS erfordern die Verwendung unserer Server.
 
-Nein, Jeedom verwendet keine solche "Cloud" Infrastruktur. Alles wird vor
-Ort durchgeführt, sodas sie unseren Server nicht brauchen, damit Ihre
-Installation funktioniert. Nur Dienstleistungen wie der Markt,
-Online-Backup oder Jeedom-DNS erfordern den Einsatz von unserem
-Server.
+### Gibt es eine dedizierte mobile App ?
+Jeedom verfügt über eine mobile Version, die für Mobilgeräte und Tablets geeignet ist. Es gibt auch eine native App für Android und iOS.
 
-Können die Befehle der Geräte neu angeordnet werden ?
-==================================================
+### Was sind die Anmeldeinformationen, um sich beim ersten Mal anzumelden? ?
+Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und auch danach, wenn Sie sie nicht geändert haben), lauten der Standardbenutzername und das Standardkennwort admin / admin. Bei der ersten Verbindung wird dringend empfohlen, diese Kennungen zu ändern, um die Sicherheit zu erhöhen.
 
-Ja, es ist möglich, einfach mit Drag/Drop die Befehle Ihres Objekts in seiner
-Konfiguration verschieben.
+### Ich kann mich nicht mehr mit meinem Jeedom verbinden
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [Hier](https://doc.jeedom.com/de_DE/howto/reset.password).
 
-Können wir den Widget Stil bearbeiten ? 
-=====================================
+### Ich sehe nicht alle meine Geräte im Dashboard
+Dies liegt häufig daran, dass die Ausrüstung einem Objekt zugeordnet ist, das nicht der Sohn oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dieses in Ihrem Profil konfigurieren).
 
-Ja, es ist möglich, entweder über das Widget-Plugin, oder mit Hilfe der 
-Seite Allgemein → Anzeige
+### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
+Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [Hier](shortcuts.md).
 
-Können wir mehrmals die gleichen Geräte auf einem Design darstellen ?
-================================================================
+### Können wir Ausrüstungsbestellungen nachbestellen? ?
+Ja, es ist möglich, ziehen Sie einfach die Befehle Ihres Objekts in die Konfiguration und legen Sie sie dort ab.
 
-Das ist nicht möglich, aber Sie können diese Geräte vervielfältigen, dank des
-virtuellen Plugins.
+### Können wir den Stil der Widgets bearbeiten? ?
+Für jeden Befehl können Sie die Anzeige zwischen verschiedenen Core-Widgets auswählen oder eine mit Extras → Widgets erstellen.
 
-Wie kann man eine fehlerhafte Chronik ändern ? 
-====================================================
+### Können wir die gleiche Ausrüstung mehr als einmal auf ein Design setzen? ?
+Nein, es ist nicht möglich, aber Sie können es dank des virtuellen Plugins duplizieren.
 
-Es genügt auf einer Kurve der entsprechenden Chronik, auf den fraglichen
-Punkt zu klicken. Wenn Sie das Feld leer lassen, dann wird der Wert
-gelöscht.
+### So ändern Sie falsche historische Daten ?
+Es reicht aus, auf einer historischen Kurve der Reihenfolge auf den betreffenden Punkt zu klicken. Wenn Sie das Feld leer lassen, wird der Wert gelöscht.
 
-Wie lange dauert eine Sicherung? 
-======================================
+### Wie lange dauert ein Backup? ?
+Es gibt keine Standarddauer, dies hängt vom System und dem zu sichernden Datenvolumen ab. Dies kann jedoch länger als 5 Minuten dauern. Dies ist normal.
 
-Es gibt keine Standard-Dauer, es hängt vom System und der Menge der zu
-sichernden Daten ab, aber es kann mehr als 5 Minuten dauern, das ist
-normal.
+### Wo sind Jeedom&#39;s Backups? ?
+Sie befinden sich im Ordner / var / www / html / backup
 
-Gibt es eine spezielle Mobile Anwendung ? 
-========================================
+### Können wir Jeedom in https setzen? ?
+Ja : Entweder Sie haben ein Netzteil oder mehr, in diesem Fall Sie
+benutze einfach die [Jeedom DNS](https://jeedom.github.io/documentation/howto/de_DE/mise_en_place_dns_jeedom). Entweder mit einem DNS und Sie wissen, wie man ein gültiges Zertifikat einrichtet. In diesem Fall handelt es sich um eine Standardinstallation eines Zertifikats.
 
-Jeedom hat eine mobile Version für den Einsatz auf Handy und Tablet. Es
-gibt auch eine native App für Android und iOS.
+### So verbinden Sie sich in SSH ?
+Hier ist ein [Dokumentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
-Was sind die Anmeldeinformationen für die erste Anmeldung ? 
-================================================================
+- Nutzername : "root ", Passwort : "Mjeedom96"
+- Nutzername : "jeedom ", Passwort : "Mjeedom96"
+- Oder was Sie in die Installation einfügen, wenn Sie in DIY sind
 
-Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und selbst wenn Sie
-sie nicht geändert haben), lautet der Standardbenutzername und das
-Passwort admin/admin. Bei der ersten Anmeldung wird dringend empfohlen,
-diese Zugangsdaten für mehr Sicherheit zu ändern.
+Beachten Sie, dass beim Schreiben des Passworts nichts auf dem Bildschirm angezeigt wird. Dies ist normal.
 
-Kann Jeedom https ? 
-================================
+### So setzen Sie Rechte zurück ?
+In SSH tun :
 
-Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
-
-Comment se connecter en SSH ?
-=============================
-
-Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
-
-- Username : "root", password : "Mjeedom96"
-- Username : "jeedom", password : "Mjeedom96"
-- Ou ce que vous avez mis à l'installation si vous êtes en DIY
-
-A noter que lorsque vous écrirez le mot de passe vous ne verrez rien s'écrire à l'écran, c'est normal.
-
-Comment remettre à plat les droits ? 
-====================================
-
-En SSH faites :
-
-``` {.bash}
+`` `{.bash}
 sudo su -
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
-```
+chmod -R 775 / var / www / html
+chown -R www-Daten:www-data / var / www / html
+`` ''
 
-Où se trouvent les sauvegardes de Jeedom ? 
-==========================================
+### So aktualisieren Sie Jeedom in SSH ?
+In SSH tun :
 
-Elles sont dans le dossier /var/www/html/backup
-
-Comment mettre à jour Jeedom en SSH ? 
-=====================================
-
-En SSH faites :
-
-``` {.bash}
+`` `{.bash}
 sudo su -
 php /var/www/html/install/update.php
-chmod -R 775 /var/www/html
-chown -R www-data:www-data /var/www/html
-```
+chmod -R 775 / var / www / html
+chown -R www-Daten:www-data / var / www / html
+`` ''
 
-La Webapp est-elle compatible Symbian ? 
-=======================================
+### Ist das Webapp-kompatible Symbian ?
+Für die Webanwendung ist ein Smartphone erforderlich, das HTML5 und CSS3 unterstützt. Es ist daher leider nicht Symbian-kompatibel.
 
-La webapp nécessite un smartphone supportant le HTML5 et le CSS3. Elle n’est donc malheureusement pas compatible Symbian.
+### Auf welchen Plattformen kann Jeedom laufen? ?
+Damit Jeedom funktioniert, benötigen Sie eine Linux-Plattform mit Root-Rechten oder ein Docker-System. Es funktioniert daher nicht auf einer reinen Android-Plattform.
 
-Sur quelles plateformes Jeedom peut-il fonctionner ? 
-====================================================
+### Ich kann ein bestimmtes Plugin nicht aktualisieren. &quot;Fehler beim Herunterladen der Datei. Bitte versuchen Sie es später erneut (Größe weniger als 100 Byte))..." ?
+Dies kann auf verschiedene Dinge zurückzuführen sein: :
 
-Pour que Jeedom fonctionne, il faut une plateforme linux avec les droits
-root ou un système type docker. Il ne fonctionne donc pas sur une
-plateforme android pure.
+- Überprüfen Sie, ob Ihr Jeedom noch mit dem Markt verbunden ist (auf der Jeedom-Verwaltungsseite, aktualisierter Teil, haben Sie eine Testschaltfläche).
+- Überprüfen Sie, ob das Marktkonto das betreffende Plugin gekauft hat.
+- Überprüfen Sie, ob auf Jeedom Platz ist (die Gesundheitsseite informiert Sie darüber).
+- Überprüfen Sie, ob Ihre Version von Jeedom mit dem Plugin kompatibel ist.
 
-Je ne peux mettre à jour certain plugin "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets)..." ? 
-====================================================
+### Ich habe eine leere Seite
+Es ist erforderlich, in SSH eine Verbindung zu Jeedom herzustellen und das Selbstdiagnoseskript zu starten :
+`` `{.bash}
+sudo chmod + x / var / www / html / health.sh; sudo /var/www/html/health.sh
+`` ''
+Wenn es ein Problem gibt, versucht das Skript, es zu beheben. Wenn es nicht kann, wird es Ihnen sagen.
 
-Cela peut être dû à plusieurs choses, il faut : 
+Sie können sich auch das Protokoll /var/www/html/log/http.error ansehen. Sehr oft deutet dies auf die Besorgnis hin.
 
-- Vérifier que votre Jeedom est toujours connecté au market (dans la page d'administration de Jeedom, partie mise à jour vous avez un bouton de test)
-- Vérifier que le compte market a bien acheté le plugin en question
-- Vérifier que vous avez bien de la place sur Jeedom (la page santé vous l'indiquera)
-- Vérifier que votre version de Jeedom est bien compatible avec le plugin
+### Ich habe ein BDD-Identifizierungsproblem
+Diese müssen zurückgesetzt werden :
 
-J’ai une page blanche 
-=====================
+`` `{.bash}
+bdd_password = $ (cat / dev / urandom | tr-cd &#39;a-f0-9' | Kopf -c 15)
+echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
+echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
+echo &quot;GEWÄHRLEISTUNG ALLER PRIVILEGIEN FÜR jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
+cd / usr / share / nginx / www / jeedom
+sudo cp core / config / common.config.sample.PHP Core / Config / Common.config.php
+sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
+sudo chown www-data:www-data core / config / common.config.php
+`` ''
 
-Il faut se connecter en SSH à Jeedom et lancer le script
-d’auto-diagnostic :
+### Ich habe überall \ {\ {… \} \}
+Die häufigste Ursache ist die Verwendung eines Plugins in der Beta-Version und Jeedom in Stable oder umgekehrt. Um die Details des Fehlers zu erhalten, müssen Sie sich das http-Protokoll ansehen.Fehler (in / var / www / html / log).
 
-``` {.bash}
-sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
-```
+### Bei der Bestellung habe ich ein Rad, das sich dreht, ohne anzuhalten
+Auch dies ist oft auf ein Plugin in der Beta zurückzuführen, während Jeedom stabil ist. Um den Fehler zu sehen, müssen Sie F12 und dann die Konsole ausführen.
 
-S’il y a un souci, le script essaiera de le corriger. S’il n’y arrive
-pas, il vous l’indiquera.
+### Ich habe keinen Zugriff mehr auf Jeedom, weder über die Weboberfläche noch über SSH in der Konsole
+Dieser Fehler ist nicht auf Jeedom zurückzuführen, sondern auf ein Problem mit dem System.
+Wenn dies nach einer Neuinstallation weiterhin der Fall ist, sollten Sie sich beim Kundendienst nach Hardwareproblemen erkundigen. Hier ist die [Dokumentation](https://doc.jeedom.com/de_DE/installation/smart) für Smart
 
-Vous pouvez aussi regarder le log /var/www/html/log/http.error. Très
-souvent, celui-ci indique le souci.
+### Mein Szenario hört nicht mehr auf
+Es ist ratsam, sich die vom Szenario ausgeführten Befehle anzusehen. Oft stammt sie von einem Befehl, der nicht endet.
 
-J’ai un problème d’identifiant BDD 
-==================================
+### Ich habe Instabilitäten oder Fehler 504
+Überprüfen Sie, ob Ihr Dateisystem nicht beschädigt ist. In SSH lautet der Befehl : `` ''sudo dmesg | grep error`` ''.
 
-Il faut réinitialiser ceux-ci :
+### Ich habe den folgenden Fehler : SQLSTATE \ [HY000 \] \ [2002 \] Über Socket &#39;/var/run/mysqld/mysqld.sock kann keine Verbindung zum lokalen MySQL-Server hergestellt werden'
+Dies liegt an MySQL, das gestoppt wurde. Es ist nicht normal, die häufigsten Fälle sind :
 
-``` {.bash}
-bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
-echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
-echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
-cd /usr/share/nginx/www/jeedom
-sudo cp core/config/common.config.sample.php core/config/common.config.php
-sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
-sudo chown www-data:www-data core/config/common.config.php
-```
+- Platzmangel im Dateisystem (kann überprüft werden, indem der Befehl "df -h" in SSH ausgeführt wird)
+- Problem mit der Beschädigung von Dateien, das häufig nach einem unsicheren Herunterfahren von Jeedom (Stromausfall) auftritt)
+- Speicherprobleme, das System verfügt nicht über Speicher und beendet den aufwendigsten Prozess (häufig die Datenbank)). Dies kann in der OS-Administration gesehen werden, dann sollten Sie einen Kill von "oom" sehen". Wenn dies der Fall ist, reduzieren Sie den Verbrauch von Jeedom, indem Sie Plugins deaktivieren.
 
-J’ai des \{\{…​\}\} partout 
-=======================
-
-La cause la plus fréquente est l’utilisation d’un plugin en version beta
-et Jeedom en stable, ou l’inverse. Pour avoir le détail de l’erreur, il
-faut regarder le log http.error (dans /var/www/html/log).
-
-Lors d’une commande j’ai une roue qui tourne sans s’arrêter 
-===========================================================
-
-Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom
-est en stable. Pour voir l’erreur, il faut faire F12 puis console.
-
-Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH 
-=========================================================================
-
-Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de
-voir avec le SAV pour un souci hardware. Voici la [documentation](https://jeedom.github.io/documentation/howto/fr_FR/recovery_mode_jeedom_smart) pour la Smart
-
-Mon scénario ne s’arrête plus/pas 
-=================================
-
-Il est conseillé de regarder les commandes exécutées par le scénario,
-souvent cela vient d’une commande qui ne se termine pas.
-
-J’ai des instabilités ou des erreurs 504 
-========================================
-
-Vérifiez si votre système de fichiers n’est pas corrompu, en SSH la
-commande est : "sudo dmesg | grep error" .
-
-Je ne vois pas tous mes équipements sur le dashboard 
-====================================================
-
-Souvent cela est dû au fait que les équipements sont affectés à un objet
-qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à
-gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
-
-J’ai l’erreur suivante : SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' 
-====================================================================================================================================
-
-Cela est dû à MySQL qui s’est arrêté, ce n’est pas normal, les cas
-courants sont :
-
--   Manque de place sur le système de fichiers (peut être vérifié en
-    faisant la commande "df -h", en SSH)
-
--   Problème de corruption de fichier(s), ce qui arrive souvent suite à
-    un arrêt non propre de Jeedom (coupure de courant)
-
--   Soucis mémoire, le systeme manque de mémoire et tue le process le plus consommateur (souvent la base de données). Cela peut se voir dans l'administration de l'OS puis dmesg, vous devez voir un kill par "oom". Si c'est le cas il faut réduire la consommation de jeedom en désactivant des plugins.
-
-Malheureusement, il n’y a pas beaucoup de solution si c’est le deuxième
-cas, le mieux étant de récupérer une sauvegarde (disponible dans
-/var/www/html/backup par défaut), de réinstaller Jeedom et
-de restaurer la sauvegarde. Vous pouvez aussi regarder pourquoi MySQL ne
-veut pas démarrer depuis une console SSH :
-
-``` {.bash}
+Leider gibt es nicht viel Lösung, wenn es sich um den zweiten Fall handelt. Das Beste ist, ein Backup wiederherzustellen (standardmäßig in / var / www / html / backup verfügbar), Jeedom neu zu installieren und das Backup wiederherzustellen. Sie können auch sehen, warum MySQL nicht von einer SSH-Konsole booten möchte :
+`` `{.bash}
 sudo su -
-service mysql stop
+MySQL Stop Service
 mysqld --verbose
-```
+`` ''
+Oder konsultieren Sie das Protokoll : /var/log/mysql/error.log
 
-Ou consulter le log : /var/log/mysql/error.log
+### Die Schaltflächen Herunterfahren / Neustart funktionieren nicht
+Bei einer DIY-Installation ist das normal. In SSH müssen Sie den Befehl visudo ausführen und am Ende der Datei hinzufügen : www-data ALL = (ALL)
+NOPASSWD: ALLE.
 
-Les boutons Eteindre/Redémarrer ne fonctionnent pas 
-===================================================
+`` `{.bash}
+sudo service apache2 neu starten
+`` ''
 
-Sur une installation DIY c’est normal. En SSH, il faut faire la commande
-visudo et à la fin du fichier vous devez ajouter : www-data ALL=(ALL)
-NOPASSWD: ALL.
+### Ich sehe keine Plugins vom Markt
+Dies ist der Fall, wenn Ihr Jeedom nicht mit dem Plugin kompatibel ist. Im Allgemeinen wird das Problem durch ein Jeedom-Update behoben.
 
-``` {.bash}
-sudo service apache2 restart
-```
+### Ich habe Timeout-Ausrüstung, sehe sie aber nicht im Dashboard
+Warnungen werden nach Priorität geordnet, von der am wenigsten wichtigen bis zur wichtigsten : Zeitüberschreitung, Batteriewarnung, Batteriegefahr, Warnmeldung, Gefahrenwarnung
 
-Je ne vois pas certains plugins du Market 
-=========================================
-
-Ce genre de cas arrive si votre Jeedom n’est pas compatible avec le
-plugin. En général, une mise à jour de jeedom corrige le souci.
-
-J'ai un équipement en timeout mais je ne le vois pas sur le dashboard
-=========================================
-
-Les alertes sont classées par priorité, de la moins importante à la plus importante : timeout, batterie warning, batterie danger, alerte warning, alerte danger
-
-Mon Jeedom affiche en permanance "En cours de démarrage" même après 1h ? 
-=====================================
-
-Si vous êtes en DIY et sous Debian 9 ou plus, vérifiez qu'il n'y a pas eu une mise à jour d'Apache et donc le retour du privateTmp (visible en faisant `ls /tmp` et voir si il y a un dossier private\*Apache). Si c'est le cas il faut faire :
-
-``` 
+### Mein Jeedom zeigt auch nach 1 Stunde permanent &quot;Start&quot; an ?
+Wenn Sie in DIY und unter Debian 9 oder höher sind, überprüfen Sie, ob es kein Update von Apache und damit die Rückgabe von privateTmp gegeben hat (sichtbar durch Ausführen von `ls / tmp`) und prüfen Sie, ob dies der Fall ist ein privater \* Apache-Ordner). Wenn dies der Fall ist, ist dies erforderlich :
+`` ''
 mkdir /etc/systemd/system/apache2.service.d
-echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
-echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
-``` 
+echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
+`` ''
 
-J'ai un soucis d'heure sur mes historiques
-=========================================
+### Ich habe ein zeitliches Problem mit meiner Geschichte
+Versuchen Sie, den Chrome-Cache zu löschen. Die Anzeige der Historien wird relativ zur Browserzeit berechnet.
 
-Essayez de vider le cache de chrome, l'affichage des historiques est calculé par rapport à l'heure du navigateur.
+### Ich habe den Fehler "Netzwerkprobleme erkannt, Netzwerkneustart"
+Jeedom kann das Gateway nicht finden oder nicht anpingen. Im Allgemeinen passiert es, wenn die ADSL-Box neu gestartet wird (insbesondere Liveboxen) und Jeedom nicht neu gestartet wurde oder schneller als die Box neu gestartet wurde. Aus Sicherheitsgründen teilt er Ihnen mit, dass er ein Problem gefunden hat, und startet den Netzwerkverbindungsprozess neu. Sie können diesen Mechanismus deaktivieren, indem Sie zur Jeedom-Konfiguration wechseln und die Netzwerkverwaltung von Jeedom deaktivieren.
 
-J'ai l'erreur "Soucis réseaux detecté, redemarrage du réseaux"
-=========================================
+### Ich erhalte die Meldung &quot;Fehler beim Sichern der Datenbank. Überprüfen Sie, ob mysqldump vorhanden ist."
+Dies bedeutet, dass Jeedom die Datenbank nicht sichern kann, was auf ein Problem mit der Beschädigung der Datenbank und des Dateisystems hinweisen kann. Es gibt leider keinen Wunderbefehl zu korrigieren. Am besten starten Sie ein Backup und analysieren das Protokoll. In bekannten Fällen von Bedenken haben wir:
 
-Jeedom ne trouve pas ou n'arrive pas a pinguer la gateway. En général ca arrive si la box adsl redémarre (en particulier les livebox) et que Jeeodm n'a pas redemarré ou a redemarré plus vite que la box. Par sécurité il vous dit donc qu'il a trouvé un soucis et relance le processus de connection réseaux. Vous pouvez désactiver ce mécanisme en allant dans la configuration de Jeedom et en désactivant la gestion du réseaux par Jeedom.
+- Eine beschädigte Basistabelle => Es gibt einen schlechten Start, den wir sehen müssen, um zu versuchen, ihn zu reparieren. Wenn er nicht mit der letzten guten Sicherung beginnt (wenn Sie sich auf einer SD-Karte befinden, ist es der richtige Zeitpunkt, ihn zu ändern)
+- Nicht genügend Speicherplatz im Dateisystem =&gt; Schauen Sie sich die Gesundheitsseite an, die Sie darüber informieren können
 
-J'ai le message "Echec durant la sauvegarde de la base de données. Vérifiez que mysqldump est présent."
-=========================================
-Ca veut dire que Jeedom n'arrive pas a backuper la base de données ce qui peut laisser penser à un soucis de corrumption de base de données et de filesystem. Il n'y a malheureusement pas de commande miracle pour corriger. Le mieux est de lancer un backup et d'analyser le log de celui-ci. Dans les cas connus de soucis nous avons:
-
-- une table de la base corrompue => là c'est mal parti il faut voir pour essayer de réparer et si ca marche pas repartir du dernier bon backup (si vous êtes sur carte SD c'est le bon moment pour la changer)
-- pas assez de place sur le filesystem => regarder la page santé celle-ci peut vous l'indiquer
-
-
-Je n'arrive plus à me connecter à mon Jeedom
-=========================================
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les ip sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgrès tout ca vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe (voir dans les tuto/how to)
-
-J'ai des erreurs de type "Class 'eqLogic' not found", des fichiers semblent être manquant ou j'ai une page blanche
-=========================================
-C'est une erreur assez grave le plus simple est de faire 
-
-``` 
-mkdir -p /root/tmp/
-cd /root/tmp
+### Ich habe Fehler vom Typ &quot;Klasse &#39;eqLogic&#39; nicht gefunden&quot;, Dateien scheinen zu fehlen oder ich habe eine leere Seite
+Es ist ein ziemlich schwerwiegender Fehler, der am einfachsten zu machen ist
+`` ''
+mkdir -p / root / tmp /
+cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
-unzip master.zip
-cp -R /root/tmp/core-master/* /var/www/html
-rm -rf /root/tmp/core-master
-```
+entpacke master.zip
+cp -R / root / tmp / core-master / * / var / www / html
+rm -rf / root / tmp / core-master
+`` ''
+
+### Ich habe den Fehler in Szenario_Ausführung MYSQL_ATTR_INIT_COMMAND
+Bei der Verwaltung des Jeedom-Teils OS / DB muss dann in der Systemkonsole vorgenommen werden :
+`` ''
+Ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+`` ''
+
+### Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : "E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden"
+
+Du musst :
+
+- Jeedom neu starten
+- Gehen Sie zur Verwaltung (Schaltfläche mit gekerbtem Rad oben rechts, dann Konfiguration in Version 3 oder Setup -> System -> Konfiguration in Version 4))
+- Wechseln Sie zur Registerkarte OS / DB
+- Starten Sie die Systemadministration
+- Klicken Sie auf Dpkg konfigurieren
+- Warten Sie 10 Minuten
+- Starten Sie die Abhängigkeiten der blockierenden Plugins neu
+
+### Ich habe diesen Fehler bei der Installation von Plugin-Abhängigkeiten : "von pip._internal import main"
+
+Es ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen
+
+`` ''``
+sudo easy_install pip
+sudo easy_install3 pip
+`` ''``
+
+Starten Sie dann die Abhängigkeiten neu

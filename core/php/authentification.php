@@ -19,22 +19,22 @@ require_once __DIR__ . '/core.inc.php';
 
 $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
 
-$session_lifetime = $configs['session_lifetime'];
-if (!is_numeric($session_lifetime)) {
-	$session_lifetime = 24;
-}
-ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
-ini_set('session.use_cookies', 1);
-ini_set('session.cookie_httponly', 1);
-
-if (isset($_COOKIE['sess_id'])) {
-	session_id($_COOKIE['sess_id']);
+if (!isset($_SESSION)) {
+	$session_lifetime = $configs['session_lifetime'];
+	if (!is_numeric($session_lifetime)) {
+		$session_lifetime = 24;
+	}
+	ini_set('session.gc_maxlifetime', $session_lifetime * 3600);
+	ini_set('session.cookie_lifetime', $session_lifetime * 3600);
+	ini_set('session.use_cookies', 1);
+	ini_set('session.cookie_httponly', 1);
+	ini_set('session.cookie_samesite','Lax');
+	if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
+		ini_set('session.cookie_secure',1);
+	}
 }
 @session_start();
 $_SESSION['ip'] = getClientIp();
-if (!headers_sent()) {
-	setcookie('sess_id', session_id(), time() + 24 * 3600, "/", '', false, true);
-}
 @session_write_close();
 if (user::isBan()) {
 	header("Statut: 404 Page non trouvée");
@@ -47,14 +47,13 @@ if (user::isBan()) {
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
-		setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/", '', false, true);
-		if (isset($_COOKIE['jeedom_token'])) {
-			@session_start();
-			$_SESSION['jeedom_token'] = $_COOKIE['jeedom_token'];
-			@session_write_close();
+		if (version_compare(PHP_VERSION, '7.3') >= 0) {
+			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+		}else{
+			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 		}
 	} else {
-		setcookie('registerDevice', '', time() - 3600, "/", '', false, true);
+		setcookie('registerDevice', '');
 	}
 }
 
@@ -74,6 +73,9 @@ if (!isConnect() && init('auth') != '') {
 
 if (init('logout') == 1) {
 	logout();
+	echo '<script type="text/javascript">';
+	echo "window.location.href='index.php';";
+	echo '</script>';
 }
 
 /* * **************************Definition des function************************** */
@@ -144,19 +146,19 @@ function loginByHash($_key) {
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
-	if (!isset($_COOKIE['jeedom_token'])) {
-		setcookie('jeedom_token', ajax::getToken(), time() + 365 * 24 * 3600, "/", '', false, true);
-	}
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
 	return true;
 }
 
 function logout() {
 	@session_start();
-	setcookie('sess_id', '', time() - 3600, "/", '', false, true);
-	setcookie('PHPSESSID', '', time() - 3600, "/", '', false, true);
-	setcookie('registerDevice', '', time() - 3600, "/", '', false, true);
-	setcookie('jeedom_token', '', time() - 3600, "/", '', false, true);
+	if (version_compare(PHP_VERSION, '7.3') >= 0) {
+		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+		setcookie('PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+	}else{
+		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+		setcookie('PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+	}
 	session_unset();
 	session_destroy();
 	return;

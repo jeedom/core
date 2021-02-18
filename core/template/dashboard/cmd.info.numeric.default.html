@@ -1,101 +1,42 @@
-<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="Date de valeur : #valueDate#<br/>Date de collecte : #collectDate#" >
-<div class="title #hide_name#">
-  <span class="cmdName">#name_display#</span>
-</div>
-<div class="content-sm">
-  <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
-</div>
-<div class="cmdStats #hide_history#">
-  <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
-</div>
-<script>
-  jeedom.cmd.update['#id#'] = function(_options) {
-    $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-    $('.cmd[data-cmd_uid=#uid#] .gauge').highcharts().series[0].points[0].update(_options.display_value)
-  }
+<div class="cmd cmd-widget arcgauge #history#" data-type="info" data-subtype="numeric" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#" title="{{Date de valeur}} : #valueDate#<br/>{{Date de collecte}} : #collectDate#" >
+  <div class="title #hide_name#">
+    <span class="cmdName">#name_display#</span>
+  </div>
+  <div class="content-sm">
+    <div class="gauge cursor #history#" data-cmd_id="#id#"></div>
+    <div class="gaugeValue" data-cmd_id="#id#"></div>
+  </div>
+  <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
+  <div class="cmdStats #hide_history#">
+    <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+  </div>
 
-  if (is_numeric('#state#')) {
-    $('.cmd[data-cmd_uid=#uid#] .gauge').empty().highcharts({
-      chart: {
-        style: {
-          fontFamily: 'Roboto'
-        },
-        type: 'solidgauge',
-        plotBackgroundColor: null,
-        plotBackgroundImage: null,
-        backgroundColor: null,
-        plotBorderWidth: 0,
-        plotShadow: false,
-        height: 40,
-        spacingTop: 0,
-        spacingLeft: 0,
-        spacingRight: 0,
-        spacingBottom: 0,
-        borderWidth : 0
-      },
-      title: null,
-      pane: {
-        center: ['50%', '100%'],
-        size: 80,
-        startAngle: - 90,
-        endAngle: 90,
-        background: {
-          backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-          innerRadius: '90%',
-          outerRadius: '100%',
-          shape: 'arc',
-          borderWidth: 0
-        }
-      },
-      tooltip: {
-        enabled: false
-      },
-      // the value axis
-      yAxis: {
-        stops: [
-        [0, '#cmdColor#']
-        ],
-        lineWidth: 0,
-        minorTickInterval: null,
-        tickPixelInterval: 400,
-        labels : {enabled: false},
-        tickWidth: 0,
-        min: ('#minValue#' == '') ? 0 : parseInt('#minValue#'),
-        max: ('#maxValue#' == '') ? 100 : parseInt('#maxValue#'),
-        title: {
-          text: ''
-        }
-      },
-      labels : {enabled: false},
-      plotOptions: {
-        solidgauge: {
-          dataLabels: {
-            y: 9,
-            borderWidth: 0,
-            useHTML: true
-          }
-        }
-      },
-      credits: {
-        enabled: false
-      },
-      exporting : {
-        enabled: false
-      },
-      series: [{
-        name: '',
-        data: [Math.round(parseFloat('#state#') * 10) / 10],
-        radius: 92,
-        innerRadius: 72,
-        dataLabels: {
-          y: 6,
-          format: '<span>{y}</span> <span>#unite#</span>'
-        },
-      }]
-    })
-  } else {
-    $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>')
-  }
-</script>
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
+      var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
+      if (_options.display_value >= maxValue) {
+        maxValue = _options.display_value
+        var angle = 0
+      } else if (_options.display_value <= minValue) {
+        minValue = _options.display_value
+        var angle = -180
+      } else {
+        var angle = (((_options.display_value - minValue) * 180) / (maxValue - minValue)) - 180
+      }
+      cmd.find('.gaugeValue').css('transform', 'scale(0.94) rotate('+angle+'deg)')
+      cmd.find('.state strong').first().text(_options.display_value)
+    }
 
+    if (is_numeric('#state#')) {
+      jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#'})
+    } else {
+      $('.cmd[data-cmd_uid=#uid#] .gauge').append('<center><span class="label label-danger">#state#</span></center>')
+    }
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#] .gaugeValue').css('border-color', '#color#')
+    }
+  </script>
 </div>

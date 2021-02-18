@@ -1,0 +1,51 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="other" data-template="binarySwitch" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+  <center>
+    <div class="widthx2">
+      <span class="cmdName #hide_name#">#valueName#</span>
+      <label class="binarySwitch">
+        <input type="checkbox" class="binarySwitch" data-role="none">
+        <span class="binarySwitch">
+          <span class="binarySwitchHandle"></span>
+        </span>
+      </label>
+    </div>
+  </center>
+  <script>
+    //if not name, centered:
+    $('.cmd[data-cmd_id=#id#]').find('.cmdName.hidden').parent().removeClass('widthx2')
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').css('background', '#color#')
+    }
+    if ($.issetWidgetOptParam('#color_switch#', 'color_switch')) {
+      $('.cmd[data-cmd_uid=#uid#] span.binarySwitchHandle').style('background-color', '#color_switch#', 'important')
+    }
+
+    jeedom.cmd.update['#id#'] = function(_options) {
+      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
+        if (jeedom.cmd.normalizeName('#name#') == 'on') {
+          $('.cmd[data-cmd_id=#id#]').hide()
+        } else {
+          $('.cmd[data-cmd_id=#id#]').show()
+        }
+        $('.cmd[data-cmd_id=#id#]').find('input.binarySwitch').prop('checked', true)
+
+      } else if (['0', 0, 'off'].includes(_options.display_value)) {
+        if (jeedom.cmd.normalizeName('#name#') == 'off') {
+          $('.cmd[data-cmd_id=#id#]').hide()
+        } else {
+          $('.cmd[data-cmd_id=#id#]').show()
+        }
+        $('.cmd[data-cmd_id=#id#]').find('input.binarySwitch').prop('checked', false)
+      }
+    }
+
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
+
+    $('.cmd[data-cmd_uid=#uid#] span.binarySwitch').off().on('click', function (event) {
+      jeedom.cmd.execute({id: '#id#'})
+      event.preventDefault()
+      event.stopPropagation()
+    })
+  </script>
+</div>

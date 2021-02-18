@@ -30,40 +30,45 @@ class repo_samba {
 		'backup' => true,
 		'hasConfiguration' => true,
 		'core' => true,
-	);
-	
-	public static $_configuration = array(
-		'parameters_for_add' => array(
-			'path' => array(
-				'name' => 'Chemin',
-				'type' => 'input',
-			),
-		),
-		'configuration' => array(
-			'backup::ip' => array(
-				'name' => '[Backup] IP',
-				'type' => 'input',
-			),
-			'backup::username' => array(
-				'name' => '[Backup] Utilisateur',
-				'type' => 'input',
-			),
-			'backup::password' => array(
-				'name' => '[Backup] Mot de passe',
-				'type' => 'password',
-			),
-			'backup::share' => array(
-				'name' => '[Backup] Partage',
-				'type' => 'input',
-			),
-			'backup::folder' => array(
-				'name' => '[Backup] Chemin',
-				'type' => 'input',
-			),
-		),
+		'hasRetentionDay' => true,
+		'test' => true
 	);
 	
 	/*     * ***********************Méthodes statiques*************************** */
+	
+	public static function getConfigurationOption(){
+		return array(
+			'parameters_for_add' => array(
+				'path' => array(
+					'name' => __('Chemin',__FILE__),
+					'type' => 'input',
+				),
+			),
+			'configuration' => array(
+				'backup::ip' => array(
+					'name' => __('[Backup] IP',__FILE__),
+					'type' => 'input',
+				),
+				'backup::username' => array(
+					'name' => __('[Backup] Utilisateur',__FILE__),
+					'type' => 'input',
+				),
+				'backup::password' => array(
+					'name' => __('[Backup] Mot de passe',__FILE__),
+					'type' => 'password',
+				),
+				'backup::share' => array(
+					'name' => __('[Backup] Partage',__FILE__),
+					'type' => 'input',
+				),
+				'backup::folder' => array(
+					'name' => __('[Backup] Chemin',__FILE__),
+					'type' => 'input',
+				),
+			),
+		);
+	}
+	
 	
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
@@ -159,8 +164,18 @@ class repo_samba {
 		return array_reverse($return);
 	}
 	
+	public static function test() {
+		$cmd = repo_samba::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';ls', 'backup');
+		try {
+			$result = explode("\n", com_shell::execute($cmd));
+			return True;
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
+	}
+	
 	public static function cleanBackupFolder() {
-		$timelimit = strtotime('-' . config::byKey('backup::keepDays') . ' days');
+		$timelimit = strtotime('-' . config::byKey('samba::keepDays') . ' days');
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
 			if($file['filename'] == '..' || $file['filename'] == '.'){
 				continue;

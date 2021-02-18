@@ -6,7 +6,7 @@ $count = 0;
 $globalhtml = '';
 $totalNok = 0;
 $totalPending = 0;
-foreach (plugin::listPlugin(true) as $plugin) {
+foreach ((plugin::listPlugin(true)) as $plugin) {
 	$plugin_id = $plugin->getId();
 	$hasSpecificHealth = 0;
 	$hasSpecificHealthIcon = '';
@@ -45,7 +45,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		if ($plugin->getHasDependency() == 1) {
 			$dependancy_info = $plugin->dependancy_info();
 			$html .= '<tr>';
-			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+			$html .= '<td>';
 			$html .= '{{Dépendances}}';
 			$html .= '</td>';
 			switch ($dependancy_info['state']) {
@@ -78,10 +78,10 @@ foreach (plugin::listPlugin(true) as $plugin) {
 				$alert = 'alert-success';
 			}
 			$html .= '<tr>';
-			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+			$html .= '<td>';
 			$html .= '{{Configuration démon}}';
 			if ($deamon_info['launchable_message'] != '') {
-				$html .= ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$deamon_info['launchable_message'].'}}"></i></sup>';
+				$html .= ' <sup><i class="fas fa-question-circle tooltips" title="'.$deamon_info['launchable_message'].'"></i></sup>';
 			}
 			$html .= '</td>';
 			switch ($deamon_info['launchable']) {
@@ -99,7 +99,7 @@ foreach (plugin::listPlugin(true) as $plugin) {
 			}
 			$html .= '</tr>';
 			$html .= '<tr>';
-			$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+			$html .= '<td>';
 			$html .= '{{Statut démon}}';
 			$html .= '</td>';
 			switch ($deamon_info['state']) {
@@ -124,12 +124,12 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
-			foreach ($plugin_id::health() as $result) {
+			foreach (($plugin_id::health()) as $result) {
 				$html .= '<tr>';
-				$html .= '<td style="font-weight:bold;text-align:right;padding-right:12px;width:35%;">';
+				$html .= '<td>';
 				$html .= $result['test'];
 				if ($result['advice'] != '') {
-					$html .= ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$result['advice'].'}}"></i></sup>';
+					$html .= ' <sup><i class="fas fa-question-circle tooltips" title="'.$result['advice'].'"></i></sup>';
 				}
 				$html .= '</td>';
 				if ($result['state']) {
@@ -180,96 +180,99 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	}
 }
 ?>
+
 <br/>
 <div class="panel-group" id="accordionHealth">
 	<div class="panel panel-default" style="border-left: 1px solid var(--logo-primary-color);border-color: var(--logo-primary-color)!important;">
 		<div class="panel-heading">
 			<h3 class="panel-title cursor">
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_jeedom">
-					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de Jeedom}}</span></a>
-					<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="Benchmark Jeedom"></i>
-				</h3>
-			</div>
-			<div id="health_jeedom" class="panel-collapse collapse in" aria-expanded="true">
-				<div class="panel-body">
-					<table id="jeedomTable" class="table table-condensed table-bordered">
-						<tbody>
-							<?php
-							$count = 0;
-							foreach (jeedom::health() as $datas) {
-								if ($count == 0) echo '<tr>';
-								echo '<td style="font-weight:bold;text-align:right;padding-right:12px;width:20%;">';
-								echo $datas['name'];
-								if ($datas['comment'] != '') {
-									echo ' <sup><i class="fas fa-question-circle tooltips" title="{{'.$datas['comment'].'}}"></i></sup>';
+					<i class="icon divers-caduceus3 success" style="font-size:22px;"></i> <span style="font-size:18px;">{{Santé de}} <?php echo config::byKey('product_name') ?></span>
+				</a>
+				<i id="bt_benchmarkJeedom" class="fas fa-tachometer-alt pull-right cursor" title="{{Benchmark Jeedom}}"></i>
+			</h3>
+		</div>
+		<div id="health_jeedom" class="panel-collapse collapse in" aria-expanded="true">
+			<div class="panel-body">
+				<table id="jeedomTable" class="table table-condensed table-bordered">
+					<tbody>
+						<?php
+						$count = 0;
+						foreach ((jeedom::health()) as $datas) {
+							if ($count == 0) echo '<tr>';
+							echo '<td>';
+							echo $datas['name'];
+							if ($datas['comment'] != '') {
+								echo ' <sup><i class="fas fa-question-circle tooltips" title="'.$datas['comment'].'"></i></sup>';
+							}
+							echo '</td>';
+							if ($datas['state'] === 2) {
+								echo '<td class="alert-warning">';
+							} else if ($datas['state']) {
+								echo '<td class="alert-success">';
+							} else {
+								echo '<td class="alert-danger">';
+							}
+							echo $datas['result'];
+							echo '</td>';
+							$count ++;
+							if ($count == 2) $count = 0;
+							if ($count == 0) echo '</tr>';
+						}
+						echo '</tr>';
+						if ($globalhtml != '') {
+							echo '<tr><td>{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
+							if ($totalNok == 0 && $totalPending == 0) {
+								echo '<td class="alert alert-success">{{OK}}</td>';
+								echo '<td></td>';
+							} else if ($totalNok == 0 && $totalPending != 0) {
+								echo '<td class="alert alert-warning">' . $totalPending . ' {{En cours}}</td>';
+							} else if ($totalNok != 0) {
+								$pending = '';
+								if ($totalPending != 0) {
+									$pending = ' {{et}} ' . $totalPending . ' {{En cours}}';
 								}
-								echo '</td>';
-								if ($datas['state'] === 2) {
-									echo '<td class="alert-warning" style="width:20%;">';
-								} else if ($datas['state']) {
-									echo '<td class="alert-success" style="width:20%;">';
-								} else {
-									echo '<td class="alert-danger" style="width:20%;">';
-								}
-								echo $datas['result'];
-								echo '</td>';
-								$count ++;
-								if ($count == 2) $count = 0;
-								if ($count == 0) echo '</tr>';
+								echo '<td class="alert alert-danger">' . $totalNok . ' {{NOK}}' . $pending . '</td>';
 							}
 							echo '</tr>';
-							if ($globalhtml != '') {
-								echo '<tr><td style="font-weight:bold;text-align:right;padding-right:12px;">{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
-								if ($totalNok == 0 && $totalPending == 0) {
-									echo '<td class="alert alert-success">{{OK}}</td>';
-									echo '<td></td>';
-								} else if ($totalNok == 0 && $totalPending != 0) {
-									echo '<td class="alert alert-warning">' . $totalPending . ' {{En cours}}</td>';
-								} else if ($totalNok != 0) {
-									$pending = '';
-									if ($totalPending != 0) {
-										$pending = ' {{et}} ' . $totalPending . ' {{En cours}}';
-									}
-									echo '<td class="alert alert-danger">' . $totalNok . ' {{NOK}}' . $pending . '</td>';
-								}
-								echo '</tr>';
-							}
-							?>
-						</tbody>
-					</table>
-				</div>
+						}
+						?>
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="panel panel-default" style="border-left: 1px solid var(--logo-primary-color);border-color: var(--logo-primary-color)!important;">
-			<div class="panel-heading">
-				<h3 class="panel-title cursor">
-					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_phpextension">
-						<i class="fab fa-php" style="font-size:22px;"></i> <span style="font-size:18px;">{{Extensions php}}</span></a>
-					</h3>
-				</div>
-				<div id="health_phpextension" class="panel-collapse collapse" aria-expanded="true">
-					<div class="panel-body">
-						<table id="jeedomTable" class="table table-condensed table-bordered">
-							<tbody>
-								<?php
-								foreach (get_loaded_extensions() as $name) {
-									if ($count == 0) echo '<tr>';
-									echo '<td style="font-weight:bold;text-align:right;padding-right:12px;width:10%;">';
-									echo $name;
-									echo '</td>';
-									$count ++;
-									if ($count == 10) $count = 0;
-									if ($count == 0) echo '</tr>';
-								}
-								?>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			<?php
-			echo $globalhtml;
-			?>
+	</div>
+	<div class="panel panel-default" style="border-left: 1px solid var(--logo-primary-color);border-color: var(--logo-primary-color)!important;">
+		<div class="panel-heading">
+			<h3 class="panel-title cursor">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#health_phpextension">
+					<i class="fab fa-php" style="font-size:22px;"></i> <span style="font-size:18px;">{{Extensions php}}</span>
+				</a>
+			</h3>
 		</div>
-		<?php	include_file("desktop", "health", "js");?>
-		
+		<div id="health_phpextension" class="panel-collapse collapse" aria-expanded="true">
+			<div class="panel-body">
+				<table id="jeedomTable" class="table table-condensed table-bordered">
+					<tbody>
+						<?php
+						foreach ((get_loaded_extensions()) as $name) {
+							if ($count == 0) echo '<tr>';
+							echo '<td>';
+							echo $name;
+							echo '</td>';
+							$count ++;
+							if ($count == 10) $count = 0;
+							if ($count == 0) echo '</tr>';
+						}
+						?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<?php
+	echo $globalhtml;
+	?>
+</div>
+
+<?php	include_file("desktop", "health", "js");?>

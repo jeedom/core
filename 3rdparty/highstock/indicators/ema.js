@@ -1,5 +1,5 @@
 /*
-  Highcharts JS v7.1.2 (2019-06-03)
+ Highstock JS v8.2.0 (2020-08-20)
 
  Indicator series type for Highstock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/ema",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,b,g,h){a.hasOwnProperty(b)||(a[b]=h.apply(null,g))}a=a?a._modules:{};b(a,"indicators/ema.src.js",[a["parts/Globals.js"]],function(a){var b=a.isArray,g=a.seriesType,h=a.correctFloat;
-g("ema","sma",{params:{index:3,period:9}},{accumulatePeriodPoints:function(a,d,c){for(var p=0,b=0,e;b<a;)e=0>d?c[b]:c[b][d],p+=e,b++;return p},calculateEma:function(a,b,c,k,l,e,m){a=a[c-1];b=0>e?b[c-1]:b[c-1][e];k=void 0===l?m:h(b*k+l*(1-k));return[a,k]},getValues:function(a,d){var c=d.period,k=a.xData,l=(a=a.yData)?a.length:0,e=2/(c+1),m=[],g=[],h=[],n=-1,f;if(l<c)return!1;b(a[0])&&(n=d.index?d.index:0);for(d=this.accumulatePeriodPoints(c,n,a)/c;c<l+1;c++)f=this.calculateEma(k,a,c,e,f,n,d),m.push(f),
-g.push(f[0]),h.push(f[1]),f=f[1];return{values:m,xData:g,yData:h}}})});b(a,"masters/indicators/ema.src.js",[],function(){})});
+(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/ema",["highcharts","highcharts/modules/stock"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,b,l,e){a.hasOwnProperty(b)||(a[b]=e.apply(null,l))}a=a?a._modules:{};b(a,"Stock/Indicators/EMAIndicator.js",[a["Core/Utilities.js"]],function(a){var b=a.correctFloat,l=a.isArray;
+a=a.seriesType;a("ema","sma",{params:{index:3,period:9}},{accumulatePeriodPoints:function(a,d,c){for(var e=0,b=0,f;b<a;)f=0>d?c[b]:c[b][d],e+=f,b++;return e},calculateEma:function(a,d,c,k,h,f,q){a=a[c-1];d=0>f?d[c-1]:d[c-1][f];k="undefined"===typeof h?q:b(d*k+h*(1-k));return[a,k]},getValues:function(a,b){var c=b.period,d=a.xData,h=(a=a.yData)?a.length:0,f=2/(c+1),e=[],n=[],p=[],m=-1;if(!(h<c)){l(a[0])&&(m=b.index?b.index:0);b=this.accumulatePeriodPoints(c,m,a);for(b/=c;c<h+1;c++){var g=this.calculateEma(d,
+a,c,f,g,m,b);e.push(g);n.push(g[0]);p.push(g[1]);g=g[1]}return{values:e,xData:n,yData:p}}}});""});b(a,"masters/indicators/ema.src.js",[],function(){})});
 //# sourceMappingURL=ema.js.map

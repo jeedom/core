@@ -52,7 +52,7 @@ jeedom.cmd.execute = function(_params) {
   }
   var notify = _params.notify || true;
   if (notify) {
-    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('.eqLogic-widget');
+    var eqLogic = $('.cmd[data-cmd_id=' + _params.id + ']').closest('div.eqLogic-widget');
     jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
@@ -100,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else if(data.code == -32006){
@@ -140,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
         }else{
@@ -313,34 +313,35 @@ jeedom.cmd.test = function(_params) {
 
 jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
-  if(cmds.length > 0){
-    $(cmds).each(function(){
-      var cmd = $(this);
-      if($(this).closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
-        return true;
-      }
-      jeedom.cmd.toHtml({
-        global : false,
-        id : $(this).attr('data-cmd_id'),
-        version : $(this).attr('data-version'),
-        success : function(data){
-          var html = $(data.html);
-          var uid = html.attr('data-cmd_uid');
-          if(uid != 'undefined'){
-            cmd.attr('data-cmd_uid',uid);
-          }
-          cmd.empty().html(html.children());
-          cmd.attr("class", html.attr("class"));
-        }
-      })
-    });
+  if(cmds.length == 0){
+    return;
   }
+  $(cmds).each(function(){
+    var cmd = $(this);
+    if(cmd.closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+      return true;
+    }
+    jeedom.cmd.toHtml({
+      global : false,
+      id : $(this).attr('data-cmd_id'),
+      version : $(this).attr('data-version'),
+      success : function(data){
+        var html = $(data.html);
+        var uid = html.attr('data-cmd_uid');
+        if(uid != 'undefined'){
+          cmd.attr('data-cmd_uid',uid);
+        }
+        cmd.empty().html(html.children()).attr("class", html.attr("class"));
+      }
+    })
+  });
 }
 
 jeedom.cmd.refreshValue = function(_params) {
+  var cmd = null;
   for(var i in _params){
-    var cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
-    if (cmd.html() == undefined || cmd.hasClass('noRefresh')) {
+    cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
+    if (cmd.hasClass('noRefresh')) {
       continue;
     }
     if (!isset(jeedom.cmd.update) || !isset(jeedom.cmd.update[_params[i].cmd_id])) {
@@ -349,6 +350,27 @@ jeedom.cmd.refreshValue = function(_params) {
     jeedom.cmd.update[_params[i].cmd_id](_params[i]);
   }
 };
+
+jeedom.cmd.getWidgetHelp = function (_params) {
+  var paramsRequired = ['id', 'version'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getWidgetHelp',
+    id: _params.id,
+    version: _params.version,
+    widgetName: _params.widgetName
+  };
+  $.ajax(paramsAJAX);
+}
 
 jeedom.cmd.toHtml = function (_params) {
   var paramsRequired = ['id', 'version'];
@@ -491,6 +513,34 @@ jeedom.cmd.byId = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.cmd.getHumanCmdName = function(_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {
+    pre_success: function(data) {
+      jeedom.cmd.cache.byId[data.result.id] = data.result;
+      return data;
+    }
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
+    params.success(jeedom.cmd.cache.byId[params.id]);
+    return;
+  }
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'getHumanCmdName',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
+};
+
 jeedom.cmd.byHumanName = function(_params) {
   var paramsRequired = ['humanName'];
   var paramsSpecifics = {
@@ -534,6 +584,80 @@ jeedom.cmd.usedBy = function(_params) {
   paramsAJAX.data = {
     action: 'usedBy',
     id: _params.id
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.dropInflux = function(_params) {
+  var paramsRequired = ['cmd_id'];
+  var paramsSpecifics = {};
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'dropInflux',
+    cmd_id: _params.cmd_id
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.historyInflux = function(_params) {
+  var paramsRequired = ['cmd_id'];
+  var paramsSpecifics = {};
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'historyInflux',
+    cmd_id: _params.cmd_id
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.dropDatabaseInflux = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'dropDatabaseInflux'
+  };
+  $.ajax(paramsAJAX);
+};
+
+jeedom.cmd.historyInfluxAll = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+   try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
+  paramsAJAX.data = {
+    action: 'historyInfluxAll'
   };
   $.ajax(paramsAJAX);
 };
@@ -617,7 +741,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -655,7 +779,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
@@ -705,10 +829,13 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   }
   mod_insertCmd.setOptions(_options);
   $("#mod_insertCmdValue").dialog('option', 'buttons', {
-    "Annuler": function() {
+    "{{Annuler}}": function() {
+      if (isset(_options.returnCancel) && 'function' == typeof(_callback)) {
+        _callback({});
+      }
       $(this).dialog("close");
     },
-    "Valider": function() {
+    "{{Valider}}": function() {
       var retour = {};
       retour.cmd = {};
       retour.human = mod_insertCmd.getValue();
@@ -854,72 +981,87 @@ jeedom.cmd.getDeadCmd = function(_params) {
   $.ajax(paramsAJAX);
 };
 
+/* time widgets */
+jeedom.cmd.formatMomentDuration = function(_duration) {
+  //moment.locale(jeedom_langage.substring(0, 2))
+  var durationString = ''
+  var used = 0
 
-jeedom.cmd.displayDuration = function(_date,_el){
-  var arrDate = _date.split(/-|\s|:/);
-  var timeInMillis = new Date(arrDate[0], arrDate[1] -1, arrDate[2], arrDate[3], arrDate[4], arrDate[5]).getTime();
-  _el.attr('data-time',timeInMillis);
-  if(_el.attr('data-interval') != undefined){
-    clearInterval(_el.attr('data-interval'));
+  if (_duration._data.years > 0) {
+    durationString += _duration._data.years + jeedom.config.locales[jeedom_langage].duration.year
+    used++
   }
-  if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-    var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-    var j = Math.floor(d / 86400);
-    var h = Math.floor(d % 86400 / 3600);
-    var m = Math.floor(d % 3600 / 60);
-    var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-    if (d > 86399) {
-      var interval = 3600000;
-      _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
-    } else if (d > 3599 && d < 86400) {
-      var interval = 60000;
-      _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
+  if (_duration._data.months > 0) {
+    durationString += _duration._data.months + jeedom.config.locales[jeedom_langage].duration.month
+    used++
+  }
+  if (_duration._data.days > 0) {
+    durationString += _duration._data.days + jeedom.config.locales[jeedom_langage].duration.day
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration._data.hours > 0) {
+    durationString += _duration._data.hours + jeedom.config.locales[jeedom_langage].duration.hour
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration._data.minutes > 0) {
+    durationString += _duration._data.minutes + jeedom.config.locales[jeedom_langage].duration.minute
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration._data.seconds > 0) {
+    durationString += _duration._data.seconds + jeedom.config.locales[jeedom_langage].duration.second
+    used++
+  }
+
+  return durationString
+}
+
+jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
+  if (_type == 'date') {
+    moment.locale(jeedom_langage.substring(0, 2))
+    if (isset(jeedom.config.locales[jeedom_langage].calendar)) {
+      var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales[jeedom_langage].calendar)
     } else {
-      var interval = 10000;
-      _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
+      var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
     }
-    var myinterval = setInterval(function(){
-      var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-      var j = Math.floor(d / 86400);
-      var h = Math.floor(d % 86400 / 3600);
-      var m = Math.floor(d % 3600 / 60);
-      var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-      if (d > 86399) {
-        var interval = 3600000;
-        _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
-      } else if (d > 3599 && d < 86400) {
-        var interval = 60000;
-        _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
-      } else {
-        var interval = 10000;
-        _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
-      }
-    }, interval);
-    _el.attr('data-interval',myinterval);
-  }else{
-    _el.empty().append("0 s");
-    var interval = 10000;
-    var myinterval = setInterval(function(){
-      if(_el.attr('data-time') < (Date.now()+ clientServerDiffDatetime)){
-        var d = ((Date.now() + clientServerDiffDatetime) - _el.attr('data-time')) / 1000;
-        var j = Math.floor(d / 86400);
-        var h = Math.floor(d % 86400 / 3600);
-        var m = Math.floor(d % 3600 / 60);
-        var s = Math.floor( d - (j*86400 + h*3600 + m*60) );
-        if (d > 86399) {
-          interval = 3600000;
-          _el.empty().append(((j + " j ") + ((h < 10 ? "0" : "") + h + " h")));
-        } else if (d > 3599 && d < 86400) {
-          interval = 60000;
-          _el.empty().append(((h + " h ") + ((m < 10 ? "0" : "") + m + " m")));
-        } else {
-          interval = 10000;
-          _el.empty().append(((m > 0 ? m + " m " : "") + (s > 0 ? (m > 0 && s < 10 ? "0" : "") + s + " s " : "0 s")));
-        }
-      }else{
-        _el.empty().append("0 s");
-      }
-    }, interval);
-    _el.attr('data-interval',myinterval);
+    _el.empty().append(dateString)
+    return true
   }
-};
+
+  if (_el.attr('data-interval') != undefined) {
+    clearInterval(_el.attr('data-interval'))
+  }
+
+  var tsDate = moment(_date).unix() * 1000
+  var now = Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
+
+  var interval = 10000
+  //_past more than one second ?
+  if (now - tsDate > 1000) {
+    var duration = moment.duration(moment() - moment(_date))
+    var durationSec = duration._milliseconds / 1000
+    if (durationSec > 86399) {
+      interval = 3600000
+    } else if (durationSec > 3599) {
+      interval = 60000
+    }
+    var durationString = jeedom.cmd.formatMomentDuration(duration)
+  } else {
+    var durationString = "0"+jeedom.config.locales[jeedom_langage].duration.second
+  }
+  _el.empty().append(durationString)
+
+  //set refresh interval:
+  var myinterval = setInterval(function() {
+    var duration = moment.duration(moment() - moment(_date))
+    var durationString = jeedom.cmd.formatMomentDuration(duration)
+    _el.empty().append(durationString)
+  }, interval)
+
+  _el.attr('data-interval', myinterval)
+}

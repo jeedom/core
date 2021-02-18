@@ -79,7 +79,7 @@ class cron {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 			$value['option'] = $_option;
@@ -102,7 +102,7 @@ class cron {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron
 		WHERE class=:class
-		AND function=:function';
+		AND `function`=:function';
 		if ($_option != '') {
 			$value['option'] = '%' . $_option . '%';
 			$sql .= ' AND `option` LIKE :option';
@@ -185,7 +185,7 @@ class cron {
 	}
 	
 	public static function convertDateToCron($_date) {
-		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' * ' . date('Y', $_date);
+		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' *';
 	}
 	
 	/*     * *********************Méthodes d'instance************************* */
@@ -355,6 +355,9 @@ class cron {
 	* @return boolean
 	*/
 	public function isDue() {
+		if(((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4){
+			return false;
+		}
 		//check if already sent on that minute
 		$last = strtotime($this->getLastRun());
 		$now = time();

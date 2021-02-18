@@ -120,7 +120,7 @@ class scenarioElement {
 	}
 	
 	public function remove() {
-		foreach ($this->getSubElement() as $subelement) {
+		foreach(($this->getSubElement()) as $subelement) {
 			$subelement->remove();
 		}
 		DB::remove($this);
@@ -139,10 +139,10 @@ class scenarioElement {
 			}
 			$result = $this->getSubElement('if')->execute($_scenario);
 			if (is_string($result) && strlen($result) > 1) {
-				$_scenario->setLog(__('Expression non valide : ', __FILE__) . $result);
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result);
 				$expresssion_str = '';
 				if ($this->getSubElement('if')->getSubtype() == 'condition' && is_array($this->getSubElement('if')->getExpression())) {
-					foreach ($this->getSubElement('if')->getExpression() as $expression) {
+					foreach(($this->getSubElement('if')->getExpression()) as $expression) {
 						$expresssion_str = $expression->getExpression();
 					}
 				}
@@ -211,7 +211,7 @@ class scenarioElement {
 				$cmd .= ' scenario_id=' . $_scenario->getId();
 				$cmd .= ' scenarioElement_id=' . $this->getId();
 				$cmd .= ' >> ' . log::getPathToLog('scenario_element_execution') . ' 2>&1 &';
-				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' lancement immédiat ', __FILE__));
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduleNow']['txt'] );
 				system::php($cmd);
 			} else {
 				$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
@@ -231,7 +231,7 @@ class scenarioElement {
 				$next = strtotime('+ ' . $time . ' min');
 				$cron->setSchedule(cron::convertDateToCron($next));
 				$cron->save();
-				$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduledOn']['txt'] . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
 		} else if ($this->getType() == 'at') {
@@ -240,7 +240,7 @@ class scenarioElement {
 			}
 			$next = $this->getSubElement('at')->execute($_scenario);
 			if (!is_numeric($next) || $next < 0) {
-				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . $next);
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['invalideShedule']['txt'] . $next);
 			}
 			if ($next <= date('Gi')) {
 				$next = str_repeat('0', 4 - strlen($next)) . $next;
@@ -251,7 +251,7 @@ class scenarioElement {
 			}
 			$next = strtotime($next);
 			if ($next < strtotime('now')) {
-				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . __(', heure programmée invalide : ', __FILE__) . date('Y-m-d H:i:00', $next));
+				throw new Exception(__('Bloc type A : ', __FILE__) . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['invalideShedule']['txt'] . date('Y-m-d H:i:00', $next));
 			}
 			$crons = cron::searchClassAndFunction('scenario', 'doIn', '"scenarioElement_id":' . $this->getId() . ',');
 			if (is_array($crons)) {
@@ -269,7 +269,7 @@ class scenarioElement {
 			$cron->setOnce(1);
 			$cron->setSchedule(cron::convertDateToCron($next));
 			$cron->save();
-			$_scenario->setLog(__('Tâche : ', __FILE__) . $this->getId() . __(' programmée à : ', __FILE__) . date('Y-m-d H:i:00', $next));
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduledOn']['txt'] . date('Y-m-d H:i:00', $next));
 			return true;
 		}
 	}
@@ -307,7 +307,7 @@ class scenarioElement {
 			}
 		}
 		$return['subElements'] = array();
-		foreach ($this->getSubElement() as $subElement) {
+		foreach(($this->getSubElement()) as $subElement) {
 			$subElement_ajax = utils::o2a($subElement);
 			if ($_mode == 'array') {
 				if (isset($subElement_ajax['id'])) {
@@ -324,7 +324,7 @@ class scenarioElement {
 				}
 			}
 			$subElement_ajax['expressions'] = array();
-			foreach ($subElement->getExpression() as $expression) {
+			foreach(($subElement->getExpression()) as $expression) {
 				$expression_ajax = utils::o2a($expression);
 				if ($_mode == 'array') {
 					if (isset($expression_ajax['id'])) {
@@ -374,7 +374,7 @@ class scenarioElement {
 			'subelement' => array(),
 			'expression' => array(),
 		);
-		foreach ($this->getSubElement() as $subelement) {
+		foreach(($this->getSubElement()) as $subelement) {
 			$result = $subelement->getAllId();
 			$return['element'] = array_merge($return['element'], $result['element']);
 			$return['subelement'] = array_merge($return['subelement'], $result['subelement']);
@@ -384,12 +384,12 @@ class scenarioElement {
 	}
 	
 	public function resetRepeatIfStatus() {
-		foreach ($this->getSubElement() as $subElement) {
+		foreach(($this->getSubElement()) as $subElement) {
 			if ($subElement->getType() == 'if') {
 				$subElement->setOptions('previousState', -1);
 				$subElement->save();
 			}
-			foreach ($subElement->getExpression() as $expression) {
+			foreach(($subElement->getExpression()) as $expression) {
 				$expression->resetRepeatIfStatus();
 			}
 		}
@@ -397,7 +397,7 @@ class scenarioElement {
 	
 	public function export() {
 		$return = '';
-		foreach ($this->getSubElement() as $subElement) {
+		foreach(($this->getSubElement()) as $subElement) {
 			$return .= "\n";
 			switch ($subElement->getType()) {
 				case 'if':
@@ -432,7 +432,7 @@ class scenarioElement {
 							break;
 						}
 						
-						foreach ($subElement->getExpression() as $expression) {
+						foreach(($subElement->getExpression()) as $expression) {
 							$export = $expression->export();
 							if ($expression->getType() != 'condition' && trim($export) != '') {
 								$return .= "\n";
@@ -449,7 +449,7 @@ class scenarioElement {
 					$elementCopy = clone $this;
 					$elementCopy->setId('');
 					$elementCopy->save();
-					foreach ($this->getSubElement() as $subelement) {
+					foreach(($this->getSubElement()) as $subelement) {
 						$subelement->copy($elementCopy->getId());
 					}
 					return $elementCopy->getId();

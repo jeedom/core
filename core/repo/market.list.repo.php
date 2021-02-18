@@ -213,7 +213,7 @@ function displayWidgetSubtype($_name) {
 					}
 					?>
 				</select>
-				<input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="Rechercher" id="in_search" value="<?php echo $name ?>"/>
+				<input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="{{Rechercher}}" id="in_search" value="<?php echo $name ?>"/>
 				<a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fas fa-search"></i></a>
 			</span>
 		</div>
@@ -278,22 +278,22 @@ if ($name !== null && strpos($name, '$') !== false) {
 
 		if ($market->getType() != 'widget') {
 			if ($market->getCertification() == 'Officiel') {
-				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Officiel.png" /></div>';
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/pluginBands/band_Officiel.png" /></div>';
 			}
 			if ($market->getCertification() == 'Conseillé') {
-				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Conseille.png" /></div>';
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/pluginBands/band_Conseille.png" /></div>';
 			}
 			if ($market->getCertification() == 'Legacy') {
-				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Legacy.png" /></div>';
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/pluginBands/band_Legacy.png" /></div>';
 			}
 			if ($market->getCertification() == 'Obsolète') {
-				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Obsolete.png" /></div>';
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/pluginBands/band_Obsolete.png" /></div>';
 			}
 			if ($market->getCertification() == 'Premium') {
-				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Premium.png" /></div>';
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/pluginBands/band_Premium.png" /></div>';
 			}
 			if ($market->getCertification() == 'Partenaire') {
-				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/band_Partenaire.png" /></div>';
+				echo '<div style="position : absolute; right : 0;top:0;width:58px;height:58px;"><img src="core/img/pluginBands/band_Partenaire.png" /></div>';
 			}
 		}
 
@@ -377,7 +377,7 @@ $(function () {
 		event: "sporty"
 	});
 	$("img.lazy").trigger("sporty");
-	initTableSorter();
+	jeedomUtils.initTableSorter();
 
 	setTimeout(function () {
 		$('#table_market tbody tr.install').hide();

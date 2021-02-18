@@ -6,8 +6,10 @@ composer.lock
 tests/cov/
 
 # Composer binaries
-bin/phpunit
-bin/phpcs
+bin
 
 # Vim
 .*.swp
+
+# development stuff
+.php_cs.cache

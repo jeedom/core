@@ -1,147 +1,111 @@
-The **objects** allow to define the tree of your home automation.
-All the equipment you create will belong to an object and
-will be easier to locate. We then say that the object
-is the **parent** of the equipment. Object management is accessible
-from the menu **Tools → Objects**.
+# Objets
+**Tools → Objects**
 
-To give free choice to the customization, you can name these
-objects as you want. Usually, we will define the different
-parts of his house, like the names of the pieces (this is also the
-recommended configuration).
+The **Objects** allow you to define the tree structure of your home automation.
 
-Management
-=======
+All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **parent** equipment.
 
-Two options are available to you:
+To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
 
--   **Add**: Create a new object.
+![Objects](./images/object_intro.gif)
 
--   **Overview**: Displays the list of created objects
-    as well as their configuration.
+## Gestion
 
-My objects
-==========
+You have two options :
+- **Add** : Create a new object.
+- **Overview** : Displays the list of objects created and their configuration.
+
+## My objects
 
 Once you have created an object, it will appear in this part.
 
-Object tab
-------------
+> **Tip**
+>
+> You can open an object by doing :
+> - Click on one of them.
+> - Ctrl Clic or Clic Center to open it in a new browser tab.
 
-Clicking on an object will take you to its configuration page. What
-whatever changes are made, do not forget to save to the
-end.
+You have a search engine to filter the display of objects. The Escape key cancels the search.
+To the right of the search field, three buttons found in several places in Jeedom:
 
-Here are the different features to configure an object:
+- The cross to cancel the search.
+- The open folder to unfold all the panels and display all the objects.
+- The closed folder to fold all the panels.
 
--   **Name of the object**: The name of your object.
+Once on the configuration of an object, you have a contextual menu with the Right Click on the tabs of the object. You can also use a Ctrl Click or Center Click to directly open another object in a new browser tab.
 
--   **Father**: Indicates the parent of the current object, this allows you to
-    define a hierarchy between the objects. For example: The show has
-    for parent the apartment. An object can only have one parent
-    but many objects can have the same parent.
+## Object tab
 
--   **Visible**: Check this box to make this object visible.
+By clicking on an object, you access its configuration page. Whatever changes you make, don&#39;t forget to save your changes.
 
--   **Hide on dashboard**: Check this box to hide
-    the object on the dashboard. It is still preserved in the
-    list, which allows to display it, but only
-    explicit way.
+Here are the different characteristics to configure an object :
 
--   **Icon**: Choose an icon for your object.
+#### Settings :
 
--   **Color of the tag**: Allows to choose the color of the object and the
-    equipment attached to it.
+- **Object name** : The name of your object.
+- **Parent object** : Indicates the parent of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one parent but several objects can have the same parent.
+- **Visible** : Check this box to make this object visible.
+- **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
+- **Hide on summary** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
+- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. *Default : Dashboard*.
 
--   **Tag text color**: Allows you to choose the color of the text
-    of the object. This text will be over **the color of the tag**. To you
-    to choose a color to make the text readable.
+#### Display :
 
--   **Taille sur le dashboard (1 à 12)** : Permet de définir la largeur
-    de l’affichage de cet objet dans le dashboard. Par exemple : si vous
-    mettez `6` à deux objets qui se suivent dans la liste, alors il
-    seront côte à côte sur le dashboard. Si vous mettez `3` à quatre
-    objets qui se suivent, ils seront également côte à côte.
-
--   **Image** : Vous avez la possibilité de télécharger une image ou la
-    supprimer. Au format jpeg cette image sera l'image de fond de l'objet
-    quand vous l'afficherez sur le dashboard.
+- **Icon** : Allows you to choose an icon for your object.
+- **Custom colors** : Activates the taking into account of the two custom color parameters below.
+- **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
+- **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
+- **Only on synthesis** : Allows you to put an image for the Synthesis without it being used as a background image, especially on the page *Dashboard* of this object.
+- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
 
 > **Tip**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le dashboard.
-> Dans la vue d'ensemble, sélectionnez votre objet à la souris et 
-> en glisser/déposer pour lui donner une nouvelle place.
+> You can change the display order of objects in the Dashboard. In the overview (or by the Home Automation Summary), select your object with the mouse with a drag and drop to give it a new place.
 
 > **Tip**
 >
-> Vous pouvez voir un graphique représentant tous les éléments de Jeedom
-> rattachés à cet objet en cliquant sur le bouton **Liens**, en haut à
-> droite.
+> You can see a graph representing all the elements of Jeedom attached to this object by clicking on the button **Connections**, top right.
 
 > **Tip**
 >
-> Quand un équipement est créé et qu’aucun parent n’a été défini, il
-> aura comme parent : **Aucun** .
+> When a device is created and no parent has been defined, it will have as parent : **No**.
 
-Onglet Résumé 
--------------
+## Summary tab
 
-Les résumés sont des informations globales, affectées à un objet, qui
-s’affichent notamment sur le dashboard à côté du nom de ce dernier.
+Summaries are global information, assigned to an object, which is displayed in particular on the Dashboard (next to the name of the object), and on the summary (on the object's thumbnail).
 
-### Tableau d’affichage 
 
-Les colonnes représentent les résumés affectés à l’objet courant. Trois
-lignes vous sont proposées :
+### Bulletin board
 
--   **Remonter dans le résumé global** : Cochez la case si vous
-    souhaitez que le résumé soit affiché dans la barre de menu
-    de Jeedom.
+The columns represent the summaries assigned to the current object. Three lines are proposed to you :
 
--   **Masquer en desktop** : Cochez la case si vous ne souhaitez pas que
-    le résumé s’affiche à côté du nom de l’objet sur le dashboard.
+- **Go up in the global summary** : Check the box if you want the summary to be displayed in the Jeedom menu bar.
+- **Hide on desktop** : Check the box if you do not want the summary to appear next to the object name on the Dashboard.
+- **Hide on mobile** : Check the box if you do not want the summary to appear when you view it from a mobile.
 
--   **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que
-    le résumé s’affiche quand vous l’affichez depuis un mobile.
+### Commandes
 
-### Commandes 
-
-Chaque onglet représente un type de résumé défini dans la configuration
-de Jeedom. Cliquez sur **Ajouter une commande** pour que celle-ci soit
-prise en compte dans le résumé. Vous avez le choix de sélectionner la
-commande de n’importe quel équipement de Jeedom, même s’il n’a pas pour
-parent cet objet.
+Each tab represents a type of summary defined in the configuration of Jeedom. Click on **Add a command** so that it is taken into account in the summary. You have the choice to select the command of any Jeedom equipment, even if it does not have this object as parent.
 
 > **Tip**
 >
-> Si vous souhaitez ajouter un type de résumé ou pour configurer la
-> méthode de calcul du résultat, l’unité, l’icône et le nom d’un résumé,
-> vous devez aller dans la configuration générale de Jeedom :
-> **Administration → Configuration → Onglet Résumés**.
+> If you want to add a type of summary or to configure the calculation method of the result, the unit, the icon and the name of a summary, you must go to the general configuration of Jeedom : **Settings → System → Configuration : Summaries tab**.
 
-Vue d’ensemble 
-==============
+## Summary tab by device
 
-La vue d’ensemble vous permet de visualiser l’ensemble des objets dans
-Jeedom, ainsi que leur configuration :
+This page displays all the equipment having the object as parent. On each device, by clicking on it, the list of device info commands is presented, with on the right the means of assigning this command to one or more summaries of the object.
 
--   **ID** : ID de l’objet.
+If one or more summary (s) are already defined, the selector appears in orange, with the types of summaries checked on the right.
 
--   **Objet** : Nom de l’objet.
+## Overview
 
--   **Père** : Nom de l’objet parent.
+The overview allows you to view all the objects in Jeedom, as well as their configuration :
 
--   **Visible** : Visibilité de l’objet.
-
--   **Masqué** : Indique si l’objet est masqué sur le dashboard.
-
--   **Résumé Défini** : Indique le nombre de commandes par résumé. Ce
-    qui est en bleu est pris en compte dans le résumé global.
-
--   **Résumé Dashboard Masqué** : Indique les résumés masqués sur
-    le dashboard.
-
--   **Résumé Mobile Masqué** : Indique les résumés masqués sur
-    le mobile.
-
-
+- **ID** : Object ID.
+- **Object** : Object name.
+- **Dad** : Name of parent object.
+- **Visible** : Object visibility.
+- **Mask** : Indicates if the object is hidden on the Dashboard.
+- **Summary Defined** : Indicates the number of commands per summary. What is in blue is taken into account in the global summary.
+- **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
+- **Hidden Mobile Summary** : Show hidden summaries on mobile.

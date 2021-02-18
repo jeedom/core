@@ -10,21 +10,32 @@
     <div class="state"><strong>#state#</strong> <strong>#unite#</strong></div>
   </div>
   <div class="cmdStats #hide_history#">
-    <span title='Min' class='tooltips'>#minHistoryValue#</span>|<span title='Moyenne' class='tooltips'>#averageHistoryValue#</span>|<span title='Max' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
+    <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue#</span> <i class="#tendance#"></i>
   </div>
-
+  <template>
+    <div>color : rgb(20,20,20) ({{couleur de l'indicateur de valeur}})</div>
+  </template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      var cmd = $('.cmd[data-cmd_id=#id#]')
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var position = _options.display_value
       var minValue = ('#minValue#' == '') ? 0 : parseInt('#minValue#')
       var maxValue = ('#maxValue#' == '') ? 100 : parseInt('#maxValue#')
-      cmd.attr('title','Date de valeur : '+_options.valueDate+'<br/>Date de collecte : '+_options.collectDate)
-      var width = ((_options.display_value - minValue) * 100) / (maxValue - minValue)
+      if (position > maxValue) position = maxValue
+      if (position < minValue) position = minValue
+
+      var width = ((position - minValue) * 100) / (maxValue - minValue)
       width = Math.round(parseFloat(width) * 10) / 10
+
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
       cmd.find('.hgauge-value').width(width+'%')
       cmd.find('.state strong').first().text(_options.display_value)
     }
 
     jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#'});
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#] .hgauge-value').css('background', '#color#')
+    }
   </script>
 </div>

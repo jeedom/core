@@ -4,10 +4,14 @@ Theme Core 2019 @Jeedom
 
 @import url("colors.css");
 
+::-webkit-scrollbar-thumb {
+  background: var(--btn-default-color) !important;
+}
+
 html,
 body,
 textarea {
-  scrollbar-color: rgb(var(--bg-color)) var(--btnEq-default-color) !important;
+  scrollbar-color: var(--btn-default-color) transparent !important;
 }
 
 a,
@@ -15,19 +19,14 @@ span.cursor > i,
 i.cursor {
   color: var(--link-color) !important;
 }
-a:hover,
-a:active,
-a:focus {
-  color: var(--linkHover-color) !important;
-  text-decoration: none !important;
-  outline: none;
-}
 
 .panel-default .panel-title {
   color: var(--linkHover-color) !important;
 }
 
-
+ul[role="tablist"] li:not(.active) a {
+  background-color: var(--el-defaultColor) !important;
+}
 
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
@@ -71,6 +70,9 @@ a:focus {
 [data-category=light]>.widget-name {
   background-color: rgba(var(--cat-light-color), var(--opacity));
 }
+[data-category=opening]>.widget-name {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
+}
 [data-category=multimedia]>.widget-name {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
 }
@@ -93,10 +95,8 @@ a:focus {
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject,
-#bt_displaySummaries {
+#dashTopBar > div > a,
+#dashTopBar button {
   background-color: var(--btnEq-default-color) !important;
 }
 
@@ -116,12 +116,67 @@ a:focus {
   background: rgba(var(--bg-color),0.7);
 }
 
-/* CodeMirror */
-.expressions .CodeMirror-wrap,
-body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.8 !important; }
-body:not([data-page="editor"]) .CodeMirror-focused,
-body:not([data-page="editor"]) .CodeMirror-selected { background: rgb(165,165,165) !important; }
-
-ul[role="tablist"] li:not(.active) a {
-  background-color: var(--el-defaultColor) !important;
+.element .disableElement,
+.element .disableSubElement {
+  opacity: 0.45 !important;
 }
+
+/* timeline */
+#timelineContainer li:not(:first-of-type):hover,
+#timelineContainer li:not(:first-of-type):hover .time {
+  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
+  z-index: 10;
+  outline: 1px solid var(--btnEq-default-color);
+}
+
+/* __________________________________________________________________________________________________________CodeMirror */
+
+div.CodeMirror { background: #272822 !important; color: #f8f8f2; }
+div.CodeMirror div.CodeMirror-selected { background: #49483E; }
+
+div.CodeMirror .CodeMirror-line::selection,
+div.CodeMirror .CodeMirror-line > span::selection,
+div.CodeMirror .CodeMirror-line > span > span::selection { background: rgba(73, 72, 62, .99); }
+
+div.CodeMirror .CodeMirror-line::-moz-selection,
+div.CodeMirror .CodeMirror-line > span::-moz-selection,
+div.CodeMirror .CodeMirror-line > span > span::-moz-selection { background: rgba(73, 72, 62, .99); }
+
+div.CodeMirror .CodeMirror-gutters { background: #333333; border-right: 1px solid #505050; }
+div.CodeMirror .CodeMirror-guttermarker { color: white; }
+div.CodeMirror .CodeMirror-guttermarker-subtle { color: #d0d0d0; }
+div.CodeMirror .CodeMirror-linenumber { color: #d0d0d0; }
+div.CodeMirror .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
+
+div.CodeMirror span.cm-comment { color: #75715e; }
+div.CodeMirror span.cm-atom { color: #ae81ff; }
+div.CodeMirror span.cm-number { color: #ae81ff; }
+
+div.CodeMirror span.cm-comment.cm-attribute { color: #97b757; }
+div.CodeMirror span.cm-comment.cm-def { color: #bc9262; }
+div.CodeMirror span.cm-comment.cm-tag { color: #bc6283; }
+div.CodeMirror span.cm-comment.cm-type { color: #5998a6; }
+
+div.CodeMirror span.cm-property,
+div.CodeMirror span.cm-attribute { color: #a6e22e; }
+
+div.CodeMirror span.cm-keyword { color: #f92672; }
+div.CodeMirror span.cm-builtin { color: #66d9ef; }
+div.CodeMirror span.cm-string { color: #e6db74; }
+
+div.CodeMirror span.cm-variable { color: #f8f8f2; }
+div.CodeMirror span.cm-variable-2 { color: #9effff; }
+div.CodeMirror span.cm-variable-3,
+div.CodeMirror span.cm-type { color: #66d9ef; }
+
+div.CodeMirror span.cm-def { color: #fd971f; }
+div.CodeMirror span.cm-bracket { color: #f8f8f2; }
+div.CodeMirror span.cm-tag { color: #f92672; }
+div.CodeMirror span.cm-qualifier { color: rgb(190, 190, 170); }
+div.CodeMirror span.cm-header { color: #ae81ff; }
+div.CodeMirror span.cm-link { color: #ae81ff; }
+div.CodeMirror span.cm-error { background: #f92672; color: #f8f8f0; }
+
+div.CodeMirror .CodeMirror-activeline-background { background: #373831; }
+div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }
+div.CodeMirror .CodeMirror-scrollbar-filler {background: transparent;}

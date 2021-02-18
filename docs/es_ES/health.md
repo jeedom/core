@@ -1,38 +1,31 @@
-La página de Salud de Jeedom le permite obtener una rápida visión general de
-la salud de tu Jeedom. También indica (si los plugins
-lo usan) el estado de salud por plugin.
+# Santé
+**Análisis → Salud**
 
-La página es accesible desde Análisis  → Salud
-
-> **Note**
->
-> Un clic sur l’icône en haut à droite permet d’accéder au benchmark de votre
-> Jeedom.
-
-La page santé de Jeedom se présente sous la forme d’un tableau. La 1ère
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n’est pas OK.
-
-A continuación encontrará el estado de salud de cada plugin, haga clic en el botón
-da los detalles de salud del plugin. A la derecha encontrará
-encontrar los iconos:
-
--   equipos plugin de puerto de acceso (tipo llave Zwave)
-
--   Modo del deamon
-
--   Visualización de la página plugin de equipos Salud
-
--   Viendo la página de configuración del plugin
-
--   estado general del plugin
+La página de Jeedom Health le permite tener una visión general rápida del estado de salud de su Jeedom.
+También indica (si los complementos lo usan) el estado de salud por complemento.
 
 > **Nota**
 >
-> Los iconos pueden variar dependiendo del plugin
+> Haga clic en el icono en la parte superior derecha para acceder al punto de referencia de su Jeedom.
+
+La página de salud de Jeedom se presenta en forma de una tabla doble.
+La primera columna le da una descripción de lo que Jeedom comprueba, el estado se muestra en la segunda columna.
+La información sobre herramientas puede darle consejos de resolución si la verificación no es correcta.
+
+A continuación encontrará el estado de cada complemento, un clic en el nombre del complemento le da detalles de estado.
+
+A la derecha encontrarás los íconos :
+
+-   Puerto de acceso para hardware de complemento (tipo de clave Zwave).
+-   Modo demonio.
+-   Visualización de la página de estado del equipo del complemento.
+-   Visualización de la página de configuración del complemento.
+-   Estado general del complemento.
 
 > **Nota**
 >
-> En general, cuando la línea es verde, todo está bien
-> y cuando está rojo, es porque hay un problema.
+> Los iconos pueden variar según el complemento.
+
+> **Nota**
+>
+> Generalmente cuando la línea es verde, todo está bien y cuando es rojo, hay un problema.

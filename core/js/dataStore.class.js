@@ -15,12 +15,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jeedom.dataStore = function() {
+};
 
- jeedom.dataStore = function () {
- };
-
-
- jeedom.dataStore.save = function (_params) {
+jeedom.dataStore.save = function(_params) {
     var paramsRequired = ['id', 'value', 'type', 'key', 'link_id'];
     var paramsSpecifics = {};
     try {
@@ -45,7 +43,29 @@
     $.ajax(paramsAJAX);
 }
 
-jeedom.dataStore.all = function (_params) {
+jeedom.dataStore.byTypeLinkIdKey = function(_params) {
+    var paramsRequired = ['type', 'linkId', 'key', 'usedBy'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
+    paramsAJAX.data = {
+        action: 'byTypeLinkIdKey',
+        type: _params.type,
+        linkId: _params.linkId,
+        key: _params.key,
+        usedBy: _params.usedBy
+    };
+    $.ajax(paramsAJAX);
+}
+
+jeedom.dataStore.all = function(_params) {
     var paramsRequired = ['type','usedBy'];
     var paramsSpecifics = {};
     try {
@@ -65,7 +85,7 @@ jeedom.dataStore.all = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.dataStore.getSelectModal = function (_options, callback) {
+jeedom.dataStore.getSelectModal = function(_options, callback) {
     if (!isset(_options)) {
         _options = {};
     }
@@ -85,10 +105,10 @@ jeedom.dataStore.getSelectModal = function (_options, callback) {
     jQuery.ajaxSetup({async: true});
     mod_insertDataStore.setOptions(_options);
     $("#mod_insertDataStoreValue").dialog('option', 'buttons', {
-        "Annuler": function () {
+        "{{Annuler}}": function() {
             $(this).dialog("close");
         },
-        "Valider": function () {
+        "{{Valider}}": function() {
             var retour = {};
             retour.human = mod_insertDataStore.getValue();
             retour.id = mod_insertDataStore.getId();
@@ -100,7 +120,6 @@ jeedom.dataStore.getSelectModal = function (_options, callback) {
     });
     $('#mod_insertDataStoreValue').dialog('open');
 };
-
 
 jeedom.dataStore.remove = function(_params) {
     var paramsRequired = ['id'];

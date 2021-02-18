@@ -1,77 +1,61 @@
-Es aquí donde vamos a ser capaces de definir la lista de usuarios
-permitido para conectarse a Jeedom sino también sus derechos
-director
+# Utilisateurs
+**Configuración → Sistema → Usuarios**
 
-Accesible por Ajustes → Sistema → Usuarios.
+Esta página le permite definir la lista de usuarios autorizados para conectarse a Jeedom, así como sus derechos de administrador.
 
-En la parte superior derecha tienes un botón para añadir un usuario, otro
-para guardar y un botón para abrir el acceso a soporte.
+En la página tienes tres botones :
 
-A continuación tiene una tabla:
+- Agregar usuario.
+- Salvar.
+- Acceso de soporte abierto.
 
--   ** ** Nombre de usuario: el identificador de usuario
+## Lista de usuarios
 
--   ** ** activo: inhabilitará la cuenta
+- **Nombre del usuario** : ID de usuario.
+- **Activo** : Le permite desactivar la cuenta sin eliminarla.
+- **Local** : Permite la conexión del usuario solo si está en la red local de Jeedom.
+- **Perfil** : Le permite elegir el perfil de usuario :
+    - **Administrador** : El usuario obtiene todos los derechos (edición / consulta) sobre Jeedom.
+    - **Usuario** : El usuario puede ver Tablero, vistas, diseños, etc. y actuar sobre equipos / controles. Sin embargo, no tendrá acceso a la configuración de los controles / equipos ni a la configuración de Jeedom.
+    - **Usuario limitado** : El usuario solo ve el equipo autorizado (configurable con el botón "Derechos"").
+- **Clave API** : Clave API personal del usuario.
+- **Doble autenticación** : Indica si la autenticación doble está activa (OK) o no (NOK).
+- **Fecha de la última conexión** : Fecha de inicio de sesión del último usuario. Tenga en cuenta que esta es la fecha de conexión real, por lo que si guarda su computadora, la fecha de conexión no se actualiza cada vez que regresa.
+- **Derechos** : Modificar derechos de usuario.
+- **Contraseña** : Le permite cambiar la contraseña del usuario.
+- **Eliminar** : Eliminar usuario.
+- **Regenerar clave API** : Regenerar clave de API de usuario.
+- **Administrar derechos** : Le permite administrar con precisión los derechos de los usuarios (tenga en cuenta que el perfil debe estar en "usuario limitado"").
 
--   ** ** Sólo local: Permite la conexión del usuario
-    sólo si la red local Jeedom
+## Gestión de derechos
 
--   ** ** Perfiles: Seleccione el perfil de usuario:
-
-    -   Administrador ** ** recibe toda Jeedom derechos
-
-    -   ** ** Usuario: puede ver el tablero de instrumentos, de las vistas,
-        diseño, etc. y que actúa sobre los controles del equipo /. En cambio,
-        no tendrá acceso a los comandos de configuración / instalaciones
-        o la Jeedom configuración.
-
-    -   **Usuario limitado**: el usuario sólo ve las
-        equipo autorizado (configurable con el "Administrar
-        los derechos")
-
--   ** ** clave de la API: API personal clave de usuario
-
--   **Doble autenticación**: indica si la doble autenticación 
-    está activo (OK) o no (NOK)
-
--   ** ** Fecha de la última conexión: Fecha de la última conexión
-    el usuario Jeedom. Atención aquí es la fecha de conexión
-    real, así que si se registra su ordenador, la fecha de
-    la conexión no se actualiza cada vez que regrese.
-
--   ** ** Cambiar la contraseña: Cambiar la contraseña
-    usuario
-
--   ** ** Eliminar: Eliminar usuario
-
--   **Régénérer clef API** : régénère la clef API de l’utilisateur
-
--   ** ** Manejo de los derechos: a finamente gestionar los derechos
-    el usuario (atención el perfil debe estar en
-    "Usuario limitado")
-
-Gestión de derechos
-==================
-
-Al hacer clic en "Administrar los derechos" aparece una ventana y le permite
-finamente gestionar los derechos de los usuarios. La primera muestra de la ficha
-los diferentes equipos. La segunda presenta los escenarios.
+Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite administrar los derechos del usuario con precisión. La primera pestaña muestra los diferentes equipos. El segundo presenta los escenarios.
 
 > **Importante**
 >
-> El perfil debe ser limitada o ninguna restricción puso aquí
-> Se considerará
+> El perfil debe ser limitado; de lo contrario, no se tendrán en cuenta las restricciones establecidas aquí.
 
-Se obtiene una tabla que, para cada dispositivo y cada
-escenario, definir derechos de usuario:
+Obtiene una tabla que permite, para cada dispositivo y cada escenario, definir los derechos del usuario :
+- **No** : el usuario no ve el equipo / escenario.
+- **Visualización** : el usuario ve el equipo / escenario pero no puede actuar sobre él.
+- **Visualización y ejecución** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
 
--   **No**: el usuario no ve el equipo / escenario
+## Sesiones activas))
 
--   ** ** Visualización: el usuario ve el equipo / escenario, pero
-    no puede actuar sobre ella
+Muestra las sesiones del navegador activas en su Jeedom, con información del usuario, su IP y desde cuándo. Puede cerrar la sesión del usuario con el botón **Desconectar**.
 
--   ** ** Visualización y ejecución: El usuario ve
-    Equipo / escenario y puede actuar sobre ella (encender una lámpara, lanzamiento
-    la secuencia de comandos, etc.)
+## Dispositivo (s) registrado (s))
+
+Enumere los periféricos (computadoras, móviles, etc.) que han registrado su autenticación en su Jeedom.
+Puede ver qué usuario, su IP, cuándo y eliminar el registro para este dispositivo.
+
+> **Nota**
+>
+> El mismo usuario puede haber registrado diferentes dispositivos. Por ejemplo, su computadora de escritorio, computadora portátil, móvil, etc.
+
+
+
+
+
 
 

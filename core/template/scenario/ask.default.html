@@ -19,12 +19,12 @@
   <span class="input-group-addon roundedLeft" style="width: 100px">{{Commandes}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="Commandes" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-btn">
-    <button class="btn btn-default listEquipementInfo roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fas fa-list-alt"></i></button>
+    <button class="btn btn-default listCmdAction roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fas fa-list-alt"></i></button>
   </span>
 </div>
 
 <script>
-  $('.listEquipementInfo[data-uid=#uid#]').off('click').on('click', function() {
+  $('.listCmdAction[data-uid=#uid#]').off('click').on('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
       $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').value(result.human);
     });

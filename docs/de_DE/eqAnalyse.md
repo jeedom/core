@@ -1,126 +1,75 @@
-La page Analyse d’équipements accessible depuis le menu Analyse → Equipements vous permet de voir de nombreuses infos
-relatives aux équipements de manière centralisée :
+# Geräteanalyse
+**Analyse → Ausrüstung**
 
--   l’état de vos piles
+Auf der Seite Geräteanalyse können Sie viele Informationen zu Geräten zentral anzeigen :
 
--   les modules en alertes
+- Der Zustand Ihrer Batterien
+- Module in Alarmbereitschaft
+- Definierte Aktionen
+- Definierte Warnungen
+- Orphan Orders
 
--   les actions définies
+## Registerkarte &quot;Batterien&quot;
 
--   les alertes définies
 
--   les commandes orphelines
+Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand))
 
-L’onglet Batteries 
-==================
-
-Vous pouvez voir sur cet onglet la liste de vos modules sur batterie,
-leur niveau restant (la couleur de la tuile dépend de ce niveau), le
-type et le nombre de piles qu’il faut mettre dans le module, le type du
-module ainsi que la date à laquelle l’information du niveau de batterie
-a été mise à jour. Vous pouvez aussi voir si un seuil spécifique a été
-établi pour le module en particulier (représenté par une main)
-
-> **Tip**
+> **Trinkgeld**
 >
-> Les seuils d’alerte/warning sur les niveaux des batteries sont
-> configurables de manière globale dans la configuration de Jeedom
-> (Administration → onglet Equipements), ou par équipement sur la page
-> de configuration avancée de ceux-ci dans l’onglet alertes.
+> Die Alarm- / Warnschwellenwerte für die Batteriestände können global in der Jeedom-Konfiguration (Einstellungen → Systeme → Konfiguration) konfiguriert werden : Ausrüstung) oder nach Ausrüstung auf der Seite für die erweiterte Konfiguration auf der Registerkarte Warnungen.
 
-L’onglet Modules en alerte 
-==========================
+## Module auf der Registerkarte &quot;Warnung&quot;
 
-Sur cet onglet vous verrez en temps réel les modules en alerte. Les
-alertes peuvent être de différents types :
+Auf dieser Registerkarte sehen Sie in Echtzeit die Module in Alarmbereitschaft. Die Warnungen können unterschiedlicher Art sein :
 
--   timeout (configuré dans l’onglet alertes définies)
+- Zeitüberschreitung (konfiguriert auf der Registerkarte "Definierte Warnungen")).
+- Batterie in Warnung oder in Gefahr.
+- Warn- oder Gefahrenbefehl (konfigurierbar in erweiterten Befehlsparametern).
 
--   batterie en warning ou en danger
+Andere Arten von Warnungen finden Sie hier.
+Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt).
 
--   commande en warning ou danger (paramétrable dans les paramètres
-    avancées des commandes)
-
-D’autres types d’alertes pourront éventuellement se retrouver ici.
-Chaque alerte sera représentée par la couleur de la tuile (le niveau
-d’alerte) et un logo en haut à gauche (le type d’alerte)
-
-> **Tip**
+> **Trinkgeld**
 >
-> Ici seront affichés tous les modules en alerte même ceux configurés en
-> "non visible". Il est toutefois intéressant de noter que si le module
-> est en "visible" l’alerte sera aussi visible sur le dashboard (dans
-> l’objet concerné)
+> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul "sichtbar" ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist).
 
-L’onglet Actions définies 
-=========================
+## Registerkarte &quot;Definierte Aktionen&quot;
 
-Cet onglet permet de visualiser les actions définies directement sur une
-commande. En effet, on peut en mettre sur différentes commandes et il
-peut être difficile de se rappeler de toutes. Cet onglet est là pour ça
-et synthétise plusieurs choses :
+Auf dieser Registerkarte können Sie die Aktionen anzeigen, die direkt in einem Auftrag definiert sind. In der Tat können wir verschiedene Befehle eingeben und es kann schwierig sein, sich an alle zu erinnern. Diese Registerkarte ist dafür da und fasst verschiedene Dinge zusammen :
 
--   les actions sur état (que l’on retrouve dans les paramètres avancées
-    des commandes infos et permettant de réaliser une ou plusieurs
-    actions sur la valeur d’une commande - de manière immédiate ou après
-    un délai)
+- Aktionen zum Status (in den erweiterten Parametern von Info-Befehlen enthalten und die Ausführung einer oder mehrerer Aktionen für den Wert einer Bestellung - sofort oder nach einer Verzögerung).
+- Bestätigungen von Aktionen (konfigurierbar an derselben Stelle in einem Info-Befehl und Ermöglichen des Anforderns einer Bestätigung zum Ausführen einer Aktion).
+- Bestätigungen mit Code (wie oben, jedoch mit Eingabe eines Codes).
+- Vor- und Nachaktionen (immer konfigurierbar an derselben Stelle in einem Aktionsbefehl und Ermöglichen der Ausführung einer oder mehrerer anderer Aktionen vor oder nach der betreffenden Aktion).
 
--   les confirmations d’actions (configurable au même endroit sur une
-    commande info et permettant de demander une confirmation pour
-    exécuter une action)
-
--   les confirmations avec code (même chose que précédemment mais avec
-    la saisie d’un code)
-
--   les actions pre et post (configurables toujours au même endroit sur
-    une commande action et permettant d’exécuter une ou plusieurs autres
-    actions avant ou après l’action en question)
-
-> **Tip**
+> **Trinkgeld**
 >
-> Le tableau permet de voir de manière très textuelle les actions
-> définies. D’autres types d’actions définies pourront être rajoutées.
+> Die Tabelle bietet eine sehr textuelle Ansicht der definierten Aktionen. Andere Arten definierter Aktionen können hinzugefügt werden.
 
-L’onglet Alertes définies 
-=========================
+## Registerkarte &quot;Definierte Warnungen&quot;
 
-Cet onglet permet de voir l’ensemble des alertes définies, vous y
-retrouverez dans un tableau les infos suivantes si elles existent :
+Auf dieser Registerkarte können Sie alle definierten Warnungen anzeigen. In einer Tabelle finden Sie die folgenden Informationen, falls vorhanden :
 
--   les alertes sur délai de communication
+- Warnungen zu Kommunikationsverzögerungen.
+- Die spezifischen Batterieschwellenwerte, die auf einem Gerät definiert sind.
+- Die verschiedenen Warn- und Warnbefehle.
 
--   les seuils spécifiques de batterie définis sur un équipement
+## Registerkarte &quot;Orphan Orders&quot;
 
--   les différentes alertes danger et warning des commandes
+Auf dieser Registerkarte können Sie auf einen Blick sehen, ob Sie verwaiste Befehle haben, die über Jeedom verwendet werden. Ein Orphan-Befehl ist ein Befehl, der irgendwo verwendet wird, aber nicht mehr existiert. Wir finden hier alle diese Befehle, wie zum Beispiel :
 
-L’onglet Commandes orphelines 
-=============================
+- Verwaiste Befehle, die im Hauptteil eines Szenarios verwendet werden.
+- Diejenigen, die zum Auslösen eines Szenarios verwendet werden.
 
-Cet onglet vous permet de voir en un coup d’oeil si vous avez des
-commandes orphelines utilisées au travers de Jeedom. Une commande
-orpheline est une commande utilisée quelque part mais qui n’existe plus.
-On retrouvera ici l’ensemble de ces commandes, comme par exemple :
+Und an vielen anderen Orten verwendet wie (nicht erschöpfend) :
+- Interaktionen.
+- Jeedom-Konfigurationen.
+- In Vor- oder Nachbearbeitung einer Bestellung.
+- In Aktion zum Bestellstatus.
+- In einigen Plugins.
 
--   les commandes orphelines utilisée dans le corps d’un scenario
+Wenn die ID der verwaisten Bestellung noch im Löschverlauf vorhanden ist (verfügbar in der Zusammenfassung Analyse / Heimautomatisierung), werden der alte Name und das Löschdatum angezeigt.
 
--   celles utilisées en déclencheur d’un scénario
-
-Et utilisées à plein d’autres endroits comme (non exhaustif) :
-
--   les interactions
-
--   les configurations de jeedom
-
--   en pre ou post action d’une commande
-
--   en action sur état d’une commande
-
--   dans certains plugins
-
-> **Tip**
+> **Trinkgeld**
 >
-> Le tableau permet de voir de manière très textuelle les commandes
-> orphelines. Son but est de pouvoir identifier rapidement toutes les
-> commandes "orphelines" au travers de tout Jeedom et des plugins. Il se
-> peut que certaines zones ne soient pas analysées, le tableau se verra
-> être de plus en plus exhaustif avec le temps.
+> Die Tabelle bietet eine sehr textuelle Ansicht der verwaisten Befehle. Ziel ist es, alle &quot;Orphan&quot; -Bestellungen über alle Jeedom und Plugins schnell identifizieren zu können. Es kann sein, dass einige Bereiche nicht analysiert werden und die Tabelle mit der Zeit immer umfassender wird.

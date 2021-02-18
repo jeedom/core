@@ -23,6 +23,7 @@ class utils {
 	/*     * *************************Attributs****************************** */
 	
 	private static $properties = array();
+	private static $jeedom_encryption = null;
 	
 	/*     * ***********************Methode static*************************** */
 	
@@ -189,9 +190,46 @@ class utils {
 		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
 	
+	/*     * ******************Encrypt/decrypt*************************** */
+	public static function getEncryptionPassword(){
+		if(self::$jeedom_encryption == null){
+			if(!file_exists(__DIR__.'/../../data/jeedom_encryption.key')){
+				file_put_contents(__DIR__.'/../../data/jeedom_encryption.key',config::genKey());
+			}
+			self::$jeedom_encryption = file_get_contents(__DIR__.'/../../data/jeedom_encryption.key');
+		}
+		return self::$jeedom_encryption;
+	}
+	
+	public static function encrypt($plaintext, $password = null) {
+		if($plaintext == ''){
+			return $plaintext;
+		}
+		if(strpos($plaintext,'crypt:') !== false){
+			return $plaintext;
+		}
+		if($password == null){
+			$password = self::getEncryptionPassword();
+		}
+		$iv = openssl_random_pseudo_bytes(16);
+		$ciphertext = openssl_encrypt($plaintext, "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, $iv);
+		$hmac = hash_hmac('sha256', $ciphertext.$iv, hash('sha256', $password, true), true);
+		return 'crypt:'.base64_encode($iv.$hmac.$ciphertext);
+	}
+	
+	public static function decrypt($ciphertext, $password = null) {
+		if($password == null){
+			$password = self::getEncryptionPassword();
+		}
+		if(strpos($ciphertext,'crypt:') === false){
+			return $ciphertext;
+		}
+		$ciphertext = base64_decode(str_replace('crypt:','',$ciphertext));
+		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48).substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
+		return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
+	}
+	
 	/*     * *********************Methode d'instance************************* */
 	
 	/*     * **********************Getteur Setteur*************************** */
 }
-
-?>

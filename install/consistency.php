@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @console */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,25 +19,19 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Statut: 404 Page non trouvée");
-	header('HTTP/1.0 404 Not Found');
-	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Non trouvé</h1>";
-	echo "La page que vous demandez ne peut être trouvée.";
-	exit();
-}
+require_once dirname(__DIR__).'/core/php/console.php';
+
 set_time_limit(1800);
 
-echo "[START CONSISTENCY]\n";
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_GET[$argList[0]] = $argList[1];
-		}
+try {
+	if(function_exists('opcache_reset')){
+		opcache_reset();
 	}
+} catch (\Exception $e) {
+	
 }
+
+echo "[START CONSISTENCY]\n";
 try {
 	if(file_exists(__DIR__.'/database.php')){
 		$output = shell_exec('php ' . __DIR__.'/database.php');
@@ -45,6 +42,17 @@ try {
 }
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
+	
+	if(method_exists ('system','checkAndInstall')){
+		try {
+			echo "Check jeedom package...";
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/packages.json'),true),true);
+			echo "OK\n";
+		} catch (Exception $ex) {
+			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		}
+	}
+	
 	if(method_exists ('DB','compareAndFix')){
 		try {
 			echo "Check jeedom database...";
@@ -124,7 +132,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
+	$cron->setSchedule('00 00 * * *');
 	$cron->setTimeout(240);
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
@@ -150,7 +158,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule('00 * * * * *');
+	$cron->setSchedule('00 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -163,7 +171,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('scenario');
 	$cron->setFunction('check');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(30);
@@ -176,7 +184,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('scenario');
 	$cron->setFunction('control');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(30);
@@ -189,7 +197,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronDaily');
-	$cron->setSchedule('00 00 * * * *');
+	$cron->setSchedule(rand(0,59).' '.rand(0,3).' * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(240);
@@ -202,7 +210,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cronHourly');
-	$cron->setSchedule('00 * * * * *');
+	$cron->setSchedule(rand(0,59).' * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
@@ -215,10 +223,23 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron5');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(5);
+	$cron->save();
+	
+	$cron = cron::byClassAndFunction('jeedom', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(10);
 	$cron->save();
 	
 	$cron = cron::byClassAndFunction('jeedom', 'cron');
@@ -228,7 +249,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('cron');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -240,7 +261,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron');
-	$cron->setSchedule('* * * * * *');
+	$cron->setSchedule('* * * * *');
 	$cron->setTimeout(2);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -252,7 +273,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron5');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -264,7 +285,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron10');
-	$cron->setSchedule('*/10 * * * * *');
+	$cron->setSchedule('*/10 * * * *');
 	$cron->setTimeout(10);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -276,7 +297,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron15');
-	$cron->setSchedule('*/15 * * * * *');
+	$cron->setSchedule('*/15 * * * *');
 	$cron->setTimeout(15);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -288,7 +309,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('cron30');
-	$cron->setSchedule('*/30 * * * * *');
+	$cron->setSchedule('*/30 * * * *');
 	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -300,7 +321,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('checkDeamon');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setTimeout(5);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -312,7 +333,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('cache');
 	$cron->setFunction('persist');
-	$cron->setSchedule('*/30 * * * * *');
+	$cron->setSchedule('*/30 * * * *');
 	$cron->setTimeout(30);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -324,7 +345,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('history');
 	$cron->setFunction('archive');
-	$cron->setSchedule('00 5 * * * *');
+	$cron->setSchedule('00 5 * * *');
 	$cron->setTimeout(240);
 	$cron->setDeamon(0);
 	$cron->save();
@@ -336,7 +357,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	$cron->setClass('plugin');
 	$cron->setFunction('heartbeat');
-	$cron->setSchedule('*/5 * * * * *');
+	$cron->setSchedule('*/5 * * * *');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(10);
@@ -347,7 +368,7 @@ if(method_exists('utils','attrChanged')){
 	}
 	try {
 		echo "\nCheck filesystem right...";
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo "NOK\n";
@@ -373,8 +394,6 @@ if(method_exists('utils','attrChanged')){
 		
 	}
 	
-	
-	
 	foreach (jeeObject::all() as $object) {
 		try {
 			$object->save();
@@ -382,7 +401,6 @@ if(method_exists('utils','attrChanged')){
 			
 		}
 	}
-	
 	
 	foreach (cmd::all() as $cmd) {
 		try {
@@ -400,7 +418,7 @@ if(method_exists('utils','attrChanged')){
 				$changed = true;
 			}
 			if($changed){
-				$cmd->save();
+				$cmd->save(true);
 			}
 		} catch (Exception $exc) {
 			
@@ -411,14 +429,19 @@ if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
 	copy(__DIR__ . '/../data/php/user.function.class.sample.php', __DIR__ . '/../data/php/user.function.class.php');
 }
 if(!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')){
+	$cmd = '';
 	if(!file_exists('/etc/systemd/system/mariadb.service.d')){
-		exec('sudo mkdir /etc/systemd/system/mariadb.service.d');
+		$cmd .= 'sudo mkdir /etc/systemd/system/mariadb.service.d;';
 	}
-	exec('sudo chmod 777 -R /etc/systemd/system/mariadb.service.d');
-	exec('sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf');
-	exec('sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf');
-	exec('sudo systemctl daemon-reload');
+	$cmd .='sudo chmod 777 -R /etc/systemd/system/mariadb.service.d;';
+	$cmd .='sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf;';
+	$cmd .='sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf;';
+	$cmd .='sudo systemctl daemon-reload;';
+	exec($cmd);
 }
+
+cache::set('hour', strtotime('UTC'));
+
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();

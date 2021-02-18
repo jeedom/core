@@ -22,8 +22,8 @@
 
 @import url("flexboxgrid.min.css");
 @import url("material-design-iconic-font.min.css");
-@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);
-@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);
+/*@import url(//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic);*/
+/*@import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900);*/
 
 body {
 	-webkit-transition: opacity 0.4s;
@@ -32,7 +32,7 @@ body {
 	-o-transition: opacity 0.4s;
 	transition: opacity 0.4s;
 	font-size: 16px;
-	
+
 	opacity: 1;
 	text-shadow: none !important;
 }
@@ -123,7 +123,7 @@ blockquote footer:before {
 	display: inline-block;
 	line-height: 1em;
 	margin: 0px 7px;
-	
+
 }
 
 code, pre {
@@ -143,39 +143,39 @@ pre {
 		);
 		background-size: 100% 50px;
 	}
-	
+
 	code {
 		display: inline;
 	}
-	
+
 	.align-right { text-align: right; }
 	.align-left { text-align: left; }
 	.align-center { text-align: center; }
-	
+
 	/*
 	* Page Default
 	*/
-	
+
 	.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
 		background-color: #ffffff;
 		border-color: rgba(0,0,0,.87);
 		color: rgba(0, 0, 0, 0.87);
 	}
-	
+
 	.ui-content.ui-content-nopadding {
 		padding: 0em 0px;
 	}
-	
-	
-	
+
+
+
 	/*
 	* Panel
 	*/
-	
+
 	.ui-panel.ui-panel-open {
 		position:fixed;
 	}
-	
+
 	.ui-panel-position-left > .ui-panel-inner {
 		position: absolute;
 		top: 1px;
@@ -185,32 +185,32 @@ pre {
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
 	}
-	
+
 	.ui-panel-open {
 		max-width: 90%;
 		width: 304px;
 	}
-	
+
 	.ui-panel-display-overlay {
 		box-shadow: 0px 0px 7px rgba(0,0,0,0.1);
 	}
-	
+
 	.ui-panel.ui-panel-display-overlay.ui-panel-open {
 		z-index: 2000;
 	}
-	
+
 	.ui-page-theme-a a, html .ui-bar-a a, html .ui-body-a a, html body .ui-group-theme-a a {
 		font-weight: 400;
 	}
-	
+
 	.ui-collapsible-heading-toggle {
 		border-bottom: 1px solid #cccccc;
 	}
-	
+
 	.ui-listview>.ui-li-static, .ui-listview>.ui-li-divider, .ui-listview>li>a.ui-btn {
 		border: 0px;
 	}
-	
+
 	.ui-collapsible.ui-collapsible {
 		background-color: #f6f6f6;
 	}
@@ -219,7 +219,7 @@ pre {
 		font-weight: 500;
 		background-color: rgba(0,0,0,0.1);
 	}
-	
+
 	.ui-panel-dismiss {
 		background-color: transparent;
 		-webkit-transition: background 0.8s;
@@ -228,7 +228,7 @@ pre {
 		-o-transition: background 0.8s;
 		transition: background 0.8s;
 	}
-	
+
 	.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after {
 		background-color: transparent;
 		background-color: rgba(0,0,0,0);
@@ -236,7 +236,7 @@ pre {
 		background-repeat: no-repeat;
 		color: #cccccc;
 	}
-	
+
 	.ui-panel-dismiss.ui-panel-dismiss-open {
 		background-color: rgba(0,0,0,0.1);
 		position: fixed;
@@ -245,36 +245,36 @@ pre {
 		left: 0px;
 		top: 0px;
 	}
-	
+
 	.ui-collapsible.ui-collapsible-collapsed,
 	.ui-page-theme-a .ui-body-inherit.ui-collapsible-content,
 	.ui-collapsible.ui-collapsible-collapsed.ui-collapsible h3 a {
 		background-color: transparent;
 	}
-	
+
 	.ui-page-theme-a .ui-body-inherit.ui-collapsible-content li > a {
 		text-transform: none;
 	}
-	
+
 	.ui-collapsible-content > .ui-listview > li > a {
 		padding-left: 1.5em;
 	}
-	
+
 	.ui-collapsible .ui-collapsible-heading > .ui-icon-carat-d:after {
 		-webkit-transform: rotate(-180deg);
 		-moz-transform: rotate(-180deg);
 		-ms-transform: rotate(-180deg);
 		-o-transform: rotate(-180deg);
 		transform: rotate(-180deg);
-		
+
 		-webkit-transition: -webkit-transform 0.4s;
 		-moz-transition: -moz-transform 0.4s;
 		-ms-transition: -ms-transform 0.4s;
 		-o-transition: -o-transform 0.4s;
 		transition: transform 0.4s;
 	}
-	
-	
+
+
 	.ui-collapsible.ui-collapsible-collapsed .ui-collapsible-heading > .ui-icon-carat-d:after {
 		-webkit-transform: rotate(0deg);
 		-moz-transform: rotate(0deg);
@@ -282,11 +282,11 @@ pre {
 		-o-transform: rotate(0deg);
 		transform: rotate(0deg);
 	}
-	
+
 	/*
 	* Bottom Sheet Panel
 	*/
-	
+
 	.ui-panel.ui-panel-position-bottom {
 		position: fixed;
 		top: auto;
@@ -299,22 +299,22 @@ pre {
 		overflow-y: auto;
 		overflow-x: hidden;
 		min-height: 75px;
-		
+
 		visibility: visible;
 		clip: initial;
-		
+
 	}
-	
+
 	.ui-bottom-sheet-list .row > * {
 		width: 100%;
 	}
-	
+
 	.ui-bottom-sheet-list .ui-bottom-sheet-link {
 		display: block;
 		text-align: left;
 		margin: 0px;
 	}
-	
+
 	.ui-bottom-sheet-list .ui-bottom-sheet-link .zmdi {
 		font-size: 1em;
 		display: inline-block;
@@ -322,23 +322,23 @@ pre {
 		min-width: 20px;
 		text-align: center;
 	}
-	
+
 	.ui-bottom-sheet-list .ui-bottom-sheet-link strong {
 		display: inline-block;
 		font-weight: 600;
 	}
-	
-	
+
+
 	.ui-panel-position-bottom {
-		
+
 		-webkit-transition: bottom 0.4s, top 0.4s;
 		-moz-transition: bottom 0.4s, top 0.4s;
 		-ms-transition: bottom 0.4s, top 0.4s;
 		-o-transition: bottom 0.4s, top 0.4s;
 		transition: all 0.4s;
-		
+
 	}
-	
+
 	.ui-bottom-sheet-link {
 		display: inline-block;
 		padding: 14px;
@@ -346,37 +346,37 @@ pre {
 		text-decoration: none;
 		text-shadow: none !important;
 	}
-	
+
 	.ui-bottom-sheet-link .zmdi {
 		display: block;
 		line-height: 1.4em;
 		color: rgba(0, 0, 0, 0.87);
 	}
-	
+
 	.ui-bottom-sheet-link strong {
 		display: block;
 		font-size: 14px;
 		font-weight: 400;
 		color: rgba(0, 0, 0, 0.87);
 	}
-	
+
 	.ui-panel-position-bottom.ui-panel-open {
 		top: auto;
 		bottom: 0px;
 	}
-	
+
 	.ui-panel.ui-panel-position-bottom.ui-body-inherit.ui-panel-open {
 		min-height: 75px;
 	}
-	
+
 	/*
 	* Listview
 	*/
-	
+
 	.ui-listview {
 		margin: 1em 0px;
 	}
-	
+
 	.ui-listview .ui-li-divider {
 		padding: 7px 1em;
 		background-color: transparent;
@@ -385,11 +385,11 @@ pre {
 		font-size: 1em;
 		line-height: 1.4em;
 	}
-	
+
 	.ui-panel-inner > .ui-listview {
 		margin: 0px -1em;
 	}
-	
+
 	.ui-panel-inner > .ui-listview > .ui-li-divider {
 		background-color: transparent;
 		color: rgba(0,0,0, 0.54);
@@ -397,7 +397,7 @@ pre {
 		font-size: 14px;
 		line-height: 1.4em;
 	}
-	
+
 	.ui-listview .ui-li-has-thumb > img:first-child,
 	.ui-listview .ui-li-has-thumb > .ui-btn > img:first-child {
 		padding: auto;
@@ -406,38 +406,38 @@ pre {
 		margin: auto auto;
 		left: 1em;
 	}
-	
+
 	.ui-listview img.ui-thumbnail.ui-thumbnail-circular,
 	.ui-listview img.ui-thumbnail.ui-thumbnail-circular {
 		border-radius: 50% !important;
 		overflow: hidden;
-		
+
 		-webkit-transform: scale(0.7);
 		-moz-transform: scale(0.7);
 		-ms-transform: scale(0.7);
 		-o-transform: scale(0.7);
 		transform: scale(0.7);
-		
+
 	}
-	
+
 	.ui-listview > li h1, .ui-listview > li h2, .ui-listview > li h3, .ui-listview > li h4, .ui-listview > li h5, .ui-listview > li h6, .ui-listview > li p {
 		/*	margin: 0.45em 28px;*/
 		text-transform: none;
 	}
-	
+
 	.ui-listview > li p {
 		color: rgba(0, 0, 0, 0.54);
 		font-size: 14px;
 	}
-	
+
 	.ui-content .ui-listview {
 		margin-bottom: 1em;
 	}
-	
+
 	/*
 	* Tabs
 	*/
-	
+
 	.nd2Tabs {
 		display: block;
 		margin: 0px 0px 0px 60px;
@@ -448,40 +448,40 @@ pre {
 		height: 48px;
 		overflow-y: hidden;
 	}
-	
+
 	.nd2Tabs li {
-		
+
 		display: inline-block;
-		
+
 		line-height: 48px;
 		text-align: center;
 		padding: 0px 12px;
 		font-weight: 500;
 		text-transform: uppercase;
 		font-size: 14px;
-		
+
 		cursor: pointer;
 		color: rgba(255,255,255,0.6);
-		
+
 		-webkit-transition: all 0.4s;
 		-moz-transition: all 0.4s;
 		-ms-transition: all 0.4s;
 		-o-transition: all 0.4s;
 		transition: all 0.4s;
-		
+
 	}
-	
+
 	.nd2Tabs li:hover {
 		color: #ffffff;
 	}
-	
+
 	.nd2Tabs .nd2Tabs-active {
 		color: #ffffff;
 		position: relative;
 	}
-	
+
 	.nd2Tabs .nd2Tabs-active:after {
-		
+
 		content : "";
 		position: absolute;
 		width: 100%;
@@ -489,30 +489,30 @@ pre {
 		background-color: #323232;
 		bottom: 0px;
 		left: 0px;
-		
+
 		-webkit-animation: zoomIn 0.4s;
 		-moz-animation: zoomIn 0.4s;
 		-ms-animation: zoomIn 0.4s;
 		-o-animation : zoomIn 0.4s;
 		animation : zoomIn 0.4s;
-		
+
 	}
-	
+
 	.nd2Tabs-content-tab {
 		display: none;
-		
+
 		opacity: 0;
-		
+
 		transform: translate(-100%,0%);
-		
+
 		-webkit-transition: all 0.4s;
 		-moz-transition: all 0.4s;
 		-ms-transition: all 0.4s;
 		-o-transition: all 0.4s;
 		transition: all 0.4s;
-		
+
 	}
-	
+
 	.nd2Tabs-content-tab.nd2Tab-active.from-left,
 	.nd2Tabs-content-tab.nd2Tab-active.to-left {
 		-webkit-transform: translate(-100%,0%);
@@ -520,11 +520,11 @@ pre {
 		-ms-transform: translate(-100%,0%);
 		-o-transform: translate(-100%,0%);
 		transform: translate(-100%,0%);
-		
+
 		position: absolute;
 		width: 100%;
 	}
-	
+
 	.nd2Tabs-content-tab.nd2Tab-active.from-right,
 	.nd2Tabs-content-tab.nd2Tab-active.to-right {
 		-webkit-transform: translate(100%,0%);
@@ -532,29 +532,29 @@ pre {
 		-ms-transform: translate(100%,0%);
 		-o-transform: translate(100%,0%);
 		transform: translate(100%,0%);
-		
+
 		position: absolute;
 		width: 100%;
-		
+
 	}
-	
-	
-	
+
+
+
 	.nd2Tabs-content-tab.nd2Tab-active {
 		display: block;
 		opacity: 1;
-		
+
 		transform: translate(0%,0%);
-		
+
 	}
-	
+
 	/* Header */
-	
+
 	.ui-page-theme-a .ui-header {
 		box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12) !important;
 		border: 0px solid transparent;
 	}
-	
+
 	.ui-header .ui-title, .ui-footer .ui-title {
 		text-align: left;
 		margin: 0px 72px;
@@ -563,7 +563,7 @@ pre {
 		font-weight: 400;
 		letter-spacing: 0.005em;
 	}
-	
+
 	.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited,
 	.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
 		background-color: transparent;
@@ -576,70 +576,70 @@ pre {
 		-ms-transition: background 0.4s;
 		-o-transition: background 0.4s;
 		transition: background 0.4s;
-		
+
 	}
-	
+
 	.ui-page-theme-a .ui-btn.ui-btn-fab {
 		/*padding: 11.2px 16px;*/
 	}
-	
+
 	.ui-btn-fab-bottom {
-		
+
 		position: fixed;
-		
+
 		bottom: 26px;
 		right: 26px;
-		
+
 		-webkit-transition: all 0.4s !important;
 		-moz-transition: all 0.4s !important;
 		-ms-transition: all 0.4s !important;
 		-o-transition: all 0.4s !important;
 		transition: all 0.4s !important;
 	}
-	
+
 	.nd2-toast-open .ui-btn-fab-bottom {
 		bottom: 58px;
 		right: 26px;
 	}
-	
+
 	.ui-page-theme-a .ui-btn:focus, html .ui-bar-a .ui-btn:focus, html .ui-body-a .ui-btn:focus, html body .ui-group-theme-a .ui-btn:focus, html head+body .ui-btn.ui-btn-a:focus, .ui-page-theme-a .ui-focus, html .ui-bar-a .ui-focus, html .ui-body-a .ui-focus, html body .ui-group-theme-a .ui-focus, html head+body .ui-btn-a.ui-focus, html head+body .ui-body-a.ui-focus,
 	.ui-bar-a, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit,
 	.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
 		box-shadow: none;
 		text-shadow: none;
 	}
-	
+
 	.ui-header > .ui-btn {
 		background-color: transparent !important;
 		color: #ffffff !important;
-		
+
 		font-size: 20px;
 		line-height: 1.8em;
 		padding: 0.5em;
 		display: inline-block;
 		width: 1.6em;
 		height: 1.6em;
-		
+
 		border-radius: 50% !important;
 		overflow: hidden !important;
-		
+
 	}
-	
+
 	.ui-page-theme-a .ui-btn.ui-btn-raised {
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
 		background-color: rgb(250,250,250);
 	}
-	
+
 	.ui-page-theme-a .ui-btn.ui-btn-raised.ui-disabled {
 		box-shadow: none;
 		background-color: rgba(0,0,0,0.24);
 		color: rgba(0,0,0,0.85);
 	}
-	
+
 	/*
 	* HR
 	*/
-	
+
 	hr {
 		display: block;
 		border: 0px;
@@ -647,20 +647,20 @@ pre {
 		padding: 0px;
 		margin: 1em 0px;
 	}
-	
+
 	hr.inset {
 		margin: 1em 0px 1em 1em;
 	}
-	
+
 	.ui-content hr, .ui-panel-inner hr { margin: 1em -1em; }
-	
+
 	.ui-panel-inner hr.inset { margin: 1em -1em 1em 0em; }
-	
+
 	/*
 	* Sidepanel Profile
 	*
 	*/
-	
+
 	.nd2-sidepanel-profile {
 		position: relative;
 		margin: -1em -1em 1.5em -1em;
@@ -668,7 +668,7 @@ pre {
 		overflow: hidden;
 		box-shadow: 0px 0px 15px rgba(0,0,0,0.05);
 	}
-	
+
 	.nd2-sidepanel-profile:after {
 		position: absolute;
 		content : "";
@@ -677,7 +677,7 @@ pre {
 		width: 100%;
 		height: 100%;
 		z-index: -1;
-		
+
 		background: -moz-linear-gradient(top,  rgba(255,255,255,0.01) 0%, rgba(0,0,0,0.5) 100%);
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.01)), color-stop(100%,rgba(0,0,0,0.5)));
 		background: -webkit-linear-gradient(top,  rgba(255,255,255,0.01) 0%,rgba(0,0,0,0.5) 100%);
@@ -685,9 +685,9 @@ pre {
 		background: -ms-linear-gradient(top,  rgba(255,255,255,0.01) 0%,rgba(0,0,0,0.5) 100%);
 		background: linear-gradient(to bottom,  rgba(255,255,255,0.01) 0%,rgba(0,0,0,0.5) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03ffffff', endColorstr='#000000',GradientType=0 );
-		
+
 	}
-	
+
 	.nd2-sidepanel-profile .profile-background {
 		position: absolute;
 		top: 0px;
@@ -696,7 +696,7 @@ pre {
 		height: auto;
 		z-index: -1;
 	}
-	
+
 	.nd2-sidepanel-profile .profile-thumbnail {
 		width: 80%;
 		height: auto;
@@ -704,15 +704,15 @@ pre {
 		overflow: hidden;
 		margin: -0.8em auto;
 		display: inline-block;
-		
+
 		border: 2px solid rgba(255,255,255,0.05);
 	}
-	
+
 	.nd2-sidepanel-profile .profile-text {
 		text-shadow: 0px 0px 1px rgba(0,0,0,0.2);
 		color: #fff;
 	}
-	
+
 	.nd2-sidepanel-profile .profile-text strong {
 		font-size: 20px;
 		line-height: 1.2em;
@@ -722,23 +722,23 @@ pre {
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	
+
 	.nd2-sidepanel-profile .profile-text .subline {
 		font-size: 12px;
 		line-height: 1.2em;
 		font-weight: 400;
 		display: block;
 	}
-	
+
 	/*
 	* Banner / Advertising
 	*/
-	
+
 	.nd2-banner {
 		display: block;
 		margin: 14px 0px;
 	}
-	
+
 	.nd2-sample-ad {
 		display: block;
 		margin: 14px 0px;
@@ -748,63 +748,63 @@ pre {
 		border-radius: 3px;
 		text-align: center;
 	}
-	
+
 	/*
 	* Button
 	*
 	*/
-	
+
 	.ui-panel .ui-listview .ui-btn { font-weight: 400; }
-	
+
 	.ui-btn,a.ui-btn { text-transform: uppercase; font-weight: 500; color: inherit; }
 	.ui-listview > a.ui-btn, .ui-listview a { text-transform: none; }
-	
+
 	.ui-btn.ui-btn-icon-left > i.md,
 	button.ui-btn > i.md.ui-pull-left { float: left; }
-	
+
 	a.ui-btn.ui-btn-icon-left > i.md { margin-left: -1em; }
-	
+
 	.ui-btn.ui-btn-icon-right > i.md,
 	button.ui-btn > i.md.ui-pull-right { float: right; }
-	
+
 	a.ui-btn.ui-btn-icon-right > i.md { margin-right: -1em; }
-	
+
 	.ui-btn > i.md,
 	button.ui-btn > i.md { float: none; margin: 0px 7px; }
-	
+
 	.ui-btn.ui-btn-icon-block > i.zmdi { display: block; }
-	
+
 	.ui-btn.ui-btn-fab { border-radius: 50% !important; }
 	.ui-btn.ui-btn-fab > i.zmdi { margin: 0px; padding: 0px; }
-	
+
 	.ui-btn {
 		margin: 0px;
 	}
-	
+
 	/*
 	* Forms
 	*/
-	
+
 	.ui-table-columntoggle-popup {
 		box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
 		border-radius: 0px;
 	}
-	
+
 	.ui-controlgroup-controls, .ui-controlgroup-controls .ui-radio, .ui-controlgroup-controls .ui-checkbox, .ui-controlgroup-controls .ui-select, .ui-controlgroup-controls li {
 		background-color: #ffffff;
 		border-radius: 0px;
 	}
-	
+
 	.ui-checkbox .ui-btn, .ui-radio .ui-btn,
 	.ui-checkbox .ui-btn:hover, .ui-radio .ui-btn:hover {
 		background-color: #ffffff;
 		font-weight: 400;
 	}
-	
+
 	.ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after {
 		content: "";
 	}
-	
+
 	.ui-btn.ui-checkbox-off:after,
 	.ui-btn.ui-checkbox-on:after {
 		content: "";
@@ -821,11 +821,11 @@ pre {
 		background-color: #ffffff;
 		z-index: 2;
 	}
-	
+
 	.ui-btn.ui-checkbox-off:after {
 		border: 2px solid rgba(0,0,0,.54);
 	}
-	
+
 	.ui-icon-check:after,
 	html .ui-btn.ui-checkbox-on.ui-checkbox-on:after {
 		content: "";
@@ -835,8 +835,8 @@ pre {
 		border-radius: 2px;
 		overflow: hidden;
 	}
-	
-	
+
+
 	.ui-btn.ui-radio-off:after,
 	.ui-btn.ui-radio-on:after  {
 		position: absolute;
@@ -852,14 +852,14 @@ pre {
 		border-radius: 50%;
 		z-index: 2;
 	}
-	
+
 	.ui-radio .ui-btn.ui-radio-on:after {
 		width: 16px;
 		height: 16px;
 		background-color: #ffffff;
 		border-width: 2px;
 	}
-	
+
 	.ui-radio .ui-btn.ui-radio-on:before {
 		position: absolute;
 		content: "";
@@ -876,11 +876,11 @@ pre {
 		z-index: 3;
 		background-color: rgba(0,0,0,0.54);
 	}
-	
+
 	.ui-controlgroup-horizontal .ui-radio .ui-btn.ui-radio-on:before {
 		display: none;
 	}
-	
+
 	.ui-controlgroup-horizontal .ui-btn.ui-first-child,
 	.ui-controlgroup-horizontal .ui-controlgroup-controls .ui-btn
 	{
@@ -888,7 +888,7 @@ pre {
 		box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
 		border-radius: 0px;
 	}
-	
+
 	.ui-mobile label,
 	.ui-controlgroup-label,
 	.ui-controlgroup-label legend {
@@ -897,12 +897,12 @@ pre {
 		color: #696969;
 		margin-bottom: 0px;
 	}
-	
-	
+
+
 	.ui-mobile label {
 		cursor: pointer;
 	}
-	
+
 	.ui-input-text input, .ui-input-search input,
 	textarea.ui-input-text.ui-textinput-autogrow {
 		font-size: 14px;
@@ -913,18 +913,18 @@ pre {
 		padding: 0px;
 		line-height: 16px;
 	}
-	
+
 	.ui-input-text, .ui-input-search,
 	textarea.ui-input-text.ui-textinput-autogrow {
 		margin: 0px 0px 14px 0px;
 		padding: 0px;
 	}
-	
+
 	textarea.ui-input-text.ui-textinput-autogrow {
 		margin-top: 4px;
 		border-bottom: 2px solid #cccccc;
 	}
-	
+
 	.ui-input-text:after,
 	.ui-input-search:after {
 		content: "";
@@ -932,78 +932,78 @@ pre {
 		width: 100%;
 		height: 1px;
 		background-color: #cccccc;
-		
+
 		-webkit-transition: width 0.4s, height 0.4s, background 0.4s;
 		-moz-transition: width 0.4s, height 0.4s, background 0.4s;
 		-ms-transition: width 0.4s, height 0.4s, background 0.4s;
 		-o-transition: width 0.4s, height 0.4s, background 0.4s;
 		transition: width 0.4s, height 0.4s, background 0.4s;
-		
+
 	}
-	
+
 	.ui-input-search {
 		padding-left: 7px;
 	}
-	
+
 	.ui-input-search:after {
 		top: auto;
 		bottom: 0px;
 	}
-	
+
 	.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
 		box-shadow: none;
 		border-radius: 0px;
 		border: 0px solid #ffffff;
 	}
-	
-	
-	
+
+
+
 	.ui-flipswitch {
 		border-width: 0px;
 		overflow: hidden;
-		
+
 		-webkit-transition: background 0.4s;
 		-moz-transition: background 0.4s;
 		-ms-transition: background 0.4s;
 		-o-transition: background 0.4s;
 		transition: background 0.4s;
 	}
-	
+
 	.ui-flipswitch.ui-corner-all {
 		border-radius: 13px;
 		box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
 	}
-	
+
 	.ui-flipswitch.waves-button:hover {
 		background-color: #e9e9e9;
 	}
-	
+
 	.ui-flipswitch .ui-btn.ui-flipswitch-on {
 		border-radius: 50%;
 		border-color: transparent;
 		background-color: #cccccc;
 	}
-	
+
 	.ui-flipswitch .ui-btn.ui-flipswitch-on {
 		background-color: rgba(255,255,255,0.5);
 	}
-	
+
 	.ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
 		height: 2px;
 		border-radius: 0px;
 	}
-	
+
 	.ui-slider-track {
 		height: 2px;
 		border: 0px solid #ffffff;
 		background-color: #cccccc;
 	}
-	
+
 	html >body .ui-rangeslider .ui-rangeslider-sliders .ui-slider-track:first-child {
 		height: 2px;
 		border: 0px solid #ffffff;
 	}
-	
+
 	.ui-slider-track .ui-btn.ui-slider-handle {
 		width: 20px;
 		height: 20px;
@@ -1012,71 +1012,71 @@ pre {
 		margin-left: -10px;
 		box-shadow: none;
 	}
-	
-	
+
+
 	/*
 	* Popup / Dialog
 	*/
-	
+
 	.ui-popup .ui-header .ui-title {
 		/*	margin-left: 1em;*/
 	}
-	
+
 	.ui-popup {
 		box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
 		border-radius: 0px;
 	}
-	
+
 	/*
 	*	Toasts
 	*/
-	
+
 	.nd2-toast {
 		display: block;
-		
+
 		background-color: #323232;
 		line-height: 48px;
 		width: 450px;
-		
+
 		max-width: 100%;
-		
+
 		overflow: hidden;
 		max-height: 48px;
 		white-space: nowrap;
-		
+
 		position: fixed;
 		bottom: 0px;
 		left: 50%;
-		
+
 		-webkit-transform: translate(-50%,0%);
 		-ms-transform: translate(-50%,0%);
 		-moz-transform: translate(-50%,0%);
 		-o-transform: translate(-50%,0%);
 		transform: translate(-50%,0%);
-		
+
 		-moz-transition: all 0.4s;
 		-webkit-transition: all 0.4s;
 		-ms-transition: all 0.4s;
 		-o-transition: all 0.4s;
 		transition: all 0.4s;
-		
+
 		color: #ffffff;
 		font-size: 14px;
-		
+
 		z-index: 2001;
-		
+
 	}
-	
+
 	.nd2-toast-wrapper { position: relative; }
-	
+
 	.nd2-toast.no-action {
 		padding: 0px 24px 0px 0px;
 	}
-	
+
 	.nd2-toast.nd2-toast-off {
 		bottom: -150px;
 	}
-	
+
 	.nd2-toast .nd2-toast-message {
 		display: inline-block;
 		max-width: 90%;
@@ -1084,42 +1084,42 @@ pre {
 		text-overflow: ellipsis;
 		padding: 0px 0px 0px 24px;
 	}
-	
+
 	.nd2-toast .nd2-toast-action {
 		display: inline-block;
 		margin-left: 48px;
 		position: absolute;
 		right: 24px;
 	}
-	
+
 	.nd2-toast .nd2-toast-action .ui-btn {
 		padding: 0px;
 		border: 0px solid transparent;
 		background-color: #323232;
 	}
-	
+
 	/*
 	*	Search
 	*/
-	
+
 	.nd2-search-input,
 	.nd2-search-back-button,
 	.nd2-search-active .nd2-search-button {
 		display: none !important;
 		visibility: hidden;
 	}
-	
+
 	.nd2-search-active .nd2-search-input,
 	.nd2-search-active .nd2-search-back-button {
 		display: block !important;
 		visibility: visible;
 	}
-	
+
 	.nd2-search-active .ui-title,
 	.nd2-search-active .ui-btn {
 		display: none;
 	}
-	
+
 	.nd2-search-input {
 		display: block;
 		position: absolute;
@@ -1132,12 +1132,12 @@ pre {
 		color: #ffffff;
 		outline: none;
 	}
-	
+
 	.nd2-search-input::-webkit-input-placeholder { color: rgba(255,255,255,0.6); }
 	.nd2-search-input:-moz-placeholder { color: rgba(255,255,255,0.6); }
 	.nd2-search-input::-moz-placeholder { color: rgba(255,255,255,0.6); }
 	.nd2-search-input:-ms-input-placeholder { color: rgba(255,255,255,0.6); }
-	
+
 	.ui-autocomplete {
 		display: block;
 		position: fixed;
@@ -1146,15 +1146,15 @@ pre {
 		right: 0px;
 		bottom: 0px;
 		background-color: #fafafa;
-		
+
 		list-style-type: none;
 		padding: 0px;
 		margin: 0px;
-		
+
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 	}
-	
+
 	.nd2-search-result-item {
 		display: block;
 		padding: 0px 10px;
@@ -1162,46 +1162,46 @@ pre {
 		line-height: 2.6em;
 		color: rgba(0,0,0,0.54);
 		cursor: pointer;
-		
+
 		-webkit-transition: background 0.4s;
 		-ms-transition: background 0.4s;
 		-moz-transition: background 0.4s;
 		-o-transition: background 0.4s;
 		transition: background 0.4s;
-		
+
 	}
-	
+
 	.nd2-search-result-item:hover,
 	.nd2-search-result-item.ui-state-focus {
 		background-color: rgba(0,0,0,0.05);
 	}
-	
+
 	.nd2-search-result-item .icon {
 		display: inline-block;
 		width: 45px;
 		text-align: center;
 		margin-right: 17px;
 	}
-	
+
 	.nd2-search-result-item .term {
 		font-weight: normal;
 		display: inline-block;
 		color: rgba(0,0,0,0.94);
 	}
-	
-	
+
+
 	/*
 	* Table
 	*/
-	
+
 	.ui-table th {
 		font-weight: 500;
 	}
-	
+
 	/*
 	* Colors
 	*/
-	
+
 	.clr-bg-lime, .clr-accent-lime .nd2Tabs .nd2Tabs-active:after { background-color: #cddc39; }
 	.clr-bg-red, .clr-accent-red .nd2Tabs .nd2Tabs-active:after { background-color: #F44336; }
 	.clr-bg-pink, .clr-accent-pink .nd2Tabs .nd2Tabs-active:after { background-color: #E91E63; }
@@ -1222,7 +1222,7 @@ pre {
 	.clr-bg-grey, .clr-accent-grey .nd2Tabs .nd2Tabs-active:after { background-color: #9E9E9E; }
 	.clr-bg-blue-grey, .clr-accent-blue-grey .nd2Tabs .nd2Tabs-active:after { background-color: #607D8B; }
 	.clr-bg-white, .clr-accent-white .nd2Tabs .nd2Tabs-active:after { background-color: #FFFFFF; }
-	
+
 	.clr-lime { color: #cddc39; }
 	.clr-red { color: #F44336; }
 	.clr-pink { color: #E91E63; }
@@ -1243,7 +1243,7 @@ pre {
 	.clr-grey { color: #9E9E9E; }
 	.clr-blue-grey { color: #607D8B; }
 	.clr-white { color: #FFFFFF; }
-	
+
 	.ui-btn.clr-btn-accent-lime,.ui-btn.clr-btn-accent-lime:hover { color: #cddc39; }
 	.ui-btn.clr-btn-accent-red,.ui-btn.clr-btn-accent-red:hover { color: #F44336; }
 	.ui-btn.clr-btn-accent-pink,.ui-btn.clr-btn-accent-pink:hover { color: #E91E63; }
@@ -1264,7 +1264,7 @@ pre {
 	.ui-btn.clr-btn-accent-grey,.ui-btn.clr-btn-accent-grey:hover { color: #9E9E9E; }
 	.ui-btn.clr-btn-accent-blue-grey,.ui-btn.clr-btn-accent-blue-grey:hover { color: #607D8B; }
 	.ui-btn.clr-btn-accent-white,.ui-btn.clr-btn-accent-white:hover { color: #FFFFFF; }
-	
+
 	.ui-btn.clr-btn-lime,.ui-btn.clr-btn-lime:hover { color: rgba(0,0,0,0.8); background-color: #cddc39; }
 	.ui-btn.clr-btn-red,.ui-btn.clr-btn-red:hover { color: rgb(255,255,255); background-color: #F44336; }
 	.ui-btn.clr-btn-pink,.ui-btn.clr-btn-pink:hover { color: rgb(255,255,255); background-color: #E91E63; }
@@ -1285,12 +1285,12 @@ pre {
 	.ui-btn.clr-btn-grey,.ui-btn.clr-btn-grey:hover { color: rgb(255,255,255); background-color: #9E9E9E; }
 	.ui-btn.clr-btn-blue-grey,.ui-btn.clr-btn-blue-grey:hover { color: rgb(255,255,255); background-color: #607D8B; }
 	.ui-btn.clr-btn-white,.ui-btn.clr-btn-white:hover { color: rgba(0,0,0,0.8); background-color: #FFFFFF; }
-	
-	
+
+
 	/*
 	* Cards
 	*/
-	
+
 	.nd2-card {
 		display: block;
 		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -1298,34 +1298,34 @@ pre {
 		max-width: 450px;
 		overflow: hidden;
 	}
-	
+
 	.nd2-card.card-media-right,
 	.nd2-card.card-media-left {
 		position: relative;
 	}
-	
+
 	.nd2-card.card-media-left {
 		min-height: 272px;
 	}
-	
+
 	.nd2-card .card-media img {
 		width: 100%;
 		display: block;
 	}
-	
+
 	.nd2-card .card-media {
 		width: 100%;
 		overflow: hidden;
 		position: relative;
 	}
-	
+
 	.nd2-card.card-media-right .card-media {
 		display: block;
 		position: absolute;
 		top: 12px;
 		right: 12px;
 	}
-	
+
 	.nd2-card.card-media-left .card-media {
 		display: block;
 		position: absolute;
@@ -1333,11 +1333,11 @@ pre {
 		left: 16px;
 		width: 240px;
 	}
-	
+
 	.nd2-card.card-media-right.card-media-small .card-media { width: 80px; height: 80px; }
 	.nd2-card.card-media-right.card-media-medium .card-media { width: 112px; height: 112px; }
 	.nd2-card.card-media-right.card-media-large .card-media { width: 152px; height: 152px; }
-	
+
 	.nd2-card .card-media-overlay {
 		display: block;
 		position: absolute;
@@ -1345,7 +1345,7 @@ pre {
 		left: 0px;
 		width: 100%;
 		overflow: hidden;
-		
+
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+0,0.65+100 */
 		background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
@@ -1354,24 +1354,24 @@ pre {
 		background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
 		background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
-		
+
 	}
-	
+
 	.nd2-card .card-media-overlay.with-background {
 		background-color: rgba(0,0,0,0.4);
 	}
-	
+
 	.nd2-card .card-media-overlay .card-title .card-primary-title,
 	.nd2-card .card-media-overlay .card-title .card-subtitle,
 	.nd2-card .card-media-overlay .card-action .ui-btn {
 		color: #ffffff;
 		text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 	}
-	
+
 	.nd2-card .card-media-overlay .card-action .ui-btn:hover {
 		background-color: rgba(0,0,0,0.4);
 	}
-	
+
 	.nd2-card .card-supporting-text {
 		padding: 16px 16px 16px 16px;
 		display: block;
@@ -1379,25 +1379,25 @@ pre {
 		line-height: 1.6em;
 		margin: 0px 0px;
 	}
-	
+
 	.nd2-card .card-supporting-text.has-action { padding: 16px 16px 16px 16px; }
 	.nd2-card .card-supporting-text.has-title { padding-top: 0px; }
-	
+
 	.nd2-card.card-media-right .card-supporting-text.has-title { padding-top: 16px; }
-	
-	
+
+
 	.nd2-card .card-title {
 		padding: 24px 16px;
 	}
-	
+
 	.nd2-card.card-media-right.card-media-small .card-title { min-height: 56px; }
 	.nd2-card.card-media-right.card-media-medium .card-title { min-height: 88px; }
 	.nd2-card.card-media-right.card-media-large .card-title {  min-height: 128px;  }
-	
+
 	.nd2-card .card-title.has-supporting-text {
 		padding: 24px 16px 16px 16px;
 	}
-	
+
 	.nd2-card .card-title .card-primary-title {
 		margin: 0px;
 		font-weight: 500;
@@ -1408,7 +1408,7 @@ pre {
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
-	
+
 	.nd2-card .card-title .card-subtitle {
 		font-size: 14px;
 		margin: 0px;
@@ -1420,29 +1420,29 @@ pre {
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}
-	
+
 	.nd2-card.card-media-right .card-title .card-primary-title,
 	.nd2-card.card-media-right .card-title .card-subtitle {
 		margin-right: 120px;
 	}
-	
+
 	.nd2-card.card-media-right.card-media-medium  .card-title .card-primary-title,
 	.nd2-card.card-media-right.card-media-medium  .card-title .card-subtitle {
 		margin-right: 180px;
 	}
-	
+
 	.nd2-card.card-media-right.card-media-large .card-title .card-primary-title,
 	.nd2-card.card-media-right.card-media-large .card-title .card-subtitle {
 		margin-right: 220px;
 	}
-	
-	
+
+
 	.nd2-card .card-title.has-avatar .card-primary-title,
 	.nd2-card .card-title.has-avatar .card-subtitle {
 		font-size: 16px;
 		line-height: 20px;
 	}
-	
+
 	.nd2-card .card-title .card-avatar {
 		display: block;
 		float: left;
@@ -1453,137 +1453,137 @@ pre {
 		margin-right: 16px;
 		background-color: #bdbdbd;
 	}
-	
+
 	.nd2-card .card-action {
 		padding: 8px;
 	}
-	
+
 	.nd2-card .card-action.has-separator {
 		border-top: 1px solid #eee;
 	}
-	
-	
+
+
 	.nd2-card.card-media-left .card-action {
 		position: absolute;
 		top: 16px;
 		right: 16px;
 		text-align: right;
 	}
-	
+
 	.nd2-card.card-media-left .card-action .ui-btn {
 		display: block;
 	}
-	
+
 	/*
 	* Charts
 	*/
-	
+
 	.nd2-chart {
 		width: 100%;
 		margin: 48px auto;
 		height: 250px;
 	}
-	
+
 	.nd2-chart.nd2-chart-large {
 		height: 500px;
 	}
-	
+
 	.nd2-chart .ct-area {
 		fill-opacity: 0.6;
 	}
-	
+
 	.nd2-chart .ct-bar {
 		stroke-width: 5px;
 	}
-	
+
 	/* Chart-Color-Theme: red */
 	.nd2-chart.clr-theme-red .ct-series-a .ct-bar, .nd2-chart.clr-theme-red .ct-series-a .ct-line, .nd2-chart.clr-theme-red .ct-series-a .ct-point, .nd2-chart.clr-theme-red .ct-series-a .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-red .ct-series-a .ct-area, .nd2-chart.clr-theme-red .ct-series-a .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-red .ct-series-b .ct-bar, .nd2-chart.clr-theme-red .ct-series-b .ct-line, .nd2-chart.clr-theme-red .ct-series-b .ct-point, .nd2-chart.clr-theme-red .ct-series-b .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-red .ct-series-b .ct-area, .nd2-chart.clr-theme-red .ct-series-b .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-red .ct-series-c .ct-bar, .nd2-chart.clr-theme-red .ct-series-c .ct-line, .nd2-chart.clr-theme-red .ct-series-c .ct-point, .nd2-chart.clr-theme-red .ct-series-c .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-red .ct-series-c .ct-area, .nd2-chart.clr-theme-red .ct-series-c .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-red .ct-series-d .ct-bar, .nd2-chart.clr-theme-red .ct-series-d .ct-line, .nd2-chart.clr-theme-red .ct-series-d .ct-point, .nd2-chart.clr-theme-red .ct-series-d .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-red .ct-series-d .ct-area, .nd2-chart.clr-theme-red .ct-series-d .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-red .ct-series-e .ct-bar, .nd2-chart.clr-theme-red .ct-series-e .ct-line, .nd2-chart.clr-theme-red .ct-series-e .ct-point, .nd2-chart.clr-theme-red .ct-series-e .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-red .ct-series-e .ct-area, .nd2-chart.clr-theme-red .ct-series-e .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-red .ct-series-f .ct-bar, .nd2-chart.clr-theme-red .ct-series-f .ct-line, .nd2-chart.clr-theme-red .ct-series-f .ct-point, .nd2-chart.clr-theme-red .ct-series-f .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-red .ct-series-f .ct-area, .nd2-chart.clr-theme-red .ct-series-f .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-red .ct-series-g .ct-bar, .nd2-chart.clr-theme-red .ct-series-g .ct-line, .nd2-chart.clr-theme-red .ct-series-g .ct-point, .nd2-chart.clr-theme-red .ct-series-g .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-red .ct-series-g .ct-area, .nd2-chart.clr-theme-red .ct-series-g .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-red .ct-series-h .ct-bar, .nd2-chart.clr-theme-red .ct-series-h .ct-line, .nd2-chart.clr-theme-red .ct-series-h .ct-point, .nd2-chart.clr-theme-red .ct-series-h .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-red .ct-series-h .ct-area, .nd2-chart.clr-theme-red .ct-series-h .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-red .ct-series-i .ct-bar, .nd2-chart.clr-theme-red .ct-series-i .ct-line, .nd2-chart.clr-theme-red .ct-series-i .ct-point, .nd2-chart.clr-theme-red .ct-series-i .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-red .ct-series-i .ct-area, .nd2-chart.clr-theme-red .ct-series-i .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-red .ct-series-j .ct-bar, .nd2-chart.clr-theme-red .ct-series-j .ct-line, .nd2-chart.clr-theme-red .ct-series-j .ct-point, .nd2-chart.clr-theme-red .ct-series-j .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-red .ct-series-j .ct-area, .nd2-chart.clr-theme-red .ct-series-j .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-red .ct-series-k .ct-bar, .nd2-chart.clr-theme-red .ct-series-k .ct-line, .nd2-chart.clr-theme-red .ct-series-k .ct-point, .nd2-chart.clr-theme-red .ct-series-k .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-red .ct-series-k .ct-area, .nd2-chart.clr-theme-red .ct-series-k .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-red .ct-series-l .ct-bar, .nd2-chart.clr-theme-red .ct-series-l .ct-line, .nd2-chart.clr-theme-red .ct-series-l .ct-point, .nd2-chart.clr-theme-red .ct-series-l .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-red .ct-series-l .ct-area, .nd2-chart.clr-theme-red .ct-series-l .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-red .ct-series-m .ct-bar, .nd2-chart.clr-theme-red .ct-series-m .ct-line, .nd2-chart.clr-theme-red .ct-series-m .ct-point, .nd2-chart.clr-theme-red .ct-series-m .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-red .ct-series-m .ct-area, .nd2-chart.clr-theme-red .ct-series-m .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-red .ct-series-n .ct-bar, .nd2-chart.clr-theme-red .ct-series-n .ct-line, .nd2-chart.clr-theme-red .ct-series-n .ct-point, .nd2-chart.clr-theme-red .ct-series-n .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-red .ct-series-n .ct-area, .nd2-chart.clr-theme-red .ct-series-n .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-red .ct-series-o .ct-bar, .nd2-chart.clr-theme-red .ct-series-o .ct-line, .nd2-chart.clr-theme-red .ct-series-o .ct-point, .nd2-chart.clr-theme-red .ct-series-o .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-red .ct-series-o .ct-area, .nd2-chart.clr-theme-red .ct-series-o .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-red .ct-series-p .ct-bar, .nd2-chart.clr-theme-red .ct-series-p .ct-line, .nd2-chart.clr-theme-red .ct-series-p .ct-point, .nd2-chart.clr-theme-red .ct-series-p .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-red .ct-series-p .ct-area, .nd2-chart.clr-theme-red .ct-series-p .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-red .ct-series-q .ct-bar, .nd2-chart.clr-theme-red .ct-series-q .ct-line, .nd2-chart.clr-theme-red .ct-series-q .ct-point, .nd2-chart.clr-theme-red .ct-series-q .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-red .ct-series-q .ct-area, .nd2-chart.clr-theme-red .ct-series-q .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-red .ct-series-r .ct-bar, .nd2-chart.clr-theme-red .ct-series-r .ct-line, .nd2-chart.clr-theme-red .ct-series-r .ct-point, .nd2-chart.clr-theme-red .ct-series-r .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-red .ct-series-r .ct-area, .nd2-chart.clr-theme-red .ct-series-r .ct-slice-pie { fill: #9E9E9E; }
-	
-	
+
+
 	/* Chart-Color-Theme: pink */
 	.nd2-chart.clr-theme-pink .ct-series-a .ct-bar, .nd2-chart.clr-theme-pink .ct-series-a .ct-line, .nd2-chart.clr-theme-pink .ct-series-a .ct-point, .nd2-chart.clr-theme-pink .ct-series-a .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-pink .ct-series-a .ct-area, .nd2-chart.clr-theme-pink .ct-series-a .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-pink .ct-series-b .ct-bar, .nd2-chart.clr-theme-pink .ct-series-b .ct-line, .nd2-chart.clr-theme-pink .ct-series-b .ct-point, .nd2-chart.clr-theme-pink .ct-series-b .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-pink .ct-series-b .ct-area, .nd2-chart.clr-theme-pink .ct-series-b .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-pink .ct-series-c .ct-bar, .nd2-chart.clr-theme-pink .ct-series-c .ct-line, .nd2-chart.clr-theme-pink .ct-series-c .ct-point, .nd2-chart.clr-theme-pink .ct-series-c .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-pink .ct-series-c .ct-area, .nd2-chart.clr-theme-pink .ct-series-c .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-pink .ct-series-d .ct-bar, .nd2-chart.clr-theme-pink .ct-series-d .ct-line, .nd2-chart.clr-theme-pink .ct-series-d .ct-point, .nd2-chart.clr-theme-pink .ct-series-d .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-pink .ct-series-d .ct-area, .nd2-chart.clr-theme-pink .ct-series-d .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-pink .ct-series-e .ct-bar, .nd2-chart.clr-theme-pink .ct-series-e .ct-line, .nd2-chart.clr-theme-pink .ct-series-e .ct-point, .nd2-chart.clr-theme-pink .ct-series-e .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-pink .ct-series-e .ct-area, .nd2-chart.clr-theme-pink .ct-series-e .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-pink .ct-series-f .ct-bar, .nd2-chart.clr-theme-pink .ct-series-f .ct-line, .nd2-chart.clr-theme-pink .ct-series-f .ct-point, .nd2-chart.clr-theme-pink .ct-series-f .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-pink .ct-series-f .ct-area, .nd2-chart.clr-theme-pink .ct-series-f .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-pink .ct-series-g .ct-bar, .nd2-chart.clr-theme-pink .ct-series-g .ct-line, .nd2-chart.clr-theme-pink .ct-series-g .ct-point, .nd2-chart.clr-theme-pink .ct-series-g .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-pink .ct-series-g .ct-area, .nd2-chart.clr-theme-pink .ct-series-g .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-pink .ct-series-h .ct-bar, .nd2-chart.clr-theme-pink .ct-series-h .ct-line, .nd2-chart.clr-theme-pink .ct-series-h .ct-point, .nd2-chart.clr-theme-pink .ct-series-h .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-pink .ct-series-h .ct-area, .nd2-chart.clr-theme-pink .ct-series-h .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-pink .ct-series-i .ct-bar, .nd2-chart.clr-theme-pink .ct-series-i .ct-line, .nd2-chart.clr-theme-pink .ct-series-i .ct-point, .nd2-chart.clr-theme-pink .ct-series-i .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-pink .ct-series-i .ct-area, .nd2-chart.clr-theme-pink .ct-series-i .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-pink .ct-series-j .ct-bar, .nd2-chart.clr-theme-pink .ct-series-j .ct-line, .nd2-chart.clr-theme-pink .ct-series-j .ct-point, .nd2-chart.clr-theme-pink .ct-series-j .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-pink .ct-series-j .ct-area, .nd2-chart.clr-theme-pink .ct-series-j .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-pink .ct-series-k .ct-bar, .nd2-chart.clr-theme-pink .ct-series-k .ct-line, .nd2-chart.clr-theme-pink .ct-series-k .ct-point, .nd2-chart.clr-theme-pink .ct-series-k .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-pink .ct-series-k .ct-area, .nd2-chart.clr-theme-pink .ct-series-k .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-pink .ct-series-l .ct-bar, .nd2-chart.clr-theme-pink .ct-series-l .ct-line, .nd2-chart.clr-theme-pink .ct-series-l .ct-point, .nd2-chart.clr-theme-pink .ct-series-l .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-pink .ct-series-l .ct-area, .nd2-chart.clr-theme-pink .ct-series-l .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-pink .ct-series-m .ct-bar, .nd2-chart.clr-theme-pink .ct-series-m .ct-line, .nd2-chart.clr-theme-pink .ct-series-m .ct-point, .nd2-chart.clr-theme-pink .ct-series-m .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-pink .ct-series-m .ct-area, .nd2-chart.clr-theme-pink .ct-series-m .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-pink .ct-series-n .ct-bar, .nd2-chart.clr-theme-pink .ct-series-n .ct-line, .nd2-chart.clr-theme-pink .ct-series-n .ct-point, .nd2-chart.clr-theme-pink .ct-series-n .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-pink .ct-series-n .ct-area, .nd2-chart.clr-theme-pink .ct-series-n .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-pink .ct-series-o .ct-bar, .nd2-chart.clr-theme-pink .ct-series-o .ct-line, .nd2-chart.clr-theme-pink .ct-series-o .ct-point, .nd2-chart.clr-theme-pink .ct-series-o .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-pink .ct-series-o .ct-area, .nd2-chart.clr-theme-pink .ct-series-o .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-pink .ct-series-p .ct-bar, .nd2-chart.clr-theme-pink .ct-series-p .ct-line, .nd2-chart.clr-theme-pink .ct-series-p .ct-point, .nd2-chart.clr-theme-pink .ct-series-p .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-pink .ct-series-p .ct-area, .nd2-chart.clr-theme-pink .ct-series-p .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-pink .ct-series-q .ct-bar, .nd2-chart.clr-theme-pink .ct-series-q .ct-line, .nd2-chart.clr-theme-pink .ct-series-q .ct-point, .nd2-chart.clr-theme-pink .ct-series-q .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-pink .ct-series-q .ct-area, .nd2-chart.clr-theme-pink .ct-series-q .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-pink .ct-series-r .ct-bar, .nd2-chart.clr-theme-pink .ct-series-r .ct-line, .nd2-chart.clr-theme-pink .ct-series-r .ct-point, .nd2-chart.clr-theme-pink .ct-series-r .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-pink .ct-series-r .ct-area, .nd2-chart.clr-theme-pink .ct-series-r .ct-slice-pie { fill: #607D8B; }
-	
-	
+
+
 	/* Chart-Color-Theme: purple */
 	.nd2-chart.clr-theme-purple .ct-series-a .ct-bar, .nd2-chart.clr-theme-purple .ct-series-a .ct-line, .nd2-chart.clr-theme-purple .ct-series-a .ct-point, .nd2-chart.clr-theme-purple .ct-series-a .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-purple .ct-series-a .ct-area, .nd2-chart.clr-theme-purple .ct-series-a .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-purple .ct-series-b .ct-bar, .nd2-chart.clr-theme-purple .ct-series-b .ct-line, .nd2-chart.clr-theme-purple .ct-series-b .ct-point, .nd2-chart.clr-theme-purple .ct-series-b .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-purple .ct-series-b .ct-area, .nd2-chart.clr-theme-purple .ct-series-b .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-purple .ct-series-c .ct-bar, .nd2-chart.clr-theme-purple .ct-series-c .ct-line, .nd2-chart.clr-theme-purple .ct-series-c .ct-point, .nd2-chart.clr-theme-purple .ct-series-c .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-purple .ct-series-c .ct-area, .nd2-chart.clr-theme-purple .ct-series-c .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-purple .ct-series-d .ct-bar, .nd2-chart.clr-theme-purple .ct-series-d .ct-line, .nd2-chart.clr-theme-purple .ct-series-d .ct-point, .nd2-chart.clr-theme-purple .ct-series-d .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-purple .ct-series-d .ct-area, .nd2-chart.clr-theme-purple .ct-series-d .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-purple .ct-series-e .ct-bar, .nd2-chart.clr-theme-purple .ct-series-e .ct-line, .nd2-chart.clr-theme-purple .ct-series-e .ct-point, .nd2-chart.clr-theme-purple .ct-series-e .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-purple .ct-series-e .ct-area, .nd2-chart.clr-theme-purple .ct-series-e .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-purple .ct-series-f .ct-bar, .nd2-chart.clr-theme-purple .ct-series-f .ct-line, .nd2-chart.clr-theme-purple .ct-series-f .ct-point, .nd2-chart.clr-theme-purple .ct-series-f .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-purple .ct-series-f .ct-area, .nd2-chart.clr-theme-purple .ct-series-f .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-purple .ct-series-g .ct-bar, .nd2-chart.clr-theme-purple .ct-series-g .ct-line, .nd2-chart.clr-theme-purple .ct-series-g .ct-point, .nd2-chart.clr-theme-purple .ct-series-g .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-purple .ct-series-g .ct-area, .nd2-chart.clr-theme-purple .ct-series-g .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-purple .ct-series-h .ct-bar, .nd2-chart.clr-theme-purple .ct-series-h .ct-line, .nd2-chart.clr-theme-purple .ct-series-h .ct-point, .nd2-chart.clr-theme-purple .ct-series-h .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-purple .ct-series-h .ct-area, .nd2-chart.clr-theme-purple .ct-series-h .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-purple .ct-series-i .ct-bar, .nd2-chart.clr-theme-purple .ct-series-i .ct-line, .nd2-chart.clr-theme-purple .ct-series-i .ct-point, .nd2-chart.clr-theme-purple .ct-series-i .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-purple .ct-series-i .ct-area, .nd2-chart.clr-theme-purple .ct-series-i .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-purple .ct-series-j .ct-bar, .nd2-chart.clr-theme-purple .ct-series-j .ct-line, .nd2-chart.clr-theme-purple .ct-series-j .ct-point, .nd2-chart.clr-theme-purple .ct-series-j .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-purple .ct-series-j .ct-area, .nd2-chart.clr-theme-purple .ct-series-j .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-purple .ct-series-k .ct-bar, .nd2-chart.clr-theme-purple .ct-series-k .ct-line, .nd2-chart.clr-theme-purple .ct-series-k .ct-point, .nd2-chart.clr-theme-purple .ct-series-k .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-purple .ct-series-k .ct-area, .nd2-chart.clr-theme-purple .ct-series-k .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-purple .ct-series-l .ct-bar, .nd2-chart.clr-theme-purple .ct-series-l .ct-line, .nd2-chart.clr-theme-purple .ct-series-l .ct-point, .nd2-chart.clr-theme-purple .ct-series-l .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-purple .ct-series-l .ct-area, .nd2-chart.clr-theme-purple .ct-series-l .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-purple .ct-series-m .ct-bar, .nd2-chart.clr-theme-purple .ct-series-m .ct-line, .nd2-chart.clr-theme-purple .ct-series-m .ct-point, .nd2-chart.clr-theme-purple .ct-series-m .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-purple .ct-series-m .ct-area, .nd2-chart.clr-theme-purple .ct-series-m .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-purple .ct-series-n .ct-bar, .nd2-chart.clr-theme-purple .ct-series-n .ct-line, .nd2-chart.clr-theme-purple .ct-series-n .ct-point, .nd2-chart.clr-theme-purple .ct-series-n .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-purple .ct-series-n .ct-area, .nd2-chart.clr-theme-purple .ct-series-n .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-purple .ct-series-o .ct-bar, .nd2-chart.clr-theme-purple .ct-series-o .ct-line, .nd2-chart.clr-theme-purple .ct-series-o .ct-point, .nd2-chart.clr-theme-purple .ct-series-o .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-purple .ct-series-o .ct-area, .nd2-chart.clr-theme-purple .ct-series-o .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-purple .ct-series-p .ct-bar, .nd2-chart.clr-theme-purple .ct-series-p .ct-line, .nd2-chart.clr-theme-purple .ct-series-p .ct-point, .nd2-chart.clr-theme-purple .ct-series-p .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-purple .ct-series-p .ct-area, .nd2-chart.clr-theme-purple .ct-series-p .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-purple .ct-series-q .ct-bar, .nd2-chart.clr-theme-purple .ct-series-q .ct-line, .nd2-chart.clr-theme-purple .ct-series-q .ct-point, .nd2-chart.clr-theme-purple .ct-series-q .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-purple .ct-series-q .ct-area, .nd2-chart.clr-theme-purple .ct-series-q .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-purple .ct-series-r .ct-bar, .nd2-chart.clr-theme-purple .ct-series-r .ct-line, .nd2-chart.clr-theme-purple .ct-series-r .ct-point, .nd2-chart.clr-theme-purple .ct-series-r .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-purple .ct-series-r .ct-area, .nd2-chart.clr-theme-purple .ct-series-r .ct-slice-pie { fill: #F44336; }
-	
-	
+
+
 	/* Chart-Color-Theme: deep-purple */
 	.nd2-chart.clr-theme-deep-purple .ct-series-a .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-a .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-a .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-a .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-deep-purple .ct-series-a .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-a .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-deep-purple .ct-series-b .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-b .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-b .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-b .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-deep-purple .ct-series-b .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-b .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-deep-purple .ct-series-c .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-c .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-c .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-c .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-deep-purple .ct-series-c .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-c .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-deep-purple .ct-series-d .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-d .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-d .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-d .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-deep-purple .ct-series-d .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-d .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-deep-purple .ct-series-e .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-e .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-e .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-e .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-deep-purple .ct-series-e .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-e .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-deep-purple .ct-series-f .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-f .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-f .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-f .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-deep-purple .ct-series-f .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-f .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-deep-purple .ct-series-g .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-g .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-g .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-g .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-deep-purple .ct-series-g .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-g .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-deep-purple .ct-series-h .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-h .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-h .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-h .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-deep-purple .ct-series-h .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-h .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-deep-purple .ct-series-i .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-i .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-i .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-i .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-deep-purple .ct-series-i .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-i .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-deep-purple .ct-series-j .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-j .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-j .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-j .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-deep-purple .ct-series-j .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-j .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-deep-purple .ct-series-k .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-k .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-k .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-k .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-deep-purple .ct-series-k .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-k .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-deep-purple .ct-series-l .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-l .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-l .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-l .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-deep-purple .ct-series-l .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-l .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-deep-purple .ct-series-m .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-m .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-m .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-m .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-deep-purple .ct-series-m .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-m .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-deep-purple .ct-series-n .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-n .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-n .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-n .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-deep-purple .ct-series-n .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-n .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-deep-purple .ct-series-o .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-o .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-o .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-o .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-deep-purple .ct-series-o .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-o .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-deep-purple .ct-series-p .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-p .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-p .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-p .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-deep-purple .ct-series-p .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-p .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-deep-purple .ct-series-q .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-q .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-q .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-q .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-deep-purple .ct-series-q .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-q .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-deep-purple .ct-series-r .ct-bar, .nd2-chart.clr-theme-deep-purple .ct-series-r .ct-line, .nd2-chart.clr-theme-deep-purple .ct-series-r .ct-point, .nd2-chart.clr-theme-deep-purple .ct-series-r .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-deep-purple .ct-series-r .ct-area, .nd2-chart.clr-theme-deep-purple .ct-series-r .ct-slice-pie { fill: #E91E63; }
-	
-	
+
+
 	/* Chart-Color-Theme: indigo */
 	.nd2-chart.clr-theme-indigo .ct-series-a .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-a .ct-line, .nd2-chart.clr-theme-indigo .ct-series-a .ct-point, .nd2-chart.clr-theme-indigo .ct-series-a .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-indigo .ct-series-a .ct-area, .nd2-chart.clr-theme-indigo .ct-series-a .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-indigo .ct-series-b .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-b .ct-line, .nd2-chart.clr-theme-indigo .ct-series-b .ct-point, .nd2-chart.clr-theme-indigo .ct-series-b .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-indigo .ct-series-b .ct-area, .nd2-chart.clr-theme-indigo .ct-series-b .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-indigo .ct-series-c .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-c .ct-line, .nd2-chart.clr-theme-indigo .ct-series-c .ct-point, .nd2-chart.clr-theme-indigo .ct-series-c .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-indigo .ct-series-c .ct-area, .nd2-chart.clr-theme-indigo .ct-series-c .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-indigo .ct-series-d .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-d .ct-line, .nd2-chart.clr-theme-indigo .ct-series-d .ct-point, .nd2-chart.clr-theme-indigo .ct-series-d .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-indigo .ct-series-d .ct-area, .nd2-chart.clr-theme-indigo .ct-series-d .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-indigo .ct-series-e .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-e .ct-line, .nd2-chart.clr-theme-indigo .ct-series-e .ct-point, .nd2-chart.clr-theme-indigo .ct-series-e .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-indigo .ct-series-e .ct-area, .nd2-chart.clr-theme-indigo .ct-series-e .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-indigo .ct-series-f .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-f .ct-line, .nd2-chart.clr-theme-indigo .ct-series-f .ct-point, .nd2-chart.clr-theme-indigo .ct-series-f .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-indigo .ct-series-f .ct-area, .nd2-chart.clr-theme-indigo .ct-series-f .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-indigo .ct-series-g .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-g .ct-line, .nd2-chart.clr-theme-indigo .ct-series-g .ct-point, .nd2-chart.clr-theme-indigo .ct-series-g .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-indigo .ct-series-g .ct-area, .nd2-chart.clr-theme-indigo .ct-series-g .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-indigo .ct-series-h .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-h .ct-line, .nd2-chart.clr-theme-indigo .ct-series-h .ct-point, .nd2-chart.clr-theme-indigo .ct-series-h .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-indigo .ct-series-h .ct-area, .nd2-chart.clr-theme-indigo .ct-series-h .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-indigo .ct-series-i .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-i .ct-line, .nd2-chart.clr-theme-indigo .ct-series-i .ct-point, .nd2-chart.clr-theme-indigo .ct-series-i .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-indigo .ct-series-i .ct-area, .nd2-chart.clr-theme-indigo .ct-series-i .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-indigo .ct-series-j .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-j .ct-line, .nd2-chart.clr-theme-indigo .ct-series-j .ct-point, .nd2-chart.clr-theme-indigo .ct-series-j .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-indigo .ct-series-j .ct-area, .nd2-chart.clr-theme-indigo .ct-series-j .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-indigo .ct-series-k .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-k .ct-line, .nd2-chart.clr-theme-indigo .ct-series-k .ct-point, .nd2-chart.clr-theme-indigo .ct-series-k .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-indigo .ct-series-k .ct-area, .nd2-chart.clr-theme-indigo .ct-series-k .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-indigo .ct-series-l .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-l .ct-line, .nd2-chart.clr-theme-indigo .ct-series-l .ct-point, .nd2-chart.clr-theme-indigo .ct-series-l .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-indigo .ct-series-l .ct-area, .nd2-chart.clr-theme-indigo .ct-series-l .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-indigo .ct-series-m .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-m .ct-line, .nd2-chart.clr-theme-indigo .ct-series-m .ct-point, .nd2-chart.clr-theme-indigo .ct-series-m .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-indigo .ct-series-m .ct-area, .nd2-chart.clr-theme-indigo .ct-series-m .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-indigo .ct-series-n .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-n .ct-line, .nd2-chart.clr-theme-indigo .ct-series-n .ct-point, .nd2-chart.clr-theme-indigo .ct-series-n .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-indigo .ct-series-n .ct-area, .nd2-chart.clr-theme-indigo .ct-series-n .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-indigo .ct-series-o .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-o .ct-line, .nd2-chart.clr-theme-indigo .ct-series-o .ct-point, .nd2-chart.clr-theme-indigo .ct-series-o .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-indigo .ct-series-o .ct-area, .nd2-chart.clr-theme-indigo .ct-series-o .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-indigo .ct-series-p .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-p .ct-line, .nd2-chart.clr-theme-indigo .ct-series-p .ct-point, .nd2-chart.clr-theme-indigo .ct-series-p .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-indigo .ct-series-p .ct-area, .nd2-chart.clr-theme-indigo .ct-series-p .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-indigo .ct-series-q .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-q .ct-line, .nd2-chart.clr-theme-indigo .ct-series-q .ct-point, .nd2-chart.clr-theme-indigo .ct-series-q .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-indigo .ct-series-q .ct-area, .nd2-chart.clr-theme-indigo .ct-series-q .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-indigo .ct-series-r .ct-bar, .nd2-chart.clr-theme-indigo .ct-series-r .ct-line, .nd2-chart.clr-theme-indigo .ct-series-r .ct-point, .nd2-chart.clr-theme-indigo .ct-series-r .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-indigo .ct-series-r .ct-area, .nd2-chart.clr-theme-indigo .ct-series-r .ct-slice-pie { fill: #9C27B0; }
-	
-	
+
+
 	/* Chart-Color-Theme: blue */
 	.nd2-chart.clr-theme-blue .ct-series-a .ct-bar, .nd2-chart.clr-theme-blue .ct-series-a .ct-line, .nd2-chart.clr-theme-blue .ct-series-a .ct-point, .nd2-chart.clr-theme-blue .ct-series-a .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-blue .ct-series-a .ct-area, .nd2-chart.clr-theme-blue .ct-series-a .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-blue .ct-series-b .ct-bar, .nd2-chart.clr-theme-blue .ct-series-b .ct-line, .nd2-chart.clr-theme-blue .ct-series-b .ct-point, .nd2-chart.clr-theme-blue .ct-series-b .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-blue .ct-series-b .ct-area, .nd2-chart.clr-theme-blue .ct-series-b .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-blue .ct-series-c .ct-bar, .nd2-chart.clr-theme-blue .ct-series-c .ct-line, .nd2-chart.clr-theme-blue .ct-series-c .ct-point, .nd2-chart.clr-theme-blue .ct-series-c .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-blue .ct-series-c .ct-area, .nd2-chart.clr-theme-blue .ct-series-c .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-blue .ct-series-d .ct-bar, .nd2-chart.clr-theme-blue .ct-series-d .ct-line, .nd2-chart.clr-theme-blue .ct-series-d .ct-point, .nd2-chart.clr-theme-blue .ct-series-d .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-blue .ct-series-d .ct-area, .nd2-chart.clr-theme-blue .ct-series-d .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-blue .ct-series-e .ct-bar, .nd2-chart.clr-theme-blue .ct-series-e .ct-line, .nd2-chart.clr-theme-blue .ct-series-e .ct-point, .nd2-chart.clr-theme-blue .ct-series-e .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-blue .ct-series-e .ct-area, .nd2-chart.clr-theme-blue .ct-series-e .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-blue .ct-series-f .ct-bar, .nd2-chart.clr-theme-blue .ct-series-f .ct-line, .nd2-chart.clr-theme-blue .ct-series-f .ct-point, .nd2-chart.clr-theme-blue .ct-series-f .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-blue .ct-series-f .ct-area, .nd2-chart.clr-theme-blue .ct-series-f .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-blue .ct-series-g .ct-bar, .nd2-chart.clr-theme-blue .ct-series-g .ct-line, .nd2-chart.clr-theme-blue .ct-series-g .ct-point, .nd2-chart.clr-theme-blue .ct-series-g .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-blue .ct-series-g .ct-area, .nd2-chart.clr-theme-blue .ct-series-g .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-blue .ct-series-h .ct-bar, .nd2-chart.clr-theme-blue .ct-series-h .ct-line, .nd2-chart.clr-theme-blue .ct-series-h .ct-point, .nd2-chart.clr-theme-blue .ct-series-h .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-blue .ct-series-h .ct-area, .nd2-chart.clr-theme-blue .ct-series-h .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-blue .ct-series-i .ct-bar, .nd2-chart.clr-theme-blue .ct-series-i .ct-line, .nd2-chart.clr-theme-blue .ct-series-i .ct-point, .nd2-chart.clr-theme-blue .ct-series-i .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-blue .ct-series-i .ct-area, .nd2-chart.clr-theme-blue .ct-series-i .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-blue .ct-series-j .ct-bar, .nd2-chart.clr-theme-blue .ct-series-j .ct-line, .nd2-chart.clr-theme-blue .ct-series-j .ct-point, .nd2-chart.clr-theme-blue .ct-series-j .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-blue .ct-series-j .ct-area, .nd2-chart.clr-theme-blue .ct-series-j .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-blue .ct-series-k .ct-bar, .nd2-chart.clr-theme-blue .ct-series-k .ct-line, .nd2-chart.clr-theme-blue .ct-series-k .ct-point, .nd2-chart.clr-theme-blue .ct-series-k .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-blue .ct-series-k .ct-area, .nd2-chart.clr-theme-blue .ct-series-k .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-blue .ct-series-l .ct-bar, .nd2-chart.clr-theme-blue .ct-series-l .ct-line, .nd2-chart.clr-theme-blue .ct-series-l .ct-point, .nd2-chart.clr-theme-blue .ct-series-l .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-blue .ct-series-l .ct-area, .nd2-chart.clr-theme-blue .ct-series-l .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-blue .ct-series-m .ct-bar, .nd2-chart.clr-theme-blue .ct-series-m .ct-line, .nd2-chart.clr-theme-blue .ct-series-m .ct-point, .nd2-chart.clr-theme-blue .ct-series-m .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-blue .ct-series-m .ct-area, .nd2-chart.clr-theme-blue .ct-series-m .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-blue .ct-series-n .ct-bar, .nd2-chart.clr-theme-blue .ct-series-n .ct-line, .nd2-chart.clr-theme-blue .ct-series-n .ct-point, .nd2-chart.clr-theme-blue .ct-series-n .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-blue .ct-series-n .ct-area, .nd2-chart.clr-theme-blue .ct-series-n .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-blue .ct-series-o .ct-bar, .nd2-chart.clr-theme-blue .ct-series-o .ct-line, .nd2-chart.clr-theme-blue .ct-series-o .ct-point, .nd2-chart.clr-theme-blue .ct-series-o .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-blue .ct-series-o .ct-area, .nd2-chart.clr-theme-blue .ct-series-o .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-blue .ct-series-p .ct-bar, .nd2-chart.clr-theme-blue .ct-series-p .ct-line, .nd2-chart.clr-theme-blue .ct-series-p .ct-point, .nd2-chart.clr-theme-blue .ct-series-p .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-blue .ct-series-p .ct-area, .nd2-chart.clr-theme-blue .ct-series-p .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-blue .ct-series-q .ct-bar, .nd2-chart.clr-theme-blue .ct-series-q .ct-line, .nd2-chart.clr-theme-blue .ct-series-q .ct-point, .nd2-chart.clr-theme-blue .ct-series-q .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-blue .ct-series-q .ct-area, .nd2-chart.clr-theme-blue .ct-series-q .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-blue .ct-series-r .ct-bar, .nd2-chart.clr-theme-blue .ct-series-r .ct-line, .nd2-chart.clr-theme-blue .ct-series-r .ct-point, .nd2-chart.clr-theme-blue .ct-series-r .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-blue .ct-series-r .ct-area, .nd2-chart.clr-theme-blue .ct-series-r .ct-slice-pie { fill: #673AB7; }
-	
-	
+
+
 	/* Chart-Color-Theme: light-blue */
 	.nd2-chart.clr-theme-light-blue .ct-series-a .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-a .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-a .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-a .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-light-blue .ct-series-a .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-a .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-light-blue .ct-series-b .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-b .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-b .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-b .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-light-blue .ct-series-b .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-b .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-light-blue .ct-series-c .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-c .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-c .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-c .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-light-blue .ct-series-c .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-c .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-light-blue .ct-series-d .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-d .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-d .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-d .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-light-blue .ct-series-d .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-d .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-light-blue .ct-series-e .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-e .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-e .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-e .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-light-blue .ct-series-e .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-e .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-light-blue .ct-series-f .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-f .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-f .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-f .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-light-blue .ct-series-f .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-f .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-light-blue .ct-series-g .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-g .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-g .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-g .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-light-blue .ct-series-g .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-g .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-light-blue .ct-series-h .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-h .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-h .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-h .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-light-blue .ct-series-h .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-h .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-light-blue .ct-series-i .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-i .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-i .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-i .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-light-blue .ct-series-i .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-i .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-light-blue .ct-series-j .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-j .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-j .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-j .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-light-blue .ct-series-j .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-j .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-light-blue .ct-series-k .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-k .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-k .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-k .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-light-blue .ct-series-k .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-k .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-light-blue .ct-series-l .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-l .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-l .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-l .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-light-blue .ct-series-l .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-l .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-light-blue .ct-series-m .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-m .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-m .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-m .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-light-blue .ct-series-m .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-m .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-light-blue .ct-series-n .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-n .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-n .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-n .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-light-blue .ct-series-n .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-n .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-light-blue .ct-series-o .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-o .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-o .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-o .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-light-blue .ct-series-o .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-o .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-light-blue .ct-series-p .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-p .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-p .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-p .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-light-blue .ct-series-p .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-p .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-light-blue .ct-series-q .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-q .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-q .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-q .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-light-blue .ct-series-q .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-q .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-light-blue .ct-series-r .ct-bar, .nd2-chart.clr-theme-light-blue .ct-series-r .ct-line, .nd2-chart.clr-theme-light-blue .ct-series-r .ct-point, .nd2-chart.clr-theme-light-blue .ct-series-r .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-light-blue .ct-series-r .ct-area, .nd2-chart.clr-theme-light-blue .ct-series-r .ct-slice-pie { fill: #3F51B5; }
-	
-	
+
+
 	/* Chart-Color-Theme: cyan */
 	.nd2-chart.clr-theme-cyan .ct-series-a .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-a .ct-line, .nd2-chart.clr-theme-cyan .ct-series-a .ct-point, .nd2-chart.clr-theme-cyan .ct-series-a .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-cyan .ct-series-a .ct-area, .nd2-chart.clr-theme-cyan .ct-series-a .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-cyan .ct-series-b .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-b .ct-line, .nd2-chart.clr-theme-cyan .ct-series-b .ct-point, .nd2-chart.clr-theme-cyan .ct-series-b .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-cyan .ct-series-b .ct-area, .nd2-chart.clr-theme-cyan .ct-series-b .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-cyan .ct-series-c .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-c .ct-line, .nd2-chart.clr-theme-cyan .ct-series-c .ct-point, .nd2-chart.clr-theme-cyan .ct-series-c .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-cyan .ct-series-c .ct-area, .nd2-chart.clr-theme-cyan .ct-series-c .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-cyan .ct-series-d .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-d .ct-line, .nd2-chart.clr-theme-cyan .ct-series-d .ct-point, .nd2-chart.clr-theme-cyan .ct-series-d .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-cyan .ct-series-d .ct-area, .nd2-chart.clr-theme-cyan .ct-series-d .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-cyan .ct-series-e .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-e .ct-line, .nd2-chart.clr-theme-cyan .ct-series-e .ct-point, .nd2-chart.clr-theme-cyan .ct-series-e .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-cyan .ct-series-e .ct-area, .nd2-chart.clr-theme-cyan .ct-series-e .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-cyan .ct-series-f .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-f .ct-line, .nd2-chart.clr-theme-cyan .ct-series-f .ct-point, .nd2-chart.clr-theme-cyan .ct-series-f .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-cyan .ct-series-f .ct-area, .nd2-chart.clr-theme-cyan .ct-series-f .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-cyan .ct-series-g .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-g .ct-line, .nd2-chart.clr-theme-cyan .ct-series-g .ct-point, .nd2-chart.clr-theme-cyan .ct-series-g .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-cyan .ct-series-g .ct-area, .nd2-chart.clr-theme-cyan .ct-series-g .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-cyan .ct-series-h .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-h .ct-line, .nd2-chart.clr-theme-cyan .ct-series-h .ct-point, .nd2-chart.clr-theme-cyan .ct-series-h .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-cyan .ct-series-h .ct-area, .nd2-chart.clr-theme-cyan .ct-series-h .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-cyan .ct-series-i .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-i .ct-line, .nd2-chart.clr-theme-cyan .ct-series-i .ct-point, .nd2-chart.clr-theme-cyan .ct-series-i .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-cyan .ct-series-i .ct-area, .nd2-chart.clr-theme-cyan .ct-series-i .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-cyan .ct-series-j .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-j .ct-line, .nd2-chart.clr-theme-cyan .ct-series-j .ct-point, .nd2-chart.clr-theme-cyan .ct-series-j .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-cyan .ct-series-j .ct-area, .nd2-chart.clr-theme-cyan .ct-series-j .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-cyan .ct-series-k .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-k .ct-line, .nd2-chart.clr-theme-cyan .ct-series-k .ct-point, .nd2-chart.clr-theme-cyan .ct-series-k .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-cyan .ct-series-k .ct-area, .nd2-chart.clr-theme-cyan .ct-series-k .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-cyan .ct-series-l .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-l .ct-line, .nd2-chart.clr-theme-cyan .ct-series-l .ct-point, .nd2-chart.clr-theme-cyan .ct-series-l .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-cyan .ct-series-l .ct-area, .nd2-chart.clr-theme-cyan .ct-series-l .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-cyan .ct-series-m .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-m .ct-line, .nd2-chart.clr-theme-cyan .ct-series-m .ct-point, .nd2-chart.clr-theme-cyan .ct-series-m .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-cyan .ct-series-m .ct-area, .nd2-chart.clr-theme-cyan .ct-series-m .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-cyan .ct-series-n .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-n .ct-line, .nd2-chart.clr-theme-cyan .ct-series-n .ct-point, .nd2-chart.clr-theme-cyan .ct-series-n .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-cyan .ct-series-n .ct-area, .nd2-chart.clr-theme-cyan .ct-series-n .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-cyan .ct-series-o .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-o .ct-line, .nd2-chart.clr-theme-cyan .ct-series-o .ct-point, .nd2-chart.clr-theme-cyan .ct-series-o .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-cyan .ct-series-o .ct-area, .nd2-chart.clr-theme-cyan .ct-series-o .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-cyan .ct-series-p .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-p .ct-line, .nd2-chart.clr-theme-cyan .ct-series-p .ct-point, .nd2-chart.clr-theme-cyan .ct-series-p .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-cyan .ct-series-p .ct-area, .nd2-chart.clr-theme-cyan .ct-series-p .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-cyan .ct-series-q .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-q .ct-line, .nd2-chart.clr-theme-cyan .ct-series-q .ct-point, .nd2-chart.clr-theme-cyan .ct-series-q .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-cyan .ct-series-q .ct-area, .nd2-chart.clr-theme-cyan .ct-series-q .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-cyan .ct-series-r .ct-bar, .nd2-chart.clr-theme-cyan .ct-series-r .ct-line, .nd2-chart.clr-theme-cyan .ct-series-r .ct-point, .nd2-chart.clr-theme-cyan .ct-series-r .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-cyan .ct-series-r .ct-area, .nd2-chart.clr-theme-cyan .ct-series-r .ct-slice-pie { fill: #2196F3; }
-	
-	
+
+
 	/* Chart-Color-Theme: teal */
 	.nd2-chart.clr-theme-teal .ct-series-a .ct-bar, .nd2-chart.clr-theme-teal .ct-series-a .ct-line, .nd2-chart.clr-theme-teal .ct-series-a .ct-point, .nd2-chart.clr-theme-teal .ct-series-a .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-teal .ct-series-a .ct-area, .nd2-chart.clr-theme-teal .ct-series-a .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-teal .ct-series-b .ct-bar, .nd2-chart.clr-theme-teal .ct-series-b .ct-line, .nd2-chart.clr-theme-teal .ct-series-b .ct-point, .nd2-chart.clr-theme-teal .ct-series-b .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-teal .ct-series-b .ct-area, .nd2-chart.clr-theme-teal .ct-series-b .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-teal .ct-series-c .ct-bar, .nd2-chart.clr-theme-teal .ct-series-c .ct-line, .nd2-chart.clr-theme-teal .ct-series-c .ct-point, .nd2-chart.clr-theme-teal .ct-series-c .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-teal .ct-series-c .ct-area, .nd2-chart.clr-theme-teal .ct-series-c .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-teal .ct-series-d .ct-bar, .nd2-chart.clr-theme-teal .ct-series-d .ct-line, .nd2-chart.clr-theme-teal .ct-series-d .ct-point, .nd2-chart.clr-theme-teal .ct-series-d .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-teal .ct-series-d .ct-area, .nd2-chart.clr-theme-teal .ct-series-d .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-teal .ct-series-e .ct-bar, .nd2-chart.clr-theme-teal .ct-series-e .ct-line, .nd2-chart.clr-theme-teal .ct-series-e .ct-point, .nd2-chart.clr-theme-teal .ct-series-e .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-teal .ct-series-e .ct-area, .nd2-chart.clr-theme-teal .ct-series-e .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-teal .ct-series-f .ct-bar, .nd2-chart.clr-theme-teal .ct-series-f .ct-line, .nd2-chart.clr-theme-teal .ct-series-f .ct-point, .nd2-chart.clr-theme-teal .ct-series-f .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-teal .ct-series-f .ct-area, .nd2-chart.clr-theme-teal .ct-series-f .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-teal .ct-series-g .ct-bar, .nd2-chart.clr-theme-teal .ct-series-g .ct-line, .nd2-chart.clr-theme-teal .ct-series-g .ct-point, .nd2-chart.clr-theme-teal .ct-series-g .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-teal .ct-series-g .ct-area, .nd2-chart.clr-theme-teal .ct-series-g .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-teal .ct-series-h .ct-bar, .nd2-chart.clr-theme-teal .ct-series-h .ct-line, .nd2-chart.clr-theme-teal .ct-series-h .ct-point, .nd2-chart.clr-theme-teal .ct-series-h .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-teal .ct-series-h .ct-area, .nd2-chart.clr-theme-teal .ct-series-h .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-teal .ct-series-i .ct-bar, .nd2-chart.clr-theme-teal .ct-series-i .ct-line, .nd2-chart.clr-theme-teal .ct-series-i .ct-point, .nd2-chart.clr-theme-teal .ct-series-i .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-teal .ct-series-i .ct-area, .nd2-chart.clr-theme-teal .ct-series-i .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-teal .ct-series-j .ct-bar, .nd2-chart.clr-theme-teal .ct-series-j .ct-line, .nd2-chart.clr-theme-teal .ct-series-j .ct-point, .nd2-chart.clr-theme-teal .ct-series-j .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-teal .ct-series-j .ct-area, .nd2-chart.clr-theme-teal .ct-series-j .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-teal .ct-series-k .ct-bar, .nd2-chart.clr-theme-teal .ct-series-k .ct-line, .nd2-chart.clr-theme-teal .ct-series-k .ct-point, .nd2-chart.clr-theme-teal .ct-series-k .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-teal .ct-series-k .ct-area, .nd2-chart.clr-theme-teal .ct-series-k .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-teal .ct-series-l .ct-bar, .nd2-chart.clr-theme-teal .ct-series-l .ct-line, .nd2-chart.clr-theme-teal .ct-series-l .ct-point, .nd2-chart.clr-theme-teal .ct-series-l .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-teal .ct-series-l .ct-area, .nd2-chart.clr-theme-teal .ct-series-l .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-teal .ct-series-m .ct-bar, .nd2-chart.clr-theme-teal .ct-series-m .ct-line, .nd2-chart.clr-theme-teal .ct-series-m .ct-point, .nd2-chart.clr-theme-teal .ct-series-m .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-teal .ct-series-m .ct-area, .nd2-chart.clr-theme-teal .ct-series-m .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-teal .ct-series-n .ct-bar, .nd2-chart.clr-theme-teal .ct-series-n .ct-line, .nd2-chart.clr-theme-teal .ct-series-n .ct-point, .nd2-chart.clr-theme-teal .ct-series-n .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-teal .ct-series-n .ct-area, .nd2-chart.clr-theme-teal .ct-series-n .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-teal .ct-series-o .ct-bar, .nd2-chart.clr-theme-teal .ct-series-o .ct-line, .nd2-chart.clr-theme-teal .ct-series-o .ct-point, .nd2-chart.clr-theme-teal .ct-series-o .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-teal .ct-series-o .ct-area, .nd2-chart.clr-theme-teal .ct-series-o .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-teal .ct-series-p .ct-bar, .nd2-chart.clr-theme-teal .ct-series-p .ct-line, .nd2-chart.clr-theme-teal .ct-series-p .ct-point, .nd2-chart.clr-theme-teal .ct-series-p .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-teal .ct-series-p .ct-area, .nd2-chart.clr-theme-teal .ct-series-p .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-teal .ct-series-q .ct-bar, .nd2-chart.clr-theme-teal .ct-series-q .ct-line, .nd2-chart.clr-theme-teal .ct-series-q .ct-point, .nd2-chart.clr-theme-teal .ct-series-q .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-teal .ct-series-q .ct-area, .nd2-chart.clr-theme-teal .ct-series-q .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-teal .ct-series-r .ct-bar, .nd2-chart.clr-theme-teal .ct-series-r .ct-line, .nd2-chart.clr-theme-teal .ct-series-r .ct-point, .nd2-chart.clr-theme-teal .ct-series-r .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-teal .ct-series-r .ct-area, .nd2-chart.clr-theme-teal .ct-series-r .ct-slice-pie { fill: #03A9F4; }
-	
-	
+
+
 	/* Chart-Color-Theme: green */
 	.nd2-chart.clr-theme-green .ct-series-a .ct-bar, .nd2-chart.clr-theme-green .ct-series-a .ct-line, .nd2-chart.clr-theme-green .ct-series-a .ct-point, .nd2-chart.clr-theme-green .ct-series-a .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-green .ct-series-a .ct-area, .nd2-chart.clr-theme-green .ct-series-a .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-green .ct-series-b .ct-bar, .nd2-chart.clr-theme-green .ct-series-b .ct-line, .nd2-chart.clr-theme-green .ct-series-b .ct-point, .nd2-chart.clr-theme-green .ct-series-b .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-green .ct-series-b .ct-area, .nd2-chart.clr-theme-green .ct-series-b .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-green .ct-series-c .ct-bar, .nd2-chart.clr-theme-green .ct-series-c .ct-line, .nd2-chart.clr-theme-green .ct-series-c .ct-point, .nd2-chart.clr-theme-green .ct-series-c .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-green .ct-series-c .ct-area, .nd2-chart.clr-theme-green .ct-series-c .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-green .ct-series-d .ct-bar, .nd2-chart.clr-theme-green .ct-series-d .ct-line, .nd2-chart.clr-theme-green .ct-series-d .ct-point, .nd2-chart.clr-theme-green .ct-series-d .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-green .ct-series-d .ct-area, .nd2-chart.clr-theme-green .ct-series-d .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-green .ct-series-e .ct-bar, .nd2-chart.clr-theme-green .ct-series-e .ct-line, .nd2-chart.clr-theme-green .ct-series-e .ct-point, .nd2-chart.clr-theme-green .ct-series-e .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-green .ct-series-e .ct-area, .nd2-chart.clr-theme-green .ct-series-e .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-green .ct-series-f .ct-bar, .nd2-chart.clr-theme-green .ct-series-f .ct-line, .nd2-chart.clr-theme-green .ct-series-f .ct-point, .nd2-chart.clr-theme-green .ct-series-f .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-green .ct-series-f .ct-area, .nd2-chart.clr-theme-green .ct-series-f .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-green .ct-series-g .ct-bar, .nd2-chart.clr-theme-green .ct-series-g .ct-line, .nd2-chart.clr-theme-green .ct-series-g .ct-point, .nd2-chart.clr-theme-green .ct-series-g .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-green .ct-series-g .ct-area, .nd2-chart.clr-theme-green .ct-series-g .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-green .ct-series-h .ct-bar, .nd2-chart.clr-theme-green .ct-series-h .ct-line, .nd2-chart.clr-theme-green .ct-series-h .ct-point, .nd2-chart.clr-theme-green .ct-series-h .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-green .ct-series-h .ct-area, .nd2-chart.clr-theme-green .ct-series-h .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-green .ct-series-i .ct-bar, .nd2-chart.clr-theme-green .ct-series-i .ct-line, .nd2-chart.clr-theme-green .ct-series-i .ct-point, .nd2-chart.clr-theme-green .ct-series-i .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-green .ct-series-i .ct-area, .nd2-chart.clr-theme-green .ct-series-i .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-green .ct-series-j .ct-bar, .nd2-chart.clr-theme-green .ct-series-j .ct-line, .nd2-chart.clr-theme-green .ct-series-j .ct-point, .nd2-chart.clr-theme-green .ct-series-j .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-green .ct-series-j .ct-area, .nd2-chart.clr-theme-green .ct-series-j .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-green .ct-series-k .ct-bar, .nd2-chart.clr-theme-green .ct-series-k .ct-line, .nd2-chart.clr-theme-green .ct-series-k .ct-point, .nd2-chart.clr-theme-green .ct-series-k .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-green .ct-series-k .ct-area, .nd2-chart.clr-theme-green .ct-series-k .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-green .ct-series-l .ct-bar, .nd2-chart.clr-theme-green .ct-series-l .ct-line, .nd2-chart.clr-theme-green .ct-series-l .ct-point, .nd2-chart.clr-theme-green .ct-series-l .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-green .ct-series-l .ct-area, .nd2-chart.clr-theme-green .ct-series-l .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-green .ct-series-m .ct-bar, .nd2-chart.clr-theme-green .ct-series-m .ct-line, .nd2-chart.clr-theme-green .ct-series-m .ct-point, .nd2-chart.clr-theme-green .ct-series-m .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-green .ct-series-m .ct-area, .nd2-chart.clr-theme-green .ct-series-m .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-green .ct-series-n .ct-bar, .nd2-chart.clr-theme-green .ct-series-n .ct-line, .nd2-chart.clr-theme-green .ct-series-n .ct-point, .nd2-chart.clr-theme-green .ct-series-n .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-green .ct-series-n .ct-area, .nd2-chart.clr-theme-green .ct-series-n .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-green .ct-series-o .ct-bar, .nd2-chart.clr-theme-green .ct-series-o .ct-line, .nd2-chart.clr-theme-green .ct-series-o .ct-point, .nd2-chart.clr-theme-green .ct-series-o .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-green .ct-series-o .ct-area, .nd2-chart.clr-theme-green .ct-series-o .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-green .ct-series-p .ct-bar, .nd2-chart.clr-theme-green .ct-series-p .ct-line, .nd2-chart.clr-theme-green .ct-series-p .ct-point, .nd2-chart.clr-theme-green .ct-series-p .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-green .ct-series-p .ct-area, .nd2-chart.clr-theme-green .ct-series-p .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-green .ct-series-q .ct-bar, .nd2-chart.clr-theme-green .ct-series-q .ct-line, .nd2-chart.clr-theme-green .ct-series-q .ct-point, .nd2-chart.clr-theme-green .ct-series-q .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-green .ct-series-q .ct-area, .nd2-chart.clr-theme-green .ct-series-q .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-green .ct-series-r .ct-bar, .nd2-chart.clr-theme-green .ct-series-r .ct-line, .nd2-chart.clr-theme-green .ct-series-r .ct-point, .nd2-chart.clr-theme-green .ct-series-r .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-green .ct-series-r .ct-area, .nd2-chart.clr-theme-green .ct-series-r .ct-slice-pie { fill: #00BCD4; }
-	
-	
+
+
 	/* Chart-Color-Theme: light-green */
 	.nd2-chart.clr-theme-light-green .ct-series-a .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-a .ct-line, .nd2-chart.clr-theme-light-green .ct-series-a .ct-point, .nd2-chart.clr-theme-light-green .ct-series-a .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-light-green .ct-series-a .ct-area, .nd2-chart.clr-theme-light-green .ct-series-a .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-light-green .ct-series-b .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-b .ct-line, .nd2-chart.clr-theme-light-green .ct-series-b .ct-point, .nd2-chart.clr-theme-light-green .ct-series-b .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-light-green .ct-series-b .ct-area, .nd2-chart.clr-theme-light-green .ct-series-b .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-light-green .ct-series-c .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-c .ct-line, .nd2-chart.clr-theme-light-green .ct-series-c .ct-point, .nd2-chart.clr-theme-light-green .ct-series-c .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-light-green .ct-series-c .ct-area, .nd2-chart.clr-theme-light-green .ct-series-c .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-light-green .ct-series-d .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-d .ct-line, .nd2-chart.clr-theme-light-green .ct-series-d .ct-point, .nd2-chart.clr-theme-light-green .ct-series-d .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-light-green .ct-series-d .ct-area, .nd2-chart.clr-theme-light-green .ct-series-d .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-light-green .ct-series-e .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-e .ct-line, .nd2-chart.clr-theme-light-green .ct-series-e .ct-point, .nd2-chart.clr-theme-light-green .ct-series-e .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-light-green .ct-series-e .ct-area, .nd2-chart.clr-theme-light-green .ct-series-e .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-light-green .ct-series-f .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-f .ct-line, .nd2-chart.clr-theme-light-green .ct-series-f .ct-point, .nd2-chart.clr-theme-light-green .ct-series-f .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-light-green .ct-series-f .ct-area, .nd2-chart.clr-theme-light-green .ct-series-f .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-light-green .ct-series-g .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-g .ct-line, .nd2-chart.clr-theme-light-green .ct-series-g .ct-point, .nd2-chart.clr-theme-light-green .ct-series-g .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-light-green .ct-series-g .ct-area, .nd2-chart.clr-theme-light-green .ct-series-g .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-light-green .ct-series-h .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-h .ct-line, .nd2-chart.clr-theme-light-green .ct-series-h .ct-point, .nd2-chart.clr-theme-light-green .ct-series-h .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-light-green .ct-series-h .ct-area, .nd2-chart.clr-theme-light-green .ct-series-h .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-light-green .ct-series-i .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-i .ct-line, .nd2-chart.clr-theme-light-green .ct-series-i .ct-point, .nd2-chart.clr-theme-light-green .ct-series-i .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-light-green .ct-series-i .ct-area, .nd2-chart.clr-theme-light-green .ct-series-i .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-light-green .ct-series-j .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-j .ct-line, .nd2-chart.clr-theme-light-green .ct-series-j .ct-point, .nd2-chart.clr-theme-light-green .ct-series-j .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-light-green .ct-series-j .ct-area, .nd2-chart.clr-theme-light-green .ct-series-j .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-light-green .ct-series-k .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-k .ct-line, .nd2-chart.clr-theme-light-green .ct-series-k .ct-point, .nd2-chart.clr-theme-light-green .ct-series-k .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-light-green .ct-series-k .ct-area, .nd2-chart.clr-theme-light-green .ct-series-k .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-light-green .ct-series-l .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-l .ct-line, .nd2-chart.clr-theme-light-green .ct-series-l .ct-point, .nd2-chart.clr-theme-light-green .ct-series-l .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-light-green .ct-series-l .ct-area, .nd2-chart.clr-theme-light-green .ct-series-l .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-light-green .ct-series-m .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-m .ct-line, .nd2-chart.clr-theme-light-green .ct-series-m .ct-point, .nd2-chart.clr-theme-light-green .ct-series-m .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-light-green .ct-series-m .ct-area, .nd2-chart.clr-theme-light-green .ct-series-m .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-light-green .ct-series-n .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-n .ct-line, .nd2-chart.clr-theme-light-green .ct-series-n .ct-point, .nd2-chart.clr-theme-light-green .ct-series-n .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-light-green .ct-series-n .ct-area, .nd2-chart.clr-theme-light-green .ct-series-n .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-light-green .ct-series-o .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-o .ct-line, .nd2-chart.clr-theme-light-green .ct-series-o .ct-point, .nd2-chart.clr-theme-light-green .ct-series-o .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-light-green .ct-series-o .ct-area, .nd2-chart.clr-theme-light-green .ct-series-o .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-light-green .ct-series-p .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-p .ct-line, .nd2-chart.clr-theme-light-green .ct-series-p .ct-point, .nd2-chart.clr-theme-light-green .ct-series-p .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-light-green .ct-series-p .ct-area, .nd2-chart.clr-theme-light-green .ct-series-p .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-light-green .ct-series-q .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-q .ct-line, .nd2-chart.clr-theme-light-green .ct-series-q .ct-point, .nd2-chart.clr-theme-light-green .ct-series-q .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-light-green .ct-series-q .ct-area, .nd2-chart.clr-theme-light-green .ct-series-q .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-light-green .ct-series-r .ct-bar, .nd2-chart.clr-theme-light-green .ct-series-r .ct-line, .nd2-chart.clr-theme-light-green .ct-series-r .ct-point, .nd2-chart.clr-theme-light-green .ct-series-r .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-light-green .ct-series-r .ct-area, .nd2-chart.clr-theme-light-green .ct-series-r .ct-slice-pie { fill: #009688; }
-	
-	
+
+
 	/* Chart-Color-Theme: lime */
 	.nd2-chart.clr-theme-lime .ct-series-a .ct-bar, .nd2-chart.clr-theme-lime .ct-series-a .ct-line, .nd2-chart.clr-theme-lime .ct-series-a .ct-point, .nd2-chart.clr-theme-lime .ct-series-a .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-lime .ct-series-a .ct-area, .nd2-chart.clr-theme-lime .ct-series-a .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-lime .ct-series-b .ct-bar, .nd2-chart.clr-theme-lime .ct-series-b .ct-line, .nd2-chart.clr-theme-lime .ct-series-b .ct-point, .nd2-chart.clr-theme-lime .ct-series-b .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-lime .ct-series-b .ct-area, .nd2-chart.clr-theme-lime .ct-series-b .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-lime .ct-series-c .ct-bar, .nd2-chart.clr-theme-lime .ct-series-c .ct-line, .nd2-chart.clr-theme-lime .ct-series-c .ct-point, .nd2-chart.clr-theme-lime .ct-series-c .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-lime .ct-series-c .ct-area, .nd2-chart.clr-theme-lime .ct-series-c .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-lime .ct-series-d .ct-bar, .nd2-chart.clr-theme-lime .ct-series-d .ct-line, .nd2-chart.clr-theme-lime .ct-series-d .ct-point, .nd2-chart.clr-theme-lime .ct-series-d .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-lime .ct-series-d .ct-area, .nd2-chart.clr-theme-lime .ct-series-d .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-lime .ct-series-e .ct-bar, .nd2-chart.clr-theme-lime .ct-series-e .ct-line, .nd2-chart.clr-theme-lime .ct-series-e .ct-point, .nd2-chart.clr-theme-lime .ct-series-e .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-lime .ct-series-e .ct-area, .nd2-chart.clr-theme-lime .ct-series-e .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-lime .ct-series-f .ct-bar, .nd2-chart.clr-theme-lime .ct-series-f .ct-line, .nd2-chart.clr-theme-lime .ct-series-f .ct-point, .nd2-chart.clr-theme-lime .ct-series-f .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-lime .ct-series-f .ct-area, .nd2-chart.clr-theme-lime .ct-series-f .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-lime .ct-series-g .ct-bar, .nd2-chart.clr-theme-lime .ct-series-g .ct-line, .nd2-chart.clr-theme-lime .ct-series-g .ct-point, .nd2-chart.clr-theme-lime .ct-series-g .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-lime .ct-series-g .ct-area, .nd2-chart.clr-theme-lime .ct-series-g .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-lime .ct-series-h .ct-bar, .nd2-chart.clr-theme-lime .ct-series-h .ct-line, .nd2-chart.clr-theme-lime .ct-series-h .ct-point, .nd2-chart.clr-theme-lime .ct-series-h .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-lime .ct-series-h .ct-area, .nd2-chart.clr-theme-lime .ct-series-h .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-lime .ct-series-i .ct-bar, .nd2-chart.clr-theme-lime .ct-series-i .ct-line, .nd2-chart.clr-theme-lime .ct-series-i .ct-point, .nd2-chart.clr-theme-lime .ct-series-i .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-lime .ct-series-i .ct-area, .nd2-chart.clr-theme-lime .ct-series-i .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-lime .ct-series-j .ct-bar, .nd2-chart.clr-theme-lime .ct-series-j .ct-line, .nd2-chart.clr-theme-lime .ct-series-j .ct-point, .nd2-chart.clr-theme-lime .ct-series-j .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-lime .ct-series-j .ct-area, .nd2-chart.clr-theme-lime .ct-series-j .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-lime .ct-series-k .ct-bar, .nd2-chart.clr-theme-lime .ct-series-k .ct-line, .nd2-chart.clr-theme-lime .ct-series-k .ct-point, .nd2-chart.clr-theme-lime .ct-series-k .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-lime .ct-series-k .ct-area, .nd2-chart.clr-theme-lime .ct-series-k .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-lime .ct-series-l .ct-bar, .nd2-chart.clr-theme-lime .ct-series-l .ct-line, .nd2-chart.clr-theme-lime .ct-series-l .ct-point, .nd2-chart.clr-theme-lime .ct-series-l .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-lime .ct-series-l .ct-area, .nd2-chart.clr-theme-lime .ct-series-l .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-lime .ct-series-m .ct-bar, .nd2-chart.clr-theme-lime .ct-series-m .ct-line, .nd2-chart.clr-theme-lime .ct-series-m .ct-point, .nd2-chart.clr-theme-lime .ct-series-m .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-lime .ct-series-m .ct-area, .nd2-chart.clr-theme-lime .ct-series-m .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-lime .ct-series-n .ct-bar, .nd2-chart.clr-theme-lime .ct-series-n .ct-line, .nd2-chart.clr-theme-lime .ct-series-n .ct-point, .nd2-chart.clr-theme-lime .ct-series-n .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-lime .ct-series-n .ct-area, .nd2-chart.clr-theme-lime .ct-series-n .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-lime .ct-series-o .ct-bar, .nd2-chart.clr-theme-lime .ct-series-o .ct-line, .nd2-chart.clr-theme-lime .ct-series-o .ct-point, .nd2-chart.clr-theme-lime .ct-series-o .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-lime .ct-series-o .ct-area, .nd2-chart.clr-theme-lime .ct-series-o .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-lime .ct-series-p .ct-bar, .nd2-chart.clr-theme-lime .ct-series-p .ct-line, .nd2-chart.clr-theme-lime .ct-series-p .ct-point, .nd2-chart.clr-theme-lime .ct-series-p .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-lime .ct-series-p .ct-area, .nd2-chart.clr-theme-lime .ct-series-p .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-lime .ct-series-q .ct-bar, .nd2-chart.clr-theme-lime .ct-series-q .ct-line, .nd2-chart.clr-theme-lime .ct-series-q .ct-point, .nd2-chart.clr-theme-lime .ct-series-q .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-lime .ct-series-q .ct-area, .nd2-chart.clr-theme-lime .ct-series-q .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-lime .ct-series-r .ct-bar, .nd2-chart.clr-theme-lime .ct-series-r .ct-line, .nd2-chart.clr-theme-lime .ct-series-r .ct-point, .nd2-chart.clr-theme-lime .ct-series-r .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-lime .ct-series-r .ct-area, .nd2-chart.clr-theme-lime .ct-series-r .ct-slice-pie { fill: #4CAF50; }
-	
-	
+
+
 	/* Chart-Color-Theme: yellow */
 	.nd2-chart.clr-theme-yellow .ct-series-a .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-a .ct-line, .nd2-chart.clr-theme-yellow .ct-series-a .ct-point, .nd2-chart.clr-theme-yellow .ct-series-a .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-yellow .ct-series-a .ct-area, .nd2-chart.clr-theme-yellow .ct-series-a .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-yellow .ct-series-b .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-b .ct-line, .nd2-chart.clr-theme-yellow .ct-series-b .ct-point, .nd2-chart.clr-theme-yellow .ct-series-b .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-yellow .ct-series-b .ct-area, .nd2-chart.clr-theme-yellow .ct-series-b .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-yellow .ct-series-c .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-c .ct-line, .nd2-chart.clr-theme-yellow .ct-series-c .ct-point, .nd2-chart.clr-theme-yellow .ct-series-c .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-yellow .ct-series-c .ct-area, .nd2-chart.clr-theme-yellow .ct-series-c .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-yellow .ct-series-d .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-d .ct-line, .nd2-chart.clr-theme-yellow .ct-series-d .ct-point, .nd2-chart.clr-theme-yellow .ct-series-d .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-yellow .ct-series-d .ct-area, .nd2-chart.clr-theme-yellow .ct-series-d .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-yellow .ct-series-e .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-e .ct-line, .nd2-chart.clr-theme-yellow .ct-series-e .ct-point, .nd2-chart.clr-theme-yellow .ct-series-e .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-yellow .ct-series-e .ct-area, .nd2-chart.clr-theme-yellow .ct-series-e .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-yellow .ct-series-f .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-f .ct-line, .nd2-chart.clr-theme-yellow .ct-series-f .ct-point, .nd2-chart.clr-theme-yellow .ct-series-f .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-yellow .ct-series-f .ct-area, .nd2-chart.clr-theme-yellow .ct-series-f .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-yellow .ct-series-g .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-g .ct-line, .nd2-chart.clr-theme-yellow .ct-series-g .ct-point, .nd2-chart.clr-theme-yellow .ct-series-g .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-yellow .ct-series-g .ct-area, .nd2-chart.clr-theme-yellow .ct-series-g .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-yellow .ct-series-h .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-h .ct-line, .nd2-chart.clr-theme-yellow .ct-series-h .ct-point, .nd2-chart.clr-theme-yellow .ct-series-h .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-yellow .ct-series-h .ct-area, .nd2-chart.clr-theme-yellow .ct-series-h .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-yellow .ct-series-i .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-i .ct-line, .nd2-chart.clr-theme-yellow .ct-series-i .ct-point, .nd2-chart.clr-theme-yellow .ct-series-i .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-yellow .ct-series-i .ct-area, .nd2-chart.clr-theme-yellow .ct-series-i .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-yellow .ct-series-j .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-j .ct-line, .nd2-chart.clr-theme-yellow .ct-series-j .ct-point, .nd2-chart.clr-theme-yellow .ct-series-j .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-yellow .ct-series-j .ct-area, .nd2-chart.clr-theme-yellow .ct-series-j .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-yellow .ct-series-k .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-k .ct-line, .nd2-chart.clr-theme-yellow .ct-series-k .ct-point, .nd2-chart.clr-theme-yellow .ct-series-k .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-yellow .ct-series-k .ct-area, .nd2-chart.clr-theme-yellow .ct-series-k .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-yellow .ct-series-l .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-l .ct-line, .nd2-chart.clr-theme-yellow .ct-series-l .ct-point, .nd2-chart.clr-theme-yellow .ct-series-l .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-yellow .ct-series-l .ct-area, .nd2-chart.clr-theme-yellow .ct-series-l .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-yellow .ct-series-m .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-m .ct-line, .nd2-chart.clr-theme-yellow .ct-series-m .ct-point, .nd2-chart.clr-theme-yellow .ct-series-m .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-yellow .ct-series-m .ct-area, .nd2-chart.clr-theme-yellow .ct-series-m .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-yellow .ct-series-n .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-n .ct-line, .nd2-chart.clr-theme-yellow .ct-series-n .ct-point, .nd2-chart.clr-theme-yellow .ct-series-n .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-yellow .ct-series-n .ct-area, .nd2-chart.clr-theme-yellow .ct-series-n .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-yellow .ct-series-o .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-o .ct-line, .nd2-chart.clr-theme-yellow .ct-series-o .ct-point, .nd2-chart.clr-theme-yellow .ct-series-o .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-yellow .ct-series-o .ct-area, .nd2-chart.clr-theme-yellow .ct-series-o .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-yellow .ct-series-p .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-p .ct-line, .nd2-chart.clr-theme-yellow .ct-series-p .ct-point, .nd2-chart.clr-theme-yellow .ct-series-p .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-yellow .ct-series-p .ct-area, .nd2-chart.clr-theme-yellow .ct-series-p .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-yellow .ct-series-q .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-q .ct-line, .nd2-chart.clr-theme-yellow .ct-series-q .ct-point, .nd2-chart.clr-theme-yellow .ct-series-q .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-yellow .ct-series-q .ct-area, .nd2-chart.clr-theme-yellow .ct-series-q .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-yellow .ct-series-r .ct-bar, .nd2-chart.clr-theme-yellow .ct-series-r .ct-line, .nd2-chart.clr-theme-yellow .ct-series-r .ct-point, .nd2-chart.clr-theme-yellow .ct-series-r .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-yellow .ct-series-r .ct-area, .nd2-chart.clr-theme-yellow .ct-series-r .ct-slice-pie { fill: #8BC34A; }
-	
-	
+
+
 	/* Chart-Color-Theme: amber */
 	.nd2-chart.clr-theme-amber .ct-series-a .ct-bar, .nd2-chart.clr-theme-amber .ct-series-a .ct-line, .nd2-chart.clr-theme-amber .ct-series-a .ct-point, .nd2-chart.clr-theme-amber .ct-series-a .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-amber .ct-series-a .ct-area, .nd2-chart.clr-theme-amber .ct-series-a .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-amber .ct-series-b .ct-bar, .nd2-chart.clr-theme-amber .ct-series-b .ct-line, .nd2-chart.clr-theme-amber .ct-series-b .ct-point, .nd2-chart.clr-theme-amber .ct-series-b .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-amber .ct-series-b .ct-area, .nd2-chart.clr-theme-amber .ct-series-b .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-amber .ct-series-c .ct-bar, .nd2-chart.clr-theme-amber .ct-series-c .ct-line, .nd2-chart.clr-theme-amber .ct-series-c .ct-point, .nd2-chart.clr-theme-amber .ct-series-c .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-amber .ct-series-c .ct-area, .nd2-chart.clr-theme-amber .ct-series-c .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-amber .ct-series-d .ct-bar, .nd2-chart.clr-theme-amber .ct-series-d .ct-line, .nd2-chart.clr-theme-amber .ct-series-d .ct-point, .nd2-chart.clr-theme-amber .ct-series-d .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-amber .ct-series-d .ct-area, .nd2-chart.clr-theme-amber .ct-series-d .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-amber .ct-series-e .ct-bar, .nd2-chart.clr-theme-amber .ct-series-e .ct-line, .nd2-chart.clr-theme-amber .ct-series-e .ct-point, .nd2-chart.clr-theme-amber .ct-series-e .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-amber .ct-series-e .ct-area, .nd2-chart.clr-theme-amber .ct-series-e .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-amber .ct-series-f .ct-bar, .nd2-chart.clr-theme-amber .ct-series-f .ct-line, .nd2-chart.clr-theme-amber .ct-series-f .ct-point, .nd2-chart.clr-theme-amber .ct-series-f .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-amber .ct-series-f .ct-area, .nd2-chart.clr-theme-amber .ct-series-f .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-amber .ct-series-g .ct-bar, .nd2-chart.clr-theme-amber .ct-series-g .ct-line, .nd2-chart.clr-theme-amber .ct-series-g .ct-point, .nd2-chart.clr-theme-amber .ct-series-g .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-amber .ct-series-g .ct-area, .nd2-chart.clr-theme-amber .ct-series-g .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-amber .ct-series-h .ct-bar, .nd2-chart.clr-theme-amber .ct-series-h .ct-line, .nd2-chart.clr-theme-amber .ct-series-h .ct-point, .nd2-chart.clr-theme-amber .ct-series-h .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-amber .ct-series-h .ct-area, .nd2-chart.clr-theme-amber .ct-series-h .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-amber .ct-series-i .ct-bar, .nd2-chart.clr-theme-amber .ct-series-i .ct-line, .nd2-chart.clr-theme-amber .ct-series-i .ct-point, .nd2-chart.clr-theme-amber .ct-series-i .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-amber .ct-series-i .ct-area, .nd2-chart.clr-theme-amber .ct-series-i .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-amber .ct-series-j .ct-bar, .nd2-chart.clr-theme-amber .ct-series-j .ct-line, .nd2-chart.clr-theme-amber .ct-series-j .ct-point, .nd2-chart.clr-theme-amber .ct-series-j .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-amber .ct-series-j .ct-area, .nd2-chart.clr-theme-amber .ct-series-j .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-amber .ct-series-k .ct-bar, .nd2-chart.clr-theme-amber .ct-series-k .ct-line, .nd2-chart.clr-theme-amber .ct-series-k .ct-point, .nd2-chart.clr-theme-amber .ct-series-k .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-amber .ct-series-k .ct-area, .nd2-chart.clr-theme-amber .ct-series-k .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-amber .ct-series-l .ct-bar, .nd2-chart.clr-theme-amber .ct-series-l .ct-line, .nd2-chart.clr-theme-amber .ct-series-l .ct-point, .nd2-chart.clr-theme-amber .ct-series-l .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-amber .ct-series-l .ct-area, .nd2-chart.clr-theme-amber .ct-series-l .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-amber .ct-series-m .ct-bar, .nd2-chart.clr-theme-amber .ct-series-m .ct-line, .nd2-chart.clr-theme-amber .ct-series-m .ct-point, .nd2-chart.clr-theme-amber .ct-series-m .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-amber .ct-series-m .ct-area, .nd2-chart.clr-theme-amber .ct-series-m .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-amber .ct-series-n .ct-bar, .nd2-chart.clr-theme-amber .ct-series-n .ct-line, .nd2-chart.clr-theme-amber .ct-series-n .ct-point, .nd2-chart.clr-theme-amber .ct-series-n .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-amber .ct-series-n .ct-area, .nd2-chart.clr-theme-amber .ct-series-n .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-amber .ct-series-o .ct-bar, .nd2-chart.clr-theme-amber .ct-series-o .ct-line, .nd2-chart.clr-theme-amber .ct-series-o .ct-point, .nd2-chart.clr-theme-amber .ct-series-o .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-amber .ct-series-o .ct-area, .nd2-chart.clr-theme-amber .ct-series-o .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-amber .ct-series-p .ct-bar, .nd2-chart.clr-theme-amber .ct-series-p .ct-line, .nd2-chart.clr-theme-amber .ct-series-p .ct-point, .nd2-chart.clr-theme-amber .ct-series-p .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-amber .ct-series-p .ct-area, .nd2-chart.clr-theme-amber .ct-series-p .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-amber .ct-series-q .ct-bar, .nd2-chart.clr-theme-amber .ct-series-q .ct-line, .nd2-chart.clr-theme-amber .ct-series-q .ct-point, .nd2-chart.clr-theme-amber .ct-series-q .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-amber .ct-series-q .ct-area, .nd2-chart.clr-theme-amber .ct-series-q .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-amber .ct-series-r .ct-bar, .nd2-chart.clr-theme-amber .ct-series-r .ct-line, .nd2-chart.clr-theme-amber .ct-series-r .ct-point, .nd2-chart.clr-theme-amber .ct-series-r .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-amber .ct-series-r .ct-area, .nd2-chart.clr-theme-amber .ct-series-r .ct-slice-pie { fill: #CDDC39; }
-	
-	
+
+
 	/* Chart-Color-Theme: orange */
 	.nd2-chart.clr-theme-orange .ct-series-a .ct-bar, .nd2-chart.clr-theme-orange .ct-series-a .ct-line, .nd2-chart.clr-theme-orange .ct-series-a .ct-point, .nd2-chart.clr-theme-orange .ct-series-a .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-orange .ct-series-a .ct-area, .nd2-chart.clr-theme-orange .ct-series-a .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-orange .ct-series-b .ct-bar, .nd2-chart.clr-theme-orange .ct-series-b .ct-line, .nd2-chart.clr-theme-orange .ct-series-b .ct-point, .nd2-chart.clr-theme-orange .ct-series-b .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-orange .ct-series-b .ct-area, .nd2-chart.clr-theme-orange .ct-series-b .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-orange .ct-series-c .ct-bar, .nd2-chart.clr-theme-orange .ct-series-c .ct-line, .nd2-chart.clr-theme-orange .ct-series-c .ct-point, .nd2-chart.clr-theme-orange .ct-series-c .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-orange .ct-series-c .ct-area, .nd2-chart.clr-theme-orange .ct-series-c .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-orange .ct-series-d .ct-bar, .nd2-chart.clr-theme-orange .ct-series-d .ct-line, .nd2-chart.clr-theme-orange .ct-series-d .ct-point, .nd2-chart.clr-theme-orange .ct-series-d .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-orange .ct-series-d .ct-area, .nd2-chart.clr-theme-orange .ct-series-d .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-orange .ct-series-e .ct-bar, .nd2-chart.clr-theme-orange .ct-series-e .ct-line, .nd2-chart.clr-theme-orange .ct-series-e .ct-point, .nd2-chart.clr-theme-orange .ct-series-e .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-orange .ct-series-e .ct-area, .nd2-chart.clr-theme-orange .ct-series-e .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-orange .ct-series-f .ct-bar, .nd2-chart.clr-theme-orange .ct-series-f .ct-line, .nd2-chart.clr-theme-orange .ct-series-f .ct-point, .nd2-chart.clr-theme-orange .ct-series-f .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-orange .ct-series-f .ct-area, .nd2-chart.clr-theme-orange .ct-series-f .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-orange .ct-series-g .ct-bar, .nd2-chart.clr-theme-orange .ct-series-g .ct-line, .nd2-chart.clr-theme-orange .ct-series-g .ct-point, .nd2-chart.clr-theme-orange .ct-series-g .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-orange .ct-series-g .ct-area, .nd2-chart.clr-theme-orange .ct-series-g .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-orange .ct-series-h .ct-bar, .nd2-chart.clr-theme-orange .ct-series-h .ct-line, .nd2-chart.clr-theme-orange .ct-series-h .ct-point, .nd2-chart.clr-theme-orange .ct-series-h .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-orange .ct-series-h .ct-area, .nd2-chart.clr-theme-orange .ct-series-h .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-orange .ct-series-i .ct-bar, .nd2-chart.clr-theme-orange .ct-series-i .ct-line, .nd2-chart.clr-theme-orange .ct-series-i .ct-point, .nd2-chart.clr-theme-orange .ct-series-i .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-orange .ct-series-i .ct-area, .nd2-chart.clr-theme-orange .ct-series-i .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-orange .ct-series-j .ct-bar, .nd2-chart.clr-theme-orange .ct-series-j .ct-line, .nd2-chart.clr-theme-orange .ct-series-j .ct-point, .nd2-chart.clr-theme-orange .ct-series-j .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-orange .ct-series-j .ct-area, .nd2-chart.clr-theme-orange .ct-series-j .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-orange .ct-series-k .ct-bar, .nd2-chart.clr-theme-orange .ct-series-k .ct-line, .nd2-chart.clr-theme-orange .ct-series-k .ct-point, .nd2-chart.clr-theme-orange .ct-series-k .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-orange .ct-series-k .ct-area, .nd2-chart.clr-theme-orange .ct-series-k .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-orange .ct-series-l .ct-bar, .nd2-chart.clr-theme-orange .ct-series-l .ct-line, .nd2-chart.clr-theme-orange .ct-series-l .ct-point, .nd2-chart.clr-theme-orange .ct-series-l .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-orange .ct-series-l .ct-area, .nd2-chart.clr-theme-orange .ct-series-l .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-orange .ct-series-m .ct-bar, .nd2-chart.clr-theme-orange .ct-series-m .ct-line, .nd2-chart.clr-theme-orange .ct-series-m .ct-point, .nd2-chart.clr-theme-orange .ct-series-m .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-orange .ct-series-m .ct-area, .nd2-chart.clr-theme-orange .ct-series-m .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-orange .ct-series-n .ct-bar, .nd2-chart.clr-theme-orange .ct-series-n .ct-line, .nd2-chart.clr-theme-orange .ct-series-n .ct-point, .nd2-chart.clr-theme-orange .ct-series-n .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-orange .ct-series-n .ct-area, .nd2-chart.clr-theme-orange .ct-series-n .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-orange .ct-series-o .ct-bar, .nd2-chart.clr-theme-orange .ct-series-o .ct-line, .nd2-chart.clr-theme-orange .ct-series-o .ct-point, .nd2-chart.clr-theme-orange .ct-series-o .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-orange .ct-series-o .ct-area, .nd2-chart.clr-theme-orange .ct-series-o .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-orange .ct-series-p .ct-bar, .nd2-chart.clr-theme-orange .ct-series-p .ct-line, .nd2-chart.clr-theme-orange .ct-series-p .ct-point, .nd2-chart.clr-theme-orange .ct-series-p .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-orange .ct-series-p .ct-area, .nd2-chart.clr-theme-orange .ct-series-p .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-orange .ct-series-q .ct-bar, .nd2-chart.clr-theme-orange .ct-series-q .ct-line, .nd2-chart.clr-theme-orange .ct-series-q .ct-point, .nd2-chart.clr-theme-orange .ct-series-q .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-orange .ct-series-q .ct-area, .nd2-chart.clr-theme-orange .ct-series-q .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-orange .ct-series-r .ct-bar, .nd2-chart.clr-theme-orange .ct-series-r .ct-line, .nd2-chart.clr-theme-orange .ct-series-r .ct-point, .nd2-chart.clr-theme-orange .ct-series-r .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-orange .ct-series-r .ct-area, .nd2-chart.clr-theme-orange .ct-series-r .ct-slice-pie { fill: #FFEB3B; }
-	
-	
+
+
 	/* Chart-Color-Theme: deep-orange */
 	.nd2-chart.clr-theme-deep-orange .ct-series-a .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-a .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-a .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-a .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-deep-orange .ct-series-a .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-a .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-deep-orange .ct-series-b .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-b .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-b .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-b .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-deep-orange .ct-series-b .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-b .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-deep-orange .ct-series-c .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-c .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-c .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-c .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-deep-orange .ct-series-c .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-c .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-deep-orange .ct-series-d .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-d .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-d .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-d .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-deep-orange .ct-series-d .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-d .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-deep-orange .ct-series-e .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-e .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-e .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-e .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-deep-orange .ct-series-e .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-e .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-deep-orange .ct-series-f .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-f .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-f .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-f .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-deep-orange .ct-series-f .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-f .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-deep-orange .ct-series-g .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-g .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-g .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-g .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-deep-orange .ct-series-g .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-g .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-deep-orange .ct-series-h .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-h .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-h .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-h .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-deep-orange .ct-series-h .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-h .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-deep-orange .ct-series-i .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-i .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-i .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-i .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-deep-orange .ct-series-i .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-i .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-deep-orange .ct-series-j .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-j .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-j .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-j .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-deep-orange .ct-series-j .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-j .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-deep-orange .ct-series-k .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-k .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-k .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-k .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-deep-orange .ct-series-k .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-k .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-deep-orange .ct-series-l .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-l .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-l .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-l .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-deep-orange .ct-series-l .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-l .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-deep-orange .ct-series-m .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-m .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-m .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-m .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-deep-orange .ct-series-m .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-m .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-deep-orange .ct-series-n .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-n .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-n .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-n .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-deep-orange .ct-series-n .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-n .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-deep-orange .ct-series-o .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-o .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-o .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-o .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-deep-orange .ct-series-o .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-o .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-deep-orange .ct-series-p .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-p .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-p .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-p .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-deep-orange .ct-series-p .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-p .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-deep-orange .ct-series-q .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-q .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-q .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-q .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-deep-orange .ct-series-q .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-q .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-deep-orange .ct-series-r .ct-bar, .nd2-chart.clr-theme-deep-orange .ct-series-r .ct-line, .nd2-chart.clr-theme-deep-orange .ct-series-r .ct-point, .nd2-chart.clr-theme-deep-orange .ct-series-r .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-deep-orange .ct-series-r .ct-area, .nd2-chart.clr-theme-deep-orange .ct-series-r .ct-slice-pie { fill: #FFC107; }
-	
-	
+
+
 	/* Chart-Color-Theme: brown */
 	.nd2-chart.clr-theme-brown .ct-series-a .ct-bar, .nd2-chart.clr-theme-brown .ct-series-a .ct-line, .nd2-chart.clr-theme-brown .ct-series-a .ct-point, .nd2-chart.clr-theme-brown .ct-series-a .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-brown .ct-series-a .ct-area, .nd2-chart.clr-theme-brown .ct-series-a .ct-slice-pie { fill: #795548; }  .nd2-chart.clr-theme-brown .ct-series-b .ct-bar, .nd2-chart.clr-theme-brown .ct-series-b .ct-line, .nd2-chart.clr-theme-brown .ct-series-b .ct-point, .nd2-chart.clr-theme-brown .ct-series-b .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-brown .ct-series-b .ct-area, .nd2-chart.clr-theme-brown .ct-series-b .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-brown .ct-series-c .ct-bar, .nd2-chart.clr-theme-brown .ct-series-c .ct-line, .nd2-chart.clr-theme-brown .ct-series-c .ct-point, .nd2-chart.clr-theme-brown .ct-series-c .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-brown .ct-series-c .ct-area, .nd2-chart.clr-theme-brown .ct-series-c .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-brown .ct-series-d .ct-bar, .nd2-chart.clr-theme-brown .ct-series-d .ct-line, .nd2-chart.clr-theme-brown .ct-series-d .ct-point, .nd2-chart.clr-theme-brown .ct-series-d .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-brown .ct-series-d .ct-area, .nd2-chart.clr-theme-brown .ct-series-d .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-brown .ct-series-e .ct-bar, .nd2-chart.clr-theme-brown .ct-series-e .ct-line, .nd2-chart.clr-theme-brown .ct-series-e .ct-point, .nd2-chart.clr-theme-brown .ct-series-e .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-brown .ct-series-e .ct-area, .nd2-chart.clr-theme-brown .ct-series-e .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-brown .ct-series-f .ct-bar, .nd2-chart.clr-theme-brown .ct-series-f .ct-line, .nd2-chart.clr-theme-brown .ct-series-f .ct-point, .nd2-chart.clr-theme-brown .ct-series-f .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-brown .ct-series-f .ct-area, .nd2-chart.clr-theme-brown .ct-series-f .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-brown .ct-series-g .ct-bar, .nd2-chart.clr-theme-brown .ct-series-g .ct-line, .nd2-chart.clr-theme-brown .ct-series-g .ct-point, .nd2-chart.clr-theme-brown .ct-series-g .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-brown .ct-series-g .ct-area, .nd2-chart.clr-theme-brown .ct-series-g .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-brown .ct-series-h .ct-bar, .nd2-chart.clr-theme-brown .ct-series-h .ct-line, .nd2-chart.clr-theme-brown .ct-series-h .ct-point, .nd2-chart.clr-theme-brown .ct-series-h .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-brown .ct-series-h .ct-area, .nd2-chart.clr-theme-brown .ct-series-h .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-brown .ct-series-i .ct-bar, .nd2-chart.clr-theme-brown .ct-series-i .ct-line, .nd2-chart.clr-theme-brown .ct-series-i .ct-point, .nd2-chart.clr-theme-brown .ct-series-i .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-brown .ct-series-i .ct-area, .nd2-chart.clr-theme-brown .ct-series-i .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-brown .ct-series-j .ct-bar, .nd2-chart.clr-theme-brown .ct-series-j .ct-line, .nd2-chart.clr-theme-brown .ct-series-j .ct-point, .nd2-chart.clr-theme-brown .ct-series-j .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-brown .ct-series-j .ct-area, .nd2-chart.clr-theme-brown .ct-series-j .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-brown .ct-series-k .ct-bar, .nd2-chart.clr-theme-brown .ct-series-k .ct-line, .nd2-chart.clr-theme-brown .ct-series-k .ct-point, .nd2-chart.clr-theme-brown .ct-series-k .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-brown .ct-series-k .ct-area, .nd2-chart.clr-theme-brown .ct-series-k .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-brown .ct-series-l .ct-bar, .nd2-chart.clr-theme-brown .ct-series-l .ct-line, .nd2-chart.clr-theme-brown .ct-series-l .ct-point, .nd2-chart.clr-theme-brown .ct-series-l .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-brown .ct-series-l .ct-area, .nd2-chart.clr-theme-brown .ct-series-l .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-brown .ct-series-m .ct-bar, .nd2-chart.clr-theme-brown .ct-series-m .ct-line, .nd2-chart.clr-theme-brown .ct-series-m .ct-point, .nd2-chart.clr-theme-brown .ct-series-m .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-brown .ct-series-m .ct-area, .nd2-chart.clr-theme-brown .ct-series-m .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-brown .ct-series-n .ct-bar, .nd2-chart.clr-theme-brown .ct-series-n .ct-line, .nd2-chart.clr-theme-brown .ct-series-n .ct-point, .nd2-chart.clr-theme-brown .ct-series-n .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-brown .ct-series-n .ct-area, .nd2-chart.clr-theme-brown .ct-series-n .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-brown .ct-series-o .ct-bar, .nd2-chart.clr-theme-brown .ct-series-o .ct-line, .nd2-chart.clr-theme-brown .ct-series-o .ct-point, .nd2-chart.clr-theme-brown .ct-series-o .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-brown .ct-series-o .ct-area, .nd2-chart.clr-theme-brown .ct-series-o .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-brown .ct-series-p .ct-bar, .nd2-chart.clr-theme-brown .ct-series-p .ct-line, .nd2-chart.clr-theme-brown .ct-series-p .ct-point, .nd2-chart.clr-theme-brown .ct-series-p .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-brown .ct-series-p .ct-area, .nd2-chart.clr-theme-brown .ct-series-p .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-brown .ct-series-q .ct-bar, .nd2-chart.clr-theme-brown .ct-series-q .ct-line, .nd2-chart.clr-theme-brown .ct-series-q .ct-point, .nd2-chart.clr-theme-brown .ct-series-q .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-brown .ct-series-q .ct-area, .nd2-chart.clr-theme-brown .ct-series-q .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-brown .ct-series-r .ct-bar, .nd2-chart.clr-theme-brown .ct-series-r .ct-line, .nd2-chart.clr-theme-brown .ct-series-r .ct-point, .nd2-chart.clr-theme-brown .ct-series-r .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-brown .ct-series-r .ct-area, .nd2-chart.clr-theme-brown .ct-series-r .ct-slice-pie { fill: #FF9800; }
-	
-	
+
+
 	/* Chart-Color-Theme: grey */
 	.nd2-chart.clr-theme-grey .ct-series-a .ct-bar, .nd2-chart.clr-theme-grey .ct-series-a .ct-line, .nd2-chart.clr-theme-grey .ct-series-a .ct-point, .nd2-chart.clr-theme-grey .ct-series-a .ct-slice-donut {	stroke: #9E9E9E; } .nd2-chart.clr-theme-grey .ct-series-a .ct-area, .nd2-chart.clr-theme-grey .ct-series-a .ct-slice-pie { fill: #9E9E9E; }  .nd2-chart.clr-theme-grey .ct-series-b .ct-bar, .nd2-chart.clr-theme-grey .ct-series-b .ct-line, .nd2-chart.clr-theme-grey .ct-series-b .ct-point, .nd2-chart.clr-theme-grey .ct-series-b .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-grey .ct-series-b .ct-area, .nd2-chart.clr-theme-grey .ct-series-b .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-grey .ct-series-c .ct-bar, .nd2-chart.clr-theme-grey .ct-series-c .ct-line, .nd2-chart.clr-theme-grey .ct-series-c .ct-point, .nd2-chart.clr-theme-grey .ct-series-c .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-grey .ct-series-c .ct-area, .nd2-chart.clr-theme-grey .ct-series-c .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-grey .ct-series-d .ct-bar, .nd2-chart.clr-theme-grey .ct-series-d .ct-line, .nd2-chart.clr-theme-grey .ct-series-d .ct-point, .nd2-chart.clr-theme-grey .ct-series-d .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-grey .ct-series-d .ct-area, .nd2-chart.clr-theme-grey .ct-series-d .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-grey .ct-series-e .ct-bar, .nd2-chart.clr-theme-grey .ct-series-e .ct-line, .nd2-chart.clr-theme-grey .ct-series-e .ct-point, .nd2-chart.clr-theme-grey .ct-series-e .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-grey .ct-series-e .ct-area, .nd2-chart.clr-theme-grey .ct-series-e .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-grey .ct-series-f .ct-bar, .nd2-chart.clr-theme-grey .ct-series-f .ct-line, .nd2-chart.clr-theme-grey .ct-series-f .ct-point, .nd2-chart.clr-theme-grey .ct-series-f .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-grey .ct-series-f .ct-area, .nd2-chart.clr-theme-grey .ct-series-f .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-grey .ct-series-g .ct-bar, .nd2-chart.clr-theme-grey .ct-series-g .ct-line, .nd2-chart.clr-theme-grey .ct-series-g .ct-point, .nd2-chart.clr-theme-grey .ct-series-g .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-grey .ct-series-g .ct-area, .nd2-chart.clr-theme-grey .ct-series-g .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-grey .ct-series-h .ct-bar, .nd2-chart.clr-theme-grey .ct-series-h .ct-line, .nd2-chart.clr-theme-grey .ct-series-h .ct-point, .nd2-chart.clr-theme-grey .ct-series-h .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-grey .ct-series-h .ct-area, .nd2-chart.clr-theme-grey .ct-series-h .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-grey .ct-series-i .ct-bar, .nd2-chart.clr-theme-grey .ct-series-i .ct-line, .nd2-chart.clr-theme-grey .ct-series-i .ct-point, .nd2-chart.clr-theme-grey .ct-series-i .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-grey .ct-series-i .ct-area, .nd2-chart.clr-theme-grey .ct-series-i .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-grey .ct-series-j .ct-bar, .nd2-chart.clr-theme-grey .ct-series-j .ct-line, .nd2-chart.clr-theme-grey .ct-series-j .ct-point, .nd2-chart.clr-theme-grey .ct-series-j .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-grey .ct-series-j .ct-area, .nd2-chart.clr-theme-grey .ct-series-j .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-grey .ct-series-k .ct-bar, .nd2-chart.clr-theme-grey .ct-series-k .ct-line, .nd2-chart.clr-theme-grey .ct-series-k .ct-point, .nd2-chart.clr-theme-grey .ct-series-k .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-grey .ct-series-k .ct-area, .nd2-chart.clr-theme-grey .ct-series-k .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-grey .ct-series-l .ct-bar, .nd2-chart.clr-theme-grey .ct-series-l .ct-line, .nd2-chart.clr-theme-grey .ct-series-l .ct-point, .nd2-chart.clr-theme-grey .ct-series-l .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-grey .ct-series-l .ct-area, .nd2-chart.clr-theme-grey .ct-series-l .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-grey .ct-series-m .ct-bar, .nd2-chart.clr-theme-grey .ct-series-m .ct-line, .nd2-chart.clr-theme-grey .ct-series-m .ct-point, .nd2-chart.clr-theme-grey .ct-series-m .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-grey .ct-series-m .ct-area, .nd2-chart.clr-theme-grey .ct-series-m .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-grey .ct-series-n .ct-bar, .nd2-chart.clr-theme-grey .ct-series-n .ct-line, .nd2-chart.clr-theme-grey .ct-series-n .ct-point, .nd2-chart.clr-theme-grey .ct-series-n .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-grey .ct-series-n .ct-area, .nd2-chart.clr-theme-grey .ct-series-n .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-grey .ct-series-o .ct-bar, .nd2-chart.clr-theme-grey .ct-series-o .ct-line, .nd2-chart.clr-theme-grey .ct-series-o .ct-point, .nd2-chart.clr-theme-grey .ct-series-o .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-grey .ct-series-o .ct-area, .nd2-chart.clr-theme-grey .ct-series-o .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-grey .ct-series-p .ct-bar, .nd2-chart.clr-theme-grey .ct-series-p .ct-line, .nd2-chart.clr-theme-grey .ct-series-p .ct-point, .nd2-chart.clr-theme-grey .ct-series-p .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-grey .ct-series-p .ct-area, .nd2-chart.clr-theme-grey .ct-series-p .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-grey .ct-series-q .ct-bar, .nd2-chart.clr-theme-grey .ct-series-q .ct-line, .nd2-chart.clr-theme-grey .ct-series-q .ct-point, .nd2-chart.clr-theme-grey .ct-series-q .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-grey .ct-series-q .ct-area, .nd2-chart.clr-theme-grey .ct-series-q .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-grey .ct-series-r .ct-bar, .nd2-chart.clr-theme-grey .ct-series-r .ct-line, .nd2-chart.clr-theme-grey .ct-series-r .ct-point, .nd2-chart.clr-theme-grey .ct-series-r .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-grey .ct-series-r .ct-area, .nd2-chart.clr-theme-grey .ct-series-r .ct-slice-pie { fill: #FF5722; }
-	
-	
+
+
 	/* Chart-Color-Theme: blue-grey */
 	.nd2-chart.clr-theme-blue-grey .ct-series-a .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-a .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-a .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-a .ct-slice-donut {	stroke: #607D8B; } .nd2-chart.clr-theme-blue-grey .ct-series-a .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-a .ct-slice-pie { fill: #607D8B; }  .nd2-chart.clr-theme-blue-grey .ct-series-b .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-b .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-b .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-b .ct-slice-donut {	stroke: #F44336; } .nd2-chart.clr-theme-blue-grey .ct-series-b .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-b .ct-slice-pie { fill: #F44336; }  .nd2-chart.clr-theme-blue-grey .ct-series-c .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-c .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-c .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-c .ct-slice-donut {	stroke: #E91E63; } .nd2-chart.clr-theme-blue-grey .ct-series-c .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-c .ct-slice-pie { fill: #E91E63; }  .nd2-chart.clr-theme-blue-grey .ct-series-d .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-d .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-d .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-d .ct-slice-donut {	stroke: #9C27B0; } .nd2-chart.clr-theme-blue-grey .ct-series-d .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-d .ct-slice-pie { fill: #9C27B0; }  .nd2-chart.clr-theme-blue-grey .ct-series-e .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-e .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-e .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-e .ct-slice-donut {	stroke: #673AB7; } .nd2-chart.clr-theme-blue-grey .ct-series-e .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-e .ct-slice-pie { fill: #673AB7; }  .nd2-chart.clr-theme-blue-grey .ct-series-f .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-f .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-f .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-f .ct-slice-donut {	stroke: #3F51B5; } .nd2-chart.clr-theme-blue-grey .ct-series-f .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-f .ct-slice-pie { fill: #3F51B5; }  .nd2-chart.clr-theme-blue-grey .ct-series-g .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-g .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-g .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-g .ct-slice-donut {	stroke: #2196F3; } .nd2-chart.clr-theme-blue-grey .ct-series-g .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-g .ct-slice-pie { fill: #2196F3; }  .nd2-chart.clr-theme-blue-grey .ct-series-h .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-h .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-h .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-h .ct-slice-donut {	stroke: #03A9F4; } .nd2-chart.clr-theme-blue-grey .ct-series-h .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-h .ct-slice-pie { fill: #03A9F4; }  .nd2-chart.clr-theme-blue-grey .ct-series-i .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-i .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-i .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-i .ct-slice-donut {	stroke: #00BCD4; } .nd2-chart.clr-theme-blue-grey .ct-series-i .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-i .ct-slice-pie { fill: #00BCD4; }  .nd2-chart.clr-theme-blue-grey .ct-series-j .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-j .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-j .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-j .ct-slice-donut {	stroke: #009688; } .nd2-chart.clr-theme-blue-grey .ct-series-j .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-j .ct-slice-pie { fill: #009688; }  .nd2-chart.clr-theme-blue-grey .ct-series-k .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-k .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-k .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-k .ct-slice-donut {	stroke: #4CAF50; } .nd2-chart.clr-theme-blue-grey .ct-series-k .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-k .ct-slice-pie { fill: #4CAF50; }  .nd2-chart.clr-theme-blue-grey .ct-series-l .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-l .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-l .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-l .ct-slice-donut {	stroke: #8BC34A; } .nd2-chart.clr-theme-blue-grey .ct-series-l .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-l .ct-slice-pie { fill: #8BC34A; }  .nd2-chart.clr-theme-blue-grey .ct-series-m .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-m .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-m .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-m .ct-slice-donut {	stroke: #CDDC39; } .nd2-chart.clr-theme-blue-grey .ct-series-m .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-m .ct-slice-pie { fill: #CDDC39; }  .nd2-chart.clr-theme-blue-grey .ct-series-n .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-n .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-n .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-n .ct-slice-donut {	stroke: #FFEB3B; } .nd2-chart.clr-theme-blue-grey .ct-series-n .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-n .ct-slice-pie { fill: #FFEB3B; }  .nd2-chart.clr-theme-blue-grey .ct-series-o .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-o .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-o .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-o .ct-slice-donut {	stroke: #FFC107; } .nd2-chart.clr-theme-blue-grey .ct-series-o .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-o .ct-slice-pie { fill: #FFC107; }  .nd2-chart.clr-theme-blue-grey .ct-series-p .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-p .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-p .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-p .ct-slice-donut {	stroke: #FF9800; } .nd2-chart.clr-theme-blue-grey .ct-series-p .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-p .ct-slice-pie { fill: #FF9800; }  .nd2-chart.clr-theme-blue-grey .ct-series-q .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-q .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-q .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-q .ct-slice-donut {	stroke: #FF5722; } .nd2-chart.clr-theme-blue-grey .ct-series-q .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-q .ct-slice-pie { fill: #FF5722; }  .nd2-chart.clr-theme-blue-grey .ct-series-r .ct-bar, .nd2-chart.clr-theme-blue-grey .ct-series-r .ct-line, .nd2-chart.clr-theme-blue-grey .ct-series-r .ct-point, .nd2-chart.clr-theme-blue-grey .ct-series-r .ct-slice-donut {	stroke: #795548; } .nd2-chart.clr-theme-blue-grey .ct-series-r .ct-area, .nd2-chart.clr-theme-blue-grey .ct-series-r .ct-slice-pie { fill: #795548; }
-	
-	
+
+
 	/*
 	* Overlay
 	*/
-	
+
 	.ui-popup-screen {
 		background-color: rgba(0,0,0,0.5);
 	}
-	
+
 	/*
 	* Icons
 	*/
-	
+
 	.ui-icon-action:after {
 		background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22enable-background%3Anew%200%200%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3A%23575757%3B%22%20d%3D%22M9%2C5v3l5-4L9%2C0v3c0%2C0-5%2C0-5%2C7C6%2C5%2C9%2C5%2C9%2C5z%20M11%2C12H2V5h1l2-2H0v11h13V7l-2%2C2V12z%22%2F%3E%3C%2Fsvg%3E");
 	}
@@ -1736,7 +1736,7 @@ pre {
 	.ui-icon-video:after {
 		background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%20-2%2014%2014%22%20style%3D%22enable-background%3Anew%200%20-2%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20style%3D%22fill%3A%23575757%3B%22%20d%3D%22M8%2C0H2C0.896%2C0%2C0%2C0.896%2C0%2C2v6c0%2C1.104%2C0.896%2C2%2C2%2C2h6c1.104%2C0%2C2-0.896%2C2-2V5V2C10%2C0.896%2C9.104%2C0%2C8%2C0z%20%20M10%2C5l4%2C4V1L10%2C5z%22%2F%3E%3C%2Fsvg%3E");
 	}
-	
+
 	/* Alt icons */
 	.ui-alt-icon.ui-icon-action:after,
 	.ui-alt-icon .ui-icon-action:after {
@@ -1941,4 +1941,3 @@ pre {
 	.ui-alt-icon .ui-icon-video:after {
 		background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%20-2%2014%2014%22%20style%3D%22enable-background%3Anew%200%20-2%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpath%20d%3D%22M8%2C0H2C0.896%2C0%2C0%2C0.896%2C0%2C2v6c0%2C1.104%2C0.896%2C2%2C2%2C2h6c1.104%2C0%2C2-0.896%2C2-2V5V2C10%2C0.896%2C9.104%2C0%2C8%2C0z%20M10%2C5l4%2C4V1L10%2C5z%22%2F%3E%3C%2Fsvg%3E");
 	}
-	

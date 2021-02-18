@@ -64,29 +64,6 @@ jeedom.repo.remove = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.repo.setRating = function (_params) {
-  var paramsRequired = ['id','rating','repo'];
-  var paramsSpecifics = {
-    global: _params.global || true,
-  };
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/repo.ajax.php';
-  paramsAJAX.data = {
-    action: 'setRating',
-    repo: _params.repo,
-    id: _params.id,
-    rating: _params.rating,
-  };
-  $.ajax(paramsAJAX);
-}
-
 jeedom.repo.test = function (_params) {
   var paramsRequired = ['repo'];
   var paramsSpecifics = {

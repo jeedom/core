@@ -68,16 +68,16 @@ class scenarioSubElement {
 			return;
 		}
 		if ($this->getSubtype() == 'action') {
-			$_scenario->setLog(__('Exécution du sous-élément de type [action] : ', __FILE__) . $this->getType());
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execAction']['txt'] . $this->getType());
 			$return = true;
-			foreach ($this->getExpression() as $expression) {
+			foreach(($this->getExpression()) as $expression) {
 				$return = $expression->execute($_scenario);
 			}
 			return $return;
 		}
 		if ($this->getSubtype() == 'condition') {
-			$_scenario->setLog(__('Exécution du sous-élément de type [condition] : ', __FILE__) . $this->getType());
-			foreach ($this->getExpression() as $expression) {
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execCondition']['txt'] . $this->getType());
+			foreach(($this->getExpression()) as $expression) {
 				return $expression->execute($_scenario);
 			}
 		}
@@ -88,7 +88,7 @@ class scenarioSubElement {
 	}
 	
 	public function remove() {
-		foreach ($this->getExpression() as $expression) {
+		foreach(($this->getExpression()) as $expression) {
 			$expression->remove();
 		}
 		DB::remove($this);
@@ -108,7 +108,7 @@ class scenarioSubElement {
 			'subelement' => array($this->getId()),
 			'expression' => array(),
 		);
-		foreach ($this->getExpression() as $expression) {
+		foreach(($this->getExpression()) as $expression) {
 			$result = $expression->getAllId();
 			$return['element'] = array_merge($return['element'], $result['element']);
 			$return['subelement'] = array_merge($return['subelement'], $result['subelement']);
@@ -122,7 +122,7 @@ class scenarioSubElement {
 		$subElementCopy->setId('');
 		$subElementCopy->setScenarioElement_id($_scenarioElement_id);
 		$subElementCopy->save();
-		foreach ($this->getExpression() as $expression) {
+		foreach(($this->getExpression()) as $expression) {
 			$expression->copy($subElementCopy->getId());
 		}
 		return $subElementCopy->getId();
@@ -215,5 +215,3 @@ class scenarioSubElement {
 	}
 	
 }
-
-?>

@@ -2,15 +2,17 @@
   <div class="content-xs">
     <a class="btn btn-sm btn-default action tooltips">#name_display#</a>
   </div>
+  <template></template>
   <script>
     $('.cmd[data-cmd_uid=#uid#]:last .action').off('click').on('click', function () {
-      jeedom.cmd.execute({id: '#id#'});
-    });
+      jeedom.cmd.execute({id: '#id#'})
+    })
+
     if ($('.cmd[data-cmd_uid=#uid#]').last().prev().data('subtype') != undefined && $('.cmd[data-cmd_id=#id#]').last().prev().data('subtype') != 'other'
     && $('.cmd[data-cmd_uid=#uid#]').last().prev().css('display') != 'block') {
       $('.cmd[data-cmd_uid=#uid#]').last().prepend('<br/>');
     }
-    if("#name#" != '#name_display#'){
+    if ("#name#" != '#name_display#') {
       $('.cmd[data-cmd_uid=#uid#]:last .action').attr('title',"#name#")
     }
   </script>

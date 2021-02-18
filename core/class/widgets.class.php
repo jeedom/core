@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class widgets {
   /*     * *************************Attributs****************************** */
-  
+
   private $id;
   private $name;
   private $type = 'action';
@@ -31,15 +31,16 @@ class widgets {
   private $test;
   private $display;
   private $_changed = false;
-  
+
   /*     * ***********************Méthodes statiques*************************** */
-  
+
   public static function all() {
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-    FROM widgets';
+    FROM widgets
+    ORDER BY name';
     return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
   }
-  
+
   public static function byId($_id) {
     $values = array(
       'id' => $_id,
@@ -49,7 +50,7 @@ class widgets {
     WHERE id=:id';
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
-  
+
   public static function byTypeSubtypeAndName($_type, $_subtype, $_name) {
     $values = array(
       'type' => $_type,
@@ -63,7 +64,7 @@ class widgets {
     AND name=:name';
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
-  
+
   public static function listTemplate(){
     $return = array();
     $files = ls(__DIR__ . '/../template/dashboard', 'cmd.*', false, array('files', 'quiet'));
@@ -112,7 +113,7 @@ class widgets {
     }
     return $return;
   }
-  
+
   public static function getTemplateConfiguration($_template){
     $iscustom = false;
     if(!file_exists(__DIR__ . '/../template/dashboard/'.$_template.'.html')){
@@ -137,7 +138,7 @@ class widgets {
     $return['replace'] = array_values(array_unique($matches[1]));
     return $return;
   }
-  
+
   public static function replacement($_version,$_replace,$_by){
     $cmds = cmd::searchTemplate($_version.'":"'.$_replace.'"');
     if(!is_array($cmds) || count($cmds) == 0){
@@ -153,15 +154,15 @@ class widgets {
     }
     return $replace_number;
   }
-  
+
   /*     * *********************Méthodes d'instance************************* */
-  
+
   public function preSave(){
     if($this->getType() == ''){
       $this->setType('action');
     }
   }
-  
+
   public function preUpdate(){
     $widgets = self::byId($this->getId());
     if($widgets->getName() != $this->getName()){
@@ -193,12 +194,12 @@ class widgets {
       }
     }
   }
-  
+
   public function save() {
     DB::save($this);
     return true;
   }
-  
+
   public function postSave(){
     $usedBy = $this->getUsedBy();
     if(is_array($usedBy) && count($usedBy) > 0){
@@ -210,7 +211,7 @@ class widgets {
       }
     }
   }
-  
+
   public function remove() {
     $usedBy = $this->getUsedBy();
     if(is_array($usedBy) && count($usedBy) > 0){
@@ -226,7 +227,7 @@ class widgets {
     }
     DB::remove($this);
   }
-  
+
   public function getUsedBy(){
     $return = array();
     $return = array_merge(
@@ -235,86 +236,90 @@ class widgets {
     );
     return $return;
   }
-  
+
+  public function emptyTest(){
+    $this->test = null;
+  }
+
   /*     * **********************Getteur Setteur*************************** */
-  
+
   public function getId() {
     return $this->id;
   }
-  
+
   public function getName() {
     return $this->name;
   }
-  
+
   public function getType() {
     return $this->type;
   }
-  
+
   public function getSubtype() {
     return $this->subtype;
   }
-  
+
   public function getTemplate() {
     return $this->template;
   }
-  
+
   public function getReplace($_key = '', $_default = '') {
     return utils::getJsonAttr($this->replace, $_key, $_default);
   }
-  
+
   public function getTest($_key = '', $_default = '') {
     return utils::getJsonAttr($this->test, $_key, $_default);
   }
-  
+
   public function setId($_id = '') {
     $this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
     $this->id = $_id;
     return $this;
   }
-  
+
   public function setName($_name) {
     $_name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $_name);
     $this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
     $this->name = $_name;
     return $this;
   }
-  
+
   public function setType($_type) {
     $this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
     $this->type = $_type;
     return $this;
   }
-  
+
   public function setSubtype($_subtype) {
     $this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
     $this->subtype = $_subtype;
     return $this;
   }
-  
+
   public function setTemplate($_template) {
     $this->_changed = utils::attrChanged($this->_changed,$this->template,$_template);
     $this->template = $_template;
     return $this;
   }
-  
+
   public function setReplace($_key, $_value) {
     $replace = utils::setJsonAttr($this->replace, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->replace,$replace);
-    $this->replace = utils::setJsonAttr($this->replace, $_key, $_value);
+    $this->replace = $replace;
     return $this;
   }
-  
+
   public function setTest($_key, $_value) {
     $test = utils::setJsonAttr($this->test, $_key, $_value);
     $this->_changed = utils::attrChanged($this->_changed,$this->test,$test);
-    $this->test = utils::setJsonAttr($this->test, $_key, $_value);
+    $this->test = $test;
     return $this;
   }
-  
+
   public function getDisplay($_key = '', $_default = '') {
     return utils::getJsonAttr($this->display, $_key, $_default);
   }
-  
+
   public function setDisplay($_key, $_value) {
     if ($this->getDisplay($_key) != $_value) {
       $this->_needRefreshWidget = true;

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html manifest="mobile.manifest.php">
+<html lang="en-US">
+<html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
   <title>Jeedom</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -14,14 +15,17 @@
   <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.css" />
   <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
   <link rel="stylesheet" href="3rdparty/roboto/roboto.css">
-  <link rel="stylesheet" href="3rdparty/jquery.utils/jquery.utils.css">
+  <link rel="stylesheet" href="3rdparty/camingocode/camingocode.css">
+  <link rel="stylesheet" href="3rdparty/nouislider/nouislider.css">
   <script src="core/php/getJS.php?file=3rdparty/jquery/jquery.min.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/jquery.mobile.min.js"></script>
+  <script src="core/php/getJS.php?file=3rdparty/nouislider/nouislider.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/highstock/highstock.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/highstock/highcharts-more.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/highstock/modules/solid-gauge.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.utils/jquery.utils.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.packery/jquery.packery.js"></script>
+  <script src="core/php/getJS.php?file=3rdparty/moment/moment-with-locales.min.js"></script>
   <script src="core/php/getJS.php?file=core/js/jeedom.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/private.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/cmd.class.js"></script>
@@ -39,6 +43,8 @@
   <script src="core/php/getJS.php?file=core/js/plan3d.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/log.class.js"></script>
   <script src="core/php/getJS.php?file=core/js/widgets.class.js"></script>
+  <script src="core/php/getJS.php?file=core/js/timeline.class.js"></script>
+  <script src="core/php/getJS.php?file=core/js/core.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/waves/waves.min.js" ></script>
   <script src="core/php/getJS.php?file=3rdparty/wow/wow.min.js" ></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/nativedroid2.js" ></script>
@@ -48,31 +54,33 @@
   <link rel="stylesheet" href="core/themes/core2019_Light/mobile/core2019_Light.css" id="jQMnDColor" />
 </head>
 <body data-page="home">
-  <div class="backgroundforJeedom"> </div>
+  <div id="backgroundforJeedom">
+    <div id="top" style="display:none;"></div>
+    <div id="bottom"></div>
+  </div>
   <div id="div_alert"></div>
-  <div data-role="page" id="pagecontainer" style="padding-top: 64px !important;">
-    <div data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" id="bottompanel" data-animate="true" data-position='bottom' data-display="overlay"></div>
-    <div data-role="popup" id="div_popup" class="ui-corner-all"></div>
+  <div data-role="page" id="pagecontainer">
+    <div id="bottompanel" data-role="panel" class="ui-bottom-sheet ui-bottom-sheet-list" data-animate="true" data-position='bottom' data-display="overlay"></div>
+    <div id="div_popup" data-role="popup" class="ui-corner-all"></div>
+    
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
+      <a id="homeLogoLink" class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></i></a>
       <h1>
-        <span id="pageTitle" style="display:inline-block;font-size:0.9em;position:relative;top:-10px;"></span>
-        <span style="display:inline-block;font-size:0.6em;position:absolute;top:35px;left:70px;"><span class="objectSummaryglobal" data-version="mobile"></span></span>
+        <span id="pageTitle"></span>
       </h1>
-      <a class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></i></a>
+      <div id="summaryglobalContainer">
+        <span class="objectSummaryglobal" data-version="mobile"></span>
+      </div>
+      
       <a href="#bottompanel" id="bt_bottompanel"><i class="fas fa-bars"></i></a>
       
       <div id="searchContainer" style="display:none;">
-        <input class="form-control roundedLeft" id="in_searchWidget" placeholder="{{Rechercher}}">
+        <input class="form-control roundedLeft" id="in_searchDashboard" placeholder="{{Rechercher}}" autocomplete="off">
         <a id="bt_eraseSearchInput" class="action ui-btn ui-mini ui-btn-inline ui-btn-raised bt_plus roundedRight">
           <i class="fas fa-times"></i>
         </a>
       </div>
       
-      <div id="div_loadingSpinner" style="display: none;">
-        <div class="break dot1" style="position : relative;top : 0px;"></div>
-        <div class="break dot2" style="position : relative;top : -3px;"></div>
-        <div class="break dot3" style="position : relative;top : -6px;"></div>
-      </div>
     </div>
     
     <div role="main" class="ui-content" id="page" data-inset="false" style="padding : 2px;padding-top : 4px;"></div>
@@ -84,6 +92,9 @@
       <div data-role="content" class="content"></div>
     </div>
     <div data-role="panel" class="ui-bottom-sheet-list ui-bottom-sheet" id="bottompanel_mainoption" data-animate="true" data-position='bottom' data-display="overlay"></div>
+  </div>
+  <div id="div_jeedomLoading" style="display:none;">
+    <div class="loadingSpinner"></div>
   </div>
 </body>
 </html>

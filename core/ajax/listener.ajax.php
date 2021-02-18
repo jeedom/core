@@ -36,7 +36,7 @@ try {
 		unautorizedInDemo();
 		$listener = listener::byId(init('id'));
 		if (!is_object($listener)) {
-			throw new Exception(__('Listerner id inconnu', __FILE__));
+			throw new Exception(__('Listener id inconnu', __FILE__));
 		}
 		$listener->remove();
 		ajax::success();

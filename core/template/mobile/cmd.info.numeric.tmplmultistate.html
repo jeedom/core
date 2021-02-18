@@ -2,41 +2,50 @@
   <center>
     <div class="cmdName #hide_name#">#name_display#</div>
     <div class="iconCmd"></div>
-    <span class="timeCmd#uid# timeCmd"></span>
+    <span class="timeCmd value #history#" data-type="info"></span>
   </center>
-</div>
-<script>
-  jeedom.cmd.update['#id#'] = function(_options){
-    var cmd = $('.cmd[data-cmd_id=#id#]');
-    if('#_time_widget_#' == '1'){
-      jeedom.cmd.displayDuration(_options.valueDate,  cmd.find('.timeCmd'));
-    }else{
-      cmd.find('.timeCmd').remove();
-    }
-    var state = '';
-    cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
-    #test#
-    cmd.find('.iconCmd').empty().append(state);
-    var style = '';
-    if(!isNaN('#_mobile_width_#')){
-      style = 'width:#_mobile_width_#px !important;'
-    }
-    cmd.find('.iconCmd img').attr('style',style);
-    cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
-      var state = '';
-      #change_theme#
-      if(state != ''){
-        cmd.find('.iconCmd').empty().append(state);
+  <script>
+    jeedom.cmd.update['#id#'] = function(_options) {
+      var cmd = $('.cmd[data-cmd_id=#id#]')
+      if ('#_time_widget_#' == '1') {
+        jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
+      } else {
+        cmd.find('.timeCmd').remove()
       }
-      var style = '';
-      if(!isNaN('#_mobile_width_#')){
-        style = 'max-width:#_mobile_width_#px !important;'
+
+      cmd.attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
+
+      try {
+        var state = ''
+        #test#
+        cmd.find('.iconCmd').empty().append(state)
+      } catch (error) {
+        console.log(error)
       }
-      cmd.find('.iconCmd img').attr('style',style);
+
+      var style = ''
+      if (!isNaN('#_mobile_width_#')) {
+        style = 'width:#_mobile_width_#px !important;'
+      }
+      cmd.find('.iconCmd img').attr('style',style)
+      cmd.off('changeThemeEvent').on('changeThemeEventCmd',function (event, theme) {
+        var state = ''
+        #change_theme#
+        if (state != '') {
+          cmd.find('.iconCmd').empty().append(state)
+        }
+        var style = ''
+        if (!isNaN('#_mobile_width_#')) {
+          style = 'max-width:#_mobile_width_#px !important;'
+        }
+        cmd.find('.iconCmd img').attr('style',style)
+      })
+    }
+
+    jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
+
+    $('body').on('changeThemeEvent', function (event,theme) {
+      $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd', theme)
     });
-  }
-  jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-  $('body').on('changeThemeEvent', function (event,theme) {
-    $('.cmd[data-cmd_id=#id#]').trigger('changeThemeEventCmd',theme);
-  });
-</script>
+  </script>
+</div>

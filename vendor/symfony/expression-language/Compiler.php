@@ -51,6 +51,8 @@ class Compiler
     /**
      * Compiles a node.
      *
+     * @param Node\Node $node The node to compile
+     *
      * @return $this
      */
     public function compile(Node\Node $node)
@@ -110,7 +112,7 @@ class Compiler
      */
     public function repr($value)
     {
-        if (\is_int($value) || \is_float($value)) {
+        if (is_int($value) || is_float($value)) {
             if (false !== $locale = setlocale(LC_NUMERIC, 0)) {
                 setlocale(LC_NUMERIC, 'C');
             }
@@ -122,9 +124,9 @@ class Compiler
             }
         } elseif (null === $value) {
             $this->raw('null');
-        } elseif (\is_bool($value)) {
+        } elseif (is_bool($value)) {
             $this->raw($value ? 'true' : 'false');
-        } elseif (\is_array($value)) {
+        } elseif (is_array($value)) {
             $this->raw('array(');
             $first = true;
             foreach ($value as $key => $value) {

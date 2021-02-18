@@ -1,23 +1,16 @@
 <div class="cmd cmd-widget" data-type="action" data-subtype="color" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   <div class="content-xs">
-    <div class="input-group input-group-sm">
-      <input class="input-sm btn action action_colorpicker_change form-control cursor roundedLeft" type="color">
-      <span class="input-group-btn">
-        <a class="btn btn-sm btn-default action action_colorpicker_off roundedRight">Off</a>
-      </span>
-    </div>
+    <input class="input-sm btn action action_colorpicker_change form-control cursor" type="color">
   </div>
+  <template></template>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
+    jeedom.cmd.update['#id#'] = function(_options) {
       $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').off('change')
-      $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value);
+      $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_change').value((_options.display_value != '') ? _options.display_value.substr(0,7) : _options.display_value)
       $('.cmd[data-cmd_uid=#uid#]:last .action_colorpicker_change').on('change', function() {
         jeedom.cmd.execute({id: '#id#', value: {color: $(this).value()}});
-      });
+      })
     }
-    $('.cmd[data-cmd_uid=#uid#] .action_colorpicker_off').on('click', function() {
-      jeedom.cmd.execute({id: '#id#', value: {color: '#000000'}});
-    });
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
   </script>
 </div>

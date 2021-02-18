@@ -1,126 +1,75 @@
-La page Analyse d’équipements accessible depuis le menu Analyse → Equipements vous permet de voir de nombreuses infos
-relatives aux équipements de manière centralisée :
+# Equipment analysis
+**Analysis → Equipment**
 
--   the state of your batteries
+The Equipment Analysis page allows you to view a lot of information relating to equipment in a centralized way :
 
--   the modules in alerts
+- The state of your batteries
+- Modules on alert
+- Defined actions
+- Defined alerts
+- Orphan commands
 
--   defined actions
+## Batteries tab
 
--   defined alerts
 
--   Orphaned orders
-
-The Batteries tab
-==================
-
-You can see on this tab the list of your battery modules,
-their remaining level (the color of the tile depends on this level), the
-type and number of batteries that must be put in the module, the type of
-module as well as the date at which the battery level information
-has been updated. You can also see if a specific threshold has been
-established for the particular module (represented by a hand)
+You can see on this tab the list of your battery modules, their remaining level (the color of the tile depends on this level), the type and number of batteries that must be put in the module, the type of module as well that the date the battery level information was updated. You can also see if a specific threshold has been set for the particular module (represented by a hand)
 
 > **Tip**
 >
-> The warning / warning thresholds on the battery levels are
-> configurable globally in the Jeedom configuration
-> (Administration → Equipment tab), or by equipment on the page
-> advanced configuration of these in the alerts tab.
+> The alert / warning thresholds on the battery levels can be configured globally in the Jeedom configuration (Settings → Systems → Configuration : Equipment), or by equipment on the advanced configuration page of these in the alerts tab.
 
-The Modules Alert tab
-==========================
+## Modules on alert tab
 
-On this tab you will see in real time the modules on alert. The
-alerts can be of different types:
+On this tab you will see in real time the modules in alert. The alerts can be of different types :
 
--   timeout (configured in the defined alerts tab)
+- Timeout (configured in the defined alerts tab).
+- Battery in warning or in danger.
+- Warning or danger command (configurable in advanced command parameters).
 
--   battery warning or in danger
-
--   command in warning or danger (parameterizable in the parameters
-    advanced orders)
-
-Other types of alerts may eventually be found here.
-Each alert will be represented by the color of the tile (the level
-alert) and a logo at the top left (the alert type)
+Other types of alerts may be found here.
+Each alert will be represented by the color of the tile (the alert level) and a logo at the top left (the alert type).
 
 > **Tip**
 >
-> Here will be displayed all modules on alert even those configured in
-> "not visible". It is however interesting to note that if the module
-> is in "visible" the alert will also be visible on the dashboard (in
-> the object concerned)
+> Here will be displayed all the modules in alert even those configured in "not visible". It is however interesting to note that if the module is "visible" the alert will also be visible on the dashboard (in the object concerned).
 
-The Defined Actions tab
-=========================
+## Defined Actions tab
 
-This tab allows you to view the actions defined directly on a
-command. Indeed, we can put on different orders and it
-can be difficult to remember all. This tab is there for that
-and synthesizes several things:
+This tab allows you to view the actions defined directly on a  command. Indeed, we can put on different commands and it can be difficult to remember all. This tab is there for that and synthesizes several things :
 
--   actions on state (found in the advanced parameters
-    info commands and allowing to realize one or more
-    actions on the value of an order - immediately or after
-    a delay)
-
--   share confirmations (configurable in the same place on a
-    order info and to request a confirmation for
-    perform an action)
-
--   confirmations with code (same as before but with
-    entering a code)
-
--   pre and post actions (always configurable in the same place on
-    an action command and allowing to execute one or more others
-    actions before or after the action in question)
+- Actions on status (found in the advanced parameters of info commands and allowing one or more actions to be performed on the value of an order - immediately or after a delay).
+- Confirmations of actions (configurable in the same place on an info command and allowing to request a confirmation to execute an action).
+- Confirmations with code (same as above but with entering a code).
+- Pre and post actions (always configurable in the same place on an action command and allowing to execute one or more other actions before or after the action in question).
 
 > **Tip**
 >
-> The table allows to see in a very textual way the actions
-> defined. Other types of actions defined can be added.
+> The table provides a very textual view of the actions defined. Other types of defined actions may be added.
 
-The Alerts tab
-=========================
+## Defined Alerts tab
 
-This tab allows you to see all the defined alerts, you can
-find in a table the following information if they exist:
+This tab allows you to see all the defined alerts, you will find in a table the following info if they exist :
 
--   communication delay alerts
+- Communication delay alerts.
+- The specific battery thresholds defined on a device.
+- The various danger alerts and warning commands.
 
--   specific battery thresholds set on a device
+## Orphan commands tab
 
--   the various hazard and warning alerts
+This tab allows you to see at a glance if you have orphaned commands used through Jeedom. An orphan command is a command used somewhere but which no longer exists. We will find here all of these commands, such as for example :
 
-The Orphan Orders tab
-=============================
+- Orphan commands used in the body of a scenario.
+- Those used to trigger a scenario.
 
-This tab allows you to see at a glance if you have any
-orphan commands used through Jeedom. An order
-orphan is a command used somewhere but no longer exists.
-We will find here all these commands, as for example:
+And used in many other places like (not exhaustive) :
+- The interactions.
+- Jeedom configurations.
+- In pre or post action of a command.
+- In action on command status.
+- In some plugins.
 
--   Orphaned commands used in the body of a scenario
-
--   those used as a trigger for a scenario
-
-And used in many other places like (not exhaustive):
-
--   the interactions
-
--   jeedom's configurations
-
--   in pre or post action of an order
-
--   in action on order status
-
--   in some plugins
+If the id of the orphan order is still present in the deletion history (available in Analysis / Home automation summary), its old name and date of deletion will be displayed.
 
 > **Tip**
 >
-> The table allows to see in a very textual way the commands
-> orphans. Its purpose is to be able to quickly identify all
-> "orphan" commands through all Jeedom and plugins. He is
-> may some areas not be analyzed, the table will be
-> be more and more exhaustive with time.
+> The table provides a very textual view of the orphan commands. Its goal is to be able to quickly identify all "orphan" commands through all Jeedom and plugins. It may be that some areas are not analyzed, the table will be more and more exhaustive over time.

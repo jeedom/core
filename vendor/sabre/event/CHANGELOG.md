@@ -1,5 +1,49 @@
 ChangeLog
 =========
+5.0.3 (2018-05-03)
+------------------
+
+* Dropped remaining hhvm leftovers.
+* #55: Fixed typo in WildcardEmitterTrait (@SamMousa)
+* #54: export-ignore examples & tests in distribution (@staabm)
+
+5.0.2 (2017-04-29)
+------------------
+
+* #50: Fixed Promise\all to resolve immediately for empty arrays (@MadHed)
+* #48, #49: Performance optimisations for EmitterTrait and WildcardEmitterTrait (@lunixyacht).
+
+5.0.1 (2016-10-29)
+------------------
+
+* #45: Fixed `Emitter` class to use the correct interface. (@felixfbecker).
+
+
+5.0.0 (2016-10-23)
+------------------
+
+* #42: The `coroutine` function now supports `return` in the passed generator
+  function. This allows you to more generally return a value. This is a BC
+  break as this is a feature that was only made possible with PHP 7, and
+  before the coroutine function would only ever return the last thing that
+  was yielded. If you depended on that feature, replace your last `yield` with
+  a `return`.
+
+
+4.0.0 (2016-09-19)
+------------------
+
+* sabre/event now requires PHP 7. If you need PHP 5.5 support, just keep
+  using 3.0.0.
+* PHP 7 type hints are now used everywhere. We're also using strict_types.
+* Support for a new `WildcardEmitter` which allows you to listen for events
+  using the `*` wildcard.
+* Removed deprecated functions `Promise::error` and `Promise::all`. Instead,
+  use `Promise::otherwise` and `Promise\all()`.
+* `EventEmitter`, `EventEmitterTrait` and `EventEmitterInterface` are now just
+  called `Emitter`, `EmitterTrait`, and `EmitterInterface`.
+* When rejecting Promises, it's now _required_ to use an `Exception` or
+  `Throwable`. This makes the typical case simpler and reduces special cases.
 
 3.0.0 (2015-11-05)
 ------------------

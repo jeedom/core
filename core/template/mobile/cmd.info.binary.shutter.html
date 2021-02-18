@@ -1,10 +1,14 @@
 <div class="cmd cmd-widget shuttergauge cursor #history#" data-type="info" data-subtype="binary" data-template="shutter" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
-    <div  class="cmdName #hide_name#">#name_display#</div>
-    <div class="shuttergauge-chart">
-      <div class="shuttergauge-bckg">
-        <div class="shuttergauge-value"></div>
-      </div>
+  <div class="cmdName #hide_name#">#name_display#</div>
+  <div class="shuttergauge-chart">
+    <div class="shuttergauge-bckg">
+      <div class="shuttergauge-value"></div>
     </div>
+    <div class="shuttergauge-state state"><strong>#state#</strong> <strong>#unite#</strong></div>
+  </div>
+  <div class="cmdStats #hide_history#">
+      <span title='{{Min}}' class='tooltips'>#minHistoryValue#</span>|<span title='{{Moyenne}}' class='tooltips'>#averageHistoryValue#</span>|<span title='{{Max}}' class='tooltips'>#maxHistoryValue# <i class="#tendance#"></i></span>
+  </div>
   <script>
     jeedom.cmd.update['#id#'] = function(_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate)
@@ -14,6 +18,11 @@
         $('.cmd[data-cmd_uid=#uid#] .shuttergauge-value').height('0')
       }
     }
-    jeedom.cmd.update['#id#']({display_value:'#state#'});
+
+    jeedom.cmd.update['#id#']({display_value:'#state#'})
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $('.cmd[data-cmd_id=#id#]').find('div.shuttergauge-value').style('background', '#color#', 'important')
+    }
   </script>
 </div>

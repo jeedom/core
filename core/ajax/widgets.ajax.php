@@ -25,7 +25,7 @@ try {
     throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
   }
   
-  ajax::init(true);
+  ajax::init();
   
   if (init('action') == 'all') {
     ajax::success(utils::o2a(widgets::all()));
@@ -47,7 +47,7 @@ try {
   if (init('action') == 'remove') {
     $widgets = widgets::byId(init('id'));
     if(!is_object($widgets)){
-      throw new Exception(__('Widgets inconnue - Vérifiez l\'id', __FILE__).init('id'));
+      throw new Exception(__('Widgets inconnus - Vérifiez l\'id', __FILE__).init('id'));
     }
     $widgets->remove();
     ajax::success();
@@ -62,6 +62,7 @@ try {
     if (!isset($widgets) || !is_object($widgets)) {
       $widgets = new widgets();
     }
+    $widgets->emptyTest();
     utils::a2o($widgets, $widgets_json);
     $widgets->save();
     ajax::success(utils::o2a($widgets));

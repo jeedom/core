@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sabre\Xml\Element;
 
 use Sabre\Xml;
@@ -33,24 +35,21 @@ use Sabre\Xml\Deserializer;
  * @author Evert Pot (http://evertpot.com/)
  * @license http://sabre.io/license/ Modified BSD License
  */
-class KeyValue implements Xml\Element {
-
+class KeyValue implements Xml\Element
+{
     /**
-     * Value to serialize
+     * Value to serialize.
      *
      * @var array
      */
     protected $value;
 
     /**
-     * Constructor
-     *
-     * @param array $value
+     * Constructor.
      */
-    function __construct(array $value = []) {
-
+    public function __construct(array $value = [])
+    {
         $this->value = $value;
-
     }
 
     /**
@@ -68,14 +67,10 @@ class KeyValue implements Xml\Element {
      * This allows serializers to be re-used for different element names.
      *
      * If you are opening new elements, you must also close them again.
-     *
-     * @param Writer $writer
-     * @return void
      */
-    function xmlSerialize(Xml\Writer $writer) {
-
+    public function xmlSerialize(Xml\Writer $writer)
+    {
         $writer->write($this->value);
-
     }
 
     /**
@@ -96,13 +91,10 @@ class KeyValue implements Xml\Element {
      * $reader->parseInnerTree() will parse the entire sub-tree, and advance to
      * the next element.
      *
-     * @param Xml\Reader $reader
      * @return mixed
      */
-    static function xmlDeserialize(Xml\Reader $reader) {
-
+    public static function xmlDeserialize(Xml\Reader $reader)
+    {
         return Deserializer\keyValue($reader);
-
     }
-
 }

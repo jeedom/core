@@ -17,13 +17,6 @@ a,
 i.cursor {
   color: var(--link-color) !important;
 }
-a:hover,
-a:active,
-a:focus {
-  color: var(--linkHover-color) !important;
-  text-decoration: none !important;
-  outline: none;
-}
 
 .widget-name a,
 .bt_sortable {
@@ -44,6 +37,9 @@ a:focus {
 }
 [data-category=light] {
   background-color: rgba(var(--cat-light-color), var(--opacity));
+}
+[data-category=opening] {
+  background-color: rgba(var(--cat-opening-color), var(--opacity));
 }
 [data-category=multimedia] {
   background-color: rgba(var(--cat-multimedia-color), var(--opacity));
@@ -79,11 +75,17 @@ a:focus {
 [data-category=light] .btn {
   background-color: var(--cat-light-BtnColor) !important;
 }
+[data-category=opening] .btn {
+  background-color: var(--cat-opening-BtnColor) !important;
+}
 [data-category=multimedia] .btn {
   background-color: var(--cat-multimedia-BtnColor) !important;
 }
 [data-category=energy] .btn {
   background-color: var(--cat-energy-BtnColor) !important;
+}
+[data-category=""] .btn {
+  background-color: var(--cat-other-BtnColor) !important;
 }
 
 .scenario-widget.scenario .btn {
@@ -91,6 +93,17 @@ a:focus {
 }
 
 /* ___________________________________________________________DASHBOARD */
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
+body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
+}
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name > a,
+body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
+body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i,
+body[data-coloredcats="0"] div.eqLogic-widget > span.cmd.editOptions:after {
+  color: var(--linkHoverLight-color) !important;
+}
 
 #div_displayObject > a {
   background-color: var(--btnEq-default-color) !important;
@@ -125,7 +138,13 @@ span.cursor > i:hover {
   color: var(--sc-lightTxt-color);
 }
 
+.eqLogic.eqLogic-widget .cmd-widget .timeCmd.history {
+  color: var(--txt-color) !important;
+}
 
+.cmd-widget .sliderValue {
+  color: var(--linkHoverLight-color) !important;
+}
 
 .gauge.history tspan {
   fill: var(--linkHoverLight-color) !important;
@@ -149,10 +168,8 @@ div.cmd-widget div[class^="content"] {
   color: var(--linkHoverLight-color) !important;
 }
 
-#bt_resetDashboardSearch,
-#bt_editDashboardWidgetOrder,
-#bt_displayObject,
-#bt_displaySummaries {
+#dashTopBar > div > a,
+#dashTopBar button {
   color: var(--txt-color) !important;
   background-color: var(--form-bg-color) !important;
 }
@@ -160,8 +177,10 @@ div.cmd-widget div[class^="content"] {
 .scenario-widget .iconCmd,
 .eqLogic-widget .iconCmd,
 .eqLogic-widget .cmdName,
+.eqLogic-widget .value,
 .eqLogic-widget .cmdStats,
-.eqLogic-widget .state {
+.eqLogic-widget :not(.tableCmdcss) .cmd:not(.label) .state,
+.eqLogic-widget .cmd {
   color: var(--sc-lightTxt-color) !important;
 }
 
@@ -198,11 +217,8 @@ div[data-subtype=select] select {
 
 .hgauge-value,
 .vgauge-value,
-.shuttergauge-value{
-  background: var(--linkHoverLight-color) !important;
-}
-.state.valueshutter strong {
-  color: var(--link-color) !important;
+.shuttergauge-value {
+  background: var(--linkHoverLight-color);
 }
 
 .highcharts-data-label > span > span {
@@ -218,14 +234,20 @@ div[data-subtype=select] select {
 :not(.gauge) > .highcharts-container .highcharts-axis-line { stroke: var(--linkHoverLight-color)!important; }
 :not(.gauge) > .highcharts-container .highcharts-tick { stroke: var(--linkHoverLight-color)!important; }
 .highcharts-axis-labels text tspan { fill: var(--linkHoverLight-color)!important; }
-
+.arcgauge .highcharts-color-0 {
+  fill: var(--linkHoverLight-color);
+}
 [data-subtype=slider] > div > span,
 span[style*="transform: translate(-50%, 150%)"] {
   color: var(--linkHoverLight-color);
 }
 
-/* CodeMirror */
-.expressions .CodeMirror-wrap,
-body:not([data-page="editor"]) .CodeMirror-line { opacity: 0.88 !important; }
-body:not([data-page="editor"]) .CodeMirror-focused,
-body:not([data-page="editor"]) .CodeMirror-selected { background: rgb(185,185,185) !important; }
+
+/* widgets specific */
+.widget-compass-needle {
+  border-top: 22px solid var(--linkHoverLight-color);
+}
+div.cmd-widget .slider .noUi-connects > .noUi-connect,
+div.cmd-widget .slider .noUi-handle {
+  background: var(--linkHoverLight-color);
+}

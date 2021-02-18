@@ -1,5 +1,8 @@
 <?php
 
+/** @entrypoint */
+/** @console */
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -16,24 +19,10 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (php_sapi_name() != 'cli' || isset($_SERVER['REQUEST_METHOD']) || !isset($_SERVER['argc'])) {
-	header("Statut: 404 Page non trouvée");
-	header('HTTP/1.0 404 Not Found');
-	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo "<h1>404 Non trouvé</h1>";
-	echo "La page que vous demandez ne peut être trouvée.";
-	exit();
-}
+require_once dirname(__DIR__).'/core/php/console.php';
+
 echo "[START RESTORE]\n";
 $starttime = strtotime('now');
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_GET[$argList[0]] = $argList[1];
-		}
-	}
-}
 
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
@@ -89,7 +78,7 @@ try {
 	
 	try {
 		echo "Vérification des droits...";
-		jeedom::cleanFileSytemRight();
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERREUR*** ' . $e->getMessage();
@@ -101,7 +90,7 @@ try {
 	
 	echo "Backup database access configuration...";
 	
-	if (copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
+	if (!copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Can not copy ' . __DIR__ . "/../core/config/common.config.php\n";
 	}
 	
@@ -118,6 +107,7 @@ try {
 		'tmp',
 		'log',
 		'backup',
+		'script/tunnel',
 		'.git',
 		'.log',
 		'core/config/common.config.php',

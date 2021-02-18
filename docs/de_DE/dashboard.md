@@ -1,83 +1,74 @@
-Das ist die Hauptseite von Jeedom, es zeigt eine Übersicht über die ganze
-Heimautomation. Dieser Bericht (im Gegensatz zu den Ansichten und
-Design) wird von Jeedom selbst erzeugt.
+# Dashboard
+**Home → Dashboard**
 
-Es kann zugegriffen werden, indem Sie auf **Mein Haus → Armaturenbrett** klicken.
+<small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
-> **Tip**
+Das Dashboard ist eine der Hauptseiten von Jeedom. Es zeigt einen Bericht über Ihre gesamte Hausautomation an.
+Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst erstellt und enthält alle sichtbaren Objekte und deren Ausrüstung.
+
+![Instrumententafel](../images/doc-dashboard-legends.png)
+
+- 1 : Jeedom Hauptmenü.
+- 2 : Globale Zusammenfassung.
+- 3 : Browserzeit, Verknüpfung zur Zeitleiste.
+- 4 : Schaltfläche, um auf die Dokumentation der aktuellen Seite zuzugreifen.
+- 5 : Name Ihres Jeedom, Verknüpfung zur Konfiguration.
+- 6 : Bearbeitungsmodus (Kacheln neu anordnen / in der Größe ändern).
+- 7 : Nach Kategorien filtern.
+- 8 : Objekt : Symbol, Name und Zusammenfassung sowie deren Ausstattung.
+- 9 : Gerätekachel.
+- 10 : Widget bestellen.
+
+> **Trinkgeld**
 >
-> Es ist möglich, direkt zu einem Objekt Ihrer Hausautomation zu gehen.
-> Dadurch können Sie nur das Gerät wählen, das Sie interessiert, und die
-> Seite wird daher schneller geladen.
+> Die Anzeigereihenfolge der Objekte im Dashboard ist die in **Analyse → Zusammenfassung der Hausautomation**. Sie können diese Reihenfolge auf dieser Seite durch Ziehen und Ablegen ändern.
 
--   Oben links haben Sie ein kleines Symbol, um den Objektbaum
-    ein-/auszublenden (dieser zeigt auch die Informationen
-    der Objektzusammenfassungen an)
+Damit Geräte im Dashboard angezeigt werden, muss dies der Fall sein :
+- Sei aktiv.
+- Sei sichtbar.
+- Haben Sie als übergeordnetes Objekt ein Objekt im Dashboard sichtbar.
 
--   Au milieu, vous pouvez choisir de ne filtrer que sur certains types
-    Filtern kann
+Beim ersten Erscheinen der Ausrüstung im Dashboard versucht Jeedom, die Größe der Kachel korrekt anzupassen, um alle Befehle und ihre Widgets anzuzeigen.
+Um ein ausgewogenes Dashboard zu erhalten, können Sie mit dem Stift oben rechts in der Suchleiste in den Bearbeitungsmodus wechseln, um die Größe der Gerätekacheln zu ändern und / oder sie neu zu ordnen.
 
--   A droite, un premier bouton pour passer en mode édition, pour par
-    zu wechseln z. B. ändern der Reihenfolge der Widgets (mit einem 
-    Klick auf das Widget), Sie können auch in diesem Bearbeitungsmodus
-    die Größe einiger Widgets ändern und die Reihenfolge der darin enthaltenen 
-    Befehle neu anordnen
+Wenn Sie die Maus über eine Bestellung bewegen, wird unten links auf der Kachel eine farbige Markierung angezeigt:
+- Blau für eine Info-Bestellung. Wenn es protokolliert ist, öffnet ein Klick darauf das Protokollfenster.
+- Orange für einen Aktionsbefehl. Ein Klick löst die Aktion aus.
 
--   Eine zweite Schaltfläche zum Ein-/Ausblenden der Szenarien
+Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um die Konfigurationsseite dieses Geräts direkt zu öffnen.
 
--   En cliquant sur un résumé d’objet, vous filtrez pour n’afficher que
-    les équipements ayant pour parent cet objet et qui concernent ce
-    résumé d’objet.
-
--   Ein Klick auf einen Informationsbefehl zeigt den Verlauf des 
-    Befehls an (falls er archiviert ist)
-
-> **Tip**
+> **Trinkgeld**
 >
-> Il est possible, à partir de votre profil, de configurer Jeedom pour
-> que l’arbre des objets et/ou les scénarios soient visibles par défaut
-> lorsque vous arrivez sur le Dashboard
+> Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Dashboard → Objektname**.
+> Auf diese Weise haben Sie nur die Ausrüstung, die Sie interessiert, und können die Seite schneller laden.
 
-> **Tip**
+- Oben links befindet sich ein kleines Symbol, mit dem der Baum der Objekte beim Schweben angezeigt wird.
+- In einem Suchfeld können Sie nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen.
+- Das Symbol rechts neben dem Suchfeld wird verwendet, um die angezeigten Geräte nach ihrer Kategorie zu filtern. Mit einem mittleren Klick können Sie schnell eine einzelne Kategorie auswählen.
+- Ganz rechts können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (auf das Widget klicken - ablegen) oder die Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen.
+
+- Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
+
+- Ein Klick auf eine Bestellung vom Informationstyp zeigt den Verlauf der Bestellung an (sofern er historisch ist).
+- Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
+- Ein Klick auf die Informationen *Zeit* eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
+
+
+## Bearbeitungsmodus
+
+Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
+
+Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf ihre Konfiguration ermöglicht. Dieses Symbol öffnet ein Bearbeitungsfenster mit den Anzeigeparametern des Geräts und seiner Steuerelemente.
+
+![Bearbeitungsmodus](./images/EditDashboardModal.gif)
+
+Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Sie mit zwei Symbolen die Höhe aller Kacheln des Objekts am höchsten oder niedrigsten ausrichten.
+
+## Jeedom Menüleiste
+
+> **Trinkgeld**
 >
-> En mobile un appui long sur une commande de type info permet
-> d’afficher un menu vous proposant soit d’afficher l’historique de la
-> commande, ou de mettre une alerte sur celle-ci pour que jeedom vous
-> prévienne (une seule fois) dès que la valeur passe un certain seuil
-
-Bearbeitungsmodus
-============
-
-En mode édition, vous pouvez changer la taille des widgets et leur
-disposition sur le dashboard.
-
-Sie können auch das interne Layout der Widget Befehle bearbeiten :
-
--   Sie können sie entweder durch Ziehen/Ablegen neu anordnen
-
--   Klicken Sie entweder mit der rechten Maustaste auf das Widget. Dann haben Sie zugriff auf :
-
-    -   **Erweiterte Konfiguration** : Ermöglicht den Zugriff auf die erweiterte 
-        Konfiguration des Befehls
-
-    -   **Standard** : Standard-Layout, alles ist automatisch, nur mit der Möglichkeit, 
-        die Reihenfolge der Befehle neu zu ordnen
-
-    -   **Tableau** : permet de mettre les commandes dans un tableau :
-        Spalten und Zeilen werden hinzugefügt und gelöscht durch Rechtsklick,
-        dann können Sie einfach die Befehle in der Kachel verschieben.
-        Sie können mehrere Befehle pro Kachel einsetzen.
-
-    -   **Spalte hinzufügen** : Fügt eine Spalte in die Tabelle ein (nur zugänglich, 
-        wenn Sie sich im Tabellenlayout befinden)
-
-    -   **Zeile hinzufügen** : Fügt eine Zeile in die Tabelle ein (nur zugänglich,
-        wenn Sie sich im Tabellenlayout befinden)
-
-    -   **Spalte löschen** : Löscht eine Spalte in der Tabelle
-        (nur zugänglich, wenn Sie sich im Tabellenlayout befinden)
-
-    -   **Zeile löschen** : Löscht eine Zeile in der Tabelle (nur zugänglich,
-        wenn Sie sich im Tabellenlayout befinden)
-
-
+> - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
+> - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.
+> - Klicken Sie auf ? (Menüleiste) : Öffnen Sie die Hilfe auf der aktuellen Seite.
+> - Flucht auf ein Forschungsfeld : Löschen Sie das Feld und brechen Sie diese Suche ab.

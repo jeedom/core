@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -23,9 +22,9 @@ jeedom.eqLogic.cache = Array();
 
 jeedom.eqLogic.changeDisplayObjectName = function(_display){
   if(_display){
-    $('.eqLogic-widget').addClass('displayObjectName');
+    $('div.eqLogic-widget').addClass('displayObjectName');
   }else{
-    $('.eqLogic-widget').removeClass('displayObjectName');
+    $('div.eqLogic-widget').removeClass('displayObjectName');
   }
 }
 
@@ -106,6 +105,9 @@ jeedom.eqLogic.byObjectId = function (_params) {
   paramsAJAX.data = {
     action: 'listByObject',
     object_id: _params.object_id,
+    onlyVisible: _params.onlyVisible || 0,
+    onlyEnable: _params.onlyEnable || 1,
+    getCmd: _params.getCmd || 0
   };
   $.ajax(paramsAJAX);
 }
@@ -148,12 +150,31 @@ jeedom.eqLogic.getUseBeforeRemove = function (_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.eqLogic.usedBy = function (_params) {
+  var paramsRequired = ['id'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'usedBy',
+    id: _params.id
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.eqLogic.remove = function (_params) {
   var paramsRequired = ['id', 'type'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -179,8 +200,8 @@ jeedom.eqLogic.copy = function (_params) {
   var paramsRequired = ['id', 'name'];
   var paramsSpecifics = {
     pre_success: function (data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.eqLogic_Id])) {
-        delete jeedom.eqLogic.cache.byId[_params.eqLogic_Id];
+      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+        delete jeedom.eqLogic.cache.byId[_params.id];
       }
       return data;
     }
@@ -294,7 +315,7 @@ jeedom.eqLogic.byId = function (_params) {
     return;
   }
   if (init(_params.noCache, false) == false && isset(jeedom.eqLogic.cache.byId[_params.id]) && 'function' == typeof (_params.success)) {
-    _params.success(jeedom.eqLogic.cache.byId[_params.eqLogic_id]);
+    _params.success(jeedom.eqLogic.cache.byId[_params.id]);
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
@@ -337,7 +358,7 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
   }
   if ($("#mod_insertEqLogicValue").length == 0) {
     $('body').append('<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>');
-    
+
     $("#mod_insertEqLogicValue").dialog({
       closeText: '',
       autoOpen: false,
@@ -351,10 +372,10 @@ jeedom.eqLogic.getSelectModal = function (_options, callback) {
   }
   mod_insertEqLogic.setOptions(_options);
   $("#mod_insertEqLogicValue").dialog('option', 'buttons', {
-    "Annuler": function () {
+    "{{Annuler}}": function () {
       $(this).dialog("close");
     },
-    "Valider": function () {
+    "{{Valider}}": function () {
       var retour = {};
       retour.human = mod_insertEqLogic.getValue();
       retour.id = mod_insertEqLogic.getId();
@@ -371,9 +392,9 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsRequired = [];
   var eqLogics = {};
   var sends = {};
+  var eqLogic = null;
   for(var i in _params){
-    jeedom.cmd.refreshByEqLogic({eqLogic_id : _params[i].eqLogic_id});
-    var eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
+    eqLogic = $('.eqLogic[data-eqLogic_id=' + _params[i].eqLogic_id + ']');
     if (eqLogic.html() == undefined || eqLogic.attr('data-version') == undefined) {
       continue;
     }
@@ -386,11 +407,13 @@ jeedom.eqLogic.refreshValue = function (_params) {
   var paramsSpecifics = {
     global: false,
     success: function (result) {
+      var html = null;
+      var eqLogic = null;
+      var uid = null;
       for(var i in result){
-        var gridstack = false;
-        var html = $(result[i].html);
-        var eqLogic = eqLogics[i].eqLogic;
-        var uid = html.attr('data-eqLogic_uid');
+        html = $(result[i].html);
+        eqLogic = eqLogics[i].eqLogic;
+        uid = html.attr('data-eqLogic_uid');
         if(uid != 'undefined'){
           eqLogic.attr('data-eqLogic_uid',uid);
         }
@@ -404,7 +427,7 @@ jeedom.eqLogic.refreshValue = function (_params) {
         eqLogic.empty().html(html.children()).trigger('change');
         if ($.mobile) {
           $('.eqLogic[data-eqLogic_id=' + i + ']').trigger("create");
-          setTileSize('.eqLogic');
+          jeedomUtils.setTileSize('.eqLogic');
         } else {
           if (typeof editWidgetMode == 'function') {
             editWidgetMode();

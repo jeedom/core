@@ -1,38 +1,31 @@
-La page Santé de Jeedom vous permet d’avoir un aperçu rapide de
-l’état de santé de votre Jeedom. Elle indique aussi (si les plugins
-l’utilisent) l’état de santé par plugin.
+# Santé
+**Analysis → Health**
 
-The page is accessible by Analysis → Health
-
-> **Note**
->
-> Un clic sur l’icône en haut à droite permet d’accéder au benchmark de votre
-> Jeedom.
-
-La page santé de Jeedom se présente sous la forme d’un tableau. La 1ère
-colonne vous donne une description de ce que Jeedom vérifie et dont le statut
-est affiché dans la 2ème colonne. Enfin la dernière colonne peut vous
-donner des conseils de résolution si la vérification n’est pas OK.
-
-En dessous vous retrouvez la santé pour chaque plugin, un clic sur le
-nom du plugin donne le détail de santé de celui-ci. A droite vous
-retrouvez les icônes :
-
--   Plugin hardware access port (Zwave key type)
-
--   Demon mode
-
--   Display health page of plugin equipment
-
--   Displaying the plugin configuration page
-
--   Global state of the plugin
+The Jeedom Health page allows you to have a quick overview of the health status of your Jeedom.
+It also indicates (if plugins use it) the state of health by plugin.
 
 > **Note**
 >
-> Les icônes peuvent varier en fonction du plugin
+> Click on the icon at the top right to access the benchmark of your Jeedom.
+
+Jeedom&#39;s health page is presented in the form of a double table.
+The 1st column gives you a description of what Jeedom checks, the status is displayed in the 2nd column.
+Tooltips can give you resolution tips if the verification is not OK.
+
+Below you find the health for each plugin, a click on the name of the plugin gives the health detail of it.
+
+On the right you find the icons :
+
+-   Access port for plugin hardware (Zwave key type).
+-   Demon mode.
+-   Display of the plugin&#39;s equipment health page.
+-   Display of the plugin configuration page.
+-   Overall state of the plugin.
 
 > **Note**
 >
-> De manière générale quand la ligne est verte c’est que tout va bien
-> et quand c’est rouge, c’est qu’il y a un souci.
+> Icons may vary depending on plugin.
+
+> **Note**
+>
+> Generally when the line is green, everything is fine and when it is red, there is a problem.

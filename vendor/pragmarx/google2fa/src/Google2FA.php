@@ -2,178 +2,86 @@
 
 namespace PragmaRX\Google2FA;
 
-/*
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP Google two-factor authentication module.
- *
- * See http://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/
- * for more details
- *
- * @author Phil (Orginal author of this class)
- *
- * Changes have been made in the original class to remove all static methods and, also,
- * provide some other methods.
- *
- * @package    Google2FA
- * @author     Antonio Carlos Ribeiro @ PragmaRX
- **/
-
-use BaconQrCode\Renderer\Image\Png;
-use BaconQrCode\Writer;
-use Base32\Base32;
-use PragmaRX\Google2FA\Contracts\Google2FA as Google2FAContract;
-use PragmaRX\Google2FA\Exceptions\InvalidCharactersException;
+use PragmaRX\Google2FA\Support\Base32;
+use PragmaRX\Google2FA\Support\QRCode;
+use PragmaRX\Google2FA\Support\Constants;
+use PragmaRX\Google2FA\Exceptions\InvalidAlgorithmException;
 use PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException;
-use PragmaRX\Google2FA\Support\Url;
 
-class Google2FA implements Google2FAContract
+class Google2FA
 {
+    use QRCode, Base32;
+
     /**
-     * Interval between key regeneration.
+     * Algorithm.
+     *
+     * @var string
      */
-    const KEY_REGENERATION = 30;
+    protected $algorithm = Constants::SHA1;
 
     /**
      * Length of the Token generated.
+     *
+     * @var int
      */
-    const OPT_LENGTH = 6;
+    protected $oneTimePasswordLength = 6;
 
     /**
-     * Characters valid for Base 32.
+     * Interval between key regeneration.
+     *
+     * @var int
      */
-    const VALID_FOR_B32 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    protected $keyRegeneration = 30;
 
     /**
-     * Generate a digit secret key in base32 format.
+     * Secret.
      *
-     * @param int $length
-     *
-     * @return string
+     * @var string
      */
-    public function generateSecretKey($length = 16, $prefix = '')
-    {
-        $b32 = '234567QWERTYUIOPASDFGHJKLZXCVBNM';
-
-        $secret = $prefix ? $this->toBase32($prefix) : '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $secret .= $b32[$this->getRandomNumber()];
-        }
-
-        $this->validateSecret($secret);
-
-        return $secret;
-    }
+    protected $secret;
 
     /**
-     * Returns the current Unix Timestamp divided by the KEY_REGENERATION
-     * period.
+     * Window.
      *
-     * @return int
-     **/
-    public function getTimestamp()
-    {
-        return floor(microtime(true) / static::KEY_REGENERATION);
-    }
-
-    /**
-     * Decodes a base32 string into a binary string.
-     *
-     * @param string $b32
-     *
-     * @throws InvalidCharactersException
-     *
-     * @return int
+     * @var int
      */
-    public function base32Decode($b32)
-    {
-        $b32 = strtoupper($b32);
-
-        $this->validateSecret($b32);
-
-        return Base32::decode($b32);
-    }
+    protected $window = 1; // Keys will be valid for 60 seconds
 
     /**
-     * Takes the secret key and the timestamp and returns the one time
-     * password.
+     * Find a valid One Time Password.
      *
-     * @param string $key     - Secret key in binary form.
-     * @param int    $counter - Timestamp as returned by getTimestamp.
+     * @param string    $secret
+     * @param string    $key
+     * @param int|null  $window
+     * @param int       $startingTimestamp
+     * @param int       $timestamp
+     * @param int|null  $oldTimestamp
      *
-     * @throws SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
      *
-     * @return string
+     * @return bool|int
      */
-    public function oathHotp($key, $counter)
-    {
-        if (strlen($key) < 8) {
-            throw new SecretKeyTooShortException();
-        }
-
-        // Counter must be 64-bit int
-        $bin_counter = pack('N*', 0, $counter);
-
-        $hash = hash_hmac('sha1', $bin_counter, $key, true);
-
-        return str_pad($this->oathTruncate($hash), static::OPT_LENGTH, '0', STR_PAD_LEFT);
-    }
-
-    /**
-     * Get the current one time password for a key.
-     *
-     * @param string $initalizationKey
-     *
-     * @throws InvalidCharactersException
-     * @throws SecretKeyTooShortException
-     *
-     * @return string
-     */
-    public function getCurrentOtp($initalizationKey)
-    {
-        $timestamp = $this->getTimestamp();
-
-        $secretKey = $this->base32Decode($initalizationKey);
-
-        return $this->oathHotp($secretKey, $timestamp);
-    }
-
-    /**
-     * Verifies a user inputted key against the current timestamp. Checks $window
-     * keys either side of the timestamp.
-     *
-     * @param string $b32seed
-     * @param string $key          - User specified key
-     * @param int    $window
-     * @param bool   $useTimeStamp
-     *
-     * @return bool
-     **/
-    public function verifyKey($b32seed, $key, $window = 4, $useTimeStamp = true)
-    {
-        $timeStamp = $this->getTimestamp();
-
-        if ($useTimeStamp !== true) {
-            $timeStamp = (int) $useTimeStamp;
-        }
-
-        $binarySeed = $this->base32Decode($b32seed);
-
-        for ($ts = $timeStamp - $window; $ts <= $timeStamp + $window; $ts++) {
-            if (hash_equals($this->oathHotp($binarySeed, $ts), $key)) {
-                return true;
+    public function findValidOTP(
+        $secret,
+        $key,
+        $window,
+        $startingTimestamp,
+        $timestamp,
+        $oldTimestamp = null
+    ) {
+        for (
+            ;
+            $startingTimestamp <= $timestamp + $this->getWindow($window);
+            $startingTimestamp++
+        ) {
+            if (
+                hash_equals($this->oathTotp($secret, $startingTimestamp), $key)
+            ) {
+                return is_null($oldTimestamp)
+                    ? true
+                    : $startingTimestamp;
             }
         }
 
@@ -181,126 +89,402 @@ class Google2FA implements Google2FAContract
     }
 
     /**
+     * Generate the HMAC OTP
+     *
+     * @param string $secret
+     * @param int $counter
+     * @return string
+     */
+    protected function generateHotp($secret, $counter)
+    {
+        return hash_hmac(
+            $this->getAlgorithm(),
+            pack('N*', 0, $counter), // Counter must be 64-bit int
+            $secret,
+            true
+        );
+    }
+
+    /**
+     * Generate a digit secret key in base32 format.
+     *
+     * @param int    $length
+     * @param string $prefix
+     *
+     * @throws Exceptions\InvalidCharactersException
+     * @throws Exceptions\IncompatibleWithGoogleAuthenticatorException
+     *
+     * @return string
+     */
+    public function generateSecretKey($length = 16, $prefix = '')
+    {
+        return $this->generateBase32RandomKey($length, $prefix);
+    }
+
+    /**
+     * Get the current one time password for a key.
+     *
+     * @param string $secret
+     *
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     *
+     * @return string
+     */
+    public function getCurrentOtp($secret)
+    {
+        return $this->oathTotp($secret, $this->getTimestamp());
+    }
+
+    /**
+     * Get the HMAC algorithm.
+     *
+     * @return string
+     */
+    public function getAlgorithm()
+    {
+        return $this->algorithm;
+    }
+
+    /**
+     * Get key regeneration.
+     *
+     * @return int
+     */
+    public function getKeyRegeneration()
+    {
+        return $this->keyRegeneration;
+    }
+
+    /**
+     * Get OTP length.
+     *
+     * @return int
+     */
+    public function getOneTimePasswordLength()
+    {
+        return $this->oneTimePasswordLength;
+    }
+
+    /**
+     * Get secret.
+     *
+     * @param string|null $secret
+     *
+     * @return string
+     */
+    public function getSecret($secret = null)
+    {
+        return is_null($secret) ? $this->secret : $secret;
+    }
+
+    /**
+     * Returns the current Unix Timestamp divided by the $keyRegeneration
+     * period.
+     *
+     * @return int
+     **/
+    public function getTimestamp()
+    {
+        return (int) floor(microtime(true) / $this->keyRegeneration);
+    }
+
+    /**
+     * Get a list of valid HMAC algorithms.
+     *
+     * @return array
+     */
+    protected function getValidAlgorithms()
+    {
+        return [
+            Constants::SHA1,
+            Constants::SHA256,
+            Constants::SHA512,
+        ];
+    }
+
+    /**
+     * Get the OTP window.
+     *
+     * @param null|int $window
+     *
+     * @return int
+     */
+    public function getWindow($window = null)
+    {
+        return is_null($window) ? $this->window : $window;
+    }
+
+    /**
+     * Make a window based starting timestamp.
+     *
+     * @param int|null $window
+     * @param int $timestamp
+     * @param int|null $oldTimestamp
+     *
+     * @return mixed
+     */
+    private function makeStartingTimestamp($window, $timestamp, $oldTimestamp = null)
+    {
+        return is_null($oldTimestamp)
+            ? $timestamp - $this->getWindow($window)
+            : max($timestamp - $this->getWindow($window), $oldTimestamp + 1);
+    }
+
+    /**
+     * Get/use a starting timestamp for key verification.
+     *
+     * @param string|int|null $timestamp
+     *
+     * @return int
+     */
+    protected function makeTimestamp($timestamp = null)
+    {
+        if (is_null($timestamp)) {
+            return $this->getTimestamp();
+        }
+
+        return (int) $timestamp;
+    }
+
+    /**
+     * Takes the secret key and the timestamp and returns the one time
+     * password.
+     *
+     * @param string $secret  - Secret key in binary form.
+     * @param int    $counter - Timestamp as returned by getTimestamp.
+     *
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws Exceptions\IncompatibleWithGoogleAuthenticatorException
+     *
+     * @return string
+     */
+    public function oathTotp($secret, $counter)
+    {
+        $secret = $this->base32Decode($this->getSecret($secret));
+
+        if (strlen($secret) < 8) {
+            throw new SecretKeyTooShortException();
+        }
+
+        return str_pad(
+            $this->oathTruncate($this->generateHotp($secret, $counter)),
+            $this->getOneTimePasswordLength(),
+            '0',
+            STR_PAD_LEFT
+        );
+    }
+
+    /**
      * Extracts the OTP from the SHA1 hash.
      *
      * @param string $hash
      *
-     * @return int
+     * @return string
      **/
     public function oathTruncate($hash)
     {
-        $offset = ord($hash[19]) & 0xf;
+        $offset = ord($hash[strlen($hash) - 1]) & 0xf;
+
         $temp = unpack('N', substr($hash, $offset, 4));
 
-        return substr($temp[1] & 0x7fffffff, -static::OPT_LENGTH);
+        $temp = $temp[1] & 0x7fffffff;
+
+        return substr(
+            (string) $temp,
+            -$this->getOneTimePasswordLength()
+        );
     }
 
     /**
      * Remove invalid chars from a base 32 string.
      *
-     * @param $string
+     * @param string $string
      *
-     * @return mixed
+     * @return string|null
      */
     public function removeInvalidChars($string)
     {
-        return preg_replace('/[^'.static::VALID_FOR_B32.']/', '', $string);
+        return preg_replace(
+            '/[^' . Constants::VALID_FOR_B32 . ']/',
+            '',
+            $string
+        );
     }
 
     /**
-     * Creates a Google QR code url.
+     * Setter for the enforce Google Authenticator compatibility property.
      *
-     * @param string $company
-     * @param string $holder
-     * @param string $secret
-     * @param int    $size
+     * @param mixed $enforceGoogleAuthenticatorCompatibility
      *
-     * @return string
+     * @return $this
      */
-    public function getQRCodeGoogleUrl($company, $holder, $secret, $size = 200)
-    {
-        $url = $this->getQRCodeUrl($company, $holder, $secret);
+    public function setEnforceGoogleAuthenticatorCompatibility(
+        $enforceGoogleAuthenticatorCompatibility
+    ) {
+        $this->enforceGoogleAuthenticatorCompatibility = $enforceGoogleAuthenticatorCompatibility;
 
-        return Url::generateGoogleQRCodeUrl('https://chart.googleapis.com/', 'chart', 'chs='.$size.'x'.$size.'&chld=M|0&cht=qr&chl=', $url);
+        return $this;
     }
 
     /**
-     * Generates a QR code data url to display inline.
+     * Set the HMAC hashing algorithm.
      *
-     * @param string $company
-     * @param string $holder
-     * @param string $secret
-     * @param int    $size
-     * @param string $encoding Default to UTF-8
-     *
-     * @return string
+     * @param mixed $algorithm
+     * @return \PragmaRX\Google2FA\Google2FA
      */
-    public function getQRCodeInline($company, $holder, $secret, $size = 200, $encoding = 'utf-8')
+    public function setAlgorithm($algorithm)
     {
-        $url = $this->getQRCodeUrl($company, $holder, $secret);
-
-        $renderer = new Png();
-        $renderer->setWidth($size);
-        $renderer->setHeight($size);
-
-        $writer = new Writer($renderer);
-        $data = $writer->writeString($url, $encoding);
-
-        return 'data:image/png;base64,'.base64_encode($data);
-    }
-
-    /**
-     * Creates a QR code url.
-     *
-     * @param $company
-     * @param $holder
-     * @param $secret
-     *
-     * @return string
-     */
-    public function getQRCodeUrl($company, $holder, $secret)
-    {
-        return 'otpauth://totp/'.$company.':'.$holder.'?secret='.$secret.'&issuer='.$company.'';
-    }
-
-    /**
-     * Get a random number.
-     *
-     * @param $from
-     * @param $to
-     *
-     * @return int
-     */
-    private function getRandomNumber($from = 0, $to = 31)
-    {
-        return random_int($from, $to);
-    }
-
-    /**
-     * Validate the secret.
-     *
-     * @param $b32
-     *
-     * @throws InvalidCharactersException
-     */
-    private function validateSecret($b32)
-    {
-        if (!preg_match('/^['.static::VALID_FOR_B32.']+$/', $b32, $match)) {
-            throw new InvalidCharactersException();
+        // Default to SHA1 HMAC algorithm
+        if (! in_array($algorithm, $this->getValidAlgorithms())) {
+            throw new InvalidAlgorithmException();
         }
+
+        $this->algorithm = $algorithm;
+
+        return $this;
     }
 
     /**
-     * Encode a string to Base32.
+     * Set key regeneration.
      *
-     * @param $string
-     *
-     * @return mixed
+     * @param mixed $keyRegeneration
      */
-    public function toBase32($string)
+    public function setKeyRegeneration($keyRegeneration)
     {
-        $encoded = Base32::encode($string);
+        $this->keyRegeneration = $keyRegeneration;
+    }
 
-        return str_replace('=', '', $encoded);
+    /**
+     * Set OTP length.
+     *
+     * @param mixed $oneTimePasswordLength
+     */
+    public function setOneTimePasswordLength($oneTimePasswordLength)
+    {
+        $this->oneTimePasswordLength = $oneTimePasswordLength;
+    }
+
+    /**
+     * Set secret.
+     *
+     * @param mixed $secret
+     */
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+    }
+
+    /**
+     * Set the OTP window.
+     *
+     * @param mixed $window
+     */
+    public function setWindow($window)
+    {
+        $this->window = $window;
+    }
+
+    /**
+     * Verifies a user inputted key against the current timestamp. Checks $window
+     * keys either side of the timestamp.
+     *
+     * @param string        $key          - User specified key
+     * @param string        $secret
+     * @param null|int      $window
+     * @param null|int      $timestamp
+     * @param null|int      $oldTimestamp
+     *
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     *
+     * @return bool|int
+     */
+    public function verify(
+        $key,
+        $secret,
+        $window = null,
+        $timestamp = null,
+        $oldTimestamp = null
+    ) {
+        return $this->verifyKey(
+            $secret,
+            $key,
+            $window,
+            $timestamp,
+            $oldTimestamp
+        );
+    }
+
+    /**
+     * Verifies a user inputted key against the current timestamp. Checks $window
+     * keys either side of the timestamp.
+     *
+     * @param string    $secret
+     * @param string    $key          - User specified key
+     * @param int|null  $window
+     * @param null|int  $timestamp
+     * @param null|int  $oldTimestamp
+     *
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     *
+     * @return bool|int
+     */
+    public function verifyKey(
+        $secret,
+        $key,
+        $window = null,
+        $timestamp = null,
+        $oldTimestamp = null
+    ) {
+        $timestamp = $this->makeTimestamp($timestamp);
+
+        return $this->findValidOTP(
+            $secret,
+            $key,
+            $window,
+            $this->makeStartingTimestamp($window, $timestamp, $oldTimestamp),
+            $timestamp,
+            $oldTimestamp
+        );
+    }
+
+    /**
+     * Verifies a user inputted key against the current timestamp. Checks $window
+     * keys either side of the timestamp, but ensures that the given key is newer than
+     * the given oldTimestamp. Useful if you need to ensure that a single key cannot
+     * be used twice.
+     *
+     * @param string   $secret
+     * @param string   $key          - User specified key
+     * @param int      $oldTimestamp - The timestamp from the last verified key
+     * @param int|null $window
+     * @param int|null $timestamp
+     *
+     * @throws \PragmaRX\Google2FA\Exceptions\SecretKeyTooShortException
+     * @throws \PragmaRX\Google2FA\Exceptions\InvalidCharactersException
+     * @throws \PragmaRX\Google2FA\Exceptions\IncompatibleWithGoogleAuthenticatorException
+     *
+     * @return bool|int - false (not verified) or the timestamp of the verified key
+     */
+    public function verifyKeyNewer(
+        $secret,
+        $key,
+        $oldTimestamp,
+        $window = null,
+        $timestamp = null
+    ) {
+        return $this->verifyKey(
+            $secret,
+            $key,
+            $window,
+            $timestamp,
+            $oldTimestamp
+        );
     }
 }

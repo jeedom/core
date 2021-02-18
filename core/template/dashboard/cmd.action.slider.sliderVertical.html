@@ -1,0 +1,44 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="vertical" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content-xs">
+    <div id="widget_slider#id#" class="slider"></div>
+  </div>
+  <template>
+    <div>color : rgb(20,20,20) ({{Couleur du curseur et valeur}})</div>
+    <div>step : 0.5 ({{Pas utilisé pour le changement de valeur}})</div>
+  </template>
+  <script>
+    var step#id# = 1
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+    }
+    var mySlider#id# = $.createWidgetSlider({
+      sliderDiv: document.getElementById('widget_slider#id#'),
+      vertical: true,
+      state: ('#state#' == '') ? #minValue# : '#state#',
+      min: #minValue#,
+      max: #maxValue#,
+      step: step#id#,
+      tooltips: true,
+      format: true,
+      unite: '#unite#'
+    })
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+    }
+
+    mySlider#id#.on('end', function(values, handle) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '')}})
+    })
+
+    jeedom.cmd.update['#id#'] = function(_options) {
+      mySlider#id#.set(_options.display_value)
+    }
+
+    jeedom.cmd.update['#id#']({display_value: '#state#'})
+  </script>
+</div>

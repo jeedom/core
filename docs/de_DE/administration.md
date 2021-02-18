@@ -1,790 +1,424 @@
-Hier befindet sich die Mehrheit der Konfigurationsparameter. 
-Obwohl viele standardmäßig vorkonfiguriert sind.
+# Configuration
+**Einstellungen → System → Konfiguration**
 
-Die Seite ist über **Einstellungen → Konfiguration erreichbar**.
+Hier befinden sich die meisten Konfigurationsparameter.
+Obwohl viele, sind die meisten Parameter standardmäßig konfiguriert.
 
-Allgemein 
-=======
 
-Diese Registerkarte enthält allgemeine Informationen zu Jeedom :
+## Registerkarte &quot;Allgemein&quot;
 
--   **Namen von Ihrem Jeedom** : Ermöglicht Ihr Jeedom zu Identifiziert
-    besonders auf dem Markt. Es kann in Szenarien wieder verwendet werden
-    oder um ein Backup zu identifizieren.
+Auf dieser Registerkarte finden Sie allgemeine Informationen zu Jeedom :
 
--   **System** : Der Hardwaretyp, auf dem das System installiert ist, 
-    auf dem Ihr Jeedom ausgeführt wird.
+- **Name deines Jeedom** : Identifizieren Sie Ihre Freiheit, besonders auf dem Markt. Es kann in Szenarien oder zur Identifizierung eines Backups wiederverwendet werden.
+- **Sprache** : Sprache, die in Ihrem Jeedom verwendet wird.
+- **Systeme** : Art der Hardware, auf der das System installiert ist, auf dem Ihr Jeedom ausgeführt wird.
+- **Übersetzungen generieren** : Generieren Sie Übersetzungen, Vorsicht, dies kann Ihr System verlangsamen. Option besonders nützlich für Entwickler.
+- **Datum und Uhrzeit** : Wählen Sie Ihre Zeitzone. Sie können auf klicken **Zeit-Synchronisation erzwingen** um die oben rechts angezeigte falsche Zeit wiederherzustellen.
+- **Zeitserver optional** : Gibt an, welcher Zeitserver verwendet werden soll, wenn Sie auf klicken **Zeit-Synchronisation erzwingen** (Experten vorbehalten sein).
+- **Die Überprüfung der Zeit ignorieren** : weist Jeedom an, nicht zu überprüfen, ob die Zeit zwischen sich und dem System, auf dem es ausgeführt wird, konsistent ist. Dies kann beispielsweise nützlich sein, wenn Sie Jeedom nicht mit dem Internet verbinden und das verwendete Gerät keine PSTN-Batterie enthält.
+- **Systeme** : Gibt den Hardwaretyp an, auf dem Jeedom installiert ist.
+- **Installationsschlüssel** : Hardware-Schlüssel Ihres Jeedom on the Market. Wenn Ihr Jeedom nicht in der Liste Ihres Jeedom auf dem Markt erscheint, ist es ratsam, auf die Schaltfläche zu klicken **Rücksetzen**.
+- **Letztes bekanntes Datum** : Von Jeedom aufgezeichnetes Datum, das nach einem Neustart für Systeme ohne PSTN-Batterie verwendet wird.
 
--   **Installationsschlüssel** : Hardwareschlüssel Ihres Jeedom auf
-    dem Markt. Sollte Ihr Jeedom nicht in der Liste Ihrer
-    Jeedom auf dem Markt erscheinen, ist es ratsam, auf den Button
-    **Rücksetzen** zu klicken.
+Nachfolgend einige Parameter, die Informationen zentralisieren, die von Plugins verwendet werden können, ohne dass sie in jedes Plugin eingegeben werden müssen.
 
--   **Sprache** : Sprache, die in Ihrem Jeedom verwendet wird.
+- Kontakt : Breite, Länge und Höhe Ihres Hauses / Standorts.
+- Adresse : Postanschrift Ihres Hauses / Ihrer Website.
+- Verschiedene : Oberfläche und Anzahl der Bewohner Ihres Hauses / Standorts.
 
--   **Übersetzungen generieren** : Ermöglicht es, Übersetzungen zu generieren,
-    Achtung, das kann Ihr System verlangsamen. Besonders nützliche Option
-    für die Entwickler.
+## Registerkarte &quot;Schnittstelle&quot;
 
--   **Cache Verfallszeit (Stunde)** : Lebensdauer der PHP-Sitzungen,
-    es wird empfohlen, diesen Parameter nicht zu ändern.
+Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige.
 
--   **Datum und Uhrzeit** : Wählen Sie Ihre Zeitzone. Sie können auf 
-    **Zeit-Synchronisierung erzwingen** klicken, um eine falsche Zeit wiederherzustellen,
-    die oben rechts angezeigt wird.
+### Themes
 
--   **Zeitserver optional** : Gibt an, welcher Zeitserver verwendet 
-    werden soll, wenn Sie auf **Zeitsynchronisierung 
-    erzwingen** klicken. (für Experten reserviert)
+- **Heller und dunkler Desktop** : Hier können Sie ein helles und ein dunkles Thema für den Desktop auswählen.
+- **Helles und dunkles Handy** : Gleich wie oben für die Mobile-Version.
+- **Klares Thema von / bis** : Hier können Sie einen Zeitraum definieren, in dem das zuvor ausgewählte klare Thema verwendet wird. Aktivieren Sie jedoch die Option **Thema basierend auf der Zeit umschalten**.
+- **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chrom Seite://flags.
+- **Hintergrundbilder ausblenden** : Ermöglicht das Ausblenden der Hintergrundbilder in den Szenarien, Objekten, Interaktionsseiten usw.
 
--   **Die Überprüfung der Zeit ignorieren** : Weist Jeedom an, nicht 
-    zu überprüfen, ob die Zeit zwischen sich und dem System, 
-    auf dem es ausgeführt wird, übereinstimmend ist. Dies kann zum Beispiel nützlich sein, 
-    wenn Sie Jeedom nicht mit dem Internet verbinden und auf der 
-    verwendeten Hardware keinen RTC-Batterie haben.
+### Tuiles
 
-API 
-===
+- **Fliesen nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
+- **Fliesen Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
+- **Randfliesen** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
 
-Hier finden Sie eine Liste der verschiedenen API-Schlüssel, die in
-Ihrem Jeedom verfügbar sind. Die Grundlage, der Kern verfügt über zwei Haupt-APIs :
+### Personnalisation
 
--   Ein Allgemeiner : Soweit wie möglich muss man vermeiden, ihn zu benutzen.
+- **Aktivieren Sie** : Aktivieren Sie die Verwendung der folgenden Optionen.
+- **Transparenz** : Zeigt Dashboard-Kacheln und einige Inhalte transparent an. 1 : völlig undurchsichtig, 0 : total transparent.
+- **Runden** : Zeigt Schnittstellenelemente mit abgerundeten Winkeln an. 0 : keine Rundung, 1 : maximale Rundung.
+- **Schatten deaktivieren** : Deaktiviert Schatten von Kacheln im Dashboard, in Menüs und bestimmten Oberflächenelementen.
 
--   Und ein weiteres für Profis : Wird für die Paketverwaltung 
-    verwendet. Es kann leer sein.
 
--   Dann finden Sie bei Bedarf einen API-Schlüssel pro Plugin.
 
-Für jeden Plugin API-Schlüssel, sowie für die http-, JsonRPC- und TTS-APIs
-können Sie Ihren  Anwendungsbereich definieren :
+## Registerkarte &quot;Netzwerke&quot;
 
--   **Deaktivieren** : Der API-Schlüssel kann nicht verwendet werden.
-
--   **White IP** : Nur eine Liste von IPs ist erlaubt (siehe
-    Administration → Konfiguration → Netzwerke).
-
--   **Localhost** : nur Anfragen von dem System, auf dem Jeedom 
-    installiert ist, sind erlaubt.
-
--   **Aktiv** : keine Einschränkungen, jedes System mit Zugriff 
-    auf Ihr Jeedom kann auf diese API zugreifen.
-
-> \ _OS / DB 
-===========
-
-In dieser Registerkarte befinden sich zwei für Experten reservierte Bereiche.
+Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfigurieren, da sonst viele Plugins möglicherweise nicht funktionieren. Es gibt zwei Möglichkeiten, auf Jeedom zuzugreifen : L'**Interner Zugriff** (aus dem gleichen lokalen Netzwerk wie Jeedom) und l'**Externer Zugriff** (aus einem anderen Netzwerk, insbesondere aus dem Internet).
 
 > **Wichtig**
 >
-> Achtung : Wenn Sie Jeedom mit einer von diesen zwei Optionen ändern,
-> kann der Support ablehnen, Ihnen zu helfen.
+> Dieser Teil ist nur dazu da, Jeedom seine Umgebung zu erklären :
+> Durch Ändern des Ports oder der IP auf dieser Registerkarte wird der Port oder die IP von Jeedom nicht geändert. Dazu müssen Sie eine Verbindung in SSH herstellen und die Datei / etc / network / interfaces für IP und die Dateien etc / apache2 / sites-available / default und etc / apache2 / sites-available / default\_ssl (für HTTPS) bearbeiten).
+> Im Falle eines unsachgemäßen Umgangs mit Ihrem Jeedom kann das Jeedom-Team jedoch nicht zur Verantwortung gezogen werden und kann jede Bitte um Unterstützung ablehnen.
 
--   **>_System** : Ermöglicht den Zugriff auf eine System
-    Verwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die 
-    nützlichsten Befehle starten können, insbesondere um Informationen 
-    über das System zu erhalten.
+- **Interner Zugriff** : Informationen zum Beitritt zu Jeedom von Geräten im selben Netzwerk wie Jeedom (LAN))
+    - **OK / NOK** : Gibt an, ob die interne Netzwerkkonfiguration korrekt ist.
+    - **Protokoll** : das zu verwendende Protokoll, oft HTTP.
+    - **URL oder IP-Adresse** : Jeedom IP eingeben.
+    - **Hafen** : der Port der Jeedom-Weboberfläche, in der Regel 80.
+        Bitte beachten Sie, dass durch Ändern des Ports hier nicht der tatsächliche Jeedom-Port geändert wird, der gleich bleibt.
+    - **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel : / jeedom), um auf Jeedom zuzugreifen.
 
--   **Datenbank** : Ermöglicht den Zugriff auf die Jeedom Datenbank.
-    Sie können dann Befehle im oberen Feld starten.
-    Zwei Parameter werden unten zur Information angezeigt :
+- **Externer Zugriff** : Informationen, um Jeedom von außerhalb des lokalen Netzwerks zu erreichen. Nur auszufüllen, wenn Sie Jeedom DNS nicht verwenden.
+    - **OK / NOK** : Gibt an, ob die externe Netzwerkkonfiguration korrekt ist.
+    - **Protokoll** : Protokoll für den Zugang im Freien.
+    - **URL oder IP-Adresse** : Externe IP, falls behoben. Andernfalls geben Sie die URL an, die auf die externe IP-Adresse Ihres Netzwerks verweist.
+    - **Ergänzen** : das Fragment einer zusätzlichen URL (Beispiel : / jeedom), um auf Jeedom zuzugreifen.
 
-    -   **Benutzer** : Der Name des Benutzers, der von Jeedom in der 
-        Datenbank verwendet wird.
+- **Proxy für den Markt** : Proxy-Aktivierung.
+    - Aktivieren Sie das Kontrollkästchen Proxy aktivieren.
+    - **Proxy-Adresse** : Geben Sie die Proxy-Adresse ein,
+    - **Proxy-Port** : Geben Sie den Proxy-Port ein,
+    - **Anmeldung** : Geben Sie den Proxy-Login ein,
+    - **Passwort** : Geben Sie das Passwort ein.
 
-    -   **Passwort** : Passwort für den Zugriff auf die von Jeedom 
-        verwendete Datenbank.
+> **Trinkgeld**
+>
+> Wenn Sie sich in HTTPS befinden, ist der Port 443 (Standard) und in HTTP ist der Port 80 (Standard)). Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
 
-Sicherheit 
-========
+> **Trinkgeld**
+>
+> Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
-LDAP 
-----
-
--   **LDAP-Authentifizierung aktivieren** : aktiviert die Authentifizierung 
-    über AD (LDAP)
-
--   **Host** : Server-Host des AD
-
--   **Domaine** : Ihr AD-Domaine
-
--   **Basis-DN** : Basis-DN ihres AD
-
--   **Benutzername** : Benutzernamen für die Verbindung von Jeedom
-    mit dem AD
-
--   **Passwort** : Passwort für die Verbindung von Jeedom mit dem AD
-
--   **Champs recherche utilisateur** : champs de recherche du login utilisateur.
-    login utilisateur. En général uid pour LDAP, samaccountname pour
-    Windows AD
-
--    **Filter (optional)** : Filter auf dem AD (zum Beispiel für 
-    Gruppenmanagement)
-
--   **REMOTE_USER zulassen** : REMOTE_USER aktivieren (zum Beispiel 
-    verwendet in SSO)
-
-Verbindung 
----------
-
--   **Anzahl der tolerierten Fehler** : Legt die Anzahl der aufeinander 
-    folgenden Versuche fest, bevor die IP verboten wird.
-
--   **Maximale Zeit zwischen Fehlern (in Sekunden)** : maximale Zeit für 2 
-    Versuche, die als aufeinanderfolgend betrachtet werden
-
--   **Dauer der Verbannung (in Sekunden), -1 für die Unendlichkeit** : IP-
-    Verbannungs Zeit
-
--   **"white" IP** : Liste von IPs, die niemals gesperrt werden können.
-
--   **Verbannte IP löschen** : Wird verwendet, um die Liste der derzeit 
-    gesperrten IPs zu löschen.
-
-Die Liste der gesperrten IPs befindet sich am Ende dieser Seite. Sie finden
-dort die IP, das Sperrdatum und das programmierte Enddatum des
-Verbannung.
-
-Netzwerke
-=======
-
-Es ist zwingend notwendig, diesen wichtigen Teil von Jeedom richtig zu
-konfigurieren, sonst funktionieren viele Plugins möglicherweise nicht. Es gibt
-zwei Möglichkeiten, auf Jeedom zuzugreifen : **Interner Zugriff** (vom selben
-lokalen Netzwerk wie Jeedom) und **externer Zugriff** (von einem anderen
-Netzwerk, insbesondere vom Internet).
+- **Erweiterte Verwaltung** : Dieser Teil wird je nach Kompatibilität mit Ihrer Hardware möglicherweise nicht angezeigt.
+    Dort finden Sie die Liste Ihrer Netzwerkschnittstellen. Sie können Jeedom anweisen, das Netzwerk nicht zu überwachen, indem Sie auf klicken **Deaktivieren Sie die Jeedom-Netzwerkverwaltung** (Überprüfen Sie, ob Jeedom nicht mit einem Netzwerk verbunden ist). Sie können den lokalen IP-Bereich auch im Formular 192.168.1 angeben.* (Nur in Docker-Installationen zu verwenden).
+- **Proxy-Markt** : Ermöglicht den Fernzugriff auf Ihr Jeedom, ohne dass ein DNS oder eine feste IP erforderlich ist oder die Ports Ihrer Internetbox geöffnet werden müssen.
+    - **Verwenden von Jeedom DNS** : Aktiviert Jeedom DNS (beachten Sie, dass hierfür mindestens ein Service Pack erforderlich ist).
+    - **DNS Status** : DNS-HTTP-Status.
+    - **Management** : Ermöglicht das Stoppen und Neustarten des Jeedom-DNS-Dienstes.
 
 > **Wichtig**
 >
-> Dieser Teil ist nur dazu da um Jeedom seine Umgebung zu erklären :
-> Wenn Sie den Port oder die IP-Adresse in dieser Registerkarte ändern, 
-> ändert sich der Port oder die IP von Jeedom nicht. Dazu müssen Sie sich 
-> mit SSH verbinden und die Dateien /etc/network/interfaces für die IP und
-> etc/apache2/sites-available/default und
-> etc/apache2/sites-available/default_ssl (für HTTPS) bearbeiten. Im Falle
-> einer unsachgemäßen Bearbeitung Ihres Jeedom wird das Jeedom-Team
-> jedoch nicht haftbar gemacht und kann jegliche Support-Anfrage
-> ablehnen.
+> Wenn Sie das Jeedom DNS nicht zum Laufen bringen können, überprüfen Sie die Konfiguration der Firewall und des Kindersicherungsfilters Ihrer Internetbox (auf der Livebox benötigen Sie beispielsweise die Firewall auf mittlerer Ebene).
+- **Lebensdauer der Sitzungen (Stunde)** : Während der Lebensdauer von PHP-Sitzungen wird nicht empfohlen, diesen Parameter zu berühren.
 
--   **Interner Zugriff** : Daten zum verbinden von Jeedom mit einem anderen 
-    Gerät, welches in dem selben Netzwerk wie Jeedom ist (LAN).
+## Registerkarte &quot;Protokolle&quot;
 
-    -   **OK/NOK** : Zeigt an, ob die interne Netzwerkkonfiguration 
-        richtig ist.
+### Timeline
 
-    -   **Protokolle** : Das zu verwendende Protokoll, meistens HTTP.
+- **Maximale Anzahl von Ereignissen** : Definiert die maximale Anzahl von Ereignissen, die in der Zeitleiste angezeigt werden sollen.
+- **Löschen Sie alle Ereignisse** : Leeren Sie die Zeitleiste aller aufgezeichneten Ereignisse.
 
-    -   **URL oder IP Adresse** : Die Jeedom IP-Adresse eintragen.
+### Messages
 
-    -   **Port** : Der Port des Webinterface von Jeedom, allgemein 80.
-        Achtung, den Port hier zu ändern, ändert tatsächlich nicht den 
-        Jeedom Port, er wird derselbe bleiben.
+- **Eine Nachricht zu jedem Fehler in den Protokollen hinzufügen** : Wenn ein Plugin oder Jeedom eine Fehlermeldung in ein Protokoll schreibt, fügt Jeedom automatisch eine Nachricht im Nachrichtenzentrum hinzu (zumindest werden Sie sie sicher nicht verpassen).
+- **Aktion auf Nachricht** : Ermöglicht es Ihnen, eine Aktion auszuführen, wenn Sie dem Nachrichtenzentrum eine Nachricht hinzufügen. Sie haben 2 Tags für diese Aktionen :
+        - #subject# : Nachricht in Frage.
+        - #plugin# : Plugin, das die Nachricht ausgelöst hat.
 
-    -   **Ergänzung** : das komplementäre URL-Fragment (Beispiel
-        /jeedom) um auf Jeedom zuzugreifen.
+### Alertes
 
--   **Externer Zugriff** : Angaben, um von außerhalb des lokalen Netzwerks 
-    auf Jeedom zuzugreifen. Füllen Sie dies nur aus, wenn Sie die
-    Jeedom DNS nicht verwenden.
+- **Fügen Sie jedem Timeout eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn ein Gerät hineinfällt **Auszeit**.
+- **Timeout-Reihenfolge** : Befehl eingeben **Botschaft** zu verwenden, wenn sich ein Gerät in befindet **Auszeit**.
+- **Fügen Sie jeder Batterie in Warnung eine Nachricht hinzu** : Fügen Sie im Nachrichtencenter eine Nachricht hinzu, wenn der Akkuladestand eines Geräts eingelegt ist **Warnung**.
+- **Batteriebefehl in Warnung** : Befehl eingeben **Botschaft** zu verwenden, wenn sich das Gerät auf Batteriestand befindet **Warnung**.
+- **Fügen Sie jeder gefährdeten Batterie eine Nachricht hinzu** : Fügen Sie im Nachrichtencenter eine Nachricht hinzu, wenn der Akkuladestand eines Geräts eingelegt ist **Achtung**.
+- **Befehl zur Batterie in Gefahr** : Befehl eingeben **Botschaft** zu verwenden, wenn sich das Gerät auf Batteriestand befindet **Achtung**.
+- **Fügen Sie jeder Warnung eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn eine Bestellung alarmiert wird **Warnung**.
+- **Befehl zur Warnung** : Befehl eingeben **Botschaft** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Warnung**.
+- **Fügen Sie jeder Gefahr eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn eine Bestellung alarmiert wird **Achtung**.
+- **Befehl zur Gefahr** : Befehl eingeben **Botschaft** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Achtung**.
 
-    -   **OK/NOK** : Zeigt an, ob die externe Netzwerkkonfiguration
-        korrekt ist.
+### Logs
 
-    -   **Protokolle** : verwendetes Protokoll für den Zugriff von außen 
+- **Protokoll Engine** : Ermöglicht das Ändern der Protokoll-Engine, um sie beispielsweise an einen Syslog-Daemon zu senden (d).
+- **Format der Protokolle** : Zu verwendendes Protokollformat (Achtung : Daemon-Protokolle sind davon nicht betroffen).
+- **Maximale Anzahl der Zeilen in einer Log-Datei** : Definiert die maximale Anzahl von Zeilen in einer Protokolldatei. Es wird empfohlen, diesen Wert nicht zu berühren, da ein zu großer Wert das Dateisystem füllen und / oder Jeedom das Protokoll nicht anzeigen kann.
+- **Standard-Protokollebene** : Wenn Sie &quot;Standard&quot; für die Ebene eines Protokolls in Jeedom auswählen, wird dies verwendet.
 
-    -   **URL oder IP Adresse** : Externe IP-Adresse, wenn es behoben wird.
-        Andernfalls geben Sie die URL für die externe IP-Adresse Ihres Netzwerks.
+Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der wesentlichen Elemente von Jeedom sowie der Plugins.
 
-    -   **Ergänzung** : das komplementäre URL-Fragment (Beispiel
-        /jeedom) um auf Jeedom zuzugreifen.
+## Registerkarte &quot;Zusammenfassungen&quot;
 
-> **Tip**
+Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in der Jeedom-Menüleiste oder neben Objekten angezeigt :
+
+- **Schlüssel** : Schlüssel zur Zusammenfassung, vor allem nicht zu berühren.
+- **Familienname, Nachname** : Abstrakter Name.
+- **Berechnung** : Berechnungsmethode, kann vom Typ sein :
+    - **Summe** : summiere die verschiedenen Werte,
+    - **Durchschnittlich** : Durchschnittswerte,
+    - **Text** : Zeigen Sie den Wert wörtlich an (insbesondere für diejenigen vom Typ string).
+- **Symbol** : Zusammenfassungssymbol.
+- **Wenn null Symbol** : Zusammenfassungssymbol, wenn der Wert 0 ist. Ermöglicht die Angabe eines anderen Symbols wie geschlossener Verschluss, ausgeschaltetes Licht usw.
+- **Einheit** : Zusammenfassungseinheit.
+- **Nummer verstecken** : Zeigt niemals den Zusammenfassungswert an (die Zahl rechts neben dem).
+- ** Nummer ausblenden, wenn Null** : Wird verwendet, um den Zusammenfassungswert nur auszublenden, wenn er 0 ist. Wir können daher wünschen, dass das Verschlusssymbol mit ihrer Nummer geöffnet und das Verschlusssymbol ohne die Nummer geschlossen wird, wenn alle Verschlüsse geschlossen sind.
+- **Zählverfahren** : Wenn Sie Binärdaten zählen, müssen Sie diesen Wert in Binärdaten setzen. Wenn Sie beispielsweise die Anzahl der leuchtenden Lampen zählen, aber nur den Wert des Dimmers (0 bis 100) haben, müssen Sie Binärdaten eingeben, so wie Jeedom dies berücksichtigt hat Wenn der Wert größer als 1 ist, leuchtet die Lampe.
+- **Wenn nein** : Zusammenfassung anzeigen, auch wenn der Wert 0 ist.
+- **Ignoriere wenn** : Ignorieren Sie eine Bestellung für diese Zusammenfassung, wenn sie x Minuten lang nicht aktualisiert wurde.
+- **Link zu einem virtuellen** : Startet die Erstellung virtueller Aufträge, deren Wert denen der Zusammenfassung entspricht.
+- **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts löscht die Zusammenfassung aus der Zeile.
+
+## Registerkarte Ausrüstung
+
+### Equipements
+
+- **Anzahl der Fehler vor Deaktivierung des Geräts** : Anzahl der Kommunikationsfehler mit dem Gerät vor der Deaktivierung des Geräts (eine Meldung warnt Sie in diesem Fall).
+- **Batterieschwellen** : Ermöglicht die Verwaltung der globalen Alarmschwellenwerte für die Stapel.
+
+Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse → Verlauf Diagramme, die ihre Verwendung darstellen. Auf dieser Registerkarte können Sie globale Parameter für die Befehlsprotokollierung festlegen.
+
+### Bestellhistorie
+
+- **Zeige Statistiken über Widgets** : Statistiken zu Widgets anzeigen. Das Widget muss kompatibel sein, was bei den meisten der Fall ist. Der Befehl muss auch vom numerischen Typ sein.
+- **Berechnungszeitraum für min, max, Durchschnitt (in Stunden)** : Statistikberechnungszeitraum (standardmäßig 24 Stunden)). Es ist nicht möglich, weniger als eine Stunde zu dauern.
+- **Berechnungszeitraum für den Trend (in Stunden)** : Trendberechnungszeitraum (standardmäßig 2 Stunden)). Es ist nicht möglich, weniger als eine Stunde zu dauern.
+- **Verzögerung vor der Archivierung (in Stunden)** : Zeigt die Verzögerung an, bevor Jeedom Daten archiviert (standardmäßig 24 Stunden)). Dies bedeutet, dass die Archivierung der historischen Daten mehr als 24 Stunden dauern muss (zur Erinnerung: Die Archivierung wird entweder gemittelt oder nimmt das Maximum oder Minimum der Daten über einen Zeitraum auf, der der Größe der Pakete entspricht).
+- **Archiv nach Paket ab (in Stunden)** : Dieser Parameter gibt die Paketgröße an (standardmäßig 1 Stunde)). Dies bedeutet zum Beispiel, dass Jeedom Zeiträume von 1 Stunde benötigt, den neuen berechneten Wert mittelt und speichert, indem die gemittelten Werte gelöscht werden.
+- **Niedrige Trendberechnungsschwelle** : Dieser Wert gibt den Wert an, ab dem Jeedom anzeigt, dass der Trend nach unten gerichtet ist. Es muss negativ sein (Standard -0.1).
+- **Schwellenwert Berechnung Trend nach oben** : Gleiches gilt für den Aufstieg.
+- **Standard Anzeigezeitraum der Grafiken** : Zeitraum, der standardmäßig verwendet wird, wenn Sie den Verlauf einer Bestellung anzeigen möchten. Je kürzer der Zeitraum, desto schneller zeigt Jeedom das angeforderte Diagramm an.
+
+> **Hinweis**
 >
-> Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le
-> port est le 80 (par défaut). Pour utiliser HTTPS depuis l’extérieur,
-> un plugin letsencrypt est maintenant disponible sur le market.
+> Der erste Parameter **Zeige Statistiken über Widgets** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
+> Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [Hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
 
-> **Tip**
+### Push
+
+- **Globale Push URL** : Mit dieser Option können Sie eine URL hinzufügen, die im Falle einer Auftragsaktualisierung aufgerufen werden soll. Sie können die folgenden Tags verwenden :
+**\.#value\.#** für den Bestellwert, **\.#cmd\._name\.#** für den Namen des Befehls,
+**\.#cmd\._id\.#** für die eindeutige Kennung der Bestellung,
+**\.#humanname\.#** für den vollständigen Namen der Bestellung (z : \.#\.[Salle de bain\.]\.[Hydrometrie\.]\.[Humidité\.]\.#),
+**\.#eq_name\.#** für den Namen des Geräts
+
+## Registerkarte &quot;Berichte&quot;
+
+Konfigurieren Sie die Erstellung und Verwaltung von Berichten
+
+- **Zeitüberschreitung nach Seitengenerierung (in ms)** : Wartezeit nach dem Laden des Berichts, um das &quot;Foto&quot; aufzunehmen, um es zu ändern, wenn Ihr Bericht beispielsweise unvollständig ist.
+- **Bereinigen Sie ältere Berichte von (Tagen)** : Definiert die Anzahl der Tage vor dem Löschen eines Berichts (die Berichte nehmen etwas Platz ein, achten Sie also darauf, nicht zu viel zu speichern).
+
+## Registerkarte &quot;Links&quot;
+
+Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramms die Beziehungen zwischen Objekten, Geräten, Objekten usw. anzeigen.
+
+- **Tiefe für Szenarien** : Ermöglicht das Definieren der maximalen Anzahl der anzuzeigenden Elemente beim Anzeigen eines Diagramms mit Links eines Szenarios (je mehr Elemente vorhanden sind, desto langsamer wird das Diagramm generiert und desto schwieriger ist das Lesen).
+- **Tiefe für Objekte** : Gleiches gilt für Objekte.
+- **Tiefe für Geräte** : Gleiches gilt für die Ausrüstung.
+- **Tiefe für Befehle** : Gleiches gilt für Bestellungen.
+- **Tiefe für Variablen** : Gleiches gilt für Variablen.
+- **Parameter Prerender** : Ermöglicht es Ihnen, auf das Layout des Diagramms zu reagieren.
+- **Parameter machen** : Gleich.
+
+## Registerkarte &quot;Interaktionen&quot;
+
+Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen festlegen, die Sie unter Extras → Interaktionen finden.
+
+> **Trinkgeld**
 >
-> Pour savoir si vous avez besoin de définir une valeur dans le champs
-> **complément**, regardez, quand vous vous connectez à Jeedom dans
-> votre navigateur Internet, si vous devez ajouter /jeedom (ou autre
-> chose) après l’IP.
+> Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration : Protokolle, dann überprüfen **Debuggen** in der unteren Liste. Warnung : Die Protokolle sind dann sehr ausführlich !
 
--   **Gestion avancée** : Cette partie peut ne pas apparaitre, en
-    fonction de la compatibilité avec votre matériel. Vous y trouverez
-    la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom
-    de ne pas monitorer le réseau en cliquant sur **désactiver la
-    gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à
-    keine Netwerke)
+### Allgemein
 
--   **Proxy market** : permet un accès distant à votre Jeedom sans avoir
-    besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box
-    Internet
+Hier haben Sie drei Parameter :
 
-    -   **Utiliser les DNS Jeedom** : active les DNS Jeedom (attention
-        cela nécessite au moins un service pack)
+- **Empfindlichkeit** : Es gibt 4 Korrespondenzstufen (Die Empfindlichkeit reicht von 1 (entspricht genau) bis 99) für
+    -   1 Wort : Übereinstimmungsstufe für Einzelwortinteraktionen.
+    -   2 Wörter : die Übereinstimmungsstufe für Zwei-Wort-Interaktionen.
+    -   3 Wörter : die Übereinstimmungsstufe für Interaktionen mit drei Wörtern.
+    -   mehr als 3 Wörter : Übereinstimmungsstufe für Interaktionen, die länger als drei Wörter sind.
+- **Reagieren Sie nicht, wenn die Interaktion nicht enthalten ist** : Standardmäßig antwortet Jeedom &quot;Ich habe nicht verstanden&quot;, wenn keine Interaktion entspricht. Es ist möglich, diesen Vorgang zu deaktivieren, damit Jeedom nicht reagiert. Aktivieren Sie das Kontrollkästchen, um die Antwort zu deaktivieren.
+- **Allgemeine Ausschluss-Regex für Interaktionen** : ermöglicht die Definition eines regulären Ausdrucks, der, wenn er einer Interaktion entspricht, diesen Satz automatisch aus der Generation löscht (für Experten reserviert)). Weitere Informationen finden Sie in den Erläuterungen im Kapitel **Regexp-Ausschluss** Dokumentation zu Interaktionen.
 
-    -   **Statut DNS** : statut du DNS HTTP
+### Automatische Interaktion, kontextuelle & Warnung
 
-    -   **Gestion** : permet d’arrêter et relancer le service DNS
+-   Das **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
 
-> **Important**
+-   Das **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
+    - *Jeedom hält den Kontext :*
+        - *Sie* : Wie viel ist er im Raum ?
+        - *Jeedom* : Temperatur 25.2 ° C.
+        - *Sie* : und im Wohnzimmer ?
+        - *Jeedom* : Temperatur 27.2 ° C.
+    - *Stellen Sie zwei Fragen in einer :*
+        - *Sie* : Wie ist es im Schlafzimmer und im Wohnzimmer? ?
+        - *Jeedom* : Temperatur 23.6 ° C, Temperatur 27.2 ° C.
+-   Typ Interaktionen **Lassen Sie uns wissen** Erlauben Sie Jeedom, Sie zu warnen, wenn eine Bestellung einen bestimmten Wert überschreitet / fällt oder wert ist.
+    - *Sie* : Benachrichtigen Sie mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
+    - *Jeedom* : In Ordnung (*Sobald die Wohnzimmertemperatur 25 ° C überschreitet, wird Jeedom es Ihnen einmal mitteilen*)
+
+> **Hinweis**
 >
-> Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la
-> configuration du pare-feu et du filtre parental de votre box Internet
-> (sur livebox il faut par exemple le pare-feu en moyen).
+> Standardmäßig antwortet Jeedom Ihnen auf demselben Kanal wie dem, den Sie verwendet haben, um Sie zu benachrichtigen. Wenn es keinen findet, wird der auf dieser Registerkarte angegebene Standardbefehl verwendet : **Standardretouren**.
 
-Farben
-======
+Hier sind die verschiedenen Optionen verfügbar :
 
-Die farbliche Kennzeichnung der Widgets erfolgt entsprechend der Kategorie des Widgets. Unter die Kategorien umfassen Heizung, Licht, Automation etc.... 
+- **Aktivieren Sie automatische Interaktionen** : Aktivieren Sie diese Option, um automatische Interaktionen zu aktivieren.
+- **Aktivieren Sie die kontextbezogene Antworten** : Aktivieren Sie diese Option, um kontextbezogene Interaktionen zu aktivieren.
+- **Priorität Kontextantwort, wenn der Satz beginnt** : Wenn der Satz mit dem Wort beginnt, das Sie hier eingeben, priorisiert Jeedom eine kontextbezogene Antwort (Sie können mehrere Wörter durch trennen **;;** ).
+- **Schneiden Sie eine Interaktion 2, wenn es enthält** : Gleiches gilt für die Aufteilung einer Interaktion mit mehreren Fragen. Hier geben Sie die Wörter an, die die verschiedenen Fragen trennen.
+- **Aktivieren Sie die Interaktionen "Benachrichtigen""** : Aktivieren Sie diese Option, um Typinteraktionen zu aktivieren **Lassen Sie uns wissen**.
+- **Antwort &quot;Sag es mir&quot;, wenn der Satz mit beginnt** : Wenn der Satz mit diesen Wörtern beginnt, wird Jeedom versuchen, eine Interaktion des Typs herzustellen **Lassen Sie uns wissen** (Sie können mehrere Wörter getrennt durch setzen **;;** ).
+- **Standardretouren** : Standardrückgabebefehl für Typinteraktion **Lassen Sie uns wissen** (Wird insbesondere verwendet, wenn Sie den Alarm über die mobile Schnittstelle programmiert haben)
+- **Synonym für Objekte** : Liste der Synonyme für Objekte (z : rdc|Erdgeschoss|unterirdisch|niedrig; sdb|Badezimmer).
+- **Synonym für Ausrüstung** : Liste der Synonyme für Geräte.
+- **Synonym für Bestellungen** : Liste der Synonyme für Befehle.
+- **Synonym für Zusammenfassungen** : Liste der Synonyme für Zusammenfassungen.
+- **Maximale Schieberegler Synonym** : Synonym für die maximale Platzierung eines Schiebereglerbefehls (ex öffnet sich, um den Schlafzimmerverschluss zu öffnen ⇒ Schlafzimmerverschluss bei 100%).
+- **Mindestschieberegler Synonym** : Synonym für das Minimieren eines Schiebereglerbefehls (ex schließt, um den Schlafzimmerverschluss zu schließen ⇒ Schlafzimmerverschluss bei 0%).
 
-Pour chaque catégorie, on pourra différencier les couleurs de la version
-desktop et de la version mobile. On peut alors changer :
+## Registerkarte &quot;Sicherheit&quot;
 
--   la couleur du fond des widgets,
+### LDAP
 
--   la couleur de la commande lorsque le widget est de type graduel (par
-    exemple les lumières, les volets, les températures).
+- **LDAP-Authentifizierung aktivieren** : Aktivieren Sie die Authentifizierung über ein AD (LDAP)).
+- **Host** : Server, der die AD hostet.
+- **Feld** : Domain Ihrer AD.
+- **Basis-DN** : DN Basis Ihrer AD.
+- **Benutzername** : Benutzername für Jeedom, um sich bei AD anzumelden.
+- **Passwort** : Passwort für Jeedom, um eine Verbindung zu AD herzustellen.
+- **Benutzersuche Felder** : Suchfelder für Benutzeranmeldungen. Normalerweise uid für LDAP, SamAccountName für Windows AD.
+- **Administratorfilter (optional)** : Administratoren filtern nach AD (z. B. für die Gruppenverwaltung))
+- **Benutzerfilter (optional)** : Benutzerfilter auf dem AD (zum Beispiel für die Gruppenverwaltung)
+- **Eingeschränkter Benutzerfilter (optional)** : Filtern Sie eingeschränkte Benutzer im AD (z. B. für die Gruppenverwaltung))
+- **REMOTE\_USER zulassen** : Aktivieren Sie REMOTE\_USER (wird beispielsweise in SSO verwendet).
 
-En cliquant sur la couleur une fenêtre s’ouvre, permettant de choisir sa
-couleur. La croix à côté de la couleur permet de revenir au paramètre
-par défaut.
+### Connexion
 
-En haut de page, vous pouvez aussi configurer la transparence des
-widgets de manière globale (ce sera la valeur par défaut. Il est
-possible ensuite de modifier cette valeur widget par widget). Pour ne
-mettre aucune transparence, laissez 1.0 .
+- **Anzahl der tolerierten Ausfälle** : Definiert die Anzahl der aufeinander folgenden Versuche, die vor dem Sperren der IP zulässig sind
+- **Maximale Zeit zwischen Ausfällen (in Sekunden)** : maximale Zeit für 2 Versuche, um als aufeinanderfolgend betrachtet zu werden
+- **Verbannungsdauer (in Sekunden), -1 für unendlich** : IP-Sperrzeit
+- **IP "weiß"** : Liste der IPs, die niemals gesperrt werden können
+- **Entfernen Sie gesperrte IPs** : Löschen Sie die Liste der aktuell gesperrten IPs
 
-> **Tip**
+Die Liste der gesperrten IPs befindet sich am Ende dieser Seite. Sie finden die IP, das Sperrdatum und das geplante Sperrenddatum.
+
+## Registerkarte Update / Market
+
+### Jeedom Update
+
+- **Quelle aktualisieren** : Wählen Sie Jeedom Core Update Source.
+- **Kern Version** : Kernversion zum Wiederherstellen.
+- **Automatisch nach Updates suchen** : Geben Sie an, ob automatisch überprüft werden soll, ob neue Updates vorhanden sind (achten Sie darauf, dass der Markt nicht überlastet wird. Die Überprüfungszeit kann sich ändern).
+
+### Einlagen
+
+Die Repositorys sind Speicher- (und Service-) Speicherplätze, um Backups verschieben, Plugins wiederherstellen, den Kern von Jeedom wiederherstellen usw. zu können.
+
+### Fichier
+
+Einzahlung verwendet, um das Senden von Plugins durch Dateien zu aktivieren.
+
+#### Github
+
+Kaution verwendet, um Jeedom mit Github zu verbinden.
+
+- **Zeichen** : Token für den Zugang zur privaten Kaution.
+- **Jeedom Core Repository Benutzer oder Organisation** : Benutzer- oder Organisationsname auf Github für den Kern.
+- **Repository-Name für den Jeedom-Kern** : Repository-Name für den Kern.
+- **Jeedom Kernindustrie** : Kern-Repository-Zweig.
+
+#### Market
+
+Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Warnung : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
+
+- **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
+- **Benutzername** : Ihr Benutzername auf dem Markt.
+- **Passwort** : Ihr Marktpasswort.
+- **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, wenn das Risiko besteht, dass es zwischen ihnen abstürzt).
+- **[Backup Cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
+- **[Backup Cloud] Häufigkeit der vollständigen Sicherung** : Häufigkeit der vollständigen Cloud-Sicherung. Eine vollständige Sicherung ist länger als eine inkrementelle (die nur die Unterschiede sendet). Es wird empfohlen, 1 pro Monat zu tun.
+
+#### Samba
+
+Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samba-Freigabe zu senden (z : NAS-Synologie).
+
+- **\ [Backup \] IP** : Samba Server IP.
+- **\ [Backup \] Benutzer** : Benutzername für die Verbindung (anonyme Verbindungen sind nicht möglich). Der Benutzer muss über Lese- UND Schreibrechte für das Zielverzeichnis verfügen.
+- **\ [Backup \] Passwort** : Benutzerpasswort.
+- **\ [Backup \] Freigabe** : Pfad zum Teilen (achten Sie darauf, auf der Freigabeebene anzuhalten).
+- **\ [Backup \] Pfad** : Pfad in der Freigabe (relativ zu setzen), muss dieser vorhanden sein.
+
+> **Hinweis**
 >
-> N’oubliez pas de sauvegarder après toute modification.
+> Wenn der Pfad zu Ihrem Samba-Sicherungsordner lautet :
+> \\\\ 192.168.0.1 \\ Backups \\ Hausautomation \\ Jeedom Dann IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home Automation / Jeedom
 
-Commandes 
-=========
-
-De nombreuses commandes peuvent être historisées. Ainsi, dans
-Analyse→Historique, vous obtenez des graphiques représentant leur
-utilisation. Cet onglet permet de fixer des paramètres globaux à
-l’historisation des commandes.
-
-Historique 
-----------
-
--   **Afficher les statistiques sur les widgets** : Permet d’afficher
-    les statistiques sur les widgets. Il faut que le widget soit
-    compatible, ce qui est le cas pour la plupart. Il faut aussi que la
-    commande soit de type numérique.
-
--   **Période de calcul pour min, max, moyenne (en heures)** : Période
-    de calcul des statistiques (24h par défaut). Il n’est pas possible
-    de mettre moins d’une heure.
-
--   **Période de calcul pour la tendance (en heures)** : Période de
-    calcul des tendances (2h par défaut). Il n’est pas possible de
-    mettre moins d’une heure.
-
--   **Délai avant archivage (en heures)** : Indique le délai avant que
-    Jeedom n’archive une donnée (24h par défaut). C’est-à-dire que les
-    données historisées doivent avoir plus de 24h pour être archivées
-    (pour rappel, l’archivage va soit moyenner, soit prendre le maximum
-    ou le minimum de la donnée sur une période qui correspond à la
-    taille des paquets).
-
--   **Archiver par paquet de (en heures)** : Ce paramètre donne
-    justement la taille des paquets (1h par défaut). Cela signifie par
-    exemple que Jeedom va prendre des périodes de 1h, moyenner et
-    stocker la nouvelle valeur calculée en supprimant les
-    valeurs moyennées.
-
--   **Seuil de calcul de tendance basse** : Cette valeur indique la
-    valeur à partir de laquelle Jeedom indique que la tendance est à
-    la baisse. Il doit être négatif (par défaut -0.1).
-
--   **Seuil de calcul de tendance haut** : Même chose pour la hausse.
-
--   **Période d’affichage des graphiques par défaut** : Période qui est
-    utilisée par défaut lorsque vous voulez afficher l’historique
-    d’une commande. Plus la période est courte, plus Jeedom sera rapide
-    pour afficher le graphique demandé.
-
-> **Note**
+> **Hinweis**
 >
-> Le premier paramètre **Afficher les statistiques sur les widgets** est
-> possible mais désactivé par défaut car il rallonge sensiblement le
-> temps d’affichage du dashboard. Si vous activez cette option, par
-> défaut, Jeedom se fonde sur les données des dernières 24h pour
-> calculer ces statistiques. La méthode de calcul de tendance est fondée
-> sur le calcul des moindres carrés (voir
-> [ici](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s)
-> pour le détail).
+> Wenn Sie die Samba-Freigabe wie oben beschrieben validieren, wird im Abschnitt Einstellungen → System → Sicherungen von Jeedom eine neue Form der Sicherung angezeigt. Durch Aktivieren sendet Jeedom es beim nächsten Backup automatisch. Ein Test ist durch manuelle Sicherung möglich.
 
-Push
-----
-
-**URL de push globale** : permet de rajouter une URL à appeler en cas de
-mise à jour d’une commande. Vous pouvez utiliser les tags suivants :
-**\#value\#**pour la valeur de la commande,**\#cmd\_name\#** pour le
-nom de la commande, **\#cmd\_id\#** pour l’identifiant unique de la
-commande, **\#humanname\#** pour le nom complet de la commande (ex :
-\#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#)
-
-Cache 
-=====
-
-Permet de surveiller et d’agir sur le cache de Jeedom :
-
--   **Statistiques** : Nombre d’objets actuellement en cache
-
--   **Nettoyer le cache** : Force la suppression des objets qui ne sont
-    plus utiles. Jeedom le fait automatiquement toutes les nuits.
-
--   **Vider toutes les données en cache** : Vide complètement le cache.
-    Achtung, Daten könnten verschwinden 
-
--   **Temps de pause pour le long polling** : Fréquence à laquelle
-    Jeedom vérifie si il y a des événements en attente pour les clients
-    (interface web, application mobile…​). Plus ce temps est court, plus
-    l’interface se mettra à jour rapidement, en contre partie cela
-    utilise plus de ressources et peut donc ralentir Jeedom.
-
-Interaktion
-==========
-
-Cet onglet permet de fixer des paramètres globaux concernant les
-interactions que vous trouverez dans Outils→Interactions.
-
-> **Tip**
+> **Wichtig**
 >
-> Pour activer le log des interactions, il faut aller dans l’onglet
-> Administration→Configuration→Logs, puis cocher **Debug** dans la liste
-> du bas. Attention : les logs seront alors très verbeux !
+> Möglicherweise müssen Sie das smbclient-Paket installieren, damit das Repository funktioniert.
 
-Général 
--------
-
-Vous avez ici trois paramètres :
-
--   **Sensibilité** : il y a 4 niveaux de correspondance (La sensibilité
-    va de 1 (correspond exactement) à 99)
-
-    -   pour 1 mot : le niveau de correspondance pour les interactions à
-        un seul mot
-
-    -   2 mots : le niveau de correspondance pour les interactions à
-        zwei Wörter
-
-    -   3 mots : le niveau de correspondance pour les interactions à
-        drei Wörter
-
-    -   + de 3 mots : le niveau de correspondance pour les interactions
-        à plus de trois mots
-
--   **Ne pas répondre si l’interaction n’est pas comprise** : par défaut
-    Jeedom répond "je n’ai pas compris" si aucune interaction
-    ne correspond. Il est possible de désactiver ce fonctionnement pour
-    que Jeedom ne réponde rien. Cochez la case pour désactiver
-    Die Antwort.
-
--   **Regex général d’exclusion pour les interactions** : permet de
-    définir une regexp qui, si elle correspond à une interaction,
-    supprimera automatiquement cette phrase de la génération (réservé
-    aux experts). Pour plus d’informations voir les explications dans le
-    chapitre **Regexp d’exclusion** de la documentation sur
-    Interaktion.
-
-Interaction automatique, contextuelle & avertissement 
------------------------------------------------------
-
--   Les **interactions automatiques** permettent à Jeedom de tenter de
-    comprendre une demande d’interaction même si il n’y en a aucune
-    de définie. Il va alors chercher un nom d’objet et/ou d’équipement
-    et/ou de commande pour essayer de répondre au mieux.
-
--   Les **interactions contextuelles** vous permettent d’enchainer
-    plusieurs demandes sans tout répéter, par exemple :
-
-    -   *Jeedom gardant le contexte :*
-
-        -   *Vous* : Combien fait-il dans la chambre ?
-
-        -   *Jeedom* : Temperatur 25.2 °C 
-
-        -   *Vous* : et dans le salon ?
-
-        -   *Jeedom* : Température 27.2 °C
-
-    -   *Poser deux questions en une :*
-
-        -   *Vous* : Combien fait-il dans la chambre et dans le salon ?
-
-        -   *Jeedom* : Température 23.6 °C, Température 27.2 °C
-
--   Les interactions de type **Préviens-moi** permettent de demander à
-    Jeedom de vous prévenir si une commande dépasse/descend ou vaut une
-    certaine valeur.
-
-    -   *Vous* : Préviens-moi si la température du salon dépasse 25°C ?
-
-    -   *Jeedom* : OK (*Dès que la température du salon dépassera 25°C,
-        Jeedom vous le dira, une seule fois*)
-
-> **Note**
+> **Wichtig**
 >
-> Par défaut Jeedom vous répondra par le même canal que celui que vous
-> avez utilisé pour lui demander de vous prévenir. Si il n’en trouve
-> pas, il utilisera alors la commande par défaut spécifiée dans cet
-> onglet : **Commande de retour par défaut**.
-
-Voici donc les différentes options disponibles :
-
--   **Activer les interactions automatiques** : Cochez pour activer les
-    interactions automatiques.
-
--   **Activer les réponses contextuelles** : Cochez pour activer les
-    interactions contextuelles.
-
--   **Réponse contextuelle prioritaire si la phrase commence par** : Si
-    la phrase commence par le mot que vous renseignez ici, Jeedom va
-    alors prioritiser une réponse contextuelle (vous pouvez mettre
-    plusieurs mots en les séparant par des **;** ).
-
--   **Découper une interaction en 2 si elle contient** : Même chose pour
-    le découpage d’une interaction contenant plusieurs questions. Vous
-    donnez ici les mots qui séparent les différentes questions.
-
--   **Activer les interactions "Préviens-moi"** : Cochez pour activer
-    les interactions de type **Préviens-moi**.
-
--   **Réponse de type "Préviens-moi" si la phrase commence par** : Si la
-    phrase commence par ce/ces mot(s) alors Jeedom cherchera à faire une
-    interaction de type **Préviens-moi** (vous pouvez mettre plusieurs
-    mots en les séparant par des **;** ).
-
--   **Commande de retour par défaut** : Commande de retour par défaut
-    pour une interaction de type **Préviens-moi** (utilisée, notamment,
-    si vous avez programmé l’alerte par l’interface mobile)
-
--   **Synonyme pour les objets** : Liste des synonymes pour les objets
-    (ex : rdc|rez de chaussé|sous sol|bas;sdb|salle de bain).
-
--   **Synonyme pour les équipements** : Liste des synonymes pour
-    les équipements.
-
--   **Synonyme pour les commandes** : Liste des synonymes pour
-    les commandes.
-
--   **Synonyme pour les résumé** : Liste des synonymes pour les résumés.
-
--   **Synonyme commande slider maximum** : Synonyme pour mettre une
-    commande de type slider au maximum (ex ouvre pour ouvre le volet de
-    la chambre ⇒ volet chambre à 100%).
-
--   **Synonyme commande slider minimum** : Synonyme pour mettre une
-    commande de type slider au minimu (ex ferme pour fermer le volet de
-    la chambre ⇒ volet chambre à 0%).
-
-Couleurs 
---------
-
-Cette partie permet de définir les couleurs que Jeedom associera aux
-mots rouge/bleu/noir…​ Pour ajouter une couleur :
-
--   Cliquez sur le bouton **+**, à droite,
-
--   Donnez un nom à votre couleur,
-
--   Choisissez la couleur associée en cliquant sur la case de droite.
-
-Rapports 
-========
-
-Permet de configurer la génération et la gestion des rapports
-
--   **Délai d’attente après génération de la page (en ms)** : Délai
-    d’attente après chargement du rapport pour faire la "photo", à
-    changer si votre rapport est incomplet par exemple.
-
--   **Nettoyer les rapports plus anciens de (jours)** : Définit le
-    nombre de jours avant de supprimer un rapport (les rapports prennent
-    un peu de place donc attention à ne pas mettre trop
-    de conservation).
-
-Liens 
-=====
-
-Permet de configurer les graphiques de liens. Ces liens permettent de
-voir, sous forme d’un graphique, les relations entre les objets, les
-équipements, les objets, etc.
-
--   **Profondeur pour les scénarios** : Permet de définir, lors de
-    l’affichage d’un graphique de liens d’un scénario, le nombre
-    d’éléments maximum à afficher (plus il y a d’éléments plus le
-    graphique sera lent à générer et plus il sera difficile à lire).
-
--   **Profondeur pour les objets** : Idem pour les objets.
-
--   **Profondeur pour les équipements** : Idem pour les équipements.
-
--   **Profondeur pour les commandes** : Idem pour les commandes.
-
--   **Profondeur pour les variables** : Idem pour les variables.
-
--   **Paramètre de prerender** : Permet d’agir sur la disposition
-    du graphique.
-
--   **Paramètre de render** : Idem.
-
-Résumés 
-=======
-
-Permet d’ajouter des résumés d’objets. Cette information est affichée
-tout en haut, à droite, dans la barre de menu Jeedom, ou à côté des
-objets :
-
--   **Clef** : Clé du résumé, à ne surtout pas toucher.
-
--   **Name** : Der Name der Zusammenfassung.
-
--   **Calcul** : Méthode de calcul, peut être de type :
-
-    -   **Somme** : fait la somme des différentes valeurs,
-
-    -   **Moyenne** : fait la moyenne des valeurs,
-
-    -   **Texte** : affiche textuellement la valeur (surtout pour celles
-        de type chaine de caractères).
-
--   **Icone** : Icône du résumé.
-
--   **Unité** : Unité du résumé.
-
--   **Méthode de comptage** : Si vous comptez une donnée binaire alors
-    il faut mettre cette valeur à binaire, exemple si vous comptez le
-    nombre de lampes allumées mais que vous avez juste la valeur du
-    variateur (0 à 100), alors il faut mettre binaire, comme cela Jeedom
-    considéra que si la valeur est supérieure à 1, alors la lampe
-    est allumée.
-
--   **Afficher si valeur égale 0** : Cochez cette case pour afficher la
-    valeur, même quand elle vaut 0.
-
--   **Lier à un virtuel** : Lance la création de commandes virtuelles
-    ayant pour valeur celles du résumé.
-
--   **Supprimer le résumé** : Le dernier bouton, tout à droite, permet
-    de supprimer le résumé de la ligne.
-
-Logs 
-====
-
-Timeline 
---------
-
--   **Nombre maximum d’évènements** : Définit le nombre maximum à
-    afficher dans la timeline.
-
--   **Supprimer tous les évènements** : Permet de vider la timeline de
-    tous ses évènements enregistrés.
-
-Messages 
---------
-
--   **Ajouter un message à chaque erreur dans les logs** : si un plugin
-    ou Jeedom écrit un message d’erreur dans un log, Jeedom ajoute
-    automatiquement un message dans le centre des messages (au moins
-    vous êtes sûr de ne pas le manquer).
-
--   **Commande d’information utilisateur** : Permet de sélectionner une
-    ou plusieurs commandes (à séparer par des **&&** ) de type
-    **message** qui seront utilisées lors de l’émission de
-    nouveaux messages.
-
-Alertes 
--------
-
--   **Ajouter un message à chaque Timeout** : Ajoute un message dans le
-    centre de message si un équipement tombe en **timeout**.
-
--   **Commande sur Timeout**: Commande de type**message** à utiliser
-    si un équipement est en **timeout**.
-
--   **Ajouter un message à chaque Batterie en Warning** : Ajoute un
-    message dans le centre de messages si un équipement a son niveau de
-    batterie en **warning**.
-
--   **Commande sur Batterie en Warning**: Commande de type**message**
-    à utiliser si un équipement à son niveau de batterie en **warning**.
-
--   **Ajouter un message à chaque Batterie en Danger** : Ajoute un
-    message dans le centre de messages si un équipement à son niveau de
-    batterie en **danger**.
-
--   **Commande sur Batterie en Danger**: Commande de type**message** à
-    utiliser si un équipement à son niveau de batterie en **danger**.
-
--   **Ajouter un message à chaque Warning** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **warning**.
-
--   **Commande sur Warning**: Commande de type**message** à utiliser
-    si une commande passe en alerte **warning**.
-
--   **Ajouter un message à chaque Danger** : Ajoute un message dans le
-    centre de messages si une commande passe en alerte **danger**.
-
--   **Commande sur Danger**: Commande de type**message** à utiliser si
-    une commande passe en alerte **danger**.
-
-Log 
----
-
--   **Moteur de log** : Permet de changer le moteur de log pour, par
-    exemple, les envoyer à un demon syslog(d).
-
--   **Format des logs** : Format de log à utiliser (Attention : ça
-    n’affecte pas les logs des démons).
-
--   **Nombre de lignes maximum dans un fichier de log** : Définit le
-    nombre maximum de lignes dans un fichier de log. Il est recommandé
-    de ne pas toucher cette valeur, car une valeur trop grande pourrait
-    remplir le système de fichiers et/ou rendre Jeedom incapable
-    d’afficher le log.
-
--   **Niveau de log par défaut** : Quand vous sélectionnez "Défaut",
-    pour le niveau d’un log dans Jeedom, c’est celui-ci qui sera
-    alors utilisé.
-
-En dessous vous retrouvez un tableau permettant de gérer finement le
-niveau de log des éléments essentiels de Jeedom ainsi que celui des
-plugins.
-
-Equipements 
-===========
-
--   **Nombre d’échecs avant désactivation de l’équipement** : Nombre
-    d’échecs de communication avec l’équipement avant désactivation de
-    celui-ci (un message vous préviendra si cela arrive).
-
--   **Seuils des piles** : Permet de gérer les seuils d’alertes globaux
-    sur les piles.
-
-Mise à jour et fichiers 
-=======================
-
-Mise à jour de Jeedom 
----------------------
-
--   **Source de mise à jour** : Choisissez la source de mise à jour du
-    core de Jeedom.
-
--   **Version du core** : Version du core à récupérer.
-
--   **Vérifier automatiquement s’il y a des mises à jour** : Indique si
-    il faut chercher automatiquement si il y a de nouvelles mises à jour
-    (attention pour éviter de surcharger le market, l’heure de
-    vérification peut changer).
-
-Les dépôts 
-----------
-
-Les dépôts sont des espaces de stockage (et de service) pour pouvoir
-déplacer des sauvegardes, récupérer des plugins, récupérer le core de
-Jeedom, etc.
-
-### Fichier 
-
-Dépôt servant à activer l’envoi de plugins par des fichiers.
-
-### Github 
-
-Dépôt servant à relier Jeedom à Github.
-
--   **Token** : Token pour l’accès au dépôt privé.
-
--   **Utilisateur ou organisation du dépôt pour le core Jeedom** : Nom
-    de l’utilisateur ou de l’organisation sur github pour le core.
-
--   **Nom du dépôt pour le core Jeedom** : Nom du dépôt pour le core.
-
--   **Branche pour le core Jeedom** : Branche du dépôt pour le core.
-
-### Market 
-
-Dépôt servant à relier Jeedom au market, il est vivement conseillé
-d’utiliser ce dépôt. Attention : toute demande de support pourra être
-refusée si vous utilisez un autre dépôt que celui-ci.
-
--   **Adresse** : Adresse du Market.
-
--   **Benutzername** : Ihr Benutzername auf dem Markt.
-
--   **Mot de passe** : Votre mot de passe du Market.
-
-### Samba 
-
-Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur
-un partage Samba (ex : NAS Synology).
-
--   **\[Backup\] IP** : IP du serveur Samba.
-
--   **\[Backup\] Utilisateur** : Nom d’utilisateur pour la connexion
-    (les connexions anonymes ne sont pas possibles). Il faut forcément
-    que l’utilisateur ait les droits en lecture ET en écriture sur le
-    répertoire de destination.
-
--   **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur.
-
--   **\[Backup\] Partage** : Chemin du partage (attention à bien
-    s’arrêter au niveau du partage).
-
--   **\[Backup\] Chemin** : Chemin dans le partage (à mettre en
-    relatif), celui-ci doit exister.
-
-> **Note**
+> Das Samba-Protokoll hat mehrere Versionen, die Version 1 ist in Bezug auf die Sicherheit gefährdet und auf einigen NAS können Sie den Client zwingen, die Verbindung mit Version 2 oder Version 3 herzustellen. Also, wenn Sie einen Fehler haben *Protokollaushandlung fehlgeschlagen: NT_STATUS_INVAID_NETWORK_RESPONSE* Es besteht eine gute Chance, dass auf der NAS-Seite die Einschränkung besteht. Sie müssen dann die Datei / etc / samba / smb auf Ihrem Jeedom-Betriebssystem ändern.conf und füge diese beiden Zeilen hinzu :
+> Client-Max-Protokoll = SMB3
+> Client-Min-Protokoll = SMB2
+> Der Jeedom-Seite smbclient verwendet dann v2, wobei v3 und indem SMB3 auf beide nur SMB3 gesetzt wird. Es liegt also an Ihnen, sich an die Einschränkungen des NAS oder eines anderen Samba-Servers anzupassen
+
+> **Wichtig**
 >
-> Si le chemin d’accès à votre dossier de sauvegarde samba est :
-> \\\\192.168.0.1\\Sauvegardes\\Domotique\\Jeedom Alors IP = 192.168.0.1
-> , Partage = //192.168.0.1/Sauvegardes , Chemin = Domotique/Jeedom
+> Jeedom muss der einzige sein, der in diesen Ordner schreibt, und er muss standardmäßig leer sein (d. H. Vor der Konfiguration und dem Senden der ersten Sicherung darf der Ordner keine Datei oder keinen Ordner enthalten).
 
-> **Note**
+#### URL
+
+- **Jeedom-Kern-URL**
+- **URL der Jeedom-Kernversion**
+
+## Registerkarte Cache
+
+Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
+
+- **Statistiken** : Anzahl der aktuell zwischengespeicherten Objekte.
+- **Cache Reinigung** : Erzwingen Sie das Löschen von Objekten, die nicht mehr nützlich sind. Jeedom macht das automatisch jede Nacht.
+- **Alle Daten aus dem Cache entfernen** : Leeren Sie den Deckel vollständig.
+    Bitte beachten Sie, dass dies zu Datenverlust führen kann !
+- **Leeren Sie den Widget-Cache** : Leeren Sie den Cache für Widgets.
+- **Widget-Cache deaktivieren** : Aktivieren Sie das Kontrollkästchen, um den Widget-Cache zu deaktivieren.
+- **Pausenzeit für das lange Polling** : Häufigkeit, mit der Jeedom prüft, ob Ereignisse für Kunden ausstehen (Weboberfläche, mobile Anwendung usw.)). Je kürzer diese Zeit ist, desto schneller wird die Schnittstelle aktualisiert. Im Gegenzug verbraucht sie mehr Ressourcen und kann daher Jeedom verlangsamen.
+
+## Registerkarte API
+
+Hier finden Sie die Liste der verschiedenen API-Schlüssel, die in Ihrem Jeedom verfügbar sind. Core verfügt über zwei API-Schlüssel :
+
+-   ein General : Vermeiden Sie es so oft wie möglich,
+-   und eine andere für Profis : wird für das Flottenmanagement verwendet. Es kann leer sein.
+-   Dann finden Sie einen API-Schlüssel pro Plugin, der ihn benötigt.
+
+Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können Sie deren Umfang definieren :
+
+- **Untauglich** : API-Schlüssel kann nicht verwendet werden,
+- **White IP** : Es ist nur eine Liste von IPs autorisiert (siehe Einstellungen → System → Konfiguration : Netzwerke),
+- **Localhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
+- **Aktiviert** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
+
+Für jeden Plugin-API-Schlüssel können Sie die Verwendung von Kernmethoden (allgemein) verbieten, um sie auf ihre einzige eingebettete Methode zu beschränken (seien Sie vorsichtig, einige Plugins wie Mobile oder Jeelink benötigen unbedingt Kernmethoden)
+
+## Onglet &gt;;\._OS/DB
+
+> **Wichtig**
 >
-> Lors de la validation du partage Samba, tel que décrit précédemment,
-> une nouvelle forme de sauvegarde apparait dans la partie
-> Administration→Sauvegardes de Jeedom. En l’activant, Jeedom procèdera
-> à son envoi automatique lors de la prochaine sauvegarde. Un test est
-> possible en effectuant une sauvegarde manuelle.
+> Diese Registerkarte ist Experten vorbehalten.
+> Wenn Sie Jeedom mit einer dieser beiden Lösungen ändern, kann der Support Ihnen nicht weiterhelfen.
 
-> **Important**
->
-> Il vous faudra peut-être installer le package smbclient pour que le
-> dépôt fonctionne.
+### Systemprüfungen
 
-> **Important**
->
-> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau 
-> sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2
-> ou la v3 pour se connecter. Donc si vous avez une erreur protocol negotiation
-> failed: NT_STATUS_INVAID_NETWORK_RESPONSE il y a de forte chance que coté NAS
-> la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom
-> le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
-> client max protocol = SMB3
-> client min protocol = SMB2
-> Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement
-> SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
-
-> **Important**
->
-> Jeedom doit être le seul à écrire dans ce dossier et il doit être vide
-> par défaut (c’est-à-dire qu’avant la configuration et l’envoi de la
-> première sauvegarde, le dossier ne doit contenir aucun fichier ou
-> dossier).
-
-### URL 
-
--   **URL Jeedom Kern**
-
--   **URL Jeedom Kern Version**
+- **Allgemeine Überprüfung** : Starten wir den Jeedom-Konsistenztest.
+- **Wiedereinsetzung von Rechten** : Ermöglicht es Ihnen, die korrekten Rechte auf die Jeedom Core-Verzeichnisse und -Dateien erneut anzuwenden.
+- **Systempakete prüfen** : Ermöglicht das Starten einer Überprüfung der installierten Pakete.
+- **Datenbanküberprüfung** : Ermöglicht das Starten einer Überprüfung in der Jeedom-Datenbank und das Korrigieren von Fehlern, falls erforderlich.
+- **Datenbankbereinigung** : Führt eine Datenbankprüfung durch und bereinigt alle nicht verwendeten Einträge.
 
 
+### Systemprogramme
+
+- **Datei-Editor** : Ermöglicht den Zugriff auf verschiedene Betriebssystemdateien und deren Bearbeitung, Löschung oder Erstellung.
+- **Systemverwaltung** : Bietet Zugriff auf eine Systemverwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die nützlichsten Befehle starten können, insbesondere um Informationen über das System zu erhalten.
+- **Datenbankverwaltung** : Ermöglicht den Zugriff auf die Jeedom-Datenbank. Sie können dann Befehle im oberen Feld starten.
+- **Benutzername / Passwort** : Benutzername und Passwort für den Zugriff auf die von Jeedom verwendete Datenbank.

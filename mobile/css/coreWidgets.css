@@ -3,239 +3,370 @@ Core Widgets CSS @Jeedom
 Mobile WebApp
 */
 
-/* __________________________________________________________________________________________________________Global */
+/* ____________________Global */
+  .eqLogic-widget div.cmd {
+    vertical-align: top;
+  }
 
-.eqLogic-widget div.cmd {
-  vertical-align: top;
-}
+  div.cmd-widget div.cmdStats {
+    display: inline-block;
+    width: 100%;
+    min-height: 24px;
+  }
 
+  /* arc gauges and sliders */
+  .highcharts-pane {
+    stroke-width: 0;
+  }
+  .highcharts-data-label > span > span {
+    font-size: 12px !important;
+  }
+  .highcharts-color-0 {
+    fill: var(--link-color);
+  }
+  .ui-slider-handle {
+    font-size: 1em;
+    border-radius: 1em !important;
+    cursor: pointer !important;
+  }
+  .ui-slider-horizontal{
+    height: 5px !important;
+  }
+  .ui-slider{
+    border:none !important;
+  }
 
-/* arc gauges and sliders */
-.highcharts-pane {
-  stroke-width: 0;
-}
-.highcharts-data-label > span > span {
-  font-size: 12px !important;
-}
-.highcharts-color-0 {
-  fill: var(--link-color);
-}
-.ui-slider-handle {
-  font-size: 1em;
-  border-radius: 1em !important;
-  cursor: pointer !important;
-}
-.ui-slider-horizontal{
-  height: 5px !important;
-}
-.ui-slider{
-  border:none !important;
-}
+  /* v4.2 nouislider */
+  div.cmd-widget .slider {
+    margin-top: 8px !important;
+    margin-bottom: 10px !important;
+    background: transparent;
+  }
+  div.cmd-widget .slider .noUi-base {
+    width: calc(100% - 88px);
+    z-index: 20;
+  }
+  div.cmd-widget .slider.full-width-slider .noUi-base {
+    width: calc(100% - 28px);
+  }
+  div.cmd-widget .slider .noUi-connects {
+    top: 5px;
+    height: 6px;
+    right: 5px !important;
+    background: var(--el-defaultColor) !important;
+  }
+  div.cmd-widget .slider .noUi-connects {
+    width: calc(100% + 12px);
+  }
+  div.cmd-widget .slider .noUi-connects > .noUi-connect {
+    top: -5px;
+    height: 20px !important;
+    background: var(--link-color);
+  }
+  div.cmd-widget .slider.noUi-horizontal,
+  div.cmd-widget .slider .noUi-handle {
+    border: none;
+    box-shadow: none;
+  }
+  div.cmd-widget .slider .noUi-handle {
+    top: -3px;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background: var(--link-color);
+  }
+  div.cmd-widget .slider .noUi-handle:before,
+  div.cmd-widget .slider .noUi-handle::after {
+    display: none;
+  }
+  div.cmd-widget .slider .noUi-tooltip {
+    display: none;
+    border: none;
+    background: var(--btnEq-default-color);
+    color: var(--link-color);
+  }
+  div.cmd-widget .slider .noUi-active .noUi-tooltip {
+    display: block;
+  }
+  div.cmd-widget .slider .noUi-handle {
+    cursor: pointer;
+    outline: none;
+  }
+  div.cmd-widget .slider .noUi-handle:focus {
+    outline: none;
+  }
 
-/* less space under arc gauges */
-.gauge.cursor{ height: 85px !important; }
-.container-fluid.cmd-widget { min-height: 85px !important; }
+  /* less space under arc gauges */
+  .gauge.cursor{ height: 85px !important; }
+  .container-fluid.cmd-widget { min-height: 85px !important; }
 
-h4.modal-title {
-  font-size: 14px;
-}
-.highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
-  font-weight: normal !important;
-}
-.highcharts-legend-item.highcharts-legend-item-hidden text {
-  font-weight: normal !important;
-  font-style: italic;
-}
+  h4.modal-title {
+    font-size: 14px;
+  }
+  .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
+    font-weight: normal !important;
+  }
+  .highcharts-legend-item.highcharts-legend-item-hidden text {
+    font-weight: normal !important;
+    font-style: italic;
+  }
 
-path.highcharts-graph {
-  stroke-width: 1;
-}
+  path.highcharts-graph {
+    stroke-width: 1;
+  }
 
+  .ui-slider-track .ui-btn.ui-slider-handle {
+    margin-top: -9px;
+    -ms-touch-action: none;
+    touch-action: none;
+  }
+    .ui-page-theme-a .cmd.cmd-widget .ui-slider-track .ui-btn-active {
+    position: absolute;
+    left: 0;
+    height: 6px !important;
+    background-color: var(--link-color) !important;
+  }
 
-/* __________________________________________________________________________________________________________Specific */
-.cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
-  font-size: 1.4em !important;
-}
-.cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
-  font-size: 1.2em !important;
-}
-.cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .value {
-  width: 55px;
-}
-.cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
-  margin-top: 5px;
-  height: 50px;
-}
-.cmd.cmd-widget[data-type="info"][data-subtype="binary"][data-template="shutter"] {
-  height: 100px;
-}
-.cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
-  height: 100px;
-}
-.cmd.cmd-widget .selectCmd {
-  max-height: 50px;
-  overflow: auto;
-}
+/* ____________________Specific */
+  .cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+    font-size: 1.4em !important;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+    font-size: 1.2em !important;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .ui-input-text {
+    opacity: 1;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
+    width: 55px;
+    opacity: 1 !important;
+    color: var(--txt-color) !important;
+  }
+  .cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
+    margin-top: 5px;
+    height: 50px;
+  }
+  .cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+    height: 100px;
+  }
+  .cmd.cmd-widget .selectCmd {
+    max-height: 50px;
+    overflow: auto;
+  }
 
+/* ____________________binarySwitch */
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] {
+    height: 20px;
+    margin: 5px;
+  }
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .widthx2 {
+    min-width: 140px;
+    text-align: left;
+  }
+  label.binarySwitch {
+    position: relative;
+    display: inline-block;
+    float: right;
+    width: 40px;
+    height: 22px;
+    bottom: 2px;
+  }
+  div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] > center > div:not(.widthx2) > label.binarySwitch {
+    float: unset !important;
+  }
+  label.binarySwitch input {
+    display: none;
+  }
+  label.binarySwitch > input:checked + span.binarySwitch > span.binarySwitchHandle {
+    transform: translateX(17px);
+  }
+  span.binarySwitch {
+    border-radius: 1em;
+  }
+  span.binarySwitchHandle {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--link-color);
+    transition: .4s;
+    border-radius: 50%;
+  }
+  label.binarySwitch > input + span.binarySwitch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+    background-color: var(--btnEq-default-color);
+  }
+  label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--el-defaultColor);
+  }
+  [data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch {
+    background-color: var(--bt-success-color);
+  }
+  [data-theme="core2019_Dark"][data-coloredicons="1"] label.binarySwitch > input:checked + span.binarySwitch > span.binarySwitchHandle {
+    background-color: var(--btnEq-default-color) !important;
+  }
 
-.hgauge-value,
-.shuttergauge-value {
-  background: var(--link-color);
-}
+/* ____________________others */
+  .hgauge-value,
+  .shuttergauge-value {
+    background: var(--link-color);
+  }
 
-.hgauge {
-  position: relative;
-  width: calc(100% - 16px);
-  margin-top: 6px;
-  margin-bottom: 4px;
-}
-.hgauge-bckg {
-  position:relative;
-  height: 5px;
-  top: -3px;
-  background: var(--el-defaultColor);
-}
-.hgauge .cmdName {
-  min-height: 26px;
-}
-.hgauge-value {
-  height: 10px;
-  position: absolute;
-  left: 0;
-  margin-top: -4px;
-}
-.hgauge .state {
-  margin-top: 10px;
-}
+  .hgauge {
+    position: relative;
+    width: calc(100% - 16px);
+    margin-top: 6px;
+    margin-bottom: 4px;
+  }
+  .hgauge-bckg {
+    position:relative;
+    height: 5px;
+    top: -3px;
+    background: var(--el-defaultColor);
+  }
+  .hgauge .cmdName {
+    min-height: 26px;
+  }
+  .hgauge-value {
+    height: 8px;
+    position: absolute;
+    left: 0;
+    margin-top: -4px;
+  }
+  .hgauge .state {
+    margin-top: 10px;
+  }
 
-.shuttergauge, .timeShuttergauge {
-  position: relative;
-  width: 100% !important;
-  height: 120px;
-}
-.timeShuttergauge {
-  height: 140px;
-}
-.shuttergauge-bckg {
-  width: 42px;
-  height: 45px;
-  margin-left: -26px;
-  position: absolute;
-  top: 20px;
-}
-.shuttergauge-chart {
-  display: inline-block;
-  text-align: center !important;
-  min-height: 85px;
-}
-.shuttergauge-state {
-  font-size: 16px;
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
-.shuttergauge-state .timeCmd {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
-}
-.shuttergauge .slider {
-  margin-top: 55px;
-}
-.timeShuttergauge .slider {
-  margin-top: 70px;
-}
+  .shuttergauge, .timeShuttergauge {
+    position: relative;
+    width: 100% !important;
+    height: 120px;
+  }
+  div.cmd-widget.timeShuttergauge {
+    display: table;
+    height: 140px;
+  }
+  .shuttergauge-bckg {
+    width: 42px;
+    height: 45px;
+    margin-left: -26px;
+    position: absolute;
+    top: 20px;
+  }
+  .shuttergauge-chart {
+    display: inline-block;
+    text-align: center !important;
+    min-height: 65px;
+  }
+  .shuttergauge-state {
+    font-size: 16px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .shuttergauge-state .timeCmd {
+    margin-top: 25px;
+  }
+  .shuttergauge .slider {
+    margin-top: -20px;
+  }
 
-/* __________________________________________________________________________________________________________Compass */
-.widget-compass-container {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin-bottom: 18px;
-}
-.widget-compass-container * {
-  position: absolute;
-}
-.widget-compass .value {
-  position: absolute;
-  top: 48px;
-}
-.widget-compass .state {
-  font-size: 16px !important;
-  font-weight: bold;
-  position: relative;
-  top: 24px;
-}
-.widget-compass .winDir {
-  font-size: 11px !important;
-  position: relative;
-  top: 21px;
-}
-.widget-compass-outline {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border: 7px solid var(--txt-color);
-  border-top: 7px solid var(--al-info-color);
-  border-bottom: 7px solid var(--al-info-color);
-  border-radius: 50%;
-}
-.widget-compass-needle {
-  left: 38px;
-  width: 4px;
-  height: 80px;
-  top: 0px;
-}
-.widget-compass-needle:after {
-  position: absolute;
-  content: '' !important;
-  top: -3px;
-  left: -6px;
-  width: 0;
-  height: 0;
-  border: 8px solid transparent;
-  border-top: 22px solid var(--al-warning-color);
-}
+/* ____________________Compass */
+  .widget-compass-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 18px;
+  }
+  .widget-compass-container * {
+    position: absolute;
+  }
+  .widget-compass .value {
+    position: absolute;
+    top: 48px;
+  }
+  .widget-compass .state {
+    font-size: 16px !important;
+    font-weight: bold;
+    position: relative;
+    top: 24px;
+  }
+  .widget-compass .winDir {
+    font-size: 11px !important;
+    position: relative;
+    top: 21px;
+  }
+  .widget-compass-outline {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 7px solid var(--txt-color);
+    border-top: 7px solid var(--al-info-color);
+    border-bottom: 7px solid var(--al-info-color);
+    border-radius: 50%;
+  }
+  .widget-compass-needle-placer {
+    position: absolute;
+    margin-top: -3px;
+    margin-left: -3px;
+    width: 86px;
+    height: 86px;
+  }
+  .widget-compass-needle {
+    position: relative;
+    width: 0px;
+    height: 0px;
+    border: 8px solid transparent;
+    border-top: 22px solid var(--al-warning-color);
+  }
 
-/* __________________________________________________________________________________________________________Rain */
-@keyframes homeweatherstationraingauge{from{background-position:0 0}to{background-position:100000% 0}}
+/* ____________________Rain */
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="rain"] > .widget-rain-container {
+    width: 90px;
+    margin: 5px;
+    padding: 0;
+  }
 
-.widget-rain-water{
-  height: 0pt;
-  background: url(../../core/template/mobile/cmd.info.numeric.rain/water.svg);
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-radius: 0 0 1px 1px;
-  bottom: 0;
-  width : 100%;
-  max-height: 80px;
-  transition: water 3s ease-out;
-  z-index: 0;
-  animation: homeweatherstationraingauge 3000s linear infinite;
-  bottom : 0px;
-  position: absolute;
-}
+  @keyframes jeedomWidgetRainWaterAnimation{from{background-position:0 0}to{background-position:100000% 0}}
 
-.widget-rain-title{
-  padding-top: 10%;
-}
+  .widget-rain-water {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    transition: water 3s ease-out;
+    z-index: 0;
+    animation: jeedomWidgetRainWaterAnimation 3000s linear infinite;
+  }
 
-.widget-rain-container{
-  background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
-  background-size: cover;
-  height: 100%;
-  z-index: 20;
-}
+  .widget-rain-container {
+    background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 60px;
+    z-index: 20;
+  }
 
-.widget-rain-main{
-  height: 80px;
-  overflow: hidden;
-  width: 80px;
-  z-index: 0;
-  position : relative;
-}
+  .widget-rain-container .plage {
+    position: absolute;
+    bottom: 5px;
+    right: 5%;
+    left: 5%;
+    z-index: 2;
+  }
+
+  .widget-rain-main {
+    overflow: hidden;
+    width: 80px;
+    z-index: 0;
+    position : relative;
+  }

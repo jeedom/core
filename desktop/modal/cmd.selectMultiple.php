@@ -1,4 +1,20 @@
 <?php
+/* This file is part of Jeedom.
+*
+* Jeedom is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* Jeedom is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
@@ -14,9 +30,9 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
 ?>
 
 <div style="display: none;" id="md_cmdConfigureSelectMultipleAlert"></div>
-<div>
-  <a class="btn btn-default" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-check-circle"></i> {{Inverser}}</a>
-  <a class="btn btn-success pull-right" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
+<div class="input-group pull-right">
+  <a class="btn btn-default roundedLeft" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="fas fa-check-circle"></i> {{Inverser}}
+  </a><a class="btn btn-success roundedRight" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
 </div>
 <br/>
 <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple" style="width:100% !important;">
@@ -33,31 +49,33 @@ if(!is_array($listeCmds) || count($listeCmds) == 0){
     foreach ($listeCmds as $listCmd) {
       $eqLogic = $listCmd->getEqLogic();
       $object = null;
-      if(is_object($eqLogic)){
+      if (is_object($eqLogic)) {
         $object = $eqLogic->getObject();
       }
-      echo '<tr data-cmd_id="' . $listCmd->getId() . '">';
-      echo '<td>';
+      $tr = '';
+      $tr .= '<tr data-cmd_id="' . $listCmd->getId() . '">';
+      $tr .= '<td>';
       if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
-        echo '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
       } else {
-        echo '<input type="checkbox" class="selectMultipleApplyCmd" />';
+        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" />';
       }
-      echo '</td>';
-      echo '<td>';
+      $tr .= '</td>';
+      $tr .= '<td>';
       if(is_object($object)){
-        echo $object->getName();
+        $tr .= $object->getName();
       }
-      echo '</td>';
-      echo '<td>';
+      $tr .= '</td>';
+      $tr .= '<td>';
       if(is_object($eqLogic)){
-        echo $eqLogic->getName();
+        $tr .= $eqLogic->getName();
       }
-      echo '</td>';
-      echo '<td>';
-      echo $listCmd->getName();
-      echo '</td>';
-      echo '</tr>';
+      $tr .= '</td>';
+      $tr .= '<td>';
+      $tr .= $listCmd->getName();
+      $tr .= '</td>';
+      $tr .= '</tr>';
+      echo $tr;
     }
     ?>
   </tbody>

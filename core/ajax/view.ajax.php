@@ -24,7 +24,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	
-	ajax::init();
+	ajax::init(array('uploadImage'));
 	
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
@@ -55,7 +55,7 @@ try {
 				$views = view::all();
 			}
 			$return = array();
-			foreach (view::all() as $view) {
+			foreach((view::all()) as $view) {
 				$return[$view->getId()] = $view->toAjax(init('version', 'dashboard'), init('html'));
 			}
 			ajax::success($return);
@@ -80,8 +80,10 @@ try {
 		$view_ajax = json_decode(init('view'), true);
 		utils::a2o($view, $view_ajax);
 		$view->save();
-		if (isset($view_ajax['zones']) && count($view_ajax['zones']) > 0) {
+		if (isset($view_ajax['zones'])){
 			$view->removeviewZone();
+		}
+		if (isset($view_ajax['zones']) && count($view_ajax['zones']) > 0) {
 			foreach ($view_ajax['zones'] as $viewZone_info) {
 				$viewZone = new viewZone();
 				$viewZone->setView_id($view->getId());
@@ -110,7 +112,7 @@ try {
 		}
 		$return = utils::o2a($viewZone);
 		$return['eqLogic'] = array();
-		foreach ($viewZone->getviewData() as $viewData) {
+		foreach(($viewZone->getviewData()) as $viewData) {
 			$infoViewDatat = utils::o2a($viewData->getLinkObject());
 			$infoViewDatat['html'] = $viewData->getLinkObject()->toHtml(init('version'));
 			$return['viewData'][] = $infoViewDatat;
@@ -118,24 +120,33 @@ try {
 		ajax::success($return);
 	}
 	
-	if (init('action') == 'setEqLogicOrder') {
+	if (init('action') == 'setComponentOrder') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$eqLogics = json_decode(init('eqLogics'), true);
+		$components = json_decode(init('components'), true);
 		$sql = '';
-		foreach ($eqLogics as $eqLogic_json) {
-			if (!isset($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['viewZone_id']) || !is_numeric($eqLogic_json['id']) || !is_numeric($eqLogic_json['order']) || (isset($eqLogic_json['object_id']) && !is_numeric($eqLogic_json['object_id']))) {
+		foreach ($components as $component) {
+			if (!isset($component['viewZone_id']) || !is_numeric($component['viewZone_id']) || !is_numeric($component['id']) || !is_numeric($component['viewOrder']) || (isset($component['object_id']) && !is_numeric($component['object_id']))) {
 				continue;
 			}
-			$sql .= 'UPDATE viewData SET `order`= ' . $eqLogic_json['order'] . '  WHERE link_id=' . $eqLogic_json['id'] . ' AND  viewZone_id=' . $eqLogic_json['viewZone_id'] . ';';
-			$eqLogic = eqLogic::byId($eqLogic_json['id']);
-			if (!is_object($eqLogic)) {
-				continue;
+			$sql .= 'UPDATE viewData SET `order`= ' . $component['viewOrder'] . '  WHERE link_id=' . $component['id'] . ' AND type="' . $component['type'] . '" AND  viewZone_id=' . $component['viewZone_id'] . ';';
+			if($component['type'] == 'eqLogic'){
+				$eqLogic = eqLogic::byId($component['id']);
+				if (!is_object($eqLogic)) {
+					continue;
+				}
+				utils::a2o($eqLogic, $component);
+				$eqLogic->save(true);
+			}elseif($component['type'] == 'scenario'){
+				$scenario = scenario::byId($component['id']);
+				if (!is_object($scenario)) {
+					continue;
+				}
+				utils::a2o($scenario, $component);
+				$scenario->save(true);
 			}
-			utils::a2o($eqLogic, $eqLogic_json);
-			$eqLogic->save(true);
 		}
 		if ($sql != '') {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -189,7 +200,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception('Extension du fichier non valide (autorisé .jpg .png) : ' . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -217,4 +228,3 @@ try {
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
 }
-?>

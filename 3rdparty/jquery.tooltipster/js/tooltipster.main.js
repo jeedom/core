@@ -1,5 +1,5 @@
 /**
- * tooltipster http://iamceege.github.io/tooltipster/
+ * tooltipster http://calebjacob.github.io/tooltipster/
  * A rockin' custom tooltip jQuery plugin
  * Developed by Caleb Jacob and Louis Ameline
  * MIT license
@@ -89,7 +89,7 @@ var defaults = {
 		hasTransitions: transitionSupport(),
 		IE: false,
 		// don't set manually, it will be updated by a build task after the manifest
-		semVer: '4.2.6',
+		semVer: '4.2.8',
 		window: win
 	},
 	core = function() {
@@ -1411,7 +1411,7 @@ $.Tooltipster.prototype = {
 					if (!identical) {
 						
 						// close the tooltip when using the mouseleave close trigger
-						// (see https://github.com/iamceege/tooltipster/pull/253)
+						// (see https://github.com/calebjacob/tooltipster/pull/253)
 						if (self.__options.triggerClose.mouseleave) {
 							self._close();
 						}
