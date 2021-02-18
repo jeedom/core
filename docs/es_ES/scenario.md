@@ -342,11 +342,11 @@ Hay varias funciones disponibles para el equipo :
 - ``lastScenarioExecution(scenario)`` : Da la duración en segundos desde el último lanzamiento del escenario.
     0 : El escenario no existe
 
-- ``collectDate(cmd,[format])`` : Devuelve la fecha de los últimos datos para el comando dado en el parámetro, el segundo parámetro opcional permite especificar el formato de retorno (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)).
+- ``collectDate(cmd,[format])`` : Devuelve la fecha de la última recopilación de datos para el comando colocado como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)).
     -1 : No se pudo encontrar el comando,
     -2 : El comando no es de tipo info.
 
-- ``valueDate(cmd,[format])`` : Devuelve la fecha de los últimos datos para el comando dado en el parámetro, el segundo parámetro opcional permite especificar el formato de retorno (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)).
+- ``valueDate(cmd,[format])`` : Devuelve la fecha del último valor conocido para el comando colocado como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)).
     -1 : No se pudo encontrar el comando,
     -2 : El comando no es de tipo info.
 
@@ -401,8 +401,8 @@ Aquí hay ejemplos prácticos para comprender los valores devueltos por estas di
 | ``variable(plop,10)``                  | Devuelve el valor de la variable plop o 10 si está vacía o no existe                         |
 | ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Devuelve 1 en progreso, 0 si se detiene y -1 si está desactivado, -2 si el escenario no existe y -3 si el estado no es consistente                         |
 | ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Devuelve 300 si el escenario se inició por última vez hace 5 minutos                                  |
-| ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Devoluciones 2015-01-01 17:45:12          |
-| ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Devoluciones 2015-01-01 17:50:12          |
+| ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Devuelve 2021-02-14 17:50:12          |
+| ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Devuelve 2021-02-14 17:45:12          |
 | ``eqEnable(#[Aucun][Basilique]#)``       | Devuelve -2 si no se encuentra el equipo, 1 si el equipo está activo y 0 si está inactivo          |
 | ``tag(montag,toto)``                   | Devuelve el valor de "montag" si existe, de lo contrario devuelve el valor "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Hidrometría de devoluciones                  |

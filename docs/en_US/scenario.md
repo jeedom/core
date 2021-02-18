@@ -342,11 +342,11 @@ Several functions are available for the equipment :
 - ``lastScenarioExecution(scenario)`` : Gives the duration in seconds since the last launch of the scenario.
     0 : The scenario does not exist
 
-- ``collectDate(cmd,[format])`` : Returns the date of the last data for the command given in parameter, the 2nd optional parameter allows to specify the return format (details [here](http://php.net/manual/fr/function.date.php)).
+- ``collectDate(cmd,[format])`` : Returns the date of the last data collection for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](http://php.net/manual/fr/function.date.php)).
     -1 : The command could not be found,
     -2 : The command is not of type info.
 
-- ``valueDate(cmd,[format])`` : Returns the date of the last data for the command given in parameter, the 2nd optional parameter allows to specify the return format (details [here](http://php.net/manual/fr/function.date.php)).
+- ``valueDate(cmd,[format])`` : Returns the date of the last known value for the command placed as a parameter, the 2nd optional parameter is used to specify the return format (details [here](http://php.net/manual/fr/function.date.php)).
     -1 : The command could not be found,
     -2 : The command is not of type info.
 
@@ -401,8 +401,8 @@ Here are practical examples to understand the values returned by these different
 | ``variable(plop,10)``                  | Returns the value of the variable plop or 10 if it is empty or does not exist                         |
 | ``scenario(#[Salle de bain][Lumière][Auto]#)`` | Returns 1 in progress, 0 if stopped and -1 if deactivated, -2 if the scenario does not exist and -3 if the state is not consistent                         |
 | ``lastScenarioExecution(#[Salle de bain][Lumière][Auto]#)``   | Returns 300 if the scenario was started for the last time 5 min ago                                  |
-| ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns 2015-01-01 17:45:12          |
-| ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Returns 2015-01-01 17:50:12          |
+| ``collectDate(#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns 2021-02-14 17:50:12          |
+| ``valueDate(#[Salle de bain][Hydrometrie][Humidité]#)`` | Returns 2021-02-14 17:45:12          |
 | ``eqEnable(#[Aucun][Basilique]#)``       | Returns -2 if the equipment is not found, 1 if the equipment is active and 0 if it is inactive          |
 | ``tag(montag,toto)``                   | Returns the value of "montag" if it exists otherwise returns the value "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns Hydrometry                  |
