@@ -1250,6 +1250,12 @@
   .progress-bar-success {
     background-color: var(--al-success-color);
   }
+  .progress-bar-warning {
+    background-color: var(--al-warning-color);
+  }
+  .progress-bar-danger {
+    background-color: var(--al-danger-color);
+  }
 
   [data-type="plugin"] #div_pageContainer > div.eqLogic {
     margin-top: 5px;

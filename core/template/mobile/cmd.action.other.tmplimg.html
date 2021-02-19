@@ -7,7 +7,7 @@
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
-      if ('#_time_widget_#' != '1') cmd.find('.timeCmd').parent().remove()
+      if ('#_time_widget_#' != '1') cmd.find('.timeCmd').remove()
 
       if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         cmd.attr('data-state','on')
