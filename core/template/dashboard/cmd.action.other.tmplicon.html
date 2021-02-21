@@ -17,7 +17,7 @@
         cmd.find('.timeCmd').parent().remove();
       }
       if (_options.display_value == '') {
-			cmd.find('.iconCmd').empty().append((jeedom.cmd.normalizeName('#name#') == 'off') ? "#_icon_off_#" : "#_icon_on_#");
+	cmd.find('.iconCmd').empty().append((jeedom.cmd.normalizeName('#name#') == 'off') ? "#_icon_off_#" : "#_icon_on_#");
       } else if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide();
