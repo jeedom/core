@@ -57,7 +57,6 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Commence l'étape 2 paquet principal${NORMAL}"
-  apt-get update
   apt-get -y install software-properties-common
   add-apt-repository non-free
   apt-get update
