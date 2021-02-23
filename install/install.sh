@@ -88,6 +88,9 @@ step_3_database() {
   echo "${JAUNE}Commence l'étape 3 base de données${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
   
+  if [ "${INSTALLATION_TYPE}" = "pigen" ];then
+    /usr/sbin/mysqld
+  fi
   service_action status mysql
   if [ $? -ne 0 ]; then
     service_action start mysql
