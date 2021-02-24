@@ -380,60 +380,59 @@ done
 
 if [ "${INSTALLATION_TYPE}" = "pigen" ];then
   set -x
-else
-  
-  echo "${JAUNE}Welcome to Jeedom installer${NORMAL}"
-  echo "${JAUNE}Jeedom version : ${VERSION}${NORMAL}"
-  echo "${JAUNE}Web folder : ${WEBSERVER_HOME}${NORMAL}"
-  echo "${JAUNE}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
-  
-  case ${STEP} in
-    0)
-    echo "${JAUNE}Commence toutes les étapes de l'installation${NORMAL}"
-    step_1_upgrade
-    step_2_mainpackage
-    step_3_database
-    step_4_apache
-    step_5_php
-    step_6_jeedom_download
-    step_7_jeedom_customization_mysql
-    step_8_jeedom_customization
-    step_9_jeedom_configuration
-    step_10_jeedom_installation
-    step_11_jeedom_post
-    step_12_jeedom_check
-    distrib_1_spe
-    echo "Installation finie. Un redémarrage devrait être effectué"
-    ;;
-    1) step_1_upgrade
-    ;;
-    2) step_2_mainpackage
-    ;;
-    3) step_3_database
-    ;;
-    4) step_4_apache
-    ;;
-    5) step_5_php
-    ;;
-    6) step_6_jeedom_download
-    ;;
-    7) step_7_jeedom_customization_mysql
-    ;;
-    8) step_8_jeedom_customization
-    ;;
-    9) step_9_jeedom_configuration
-    ;;
-    10) step_10_jeedom_installation
-    ;;
-    11) step_11_jeedom_post
-    ;;
-    12) step_12_jeedom_check
-    ;;
-    *) echo "${ROUGE}Désolé, Je ne peux sélectionner une ${STEP} étape pour vous !${NORMAL}"
-    ;;
-  esac
-  
-  rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
-  
-  exit 0
-  
+fi
+
+echo "${JAUNE}Welcome to Jeedom installer${NORMAL}"
+echo "${JAUNE}Jeedom version : ${VERSION}${NORMAL}"
+echo "${JAUNE}Web folder : ${WEBSERVER_HOME}${NORMAL}"
+echo "${JAUNE}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
+
+case ${STEP} in
+  0)
+  echo "${JAUNE}Commence toutes les étapes de l'installation${NORMAL}"
+  step_1_upgrade
+  step_2_mainpackage
+  step_3_database
+  step_4_apache
+  step_5_php
+  step_6_jeedom_download
+  step_7_jeedom_customization_mysql
+  step_8_jeedom_customization
+  step_9_jeedom_configuration
+  step_10_jeedom_installation
+  step_11_jeedom_post
+  step_12_jeedom_check
+  distrib_1_spe
+  echo "Installation finie. Un redémarrage devrait être effectué"
+  ;;
+  1) step_1_upgrade
+  ;;
+  2) step_2_mainpackage
+  ;;
+  3) step_3_database
+  ;;
+  4) step_4_apache
+  ;;
+  5) step_5_php
+  ;;
+  6) step_6_jeedom_download
+  ;;
+  7) step_7_jeedom_customization_mysql
+  ;;
+  8) step_8_jeedom_customization
+  ;;
+  9) step_9_jeedom_configuration
+  ;;
+  10) step_10_jeedom_installation
+  ;;
+  11) step_11_jeedom_post
+  ;;
+  12) step_12_jeedom_check
+  ;;
+  *) echo "${ROUGE}Désolé, Je ne peux sélectionner une ${STEP} étape pour vous !${NORMAL}"
+  ;;
+esac
+
+rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
+
+exit 0
