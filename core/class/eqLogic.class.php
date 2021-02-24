@@ -1607,6 +1607,7 @@ class eqLogic {
 		}
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->display = $display;
+		return $this;
 	}
 
 	public function getTimeout($_default = null) {
