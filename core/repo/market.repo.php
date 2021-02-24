@@ -693,6 +693,12 @@ class repo_market {
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');
 			}
+			if (isset($_result['broadcast::id']) && isset($_result['broadcast::message']) && $_result['broadcast::id'] != '' && $_result['broadcast::message'] != '') {
+				if($_result['broadcast::id'] != config::byKey('market::boradcast::id')){
+					config::save('market::boradcast::id', $_result['broadcast::id']);
+					message::add('Jeedom SAS',$_result['broadcast::message']);
+				}
+			}
 		}
 	}
 	/**
