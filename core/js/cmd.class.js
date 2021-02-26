@@ -100,7 +100,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else if(data.code == -32006){
@@ -140,7 +140,7 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-
+              
             });
           }
         }else{
@@ -183,8 +183,11 @@ jeedom.cmd.execute = function(_params) {
     cache: cache,
     value: _params.value || '',
   };
-  if(window.location.href.indexOf('p=dashboard') >= 0 || window.location.href.indexOf('p=plan') >= 0 || window.location.href.indexOf('p=view') >= 0 || $.mobile){
-    paramsAJAX.data.utid = utid;
+  if(user_login){
+    paramsAJAX.data.user_login = user_login
+  }
+  if(user_id){
+    paramsAJAX.data.user_id = user_id
   }
   $.ajax(paramsAJAX);
 };
@@ -591,7 +594,7 @@ jeedom.cmd.usedBy = function(_params) {
 jeedom.cmd.dropInflux = function(_params) {
   var paramsRequired = ['cmd_id'];
   var paramsSpecifics = {};
-   try {
+  try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
@@ -610,7 +613,7 @@ jeedom.cmd.dropInflux = function(_params) {
 jeedom.cmd.historyInflux = function(_params) {
   var paramsRequired = ['cmd_id'];
   var paramsSpecifics = {};
-   try {
+  try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
@@ -629,7 +632,7 @@ jeedom.cmd.historyInflux = function(_params) {
 jeedom.cmd.dropDatabaseInflux = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
-   try {
+  try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
@@ -647,7 +650,7 @@ jeedom.cmd.dropDatabaseInflux = function(_params) {
 jeedom.cmd.historyInfluxAll = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
-   try {
+  try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
@@ -741,7 +744,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-
+            
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
                 if(el.hasClass('bootstrapSwitch')){
@@ -779,7 +782,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-
+      
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
@@ -986,7 +989,7 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
   //moment.locale(jeedom_langage.substring(0, 2))
   var durationString = ''
   var used = 0
-
+  
   if (_duration._data.years > 0) {
     durationString += _duration._data.years + jeedom.config.locales[jeedom_langage].duration.year
     used++
@@ -999,25 +1002,25 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
     durationString += _duration._data.days + jeedom.config.locales[jeedom_langage].duration.day
     used++
   }
-
+  
   if (used == 3) return durationString
   if (_duration._data.hours > 0) {
     durationString += _duration._data.hours + jeedom.config.locales[jeedom_langage].duration.hour
     used++
   }
-
+  
   if (used == 3) return durationString
   if (_duration._data.minutes > 0) {
     durationString += _duration._data.minutes + jeedom.config.locales[jeedom_langage].duration.minute
     used++
   }
-
+  
   if (used == 3) return durationString
   if (_duration._data.seconds > 0) {
     durationString += _duration._data.seconds + jeedom.config.locales[jeedom_langage].duration.second
     used++
   }
-
+  
   return durationString
 }
 
@@ -1032,14 +1035,14 @@ jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
     _el.empty().append(dateString)
     return true
   }
-
+  
   if (_el.attr('data-interval') != undefined) {
     clearInterval(_el.attr('data-interval'))
   }
-
+  
   var tsDate = moment(_date).unix() * 1000
   var now = Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
-
+  
   var interval = 10000
   //_past more than one second ?
   if (now - tsDate > 1000) {
@@ -1055,13 +1058,13 @@ jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
     var durationString = "0"+jeedom.config.locales[jeedom_langage].duration.second
   }
   _el.empty().append(durationString)
-
+  
   //set refresh interval:
   var myinterval = setInterval(function() {
     var duration = moment.duration(moment() - moment(_date))
     var durationString = jeedom.cmd.formatMomentDuration(duration)
     _el.empty().append(durationString)
   }, interval)
-
+  
   _el.attr('data-interval', myinterval)
 }

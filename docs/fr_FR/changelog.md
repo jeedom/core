@@ -32,6 +32,7 @@
 - **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
 - **Utilisateurs** : Possibilité de gérer les profils des différents utilisateur Jeedom depuis la page de gestion des utilisateurs.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
+- **Ajout de l'utilisateur executant une action** : ajout dans les options d'éxecution de la commande de l'id et du nom d'utilisateur lancant l'action (visible dans le log event par exemple)
 
 ### Widgets Core
 

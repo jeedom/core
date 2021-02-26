@@ -29,14 +29,12 @@ if ('serviceWorker' in navigator) {
   })
 }
 
-var utid = 0
 var PANEL_SCROLL = 0
 var APP_MODE = false
 var TAPHOLD = false
 $.event.special.tap.emitTapOnTaphold = false
 
 $(function() {
-  utid = Date.now()
   jeedomUtils._elBackground = $('#backgroundforJeedom')
   
   $(window).on('orientationchange', function(event) {
