@@ -1337,6 +1337,8 @@
         "Possibilité de gérer les profils des différents utilisateur Jeedom depuis la page de gestion des utilisateurs": "Posibilidad de gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios",
         "Centre de Mises à jour": "Centro de actualizaciones",
         "Le centre de mises à jour affiche désormais la date de dernière mise à jour": "El Centro de actualizaciones ahora muestra la fecha de la última actualización",
+        "Ajout de l'utilisateur executant une action": "Agregar al usuario que realiza una acción",
+        "ajout dans les options d'éxecution de la commande de l'id et du nom d'utilisateur lancant l'action (visible dans le log event par exemple": "además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo",
         "Widgets Core": "Widgets principales",
         "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard": "Ahora se puede acceder a la configuración de los widgets para la versión móvil desde la ventana de configuración del equipo en el modo de edición del tablero",
         "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard": "Los parámetros opcionales disponibles en los widgets ahora se muestran para cada widget, ya sea en la configuración del comando o desde el modo de edición del tablero",

@@ -32,6 +32,7 @@
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Users** : Possibility of managing the profiles of different Jeedom users from the user management page.
 - **Updates Center** : Update Center now displays the date of the last update.
+- **Adding the user performing an action** : addition in the command execution options of the id and user name launching the action (visible in the log event for example)
 
 ### Core Widgets
 

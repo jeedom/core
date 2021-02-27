@@ -32,6 +32,7 @@
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Usuarios** : Posibilidad de gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
+- **Agregar al usuario que realiza una acción** : además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 
 ### Widgets principales
 
