@@ -183,10 +183,10 @@ jeedom.cmd.execute = function(_params) {
     cache: cache,
     value: _params.value || '',
   };
-  if(user_login){
+  if(typeof user_login != "undefined"){
     paramsAJAX.data.user_login = user_login
   }
-  if(user_id){
+  if(typeof user_id != "undefined"){
     paramsAJAX.data.user_id = user_id
   }
   $.ajax(paramsAJAX);
