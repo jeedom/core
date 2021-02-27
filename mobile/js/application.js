@@ -316,6 +316,7 @@ var clientServerDiffDatetime
 var serverTZoffsetMin
 var jeedom_langage
 var user_id
+var user_login
 var plugins
 var userProfils
 var deviceInfo
@@ -336,6 +337,7 @@ jeedomUtils.initApplication = function(_reinit) {
     success: function (data) {
       jeedom.theme = data.result
       jeedom_langage = data.result.langage
+      
       jeedomUtils.insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
       jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")
       jeedomUtils.insertHeader("apple-touch-icon-precomposed",jeedom.theme.product_icon, "256x256")
@@ -366,6 +368,7 @@ jeedomUtils.initApplication = function(_reinit) {
         clientServerDiffDatetime = serverDatetime*1000 - clientDatetime.getTime()
         serverTZoffsetMin = data.result.serverTZoffsetMin
         user_id = data.result.user_id
+        user_login = data.result.user_login
         plugins = data.result.plugins
         userProfils = data.result.userProfils
         jeedom.init()
