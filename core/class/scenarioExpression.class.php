@@ -1309,7 +1309,7 @@ class scenarioExpression {
 				} elseif ($this->getExpression() == 'sleep') {
 					if (isset($options['duration'])) {
 						try {
-							$options['duration'] = intval(evaluate($options['duration']));
+							$options['duration'] = floatval(evaluate($options['duration']));
 						} catch (Exception $e) {
 							
 						} catch (Error $e) {
