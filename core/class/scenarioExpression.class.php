@@ -1313,7 +1313,7 @@ class scenarioExpression {
 						} catch (Error $e) {
 							
 						}
-						if (is_int($options['duration']) && $options['duration'] > 0) {
+						if ((is_float($options['duration']) || is_int($options['duration'])) && $options['duration'] > 0) {
 							$this->setLog($scenario, __('Pause de ', __FILE__) . $options['duration'] . __(' seconde(s)', __FILE__));
 							if ($options['duration'] < 1) {
 								usleep($options['duration'] * 1000000);
