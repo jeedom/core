@@ -333,11 +333,6 @@ try {
 		} else if (!jeedom::apiAccess($apikey)) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__), -32002);
 		}
-		if (is_object($_USER_GLOBAL) && isset($params['session']) && $params['session']) {
-			@session_start();
-			$_SESSION['user'] = $_USER_GLOBAL;
-			@session_write_close();
-		}
 	}
 	
 	if($_RESTRICTED){
