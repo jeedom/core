@@ -596,7 +596,7 @@ $pageContainer.on('click','.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function
         let html = $(data.html).css('position','absolute')
         html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
         el.empty().append(html)
-        jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'))
+        jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'),false)
         if (deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')) {
           el.off('mouseleave').on('mouseleave',function() {
             el.empty()
