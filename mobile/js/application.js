@@ -32,6 +32,7 @@ if ('serviceWorker' in navigator) {
 var PANEL_SCROLL = 0
 var APP_MODE = false
 var TAPHOLD = false
+var CURRENT_PAGE = null
 $.event.special.tap.emitTapOnTaphold = false
 
 $(function() {
@@ -508,7 +509,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     _option = _page[2]
     _page = _page[0]
   }
-  
+  CURRENT_PAGE = _page
   //handle browser history:
   if (PAGE_HISTORY[PAGE_HISTORY.length - 1]) {
     PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop()
