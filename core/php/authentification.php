@@ -17,7 +17,7 @@
 */
 require_once __DIR__ . '/core.inc.php';
 
-$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
+$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:userHeader'));
 
 if (!isset($_SESSION)) {
 	$session_lifetime = $configs['session_lifetime'];
