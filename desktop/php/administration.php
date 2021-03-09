@@ -1553,12 +1553,6 @@ user::isBan();
 										<input type="text" class="configKey form-control" data-l1key="ldap:filter:restrict" />
 									</div>
 								</div>
-								<div class="form-group has-error">
-									<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Autoriser REMOTE_USER}}</label>
-									<div class="col-md-3 col-sm-4 col-xs-12">
-										<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
-									</div>
-								</div>
 								<div class="form-group">
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
 									<div class="col-md-3 col-sm-4 col-xs-12">
@@ -1571,14 +1565,14 @@ user::isBan();
 						}?>
 						
 						<legend>{{Intégration SSO}}</legend>
-							<div class="form-group has-error">
+							<div class="form-group">
 								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Utilisateur disponible dans REMOTE_USER}}</label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
 								</div>
 							</div>
 
-							<div class="form-group has-error">
+							<div class="form-group">
 								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Utilisateur disponible dans un Header}}</label>
 								<div class="col-md-3 col-sm-4 col-xs-12">
 									<input type="text" class="configKey form-control" data-l1key="sso:userHeader" />
