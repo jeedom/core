@@ -67,6 +67,17 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	}
 }
 
+if (!isConnect() && $configs['sso:userHeader'] != '') {
+	$headers = getallheaders();
+	$user = user::byLogin($headers[$configs['sso:userHeader']]);
+	if (is_object($user) && $user->getEnable() == 1) {
+		@session_start();
+		$_SESSION['user'] = $user;
+		@session_write_close();
+		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
+	}
+}
+
 if (!isConnect() && init('auth') != '') {
 	loginByHash(init('auth'));
 }
