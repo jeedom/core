@@ -153,8 +153,11 @@ function displayPlugin(_pluginId) {
       }
 
       if ((data.hasDependency == 0 || data.activate != 1) && (data.hasOwnDeamon == 0 || data.activate != 1)) {
-        $divPluginDependancy.closest('.panel').parent().remove()
-        $divPluginDeamon.closest('.panel').parent().remove()
+        $divPluginDependancy.closest('.panel').parent().hide()
+        $divPluginDeamon.closest('.panel').parent().hide()
+      }else{
+        $divPluginDependancy.closest('.panel').parent().show()
+        $divPluginDeamon.closest('.panel').parent().show()
       }
 
       //top right buttons:
