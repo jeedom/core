@@ -30,6 +30,34 @@ class history {
 	
 	/*     * ***********************Methode static*************************** */
 	
+	public static function checkCurrentValueAndHistory(){
+		$sql = 'SELECT DISTINCT(cmd_id)
+		FROM history';
+		$cmd_ids = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
+		foreach ($cmd_ids as $cmd_id) {
+			$cmd = cmd::byId($cmd_id['cmd_id']);
+			if(!is_object($cmd)){
+				continue;
+			}
+			$values = array(
+				'cmd_id' => $cmd->getId(),
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql .= ' FROM history
+			WHERE cmd_id=:cmd_id ';
+			$sql .= ' ORDER BY `datetime` DESC LIMIT 1';
+			$history = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'history');
+			$cmd->execCmd();
+			if(strtotime($cmd->getCollectDate()) < strtotime($history->getDatetime())){
+				$cmd->setCache('collectDate', $history->getDatetime());
+				$cmd->setCache(array(
+					'value' => $history->getValue(),
+					'collectDate'=>$history->getDatetime()
+				));
+			}
+		}
+	}
+	
 	public static function exportToCSV($histories){
 		if(!is_array($histories)){
 			$histories = array($histories);

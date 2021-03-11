@@ -967,6 +967,15 @@ class jeedom {
 			}
 			
 			try {
+				log::add('starting', 'debug', __('Reconcilisation de l\'historique', __FILE__));
+				history::checkCurrentValueAndHistory();
+			} catch (Exception $e) {
+				log::add('starting', 'error', __('Erreur sur la reconcilisation de l\'historique : ', __FILE__) . log::exception($e));
+			} catch (Error $e) {
+				log::add('starting', 'error', __('Erreur sur la reconcilisation de l\'historique : ', __FILE__) . log::exception($e));
+			}
+			
+			try {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques USB', __FILE__));
 				$cache = cache::byKey('jeedom::usbMapping');
 				$cache->remove();
@@ -1586,4 +1595,5 @@ class jeedom {
 			return $return;
 		}
 	}
+	
 	
