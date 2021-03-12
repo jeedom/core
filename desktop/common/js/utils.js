@@ -863,7 +863,10 @@ jeedomUtils.initRowOverflow = function() {
   if ($('.row-overflow').attr('data-offset') != undefined) {
     hWindow -= $('.row-overflow').attr('data-offset')
   }
-  $('.row-overflow > div:not(#div_displayObjectList)').height(hWindow).css({'padding-top': '0px', 'overflow-y': 'auto', 'overflow-x': 'hidden', 'padding-top': '5px'})
+  $('.row-overflow > div:not(#div_displayObjectList)').each(function(){
+    let style = $(this).attr('style');
+    $(this).css('cssText','padding-top:0px;overflow-y:auto !important;overflow-x:hidden !important;padding-top:5px;padding-right:5px !important;'+style).height(hWindow)
+  })
 }
 
 jeedomUtils.initReportMode = function() {

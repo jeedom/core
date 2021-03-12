@@ -20,7 +20,7 @@ $(function() {
   setTimeout(function() {
     $('input', 'textarea', 'select').click(function() { $(this).focus() })
   }, 750)
-
+  
   jeedomUI.isEditing = false
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
@@ -29,8 +29,8 @@ $(function() {
 var modifyWithoutSave = false
 
 $('#div_pageContainer').on('click','.bt_gotoViewZone',function() {
-  var top = $('.div_displayViewContainer').scrollTop()+ $('.lg_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60
-  $('.div_displayViewContainer').animate({ scrollTop: top}, 500)
+  var ptop = $('.div_displayViewContainer').scrollTop()+ $('.lg_viewZone[data-zone_id='+$(this).attr('data-zone_id')+']').offset().top - 60
+  $('.div_displayViewContainer').animate({ scrollTop: ptop}, 500)
 })
 
 function fullScreen(_mode) {
@@ -83,7 +83,7 @@ if (view_id != '') {
       } else {
         jeedomUtils.setBackgroundImage('')
       }
-
+      
       try {
         var summary = ''
         for (var i in html.raw.viewZone) {
@@ -93,24 +93,24 @@ if (view_id != '') {
       } catch(err) {
         console.log(err)
       }
-
+      
       try {
         $('.div_displayView').last().empty().html(html.html)
       } catch(err) {
         console.log(err)
       }
-
+      
       setTimeout(function() {
         jeedomUtils.initReportMode()
         jeedomUtils.positionEqLogic()
         $('.eqLogicZone').disableSelection()
         $('input', 'textarea', 'select').click(function() { $(this).focus() })
-
+        
         $('.eqLogicZone').each(function() {
           var container = $(this).packery()
           var itemElems = container.find('.eqLogic-widget, .scenario-widget').draggable()
           container.packery('bindUIDraggableEvents', itemElems)
-
+          
           //set vieworder for editMode:
           $(itemElems).each( function(i, itemElem ) {
             $(itemElem).attr('data-vieworder', i + 1 )
@@ -118,10 +118,10 @@ if (view_id != '') {
           container.on('dragItemPositioned', function() {
             jeedomUI.orderItems(container, 'data-vieworder')
           })
-
+          
           itemElems.draggable('disable')
         })
-
+        
         if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
           $('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
         }
@@ -169,11 +169,11 @@ function editWidgetMode(_mode, _save) {
     modifyWithoutSave = false
     jeedomUI.isEditing = false
     jeedom.cmd.disableExecute = false
-
+    
     divEquipements.find('.editingMode.allowResize').resizable('destroy')
     divEquipements.find('.editingMode').draggable('disable').removeClass('editingMode','').removeAttr('data-editId')
     divEquipements.find('.cmd.editOptions').remove()
-
+    
     if (!isset(_save) || _save) {
       jeedomUI.saveWidgetDisplay({view : 1})
     }
@@ -181,7 +181,7 @@ function editWidgetMode(_mode, _save) {
     jeedomUI.isEditing = true
     jeedom.cmd.disableExecute = true
     $('.eqLogic-widget, .scenario-widget').addClass('editingMode')
-
+    
     //show orders:
     var value
     $('.jeedomAlreadyPosition.ui-draggable').each(function() {
@@ -192,14 +192,14 @@ function editWidgetMode(_mode, _save) {
         $(this).prepend('<span class="counterReorderJeedom pull-left">'+value+'</span>')
       }
     })
-
+    
     //set unique id whatever we have:
     divEquipements.find('.eqLogic-widget, .scenario-widget').each(function(index) {
       $(this).addClass('editingMode')
-        .attr('data-editId', index)
-        .append('<span class="cmd editOptions cursor"></span>')
+      .attr('data-editId', index)
+      .append('<span class="cmd editOptions cursor"></span>')
     })
-
+    
     //set draggables:
     divEquipements.find('.editingMode').draggable({
       disabled: false,
