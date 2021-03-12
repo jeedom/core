@@ -320,7 +320,10 @@ jeedomUtils.setJeedomTheme = function() {
     $('#bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
     jeedomUtils.triggerThemechange()
-    jeedomUtils.setBackgroundImage('')
+    let backgroundImgPath = jeedomUtils._elBackground.find('#bottom').css('background-image')
+    if(backgroundImgPath.indexOf('/data/') == -1){
+      jeedomUtils.setBackgroundImage('')
+    }
   })
   
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
