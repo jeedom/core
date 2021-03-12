@@ -3866,6 +3866,8 @@
         "Erreur sur l\\'arrêt des tâches crons : ": "Cron işleri durdurulurken hata oluştu:",
         "Restauration du cache": "Önbellek geri yükleme",
         "Erreur sur la restauration du cache : ": "Önbellek geri yüklenirken hata oluştu:",
+        "Reconcilisation de l\\'historique": "Reconcilisation de l\\'historique",
+        "Erreur sur la reconcilisation de l\\'historique : ": "Erreur sur la reconcilisation de l\\'historique :",
         "Nettoyage du cache des péripheriques USB": "USB aygıtı kapağını temizleme",
         "Erreur sur le nettoyage du cache des péripheriques USB : ": "USB cihazlarının önbelleğini temizleme hatası:",
         "Nettoyage du cache des péripheriques Bluetooth": "Bluetooth cihaz kapağını temizleme",

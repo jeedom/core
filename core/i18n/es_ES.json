@@ -3866,6 +3866,8 @@
         "Erreur sur l\\'arrêt des tâches crons : ": "Error al detener trabajos cron:",
         "Restauration du cache": "Restauración de la cache",
         "Erreur sur la restauration du cache : ": "Error al restaurar el caché:",
+        "Reconcilisation de l\\'historique": "Conciliar la historia",
+        "Erreur sur la reconcilisation de l\\'historique : ": "Error al conciliar el historial:",
         "Nettoyage du cache des péripheriques USB": "Limpieza de la caché de dispositivos USB",
         "Erreur sur le nettoyage du cache des péripheriques USB : ": "Error al limpiar el caché de dispositivos USB:",
         "Nettoyage du cache des péripheriques Bluetooth": "Limpiar la caché de dispositivos Bluetooth",

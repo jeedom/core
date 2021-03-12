@@ -3866,6 +3866,8 @@
         "Erreur sur l\\'arrêt des tâches crons : ": "Fehler beim Stoppen von Cron-Jobs:",
         "Restauration du cache": "Cache-Wiederherstellung",
         "Erreur sur la restauration du cache : ": "Fehler beim Wiederherstellen des Caches:",
+        "Reconcilisation de l\\'historique": "Geschichte in Einklang bringen",
+        "Erreur sur la reconcilisation de l\\'historique : ": "Fehler beim Abgleichen des Verlaufs:",
         "Nettoyage du cache des péripheriques USB": "Reinigen der USB-Geräteabdeckung",
         "Erreur sur le nettoyage du cache des péripheriques USB : ": "Fehler beim Reinigen des Cache von USB-Geräten:",
         "Nettoyage du cache des péripheriques Bluetooth": "Reinigen der Bluetooth-Geräteabdeckung",
