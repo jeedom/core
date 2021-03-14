@@ -43,6 +43,14 @@
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degrau* para definir a etapa de mudança no cursor.
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 
+### Backup na nuvem 
+
+Nós adicionamos uma confirmação da senha da nuvem de backup para evitar erros de digitação tanto quanto possível (como um lembrete você é o único e apenas para saber essa senha em caso de esquecimento, não podemos absolutamente nada para recuperar sua nuvem de backup). 
+
+>**IMPORTANTE**
+>
+>Após a atualização, é OBRIGATÓRIO ir para a configuração da aba Atualização / Mercado do jeedom e digitar a confirmação da senha do backup em nuvem sem isso nenhum backup pode ser feito
+
 # Registro de alterações Jeedom V4.1
 
 

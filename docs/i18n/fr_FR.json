@@ -837,6 +837,10 @@
         "est maintenant disponible en desktop, avec un paramètre optionnel": "est maintenant disponible en desktop, avec un paramètre optionnel",
         "ce qui en fait un": "ce qui en fait un",
         "simple": "simple",
+        "Backup cloud": "Backup cloud",
+        "Nous avons ajouter une confirmation du mot de passe de backup cloud pour eviter un maximum les erreurs de saisies (pour rappel vous etes le seul et unique à connaitre ce mot de passe en cas d'oublie nous ne pouvons absolument rien pour recuperer votre backup cloud": "Nous avons ajouter une confirmation du mot de passe de backup cloud pour eviter un maximum les erreurs de saisies (pour rappel vous etes le seul et unique à connaitre ce mot de passe en cas d'oublie nous ne pouvons absolument rien pour recuperer votre backup cloud",
+        "IMPORTANT": "IMPORTANT",
+        "Suite à la mise à jour il faudra OBLIGATOIREMENT aller dans la configuration de jeedom onglet Mise à jour\/Market et taper la confirmation de mot de passe de backup cloud sans ca aucun backup ne pourra se faire": "Suite à la mise à jour il faudra OBLIGATOIREMENT aller dans la configuration de jeedom onglet Mise à jour\/Market et taper la confirmation de mot de passe de backup cloud sans ca aucun backup ne pourra se faire",
         "Changelog Jeedom V4.1": "Changelog Jeedom V4.1",
         "4.1.20": "4.1.20",
         "Bugfix scroll horizontal sur les designs": "Bugfix scroll horizontal sur les designs",
@@ -1195,7 +1199,6 @@
         "ici": "ici",
         "Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core": "Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core",
         "Plus d'informations": "Plus d'informations",
-        "IMPORTANT": "IMPORTANT",
         "Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte": "Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte"
     },
     "cron.md": {
