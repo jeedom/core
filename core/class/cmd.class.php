@@ -1883,7 +1883,7 @@ class cmd {
 					$_value = $this->execCmd();
 				}
 				if ($_level != 'none') {
-					if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0 && strtotime($eqLogic->getStatus('enableDatime'). '+ '.$this->getAlert($_level . 'during')) > strtotime('now')) {
+					if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0 && $eqLogic->getStatus('enableDatime') != '' && strtotime($eqLogic->getStatus('enableDatime'). '+ '.$this->getAlert($_level . 'during')) > strtotime('now')) {
 						return;
 					}
 					$message = __('Alert sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value . trim(' ' . $this->getUnite());
