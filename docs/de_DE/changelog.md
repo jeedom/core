@@ -43,6 +43,14 @@
 - Widgets vom Typ Cursor (Aktion) akzeptieren jetzt einen optionalen Parameter *Schritt* um den Änderungsschritt am Cursor zu definieren.
 - Das Widget **action.slider.value** ist jetzt auf dem Desktop mit einem optionalen Parameter verfügbar *Noslider*, was macht es ein *Eingang* einfach.
 
+### Cloud-Backup 
+
+Wir haben eine Bestätigung des Backup-Cloud-Passworts hinzugefügt, um Tippfehler so weit wie möglich zu vermeiden (zur Erinnerung, Sie sind derjenige, der dieses Passwort nur kennt, wenn Sie vergessen, dass wir absolut nichts tun können, um Ihre Backup-Cloud wiederherzustellen). 
+
+>**WICHTIG**
+>
+>Nach dem Update ist es obligatorisch, zur Konfiguration der Registerkarte jeedom Update / Market zu wechseln und die Bestätigung des Cloud-Sicherungskennworts einzugeben, ohne dass keine Sicherung durchgeführt werden kann
+
 # Changelog Jeedom V4.1
 
 

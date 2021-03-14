@@ -43,6 +43,14 @@
 - Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *paso* para definir el paso de cambio en el cursor.
 - El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
 
+### Respaldo en la nube 
+
+Hemos agregado una confirmación de la contraseña de la nube de respaldo para evitar errores tipográficos tanto como sea posible (como recordatorio usted es el único en conocer esta contraseña en caso de olvidarnos, no podemos absolutamente nada para recuperar su nube de respaldo). 
+
+>**IMPORTANTE**
+>
+>Después de la actualización, es OBLIGATORIO ir a la configuración de la pestaña Actualización / Mercado de jeedom y escribir la confirmación de la contraseña de la copia de seguridad en la nube sin que no se pueda realizar ninguna copia de seguridad
+
 # Registro de cambios Jeedom V4.1
 
 

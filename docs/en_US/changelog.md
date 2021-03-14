@@ -43,6 +43,14 @@
 - Cursor (action) type Widgets now accept an optional parameter *step* to define the change step at the cursor.
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
 
+### Cloud backup 
+
+We have added a confirmation of the backup cloud password to avoid typing errors as much as possible (as a reminder you are the one and only to know this password in case of forgetting we can absolutely nothing to recover your backup cloud). 
+
+>**IMPORTANT**
+>
+>Following the update, it is COMPULSORY to go to the configuration of jeedom Update / Market tab and type the confirmation of the cloud backup password without this no backup can be done
+
 # Changelog Jeedom V4.1
 
 
