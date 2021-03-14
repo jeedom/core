@@ -43,6 +43,14 @@
 - Les Widgets de type curseur (action) acceptent maintenant un paramètre optionnel *step* pour définir le pas de changement au curseur.
 - Le Widget **action.slider.value** est maintenant disponible en desktop, avec un paramètre optionnel *noslider*, ce qui en fait un *input* simple.
 
+### Backup cloud 
+
+Nous avons ajouter une confirmation du mot de passe de backup cloud pour eviter un maximum les erreurs de saisies (pour rappel vous etes le seul et unique à connaitre ce mot de passe en cas d'oublie nous ne pouvons absolument rien pour recuperer votre backup cloud). 
+
+>**IMPORTANT**
+>
+>Suite à la mise à jour il faudra OBLIGATOIREMENT aller dans la configuration de jeedom onglet Mise à jour/Market et taper la confirmation de mot de passe de backup cloud sans ca aucun backup ne pourra se faire
+
 # Changelog Jeedom V4.1
 
 

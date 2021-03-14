@@ -96,6 +96,10 @@ class repo_market {
 				'cloud::backup::password' => array(
 					'name' => __('[Backup cloud] Mot de passe',__FILE__),
 					'type' => 'password',
+				),
+				'cloud::backup::password_confirmation' => array(
+					'name' => __('[Backup cloud] Mot de passe (confirmation)',__FILE__),
+					'type' => 'password',
 				)
 			),
 			'parameters_for_add' => array(
@@ -227,6 +231,9 @@ class repo_market {
 	/*     * ***********************BACKUP*************************** */
 	
 	public static function backup_flysystem(){
+		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
+			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
+		}
 		$client = new Sabre\DAV\Client(array(
 			'baseUri' => config::byKey('service::backup::url'),
 			'userName' => config::byKey('market::username'),
@@ -261,6 +268,9 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour/Market)', __FILE__));
 		}
+		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
+			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
+		}
 		self::backup_clean($_path);
 		self::backup_createFolderIsNotExist();
 		try {
@@ -288,6 +298,9 @@ class repo_market {
 	public static function backup_clean($_path) {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
+		}
+		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
+			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
 		}
 		$limit = 3900;
 		self::backup_createFolderIsNotExist();
@@ -334,6 +347,9 @@ class repo_market {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return array();
 		}
+		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
+			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
+		}
 		self::backup_createFolderIsNotExist();
 		$filesystem =self::backup_flysystem();
 		$folders = $filesystem->getAdapter()->listContents('/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')));
@@ -345,6 +361,9 @@ class repo_market {
 	}
 	
 	public static function backup_restore($_backup) {
+		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
+			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
+		}
 		$backup_dir = calculPath(config::byKey('backup::path'));
 		if (!file_exists($backup_dir)) {
 			mkdir($backup_dir, 0770, true);
