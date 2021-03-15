@@ -3797,7 +3797,7 @@
         "La commande n\\'est pas dans la plage de valeur autorisée : ": "Der Befehl liegt nicht im autorisierten Wertebereich:",
         "Evènement sur la commande ": "Ereignis auf den Befehl",
         " valeur : ": "Wert :",
-        "Alert sur la commande ": "Benachrichtigung über die Bestellung",
+        "Alerte sur la commande ": "Bestellalarm",
         " niveau ": "Ebene",
         "pendant plus de ": "für mehr als",
         " minute(s)": "Minute (n)",
