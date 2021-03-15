@@ -32,7 +32,7 @@ foreach ($result as $key => $packages) {
       $datas[$package] = $info;
       $datas[$package]['needBy'] = array($key);
     }else{
-      if($info['level'] < $datas[$package]['level']){
+      if(isset($datas[$package]['level']) && $info['level'] < $datas[$package]['level']){
         $datas[$package]['level'] = $info['level'];
       }
       if($info['status'] != $datas[$package]['status'] && $info['status'] == 0){
