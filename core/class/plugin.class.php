@@ -637,7 +637,7 @@ class plugin {
 		} else {
 			$return = $cache->getValue();
 			if (is_array($return) && $return['state'] == 'ok') {
-				//return $cache->getValue();
+				return $cache->getValue();
 			}
 		}
 		if(file_exists(__DIR__.'/../../plugins/'.$plugin_id.'/plugin_info/packages.json')){
