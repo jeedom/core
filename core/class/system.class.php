@@ -247,6 +247,7 @@ class system {
 				continue;
 			}
 			$installPackage = self::getInstallPackage($type);
+			
 			foreach ($_packages[$type] as $package => $info) {
 				if($type == 'npm' && strpos($package,'/') !== false){
 					exec('cd '.__DIR__.'/../../'.$package.';npm list', $output, $return_var);
@@ -280,14 +281,12 @@ class system {
 						if(isset($installPackage[$alternative])){
 							$found = 2;
 							$alternative_found = $alternative;
-							$version = $installPackage[$alternative]['version'];
 							break;
 						}
 						$keys = array_values(preg_grep($alternative, array_keys($installPackage)));
 						if(is_array($keys) && count($keys) > 0){
 							$found = 2;
 							$alternative_found = $keys[0];
-							$version = $installPackage[$keys[0]]['version'];
 							break;
 						}
 					}

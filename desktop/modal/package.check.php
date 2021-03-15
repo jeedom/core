@@ -35,6 +35,11 @@ foreach ($result as $key => $packages) {
       if($info['level'] < $datas[$package]['level']){
         $datas[$package]['level'] = $info['level'];
       }
+      if($info['status'] != $datas[$package]['status'] && $info['status'] == 0){
+        $datas[$package]['status'] = $info['status'];
+        $datas[$package]['fix'] = $info['fix'];
+      }
+      $datas[$package]['remark'] .= '. '.$info['remark'];
       $datas[$package]['needBy'][] = $key;
     }
   }
@@ -78,7 +83,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
       $_echo .= '<td>';
       $_echo .= $info['type'];
       $_echo .= '</td>';
-
+      
       if($info['status'] == 1){
         $_echo .= '<td class="alert-success">OK</td>';
       }elseif($info['status'] == 2){
@@ -90,7 +95,7 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
           $_echo .= '<td class="alert-danger">NOK</td>';
         }
       }
-
+      
       $_echo .= '<td>';
       if($info['optional'] == 0){
         $_echo .= '<span class="label label-warning">{{oui}}</span>';
@@ -98,24 +103,24 @@ if(count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0){
         $_echo .= '<span class="label label-info">{{non}}</span>';
       }
       $_echo .= '</td>';
-
+      
       $_echo .= '<td>';
       foreach ($info['needBy'] as $value) {
         $_echo .= '<span class="label label-primary" style="display:inline-block;">'.$value.'</span> ';
       }
       $_echo .= '</td>';
-
+      
       $_echo .= '<td>';
       $_echo .= $info['version'];
       if($info['needUpdate']){
         $_echo .= '/'.$info['needVersion'];
       }
       $_echo .= '</td>';
-
+      
       $_echo .= '<td>';
       $_echo .= $info['remark'];
       $_echo .= '</td>';
-
+      
       $_echo .= '<td>';
       $_echo .= $info['fix'];
       $_echo .= '</td>';
