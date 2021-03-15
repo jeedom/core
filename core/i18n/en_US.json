@@ -3797,7 +3797,7 @@
         "La commande n\\'est pas dans la plage de valeur autorisée : ": "The command is not within the authorized value range:",
         "Evènement sur la commande ": "Event on command",
         " valeur : ": "value : ",
-        "Alert sur la commande ": "Alert on command",
+        "Alerte sur la commande ": "Order alert",
         " niveau ": " level ",
         "pendant plus de ": "for more than",
         " minute(s)": "minutes)",
