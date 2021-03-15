@@ -1877,15 +1877,15 @@ class cmd {
 				if($eqLogic->getIsEnable() == 0){
 					return;
 				}
+				if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0 && $eqLogic->getStatus('enableDatime') != '' && strtotime($eqLogic->getStatus('enableDatime'). '+ '.$this->getAlert($_level . 'during')) > strtotime('now')) {
+					return;
+				}
 				$maxAlert = $eqLogic->getMaxCmdAlert();
 				$prevAlert = $eqLogic->getAlert();
 				if (!$_value) {
 					$_value = $this->execCmd();
 				}
 				if ($_level != 'none') {
-					if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0 && $eqLogic->getStatus('enableDatime') != '' && strtotime($eqLogic->getStatus('enableDatime'). '+ '.$this->getAlert($_level . 'during')) > strtotime('now')) {
-						return;
-					}
 					$message = __('Alerte sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value . trim(' ' . $this->getUnite());
 					if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
 						$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
