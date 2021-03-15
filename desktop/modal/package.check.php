@@ -39,7 +39,9 @@ foreach ($result as $key => $packages) {
         $datas[$package]['status'] = $info['status'];
         $datas[$package]['fix'] = $info['fix'];
       }
-      $datas[$package]['remark'] .= '. '.$info['remark'];
+      if($info['remark'] != ''){
+        $datas[$package]['remark'] .= '. '.$info['remark'];
+      }
       $datas[$package]['needBy'][] = $key;
     }
   }
