@@ -688,7 +688,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
   
   $('#bt_messageModal').on('click',function() {
     jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1')
+    $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
   })
   $('#bt_jsErrorModal').on('click',function() {
     jeedomUtils.closeModal('md_modal')
