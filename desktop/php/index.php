@@ -121,7 +121,7 @@ function setTheme() {
 	}
 	$jeedom_theme['currentTheme'] = $themeDefinition;
 	if ( substr($themeDefinition, -5) == '_Dark' ) {
-		$homeLogoSrc = '../../'.config::byKey('logo_dark');
+		$homeLogoSrc = config::byKey('logo_dark');
 	}
 	echo $themeCss;
 	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
