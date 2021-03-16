@@ -15,12 +15,14 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' != '1') cmd.find('.timeCmd').parent().remove()
-
-      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
+      
+      if (_options.display_value == '') {
+	cmd.find('.iconCmd').empty().append((jeedom.cmd.normalizeName('#name#') == 'off') ? "#_icon_off_#" : "#_icon_on_#");
+      } else if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide()
         } else {
-          cmd.show()
+          cmd.show();
           cmd.find('.iconCmd').empty().append("#_icon_on_#")
           if ('#_time_widget_#' == '1') jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
         }
