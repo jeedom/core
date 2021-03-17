@@ -2,7 +2,6 @@
 
 installVer='12' 	#NodeJS major version to be installed
 minVer='12'	      #min NodeJS major version to be accepted
-armvVer='v12.19.0'	#version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if [ -f /etc/apt/sources.list.d/deb-multimedia.list* ]; then
@@ -44,7 +43,7 @@ EOL
 
 # Mise à jour APT et installation des packages nécessaires
 sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential apt-utils git
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lsb-release build-essential apt-utils git
 
 # Vérification du système
 arch=`arch`;
@@ -95,13 +94,30 @@ else
   
   if [[ $arch == "armv6l" ]]
   then
-    echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armvVer} pour armv6l"
-    wget https://unofficial-builds.nodejs.org/download/release/${armvVer}/node-${armvVer}-linux-armv6l.tar.gz
-    tar -xvf node-${armvVer}-linux-armv6l.tar.gz
-    cd node-${armvVer}-linux-armv6l
+    #version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
+    if [[ $installVer == "12" ]]
+    then
+      armVer="12.21.0"
+    fi
+    if [[ $installVer == "13" ]]
+    then
+      armVer="13.14.0"
+    fi
+    if [[ $installVer == "14" ]]
+    then
+      armVer="14.16.0"
+    fi
+    if [[ $installVer == "15" ]]
+    then
+      armVer="15.9.0"
+    fi
+    echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
+    wget https://unofficial-builds.nodejs.org/download/release/${armvVer}/node-v${armVer}-linux-armv6l.tar.gz
+    tar -xvf node-v${armVer}-linux-armv6l.tar.gz
+    cd node-v${armVer}-linux-armv6l
     sudo cp -f -R * /usr/local/
     cd ..
-    rm -fR node-${armvVer}-linux-armv6l* &>/dev/null
+    rm -fR node-v${armVer}-linux-armv6l* &>/dev/null
     ln -s /usr/local/bin/node /usr/bin/node &>/dev/null
     ln -s /usr/local/bin/node /usr/bin/nodejs &>/dev/null
     #upgrade to recent npm
