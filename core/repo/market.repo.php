@@ -354,8 +354,7 @@ class repo_market {
 			mkdir('/tmp/jeedom_gnupg');
 		}
 		com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
-		$cmd = 'cd '.$backup_dir.';wget https://'.config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'/'.$_backup;
-		com_shell::execute($cmd);
+		$cmd = 'cd '.$backup_dir.';wget "https://'.config::byKey('market::username') . ':' . config::byKey('market::password').'@' .str_replace('https://','',config::byKey('service::backup::url')) . '/webdav/'. config::byKey('market::username').'/'. config::byKey('market::cloud::backup::name').'/'.$_backup.'"';
 		$cmd = 'echo "'.config::byKey('market::cloud::backup::password').'" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 --output '.$backup_dir.'/cloud-'.str_replace('.gpg','',$_backup).' -d '.$backup_dir.'/'.$_backup;
 		com_shell::execute($cmd);
 		unlink($backup_dir.'/'.$_backup);
