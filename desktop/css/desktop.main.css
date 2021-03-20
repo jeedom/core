@@ -3739,7 +3739,7 @@ Theme Core 2021 @Jeedom
     height: unset !important;
   }
   .div_backgroundPlan {
-    height: calc(100vh - 50px) !important;
+    height: auto !important;
     overflow: auto !important;
   }
 
