@@ -4038,7 +4038,7 @@ body[data-page="plan"] #div_mainContainer {
   overflow: hidden !important;
 }
 .div_backgroundPlan {
-  height: calc(100vh - 50px) !important;
+  height: auto !important;
   overflow: auto !important;
 }
 .div_backgroundPlan > .div_displayObject {
