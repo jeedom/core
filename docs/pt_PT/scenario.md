@@ -325,7 +325,7 @@ Várias funções estão disponíveis para o equipamento :
 - ``age(commande)`` : Dá a idade em segundos do valor do comando (``collecDate``)
     -1 : O comando não existe ou não é do tipo info.
 
-- ``stateChanges(commande,[valeur], période)`` e ``stateChangesBetween(commande, [valeur], start, end)`` : Indique o número de alterações de estado (em direção a um determinado valor, se indicado, ou no total, se não) durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais necessários (no formato Ymd H:i:é onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` e ``stateChangesBetween(commande, [valeur], start, end)`` : Dá o número de mudanças de estado (em direção a um certo valor se indicado, ou se não indicado em comparação com seu valor atual) durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais necessários (no formato Ymd H:i:é onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Fornece o último valor registrado para o equipamento entre os 2 terminais solicitados (no formato Ymd H:i:é onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -394,7 +394,7 @@ Aqui estão exemplos práticos para entender os valores retornados por essas dif
 | ``lastChangeStateDuration(prise,1)``   | Retorna 4200 : a tomada ligada (mude para 1) pela última vez há 4200 segundos (1h10)                               |
 | ``lastStateDuration(prise,0)``         | Retorna 600 : o soquete está desligado por 600 segundos (10 minutos)     |
 | ``lastStateDuration(prise,1)``         | Retorna 3600 : o soquete foi ligado pela última vez por 3600 segundos (1 h)           |
-| ``stateChanges(prise,période)``        | Retorna 3 : o plugue mudou de estado 3 vezes durante o período            |
+| ``stateChanges(prise,période)``        | Retorna 3 : o soquete mudou de estado 3 vezes durante o período (se o comando info for do tipo binário)            |
 | ``stateChanges(prise,0,période)``      | Retorna 2 : o soquete apagou (passando para 0) duas vezes durante o período                              |
 | ``stateChanges(prise,1,période)``      | Retorna 1 : o plugue está aceso (mude para 1) uma vez durante o período                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Retorna a última temperatura registrada ontem.                    |

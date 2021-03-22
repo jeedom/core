@@ -325,7 +325,7 @@ Several functions are available for the equipment :
 - ``age(commande)`` : Gives the age in seconds of the value of the command (``collecDate``)
     -1 : The command does not exist or it is not of type info.
 
-- ``stateChanges(commande,[valeur], période)`` and ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of state changes (towards a certain value if indicated, or in total if not) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` and ``stateChangesBetween(commande, [valeur], start, end)`` : Gives the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 required terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Gives the last value recorded for the equipment between the 2 requested terminals (in the form Ymd H:i:s or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -394,7 +394,7 @@ Here are practical examples to understand the values returned by these different
 | ``lastChangeStateDuration(prise,1)``   | Returns 4200 : the socket turned on (switch to 1) for the last time 4200 seconds ago (1h10)                               |
 | ``lastStateDuration(prise,0)``         | Returns 600 : the socket has been off for 600 seconds (10 minutes)     |
 | ``lastStateDuration(prise,1)``         | Returns 3600 : the socket was last switched on for 3600 seconds (1h)           |
-| ``stateChanges(prise,période)``        | Returns 3 : the plug changed state 3 times during the period            |
+| ``stateChanges(prise,période)``        | Returns 3 : the socket has changed state 3 times during the period (if the info command is of binary type)            |
 | ``stateChanges(prise,0,période)``      | Returns 2 : the socket has extinguished (going to 0) twice during the period                              |
 | ``stateChanges(prise,1,période)``      | Returns 1 : the plug is lit (change to 1) once during the period                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Returns the last temperature recorded yesterday.                    |

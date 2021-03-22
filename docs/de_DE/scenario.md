@@ -325,7 +325,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``age(commande)`` : Gibt das Alter des Befehlswerts in Sekunden an (``collecDate``)
     -1 : Der Befehl existiert nicht oder ist nicht vom Typ info.
 
-- ``stateChanges(commande,[valeur], période)`` und ``stateChangesBetween(commande, [valeur], start, end)`` : Geben Sie die Anzahl der Statusänderungen (in Richtung eines bestimmten Werts, falls angegeben, oder insgesamt, falls nicht) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` und ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Werts, falls angegeben oder wenn nicht angegeben im Vergleich zu seinem aktuellen Wert) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 erforderlichen Anschlüssen (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Gibt den zuletzt für das Gerät zwischen den beiden angeforderten Terminals aufgezeichneten Wert an (in der Form Ymd H:i:s oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -394,7 +394,7 @@ Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschieden
 | ``lastChangeStateDuration(prise,1)``   | Gibt 4200 zurück : Die Steckdose wurde vor 4200 Sekunden (1h10) zum letzten Mal eingeschaltet (auf 1 umgeschaltet))                               |
 | ``lastStateDuration(prise,0)``         | Gibt 600 zurück : Die Steckdose war 600 Sekunden (10 Minuten) ausgeschaltet)     |
 | ``lastStateDuration(prise,1)``         | Gibt 3600 zurück : Die Steckdose wurde zuletzt für 3600 Sekunden (1 Stunde) eingeschaltet)           |
-| ``stateChanges(prise,période)``        | Rückgabe 3 : Der Stecker hat während des Zeitraums dreimal den Zustand geändert            |
+| ``stateChanges(prise,période)``        | Rückgabe 3 : Der Socket hat während des Zeitraums dreimal den Status geändert (wenn der Befehl info vom binären Typ ist)            |
 | ``stateChanges(prise,0,période)``      | Rückgabe 2 : Die Steckdose ist während des Zeitraums zweimal erloschen (auf 0)                              |
 | ``stateChanges(prise,1,période)``      | Rückgabe 1 : Der Stecker leuchtet während des Zeitraums einmal (auf 1 ändern)                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Gibt die zuletzt gestern aufgezeichnete Temperatur zurück.                    |
