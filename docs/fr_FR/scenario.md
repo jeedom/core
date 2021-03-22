@@ -325,7 +325,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 - ``age(commande)`` : Donne l'age en secondes de la valeur de la commande (``collecDate``)
     -1 : La commande n’existe pas ou elle n'est pas de type info.
 
-- ``stateChanges(commande,[valeur], période)`` et ``stateChangesBetween(commande, [valeur], start, end)`` : Donnent le nombre de changements d’état (vers une certaine valeur si indiquée, ou au total sinon) sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` et ``stateChangesBetween(commande, [valeur], start, end)`` : Donnent le nombre de changements d’état (vers une certaine valeur si indiquée, ou si non indiqué par rapport à sa valeur actuel) sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Donne la dernière valeur enregistrée pour l’équipement entre les 2 bornes demandées (sous la forme Y-m-d H:i:s ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -394,7 +394,7 @@ Voici des exemples pratiques pour comprendre les valeurs retournées par ces dif
 | ``lastChangeStateDuration(prise,1)``   | Renvoie 4200 : la prise s’est allumée (passage à 1) pour la dernière fois il y a 4200 secondes (1h10)                               |
 | ``lastStateDuration(prise,0)``         | Renvoie 600 : la prise est éteinte depuis 600 secondes (10 minutes)     |
 | ``lastStateDuration(prise,1)``         | Renvoie 3600 : la prise a été allumée pour la dernière fois pendant 3600 secondes (1h)           |
-| ``stateChanges(prise,période)``        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période            |
+| ``stateChanges(prise,période)``        | Renvoie 3 : la prise a changé 3 fois d’état pendant la période  (si la commande info est bien de type binaire)         |
 | ``stateChanges(prise,0,période)``      | Renvoie 2 : la prise s’est éteinte (passage à 0) deux fois pendant la période                              |
 | ``stateChanges(prise,1,période)``      | Renvoie 1 : la prise s’est allumée (passage à 1) une fois pendant la  période                              |
 | ``lastBetween(#[Salle de bain][Hydrometrie][Température]#,Yesterday,Today)`` | Renvoie la dernière température enregistrée hier.                    |
