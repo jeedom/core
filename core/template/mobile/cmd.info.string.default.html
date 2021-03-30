@@ -3,8 +3,8 @@
   <script>
     jeedom.cmd.update['#id#'] = function(_options) {
       cmd = $('.cmd[data-cmd_id=#id#]')
-      cmd.find('.state').empty().append(_options.display_value)
-
+      cmd.find('.state').empty().append(_options.display_value+' #unite#')
+      
       if (_options.alertLevel) {
         if (_options.alertLevel == 'warning') {
           cmd.addClass('label label-warning')
@@ -18,7 +18,7 @@
         }
       }
     }
-
+    
     jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
   </script>
 </div>
