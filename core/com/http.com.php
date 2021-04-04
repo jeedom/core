@@ -271,7 +271,7 @@ class com_http {
 	}
 	
 	public function setCURLOPT($CURLOPT) {
-		$this->CURLOPT = $CURLOPTN;
+		$this->CURLOPT = $CURLOPT;
 		return $this;
 	}
 	
