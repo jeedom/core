@@ -1,7 +1,7 @@
 #!/bin/bash
 
-installVer='12' 	#NodeJS major version to be installed
-minVer='12'	      #min NodeJS major version to be accepted
+installVer='14' 	#NodeJS major version to be installed
+minVer='14'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if [ -f /etc/apt/sources.list.d/deb-multimedia.list* ]; then
