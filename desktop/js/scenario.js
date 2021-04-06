@@ -742,7 +742,7 @@ $divScenario.on('click', '.bt_collapse', function(event) {
         txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
         if (!txt) txt = _el.find('.expression input.form-control').val()
       }
-      if (txt) $(this).html(txt.substring(0, 200))
+      if (txt) $(this).html(txt.substring(0, 200).HTMLFormat())
     })
     updateTooltips()
   } else {
@@ -1758,7 +1758,7 @@ function addSubElement(_subElement) {
     var expression = {type: 'code'}
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression == "string") {
       expression = _subElement.expressions[0]
-      retour += '<div class="blocPreview">'+expression.expression.substring(0,200)+'</div>'
+      retour += '<div class="blocPreview">'+expression.expression.substring(0,200).HTMLFormat()+'</div>'
     } else {
       retour += '<div class="blocPreview"></div>'
     }
@@ -1789,7 +1789,7 @@ function addSubElement(_subElement) {
       }
       var txt = expression.expression.substring(0,200)
       txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
-      retour += '<div class="blocPreview">' + txt + '</div>'
+      retour += '<div class="blocPreview">' + txt.HTMLFormat() + '</div>'
     } else {
       retour += '<div class="blocPreview"></div>'
     }
@@ -1818,9 +1818,9 @@ function addSubElement(_subElement) {
     if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
       expression = _subElement.expressions[0]
       if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
-        retour += '<div class="blocPreview">'+expression.element.subElements[0].expressions[0].expression.substring(0,200)+'</div>'
+        retour += '<div class="blocPreview">'+expression.element.subElements[0].expressions[0].expression.substring(0,200).HTMLFormat()+'</div>'
       } else {
-        retour += '<div class="blocPreview">'+_subElement.expressions[0].expression.substring(0,200)+'</div>'
+        retour += '<div class="blocPreview">'+_subElement.expressions[0].expression.substring(0,200).HTMLFormat()+'</div>'
       }
     } else {
       retour += '<div class="blocPreview"></div>'
