@@ -1056,6 +1056,11 @@ jeedomUtils.addOrUpdateUrl = function(_param,_value,_title) {
   }
 }
 
+String.prototype.HTMLFormat = function () {
+  return this.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
+    return '&#' + i.charCodeAt(0) + ';';
+  });
+}
 
 //Global UI functions__
 jeedomUtils.userDeviceType = 'mobile'
