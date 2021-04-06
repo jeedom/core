@@ -661,17 +661,15 @@ class repo_market {
 				config::save('vpn::port', $_result['register::vpnPort']);
 				$restart_dns = true;
 			}
+			if (isset($_result['dns::remote']) && config::byKey('dns::remote') != $_result['dns::remote']) {
+				config::save('dns::remote', $_result['dns::remote']);
+				$restart_dns = true;
+			}
 			if (isset($_result['service::monitoring::enable']) && config::byKey('service::monitoring::enable') != $_result['service::monitoring::enable']) {
 				config::save('service::monitoring::enable', $_result['service::monitoring::enable']);
 			}
 			if (isset($_result['service::backup::enable']) && config::byKey('service::backup::enable') != $_result['service::backup::enable']) {
 				config::save('service::backup::enable', $_result['service::backup::enable']);
-			}
-			if (isset($_result['service::tunnel::enable']) && config::byKey('service::tunnel::enable') != $_result['service::tunnel::enable']) {
-				config::save('service::tunnel::enable', $_result['service::tunnel::enable']);
-			}
-			if (isset($_result['service::tunnel::host']) && config::byKey('service::tunnel::host') != $_result['service::tunnel::host']) {
-				config::save('service::tunnel::host', $_result['service::tunnel::host']);
 			}
 			if (isset($_result['register::id']) && config::byKey('register::id') != $_result['register::id']) {
 				config::save('register::id', $_result['register::id']);
