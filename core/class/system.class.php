@@ -89,7 +89,12 @@ class system {
 		if (!jeedom::isCapable('sudo')) {
 			return '';
 		}
-		return 'sudo ';
+		// Test context of sudo
+		if (strlen(shell_exec('sudo which chown 2>/dev/null'))) {
+			return 'sudo ';
+		} else {
+			return 'sudo -s ';
+		}
 	}
 	
 	public static function fuserk($_port, $_protocol = 'tcp') {
