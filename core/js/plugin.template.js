@@ -490,7 +490,7 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=test]', functio
   }
 })
 
-$('#div_pageContainer').on('dblclick', '.cmd input,select,span,a', function(event) {
+$('#div_pageContainer').on('dblclick', '.cmd input,textarea,select,span,a', function(event) {
   event.stopPropagation()
 })
 
