@@ -9,10 +9,10 @@ $result = DB::prepare($sqlQuery, array('db_name' => $CONFIG['db']['dbname']), DB
 
 $tableList = array();
 foreach($result as $res) {
-  if (!is_array($tableList[$res['TABLE_NAME']])) {
+  if (!isset($tableList[$res['TABLE_NAME']]) || !is_array($tableList[$res['TABLE_NAME']])) {
     $tableList[$res['TABLE_NAME']] = array();
   }
-  $tableList[$res['TABLE_NAME']][] = array(colName => $res['COLUMN_NAME'], colType => $res['DATA_TYPE'], colExtra => $res['EXTRA']);
+  $tableList[$res['TABLE_NAME']][] = array('colName' => $res['COLUMN_NAME'], 'colType' => $res['DATA_TYPE'], 'colExtra' => $res['EXTRA']);
 }
 sendVarToJS('_tableList_', $tableList);
 ?>
