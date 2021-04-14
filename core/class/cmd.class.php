@@ -545,6 +545,9 @@ class cmd {
 			}
 			return $_input;
 		}
+		if (is_bool($_input) || is_null($_input)) {
+			return $_input;
+		}
 		$replace = array();
 		preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $_input, $matches);
 		if (count($matches) == 4) {
