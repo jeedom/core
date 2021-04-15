@@ -614,7 +614,7 @@ class eqLogic {
 				return true;
 			}
 			return false;
-		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always') {
+		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always' || ($cmd->getSubType() == 'binary' && $cmd->getConfiguration('repeatEventManagement', 'auto') == 'auto')) {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
