@@ -23,7 +23,7 @@ require_once __DIR__ . '/console.php';
 
 require_once __DIR__ . "/core.inc.php";
 
-function jeeCron_errorHandler($cron, $class=null, $function=null, $e) {
+function jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e) {
 	$cron->setState('error');
 	$cron->setPID('');
 	$cron->setCache('runtime', strtotime('now') - $datetimeStart);
@@ -161,19 +161,19 @@ if (init('cron_id') != '') {
 		}
 		die();
 	} catch (Exception $e) {
-		jeeCron_errorHandler($cron, $class, $function, $e);
+		jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e);
 	} catch (Error $e) {
-		jeeCron_errorHandler($cron, $class, $function, $e);
+		jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e);
 	}
 } else {
 	if (cron::jeeCronRun()) {
 		die();
 	}
 	$started = jeedom::isStarted();
-
+	
 	set_time_limit(59);
 	cron::setPidFile();
-
+	
 	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
