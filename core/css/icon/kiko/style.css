@@ -1,0 +1,1585 @@
+@font-face {
+  font-family: 'kiko';
+  src: url('fonts/kiko.woff2') format('woff2'),
+       url('fonts/kiko.woff') format('woff'),
+       url('fonts/kiko.ttf') format('ttf'),
+       url('fonts/kiko.eot') format('eot'),
+       url('fonts/kiko.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="kiko-"], [class*=" kiko-"] {
+	font-family: 'kiko';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.kiko-train:before {
+  content: '\f001'; }
+
+.kiko-car:before {
+  content: '\f002'; }
+
+.kiko-truck:before {
+  content: '\f003'; }
+
+.kiko-bike:before {
+  content: '\f004'; }
+
+.kiko-sailboat:before {
+  content: '\f005'; }
+
+.kiko-airplane:before {
+  content: '\f006'; }
+
+.kiko-helicopter:before {
+  content: '\f007'; }
+
+.kiko-motor-scooter:before {
+  content: '\f008'; }
+
+.kiko-motorcycle:before {
+  content: '\f009'; }
+
+.kiko-air-balloon:before {
+  content: '\f010'; }
+
+.kiko-plane-takes-off:before {
+  content: '\f011'; }
+
+.kiko-plane-lands:before {
+  content: '\f012'; }
+
+.kiko-bus:before {
+  content: '\f013'; }
+
+.kiko-cargo-vessel:before {
+  content: '\f014'; }
+
+.kiko-electromobile:before {
+  content: '\f015'; }
+
+.kiko-rocket:before {
+  content: '\f016'; }
+
+.kiko-rocket-shuttle:before {
+  content: '\f017'; }
+
+.kiko-ambulance:before {
+  content: '\f018'; }
+
+.kiko-police:before {
+  content: '\f019'; }
+
+.kiko-tank:before {
+  content: '\f020'; }
+
+.kiko-tractor:before {
+  content: '\f021'; }
+
+.kiko-tow-truck:before {
+  content: '\f022'; }
+
+.kiko-airship:before {
+  content: '\f023'; }
+
+.kiko-scooter:before {
+  content: '\f024'; }
+
+.kiko-self-balancing-scooter:before {
+  content: '\f025'; }
+
+.kiko-segway:before {
+  content: '\f026'; }
+
+.kiko-metro:before {
+  content: '\f027'; }
+
+.kiko-syringe:before {
+  content: '\f028'; }
+
+.kiko-pills:before {
+  content: '\f029'; }
+
+.kiko-microscope:before {
+  content: '\f030'; }
+
+.kiko-jar-of-medicine:before {
+  content: '\f031'; }
+
+.kiko-tubes:before {
+  content: '\f032'; }
+
+.kiko-medicine:before {
+  content: '\f033'; }
+
+.kiko-toilet:before {
+  content: '\f034'; }
+
+.kiko-patch:before {
+  content: '\f035'; }
+
+.kiko-pregnancy:before {
+  content: '\f036'; }
+
+.kiko-medical-app:before {
+  content: '\f037'; }
+
+.kiko-herbs:before {
+  content: '\f038'; }
+
+.kiko-recipe:before {
+  content: '\f039'; }
+
+.kiko-crushing-of-medicines:before {
+  content: '\f040'; }
+
+.kiko-blood:before {
+  content: '\f041'; }
+
+.kiko-donor:before {
+  content: '\f042'; }
+
+.kiko-brain:before {
+  content: '\f043'; }
+
+.kiko-kidneys:before {
+  content: '\f044'; }
+
+.kiko-liver:before {
+  content: '\f045'; }
+
+.kiko-lungs:before {
+  content: '\f046'; }
+
+.kiko-heart:before {
+  content: '\f047'; }
+
+.kiko-intestine:before {
+  content: '\f048'; }
+
+.kiko-stomach:before {
+  content: '\f049'; }
+
+.kiko-healthy-tooth:before {
+  content: '\f050'; }
+
+.kiko-aching-tooth:before {
+  content: '\f051'; }
+
+.kiko-nose:before {
+  content: '\f052'; }
+
+.kiko-ear:before {
+  content: '\f053'; }
+
+.kiko-eye:before {
+  content: '\f054'; }
+
+.kiko-chest:before {
+  content: '\f055'; }
+
+.kiko-doctor:before {
+  content: '\f056'; }
+
+.kiko-doctor-woman:before {
+  content: '\f057'; }
+
+.kiko-scheduled-med:before {
+  content: '\f058'; }
+
+.kiko-hand:before {
+  content: '\f059'; }
+
+.kiko-foot:before {
+  content: '\f060'; }
+
+.kiko-hospital:before {
+  content: '\f061'; }
+
+.kiko-stethoscope:before {
+  content: '\f062'; }
+
+.kiko-bacteria:before {
+  content: '\f063'; }
+
+.kiko-DNA:before {
+  content: '\f064'; }
+
+.kiko-spine:before {
+  content: '\f065'; }
+
+.kiko-bed-rest:before {
+  content: '\f066'; }
+
+.kiko-bone:before {
+  content: '\f067'; }
+
+.kiko-medical-cross:before {
+  content: '\f068'; }
+
+.kiko-medical-cross-usa:before {
+  content: '\f069'; }
+
+.kiko-dropper:before {
+  content: '\f070'; }
+
+.kiko-heart-rate:before {
+  content: '\f071'; }
+
+.kiko-marijuana:before {
+  content: '\f072'; }
+
+.kiko-fracture:before {
+  content: '\f073'; }
+
+.kiko-urine:before {
+  content: '\f074'; }
+
+.kiko-fecal:before {
+  content: '\f075'; }
+
+.kiko-diagnostics:before {
+  content: '\f076'; }
+
+.kiko-allergy:before {
+  content: '\f077'; }
+
+.kiko-call-med:before {
+  content: '\f078'; }
+
+.kiko-crutches:before {
+  content: '\f079'; }
+
+.kiko-wheelchair:before {
+  content: '\f080'; }
+
+.kiko-skull:before {
+  content: '\f081'; }
+
+.kiko-childbirth:before {
+  content: '\f082'; }
+
+.kiko-vitamins:before {
+  content: '\f083'; }
+
+.kiko-exclamation-circle:before {
+  content: '\f084'; }
+
+.kiko-exclamation-triangle:before {
+  content: '\f085'; }
+
+.kiko-arrow-down-circle:before {
+  content: '\f086'; }
+
+.kiko-arrow-up-circle:before {
+  content: '\f087'; }
+
+.kiko-arrow-left-circle:before {
+  content: '\f088'; }
+
+.kiko-arrow-right-circle:before {
+  content: '\f089'; }
+
+.kiko-arrow-up:before {
+  content: '\f090'; }
+
+.kiko-arrow-down:before {
+  content: '\f091'; }
+
+.kiko-arrow-right:before {
+  content: '\f092'; }
+
+.kiko-arrow-left:before {
+  content: '\f093'; }
+
+.kiko-double-arrow-up:before {
+  content: '\f094'; }
+
+.kiko-double-arrow-down:before {
+  content: '\f095'; }
+
+.kiko-double-arrow-left:before {
+  content: '\f096'; }
+
+.kiko-double-arrow-right:before {
+  content: '\f097'; }
+
+.kiko-clip:before {
+  content: '\f098'; }
+
+.kiko-triangular-arrow-up:before {
+  content: '\f099'; }
+
+.kiko-triangular-arrow-down:before {
+  content: '\f100'; }
+
+.kiko-triangular-arrow-left:before {
+  content: '\f101'; }
+
+.kiko-triangular-arrow-right:before {
+  content: '\f102'; }
+
+.kiko-email-at:before {
+  content: '\f103'; }
+
+.kiko-signal:before {
+  content: '\f104'; }
+
+.kiko-bad-signal:before {
+  content: '\f105'; }
+
+.kiko-no-signal:before {
+  content: '\f106'; }
+
+.kiko-video:before {
+  content: '\f107'; }
+
+.kiko-sound-on:before {
+  content: '\f108'; }
+
+.kiko-sound-off:before {
+  content: '\f109'; }
+
+.kiko-call-on:before {
+  content: '\f110'; }
+
+.kiko-call-off:before {
+  content: '\f111'; }
+
+.kiko-bluetooth:before {
+  content: '\f112'; }
+
+.kiko-wifi:before {
+  content: '\f113'; }
+
+.kiko-book-open:before {
+  content: '\f114'; }
+
+.kiko-book-close:before {
+  content: '\f115'; }
+
+.kiko-bookmark:before {
+  content: '\f116'; }
+
+.kiko-light-turn-on:before {
+  content: '\f117'; }
+
+.kiko-light-turn-off:before {
+  content: '\f118'; }
+
+.kiko-brush:before {
+  content: '\f119'; }
+
+.kiko-full-battery:before {
+  content: '\f120'; }
+
+.kiko-half-empty-battery:before {
+  content: '\f121'; }
+
+.kiko-empty-battery:before {
+  content: '\f122'; }
+
+.kiko-check-circle:before {
+  content: '\f123'; }
+
+.kiko-check-square:before {
+  content: '\f124'; }
+
+.kiko-check:before {
+  content: '\f125'; }
+
+.kiko-cross-circle:before {
+  content: '\f126'; }
+
+.kiko-cross-square:before {
+  content: '\f127'; }
+
+.kiko-cross:before {
+  content: '\f128'; }
+
+.kiko-clock:before {
+  content: '\f129'; }
+
+.kiko-cloud-download:before {
+  content: '\f130'; }
+
+.kiko-cloud-load:before {
+  content: '\f131'; }
+
+.kiko-cloud:before {
+  content: '\f132'; }
+
+.kiko-loading:before {
+  content: '\f133'; }
+
+.kiko-credit-card:before {
+  content: '\f134'; }
+
+.kiko-crop:before {
+  content: '\f135'; }
+
+.kiko-pencil:before {
+  content: '\f136'; }
+
+.kiko-pencil-write:before {
+  content: '\f137'; }
+
+.kiko-drop:before {
+  content: '\f138'; }
+
+.kiko-no-drop:before {
+  content: '\f139'; }
+
+.kiko-email:before {
+  content: '\f140'; }
+
+.kiko-email-open:before {
+  content: '\f141'; }
+
+.kiko-email-forward:before {
+  content: '\f142'; }
+
+.kiko-email-deleted:before {
+  content: '\f143'; }
+
+.kiko-email-attachment:before {
+  content: '\f144'; }
+
+.kiko-emails:before {
+  content: '\f145'; }
+
+.kiko-expand:before {
+  content: '\f146'; }
+
+.kiko-open-eye:before {
+  content: '\f147'; }
+
+.kiko-no-eye:before {
+  content: '\f148'; }
+
+.kiko-trash:before {
+  content: '\f149'; }
+
+.kiko-sheet:before {
+  content: '\f150'; }
+
+.kiko-sheet-plus:before {
+  content: '\f151'; }
+
+.kiko-sheet-minus:before {
+  content: '\f152'; }
+
+.kiko-sheet-text:before {
+  content: '\f153'; }
+
+.kiko-video-file:before {
+  content: '\f154'; }
+
+.kiko-flag:before {
+  content: '\f155'; }
+
+.kiko-gift:before {
+  content: '\f156'; }
+
+.kiko-globe-europe:before {
+  content: '\f157'; }
+
+.kiko-globe-north-america:before {
+  content: '\f158'; }
+
+.kiko-globe-asia:before {
+  content: '\f159'; }
+
+.kiko-globe-australia:before {
+  content: '\f160'; }
+
+.kiko-globe:before {
+  content: '\f161'; }
+
+.kiko-home:before {
+  content: '\f162'; }
+
+.kiko-hashtag:before {
+  content: '\f163'; }
+
+.kiko-headphones:before {
+  content: '\f164'; }
+
+.kiko-microphone:before {
+  content: '\f165'; }
+
+.kiko-microphone-off:before {
+  content: '\f166'; }
+
+.kiko-link:before {
+  content: '\f167'; }
+
+.kiko-zoom:before {
+  content: '\f168'; }
+
+.kiko-zoom-minus:before {
+  content: '\f169'; }
+
+.kiko-zoom-plus:before {
+  content: '\f170'; }
+
+.kiko-heart-symbol:before {
+  content: '\f171'; }
+
+.kiko-picture:before {
+  content: '\f172'; }
+
+.kiko-information:before {
+  content: '\f173'; }
+
+.kiko-layers:before {
+  content: '\f174'; }
+
+.kiko-hamburger-menu:before {
+  content: '\f175'; }
+
+.kiko-plus:before {
+  content: '\f176'; }
+
+.kiko-circle-plus:before {
+  content: '\f177'; }
+
+.kiko-square-plus:before {
+  content: '\f178'; }
+
+.kiko-pause:before {
+  content: '\f179'; }
+
+.kiko-record:before {
+  content: '\f180'; }
+
+.kiko-forward:before {
+  content: '\f181'; }
+
+.kiko-previous:before {
+  content: '\f182'; }
+
+.kiko-note:before {
+  content: '\f183'; }
+
+.kiko-treble-clef:before {
+  content: '\f184'; }
+
+.kiko-navigation:before {
+  content: '\f185'; }
+
+.kiko-moon:before {
+  content: '\f186'; }
+
+.kiko-sun:before {
+  content: '\f187'; }
+
+.kiko-comment:before {
+  content: '\f188'; }
+
+.kiko-dialogue:before {
+  content: '\f189'; }
+
+.kiko-user:before {
+  content: '\f190'; }
+
+.kiko-user-add:before {
+  content: '\f191'; }
+
+.kiko-user-minus:before {
+  content: '\f192'; }
+
+.kiko-user-check:before {
+  content: '\f193'; }
+
+.kiko-user-x:before {
+  content: '\f194'; }
+
+.kiko-users:before {
+  content: '\f195'; }
+
+.kiko-phone:before {
+  content: '\f196'; }
+
+.kiko-turn-off-phone:before {
+  content: '\f197'; }
+
+.kiko-question:before {
+  content: '\f198'; }
+
+.kiko-label:before {
+  content: '\f199'; }
+
+.kiko-off:before {
+  content: '\f200'; }
+
+.kiko-shield:before {
+  content: '\f201'; }
+
+.kiko-shield-crossed:before {
+  content: '\f202'; }
+
+.kiko-gear:before {
+  content: '\f203'; }
+
+.kiko-several-gears:before {
+  content: '\f204'; }
+
+.kiko-wrench:before {
+  content: '\f205'; }
+
+.kiko-shopping-cart:before {
+  content: '\f206'; }
+
+.kiko-shopping-cart-add:before {
+  content: '\f207'; }
+
+.kiko-shopping-cart-delete:before {
+  content: '\f208'; }
+
+.kiko-shopping-cart-pay:before {
+  content: '\f209'; }
+
+.kiko-shopping-basket:before {
+  content: '\f210'; }
+
+.kiko-shopping-basket-add:before {
+  content: '\f211'; }
+
+.kiko-shopping-basket-delete:before {
+  content: '\f212'; }
+
+.kiko-termometer-minus:before {
+  content: '\f213'; }
+
+.kiko-termometer-plus:before {
+  content: '\f214'; }
+
+.kiko-star:before {
+  content: '\f215'; }
+
+.kiko-half-star:before {
+  content: '\f216'; }
+
+.kiko-text:before {
+  content: '\f217'; }
+
+.kiko-lock:before {
+  content: '\f218'; }
+
+.kiko-unlock:before {
+  content: '\f219'; }
+
+.kiko-umbrella:before {
+  content: '\f220'; }
+
+.kiko-save:before {
+  content: '\f221'; }
+
+.kiko-save-error:before {
+  content: '\f222'; }
+
+.kiko-paper-bag:before {
+  content: '\f223'; }
+
+.kiko-circle-checkbox:before {
+  content: '\f224'; }
+
+.kiko-circle-checkbox-full:before {
+  content: '\f225'; }
+
+.kiko-square-checkbox:before {
+  content: '\f226'; }
+
+.kiko-square-checkbox-full:before {
+  content: '\f227'; }
+
+.kiko-marker-map:before {
+  content: '\f228'; }
+
+.kiko-pin:before {
+  content: '\f229'; }
+
+.kiko-map:before {
+  content: '\f230'; }
+
+.kiko-lightning:before {
+  content: '\f231'; }
+
+.kiko-lightning-off:before {
+  content: '\f232'; }
+
+.kiko-pipette:before {
+  content: '\f233'; }
+
+.kiko-compass:before {
+  content: '\f234'; }
+
+.kiko-copy:before {
+  content: '\f235'; }
+
+.kiko-cut:before {
+  content: '\f236'; }
+
+.kiko-past:before {
+  content: '\f237'; }
+
+.kiko-information-symbol:before {
+  content: '\f238'; }
+
+.kiko-download-file:before {
+  content: '\f239'; }
+
+.kiko-broken-link:before {
+  content: '\f240'; }
+
+.kiko-email-read:before {
+  content: '\f241'; }
+
+.kiko-spam:before {
+  content: '\f242'; }
+
+.kiko-globe-latin-america:before {
+  content: '\f243'; }
+
+.kiko-globe-japan:before {
+  content: '\f244'; }
+
+.kiko-globe-africa:before {
+  content: '\f245'; }
+
+.kiko-globe-east:before {
+  content: '\f246'; }
+
+.kiko-globe-antarctic:before {
+  content: '\f247'; }
+
+.kiko-fire:before {
+  content: '\f248'; }
+
+.kiko-support:before {
+  content: '\f249'; }
+
+.kiko-recycle-symbol:before {
+  content: '\f250'; }
+
+.kiko-reload-arrow:before {
+  content: '\f251'; }
+
+.kiko-cross-line:before {
+  content: '\f252'; }
+
+.kiko-check-line:before {
+  content: '\f253'; }
+
+.kiko-plus-line:before {
+  content: '\f254'; }
+
+.kiko-timer:before {
+  content: '\f255'; }
+
+.kiko-alarm:before {
+  content: '\f256'; }
+
+.kiko-alarm-off:before {
+  content: '\f257'; }
+
+.kiko-fingerprint:before {
+  content: '\f258'; }
+
+.kiko-scan-fingerprint:before {
+  content: '\f259'; }
+
+.kiko-computer-virus:before {
+  content: '\f260'; }
+
+.kiko-the-compass:before {
+  content: '\f234'; }
+
+.kiko-wifi-off:before {
+  content: '\f261'; }
+
+.kiko-quote-left:before {
+  content: '\f262'; }
+
+.kiko-quote-right:before {
+  content: '\f263'; }
+
+.kiko-ellipsis-menu-v:before {
+  content: '\f264'; }
+
+.kiko-ellipsis-menu-h:before {
+  content: '\f265'; }
+
+.kiko-iphone:before {
+  content: '\f266'; }
+
+.kiko-android-phone:before {
+  content: '\f267'; }
+
+.kiko-google-pixel-phone:before {
+  content: '\f268'; }
+
+.kiko-old-phone:before {
+  content: '\f269'; }
+
+.kiko-nokia-3310:before {
+  content: '\f270'; }
+
+.kiko-bendable-smartphone:before {
+  content: '\f271'; }
+
+.kiko-tablet:before {
+  content: '\f272'; }
+
+.kiko-imac-computer:before {
+  content: '\f274'; }
+
+.kiko-notebook:before {
+  content: '\f275'; }
+
+.kiko-top-notebook:before {
+  content: '\f276'; }
+
+.kiko-screen:before {
+  content: '\f277'; }
+
+.kiko-mouse:before {
+  content: '\f278'; }
+
+.kiko-graphic-pen:before {
+  content: '\f279'; }
+
+.kiko-vr:before {
+  content: '\f280'; }
+
+.kiko-google-glass:before {
+  content: '\f281'; }
+
+.kiko-graphics-tablet:before {
+  content: '\f282'; }
+
+.kiko-printer:before {
+  content: '\f283'; }
+
+.kiko-scanner:before {
+  content: '\f284'; }
+
+.kiko-warehouse-scanner:before {
+  content: '\f285'; }
+
+.kiko-iwatch:before {
+  content: '\f286'; }
+
+.kiko-smart-watch:before {
+  content: '\f287'; }
+
+.kiko-navigator:before {
+  content: '\f288'; }
+
+.kiko-dashcam:before {
+  content: '\f289'; }
+
+.kiko-music-speaker:before {
+  content: '\f290'; }
+
+.kiko-yandex-alice:before {
+  content: '\f291'; }
+
+.kiko-cortana-station:before {
+  content: '\f292'; }
+
+.kiko-hello-google:before {
+  content: '\f293'; }
+
+.kiko-amazon-station:before {
+  content: '\f294'; }
+
+.kiko-web-camera:before {
+  content: '\f295'; }
+
+.kiko-desktop-microphone:before {
+  content: '\f296'; }
+
+.kiko-earphones:before {
+  content: '\f297'; }
+
+.kiko-music-headphones:before {
+  content: '\f298'; }
+
+.kiko-headphones-microphone:before {
+  content: '\f299'; }
+
+.kiko-cable:before {
+  content: '\f300'; }
+
+.kiko-socket-eu:before {
+  content: '\f301'; }
+
+.kiko-socket-us:before {
+  content: '\f302'; }
+
+.kiko-fitness-bracelet:before {
+  content: '\f303'; }
+
+.kiko-gps-tracker:before {
+  content: '\f304'; }
+
+.kiko-satellite-communication:before {
+  content: '\f305'; }
+
+.kiko-television:before {
+  content: '\f306'; }
+
+.kiko-digital-tv:before {
+  content: '\f307'; }
+
+.kiko-router:before {
+  content: '\f308'; }
+
+.kiko-external-drive:before {
+  content: '\f309'; }
+
+.kiko-go-pro-camera:before {
+  content: '\f310'; }
+
+.kiko-quadcopter:before {
+  content: '\f311'; }
+
+.kiko-radio:before {
+  content: '\f312'; }
+
+.kiko-transmitter:before {
+  content: '\f313'; }
+
+.kiko-baby-radio-monitor:before {
+  content: '\f314'; }
+
+.kiko-baby-monitor:before {
+  content: '\f315'; }
+
+.kiko-joystick:before {
+  content: '\f316'; }
+
+.kiko-portable-console:before {
+  content: '\f317'; }
+
+.kiko-ipod:before {
+  content: '\f318'; }
+
+.kiko-handsfree:before {
+  content: '\f319'; }
+
+.kiko-camera:before {
+  content: '\f320'; }
+
+.kiko-professional-camera:before {
+  content: '\f321'; }
+
+.kiko-professional-video-camera:before {
+  content: '\f322'; }
+
+.kiko-journalist-microphone:before {
+  content: '\f323'; }
+
+.kiko-studio-lighting:before {
+  content: '\f324'; }
+
+.kiko-robot-pet:before {
+  content: '\f325'; }
+
+.kiko-robot-vacuum-cleaner:before {
+  content: '\f326'; }
+
+.kiko-robot-big-dog:before {
+  content: '\f327'; }
+
+.kiko-humanoid-robot:before {
+  content: '\f328'; }
+
+.kiko-robot:before {
+  content: '\f329'; }
+
+.kiko-robot-head:before {
+  content: '\f330'; }
+
+.kiko-desktop-computer:before {
+  content: '\f273'; }
+
+.kiko-anchor:before {
+  content: '\f331'; }
+
+.kiko-calendar:before {
+  content: '\f332'; }
+
+.kiko-schedule:before {
+  content: '\f333'; }
+
+.kiko-address-book:before {
+  content: '\f334'; }
+
+.kiko-facebook:before {
+  content: '\f335'; }
+
+.kiko-twitter:before {
+  content: '\f336'; }
+
+.kiko-dribbble:before {
+  content: '\f337'; }
+
+.kiko-behance:before {
+  content: '\f338'; }
+
+.kiko-pinterest:before {
+  content: '\f339'; }
+
+.kiko-vkontakte:before {
+  content: '\f340'; }
+
+.kiko-odnoklassniki:before {
+  content: '\f341'; }
+
+.kiko-flipboard:before {
+  content: '\f342'; }
+
+.kiko-whatsapp:before {
+  content: '\f343'; }
+
+.kiko-blogger:before {
+  content: '\f344'; }
+
+.kiko-evernote:before {
+  content: '\f345'; }
+
+.kiko-gmail:before {
+  content: '\f346'; }
+
+.kiko-line:before {
+  content: '\f347'; }
+
+.kiko-myspace:before {
+  content: '\f348'; }
+
+.kiko-pocket:before {
+  content: '\f349'; }
+
+.kiko-skype:before {
+  content: '\f350'; }
+
+.kiko-viadeo:before {
+  content: '\f351'; }
+
+.kiko-xing:before {
+  content: '\f352'; }
+
+.kiko-linkedin:before {
+  content: '\f353'; }
+
+.kiko-naver:before {
+  content: '\f354'; }
+
+.kiko-stumbleupon:before {
+  content: '\f355'; }
+
+.kiko-viber:before {
+  content: '\f356'; }
+
+.kiko-snapchat:before {
+  content: '\f357'; }
+
+.kiko-yammer:before {
+  content: '\f358'; }
+
+.kiko-digg:before {
+  content: '\f359'; }
+
+.kiko-messenger:before {
+  content: '\f360'; }
+
+.kiko-live-journal:before {
+  content: '\f361'; }
+
+.kiko-newsvine:before {
+  content: '\f362'; }
+
+.kiko-qzone:before {
+  content: '\f363'; }
+
+.kiko-telegram:before {
+  content: '\f364'; }
+
+.kiko-yummly:before {
+  content: '\f365'; }
+
+.kiko-douban:before {
+  content: '\f366'; }
+
+.kiko-flattr:before {
+  content: '\f367'; }
+
+.kiko-hatena:before {
+  content: '\f368'; }
+
+.kiko-reddit:before {
+  content: '\f369'; }
+
+.kiko-tumblr:before {
+  content: '\f370'; }
+
+.kiko-weibo:before {
+  content: '\f371'; }
+
+.kiko-google:before {
+  content: '\f372'; }
+
+.kiko-yandex:before {
+  content: '\f373'; }
+
+.kiko-share:before {
+  content: '\f374'; }
+
+.kiko-yandex-aura:before {
+  content: '\f375'; }
+
+.kiko-wechat:before {
+  content: '\f376'; }
+
+.kiko-baidu:before {
+  content: '\f377'; }
+
+.kiko-bing:before {
+  content: '\f378'; }
+
+.kiko-like:before {
+  content: '\f379'; }
+
+.kiko-unlike:before {
+  content: '\f380'; }
+
+.kiko-house:before {
+  content: '\f381'; }
+
+.kiko-villa:before {
+  content: '\f382'; }
+
+.kiko-apartment:before {
+  content: '\f383'; }
+
+.kiko-townhouse:before {
+  content: '\f384'; }
+
+.kiko-apartment-plan:before {
+  content: '\f385'; }
+
+.kiko-half-house:before {
+  content: '\f386'; }
+
+.kiko-rise-prices:before {
+  content: '\f387'; }
+
+.kiko-falling-price:before {
+  content: '\f388'; }
+
+.kiko-real-estate-discount:before {
+  content: '\f389'; }
+
+.kiko-square-footage:before {
+  content: '\f390'; }
+
+.kiko-parking-space:before {
+  content: '\f391'; }
+
+.kiko-garage:before {
+  content: '\f392'; }
+
+.kiko-price-real-estate:before {
+  content: '\f393'; }
+
+.kiko-sale:before {
+  content: '\f394'; }
+
+.kiko-rent:before {
+  content: '\f395'; }
+
+.kiko-sold:before {
+  content: '\f396'; }
+
+.kiko-handed:before {
+  content: '\f397'; }
+
+.kiko-eco-home:before {
+  content: '\f398'; }
+
+.kiko-price-calculation:before {
+  content: '\f399'; }
+
+.kiko-calculation-mortgage:before {
+  content: '\f400'; }
+
+.kiko-mortgage:before {
+  content: '\f401'; }
+
+.kiko-real-estate-agent:before {
+  content: '\f402'; }
+
+.kiko-real-estate-agent-2:before {
+  content: '\f403'; }
+
+.kiko-real-estate-auction:before {
+  content: '\f404'; }
+
+.kiko-private-territory:before {
+  content: '\f405'; }
+
+.kiko-property-insurance:before {
+  content: '\f406'; }
+
+.kiko-security-system:before {
+  content: '\f407'; }
+
+.kiko-living-room:before {
+  content: '\f408'; }
+
+.kiko-dining-room:before {
+  content: '\f409'; }
+
+.kiko-bedroom:before {
+  content: '\f410'; }
+
+.kiko-kitchen:before {
+  content: '\f411'; }
+
+.kiko-children-room:before {
+  content: '\f412'; }
+
+.kiko-storage:before {
+  content: '\f413'; }
+
+.kiko-basement:before {
+  content: '\f414'; }
+
+.kiko-attic:before {
+  content: '\f415'; }
+
+.kiko-gas:before {
+  content: '\f416'; }
+
+.kiko-electricity:before {
+  content: '\f417'; }
+
+.kiko-sewerage:before {
+  content: '\f418'; }
+
+.kiko-water-supply:before {
+  content: '\f419'; }
+
+.kiko-real-estate-search:before {
+  content: '\f420'; }
+
+.kiko-air-conditioner:before {
+  content: '\f421'; }
+
+.kiko-heating:before {
+  content: '\f422'; }
+
+.kiko-pets-allowed:before {
+  content: '\f423'; }
+
+.kiko-pets-no-allowed:before {
+  content: '\f424'; }
+
+.kiko-children-allowed:before {
+  content: '\f425'; }
+
+.kiko-children-no-allowed:before {
+  content: '\f426'; }
+
+.kiko-fitted-wardrobe:before {
+  content: '\f427'; }
+
+.kiko-stairs:before {
+  content: '\f428'; }
+
+.kiko-laundry:before {
+  content: '\f429'; }
+
+.kiko-pool:before {
+  content: '\f430'; }
+
+.kiko-sauna:before {
+  content: '\f431'; }
+
+.kiko-fitness-room:before {
+  content: '\f432'; }
+
+.kiko-jacuzzi:before {
+  content: '\f433'; }
+
+.kiko-guest-toilet:before {
+  content: '\f434'; }
+
+.kiko-separate-toilet-and-bathroom:before {
+  content: '\f435'; }
+
+.kiko-bathroom:before {
+  content: '\f436'; }
+
+.kiko-combined-toilet-and-bathroom:before {
+  content: '\f437'; }
+
+.kiko-shower-cabin:before {
+  content: '\f438'; }
+
+.kiko-contract:before {
+  content: '\f439'; }
+
+.kiko-cleaning-services:before {
+  content: '\f440'; }
+
+.kiko-key-real-estate:before {
+  content: '\f441'; }
+
+.kiko-repair:before {
+  content: '\f442'; }
+
+.kiko-without-repair:before {
+  content: '\f443'; }
+
+.kiko-video-control:before {
+  content: '\f444'; }
+
+.kiko-sea-view:before {
+  content: '\f445'; }
+
+.kiko-city-view:before {
+  content: '\f446'; }
+
+.kiko-parking:before {
+  content: '\f447'; }
+
+.kiko-fence:before {
+  content: '\f448'; }
+
+.kiko-property-search:before {
+  content: '\f449'; }
+
+.kiko-commission:before {
+  content: '\f450'; }
+
+.kiko-pledge:before {
+  content: '\f451'; }
+
+.kiko-smart-key:before {
+  content: '\f452'; }
+
+.kiko-key-in-hand:before {
+  content: '\f453'; }
+
+.kiko-start-construction:before {
+  content: '\f454'; }
+
+.kiko-new-building:before {
+  content: '\f455'; }
+
+.kiko-resale-property:before {
+  content: '\f456'; }
+
+.kiko-move:before {
+  content: '\f457'; }
+
+.kiko-notary:before {
+  content: '\f458'; }
+
+.kiko-apartment-ownership:before {
+  content: '\f459'; }
+
+.kiko-elevator:before {
+  content: '\f460'; }
+
+.kiko-wifi-in-house:before {
+  content: '\f461'; }
+
+.kiko-smart-house:before {
+  content: '\f462'; }
+
+.kiko-park-nearby:before {
+  content: '\f463'; }
+
+.kiko-entire-housing:before {
+  content: '\f464'; }
+
+.kiko-room-in-housing:before {
+  content: '\f465'; }
+
+.kiko-accessible-environment:before {
+  content: '\f466'; }
+
+.kiko-deposit-apartment:before {
+  content: '\f467'; }
+
+.kiko-public-transport:before {
+  content: '\f468'; }
+
+.kiko-area-without-cars:before {
+  content: '\f469'; }
+
+.kiko-balcony:before {
+  content: '\f470'; }
+
+.kiko-no-smoking:before {
+  content: '\f471'; }
+
+.kiko-dog-walking-prohibited:before {
+  content: '\f472'; }
+
+.kiko-area-for-dogs:before {
+  content: '\f473'; }
+
+.kiko-kids-playground:before {
+  content: '\f474'; }
+
+.kiko-school:before {
+  content: '\f475'; }
+
+.kiko-kindergarten:before {
+  content: '\f476'; }
+
+.kiko-questionnaire-housing-search:before {
+  content: '\f477'; }
+
+.kiko-open-day:before {
+  content: '\f478'; }
+
+.kiko-management-company:before {
+  content: '\f479'; }
+
+.kiko-school-bell:before {
+  content: '\f480'; }
+
+.kiko-school-bell-off:before {
+  content: '\f481'; }
+
+.kiko-school-backpack:before {
+  content: '\f482'; }
+
+.kiko-big-school-backpack:before {
+  content: '\f483'; }
+
+.kiko-school-competition:before {
+  content: '\f484'; }
+
+.kiko-library:before {
+  content: '\f485'; }
+
+.kiko-schoolbook:before {
+  content: '\f486'; }
+
+.kiko-school-notebook:before {
+  content: '\f487'; }
+
+.kiko-school-building:before {
+  content: '\f488'; }
+
+.kiko-university-building:before {
+  content: '\f489'; }
+
+.kiko-blackboard:before {
+  content: '\f490'; }
+
+.kiko-classroom:before {
+  content: '\f491'; }
+
+.kiko-teacher:before {
+  content: '\f492'; }
+
+.kiko-teacher-2:before {
+  content: '\f493'; }
+
+.kiko-schoolchild:before {
+  content: '\f494'; }
+
+.kiko-schoolchild-2:before {
+  content: '\f495'; }
+
+.kiko-school-breakfast:before {
+  content: '\f496'; }
+
+.kiko-bus-school:before {
+  content: '\f497'; }
+
+.kiko-graduate:before {
+  content: '\f498'; }
+
+.kiko-graduation-cap:before {
+  content: '\f499'; }
+
+.kiko-globe-stand:before {
+  content: '\f500'; }
+
+.kiko-diploma:before {
+  content: '\f501'; }
+
+.kiko-school-microscope:before {
+  content: '\f502'; }
+
+.kiko-award:before {
+  content: '\f503'; }
+
+.kiko-chemistry:before {
+  content: '\f504'; }
+
+.kiko-physics:before {
+  content: '\f505'; }
+
+.kiko-mathematics:before {
+  content: '\f506'; }
+
+.kiko-literature:before {
+  content: '\f507'; }
+
+.kiko-native-language:before {
+  content: '\f508'; }
+
+.kiko-foreign-language:before {
+  content: '\f509'; }
+
+.kiko-physical-culture:before {
+  content: '\f510'; }
+
+.kiko-calligraphy:before {
+  content: '\f511'; }
+
+.kiko-reading:before {
+  content: '\f512'; }
+
+.kiko-labour:before {
+  content: '\f513'; }
+
+.kiko-natural-study:before {
+  content: '\f514'; }
+
+.kiko-biology:before {
+  content: '\f515'; }
+
+.kiko-music:before {
+  content: '\f516'; }
+
+.kiko-fine-art:before {
+  content: '\f517'; }
+
+.kiko-theology:before {
+  content: '\f518'; }
+
+.kiko-history:before {
+  content: '\f519'; }
+
+.kiko-local-lore:before {
+  content: '\f520'; }
