@@ -380,7 +380,7 @@ header .navbar-toggle {
     right: 70px !important;
     max-width: calc(100vw - 180px) !important;
   }
-  
+
   /* clicking interaction */
   #jeedomMenuBar ul.navbar-nav li ul li {
     padding-top: 2px;
@@ -1363,6 +1363,7 @@ div[class*="ListContainer"] > div.cursor,
 .eqLogicThumbnailContainer > div.cursor {
   width : 130px !important;
   font-size: 14px !important;
+  position: relative;
 }
 div[class*="ListContainer"] > div.cursor:not(.objectDisplayCard) i,
 .eqLogicThumbnailContainer > div.cursor > i {
@@ -4797,15 +4798,15 @@ ul.dropdown-menu {
   :root {
     --lineheight: 1.4em;
   }
-  
+
   #summaryGlobalMain {
     max-width: 340px;
   }
-  
+
   body {
     font-size: 14px !important;
   }
-  
+
   [data-page="administration"] ul.nav-tabs.nav-primary li i:after {
     content:'';
     position:absolute;
@@ -4822,12 +4823,12 @@ ul.dropdown-menu {
     max-width: 60px;
     text-align: center;
   }
-  
+
   .btn,
   tbody > tr > td{
     font-size: 12px !important;
   }
-  
+
   .expression .col-xs-1 {
     width: 6.5em !important;
   }
@@ -4835,7 +4836,7 @@ ul.dropdown-menu {
     width: 55% !important;
     align-content: right !important;
   }
-  
+
   .form-control,
   .btn,
   .label {
@@ -4889,7 +4890,7 @@ ul.dropdown-menu {
     right: 115px;
     max-width: calc(100vw - 490px);
   }
-  
+
   .objectListContainer div.cursor > center > i,
   .interactListContainer div.cursor > center > i,
   .scenarioListContainer div.cursor > center  > i,
@@ -4898,7 +4899,7 @@ ul.dropdown-menu {
   .eqLogicThumbnailContainer div.cursor > i {
     font-size: 2.5em !important;
   }
-  
+
   #div_editScenario .tab-content {
     max-height: calc(100% - 80px);
   }
