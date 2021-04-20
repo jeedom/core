@@ -1147,6 +1147,9 @@ class cmd {
 					case 'color':
 					$value = str_replace('#color#', $options['color'], $value);
 					break;
+					case 'select':
+					$value = str_replace('#select#', $options['select'], $value);
+					break;
 				}
 				$cmd->event($value);
 			}
