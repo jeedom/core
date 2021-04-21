@@ -297,6 +297,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'MEDIA_PREVIOUS' => array('name' => __('Précedent',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action','subtype' => array('other')),
 		'MEDIA_ON' => array('name' => __('On',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true,'subtype' => array('other')),
 		'MEDIA_OFF' => array('name' => __('Off',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true,'subtype' => array('other')),
+		'MEDIA_STATE' => array('name' => __('Etat',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Info', 'noapp' => true,'subtype' => array('binary')),
 		'MEDIA_MUTE' => array('name' => __('Muet',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true,'subtype' => array('other')),
 		'MEDIA_UNMUTE' => array('name' => __('Non Muet',__FILE__), 'family' => __('Multimédia',__FILE__), 'type' => 'Action', 'noapp' => true,'subtype' => array('other')),
 		'GENERIC_INFO' => array('name' => __(' Générique',__FILE__), 'family' => __('Generic',__FILE__), 'type' => 'Info'),
