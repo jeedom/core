@@ -243,11 +243,13 @@ function initHistoryTrigger() {
         success: function(data) {
           nbSeries--
           addChart(data.id, 1)
+          /*
           if (nbSeries == 0) {
             setTimeout(function(){
               setChartYExtremes()
             }, 1000)
           }
+          */
         }
       })
     })
@@ -342,9 +344,11 @@ function addChart(_cmd_id, _action, _options) {
       }
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
+      /*
       setTimeout(function(){
         setChartYExtremes()
       }, 500)
+      */
     }
   })
 }
