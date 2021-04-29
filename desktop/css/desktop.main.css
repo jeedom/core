@@ -4421,13 +4421,25 @@ input:invalid {
   display: inline-block;
   padding: 5px !important;
 }
-
 #toast-container > div {
   color: var(--linkHoverLight-color);
-  background-color: var(--al-info-color);
   border-radius: var(--border-radius) ;
   box-shadow: none;
 }
+#toast-container > div.toast-info {
+  background-color: var(--al-info-color);
+}
+#toast-container > div.toast-success {
+  background-color: var(--al-success-color);
+}
+#toast-container > div.toast-warning {
+  background-color: var(--al-warning-color);
+}
+#toast-container > div.toast-error {
+  background-color: var(--al-danger-color);
+}
+
+
 #toast-container div.toast-progress {
   background-color: var(--sc-formTxt-color);
   opacity: 1;
