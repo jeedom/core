@@ -258,13 +258,13 @@ $synthToActions = array(
 								<label class="col-sm-3 control-label">{{Couleur du tag}}
 									<sup><i class="fas fa-question-circle tooltips" title="{{Couleur de l’objet et des équipements qui lui sont rattachés.}}"></i></sup>
 								</label>
-								<div class="col-sm-7">
+								<div class="col-sm-4">
 									<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagColor" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Couleur du texte du tag}}</label>
-								<div class="col-sm-7">
+								<div class="col-sm-4">
 									<input type="color" class="objectAttr form-control" data-l1key="display" data-l2key="tagTextColor" />
 								</div>
 							</div>
