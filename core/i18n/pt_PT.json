@@ -2817,6 +2817,7 @@
     "desktop\/js\/administration.js": {
         "Sauvegarde réussie": "Backup bem-sucedido",
         "Commande réalisée avec succès": "Conduziu com sucesso a Operação",
+        "Cookie de thème supprimé": "Cookie de tema excluído",
         "Image enregistrée et configurée": "Imagem salva e configurada",
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Tem certeza de que deseja remover esta imagem de fundo?",
         "Image supprimée": "Imagem excluída",

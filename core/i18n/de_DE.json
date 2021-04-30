@@ -2817,6 +2817,7 @@
     "desktop\/js\/administration.js": {
         "Sauvegarde réussie": "Speichern erfolgreich",
         "Commande réalisée avec succès": "Befehl erfolgreich durchgeführt",
+        "Cookie de thème supprimé": "Themen-Cookie gelöscht",
         "Image enregistrée et configurée": "Gespeichertes und konfiguriertes Bild",
         "Êtes-vous sûr de vouloir supprimer cette image de fond ?": "Möchten Sie dieses Hintergrundbild wirklich entfernen?",
         "Image supprimée": "Bild gelöscht",
