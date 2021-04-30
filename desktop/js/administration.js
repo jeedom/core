@@ -264,6 +264,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
 /**************************INTERFACE***********************************/
   $("#bt_resetThemeCookie").on('click', function(event) {
     setCookie('currentTheme', '', -1)
+    $('#div_alert').showAlert({message: '{{Cookie de thème supprimé}}', level: 'success'})
   })
 
   $('.bt_uploadImage').each(function() {
