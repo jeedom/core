@@ -276,7 +276,7 @@ function init(_value, _default) {
     var options = init(_options, {})
     options.message = init(options.message, '')
     options.level = init(options.level, '')
-    options.emptyBefore = init(options.emptyBefore, true)
+    options.emptyBefore = init(options.emptyBefore, false)
     options.show = init(options.show, true)
 
     if ($.mobile) {
