@@ -273,6 +273,36 @@ function init(_value, _default) {
 
   /*********************jquery alert*************************************/
   $.fn.showAlert = function(_options) {
+    var options = init(_options, {})
+    options.message = init(options.message, '')
+    options.level = init(options.level, '')
+    options.emptyBefore = init(options.emptyBefore, true)
+    options.show = init(options.show, true)
+
+    if ($.mobile) {
+      new $.nd2Toast({
+        message :  options.message,
+        ttl : 3000
+      })
+      return
+    }
+
+    if (options.level == 'danger') options.level = 'error'
+    if (options.emptyBefore == true) {
+      window.toastr.clear()
+    }
+    toastr[options.level](options.message, ' ', jeedomUtils.toastrUIoptions)
+    if (this.attr('id') != 'div_alert') {
+      try {
+        var modal = $(this).parent('.ui-dialog-content')
+        $("#toast-container").appendTo(modal).css('position', 'absolute')
+      } catch(error) {
+        console.error('showAlert: ' + error)
+      }
+    }
+  }
+
+  $.fn.showAlertOld = function(_options) {
     var options = init(_options, {});
     options.message = init(options.message, '');
     options.level = init(options.level, '');

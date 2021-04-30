@@ -76,9 +76,10 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     document.location.href = _url
     return
   }
-  
+
   jeedomUtils.closeJeedomMenu()
-  
+  window.toastr.clear()
+
   if ($('.context-menu-root').length > 0) {
     try {
       $.contextMenu('destroy')
@@ -86,11 +87,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       $('.context-menu-root').remove()
     }
   }
-  
+
   try {
     $(".ui-dialog-content").dialog("close")
   } catch(e) {}
-  
+
   if (!isset(_noPushHistory) || _noPushHistory == false) {
     try {
       if (PREVIOUS_PAGE == null) {
@@ -103,7 +104,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       }
     } catch(e) {}
   }
-  
+
   if (isset(bootbox)) bootbox.hideAll()
   $.hideAlert()
   jeedomUtils.datePickerDestroy()
@@ -112,20 +113,20 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedom.scenario.update = []
   printEqLogic = undefined
   if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
-  
+
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
   } else {
     var n = _url.lastIndexOf("#")
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
-  
+
   jeedomUtils.backgroundIMG = null
-  
+
   $.clearDivContent('div_pageContainer')
   $('body').off('mouseenter mouseleave')
   $('#div_pageContainer').off()
-  
+
   $('#div_pageContainer').load(url, function() {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
@@ -133,7 +134,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
     jeedomUtils.initPage()
     $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
-    
+
     //dashboard page on object will set its own background:
     if (!_url.includes('dashboard&object_id')) {
       if (jeedomUtils.backgroundIMG !== null) {
@@ -142,16 +143,16 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
         jeedomUtils.setBackgroundImage('')
       }
     }
-    
+
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
     }
-    
+
     setTimeout(function() {
       modifyWithoutSave = false
     }, 500)
   })
-  
+
   setTimeout(function() {
     //scenarios uses special tooltips not requiring destroy.
     if ($('body').attr('data-page') != 'scenario') {
@@ -163,7 +164,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       }
     }
   }, 500)
-  
+
   return
 }
 
@@ -171,10 +172,10 @@ $(function() {
   var $body = $('body')
   if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
   $body.attr('data-device', jeedomUtils.userDeviceType)
-  
+
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
-  
+
   $.alertTrigger = function() {
     jeedomUtils.initRowOverflow()
   }
@@ -191,12 +192,12 @@ $(function() {
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
   })
-  
+
   //tab in url:
   if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
     $('.nav-tabs a[href="'+window.location.hash+'"]').click()
   }
-  
+
   //browser history:
   $body.on('shown.bs.tab','.nav-tabs a', function(event) {
     if (event.target.hash == '') {
@@ -236,27 +237,28 @@ $(function() {
     jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
     PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
   })
-  
+
   jeedomUtils.setJeedomTheme()
   jeedomUtils.changeJeedomThemeAuto()
-  
+
   jeedomUtils.setJeedomMenu()
   jeedomUtils.initJeedomModals()
   jeedomUtils.setJeedomGlobalUI()
-  
+
   $(window).resize(function() {
     jeedomUtils.initRowOverflow()
   })
-  
+
   jeedomUtils.initPage()
   if (jeedomUtils.backgroundIMG != null) {
     jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
   } else {
     jeedomUtils.setBackgroundImage('')
   }
-  
+
   //options for jeedom.notify() toastr
   toastr.options = {
+    "newestOnTop": true,
     "closeButton": true,
     "debug": false,
     "positionClass": jeedom.theme['interface::toast::position'],
@@ -274,7 +276,24 @@ $(function() {
       $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
     }
   }
-  
+  jeedomUtils.toastrUIoptions = {
+    "newestOnTop": true,
+    "closeButton": true,
+    "tapToDismiss": false,
+    "debug": false,
+    "positionClass": jeedom.theme['interface::toast::position'],
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1500",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut",
+    "progressBar": true,
+    "onclick": null
+  }
+
   setTimeout(function() {
     jeedomUtils.initTooltips()
     jeedomUtils.createObserver()
@@ -282,21 +301,31 @@ $(function() {
   }, 1)
 })
 
+jeedomUtils.toastMsg = function(level, msg, target) {
+  level = isset(level) ? level : 'success'
+  msg = isset(msg) ? msg : ''
+  toastr[level](msg, ' ', jeedomUtils.toastrUIoptions)
+  if (isset(target)) {
+    try {
+      $("#toast-container").appendTo(target).css('position', 'absolute')
+    } catch(error) {}
+  }
+}
 
 //Jeedom theme__
 jeedomUtils.setJeedomTheme = function() {
   var $body = $('body')
-  
+
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
     $('#bootstrap_theme_css').attr('data-nochange', 1)
   }
-  
+
   if (jeedom.theme.currentTheme) {
     $body.attr('data-theme', jeedom.theme.currentTheme)
   }
-  
+
   //button event:
   $body.on('click', '#bt_switchTheme', function() {
     jeedomUtils.closeJeedomMenu()
@@ -305,7 +334,7 @@ jeedomUtils.setJeedomTheme = function() {
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     $('#bootstrap_theme_css').attr('data-nochange', 1)
-    
+
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
       $body.attr('data-theme', jeedom.theme.default_bootstrap_theme)
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/'+jeedom.theme.default_bootstrap_theme+'.css'
@@ -325,13 +354,13 @@ jeedomUtils.setJeedomTheme = function() {
       jeedomUtils.setBackgroundImage('')
     }
   })
-  
+
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
     for (var i in jeedom.theme.css) {
       document.body.style.setProperty(i,jeedom.theme.css[i])
     }
   }
-  
+
   if (typeof jeedom.theme['interface::advance::coloredIcons'] != 'undefined' && jeedom.theme['interface::advance::coloredIcons'] == '1') {
     $body.attr('data-coloredIcons', 1)
   } else {
@@ -349,7 +378,7 @@ jeedomUtils.changeJeedomThemeAuto = function() {
   if (typeof jeedom.theme.theme_changeAccordingTime == 'undefined' || jeedom.theme.theme_changeAccordingTime == 0) return
   if (typeof jeedom.theme.default_bootstrap_theme == 'undefined' || typeof jeedom.theme.default_bootstrap_theme_night == 'undefined') return
   if (jeedom.theme.default_bootstrap_theme == jeedom.theme.default_bootstrap_theme_night) return
-  
+
   jeedomUtils.checkThemechange()
   setInterval(function() {
     jeedomUtils.checkThemechange()
@@ -358,16 +387,16 @@ jeedomUtils.changeJeedomThemeAuto = function() {
 
 jeedomUtils.checkThemechange = function() {
   if (getCookie('currentTheme') == 'alternate' || $('#bootstrap_theme_css').attr('data-nochange') == 1) return
-  
+
   var theme = jeedom.theme.default_bootstrap_theme_night
   var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
   var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
-  
+
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime) {
     theme  = jeedom.theme.default_bootstrap_theme
     themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/' + jeedom.theme.default_bootstrap_theme + '.css'
   }
-  
+
   var currentTheme = $('#bootstrap_theme_css').attr('href')
   if (currentTheme.indexOf('?md5') != -1) {
     currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
@@ -397,7 +426,7 @@ jeedomUtils.triggerThemechange = function() {
       $('#homeLogoImg').attr('src', jeedom.theme.logo_light)
     }
   }
-  
+
   //trigger event for widgets:
   if ($('body').attr('data-page') && ['dashboard', 'view', 'plan','widgets'].includes($('body').attr('data-page')) ) {
     if (currentTheme.endsWith('Light')) {
@@ -420,7 +449,7 @@ jeedomUtils.setBackgroundImage = function(_path) {
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
-    
+
     if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
       _path = jeedom.theme['interface::background::dashboard']
     } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
@@ -428,7 +457,7 @@ jeedomUtils.setBackgroundImage = function(_path) {
     } else {
       _path = jeedom.theme['interface::background::tools']
     }
-    
+
     if (_path.substring(0, 4) == 'core') {
       jeedomUtils._elBackground.removeClass('custom')
       _path += mode + '.jpg'
@@ -448,11 +477,11 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
   } else {
     var opacity = $('body').style('--bkg-opacity-light')
   }
-  
+
   if (jeedomUtils._elBackground.find('#bottom').css('background-image').indexOf(_path) != -1 && jeedomUtils._elBackground.find('#bottom').css('opacity') == opacity) {
     return
   }
-  
+
   _path = 'url("../../../../' + _path + '")'
   jeedomUtils._elBackground.find('#top').css('background-image', _path).fadeTo(350, opacity)
   jeedomUtils._elBackground.find('#bottom').fadeOut(300, 'linear', function() {
@@ -464,7 +493,7 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 //Jeedom UI__
 jeedomUtils.initJeedomModals = function() {
   $.fn.modal.Constructor.prototype.enforceFocus = function() {}
-  
+
   if (isset(jeedom_langage) ) {
     var lang = jeedom_langage.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
@@ -475,20 +504,20 @@ jeedomUtils.initJeedomModals = function() {
       bootbox.setLocale('fr') //needed for date format
     }
   }
-  
+
   $('body').on('show', '.modal',function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   });
-  
+
   $('body').on('focusin','.bootbox-input', function(event) {
     event.stopPropagation()
   })
-  
+
   $('.bootbox.modal').on('shown.bs.modal', function() {
     $(this).find(".bootbox-accept").focus()
   })
-  
+
   $('#md_reportBug').dialog({
     autoOpen: false,
     modal: true,
@@ -510,7 +539,7 @@ jeedomUtils.initJeedomModals = function() {
       emptyModal('md_reportBug')
     }
   })
-  
+
   $('#md_modal').dialog({
     autoOpen: false,
     modal: true,
@@ -533,7 +562,7 @@ jeedomUtils.initJeedomModals = function() {
       emptyModal('md_modal')
     }
   })
-  
+
   $('#md_modal2').dialog({
     autoOpen: false,
     modal: true,
@@ -555,7 +584,7 @@ jeedomUtils.initJeedomModals = function() {
       emptyModal('md_modal2')
     }
   })
-  
+
   $('#md_modal3').dialog({
     autoOpen: false,
     modal: true,
@@ -577,7 +606,7 @@ jeedomUtils.initJeedomModals = function() {
       emptyModal('md_modal3')
     }
   })
-  
+
   function emptyModal(_id='') {
     if (_id == '') return
     $('body').css({overflow: 'inherit'})
@@ -613,19 +642,19 @@ jeedomUtils.setJeedomGlobalUI = function() {
   if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
-  
+
   $(window).bind('beforeunload', function() {
     if (modifyWithoutSave) {
       return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
     }
   })
-  
+
   jeedomUtils.setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
   jeedomUtils.setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
   jeedomUtils.setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
   jeedomUtils.setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal', false)
   jeedomUtils.setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
-  
+
   $('#bt_gotoDashboard').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -633,7 +662,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
     jeedomUtils.loadPage('index.php?v=d&p=dashboard')
   })
-  
+
   $('#bt_gotoView').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -641,7 +670,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
     jeedomUtils.loadPage('index.php?v=d&p=view')
   })
-  
+
   $('#bt_gotoPlan').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -649,7 +678,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
     jeedomUtils.loadPage('index.php?v=d&p=plan')
   })
-  
+
   $('#bt_gotoPlan3d').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
@@ -657,12 +686,12 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
     jeedomUtils.loadPage('index.php?v=d&p=plan3d')
   })
-  
+
   $('#bt_jeedomAbout').on('click', function() {
     jeedomUtils.closeJeedomMenu()
     $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   })
-  
+
   $('#bt_getHelpPage').on('click',function() {
     jeedom.getDocumentationUrl({
       plugin: $(this).attr('data-plugin'),
@@ -676,7 +705,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       }
     });
   })
-  
+
   $('.bt_reportBug').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.preventDefault()
@@ -685,7 +714,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.closeJeedomMenu()
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
   })
-  
+
   $('#bt_messageModal').on('click',function() {
     jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
@@ -694,20 +723,20 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
-  
+
   $('body').on('click', '.objectSummaryParent', function() {
     //action summary:
     if (event.ctrlKey) return
-    
+
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
-    
+
     var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
     if (window.location.href.includes('&btover=1') || ($('body').attr('data-page') != "dashboard" && userProfils.homePage == 'core::overview')) {
       url += '&btover=1'
     }
     jeedomUtils.loadPage(url)
   })
-  
+
   $('body').on('click', '.objectSummaryAction', function(event) {
     if (!event.ctrlKey) {
       return
@@ -717,19 +746,19 @@ jeedomUtils.setJeedomGlobalUI = function() {
     jeedomUtils.closeModal()
     $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id'))
   })
-  
+
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
     var el = $(this).closest('div').find('input')
     jeedom.getCronSelectModal({},function(result) {
       el.value(result.value)
     })
   })
-  
+
   //close all modales on outside click
   $('body').on('click', '.ui-widget-overlay', function(event) {
     $(".ui-dialog-content").dialog("close")
   })
-  
+
   //search input escape:
   $('body').on({
     'keydown': function(event) {
@@ -758,7 +787,7 @@ jeedomUtils.initPage = function() {
       $(window).scrollTop(scrollHeight)
     }, 0)
   })
-  
+
   setTimeout(function() {
     jeedomUtils.initTooltips()
   }, 750)
@@ -771,13 +800,13 @@ jeedomUtils.initPage = function() {
 jeedomUtils.initDisplayAsTable = function() {
   var $buttonAsTable = $('#bt_displayAsTable')
   if ($buttonAsTable.length) {
-    
+
     if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
       $('#bt_displayAsTable').data('state', '1').addClass('active')
       $($buttonAsTable.data('card')).addClass('displayAsTable')
       $($buttonAsTable.data('container')).first().addClass('containerAsTable')
     }
-    
+
     $buttonAsTable.off('click').on('click', function () {
       if ($(this).data('state') == "0") {
         $(this).data('state', '1').addClass('active')
@@ -838,17 +867,17 @@ jeedomUtils.initTooltips = function(_el) {
       me.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
       return;
     }
-    
+
     if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
       if (_el.is('[title]') && _el.hasClass('tooltipstered')){
         _el.tooltipster('destroy');
       }
       _el.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
     }
-    
+
     _el.find('.tooltipstered[title]').tooltipster('destroy')
     _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    
+
   }
 }
 
@@ -1087,14 +1116,14 @@ jeedomUtils.setJeedomMenu = function() {
     if ($(this).attr('target') == '_blank') {
       return
     }
-    
+
     if (!$(this).hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
-    
+
     event.preventDefault()
     event.stopPropagation()
     jeedomUtils.loadPage($(this).attr('href'))
   })
-  
+
   //one submenu opened at a time in mobile:
   $('body').on('click', '#jeedomMenuBar .navbar-nav > li > input', function() {
     var checked = $(this).prop("checked")
@@ -1106,7 +1135,7 @@ jeedomUtils.setJeedomMenu = function() {
     $('#jeedomMenuBar .navbar-nav > li > ul > li > input').prop("checked", false)
     $(this).prop("checked", checked)
   })
-  
+
   $('li.navTime #configName').on('click', function(event) {
     if (event.originalEvent.ctrlKey) {
       jeedomUtils.loadPage('index.php?v=d&p=system')
@@ -1129,7 +1158,7 @@ jeedomUtils.closeJeedomMenu = function() {
   setTimeout(function() {
     $('#jeedomMenuBar .navbar-nav').removeClass('disabled')
   }, 250)
-  
+
   if ($(window).width() < 768) {
     $('#jeedomMenuBar .navbar-collapse.in').removeClass('in')
   }
@@ -1316,7 +1345,7 @@ jeedomUtils.closeModal = function(_modals='') {
     try {
       $('#'+_modal).dialog('close')
     } catch (error) {}
-    
+
   })
 }
 

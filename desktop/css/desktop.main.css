@@ -4421,7 +4421,11 @@ input:invalid {
   display: inline-block;
   padding: 5px !important;
 }
+#toast-container {
+  width: 33%;
+}
 #toast-container > div {
+  width: auto;
   color: var(--linkHoverLight-color);
   border-radius: var(--border-radius) ;
   box-shadow: none;
