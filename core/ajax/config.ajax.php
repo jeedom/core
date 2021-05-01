@@ -143,7 +143,8 @@ try {
 
 		$page = init('id');
 		$key = 'interface::background::'.$page;
-		$filepath = config::byKey($key, 'core');
+		$filepath = '../..'.config::byKey($key, 'core');
+
 		@unlink($filepath);
 		config::save($key, config::getDefaultConfiguration('core')['core'][$key], 'core');
 		ajax::success();
