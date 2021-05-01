@@ -1484,7 +1484,7 @@ class scenarioExpression {
 					return;
 				} elseif ($this->getExpression() == 'delete_variable') {
 					scenario::removeData($options['name']);
-					$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $this->getOptions('name'));
+					$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
 					$dataStore = new dataStore();
