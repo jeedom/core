@@ -55,6 +55,11 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 # Changelog Jeedom V4.1
 
 
+## 4.1.22
+
+- Ajout d'un systeme permettant a Jeedom SAS de communiquer des messages à tous les Jeedoms
+- Passage du DNS Jeedom en mode haute disponibilité
+
 ## 4.1.20
 
 - Bugfix scroll horizontal sur les designs.
