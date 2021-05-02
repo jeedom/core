@@ -717,6 +717,7 @@ div.eqLogic.eqLogic-widget:empty {
   position: absolute;
   bottom: 0;
   left: 0;
+  margin: 5px;
 }
 .eqLogic-widget.eqSignalInfo:after,
 .eqLogic-widget.eqSignalAction.eqSignalInfo:after{
@@ -1011,6 +1012,7 @@ div.ui-dialog.summaryActionMain > div.ui-dialog-titlebar {
   padding: 0;
   background: transparent !important;
   box-shadow: none;
+  overflow: visible;
 }
 
 span.objectSummaryAction > i:hover {
