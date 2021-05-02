@@ -291,7 +291,9 @@ $(function() {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut",
     "progressBar": true,
-    "onclick": null
+    "onclick": function(event) {
+      event.clickToClose = true
+    }
   }
 
   setTimeout(function() {
