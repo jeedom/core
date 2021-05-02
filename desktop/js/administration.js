@@ -153,6 +153,10 @@ jeedom.config.load({
     $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
     $('.configKey[data-l1key="ldap:enable"]').trigger('change')
     loadActionOnMessage()
+
+    if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') $('a.bt_removeBackgroundImage[data-page=dashboard]').addClass('disabled')
+    if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') $('a.bt_removeBackgroundImage[data-page=analysis]').addClass('disabled')
+    if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') $('a.bt_removeBackgroundImage[data-page=tools]').addClass('disabled')
     modifyWithoutSave = false
   }
 })
@@ -277,6 +281,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
           $('#div_alert').showAlert({message: data.result.result, level: 'danger'})
           return
         }
+        $('a.bt_removeBackgroundImage[data-page='+$(this).attr('data-page')+']').removeClass('disabled')
         $('#div_alert').showAlert({message: '{{Image enregistrée et configurée}}', level: 'success'})
       }
     })
@@ -293,6 +298,7 @@ $divConfig.off('change','.configKey').on('change','.configKey:visible',  functio
               $('#div_alert').showAlert({message: error.message, level: 'danger'})
             },
             success: function() {
+              $('a.bt_removeBackgroundImage[data-page='+dataPage+']').addClass('disabled')
               $('#div_alert').showAlert({message: '{{Image supprimée}}', level: 'success'})
             },
           })
