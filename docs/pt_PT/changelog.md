@@ -18,6 +18,7 @@
 - **Resumos** : Possibilidade de definir um ícone diferente quando o resumo for nulo (sem venezianas abertas, sem luz acesa, etc).
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
+- **Resumos** : Agora é possível configurar ações nos resumos (ctrl + clique em um resumo) graças aos virtuais.
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
 - **Categorias coloridas** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
 - **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Plugins podem usar esta nova função principal.
@@ -29,8 +30,8 @@
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
+- **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
 - **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
-- **Comercial** : Possibilidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
 
@@ -43,16 +44,21 @@
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degrau* para definir a etapa de mudança no cursor.
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 
-### Backup na nuvem 
+### Backup na nuvem
 
-Nós adicionamos uma confirmação da senha da nuvem de backup para evitar erros de digitação tanto quanto possível (como um lembrete você é o único e apenas para saber essa senha em caso de esquecimento, não podemos absolutamente nada para recuperar sua nuvem de backup). 
+Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de entrada (como lembrete, o usuário é o único a saber essa senha, em caso de esquecimento, Jeedom não pode recuperá-la nem acessar os backups. Nuvem do usuário).
 
 >**IMPORTANTE**
 >
->Após a atualização, é OBRIGATÓRIO ir para a configuração da aba Atualização / Mercado do jeedom e digitar a confirmação da senha do backup em nuvem sem isso nenhum backup pode ser feito
+> Após a atualização, você DEVE ir para Configurações → Sistema → guia Atualização de configuração / Mercado e inserir a confirmação da senha do backup em nuvem para que isso possa ser feito.
 
 # Registro de alterações Jeedom V4.1
 
+
+## 4.1.22
+
+- Adição de um sistema que permite ao Jeedom SAS comunicar mensagens a todos os Jeedoms
+- Alternando Jeedom DNS para o modo de alta disponibilidade
 
 ## 4.1.20
 

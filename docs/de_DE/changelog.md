@@ -18,6 +18,7 @@
 - **Zusammenfassungen** : Möglichkeit, ein anderes Symbol zu definieren, wenn die Zusammenfassung null ist (keine Fensterläden geöffnet, kein Licht an usw.)).
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
+- **Zusammenfassungen** : Dank der virtuellen Aktionen können jetzt Aktionen für die Zusammenfassungen konfiguriert werden (Strg + Klicken auf eine Zusammenfassung).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Farbige Kategorien** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Plugins können diese neue Core-Funktion verwenden.
@@ -29,8 +30,8 @@
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). Siehe Entwicklerdokument v4.2.
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
+- **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
 - **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
-- **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer über die Benutzerverwaltungsseite.
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
 
@@ -43,16 +44,21 @@
 - Widgets vom Typ Cursor (Aktion) akzeptieren jetzt einen optionalen Parameter *Schritt* um den Änderungsschritt am Cursor zu definieren.
 - Das Widget **action.slider.value** ist jetzt auf dem Desktop mit einem optionalen Parameter verfügbar *Noslider*, was macht es ein *Eingang* einfach.
 
-### Cloud-Backup 
+### Cloud-Backup
 
-Wir haben eine Bestätigung des Backup-Cloud-Passworts hinzugefügt, um Tippfehler so weit wie möglich zu vermeiden (zur Erinnerung, Sie sind derjenige, der dieses Passwort nur kennt, wenn Sie vergessen, dass wir absolut nichts tun können, um Ihre Backup-Cloud wiederherzustellen). 
+Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Eingabefehler zu vermeiden (zur Erinnerung, der Benutzer ist der einzige, der dieses Kennwort kennt. Im Falle eines Vergessens kann Jeedom es weder wiederherstellen noch auf die Sicherung zugreifen. Benutzer-Cloud).
 
 >**WICHTIG**
 >
->Nach dem Update ist es obligatorisch, zur Konfiguration der Registerkarte jeedom Update / Market zu wechseln und die Bestätigung des Cloud-Sicherungskennworts einzugeben, ohne dass keine Sicherung durchgeführt werden kann
+> Nach dem Update MÜSSEN Sie zu Einstellungen → System → Konfigurationsupdate / Markt gehen und die Bestätigung des Cloud-Sicherungskennworts eingeben, damit dies durchgeführt werden kann.
 
 # Changelog Jeedom V4.1
 
+
+## 4.1.22
+
+- Hinzufügen eines Systems, mit dem Jeedom SAS Nachrichten an alle Jeedoms übermitteln kann
+- Umschalten von Jeedom DNS in den Hochverfügbarkeitsmodus
 
 ## 4.1.20
 

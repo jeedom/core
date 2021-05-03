@@ -18,6 +18,7 @@
 - **Summaries** : Possibility to define a different icon when the summary is null (no shutters open, no light on, etc).
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
+- **Summaries** : It is now possible to configure actions on the summaries (ctrl + click on a summary) thanks to the virtual ones.
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
@@ -29,8 +30,8 @@
 - **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
 - **Objects** : Plugins can now request specific parameters specific to objects.
 - **Users** : Plugins can now request specific parameters specific to users.
+- **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
-- **Users** : Possibility of managing the profiles of different Jeedom users from the user management page.
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : addition in the command execution options of the id and user name launching the action (visible in the log event for example)
 
@@ -43,16 +44,21 @@
 - Cursor (action) type Widgets now accept an optional parameter *step* to define the change step at the cursor.
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
 
-### Cloud backup 
+### Cloud backup
 
-We have added a confirmation of the backup cloud password to avoid typing errors as much as possible (as a reminder you are the one and only to know this password in case of forgetting we can absolutely nothing to recover your backup cloud). 
+We have added a confirmation of the cloud backup password to prevent entry errors (as a reminder the user is the only one to know this password, in case of forgetting, Jeedom can neither recover it nor access the backups. user's cloud).
 
 >**IMPORTANT**
 >
->Following the update, it is COMPULSORY to go to the configuration of jeedom Update / Market tab and type the confirmation of the cloud backup password without this no backup can be done
+> Following the update, you MUST go to Settings → System → Configuration Update / Market tab and enter the cloud backup password confirmation so that it can be done.
 
 # Changelog Jeedom V4.1
 
+
+## 4.1.22
+
+- Addition of a system allowing Jeedom SAS to communicate messages to all Jeedoms
+- Switching Jeedom DNS to high availability mode
 
 ## 4.1.20
 
