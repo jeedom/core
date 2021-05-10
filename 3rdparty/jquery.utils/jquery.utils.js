@@ -276,7 +276,7 @@ function is_array(a) {
       var options = init(_options, {})
       options.message = init(options.message, '')
       options.level = init(options.level, '')
-      options.emptyBefore = init(options.emptyBefore, true)
+      options.emptyBefore = init(options.emptyBefore, false)
       options.show = init(options.show, true)
       options.ttl = init(options.ttl, 5000)
       
@@ -309,7 +309,7 @@ function is_array(a) {
       var options = init(_options, {});
       options.message = init(options.message, '');
       options.level = init(options.level, '');
-      options.emptyBefore = init(options.emptyBefore, true);
+      options.emptyBefore = init(options.emptyBefore, false);
       options.show = init(options.show, true);
       options.ttl = init(options.ttl, 5000)
       if ($.mobile) {
