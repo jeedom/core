@@ -120,12 +120,12 @@ jeedom.init = function () {
       cssComputedStyle.getPropertyValue('--scBlocAT')
     ]
   });
-
-
+  
+  
   $('body').on('cmd::update', function (_event,_options) {
     jeedom.cmd.refreshValue(_options);
   });
-
+  
   $('body').on('scenario::update', function (_event,_options) {
     jeedom.scenario.refreshValue(_options);
   });
@@ -135,7 +135,7 @@ jeedom.init = function () {
   $('body').on('jeeObject::summary::update', function (_event,_options) {
     jeedom.object.summaryUpdate(_options);
   });
-
+  
   $('body').on('ui::update', function (_event,_options) {
     if(isset(_options.page) && _options.page != ''){
       if($.mobile){
@@ -151,7 +151,7 @@ jeedom.init = function () {
     }
     $(_options.container).setValues(_options.data, _options.type);
   });
-
+  
   $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
     if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
@@ -160,7 +160,7 @@ jeedom.init = function () {
       }
     }
   });
-
+  
   $('body').on('jeedom::alert', function (_event,_options) {
     if (!isset(_options.message) || $.trim(_options.message) == '') {
       if(isset(_options.page) && _options.page != ''){
@@ -172,11 +172,15 @@ jeedom.init = function () {
       }
     } else {
       if(isset(_options.page) && _options.page != ''){
+        let options = {message: _options.message, level: _options.level}
+        if (_options.ttl){
+          options.ttl = _options.ttl
+        }
         if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
-          $('#div_alert').showAlert({message: _options.message, level: _options.level});
+          $('#div_alert').showAlert(options);
         }
       }else{
-        $('#div_alert').showAlert({message: _options.message, level: _options.level});
+        $('#div_alert').showAlert(options);
       }
     }
   });
@@ -248,7 +252,7 @@ jeedom.notify = function(_title, _text, _class_name) {
     //no toastr in mobile
     jeedomUtils.notify(_title, _text)
   }
-
+  
 }
 
 jeedom.getStringUsedBy = function (_params) {

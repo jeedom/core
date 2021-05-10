@@ -185,301 +185,361 @@ function is_array(a) {
     return!1
   }(a) || (!b || 0 !== parseInt(b.local_value, 10) && (!b.local_value.toLowerCase ||
     "off" !== b.local_value.toLowerCase())) && "[object Object]" === Object.prototype.toString.call(a) && "Object" === d(a.constructor)
-}
-function is_binary(a) {
-  return"string" === typeof a
-}
-function is_bool(a) {
-  return!0 === obj || !1 === obj
-}
-function is_buffer(a) {
-  return"string" === typeof a
-}
-function count(a, b) {
-  var d, c = 0;
-  if (null === a || "undefined" === typeof a)
-  return 0;
-  if (a.constructor !== Array && a.constructor !== Object)
-  return 1;
-  "COUNT_RECURSIVE" === b && (b = 1);
-  1 != b && (b = 0);
-  for (d in a)
-  a.hasOwnProperty(d) && (c++, 1 != b || (!a[d] || a[d].constructor !== Array && a[d].constructor !== Object) || (c += this.count(a[d], 1)));
-  return c
-}
-
-function init(_value, _default) {
-  if (!isset(_default)) {
-    _default = '';
   }
-  if (!isset(_value)) {
-    return _default;
+  function is_binary(a) {
+    return"string" === typeof a
   }
-  return _value;
-}
-
-(function($) {
-  var scriptsCache = [];
-  $.include = function(_path, _callback) {
-    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-      if (options.dataType == 'script' || originalOptions.dataType == 'script') {
-        options.cache = true;
-      }
-    });
-    for (var i in _path) {
-      if (jQuery.inArray(_path[i], scriptsCache) == -1) {
-        var extension = _path[i].substr(_path[i].length - 3);
-        if (extension == 'css') {
-          $('<link rel="stylesheet" href="' + _path[i] + '" type="text/css" />').appendTo('head');
+  function is_bool(a) {
+    return!0 === obj || !1 === obj
+  }
+  function is_buffer(a) {
+    return"string" === typeof a
+  }
+  function count(a, b) {
+    var d, c = 0;
+    if (null === a || "undefined" === typeof a)
+    return 0;
+    if (a.constructor !== Array && a.constructor !== Object)
+    return 1;
+    "COUNT_RECURSIVE" === b && (b = 1);
+    1 != b && (b = 0);
+    for (d in a)
+    a.hasOwnProperty(d) && (c++, 1 != b || (!a[d] || a[d].constructor !== Array && a[d].constructor !== Object) || (c += this.count(a[d], 1)));
+    return c
+  }
+  
+  function init(_value, _default) {
+    if (!isset(_default)) {
+      _default = '';
+    }
+    if (!isset(_value)) {
+      return _default;
+    }
+    return _value;
+  }
+  
+  (function($) {
+    var scriptsCache = [];
+    $.include = function(_path, _callback) {
+      $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+        if (options.dataType == 'script' || originalOptions.dataType == 'script') {
+          options.cache = true;
         }
-        if (extension == '.js') {
-          if (_path[i].indexOf('?file=') >= 0) {
-            $('<script type="text/javascript" src="' + _path[i] + '"></script>').appendTo('head');
-          } else {
-            $('<script type="text/javascript" src="core/php/getResource.php?file=' + _path[i] + '"></script>').appendTo('head');
+      });
+      for (var i in _path) {
+        if (jQuery.inArray(_path[i], scriptsCache) == -1) {
+          var extension = _path[i].substr(_path[i].length - 3);
+          if (extension == 'css') {
+            $('<link rel="stylesheet" href="' + _path[i] + '" type="text/css" />').appendTo('head');
+          }
+          if (extension == '.js') {
+            if (_path[i].indexOf('?file=') >= 0) {
+              $('<script type="text/javascript" src="' + _path[i] + '"></script>').appendTo('head');
+            } else {
+              $('<script type="text/javascript" src="core/php/getResource.php?file=' + _path[i] + '"></script>').appendTo('head');
+            }
+          }
+          
+          scriptsCache.push(_path[i]);
+        }
+      }
+      $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+        if (options.dataType == 'script' || originalOptions.dataType == 'script') {
+          options.cache = false;
+        }
+      });
+      _callback();
+      return;
+    };
+    
+    /***************************Fast Vanilla div emptying************************/
+    $.clearDivContent = function(_id='') {
+      if (_id == '') return
+      var contain = document.getElementById(_id)
+      if (contain) {
+        while(contain.firstChild) {
+          contain.removeChild(contain.firstChild)
+        }
+      }
+    }
+    
+    /********************************loading************************/
+    $.showLoading = function() {
+      $('#div_jeedomLoading').show();
+    };
+    $.hideLoading = function() {
+      $('#div_jeedomLoading').hide();
+    };
+    
+    /*********************jquery alert*************************************/
+    $.fn.showAlert = function(_options) {
+      var options = init(_options, {})
+      options.message = init(options.message, '')
+      options.level = init(options.level, '')
+      options.emptyBefore = init(options.emptyBefore, true)
+      options.show = init(options.show, true)
+      options.ttl = init(options.ttl, 5000)
+      
+      if ($.mobile) {
+        new $.nd2Toast({
+          message :  options.message,
+          ttl : options.ttl
+        })
+        return
+      }
+      
+      if (options.level == 'danger') options.level = 'error'
+      if (options.emptyBefore == true) {
+        window.toastr.clear()
+      }
+      let options_toastr = jeedomUtils.toastrUIoptions
+      options_toastr.timeOut = options.ttl
+      toastr[options.level](options.message, ' ', options_toastr)
+      if (this.attr('id') != 'div_alert') {
+        try {
+          var modal = $(this).parent('.ui-dialog-content')
+          $("#toast-container").appendTo(modal).css('position', 'absolute')
+        } catch(error) {
+          console.error('showAlert: ' + error)
+        }
+      }
+    }
+    
+    $.fn.showAlertOld = function(_options) {
+      var options = init(_options, {});
+      options.message = init(options.message, '');
+      options.level = init(options.level, '');
+      options.emptyBefore = init(options.emptyBefore, true);
+      options.show = init(options.show, true);
+      options.ttl = init(options.ttl, 5000)
+      if ($.mobile) {
+        new $.nd2Toast({
+          message :  options.message,
+          ttl : options.ttl
+        });
+      } else {
+        if (options.emptyBefore == false) {
+          var html = $(this).find('.displayError').html();
+          if (isset(html)) {
+            options.message = html + '<br/>' + options.message;
           }
         }
-
-        scriptsCache.push(_path[i]);
-      }
-    }
-    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
-      if (options.dataType == 'script' || originalOptions.dataType == 'script') {
-        options.cache = false;
-      }
-    });
-    _callback();
-    return;
-  };
-
-  /***************************Fast Vanilla div emptying************************/
-  $.clearDivContent = function(_id='') {
-    if (_id == '') return
-    var contain = document.getElementById(_id)
-    if (contain) {
-      while(contain.firstChild) {
-        contain.removeChild(contain.firstChild)
-      }
-    }
-  }
-
-  /********************************loading************************/
-  $.showLoading = function() {
-    $('#div_jeedomLoading').show();
-  };
-  $.hideLoading = function() {
-    $('#div_jeedomLoading').hide();
-  };
-
-  /*********************jquery alert*************************************/
-  $.fn.showAlert = function(_options) {
-    var options = init(_options, {})
-    options.message = init(options.message, '')
-    options.level = init(options.level, '')
-    options.emptyBefore = init(options.emptyBefore, true)
-    options.show = init(options.show, true)
-
-    if ($.mobile) {
-      new $.nd2Toast({
-        message :  options.message,
-        ttl : 3000
-      })
-      return
-    }
-
-    if (options.level == 'danger') options.level = 'error'
-    if (options.emptyBefore == true) {
-      window.toastr.clear()
-    }
-    toastr[options.level](options.message, ' ', jeedomUtils.toastrUIoptions)
-    if (this.attr('id') != 'div_alert') {
-      try {
-        var modal = $(this).parent('.ui-dialog-content')
-        $("#toast-container").appendTo(modal).css('position', 'absolute')
-      } catch(error) {
-        console.error('showAlert: ' + error)
-      }
-    }
-  }
-
-  $.fn.showAlertOld = function(_options) {
-    var options = init(_options, {});
-    options.message = init(options.message, '');
-    options.level = init(options.level, '');
-    options.emptyBefore = init(options.emptyBefore, true);
-    options.show = init(options.show, true);
-    if ($.mobile) {
-      new $.nd2Toast({
-        message :  options.message,
-        ttl : 3000
-      });
-    } else {
-      if (options.emptyBefore == false) {
-        var html = $(this).find('.displayError').html();
-        if (isset(html)) {
-          options.message = html + '<br/>' + options.message;
+        $(this).empty();
+        $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative;top:-2px; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
+        $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
+        $(this).addClass('jqAlert');
+        if (options.level != '') {
+          $(this).addClass('alert-' + options.level);
         }
-      }
-      $(this).empty();
-      $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative;top:-2px; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
-      $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
-      $(this).addClass('jqAlert');
-      if (options.level != '') {
-        $(this).addClass('alert-' + options.level);
-      }
-      if (options.show) {
-        $(this).show();
-      }
-      if ($(this).offset() != undefined && $(this).offset().top - $(window).scrollTop() < $(this).height()) {
-        $('html, body').animate({
-          scrollTop: $(this).offset().top - 60
-        }, 650);
-      }
-
-      $(this).find('.btn_closeAlert').on('click', function() {
-        $(this).closest('.jqAlert').hide();
+        if (options.show) {
+          $(this).show();
+        }
+        if ($(this).offset() != undefined && $(this).offset().top - $(window).scrollTop() < $(this).height()) {
+          $('html, body').animate({
+            scrollTop: $(this).offset().top - 60
+          }, 650);
+        }
+        
+        $(this).find('.btn_closeAlert').on('click', function() {
+          $(this).closest('.jqAlert').hide();
+          if(typeof initRowOverflow == 'function'){
+            initRowOverflow();
+          }
+        });
         if(typeof initRowOverflow == 'function'){
           initRowOverflow();
         }
+      }
+      //Hide/show debug trace
+      $(this).find('.bt_errorShowTrace').on('click', function() {
+        var errorTrace = $(this).parent().find('.pre_errorTrace');
+        if (errorTrace.is(':visible')) {
+          errorTrace.hide();
+          $(this).text('Show traces');
+        } else {
+          errorTrace.show();
+          $(this).text('Hide traces');
+        }
       });
-      if(typeof initRowOverflow == 'function'){
-        initRowOverflow();
-      }
-    }
-    //Hide/show debug trace
-    $(this).find('.bt_errorShowTrace').on('click', function() {
-      var errorTrace = $(this).parent().find('.pre_errorTrace');
-      if (errorTrace.is(':visible')) {
-        errorTrace.hide();
-        $(this).text('Show traces');
-      } else {
-        errorTrace.show();
-        $(this).text('Hide traces');
-      }
-    });
-    return this;
-  };
-
-  $.fn.hideAlert = function() {
-    $('#jqAlertSpacer' + $(this).attr('id')).remove();
-    $(this).text('').hide();
-    $.alertTrigger();
-    if(typeof initRowOverflow == 'function'){
-      initRowOverflow();
-    }
-    return $(this);
-  };
-
-  $.hideAlert = function() {
-    if (!$.mobile) {
-      $('.jqAlert').text('');
-      $('.jqAlert').hide();
+      return this;
+    };
+    
+    $.fn.hideAlert = function() {
+      $('#jqAlertSpacer' + $(this).attr('id')).remove();
+      $(this).text('').hide();
       $.alertTrigger();
       if(typeof initRowOverflow == 'function'){
         initRowOverflow();
       }
-    }
-  };
-
-  $.alertTrigger = function() {}
-
-  /**********************Jquery.value******************************/
-
-  jQuery.fn.findAtDepth = function(selector, maxDepth) {
-    var depths = [], i;
-
-    if (maxDepth > 0) {
-      for (i = 1; i <= maxDepth; i++) {
-        depths.push('> ' + new Array(i).join('* > ') + selector);
-      }
-
-      selector = depths.join(', ');
-      return this.find(selector).first();
-    }
-    return this.find(selector);
-  };
-
-
-  $.fn.value = function(_value) {
-    if (isset(_value)) {
-      if ($(this).length > 1) {
-        $(this).each(function() {
-          $(this).value(_value);
-        });
-      } else {
-        if ($(this).is('input')) {
-          if ($(this).attr('type') == 'checkbox') {
-            if (init(_value) === '') {
-              return;
-            }
-            $(this).prop('checked', (init(_value) == 1) ? true : false);
-          } else  if ($(this).attr('type') == 'radio') {
-            $(this).prop('checked', (init(_value) == 1) ? true : false);
-          } else {
-            $(this).val(init(_value));
-          }
-        } else if ($(this).is('select')) {
-          if (init(_value) == '') {
-            $(this).find('[value=""]').prop('selected', true)
-          } else {
-            $(this).val(init(_value));
-          }
-        } else if ($(this).is('textarea')) {
-          $(this).val(init(_value));
-        } else if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
-          $(this).html(init(_value));
-        } else  if ($(this).is('pre')) {
-          $(this).html(init(_value));
-        } else if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
-          var button = $(this);
-          $(this).closest('div.dropdown').find('ul.dropdown-menu li a').each(function() {
-            if ($(this).attr('data-value') == _value) {
-              button.html($(this).text() + '<span class="caret"></span>')
-              button.attr('value', _value)
-            }
-          });
+      return $(this);
+    };
+    
+    $.hideAlert = function() {
+      if (!$.mobile) {
+        $('.jqAlert').text('');
+        $('.jqAlert').hide();
+        $.alertTrigger();
+        if(typeof initRowOverflow == 'function'){
+          initRowOverflow();
         }
-        $(this).trigger('change');
       }
-    } else {
-      var value = '';
-      if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
-        if ($(this).attr('type') == 'checkbox') {
-          value = ($(this).is(':checked')) ? '1' : '0';
-        } else if ($(this).attr('type') == 'radio') {
-          value = ($(this).is(':checked')) ? '1' : '0';
+    };
+    
+    $.alertTrigger = function() {}
+    
+    /**********************Jquery.value******************************/
+    
+    jQuery.fn.findAtDepth = function(selector, maxDepth) {
+      var depths = [], i;
+      
+      if (maxDepth > 0) {
+        for (i = 1; i <= maxDepth; i++) {
+          depths.push('> ' + new Array(i).join('* > ') + selector);
+        }
+        
+        selector = depths.join(', ');
+        return this.find(selector).first();
+      }
+      return this.find(selector);
+    };
+    
+    
+    $.fn.value = function(_value) {
+      if (isset(_value)) {
+        if ($(this).length > 1) {
+          $(this).each(function() {
+            $(this).value(_value);
+          });
         } else {
+          if ($(this).is('input')) {
+            if ($(this).attr('type') == 'checkbox') {
+              if (init(_value) === '') {
+                return;
+              }
+              $(this).prop('checked', (init(_value) == 1) ? true : false);
+            } else  if ($(this).attr('type') == 'radio') {
+              $(this).prop('checked', (init(_value) == 1) ? true : false);
+            } else {
+              $(this).val(init(_value));
+            }
+          } else if ($(this).is('select')) {
+            if (init(_value) == '') {
+              $(this).find('[value=""]').prop('selected', true)
+            } else {
+              $(this).val(init(_value));
+            }
+          } else if ($(this).is('textarea')) {
+            $(this).val(init(_value));
+          } else if ($(this).is('span') || $(this).is('div') || $(this).is('p')) {
+            $(this).html(init(_value));
+          } else  if ($(this).is('pre')) {
+            $(this).html(init(_value));
+          } else if ($(this).is('button') && $(this).hasClass('dropdown-toggle')) {
+            var button = $(this);
+            $(this).closest('div.dropdown').find('ul.dropdown-menu li a').each(function() {
+              if ($(this).attr('data-value') == _value) {
+                button.html($(this).text() + '<span class="caret"></span>')
+                button.attr('value', _value)
+              }
+            });
+          }
+          $(this).trigger('change');
+        }
+      } else {
+        var value = '';
+        if ($(this).is('input') || $(this).is('select') || $(this).is('textarea')) {
+          if ($(this).attr('type') == 'checkbox') {
+            value = ($(this).is(':checked')) ? '1' : '0';
+          } else if ($(this).attr('type') == 'radio') {
+            value = ($(this).is(':checked')) ? '1' : '0';
+          } else {
+            value = $(this).val();
+          }
+        }
+        if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
+          value = $(this).html();
+        }
+        if ($(this).is('a') && $(this).attr('value') != undefined) {
+          value = $(this).attr('value');
+        }
+        if (value == '') {
           value = $(this).val();
         }
+        return value;
       }
-      if ($(this).is('div') || $(this).is('span') || $(this).is('p')) {
-        value = $(this).html();
+    };
+    
+    $.fn.getValues = function(_attr, _depth) {
+      var values = [];
+      if ($(this).length > 1) {
+        $(this).each(function() {
+          var value = {};
+          $(this).findAtDepth(_attr, init(_depth, 0)).each(function() {
+            var elValue = $(this).value();
+            try {
+              if ($.trim(elValue).substr(0, 1) == '{') {
+                var elValue = JSON.parse($(this).value());
+              }
+            } catch (e) {
+              
+            }
+            if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
+              var l1key = $(this).attr('data-l1key');
+              if ($(this).attr('data-l2key') !== undefined) {
+                var l2key = $(this).attr('data-l2key');
+                if (!isset(value[l1key])) {
+                  value[l1key] = {};
+                }
+                if ($(this).attr('data-l3key') !== undefined) {
+                  var l3key = $(this).attr('data-l3key');
+                  if (!isset(value[l1key][l2key])) {
+                    value[l1key][l2key] = {};
+                  }
+                  if (isset(value[l1key][l2key][l3key])) {
+                    if (!is_array(value[l1key][l2key][l3key])) {
+                      value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
+                    }
+                    value[l1key][l2key][l3key].push(elValue);
+                  } else {
+                    value[l1key][l2key][l3key] = elValue;
+                  }
+                } else {
+                  if (isset(value[l1key][l2key])) {
+                    if (!is_array(value[l1key][l2key])) {
+                      value[l1key][l2key] = [value[l1key][l2key]];
+                    }
+                    value[l1key][l2key].push(elValue);
+                  } else {
+                    value[l1key][l2key] = elValue;
+                  }
+                }
+              } else {
+                if (isset(value[l1key])) {
+                  if (!is_array(value[l1key])) {
+                    value[l1key] = [value[l1key]];
+                  }
+                  value[l1key].push(elValue);
+                } else {
+                  value[l1key] = elValue;
+                }
+              }
+            }
+          });
+          values.push(value);
+        });
       }
-      if ($(this).is('a') && $(this).attr('value') != undefined) {
-        value = $(this).attr('value');
-      }
-      if (value == '') {
-        value = $(this).val();
-      }
-      return value;
-    }
-  };
-
-  $.fn.getValues = function(_attr, _depth) {
-    var values = [];
-    if ($(this).length > 1) {
-      $(this).each(function() {
+      if ($(this).length == 1) {
         var value = {};
         $(this).findAtDepth(_attr, init(_depth, 0)).each(function() {
-          var elValue = $(this).value();
-          try {
-            if ($.trim(elValue).substr(0, 1) == '{') {
-              var elValue = JSON.parse($(this).value());
-            }
-          } catch (e) {
-
-          }
           if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
+            var elValue = $(this).value();
+            try {
+              if ($.trim(elValue).substr(0, 1) == '{') {
+                var elValue = JSON.parse($(this).value());
+              }
+            } catch (e) {
+              
+            }
             var l1key = $(this).attr('data-l1key');
             if ($(this).attr('data-l2key') !== undefined) {
               var l2key = $(this).attr('data-l2key');
@@ -522,254 +582,198 @@ function init(_value, _default) {
           }
         });
         values.push(value);
-      });
+      }
+      return values;
     }
-    if ($(this).length == 1) {
-      var value = {};
-      $(this).findAtDepth(_attr, init(_depth, 0)).each(function() {
-        if ($(this).attr('data-l1key') != undefined && $(this).attr('data-l1key') != '') {
-          var elValue = $(this).value();
-          try {
-            if ($.trim(elValue).substr(0, 1) == '{') {
-              var elValue = JSON.parse($(this).value());
-            }
-          } catch (e) {
-
-          }
-          var l1key = $(this).attr('data-l1key');
-          if ($(this).attr('data-l2key') !== undefined) {
-            var l2key = $(this).attr('data-l2key');
-            if (!isset(value[l1key])) {
-              value[l1key] = {};
-            }
-            if ($(this).attr('data-l3key') !== undefined) {
-              var l3key = $(this).attr('data-l3key');
-              if (!isset(value[l1key][l2key])) {
-                value[l1key][l2key] = {};
-              }
-              if (isset(value[l1key][l2key][l3key])) {
-                if (!is_array(value[l1key][l2key][l3key])) {
-                  value[l1key][l2key][l3key] = [value[l1key][l2key][l3key]];
-                }
-                value[l1key][l2key][l3key].push(elValue);
-              } else {
-                value[l1key][l2key][l3key] = elValue;
+    
+    $.fn.setValues = function(_object, _attr) {
+      for (var i in _object) {
+        if ((!is_array(_object[i]) || $(this).find(_attr + '[data-l1key="' + i + '"]').attr('multiple') == 'multiple') && !is_object(_object[i])) {
+          $(this).find(_attr + '[data-l1key="' + i + '"]').value(_object[i]);
+        } else {
+          for (var j in _object[i]) {
+            if ((is_array(_object[i][j]) ||  $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').attr('multiple') == 'multiple') || is_object(_object[i][j])) {
+              for (var k in _object[i][j]) {
+                $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').value(_object[i][j][k]);
               }
             } else {
-              if (isset(value[l1key][l2key])) {
-                if (!is_array(value[l1key][l2key])) {
-                  value[l1key][l2key] = [value[l1key][l2key]];
-                }
-                value[l1key][l2key].push(elValue);
-              } else {
-                value[l1key][l2key] = elValue;
-              }
-            }
-          } else {
-            if (isset(value[l1key])) {
-              if (!is_array(value[l1key])) {
-                value[l1key] = [value[l1key]];
-              }
-              value[l1key].push(elValue);
-            } else {
-              value[l1key] = elValue;
+              $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').value(_object[i][j]);
             }
           }
+        }
+      }
+    }
+    
+    
+    /**************LI FILTER*****************************/
+    
+    $.initTableFilter = function() {
+      $("body").delegate("ul li input.filter", 'keyup', function() {
+        $(this).closest('ul').ulFilter();
+      });
+    };
+    
+    
+    $.fn.ulFilter = function() {
+      var ul = $(this);
+      var li = $(this).find('li:not(.filter):not(.nav-header):first');
+      var find = 'li.filter input.filter';
+      delete inputs;
+      var inputs = new Array();
+      ul.find(find).each(function(i) {
+        var filterOn = '';
+        if ($(this).is(':visible')) {
+          var value = $(this).value();
+          var filterOn = $(this).attr('filterOn');
+        }
+        if (filterOn != '' && value != '') {
+          var infoInput = new Array();
+          infoInput[0] = filterOn;
+          infoInput[1] = value.toLowerCase();
+          inputs.push(infoInput);
         }
       });
-      values.push(value);
-    }
-    return values;
-  }
-
-  $.fn.setValues = function(_object, _attr) {
-    for (var i in _object) {
-      if ((!is_array(_object[i]) || $(this).find(_attr + '[data-l1key="' + i + '"]').attr('multiple') == 'multiple') && !is_object(_object[i])) {
-        $(this).find(_attr + '[data-l1key="' + i + '"]').value(_object[i]);
-      } else {
-        for (var j in _object[i]) {
-          if ((is_array(_object[i][j]) ||  $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').attr('multiple') == 'multiple') || is_object(_object[i][j])) {
-            for (var k in _object[i][j]) {
-              $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').value(_object[i][j][k]);
-            }
-          } else {
-            $(this).find(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').value(_object[i][j]);
+      var searchText = 1;
+      var showLi = true;
+      $(this).find('li:not(.filter):not(.nav-header)').each(function() {
+        showLi = true;
+        for (var i = 0; i < inputs.length; i++) {
+          searchText = $(this).find('a').text().toLowerCase().stripAccents().indexOf(inputs[i][1].stripAccents());
+          if (searchText < 0) {
+            showLi = false;
+            break;
           }
         }
-      }
-    }
-  }
-
-
-  /**************LI FILTER*****************************/
-
-  $.initTableFilter = function() {
-    $("body").delegate("ul li input.filter", 'keyup', function() {
-      $(this).closest('ul').ulFilter();
-    });
-  };
-
-
-  $.fn.ulFilter = function() {
-    var ul = $(this);
-    var li = $(this).find('li:not(.filter):not(.nav-header):first');
-    var find = 'li.filter input.filter';
-    delete inputs;
-    var inputs = new Array();
-    ul.find(find).each(function(i) {
-      var filterOn = '';
-      if ($(this).is(':visible')) {
-        var value = $(this).value();
-        var filterOn = $(this).attr('filterOn');
-      }
-      if (filterOn != '' && value != '') {
-        var infoInput = new Array();
-        infoInput[0] = filterOn;
-        infoInput[1] = value.toLowerCase();
-        inputs.push(infoInput);
-      }
-    });
-    var searchText = 1;
-    var showLi = true;
-    $(this).find('li:not(.filter):not(.nav-header)').each(function() {
-      showLi = true;
-      for (var i = 0; i < inputs.length; i++) {
-        searchText = $(this).find('a').text().toLowerCase().stripAccents().indexOf(inputs[i][1].stripAccents());
-        if (searchText < 0) {
-          showLi = false;
-          break;
+        if (showLi) {
+          $(this).show();
+        } else {
+          $(this).hide();
         }
-      }
-      if (showLi) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-    return this;
-  };
-
-  String.prototype.stripAccents = function() {
-    var in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
-    out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
-    transl = {};
-    eval('var chars_rgx = /[' + in_chrs + ']/g');
-    for (var i = 0; i < in_chrs.length; i++) {
-      transl[in_chrs.charAt(i)] = out_chrs.charAt(i);
-    }
-    return this.replace(chars_rgx, function(match) {
-      return transl[match];
-    });
-  };
-})(jQuery);
-
-
-(function($) {
-  if ($.fn.style) {
-    return;
-  }
-
-  // Escape regex chars with \
-  var escape = function(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-  };
-
-  // For those who need them (< IE 9), add support for CSS functions
-  var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
-  if (!isStyleFuncSupported) {
-    CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
-      return this.getAttribute(a);
-    };
-    CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
-      this.setAttribute(styleName, value);
-      var priority = typeof priority != 'undefined' ? priority : '';
-      if (priority != '') {
-        // Add priority manually
-        var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
-        '(\\s*;)?', 'gmi');
-        this.cssText =
-        this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
-      }
-    };
-    CSSStyleDeclaration.prototype.removeProperty = function(a) {
-      return this.removeAttribute(a);
-    };
-    CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
-      var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
-      'gmi');
-      return rule.test(this.cssText) ? 'important' : '';
-    }
-  }
-
-  // The style function
-  $.fn.style = function(styleName, value, priority) {
-    // DOM node
-    var node = this.get(0);
-    // Ensure we have a DOM node
-    if (typeof node == 'undefined') {
+      });
       return this;
+    };
+    
+    String.prototype.stripAccents = function() {
+      var in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
+      out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
+      transl = {};
+      eval('var chars_rgx = /[' + in_chrs + ']/g');
+      for (var i = 0; i < in_chrs.length; i++) {
+        transl[in_chrs.charAt(i)] = out_chrs.charAt(i);
+      }
+      return this.replace(chars_rgx, function(match) {
+        return transl[match];
+      });
+    };
+  })(jQuery);
+  
+  
+  (function($) {
+    if ($.fn.style) {
+      return;
     }
-    // CSSStyleDeclaration
-    var style = this.get(0).style;
-    if(!style){
-      return this;
+    
+    // Escape regex chars with \
+    var escape = function(text) {
+      return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    };
+    
+    // For those who need them (< IE 9), add support for CSS functions
+    var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
+    if (!isStyleFuncSupported) {
+      CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+        return this.getAttribute(a);
+      };
+      CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+        this.setAttribute(styleName, value);
+        var priority = typeof priority != 'undefined' ? priority : '';
+        if (priority != '') {
+          // Add priority manually
+          var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
+          '(\\s*;)?', 'gmi');
+          this.cssText =
+          this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+        }
+      };
+      CSSStyleDeclaration.prototype.removeProperty = function(a) {
+        return this.removeAttribute(a);
+      };
+      CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+        var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
+        'gmi');
+        return rule.test(this.cssText) ? 'important' : '';
+      }
     }
-    // Getter/Setter
-    if (typeof styleName != 'undefined') {
-      if (typeof value != 'undefined') {
-        // Set style property
-        priority = typeof priority != 'undefined' ? priority : '';
-        style.setProperty(styleName, value, priority);
+    
+    // The style function
+    $.fn.style = function(styleName, value, priority) {
+      // DOM node
+      var node = this.get(0);
+      // Ensure we have a DOM node
+      if (typeof node == 'undefined') {
         return this;
-      } else {
-        // Get style property
-        return style.getPropertyValue(styleName);
       }
-    } else {
-      // Get CSSStyleDeclaration
-      return style;
+      // CSSStyleDeclaration
+      var style = this.get(0).style;
+      if(!style){
+        return this;
+      }
+      // Getter/Setter
+      if (typeof styleName != 'undefined') {
+        if (typeof value != 'undefined') {
+          // Set style property
+          priority = typeof priority != 'undefined' ? priority : '';
+          style.setProperty(styleName, value, priority);
+          return this;
+        } else {
+          // Get style property
+          return style.getPropertyValue(styleName);
+        }
+      } else {
+        // Get CSSStyleDeclaration
+        return style;
+      }
+    };
+    
+    $.fn.hasAttr = function(name) {
+      return this.attr(name) !== undefined;
     }
-  };
-
-  $.fn.hasAttr = function(name) {
-    return this.attr(name) !== undefined;
-  }
-})(jQuery);
-
+  })(jQuery);
+  
   /**************WIDGETS*****************************/
-(function($) {
-  $.issetWidgetOptParam = function(_def, _param) {
-    if (_def != '#'+_param+'#') return true
-    return false
-  }
-
-  $.createWidgetSlider = function(_options) {
-    var createOptions = {
-      start: [_options.state],
-      connect: [true, false],
-      step: _options.step,
-      range: {
-        'min': _options.min,
-        'max': _options.max
-      },
-      tooltips: _options.tooltips
+  (function($) {
+    $.issetWidgetOptParam = function(_def, _param) {
+      if (_def != '#'+_param+'#') return true
+      return false
     }
-
-    if (isset(_options.format) && _options.format == true) {
-      createOptions.format = {
-        from: Number,
-        to: function(value) {
-          var dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
-          return ((Math.round(value * (100/_options.step)) / (100/_options.step)).toFixed(dec)  + ' ' +  _options.unite)
+    
+    $.createWidgetSlider = function(_options) {
+      var createOptions = {
+        start: [_options.state],
+        connect: [true, false],
+        step: _options.step,
+        range: {
+          'min': _options.min,
+          'max': _options.max
+        },
+        tooltips: _options.tooltips
+      }
+      
+      if (isset(_options.format) && _options.format == true) {
+        createOptions.format = {
+          from: Number,
+          to: function(value) {
+            var dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
+            return ((Math.round(value * (100/_options.step)) / (100/_options.step)).toFixed(dec)  + ' ' +  _options.unite)
+          }
         }
       }
+      
+      if (isset(_options.vertical) && _options.vertical == true) {
+        createOptions.orientation = 'vertical'
+        createOptions.direction = 'rtl'
+      }
+      
+      return noUiSlider.create(_options.sliderDiv, createOptions)
     }
-
-    if (isset(_options.vertical) && _options.vertical == true) {
-      createOptions.orientation = 'vertical'
-      createOptions.direction = 'rtl'
-    }
-
-    return noUiSlider.create(_options.sliderDiv, createOptions)
-  }
-})(jQuery)
+  })(jQuery)
