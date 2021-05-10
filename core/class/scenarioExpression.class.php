@@ -340,7 +340,6 @@ class scenarioExpression {
 		}
 	}
 	
-	
 	public static function min($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
