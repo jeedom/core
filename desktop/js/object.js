@@ -326,7 +326,6 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
         success: function(data) {
           modifyWithoutSave = false
           jeedomUtils.loadPage('index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1')
-          $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
         }
       })
     }

@@ -18,6 +18,7 @@
 - **Resúmenes** : Posibilidad de definir un icono diferente cuando el resumen es nulo (sin persianas abiertas, sin luz encendida, etc).
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
+- **Resúmenes** : Ahora es posible configurar acciones sobre los resúmenes (ctrl + clic en un resumen) gracias a los virtuales.
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
 - **Categorías coloreadas** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
 - **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función principal.
@@ -29,8 +30,8 @@
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
+- **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
-- **Usuarios** : Posibilidad de gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 
@@ -43,16 +44,21 @@
 - Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *paso* para definir el paso de cambio en el cursor.
 - El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
 
-### Respaldo en la nube 
+### Respaldo en la nube
 
-Hemos agregado una confirmación de la contraseña de la nube de respaldo para evitar errores tipográficos tanto como sea posible (como recordatorio usted es el único en conocer esta contraseña en caso de olvidarnos, no podemos absolutamente nada para recuperar su nube de respaldo). 
+Hemos agregado una confirmación de la contraseña de la copia de seguridad en la nube para evitar errores de entrada (como recordatorio, el usuario es el único que conoce esta contraseña, en caso de olvidarla, Jeedom no puede recuperarla ni acceder a las copias de seguridad).
 
 >**IMPORTANTE**
 >
->Después de la actualización, es OBLIGATORIO ir a la configuración de la pestaña Actualización / Mercado de jeedom y escribir la confirmación de la contraseña de la copia de seguridad en la nube sin que no se pueda realizar ninguna copia de seguridad
+> Después de la actualización, DEBE ir a Configuración → Sistema → pestaña Actualización de configuración / Mercado e ingresar la confirmación de la contraseña de la copia de seguridad en la nube para que se pueda hacer.
 
 # Registro de cambios Jeedom V4.1
 
+
+## 4.1.22
+
+- Adición de un sistema que permite a Jeedom SAS comunicar mensajes a todos los Jeedom
+- Cambiar el DNS de Jeedom al modo de alta disponibilidad
 
 ## 4.1.20
 

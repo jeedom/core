@@ -18,6 +18,7 @@
 - **Résumés** : Possibilité de définir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc).
 - **Résumés** : Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif.
 - **Résumés** : Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé.
+- **Résumés** : Il est maintenant possible de configurer des actions sur les résumés (ctrl + clic sur un résumé) grâce aux virtuels.
 - **Sélection d'illustrations** : Nouvelle fenêtre globale pour le choix des illustrations *(icônes, images, fonds)*.
 - **Catégories colorées** : Nouvelle option en configuration / interface pour ne pas colorer le bandeau de titre des équipements.
 - **Affichage en tableau** : Ajout d'un bouton à droite de la recherche sur les pages *Objets* *Scénarios* *Interactions* *Widgets* et *Plugins* pour basculer en mode tableau. Celui-ci est conservé par un cookie ou dans **Réglages → Système → Configuration / Interface, Options**. Les plugins peuvent faire appel à cette nouvelle fonction du Core.
@@ -29,10 +30,10 @@
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
 - **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
 - **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs.
+- **Utilisateurs** : Possibilité de gérer les profils des différents utilisateurs Jeedom depuis la page de gestion des utilisateurs.
 - **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
-- **Utilisateurs** : Possibilité de gérer les profils des différents utilisateur Jeedom depuis la page de gestion des utilisateurs.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
-- **Ajout de l'utilisateur executant une action** : ajout dans les options d'éxecution de la commande de l'id et du nom d'utilisateur lancant l'action (visible dans le log event par exemple)
+- **Ajout de l'utilisateur exécutant une action** : ajout dans les options d’exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple)
 
 ### Widgets Core
 
@@ -43,16 +44,21 @@
 - Les Widgets de type curseur (action) acceptent maintenant un paramètre optionnel *step* pour définir le pas de changement au curseur.
 - Le Widget **action.slider.value** est maintenant disponible en desktop, avec un paramètre optionnel *noslider*, ce qui en fait un *input* simple.
 
-### Backup cloud 
+### Backup cloud
 
-Nous avons ajouter une confirmation du mot de passe de backup cloud pour eviter un maximum les erreurs de saisies (pour rappel vous etes le seul et unique à connaitre ce mot de passe en cas d'oublie nous ne pouvons absolument rien pour recuperer votre backup cloud). 
+Nous avons ajouter une confirmation du mot de passe de backup cloud pour prévenir les erreurs de saisie (pour rappel l'utilisateur est le seul à connaître ce mot de passe, en cas d'oubli, Jeedom ne peut ni le récupérer ni accéder aux backup cloud de l'utilisateur).
 
 >**IMPORTANT**
 >
->Suite à la mise à jour il faudra OBLIGATOIREMENT aller dans la configuration de jeedom onglet Mise à jour/Market et taper la confirmation de mot de passe de backup cloud sans ca aucun backup ne pourra se faire
+> Suite à la mise à jour, il faudra OBLIGATOIREMENT aller dans Réglages → Système → Configuration onglet Mise à jour/Market et entrer la confirmation de mot de passe de backup cloud pour que celui-ci puisse se faire.
 
 # Changelog Jeedom V4.1
 
+
+## 4.1.22
+
+- Ajout d'un systeme permettant a Jeedom SAS de communiquer des messages à tous les Jeedoms
+- Passage du DNS Jeedom en mode haute disponibilité
 
 ## 4.1.20
 
