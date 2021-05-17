@@ -782,12 +782,8 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
   $('.nav-tabs a').on('click',function() {
-    var scrollHeight = $(document).scrollTop()
     $(this).tab('show')
-    $(window).scrollTop(scrollHeight)
-    setTimeout(function() {
-      $(window).scrollTop(scrollHeight)
-    }, 0)
+    $('#div_mainContainer').scrollTop(0)
   })
 
   setTimeout(function() {
