@@ -430,7 +430,7 @@
         "Nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles": "Username for connection (anonymous connections are not possible",
         "Il faut forcément que l'utilisateur ait les droits en lecture ET en écriture sur le répertoire de destination": "The user must have read AND write rights on the destination directory",
         "\\[Backup\\] Mot de passe": "\\ [Backup \\] Password",
-        "Mot de passe de l'utilisateur": "User password",
+        "Mot de passe de l'utilisateur (attention les carateres spéciaux ne sont pas autorisé": "User password (please note that special characters are not allowed",
         "\\[Backup\\] Partage": "\\ [Backup \\] Sharing",
         "Chemin du partage (attention à bien s'arrêter au niveau du partage": "Path to sharing (be careful to stop at the sharing level",
         "\\[Backup\\] Chemin": "\\ [Backup \\] Path",

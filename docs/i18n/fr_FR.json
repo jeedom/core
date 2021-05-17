@@ -483,7 +483,7 @@
         "Nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles": "Nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles",
         "Il faut forcément que l'utilisateur ait les droits en lecture ET en écriture sur le répertoire de destination": "Il faut forcément que l'utilisateur ait les droits en lecture ET en écriture sur le répertoire de destination",
         "\\[Backup\\] Mot de passe": "\\[Backup\\] Mot de passe",
-        "Mot de passe de l'utilisateur": "Mot de passe de l'utilisateur",
+        "Mot de passe de l'utilisateur (attention les carateres spéciaux ne sont pas autorisé": "Mot de passe de l'utilisateur (attention les carateres spéciaux ne sont pas autorisé",
         "\\[Backup\\] Partage": "\\[Backup\\] Partage",
         "Chemin du partage (attention à bien s'arrêter au niveau du partage": "Chemin du partage (attention à bien s'arrêter au niveau du partage",
         "\\[Backup\\] Chemin": "\\[Backup\\] Chemin",

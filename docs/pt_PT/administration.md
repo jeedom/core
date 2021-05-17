@@ -338,7 +338,7 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 
 - **\ [Backup \] IP** : IP do servidor Samba.
 - **\ [Backup \] Usuário** : Nome de usuário para conexão (conexões anônimas não são possíveis). O usuário deve ter direitos de leitura e gravação no diretório de destino.
-- **\ [Backup \] Senha** : Senha do usuário.
+- **\ [Backup \] Senha** : Senha do usuário (observe que caracteres especiais não são permitidos).
 - **\ [Backup \] Compartilhamento** : Caminho para o compartilhamento (tenha cuidado para parar no nível de compartilhamento).
 - **Caminho \ [Backup \]** : Caminho no compartilhamento (para colocar em relativo), isso deve existir.
 

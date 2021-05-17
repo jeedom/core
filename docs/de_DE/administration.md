@@ -338,7 +338,7 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 
 - **\ [Backup \] IP** : Samba Server IP.
 - **\ [Backup \] Benutzer** : Benutzername für die Verbindung (anonyme Verbindungen sind nicht möglich). Der Benutzer muss über Lese- UND Schreibrechte für das Zielverzeichnis verfügen.
-- **\ [Backup \] Passwort** : Benutzerpasswort.
+- **\ [Backup \] Passwort** : Benutzerpasswort (bitte beachten Sie, dass Sonderzeichen nicht zulässig sind).
 - **\ [Backup \] Freigabe** : Pfad zum Teilen (achten Sie darauf, auf der Freigabeebene anzuhalten).
 - **\ [Backup \] Pfad** : Pfad in der Freigabe (relativ zu setzen), muss dieser vorhanden sein.
 
