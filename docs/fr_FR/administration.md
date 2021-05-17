@@ -338,7 +338,7 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 - **\[Backup\] IP** : IP du serveur Samba.
 - **\[Backup\] Utilisateur** : Nom d’utilisateur pour la connexion (les connexions anonymes ne sont pas possibles). Il faut forcément que l’utilisateur ait les droits en lecture ET en écriture sur le répertoire de destination.
-- **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur.
+- **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur (attention les carateres spéciaux ne sont pas autorisé).
 - **\[Backup\] Partage** : Chemin du partage (attention à bien s’arrêter au niveau du partage).
 - **\[Backup\] Chemin** : Chemin dans le partage (à mettre en relatif), celui-ci doit exister.
 
