@@ -30,6 +30,9 @@ try {
     $return = array();
     $events = timeline::byFolder(init('folder','main'));
     foreach ($events as $event) {
+      if(!$event->hasRight()){
+        continue;
+      }
       $info = $event->getDisplay();
       if ($info != null) {
         $return[] = $info;
