@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Accessibility component class definition
  *
@@ -10,16 +10,16 @@
  *
  * */
 'use strict';
-import H from '../Core/Globals.js';
-var win = H.win, doc = win.document;
-import U from '../Core/Utilities.js';
-var extend = U.extend, fireEvent = U.fireEvent, merge = U.merge;
-import HTMLUtilities from './Utils/HTMLUtilities.js';
-var removeElement = HTMLUtilities.removeElement, getFakeMouseEvent = HTMLUtilities.getFakeMouseEvent;
 import ChartUtilities from './Utils/ChartUtilities.js';
 var unhideChartElementFromAT = ChartUtilities.unhideChartElementFromAT;
-import EventProvider from './Utils/EventProvider.js';
 import DOMElementProvider from './Utils/DOMElementProvider.js';
+import EventProvider from './Utils/EventProvider.js';
+import H from '../Core/Globals.js';
+var doc = H.doc, win = H.win;
+import HTMLUtilities from './Utils/HTMLUtilities.js';
+var removeElement = HTMLUtilities.removeElement, getFakeMouseEvent = HTMLUtilities.getFakeMouseEvent;
+import U from '../Core/Utilities.js';
+var extend = U.extend, fireEvent = U.fireEvent, merge = U.merge;
 /* eslint-disable valid-jsdoc */
 /** @lends Highcharts.AccessibilityComponent */
 var functionsToOverrideByDerivedClasses = {
@@ -247,20 +247,21 @@ AccessibilityComponent.prototype = {
      */
     setProxyButtonStyle: function (button) {
         merge(true, button.style, {
-            'border-width': 0,
-            'background-color': 'transparent',
+            borderWidth: '0',
+            backgroundColor: 'transparent',
             cursor: 'pointer',
             outline: 'none',
-            opacity: 0.001,
+            opacity: '0.001',
             filter: 'alpha(opacity=1)',
-            '-ms-filter': 'progid:DXImageTransform.Microsoft.Alpha(Opacity=1)',
-            zIndex: 999,
+            zIndex: '999',
             overflow: 'hidden',
-            padding: 0,
-            margin: 0,
+            padding: '0',
+            margin: '0',
             display: 'block',
             position: 'absolute'
         });
+        button.style['-ms-filter'] =
+            'progid:DXImageTransform.Microsoft.Alpha(Opacity=1)';
     },
     /**
      * @private
@@ -297,8 +298,12 @@ AccessibilityComponent.prototype = {
                     component.fireEventOnWrappedOrUnwrappedElement(source, clonedEvent);
                 }
                 e.stopPropagation();
-                e.preventDefault();
-            });
+                // #9682, #15318: Touch scrolling didnt work when touching a
+                // component
+                if (evtType !== 'touchstart' && evtType !== 'touchmove' && evtType !== 'touchend') {
+                    e.preventDefault();
+                }
+            }, { passive: false });
         });
     },
     /**

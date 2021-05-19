@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  Extension for 3D charts
  *
@@ -13,13 +13,14 @@
 import Axis from '../Axis/Axis.js';
 import Axis3D from '../Axis/Axis3D.js';
 import Chart from './Chart.js';
+import Fx from '../Animation/Fx.js';
 import H from '../Globals.js';
 import Math3D from '../../Extensions/Math3D.js';
 var perspective = Math3D.perspective, shapeArea3D = Math3D.shapeArea3D;
 import O from '../Options.js';
 var genericDefaultOptions = O.defaultOptions;
 import U from '../Utilities.js';
-var addEvent = U.addEvent, Fx = U.Fx, isArray = U.isArray, merge = U.merge, pick = U.pick, wrap = U.wrap;
+var addEvent = U.addEvent, isArray = U.isArray, merge = U.merge, pick = U.pick, wrap = U.wrap;
 import ZAxis from '../Axis/ZAxis.js';
 var Chart3D;
 (function (Chart3D) {
@@ -630,7 +631,7 @@ var Chart3D;
          * Whether it is a 3D chart.
          */
         chartProto.is3d = function () {
-            return (this.options.chart.options3d &&
+            return Boolean(this.options.chart.options3d &&
                 this.options.chart.options3d.enabled); // #4280
         };
         chartProto.propsRequireDirtyBox.push('chart.options3d');
@@ -1507,21 +1508,29 @@ var Chart3D;
                 }].forEach(function (cfg) {
                 this.renderer.definition({
                     tagName: 'filter',
-                    id: 'highcharts-' + cfg.name,
+                    attributes: {
+                        id: 'highcharts-' + cfg.name
+                    },
                     children: [{
                             tagName: 'feComponentTransfer',
                             children: [{
                                     tagName: 'feFuncR',
-                                    type: 'linear',
-                                    slope: cfg.slope
+                                    attributes: {
+                                        type: 'linear',
+                                        slope: cfg.slope
+                                    }
                                 }, {
                                     tagName: 'feFuncG',
-                                    type: 'linear',
-                                    slope: cfg.slope
+                                    attributes: {
+                                        type: 'linear',
+                                        slope: cfg.slope
+                                    }
                                 }, {
                                     tagName: 'feFuncB',
-                                    type: 'linear',
-                                    slope: cfg.slope
+                                    attributes: {
+                                        type: 'linear',
+                                        slope: cfg.slope
+                                    }
                                 }]
                         }]
                 });

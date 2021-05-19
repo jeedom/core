@@ -2,13 +2,14 @@
  *
  *  Networkgraph series
  *
- *  (c) 2010-2020 Paweł Fus
+ *  (c) 2010-2021 Paweł Fus
  *
  *  License: www.highcharts.com/license
  *
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 import Chart from '../../Core/Chart/Chart.js';
 import H from '../../Core/Globals.js';
 import U from '../../Core/Utilities.js';
@@ -45,7 +46,7 @@ H.dragNodesMixin = {
      */
     onMouseMove: function (point, event) {
         if (point.fixedPosition && point.inDragMode) {
-            var series = this, chart = series.chart, normalizedEvent = chart.pointer.normalize(event), diffX = point.fixedPosition.chartX - normalizedEvent.chartX, diffY = point.fixedPosition.chartY - normalizedEvent.chartY, newPlotX, newPlotY, graphLayoutsLookup = chart.graphLayoutsLookup;
+            var series = this, chart = series.chart, normalizedEvent = chart.pointer.normalize(event), diffX = point.fixedPosition.chartX - normalizedEvent.chartX, diffY = point.fixedPosition.chartY - normalizedEvent.chartY, newPlotX = void 0, newPlotY = void 0, graphLayoutsLookup = chart.graphLayoutsLookup;
             // At least 5px to apply change (avoids simple click):
             if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
                 newPlotX = point.fixedPosition.plotX - diffX;
@@ -70,12 +71,14 @@ H.dragNodesMixin = {
      * @return {void}
      */
     onMouseUp: function (point, event) {
-        if (point.fixedPosition && point.hasDragged) {
-            if (this.layout.enableSimulation) {
-                this.layout.start();
-            }
-            else {
-                this.chart.redraw();
+        if (point.fixedPosition) {
+            if (point.hasDragged) {
+                if (this.layout.enableSimulation) {
+                    this.layout.start();
+                }
+                else {
+                    this.chart.redraw();
+                }
             }
             point.inDragMode = point.hasDragged = false;
             if (!this.options.fixedDraggable) {

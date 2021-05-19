@@ -1,6 +1,6 @@
 /* *
  *
- *  Copyright (c) 2019-2020 Highsoft AS
+ *  Copyright (c) 2019-2021 Highsoft AS
  *
  *  Boost module: stripped-down renderer for higher performance
  *
@@ -12,12 +12,15 @@
 'use strict';
 import Chart from '../../Core/Chart/Chart.js';
 import H from '../../Core/Globals.js';
+var noop = H.noop;
+import Series from '../../Core/Series/Series.js';
+import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
+var seriesTypes = SeriesRegistry.seriesTypes;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, fireEvent = U.fireEvent, wrap = U.wrap;
-import '../../Core/Series/Series.js';
 import butils from './BoostUtils.js';
 import createAndAttachRenderer from './BoostAttach.js';
-var Series = H.Series, seriesTypes = H.seriesTypes, noop = function () { }, eachAsync = butils.eachAsync, pointDrawHandler = butils.pointDrawHandler, allocateIfNotSeriesBoosting = butils.allocateIfNotSeriesBoosting, renderIfNotSeriesBoosting = butils.renderIfNotSeriesBoosting, shouldForceChartSeriesBoosting = butils.shouldForceChartSeriesBoosting, index;
+var eachAsync = butils.eachAsync, pointDrawHandler = butils.pointDrawHandler, allocateIfNotSeriesBoosting = butils.allocateIfNotSeriesBoosting, renderIfNotSeriesBoosting = butils.renderIfNotSeriesBoosting, shouldForceChartSeriesBoosting = butils.shouldForceChartSeriesBoosting, index;
 /* eslint-disable valid-jsdoc */
 /**
  * Initialize the boot module.
@@ -112,6 +115,9 @@ function init() {
              */
             function processPoint(d, i) {
                 var x, y, clientX, plotY, isNull, low = false, chartDestroyed = typeof chart.index === 'undefined', isYInside = true;
+                if (typeof d === 'undefined') {
+                    return true;
+                }
                 if (!chartDestroyed) {
                     if (useRaw) {
                         x = d[0];
@@ -240,6 +246,7 @@ function init() {
         fill: true,
         sampling: true
     });
+    Chart.prototype.propsRequireUpdateSeries.push('boost');
     // Take care of the canvas blitting
     Chart.prototype.callbacks.push(function (chart) {
         /**
@@ -287,6 +294,24 @@ function init() {
         //     chart.boostForceChartBoost =
         //         shouldForceChartSeriesBoosting(chart);
         // });
+        var prevX = -1;
+        var prevY = -1;
+        addEvent(chart.pointer, 'afterGetHoverData', function () {
+            var series = chart.hoverSeries;
+            if (chart.markerGroup && series) {
+                var xAxis = chart.inverted ? series.yAxis : series.xAxis;
+                var yAxis = chart.inverted ? series.xAxis : series.yAxis;
+                if ((xAxis && xAxis.pos !== prevX) ||
+                    (yAxis && yAxis.pos !== prevY)) {
+                    // #10464: Keep the marker group position in sync with the
+                    // position of the hovered series axes since there is only
+                    // one shared marker group when boosting.
+                    chart.markerGroup.translate(xAxis.pos, yAxis.pos);
+                    prevX = xAxis.pos;
+                    prevY = yAxis.pos;
+                }
+            }
+        });
     });
     /* eslint-enable no-invalid-this */
 }

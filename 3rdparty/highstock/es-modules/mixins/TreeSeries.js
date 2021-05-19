@@ -3,7 +3,8 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import Color from '../Core/Color.js';
+'use strict';
+import Color from '../Core/Color/Color.js';
 import U from '../Core/Utilities.js';
 var extend = U.extend, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, merge = U.merge, pick = U.pick;
 var isBoolean = function (x) {
@@ -21,12 +22,10 @@ var setTreeValues = function setTreeValues(tree, options) {
     var before = options.before, idRoot = options.idRoot, mapIdToNode = options.mapIdToNode, nodeRoot = mapIdToNode[idRoot], levelIsConstant = (isBoolean(options.levelIsConstant) ?
         options.levelIsConstant :
         true), points = options.points, point = points[tree.i], optionsPoint = point && point.options || {}, childrenTotal = 0, children = [], value;
-    extend(tree, {
-        levelDynamic: tree.level - (levelIsConstant ? 0 : nodeRoot.level),
-        name: pick(point && point.name, ''),
-        visible: (idRoot === tree.id ||
-            (isBoolean(options.visible) ? options.visible : false))
-    });
+    tree.levelDynamic = tree.level - (levelIsConstant ? 0 : nodeRoot.level);
+    tree.name = pick(point && point.name, '');
+    tree.visible = (idRoot === tree.id ||
+        (isBoolean(options.visible) ? options.visible : false));
     if (isFn(before)) {
         tree = before(tree, options);
     }
@@ -47,12 +46,10 @@ var setTreeValues = function setTreeValues(tree, options) {
     tree.visible = childrenTotal > 0 || tree.visible;
     // Set the values
     value = pick(optionsPoint.value, childrenTotal);
-    extend(tree, {
-        children: children,
-        childrenTotal: childrenTotal,
-        isLeaf: tree.visible && !childrenTotal,
-        val: value
-    });
+    tree.children = children;
+    tree.childrenTotal = childrenTotal;
+    tree.isLeaf = tree.visible && !childrenTotal;
+    tree.val = value;
     return tree;
 };
 /**

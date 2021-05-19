@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -10,10 +10,10 @@
  *
  * */
 'use strict';
-import Highcharts from '../../Core/Globals.js';
-import U from '../../Core/Utilities.js';
-var setOptions = U.setOptions;
-Highcharts.theme = {
+import H from '../../Core/Globals.js';
+import O from '../../Core/Options.js';
+var setOptions = O.setOptions;
+H.theme = {
     colors: ['#DDDF0D', '#7798BF', '#55BF3B', '#DF5353', '#aaeeee',
         '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
     chart: {
@@ -147,11 +147,6 @@ Highcharts.theme = {
             lineColor: 'white'
         }
     },
-    toolbar: {
-        itemStyle: {
-            color: '#CCC'
-        }
-    },
     navigation: {
         buttonOptions: {
             symbolStroke: '#DDDDDD',
@@ -261,4 +256,4 @@ Highcharts.theme = {
     }
 };
 // Apply the theme
-setOptions(Highcharts.theme);
+setOptions(H.theme);

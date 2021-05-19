@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Accessibility module for Highcharts
  *
@@ -12,13 +12,14 @@
 'use strict';
 import ChartUtilities from './Utils/ChartUtilities.js';
 import H from '../Core/Globals.js';
+var doc = H.doc;
 import KeyboardNavigationHandler from './KeyboardNavigationHandler.js';
 import O from '../Core/Options.js';
 var defaultOptions = O.defaultOptions;
 import Point from '../Core/Series/Point.js';
+import Series from '../Core/Series/Series.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge;
-var doc = H.win.document;
 import AccessibilityComponent from './AccessibilityComponent.js';
 import KeyboardNavigation from './KeyboardNavigation.js';
 import LegendComponent from './Components/LegendComponent.js';
@@ -33,6 +34,7 @@ import highContrastTheme from './HighContrastTheme.js';
 import defaultOptionsA11Y from './Options/Options.js';
 import defaultLangOptions from './Options/LangOptions.js';
 import copyDeprecatedOptions from './Options/DeprecatedOptions.js';
+import HTMLUtilities from './Utils/HTMLUtilities.js';
 import './A11yI18n.js';
 import './FocusBorder.js';
 // Add default options
@@ -44,6 +46,7 @@ merge(true, defaultOptions, defaultOptionsA11Y, {
 });
 // Expose functionality on Highcharts namespace
 H.A11yChartUtilities = ChartUtilities;
+H.A11yHTMLUtilities = HTMLUtilities;
 H.KeyboardNavigationHandler = KeyboardNavigationHandler;
 H.AccessibilityComponent = AccessibilityComponent;
 /* eslint-disable no-invalid-this, valid-jsdoc */
@@ -258,7 +261,7 @@ addEvent(Point, 'update', function () {
     });
 });
 ['update', 'updatedData', 'remove'].forEach(function (event) {
-    addEvent(H.Series, event, function () {
+    addEvent(Series, event, function () {
         if (this.chart.accessibility) {
             this.chart.a11yDirty = true;
         }

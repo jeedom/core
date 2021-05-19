@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Main keyboard navigation handling.
  *
@@ -80,9 +80,13 @@ KeyboardNavigation.prototype = {
         this.update();
         ep.addEvent(this.tabindexContainer, 'keydown', function (e) { return _this.onKeydown(e); });
         ep.addEvent(this.tabindexContainer, 'focus', function (e) { return _this.onFocus(e); });
-        ep.addEvent(doc, 'mouseup', function () { return _this.onMouseUp(); });
-        ep.addEvent(chart.renderTo, 'mousedown', function () {
-            _this.isClickingChart = true;
+        ['mouseup', 'touchend'].forEach(function (eventName) {
+            return ep.addEvent(doc, eventName, function () { return _this.onMouseUp(); });
+        });
+        ['mousedown', 'touchstart'].forEach(function (eventName) {
+            return ep.addEvent(chart.renderTo, eventName, function () {
+                _this.isClickingChart = true;
+            });
         });
         ep.addEvent(chart.renderTo, 'mouseover', function () {
             _this.pointerIsOverChart = true;
@@ -126,14 +130,14 @@ KeyboardNavigation.prototype = {
      * @param {global.FocusEvent} e Browser focus event.
      */
     onFocus: function (e) {
-        var _a;
         var chart = this.chart;
         var focusComesFromChart = (e.relatedTarget &&
             chart.container.contains(e.relatedTarget));
         // Init keyboard nav if tabbing into chart
-        if (!this.isClickingChart && !focusComesFromChart) {
-            (_a = this.modules[0]) === null || _a === void 0 ? void 0 : _a.init(1);
+        if (!this.exiting && !this.isClickingChart && !focusComesFromChart && this.modules[0]) {
+            this.modules[0].init(1);
         }
+        this.exiting = false;
     },
     /**
      * Reset chart navigation state if we click outside the chart and it's
@@ -165,6 +169,8 @@ KeyboardNavigation.prototype = {
             this.modules[this.currentModuleIx];
         // Used for resetting nav state when clicking outside chart
         this.keyboardReset = false;
+        // Used for sending focus out of the chart by the modules.
+        this.exiting = false;
         // If there is a nav module for the current index, run it.
         // Otherwise, we are outside of the chart in some direction.
         if (curNavModule) {
@@ -229,8 +235,8 @@ KeyboardNavigation.prototype = {
         // No module
         this.currentModuleIx = 0; // Reset counter
         // Set focus to chart or exit anchor depending on direction
+        this.exiting = true;
         if (direction > 0) {
-            this.exiting = true;
             this.exitAnchor.focus();
         }
         else {

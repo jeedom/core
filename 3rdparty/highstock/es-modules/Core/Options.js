@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -9,6 +9,18 @@
  * */
 'use strict';
 import H from './Globals.js';
+var isTouchDevice = H.isTouchDevice, svg = H.svg;
+import Color from './Color/Color.js';
+var color = Color.parse;
+import palette from './Color/Palette.js';
+import Time from './Time.js';
+import U from './Utilities.js';
+var getNestedProperty = U.getNestedProperty, isNumber = U.isNumber, merge = U.merge, pick = U.pick, pInt = U.pInt;
+/* *
+ *
+ *  API Declarations
+ *
+ * */
 /**
  * @typedef {"plotBox"|"spacingBox"} Highcharts.ButtonRelativeToValue
  */
@@ -175,15 +187,12 @@ import H from './Globals.js';
 * @name Highcharts.ChartSelectionAxisContextObject#min
 * @type {number}
 */
-import Time from './Time.js';
-import Color from './Color.js';
-var color = Color.parse;
-import U from './Utilities.js';
-var merge = U.merge;
-var isTouchDevice = H.isTouchDevice, svg = H.svg;
-/* ************************************************************************** *
- * Handle the options                                                         *
- * ************************************************************************** */
+(''); // detach doclets above
+/* *
+ *
+ *  API Options
+ *
+ * */
 /**
  * Global default settings.
  *
@@ -192,7 +201,7 @@ var isTouchDevice = H.isTouchDevice, svg = H.svg;
  */ /**
 * @optionparent
 */
-H.defaultOptions = {
+var defaultOptions = {
     /**
      * An array containing the default colors for the chart's series. When
      * all colors are used, new colors are pulled from the start again.
@@ -227,7 +236,7 @@ H.defaultOptions = {
      * @default ["#7cb5ec", "#434348", "#90ed7d", "#f7a35c", "#8085e9",
      *          "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"]
      */
-    colors: '#7cb5ec #434348 #90ed7d #f7a35c #8085e9 #f15c80 #e4d354 #2b908f #f45b5b #91e8e1'.split(' '),
+    colors: palette.colors,
     /**
      * Styled mode only. Configuration object for adding SVG definitions for
      * reusable elements. See [gradients, shadows and
@@ -494,7 +503,7 @@ H.defaultOptions = {
      * settings affect how `datetime` axes are laid out, how tooltips are
      * formatted, how series
      * [pointIntervalUnit](#plotOptions.series.pointIntervalUnit) works and how
-     * the Highstock range selector handles time.
+     * the Highcharts Stock range selector handles time.
      *
      * The common use case is that all charts in the same Highcharts object
      * share the same time settings, in which case the global settings are set
@@ -508,7 +517,7 @@ H.defaultOptions = {
      *     }
      * });
      * // Apply time settings by instance
-     * var chart = Highcharts.chart('container', {
+     * let chart = Highcharts.chart('container', {
      *     time: {
      *         timezone: 'America/New_York'
      *     },
@@ -990,30 +999,30 @@ H.defaultOptions = {
          *
          * @sample  {highcharts} highcharts/chart/pankey/ Zooming and panning
          * @sample  {highstock} stock/chart/panning/ Zooming and xy panning
-         *
-         * @product highcharts highstock gantt
-         * @apioption chart.panning
          */
-        /**
-         * Enable or disable chart panning.
-         *
-         * @type      {boolean}
-         * @default   {highcharts} false
-         * @default   {highstock} true
-         * @apioption chart.panning.enabled
-         */
-        /**
-         * Decides in what dimensions the user can pan the chart. Can be
-         * one of `x`, `y`, or `xy`.
-         *
-         * @sample {highcharts} highcharts/chart/panning-type
-         *         Zooming and xy panning
-         *
-         * @type    {string}
-         * @validvalue ["x", "y", "xy"]
-         * @default x
-         * @apioption chart.panning.type
-         */
+        panning: {
+            /**
+             * Enable or disable chart panning.
+             *
+             * @type      {boolean}
+             * @default   {highcharts} false
+             * @default   {highstock|highmaps} true
+             */
+            enabled: false,
+            /**
+             * Decides in what dimensions the user can pan the chart. Can be
+             * one of `x`, `y`, or `xy`.
+             *
+             * @sample {highcharts} highcharts/chart/panning-type
+             *         Zooming and xy panning
+             *
+             * @type       {string}
+             * @validvalue ["x", "y", "xy"]
+             * @default    {highcharts|highstock} x
+             * @default    {highmaps} xy
+             */
+            type: 'x'
+        },
         /**
          * Equivalent to [zoomType](#chart.zoomType), but for multitouch
          * gestures only. By default, the `pinchType` is the same as the
@@ -1288,14 +1297,10 @@ H.defaultOptions = {
          *         String
          * @sample {highcharts} highcharts/chart/renderto-object/
          *         Object reference
-         * @sample {highcharts} highcharts/chart/renderto-jquery/
-         *         Object reference through jQuery
          * @sample {highstock} stock/chart/renderto-string/
          *         String
          * @sample {highstock} stock/chart/renderto-object/
          *         Object reference
-         * @sample {highstock} stock/chart/renderto-jquery/
-         *         Object reference through jQuery
          *
          * @type      {string|Highcharts.HTMLDOMElement}
          * @apioption chart.renderTo
@@ -1488,6 +1493,19 @@ H.defaultOptions = {
          * @apioption  chart.zoomType
          */
         /**
+         * Enables zooming by a single touch, in combination with
+         * [chart.zoomType](#chart.zoomType). When enabled, two-finger pinch
+         * will still work as set up by [chart.pinchType](#chart.pinchType).
+         * However, `zoomBySingleTouch` will interfere with touch-dragging the
+         * chart to read the tooltip. And especially when vertical zooming is
+         * enabled, it will make it hard to scroll vertically on the page.
+         * @since 9.0.0
+         * @sample     highcharts/chart/zoombysingletouch
+         *             Zoom by single touch enabled, with buttons to toggle
+         * @product    highcharts highstock gantt
+         */
+        zoomBySingleTouch: false,
+        /**
          * An explicit width for the chart. By default (when `null`) the width
          * is calculated from the offset width of the containing element.
          *
@@ -1539,7 +1557,7 @@ H.defaultOptions = {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        borderColor: '#335cad',
+        borderColor: palette.highlightColor80,
         /**
          * The pixel width of the outer chart border.
          *
@@ -1578,7 +1596,7 @@ H.defaultOptions = {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        backgroundColor: '#ffffff',
+        backgroundColor: palette.backgroundColor,
         /**
          * The background color or gradient for the plot area.
          *
@@ -1635,7 +1653,7 @@ H.defaultOptions = {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        plotBorderColor: '#cccccc'
+        plotBorderColor: palette.neutralColor20
     },
     /**
      * The chart's main title.
@@ -2064,7 +2082,7 @@ H.defaultOptions = {
             /**
              * @ignore-option
              */
-            color: '#333333'
+            color: palette.neutralColor80
         }
     },
     /**
@@ -2340,7 +2358,7 @@ H.defaultOptions = {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        borderColor: '#999999',
+        borderColor: palette.neutralColor40,
         /**
          * The border corner radius of the legend.
          *
@@ -2434,7 +2452,7 @@ H.defaultOptions = {
              * @type  {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
              * @since 2.2.4
              */
-            activeColor: '#003399',
+            activeColor: palette.highlightColor100,
             /**
              * The color of the inactive up or down arrow in the legend page
              * navigation. .
@@ -2450,7 +2468,7 @@ H.defaultOptions = {
              * @type  {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
              * @since 2.2.4
              */
-            inactiveColor: '#cccccc'
+            inactiveColor: palette.neutralColor20
         },
         /**
          * The inner padding of the legend box.
@@ -2482,7 +2500,7 @@ H.defaultOptions = {
          */
         /**
          * Whether to show the symbol on the right side of the text rather than
-         * the left side. This is common in Arabic and Hebraic.
+         * the left side. This is common in Arabic and Hebrew.
          *
          * @sample {highcharts} highcharts/legend/rtl/
          *         Symbol to the right
@@ -2526,7 +2544,7 @@ H.defaultOptions = {
             /**
              * @ignore
              */
-            color: '#333333',
+            color: palette.neutralColor80,
             /**
              * @ignore
              */
@@ -2564,7 +2582,7 @@ H.defaultOptions = {
             /**
              * @ignore
              */
-            color: '#000000'
+            color: palette.neutralColor100
         },
         /**
          * CSS styles for each legend item when the corresponding series or
@@ -2585,7 +2603,7 @@ H.defaultOptions = {
             /**
              * @ignore
              */
-            color: '#cccccc'
+            color: palette.neutralColor20
         },
         /**
          * Whether to apply a drop shadow to the legend. A `backgroundColor`
@@ -2889,7 +2907,7 @@ H.defaultOptions = {
             /**
              * @ignore
              */
-            backgroundColor: '#ffffff',
+            backgroundColor: palette.backgroundColor,
             /**
              * @ignore
              */
@@ -2957,6 +2975,8 @@ H.defaultOptions = {
          * By default it behaves this way for pie, polygon, map, sankey
          * and wordcloud series by override in the `plotOptions`
          * for those series types.
+         *
+         * Does not apply if [split](#tooltip.split) is `true`.
          *
          * For touch moves to behave the same way, [followTouchMove](
          * #tooltip.followTouchMove) must be `true` also.
@@ -3135,7 +3155,7 @@ H.defaultOptions = {
          */
         /**
          * The name of a symbol to use for the border around the tooltip. Can
-         * be one of: `"callout"`, `"circle"`, or `"square"`. When
+         * be one of: `"callout"`, `"circle"` or `"rect"`. When
          * [tooltip.split](#tooltip.split)
          * option is enabled, shape is applied to all boxes except header, which
          * is controlled by
@@ -3202,9 +3222,10 @@ H.defaultOptions = {
          * tooltips for charts with multiple line series, generally making them
          * easier to read. This option takes precedence over `tooltip.shared`.
          *
-         * @productdesc {highstock} In Highstock, tooltips are split by default
-         * since v6.0.0. Stock charts typically contain multi-dimension points
-         * and multiple panes, making split tooltips the preferred layout over
+         * @productdesc {highstock} In Highcharts Stock, tooltips are split
+         * by default since v6.0.0. Stock charts typically contain
+         * multi-dimension points and multiple panes, making split tooltips
+         * the preferred layout over
          * the previous `shared` tooltip.
          *
          * @sample highcharts/tooltip/split/
@@ -3339,11 +3360,11 @@ H.defaultOptions = {
          */
         borderRadius: 3,
         /**
-         * For series on a datetime axes, the date format in the tooltip's
+         * For series on datetime axes, the date format in the tooltip's
          * header will by default be guessed based on the closest data points.
          * This member gives the default string representations used for
          * each unit. For an overview of the replacement codes, see
-         * [dateFormat](/class-reference/Highcharts#dateFormat).
+         * [dateFormat](/class-reference/Highcharts#.dateFormat).
          *
          * @see [xAxis.dateTimeLabelFormats](#xAxis.dateTimeLabelFormats)
          *
@@ -3438,11 +3459,12 @@ H.defaultOptions = {
          */
         /**
          * The HTML of the point's line in the tooltip. Variables are enclosed
-         * by curly brackets. Available variables are point.x, point.y, series.
-         * name and series.color and other properties on the same form.
-         * Furthermore, `point.y` can be extended by the `tooltip.valuePrefix`
-         * and `tooltip.valueSuffix` variables. This can also be overridden for
-         * each series, which makes it a good hook for displaying units.
+         * by curly brackets. Available variables are `point.x`, `point.y`,
+         * `series.name` and `series.color` and other properties on the same
+         * form. Furthermore, `point.y` can be extended by the
+         * `tooltip.valuePrefix` and `tooltip.valueSuffix` variables. This can
+         * also be overridden for each series, which makes it a good hook for
+         * displaying units.
          *
          * In styled mode, the dot is colored by a class name rather
          * than the point color.
@@ -3480,7 +3502,7 @@ H.defaultOptions = {
          *
          * @type {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          */
-        backgroundColor: color('#f7f7f7')
+        backgroundColor: color(palette.neutralColor3)
             .setOpacity(0.85).get(),
         /**
          * The pixel width of the tooltip border.
@@ -3532,7 +3554,7 @@ H.defaultOptions = {
          */
         style: {
             /** @internal */
-            color: '#333333',
+            color: palette.neutralColor80,
             /** @internal */
             cursor: 'default',
             /** @internal */
@@ -3631,7 +3653,7 @@ H.defaultOptions = {
             /** @internal */
             cursor: 'pointer',
             /** @internal */
-            color: '#999999',
+            color: palette.neutralColor40,
             /** @internal */
             fontSize: '9px'
         },
@@ -3653,69 +3675,64 @@ H.defaultOptions = {
 };
 /* eslint-disable spaced-comment */
 
+defaultOptions.chart.styledMode = false;
+
 '';
+var defaultTime = new Time(merge(defaultOptions.global, defaultOptions.time));
 /**
- * Global `Time` object with default options. Since v6.0.5, time settings can be
- * applied individually for each chart. If no individual settings apply, this
- * `Time` object is shared by all instances.
+ * Get the updated default options. Until 3.0.7, merely exposing defaultOptions
+ * for outside modules wasn't enough because the setOptions method created a new
+ * object.
  *
- * @name Highcharts.time
- * @type {Highcharts.Time}
+ * @function Highcharts.getOptions
+ *
+ * @return {Highcharts.Options}
  */
-H.time = new Time(merge(H.defaultOptions.global, H.defaultOptions.time));
+function getOptions() {
+    return defaultOptions;
+}
 /**
- * Formats a JavaScript date timestamp (milliseconds since Jan 1st 1970) into a
- * human readable date string. The format is a subset of the formats for PHP's
- * [strftime](https://www.php.net/manual/en/function.strftime.php) function.
- * Additional formats can be given in the {@link Highcharts.dateFormats} hook.
+ * Merge the default options with custom options and return the new options
+ * structure. Commonly used for defining reusable templates.
  *
- * Since v6.0.5, all internal dates are formatted through the
- * {@link Highcharts.Chart#time} instance to respect chart-level time settings.
- * The `Highcharts.dateFormat` function only reflects global time settings set
- * with `setOptions`.
+ * @sample highcharts/global/useutc-false Setting a global option
+ * @sample highcharts/members/setoptions Applying a global theme
  *
- * Supported format keys:
- * - `%a`: Short weekday, like 'Mon'
- * - `%A`: Long weekday, like 'Monday'
- * - `%d`: Two digit day of the month, 01 to 31
- * - `%e`: Day of the month, 1 through 31
- * - `%w`: Day of the week, 0 through 6
- * - `%b`: Short month, like 'Jan'
- * - `%B`: Long month, like 'January'
- * - `%m`: Two digit month number, 01 through 12
- * - `%y`: Two digits year, like 09 for 2009
- * - `%Y`: Four digits year, like 2009
- * - `%H`: Two digits hours in 24h format, 00 through 23
- * - `%k`: Hours in 24h format, 0 through 23
- * - `%I`: Two digits hours in 12h format, 00 through 11
- * - `%l`: Hours in 12h format, 1 through 12
- * - `%M`: Two digits minutes, 00 through 59
- * - `%p`: Upper case AM or PM
- * - `%P`: Lower case AM or PM
- * - `%S`: Two digits seconds, 00 through 59
- * - `%L`: Milliseconds (naming from Ruby)
+ * @function Highcharts.setOptions
  *
- * @function Highcharts.dateFormat
+ * @param {Highcharts.Options} options
+ *        The new custom chart options.
  *
- * @param {string} format
- *        The desired format where various time representations are prefixed
- *        with `%`.
- *
- * @param {number} timestamp
- *        The JavaScript timestamp.
- *
- * @param {boolean} [capitalize=false]
- *        Upper case first letter in the return.
- *
- * @return {string}
- *         The formatted date.
+ * @return {Highcharts.Options}
+ *         Updated options.
  */
-H.dateFormat = function (format, timestamp, capitalize) {
-    return H.time.dateFormat(format, timestamp, capitalize);
-};
+function setOptions(options) {
+    // Copy in the default options
+    merge(true, defaultOptions, options);
+    // Update the time object
+    if (options.time || options.global) {
+        if (H.time) {
+            H.time.update(merge(defaultOptions.global, defaultOptions.time, options.global, options.time));
+        }
+        else {
+            /**
+             * Global `Time` object with default options. Since v6.0.5, time
+             * settings can be applied individually for each chart. If no
+             * individual settings apply, this `Time` object is shared by all
+             * instances.
+             *
+             * @name Highcharts.time
+             * @type {Highcharts.Time}
+             */
+            H.time = defaultTime;
+        }
+    }
+    return defaultOptions;
+}
 var optionsModule = {
-    dateFormat: H.dateFormat,
-    defaultOptions: H.defaultOptions,
-    time: H.time
+    defaultOptions: defaultOptions,
+    defaultTime: defaultTime,
+    getOptions: getOptions,
+    setOptions: setOptions
 };
 export default optionsModule;

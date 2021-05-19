@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2016-2020 Torstein Honsi, Lars Cabrera
+ *  (c) 2016-2021 Torstein Honsi, Lars Cabrera
  *
  *  License: www.highcharts.com/license
  *
@@ -8,10 +8,10 @@
  *
  * */
 'use strict';
-import H from '../Core/Globals.js';
+import Axis from '../Core/Axis/Axis.js';
+import Chart from '../Core/Chart/Chart.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, defined = U.defined, isNumber = U.isNumber, pick = U.pick;
-var Chart = H.Chart;
 /* eslint-disable no-invalid-this */
 /**
  * For vertical axes only. Setting the static scale ensures that each tick unit
@@ -29,8 +29,8 @@ var Chart = H.Chart;
  * @product   gantt
  * @apioption yAxis.staticScale
  */
-addEvent(H.Axis, 'afterSetOptions', function () {
-    var chartOptions = this.chart.options && this.chart.options.chart;
+addEvent(Axis, 'afterSetOptions', function () {
+    var chartOptions = this.chart.options.chart;
     if (!this.horiz &&
         isNumber(this.options.staticScale) &&
         (!chartOptions.height ||
@@ -49,7 +49,7 @@ Chart.prototype.adjustHeight = function () {
                 // Minimum height is 1 x staticScale.
                 height = Math.max(height, staticScale);
                 diff = height - chart.plotHeight;
-                if (Math.abs(diff) >= 1) {
+                if (!chart.scrollablePixelsY && Math.abs(diff) >= 1) {
                     chart.plotHeight = height;
                     chart.redrawTrigger = 'adjustHeight';
                     chart.setSize(void 0, chart.chartHeight + diff, animate);
@@ -58,9 +58,11 @@ Chart.prototype.adjustHeight = function () {
                 // animation.
                 axis.series.forEach(function (series) {
                     var clipRect = series.sharedClipKey &&
-                        chart[series.sharedClipKey];
+                        chart.sharedClips[series.sharedClipKey];
                     if (clipRect) {
-                        clipRect.attr({
+                        clipRect.attr(chart.inverted ? {
+                            width: chart.plotHeight
+                        } : {
                             height: chart.plotHeight
                         });
                     }

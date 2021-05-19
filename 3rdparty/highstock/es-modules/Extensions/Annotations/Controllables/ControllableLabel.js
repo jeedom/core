@@ -5,11 +5,13 @@
  * */
 'use strict';
 import ControllableMixin from '../Mixins/ControllableMixin.js';
+import F from '../../../Core/FormatUtilities.js';
+var format = F.format;
 import MockPoint from '../MockPoint.js';
 import SVGRenderer from '../../../Core/Renderer/SVG/SVGRenderer.js';
 import Tooltip from '../../../Core/Tooltip.js';
 import U from '../../../Core/Utilities.js';
-var extend = U.extend, format = U.format, isNumber = U.isNumber, pick = U.pick;
+var extend = U.extend, isNumber = U.isNumber, pick = U.pick;
 import '../../../Core/Renderer/SVG/SVGRenderer.js';
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
@@ -119,7 +121,7 @@ var ControllableLabel = /** @class */ (function () {
             height: label.height
         }, 
         //
-        x = alignAttr.x - chart.plotLeft, y = alignAttr.y - chart.plotTop;
+        x = (alignAttr.x || 0) - chart.plotLeft, y = (alignAttr.y || 0) - chart.plotTop;
         // Off left
         off = x + padding;
         if (off < 0) {
@@ -127,7 +129,7 @@ var ControllableLabel = /** @class */ (function () {
                 options.align = 'left';
             }
             else {
-                options.x = -off;
+                options.x = (options.x || 0) - off;
             }
         }
         // Off right
@@ -137,7 +139,7 @@ var ControllableLabel = /** @class */ (function () {
                 options.align = 'right';
             }
             else {
-                options.x = chart.plotWidth - off;
+                options.x = (options.x || 0) + chart.plotWidth - off;
             }
         }
         // Off top
@@ -147,7 +149,7 @@ var ControllableLabel = /** @class */ (function () {
                 options.verticalAlign = 'top';
             }
             else {
-                options.y = -off;
+                options.y = (options.y || 0) - off;
             }
         }
         // Off bottom
@@ -157,7 +159,7 @@ var ControllableLabel = /** @class */ (function () {
                 options.verticalAlign = 'bottom';
             }
             else {
-                options.y = chart.plotHeight - off;
+                options.y = (options.y || 0) + chart.plotHeight - off;
             }
         }
         return options;
@@ -271,12 +273,13 @@ var ControllableLabel = /** @class */ (function () {
     ControllableLabel.prototype.position = function (anchor) {
         var item = this.graphic, chart = this.annotation.chart, point = this.points[0], itemOptions = this.options, anchorAbsolutePosition = anchor.absolutePosition, anchorRelativePosition = anchor.relativePosition, itemPosition, alignTo, itemPosRelativeX, itemPosRelativeY, showItem = point.series.visible &&
             MockPoint.prototype.isInsidePlot.call(point);
+        var _a = item.width, width = _a === void 0 ? 0 : _a, _b = item.height, height = _b === void 0 ? 0 : _b;
         if (showItem) {
             if (itemOptions.distance) {
                 itemPosition = Tooltip.prototype.getPosition.call({
                     chart: chart,
                     distance: pick(itemOptions.distance, 16)
-                }, item.width, item.height, {
+                }, width, height, {
                     plotX: anchorRelativePosition.x,
                     plotY: anchorRelativePosition.y,
                     negative: point.negative,
@@ -295,8 +298,8 @@ var ControllableLabel = /** @class */ (function () {
                     height: 0
                 };
                 itemPosition = ControllableLabel.alignedPosition(extend(itemOptions, {
-                    width: item.width,
-                    height: item.height
+                    width: width,
+                    height: height
                 }), alignTo);
                 if (this.options.overflow === 'justify') {
                     itemPosition = ControllableLabel.alignedPosition(ControllableLabel.justifiedOptions(chart, item, itemOptions, itemPosition), alignTo);
@@ -307,7 +310,7 @@ var ControllableLabel = /** @class */ (function () {
                 itemPosRelativeY = itemPosition.y - chart.plotTop;
                 showItem =
                     chart.isInsidePlot(itemPosRelativeX, itemPosRelativeY) &&
-                        chart.isInsidePlot(itemPosRelativeX + item.width, itemPosRelativeY + item.height);
+                        chart.isInsidePlot(itemPosRelativeX + width, itemPosRelativeY + height);
             }
         }
         return showItem ? itemPosition : null;

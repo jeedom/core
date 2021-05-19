@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Accessibility component for chart zoom.
  *
@@ -10,15 +10,16 @@
  *
  * */
 'use strict';
-import H from '../../Core/Globals.js';
-import U from '../../Core/Utilities.js';
-var extend = U.extend, pick = U.pick;
 import AccessibilityComponent from '../AccessibilityComponent.js';
-import KeyboardNavigationHandler from '../KeyboardNavigationHandler.js';
 import ChartUtilities from '../Utils/ChartUtilities.js';
 var unhideChartElementFromAT = ChartUtilities.unhideChartElementFromAT;
+import H from '../../Core/Globals.js';
+var noop = H.noop;
 import HTMLUtilities from '../Utils/HTMLUtilities.js';
-var setElAttrs = HTMLUtilities.setElAttrs, removeElement = HTMLUtilities.removeElement;
+var removeElement = HTMLUtilities.removeElement, setElAttrs = HTMLUtilities.setElAttrs;
+import KeyboardNavigationHandler from '../KeyboardNavigationHandler.js';
+import U from '../../Core/Utilities.js';
+var extend = U.extend, pick = U.pick;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * @private
@@ -57,7 +58,7 @@ H.Axis.prototype.panStep = function (direction, granularity) {
  * @class
  * @name Highcharts.ZoomComponent
  */
-var ZoomComponent = function () { };
+var ZoomComponent = noop;
 ZoomComponent.prototype = new AccessibilityComponent();
 extend(ZoomComponent.prototype, /** @lends Highcharts.ZoomComponent */ {
     /**

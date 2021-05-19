@@ -3,7 +3,8 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import H from '../../Core/Globals.js';
+'use strict';
+import Series from '../../Core/Series/Series.js';
 /**
  * @private
  * @interface Highcharts.AnnotationMockLabelOptionsObject
@@ -43,8 +44,7 @@ import H from '../../Core/Globals.js';
  */
 import U from '../../Core/Utilities.js';
 var defined = U.defined, extend = U.extend, fireEvent = U.fireEvent;
-import '../../Core/Axis/Axis.js';
-import '../../Core/Series/Series.js';
+import Axis from '../../Core/Axis/Axis.js';
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * A trimmed point object which imitates {@link Highchart.Point} class. It is
@@ -96,7 +96,7 @@ var MockPoint = /** @class */ (function () {
         this.series = {
             visible: true,
             chart: chart,
-            getPlotBox: H.Series.prototype.getPlotBox
+            getPlotBox: Series.prototype.getPlotBox
         };
         /**
          * @name Annotation.AnnotationMockPoint#target
@@ -259,7 +259,7 @@ var MockPoint = /** @class */ (function () {
     MockPoint.prototype.setAxis = function (options, xOrY) {
         var axisName = (xOrY + 'Axis'), axisOptions = options[axisName], chart = this.series.chart;
         this.series[axisName] =
-            axisOptions instanceof H.Axis ?
+            axisOptions instanceof Axis ?
                 axisOptions :
                 defined(axisOptions) ?
                     (chart[axisName][axisOptions] ||
@@ -398,7 +398,7 @@ var MockPoint = /** @class */ (function () {
      */
     MockPoint.prototype.rotate = function (cx, cy, radians) {
         if (!this.hasDynamicOptions()) {
-            var cos = Math.cos(radians), sin = Math.sin(radians), x = this.plotX, y = this.plotY, tx, ty;
+            var cos = Math.cos(radians), sin = Math.sin(radians), x = this.plotX, y = this.plotY, tx = void 0, ty = void 0;
             x -= cx;
             y -= cy;
             tx = x * cos - y * sin;

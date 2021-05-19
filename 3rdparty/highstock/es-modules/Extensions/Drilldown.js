@@ -10,16 +10,27 @@
  *
  * */
 'use strict';
+import A from '../Core/Animation/AnimationUtilities.js';
+var animObject = A.animObject;
+import Axis from '../Core/Axis/Axis.js';
 import Chart from '../Core/Chart/Chart.js';
-import Color from '../Core/Color.js';
+import Color from '../Core/Color/Color.js';
+import ColumnSeries from '../Series/Column/ColumnSeries.js';
+import F from '../Core/FormatUtilities.js';
+var format = F.format;
 import H from '../Core/Globals.js';
+var noop = H.noop;
 import O from '../Core/Options.js';
 var defaultOptions = O.defaultOptions;
+import palette from '../Core/Color/Palette.js';
 import Point from '../Core/Series/Point.js';
+import Series from '../Core/Series/Series.js';
+import SeriesRegistry from '../Core/Series/SeriesRegistry.js';
+var seriesTypes = SeriesRegistry.seriesTypes;
 import SVGRenderer from '../Core/Renderer/SVG/SVGRenderer.js';
 import Tick from '../Core/Axis/Tick.js';
 import U from '../Core/Utilities.js';
-var addEvent = U.addEvent, removeEvent = U.removeEvent, animObject = U.animObject, extend = U.extend, fireEvent = U.fireEvent, format = U.format, merge = U.merge, objectEach = U.objectEach, pick = U.pick, syncTimeout = U.syncTimeout;
+var addEvent = U.addEvent, removeEvent = U.removeEvent, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge, objectEach = U.objectEach, pick = U.pick, syncTimeout = U.syncTimeout;
 /**
  * Gets fired when a drilldown point is clicked, before the new series is added.
  * Note that when clicking a category label to trigger multiple series
@@ -133,9 +144,8 @@ var addEvent = U.addEvent, removeEvent = U.removeEvent, animObject = U.animObjec
 * @name Highcharts.DrillupEventObject#type
 * @type {"drillup"}
 */
-import '../Core/Series/Series.js';
-import '../Series/ColumnSeries.js';
-var noop = H.noop, seriesTypes = H.seriesTypes, PieSeries = seriesTypes.pie, ColumnSeries = seriesTypes.column, ddSeriesId = 1;
+import '../Series/Column/ColumnSeries.js';
+var PieSeries = seriesTypes.pie, ddSeriesId = 1;
 // Add language
 extend(defaultOptions.lang, 
 /**
@@ -167,6 +177,8 @@ extend(defaultOptions.lang,
  * @product      highcharts highmaps
  * @requires     modules/drilldown
  * @optionparent drilldown
+ * @sample {highcharts} highcharts/series-organization/drilldown
+ *         Organization chart drilldown
  */
 defaultOptions.drilldown = {
     /**
@@ -214,7 +226,7 @@ defaultOptions.drilldown = {
         /** @ignore-option */
         cursor: 'pointer',
         /** @ignore-option */
-        color: '#003399',
+        color: palette.highlightColor100,
         /** @ignore-option */
         fontWeight: 'bold',
         /** @ignore-option */
@@ -238,7 +250,7 @@ defaultOptions.drilldown = {
      */
     activeDataLabelStyle: {
         cursor: 'pointer',
-        color: '#003399',
+        color: palette.highlightColor100,
         fontWeight: 'bold',
         textDecoration: 'underline'
     },
@@ -537,7 +549,7 @@ Chart.prototype.addSingleSeriesAsDrilldown = function (point, ddOptions) {
     }
     // Run fancy cross-animation on supported and equal types
     if (oldSeries.type === newSeries.type) {
-        newSeries.animate = newSeries.animateDrilldown || noop;
+        newSeries.animate = (newSeries.animateDrilldown || noop);
         newSeries.options.animation = true;
     }
 };
@@ -578,11 +590,15 @@ Chart.prototype.getDrilldownBackText = function () {
     }
 };
 Chart.prototype.showDrillUpButton = function () {
-    var chart = this, backText = this.getDrilldownBackText(), buttonOptions = chart.options.drilldown.drillUpButton, attr, states;
+    var chart = this, backText = this.getDrilldownBackText(), buttonOptions = chart.options.drilldown.drillUpButton, attr, states, alignTo = (buttonOptions.relativeTo === 'chart' ||
+        buttonOptions.relativeTo === 'spacingBox' ?
+        null :
+        'scrollablePlotBox');
     if (!this.drillUpButton) {
         attr = buttonOptions.theme;
         states = attr && attr.states;
-        this.drillUpButton = this.renderer.button(backText, null, null, function () {
+        this.drillUpButton = this.renderer
+            .button(backText, null, null, function () {
             chart.drillUp();
         }, attr, states && states.hover, states && states.select)
             .addClass('highcharts-drillup-button')
@@ -591,7 +607,7 @@ Chart.prototype.showDrillUpButton = function () {
             zIndex: 7
         })
             .add()
-            .align(buttonOptions.position, false, buttonOptions.relativeTo || 'plotBox');
+            .align(buttonOptions.position, false, alignTo);
     }
     else {
         this.drillUpButton.attr({
@@ -652,6 +668,7 @@ Chart.prototype.drillUp = function () {
                 seriesOptions: level.seriesPurgedOptions ||
                     level.seriesOptions
             });
+            this.resetZoomButton && this.resetZoomButton.destroy(); // #8095
             if (newSeries.type === oldSeries.type) {
                 newSeries.drilldownLevel = level;
                 newSeries.options.animation =
@@ -704,10 +721,15 @@ addEvent(Chart, 'afterInit', function () {
         }
     };
 });
-// Don't show the reset button if we already are displaying the drillUp button.
-addEvent(Chart, 'beforeShowResetZoom', function () {
-    if (this.drillUpButton) {
-        return false;
+// Shift the drillUpButton to make the space for resetZoomButton, #8095.
+addEvent(Chart, 'afterShowResetZoom', function () {
+    var chart = this, bbox = chart.resetZoomButton && chart.resetZoomButton.getBBox(), buttonOptions = chart.options.drilldown && chart.options.drilldown.drillUpButton;
+    if (this.drillUpButton && bbox && buttonOptions && buttonOptions.position && buttonOptions.position.x) {
+        this.drillUpButton.align({
+            x: buttonOptions.position.x - bbox.width - 10,
+            y: buttonOptions.position.y,
+            align: buttonOptions.position.align
+        }, false, buttonOptions.relativeTo || 'plotBox');
     }
 });
 addEvent(Chart, 'render', function () {
@@ -748,7 +770,7 @@ addEvent(Chart, 'render', function () {
  */
 ColumnSeries.prototype.animateDrillupTo = function (init) {
     if (!init) {
-        var newSeries = this, level = newSeries.drilldownLevel;
+        var newSeries_1 = this, level_1 = newSeries_1.drilldownLevel;
         // First hide all items before animating in again
         this.points.forEach(function (point) {
             var dataLabel = point.dataLabel;
@@ -769,10 +791,18 @@ ColumnSeries.prototype.animateDrillupTo = function (init) {
         });
         // Do dummy animation on first point to get to complete
         syncTimeout(function () {
-            if (newSeries.points) { // May be destroyed in the meantime, #3389
-                newSeries.points.forEach(function (point, i) {
+            if (newSeries_1.points) { // May be destroyed in the meantime, #3389
+                // Unable to drillup with nodes, #13711
+                var pointsWithNodes_1 = [];
+                newSeries_1.data.forEach(function (el) {
+                    pointsWithNodes_1.push(el);
+                });
+                if (newSeries_1.nodes) {
+                    pointsWithNodes_1 = pointsWithNodes_1.concat(newSeries_1.nodes);
+                }
+                pointsWithNodes_1.forEach(function (point, i) {
                     // Fade in other points
-                    var verb = i === (level && level.pointIndex) ? 'show' : 'fadeIn', inherit = verb === 'show' ? true : void 0, dataLabel = point.dataLabel;
+                    var verb = i === (level_1 && level_1.pointIndex) ? 'show' : 'fadeIn', inherit = verb === 'show' ? true : void 0, dataLabel = point.dataLabel;
                     if (point.graphic) { // #3407
                         point.graphic[verb](inherit);
                     }
@@ -879,19 +909,19 @@ if (PieSeries) {
             }
             // Unable to drill down in the horizontal item series #13372
             if (this.center) {
-                var animateFrom = level.shapeArgs, start = animateFrom.start, angle = animateFrom.end - start, startAngle = angle / this.points.length, styledMode = this.chart.styledMode;
+                var animateFrom_1 = level.shapeArgs, start_1 = animateFrom_1.start, angle = animateFrom_1.end - start_1, startAngle_1 = angle / this.points.length, styledMode_1 = this.chart.styledMode;
                 if (!init) {
                     this.points.forEach(function (point, i) {
                         var animateTo = point.shapeArgs;
-                        if (!styledMode) {
-                            animateFrom.fill = level.color;
+                        if (!styledMode_1) {
+                            animateFrom_1.fill = level.color;
                             animateTo.fill = point.color;
                         }
                         if (point.graphic) {
                             point.graphic
-                                .attr(merge(animateFrom, {
-                                start: start + i * startAngle,
-                                end: start + (i + 1) * startAngle
+                                .attr(merge(animateFrom_1, {
+                                start: start_1 + i * startAngle_1,
+                                end: start_1 + (i + 1) * startAngle_1
                             }))[animationOptions ? 'animate' : 'attr'](animateTo, animationOptions);
                         }
                     });
@@ -946,8 +976,8 @@ Point.prototype.doDrilldown = function (_holdRedraw, category, originalEvent) {
  * @param {global.MouseEvent} e
  *        Click event
  */
-H.Axis.prototype.drilldownCategory = function (x, e) {
-    objectEach(this.getDDPoints(x), function (point) {
+Axis.prototype.drilldownCategory = function (x, e) {
+    this.getDDPoints(x).forEach(function (point) {
         if (point &&
             point.series &&
             point.series.visible &&
@@ -964,11 +994,11 @@ H.Axis.prototype.drilldownCategory = function (x, e) {
  * @function Highcharts.Axis#getDDPoints
  * @param {number} x
  *        Tick position
- * @return {Array<(boolean|Highcharts.Point)>|undefined}
+ * @return {Array<(false|Highcharts.Point)>}
  *         Drillable points
  */
-H.Axis.prototype.getDDPoints = function (x) {
-    return this.ddPoints && this.ddPoints[x];
+Axis.prototype.getDDPoints = function (x) {
+    return (this.ddPoints && this.ddPoints[x] || []);
 };
 /**
  * Make a tick label drillable, or remove drilling on update.
@@ -1010,24 +1040,38 @@ Tick.prototype.drillable = function () {
 // On initialization of each point, identify its label and make it clickable.
 // Also, provide a list of points associated to that label.
 addEvent(Point, 'afterInit', function () {
-    var point = this, series = point.series;
-    if (point.drilldown) {
+    var point = this;
+    if (point.drilldown && !point.unbindDrilldownClick) {
         // Add the click event to the point
-        addEvent(point, 'click', function (e) {
-            if (series.xAxis &&
-                series.chart.options.drilldown.allowPointDrilldown ===
-                    false) {
-                // #5822, x changed
-                series.xAxis.drilldownCategory(point.x, e);
-            }
-            else {
-                point.doDrilldown(void 0, void 0, e);
-            }
-        });
+        point.unbindDrilldownClick = addEvent(point, 'click', handlePointClick);
     }
     return point;
 });
-addEvent(H.Series, 'afterDrawDataLabels', function () {
+addEvent(Point, 'update', function (e) {
+    var point = this, options = e.options || {};
+    if (options.drilldown && !point.unbindDrilldownClick) {
+        // Add the click event to the point
+        point.unbindDrilldownClick = addEvent(point, 'click', handlePointClick);
+    }
+    else if (!options.drilldown &&
+        options.drilldown !== void 0 &&
+        point.unbindDrilldownClick) {
+        point.unbindDrilldownClick = point.unbindDrilldownClick();
+    }
+});
+var handlePointClick = function (e) {
+    var point = this, series = point.series;
+    if (series.xAxis &&
+        series.chart.options.drilldown.allowPointDrilldown ===
+            false) {
+        // #5822, x changed
+        series.xAxis.drilldownCategory(point.x, e);
+    }
+    else {
+        point.doDrilldown(void 0, void 0, e);
+    }
+};
+addEvent(Series, 'afterDrawDataLabels', function () {
     var css = this.chart.options.drilldown.activeDataLabelStyle, renderer = this.chart.renderer, styledMode = this.chart.styledMode;
     this.points.forEach(function (point) {
         var dataLabelsOptions = point.options.dataLabels, pointCSS = pick(point.dlOptions, dataLabelsOptions && dataLabelsOptions.style, {});
@@ -1055,7 +1099,7 @@ var applyCursorCSS = function (element, cursor, addClass, styledMode) {
     }
 };
 // Mark the trackers with a pointer
-addEvent(H.Series, 'afterDrawTracker', function () {
+addEvent(Series, 'afterDrawTracker', function () {
     var styledMode = this.chart.styledMode;
     this.points.forEach(function (point) {
         if (point.drilldown && point.graphic) {
@@ -1070,5 +1114,23 @@ addEvent(Point, 'afterSetState', function () {
     }
     else if (this.series.halo) {
         applyCursorCSS(this.series.halo, 'auto', false, styledMode);
+    }
+});
+// After zooming out, shift the drillUpButton to the previous position, #8095.
+addEvent(H.Chart, 'selection', function (event) {
+    if (event.resetSelection === true && this.drillUpButton) {
+        var buttonOptions = this.options.drilldown && this.options.drilldown.drillUpButton;
+        if (buttonOptions && buttonOptions.position) {
+            this.drillUpButton.align({
+                x: buttonOptions.position.x,
+                y: buttonOptions.position.y,
+                align: buttonOptions.position.align
+            }, false, buttonOptions.relativeTo || 'plotBox');
+        }
+    }
+});
+addEvent(H.Chart, 'drillup', function () {
+    if (this.resetZoomButton) {
+        this.resetZoomButton = this.resetZoomButton.destroy();
     }
 });

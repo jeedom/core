@@ -166,7 +166,9 @@ Tunnel.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions,
             },
             events: {
                 drag: function (e, target) {
-                    if (target.chart.isInsidePlot(e.chartX - target.chart.plotLeft, e.chartY - target.chart.plotTop)) {
+                    if (target.chart.isInsidePlot(e.chartX - target.chart.plotLeft, e.chartY - target.chart.plotTop, {
+                        visiblePlotOnly: true
+                    })) {
                         target.translateHeight(this.mouseMoveToTranslation(e).y);
                         target.redraw(false);
                     }
@@ -181,7 +183,9 @@ Tunnel.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions,
     controlPointOptions: {
         events: {
             drag: function (e, target) {
-                if (target.chart.isInsidePlot(e.chartX - target.chart.plotLeft, e.chartY - target.chart.plotTop)) {
+                if (target.chart.isInsidePlot(e.chartX - target.chart.plotLeft, e.chartY - target.chart.plotTop, {
+                    visiblePlotOnly: true
+                })) {
                     var translation = this.mouseMoveToTranslation(e);
                     target.translateSide(translation.x, translation.y, this.index);
                     target.redraw(false);

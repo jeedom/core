@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -55,7 +55,7 @@ var LogarithmicAxisAdditions = /** @class */ (function () {
             // 1, 2, 4, 6, 8, 10, 20, 40 etc.
         }
         else if (interval >= 0.08) {
-            var roundedMin = Math.floor(min), intermediate, i, j, len, pos, lastPos, break2;
+            var roundedMin = Math.floor(min), intermediate = void 0, i = void 0, j = void 0, len = void 0, pos = void 0, lastPos = void 0, break2 = void 0;
             if (interval > 0.3) {
                 intermediate = [1, 2, 4];
                 // 0.2 equals five minor ticks per 1, 10, 100 etc
@@ -126,13 +126,6 @@ var LogarithmicAxis = /** @class */ (function () {
      */
     LogarithmicAxis.compose = function (AxisClass) {
         AxisClass.keepProps.push('logarithmic');
-        // HC <= 8 backwards compatibility, allow wrapping
-        // Axis.prototype.lin2log and log2lin
-        // @todo Remove this in next major
-        var axisProto = AxisClass.prototype;
-        var logAxisProto = LogarithmicAxisAdditions.prototype;
-        axisProto.log2lin = logAxisProto.log2lin;
-        axisProto.lin2log = logAxisProto.lin2log;
         /* eslint-disable no-invalid-this */
         addEvent(AxisClass, 'init', function (e) {
             var axis = this;
@@ -144,15 +137,6 @@ var LogarithmicAxis = /** @class */ (function () {
             else {
                 if (!logarithmic) {
                     logarithmic = axis.logarithmic = new LogarithmicAxisAdditions(axis);
-                }
-                // HC <= 8 backwards compatibility, allow wrapping
-                // Axis.prototype.lin2log and log2lin
-                // @todo Remove this in next major
-                if (axis.log2lin !== logarithmic.log2lin) {
-                    logarithmic.log2lin = axis.log2lin.bind(axis);
-                }
-                if (axis.lin2log !== logarithmic.lin2log) {
-                    logarithmic.lin2log = axis.lin2log.bind(axis);
                 }
             }
         });

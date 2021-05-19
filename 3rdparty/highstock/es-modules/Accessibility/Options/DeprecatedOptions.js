@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Default options for accessibility.
  *
@@ -107,7 +107,7 @@ function deprecateFromOptionsMap(chart, rootOldAsArray, rootNewAsArray, mapToNew
  * @private
  */
 function copyDeprecatedChartOptions(chart) {
-    var chartOptions = chart.options.chart || {}, a11yOptions = chart.options.accessibility || {};
+    var chartOptions = chart.options.chart, a11yOptions = chart.options.accessibility || {};
     ['description', 'typeDescription'].forEach(function (prop) {
         var _a;
         if (chartOptions[prop]) {

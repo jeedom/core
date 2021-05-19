@@ -96,7 +96,7 @@ var nelderMead = function nelderMead(fn, initial) {
         else if (reflected.fx >= simplex[simplex.length - 2].fx) {
             // If the reflected point is worse than the second worse, then
             // contract.
-            var contracted;
+            var contracted = void 0;
             if (reflected.fx > worst.fx) {
                 // If the reflected is worse than the worst point, do a
                 // contraction

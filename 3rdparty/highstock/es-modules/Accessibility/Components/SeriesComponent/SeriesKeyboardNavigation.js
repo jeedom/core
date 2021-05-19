@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Handle keyboard navigation for series.
  *
@@ -11,25 +11,29 @@
  * */
 'use strict';
 import Chart from '../../../Core/Chart/Chart.js';
-import H from '../../../Core/Globals.js';
 import Point from '../../../Core/Series/Point.js';
+import Series from '../../../Core/Series/Series.js';
+import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
+var seriesTypes = SeriesRegistry.seriesTypes;
+import H from '../../../Core/Globals.js';
+var doc = H.doc;
 import U from '../../../Core/Utilities.js';
-var defined = U.defined, extend = U.extend;
+var defined = U.defined, extend = U.extend, fireEvent = U.fireEvent;
 import KeyboardNavigationHandler from '../../KeyboardNavigationHandler.js';
 import EventProvider from '../../Utils/EventProvider.js';
 import ChartUtilities from '../../Utils/ChartUtilities.js';
 var getPointFromXY = ChartUtilities.getPointFromXY, getSeriesFromName = ChartUtilities.getSeriesFromName, scrollToPoint = ChartUtilities.scrollToPoint;
-import '../../../Series/ColumnSeries.js';
-import '../../../Series/PieSeries.js';
+import '../../../Series/Column/ColumnSeries.js';
+import '../../../Series/Pie/PieSeries.js';
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /*
  * Set for which series types it makes sense to move to the closest point with
  * up/down arrows, and which series types should just move to next series.
  */
-H.Series.prototype.keyboardMoveVertical = true;
+Series.prototype.keyboardMoveVertical = true;
 ['column', 'pie'].forEach(function (type) {
-    if (H.seriesTypes[type]) {
-        H.seriesTypes[type].prototype.keyboardMoveVertical = false;
+    if (seriesTypes[type]) {
+        seriesTypes[type].prototype.keyboardMoveVertical = false;
     }
 });
 /**
@@ -92,9 +96,13 @@ function isSkipSeries(series) {
  */
 function isSkipPoint(point) {
     var a11yOptions = point.series.chart.options.accessibility;
+    var pointA11yDisabled = (point.options.accessibility &&
+        point.options.accessibility.enabled === false);
     return point.isNull &&
         a11yOptions.keyboardNavigation.seriesNavigation.skipNullPoints ||
         point.visible === false ||
+        point.isInside === false ||
+        pointA11yDisabled ||
         isSkipSeries(point.series);
 }
 /**
@@ -234,7 +242,7 @@ Chart.prototype.highlightAdjacentPoint = function (next) {
  *
  * @return {boolean|Highcharts.Point}
  */
-H.Series.prototype.highlightFirstValidPoint = function () {
+Series.prototype.highlightFirstValidPoint = function () {
     var curPoint = this.chart.highlightedPoint, start = (curPoint && curPoint.series) === this ?
         getPointIndex(curPoint) :
         0, points = this.points, len = points.length;
@@ -400,7 +408,7 @@ extend(SeriesKeyboardNavigation.prototype, /** @lends Highcharts.SeriesKeyboardN
      */
     init: function () {
         var keyboardNavigation = this, chart = this.chart, e = this.eventProvider = new EventProvider();
-        e.addEvent(H.Series, 'destroy', function () {
+        e.addEvent(Series, 'destroy', function () {
             return keyboardNavigation.onSeriesDestroy(this);
         });
         e.addEvent(chart, 'afterDrilldown', function () {
@@ -418,6 +426,18 @@ extend(SeriesKeyboardNavigation.prototype, /** @lends Highcharts.SeriesKeyboardN
             setTimeout(function () {
                 keyboardNavigation.onDrillupAll();
             }, 10);
+        });
+        // Heatmaps et al. alter z-index in setState, causing elements
+        // to lose focus
+        e.addEvent(Point, 'afterSetState', function () {
+            var point = this;
+            var pointEl = point.graphic && point.graphic.element;
+            if (chart.highlightedPoint === point &&
+                doc.activeElement !== pointEl &&
+                pointEl &&
+                pointEl.focus) {
+                pointEl.focus();
+            }
         });
     },
     onDrillupAll: function () {
@@ -451,9 +471,12 @@ extend(SeriesKeyboardNavigation.prototype, /** @lends Highcharts.SeriesKeyboardN
                 [inverted ? [keys.left, keys.right] : [keys.up, keys.down], function (keyCode) {
                         return keyboardNavigation.onKbdVertical(this, keyCode);
                     }],
-                [[keys.enter, keys.space], function () {
-                        if (chart.highlightedPoint) {
-                            chart.highlightedPoint.firePointEvent('click');
+                [[keys.enter, keys.space], function (keyCode, event) {
+                        var point = chart.highlightedPoint;
+                        if (point) {
+                            event.point = point;
+                            fireEvent(point.series, 'click', event);
+                            point.firePointEvent('click');
                         }
                         return this.response.success;
                     }]
@@ -520,11 +543,14 @@ extend(SeriesKeyboardNavigation.prototype, /** @lends Highcharts.SeriesKeyboardN
      * @private
      */
     onHandlerTerminate: function () {
-        var _a, _b;
         var chart = this.chart;
         var curPoint = chart.highlightedPoint;
-        (_a = chart.tooltip) === null || _a === void 0 ? void 0 : _a.hide(0);
-        (_b = curPoint === null || curPoint === void 0 ? void 0 : curPoint.onMouseOut) === null || _b === void 0 ? void 0 : _b.call(curPoint);
+        if (chart.tooltip) {
+            chart.tooltip.hide(0);
+        }
+        if (chart.highlightedPoint && chart.highlightedPoint.onMouseOut) {
+            chart.highlightedPoint.onMouseOut();
+        }
         delete chart.highlightedPoint;
     },
     /**

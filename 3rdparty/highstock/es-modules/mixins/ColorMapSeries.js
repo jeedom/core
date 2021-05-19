@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -11,43 +11,37 @@
 import H from '../Core/Globals.js';
 import Point from '../Core/Series/Point.js';
 import U from '../Core/Utilities.js';
-var defined = U.defined;
+var defined = U.defined, addEvent = U.addEvent;
 var noop = H.noop, seriesTypes = H.seriesTypes;
+// Move points to the top of the z-index order when hovered
+addEvent(Point, 'afterSetState', function (e) {
+    var point = this; // eslint-disable-line no-invalid-this
+    if (point.moveToTopOnHover && point.graphic) {
+        point.graphic.attr({
+            zIndex: e && e.state === 'hover' ? 1 : 0
+        });
+    }
+});
 /**
  * Mixin for maps and heatmaps
  *
  * @private
  * @mixin Highcharts.colorMapPointMixin
  */
-H.colorMapPointMixin = {
+var colorMapPointMixin = {
     dataLabelOnNull: true,
+    moveToTopOnHover: true,
     /* eslint-disable valid-jsdoc */
     /**
      * Color points have a value option that determines whether or not it is
      * a null point
      * @private
-     * @function Highcharts.colorMapPointMixin.isValid
-     * @return {boolean}
      */
     isValid: function () {
         // undefined is allowed
         return (this.value !== null &&
             this.value !== Infinity &&
             this.value !== -Infinity);
-    },
-    /**
-     * @private
-     * @function Highcharts.colorMapPointMixin.setState
-     * @param {string} state
-     * @return {void}
-     */
-    setState: function (state) {
-        Point.prototype.setState.call(this, state);
-        if (this.graphic) {
-            this.graphic.attr({
-                zIndex: state === 'hover' ? 1 : 0
-            });
-        }
     }
     /* eslint-enable valid-jsdoc */
 };
@@ -55,7 +49,7 @@ H.colorMapPointMixin = {
  * @private
  * @mixin Highcharts.colorMapSeriesMixin
  */
-H.colorMapSeriesMixin = {
+var colorMapSeriesMixin = {
     pointArrayMap: ['value'],
     axisTypes: ['xAxis', 'yAxis', 'colorAxis'],
     trackerGroups: ['group', 'markerGroup', 'dataLabelsGroup'],
@@ -79,3 +73,8 @@ H.colorMapSeriesMixin = {
         return ret;
     }
 };
+var exports = {
+    colorMapPointMixin: colorMapPointMixin,
+    colorMapSeriesMixin: colorMapSeriesMixin
+};
+export default exports;

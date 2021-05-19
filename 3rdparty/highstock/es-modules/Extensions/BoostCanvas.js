@@ -14,32 +14,36 @@
  * */
 'use strict';
 import Chart from '../Core/Chart/Chart.js';
-import H from '../Core/Globals.js';
-import Color from '../Core/Color.js';
+import Color from '../Core/Color/Color.js';
 var color = Color.parse;
+import H from '../Core/Globals.js';
+var doc = H.doc, noop = H.noop;
+import palette from '../Core/Color/Palette.js';
+import Series from '../Core/Series/Series.js';
+import SeriesRegistry from '../Core/Series/SeriesRegistry.js';
+var seriesTypes = SeriesRegistry.seriesTypes;
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend, fireEvent = U.fireEvent, isNumber = U.isNumber, merge = U.merge, pick = U.pick, wrap = U.wrap;
-import '../Core/Series/Series.js';
-import '../Core/Options.js';
-var win = H.win, doc = win.document, noop = function () { }, Series = H.Series, seriesTypes = H.seriesTypes, CHUNK_SIZE = 50000, destroyLoadingDiv;
+var CHUNK_SIZE = 50000, destroyLoadingDiv;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * Initialize the canvas boost.
  *
  * @function Highcharts.initCanvasBoost
  */
-H.initCanvasBoost = function () {
+var initCanvasBoost = function () {
     if (H.seriesTypes.heatmap) {
         wrap(H.seriesTypes.heatmap.prototype, 'drawPoints', function () {
             var chart = this.chart, ctx = this.getContext(), inverted = this.chart.inverted, xAxis = this.xAxis, yAxis = this.yAxis;
             if (ctx) {
                 // draw the columns
                 this.points.forEach(function (point) {
-                    var plotY = point.plotY, shapeArgs, pointAttr;
+                    var plotY = point.plotY, pointAttr;
                     if (typeof plotY !== 'undefined' &&
                         !isNaN(plotY) &&
-                        point.y !== null) {
-                        shapeArgs = point.shapeArgs;
+                        point.y !== null &&
+                        ctx) {
+                        var _a = point.shapeArgs || {}, _b = _a.x, x = _b === void 0 ? 0 : _b, _c = _a.y, y = _c === void 0 ? 0 : _c, _d = _a.width, width = _d === void 0 ? 0 : _d, _e = _a.height, height = _e === void 0 ? 0 : _e;
                         if (!chart.styledMode) {
                             pointAttr = point.series.pointAttribs(point);
                         }
@@ -48,10 +52,10 @@ H.initCanvasBoost = function () {
                         }
                         ctx.fillStyle = pointAttr.fill;
                         if (inverted) {
-                            ctx.fillRect(yAxis.len - shapeArgs.y + xAxis.left, xAxis.len - shapeArgs.x + yAxis.top, -shapeArgs.height, -shapeArgs.width);
+                            ctx.fillRect(yAxis.len - y + xAxis.left, xAxis.len - x + yAxis.top, -height, -width);
                         }
                         else {
-                            ctx.fillRect(shapeArgs.x + xAxis.left, shapeArgs.y + yAxis.top, shapeArgs.width, shapeArgs.height);
+                            ctx.fillRect(x + xAxis.left, y + yAxis.top, width, height);
                         }
                     }
                 });
@@ -291,7 +295,7 @@ H.initCanvasBoost = function () {
             if (rawData.length > 99999) {
                 chart.options.loading = merge(loadingOptions, {
                     labelStyle: {
-                        backgroundColor: color('#ffffff').setOpacity(0.75).get(),
+                        backgroundColor: color(palette.backgroundColor).setOpacity(0.75).get(),
                         padding: '1em',
                         borderRadius: '0.5em'
                     },
@@ -503,3 +507,4 @@ H.initCanvasBoost = function () {
         addEvent(chart, 'render', canvasToSVG);
     });
 };
+export default initCanvasBoost;

@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -12,16 +12,18 @@
 'use strict';
 /* global document */
 import Highcharts from '../../Core/Globals.js';
+import O from '../../Core/Options.js';
+var setOptions = O.setOptions;
 import U from '../../Core/Utilities.js';
-var setOptions = U.setOptions;
+var addEvent = U.addEvent, createElement = U.createElement;
 // Load the fonts
-Highcharts.createElement('link', {
+createElement('link', {
     href: 'https://fonts.googleapis.com/css?family=Signika:400,700',
     rel: 'stylesheet',
     type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
 // Add the background image to the container
-Highcharts.addEvent(Highcharts.Chart, 'afterGetContainer', function () {
+addEvent(Highcharts.Chart, 'afterGetContainer', function () {
     // eslint-disable-next-line no-invalid-this
     this.container.style.background =
         'url(https://www.highcharts.com/samples/graphics/sand.png)';
@@ -87,7 +89,7 @@ Highcharts.theme = {
             shadow: false
         }
     },
-    // Highstock specific
+    // Highcharts Stock specific
     navigator: {
         xAxis: {
             gridLineColor: '#D0D0D8'

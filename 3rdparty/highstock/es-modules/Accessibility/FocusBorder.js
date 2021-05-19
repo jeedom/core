@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Extend SVG and Chart classes with focus border capabilities.
  *
@@ -32,8 +32,9 @@ function addDestroyFocusBorderHook(el) {
     }
     var origDestroy = el.destroy;
     el.destroy = function () {
-        var _a, _b;
-        (_b = (_a = el.focusBorder) === null || _a === void 0 ? void 0 : _a.destroy) === null || _b === void 0 ? void 0 : _b.call(_a);
+        if (el.focusBorder && el.focusBorder.destroy) {
+            el.focusBorder.destroy();
+        }
         return origDestroy.apply(el, arguments);
     };
     el.focusBorderDestroyHook = origDestroy;
@@ -110,9 +111,9 @@ extend(SVGElement.prototype, {
      *
      * @param {number} margin
      *
-     * @param {Highcharts.CSSObject} style
+     * @param {SVGAttributes} attribs
      */
-    addFocusBorder: function (margin, style) {
+    addFocusBorder: function (margin, attribs) {
         // Allow updating by just adding new border
         if (this.focusBorder) {
             this.removeFocusBorder();
@@ -150,22 +151,33 @@ extend(SVGElement.prototype, {
         }
         var isLabel = this instanceof SVGLabel;
         if (this.element.nodeName === 'text' || isLabel) {
-            var isRotated = !!this.rotation, correction = !isLabel ? getTextAnchorCorrection(this) :
+            var isRotated = !!this.rotation;
+            var correction = !isLabel ? getTextAnchorCorrection(this) :
                 {
                     x: isRotated ? 1 : 0,
                     y: 0
                 };
-            borderPosX = +this.attr('x') - (bb.width * correction.x) - pad;
-            borderPosY = +this.attr('y') - (bb.height * correction.y) - pad;
+            var attrX = +this.attr('x');
+            var attrY = +this.attr('y');
+            if (!isNaN(attrX)) {
+                borderPosX = attrX - (bb.width * correction.x) - pad;
+            }
+            if (!isNaN(attrY)) {
+                borderPosY = attrY - (bb.height * correction.y) - pad;
+            }
             if (isLabel && isRotated) {
                 var temp = borderWidth;
                 borderWidth = borderHeight;
                 borderHeight = temp;
-                borderPosX = +this.attr('x') - (bb.height * correction.x) - pad;
-                borderPosY = +this.attr('y') - (bb.width * correction.y) - pad;
+                if (!isNaN(attrX)) {
+                    borderPosX = attrX - (bb.height * correction.x) - pad;
+                }
+                if (!isNaN(attrY)) {
+                    borderPosY = attrY - (bb.width * correction.y) - pad;
+                }
             }
         }
-        this.focusBorder = this.renderer.rect(borderPosX, borderPosY, borderWidth, borderHeight, parseInt((style && style.borderRadius || 0).toString(), 10))
+        this.focusBorder = this.renderer.rect(borderPosX, borderPosY, borderWidth, borderHeight, parseInt((attribs && attribs.r || 0).toString(), 10))
             .addClass('highcharts-focus-border')
             .attr({
             zIndex: 99
@@ -173,11 +185,11 @@ extend(SVGElement.prototype, {
             .add(this.parentGroup);
         if (!this.renderer.styledMode) {
             this.focusBorder.attr({
-                stroke: style && style.stroke,
-                'stroke-width': style && style.strokeWidth
+                stroke: attribs && attribs.stroke,
+                'stroke-width': attribs && attribs.strokeWidth
             });
         }
-        addUpdateFocusBorderHooks(this, margin, style);
+        addUpdateFocusBorderHooks(this, margin, attribs);
         addDestroyFocusBorderHook(this);
     },
     /**
@@ -207,7 +219,7 @@ H.Chart.prototype.renderFocusBorder = function () {
             focusElement.addFocusBorder(focusBorderOptions.margin, {
                 stroke: focusBorderOptions.style.color,
                 strokeWidth: focusBorderOptions.style.lineWidth,
-                borderRadius: focusBorderOptions.style.borderRadius
+                r: focusBorderOptions.style.borderRadius
             });
         }
     }

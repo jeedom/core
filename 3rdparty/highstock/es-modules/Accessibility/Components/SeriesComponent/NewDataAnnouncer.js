@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Handle announcing new data for a chart.
  *
@@ -11,6 +11,7 @@
  * */
 'use strict';
 import H from '../../../Core/Globals.js';
+import Series from '../../../Core/Series/Series.js';
 import U from '../../../Core/Utilities.js';
 var extend = U.extend, defined = U.defined;
 import ChartUtilities from '../../Utils/ChartUtilities.js';
@@ -92,13 +93,13 @@ extend(NewDataAnnouncer.prototype, {
         e.addEvent(chart, 'afterDrilldown', function () {
             announcer.lastAnnouncementTime = 0;
         });
-        e.addEvent(H.Series, 'updatedData', function () {
+        e.addEvent(Series, 'updatedData', function () {
             announcer.onSeriesUpdatedData(this);
         });
         e.addEvent(chart, 'afterAddSeries', function (e) {
             announcer.onSeriesAdded(e.series);
         });
-        e.addEvent(H.Series, 'addPoint', function (e) {
+        e.addEvent(Series, 'addPoint', function (e) {
             announcer.onPointAdded(e.point);
         });
         e.addEvent(chart, 'redraw', function () {

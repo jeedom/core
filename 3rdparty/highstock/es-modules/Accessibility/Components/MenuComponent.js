@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Øystein Moseng
+ *  (c) 2009-2021 Øystein Moseng
  *
  *  Accessibility component for exporting menu.
  *
@@ -206,7 +206,7 @@ extend(MenuComponent.prototype, /** @lends Highcharts.MenuComponent */ {
             var button = getExportMenuButtonElement(this.chart);
             this.exportButtonProxy = this.createProxyButton(button, this.exportProxyGroup, {
                 'aria-label': chart.langFormat('accessibility.exporting.menuButtonLabel', { chart: chart }),
-                'aria-expanded': 'false'
+                'aria-expanded': false
             });
         }
     },

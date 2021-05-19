@@ -1,6 +1,6 @@
 /* *
  *
- *  Copyright (c) 2019-2020 Highsoft AS
+ *  Copyright (c) 2019-2021 Highsoft AS
  *
  *  Boost module: stripped-down renderer for higher performance
  *
@@ -10,14 +10,14 @@
  *
  * */
 'use strict';
-import H from '../../Core/Globals.js';
+import Color from '../../Core/Color/Color.js';
+var color = Color.parse;
 import GLShader from './WGLShader.js';
 import GLVertexBuffer from './WGLVBuffer.js';
-import Color from '../../Core/Color.js';
-var color = Color.parse;
+import H from '../../Core/Globals.js';
+var doc = H.doc;
 import U from '../../Core/Utilities.js';
 var isNumber = U.isNumber, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
-var win = H.win, doc = win.document;
 /* eslint-disable valid-jsdoc */
 /**
  * Main renderer. Used to render series.
@@ -38,7 +38,7 @@ function GLRenderer(postRenderCallback) {
     //  // Shader
     var shader = false, 
     // Vertex buffers - keyed on shader attribute name
-    vbuffer = false, 
+    vbuffer = false, vlen = 0, 
     // Opengl context
     gl = false, 
     // Width of our viewport in pixels
@@ -201,13 +201,13 @@ function GLRenderer(postRenderCallback) {
         // For some reason eslint/TypeScript don't pick up that this is
         // actually used: --- bre1470: it is never read, just set
         // maxVal: (number|undefined), // eslint-disable-line no-unused-vars
-        points = series.points || false, lastX = false, lastY = false, minVal, pcolor, scolor, sdata = isStacked ? series.data : (xData || rawData), closestLeft = { x: Number.MAX_VALUE, y: 0 }, closestRight = { x: -Number.MAX_VALUE, y: 0 }, 
+        points = series.points || false, lastX = false, lastY = false, minVal, scolor, sdata = isStacked ? series.data : (xData || rawData), closestLeft = { x: Number.MAX_VALUE, y: 0 }, closestRight = { x: -Number.MAX_VALUE, y: 0 }, 
         //
         skipped = 0, hadPoints = false, 
         //
         cullXThreshold = 1, cullYThreshold = 1, 
         // The following are used in the builder while loop
-        x, y, d, z, i = -1, px = false, nx = false, low, chartDestroyed = typeof chart.index === 'undefined', nextInside = false, prevInside = false, pcolor = false, drawAsBar = asBar[series.type], isXInside = false, isYInside = true, firstPoint = true, zones = options.zones || false, zoneDefColor = false, threshold = options.threshold, gapSize = false;
+        x, y, d, z, i = -1, px = false, nx = false, low, chartDestroyed = typeof chart.index === 'undefined', nextInside = false, prevInside = false, pcolor = false, drawAsBar = asBar[series.type], isXInside = false, isYInside = true, firstPoint = true, zoneAxis = options.zoneAxis || 'y', zones = options.zones || false, zoneDefColor = false, threshold = options.threshold, gapSize = false;
         if (options.boostData && options.boostData.length > 0) {
             return;
         }
@@ -255,6 +255,7 @@ function GLRenderer(postRenderCallback) {
             pushColor(color);
             if (settings.usePreallocated) {
                 vbuffer.push(x, y, checkTreshold ? 1 : 0, pointSize || 1);
+                vlen += 4;
             }
             else {
                 data.push(x);
@@ -268,7 +269,7 @@ function GLRenderer(postRenderCallback) {
          */
         function closeSegment() {
             if (inst.segments.length) {
-                inst.segments[inst.segments.length - 1].to = data.length;
+                inst.segments[inst.segments.length - 1].to = data.length || vlen;
             }
         }
         /**
@@ -281,12 +282,12 @@ function GLRenderer(postRenderCallback) {
             // When adding a segment, if one exists from before, it should
             // set the previous segment's end
             if (inst.segments.length &&
-                inst.segments[inst.segments.length - 1].from === data.length) {
+                inst.segments[inst.segments.length - 1].from === (data.length || vlen)) {
                 return;
             }
             closeSegment();
             inst.segments.push({
-                from: data.length
+                from: data.length || vlen
             });
         }
         /**
@@ -333,11 +334,12 @@ function GLRenderer(postRenderCallback) {
                 });
             }
             points.forEach(function (point) {
-                var plotY = point.plotY, shapeArgs, swidth, pointAttr;
+                var plotY = point.plotY, swidth, pointAttr;
                 if (typeof plotY !== 'undefined' &&
                     !isNaN(plotY) &&
-                    point.y !== null) {
-                    shapeArgs = point.shapeArgs;
+                    point.y !== null &&
+                    point.shapeArgs) {
+                    var _a = point.shapeArgs, _b = _a.x, x_1 = _b === void 0 ? 0 : _b, _c = _a.y, y_1 = _c === void 0 ? 0 : _c, _d = _a.width, width_1 = _d === void 0 ? 0 : _d, _e = _a.height, height_1 = _e === void 0 ? 0 : _e;
                     pointAttr = chart.styledMode ?
                         point.series
                             .colorAttribs(point) :
@@ -361,7 +363,7 @@ function GLRenderer(postRenderCallback) {
                         scolor[0] /= 255.0;
                         scolor[1] /= 255.0;
                         scolor[2] /= 255.0;
-                        pushRect(shapeArgs.x, shapeArgs.y, shapeArgs.width, shapeArgs.height, scolor);
+                        pushRect(x_1, y_1, width_1, height_1, scolor);
                         swidth /= 2;
                     }
                     // } else {
@@ -373,12 +375,12 @@ function GLRenderer(postRenderCallback) {
                     // bottom-right. This causes a vertical and horizontal flip
                     // in the resulting image, making it rotated 180 degrees.
                     if (series.type === 'heatmap' && chart.inverted) {
-                        shapeArgs.x = xAxis.len - shapeArgs.x;
-                        shapeArgs.y = yAxis.len - shapeArgs.y;
-                        shapeArgs.width = -shapeArgs.width;
-                        shapeArgs.height = -shapeArgs.height;
+                        x_1 = xAxis.len - x_1;
+                        y_1 = yAxis.len - y_1;
+                        width_1 = -width_1;
+                        height_1 = -height_1;
                     }
-                    pushRect(shapeArgs.x + swidth, shapeArgs.y + swidth, shapeArgs.width - (swidth * 2), shapeArgs.height - (swidth * 2), pcolor);
+                    pushRect(x_1 + swidth, y_1 + swidth, width_1 - (swidth * 2), height_1 - (swidth * 2), pcolor);
                 }
             });
             closeSegment();
@@ -392,6 +394,9 @@ function GLRenderer(postRenderCallback) {
         // });
         while (i < sdata.length - 1) {
             d = sdata[++i];
+            if (typeof d === 'undefined') {
+                continue;
+            }
             // px = x = y = z = nx = low = false;
             // chartDestroyed = typeof chart.index === 'undefined';
             // nextInside = prevInside = pcolor = isXInside = isYInside = false;
@@ -517,10 +522,19 @@ function GLRenderer(postRenderCallback) {
             }
             // Note: Boost requires that zones are sorted!
             if (zones) {
-                pcolor = zoneDefColor.rgba;
+                pcolor = zoneDefColor.rgba.slice();
                 zones.some(function (// eslint-disable-line no-loop-func
                 zone, i) {
                     var last = zones[i - 1];
+                    if (zoneAxis === 'x') {
+                        if (typeof zone.value !== 'undefined' && x <= zone.value) {
+                            if (!last || x >= last.value) {
+                                pcolor = color(zone.color).rgba;
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
                     if (typeof zone.value !== 'undefined' && y <= zone.value) {
                         if (!last || y >= last.value) {
                             pcolor = color(zone.color).rgba;
@@ -557,27 +571,6 @@ function GLRenderer(postRenderCallback) {
                     // x = plotWidth;
                 }
             }
-            if (drawAsBar) {
-                // maxVal = y;
-                minVal = low;
-                if (low === false || typeof low === 'undefined') {
-                    if (y < 0) {
-                        minVal = y;
-                    }
-                    else {
-                        minVal = 0;
-                    }
-                }
-                if (!isRange && !isStacked) {
-                    minVal = Math.max(threshold === null ? yMin : threshold, // #5268
-                    yMin); // #8731
-                }
-                if (!settings.useGPUTranslations) {
-                    minVal = yAxis.toPixels(minVal, true);
-                }
-                // Need to add an extra point here
-                vertice(x, minVal, 0, 0, pcolor);
-            }
             // No markers on out of bounds things.
             // Out of bound things are shown if and only if the next
             // or previous point is inside the rect.
@@ -607,6 +600,27 @@ function GLRenderer(postRenderCallback) {
                     ++skipped;
                 }
                 continue;
+            }
+            if (drawAsBar) {
+                // maxVal = y;
+                minVal = low;
+                if (low === false || typeof low === 'undefined') {
+                    if (y < 0) {
+                        minVal = y;
+                    }
+                    else {
+                        minVal = 0;
+                    }
+                }
+                if (!isRange && !isStacked) {
+                    minVal = Math.max(threshold === null ? yMin : threshold, // #5268
+                    yMin); // #8731
+                }
+                if (!settings.useGPUTranslations) {
+                    minVal = yAxis.toPixels(minVal, true);
+                }
+                // Need to add an extra point here
+                vertice(x, minVal, 0, 0, pcolor);
             }
             // Do step line if enabled.
             // Draws an additional point at the old Y at the new X.
@@ -677,7 +691,7 @@ function GLRenderer(postRenderCallback) {
         if (settings.debug.timeSeriesProcessing) {
             console.time('building ' + s.type + ' series'); // eslint-disable-line no-console
         }
-        series.push({
+        var obj = {
             segments: [],
             // from: data.length,
             markerFrom: markerData.length,
@@ -705,9 +719,15 @@ function GLRenderer(postRenderCallback) {
                 'treemap': 'triangles',
                 'bubble': 'points'
             }[s.type] || 'line_strip'
-        });
+        };
+        if (s.index >= series.length) {
+            series.push(obj);
+        }
+        else {
+            series[s.index] = obj;
+        }
         // Add the series data to our buffer(s)
-        pushSeriesData(s, series[series.length - 1]);
+        pushSeriesData(s, obj);
         if (settings.debug.timeSeriesProcessing) {
             console.timeEnd('building ' + s.type + ' series'); // eslint-disable-line no-console
         }
@@ -831,7 +851,9 @@ function GLRenderer(postRenderCallback) {
             }
             else {
                 fillColor =
-                    (s.series.pointAttribs && s.series.pointAttribs().fill) ||
+                    (s.drawMode === 'points' && // #14260
+                        s.series.pointAttribs &&
+                        s.series.pointAttribs().fill) ||
                         s.series.color;
                 if (options.colorByPoint) {
                     fillColor = s.series.chart.options.colors[si];

@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2016-2020 Highsoft AS
+ *  (c) 2016-2021 Highsoft AS
  *
  *  Author: Lars A. V. Cabrera
  *
@@ -9,110 +9,161 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-'use strict';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import Chart from './Chart.js';
-import H from '../Globals.js';
+import O from '../../Core/Options.js';
+var getOptions = O.getOptions;
 import U from '../Utilities.js';
-var getOptions = U.getOptions, isArray = U.isArray, merge = U.merge, splat = U.splat;
-import '../../Series/GanttSeries.js';
+var isArray = U.isArray, merge = U.merge, splat = U.splat;
+import '../../Series/Gantt/GanttSeries.js';
 /**
- * Factory function for Gantt charts.
+ * Gantt-optimized chart. Use {@link Highcharts.Chart|Chart} for common charts.
  *
- * @example
- * // Render a chart in to div#container
- * var chart = Highcharts.ganttChart('container', {
- *     title: {
- *         text: 'My chart'
- *     },
- *     series: [{
- *         data: ...
- *     }]
- * });
+ * @requires modules/gantt
  *
- * @function Highcharts.ganttChart
- *
- * @param {string|Highcharts.HTMLDOMElement} renderTo
- *        The DOM element to render to, or its id.
- *
- * @param {Highcharts.Options} options
- *        The chart options structure.
- *
- * @param {Highcharts.ChartCallbackFunction} [callback]
- *        Function to run when the chart has loaded and and all external images
- *        are loaded. Defining a
- *        [chart.events.load](https://api.highcharts.com/highcharts/chart.events.load)
- *        handler is equivalent.
- *
- * @return {Highcharts.Chart}
- *         Returns the Chart object.
+ * @class
+ * @name Highcharts.GanttChart
+ * @extends Highcharts.Chart
  */
-H.ganttChart = function (renderTo, options, callback) {
-    var hasRenderToArg = typeof renderTo === 'string' || renderTo.nodeName, seriesOptions = options.series, defaultOptions = getOptions(), defaultLinkedTo, userOptions = options;
-    options = arguments[hasRenderToArg ? 1 : 0];
-    // If user hasn't defined axes as array, make it into an array and add a
-    // second axis by default.
-    if (!isArray(options.xAxis)) {
-        options.xAxis = [options.xAxis || {}, {}];
+var GanttChart = /** @class */ (function (_super) {
+    __extends(GanttChart, _super);
+    function GanttChart() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    // apply X axis options to both single and multi x axes
-    options.xAxis = options.xAxis.map(function (xAxisOptions, i) {
-        if (i === 1) { // Second xAxis
-            defaultLinkedTo = 0;
+    /**
+     * Initializes the chart. The constructor's arguments are passed on
+     * directly.
+     *
+     * @function Highcharts.GanttChart#init
+     *
+     * @param {Highcharts.Options} userOptions
+     *        Custom options.
+     *
+     * @param {Function} [callback]
+     *        Function to run when the chart has loaded and and all external
+     *        images are loaded.
+     *
+     * @return {void}
+     *
+     * @fires Highcharts.GanttChart#event:init
+     * @fires Highcharts.GanttChart#event:afterInit
+     */
+    GanttChart.prototype.init = function (userOptions, callback) {
+        var seriesOptions = userOptions.series, defaultOptions = getOptions(), defaultLinkedTo;
+        // If user hasn't defined axes as array, make it into an array and add a
+        // second axis by default.
+        if (!isArray(userOptions.xAxis)) {
+            userOptions.xAxis = [userOptions.xAxis || {}, {}];
         }
-        return merge(defaultOptions.xAxis, {
-            grid: {
-                enabled: true
-            },
-            opposite: true,
-            linkedTo: defaultLinkedTo
-        }, xAxisOptions, // user options
-        {
-            type: 'datetime'
-        });
-    });
-    // apply Y axis options to both single and multi y axes
-    options.yAxis = (splat(options.yAxis || {})).map(function (yAxisOptions) {
-        return merge(defaultOptions.yAxis, // #3802
-        {
-            grid: {
-                enabled: true
-            },
-            staticScale: 50,
-            reversed: true,
-            // Set default type treegrid, but only if 'categories' is
-            // undefined
-            type: yAxisOptions.categories ? yAxisOptions.type : 'treegrid'
-        }, yAxisOptions // user options
-        );
-    });
-    options.series = null;
-    options = merge(true, {
-        chart: {
-            type: 'gantt'
-        },
-        title: {
-            text: null
-        },
-        legend: {
-            enabled: false
-        },
-        navigator: {
-            series: { type: 'gantt' }
-        }
-    }, options, // user's options
-    // forced options
-    {
-        isGantt: true
-    });
-    options.series = userOptions.series = seriesOptions;
-    (options.series || []).forEach(function (series) {
-        if (series.data) {
-            series.data.forEach(function (point) {
-                H.seriesTypes.gantt.prototype.setGanttPointAliases(point);
+        // apply X axis options to both single and multi x axes
+        userOptions.xAxis = userOptions.xAxis.map(function (xAxisOptions, i) {
+            if (i === 1) { // Second xAxis
+                defaultLinkedTo = 0;
+            }
+            return merge(defaultOptions.xAxis, {
+                grid: {
+                    enabled: true
+                },
+                opposite: true,
+                linkedTo: defaultLinkedTo
+            }, xAxisOptions, // user options
+            {
+                type: 'datetime'
             });
-        }
-    });
-    return hasRenderToArg ?
-        new Chart(renderTo, options, callback) :
-        new Chart(options, options); // @todo does not look correct
-};
+        });
+        // apply Y axis options to both single and multi y axes
+        userOptions.yAxis = (splat(userOptions.yAxis || {})).map(function (yAxisOptions) {
+            return merge(defaultOptions.yAxis, // #3802
+            {
+                grid: {
+                    enabled: true
+                },
+                staticScale: 50,
+                reversed: true,
+                // Set default type treegrid, but only if 'categories' is
+                // undefined
+                type: yAxisOptions.categories ? yAxisOptions.type : 'treegrid'
+            }, yAxisOptions // user options
+            );
+        });
+        delete userOptions.series;
+        userOptions = merge(true, {
+            chart: {
+                type: 'gantt'
+            },
+            title: {
+                text: null
+            },
+            legend: {
+                enabled: false
+            },
+            navigator: {
+                series: { type: 'gantt' },
+                // Bars were clipped, #14060.
+                yAxis: {
+                    type: 'category'
+                }
+            }
+        }, userOptions, // user's options
+        // forced options
+        {
+            isGantt: true
+        });
+        userOptions.series = seriesOptions;
+        _super.prototype.init.call(this, userOptions, callback);
+    };
+    return GanttChart;
+}(Chart));
+/* eslint-disable valid-jsdoc */
+(function (GanttChart) {
+    /**
+     * The factory function for creating new gantt charts. Creates a new {@link
+     * Highcharts.GanttChart|GanttChart} object with different default options
+     * than the basic Chart.
+     *
+     * @example
+     * // Render a chart in to div#container
+     * let chart = Highcharts.ganttChart('container', {
+     *     title: {
+     *         text: 'My chart'
+     *     },
+     *     series: [{
+     *         data: ...
+     *     }]
+     * });
+     *
+     * @function Highcharts.ganttChart
+     *
+     * @param {string|Highcharts.HTMLDOMElement} renderTo
+     *        The DOM element to render to, or its id.
+     *
+     * @param {Highcharts.Options} options
+     *        The chart options structure.
+     *
+     * @param {Highcharts.ChartCallbackFunction} [callback]
+     *        Function to run when the chart has loaded and and all external
+     *        images are loaded. Defining a
+     *        [chart.events.load](https://api.highcharts.com/highcharts/chart.events.load)
+     *        handler is equivalent.
+     *
+     * @return {Highcharts.GanttChart}
+     *         Returns the Chart object.
+     */
+    function ganttChart(a, b, c) {
+        return new GanttChart(a, b, c);
+    }
+    GanttChart.ganttChart = ganttChart;
+})(GanttChart || (GanttChart = {}));
+export default GanttChart;

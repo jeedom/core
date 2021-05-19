@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -64,7 +64,7 @@ var RadialAxis = /** @class */ (function () {
          * @return {RadialAxisPath}
          */
         axis.getLinePath = function (_lineWidth, radius, innerRadius) {
-            var center = this.pane.center, end, chart = this.chart, r = pick(radius, center[2] / 2 - this.offset), path;
+            var center = this.pane.center, end, chart = this.chart, r = pick(radius, center[2] / 2 - this.offset), left = this.left || 0, top = this.top || 0, path;
             if (typeof innerRadius === 'undefined') {
                 innerRadius = this.horiz ? 0 : this.center && -this.center[3] / 2;
             }
@@ -73,7 +73,7 @@ var RadialAxis = /** @class */ (function () {
                 r += innerRadius;
             }
             if (this.isCircular || typeof radius !== 'undefined') {
-                path = this.chart.renderer.symbols.arc(this.left + center[0], this.top + center[1], r, r, {
+                path = this.chart.renderer.symbols.arc(left + center[0], top + center[1], r, r, {
                     start: this.startAngleRad,
                     end: this.endAngleRad,
                     open: true,
@@ -81,8 +81,8 @@ var RadialAxis = /** @class */ (function () {
                 });
                 // Bounds used to position the plotLine label next to the line
                 // (#7117)
-                path.xBounds = [this.left + center[0]];
-                path.yBounds = [this.top + center[1] - r];
+                path.xBounds = [left + center[0]];
+                path.yBounds = [top + center[1] - r];
             }
             else {
                 end = this.postTranslate(this.angleRad, r);
@@ -165,7 +165,7 @@ var RadialAxis = /** @class */ (function () {
                 this.pane.updateCenter(this);
                 // In case when the innerSize is set in a polar chart, the axis'
                 // center cannot be a reference to pane's center
-                center = this.center = extend([], this.pane.center);
+                center = this.center = this.pane.center.slice();
                 // The sector is used in Axis.translate to compute the
                 // translation of reversed axis points (#2570)
                 if (this.isCircular) {
@@ -257,7 +257,7 @@ var RadialAxis = /** @class */ (function () {
                 }
                 return radius;
             };
-            var center = this.center, startAngleRad = this.startAngleRad, fullRadius = center[2] / 2, offset = Math.min(this.offset, 0), percentRegex = /%$/, start, end, angle, xOnPerimeter, open, isCircular = this.isCircular, // X axis in a polar chart
+            var center = this.center, startAngleRad = this.startAngleRad, fullRadius = center[2] / 2, offset = Math.min(this.offset, 0), left = this.left || 0, top = this.top || 0, percentRegex = /%$/, start, end, angle, xOnPerimeter, open, isCircular = this.isCircular, // X axis in a polar chart
             path, outerRadius = pick(radiusToPixels(options.outerRadius), fullRadius), innerRadius = radiusToPixels(options.innerRadius), thickness = pick(radiusToPixels(options.thickness), 10);
             // Polygonal plot bands
             if (this.options.gridLineInterpolation === 'polygon') {
@@ -288,7 +288,7 @@ var RadialAxis = /** @class */ (function () {
                 }
                 outerRadius -= offset; // #5283
                 thickness -= offset; // #5283
-                path = this.chart.renderer.symbols.arc(this.left + center[0], this.top + center[1], outerRadius, outerRadius, {
+                path = this.chart.renderer.symbols.arc(left + center[0], top + center[1], outerRadius, outerRadius, {
                     // Math is for reversed yAxis (#3606)
                     start: Math.min(start, end),
                     end: Math.max(start, end),
@@ -298,7 +298,7 @@ var RadialAxis = /** @class */ (function () {
                 // Provide positioning boxes for the label (#6406)
                 if (isCircular) {
                     angle = (end + start) / 2;
-                    xOnPerimeter = (this.left +
+                    xOnPerimeter = (left +
                         center[0] +
                         (center[2] / 2) * Math.cos(angle));
                     path.xBounds = angle > -Math.PI / 2 && angle < Math.PI / 2 ?
@@ -307,7 +307,7 @@ var RadialAxis = /** @class */ (function () {
                         // Left hemisphere
                         [0, xOnPerimeter];
                     path.yBounds = [
-                        this.top + center[1] + (center[2] / 2) * Math.sin(angle)
+                        top + center[1] + (center[2] / 2) * Math.sin(angle)
                     ];
                     // Shift up or down to get the label clear of the perimeter
                     path.yBounds[0] += ((angle > -Math.PI && angle < 0) ||
@@ -537,6 +537,7 @@ var RadialAxis = /** @class */ (function () {
                 // Apply the stack labels for yAxis in case of inverted chart
                 if (inverted && coll === 'yAxis') {
                     axis.defaultPolarOptions.stackLabels = AxisClass.defaultYAxisOptions.stackLabels;
+                    axis.defaultPolarOptions.reversedStacks = true;
                 }
             }
             // Disable certain features on angular and polar axes
@@ -622,7 +623,7 @@ var RadialAxis = /** @class */ (function () {
             align = labelOptions.align, angle = ((axis.translate(this.pos) + axis.startAngleRad +
                 Math.PI / 2) / Math.PI * 180) % 360, correctAngle = Math.round(angle), labelDir = 'end', // Direction of the label 'start' or 'end'
             reducedAngle1 = correctAngle < 0 ?
-                correctAngle + 360 : correctAngle, reducedAngle2 = reducedAngle1, translateY = 0, translateX = 0, labelYPosCorrection = labelOptions.y === null ? -labelBBox.height * 0.3 : 0;
+                correctAngle + 360 : correctAngle, reducedAngle2 = reducedAngle1, translateY = 0, translateX = 0, labelYPosCorrection = !defined(optionsY) ? -labelBBox.height * 0.3 : 0;
             if (axis.isRadial) { // Both X and Y axes in a polar chart
                 ret = axis.getPosition(this.pos, (axis.center[2] / 2) +
                     relativeLength(pick(labelOptions.distance, -25), axis.center[2] / 2, -axis.center[2] / 2));
@@ -633,13 +634,13 @@ var RadialAxis = /** @class */ (function () {
                     });
                     // Vertically centered
                 }
-                else if (optionsY === null) {
+                else if (!defined(optionsY)) {
                     optionsY = (axis.chart.renderer
                         .fontMetrics(label.styles && label.styles.fontSize).b -
                         labelBBox.height / 2);
                 }
                 // Automatic alignment
-                if (align === null) {
+                if (!defined(align)) {
                     if (axis.isCircular) { // Y axis
                         if (labelBBox.width >
                             axis.len * axis.tickInterval / (axis.max - axis.min)) { // #3506
@@ -728,8 +729,8 @@ var RadialAxis = /** @class */ (function () {
                     label.attr({ align: align });
                     label.translate(translateX, translateY + labelYPosCorrection);
                 }
-                e.pos.x = ret.x + labelOptions.x;
-                e.pos.y = ret.y + optionsY;
+                e.pos.x = ret.x + (labelOptions.x || 0);
+                e.pos.y = ret.y + (optionsY || 0);
             }
         });
         // Wrap the getMarkPath function to return the path of the radial marker
@@ -766,10 +767,10 @@ var RadialAxis = /** @class */ (function () {
     RadialAxis.defaultCircularOptions = {
         gridLineWidth: 1,
         labels: {
-            align: null,
+            align: void 0,
             distance: 15,
             x: 0,
-            y: null,
+            y: void 0,
             style: {
                 textOverflow: 'none' // wrap lines by default (#7248)
             }
@@ -787,7 +788,7 @@ var RadialAxis = /** @class */ (function () {
         labels: {
             align: 'center',
             x: 0,
-            y: null // auto
+            y: void 0 // auto
         },
         minorGridLineWidth: 0,
         minorTickInterval: 'auto',

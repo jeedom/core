@@ -2,7 +2,7 @@
  *
  *  Exporting module
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -16,6 +16,7 @@ import H from '../Core/Globals.js';
 var doc = H.doc, isTouchDevice = H.isTouchDevice, win = H.win;
 import O from '../Core/Options.js';
 var defaultOptions = O.defaultOptions;
+import palette from '../Core/Color/Palette.js';
 import SVGRenderer from '../Core/Renderer/SVG/SVGRenderer.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, css = U.css, createElement = U.createElement, discardElement = U.discardElement, extend = U.extend, find = U.find, fireEvent = U.fireEvent, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pick = U.pick, removeEvent = U.removeEvent, uniqueKey = U.uniqueKey;
@@ -85,8 +86,6 @@ var addEvent = U.addEvent, css = U.css, createElement = U.createElement, discard
  *
  * @typedef {"image/png"|"image/jpeg"|"application/pdf"|"image/svg+xml"} Highcharts.ExportingMimeTypeValue
  */
-// create shortcuts
-var userAgent = win.navigator.userAgent, symbols = H.Renderer.prototype.symbols, isMSBrowser = /Edge\/|Trident\/|MSIE /.test(userAgent), isFirefoxBrowser = /firefox/i.test(userAgent);
 // Add language
 extend(defaultOptions.lang
 /**
@@ -299,14 +298,14 @@ merge(true, defaultOptions.navigation, {
     }
 });
 // Presentational attributes
-merge(true, defaultOptions.navigation
+merge(true, defaultOptions.navigation, 
 /**
  * A collection of options for buttons and menus appearing in the exporting
  * module.
  *
  * @optionparent navigation
  */
-, {
+{
     /**
      * CSS styles for the popup menu appearing by default when the export
      * icon is clicked. This menu is rendered in HTML.
@@ -325,9 +324,9 @@ merge(true, defaultOptions.navigation
      */
     menuStyle: {
         /** @ignore-option */
-        border: '1px solid #999999',
+        border: "1px solid " + palette.neutralColor40,
         /** @ignore-option */
-        background: '#ffffff',
+        background: palette.backgroundColor,
         /** @ignore-option */
         padding: '5px 0'
     },
@@ -353,7 +352,7 @@ merge(true, defaultOptions.navigation
         /** @ignore-option */
         padding: '0.5em 1em',
         /** @ignore-option */
-        color: '#333333',
+        color: palette.neutralColor80,
         /** @ignore-option */
         background: 'none',
         /** @ignore-option */
@@ -380,9 +379,9 @@ merge(true, defaultOptions.navigation
      */
     menuItemHoverStyle: {
         /** @ignore-option */
-        background: '#335cad',
+        background: palette.highlightColor80,
         /** @ignore-option */
-        color: '#ffffff'
+        color: palette.backgroundColor
     },
     /**
      * A collection of options for buttons appearing in the exporting
@@ -405,7 +404,7 @@ merge(true, defaultOptions.navigation
          * @type  {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @since 2.0
          */
-        symbolFill: '#666666',
+        symbolFill: palette.neutralColor60,
         /**
          * The color of the symbol's stroke or line.
          *
@@ -415,7 +414,7 @@ merge(true, defaultOptions.navigation
          * @type  {Highcharts.ColorString}
          * @since 2.0
          */
-        symbolStroke: '#666666',
+        symbolStroke: palette.neutralColor60,
         /**
          * The pixel stroke width of the symbol on the button.
          *
@@ -443,7 +442,7 @@ merge(true, defaultOptions.navigation
              * The default fill exists only to capture hover events.
              *
              * @type      {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
-             * @default   #ffffff
+             * @default   ${palette.backgroundColor}
              * @apioption navigation.buttonOptions.theme.fill
              */
             /**
@@ -1110,14 +1109,24 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
                 options.series.push(seriesOptions);
             }
         });
-        // Assign an internal key to ensure a one-to-one mapping (#5924)
+        var colls = {};
         chart.axes.forEach(function (axis) {
+            // Assign an internal key to ensure a one-to-one mapping (#5924)
             if (!axis.userOptions.internalKey) { // #6444
                 axis.userOptions.internalKey = uniqueKey();
             }
+            if (!axis.options.isInternal) {
+                if (!colls[axis.coll]) {
+                    colls[axis.coll] = true;
+                    options[axis.coll] = [];
+                }
+                options[axis.coll].push(merge(axis.userOptions, {
+                    visible: axis.visible
+                }));
+            }
         });
         // generate the chart copy
-        chartCopy = new H.Chart(options, chart.callback);
+        chartCopy = new Chart(options, chart.callback);
         // Axis options and series options  (#2022, #3900, #5982)
         if (chartOptions) {
             ['xAxis', 'yAxis', 'series'].forEach(function (coll) {
@@ -1212,7 +1221,7 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
      * @sample highcharts/members/chart-exportchart-custom-background/
      *         Different chart background in export
      * @sample stock/members/chart-exportchart/
-     *         Export with Highstock
+     *         Export with Highcharts Stock
      *
      * @function Highcharts.Chart#exportChart
      *
@@ -1436,7 +1445,9 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
                     button.setState(0);
                 }
                 chart.openMenu = false;
-                css(chart.renderTo, { overflow: 'hidden' }); // #10361
+                // #10361, #9998
+                css(chart.renderTo, { overflow: 'hidden' });
+                css(chart.container, { overflow: 'hidden' });
                 U.clearTimeout(menu.hideTimer);
                 fireEvent(chart, 'exportMenuHidden');
             };
@@ -1464,11 +1475,16 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
                         .menuItemDefinitions[item];
                 }
                 if (isObject(item, true)) {
-                    var element;
+                    var element = void 0;
                     if (item.separator) {
                         element = createElement('hr', null, null, innerMenu);
                     }
                     else {
+                        // When chart initialized with the table,
+                        // wrong button text displayed, #14352.
+                        if (item.textKey === 'viewData' && chart.isDataTableVisible) {
+                            item.textKey = 'hideData';
+                        }
                         element = createElement('li', {
                             className: 'highcharts-menu-item',
                             onclick: function (e) {
@@ -1480,10 +1496,10 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
                                     item.onclick
                                         .apply(chart, arguments);
                                 }
-                            },
-                            innerHTML: (item.text ||
-                                chart.options.lang[item.textKey])
+                            }
                         }, null, innerMenu);
+                        element.appendChild(doc.createTextNode(item.text ||
+                            chart.options.lang[item.textKey]));
                         if (!chart.styledMode) {
                             element.onmouseover = function () {
                                 css(this, navOptions.menuItemHoverStyle);
@@ -1523,7 +1539,9 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
             menuStyle.top = (y + height - menuPadding) + 'px';
         }
         css(menu, menuStyle);
-        css(chart.renderTo, { overflow: '' }); // #10361
+        // #10361, #9998
+        css(chart.renderTo, { overflow: '' });
+        css(chart.container, { overflow: '' });
         chart.openMenu = true;
         fireEvent(chart, 'exportMenuShown');
     },
@@ -1546,12 +1564,12 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
             chart.exportDivElements = [];
             chart.exportSVGElements = [];
         }
-        if (btnOptions.enabled === false) {
+        if (btnOptions.enabled === false || !btnOptions.theme) {
             return;
         }
         var attr = btnOptions.theme, states = attr.states, hover = states && states.hover, select = states && states.select, callback;
         if (!chart.styledMode) {
-            attr.fill = pick(attr.fill, '#ffffff');
+            attr.fill = pick(attr.fill, palette.backgroundColor);
             attr.stroke = pick(attr.stroke, 'none');
         }
         delete attr.states;
@@ -1574,7 +1592,7 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
             };
         }
         if (btnOptions.text && btnOptions.symbol) {
-            attr.paddingLeft = pick(attr.paddingLeft, 25);
+            attr.paddingLeft = pick(attr.paddingLeft, 30);
         }
         else if (!btnOptions.text) {
             extend(attr, {
@@ -1585,7 +1603,7 @@ extend(Chart.prototype, /** @lends Highcharts.Chart.prototype */ {
         }
         if (!chart.styledMode) {
             attr['stroke-linecap'] = 'round';
-            attr.fill = pick(attr.fill, '#ffffff');
+            attr.fill = pick(attr.fill, palette.backgroundColor);
             attr.stroke = pick(attr.stroke, 'none');
         }
         button = renderer
@@ -1797,7 +1815,8 @@ Chart.prototype.inlineStyles = function () {
                 // If parent node has the same style, it gets inherited, no need
                 // to inline it. Top-level props should be diffed against parent
                 // (#7687).
-                if ((parentStyles[prop] !== val || node.nodeName === 'svg') &&
+                if ((parentStyles[prop] !== val ||
+                    node.nodeName === 'svg') &&
                     defaultStyles[node.nodeName][prop] !== val) {
                     // Attributes
                     if (!inlineToAttributes ||
@@ -1841,7 +1860,7 @@ Chart.prototype.inlineStyles = function () {
                 dummySVG.removeChild(dummy);
             }
             // Loop through all styles and add them inline if they are ok
-            if (isFirefoxBrowser || isMSBrowser) {
+            if (H.isFirefox || H.isMS) {
                 // Some browsers put lots of styles on the prototype
                 for (var p in styles) { // eslint-disable-line guard-for-in
                     filterStyles(styles[p], p);
@@ -1873,11 +1892,13 @@ Chart.prototype.inlineStyles = function () {
      */
     function tearDown() {
         dummySVG.parentNode.removeChild(dummySVG);
+        // Remove trash from DOM that stayed after each exporting
+        iframe.parentNode.removeChild(iframe);
     }
     recurse(this.container.querySelector('svg'));
     tearDown();
 };
-symbols.menu = function (x, y, width, height) {
+H.Renderer.prototype.symbols.menu = function (x, y, width, height) {
     var arr = [
         ['M', x, y + 2.5],
         ['L', x + width, y + 2.5],
@@ -1888,7 +1909,7 @@ symbols.menu = function (x, y, width, height) {
     ];
     return arr;
 };
-symbols.menuball = function (x, y, width, height) {
+H.Renderer.prototype.symbols.menuball = function (x, y, width, height) {
     var path = [], h = (height / 3) - 2;
     path = path.concat(this.circle(width - h, y, h, h), this.circle(width - h, y + h + 4, h, h), this.circle(width - h, y + 2 * (h + 4), h, h));
     return path;
@@ -1917,8 +1938,6 @@ Chart.prototype.renderExporting = function () {
         });
         chart.isDirtyExporting = false;
     }
-    // Destroy the export elements at chart destroy
-    addEvent(chart, 'destroy', chart.destroyExport);
 };
 /* eslint-disable no-invalid-this */
 // Add update methods to handle chart.update and chart.exporting.update and
@@ -1960,19 +1979,21 @@ addEvent(Chart, 'init', function () {
 Chart.prototype.callbacks.push(function (chart) {
     chart.renderExporting();
     addEvent(chart, 'redraw', chart.renderExporting);
+    // Destroy the export elements at chart destroy
+    addEvent(chart, 'destroy', chart.destroyExport);
     // Uncomment this to see a button directly below the chart, for quick
     // testing of export
     /*
-    var button, viewImage, viewSource;
+    let button, viewImage, viewSource;
     if (!chart.renderer.forExport) {
         viewImage = function () {
-            var div = doc.createElement('div');
+            let div = doc.createElement('div');
             div.innerHTML = chart.getSVGForExport();
             chart.renderTo.parentNode.appendChild(div);
         };
 
         viewSource = function () {
-            var pre = doc.createElement('pre');
+            let pre = doc.createElement('pre');
             pre.innerHTML = chart.getSVGForExport()
                 .replace(/</g, '\n&lt;')
                 .replace(/>/g, '&gt;');

@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -12,6 +12,8 @@ import Pointer from '../Core/Pointer.js';
 import U from '../Core/Utilities.js';
 var extend = U.extend, pick = U.pick, wrap = U.wrap;
 /* eslint-disable no-invalid-this */
+var totalWheelDelta = 0;
+var totalWheelDeltaTimer;
 // Extend the Pointer
 extend(Pointer.prototype, {
     // The event handler for the doubleclick event
@@ -30,12 +32,30 @@ extend(Pointer.prototype, {
     },
     // The event handler for the mouse scroll event
     onContainerMouseWheel: function (e) {
-        var chart = this.chart, delta;
+        var chart = this.chart;
         e = this.normalize(e);
-        // Firefox uses e.detail, WebKit and IE uses wheelDelta
-        delta = e.detail || -(e.wheelDelta / 120);
-        if (chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) {
-            chart.mapZoom(Math.pow(chart.options.mapNavigation.mouseWheelSensitivity, delta), chart.xAxis[0].toValue(e.chartX), chart.yAxis[0].toValue(e.chartY), e.chartX, e.chartY);
+        // Firefox uses e.deltaY or e.detail, WebKit and IE uses wheelDelta
+        var delta = e.deltaY || e.detail || -(e.wheelDelta / 120);
+        // Wheel zooming on trackpads have different behaviours in Firefox vs
+        // WebKit. In Firefox the delta increments in steps by 1, so it is not
+        // distinguishable from true mouse wheel. Therefore we use this timer
+        // to avoid trackpad zooming going too fast and out of control. In
+        // WebKit however, the delta is < 1, so we simply disable animation in
+        // the `chart.mapZoom` call below.
+        if (Math.abs(delta) >= 1) {
+            totalWheelDelta += Math.abs(delta);
+            if (totalWheelDeltaTimer) {
+                clearTimeout(totalWheelDeltaTimer);
+            }
+            totalWheelDeltaTimer = setTimeout(function () {
+                totalWheelDelta = 0;
+            }, 50);
+        }
+        if (totalWheelDelta < 10 && chart.isInsidePlot(e.chartX - chart.plotLeft, e.chartY - chart.plotTop)) {
+            chart.mapZoom(Math.pow(chart.options.mapNavigation.mouseWheelSensitivity, delta), chart.xAxis[0].toValue(e.chartX), chart.yAxis[0].toValue(e.chartY), e.chartX, e.chartY, 
+            // Delta less than 1 indicates stepless/trackpad zooming, avoid
+            // animation delaying the zoom
+            Math.abs(delta) < 1 ? false : void 0);
         }
     }
 });

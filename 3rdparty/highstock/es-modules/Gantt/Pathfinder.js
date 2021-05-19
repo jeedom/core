@@ -312,10 +312,10 @@ function getPointBB(point) {
     // Prefer using shapeArgs (columns)
     if (shapeArgs) {
         return {
-            xMin: shapeArgs.x,
-            xMax: shapeArgs.x + shapeArgs.width,
-            yMin: shapeArgs.y,
-            yMax: shapeArgs.y + shapeArgs.height
+            xMin: shapeArgs.x || 0,
+            xMax: (shapeArgs.x || 0) + (shapeArgs.width || 0),
+            yMin: shapeArgs.y || 0,
+            yMax: (shapeArgs.y || 0) + (shapeArgs.height || 0)
         };
     }
     // Otherwise use plotX/plotY and bb
@@ -444,6 +444,12 @@ var Pathfinder = /** @class */ (function () {
         chart.series.forEach(function (series) {
             if (series.visible && !series.options.isInternal) {
                 series.points.forEach(function (point) {
+                    var ganttPointOptions = point.options;
+                    // For Gantt series the connect could be
+                    // defined as a dependency
+                    if (ganttPointOptions && ganttPointOptions.dependency) {
+                        ganttPointOptions.connect = ganttPointOptions.dependency;
+                    }
                     var to, connects = (point.options &&
                         point.options.connect &&
                         splat(point.options.connect));
@@ -468,7 +474,7 @@ var Pathfinder = /** @class */ (function () {
         });
         // Clear connections that should not be updated, and move old info over
         // to new connections.
-        for (var j = 0, k, found, lenOld = oldConnections.length, lenNew = pathfinder.connections.length; j < lenOld; ++j) {
+        for (var j = 0, k = void 0, found = void 0, lenOld = oldConnections.length, lenNew = pathfinder.connections.length; j < lenOld; ++j) {
             found = false;
             for (k = 0; k < lenNew; ++k) {
                 if (oldConnections[j].fromPoint ===
@@ -554,7 +560,7 @@ var Pathfinder = /** @class */ (function () {
         var obstacles = [], series = this.chart.series, margin = pick(options.algorithmMargin, 0), calculatedMargin;
         for (var i = 0, sLen = series.length; i < sLen; ++i) {
             if (series[i].visible && !series[i].options.isInternal) {
-                for (var j = 0, pLen = series[i].points.length, bb, point; j < pLen; ++j) {
+                for (var j = 0, pLen = series[i].points.length, bb = void 0, point = void 0; j < pLen; ++j) {
                     point = series[i].points[j];
                     if (point.visible) {
                         bb = getPointBB(point);
@@ -733,7 +739,7 @@ extend(Point.prototype, /** @lends Point.prototype */ {
         var twoPI = Math.PI * 2.0, theta = radians, bb = getPointBB(this), rectWidth = bb.xMax - bb.xMin, rectHeight = bb.yMax - bb.yMin, rAtan = Math.atan2(rectHeight, rectWidth), tanTheta = 1, leftOrRightRegion = false, rectHalfWidth = rectWidth / 2.0, rectHalfHeight = rectHeight / 2.0, rectHorizontalCenter = bb.xMin + rectHalfWidth, rectVerticalCenter = bb.yMin + rectHalfHeight, edgePoint = {
             x: rectHorizontalCenter,
             y: rectVerticalCenter
-        }, markerPoint = {}, xFactor = 1, yFactor = 1;
+        }, xFactor = 1, yFactor = 1;
         while (theta < -Math.PI) {
             theta += twoPI;
         }
@@ -774,9 +780,10 @@ extend(Point.prototype, /** @lends Point.prototype */ {
         if (anchor.y !== rectVerticalCenter) {
             edgePoint.y = anchor.y;
         }
-        markerPoint.x = edgePoint.x + (markerRadius * Math.cos(theta));
-        markerPoint.y = edgePoint.y - (markerRadius * Math.sin(theta));
-        return markerPoint;
+        return {
+            x: edgePoint.x + (markerRadius * Math.cos(theta)),
+            y: edgePoint.y - (markerRadius * Math.sin(theta))
+        };
     }
 });
 /**

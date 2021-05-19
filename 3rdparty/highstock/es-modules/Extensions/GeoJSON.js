@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -9,11 +9,12 @@
  * */
 'use strict';
 import Chart from '../Core/Chart/Chart.js';
+import F from '../Core/FormatUtilities.js';
+var format = F.format;
 import H from '../Core/Globals.js';
 var win = H.win;
-import '../Core/Options.js';
 import U from '../Core/Utilities.js';
-var error = U.error, extend = U.extend, format = U.format, merge = U.merge, wrap = U.wrap;
+var error = U.error, extend = U.extend, merge = U.merge, wrap = U.wrap;
 /**
  * Represents the loose structure of a geographic JSON file.
  *
@@ -197,8 +198,9 @@ Chart.prototype.transformFromLatLon = function (latLon, transform) {
      * @product    highmaps
      * @apioption  chart.proj4
      */
-    var _a;
-    var proj4 = (((_a = this.userOptions.chart) === null || _a === void 0 ? void 0 : _a.proj4) || win.proj4);
+    var proj4 = (this.userOptions.chart &&
+        this.userOptions.chart.proj4 ||
+        win.proj4);
     if (!proj4) {
         error(21, false, this);
         return {

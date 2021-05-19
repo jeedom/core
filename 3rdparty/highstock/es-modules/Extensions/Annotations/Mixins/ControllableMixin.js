@@ -113,7 +113,7 @@ var controllableMixin = {
      * @return {Highcharts.AnnotationAnchorObject} a controllable anchor
      */
     anchor: function (point) {
-        var plotBox = point.series.getPlotBox(), box = point.mock ?
+        var plotBox = point.series.getPlotBox(), chart = point.series.chart, box = point.mock ?
             point.toAnchor() :
             Tooltip.prototype.getAnchor.call({
                 chart: point.series.chart
@@ -126,8 +126,8 @@ var controllableMixin = {
         return {
             relativePosition: anchor,
             absolutePosition: merge(anchor, {
-                x: anchor.x + plotBox.translateX,
-                y: anchor.y + plotBox.translateY
+                x: anchor.x + (point.mock ? plotBox.translateX : chart.plotLeft),
+                y: anchor.y + (point.mock ? plotBox.translateY : chart.plotTop)
             })
         };
     },
@@ -361,7 +361,7 @@ var controllableMixin = {
     update: function (newOptions) {
         var annotation = this.annotation, options = merge(true, this.options, newOptions), parentGroup = this.graphic.parentGroup;
         this.destroy();
-        this.constructor(annotation, options);
+        this.constructor(annotation, options, this.index);
         this.render(parentGroup);
         this.redraw();
     }

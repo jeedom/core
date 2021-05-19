@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  Extenstion for 3d axes
  *
@@ -45,11 +45,11 @@ var Axis3DAdditions = /** @class */ (function () {
      * @private
      * @param {Highcharts.Axis} axis
      * Related axis.
-     * @param {Highcharts.Position3dObject} pos
+     * @param {Highcharts.Position3DObject} pos
      * Position to fix.
      * @param {boolean} [isTitle]
      * Whether this is a title position.
-     * @return {Highcharts.Position3dObject}
+     * @return {Highcharts.Position3DObject}
      * Fixed position.
      */
     Axis3DAdditions.prototype.fix3dPosition = function (pos, isTitle) {
@@ -442,36 +442,36 @@ var Axis3D = /** @class */ (function () {
             gridGroup &&
             tick &&
             tick.label) {
-            var firstGridLine = gridGroup.element.childNodes[0].getBBox(), frame3DLeft = chart.frameShapes.left.getBBox(), options3d = chart.options.chart.options3d, origin = {
+            var firstGridLine = gridGroup.element.childNodes[0].getBBox(), frame3DLeft = chart.frameShapes.left.getBBox(), options3d = chart.options.chart.options3d, origin_1 = {
                 x: chart.plotWidth / 2,
                 y: chart.plotHeight / 2,
                 z: options3d.depth / 2,
                 vd: pick(options3d.depth, 1) * pick(options3d.viewDistance, 0)
-            }, labelPos, prevLabelPos, nextLabelPos, slotWidth, tickId = tick.pos, prevTick = ticks[tickId - 1], nextTick = ticks[tickId + 1];
+            }, labelPos = void 0, prevLabelPos = void 0, nextLabelPos = void 0, slotWidth = void 0, tickId = tick.pos, prevTick = ticks[tickId - 1], nextTick = ticks[tickId + 1];
             // Check whether the tick is not the first one and previous tick
             // exists, then calculate position of previous label.
-            if (tickId !== 0 && prevTick && prevTick.label.xy) {
+            if (tickId !== 0 && prevTick && prevTick.label && prevTick.label.xy) {
                 prevLabelPos = perspective3D({
                     x: prevTick.label.xy.x,
                     y: prevTick.label.xy.y,
                     z: null
-                }, origin, origin.vd);
+                }, origin_1, origin_1.vd);
             }
             // If next label position is defined, then recalculate its position
             // basing on the perspective.
-            if (nextTick && nextTick.label.xy) {
+            if (nextTick && nextTick.label && nextTick.label.xy) {
                 nextLabelPos = perspective3D({
                     x: nextTick.label.xy.x,
                     y: nextTick.label.xy.y,
                     z: null
-                }, origin, origin.vd);
+                }, origin_1, origin_1.vd);
             }
             labelPos = {
                 x: tick.label.xy.x,
                 y: tick.label.xy.y,
                 z: null
             };
-            labelPos = perspective3D(labelPos, origin, origin.vd);
+            labelPos = perspective3D(labelPos, origin_1, origin_1.vd);
             // If tick is first one, check whether next label position is
             // already calculated, then return difference between the first and
             // the second label. If there is no next label position calculated,

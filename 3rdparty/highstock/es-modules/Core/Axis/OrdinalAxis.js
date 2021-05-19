@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -10,13 +10,12 @@
 'use strict';
 import Axis from './Axis.js';
 import H from '../Globals.js';
+import Series from '../Series/Series.js';
 import U from '../Utilities.js';
-var addEvent = U.addEvent, css = U.css, defined = U.defined, pick = U.pick, timeUnits = U.timeUnits;
-import '../Chart/Chart.js';
+var addEvent = U.addEvent, css = U.css, defined = U.defined, error = U.error, pick = U.pick, timeUnits = U.timeUnits;
+import Chart from '../Chart/Chart.js';
 // Has a dependency on Navigator due to the use of Axis.toFixedRange
 import '../Navigator.js';
-import '../Series/Series.js';
-var Chart = H.Chart, Series = H.Series;
 /**
  * Extends the axis with ordinal support.
  * @private
@@ -144,7 +143,7 @@ var OrdinalAxis;
                 // the array index. Since the ordinal positions may exceed the
                 // current range, get the start and end positions within it
                 // (#719, #665b)
-                if (useOrdinal) {
+                if (useOrdinal || axis.forceOrdinal) {
                     if (axis.options.overscroll) {
                         ordinal.overscrollPointsRange = overscrollPointsRange;
                         ordinalPositions = ordinalPositions.concat(ordinal.getOverscrollPositions());
@@ -197,16 +196,21 @@ var OrdinalAxis;
                 fakeAxis = {
                     series: [],
                     chart: chart,
+                    forceOrdinal: false,
                     getExtremes: function () {
                         return {
                             min: extremes.dataMin,
                             max: extremes.dataMax + overscroll
                         };
                     },
+                    getGroupPixelWidth: axisProto.getGroupPixelWidth,
+                    getTimeTicks: axisProto.getTimeTicks,
                     options: {
                         ordinal: true
                     },
-                    ordinal: {},
+                    ordinal: {
+                        getGroupIntervalFactor: this.getGroupIntervalFactor
+                    },
                     ordinal2lin: axisProto.ordinal2lin,
                     val2lin: axisProto.val2lin // #2590
                 };
@@ -219,7 +223,7 @@ var OrdinalAxis;
                         xData: series.xData.slice(),
                         chart: chart,
                         destroyGroupedData: H.noop,
-                        getProcessedData: H.Series.prototype.getProcessedData
+                        getProcessedData: Series.prototype.getProcessedData
                     };
                     fakeSeries.xData = fakeSeries.xData.concat(ordinal.getOverscrollPositions());
                     fakeSeries.options = {
@@ -236,8 +240,13 @@ var OrdinalAxis;
                             enabled: false
                         }
                     };
-                    series.processData.apply(fakeSeries);
                     fakeAxis.series.push(fakeSeries);
+                    series.processData.apply(fakeSeries);
+                    // Force to use the ordinal when points are evenly spaced
+                    // (e.g. weeks), #3825.
+                    if (fakeSeries.closestPointRange !== fakeSeries.basePointRange && fakeSeries.currentDataGrouping) {
+                        fakeAxis.forceOrdinal = true;
+                    }
                 });
                 // Run beforeSetTickPositions to compute the ordinalPositions
                 axis.ordinal.beforeSetTickPositions.apply({ axis: fakeAxis });
@@ -435,34 +444,39 @@ var OrdinalAxis;
             }
             // Get the grouping info from the last of the segments. The info is
             // the same for all segments.
-            info = segmentPositions.info;
-            // Optionally identify ticks with higher rank, for example when the
-            // ticks have crossed midnight.
-            if (findHigherRanks && info.unitRange <= timeUnits.hour) {
-                end = groupPositions.length - 1;
-                // Compare points two by two
-                for (start = 1; start < end; start++) {
-                    if (time.dateFormat('%d', groupPositions[start]) !==
-                        time.dateFormat('%d', groupPositions[start - 1])) {
-                        higherRanks[groupPositions[start]] = 'day';
-                        hasCrossedHigherRank = true;
+            if (segmentPositions) {
+                info = segmentPositions.info;
+                // Optionally identify ticks with higher rank, for example
+                // when the ticks have crossed midnight.
+                if (findHigherRanks && info.unitRange <= timeUnits.hour) {
+                    end = groupPositions.length - 1;
+                    // Compare points two by two
+                    for (start = 1; start < end; start++) {
+                        if (time.dateFormat('%d', groupPositions[start]) !==
+                            time.dateFormat('%d', groupPositions[start - 1])) {
+                            higherRanks[groupPositions[start]] = 'day';
+                            hasCrossedHigherRank = true;
+                        }
                     }
+                    // If the complete array has crossed midnight, we want
+                    // to mark the first positions also as higher rank
+                    if (hasCrossedHigherRank) {
+                        higherRanks[groupPositions[0]] = 'day';
+                    }
+                    info.higherRanks = higherRanks;
                 }
-                // If the complete array has crossed midnight, we want to mark
-                // the first positions also as higher rank
-                if (hasCrossedHigherRank) {
-                    higherRanks[groupPositions[0]] = 'day';
-                }
-                info.higherRanks = higherRanks;
+                // Save the info
+                info.segmentStarts = segmentStarts;
+                groupPositions.info = info;
             }
-            // Save the info
-            info.segmentStarts = segmentStarts;
-            groupPositions.info = info;
+            else {
+                error(12, false, this.chart);
+            }
             // Don't show ticks within a gap in the ordinal axis, where the
             // space between two points is greater than a portion of the tick
             // pixel interval
             if (findHigherRanks && defined(tickPixelIntervalOption)) {
-                var length = groupPositions.length, i = length, itemToRemove, translated, translatedArr = [], lastTranslated, medianDistance, distance, distances = [];
+                var length_1 = groupPositions.length, i = length_1, itemToRemove = void 0, translated = void 0, translatedArr = [], lastTranslated = void 0, medianDistance = void 0, distance = void 0, distances = [];
                 // Find median pixel distance in order to keep a reasonably even
                 // distance between ticks (#748)
                 while (i--) {
@@ -478,7 +492,7 @@ var OrdinalAxis;
                     medianDistance = null;
                 }
                 // Now loop over again and remove ticks where needed
-                i = groupPositions[length - 1] > max ? length - 1 : length; // #817
+                i = groupPositions[length_1 - 1] > max ? length_1 - 1 : length_1; // #817
                 lastTranslated = void 0;
                 while (i--) {
                     translated = translatedArr[i];
@@ -536,7 +550,7 @@ var OrdinalAxis;
                 ret = val;
             }
             else {
-                var ordinalSlope = ordinal.slope, ordinalOffset = ordinal.offset, i = ordinalPositions.length - 1, linearEquivalentLeft, linearEquivalentRight, distance;
+                var ordinalSlope = ordinal.slope, ordinalOffset = ordinal.offset, i = ordinalPositions.length - 1, linearEquivalentLeft = void 0, linearEquivalentRight = void 0, distance = void 0;
                 // Handle the case where we translate from the index directly,
                 // used only when panning an ordinal axis
                 if (fromIndex) {
@@ -606,7 +620,7 @@ var OrdinalAxis;
                 ret = val;
             }
             else {
-                var ordinalLength = ordinalPositions.length, i, distance, ordinalIndex;
+                var ordinalLength = ordinalPositions.length, i = void 0, distance = void 0, ordinalIndex = void 0;
                 // first look for an exact match in the ordinalpositions array
                 i = ordinalLength;
                 while (i--) {
@@ -684,19 +698,18 @@ var OrdinalAxis;
         });
         // Extending the Chart.pan method for ordinal axes
         addEvent(ChartClass, 'pan', function (e) {
-            var chart = this, xAxis = chart.xAxis[0], overscroll = xAxis.options.overscroll, chartX = e.originalEvent.chartX, panning = chart.options.chart &&
-                chart.options.chart.panning, runBase = false;
+            var chart = this, xAxis = chart.xAxis[0], overscroll = xAxis.options.overscroll, chartX = e.originalEvent.chartX, panning = chart.options.chart.panning, runBase = false;
             if (panning &&
                 panning.type !== 'y' &&
                 xAxis.options.ordinal &&
                 xAxis.series.length) {
-                var mouseDownX = chart.mouseDownX, extremes = xAxis.getExtremes(), dataMax = extremes.dataMax, min = extremes.min, max = extremes.max, trimmedRange, hoverPoints = chart.hoverPoints, closestPointRange = (xAxis.closestPointRange ||
+                var mouseDownX = chart.mouseDownX, extremes = xAxis.getExtremes(), dataMax = extremes.dataMax, min = extremes.min, max = extremes.max, trimmedRange = void 0, hoverPoints = chart.hoverPoints, closestPointRange = (xAxis.closestPointRange ||
                     (xAxis.ordinal && xAxis.ordinal.overscrollPointsRange)), pointPixelWidth = (xAxis.translationSlope *
                     (xAxis.ordinal.slope || closestPointRange)), 
                 // how many ordinal units did we move?
                 movedUnits = (mouseDownX - chartX) / pointPixelWidth, 
                 // get index of all the chart's points
-                extendedAxis = { ordinal: { positions: xAxis.ordinal.getExtendedPositions() } }, ordinalPositions, searchAxisLeft, lin2val = xAxis.lin2val, val2lin = xAxis.val2lin, searchAxisRight;
+                extendedAxis = { ordinal: { positions: xAxis.ordinal.getExtendedPositions() } }, ordinalPositions = void 0, searchAxisLeft = void 0, lin2val = xAxis.lin2val, val2lin = xAxis.val2lin, searchAxisRight = void 0;
                 // we have an ordinal axis, but the data is equally spaced
                 if (!extendedAxis.ordinal.positions) {
                     runBase = true;

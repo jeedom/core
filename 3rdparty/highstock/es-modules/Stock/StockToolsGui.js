@@ -2,19 +2,20 @@
  *
  *  GUI generator for Stock tools
  *
- *  (c) 2009-2017 Sebastian Bochan
+ *  (c) 2009-2021 Sebastian Bochan
  *
  *  License: www.highcharts.com/license
  *
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-'use strict';
 import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
 import NavigationBindings from '../Extensions/Annotations/NavigationBindings.js';
+import O from '../Core/Options.js';
+var setOptions = O.setOptions;
 import U from '../Core/Utilities.js';
-var addEvent = U.addEvent, createElement = U.createElement, css = U.css, extend = U.extend, fireEvent = U.fireEvent, getStyle = U.getStyle, isArray = U.isArray, merge = U.merge, pick = U.pick, setOptions = U.setOptions;
+var addEvent = U.addEvent, createElement = U.createElement, css = U.css, extend = U.extend, fireEvent = U.fireEvent, getStyle = U.getStyle, isArray = U.isArray, merge = U.merge, pick = U.pick;
 var DIV = 'div', SPAN = 'span', UL = 'ul', LI = 'li', PREFIX = 'highcharts-', activeClass = PREFIX + 'active';
 setOptions({
     /**
@@ -135,7 +136,35 @@ setOptions({
                 crosshairX: 'Crosshair X',
                 crosshairY: 'Crosshair Y',
                 tunnel: 'Tunnel',
-                background: 'Background'
+                background: 'Background',
+                // Indicators' params (#15170):
+                index: 'Index',
+                period: 'Period',
+                standardDeviation: 'Standard deviation',
+                periodTenkan: 'Tenkan period',
+                periodSenkouSpanB: 'Senkou Span B period',
+                periodATR: 'ATR period',
+                multiplierATR: 'ATR multiplier',
+                shortPeriod: 'Short period',
+                longPeriod: 'Long period',
+                signalPeriod: 'Signal period',
+                decimals: 'Decimals',
+                algorithm: 'Algorithm',
+                topBand: 'Top band',
+                bottomBand: 'Bottom band',
+                initialAccelerationFactor: 'Initial acceleration factor',
+                maxAccelerationFactor: 'Max acceleration factor',
+                increment: 'Increment',
+                multiplier: 'Multiplier',
+                ranges: 'Ranges',
+                highIndex: 'High index',
+                lowIndex: 'Low index',
+                deviation: 'Deviation',
+                xAxisUnit: 'x-axis unit',
+                factor: 'Factor',
+                fastAvgPeriod: 'Fast average period',
+                slowAvgPeriod: 'Slow average period',
+                average: 'Average'
             }
         }
     },
@@ -185,9 +214,10 @@ setOptions({
             toolbarClassName: 'stocktools-toolbar',
             /**
              * A collection of strings pointing to config options for the
-             * toolbar items. Each name refers to unique key from definitions
-             * object.
+             * toolbar items. Each name refers to a unique key from the
+             * definitions object.
              *
+             * @type    {Array<string>}
              * @default [
              *   'indicators',
              *   'separator',
@@ -742,23 +772,53 @@ setOptions({
 });
 /* eslint-disable no-invalid-this, valid-jsdoc */
 // Run HTML generator
-addEvent(H.Chart, 'afterGetContainer', function () {
+addEvent(Chart, 'afterGetContainer', function () {
     this.setStockTools();
 });
-addEvent(H.Chart, 'getMargins', function () {
+addEvent(Chart, 'getMargins', function () {
     var listWrapper = this.stockTools && this.stockTools.listWrapper, offsetWidth = listWrapper && ((listWrapper.startWidth +
         getStyle(listWrapper, 'padding-left') +
         getStyle(listWrapper, 'padding-right')) || listWrapper.offsetWidth);
     if (offsetWidth && offsetWidth < this.plotWidth) {
         this.plotLeft += offsetWidth;
+        this.spacing[3] += offsetWidth;
     }
+}, {
+    order: 0
 });
-addEvent(H.Chart, 'destroy', function () {
+['beforeRender', 'beforeRedraw'].forEach(function (event) {
+    addEvent(Chart, event, function () {
+        if (this.stockTools) {
+            var optionsChart = this.options.chart;
+            var listWrapper = this.stockTools.listWrapper, offsetWidth = listWrapper && ((listWrapper.startWidth +
+                getStyle(listWrapper, 'padding-left') +
+                getStyle(listWrapper, 'padding-right')) || listWrapper.offsetWidth);
+            var dirty = false;
+            if (offsetWidth && offsetWidth < this.plotWidth) {
+                var nextX = pick(optionsChart.spacingLeft, optionsChart.spacing && optionsChart.spacing[3], 0) + offsetWidth;
+                var diff = nextX - this.spacingBox.x;
+                this.spacingBox.x = nextX;
+                this.spacingBox.width -= diff;
+                dirty = true;
+            }
+            else if (offsetWidth === 0) {
+                dirty = true;
+            }
+            if (offsetWidth !== this.stockTools.prevOffsetWidth) {
+                this.stockTools.prevOffsetWidth = offsetWidth;
+                if (dirty) {
+                    this.isDirtyLegend = true;
+                }
+            }
+        }
+    });
+});
+addEvent(Chart, 'destroy', function () {
     if (this.stockTools) {
         this.stockTools.destroy();
     }
 });
-addEvent(H.Chart, 'redraw', function () {
+addEvent(Chart, 'redraw', function () {
     if (this.stockTools && this.stockTools.guiEnabled) {
         this.stockTools.redraw();
     }
@@ -1114,6 +1174,10 @@ var Toolbar = /** @class */ (function () {
         var buttonWrapper = button.parentNode, buttonWrapperClass = buttonWrapper.classList.value, 
         // main button in first level og GUI
         mainNavButton = buttonWrapper.parentNode.parentNode;
+        // if the button is disabled, don't do anything
+        if (buttonWrapperClass.indexOf('highcharts-disabled-btn') > -1) {
+            return;
+        }
         // set class
         mainNavButton.className = '';
         if (buttonWrapperClass) {
@@ -1199,7 +1263,7 @@ var Toolbar = /** @class */ (function () {
     Toolbar.prototype.getIconsURL = function () {
         return this.chart.options.navigation.iconsURL ||
             this.options.iconsURL ||
-            'https://code.highcharts.com/8.2.0/gfx/stock-icons/';
+            'https://code.highcharts.com/9.1.0/gfx/stock-icons/';
     };
     return Toolbar;
 }());
@@ -1257,7 +1321,7 @@ extend(Chart.prototype, {
      */
     setStockTools: function (options) {
         var chartOptions = this.options, lang = chartOptions.lang, guiOptions = merge(chartOptions.stockTools && chartOptions.stockTools.gui, options && options.gui), langOptions = lang.stockTools && lang.stockTools.gui;
-        this.stockTools = new H.Toolbar(guiOptions, langOptions, this);
+        this.stockTools = new Toolbar(guiOptions, langOptions, this);
         if (this.stockTools.guiEnabled) {
             this.isDirtyBox = true;
         }
@@ -1285,6 +1349,23 @@ addEvent(NavigationBindings, 'deselectButton', function (event) {
             button = button.parentNode.parentNode;
         }
         gui.selectButton(button);
+    }
+});
+// Check if the correct price indicator button is displayed, #15029.
+addEvent(H.Chart, 'render', function () {
+    var chart = this, stockTools = chart.stockTools, button = stockTools &&
+        stockTools.toolbar &&
+        stockTools.toolbar.querySelector('.highcharts-current-price-indicator');
+    // Change the initial button background.
+    if (stockTools && chart.navigationBindings && chart.options.series && button) {
+        if (chart.navigationBindings.constructor.prototype.utils.isPriceIndicatorEnabled(chart.series)) {
+            button.firstChild.style['background-image'] =
+                'url("' + stockTools.getIconsURL() + 'current-price-hide.svg")';
+        }
+        else {
+            button.firstChild.style['background-image'] =
+                'url("' + stockTools.getIconsURL() + 'current-price-show.svg")';
+        }
     }
 });
 H.Toolbar = Toolbar;

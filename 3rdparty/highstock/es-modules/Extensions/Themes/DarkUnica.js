@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -10,17 +10,18 @@
  *
  * */
 'use strict';
-/* global document */
-// Load the fonts
-import Highcharts from '../../Core/Globals.js';
+import H from '../../Core/Globals.js';
+import O from '../../Core/Options.js';
+var setOptions = O.setOptions;
 import U from '../../Core/Utilities.js';
-var setOptions = U.setOptions;
-Highcharts.createElement('link', {
+var createElement = U.createElement;
+// Load the fonts
+createElement('link', {
     href: 'https://fonts.googleapis.com/css?family=Unica+One',
     rel: 'stylesheet',
     type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
-Highcharts.theme = {
+H.theme = {
     colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
         '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
     chart: {
@@ -214,4 +215,4 @@ Highcharts.theme = {
     }
 };
 // Apply the theme
-setOptions(Highcharts.theme);
+setOptions(H.theme);

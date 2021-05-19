@@ -43,6 +43,8 @@
   font-family: "Signika", Arial, Helvetica, sans-serif;
   font-size: 12px;
   user-select: none;
+  touch-action: manipulation;
+  outline: none;
 }
 
 .highcharts-root {
@@ -101,6 +103,7 @@
 
 .highcharts-subtitle {
   fill: #666666;
+  font-size: 1em;
 }
 
 /* Axes */

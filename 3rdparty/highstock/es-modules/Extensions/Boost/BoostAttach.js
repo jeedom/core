@@ -1,6 +1,6 @@
 /* *
  *
- *  Copyright (c) 2019-2020 Highsoft AS
+ *  Copyright (c) 2019-2021 Highsoft AS
  *
  *  Boost module: stripped-down renderer for higher performance
  *
@@ -10,13 +10,13 @@
  *
  * */
 'use strict';
+import Chart from '../../Core/Chart/Chart.js';
 import GLRenderer from './WGLRenderer.js';
 import H from '../../Core/Globals.js';
 var doc = H.doc;
 import U from '../../Core/Utilities.js';
 var error = U.error;
-import '../../Core/Series/Series.js';
-var mainCanvas = doc.createElement('canvas');
+var mainCanvas;
 /**
  * Create a canvas + context and attach it to the target
  *
@@ -46,6 +46,9 @@ function createAndAttachRenderer(chart, series) {
     // As such, we force the Image fallback for now, but leaving the
     // actual Canvas path in-place in case this changes in the future.
     foSupported = false;
+    if (!mainCanvas) {
+        mainCanvas = doc.createElement('canvas');
+    }
     if (!target.renderTarget) {
         target.canvas = mainCanvas;
         // Fall back to image tag if foreignObject isn't supported,
@@ -102,14 +105,14 @@ function createAndAttachRenderer(chart, series) {
                 mixedBlendMode: 'normal',
                 opacity: alpha
             });
-            if (target instanceof H.Chart) {
+            if (target instanceof Chart) {
                 target.markerGroup.translate(chart.plotLeft, chart.plotTop);
             }
         };
         target.boostClipRect = chart.renderer.clipRect();
         (target.renderTargetFo || target.renderTarget)
             .clip(target.boostClipRect);
-        if (target instanceof H.Chart) {
+        if (target instanceof Chart) {
             target.markerGroup = target.renderer.g().add(targetGroup);
             target.markerGroup.translate(series.xAxis.pos, series.yAxis.pos);
         }
@@ -137,7 +140,7 @@ function createAndAttachRenderer(chart, series) {
         }
         // target.ogl.clear();
         target.ogl.setOptions(chart.options.boost || {});
-        if (target instanceof H.Chart) {
+        if (target instanceof Chart) {
             target.ogl.allocateBuffer(chart);
         }
     }

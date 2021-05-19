@@ -2,7 +2,7 @@
  *
  *  Networkgraph series
  *
- *  (c) 2010-2020 Paweł Fus
+ *  (c) 2010-2021 Paweł Fus
  *
  *  License: www.highcharts.com/license
  *
@@ -11,9 +11,11 @@
  * */
 'use strict';
 import Chart from '../../Core/Chart/Chart.js';
+import A from '../../Core/Animation/AnimationUtilities.js';
+var setAnimation = A.setAnimation;
 import H from '../../Core/Globals.js';
 import U from '../../Core/Utilities.js';
-var addEvent = U.addEvent, clamp = U.clamp, defined = U.defined, extend = U.extend, isFunction = U.isFunction, pick = U.pick, setAnimation = U.setAnimation;
+var addEvent = U.addEvent, clamp = U.clamp, defined = U.defined, extend = U.extend, isFunction = U.isFunction, pick = U.pick;
 import './Integrations.js';
 import './QuadTree.js';
 /* eslint-disable no-invalid-this, valid-jsdoc */
@@ -444,7 +446,7 @@ H.layouts['reingold-fruchterman'].prototype, {
         */
         // Exponential:
         /*
-        var alpha = 0.1;
+        let alpha = 0.1;
         layout.temperature = Math.sqrt(layout.nodes.length) *
             Math.pow(alpha, layout.diffTemperature);
         */

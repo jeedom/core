@@ -74,6 +74,8 @@
   font-family: "Unica One", Arial, Helvetica, sans-serif;
   font-size: 12px;
   user-select: none;
+  touch-action: manipulation;
+  outline: none;
 }
 
 .highcharts-root {
@@ -132,6 +134,7 @@
 
 .highcharts-subtitle {
   fill: #E0E0E3;
+  font-size: 1em;
 }
 
 /* Axes */

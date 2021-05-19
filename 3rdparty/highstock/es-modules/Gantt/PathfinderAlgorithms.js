@@ -193,7 +193,7 @@ function straight(start, end) {
  *         renderer, as well as an array of new obstacles making up this
  *         path.
  */
-var simpleConnect = extend(function (start, end, options) {
+var simpleConnect = function (start, end, options) {
     var segments = [], endSegment, dir = pick(options.startDirectionX, abs(end.x - start.x) > abs(end.y - start.y)) ? 'x' : 'y', chartObstacles = options.chartObstacles, startObstacleIx = findObstacleFromPoint(chartObstacles, start), endObstacleIx = findObstacleFromPoint(chartObstacles, end), startObstacle, endObstacle, prevWaypoint, waypoint, waypoint2, useMax, endPoint;
     // eslint-disable-next-line valid-jsdoc
     /**
@@ -281,9 +281,8 @@ var simpleConnect = extend(function (start, end, options) {
         path: pathFromSegments(segments),
         obstacles: segments
     };
-}, {
-    requiresObstacles: true
-});
+};
+simpleConnect.requiresObstacles = true;
 /**
  * Find a path from a starting coordinate to an ending coordinate, taking
  * obstacles into consideration. Might not always find the optimal path,
@@ -314,7 +313,7 @@ var simpleConnect = extend(function (start, end, options) {
  *         renderer, as well as an array of new obstacles making up this
  *         path.
  */
-var fastAvoid = extend(function (start, end, options) {
+var fastAvoid = function (start, end, options) {
     /*
         Algorithm rules/description
         - Find initial direction
@@ -645,9 +644,8 @@ var fastAvoid = extend(function (start, end, options) {
         path: pathFromSegments(segments),
         obstacles: segments
     };
-}, {
-    requiresObstacles: true
-});
+};
+fastAvoid.requiresObstacles = true;
 // Define the available pathfinding algorithms.
 // Algorithms take up to 3 arguments: starting point, ending point, and an
 // options object.

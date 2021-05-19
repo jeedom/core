@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2010-2020 Torstein Honsi
+ *  (c) 2010-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -8,7 +8,10 @@
  *
  * */
 'use strict';
-import Highcharts from './Globals.js';
+import H from './Globals.js';
+var win = H.win;
+import U from './Utilities.js';
+var defined = U.defined, error = U.error, extend = U.extend, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pad = U.pad, pick = U.pick, splat = U.splat, timeUnits = U.timeUnits;
 /**
  * Normalized interval.
  *
@@ -35,18 +38,6 @@ import Highcharts from './Globals.js';
  * @return {string}
  *         The formatted portion of the date.
  */
-/**
- * Additonal time tick information.
- *
- * @interface Highcharts.TimeTicksInfoObject
- * @extends Highcharts.TimeNormalizedObject
- */ /**
-* @name Highcharts.TimeTicksInfoObject#higherRanks
-* @type {Array<string>}
-*/ /**
-* @name Highcharts.TimeTicksInfoObject#totalRange
-* @type {number}
-*/
 /**
  * Time ticks.
  *
@@ -81,9 +72,7 @@ import Highcharts from './Globals.js';
  * @since 8.2.0
  * @apioption time.moment
  */
-import U from './Utilities.js';
-var defined = U.defined, error = U.error, extend = U.extend, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pad = U.pad, pick = U.pick, splat = U.splat, timeUnits = U.timeUnits;
-var H = Highcharts, win = H.win;
+''; // detach doclets above
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * The Time class. Time settings are applied in general for each page using
@@ -103,7 +92,7 @@ var H = Highcharts, win = H.win;
  * });
  *
  * // Apply time settings by instance
- * var chart = Highcharts.chart('container', {
+ * let chart = Highcharts.chart('container', {
  *     time: {
  *         timezone: 'America/New_York'
  *     },
@@ -221,7 +210,8 @@ var Time = /** @class */ (function () {
             // time
             if (unit === 'Milliseconds' ||
                 unit === 'Seconds' ||
-                unit === 'Minutes') {
+                (unit === 'Minutes' && this.getTimezoneOffset(date) % 3600000 === 0) // #13961
+            ) {
                 return date['setUTC' + unit](value);
             }
             // Higher order time units need to take the time zone into
@@ -266,8 +256,7 @@ var Time = /** @class */ (function () {
          * The time object has options allowing for variable time zones, meaning
          * the axis ticks or series data needs to consider this.
          */
-        this.variableTimezone = !!(!useUTC ||
-            options.getTimezoneOffset ||
+        this.variableTimezone = useUTC && !!(options.getTimezoneOffset ||
             options.timezone);
     };
     /**
@@ -403,7 +392,7 @@ var Time = /** @class */ (function () {
      *        The desired format where various time representations are
      *        prefixed with %.
      *
-     * @param {number} timestamp
+     * @param {number} [timestamp]
      *        The JavaScript timestamp.
      *
      * @param {boolean} [capitalize=false]
@@ -413,14 +402,15 @@ var Time = /** @class */ (function () {
      *         The formatted date.
      */
     Time.prototype.dateFormat = function (format, timestamp, capitalize) {
-        var _a;
         if (!defined(timestamp) || isNaN(timestamp)) {
-            return ((_a = H.defaultOptions.lang) === null || _a === void 0 ? void 0 : _a.invalidDate) || '';
+            return (H.defaultOptions.lang &&
+                H.defaultOptions.lang.invalidDate ||
+                '');
         }
         format = pick(format, '%Y-%m-%d %H:%M:%S');
         var time = this, date = new this.Date(timestamp), 
         // get the basic time values
-        hours = this.get('Hours', date), day = this.get('Day', date), dayOfMonth = this.get('Date', date), month = this.get('Month', date), fullYear = this.get('FullYear', date), lang = H.defaultOptions.lang, langWeekdays = lang === null || lang === void 0 ? void 0 : lang.weekdays, shortWeekdays = lang === null || lang === void 0 ? void 0 : lang.shortWeekdays, 
+        hours = this.get('Hours', date), day = this.get('Day', date), dayOfMonth = this.get('Date', date), month = this.get('Month', date), fullYear = this.get('FullYear', date), lang = H.defaultOptions.lang, langWeekdays = (lang && lang.weekdays), shortWeekdays = (lang && lang.shortWeekdays), 
         // List all format keys. Custom formats can be added from the
         // outside.
         replacements = extend({
@@ -578,7 +568,7 @@ var Time = /** @class */ (function () {
             // Redefine min to the floored/rounded minimum time (#7432)
             min = minDate.getTime();
             // Handle local timezone offset
-            if (time.variableTimezone) {
+            if ((time.variableTimezone || !time.useUTC) && defined(max)) {
                 // Detect whether we need to take the DST crossover into
                 // consideration. If we're crossing over DST, the day length may
                 // be 23h or 25h and we need to compute the exact clock time for

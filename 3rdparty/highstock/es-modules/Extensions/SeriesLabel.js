@@ -1,6 +1,6 @@
 /* *
  *
- *  (c) 2009-2020 Torstein Honsi
+ *  (c) 2009-2021 Torstein Honsi
  *
  *  License: www.highcharts.com/license
  *
@@ -8,11 +8,17 @@
  *
  * */
 'use strict';
+import A from '../Core/Animation/AnimationUtilities.js';
+var animObject = A.animObject;
 import Chart from '../Core/Chart/Chart.js';
-import H from '../Core/Globals.js';
+import F from '../Core/FormatUtilities.js';
+var format = F.format;
+import O from '../Core/Options.js';
+var setOptions = O.setOptions;
+import Series from '../Core/Series/Series.js';
 import SVGRenderer from '../Core/Renderer/SVG/SVGRenderer.js';
 import U from '../Core/Utilities.js';
-var addEvent = U.addEvent, animObject = U.animObject, extend = U.extend, fireEvent = U.fireEvent, format = U.format, isNumber = U.isNumber, pick = U.pick, setOptions = U.setOptions, syncTimeout = U.syncTimeout;
+var addEvent = U.addEvent, extend = U.extend, fireEvent = U.fireEvent, isNumber = U.isNumber, pick = U.pick, syncTimeout = U.syncTimeout;
 /**
  * Containing the position of a box that should be avoided by labels.
  *
@@ -44,8 +50,7 @@ var addEvent = U.addEvent, animObject = U.animObject, extend = U.extend, fireEve
  * https://jsfiddle.net/highcharts/y5A37/
  */
 ''; // detach doclets above
-import '../Core/Series/Series.js';
-var labelDistance = 3, Series = H.Series;
+var labelDistance = 3;
 setOptions({
     /**
      * @optionparent plotOptions
@@ -708,28 +713,28 @@ Chart.prototype.drawSeriesLabels = function () {
  */
 function drawLabels(e) {
     if (this.renderer) {
-        var chart = this, delay = animObject(chart.renderer.globalAnimation).duration;
-        chart.labelSeries = [];
-        chart.labelSeriesMaxSum = 0;
-        U.clearTimeout(chart.seriesLabelTimer);
+        var chart_1 = this, delay_1 = animObject(chart_1.renderer.globalAnimation).duration;
+        chart_1.labelSeries = [];
+        chart_1.labelSeriesMaxSum = 0;
+        U.clearTimeout(chart_1.seriesLabelTimer);
         // Which series should have labels
-        chart.series.forEach(function (series) {
+        chart_1.series.forEach(function (series) {
             var options = series.options.label, label = series.labelBySeries, closest = label && label.closest;
             if (options.enabled &&
                 series.visible &&
                 (series.graph || series.area) &&
                 !series.isSeriesBoosting) {
-                chart.labelSeries.push(series);
+                chart_1.labelSeries.push(series);
                 if (options.minFontSize && options.maxFontSize) {
                     series.sum = series.yData.reduce(function (pv, cv) {
                         return (pv || 0) + (cv || 0);
                     }, 0);
-                    chart.labelSeriesMaxSum = Math.max(chart.labelSeriesMaxSum, series.sum);
+                    chart_1.labelSeriesMaxSum = Math.max(chart_1.labelSeriesMaxSum, series.sum);
                 }
                 // The labels are processing heavy, wait until the animation is
                 // done
                 if (e.type === 'load') {
-                    delay = Math.max(delay, animObject(series.options.animation).duration);
+                    delay_1 = Math.max(delay_1, animObject(series.options.animation).duration);
                 }
                 // Keep the position updated to the axis while redrawing
                 if (closest) {
@@ -745,11 +750,11 @@ function drawLabels(e) {
                 }
             }
         });
-        chart.seriesLabelTimer = syncTimeout(function () {
-            if (chart.series && chart.labelSeries) { // #7931, chart destroyed
-                chart.drawSeriesLabels();
+        chart_1.seriesLabelTimer = syncTimeout(function () {
+            if (chart_1.series && chart_1.labelSeries) { // #7931, chart destroyed
+                chart_1.drawSeriesLabels();
             }
-        }, chart.renderer.forExport || !delay ? 0 : delay);
+        }, chart_1.renderer.forExport || !delay_1 ? 0 : delay_1);
     }
 }
 // Leave both events, we handle animation differently (#9815)

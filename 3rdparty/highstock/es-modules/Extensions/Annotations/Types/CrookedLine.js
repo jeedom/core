@@ -155,7 +155,9 @@ CrookedLine.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions
         },
         events: {
             drag: function (e, target) {
-                if (target.chart.isInsidePlot(e.chartX - target.chart.plotLeft, e.chartY - target.chart.plotTop)) {
+                if (target.chart.isInsidePlot(e.chartX - target.chart.plotLeft, e.chartY - target.chart.plotTop, {
+                    visiblePlotOnly: true
+                })) {
                     var translation = this.mouseMoveToTranslation(e);
                     target.translatePoint(translation.x, translation.y, this.index);
                     // Update options:
