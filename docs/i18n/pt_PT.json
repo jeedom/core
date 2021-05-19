@@ -430,7 +430,7 @@
         "Nom d'utilisateur pour la connexion (les connexions anonymes ne sont pas possibles": "Nome de usuário para conexão (conexões anônimas não são possíveis",
         "Il faut forcément que l'utilisateur ait les droits en lecture ET en écriture sur le répertoire de destination": "O usuário deve ter direitos de leitura e gravação no diretório de destino",
         "\\[Backup\\] Mot de passe": "\\ [Backup \\] Senha",
-        "Mot de passe de l'utilisateur": "Senha do usuário",
+        "Mot de passe de l'utilisateur (attention les carateres spéciaux ne sont pas autorisé": "Senha do usuário (observe que caracteres especiais não são permitidos",
         "\\[Backup\\] Partage": "\\ [Backup \\] Compartilhamento",
         "Chemin du partage (attention à bien s'arrêter au niveau du partage": "Caminho para o compartilhamento (tenha cuidado para parar no nível de compartilhamento",
         "\\[Backup\\] Chemin": "Caminho \\ [Backup \\]",

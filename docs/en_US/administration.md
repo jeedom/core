@@ -338,7 +338,7 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 - **\ [Backup \] IP** : Samba server IP.
 - **\ [Backup \] User** : Username for connection (anonymous connections are not possible). The user must have read AND write rights on the destination directory.
-- **\ [Backup \] Password** : User password.
+- **\ [Backup \] Password** : User password (please note that special characters are not allowed).
 - **\ [Backup \] Sharing** : Path to sharing (be careful to stop at the sharing level).
 - **\ [Backup \] Path** : Path in the sharing (to put in relative), this must exist.
 
