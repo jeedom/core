@@ -155,46 +155,21 @@ class timeline {
   }
   
   public function hasRight($_user = null){
-    if ($_user != null) {
-      if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
-        return true;
-      }
-      switch ($this->getType()) {
-        case 'cmd':
-        $cmd = cmd::byId($this->getLink_id());
-        if (!is_object($cmd)) {
-          return false;
-        }
-        return $cmd->hasRight($_user);
-        case 'scenario':
-        $scenario = scenario::byId($this->getLink_id());
-        if (!is_object($scenario)) {
-          return false;
-        }
-        return $cmd->hasRight('r');
-      }
-      return false;
-    }
-    if (!isConnect()) {
-      return false;
-    }
-    if (isConnect('admin') || isConnect('user')) {
-      return true;
-    }
     switch ($this->getType()) {
       case 'cmd':
       $cmd = cmd::byId($this->getLink_id());
       if (!is_object($cmd)) {
         return false;
       }
-      return $cmd->hasRight();
+      return $cmd->hasRight($_user);
       case 'scenario':
       $scenario = scenario::byId($this->getLink_id());
       if (!is_object($scenario)) {
         return false;
       }
-      return $cmd->hasRight('r');
+      return $cmd->hasRight('r',$_user);
     }
+    return false;
   }
   
   public function getDisplay() {
