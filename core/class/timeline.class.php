@@ -167,7 +167,7 @@ class timeline {
       if (!is_object($scenario)) {
         return false;
       }
-      return $cmd->hasRight('r',$_user);
+      return $scenario->hasRight('r',$_user);
     }
     return false;
   }
