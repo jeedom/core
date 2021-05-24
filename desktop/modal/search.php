@@ -24,6 +24,12 @@ if (!isConnect()) {
 <a id="bt_getHelpModal" class="cursor" style="position: absolute;right: 10px;top: 5px;" title="{{Aide}}"><i class="fas fa-question-circle" ></i></a>
 <!-- Search engine UI -->
 <form class="form-horizontal shadowed">
+  <div class="input-group floatingbar" style="top:25px;right:15px;">
+    <div class="input-group-btn col-lg-6">
+      <a class="btn btn-sm roundedLeft" href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé Domotique}}
+      </a><a class="btn btn-sm btn-success roundedRight" id="bt_search"><i class="fas fa-search"></i> {{Rechercher}}</a>
+    </div>
+  </div>
   <br/>
   <div class="form-group">
     <label class="col-lg-2 control-label">{{Recherche par}}</label>
@@ -36,12 +42,6 @@ if (!isConnect()) {
         <option value="string">{{Mot}}</option>
         <option value="id">{{ID}}</option>
       </select>
-    </div>
-    <div class="input-group pull-right" style="margin-bottom:5px;">
-      <div class="input-group-btn col-lg-6">
-        <a class="btn btn-sm roundedLeft" href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé Domotique}}
-        </a><a class="btn btn-sm btn-success roundedRight" id="bt_search"><i class="fas fa-search"></i> {{Rechercher}}</a>
-      </div>
     </div>
   </div>
 
