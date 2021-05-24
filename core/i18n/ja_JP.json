@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Aide": "Aide",
+        "Résumé Domotique": "オートメーションの概要",
+        "Rechercher": "検索",
         "Recherche par": "Recherche par",
         "Equipement": "設備",
         "Commande": "オーダー",
@@ -558,8 +560,6 @@
         "Plugin": "プラグイン",
         "Mot": "Mot",
         "ID": "ID",
-        "Résumé Domotique": "オートメーションの概要",
-        "Rechercher": "検索",
         "Rechercher un équipement": "機器を探す",
         "Rechercher une commande": "検索順序",
         "Résultats": "Résultats",

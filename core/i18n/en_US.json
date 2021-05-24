@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aide": "Help",
+        "Résumé Domotique": "Domotic overview",
+        "Rechercher": "Search",
         "Recherche par": "Search by",
         "Equipement": "Equipment",
         "Commande": "Command",
@@ -558,8 +560,6 @@
         "Plugin": "Plugin",
         "Mot": "Word",
         "ID": "ID",
-        "Résumé Domotique": "Domotic overview",
-        "Rechercher": "Search",
         "Rechercher un équipement": "Search an equipment",
         "Rechercher une commande": "Search a command",
         "Résultats": "Results",

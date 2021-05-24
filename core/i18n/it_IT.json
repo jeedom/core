@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Aide": "Aide",
+        "Résumé Domotique": "Sommario Automazioni Domestiche",
+        "Rechercher": "Ricercare",
         "Recherche par": "Recherche par",
         "Equipement": "Dispositivo",
         "Commande": "Comando",
@@ -558,8 +560,6 @@
         "Plugin": "Plugin",
         "Mot": "Mot",
         "ID": "ID",
-        "Résumé Domotique": "Sommario Automazioni Domestiche",
-        "Rechercher": "Ricercare",
         "Rechercher un équipement": "Cerca attrezzature",
         "Rechercher une commande": "Ordine di ricerca",
         "Résultats": "Résultats",
