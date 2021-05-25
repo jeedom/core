@@ -575,9 +575,9 @@ $('#bt_savePluginLogConfig').off('click').on('click', function() {
 $('#div_configLog').on({
   'click': function(event) {
     if ($('#md_modal').is(':visible')) {
-      $('#md_modal2').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
+      $('#md_modal2').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+escape($(this).attr('data-log'))).dialog('open')
     } else {
-      $('#md_modal').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+$(this).attr('data-log')).dialog('open')
+      $('#md_modal').dialog({title: "{{Log du plugin}}" + ' ' + $(this).attr('data-log')}).load('index.php?v=d&modal=log.display&log='+escape($(this).attr('data-log'))).dialog('open')
     }
   }
 }, '.bt_plugin_conf_view_log')
