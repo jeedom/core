@@ -436,7 +436,7 @@ E exemplos práticos :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | a função retornará um desses textos aleatoriamente a cada execução.                           |
 | ``randomColor(40,60)``                 | Retorna uma cor aleatória próxima ao verde.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 se é bom ``#[Salle de bain][Hydrometrie][Humidité]#`` quem iniciou o cenário caso contrário 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 se a hidrometria de ``#[Salle de bain][Hydrometrie][Humidité]#`` é 80%.                         |
+| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 se a hidrometria de ``#[Salle de bain][Hydrometrie][Humidité]#`` é 80% e isso é ``#[Salle de bain][Hydrometrie][Humidité]#`` que desencadeou o cenário se não for `false`.                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Retorna 9 se a porcentagem de umidade e 85                     |
 | ``odd(3)``                             | Retorna 1                            |
 | ``median(15,25,20)``                   | Retorna 20
