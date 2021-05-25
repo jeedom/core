@@ -545,7 +545,7 @@ class cmd {
 			}
 			return $_input;
 		}
-		if (is_bool($_input) || is_null($_input)) {
+		if (is_int($_input) || is_bool($_input) || is_null($_input)) {
 			return $_input;
 		}
 		$replace = array();
