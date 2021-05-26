@@ -278,9 +278,17 @@ function is_array(a) {
       options.level = init(options.level, '')
       options.emptyBefore = init(options.emptyBefore, false)
       options.show = init(options.show, true)
-      options.ttl = init(options.ttl, 5000)
-      
+      if(!options.ttl){
+        if(options.level == 'danger'){
+          options.ttl = 0
+        }else{
+          options.ttl = 5000
+        }
+      }
       if ($.mobile) {
+        if(options.ttl == 0){
+          options.ttl = 5000
+        }
         new $.nd2Toast({
           message :  options.message,
           ttl : options.ttl
