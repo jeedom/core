@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aide": "Aide",
+        "Résumé Domotique": "Резюме Автоматизация",
+        "Rechercher": "поиск",
         "Recherche par": "Recherche par",
         "Equipement": "Оборудование",
         "Commande": "Команда",
@@ -558,8 +560,6 @@
         "Plugin": "Плагин",
         "Mot": "Mot",
         "ID": "Идентификатор",
-        "Résumé Domotique": "Резюме Автоматизация",
-        "Rechercher": "поиск",
         "Rechercher un équipement": "Поиск оборудования",
         "Rechercher une commande": "порядок поиска",
         "Résultats": "Résultats",

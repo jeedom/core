@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Aide": "Aide",
+        "Résumé Domotique": "Akıllı ev özeti",
+        "Rechercher": "Arayın",
         "Recherche par": "Recherche par",
         "Equipement": "Cihaz",
         "Commande": "Komuta",
@@ -558,8 +560,6 @@
         "Plugin": "Eklenti",
         "Mot": "Mot",
         "ID": "Kimlik",
-        "Résumé Domotique": "Akıllı ev özeti",
-        "Rechercher": "Arayın",
         "Rechercher un équipement": "Rechercher un équipement",
         "Rechercher une commande": "Komuta arayın",
         "Résultats": "Résultats",

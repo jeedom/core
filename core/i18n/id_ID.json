@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Aide": "Aide",
+        "Résumé Domotique": "Otomatisasi Ringkasan",
+        "Rechercher": "Pencarian",
         "Recherche par": "Recherche par",
         "Equipement": "Peralatan",
         "Commande": "Pesanan",
@@ -558,8 +560,6 @@
         "Plugin": "Plugin",
         "Mot": "Mot",
         "ID": "ID",
-        "Résumé Domotique": "Otomatisasi Ringkasan",
-        "Rechercher": "Pencarian",
         "Rechercher un équipement": "Rechercher un équipement",
         "Rechercher une commande": "Urutan pencarian",
         "Résultats": "Résultats",

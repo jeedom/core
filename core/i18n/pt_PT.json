@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aide": "Ajuda",
+        "Résumé Domotique": "Resumo Automation",
+        "Rechercher": "Pesquisa",
         "Recherche par": "Pesquisar por",
         "Equipement": "Equipamento",
         "Commande": "Ordem",
@@ -558,8 +560,6 @@
         "Plugin": "Plugar",
         "Mot": "Palavra",
         "ID": "EU IRIA",
-        "Résumé Domotique": "Resumo Automation",
-        "Rechercher": "Pesquisa",
         "Rechercher un équipement": "Procure equipamento",
         "Rechercher une commande": "Ordem de pesquisa",
         "Résultats": "Resultados",

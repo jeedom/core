@@ -551,6 +551,8 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aide": "Ayuda",
+        "Résumé Domotique": "Resumen de domótica",
+        "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
         "Equipement": "Dispositivos",
         "Commande": "Comando",
@@ -558,8 +560,6 @@
         "Plugin": "Enchufar",
         "Mot": "Palabra",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Résumé Domotique": "Resumen de domótica",
-        "Rechercher": "Buscar",
         "Rechercher un équipement": "Busca equipo",
         "Rechercher une commande": "Buscar una orden",
         "Résultats": "Resultados",

@@ -1484,17 +1484,17 @@ class scenarioExpression {
 					return;
 				} elseif ($this->getExpression() == 'delete_variable') {
 					scenario::removeData($options['name']);
-					$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $this->getOptions('name'));
+					$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
 					$dataStore = new dataStore();
 					$dataStore->setType('scenario');
-					$dataStore->setKey($this->getOptions('variable'));
+					$dataStore->setKey($options['variable']);
 					$dataStore->setValue('');
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					$limit = (isset($options['timeout'])) ? $options['timeout'] : 300;
-					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $this->getOptions('variable'));
+					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => explode(';', $options['answer']), 'timeout' => $limit, 'variable' => $options['variable']);
 					
 					//Recuperation des tags
 					$tags = $scenario->getTags();
@@ -1511,13 +1511,13 @@ class scenarioExpression {
 						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmdCheckId']['txt'] . $this->getOptions('cmd'));
 					}
 					$this->setLog($scenario, __('Demande ', __FILE__) . json_encode($options_cmd));
-					$cmd->setCache('ask::variable', $this->getOptions('variable'));
+					$cmd->setCache('ask::variable', $options['variable']);
 					$cmd->setCache('ask::endtime', strtotime('now') + $limit);
 					$cmd->execCmd($options_cmd);
 					$occurence = 0;
 					$value = '';
 					while (true) {
-						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
+						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $options['variable']);
 						if (is_object($dataStore)) {
 							$value = $dataStore->getValue();
 						}
@@ -1533,7 +1533,7 @@ class scenarioExpression {
 					if ($value == '') {
 						$value = __('Aucune réponse', __FILE__);
 						$cmd->setCache('ask::variable', 'none');
-						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $this->getOptions('variable'));
+						$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $options['variable']);
 						$dataStore->setValue($value);
 						$dataStore->save();
 					}
