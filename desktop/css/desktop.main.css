@@ -1736,6 +1736,26 @@ Desktop
     vertical-align: top;
   }
 
+  /* market */
+  div[data-market_type=plugin],
+  div[data-market_type=script] {
+    margin-top: 5px !important;
+    background-color: var(--form-bg-color) !important;
+  }
+  div[data-market_type=plugin]:hover,
+  div[data-market_type=script]:hover {
+    background-color: var(--el-defaultColor) !important;
+  }
+  .glyphicon {
+    font-family: "Roboto";
+  }
+  .glyphicon-star::before {
+    content: "★";
+  }
+  .glyphicon-star-empty::before {
+    content: "☆";
+  }
+
   /* editor page */
   #editorOptions {
     position: fixed;
