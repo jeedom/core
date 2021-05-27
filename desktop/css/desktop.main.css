@@ -1643,13 +1643,13 @@ Desktop
     padding: 0 4px;
     top: -2px !important;
   }
-  #battery .eqLogic-widget.critical .widget-name {
+  body[data-coloredcats="1"] #battery .eqLogic-widget.critical .widget-name {
     background-color: var(--al-danger-color) !important;
   }
-  #battery .eqLogic-widget.warning .widget-name {
+  body[data-coloredcats="1"] #battery .eqLogic-widget.warning .widget-name {
     background-color: var(--al-warning-color) !important;
   }
-  #battery .eqLogic-widget.good .widget-name {
+  body[data-coloredcats="1"] #battery .eqLogic-widget.good .widget-name {
     background-color: var(--al-success-color) !important;
   }
   #battery .eqLogic-widget .jeedom-batterie {
