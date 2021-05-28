@@ -48,98 +48,100 @@
 <script>
   jeedom.view.all({
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (views) {
-      var options = '';
-      options += '<option value="">Aucune</option>';
+      var options = ''
+      options += '<option value="">{{Aucune}}</option>'
       for (var i in views) {
-        options += '<option value="' + views[i].id + '">' + views[i].name + '</option>';
+        options += '<option value="' + views[i].id + '">' + views[i].name + '</option>'
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').append(options);
+      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').append(options)
       if ('#view_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id] option[value=#view_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').value('#view_id#');
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=view_id]').value('#view_id#')
       }
     }
-  });
+  })
+
   jeedom.plan.allHeader({
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (plans) {
-      var options = '';
-      options += '<option value="">Aucun</option>';
+      var options = ''
+      options += '<option value="">{{Aucun}}</option>'
       for (var i in plans) {
-        options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>';
+        options += '<option value="' + plans[i].id + '">' + plans[i].name + '</option>'
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options);
+      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').append(options)
       if ('#plan_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id] option[value=#plan_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#');
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plan_id]').value('#plan_id#')
       }
     }
-  });
+  })
 
   jeedom.plugin.all({
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (plugins) {
       var options = '';
-      options += '<option value="">Aucun</option>';
+      options += '<option value="">{{Aucun}}</option>'
       for (var i in plugins) {
-        if(plugins[i].display == ''){
-          continue;
+        if (plugins[i].display == '') {
+          continue
         }
-        options += '<option value="' + plugins[i].id + '">' + plugins[i].name + '</option>';
+        options += '<option value="' + plugins[i].id + '">' + plugins[i].name + '</option>'
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').append(options);
+      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').append(options)
       if ('#plugin_id#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id] option[value=#plugin_id#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').value('#plugin_id#');
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=plugin_id]').value('#plugin_id#')
       }
     }
-  });
+  })
 
   jeedom.timeline.listFolder({
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function (timelines) {
-      var options = '';
-      options += '<option value="main">Principal</option>';
+      var options = ''
+      options += '<option value="main">{{Principal}}</option>'
       for (var i in timelines) {
-        if(timelines[i] == 'main'){
+        if (timelines[i] == 'main') {
           continue;
         }
-        options += '<option value="' + timelines[i] + '">' + timelines[i] + '</option>';
+        options += '<option value="' + timelines[i] + '">' + timelines[i] + '</option>'
       }
-      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline]').append(options);
+      $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline]').append(options)
       if ('#timeline#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline] option[value=#timeline#]').html() != undefined) {
-        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline]').value('#timeline#');
+        $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=timeline]').value('#timeline#')
       }
     }
-  });
-
-  if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').value('#export_type#');
-  }
-  if ('#type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type] option[value=#type#]').html() != undefined) {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').value('#type#');
-  }
-  if ('#url#' != '') {
-    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=url]').value('#url#');
-  }
+  })
 
   $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').change(function() {
     $(this).closest('select').removeClass('roundedRight')
     $('.type[data-uid=#uid#]').hide()
     $('.'+$(this).value()+'[data-uid=#uid#]').show()
-    if($(this).value() == 'eqAnalyse'){
+    if ($(this).value() == 'eqAnalyse') {
       $(this).closest('select').addClass('roundedRight')
     }
   })
+
   $('.listCmdMessage[data-uid=#uid#]').off('click').on('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
       $('.expressionAttr[data-l1key=options][data-l2key=cmd][data-uid=#uid#]').atCaret('insert', result.human)
     })
   })
+
+  if ('#export_type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type] option[value=#export_type#]').html() != undefined) {
+    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=export_type]').val('#export_type#').trigger('change')
+  }
+  if ('#type#' != '' && $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type] option[value=#type#]').html() != undefined) {
+    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=type]').val('#type#').trigger('change')
+  }
+  if ('#url#' != '') {
+    $('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=url]').val('#url#').trigger('change')
+  }
 </script>
