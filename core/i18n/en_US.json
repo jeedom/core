@@ -67,7 +67,7 @@
         "Accueil": "Home"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "No"
+        "Aucun": "None"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
@@ -356,7 +356,7 @@
         "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Please note: the user account does not have a \"Limited user\" profile, so no restrictions can be applied here",
         "Equipement": "Equipment",
         "Droits": "Rights",
-        "Aucun": "No",
+        "Aucun": "None",
         "Visualisation": "Visualization",
         "Visualisation et exécution": "Visualization and execution",
         "Scénario": "Scenario",
@@ -504,7 +504,7 @@
         "Lien": "Link",
         "Rechercher d\\'un équipement": "Search for equipment",
         "Spécificité": "Specificity",
-        "Aucun": "No",
+        "Aucun": "None",
         "Lumière": "Light",
         "Texte": "Text",
         "Porte\/Fenêtre": "Door \/ Window",
@@ -602,9 +602,9 @@
         "Voir les propositions d'amélioration": "See improvement suggestions",
         "Etape 3 : Catégorie et type de la demande": "Step 3: Category and type of request",
         "Type": "Type",
-        "Aucun": "No",
+        "Aucun": "None",
         "Catégorie": "Category",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Général": "Main",
         "Scénario": "Scenario",
         "Etape 4 : Demande de support": "Step 4: Request for support",
@@ -697,7 +697,7 @@
         "Moyenne": "Average",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
-        "Aucun": "No",
+        "Aucun": "None",
         "Purger l'historique si plus vieux que ": "Clear history older than",
         "1 jour": "1 day",
         "7 jours": "7 days",
@@ -824,7 +824,7 @@
         "Moyenne": "Average",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
-        "Aucun": "No",
+        "Aucun": "None",
         "1 jour": "1 day",
         "7 jours": "7 days",
         "1 mois": "1 month",
@@ -1034,7 +1034,7 @@
         "En cours": "Running",
         "Arrêté": "Stopped",
         "Défaut": "Default",
-        "Aucun": "No",
+        "Aucun": "None",
         "Temps réel": "Real time",
         "Dossier": "Folder",
         "Voir les logs": "See the logs",
@@ -1065,7 +1065,7 @@
         ".De plus, l’installation d’un plugin depuis une autre source que le Market ": "In addition, installing a plugin from a source other than the Market",
         " entraine la perte globale d’assistance par l’équipe ": "results in the overall loss of assistance by the team",
         "Type de source": "Source type",
-        "Aucun": "No",
+        "Aucun": "None",
         "Configuration": "Configuration",
         "ID logique du plugin": "Logical plugin ID",
         "Envoyer un plugin": "Send a plugin",
@@ -1176,7 +1176,7 @@
         "Fond transparent": "Transparent background",
         "Nom": "Name",
         "Lien": "Link",
-        "Aucun": "No",
+        "Aucun": "None",
         "Icône": "Icon",
         "Choisir une icône": "Choose an icon",
         "Afficher le nom de l'objet": "Display object name",
@@ -1473,7 +1473,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "The following option can only be modified at the request of the support, otherwise it MUST be set to 'None'",
         "Mise à jour à réappliquer": "Update to reapply",
-        "Aucune": "Any"
+        "Aucune": "None"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1618,7 +1618,7 @@
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "of its network configuration and has no impact on ports or IP actually used to join Jeedom",
         "Accès interne": "Internal access",
         "Protocole": "Protocol",
-        "Aucun": "No",
+        "Aucun": "None",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Accès externe": "External access",
@@ -1901,7 +1901,7 @@
         "Vider le champ de recherche": "Clear the search field",
         "Filtre par catégorie": "Filter by category",
         "Toutes": "All",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Scénario": "Scenario",
         "Édition du Dashboard": "Dashboard edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Adjust all the tiles to the height of the lowest",
@@ -2043,7 +2043,7 @@
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Aucun": "No",
+        "Aucun": "None",
         "Gestion": "Management",
         "Ajouter": "Add",
         "Activer scénarios": "Enable scenarios",
@@ -2146,7 +2146,7 @@
         "Occurrences": "Occurrences"
     },
     "desktop\/php\/interact.php": {
-        "Aucun": "No",
+        "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Gestion": "Management",
         "Ajouter": "Add",
@@ -2365,7 +2365,7 @@
         "Remonter dans le résumé global": "Report in global summary",
         "Activez les résumés qui seront pris en compte pour le résumé global, affiché sur la droite dans la barre de menu.": "Activate the summaries which will be taken into account for the global summary, displayed on the right in the menu bar",
         "Tous": "All",
-        "Aucun": "No",
+        "Aucun": "None",
         "Masquer en desktop": "Hide on desktop",
         "Masquer en mobile": "Hide on mobile",
         "Commandes des résumés": "Commands on summaries",
@@ -2398,7 +2398,7 @@
         "pour en créer un.": "to create one"
     },
     "desktop\/php\/history.php": {
-        "Aucun": "No",
+        "Aucun": "None",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: Too large a date range can take a very long time to calculate or even not display",
         "Aucun groupement": "No group",
@@ -2446,7 +2446,7 @@
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Aucun": "No",
+        "Aucun": "None",
         "Configuration avancée": "Advanced configuration",
         "Aller sur la configuration de l\\'objet": "Go to the object configuration",
         "Désélectionner les équipements": "Unselect equipments",
@@ -2530,7 +2530,7 @@
         "Votre version de": "Your version of",
         "ne permet pas d\\'activer ce plugin": "does not allow to activate this plugin",
         "Niveau log": "Log level",
-        "Aucun": "No",
+        "Aucun": "None",
         "Defaut": "Default",
         "Debug": "Debug",
         "Info": "Info",
@@ -2831,7 +2831,7 @@
         "Moyenne": "Average",
         "Texte": "Text",
         "Icône": "Icon",
-        "Aucun": "No",
+        "Aucun": "None",
         "Binaire": "Binary",
         "Créer virtuel": "Create virtual",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "Are you sure you want to delete the database from InfluxDB",
@@ -3710,7 +3710,7 @@
         "Top et nouveautés": "Top and new",
         "Rechercher": "Search",
         "Retour": "Return",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Widget pour la version mobile": "Mobile version Widget",
         "Widget pour la version bureau": "Desktop version widget",
         "par": "by",
@@ -3777,7 +3777,7 @@
         "Market": "Market"
     },
     "core\/class\/cmd.class.php": {
-        "Aucun": "No",
+        "Aucun": "None",
         "Impossible de traduire la couleur en code hexadécimal :": "Unable to translate color into hexadecimal code:",
         "Le nom de la commande ne peut pas être vide :": "The name of the command cannot be empty:",
         "Le type de la commande ne peut pas être vide :": "The type of the command cannot be empty:",
@@ -4012,7 +4012,7 @@
         "A": "AT"
     },
     "core\/class\/scenario.class.php": {
-        "Aucun": "No",
+        "Aucun": "None",
         "Tags : ": "Tags: ",
         "Déclencheur": "Trigger",
         "Un déclencheur du scénario : ": "A scenario trigger:",
@@ -4051,7 +4051,7 @@
         " n\\'a pas envoyé de message depuis plus de ": "has not sent a message for more than",
         " min (vérifiez les piles)": "min (vérifiez les piles)",
         "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
-        "Aucun": "No",
+        "Aucun": "None",
         "L\\'équipement n\\'a pas pu être trouvé : ": "The equipment could not be found:",
         "Le": "The",
         "inconnue": "unknown",
@@ -4095,7 +4095,7 @@
         "Désactivation de": "Deactivation of",
         "Masquage de": "Masking of",
         "Affichage de": "Display of",
-        "Aucun": "No",
+        "Aucun": "None",
         "Type inconnu": "Unknown type",
         "Execution du lancement en arriere plan : ": "Execution of background launch:",
         "Exécution d\\'un bloc élément : ": "Execution of an element block:",
@@ -4252,7 +4252,7 @@
         "La fonction ne peut pas être vide": "The function cannot be empty"
     },
     "core\/class\/jeeObject.class.php": {
-        "Aucun": "No",
+        "Aucun": "None",
         "Le plugin virtuel doit être installé": "Virtual plugin must be installed",
         "Le plugin virtuel doit être actif": "Virtual plugin must be active",
         "Résumé Global": "Global Summary",
@@ -4322,7 +4322,7 @@
         "Désactiver": "Disable",
         "Remise à zéro des SI": "Reset of IS",
         "Tags": "Tags",
-        "Aucun": "No"
+        "Aucun": "None"
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condition",

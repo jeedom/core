@@ -604,7 +604,7 @@
         "Type": "Tipo",
         "Aucun": "No",
         "Catégorie": "Categoría",
-        "Aucune": "Alguna",
+        "Aucune": "Ninguno",
         "Général": "General",
         "Scénario": "Escenario",
         "Etape 4 : Demande de support": "Paso 4: Solicitud de soporte",
@@ -1473,7 +1473,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Continúe la actualización en caso de error",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "La siguiente opción solo puede modificarse a petición del soporte; de lo contrario, DEBE establecerse en 'Ninguno'",
         "Mise à jour à réappliquer": "Actualización a reaplicar",
-        "Aucune": "Alguna"
+        "Aucune": "Ninguna"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1901,7 +1901,7 @@
         "Vider le champ de recherche": "Borrar el campo de búsqueda",
         "Filtre par catégorie": "Filtrar por categoría",
         "Toutes": "Todas",
-        "Aucune": "Alguna",
+        "Aucune": "Ninguna",
         "Scénario": "Escenario",
         "Édition du Dashboard": "Edición del tablero",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todas las baldosas a la altura de la más baja",
@@ -3710,7 +3710,7 @@
         "Top et nouveautés": "Top y novedades",
         "Rechercher": "Buscar",
         "Retour": "Volver",
-        "Aucune": "Alguna",
+        "Aucune": "Ninguna",
         "Widget pour la version mobile": "Widget para versión móvil",
         "Widget pour la version bureau": "Widget de versión de escritorio",
         "par": "por",
