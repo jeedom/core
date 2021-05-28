@@ -57,8 +57,8 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ## 4.1.22
 
-- Adição de um sistema que permite ao Jeedom SAS comunicar mensagens a todos os Jeedoms
-- Alternando Jeedom DNS para o modo de alta disponibilidade
+- Adição de um sistema que permite ao Jeedom SAS comunicar mensagens a todos os Jeedoms.
+- Alternando Jeedom DNS para o modo de alta disponibilidade.
 
 ## 4.1.20
 

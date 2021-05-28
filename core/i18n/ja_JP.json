@@ -4442,7 +4442,10 @@
         "Largeur (px)": "幅（ピクセル）",
         "Hauteur (px)": "高さ（px）",
         "Délai": "お知らせ",
-        "Option(s)": "オプション（複数可）"
+        "Option(s)": "オプション（複数可）",
+        "Aucune": "Aucune",
+        "Aucun": "Aucun",
+        "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",

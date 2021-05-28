@@ -409,8 +409,8 @@ For each plugin API key you can prohibit them from core methods (general) to lim
 
 ### System Checks
 
-- **General verification** : Lets launch Jeedom consistency test.
-- **Reinstatement of rights** : Enables you to reapply the correct rights to the Jeedom Core directories and files.
+- **General verification** : Allows you to run a Jeedom consistency test.
+- **Reinstatement of rights** : Allows you to re-apply the right rights to the directories and files of the Jeedom Core.
 - **Checking system packages** : Allows you to launch a verification of installed packages.
 - **Database verification** : Allows to launch a verification on the Jeedom database and to correct errors if necessary.
 - **Database cleanup** : Runs a database check and cleans up any unused entries.

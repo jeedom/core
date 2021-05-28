@@ -57,8 +57,8 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 
 ## 4.1.22
 
-- Hinzufügen eines Systems, mit dem Jeedom SAS Nachrichten an alle Jeedoms übermitteln kann
-- Umschalten von Jeedom DNS in den Hochverfügbarkeitsmodus
+- Hinzufügen eines Systems, mit dem Jeedom SAS Nachrichten an alle Jeedoms übermitteln kann.
+- Umschalten von Jeedom DNS in den Hochverfügbarkeitsmodus.
 
 ## 4.1.20
 

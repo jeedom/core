@@ -409,8 +409,8 @@ Para cada chave de API de plugin você pode proibi-los de métodos básicos (ger
 
 ### Verificações do sistema
 
-- **Verificação geral** : Vamos lançar o teste de consistência Jeedom.
-- **Restabelecimento de direitos** : Permite reaplicar os direitos corretos nos diretórios e arquivos do Jeedom Core.
+- **Verificação geral** : Permite que você execute um teste de consistência Jeedom.
+- **Restabelecimento de direitos** : Permite a você reaplicar os direitos corretos aos diretórios e arquivos do Jeedom Core.
 - **Verificando pacotes do sistema** : Permite iniciar uma verificação dos pacotes instalados.
 - **Verificação de banco de dados** : Permite iniciar uma verificação no banco de dados Jeedom e corrigir erros, se necessário.
 - **Limpeza de banco de dados** : Executa uma verificação do banco de dados e limpa todas as entradas não utilizadas.

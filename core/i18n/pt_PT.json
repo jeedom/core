@@ -45,7 +45,7 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Legal",
-        "Principal": "A Principal",
+        "Principal": "Principal",
         "Timelines": "Linhas do tempo"
     },
     "mobile\/js\/deamon.js": {
@@ -604,7 +604,7 @@
         "Type": "Tipo",
         "Aucun": "Não",
         "Catégorie": "Categoria",
-        "Aucune": "Não",
+        "Aucune": "Algum",
         "Général": "Geral",
         "Scénario": "Cenas",
         "Etape 4 : Demande de support": "Passo 4: Pedido de Suporte",
@@ -1358,7 +1358,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Principal": "A Principal",
+        "Principal": "Principal",
         "Timelines": "Linhas do tempo",
         "Rafraîchir": "Legal",
         "Configuration": "Configuração"
@@ -1473,7 +1473,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Continue a atualização em caso de erro",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "A opção a seguir pode ser modificada apenas a pedido do suporte, caso contrário, DEVE ser configurada como 'None'",
         "Mise à jour à réappliquer": "Update para reaplicar",
-        "Aucune": "Não"
+        "Aucune": "Algum"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1901,7 +1901,7 @@
         "Vider le champ de recherche": "Limpe o campo de pesquisa",
         "Filtre par catégorie": "Filtrar por categoria",
         "Toutes": "Todos",
-        "Aucune": "Não",
+        "Aucune": "Algum",
         "Scénario": "Cenas",
         "Édition du Dashboard": "Dashboard Edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todos os ladrilhos para a altura do mais baixo",
@@ -3710,7 +3710,7 @@
         "Top et nouveautés": "Principais e novos",
         "Rechercher": "Pesquisa",
         "Retour": "Voltar",
-        "Aucune": "Não",
+        "Aucune": "Algum",
         "Widget pour la version mobile": "Widget para versão móvel",
         "Widget pour la version bureau": "Widget da versão para desktop",
         "par": "por",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Largura (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai": "Prazo",
-        "Option(s)": "Opção (ões)"
+        "Option(s)": "Opção (ões)",
+        "Aucune": "Algum",
+        "Aucun": "Não",
+        "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Não está autorizado a executar esta ação 1, IP:",

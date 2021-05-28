@@ -57,8 +57,8 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 ## 4.1.22
 
-- Addition of a system allowing Jeedom SAS to communicate messages to all Jeedoms
-- Switching Jeedom DNS to high availability mode
+- Addition of a system allowing Jeedom SAS to communicate messages to all Jeedoms.
+- Switching Jeedom DNS to high availability mode.
 
 ## 4.1.20
 

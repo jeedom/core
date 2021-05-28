@@ -45,7 +45,7 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Aktualisieren",
-        "Principal": "Primär",
+        "Principal": "Main",
         "Timelines": "Zeitleisten"
     },
     "mobile\/js\/deamon.js": {
@@ -604,7 +604,7 @@
         "Type": "Typ",
         "Aucun": "Nein",
         "Catégorie": "Kategorie",
-        "Aucune": "Keine",
+        "Aucune": "Irgendein",
         "Général": "Allgemein",
         "Scénario": "Szenario",
         "Etape 4 : Demande de support": "Schritt 4: Bitte um Unterstützung",
@@ -1358,7 +1358,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Principal": "Primär",
+        "Principal": "Main",
         "Timelines": "Zeitleisten",
         "Rafraîchir": "Aktualisieren",
         "Configuration": "Konfiguration"
@@ -1473,7 +1473,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Setzen Sie das Update im Fehlerfall fort",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "Die folgende Option kann nur auf Anfrage des Supports geändert werden, andernfalls MUSS sie auf \"Keine\" gesetzt werden",
         "Mise à jour à réappliquer": "Update zur erneuten Anwendung",
-        "Aucune": "Keine"
+        "Aucune": "Irgendein"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1901,7 +1901,7 @@
         "Vider le champ de recherche": "Deaktivieren Sie das Suchfeld",
         "Filtre par catégorie": "Nach Kategorie filtern",
         "Toutes": "Alle",
-        "Aucune": "Keine",
+        "Aucune": "Irgendein",
         "Scénario": "Szenario",
         "Édition du Dashboard": "Dashboard Edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Stellen Sie alle Kacheln auf die Höhe der niedrigsten ein",
@@ -3710,7 +3710,7 @@
         "Top et nouveautés": "Top und neu",
         "Rechercher": "Suchen nach",
         "Retour": "Rückkehr",
-        "Aucune": "Keine",
+        "Aucune": "Irgendein",
         "Widget pour la version mobile": "Widget für mobile Version",
         "Widget pour la version bureau": "Widget für die Desktop-Version",
         "par": "Von",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Breite (px)",
         "Hauteur (px)": "Höhe (px)",
         "Délai": "Bekanntmachung",
-        "Option(s)": "Option (en)"
+        "Option(s)": "Option (en)",
+        "Aucune": "Irgendein",
+        "Aucun": "Nein",
+        "Principal": "Main"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Sie sind nicht berechtigt, diese Aktion auszuführen 1, IP:",
