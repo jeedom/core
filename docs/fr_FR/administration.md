@@ -338,7 +338,7 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 - **\[Backup\] IP** : IP du serveur Samba.
 - **\[Backup\] Utilisateur** : Nom d’utilisateur pour la connexion (les connexions anonymes ne sont pas possibles). Il faut forcément que l’utilisateur ait les droits en lecture ET en écriture sur le répertoire de destination.
-- **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur (attention les carateres spéciaux ne sont pas autorisé).
+- **\[Backup\] Mot de passe** : Mot de passe de l’utilisateur (attention les caractères spéciaux ne sont pas autorisés).
 - **\[Backup\] Partage** : Chemin du partage (attention à bien s’arrêter au niveau du partage).
 - **\[Backup\] Chemin** : Chemin dans le partage (à mettre en relatif), celui-ci doit exister.
 
@@ -409,8 +409,8 @@ Pour chaque clé API de plugin vous pouvez leur interdire les méthodes core (g�
 
 ### Vérifications Système
 
-- **Vérification générale** : Permet de lancer de test de consistence de Jeedom.
-- **Rétablissement des droits** : Permet de réappliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
+- **Vérification générale** : Permet de lancer de test de consistance de Jeedom.
+- **Rétablissement des droits** : Permet de ré-appliquer les bons droits sur les répertoires et fichiers du Core de Jeedom.
 - **Vérification des packages système** : Permet de lancer une vérification des packages installés.
 - **Vérification de la base de données** : Permet de lancer une vérification sur la base de données de Jeedom et de corriger si nécessaire les erreurs.
 - **Nettoyage de la base de données** : Lance une vérification de la base de données et nettoie d'éventuelles entrées non utilisées.

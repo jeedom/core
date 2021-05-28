@@ -57,8 +57,8 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 
 ## 4.1.22
 
-- Ajout d'un systeme permettant a Jeedom SAS de communiquer des messages à tous les Jeedoms
-- Passage du DNS Jeedom en mode haute disponibilité
+- Ajout d'un systeme permettant a Jeedom SAS de communiquer des messages à tous les Jeedoms.
+- Passage du DNS Jeedom en mode haute disponibilité.
 
 ## 4.1.20
 
