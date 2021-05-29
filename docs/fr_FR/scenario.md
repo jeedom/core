@@ -143,6 +143,7 @@ Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionn
 > **Note**
 >
 > Sur les blocs de type Si/Alors/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d’activer ou non la répétition des actions si l’évaluation de la condition donne le même résultat que lors de la précédente évaluation.
+> SI expression != 0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression
 
 > **Tip**
 >
