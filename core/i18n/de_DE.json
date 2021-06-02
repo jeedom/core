@@ -3533,7 +3533,7 @@
         "[START UPDATE]": "[UPDATE STARTEN]",
         "Launch cron dependancy plugins": "Starten Sie Cron-Abhängigkeits-Plugins",
         "[END UPDATE SUCCESS]": "[UPDATE ENDE ERFOLGREICH]",
-        "[END UPDATE ERROR]": "[END UPDATE ERROR]",
+        "[END UPDATE ERROR]": "[FEHLER BEIM ENDE DER AKTUALISIERUNG]",
         "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
         "Le fichier est trop gros (maximum 100Mo)": "Die Datei ist zu groß (maximal 100 MB)",
