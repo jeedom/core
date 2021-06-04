@@ -1389,7 +1389,7 @@ class jeedom {
 		plugin::stop();
 		cache::persist();
 		if (self::isCapable('sudo')) {
-			exec(system::getCmdSudo() . 'reboot -f now');
+			exec(system::getCmdSudo() . 'shutdown -fr now');
 		} else {
 			throw new Exception(__('Vous pouvez lancer le redémarrage du système', __FILE__));
 		}
