@@ -2010,7 +2010,7 @@
         "Plugin": "Plugin",
         "Autre": "Altri",
         "Rechercher": "Ricercare",
-        "Analyse": "Analisi",
+        "Analyse Equipements": "Analyse Equipements",
         "Timeline": "Timeline",
         "URL": "URL",
         "Rapport(s)": "Rapport(s)",
@@ -4430,7 +4430,7 @@
         "Vue": "Visione",
         "Design": "Disegno",
         "Plugin": "Plugin",
-        "Equipement": "Dispositivo",
+        "Analyse Equipements": "Analyse Equipements",
         "Timeline": "Cronologia",
         "URL": "URL",
         "Panel": "Pannello",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Larghezza (px)",
         "Hauteur (px)": "Altezza (px)",
         "Délai": "Preavviso",
-        "Option(s)": "Opzione (s)"
+        "Option(s)": "Opzione (s)",
+        "Aucune": "Aucune",
+        "Aucun": "Aucun",
+        "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",

@@ -2010,7 +2010,7 @@
         "Plugin": "Eklenti",
         "Autre": "Başka",
         "Rechercher": "Arayın",
-        "Analyse": "Analiz",
+        "Analyse Equipements": "Analyse Equipements",
         "Timeline": "Timeline",
         "URL": "URL'ler",
         "Rapport(s)": "Rapport(s)",
@@ -4430,7 +4430,7 @@
         "Vue": "İzlenme",
         "Design": "Disayn",
         "Plugin": "Eklenti",
-        "Equipement": "Cihaz",
+        "Analyse Equipements": "Analyse Equipements",
         "Timeline": "Zaman çizelgesi",
         "URL": "URL'ler",
         "Panel": "Panel",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Genişlik (px)",
         "Hauteur (px)": "Yükseklik (px)",
         "Délai": "Ihbar",
-        "Option(s)": "İsteğe bağlı (lar)"
+        "Option(s)": "İsteğe bağlı (lar)",
+        "Aucune": "Aucune",
+        "Aucun": "Aucun",
+        "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",

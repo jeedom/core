@@ -57,8 +57,8 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 ## 4.1.22
 
-- Adición de un sistema que permite a Jeedom SAS comunicar mensajes a todos los Jeedom
-- Cambiar el DNS de Jeedom al modo de alta disponibilidad
+- Adición de un sistema que permite a Jeedom SAS comunicar mensajes a todos los Jeedom.
+- Cambiar el DNS de Jeedom al modo de alta disponibilidad.
 
 ## 4.1.20
 

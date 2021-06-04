@@ -45,7 +45,7 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Legal",
-        "Principal": "A Principal",
+        "Principal": "Principal",
         "Timelines": "Linhas do tempo"
     },
     "mobile\/js\/deamon.js": {
@@ -1358,7 +1358,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Principal": "A Principal",
+        "Principal": "Principal",
         "Timelines": "Linhas do tempo",
         "Rafraîchir": "Legal",
         "Configuration": "Configuração"
@@ -2010,7 +2010,7 @@
         "Plugin": "Plugar",
         "Autre": "Outro",
         "Rechercher": "Pesquisa",
-        "Analyse": "Análise",
+        "Analyse Equipements": "Análise de Equipamentos",
         "Timeline": "Linha do tempo",
         "URL": "URL ",
         "Rapport(s)": "Relatórios)",
@@ -3640,12 +3640,12 @@
         "Equipement inconnu : ": "Equipamento desconhecido:",
         "Type incorrect (classe équipement inexistante) : ": "Type incorrect (classe equipamento inexistente):",
         "Informations reçues incorrectes": "Informação recebida incorreta",
-        "Type incorrect, (classe commande inexistante)": "Nenhum método correspondente a:",
+        "Type incorrect, (classe commande inexistante)": "Tipo incorreto, (classe de comando não existe)",
         "Un équipement portant ce nom (": "Equipamentos com este nome (",
         ") existe déjà pour cet objet": ") já existe para este objeto",
         "Une commande portant ce nom (": "Um comando com este nome (",
         ") existe déjà pour cet équipement": ") já existe para este equipamento",
-        "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"
+        "Aucune méthode correspondante à : ": "Nenhum método correspondente a:"
     },
     "core\/ajax\/cache.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4430,7 +4430,7 @@
         "Vue": "Visão",
         "Design": "Projeto",
         "Plugin": "Plugar",
-        "Equipement": "Equipamento",
+        "Analyse Equipements": "Análise de Equipamentos",
         "Timeline": "Linha do tempo",
         "URL": "URL ",
         "Panel": "Painel",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Largura (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai": "Prazo",
-        "Option(s)": "Opção (ões)"
+        "Option(s)": "Opção (ões)",
+        "Aucune": "Algum",
+        "Aucun": "Não",
+        "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Não está autorizado a executar esta ação 1, IP:",

@@ -2010,7 +2010,7 @@
         "Plugin": "Plugin",
         "Autre": "Other",
         "Rechercher": "Search",
-        "Analyse": "Analysis",
+        "Analyse Equipements": "Equipment Analysis",
         "Timeline": "Timeline",
         "URL": "Url",
         "Rapport(s)": "Reports",
@@ -4430,7 +4430,7 @@
         "Vue": "View",
         "Design": "Design",
         "Plugin": "Plugin",
-        "Equipement": "Equipment",
+        "Analyse Equipements": "Equipment Analysis",
         "Timeline": "Timeline",
         "URL": "Url",
         "Panel": "Panel",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
         "Délai": "Delay",
-        "Option(s)": "Option"
+        "Option(s)": "Option",
+        "Aucune": "Any",
+        "Aucun": "No",
+        "Principal": "Main"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "You are not authorized to perform this action 1, IP:",

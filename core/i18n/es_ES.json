@@ -45,7 +45,7 @@
     },
     "mobile\/js\/timeline.js": {
         "Rafraîchir": "Refrescar",
-        "Principal": "Primario",
+        "Principal": "Principal",
         "Timelines": "Cronologías"
     },
     "mobile\/js\/deamon.js": {
@@ -1358,7 +1358,7 @@
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Principal": "Primario",
+        "Principal": "Principal",
         "Timelines": "Cronologías",
         "Rafraîchir": "Refrescar",
         "Configuration": "Configuración"
@@ -2010,7 +2010,7 @@
         "Plugin": "Enchufar",
         "Autre": "Otro",
         "Rechercher": "Buscar",
-        "Analyse": "Análisis",
+        "Analyse Equipements": "Análisis de equipos",
         "Timeline": "Cronología",
         "URL": "URL",
         "Rapport(s)": "Informes)",
@@ -4430,7 +4430,7 @@
         "Vue": "Ver",
         "Design": "Diseño",
         "Plugin": "Enchufar",
-        "Equipement": "Dispositivos",
+        "Analyse Equipements": "Análisis de equipos",
         "Timeline": "Cronología",
         "URL": "URL",
         "Panel": "Panel",
@@ -4442,7 +4442,10 @@
         "Largeur (px)": "Ancho (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai": "Aviso",
-        "Option(s)": "Opción(es)"
+        "Option(s)": "Opción(es)",
+        "Aucune": "Alguna",
+        "Aucun": "No",
+        "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "No tiene autorización para realizar esta acción 1, IP:",

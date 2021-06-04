@@ -409,8 +409,8 @@ Für jeden Plugin-API-Schlüssel können Sie die Verwendung von Kernmethoden (al
 
 ### Systemprüfungen
 
-- **Allgemeine Überprüfung** : Starten wir den Jeedom-Konsistenztest.
-- **Wiedereinsetzung von Rechten** : Ermöglicht es Ihnen, die korrekten Rechte auf die Jeedom Core-Verzeichnisse und -Dateien erneut anzuwenden.
+- **Allgemeine Überprüfung** : Ermöglicht die Durchführung eines Jeedom-Konsistenztests.
+- **Wiedereinsetzung von Rechten** : Ermöglicht es Ihnen, die richtigen Rechte erneut auf die Verzeichnisse und Dateien des Jeedom Core anzuwenden.
 - **Systempakete prüfen** : Ermöglicht das Starten einer Überprüfung der installierten Pakete.
 - **Datenbanküberprüfung** : Ermöglicht das Starten einer Überprüfung in der Jeedom-Datenbank und das Korrigieren von Fehlern, falls erforderlich.
 - **Datenbankbereinigung** : Führt eine Datenbankprüfung durch und bereinigt alle nicht verwendeten Einträge.
