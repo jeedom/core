@@ -4,6 +4,7 @@
 
 - Correction de bugs sur l'archivage de l'historique
 - Correction d'un soucis de cache qui pouvait disparaitre lors d'un reboot
+- Correction d'un bug sur la gestion des répétition de commande binaire : dans certain cas si l'équipement envoi deux fois 1 ou 0 d'affilé seule la premiere remontée était prise en compte. Attention cette correction de bug peut entreiner une surcharge CPU. Il faut donc bien mettre à jour les plugins aussi (Philips Hue notament) pour d'autre cas (déclenchement multiple de scénario alors que c'était pas le cas avant la mise à jour) bien regarder la configuration de la commande binaire en question sur la repetition des valeurs (configuration avancée de la commande) et la passer en en jamais repeter pour retrouver le fonctionnement d'avant.
 
 ## 4.1.22
 
