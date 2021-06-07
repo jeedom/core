@@ -2,6 +2,10 @@
 Changelog
 =========
 
+3.3.55
+======
+- estirar las herramientas de migración para inteligentes disponibles.
+
 3.3.54
 ======
 

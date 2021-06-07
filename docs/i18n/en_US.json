@@ -1705,6 +1705,8 @@
         " Market*": " Market*"
     },
     "changelog.md": {
+        "3.3.55": "3.3.55",
+        "outils de migration stretch pour smart disponible": "stretch migration tools for smart available",
         "3.3.54": "3.3.54",
         "Ajout d'un assistant de migration V4": "Adding a V4 migration wizard",
         "Correction de bugs sur les backups cloud": "Correction of bugs on cloud backups",

@@ -2,6 +2,10 @@
 Changelog
 =========
 
+3.3.55
+======
+- esticar ferramentas de migração para smart disponíveis.
+
 3.3.54
 ======
 
