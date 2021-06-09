@@ -54,7 +54,9 @@ if(!$first){
       {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
       {{- que la question n'a pas déjà été posée sur le <a href='https://community.jeedom.com/'>forum</a>}}<br/>
       {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
-      {{- que la réponse n'est pas déjà dans la <a href='https://doc.jeedom.com/'>documentation</a>}}
+      <?php if (config::byKey('doc::base_url', 'core') != ''){ ?>
+        {{- que la réponse n'est pas déjà dans la <a href='<?php echo config::byKey('doc::base_url', 'core'); ?>'>documentation</a>}}
+      <?php } ?>
     </div>
   </div>
   <div class="panel panel-danger">
@@ -69,7 +71,7 @@ if(!$first){
       </div>
     </div>
   </div>
-
+  
   <div class="panel panel-primary">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
     <div class="panel-body">
@@ -109,7 +111,7 @@ if(!$first){
           <input class="form-control ticketAttr" data-l1key="title"/>
         </div>
       </div>
-
+      
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
         <div class="col-sm-9">
@@ -123,7 +125,7 @@ if(!$first){
       </div>
     </div>
   </div>
-
+  
   <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
     <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
     <div class="panel-body">

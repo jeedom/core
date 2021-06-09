@@ -32,8 +32,10 @@ if ($DisplayByObject && !is_object($object)) {
 	$object = jeeObject::rootObject();
 	if (!is_object($object)) {
 		$alert = '{{Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets}}.<br/>';
-		$alert .= '{{Documentation}} : <a href="https://doc.jeedom.com/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
-		$alert .= ' | <a href="https://doc.jeedom.com/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
+		if (config::byKey('doc::base_url', 'core') != ''){
+			$alert .= '{{Documentation}} : <a href="'.config::byKey('doc::base_url', 'core').'/fr_FR/concept/" class="cursor label alert-info" target="_blank">{{Concepts}}</a>';
+			$alert .= ' | <a href="'.config::byKey('doc::base_url', 'core').'/fr_FR/premiers-pas/" class="cursor label alert-info" target="_blank">{{Premiers pas}}</a>';
+		}
 		echo '<div class="alert alert-warning">'.$alert.'</div>';
 		return;
 	}
@@ -108,7 +110,7 @@ foreach ($objectTree as $_object) {
 			</div>
 		<?php } ?>
 	</div>
-
+	
 	<?php
 	//display previews:
 	if (init('btover', 0) != 0) { //overview
@@ -125,7 +127,7 @@ foreach ($objectTree as $_object) {
 			$div .= '<span class="name cursor">' . $_object->getDisplay('icon') .' '.$_object->getName() . '</span>';
 			$div .= '</div>';
 			$div .= '</div>';
-
+			
 			$divSummaries .= $summaryCache[$_object->getId()];
 		}
 		$div .= $divSummaries.'</div></div>';
@@ -137,16 +139,16 @@ foreach ($objectTree as $_object) {
 			$dataHref = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId();
 			$div .= '<div class="cursor li_object"><a data-object_id="' . $_object->getId() . '" data-href="'.$dataHref.'">';
 			$div .= '<span style="position:relative;left:' . $margin . 'px;">'.$_object->getHumanName(true, true) . '</a></span>';
-
+			
 			$div .= $summaryCache[$_object->getId()];
 			$div .= '</div>';
 		}
 		$div .= '</div>';
 		echo $div;
 	}
-
+	
 	include_file('desktop', 'dashboard', 'js');
-
+	
 	function formatJeedomObjectDiv($object, $toSummary=false) {
 		global $summaryCache;
 		$objectId =  $object->getId();
@@ -167,7 +169,7 @@ foreach ($objectTree as $_object) {
 		</span>
 		</legend>';
 		$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
-
+		
 		if ($toSummary) {
 			$div .= '<script>getObjectHtmlFromSummary(' . $objectId . ')</script>';
 		} else {
@@ -199,7 +201,7 @@ foreach ($objectTree as $_object) {
 				formatJeedomObjectDiv($object, true);
 			}
 		}
-
+		
 		?>
 	</div>
 </div>

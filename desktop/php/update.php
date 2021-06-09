@@ -31,7 +31,9 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 		else {
 			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers}}';
 			$messageAlert .= ' <strong>Debian 10 Buster</strong>.<br><em>';
-			$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter }} <a href="https://doc.jeedom.com/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}'.'</em>';
+			if (config::byKey('doc::base_url', 'core') != ''){
+				$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter }} <a href="'.config::byKey('doc::base_url', 'core').'/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}'.'</em>';
+			}
 		}
 		echo '<div class="col-xs-12 text-center '.$alertLevel.'"><strong>'.$system.'</strong><br>'.$messageAlert.'</div>';
 	}
@@ -66,16 +68,16 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 				</div>
 			</div>
 		</div>
-
+		
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
 			<li role="presentation"><a href="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
-
+		
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="coreplugin">
-
-
+				
+				
 				<table class="table table-condensed table-bordered tablesorter" id="table_update">
 					<thead>
 						<tr>
@@ -99,14 +101,14 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 				</div>
 			</div>
 		</div>
-
+		
 		<div id="md_specifyUpdate" class="hidden" style="overflow-x: hidden;">
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
 						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
-
+					
 					<div class="form-group">
 						<div class="form-group">
 							<label class="col-xs-6 control-label">{{Pré-update}}

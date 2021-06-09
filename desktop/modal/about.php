@@ -30,7 +30,9 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
       <a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
       <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-      <a class="badge cursor" href="https://doc.jeedom.com/" target="_blank">Doc</a> |
+      <?php if (config::byKey('doc::base_url', 'core') != ''){ ?>
+        <a class="badge cursor" href="<?php echo config::byKey('doc::base_url', 'core'); ?>" target="_blank">Doc</a> |
+      <?php } ?>
       <a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
       <br><br>
       {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
@@ -46,7 +48,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-image"></i> {{Guide de démarrage}}</a>
       <br><br>
     </div>
-
+    
     <div class="form-group">
       <div class="center label-info">
         <span class="label">{{Auteur(s)}}</span>
@@ -57,7 +59,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
         <br><br>
       </div>
     </div>
-
+    
     <div class="form-group">
       <div class="center label-info">
         <span class="label">Licence</span>
@@ -66,7 +68,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
         <textarea readonly class="form-control" style="resize:none!important; min-height:15em; padding:5px; height:15em;"><?php echo $licenceText ?></textarea>
       </div>
     </div>
-
+    
     <div class="form-group">
       <div class="center">
         <br>
@@ -79,22 +81,22 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 
 <script>
 $(function() {
-    var currentTheme = $('body').attr('data-theme')
-    if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
-      $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
-    }
-    var parentWidth = $( window ).width()
-    var parentHeight = $( window ).height()
-    if (parentWidth > 850 && parentHeight > 750) {
-      $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 650)
-      $("#md_modal").dialog({
-        position: {
-          my: "center center",
-          at: "center center",
-          of: window
-        }
-      })
-    }
+  var currentTheme = $('body').attr('data-theme')
+  if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+    $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
+  }
+  var parentWidth = $( window ).width()
+  var parentHeight = $( window ).height()
+  if (parentWidth > 850 && parentHeight > 750) {
+    $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 650)
+    $("#md_modal").dialog({
+      position: {
+        my: "center center",
+        at: "center center",
+        of: window
+      }
+    })
+  }
 })
 
 $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
