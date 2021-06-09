@@ -112,7 +112,7 @@ try {
 				$page = 'administration';
 			}
 			$version = substr(jeedom::version(), 0, 3);
-			ajax::success('https://doc.jeedom.com/' . config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page).'?theme='.$theme);
+			ajax::success(config::byKey('doc::base_url', 'core').'/'. config::byKey('language', 'core', 'fr_FR') . '/core/'.$version.'/' . secureXSS($page).'?theme='.$theme);
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
