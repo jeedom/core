@@ -31,7 +31,6 @@ class repo_market {
 		'hasConfiguration' => true,
 		'proxy' => true,
 		'hasStore' => true,
-		'urlStore' => 'address',
 		'test' => true,
 		'pullInstall' => true,
 	);

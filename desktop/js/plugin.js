@@ -440,6 +440,10 @@ $('.gotoUrlStore').on('click', function() {
   window.open($(this).attr('data-href'),'_blank');
 })
 
+$('.displayStore').on('click', function() {
+  $('#md_modal').dialog({title: "{{Market}}"}).load('index.php?v=d&modal=update.list&type=plugin&repo='+$(this).attr('data-repo')).dialog('open')
+})
+
 $('#bt_addPluginFromOtherSource').on('click', function() {
   $('#md_modal').dialog({title: "{{Ajouter un plugin}}"}).load('index.php?v=d&modal=update.add').dialog('open')
 })
