@@ -54,11 +54,16 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 
 # Changelog Jeedom V4.1
 
+## 4.1.23
+
+- Correction de bugs sur l'archivage de l'historique
+- Correction d'un souci de cache qui pouvait disparaitre lors d'un reboot
+- Correction d'un bug sur la gestion des répétitions des commandes binaires : dans certain cas si l'équipement envoi deux fois 1 ou 0 d'affilé, seule la première remontée était prise en compte. Attention cette correction de bug peut entraîner une surcharge de la CPU. Il faut donc bien mettre à jour les plugins aussi (Philips Hue notamment) pour d'autre cas (déclenchement multiple de scénario, alors que ce n'était pas le cas avant la mise à jour) bien regarder la configuration de la commande binaire en question sur la répétition des valeurs (configuration avancée de la commande) et la passer en "jamais répéter" pour retrouver le fonctionnement d'avant.
 
 ## 4.1.22
 
-- Ajout d'un systeme permettant a Jeedom SAS de communiquer des messages à tous les Jeedoms.
-- Passage du DNS Jeedom en mode haute disponibilité.
+- Ajout d'un système permettant à Jeedom SAS de communiquer des messages à tous les Jeedom
+- Passage du DNS Jeedom en mode haute disponibilité
 
 ## 4.1.20
 
