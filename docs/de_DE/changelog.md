@@ -54,11 +54,16 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 
 # Changelog Jeedom V4.1
 
+## 4.1.23
+
+- Fehler bei der Verlaufsarchivierung behoben
+- Cache-Problem behoben, das während eines Neustarts verschwinden konnte
+- Fehler bei der Verwaltung von Wiederholungen binärer Befehle behoben Fixed : in bestimmten Fällen, wenn das Gerät zweimal 1 oder 0 hintereinander sendet, wurde nur die Erstbegehung berücksichtigt. Bitte beachten Sie, dass diese Fehlerkorrektur zu einer Überlastung der CPU führen kann. Daher ist es notwendig, auch die Plugins (insbesondere Philipps Hue) für andere Fälle zu aktualisieren (mehrfache Szenarioauslösung, was vor dem Update nicht der Fall war), Frage zur Wiederholung von Werten (erweiterte Konfiguration des Befehls) und ändern Sie es in "Nie wiederholen", um den vorherigen Vorgang zu finden.
 
 ## 4.1.22
 
-- Hinzufügen eines Systems, mit dem Jeedom SAS Nachrichten an alle Jeedoms übermitteln kann.
-- Umschalten von Jeedom DNS in den Hochverfügbarkeitsmodus.
+- Hinzufügen eines Systems, das es Jeedom SAS ermöglicht, Nachrichten an alle Jeedom . zu übermitteln
+- Umschalten von Jeedom DNS in den Hochverfügbarkeitsmodus
 
 ## 4.1.20
 

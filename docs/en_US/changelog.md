@@ -54,11 +54,16 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 # Changelog Jeedom V4.1
 
+## 4.1.23
+
+- Fixed bugs on history archiving
+- Fixed a cache issue that could disappear during a reboot
+- Fixed a bug on the management of repetitions of binary commands : in certain cases if the equipment sends twice 1 or 0 in a row, only the first ascent was taken into account. Please note that this bug correction can lead to an overload of the CPU. It is therefore necessary to update the plugins too (Philips Hue in particular) for other cases (multiple scenario triggering, whereas this was not the case before the update). question on the repetition of values (advanced configuration of the command) and change it to "never repeat" to find the way it was before.
 
 ## 4.1.22
 
-- Addition of a system allowing Jeedom SAS to communicate messages to all Jeedoms.
-- Switching Jeedom DNS to high availability mode.
+- Addition of a system allowing Jeedom SAS to communicate messages to all Jeedom
+- Switching Jeedom DNS to high availability mode
 
 ## 4.1.20
 
