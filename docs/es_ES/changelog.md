@@ -54,11 +54,16 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 # Registro de cambios Jeedom V4.1
 
+## 4.1.23
+
+- Errores corregidos en el archivo del historial
+- Se corrigió un problema de caché que podía desaparecer durante un reinicio
+- Se corrigió un error en la gestión de repeticiones de comandos binarios : en ciertos casos si el equipo envía dos veces 1 o 0 seguidos, solo se tuvo en cuenta el primer ascenso. Tenga en cuenta que esta corrección de errores puede provocar una sobrecarga de la CPU. Por lo tanto, es necesario actualizar los complementos también (Philips Hue en particular) para otros casos (activación de múltiples escenarios, mientras que este no era el caso antes de la actualización). Pregunta sobre la repetición de valores (configuración avanzada del comando) y cámbielo a "nunca repetir" para encontrar la operación anterior.
 
 ## 4.1.22
 
-- Adición de un sistema que permite a Jeedom SAS comunicar mensajes a todos los Jeedom.
-- Cambiar el DNS de Jeedom al modo de alta disponibilidad.
+- Adición de un sistema que permite a Jeedom SAS comunicar mensajes a todos los Jeedom
+- Cambiar el DNS de Jeedom al modo de alta disponibilidad
 
 ## 4.1.20
 

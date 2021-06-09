@@ -54,11 +54,16 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 # Registro de alterações Jeedom V4.1
 
+## 4.1.23
+
+- Bugs corrigidos no arquivamento de histórico
+- Corrigido um problema de cache que pode desaparecer durante uma reinicialização
+- Corrigido um bug no gerenciamento de repetições de comandos binários : em certos casos se o equipamento enviar duas vezes 1 ou 0 seguidos, apenas a primeira subida foi levada em consideração. Por favor, note que esta correção de bug pode levar a uma sobrecarga da CPU. Portanto, é necessário atualizar os plug-ins também (Philips Hue em particular) para outros casos (acionamento de múltiplos cenários, enquanto este não era o caso antes da atualização). Dúvida sobre a repetição de valores (configuração avançada do comando) e mude para "nunca repetir" para encontrar a operação anterior.
 
 ## 4.1.22
 
-- Adição de um sistema que permite ao Jeedom SAS comunicar mensagens a todos os Jeedoms.
-- Alternando Jeedom DNS para o modo de alta disponibilidade.
+- Adição de um sistema que permite ao Jeedom SAS comunicar mensagens a todos os Jeedom
+- Alternando Jeedom DNS para o modo de alta disponibilidade
 
 ## 4.1.20
 
