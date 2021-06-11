@@ -14,11 +14,28 @@ $excludeParams = [];
 $excludeParams['eqLogic'] = ['order', 'display', 'comment'];
 $excludeParams['eqLogic']['configuration'] = ['createtime', 'updatetime', 'batterytime'];
 
+//scan DB for keys, values, jsonValues:
 global $typePossibilities;
-
 scanDB('eqLogic');
 scanDB('cmd');
 scanDB('object');
+//sorting all this:
+foreach($typePossibilities as &$item) {
+  ksort($item);
+}
+foreach($typePossibilities as &$item) {
+  foreach($item as &$key) {
+    if (!is_string($key[0])) {
+      uksort($key, function ($a, $b) {
+        $a = strtolower($a);
+        $b = strtolower($b);
+        return strcmp($a, $b);
+      });
+    } else {
+      sort($key);
+    }
+  }
+}
 sendVarToJS('typePossibilities', $typePossibilities);
 
 function scanDB($_table) {
