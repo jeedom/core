@@ -43,7 +43,7 @@ function scanDB($_table) {
       if (!array_key_exists($key, $typePossibilities[$_table])) {
         $typePossibilities[$_table][$key] = [];
       }
-      if (substr($value, 0, 1) === "{") {
+      if (is_object(json_decode($value))) {
         try {
           $json = json_decode($value, true);
           foreach ($json as $jkey => $jvalue) {
@@ -53,9 +53,10 @@ function scanDB($_table) {
             if (!array_key_exists($jkey, $typePossibilities[$_table][$key])) {
               $typePossibilities[$_table][$key][$jkey] = [];
             }
-            if (!in_array($jvalue, $typePossibilities[$_table][$key][$jkey])) array_push($typePossibilities[$_table][$key][$jkey], $jvalue);
+            if (!in_array($jvalue, $typePossibilities[$_table][$key][$jkey])) {
+              array_push($typePossibilities[$_table][$key][$jkey], $jvalue);
+            }
           }
-
         } catch (Exception $e) {}
       } else {
         if (!in_array($value, $typePossibilities[$_table][$key])) {
