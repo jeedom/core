@@ -443,7 +443,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Objet": "Objeto",
         "Equipement": "Equipamento",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Commande info": "Comando Info",
         "Commande action": "Comando de ação"
     },
@@ -555,7 +555,7 @@
         "Rechercher": "Pesquisa",
         "Recherche par": "Pesquisar por",
         "Equipement": "Equipamento",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Variable": "Variável",
         "Plugin": "Plugar",
         "Mot": "Palavra",
@@ -578,7 +578,7 @@
         "Ouvrir configuration de la commande.": "Configuração de ordem aberta",
         "Ouvrir la note.": "Abra a nota",
         "Log d'exécution du scénario": "Log execução do script",
-        "Configuration de la commande": "Configuração de comando"
+        "Configuration de la commande": "Set Controle"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant : ": "Atenção, detectamos as seguintes preocupações:",
@@ -833,7 +833,7 @@
         "2 ans": "2 anos",
         "3 ans": "3 anos",
         "Jamais": "Sempre",
-        "Configuration de la commande": "Configuração de comando",
+        "Configuration de la commande": "Set Controle",
         "Exporter la commande": "Exportar o pedido",
         "Modifications sauvegardées avec succès": "Alterações salvas com sucesso"
     },
@@ -944,7 +944,7 @@
         "Sauvegarde réussie": "Backup bem-sucedido",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Tem certeza de que deseja remover este dispositivo?",
         "Suppression réalisée avec succès": "Remoção concluída com êxito",
-        "Configuration de la commande": "Configuração de comando",
+        "Configuration de la commande": "Set Controle",
         "Logs": "Toras",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "Você trocou as baterias? Esta ação definirá a data de troca da bateria para hoje",
         "Changement de pile(s) pris en compte": "Troca da (s) bateria (s) levada em consideração"
@@ -987,7 +987,7 @@
         "Voulu par": "Procurado por",
         "Version": "Versão",
         "Remarque": "Nota",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Action": "Açao",
         "Mise à jour": "Update",
         "oui": "Sim",
@@ -1193,7 +1193,7 @@
         "Attention : peut être source de problèmes.": "Aviso: pode causar problemas",
         "Appliquer le css personnalisé sur": "Aplicar css personalizado em",
         "Commandes": "Comandos",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Masquer": "Esconder",
         "Taille de la police": "Tamanho da fonte",
         "Alignement du texte": "Alinhamento de texto",
@@ -1997,7 +1997,7 @@
         "Mes widgets": "Meus widgets",
         "Rechercher": "Pesquisa",
         "Appliquer à": "Aplicar",
-        "Exporter": "Exportar",
+        "Exporter": "Exportação",
         "Sauvegarder": "Salvar",
         "Supprimer": "Retirar",
         "Widgets": "Widgets",
@@ -2071,7 +2071,7 @@
         "Dupliquer": "Duplicar",
         "Liens": "Conexões",
         "Edition texte": "Edição de texto",
-        "Exporter": "Exportar",
+        "Exporter": "Exportação",
         "Template": "Modelo",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Salve antes de testar. Isso pode não ser bem sucedido. <br> Ctrl + clique para salvar, executar e abrir o log",
         "Exécuter": "Executar",
@@ -2220,7 +2220,7 @@
         "Rechercher": "Pesquisa",
         "Aucun équipement en Alerte.": "Nenhum equipamento em alerta",
         "Equipement": "Equipamento",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Type": "Tipo",
         "Actions": "Estoque",
         "Action sur état": "Ação do Estado",
@@ -2645,7 +2645,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuração do objeto",
         "Configuration de l'équipement": "Configuração do equipamento",
-        "Configuration de la commande": "Configuração de comando",
+        "Configuration de la commande": "Set Controle",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Etes-vous sûr de vouloir supprimer tous ces équipements ?",
         "Historique des suppressions": "Histórico de exclusão",
         "Historique vidé avec succès": "Histórico esvaziado com sucesso"
@@ -2776,7 +2776,7 @@
         "Configuration de l'historique des commandes": "Controles de configuração História",
         "Log d'exécution du scénario": "Log execução do script",
         "Historique": "Histórico",
-        "Configuration de la commande": "Configuração de comando"
+        "Configuration de la commande": "Set Controle"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Nenhum pode visualizar pdf"
@@ -2821,7 +2821,7 @@
         "Test": "Teste",
         "Résultat si test ok": "Resultado se teste ok",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
-        "Configuration de la commande": "Configuração de comando",
+        "Configuration de la commande": "Set Controle",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Tem certeza de que deseja excluir este widget?",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "A importação de widgets é feita no formato json a partir de widgets exportados anteriormente",
         "Fichier json non compatible.": "Arquivo Json não compatível",
@@ -2890,7 +2890,7 @@
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagem de fundo adicionada com sucesso",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Tem certeza de que deseja excluir o objeto 's \\",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Activer": "Ativar",
         "Inverser": "Inverter",
         "Vue d'ensemble des objets": "Visão geral dos objetos",
@@ -3618,7 +3618,7 @@
         "Commande inconnue : ": "Comando desconhecido:",
         "Aucun point ne correspond pour l\\'historique : ": "Nenhum ponto corresponde ao histórico:",
         "Jeedom": "Jeedom",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Objet": "Objeto",
         "Scénario": "Cenário",
         "Interaction": "Interação",
@@ -3832,7 +3832,7 @@
         "Erreur delete influx sur : ": "Erro ao excluir influxo em:",
         "Envoie de l\\'historique à influx : ": "Envia histórico de influxo:",
         "Erreur history influx sur : ": "Erro de influxo de histórico em:",
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)"
     },
     "core\/class\/jeedom.class.php": {
@@ -3947,7 +3947,7 @@
         "aucune valeur": "inútil"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Date": "Data",
         "Valeur": "Valor",
         "La commande source n\\'existe pas :": "O comando source não existe:",
@@ -4234,7 +4234,7 @@
         "Message de ": "Mensagem do"
     },
     "core\/class\/timeline.class.php": {
-        "Configuration de la commande": "Configuração de comando",
+        "Configuration de la commande": "Set Controle",
         "Historique": "Histórico",
         "Scénario déclenché par": "Cenário acionado por",
         "Aller au scénario": "Ir para o cenário",
@@ -4386,7 +4386,7 @@
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Ordenado",
+        "Commande": "Ordem",
         "Valeur": "Valor",
         "Sélectionner la commande": "Selecione o comando"
     },
@@ -4444,7 +4444,7 @@
         "Commandes": "Comandos"
     },
     "core\/template\/scenario\/report.default.html": {
-        "Exporter": "Exportar",
+        "Exporter": "Exportação",
         "Vue": "Visão",
         "Design": "Projeto",
         "Plugin": "Plugar",

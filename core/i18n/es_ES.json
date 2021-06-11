@@ -354,7 +354,7 @@
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Tenga en cuenta que la cuenta de usuario no tiene un perfil de \"Usuario limitado\", por lo que no se pueden aplicar restricciones aquí",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Droits": "Permisos",
         "Aucun": "No",
         "Visualisation": "Visualización",
@@ -442,8 +442,8 @@
     "desktop\/modal\/cmd.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Equipement": "Equipo",
-        "Commande": "Ordenado",
+        "Equipement": "Dispositivo",
+        "Commande": "Comando",
         "Commande info": "Comando de información",
         "Commande action": "Comando de acción"
     },
@@ -491,7 +491,7 @@
     "desktop\/modal\/eqLogic.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Equipement": "Equipo"
+        "Equipement": "Dispositivo"
     },
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -500,7 +500,7 @@
         "Supprimer": "Eliminar",
         "Nom": "Nombre",
         "Type de lien": "Tipo de enlace",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Lien": "Enlace",
         "Rechercher d\\'un équipement": "Buscar dispositivo",
         "Spécificité": "Especificidad",
@@ -554,8 +554,8 @@
         "Résumé Domotique": "Resumen de domótica",
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
-        "Equipement": "Equipo",
-        "Commande": "Ordenado",
+        "Equipement": "Dispositivos",
+        "Commande": "Comando",
         "Variable": "Variable",
         "Plugin": "Enchufar",
         "Mot": "Palabra",
@@ -578,7 +578,7 @@
         "Ouvrir configuration de la commande.": "Configuración de orden abierta",
         "Ouvrir la note.": "Abre la nota",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
-        "Configuration de la commande": "Configuración de comandos"
+        "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant : ": "Atención hemos detectado las siguientes inquietudes:",
@@ -671,7 +671,7 @@
         "Cette commande remplace l'ID": "Este comando reemplaza el ID",
         "Cette commande remplace la commande": "Esta orden reemplaza la orden",
         "Remplacer cette commande par la commande": "Reemplazar este comando por el comando",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivo",
         "Commandes": "Comandos",
         "Scénario": "Escenario",
         "Calcul et arrondi": "Cálculo y redondeo",
@@ -833,7 +833,7 @@
         "2 ans": "2 años",
         "3 ans": "3 años",
         "Jamais": "Nunca",
-        "Configuration de la commande": "Configuración de comandos",
+        "Configuration de la commande": "Configuración del comando",
         "Exporter la commande": "Exportar el pedido",
         "Modifications sauvegardées avec succès": "Cambios guardados exitosamente"
     },
@@ -944,7 +944,7 @@
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "¿Estás seguro de que deseas eliminar este equipo?",
         "Suppression réalisée avec succès": "Eliminación realizada con éxito",
-        "Configuration de la commande": "Configuración de comandos",
+        "Configuration de la commande": "Configuración del comando",
         "Logs": "Registros",
         "Avez-vous changé les piles ? Cette action mettra la date de changement de piles à aujourd\\'hui": "¿Ha cambiado las pilas? Esta acción establecerá la fecha de cambio de batería en hoy",
         "Changement de pile(s) pris en compte": "Cambio de batería (s) tomado en cuenta"
@@ -987,7 +987,7 @@
         "Voulu par": "Buscado por",
         "Version": "Versión",
         "Remarque": "Observación",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Action": "Acción",
         "Mise à jour": "Actualización",
         "oui": "Si",
@@ -1108,7 +1108,7 @@
         "Inverser": "Invertir",
         "Valider": "Validar",
         "Objet": "Objeto",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Nom": "Nombre"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -1193,7 +1193,7 @@
         "Attention : peut être source de problèmes.": "Advertencia: puede causar problemas",
         "Appliquer le css personnalisé sur": "Aplicar CSS personalizado en",
         "Commandes": "Comandos",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Masquer": "Ocultar",
         "Taille de la police": "Tamaño de fuente",
         "Alignement du texte": "Alineación de texto",
@@ -1209,7 +1209,7 @@
         "Macro binaire": "Macro binario",
         "Widget au survol": "Resumen del Widget",
         "Action": "Acción",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Afficher au survol": "Mostrar en paso elevado",
         "Afficher sur un clic": "Mostrar en un clic",
         "Position": "Posición",
@@ -1991,7 +1991,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
         "Ajouter": "Añadir",
-        "Importer": "Importar",
+        "Importer": "Importación",
         "Code": "Código",
         "Remplacement": "Reemplazo",
         "Mes widgets": "Mis widgets",
@@ -2049,7 +2049,7 @@
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
         "Nom": "Nombre",
         "Type": "Tipo",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
         "Annuler": "Cancelar"
@@ -2205,7 +2205,7 @@
         "Catégories": "Categorías",
         "Sans catégorie": "Sin categoría",
         "Visibles": "Visible",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Tous": "Todos"
     },
     "desktop\/php\/eqAnalyse.php": {
@@ -2219,8 +2219,8 @@
         "Commandes orphelines": "Controles huérfanos",
         "Rechercher": "Buscar",
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
-        "Equipement": "Equipo",
-        "Commande": "Ordenado",
+        "Equipement": "Dispositivos",
+        "Commande": "Comando",
         "Type": "Tipo",
         "Actions": "Acciones",
         "Action sur état": "Acción estatal",
@@ -2645,7 +2645,7 @@
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuración del objeto",
         "Configuration de l'équipement": "Configuración del equipo",
-        "Configuration de la commande": "Configuración de comandos",
+        "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "¿Estás seguro de que deseas eliminar todo este equipo?",
         "Historique des suppressions": "Historial de borrado",
         "Historique vidé avec succès": "EL histórico se vació con éxito"
@@ -2776,7 +2776,7 @@
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
         "Historique": "Historial",
-        "Configuration de la commande": "Configuración de comandos"
+        "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/report.js": {
         "Aucun aperçu possible en pdf": "Sin vista previa disponible en pdf"
@@ -2821,7 +2821,7 @@
         "Test": "Prueba",
         "Résultat si test ok": "Resultado si la prueba está bien",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
-        "Configuration de la commande": "Configuración de comandos",
+        "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "¿Seguro que quieres eliminar este widget?",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "La importación de widgets se realiza en formato json desde widgets previamente exportados",
         "Fichier json non compatible.": "El archivo Json no es compatible",
@@ -2890,7 +2890,7 @@
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "¿Está seguro de que desea eliminar el objeto?",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Activer": "Activar",
         "Inverser": "Invertir",
         "Vue d'ensemble des objets": "Resumen de objetos",
@@ -3618,7 +3618,7 @@
         "Commande inconnue : ": "Comando desconocido:",
         "Aucun point ne correspond pour l\\'historique : ": "Ningún punto corresponde a la historia:",
         "Jeedom": "Jeedom",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Objet": "Objeto",
         "Scénario": "Escenario",
         "Interaction": "Interacción",
@@ -3832,7 +3832,7 @@
         "Erreur delete influx sur : ": "Error al eliminar la afluencia en:",
         "Envoie de l\\'historique à influx : ": "Envía historial de afluencia:",
         "Erreur history influx sur : ": "Error de flujo de historial en:",
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "(Non géré par Application Mobile)": "(No administrado por Application Mobile)"
     },
     "core\/class\/jeedom.class.php": {
@@ -3947,7 +3947,7 @@
         "aucune valeur": "ningún valor"
     },
     "core\/class\/history.class.php": {
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Date": "Fecha",
         "Valeur": "Valor",
         "La commande source n\\'existe pas :": "El comando fuente no existe:",
@@ -4082,7 +4082,7 @@
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La versión solicitada no puede estar vacía (móvil, tablero o escenario)",
         "$value['name']": "Valor $ [ 'nombre']",
         "Le nom de l\\'équipement ne peut pas être vide : ": "El nombre del dispositivo no puede estar vacío:",
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Action": "Acción"
     },
     "core\/class\/interactDef.class.php": {
@@ -4234,7 +4234,7 @@
         "Message de ": "Mensaje de"
     },
     "core\/class\/timeline.class.php": {
-        "Configuration de la commande": "Configuración de comandos",
+        "Configuration de la commande": "Configuración del comando",
         "Historique": "Historial",
         "Scénario déclenché par": "Escenario desencadenado por",
         "Aller au scénario": "Ir al escenario",
@@ -4369,7 +4369,7 @@
         "Nom": "Nombre"
     },
     "core\/template\/scenario\/equipement.default.html": {
-        "Equipement": "Equipo",
+        "Equipement": "Dispositivos",
         "Sélectionner un équipement": "Seleccionar dispositivo",
         "Action": "Acción",
         "Visible": "Visible",
@@ -4386,7 +4386,7 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/event.default.html": {
-        "Commande": "Ordenado",
+        "Commande": "Comando",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccione el comando"
     },
