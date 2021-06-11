@@ -733,7 +733,7 @@
         "Retour à la ligne forcé après le widget": "Forced newline after the widget",
         "Paramètres optionnels widget": "Optional widget settings",
         "Sélection multiple de commandes": "Multiple command selection",
-        "Configuration commande": "Control configuration",
+        "Configuration commande": "Command configuration",
         "Pas de description des paramètres optionnels sur ce Widget.": "No description of the optional parameters on this Widget",
         "Graphique des liens": "Links chart",
         "Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\\'InfluxDB": "Are you sure you want to remove all info for this command from InfluxDB",
@@ -1981,11 +1981,11 @@
         "Exporter": "Export",
         "Importer": "Import",
         "Exécuter": "Execute",
-        "Filtre": "Filtered",
+        "Filtre": "Filter",
         "Equipement": "Equipment",
-        "Commande": "Ordered",
+        "Commande": "Command",
         "Objet": "Object",
-        "Edition": "Editing"
+        "Edition": "Edition"
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
