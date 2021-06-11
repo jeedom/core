@@ -125,7 +125,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Valeur}}</label>
                   <div class="col-xs-8">
-                    <span class="label label-primary"><?php echo $cache['value'] ?></span>
+                    <span class="label label-primary" style="max-width: 100%;"><?php echo $cache['value'] ?></span>
                   </div>
                 </div>
                 <div class="form-group">
