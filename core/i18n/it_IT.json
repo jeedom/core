@@ -1324,6 +1324,7 @@
         "Testeur expression": "Tester di espressione",
         "Variables": "Variabili",
         "Recherche": "Recherche",
+        "Editeur en masse": "Editeur en masse",
         "Plugins": "Plugins",
         "Gestion des plugins": "Gestione Plugin",
         "Réglages": "Impostazioni",
@@ -1972,6 +1973,19 @@
     },
     "desktop\/php\/modaldisplay.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato"
+    },
+    "desktop\/php\/massedit.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Sauvegarde Système": "Sauvegarde Système",
+        "Exporter": "Exporter",
+        "Importer": "Importer",
+        "Exécuter": "Exécuter",
+        "Filtre": "Filtre",
+        "Equipement": "Equipement",
+        "Commande": "Commande",
+        "Objet": "Objet",
+        "Edition": "Edition"
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2663,6 +2677,11 @@
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
         "Période de comparaison": "Période de comparaison",
         "Historique supprimé avec succès": "Storico cancellato con successo"
+    },
+    "desktop\/js\/massedit.js": {
+        "Configuration de la commande": "Configuration de la commande",
+        "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json",
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Comando:",

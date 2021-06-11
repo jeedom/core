@@ -1324,6 +1324,7 @@
         "Testeur expression": "Testeur expression",
         "Variables": "Değişkenler",
         "Recherche": "Recherche",
+        "Editeur en masse": "Editeur en masse",
         "Plugins": "Ekler",
         "Gestion des plugins": "Eklerin idaresi",
         "Réglages": "Réglages",
@@ -1972,6 +1973,19 @@
     },
     "desktop\/php\/modaldisplay.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
+    },
+    "desktop\/php\/massedit.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Sauvegarde Système": "Sauvegarde Système",
+        "Exporter": "Exporter",
+        "Importer": "Importer",
+        "Exécuter": "Exécuter",
+        "Filtre": "Filtre",
+        "Equipement": "Equipement",
+        "Commande": "Commande",
+        "Objet": "Objet",
+        "Edition": "Edition"
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -2663,6 +2677,11 @@
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
         "Période de comparaison": "Période de comparaison",
         "Historique supprimé avec succès": "Geçmiş başarıyla silindi"
+    },
+    "desktop\/js\/massedit.js": {
+        "Configuration de la commande": "Configuration de la commande",
+        "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json",
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "Komuta :",

@@ -1324,6 +1324,7 @@
         "Testeur expression": "発現テスター",
         "Variables": "変数",
         "Recherche": "Recherche",
+        "Editeur en masse": "Editeur en masse",
         "Plugins": "プラグイン",
         "Gestion des plugins": "プラグインの管理",
         "Réglages": "設定",
@@ -1972,6 +1973,19 @@
     },
     "desktop\/php\/modaldisplay.php": {
         "401 - Accès non autorisé": "401-不正アクセス"
+    },
+    "desktop\/php\/massedit.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
+        "Sauvegarde Système": "Sauvegarde Système",
+        "Exporter": "Exporter",
+        "Importer": "Importer",
+        "Exécuter": "Exécuter",
+        "Filtre": "Filtre",
+        "Equipement": "Equipement",
+        "Commande": "Commande",
+        "Objet": "Objet",
+        "Edition": "Edition"
     },
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2663,6 +2677,11 @@
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de ": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
         "Période de comparaison": "Période de comparaison",
         "Historique supprimé avec succès": "歴史は正常に削除しました"
+    },
+    "desktop\/js\/massedit.js": {
+        "Configuration de la commande": "Configuration de la commande",
+        "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json",
+        "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
     },
     "desktop\/js\/database.js": {
         "Commande : ": "注文：",
