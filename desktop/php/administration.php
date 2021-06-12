@@ -30,7 +30,7 @@ user::isBan();
 				<div id="searchResult"></div>
 			</form>
 		</div>
-
+		
 		<ul class="nav nav-tabs nav-primary" role="tablist">
 			<li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 			<li role="presentation"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
@@ -47,7 +47,7 @@ user::isBan();
 			<li role="presentation"><a href="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key" title="{{API}}"></i><span> {{API}}</span></a></li>
 			<li role="presentation"><a href="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal" title="{{OS/DB}}"></i><span> {{OS/DB}}</span></a></li>
 		</ul>
-
+		
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
 				<br/>
@@ -217,7 +217,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<input type="text"  class="configKey form-control" data-l1key="ntp::optionalServer" />
 							</div>
-
+							
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}"></i></sup>
 							</label>
@@ -278,7 +278,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="info::latitude" />
 							</div>
-
+							
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Longitude}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="info::longitude" />
@@ -294,7 +294,7 @@ user::isBan();
 								<input type="text" class="configKey form-control" data-l1key="info::address" />
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Code postal}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -309,7 +309,7 @@ user::isBan();
 								<input type="text" class="configKey form-control" data-l1key="info::stateCode" />
 							</div>
 						</div>
-
+						
 						<legend>{{Divers}}</legend>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Surface habitable}} <sub>m²</sub></label>
@@ -324,7 +324,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="interfacetab">
 				<br/>
 				<form class="form-horizontal">
@@ -407,10 +407,10 @@ user::isBan();
 								<input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight"/>
 							</div>
 						</div>
-
+						
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
-                        	<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -453,7 +453,7 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" />
 							</div>
 						</div>
-
+						
 						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
@@ -471,37 +471,37 @@ user::isBan();
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Dashboard}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet).}}"></i></sup>
 							</label>
-						    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-              					<span class="btn btn-default btn-file btn-xs">
-                					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="dashboard">
-              					</span>
-              					<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="dashboard"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-            				</div>
+							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+								<span class="btn btn-default btn-file btn-xs">
+									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="dashboard">
+								</span>
+								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="dashboard"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Analyse}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse.}}"></i></sup>
 							</label>
-						    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-              					<span class="btn btn-default btn-file btn-xs">
-                					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="analysis">
-              					</span>
-              					<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="analysis"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-            				</div>
+							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+								<span class="btn btn-default btn-file btn-xs">
+									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="analysis">
+								</span>
+								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="analysis"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Outils}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils.}}"></i></sup>
 							</label>
-						    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-              					<span class="btn btn-default btn-file btn-xs">
-                					<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="tools">
-              					</span>
-              					<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="tools"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-            				</div>
+							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+								<span class="btn btn-default btn-file btn-xs">
+									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  class="bt_uploadImage" type="file" name="file" data-page="tools">
+								</span>
+								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="tools"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
+							</div>
 						</div>
 						<div class="form-group">
-                        	<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Light}}
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Light}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -514,7 +514,7 @@ user::isBan();
 								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitydark" />
 							</div>
 						</div>
-
+						
 						<legend>{{Options}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
@@ -524,17 +524,17 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
 							</div>
 						</div>
-                        <div class="form-group">
+						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Position des notifications}}</label>
-                          	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-                              	<select class="form-control configKey" data-l1key="interface::toast::position">
-                                  	<option value="toast-top-left">{{En haut à gauche}}</option>
-                                  	<option value="toast-top-center">{{En haut au centre}}</option>
-                                  	<option value="toast-top-right">{{En haut à droite}}</option>
-                                  	<option value="toast-bottom-right">{{En bas à droite}}</option>
-                                  	<option value="toast-bottom-left">{{En bas à gauche}}</option>
-                              	</select>
-                          	</div>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<select class="form-control configKey" data-l1key="interface::toast::position">
+									<option value="toast-top-left">{{En haut à gauche}}</option>
+									<option value="toast-top-center">{{En haut au centre}}</option>
+									<option value="toast-top-right">{{En haut à droite}}</option>
+									<option value="toast-bottom-right">{{En bas à droite}}</option>
+									<option value="toast-bottom-left">{{En bas à gauche}}</option>
+								</select>
+							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée des notifications}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
@@ -542,7 +542,7 @@ user::isBan();
 								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" />
 							</div>
 						</div>
-
+						
 						<legend>{{Personnalisation}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
@@ -555,7 +555,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
 								<a class="btn btn-sm btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
 							</div>
-
+							
 							<label class="col-lg-1 col-sm-2 col-xs-3 control-label">{{Activer}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Activer la Personnalisation avancée.}}"></i></sup>
 							</label>
@@ -588,7 +588,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="networktab">
 				<br/>
 				<fieldset>
@@ -597,7 +597,7 @@ user::isBan();
 				</fieldset>
 				<form class="form-horizontal">
 					<fieldset>
-					<legend>{{Accès interne}}</legend>
+						<legend>{{Accès interne}}</legend>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
@@ -641,7 +641,7 @@ user::isBan();
 						</div>
 					</fieldset>
 				</form>
-
+				
 				<div class="row">
 					<div class="col-sm-6">
 						<fieldset>
@@ -760,7 +760,7 @@ user::isBan();
 					</div>
 				</div>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="logtab">
 				<br/>
 				<form class="form-horizontal">
@@ -794,7 +794,7 @@ user::isBan();
 						<div class="form-group">
 							<div class="col-sm-2 hidden-xs"></div>
 							<div class="col-sm-10 col-xs-12">
-
+								
 							</div>
 						</div>
 					</fieldset>
@@ -806,7 +806,7 @@ user::isBan();
 					<li role="presentation" class="active"><a href="#log_alertes" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes}}</a></li>
 					<li role="presentation"><a href="#log_log" role="tab" data-toggle="tab"><i class="fas fa-file"></i> {{Logs}}</a></li>
 				</ul>
-
+				
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="log_alertes">
 						<form class="form-horizontal">
@@ -839,7 +839,7 @@ user::isBan();
 							</fieldset>
 						</form>
 					</div>
-
+					
 					<div role="tabpanel" class="tab-pane" id="log_log">
 						<form class="form-horizontal">
 							<fieldset>
@@ -934,7 +934,7 @@ user::isBan();
 					</div>
 				</div>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="summarytab">
 				<br/>
 				<form class="form-horizontal">
@@ -971,7 +971,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="eqlogictab">
 				<br/>
 				<legend>{{Equipements}}</legend>
@@ -1005,9 +1005,24 @@ user::isBan();
 							</div>
 							<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-danger">{{Danger}}</label>
 						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-12 control-label">{{Scénario à éxecuter lors de la création d'un équipement}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-sm-3 col-xs-4">
+								<select class="configKey form-control" data-l1key="eqLogic::create::execScenario">
+									<option value="-1">{{Aucun}}</option>
+									<?php 
+									foreach (scenario::all() as $scenario) {
+										echo '<option value="'.$scenario->getId().'">'.$scenario->getHumanName().'</option>';
+									}
+									?>
+								</select>
+							</div>
+						</div>
 					</fieldset>
 				</form>
-
+				
 				<legend>{{Historique des commandes}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1085,7 +1100,7 @@ user::isBan();
 						</div>
 					</fieldset>
 				</form>
-
+				
 				<legend>{{Push}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1099,7 +1114,7 @@ user::isBan();
 						</div>
 					</fieldset>
 				</form>
-
+				
 				<legend>{{InfluxDB}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1136,7 +1151,7 @@ user::isBan();
 						</div>
 					</fieldset>
 				</form>
-
+				
 				<legend>{{Expressions}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1152,7 +1167,7 @@ user::isBan();
 				</form>
 				<br/>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="repporttab">
 				<br/>
 				<form class="form-horizontal">
@@ -1176,7 +1191,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="graphlinktab">
 				<br/>
 				<form class="form-horizontal">
@@ -1240,7 +1255,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="interacttab">
 				<br/>
 				<form class="form-horizontal">
@@ -1294,8 +1309,8 @@ user::isBan();
 								<textarea type="text" class="configKey form-control" data-l1key="interact::regexpExcludGlobal"></textarea>
 							</div>
 						</div>
-
-
+						
+						
 						<legend>{{Interaction automatique, contextuelle & avertissement}}</legend>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Activer les interactions automatiques}}</label>
@@ -1333,7 +1348,7 @@ user::isBan();
 								<input class="configKey form-control" data-l1key="interact::warnme::start" />
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Commande de retour par défaut}}</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
@@ -1345,7 +1360,7 @@ user::isBan();
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
@@ -1382,9 +1397,9 @@ user::isBan();
 								<input class="configKey form-control" data-l1key="interact::autoreply::cmd::slider::min" />
 							</div>
 						</div>
-
+						
 						<legend>{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></legend>
-
+						
 						<table class="table table-condensed table-bordered" id="table_convertColor" >
 							<thead>
 								<tr>
@@ -1401,7 +1416,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="securitytab">
 				<br/>
 				<form class="form-horizontal">
@@ -1429,7 +1444,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes}}"></i></sup>
 								<sub>s</sub>
 							</label>
-
+							
 							<div class="col-md-3 col-sm-4 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed" />
 							</div>
@@ -1451,7 +1466,7 @@ user::isBan();
 								<input type="text" class="configKey form-control" data-l1key="security::whiteips" />
 							</div>
 						</div>
-
+						
 						<legend>{{LDAP}}</legend>
 						<?php if (function_exists('ldap_connect')) {?>
 							<div class="form-group">
@@ -1565,20 +1580,20 @@ user::isBan();
 						}?>
 						
 						<legend>{{Intégration SSO}}</legend>
-							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Utilisateur disponible dans REMOTE_USER}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
-									<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
-								</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Utilisateur disponible dans REMOTE_USER}}</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
 							</div>
-
-							<div class="form-group">
-								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Utilisateur disponible dans un Header}}</label>
-								<div class="col-md-3 col-sm-4 col-xs-12">
-									<input type="text" class="configKey form-control" data-l1key="sso:userHeader" />
-								</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Utilisateur disponible dans un Header}}</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="sso:userHeader" />
 							</div>
-
+						</div>
+						
 						<legend>{{Dépendance et démon}}</legend>
 						<div class="form-group">
 							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}
@@ -1635,7 +1650,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="updatetab">
 				<br/>
 				<div class="row">
@@ -1703,10 +1718,10 @@ user::isBan();
 									<?php
 									foreach ($repos as $key => $value) {
 										$div = '';
-
+										
 										$name = (isset($value['configuration']['translate_name'])) ? $value['configuration']['translate_name'] : $value['name'];
 										$active = ($key == 'market') ? 'active' : '';
-
+										
 										$div .= '<div role="tabpanel" class="tab-pane ' . $active . '" id="tab' . $key . '">';
 										$div .= '<br/>';
 										$div .= '<div class="form-group">';
@@ -1771,7 +1786,7 @@ user::isBan();
 					</div>
 				</div>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="cachetab">
 				<br/>
 				<form class="form-horizontal">
@@ -1873,7 +1888,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="apitab">
 				<br/>
 				<form class="form-horizontal">
@@ -1924,7 +1939,7 @@ user::isBan();
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
@@ -2008,7 +2023,7 @@ user::isBan();
 					</fieldset>
 				</form>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="ostab">
 				<br/>
 				<form class="form-horizontal">
@@ -2054,20 +2069,20 @@ user::isBan();
 								<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Nettoyer}}</a>
 							</div>
 						</div>
-
+						
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="alert alert-danger">
 							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br/>
 							{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Administration Système}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
@@ -2076,7 +2091,7 @@ user::isBan();
 								<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Administration Base de données}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
@@ -2085,7 +2100,7 @@ user::isBan();
 								<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</a>
 							</div>
 						</div>
-
+						
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">
 								<i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}
