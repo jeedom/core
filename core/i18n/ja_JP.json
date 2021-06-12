@@ -1693,6 +1693,8 @@
         "Inférieur à": "より小さい",
         "Si le niveau de charge passe en dessous de (%)": "充電レベルが（％）を下回った場合",
         "Danger": "危険",
+        "Scénario à éxecuter lors de la création d'un équipement": "Scénario à éxecuter lors de la création d'un équipement",
+        "Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question": "Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question",
         "Historique des commandes": "Historique des commandes",
         "Afficher les statistiques sur les widgets": "ウィジェットに関する統計情報を表示します",
         "Période de calcul pour min, max, moyenne": "最小、最大、平均の計算期間",
@@ -4082,6 +4084,7 @@
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
         "$value['name']": "$value['name']",
         "Le nom de l\\'équipement ne peut pas être vide : ": "Le nom de l\\'équipement ne peut pas être vide :",
+        "Lancement du scénario sur création équipement": "Lancement du scénario sur création équipement",
         "Equipement": "設備",
         "Action": "Action"
     },

@@ -1693,6 +1693,8 @@
         "Inférieur à": "Less than",
         "Si le niveau de charge passe en dessous de (%)": "If the charge level drops below (%)",
         "Danger": "Danger",
+        "Scénario à éxecuter lors de la création d'un équipement": "Scenario to run when creating an item of equipment",
+        "Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question": "This scenario will be launched for each new equipment creation, the eqLogic_id tag will be passed to the scenario and will contain the id of the equipment in question",
         "Historique des commandes": "Command history",
         "Afficher les statistiques sur les widgets": "Display widget statistics",
         "Période de calcul pour min, max, moyenne": "Calculation period for min, max, average",
@@ -4082,6 +4084,7 @@
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "The requested version cannot be empty (mobile, dashboard or scenario)",
         "$value['name']": "$value['name']",
         "Le nom de l\\'équipement ne peut pas être vide : ": "The name of the device cannot be empty:",
+        "Lancement du scénario sur création équipement": "Launch of the scenario on equipment creation",
         "Equipement": "Equipment",
         "Action": "Action"
     },

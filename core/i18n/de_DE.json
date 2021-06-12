@@ -1693,6 +1693,8 @@
         "Inférieur à": "Weniger als",
         "Si le niveau de charge passe en dessous de (%)": "Wenn der Ladezustand unter (%) fällt",
         "Danger": "Gefahr",
+        "Scénario à éxecuter lors de la création d'un équipement": "Szenario, das beim Erstellen eines Ausrüstungsgegenstands ausgeführt werden soll",
+        "Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question": "Dieses Szenario wird bei jeder neuen Ausrüstungserstellung gestartet, das Tag eqLogic_id wird an das Szenario übergeben und enthält die ID der betreffenden Ausrüstung equipment",
         "Historique des commandes": "Bestellhistorie",
         "Afficher les statistiques sur les widgets": "Zeige Statistiken über Widgets",
         "Période de calcul pour min, max, moyenne": "Berechnungszeitraum für min, max, Durchschnitt",
@@ -4082,6 +4084,7 @@
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "Die angeforderte Version darf nicht leer sein (Handy, Dashboard oder Szenario)",
         "$value['name']": "$ Wert [ 'name']",
         "Le nom de l\\'équipement ne peut pas être vide : ": "Der Name des Geräts darf nicht leer sein:",
+        "Lancement du scénario sur création équipement": "Start des Szenarios zur Ausrüstungserstellung",
         "Equipement": "Gerät",
         "Action": "Aktion"
     },
