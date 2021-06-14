@@ -2091,6 +2091,15 @@ user::isBan();
 								<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Edition multiples de paramètres d'équipements, commandes, ...}}"></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>
+							</div>
+						</div>
 						
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Administration Base de données}}
