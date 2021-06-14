@@ -1324,7 +1324,6 @@
         "Testeur expression": "Testeur expression",
         "Variables": "Variabel",
         "Recherche": "Recherche",
-        "Editeur en masse": "Editeur en masse",
         "Plugins": "Plugins",
         "Gestion des plugins": "Manajemen plugin",
         "Réglages": "Réglages",
@@ -1885,6 +1884,8 @@
         "Ouvrir": "Ouvrir",
         "Administration Système": "Sistem administrasi",
         "Interface d’administration système.": "Interface d’administration système",
+        "Editeur en masse": "Editeur en masse",
+        "Edition multiples de paramètres d'équipements, commandes, ...": "Edition multiples de paramètres d'équipements, commandes,",
         "Administration Base de données": "Administrasi database",
         "Interface d’administration de la base de données.": "Interface d’administration de la base de données",
         "Utilisateur": "Pengguna"

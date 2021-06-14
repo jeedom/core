@@ -1324,7 +1324,6 @@
         "Testeur expression": "Testador de expressão",
         "Variables": "Variáveis",
         "Recherche": "Pesquisa",
-        "Editeur en masse": "Editor de massa",
         "Plugins": "Plugins",
         "Gestion des plugins": "Gerenciamento de plug-in",
         "Réglages": "Configurações",
@@ -1885,6 +1884,8 @@
         "Ouvrir": "Abrir",
         "Administration Système": "Administração do sistema",
         "Interface d’administration système.": "Interface de administração do sistema",
+        "Editeur en masse": "Editor de massa",
+        "Edition multiples de paramètres d'équipements, commandes, ...": "Edição múltipla de parâmetros de equipamento, comandos,",
         "Administration Base de données": "Banco de dados de administração",
         "Interface d’administration de la base de données.": "Interface de administração de banco de dados",
         "Utilisateur": "Do utilizador"

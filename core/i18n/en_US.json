@@ -1324,7 +1324,6 @@
         "Testeur expression": "Expression tester",
         "Variables": "Variables",
         "Recherche": "Search",
-        "Editeur en masse": "Mass editor",
         "Plugins": "Plugins",
         "Gestion des plugins": "Plugins management",
         "Réglages": "Settings",
@@ -1885,6 +1884,8 @@
         "Ouvrir": "Open",
         "Administration Système": "System Administration",
         "Interface d’administration système.": "System administration interface",
+        "Editeur en masse": "Mass editor",
+        "Edition multiples de paramètres d'équipements, commandes, ...": "Multiple editing of equipment parameters, commands,",
         "Administration Base de données": "Database Administration",
         "Interface d’administration de la base de données.": "Database administration interface",
         "Utilisateur": "User"

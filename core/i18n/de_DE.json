@@ -1324,7 +1324,6 @@
         "Testeur expression": "Expressionstester",
         "Variables": "Variablen",
         "Recherche": "Suche",
-        "Editeur en masse": "Masseneditor",
         "Plugins": "Plugins",
         "Gestion des plugins": "Plugin Management",
         "Réglages": "Einstellungen",
@@ -1885,6 +1884,8 @@
         "Ouvrir": "Öffnen",
         "Administration Système": "Systemverwaltung",
         "Interface d’administration système.": "Systemverwaltungsschnittstelle",
+        "Editeur en masse": "Masseneditor",
+        "Edition multiples de paramètres d'équipements, commandes, ...": "Mehrfachbearbeitung von Geräteparametern, Befehlen,",
         "Administration Base de données": "Datenbankverwaltung",
         "Interface d’administration de la base de données.": "Datenbankverwaltungsoberfläche",
         "Utilisateur": "Nutzer"

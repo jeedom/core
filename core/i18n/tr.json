@@ -1324,7 +1324,6 @@
         "Testeur expression": "Testeur expression",
         "Variables": "Değişkenler",
         "Recherche": "Recherche",
-        "Editeur en masse": "Editeur en masse",
         "Plugins": "Ekler",
         "Gestion des plugins": "Eklerin idaresi",
         "Réglages": "Réglages",
@@ -1885,6 +1884,8 @@
         "Ouvrir": "Ouvrir",
         "Administration Système": "Sistem yönetimi",
         "Interface d’administration système.": "Interface d’administration système",
+        "Editeur en masse": "Editeur en masse",
+        "Edition multiples de paramètres d'équipements, commandes, ...": "Edition multiples de paramètres d'équipements, commandes,",
         "Administration Base de données": "Yönetim veritabanı",
         "Interface d’administration de la base de données.": "Interface d’administration de la base de données",
         "Utilisateur": "Kullanıcı"
