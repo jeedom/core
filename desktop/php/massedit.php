@@ -123,6 +123,13 @@ function scanDB($_table) {
 
   <div class="col-xs-12">
     <form class="form-horizontal">
+      <div class="form-group">
+        <div class="col-md-2 col-xs-3"><i class="fas fa-database"></i> {{Colonne}}</div>
+        <div class="col-md-3 col-xs-3"><i class="fas fa-asterisk"></i> {{Valeur}}</div>
+        <div class="col-md-3 col-xs-3"><i class="fas fa-sitemap"></i> {{Valeur json}}</div>
+        <div class="col-md-1 col-xs-2">{{Options}}</div>
+      </div>
+
       <div id="filter">
 
       </div>
@@ -145,6 +152,12 @@ function scanDB($_table) {
 
   <div class="col-xs-12">
     <form class="form-horizontal">
+      <div class="form-group">
+        <div class="col-md-2 col-xs-3"><i class="fas fa-database"></i> {{Colonne}}</div>
+        <div class="col-md-3 col-xs-3"><i class="fas fa-asterisk"></i> {{Valeur}}</div>
+        <div class="col-md-3 col-xs-3"><i class="fas fa-sitemap"></i> {{Valeur json}}</div>
+      </div>
+
       <div id="edit" class="form-group">
 
       </div>

@@ -22,8 +22,8 @@ $(function () {
   //console.log(typePossibilities)
   _filterType_ = $('#sel_FilterByType').value()
   setEdit()
+  $('.selectEditKey').change()
 })
-
 
 //change filter type:
 $('#sel_FilterByType').off('change').on('change',function() {
@@ -41,7 +41,7 @@ function resetUI() {
   $('#execSQL').empty()
 }
 
-//add a filter:
+//add filter:
 $('#bt_addFilter').off('click').on('click',function() {
   addFilter()
   $('#testResult').empty().hide()
@@ -169,7 +169,10 @@ function setEdit() {
   newEditHtml += '</div>'
 
   newEditHtml += '<div class="col-md-3 col-xs-3">'
-  newEditHtml += '<input class="inputEditJValue form-control input-sm" disabled />'
+  newEditHtml += '<input class="inputEditJValue form-control input-sm" type="text" value="" list="'+editId+'_EditJValuesList" disabled />'
+  newEditHtml += '<datalist id="'+editId+'_EditJValuesList">'
+  newEditHtml += '<option></option>'
+  newEditHtml += '</datalist>'
   newEditHtml += '</div>'
 
   newEditHtml += '</div>'
@@ -177,16 +180,17 @@ function setEdit() {
   $('#edit').append($(newEditHtml))
 }
 
+//change edit key:
 $('body').on({
   'change': function(event) {
     var value = $(this).value()
     $(this).closest('div.form-group').find('input.selectEditValue').val('')
-    var editId = $(this).closest('div.form-group').find('input.selectEditValue').attr('list')
+    var editValueId = $(this).closest('div.form-group').find('input.selectEditValue').attr('list')
     var inputJValue = $(this).closest('div.form-group').find('input.inputEditJValue')
     inputJValue.val('')
 
     //set possible values for key if necessary
-    var inputValues = $(this).closest('div.form-group').find('#'+editId)
+    var inputValues = $(this).closest('div.form-group').find('#'+editValueId)
     inputValues.empty()
     var key = $(this).value()
     var option
@@ -204,6 +208,34 @@ $('body').on({
   }
 }, 'select.selectEditKey')
 
+//change edit value:
+$('body').on({
+  'change': function(event) {
+    var key = $(this).closest('div.form-group').find('select.selectEditKey').val()
+    var value = $(this).closest('div.form-group').find('input.selectEditValue').val()
+
+    if (!isset(typePossibilities[_filterType_][key][value])) {
+      return false
+    }
+
+    var inputJValue = $(this).closest('div.form-group').find('input.inputEditJValue')
+    inputJValue.val('')
+    //set possible json values for value:
+    var editJValueId = inputJValue.attr('list')
+    var inputJValues = $(this).closest('div.form-group').find('#'+editJValueId)
+
+    var jValues = typePossibilities[_filterType_][key][value]
+    var option
+    jValues.forEach((jValue, index) => {
+      option = $("<option></option>").attr("value", jValue).text(jValue)
+      inputJValues.append(option)
+    })
+  }
+}, 'input.selectEditValue')
+
+
+
+//open test items:
 $('body').on({
   'click': function(event) {
     event.preventDefault()
@@ -237,6 +269,8 @@ $('body').on({
   }
 }, '.testSqlDiv')
 
+
+//_____Getters
 function getFilters() {
   var filters = []
   $('.form-group.filter').each(function(index) {
