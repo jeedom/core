@@ -295,7 +295,7 @@ function getFilters() {
 
 function getEdits() {
   var edits = []
-  $('.form-group.edit').each(function(index) {
+  $('#edit > .edit').each(function(index) {
     var key = $(this).find('.selectEditKey').value()
     var value = $(this).find('.selectEditValue').val()
     var jValue = false
@@ -349,7 +349,7 @@ function getExecSQLstring() {
     sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "'+"$."+edit.value+'", "' + edit.jValue + '")'
   } else {
     sqlCmd = 'UPDATE `' + sqlTable + '`'
-    sqlCmd += ' SET `' + edit.key + '` = ' + edit.value
+    sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
   }
 
   sqlCmd += ' ' + condition
