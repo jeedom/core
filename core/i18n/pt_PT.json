@@ -150,7 +150,7 @@
         "Vues": "Visualizações",
         "Designs": "Projetos",
         "Scénarios": "Cenas",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Analyse": "Análise",
         "Autre": "Outro",
         "Plugins": "Plugins"
@@ -359,7 +359,7 @@
         "Aucun": "Não",
         "Visualisation": "Visualização",
         "Visualisation et exécution": "Visualização e execução",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Sauvegarde effectuée": "Backup feito"
     },
     "desktop\/modal\/object.display.php": {
@@ -393,7 +393,7 @@
         "Pause": "Pausa",
         "Variable": "Variável",
         "Supprimer une variable": "Excluir variável",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Stop": "Pare",
         "Attendre": "Esperar",
         "Aller au design": "Vai o projeto",
@@ -563,7 +563,7 @@
         "Rechercher un équipement": "Procure equipamento",
         "Rechercher une commande": "Ordem de pesquisa",
         "Résultats": "Resultados",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Actions": "Estoque",
         "Design": "Projeto",
         "Vue": "Visão",
@@ -606,7 +606,7 @@
         "Catégorie": "Categoria",
         "Aucune": "Não",
         "Général": "Geral",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Etape 4 : Demande de support": "Passo 4: Pedido de Suporte",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANTE: para uma resposta rápida e precisa, leia esta <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentação<\/a>",
         "Titre": "Título",
@@ -673,7 +673,7 @@
         "Remplacer cette commande par la commande": "Substituir esse comando pelo comando",
         "Equipement": "Equipamento",
         "Commandes": "Comandos",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Calcul et arrondi": "Cálculo e arredondamento",
         "Formule de calcul (#value# pour la valeur)": "Fórmula (# # para ganhar valor)",
         "Arrondi (chiffre après la virgule)": "Arredondamento (decimal)",
@@ -1019,7 +1019,7 @@
         "Rafraîchir": "Legal",
         "Sauvegarder": "Salvar",
         "ID": "EU IRIA",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Statut": "Estado",
         "Dernier lancement": "último lançamento",
         "Actif": "Ativos",
@@ -1905,7 +1905,7 @@
         "Filtre par catégorie": "Filtrar por categoria",
         "Toutes": "Todos",
         "Aucune": "Não",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Édition du Dashboard": "Dashboard Edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todos os ladrilhos para a altura do mais baixo",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Defina todos os ladrilhos com a altura do mais alto"
@@ -2087,7 +2087,7 @@
         "Sauvegarder": "Salvar",
         "Supprimer": "Retirar",
         "Général": "Geral",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Paramètres": "Configurações",
         "Nom du scénario": "Nome do cenário",
         "Nom à afficher": "Display Name",
@@ -2929,7 +2929,7 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log execução do script",
         "Vue d'ensemble des scénarios": "Visão geral dos cenários",
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Graphique de lien(s)": "Gráfico do link",
         "Edition texte scénarios": "Cenários de edição de texto",
         "Export du scénario": "Cenário de exportação",
@@ -4058,7 +4058,7 @@
         "Impossible d\\'arrêter la sous tâche : ": "Incapaz de parar a subtarefa:",
         "Impossible d\\'arrêter le scénario : ": "Não foi possível parar o cenário:",
         ". PID : ": ". PID:",
-        "Scénario": "Cenário"
+        "Scénario": "Cenas"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "preencha o endereço",
@@ -4116,7 +4116,7 @@
         "() : Impossible d\\'arrêter la tâche": "(): Não foi possível parar a tarefa"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Variable": "Variável",
         "Activation de": "Ativação de",
         "Désactivation de": "Desativação de",
@@ -4340,7 +4340,7 @@
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Cenário",
+        "Scénario": "Cenas",
         "Action": "Açao",
         "Démarrer": "Começo",
         "Démarrer (sync)": "Iniciar (sincronização)",
