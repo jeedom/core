@@ -126,6 +126,9 @@ $('body').on({
 //change filter value:
 $('body').on({
   'change': function(event) {
+    $('#testSQL').empty()
+    $('#testResult').empty().hide()
+
     var selectKey = $(this).closest('div.form-group').find('select.selectFilterKey')
     var key = selectKey.value()
     var value = $("option:selected", $(this)).text()
@@ -223,6 +226,7 @@ $('body').on({
     //set possible json values for value:
     var editJValueId = inputJValue.attr('list')
     var inputJValues = $(this).closest('div.form-group').find('#'+editJValueId)
+    inputJValues.empty()
 
     var jValues = typePossibilities[_filterType_][key][value]
     var option
