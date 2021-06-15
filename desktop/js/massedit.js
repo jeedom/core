@@ -268,6 +268,11 @@ $('body').on({
           window.open(url)
           return true
         }
+        if (_filterType_ == 'scenario') {
+          var url = 'index.php?v=d&p=scenario&id=' + _item.id
+          window.open(url)
+          return true
+        }
       }
     })
   }

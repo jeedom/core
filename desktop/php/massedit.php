@@ -13,12 +13,14 @@ global $excludeParams;
 $excludeParams = [];
 $excludeParams['eqLogic'] = ['order', 'display', 'comment'];
 $excludeParams['eqLogic']['configuration'] = ['createtime', 'updatetime', 'batterytime'];
+$excludeParams['scenario'] = ['description', 'display', 'trigger'];
 
 //scan DB for keys, values, jsonValues:
 global $typePossibilities;
 scanDB('eqLogic');
 scanDB('cmd');
 scanDB('object');
+scanDB('scenario');
 //sorting all this:
 foreach($typePossibilities as &$item) {
   ksort($item);
@@ -110,6 +112,7 @@ function scanDB($_table) {
           <option value="eqLogic">{{Equipement}}</option>
           <option value="cmd">{{Commande}}</option>
           <option value="object">{{Objet}}</option>
+          <option value="scenario">{{Scénario}}</option>
         </select>
       </div>
       <div class="col-lg-1 col-xs-2">

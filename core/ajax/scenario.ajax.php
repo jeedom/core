@@ -231,6 +231,14 @@ try {
 		}
 		ajax::success($return);
 	}
+
+	if (init('action') == 'byId') {
+		$scenario = scenario::byId(init('id'));
+		if (!is_object($scenario)) {
+			throw new Exception(__('Scénario ID inconnu', __FILE__));
+		}
+		ajax::success(utils::o2a($scenario));
+	}
 	
 	if (init('action') == 'allOrderedByGroupObjectName') {
 		$_asGroup = init('asGroup', 0);
