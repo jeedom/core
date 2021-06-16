@@ -180,7 +180,7 @@ jeedom.init = function () {
           $('#div_alert').showAlert(options);
         }
       }else{
-        $('#div_alert').showAlert(options);
+        $('#div_alert').showAlert(_options);
       }
     }
   });
