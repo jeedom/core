@@ -13,7 +13,7 @@ global $excludeParams;
 $excludeParams = [];
 $excludeParams['eqLogic'] = ['order', 'display', 'comment'];
 $excludeParams['eqLogic']['configuration'] = ['createtime', 'updatetime', 'batterytime'];
-$excludeParams['scenario'] = ['description', 'display', 'trigger'];
+$excludeParams['scenario'] = ['description', 'display', 'trigger', 'scenarioElement'];
 
 //scan DB for keys, values, jsonValues:
 global $typePossibilities;
