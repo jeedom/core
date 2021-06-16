@@ -622,6 +622,12 @@ $divConfig.on({
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=createVirtual]')
 
+$divConfig.on({
+  'dblclick': function(event) {
+    $(this).value('')
+  }
+}, '.objectSummary .objectSummaryAttr[data-l1key=icon], .objectSummary .objectSummaryAttr[data-l1key=iconnul]')
+
 $("#table_objectSummary").sortable({axis: "y", cursor: "move", items: ".objectSummary", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
 
 printObjectSummary()
