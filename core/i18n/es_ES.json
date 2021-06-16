@@ -1988,6 +1988,11 @@
         "Equipement": "Equipo",
         "Commande": "Ordenado",
         "Objet": "Objeto",
+        "Scénario": "Guión",
+        "Colonne": "Columna",
+        "Valeur": "Valor",
+        "Valeur json": "Valor json",
+        "Options": "Opciones",
         "Edition": "Edición"
     },
     "desktop\/php\/widgets.php": {
