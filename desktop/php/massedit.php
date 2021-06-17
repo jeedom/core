@@ -150,6 +150,7 @@ function scanDB($_table) {
 
   <!-- Edition part -->
   <div class="col-xs-12">
+    <hr class="hrPrimary">
     <legend><i class="fas fa-edit"></i> {{Edition}}</legend>
   </div>
 

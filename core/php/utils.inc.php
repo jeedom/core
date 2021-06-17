@@ -1464,11 +1464,17 @@ function sanitizeAccent($_message) {
 			case 'plugin':
 			$return = __('Gestion Plugins',__FILE__);
 			break;
+			case 'backup':
+			$return = __('Sauvegardes',__FILE__);
+			break;
 			case 'administration':
 			$return = __('Configuration',__FILE__);
 			break;
-			case 'backup':
-			$return = __('Sauvegardes',__FILE__);
+			case 'database':
+			$return = __('Base de données',__FILE__);
+			break;
+			case 'massedit':
+			$return = __('Editeur en masse',__FILE__);
 			break;
 			case 'cron':
 			$return = __('Moteur de tâches',__FILE__);

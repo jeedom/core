@@ -2080,6 +2080,7 @@ user::isBan();
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
+								<span class="small italic"> (Shift click)</span>
 							</div>
 						</div>
 						
@@ -2089,6 +2090,7 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
+								<span class="small italic"> (Ctrl click)</span>
 							</div>
 						</div>
 
@@ -2098,6 +2100,7 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>
+								<span class="small italic"> (Ctrl Alt click)</span>
 							</div>
 						</div>
 						
@@ -2107,6 +2110,7 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</a>
+								<span class="small italic"> (Alt click)</span>
 							</div>
 						</div>
 						
