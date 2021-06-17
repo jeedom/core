@@ -161,7 +161,7 @@ jeedom.config.load({
   }
 })
 
-$("#bt_saveGeneraleConfig").on('click', function(event) {
+$("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   $.hideAlert()
   saveConvertColor()
   saveObjectSummary()

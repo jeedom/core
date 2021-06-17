@@ -502,7 +502,7 @@ function setTheme() {
 									<a href="index.php?v=d&p=timeline">
 										<span id="horloge"><?php echo date('H:i:s'); ?></span>
 									</a>
-									<a id="configName" href="index.php?v=d&p=administration">
+									<a id="configName">
 										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
 									</a>
 								</li>

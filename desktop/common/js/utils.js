@@ -1135,6 +1135,18 @@ jeedomUtils.setJeedomMenu = function() {
   })
 
   $('li.navTime #configName').on('click', function(event) {
+    //center mouse click event to new tab:
+    if (event.newTab) {
+      var url = 'index.php?v=d&p=administration'
+      window.open(url).focus()
+      return false
+    }
+
+    //shortcuts:
+    if (event.originalEvent.ctrlKey && event.originalEvent.altKey) {
+      jeedomUtils.loadPage('index.php?v=d&p=massedit')
+      return false
+    }
     if (event.originalEvent.ctrlKey) {
       jeedomUtils.loadPage('index.php?v=d&p=system')
       return false
@@ -1147,7 +1159,16 @@ jeedomUtils.setJeedomMenu = function() {
       jeedomUtils.loadPage('index.php?v=d&p=editor')
       return false
     }
-    jeedomUtils.loadPage('index.php?v=d&p=administration#generaltab')
+
+    //open configuration:
+    jeedomUtils.loadPage('index.php?v=d&p=administration')
+  })
+
+  $('li.navTime #configName').on('mouseup', function(event) {
+    if (event.which == 2) {
+      event.preventDefault()
+      $(this).trigger(jQuery.Event('click', { newTab: true }))
+    }
   })
 }
 
