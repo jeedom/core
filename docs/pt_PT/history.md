@@ -41,6 +41,7 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 - **Tipo de exibição** : Exibir em *Linha*, *Área*, ou *Fechado*. Opção salva no pedido e usada no Painel.
 - **Variação** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
 - **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
+- **Monitorando** : Permite-lhe desactivar o realce da curva quando é apresentado um valor no cursor do rato. Por exemplo, quando duas curvas não têm seus valores ao mesmo tempo.
 - **Comparar** : Compare a curva entre diferentes períodos.
 
 

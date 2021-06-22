@@ -36,13 +36,31 @@ In this tab you will find the display customization parameters.
 - **Light and dark mobile** : same as above for the Mobile version.
 - **Clear theme from / to** : Allows you to define a time period during which the previously chosen clear theme will be used. However, check the option **Toggle theme based on time**.
 - **Brightness sensor**   : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
-- **Hide background images** : Allows you to hide the background images found in the scenarios, objects, interactions pages, etc.
 
 ### Tuiles
 
-- **Tiles Not horizontal** : Constrains the width of the tiles every x pixels.
-- **Tiles Not vertical** : Constrains the height of the tiles every x pixels.
-- **Margin tiles** : Vertical and horizontal space between tiles, in pixels.
+- **Not horizontal** : Constrains the width of the tiles every x pixels.
+- **Not vertical** : Constrains the height of the tiles every x pixels.
+- **Margin** : Vertical and horizontal space between tiles, in pixels.
+- **Vertical centering of tiles** : Vertically centers the content of the tiles.
+- **Colorful widget icons** : Coloring widget icons based on their state. Modifiable by scenario, *setColoredIcon* ('Icon coloring').
+- **Colored categories** : Colorization of the title of the tiles according to the category.
+
+### Background images
+
+- **Show background images** : Display the background images found in the scenarios, objects, interactions, etc. pages.
+- **Blur of object backgrounds** : Allows to automatically blur the background images of objects / rooms.
+- **Dashboard Image** : Background image for the Dashboard pages (Depending on the options of the object).
+- **Image Analysis** : Background image for the pages of the Analysis menu.
+- **Image Tools** : Background image for the pages of the Tools menu.
+- **Opacity Theme Light** : Opacity of background images in Light theme. Adjust according to the brightness of the background images for better readability.
+- **Dark theme opacity** : Opacity of background images in Dark theme.  Adjust according to the brightness of the background images for better readability.
+
+### Options
+
+- **Table display** : Displays in table mode the pages of the tools menu and the supported plugins.
+- **Position of notifications** : Position on the page of the appearance of notifications.
+- **Duration of notifications** : Duration of notification display in seconds. 0 so as not to automatically hide them.
 
 ### Personnalisation
 
@@ -420,5 +438,6 @@ For each plugin API key you can prohibit them from core methods (general) to lim
 
 - **File Editor** : Allows access to various operating system files and to edit or delete or create them.
 - **System Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
+- **Mass editor** : Mass editing tool for equipment, commands, objects, scenarios.
 - **Database Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
 - **Username / Password** : Username and password to access the database used by Jeedom.
