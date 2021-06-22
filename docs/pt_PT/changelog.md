@@ -2,12 +2,12 @@
 
 ## 4.2.0
 
-### Pré-requisitos
+### 4.2 : Pré-requisitos
 
 - Debian 10 Buster
 - Php 7.3
 
-### Notícias / Melhorias
+### 4.2 : Notícias / Melhorias
 
 - **Síntese** : Possibilidade de configurar objetos para ir a um *Projeto* ou um *Visão* desde a síntese.
 - **Painel de controle** : A janela de configuração do dispositivo (modo de edição) agora permite que você configure widgets móveis e tipos genéricos.
@@ -25,7 +25,7 @@
 - **Configuração** : Possibilidade de configurar o papel de parede nas páginas Dashboard, Analysis, Tools e sua opacidade dependendo do tema.
 - **Blocos de Código** : (Editor de arquivos, cenários, personalização avançada) Função de fallback de código (*dobradura de código*). Atalhos Ctrl + Y e Ctrl + I.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
-- **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
+- **Cenário** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Configurações OSDB** : Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
 - **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
@@ -36,7 +36,7 @@
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
 
-### Widgets principais
+### 4.2 : Widgets principais
 
 - As configurações de widgets para a versão Mobile agora estão acessíveis a partir da janela de configuração do equipamento no modo Dashboard Edit.
 - Os parâmetros opcionais disponíveis nos widgets agora são exibidos para cada widget, seja na configuração do comando ou no modo de edição do painel.
@@ -45,7 +45,7 @@
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degrau* para definir a etapa de mudança no cursor.
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 
-### Backup na nuvem
+### 4.2 : Backup na nuvem
 
 Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de entrada (como lembrete, o usuário é o único a saber essa senha, em caso de esquecimento, Jeedom não pode recuperá-la nem acessar os backups. Nuvem do usuário).
 
@@ -96,11 +96,11 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ## 4.1.0
 
-### Pré-requisitos
+### 4.1 : Pré-requisitos
 
 - Debian 10 Buster
 
-### Notícias / Melhorias
+### 4.1 Notícias / Melhorias
 
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
@@ -120,16 +120,16 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - **Update Center** : Se você abrir outro navegador durante uma atualização, a barra de progresso e o log indicarão.
 - **Update Center** : Se a atualização terminar corretamente, é exibida uma janela pedindo para recarregar a página.
 - **Atualizações principais** : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
-- **Cenas** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
-- **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
-- **Cenas** : *stateChanges()* agora aceite o período *hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
-- **Cenas** : Funções *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
-- **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
-- **Cenas** : Visualizando um *Atenção* se nenhum gatilho estiver configurado.
-- **Cenas** : Correção de bug de *selecionar* em bloco copiar / colar.
-- **Cenas** : Copiar / colar do bloco entre diferentes cenários.
-- **Cenas** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
-- **Cenas** :  adição de "Exportação histórica" (exportHistory)
+- **Cenário** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
+- **Cenário** : Adição da função de idade (fornece a idade do valor da ordem).
+- **Cenário** : *stateChanges()* agora aceite o período *hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
+- **Cenário** : Funções *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
+- **Cenário** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
+- **Cenário** : Visualizando um *Atenção* se nenhum gatilho estiver configurado.
+- **Cenário** : Correção de bug de *selecionar* em bloco copiar / colar.
+- **Cenário** : Copiar / colar do bloco entre diferentes cenários.
+- **Cenário** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
+- **Cenário** :  adição de "Exportação histórica" (exportHistory)
 - **Janela Variáveis de Cenário** : Ordenação alfabética na abertura.
 - **Janela Variáveis de Cenário** : Os cenários usados pelas variáveis agora são clicáveis, com a abertura da pesquisa na variável.
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
@@ -169,7 +169,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
-### WebApp
+### 4.1 : WebApp
 - Integração da nova página Resumo.
 - Na página Cenários, um clique no título do cenário exibe seu log.
 - Agora podemos selecionar / copiar parte de um log.
@@ -180,7 +180,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Nova fonte de tipo monoespaçado para logs.
 - Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).
 
-### Autres
+### 4.1 : Autres
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **Lib** : Atualizar o HighStock v7.1.2 a v8.2.0.
@@ -192,7 +192,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
 
-### Changements
+### 4.1 : Changements
 - A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* Mas *[grupo] [objeto] [nome]*.
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
@@ -278,11 +278,11 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ## 4.0.0
 
-### Pré-requisitos
+### 4.0 : Pré-requisitos
 
 - Debian 9 Stretch
 
-### Notícias / Melhorias
+### 4.0 : Notícias / Melhorias
 
 - Redesenho completo do tema (Core 2019 Light / Dark / Legacy).
 - Possibilidade de mudar o tema automaticamente dependendo do tempo.
@@ -331,17 +331,17 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Configuração : Adicionou um parâmetro para a eliminação global de logs (guia Pedidos).
 - Configuração : Mudança de #message# em #subject# em Configuração / Logs / Mensagens para evitar a duplicação da mensagem.
 - Configuração : Possibilidade nos resumos de adicionar uma exclusão de pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo de médias de temperatura se um sensor não reportou nada por mais de 30min será excluído do cálculo)<br/><br/>
-- Cenas : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
-- Cenas : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Não*).
-- Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
-- Cenas : Adição de uma função de pesquisa em blocos de código. Pesquisa : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
-- Cenas : Possibilidade de condensar os blocos.
-- Cenas : A ação 'Adicionar bloco' muda para a guia Cenário, se necessário.
-- Cenas : Novas funções de copiar / colar em bloco. Ctrl + clique para cortar / substituir.
-- Cenas : Um novo bloco não é mais adicionado no final da linha do tempo, mas após o bloco em que você estava antes de clicar, determinado pelo último campo que você clicou.
-- Cenas : Configurando um sistema Desfazer / Refazer (Ctrl + Shift + Z / Ctrl + Shift + Y).
-- Cenas : Remover compartilhamento de cenário.
-- Cenas : Melhoria da janela de gerenciamento do modelo de cenário.<br/><br/>
+- Cenário : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
+- Cenário : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Não*).
+- Cenário : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
+- Cenário : Adição de uma função de pesquisa em blocos de código. Pesquisa : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
+- Cenário : Possibilidade de condensar os blocos.
+- Cenário : A ação 'Adicionar bloco' muda para a guia Cenário, se necessário.
+- Cenário : Novas funções de copiar / colar em bloco. Ctrl + clique para cortar / substituir.
+- Cenário : Um novo bloco não é mais adicionado no final da linha do tempo, mas após o bloco em que você estava antes de clicar, determinado pelo último campo que você clicou.
+- Cenário : Configurando um sistema Desfazer / Refazer (Ctrl + Shift + Z / Ctrl + Shift + Y).
+- Cenário : Remover compartilhamento de cenário.
+- Cenário : Melhoria da janela de gerenciamento do modelo de cenário.<br/><br/>
 - Análise / Equipamento : Adição de um motor de busca (guia Baterias, pesquisa por nomes e pais).
 - Análise / Equipamento : A zona do dia do calendário / equipamento agora pode ser clicada para acessar diretamente as trocas de bateria).
 - Análise / Equipamento : Adicionando um campo de pesquisa.<br/><br/>
@@ -359,7 +359,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Projeto : Movendo e redimensionando componentes em *Projeto* leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
 - Adição de um sistema de configuração em massa (usado na página Equipamento para configurar alertas de comunicações neles)
 
-### Autres
+### 4.0 : Autres
 
 - **Lib** : Atualize o jquery 3.4.1
 - **Lib** : Atualizar CodeMiror 5.46.0
@@ -369,7 +369,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Inúmeras correções de bugs.
 - Correções de segurança.
 
-### Changements
+### 4.0 : Changements
 
 - Remova Font Awesome 4 para manter apenas Font Awesome 5.
 - O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

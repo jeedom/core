@@ -2,12 +2,12 @@
 
 ## 4.2.0
 
-### Prerrequisitos
+### 4.2 : Prerrequisitos
 
 - Debian 10 Buster
 - PHP 7.3
 
-### Noticias / Mejoras
+### 4.2 : Noticias / Mejoras
 
 - **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *ver* desde la síntesis.
 - **Tablero** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
@@ -36,7 +36,7 @@
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 
-### Widgets principales
+### 4.2 : Widgets principales
 
 - Ahora se puede acceder a la configuración de los widgets para la versión móvil desde la ventana de configuración del equipo en el modo de edición del tablero.
 - Los parámetros opcionales disponibles en los widgets ahora se muestran para cada widget, ya sea en la configuración del comando o desde el modo de edición del tablero.
@@ -45,7 +45,7 @@
 - Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *paso* para definir el paso de cambio en el cursor.
 - El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
 
-### Respaldo en la nube
+### 4.2 : Respaldo en la nube
 
 Hemos agregado una confirmación de la contraseña de la copia de seguridad en la nube para evitar errores de entrada (como recordatorio, el usuario es el único que conoce esta contraseña, en caso de olvidarla, Jeedom no puede recuperarla ni acceder a las copias de seguridad).
 
@@ -96,11 +96,11 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 ## 4.1.0
 
-### Prerrequisitos
+### 4.1 : Prerrequisitos
 
 - Debian 10 Buster
 
-### Noticias / Mejoras
+### 4.1 Noticias / Mejoras
 
 - **Síntesis** : Agregar una nueva página **Inicio → Resumen** Ofrece un resumen visual global de las partes, con acceso rápido a resúmenes.
 - **Investigación** : Adición de un motor de búsqueda en **Herramientas → Buscar**.
@@ -169,7 +169,7 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 - Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
 - Ventana de selección de imágenes mejorada.
 
-### WebApp
+### 4.1 : WebApp
 - Integración de la nueva página de resumen.
 - Página de escenarios, un clic en el título del escenario muestra su registro.
 - Ahora podemos seleccionar / copiar parte de un registro.
@@ -180,7 +180,7 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 - Nueva fuente tipo monoespacio para registros.
 - Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).
 
-### Autres
+### 4.1 : Autres
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - **Lib** : Actualizar HighStock v7.1.2 a v8.2.0.
@@ -192,7 +192,7 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 - Correcciones de errores.
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
 
-### Changements
+### 4.1 : Changements
 - La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* Pero *[grupo] [objeto] [nombre]*.
 - La funcion **escenario-> byString()** ahora debe llamarse con la estructura *[grupo] [objeto] [nombre]*.
 - Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
@@ -278,11 +278,11 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 ## 4.0.0
 
-### Prerrequisitos
+### 4.0 : Prerrequisitos
 
 - Debian 9 Stretch
 
-### Noticias / Mejoras
+### 4.0 : Noticias / Mejoras
 
 - Rediseño completo del tema (Core 2019 Light / Dark / Legacy).
 - Posibilidad de cambiar el tema automáticamente en función de la hora.
@@ -359,7 +359,7 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 - Diseño : Mover y cambiar el tamaño de componentes en *Diseño* tiene en cuenta su tamaño, con o sin magnetización.<br/><br/>
 - Adición de un sistema de configuración masiva (utilizado en la página Equipo para configurar alertas de comunicaciones en ellos)
 
-### Autres
+### 4.0 : Autres
 
 - **Lib** : Actualización de jquery 3.4.1
 - **Lib** : Actualizar CodeMiror 5.46.0
@@ -369,7 +369,7 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 - Numerosas correcciones de errores.
 - Correcciones de seguridad.
 
-### Changements
+### 4.0 : Changements
 
 - Elimine Font Awesome 4 para mantener solo Font Awesome 5.
 - El complemento del widget no es compatible con esta versión de Jeedom y ya no será compatible (porque las funciones se han tomado internamente en el núcleo). Más información [aquí](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

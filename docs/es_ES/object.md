@@ -89,7 +89,7 @@ Cada pestaña representa un tipo de resumen definido en la configuración de Jee
 
 > **Propina**
 >
-> Si desea agregar un tipo de resumen o configurar el método de cálculo del resultado, la unidad, el icono y el nombre de un resumen, debe ir a la configuración general de Jeedom : **Preferencias → Sistema → Configuración : Pestaña Resúmenes**.
+> Si desea agregar un tipo de resumen o configurar el método de cálculo del resultado, la unidad, el icono y el nombre de un resumen, debe ir a la configuración general de Jeedom : **Configuración → Sistema → Configuración : Pestaña Resúmenes**.
 
 ## Pestaña Resumen por dispositivo
 

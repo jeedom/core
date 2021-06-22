@@ -47,7 +47,7 @@ Antes disso, no topo da página, existem algumas funções úteis para gerenciar
 - **Exportar** : Permite obter uma versão em texto puro do cenário.
 - **Modelo** : Permite que você acesse os modelos e aplique um ao cenário do Mercado (explicado no final da página).
 - **Pesquisa** : Desdobra um campo de pesquisa para pesquisar no cenário. Esta pesquisa desdobra os blocos recolhidos se necessário e os dobra de volta após a pesquisa.
-- **Realizar** : Permite iniciar o cenário manualmente (independentemente dos gatilhos). Salve antecipadamente para levar em conta as modificações.
+- **Executar** : Permite iniciar o cenário manualmente (independentemente dos gatilhos). Salve antecipadamente para levar em conta as modificações.
 - **Retirar** : Excluir cenário.
 - **Salve ** : Salve as alterações feitas.
 
@@ -84,7 +84,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 > **Dica**
 >
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
+> Aviso : você pode ter no máximo 28 gatilhos / programação para um cenário.
 
 > **Modo de ponta programado**
 >
@@ -455,7 +455,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variável** (variable) : Criação / modificação de uma variável ou o valor de uma variável.
 - **Remover variável** (delete_variable) : Permite excluir uma variável.
-- **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele).
+- **Cenário** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele).
 - **Pare** (stop) : Pára o script.
 - **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
 - **Vai o projeto** (gotodesign) : Alterar o design exibido em todos os navegadores pelo design solicitado.

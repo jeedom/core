@@ -47,7 +47,7 @@ Antes de eso, en la parte superior de la página, hay algunas funciones útiles 
 - **Exportar** : Le permite obtener una versión de texto puro del escenario.
 - **Modelo** : Le permite acceder a las plantillas y aplicar una al escenario del Mercado (explicado en la parte inferior de la página).
 - **Investigación** : Despliega un campo de búsqueda para buscar en el escenario. Esta búsqueda despliega los bloques colapsados si es necesario y los pliega después de la búsqueda.
-- **Realizar** : Le permite iniciar el escenario manualmente (independientemente de los desencadenantes). Guardar de antemano para tener en cuenta las modificaciones.
+- **Ejecutar** : Le permite iniciar el escenario manualmente (independientemente de los desencadenantes). Guardar de antemano para tener en cuenta las modificaciones.
 - **Eliminar** : Eliminar escenario.
 - **Salvar** : Guardar los cambios realizados.
 

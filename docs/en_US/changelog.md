@@ -2,12 +2,12 @@
 
 ## 4.2.0
 
-### Prerequisites
+### 4.2 : Prerequisites
 
 - Debian 10 Buster
 - Php 7.3
 
-### News / Improvements
+### 4.2 : News / Improvements
 
 - **Synthesis** : Possibility of configuring objects to go to a *design* or a *view* since the synthesis.
 - **Dashboard** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
@@ -36,7 +36,7 @@
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
 
-### Core Widgets
+### 4.2 : Core Widgets
 
 - Widgets settings for the Mobile version are now accessible from the equipment configuration window in Dashboard Edit mode.
 - The optional parameters available on widgets are now displayed for each widget, either in the command configuration or from the Dashboard edit mode.
@@ -45,7 +45,7 @@
 - Cursor (action) type Widgets now accept an optional parameter *step* to define the change step at the cursor.
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
 
-### Cloud backup
+### 4.2 : Cloud backup
 
 We have added a confirmation of the cloud backup password to prevent entry errors (as a reminder the user is the only one to know this password, in case of forgetting, Jeedom can neither recover it nor access the backups. user's cloud).
 
@@ -96,11 +96,11 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 ## 4.1.0
 
-### Prerequisites
+### 4.1 : Prerequisites
 
 - Debian 10 Buster
 
-### News / Improvements
+### 4.1 News / Improvements
 
 - **Synthesis** : New page **Home → Synthesis** offering a global visual summary of the parts, with quick access to summaries.
 - **Research** : Add of a search engine in **Tools → Search**.
@@ -169,7 +169,7 @@ We have added a confirmation of the cloud backup password to prevent entry error
 - Code Block, File Editor, Advanced Customization : Dark theme adaptation.
 - Improved image selection window.
 
-### WebApp
+### 4.1 : WebApp
 - Integration of the new Synthesis page.
 - Scenarios page, a click on the scenario title displays its log.
 - We can now select / copy part of a log.
@@ -180,7 +180,7 @@ We have added a confirmation of the cloud backup password to prevent entry error
 - New monospace type font for logs.
 - Many bug-fix (UI, portrait / landscape iOS, etc.).
 
-### Autres
+### 4.1 : Autres
 - **Documentation** : Adaptations in line with v4 and v4.1.
 - **Documentation** : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - **Lib** : Update HighStock v7.1.2 to v8.2.0.
@@ -192,7 +192,7 @@ We have added a confirmation of the cloud backup password to prevent entry error
 - Bug fixes.
 - Numerous desktop / mobile performance optimizations.
 
-### Changements
+### 4.1 : Changements
 - Function **scenario-> getHumanName()** of the php scenario class no longer returns *[object] [group] [name]* But *[group] [object] [name]*.
 - Function **scenario-> byString()** must now be called with the structure *[group] [object] [name]*.
 - Functions **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** have been replaced by **network-> getInterfacesInfo()**
@@ -278,11 +278,11 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 ## 4.0.0
 
-### Prerequisites
+### 4.0 : Prerequisites
 
 - Debian 9 Stretch
 
-### News / Improvements
+### 4.0 : News / Improvements
 
 - Complete theme redesign (Core 2019 Light / Dark / Legacy).
 - Possibility to change the theme automatically depending on the time.
@@ -359,7 +359,7 @@ We have added a confirmation of the cloud backup password to prevent entry error
 - Design : Moving and resizing components on *Design* takes their size into account, with or without magnetization.<br/><br/>
 - Addition of a mass configuration system (used on the Equipment page to configure Communications Alerts on them)
 
-### Autres
+### 4.0 : Autres
 
 - **Lib** : Update jquery 3.4.1
 - **Lib** : Update CodeMiror 5.46.0
@@ -369,7 +369,7 @@ We have added a confirmation of the cloud backup password to prevent entry error
 - Numerous bug fixes.
 - Security fixes.
 
-### Changements
+### 4.0 : Changements
 
 - Remove Font Awesome 4 to keep only Font Awesome 5.
 - The widget plugin is not compatible with this version of Jeedom and will no longer be supported (because the features have been taken internally on the core). More information [here](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

@@ -1,5 +1,5 @@
 # Configuration
-**Preferencias → Sistema → Configuración**
+**Configuración → Sistema → Configuración**
 
 Aquí es donde se encuentran la mayoría de los parámetros de configuración.
 Aunque muchos, la mayoría de los parámetros están configurados por defecto.
