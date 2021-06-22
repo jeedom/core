@@ -85,7 +85,7 @@ Die Spalten stellen die Zusammenfassungen dar, die dem aktuellen Objekt zugewies
 
 ### Commandes
 
-Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration von Jeedom definiert ist. Klicke auf **Bestellung hinzufügen** so dass es in der Zusammenfassung berücksichtigt wird. Sie haben die Wahl, den Befehl eines Jeedom-Geräts auszuwählen, auch wenn dieses Objekt nicht als übergeordnetes Objekt vorhanden ist.
+Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration von Jeedom definiert ist. Klicken Sie auf **Bestellung hinzufügen** so dass es in der Zusammenfassung berücksichtigt wird. Sie haben die Wahl, den Befehl eines Jeedom-Geräts auszuwählen, auch wenn dieses Objekt nicht als übergeordnetes Objekt vorhanden ist.
 
 > **Trinkgeld**
 >

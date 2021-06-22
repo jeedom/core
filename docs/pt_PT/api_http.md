@@ -14,7 +14,7 @@ Essa API é muito fácil de usar por solicitações HTTP simples via URL.
 >
 > Para toda esta documentação, \#API\_KEY\# corresponde à sua chave API, específica para sua instalação. Para encontrá-lo, vá ao menu "Geral" → guia "Configuração" → "Geral"".
 
-## Cenário
+## Cenas
 
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cenário & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cenário & id=#ID#&action=#ACTION#)
 

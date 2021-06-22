@@ -47,7 +47,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Export** : Allows you to obtain a pure text version of the scenario.
 - **Template** : Allows you to access the templates and apply one to the scenario from the Market (explained at the bottom of the page).
 - **Research** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
-- **Execute** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
+- **Perform** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
 - **Remove** : Delete scenario.
 - **Save** : Save the changes made.
 

@@ -237,7 +237,7 @@ Essa guia permite definir parâmetros globais relativos às interações que voc
 
 > **Dica**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Aviso : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
 
 ### Geral
 
@@ -341,7 +341,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Aviso : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.

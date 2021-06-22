@@ -25,7 +25,7 @@
 - **Configuração** : Possibilidade de configurar o papel de parede nas páginas Dashboard, Analysis, Tools e sua opacidade dependendo do tema.
 - **Blocos de Código** : (Editor de arquivos, cenários, personalização avançada) Função de fallback de código (*dobradura de código*). Atalhos Ctrl + Y e Ctrl + I.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
-- **Cenário** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
+- **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Configurações OSDB** : Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
 - **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
@@ -120,16 +120,16 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - **Update Center** : Se você abrir outro navegador durante uma atualização, a barra de progresso e o log indicarão.
 - **Update Center** : Se a atualização terminar corretamente, é exibida uma janela pedindo para recarregar a página.
 - **Atualizações principais** : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
-- **Cenário** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
-- **Cenário** : Adição da função de idade (fornece a idade do valor da ordem).
-- **Cenário** : *stateChanges()* agora aceite o período *hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
-- **Cenário** : Funções *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
-- **Cenário** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
-- **Cenário** : Visualizando um *Atenção* se nenhum gatilho estiver configurado.
-- **Cenário** : Correção de bug de *selecionar* em bloco copiar / colar.
-- **Cenário** : Copiar / colar do bloco entre diferentes cenários.
-- **Cenário** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
-- **Cenário** :  adição de "Exportação histórica" (exportHistory)
+- **Cenas** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
+- **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
+- **Cenas** : *stateChanges()* agora aceite o período *hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
+- **Cenas** : Funções *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
+- **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
+- **Cenas** : Visualizando um *Atenção* se nenhum gatilho estiver configurado.
+- **Cenas** : Correção de bug de *selecionar* em bloco copiar / colar.
+- **Cenas** : Copiar / colar do bloco entre diferentes cenários.
+- **Cenas** : As funções desfazer / refazer estão agora disponíveis como botões (ao lado do botão de criação de bloco).
+- **Cenas** :  adição de "Exportação histórica" (exportHistory)
 - **Janela Variáveis de Cenário** : Ordenação alfabética na abertura.
 - **Janela Variáveis de Cenário** : Os cenários usados pelas variáveis agora são clicáveis, com a abertura da pesquisa na variável.
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
@@ -331,17 +331,17 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Configuração : Adicionou um parâmetro para a eliminação global de logs (guia Pedidos).
 - Configuração : Mudança de #message# em #subject# em Configuração / Logs / Mensagens para evitar a duplicação da mensagem.
 - Configuração : Possibilidade nos resumos de adicionar uma exclusão de pedidos que não foram atualizados por mais de XX minutos (exemplo para o cálculo de médias de temperatura se um sensor não reportou nada por mais de 30min será excluído do cálculo)<br/><br/>
-- Cenário : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
-- Cenário : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Não*).
-- Cenário : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
-- Cenário : Adição de uma função de pesquisa em blocos de código. Pesquisa : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
-- Cenário : Possibilidade de condensar os blocos.
-- Cenário : A ação 'Adicionar bloco' muda para a guia Cenário, se necessário.
-- Cenário : Novas funções de copiar / colar em bloco. Ctrl + clique para cortar / substituir.
-- Cenário : Um novo bloco não é mais adicionado no final da linha do tempo, mas após o bloco em que você estava antes de clicar, determinado pelo último campo que você clicou.
-- Cenário : Configurando um sistema Desfazer / Refazer (Ctrl + Shift + Z / Ctrl + Shift + Y).
-- Cenário : Remover compartilhamento de cenário.
-- Cenário : Melhoria da janela de gerenciamento do modelo de cenário.<br/><br/>
+- Cenas : A colorização dos blocos não é mais aleatória, mas por tipo de bloco.
+- Cenas : Possibilidade ao fazer um Ctrl + clique no botão *execução* salve-o, execute-o e exiba o log (se o nível de log não estiver ativado *Não*).
+- Cenas : Confirmação de exclusão de bloco. Ctrl + clique para evitar a confirmação.
+- Cenas : Adição de uma função de pesquisa em blocos de código. Pesquisa : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl + Shift + G
+- Cenas : Possibilidade de condensar os blocos.
+- Cenas : A ação 'Adicionar bloco' muda para a guia Cenário, se necessário.
+- Cenas : Novas funções de copiar / colar em bloco. Ctrl + clique para cortar / substituir.
+- Cenas : Um novo bloco não é mais adicionado no final da linha do tempo, mas após o bloco em que você estava antes de clicar, determinado pelo último campo que você clicou.
+- Cenas : Configurando um sistema Desfazer / Refazer (Ctrl + Shift + Z / Ctrl + Shift + Y).
+- Cenas : Remover compartilhamento de cenário.
+- Cenas : Melhoria da janela de gerenciamento do modelo de cenário.<br/><br/>
 - Análise / Equipamento : Adição de um motor de busca (guia Baterias, pesquisa por nomes e pais).
 - Análise / Equipamento : A zona do dia do calendário / equipamento agora pode ser clicada para acessar diretamente as trocas de bateria).
 - Análise / Equipamento : Adicionando um campo de pesquisa.<br/><br/>

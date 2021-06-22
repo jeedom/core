@@ -123,7 +123,7 @@ Permite escolher os comandos para grapher.
 >
 > Se você colocar o código HTML (especialmente o Javascript), verifique-o antes, pois pode ocorrer se houver algum erro ou substituir um componente Jeedom que trava completamente o design e ele só precisará excluí-lo diretamente no banco de dados.
 
-## Cenário
+## Cenas
 
 *Nenhuma configuração de exibição específica*
 
@@ -151,7 +151,7 @@ Permite escolher os comandos para grapher.
 - **Cor do texto** : Permite escolher uma cor de plano de fundo personalizada ou usar a cor padrão.
 - **Arredondamento** : Valor em pixels do arredondamento dos ângulos do bloco do equipamento.
 - **Fronteira** : Definição CSS de uma borda de bloco de equipamento. Ex : 1px preto sólido.
-- **Opacidade** : Opacidade do ladrilho do equipamento, entre 0 e 1. Aviso : uma cor de fundo deve ser definida.
+- **Opacidade** : Opacidade do ladrilho do equipamento, entre 0 e 1. Atenção : uma cor de fundo deve ser definida.
 - **CSS personalizado** : Regras CSS a serem aplicadas no equipamento.
 - **Aplicar css personalizado em** : Seletor de CSS no qual aplicar CSS personalizado.
 
