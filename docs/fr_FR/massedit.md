@@ -1,9 +1,13 @@
 # Editeur en masse
 **Réglages → Système → Configuration | OS/DB**
 
-Cet outil permet d'éditer un grand nombre d'équipements, de commandes, d'objets, ou de scénarios.
+Cet outil permet d'éditer un grand nombre d'équipements, de commandes, d'objets, ou de scénarios. Il est totalement générique, et reprend automatiquement le schéma et la structure de la base de données de Jeedom. Il supporte ainsi les plugins et la configuration de leurs équipements.
 
-Cet outil est totalement générique, et reprend automatiquement le schéma et la structure de la base de données de Jeedom.
+> **Attention**
+>
+> Si cet outil s'avère assez simple d'utilisation, celui-ci s'adresse à des utilisateurs avancés. En effet, il est de fait très simple de changer n'importe quel paramètre sur des dizaines d'équipements ou centaines de commandes et donc de rendre inopérantes certaines fonctions, voir même le Core.
+
+## Utilisation
 
 La partie *Filtre* permet de sélectionner ce que vous souhaitez éditer, puis d'ajouter des filtres de sélection selon leurs paramètres. Un bouton de test permet, sans aucune modification, de vous montrer les items sélectionnés par les filtres renseignés.
 
@@ -15,7 +19,7 @@ La partie *Edition* permet de changer des paramètres sur ces items.
 
 ### Exemples:
 
-#### Renommer un nom de groupe de scénarios
+#### Renommer un groupe de scénarios
 
 - Dans la partie *Filtre*, sélectionnez **Scénario**.
 - Cliquez sur le bouton **+** pour ajouter un filtre.
@@ -24,7 +28,7 @@ La partie *Edition* permet de changer des paramètres sur ces items.
 - Dans la partie *Edition*, sélectionnez la colonne *group*, puis mettez le nom que vous souhaitez dans la valeur.
 - Cliquez sur **Exécuter** en haut à droite.
 
-#### Rendre invisible tous les équipements d'un object/pièce:
+#### Rendre invisible tous les équipements d'un objet/pièce:
 
 - Dans la partie *Filtre*, sélectionnez **Equipement**.
 - Cliquez sur le bouton **+** pour ajouter un filtre.
