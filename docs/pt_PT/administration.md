@@ -36,13 +36,31 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Celular claro e escuro** : mesmo que acima para a versão Mobile.
 - **Limpar tema de / para** : Permite definir um período de tempo durante o qual o tema claro escolhido anteriormente será usado. No entanto, marque a opção **Alternar tema com base no tempo**.
 - **Sensor de brilho**   : Somente interface móvel, requer ativação *sensor extra genérico* no cromo, página do cromo://flags.
-- **Ocultar imagens de fundo** : Permite ocultar as imagens de plano de fundo encontradas nos cenários, objetos, páginas de interações etc.
 
 ### Tuiles
 
-- **Ladrilhos não horizontais** : Restringe a largura dos blocos a cada x pixels.
-- **Ladrilhos não verticais** : Restringe a altura dos blocos a cada x pixels.
-- **Ladrilhos de margem** : Espaço vertical e horizontal entre blocos, em pixels.
+- **Não horizontal** : Restringe a largura dos blocos a cada x pixels.
+- **Não vertical** : Restringe a altura dos blocos a cada x pixels.
+- **Margem** : Espaço vertical e horizontal entre blocos, em pixels.
+- **Centralização vertical de ladrilhos** : Centraliza verticalmente o conteúdo dos blocos.
+- **Ícones coloridos de widget** : Ícones de widget para colorir com base em seu estado. Modificável por cenário, *setColoredIcon* ('Coloração de ícone').
+- **Categorias coloridas** : Colorização do título dos tiles de acordo com a categoria.
+
+### Imagens de fundo
+
+- **Mostrar imagens de fundo** : Exibir as imagens de fundo encontradas nas páginas de cenários, objetos, interações, etc.
+- **Desfoque de fundo do objeto** : Permite desfocar automaticamente as imagens de fundo de objetos / salas.
+- **Imagem do painel** : Imagem de fundo para as páginas do Dashboard (dependendo das opções do objeto).
+- **Análise de imagem** : Imagem de fundo para as páginas do menu Análise.
+- **Ferramentas de imagem** : Imagem de fundo para as páginas do menu Ferramentas.
+- **Opacity Theme Light** : Opacidade das imagens de fundo no tema Light. Ajuste de acordo com o brilho das imagens de fundo para melhor legibilidade.
+- **Opacidade de tema escuro** : Opacidade das imagens de fundo no tema escuro.  Ajuste de acordo com o brilho das imagens de fundo para melhor legibilidade.
+
+### Options
+
+- **Exibir mesa** : Mostra no modo de tabela as páginas do menu de ferramentas e os plugins suportados.
+- **Posição das notificações** : Posição na página de aparecimento de notificações.
+- **Duração das notificações** : Duração da exibição da notificação em segundos. 0 para não ocultá-los automaticamente.
 
 ### Personnalisation
 
@@ -420,5 +438,6 @@ Para cada chave de API de plugin você pode proibi-los de métodos básicos (ger
 
 - **Editor de arquivo** : Permite o acesso a vários arquivos do sistema operacional e para editar ou excluir ou criá-los.
 - **Administração do sistema** : Fornece acesso a uma interface de administração do sistema. É um tipo de console shell no qual você pode iniciar os comandos mais úteis, em particular para obter informações sobre o sistema.
+- **Editor de massa** : Ferramenta de edição em massa para equipamentos, comandos, objetos, cenários.
 - **Banco de dados de administração** : Permite acesso ao banco de dados Jeedom. Você pode então iniciar comandos no campo superior.
 - **Nome de usuário / senha** : Nome de usuário e senha para acessar o banco de dados usado pelo Jeedom.

@@ -36,13 +36,31 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **Móvil claro y oscuro** : igual que el anterior para la versión móvil.
 - **Borrar tema de / a** : Le permite definir un período de tiempo durante el cual se utilizará el tema claro previamente elegido. Sin embargo, marque la opción **Cambiar el tema según el tiempo**.
 - **Sensor de brillo**   : Interfaz móvil solamente, requiere activación *sensor adicional genérico* en cromo, página de cromo://flags.
-- **Ocultar imágenes de fondo** : Le permite ocultar las imágenes de fondo encontradas en los escenarios, objetos, páginas de interacciones, etc.
 
 ### Tuiles
 
-- **Azulejos no horizontales** : Restringe el ancho de los mosaicos cada x píxeles.
-- **Azulejos no verticales** : Restringe la altura de los mosaicos cada x píxeles.
-- **Azulejos de margen** : Espacio vertical y horizontal entre mosaicos, en píxeles.
+- **No horizontal** : Restringe el ancho de los mosaicos cada x píxeles.
+- **No vertical** : Restringe la altura de los mosaicos cada x píxeles.
+- **Margen** : Espacio vertical y horizontal entre mosaicos, en píxeles.
+- **Centrado vertical de baldosas** : Centra verticalmente el contenido de los mosaicos.
+- **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *setColoredIcon* ('Colorear icono').
+- **Categorías coloreadas** : Coloración del título de los mosaicos según la categoría.
+
+### Imágenes de fondo
+
+- **Mostrar imágenes de fondo** : Muestra las imágenes de fondo que se encuentran en las páginas de escenarios, objetos, interacciones, etc.
+- **Desenfoque de fondos de objetos** : Permite difuminar automáticamente las imágenes de fondo de objetos / habitaciones.
+- **Imagen del tablero** : Imagen de fondo para las páginas del Tablero (Dependiendo de las opciones del objeto).
+- **Análisis de imagen** : Imagen de fondo para las páginas del menú Análisis.
+- **Herramientas de imagen** : Imagen de fondo para las páginas del menú Herramientas.
+- **Luz de tema de opacidad** : Opacidad de las imágenes de fondo en el tema claro. Ajuste de acuerdo con el brillo de las imágenes de fondo para una mejor legibilidad.
+- **Opacidad del tema oscuro** : Opacidad de las imágenes de fondo en el tema oscuro.  Ajuste de acuerdo con el brillo de las imágenes de fondo para una mejor legibilidad.
+
+### Options
+
+- **Pantalla de mesa** : Muestra en modo tabla las páginas del menú de herramientas y los complementos compatibles.
+- **Posición de las notificaciones** : Posición en la página de aparición de notificaciones.
+- **Duración de las notificaciones** : Duración de la visualización de notificaciones en segundos. 0 para no ocultarlos automáticamente.
 
 ### Personnalisation
 
@@ -420,5 +438,6 @@ Para cada clave de API de complemento, puede prohibirlos de los métodos princip
 
 - **Editor de archivos** : Permite el acceso a varios archivos del sistema operativo y editarlos, eliminarlos o crearlos.
 - **Administración del sistema** : Proporciona acceso a una interfaz de administración del sistema. Es un tipo de consola de shell en la que puede iniciar los comandos más útiles, en particular para obtener información sobre el sistema.
+- **Editor de masas** : Herramienta de edición masiva para equipos, comandos, objetos, escenarios.
 - **Administración de bases de datos** : Permite el acceso a la base de datos Jeedom. Luego puede ejecutar comandos en el campo superior.
 - **Nombre de usuario / Contraseña** : Nombre de usuario y contraseña para acceder a la base de datos utilizada por Jeedom.

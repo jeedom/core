@@ -26,6 +26,7 @@
 - **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
+- **OSDB settings** : Addition of a tool for mass editing of equipment, commands, objects, scenarios.
 - **OSDB settings** : Adding a dynamic SQL query constructor.
 - **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
 - **Objects** : Plugins can now request specific parameters specific to objects.
@@ -33,7 +34,7 @@
 - **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Updates Center** : Update Center now displays the date of the last update.
-- **Adding the user performing an action** : addition in the command execution options of the id and user name launching the action (visible in the log event for example)
+- **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
 
 ### Core Widgets
 
