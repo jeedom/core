@@ -260,7 +260,7 @@
         "Minimum par année": "Mínimo por año",
         "Maximum par année": "Máximo por año",
         "Non": "No",
-        "Oui": "Sí",
+        "Oui": "Si",
         "Afficher le graphique": "Ver Gráfico"
     },
     "desktop\/modal\/scenario.log.execution.php": {
@@ -715,11 +715,11 @@
         "Valeur retour d'état": "Valor retorno de estado",
         "Durée avant retour d'état (min)": "Duración antes del retorno de estado (min)",
         "Autres": "Otros",
-        "Repeter les valeurs identique": "Repite los mismos valores",
+        "Répéter les valeurs identiques": "Repite valores idénticos",
         "Non": "No",
         "Oui": "Sí",
         "Push URL": "URL de inserción",
-        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Ponga aquí la URL a llamar en una actualización de los valores de las órdenes. Puede utilizar las siguientes etiquetas : #value# (valor de la orden), #cmd_id# (id de la orden) y #cmd_name# (nombre de la orden)",
+        "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL para llamar al actualizar el valor del comando. Puede utilizar las siguientes etiquetas: # value # (valor del comando), # cmd_id # (id del comando) y # cmd_name # (nombre del comando)",
         "Niveau": "Nivel",
         "En": "En",
         "si (#value# pour la valeur)": "si (#value# para el valor)",
@@ -2540,7 +2540,7 @@
         "Supprimer": "Eliminar",
         "Afficher le panneau desktop": "Vista del panel de escritorio",
         "Afficher le panneau mobile": "Vista del panel móvil",
-        "Oui": "Sí",
+        "Oui": "Si",
         "Activer": "Activar",
         "Non": "No",
         "Statut": "Estado",
@@ -2648,7 +2648,7 @@
         "Droite": "Derecha",
         "Gauche": "Izquierda",
         "Non": "No",
-        "Oui": "Sí"
+        "Oui": "Si"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuración del objeto",
