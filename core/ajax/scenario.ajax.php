@@ -168,7 +168,7 @@ try {
 				}
 			}
 			
-			preg_match_all("/variable\((.*?)\)/", $line, $matches, PREG_SET_ORDER);
+			preg_match_all("/variable\((.*?)[,|\)]/", $line, $matches, PREG_SET_ORDER);
 			if (count($matches) > 0) {
 				foreach ($matches as $match) {
 					$return[$match[1]] = $match[1];
@@ -231,7 +231,7 @@ try {
 		}
 		ajax::success($return);
 	}
-
+	
 	if (init('action') == 'byId') {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
