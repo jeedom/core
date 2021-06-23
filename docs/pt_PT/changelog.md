@@ -2,12 +2,12 @@
 
 ## 4.2.0
 
-### Pré-requisitos
+### 4.2 : Pré-requisitos
 
 - Debian 10 Buster
 - Php 7.3
 
-### Notícias / Melhorias
+### 4.2 : Notícias / Melhorias
 
 - **Síntese** : Possibilidade de configurar objetos para ir a um *Projeto* ou um *Visão* desde a síntese.
 - **Painel de controle** : A janela de configuração do dispositivo (modo de edição) agora permite que você configure widgets móveis e tipos genéricos.
@@ -26,6 +26,7 @@
 - **Blocos de Código** : (Editor de arquivos, cenários, personalização avançada) Função de fallback de código (*dobradura de código*). Atalhos Ctrl + Y e Ctrl + I.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
+- **Configurações OSDB** : Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
 - **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
@@ -33,9 +34,9 @@
 - **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
 - **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
-- **Adicionar o usuário realizando uma ação** : além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
+- **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
 
-### Widgets principais
+### 4.2 : Widgets principais
 
 - As configurações de widgets para a versão Mobile agora estão acessíveis a partir da janela de configuração do equipamento no modo Dashboard Edit.
 - Os parâmetros opcionais disponíveis nos widgets agora são exibidos para cada widget, seja na configuração do comando ou no modo de edição do painel.
@@ -44,7 +45,7 @@
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degrau* para definir a etapa de mudança no cursor.
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 
-### Backup na nuvem
+### 4.2 : Backup na nuvem
 
 Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de entrada (como lembrete, o usuário é o único a saber essa senha, em caso de esquecimento, Jeedom não pode recuperá-la nem acessar os backups. Nuvem do usuário).
 
@@ -95,11 +96,11 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ## 4.1.0
 
-### Pré-requisitos
+### 4.1 : Pré-requisitos
 
 - Debian 10 Buster
 
-### Notícias / Melhorias
+### 4.1 Notícias / Melhorias
 
 - **Síntese** : Adicionando uma nova página **Home → Resumo** oferecendo um resumo visual global das peças, com acesso rápido aos resumos.
 - **Pesquisa** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
@@ -168,7 +169,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
-### WebApp
+### 4.1 : WebApp
 - Integração da nova página Resumo.
 - Na página Cenários, um clique no título do cenário exibe seu log.
 - Agora podemos selecionar / copiar parte de um log.
@@ -179,7 +180,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Nova fonte de tipo monoespaçado para logs.
 - Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).
 
-### Autres
+### 4.1 : Autres
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **Lib** : Atualizar o HighStock v7.1.2 a v8.2.0.
@@ -191,7 +192,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Correções de bugs.
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
 
-### Changements
+### 4.1 : Changements
 - A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* Mas *[grupo] [objeto] [nome]*.
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
@@ -277,11 +278,11 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ## 4.0.0
 
-### Pré-requisitos
+### 4.0 : Pré-requisitos
 
 - Debian 9 Stretch
 
-### Notícias / Melhorias
+### 4.0 : Notícias / Melhorias
 
 - Redesenho completo do tema (Core 2019 Light / Dark / Legacy).
 - Possibilidade de mudar o tema automaticamente dependendo do tempo.
@@ -358,7 +359,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Projeto : Movendo e redimensionando componentes em *Projeto* leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
 - Adição de um sistema de configuração em massa (usado na página Equipamento para configurar alertas de comunicações neles)
 
-### Autres
+### 4.0 : Autres
 
 - **Lib** : Atualize o jquery 3.4.1
 - **Lib** : Atualizar CodeMiror 5.46.0
@@ -368,7 +369,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Inúmeras correções de bugs.
 - Correções de segurança.
 
-### Changements
+### 4.0 : Changements
 
 - Remova Font Awesome 4 para manter apenas Font Awesome 5.
 - O plugin do widget não é compatível com esta versão do Jeedom e não será mais suportado (porque os recursos foram levados internamente no núcleo). Mais Informações [aqui](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

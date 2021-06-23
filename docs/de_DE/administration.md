@@ -36,13 +36,31 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 - **Helles und dunkles Handy** : Gleich wie oben für die Mobile-Version.
 - **Klares Thema von / bis** : Hier können Sie einen Zeitraum definieren, in dem das zuvor ausgewählte klare Thema verwendet wird. Aktivieren Sie jedoch die Option **Thema basierend auf der Zeit umschalten**.
 - **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chrom Seite://flags.
-- **Hintergrundbilder ausblenden** : Ermöglicht das Ausblenden der Hintergrundbilder in den Szenarien, Objekten, Interaktionsseiten usw.
 
 ### Tuiles
 
-- **Fliesen nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
-- **Fliesen Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
-- **Randfliesen** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
+- **Nicht horizontal** : Beschränkt die Breite der Kacheln alle x Pixel.
+- **Nicht vertikal** : Beschränkt die Höhe der Kacheln alle x Pixel.
+- **Spanne** : Vertikaler und horizontaler Abstand zwischen Kacheln in Pixel.
+- **Vertikale Zentrierung von Fliesen** : Zentriert den Inhalt der Kacheln vertikal.
+- **Bunte Widget-Symbole** : Einfärben von Widget-Symbolen basierend auf ihrem Status. Veränderbar durch Szenario, *setColoredIcon* ('Symbolfärbung').
+- **Farbige Kategorien** : Einfärbung des Titels der Kacheln nach Kategorie.
+
+### Hintergrundbilder
+
+- **Hintergrundbilder anzeigen** : Zeigen Sie die Hintergrundbilder an, die auf den Seiten mit Szenarien, Objekten, Interaktionen usw. gefunden wurden.
+- **Unschärfe der Objekthintergründe** : Ermöglicht das automatische Verwischen der Hintergrundbilder von Objekten / Räumen.
+- **Dashboard-Bild** : Hintergrundbild für die Dashboard-Seiten (Abhängig von den Optionen des Objekts).
+- **Bildanalyse** : Hintergrundbild für die Seiten des Analysemenüs.
+- **Bildtools** : Hintergrundbild für die Seiten des Tools-Menüs.
+- **Deckkraft-Themenlicht** : Deckkraft von Hintergrundbildern im Lichtthema. Passen Sie die Helligkeit der Hintergrundbilder für eine bessere Lesbarkeit an.
+- **Deckkraft des dunklen Themas** : Deckkraft von Hintergrundbildern im dunklen Thema.  Passen Sie die Helligkeit der Hintergrundbilder für eine bessere Lesbarkeit an.
+
+### Options
+
+- **Tabellenanzeige** : Zeigt im Tabellenmodus die Seiten des Tools-Menüs und die unterstützten Plugins an.
+- **Position der Benachrichtigungen** : Position auf der Seite des Erscheinens von Benachrichtigungen.
+- **Dauer der Benachrichtigungen** : Dauer der Benachrichtigungsanzeige in Sekunden. 0, um sie nicht automatisch auszublenden.
 
 ### Personnalisation
 
@@ -420,5 +438,6 @@ Für jeden Plugin-API-Schlüssel können Sie die Verwendung von Kernmethoden (al
 
 - **Datei-Editor** : Ermöglicht den Zugriff auf verschiedene Betriebssystemdateien und deren Bearbeitung, Löschung oder Erstellung.
 - **Systemverwaltung** : Bietet Zugriff auf eine Systemverwaltungsschnittstelle. Es ist eine Art Shell-Konsole, in der Sie die nützlichsten Befehle starten können, insbesondere um Informationen über das System zu erhalten.
+- **Masseneditor** : Massenbearbeitungswerkzeug für Ausrüstung, Befehle, Objekte, Szenarien.
 - **Datenbankverwaltung** : Ermöglicht den Zugriff auf die Jeedom-Datenbank. Sie können dann Befehle im oberen Feld starten.
 - **Benutzername / Passwort** : Benutzername und Passwort für den Zugriff auf die von Jeedom verwendete Datenbank.

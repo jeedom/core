@@ -36,13 +36,31 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 - **Mobile clair et sombre** : idem que précédemment pour la version Mobile.
 - **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle le thème clair choisit précédemment sera utilisé. Il faut cependant cocher l'option **Bascule du thème en fonction de l'heure**.
 - **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags.
-- **Masquer les images de fonds** : Permet de masquer les images de fonds que l'on trouve dans les pages scénarios, objets, interactions, etc.
 
 ### Tuiles
 
-- **Tuiles Pas horizontal** : Contraint la largeur des tuiles tous les x pixels.
-- **Tuiles Pas vertical** : Contraint la hauteur des tuiles tous les x pixels.
-- **Tuiles Marge** : Espace vertical et horizontal entre les tuiles, en pixels.
+- **Pas horizontal** : Contraint la largeur des tuiles tous les x pixels.
+- **Pas vertical** : Contraint la hauteur des tuiles tous les x pixels.
+- **Marge** : Espace vertical et horizontal entre les tuiles, en pixels.
+- **Centrage vertical des tuiles** : Centre verticalement le contenu des tuiles.
+- **Icônes widgets colorées** : Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, *setColoredIcon* ('Coloration des icônes').
+- **Catégories colorées** : Colorisation du titre des tuiles en fonction de la catégorie.
+
+### Images de fond
+
+- **Afficher les images de fonds** : Afficher les images de fonds que l'on trouve dans les pages scénarios, objets, interactions, etc.
+- **Flou des fonds des objets** : Permet de flouter automatiquement les images de fonds des objets / Pièces.
+- **Image Dashboard** : Image de fond pour les pages du Dashboard (En fonction des options de l'objet).
+- **Image Analyse** : Image de fond pour les pages du menu Analyse.
+- **Image Outils** : Image de fond pour les pages du menu Outils.
+- **Opacité thème Light** : Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond pour une meilleure lisibilité.
+- **Opacité thème Dark** : Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond pour une meilleure lisibilité.
+
+### Options
+
+- **Affichage tableau** : Affiche en mode tableau les pages du menu outils et les plugins supportés.
+- **Position des notifications** : Position sur la page de l'apparition des notifications.
+- **Durée des notifications** : Durée de l'affichage des notifications en seconde. 0 pour ne pas les masquer automatiquement.
 
 ### Personnalisation
 
@@ -420,5 +438,6 @@ Pour chaque clé API de plugin vous pouvez leur interdire les méthodes core (g�
 
 - **Editeur de fichiers** : Permet d'accéder aux différents fichiers du système d'exploitation et de les éditer ou supprimer ou d'en créer.
 - **Administration Système** : Permet d’accéder à une interface d’administration système. C’est une sorte de console shell dans laquelle vous pouvez lancer les commandes les plus utiles, notamment pour obtenir des informations sur le système.
+- **Editeur en masse** : Outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Administration Base de données** : Permet d’accéder à la base de données de Jeedom. Vous pouvez alors lancer des commandes dans le champ du haut.
 - **Utilisateur / Mot de passe** : Nom de l’utilisateur et mot de passe d’accès à la base de données utilisé par Jeedom.

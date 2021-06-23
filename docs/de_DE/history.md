@@ -41,6 +41,7 @@ Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diag
 - **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, oder *Abgesperrt*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
+- **Verfolgung** : Hiermit können Sie die Hervorhebung der Kurve deaktivieren, wenn ein Wert am Mauszeiger angezeigt wird. Zum Beispiel, wenn zwei Kurven nicht gleichzeitig ihre Werte haben.
 - **Vergleichen Sie** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
 
 

@@ -2,12 +2,12 @@
 
 ## 4.2.0
 
-### Pré-requis
+### 4.2 : Pré-requis
 
 - Debian 10 Buster
 - Php 7.3
 
-### Nouveautés / Améliorations
+### 4.2 : Nouveautés / Améliorations
 
 - **Synthèse** : Possibilité de paramétrage des objets pour aller vers un *design* ou une *vue* depuis la synthèse.
 - **Dashboard** : La fenêtre de configuration d'un équipement (mode édition) permet maintenant de configurer les widgets mobile et les types génériques.
@@ -23,9 +23,10 @@
 - **Catégories colorées** : Nouvelle option en configuration / interface pour ne pas colorer le bandeau de titre des équipements.
 - **Affichage en tableau** : Ajout d'un bouton à droite de la recherche sur les pages *Objets* *Scénarios* *Interactions* *Widgets* et *Plugins* pour basculer en mode tableau. Celui-ci est conservé par un cookie ou dans **Réglages → Système → Configuration / Interface, Options**. Les plugins peuvent faire appel à cette nouvelle fonction du Core.
 - **Configuration** : Possibilité de paramétrer des fond d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème.
-- **Blocs Code** : (Editeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code (*code folding*). Raccourcis Ctrl+Y et Ctrl+I.
+- **Blocs Code** : (Éditeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code (*code folding*). Raccourcis Ctrl+Y et Ctrl+I.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
+- **Réglages OSDB** : Ajout d'un outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
 - **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
@@ -33,9 +34,9 @@
 - **Utilisateurs** : Possibilité de gérer les profils des différents utilisateurs Jeedom depuis la page de gestion des utilisateurs.
 - **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
-- **Ajout de l'utilisateur exécutant une action** : ajout dans les options d’exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple)
+- **Ajout de l'utilisateur exécutant une action** : Ajout dans les options d’exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple)
 
-### Widgets Core
+### 4.2 : Widgets Core
 
 - Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard.
 - Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard.
@@ -44,7 +45,7 @@
 - Les Widgets de type curseur (action) acceptent maintenant un paramètre optionnel *step* pour définir le pas de changement au curseur.
 - Le Widget **action.slider.value** est maintenant disponible en desktop, avec un paramètre optionnel *noslider*, ce qui en fait un *input* simple.
 
-### Backup cloud
+### 4.2 : Backup cloud
 
 Nous avons ajouter une confirmation du mot de passe de backup cloud pour prévenir les erreurs de saisie (pour rappel l'utilisateur est le seul à connaître ce mot de passe, en cas d'oubli, Jeedom ne peut ni le récupérer ni accéder aux backup cloud de l'utilisateur).
 
@@ -95,11 +96,11 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 
 ## 4.1.0
 
-### Pré-requis
+### 4.1 : Pré-requis
 
 - Debian 10 Buster
 
-### Nouveautés / Améliorations
+### 4.1 Nouveautés / Améliorations
 
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces, avec accès rapide aux résumés.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
@@ -168,7 +169,7 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 - Bloc code, Éditeur de fichier, Personnalisation avancée : Adaptation thème Dark.
 - Amélioration de la fenêtre de sélection d'image.
 
-### WebApp
+### 4.1 : WebApp
 - Intégration de la nouvelle page Synthèse.
 - Page scénarios, un clic sur le titre du scénario affiche le log de celui-ci.
 - On peut maintenant sélectionner / copier une partie d'un log.
@@ -179,7 +180,7 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 - Nouvelle police de type monospace pour les logs.
 - Nombreux bug-fix (UI, portrait/landscape iOS, etc.).
 
-### Autres
+### 4.1 : Autres
 - **Documentation** : Adaptations en adéquation avec la v4 et v4.1.
 - **Documentation** : Nouvelle page *Raccourcis clavier / souris* comprenant un récapitulatif de tous les raccourcis dans Jeedom. Accessible depuis la doc du Dashboard ou la FAQ.
 - **Lib** : Update HighStock v7.1.2 vers v8.2.0.
@@ -191,7 +192,7 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 - Corrections de bugs.
 - Nombreuses optimisations de performance desktop / mobile.
 
-### Changements
+### 4.1 : Changements
 - La fonction **scenario->getHumanName()** de la class php scenario ne renvoit plus *[object][group][name]* mais *[group][object][name]*.
 - La fonction **scenario->byString()** doit maintenant être appellée avec la structure *[group][object][name]*.
 - Les fonctions **network->getInterfaceIp() network->getInterfaceMac() network->getInterfaces()** ont été remplacées par **network->getInterfacesInfo()**
@@ -277,11 +278,11 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 
 ## 4.0.0
 
-### Pré-requis
+### 4.0 : Pré-requis
 
 - Debian 9 Stretch
 
-### Nouveautés / Améliorations
+### 4.0 : Nouveautés / Améliorations
 
 - Refonte complète des thèmes (Core 2019 Light / Dark / Legacy).
 - Possibilité de changer de thème automatiquement en fonction de l'heure.
@@ -358,7 +359,7 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 - Design : Le déplacement et le redimensionnement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
 - Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
 
-### Autres
+### 4.0 : Autres
 
 - **Lib** : Update jquery 3.4.1
 - **Lib** : Update CodeMiror 5.46.0
@@ -368,7 +369,7 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 - Nombreuses corrections de bugs.
 - Corrections de sécurité.
 
-### Changements
+### 4.0 : Changements
 
 - Suppression de Font Awesome 4 pour ne conserver que Font Awesome 5.
 - Le plugin widget n'est pas compatible avec cette version de Jeedom et ne sera plus supporté (car les fonctionnalités ont été reprise en interne sur le core). Plus d'informations [ici](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).

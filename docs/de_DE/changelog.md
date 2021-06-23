@@ -2,12 +2,12 @@
 
 ## 4.2.0
 
-### Voraussetzungen
+### 4.2 : Voraussetzungen
 
 - Debian 10 Buster
 - Php 7.3
 
-### Neuigkeiten / Verbesserungen
+### 4.2 : Neuigkeiten / Verbesserungen
 
 - **Synthese** : Möglichkeit zum Konfigurieren von Objekten für a *Design* oder ein *Aussicht* seit der Synthese.
 - **Instrumententafel** : Im Gerätekonfigurationsfenster (Bearbeitungsmodus) können Sie jetzt mobile Widgets und generische Typen konfigurieren.
@@ -26,6 +26,7 @@
 - **Codeblöcke** : (Datei-Editor, Szenarien, erweiterte Anpassung) Code-Fallback-Funktion (*Code falten*). Tastenkombinationen Strg + Y und Strg + I.
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
+- **OSDB-Einstellungen** : Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
 - **OSDB-Einstellungen** : Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). Siehe Entwicklerdokument v4.2.
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
@@ -35,7 +36,7 @@
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
 
-### Kern-Widgets
+### 4.2 : Kern-Widgets
 
 - Auf die Widgets-Einstellungen für die Mobile-Version kann jetzt über das Gerätekonfigurationsfenster im Dashboard-Bearbeitungsmodus zugegriffen werden.
 - Die optionalen Parameter, die für Widgets verfügbar sind, werden jetzt für jedes Widget entweder in der Befehlskonfiguration oder im Dashboard-Bearbeitungsmodus angezeigt.
@@ -44,7 +45,7 @@
 - Widgets vom Typ Cursor (Aktion) akzeptieren jetzt einen optionalen Parameter *Schritt* um den Änderungsschritt am Cursor zu definieren.
 - Das Widget **action.slider.value** ist jetzt auf dem Desktop mit einem optionalen Parameter verfügbar *Noslider*, was macht es ein *Eingang* einfach.
 
-### Cloud-Backup
+### 4.2 : Cloud-Backup
 
 Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Eingabefehler zu vermeiden (zur Erinnerung, der Benutzer ist der einzige, der dieses Kennwort kennt. Im Falle eines Vergessens kann Jeedom es weder wiederherstellen noch auf die Sicherung zugreifen. Benutzer-Cloud).
 
@@ -95,11 +96,11 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 
 ## 4.1.0
 
-### Voraussetzungen
+### 4.1 : Voraussetzungen
 
 - Debian 10 Buster
 
-### Neuigkeiten / Verbesserungen
+### 4.1 Neuigkeiten / Verbesserungen
 
 - **Synthese** : Neue Seite hinzufügen **Home → Zusammenfassung** Bietet eine globale visuelle Zusammenfassung der Teile mit schnellem Zugriff auf Zusammenfassungen.
 - **Forschung** : Hinzufügen einer Suchmaschine in **Extras → Suchen**.
@@ -168,7 +169,7 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 - Codeblock, Datei-Editor, Erweiterte Anpassung : Dunkle Themenanpassung.
 - Verbessertes Bildauswahlfenster.
 
-### WebApp
+### 4.1 : WebApp
 - Integration der neuen Übersichtsseite.
 - Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
@@ -179,7 +180,7 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 - Neue Monospace-Schriftart für Protokolle.
 - Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).
 
-### Autres
+### 4.1 : Autres
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
@@ -191,7 +192,7 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
-### Changements
+### 4.1 : Changements
 - Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* Aber *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
@@ -277,11 +278,11 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 
 ## 4.0.0
 
-### Voraussetzungen
+### 4.0 : Voraussetzungen
 
 - Debian 9 Stretch
 
-### Neuigkeiten / Verbesserungen
+### 4.0 : Neuigkeiten / Verbesserungen
 
 - Komplette Neugestaltung des Themas (Core 2019 Light / Dark / Legacy)).
 - Möglichkeit, das Thema je nach Zeit automatisch zu ändern.
@@ -358,7 +359,7 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 - Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>
 - Hinzufügen eines Massenkonfigurationssystems (wird auf der Seite Ausrüstung verwendet, um Kommunikationswarnungen darauf zu konfigurieren)
 
-### Autres
+### 4.0 : Autres
 
 - **Lib** : Aktualisieren Sie jquery 3.4.1
 - **Lib** : Aktualisieren Sie CodeMiror 5.46.0
@@ -368,7 +369,7 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 - Zahlreiche Fehlerbehebungen.
 - Sicherheitskorrekturen.
 
-### Changements
+### 4.0 : Changements
 
 - Entfernen Sie Font Awesome 4, um nur Font Awesome 5 beizubehalten.
 - Das Widget-Plugin ist nicht mit dieser Version von Jeedom kompatibel und wird nicht mehr unterstützt (da die Funktionen intern im Kern übernommen wurden). Mehr Informationen [Hier](https://www.Jeedom.com/blog/4368-les-widgets-en-v4).
