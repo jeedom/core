@@ -560,13 +560,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         <form class="form-horizontal">
           <fieldset>
             <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
-            <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
+           <div class="form-group">
+              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Repeter les valeurs identique}}</label>
               <div class="col-xs-3">
                 <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement" >
-                  <option value="auto">{{Automatique}}</option>
-                  <option value="always">{{Toujours répéter}}</option>
-                  <option value="never">{{Jamais répéter}}</option>
+                  <option value="never">{{Non}}</option>
+                  <option value="always">{{Oui}}</option>
                 </select>
               </div>
             </div>
@@ -955,6 +954,10 @@ $('#bt_addWidgetParametersCmd').off().on('click', function() {
   tr += '</tr>'
   $('#table_widgetParametersCmd tbody').append(tr)
 })
+  
+if(cmdInfo.configuration && (!cmdInfo.configuration.repeatEventManagement || cmdInfo.configuration.repeatEventManagement == 'auto')){
+  cmdInfo.configuration.repeatEventManagement = 'never';
+}
 
 $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr')
 
