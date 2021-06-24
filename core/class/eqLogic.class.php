@@ -614,7 +614,7 @@ class eqLogic {
 				return true;
 			}
 			return false;
-		} else if ($cmd->getConfiguration('repeatEventManagement', 'auto') == 'always' || ($cmd->getSubType() == 'binary' && $cmd->getConfiguration('repeatEventManagement', 'auto') == 'auto')) {
+		} else if ($cmd->getConfiguration('repeatEventManagement', 'never') == 'always') {
 			$cmd->event($_value, $_updateTime);
 			return true;
 		}
@@ -624,7 +624,7 @@ class eqLogic {
 		}
 		return false;
 	}
-
+	
 	public function copy($_name) {
 		$eqLogicCopy = clone $this;
 		$eqLogicCopy->setName($_name);
