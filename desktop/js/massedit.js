@@ -229,7 +229,7 @@ $('body').on({
     inputJValues.empty()
 
     var jValues = typePossibilities[_filterType_][key][value]
-    if (!jValues) return false
+    if (!jValues || typeof jValues == 'string') return false
     var option
     jValues.forEach((jValue, index) => {
       option = $("<option></option>").attr("value", jValue).text(jValue)
