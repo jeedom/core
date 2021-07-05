@@ -255,7 +255,7 @@ sendVarToJS([
       <?php
       if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
         ?>
-        <legend><i class="fas fa-pencil-alt-square-o"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
+        <legend><i class="fas fa-edit"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
         <table class="table table-bordered table-condensed" id="table_widgetParameters">
           <thead>
             <tr>
@@ -350,7 +350,6 @@ sendVarToJS([
   <br/>
   <form class="form-horizontal">
     <fieldset>
-      <legend>{{Configuration général}}</legend>
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Disposition}}</label>
         <div class="col-sm-2">
