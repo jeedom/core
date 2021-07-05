@@ -13,6 +13,7 @@
     <center>
       #cmd#
     </center>
+    #backGraph#
   </div>
   <script>
     if ('#refresh_id#' != '') {
@@ -21,6 +22,10 @@
       })
     } else {
       $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
+    }
+
+    if ($('.eqLogic[data-eqLogic_uid=#uid#] div.eqlogicbackgraph').length) {
+      jeedom.eqLogic.drawGraphInfo($('.eqLogic[data-eqLogic_uid=#uid#] div.eqlogicbackgraph').data('cmdid'))
     }
   </script>
 </div>

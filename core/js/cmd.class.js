@@ -343,6 +343,11 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   var cmd = null;
   for(var i in _params){
+    //update tile graph info:
+    if ($('.eqlogicbackgraph[data-cmdid=' + _params[i].cmd_id + ']').length) {
+      jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
+    }
+
     cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
     if (cmd.hasClass('noRefresh')) {
       continue;

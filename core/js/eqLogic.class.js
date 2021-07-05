@@ -70,7 +70,6 @@ jeedom.eqLogic.save = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-
 jeedom.eqLogic.byType = function (_params) {
   var paramsRequired = ['type'];
   var paramsSpecifics = {};
@@ -299,7 +298,6 @@ jeedom.eqLogic.getCmd = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-
 jeedom.eqLogic.byId = function (_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {
@@ -452,6 +450,83 @@ jeedom.eqLogic.refreshValue = function (_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
+  var dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
+  var dateStart
+  var decay = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']').data('format')
+  switch (decay) {
+    case 'hour':
+      dateStart = moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')
+      break
+    case 'week':
+      dateStart = moment().subtract(7, 'days').format('YYYY-MM-DD HH:mm:ss')
+      break
+    case 'month':
+      dateStart = moment().subtract(1, 'month').format('YYYY-MM-DD HH:mm:ss')
+      break
+    default:
+      dateStart = moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')
+  }
+
+  jeedom.history.get({
+    cmd_id: _cmdId,
+    dateStart : dateStart,
+    dateEnd :  dateEnd,
+    success: function(result) {
+      $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').empty().highcharts({
+        chart: {
+          type: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('type'),
+          borderWidth: 0,
+          margin: 0
+        },
+        title: {
+            text:''
+        },
+        scrollbar: {
+          enabled: false
+        },
+        rangeSelector: {
+            enabled: false
+        },
+        legend: {
+          enabled: false
+        },
+        xAxis: {
+          visible: false
+        },
+        yAxis: {
+          visible: false,
+          min: result.minValue,
+          max: result.maxValue
+        },
+        plotOptions: {
+          column: {
+            borderWidth: 0,
+            opacity: 0.65
+          }
+        },
+        series: [
+          {
+            data: result.data,
+            color: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('color'),
+            fillOpacity: 0.25,
+            enableMouseTracking: false,
+            animation: false,
+            marker: {
+              enabled: false
+            }
+          }
+        ],
+        exporting: {
+          enabled: false
+        },
+        credits: {
+            enabled: false
+        }
+      })
+    }
+  })
+}
 
 jeedom.eqLogic.setOrder = function(_params) {
   var paramsRequired = ['eqLogics'];
@@ -531,7 +606,6 @@ jeedom.eqLogic.setIsEnables = function(_params) {
   $.ajax(paramsAJAX);
 };
 
-
 jeedom.eqLogic.htmlAlert = function(_params) {
   var paramsRequired = ['version'];
   var paramsSpecifics = {};
@@ -550,7 +624,6 @@ jeedom.eqLogic.htmlAlert = function(_params) {
   };
   $.ajax(paramsAJAX);
 };
-
 
 jeedom.eqLogic.htmlBattery = function(_params) {
   var paramsRequired = ['version'];

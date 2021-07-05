@@ -63,48 +63,95 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     </form>
     <br/>
 
-    <!-- Optionnal parameters -->
+    <!-- Display -->
     <div id="panel_optParams" class="panel panel-default" style="display:none">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Paramètres optionnels sur la tuile}}</a>
-          <span>
-            <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-          </span>
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#optParams">{{Affichage}}</a>
         </h3>
       </div>
       <div id="optParams" class="panel-collapse collapse">
         <div class="panel-body">
-          <table class="table table-bordered table-condensed" id="table_widgetParameters">
-            <thead>
-              <tr>
-                <th>{{Nom}}</th>
-                <th>{{Valeur}}</th>
-                <th>{{Action}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              if ($eqLogic->getDisplay('parameters') != '') {
-                $echo = '';
-                foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
-                  $echo .= '<tr>';
-                  $echo .= '<td>';
-                  $echo .= '<input class="form-control key" value="' . $key . '" />';
-                  $echo .= '</td>';
-                  $echo .= '<td>';
-                  $echo .= '<input class="form-control value" value="' . $value . '" />';
-                  $echo .= '</td>';
-                  $echo .= '<td>';
-                  $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> {{Supprimer}}</a>';
-                  $echo .= '</td>';
-                  $echo .= '</tr>';
-                }
-                echo $echo;
+        <form class="form-horizontal">
+          <label><i class="fas fa-chart-line"></i> {{Graphique de fond}}</label>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Information}}</label>
+              <div class="col-sm-3">
+                <select class="eqLogicAttr form-control sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
+                  <option value="0">{{Aucune}}</option>
+                  <?php
+                  foreach (($eqLogic->getCmd('info')) as $cmd) {
+                    $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+                  }
+                  echo $options;
+                  ?>
+                </select>
+              </div>
+
+              <label class="col-sm-2 control-label">{{Format}}</label>
+              <div class="col-sm-3">
+                <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::format">
+                  <option value="month">{{Mois}}</option>
+                  <option value="week">{{Semaine}}</option>
+                  <option value="day">{{Jour}}</option>
+                  <option value="hour">{{Heure}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Type}}</label>
+              <div class="col-sm-3">
+                <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::type">
+                  <option value="areaspline">{{Courbe}}</option>
+                  <option value="column">{{Barre}}</option>
+                </select>
+              </div>
+
+              <label class="col-sm-2 control-label">{{Couleur}}</label>
+              <div class="col-sm-3">
+                <input type="color" class="eqLogicAttr html form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color"/>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <br/>
+
+        <span>
+          <label><i class="fas fa-edit"></i></i> {{Paramètres optionnels sur la tuile}}</label>
+          <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+        </span>
+        <table class="table table-bordered table-condensed" id="table_widgetParameters">
+          <thead>
+            <tr>
+              <th>{{Nom}}</th>
+              <th>{{Valeur}}</th>
+              <th>{{Action}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            if ($eqLogic->getDisplay('parameters') != '') {
+              $echo = '';
+              foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
+                $echo .= '<tr>';
+                $echo .= '<td>';
+                $echo .= '<input class="form-control key" value="' . $key . '" />';
+                $echo .= '</td>';
+                $echo .= '<td>';
+                $echo .= '<input class="form-control value" value="' . $value . '" />';
+                $echo .= '</td>';
+                $echo .= '<td>';
+                $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="fas fa-times"></i> {{Supprimer}}</a>';
+                $echo .= '</td>';
+                $echo .= '</tr>';
               }
-              ?>
-            </tbody>
-          </table>
+              echo $echo;
+            }
+            ?>
+          </tbody>
+        </table>
         </div>
       </div>
     </div>
