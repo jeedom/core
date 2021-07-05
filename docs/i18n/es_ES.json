@@ -1371,6 +1371,8 @@
         "Celui-ci est conservé par un cookie ou dans": "Esto se almacena mediante una cookie o en",
         "Les plugins peuvent faire appel à cette nouvelle fonction du Core": "Los complementos pueden usar esta nueva función principal",
         "Possibilité de paramétrer des fond d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème": "Posibilidad de configurar el fondo de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema",
+        "Configuration Equipement": "Configuración del equipo",
+        "Possibilité de paramétrer une courbe d'historique en fond de tuile d'un équipement": "Posibilidad de configurar una curva de historial en la parte inferior del mosaico de un dispositivo",
         "Blocs Code": "Bloques de código",
         "code folding": "plegado de código",
         "Éditeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code": "Editor de archivos, escenarios, personalización avanzada) Función de reserva de código",

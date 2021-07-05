@@ -829,6 +829,8 @@
         "Les plugins peuvent faire appel à cette nouvelle fonction du Core": "Les plugins peuvent faire appel à cette nouvelle fonction du Core",
         "Configuration": "Configuration",
         "Possibilité de paramétrer des fond d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème": "Possibilité de paramétrer des fond d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème",
+        "Configuration Equipement": "Configuration Equipement",
+        "Possibilité de paramétrer une courbe d'historique en fond de tuile d'un équipement": "Possibilité de paramétrer une courbe d'historique en fond de tuile d'un équipement",
         "Blocs Code": "Blocs Code",
         "code folding": "code folding",
         "Éditeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code": "Éditeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code",

@@ -23,6 +23,7 @@
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
 - **Configuration** : Possibility to configure the wallpaper on the Dashboard, Analysis, Tools pages and their opacity depending on the theme.
+- **Equipment configuration** : Possibility of configuring a history curve at the bottom of the tile of a device.
 - **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
