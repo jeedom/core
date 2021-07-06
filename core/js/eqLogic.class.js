@@ -487,7 +487,7 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
     dateStart : dateStart,
     dateEnd :  dateEnd,
     success: function(result) {
-      if (result.data.length == 0) return False
+      if (result.data.length == 0) return false
       var now = (moment().unix() + (serverTZoffsetMin * 60)) * 1000
       result.data.push([now, result.data.slice(-1)[0][1]])
       drawEqEl.empty().highcharts({
