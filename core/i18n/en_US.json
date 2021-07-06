@@ -101,7 +101,7 @@
         "Maximum par année": "Maximum per year",
         "Ligne": "Line",
         "Aire": "Area",
-        "Barre": "Closed off",
+        "Barre": "Bar",
         "Variation": "Variation",
         "Escalier": "Steps"
     },
@@ -617,7 +617,7 @@
         "Type": "Type",
         "Aucun": "None",
         "Catégorie": "Category",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Général": "Main",
         "Scénario": "Scenario",
         "Etape 4 : Demande de support": "Step 4: Request for support",
@@ -1495,7 +1495,7 @@
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error",
         "L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.": "The following option can only be modified at the request of the support, otherwise it MUST be set to 'None'",
         "Mise à jour à réappliquer": "Update to reapply",
-        "Aucune": "Any"
+        "Aucune": "None"
     },
     "desktop\/php\/view.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1927,7 +1927,7 @@
         "Vider le champ de recherche": "Clear the search field",
         "Filtre par catégorie": "Filter by category",
         "Toutes": "All",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Scénario": "Scenario",
         "Édition du Dashboard": "Dashboard edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Adjust all the tiles to the height of the lowest",
@@ -2468,7 +2468,7 @@
         "Maximum par année": "Maximum per year",
         "Ligne": "Line",
         "Aire": "Area",
-        "Barre": "Closed off",
+        "Barre": "Bar",
         "Variation": "Variation",
         "Escalier": "Steps",
         "Tracking": "Tracking",
@@ -3762,7 +3762,7 @@
         "Top et nouveautés": "Top and new",
         "Rechercher": "Search",
         "Retour": "Return",
-        "Aucune": "Any",
+        "Aucune": "None",
         "Widget pour la version mobile": "Mobile version Widget",
         "Widget pour la version bureau": "Desktop version widget",
         "par": "by",
