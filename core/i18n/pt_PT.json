@@ -103,7 +103,7 @@
         "Aire": "área",
         "Barre": "Bar",
         "Variation": "Mudança",
-        "Escalier": "Escadaria"
+        "Escalier": "Escada"
     },
     "mobile\/html\/eqAnalyse.html": {
         "Batteries": "Baterias",
@@ -231,7 +231,7 @@
         "Calcul": "Cálculo",
         "Type": "Tipo",
         "Groupement": "Grupo",
-        "Escalier": "Escadaria",
+        "Escalier": "Escada",
         "Action": "Açao",
         "Sauvegarde effectuée": "Backup feito",
         "Formule de calcul": "Fórmula",
@@ -889,7 +889,7 @@
         "Moyenne par année": "Média por ano",
         "Minimum par année": "Mínimo por ano",
         "Maximum par année": "Máximo por ano",
-        "Escalier": "Escadaria",
+        "Escalier": "Escada",
         "Empiler": "Pilha",
         "Variation": "Mudança",
         "Echelle": "Escala"
@@ -2472,7 +2472,7 @@
         "Aire": "área",
         "Barre": "Bar",
         "Variation": "Mudança",
-        "Escalier": "Escadaria",
+        "Escalier": "Escada",
         "Tracking": "Rastreamento",
         "Comparer": "Comparar",
         "Vide l'affichage des courbes sur la zone.": "Limpe a exibição de curvas na área",
@@ -2632,7 +2632,7 @@
         "Type": "Tipo",
         "Groupement": "Grupo",
         "Echelle": "Escala",
-        "Escalier": "Escadaria",
+        "Escalier": "Escada",
         "Empiler": "Pilha",
         "Variation": "Mudança",
         "Bleu": "Azul",
