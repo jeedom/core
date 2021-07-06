@@ -469,6 +469,7 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
   }
 
   jeedom.history.get({
+    global : false,
     cmd_id: _cmdId,
     dateStart : dateStart,
     dateEnd :  dateEnd,

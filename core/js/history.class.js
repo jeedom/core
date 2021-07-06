@@ -22,6 +22,7 @@ jeedom.history.chart = [];
 jeedom.history.get = function(_params) {
   var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd'];
   var paramsSpecifics = {
+    global: _params.global || true,
     pre_success: function(data) {
       if (isset(jeedom.cmd.cache.byId[data.result.id])) {
         delete jeedom.cmd.cache.byId[data.result.id];
@@ -42,7 +43,7 @@ jeedom.history.get = function(_params) {
     action: 'getHistory',
     id: _params.cmd_id,
     dateStart: _params.dateStart || '',
-    dateEnd: _params.dateEnd || ''
+    dateEnd: _params.dateEnd || '',
   };
   $.ajax(paramsAJAX);
 }
