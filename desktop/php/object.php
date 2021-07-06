@@ -108,7 +108,7 @@ $synthToActions = array(
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Options}}</label>
 								<div class="col-sm-7">
-									<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}
+									<label class="checkbox-inline"><input type="checkbox" class="objectAttr" data-l1key="isVisible" checked/>{{Visible}}
 										<!-- <sup><i class="fas fa-question-circle tooltips" title="{{Rendre cet objet visible ou non.}}"></i></sup> -->
 									</label>
 								</div>
