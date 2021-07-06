@@ -19,6 +19,7 @@ jeedom.eqLogic = function () {
 };
 
 jeedom.eqLogic.cache = Array();
+jeedom.eqLogic.backGraphIntervals = {};
 
 jeedom.eqLogic.changeDisplayObjectName = function(_display){
   if(_display){
@@ -451,21 +452,32 @@ jeedom.eqLogic.refreshValue = function (_params) {
 };
 
 jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
+  if ($('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']').length == 0) return false
   var dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
   var dateStart
   var decay = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']').data('format')
   switch (decay) {
     case 'hour':
+      jeedom.eqLogic.backGraphIntervals[_cmdId] = 2 * 60 * 1000
       dateStart = moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')
       break
     case 'week':
+      jeedom.eqLogic.backGraphIntervals[_cmdId] = 60 * 60 * 1000
       dateStart = moment().subtract(7, 'days').format('YYYY-MM-DD HH:mm:ss')
       break
     case 'month':
+      jeedom.eqLogic.backGraphIntervals[_cmdId] = 0
       dateStart = moment().subtract(1, 'month').format('YYYY-MM-DD HH:mm:ss')
       break
     default:
+      jeedom.eqLogic.backGraphIntervals[_cmdId] = 600 * 60 * 1000
       dateStart = moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')
+  }
+
+  if (jeedom.eqLogic.backGraphIntervals[_cmdId] != 0) {
+    setTimeout(function() {
+      jeedom.eqLogic.drawGraphInfo(_cmdId)
+    }, jeedom.eqLogic.backGraphIntervals[_cmdId])
   }
 
   jeedom.history.get({
