@@ -452,10 +452,11 @@ jeedom.eqLogic.refreshValue = function (_params) {
 };
 
 jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
-  if ($('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']').length == 0) return false
+  var drawEqEl = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']')
+  if (drawEqEl.length == 0) return false
   var dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
   var dateStart
-  var decay = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']').data('format')
+  var decay = drawEqEl.data('format')
   switch (decay) {
     case 'hour':
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 2 * 60 * 1000
@@ -489,9 +490,9 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
       if (result.data.length == 0) return False
       var now = (moment().unix() + (serverTZoffsetMin * 60)) * 1000
       result.data.push([now, result.data.slice(-1)[0][1]])
-      $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').empty().highcharts({
+      drawEqEl.empty().highcharts({
         chart: {
-          type: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('type'),
+          type: drawEqEl.data('type'),
           borderWidth: 0,
           margin: 0
         },
@@ -524,8 +525,8 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
         series: [
           {
             data: result.data,
-            color: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('color'),
-            step: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('type') == 'area' ? 1 : 0,
+            color: drawEqEl.data('color'),
+            step: drawEqEl.data('type') == 'area' ? 1 : 0,
             fillOpacity: 0.25,
             enableMouseTracking: false,
             animation: false,
