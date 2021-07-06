@@ -187,6 +187,9 @@ sendVarToJS([
                 <option value="0">{{Aucune}}</option>
                 <?php
                 foreach (($eqLogic->getCmd('info')) as $cmd) {
+                  if(!$cmd->getIsHistorized()){
+                    continue;
+                  }
                   $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
                 }
                 echo $options;
