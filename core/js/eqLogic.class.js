@@ -497,8 +497,8 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
         },
         yAxis: {
           visible: false,
-          min: result.minValue,
-          max: result.maxValue
+          min: result.cmd.subType == 'binary' ? 0 : result.minValue,
+          max: result.cmd.subType == 'binary' ? 1 : result.maxValue + ((result.maxValue - result.minValue ) / 5)
         },
         plotOptions: {
           column: {
