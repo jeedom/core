@@ -3,6 +3,19 @@ Core Widgets CSS @Jeedom
 Desktop
 */
 
+div.eqlogicbackgraph {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  z-index: -100;
+  opacity: 0.65;
+}
+div.eqlogicbackgraph  path.highcharts-graph {
+  stroke-width: 2;
+}
+
 /* ____________________Global */
   [data-page=plan3d] .verticalAlign {
     z-index : auto !important;
