@@ -510,6 +510,7 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
           {
             data: result.data,
             color: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('color'),
+            step: $('.eqlogicbackgraph[data-cmdid=' + result.cmd.id + ']').data('type') == 'area' ? 1 : 0,
             fillOpacity: 0.25,
             enableMouseTracking: false,
             animation: false,
