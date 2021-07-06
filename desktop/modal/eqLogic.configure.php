@@ -213,6 +213,7 @@ sendVarToJS([
             <div class="col-sm-3">
               <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::type">
                 <option value="areaspline">{{Courbe}}</option>
+                <option value="area">{{Escalier}}</option>
                 <option value="column">{{Barre}}</option>
               </select>
             </div>
