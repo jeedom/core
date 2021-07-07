@@ -707,6 +707,7 @@ class eqLogic {
 			'#generic_type#' => $this->getGenericType(),
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering','core',0) == 1) ? 'verticalAlign':'',
 			'#class#' => '',
+			'#divGraphInfo#' => '',
 		);
 		if ($this->getDisplay('height', 'auto') == 'auto') {
 			$replace['#height#'] = '110px';
