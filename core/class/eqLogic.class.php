@@ -928,6 +928,7 @@ class eqLogic {
 				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
+				$this->setDisplay('backGraph::info', 0);
 			}
 			if($this->getDisplay('layout::dashboard') != 'table'){
 				$displays = $this->getDisplay();
