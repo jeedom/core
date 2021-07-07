@@ -520,6 +520,9 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
           column: {
             borderWidth: 0,
             opacity: 0.65
+          },
+          area: {
+            borderWidth: 0
           }
         },
         series: [

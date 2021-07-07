@@ -788,6 +788,16 @@ class eqLogic {
 				}
 			}
 		}
+
+		if ($_version == 'dashboard') {
+			//set background graph:
+			if ($this->getDisplay('backGraph::info', 0) != 0) {
+				$replace['<div class="eqlogicbackgraph"></div>'] = '<div class="eqlogicbackgraph hasgraph" data-cmdid="'.$this->getDisplay('backGraph::info').'" data-format="'.$this->getDisplay('backGraph::format', 'day').'" data-type="'.$this->getDisplay('backGraph::type', 'areaspline').'" data-color="'.$this->getDisplay('backGraph::color', '#4572A7').'"></div>';
+			} else {
+				$replace['<div class="eqlogicbackgraph"></div>'] = '';
+			}
+		}
+
 		return $replace;
 	}
 
@@ -849,13 +859,6 @@ class eqLogic {
 	}
 
 	public function postToHtml($_version, $_html) {
-		//set background graph:
-		if ($this->getDisplay('backGraph::info', 0) != 0) {
-			$_html = str_replace('#backGraph#', '<div class="eqlogicbackgraph" data-cmdid="'.$this->getDisplay('backGraph::info').'" data-format="'.$this->getDisplay('backGraph::format', 'day').'" data-type="'.$this->getDisplay('backGraph::type', 'areaspline').'" data-color="'.$this->getDisplay('backGraph::color', '#4572A7').'"></div>', $_html);
-		} else {
-			$_html = str_replace('#backGraph#', '', $_html);
-		}
-
 		if (config::byKey('widget::disableCache','core',0) == 0) {
 			cache::set('widgetHtml' . $this->getId() . $_version, $_html);
 		}
