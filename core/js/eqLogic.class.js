@@ -451,6 +451,14 @@ jeedom.eqLogic.refreshValue = function (_params) {
   $.ajax(paramsAJAX);
 };
 
+jeedom.eqLogic.initGraphInfo = function (_eqLogicId) {
+  if ($('div.eqLogic[data-eqlogic_id='+_eqLogicId+'] div.eqlogicbackgraph').length) {
+    var cmdId = $('div.eqLogic[data-eqlogic_id='+_eqLogicId+'] div.eqlogicbackgraph').data('cmdid')
+    jeedom.eqLogic.drawGraphInfo(cmdId)
+    $('div.eqLogic[data-eqlogic_id='+_eqLogicId+'] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName').prepend('• ')
+  }
+}
+
 jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
   var drawEqEl = $('.eqlogicbackgraph[data-cmdid=' + _cmdId + ']')
   if (drawEqEl.length == 0) return false

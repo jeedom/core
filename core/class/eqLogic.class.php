@@ -793,7 +793,7 @@ class eqLogic {
 
 		if ($_version == 'dashboard' && $this->getDisplay('backGraph::info', 0) != 0) {
 			//set background graph:
-			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="'.$this->getDisplay('backGraph::info').'" data-format="'.$this->getDisplay('backGraph::format', 'day').'" data-type="'.$this->getDisplay('backGraph::type', 'areaspline').'" data-color="'.$this->getDisplay('backGraph::color', '#4572A7').'"></div>';
+			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="'.$this->getDisplay('backGraph::info').'" data-format="'.$this->getDisplay('backGraph::format', 'day').'" data-type="'.$this->getDisplay('backGraph::type', 'areaspline').'" data-color="'.$this->getDisplay('backGraph::color', '#4572A7').'"><script>jeedom.eqLogic.initGraphInfo('.$this->getId().')</script></div>';
 		}
 		return $replace;
 	}

@@ -10,7 +10,7 @@ Desktop
 
   div.eqlogicbackgraph {
     width: 100%;
-    height: calc(100% - 20px);
+    height: calc(100% - 30px);
     position: absolute;
     bottom: 0;
     left: 0;
