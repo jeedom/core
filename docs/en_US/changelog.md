@@ -56,6 +56,10 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 # Changelog Jeedom V4.1
 
+## 4.1.24
+
+- Revision of the command configuration option **Managing the repetition of values** who becomes **Repeat identical values (Yes|Non)**. [See the blog article for more details](https://blog.jeedom.com/5414-nouvelle-gestion-de-la-repetition-des-valeurs/)
+
 ## 4.1.23
 
 - Fixed bugs on history archiving

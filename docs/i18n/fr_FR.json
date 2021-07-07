@@ -782,6 +782,8 @@
         "En effet, elle est calculée par rapport à la charge du Market": "En effet, elle est calculée par rapport à la charge du Market"
     },
     "changelog.md": {
+        "Répéter les valeurs identiques (Oui": "Répéter les valeurs identiques (Oui",
+        "Non": "Non",
         "Changelog Jeedom V4.2": "Changelog Jeedom V4.2",
         "4.2.0": "4.2.0",
         "Pré-requis": "Pré-requis",
@@ -879,6 +881,11 @@
         "IMPORTANT": "IMPORTANT",
         "Suite à la mise à jour, il faudra OBLIGATOIREMENT aller dans Réglages → Système → Configuration onglet Mise à jour\/Market et entrer la confirmation de mot de passe de backup cloud pour que celui-ci puisse se faire": "Suite à la mise à jour, il faudra OBLIGATOIREMENT aller dans Réglages → Système → Configuration onglet Mise à jour\/Market et entrer la confirmation de mot de passe de backup cloud pour que celui-ci puisse se faire",
         "Changelog Jeedom V4.1": "Changelog Jeedom V4.1",
+        "4.1.24": "4.1.24",
+        "Voir l'article du blog pour + de détails": "Voir l'article du blog pour + de détails",
+        "Gestion de la répétition des valeurs": "Gestion de la répétition des valeurs",
+        "Révision de l'option de configuration des commandes": "Révision de l'option de configuration des commandes",
+        "qui devient": "qui devient",
         "4.1.23": "4.1.23",
         "Correction de bugs sur l'archivage de l'historique": "Correction de bugs sur l'archivage de l'historique",
         "Correction d'un souci de cache qui pouvait disparaitre lors d'un reboot": "Correction d'un souci de cache qui pouvait disparaitre lors d'un reboot",

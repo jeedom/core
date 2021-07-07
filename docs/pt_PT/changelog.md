@@ -56,6 +56,10 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 # Registro de alterações Jeedom V4.1
 
+## 4.1.24
+
+- Revisão da opção de configuração do comando **Gerenciando a repetição de valores** quem se torna **Repita valores idênticos (Sim|Non)**. [Veja o artigo do blog para mais detalhes](https://blog.jeedom.com/5414-nouvelle-gestion-de-la-repetition-des-valeurs/)
+
 ## 4.1.23
 
 - Bugs corrigidos no arquivamento de histórico

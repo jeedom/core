@@ -56,6 +56,10 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 # Registro de cambios Jeedom V4.1
 
+## 4.1.24
+
+- Revisión de la opción de configuración de comandos **Gestionar la repetición de valores** se convierte en **Repita valores idénticos (Sí|Non)**. [Consulte el artículo del blog para obtener más detalles](https://blog.jeedom.com/5414-nouvelle-gestion-de-la-repetition-des-valeurs/)
+
 ## 4.1.23
 
 - Errores corregidos en el archivo del historial
