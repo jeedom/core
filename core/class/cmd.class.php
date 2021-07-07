@@ -2247,7 +2247,7 @@ class cmd {
 	}
 
 	public function getHistory($_dateStart = null, $_dateEnd = null,$_groupingType = null) {
-		return history::all($this->id, $_dateStart, $_dateEnd,$_groupingType);
+		return history::all($this->id, $_dateStart, $_dateEnd, $_groupingType);
 	}
 
 	public function getOldest() {

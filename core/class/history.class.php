@@ -296,9 +296,9 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-		if($_groupingType == null){
+		if ($_groupingType == null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
-		}else{
+		} else {
 			$goupingType = explode('::',$_groupingType);
 			$function = 'AVG';
 			if($goupingType[0] == 'high'){
@@ -322,7 +322,7 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND datetime<=:endTime';
 		}
-		if($_groupingType != null){
+		if ($_groupingType != null) {
 			if($goupingType[1] == 'week'){
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			}else if($goupingType[1] == 'hour'){
@@ -339,9 +339,9 @@ class history {
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
 		$result1 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		if($_groupingType == null){
+		if ($_groupingType == null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
-		}else{
+		} else {
 			$goupingType = explode('::',$_groupingType);
 			$function = 'AVG';
 			if($goupingType[0] == 'high'){
@@ -365,7 +365,7 @@ class history {
 		if ($_endTime !== null) {
 			$sql .= ' AND `datetime`<=:endTime';
 		}
-		if($_groupingType != null){
+		if ($_groupingType != null) {
 			if($goupingType[1] == 'week'){
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
 			}else if($goupingType[1] == 'hour'){
