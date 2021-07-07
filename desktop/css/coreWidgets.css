@@ -490,6 +490,7 @@ Desktop
     width: 80px;
     height: 80px;
     margin-bottom: 5px;
+    text-align: center;
   }
   .widget-compass-container * {
     position: absolute;
@@ -519,21 +520,20 @@ Desktop
     border-bottom: 7px solid var(--al-info-color);
     border-radius: 50%;
   }
-  .widget-compass-needle {
-    left: 38px;
-    width: 4px;
-    height: 80px;
-    top: 0px;
-  }
-  .widget-compass-needle:after {
+  .widget-compass-needle-placer {
     position: absolute;
-    content: '' !important;
-    top: -3px;
-    left: -6px;
-    width: 0;
-    height: 0;
+    margin-top: -3px;
+    margin-left: -3px;
+    width: 86px;
+    height: 86px;
+  }
+  .widget-compass-needle {
+    position: relative;
+    width: 0px;
+    height: 0px;
     border: 8px solid transparent;
     border-top: 22px solid var(--al-warning-color);
+    left: 35px;
   }
 
 /* ____________________Rain */
