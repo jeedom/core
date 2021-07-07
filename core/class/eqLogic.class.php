@@ -719,7 +719,9 @@ class eqLogic {
 			'#generic_type#' => $this->getGenericType(),
 			'#isVerticalAlign#' => (config::byKey('interface::advance::vertCentering','core',0) == 1) ? 'verticalAlign':'',
 			'#class#' => '',
+			'#divGraphInfo#' => '',
 		);
+
 		if ($this->getDisplay('height', 'auto') == 'auto') {
 			$replace['#height#'] = '110px';
 			$replace['#isVerticalAlign#'] = $replace['#isVerticalAlign#'].' autoResize';
@@ -745,7 +747,7 @@ class eqLogic {
 		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
-		if(is_array($this->getDisplay('parameters')) && count($this->getDisplay('parameters')) > 0){
+		if (is_array($this->getDisplay('parameters')) && count($this->getDisplay('parameters')) > 0) {
 			foreach ($this->getDisplay('parameters') as $key => $value) {
 				if($key == $_version.'_class'){
 					$replace['#class#'] = $value;
@@ -792,9 +794,7 @@ class eqLogic {
 		if ($_version == 'dashboard') {
 			//set background graph:
 			if ($this->getDisplay('backGraph::info', 0) != 0) {
-				$replace['<div class="eqlogicbackgraph"></div>'] = '<div class="eqlogicbackgraph hasgraph" data-cmdid="'.$this->getDisplay('backGraph::info').'" data-format="'.$this->getDisplay('backGraph::format', 'day').'" data-type="'.$this->getDisplay('backGraph::type', 'areaspline').'" data-color="'.$this->getDisplay('backGraph::color', '#4572A7').'"></div>';
-			} else {
-				$replace['<div class="eqlogicbackgraph"></div>'] = '';
+				$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="'.$this->getDisplay('backGraph::info').'" data-format="'.$this->getDisplay('backGraph::format', 'day').'" data-type="'.$this->getDisplay('backGraph::type', 'areaspline').'" data-color="'.$this->getDisplay('backGraph::color', '#4572A7').'"></div>';
 			}
 		}
 

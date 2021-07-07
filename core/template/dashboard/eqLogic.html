@@ -14,7 +14,7 @@
       #cmd#
     </center>
   </div>
-  <div class="eqlogicbackgraph"></div>
+  #divGraphInfo#
   <script>
     if ('#refresh_id#' != '') {
       $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').on('click', function () {
@@ -24,7 +24,7 @@
       $('.eqLogic[data-eqLogic_uid=#uid#] .refresh').remove()
     }
 
-    if ($('.eqLogic[data-eqLogic_uid=#uid#] div.eqlogicbackgraph.hasgraph').length && typeof jeedom.eqLogic.drawGraphInfo === "function") {
+    if ($('.eqLogic[data-eqLogic_uid=#uid#] div.eqlogicbackgraph').length && typeof jeedom.eqLogic.drawGraphInfo === "function") {
       jeedom.eqLogic.drawGraphInfo($('.eqLogic[data-eqLogic_uid=#uid#] div.eqlogicbackgraph').data('cmdid'))
     }
   </script>

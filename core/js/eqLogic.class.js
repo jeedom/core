@@ -489,6 +489,9 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
     success: function(result) {
       if (result.data.length == 0) return false
       var now = (moment().unix() + (serverTZoffsetMin * 60)) * 1000
+      var values = result.data.map(function(elt) { return elt[1] })
+      var minValue = Math.min.apply(null, values)
+      var maxValue = Math.max.apply(null, values)
       result.data.push([now, result.data.slice(-1)[0][1]])
       drawEqEl.empty().highcharts({
         chart: {
@@ -520,8 +523,8 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
         },
         yAxis: {
           visible: false,
-          min: result.cmd.subType == 'binary' ? 0 : result.minValue,
-          max: result.cmd.subType == 'binary' ? 1 : result.maxValue + ((result.maxValue - result.minValue ) / 5)
+          min: result.cmd.subType == 'binary' ? 0 : minValue,
+          max: result.cmd.subType == 'binary' ? 1 : maxValue + ((maxValue - minValue) / 5)
         },
         plotOptions: {
           column: {
