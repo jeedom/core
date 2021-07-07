@@ -494,7 +494,12 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
         chart: {
           type: drawEqEl.data('type'),
           borderWidth: 0,
-          margin: 0
+          spacingTop: 0,
+          spacingRight: 0,
+          spacingBottom: 0,
+          spacingLeft: 0,
+          plotBorderWidth: 0,
+          margin: [0,0,0,0]
         },
         title: {
             text:''
@@ -509,7 +514,9 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
           enabled: false
         },
         xAxis: {
-          visible: false
+          visible: false,
+          minPadding: 0,
+          maxPadding: 0
         },
         yAxis: {
           visible: false,
@@ -520,9 +527,6 @@ jeedom.eqLogic.drawGraphInfo = function (_cmdId) {
           column: {
             borderWidth: 0,
             opacity: 0.65
-          },
-          area: {
-            borderWidth: 0
           }
         },
         series: [
