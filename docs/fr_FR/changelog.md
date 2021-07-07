@@ -56,6 +56,10 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 
 # Changelog Jeedom V4.1
 
+## 4.1.24
+
+- Révision de l'option de configuration des commandes **Gestion de la répétition des valeurs** qui devient **Répéter les valeurs identiques (Oui|Non)**. [Voir l'article du blog pour + de détails](https://blog.jeedom.com/5414-nouvelle-gestion-de-la-repetition-des-valeurs/)
+
 ## 4.1.23
 
 - Correction de bugs sur l'archivage de l'historique
