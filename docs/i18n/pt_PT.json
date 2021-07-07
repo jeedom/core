@@ -3293,7 +3293,7 @@
         "Permet de faire revenir la commande à cette valeur après un certain temps": "Retorna o comando para esse valor após um certo tempo",
         "Durée avant retour d'état (min": "Duração antes do retorno do status (min",
         "Temps avant le retour à la valeur ci-dessus": "Tempo antes de retornar ao valor acima",
-        "Gestion de la répétition des valeurs": "Gerenciando a repetição de valores",
+        "Gestion de la répétition des valeurs": "Gestão de valores repetidos",
         "En automatique si la commande remonte 2 fois la même valeur d'affilée, alors Jeedom ne prendra pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario, sauf si la commande est de type binaire": "Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita desencadear um cenário várias vezes, a menos que o comando seja do tipo binário",
         "Vous pouvez forcer la répétition de la valeur ou l'interdire complètement": "Você pode forçar a repetição do valor ou proibi-lo completamente",
         "Push URL": "URL impulso",

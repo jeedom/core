@@ -209,7 +209,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
     - **Duration before return of status (min)** : Time before return to the above value.
 
 - **Other**
-    - **Managing the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
+    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
     - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : ``#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : ``#[SalThe de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
 
 #### For an action command :

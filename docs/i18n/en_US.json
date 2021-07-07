@@ -3293,7 +3293,7 @@
         "Permet de faire revenir la commande à cette valeur après un certain temps": "Returns the command to this value after a certain time",
         "Durée avant retour d'état (min": "Duration before return of status (min",
         "Temps avant le retour à la valeur ci-dessus": "Time before return to the above value",
-        "Gestion de la répétition des valeurs": "Managing the repetition of values",
+        "Gestion de la répétition des valeurs": "Management of the repetition of values",
         "En automatique si la commande remonte 2 fois la même valeur d'affilée, alors Jeedom ne prendra pas en compte la 2eme remontée (évite de déclencher plusieurs fois un scénario, sauf si la commande est de type binaire": "In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type",
         "Vous pouvez forcer la répétition de la valeur ou l'interdire complètement": "You can force the repetition of the value or prohibit it completely",
         "Push URL": "Push url",

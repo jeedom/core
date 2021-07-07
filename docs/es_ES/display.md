@@ -209,7 +209,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
     - **Duración antes del retorno del estado (min)** : Tiempo antes de volver al valor anterior.
 
 - **Otro**
-    - **Gestionar la repetición de valores** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario)). Puede forzar la repetición del valor o prohibirlo por completo.
+    - **Gestión de la repetición de valores** : En automático, si el comando sube 2 veces el mismo valor en una fila, Jeedom no tendrá en cuenta el segundo ascenso (evita activar un escenario varias veces, a menos que el comando sea de tipo binario)). Puede forzar la repetición del valor o prohibirlo por completo.
     - **URL de inserción** : Permite agregar una URL para llamar en caso de actualización del pedido. Puedes usar las siguientes etiquetas : ''#value#`por el valor de la orden,`#cmd_name#`para el nombre del comando,`#cmd_id#`para el identificador único de la orden,`#humanname#`para el nombre completo del comando (ex : ''#[Sallos de bain][Hydrometrie][Humidité]#`),`#eq_name#`para el nombre del equipo.
 
 #### Para un comando de acción :

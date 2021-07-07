@@ -209,7 +209,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
     - **Duração antes do retorno do status (min)** : Tempo antes de retornar ao valor acima.
 
 - **De outros**
-    - **Gerenciando a repetição de valores** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita desencadear um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
+    - **Gestão de valores repetidos** : Em automático, se o comando subir duas vezes o mesmo valor em uma linha, o Jeedom não levará em consideração a segunda subida (evita desencadear um cenário várias vezes, a menos que o comando seja do tipo binário). Você pode forçar a repetição do valor ou proibi-lo completamente.
     - **URL impulso** : Permite adicionar um URL para chamar em caso de atualização do pedido. Você pode usar as seguintes tags : ``#value#`para o valor do pedido '#cmd_name#`para o nome do comando,`#cmd_id#`para o identificador exclusivo da ordem,`#humanname#`para o nome completo do comando (ex : ``#[Salo de bain][Hydrometrie][Humidité]#`),`#eq_name#`para o nome do equipamento.
 
 #### Para um comando de ação :

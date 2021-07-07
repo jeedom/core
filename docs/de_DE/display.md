@@ -209,7 +209,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
     - **Dauer vor Rückkehr des Status (min)** : Zeit vor der Rückkehr zum obigen Wert.
 
 - **Andere**
-    - **Verwalten der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird, berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeidet das mehrfache Auslösen eines Szenarios, es sei denn, der Befehl ist vom binären Typ). Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
+    - **Management der Wiederholung von Werten** : Wenn der Befehl automatisch um den doppelten Wert in Folge erhöht wird, berücksichtigt Jeedom den zweiten Aufstieg nicht (vermeidet das mehrfache Auslösen eines Szenarios, es sei denn, der Befehl ist vom binären Typ). Sie können die Wiederholung des Wertes erzwingen oder ihn vollständig verbieten.
     - **URL drücken** : Ermöglicht das Hinzufügen einer URL, die im Falle einer Aktualisierung der Bestellung aufgerufen werden soll. Sie können die folgenden Tags verwenden : ``#value#"für den Wert der Bestellung"#cmd_name#`für den Namen des Befehls`#cmd_id#"für die eindeutige Kennung der Bestellung"#humanname#`für den vollständigen Namen des Befehls (z : ``#[SalDas de bain][Hydrometrie][Humidité]#`),`#eq_name#`für den Namen des Geräts.
 
 #### Für einen Aktionsbefehl :
