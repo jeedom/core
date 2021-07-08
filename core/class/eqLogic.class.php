@@ -197,8 +197,8 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration) {
-		if(is_array($_configuration)){
+	public static function byTypeAndSearchConfiguration($_eqType_name, $_configuration) {
+		if (is_array($_configuration)) {
 			$values = array(
 				'eqType_name' => $_eqType_name,
 				'configuration' => json_encode($_configuration),
@@ -220,6 +220,10 @@ class eqLogic {
 		AND configuration LIKE :configuration
 		ORDER BY name';
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
+	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration) {
+		return self::byTypeAndSearchConfiguration($_eqType_name, $_configuration);
 	}
 
 	public static function searchByString($_search) {
