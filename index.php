@@ -24,10 +24,9 @@ try {
 	//dunno desktop or mobile:
 	if (!isset($_GET['v'])) {
 		$useragent = (isset($_SERVER["HTTP_USER_AGENT"])) ? $_SERVER["HTTP_USER_AGENT"] : 'none';
-		$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet"))
-		? 'm' : 'd';
-		foreach ($_GET AS $var => $value) {
-			if(is_array($value)){
+		$getParams = (stristr($useragent, "Android") || strpos($useragent, "iPod") || strpos($useragent, "iPhone") || strpos($useragent, "Mobile") || strpos($useragent, "WebOS") || strpos($useragent, "mobile") || strpos($useragent, "hp-tablet")) ? 'm' : 'd';
+		foreach ($_GET as $var => $value) {
+			if (is_array($value)) {
 				continue;
 			}
 			$getParams .= '&' . $var . '=' . $value;
@@ -76,12 +75,10 @@ try {
 					try {
 						$plugin = plugin::byId(init('m'));
 						if (is_object($plugin)) {
-							$title = $plugin->getName() . ' - '.config::byKey('product_name');
+							$title = $plugin->getName() . ' - ' . config::byKey('product_name');
 						}
 					} catch (Exception $e) {
-
 					} catch (Error $e) {
-
 					}
 				}
 				include_file('core', 'authentification', 'php');
@@ -102,16 +99,14 @@ try {
 		} else {
 			include_file('desktop', 'index', 'php');
 		}
-
 		//page title:
 		try {
-			if ( init('p') != 'message' && !isset($_GET['configure']) && !isset($_GET['modal']) ) {
+			if (init('p') != 'message' && !isset($_GET['configure']) && !isset($_GET['modal'])) {
 				$title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
 				echo '<script>document.title = "' . secureXSS($title) . '"</script>';
 			}
 		} catch (Exception $e) {
 		}
-
 	} elseif (isset($_GET['v']) && $_GET['v'] == 'm') {
 		$_fn = 'index';
 		$_type = 'html';
