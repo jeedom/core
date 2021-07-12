@@ -24,23 +24,23 @@ $('#bt_next').on('click', function() {
 });
 
 $('#bt_reprendre').on('click', function() {
-	if(stepReload !== null){
-		switch(stepReload){
-			case 2 :
-			stepTwo();
-			break;
-			case 3 :
-			UpImage(1);
-			break;
-			case 4 :
-			GoReload();
-			break;
-			case 5 :
-			finalisation(1);
-			break;
+	if (stepReload !== null) {
+		switch (stepReload) {
+			case 2:
+				stepTwo();
+				break;
+			case 3:
+				UpImage(1);
+				break;
+			case 4:
+				GoReload();
+				break;
+			case 5:
+				finalisation(1);
+				break;
 		}
 		$('#modalReloadStep').modal('hide');
-	}else{
+	} else {
 		$('#modalReloadStep').modal('hide');
 	}
 });
@@ -67,7 +67,7 @@ $('#bt_backup').on('click', function() {
 
 /* FONCTION */
 
-function testUsb(){
+function testUsb() {
 	$.ajax({
 		type: 'POST',
 		url: 'core/ajax/migrate.ajax.php',
@@ -76,58 +76,64 @@ function testUsb(){
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function (result){
+		success: function(result) {
 			var statusUsb = result.result.statut;
-			switch(statusUsb){
-				case 'sdaNull' :
-				alert('{{Aucune clé USB trouvée. Veuillez insérer une clé USB.}}');
-				break;
-				case 'sdaSup' :
-				alert('{{Merci de ne brancher qu\'une seule clé USB.}}');
-				break;
-				case 'sdaNumNull' :
-				alert('{{Votre clé USB doit être formatée en FAT32.}}');
-				break;
-				case 'sdaNumSup' :
-				alert('{{Il ne doit y avoir qu\'une seule partition sur votre clé USB.}}');
-				break;
-				case 'space' :
-				alert('{{L\'espace libre sur votre clé USB est trop petit }}('+result.result.space+' Mo) {{L\'espace minimum nécessaire est de}} '+result.result.minSpace+' {{Mo}}. {{Merci}}');
-				break;
-				case 'ok' :
-				$('.debut').hide();
-				$('.usb').show();
-				$('.usb').append('<span id="contenuTextSpan">{{Clé USB vérifiée passage à l\'étape 2 en cours}}<br /><i class="icon_green fas fa-3x fa-sync" id="bt_next"></i></span>');
-				setTimeout(function(){
-					$('#step1').hide();
-					$('#step2').show();
-					$('#contenuWithStepTwo').addClass('animated');
-					stepTwo();
-				}, 4000);
-				break;
+			switch (statusUsb) {
+				case 'sdaNull':
+					alert('{{Aucune clé USB trouvée. Veuillez insérer une clé USB.}}');
+					break;
+				case 'sdaSup':
+					alert('{{Merci de ne brancher qu\'une seule clé USB.}}');
+					break;
+				case 'sdaNumNull':
+					alert('{{Votre clé USB doit être formatée en FAT32.}}');
+					break;
+				case 'sdaNumSup':
+					alert('{{Il ne doit y avoir qu\'une seule partition sur votre clé USB.}}');
+					break;
+				case 'space':
+					alert('{{L\'espace libre sur votre clé USB est trop petit }}(' + result.result.space + ' Mo) {{L\'espace minimum nécessaire est de}} ' + result.result.minSpace + ' {{Mo}}. {{Merci}}');
+					break;
+				case 'ok':
+					$('.debut').hide();
+					$('.usb').show();
+					$('.usb').append('<span id="contenuTextSpan">{{Clé USB vérifiée passage à l\'étape 2 en cours}}<br /><i class="icon_green fas fa-3x fa-sync" id="bt_next"></i></span>');
+					setTimeout(function() {
+						$('#step1').hide();
+						$('#step2').show();
+						$('#contenuWithStepTwo').addClass('animated');
+						stepTwo();
+					}, 4000);
+					break;
 
 			}
 		}
 	});
 }
 
-function stepTwo(){
+function stepTwo() {
 	setStep('2');
 	/* Lancement du backup */
 	jeedom.backup.backup({
-		error: function (error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function () {
+		success: function() {
 			verifBackup();
 		}
 	});
 }
 
-function verifBackup(){
+function verifBackup() {
 	$('.progress-bar').width('10%');
 	$('.progress-bar').text('10%');
 	getJeedomLog(1, 'backup');
@@ -143,49 +149,50 @@ function getJeedomLog(_autoUpdate, _log) {
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			setTimeout(function () {
+		error: function(request, status, error) {
+			setTimeout(function() {
 				getJeedomLog(_autoUpdate, _log)
 			}, 1000);
 		},
-		success: function (data) {
+		success: function(data) {
 			if (data.state != 'ok') {
-				setTimeout(function(){
+				setTimeout(function() {
 					getJeedomLog(_autoUpdate, _log)
 				}, 1000);
 				return;
 			}
 			var log = '';
-			if($.isArray(data.result)){
+			if ($.isArray(data.result)) {
 				for (var i in data.result.reverse()) {
-					log += data.result[i]+"\n";
-					if(FinalDown > 0){
-						if(data.result[i].indexOf('[START RESTORE]') != -1 && FinalDown == 1){
+					log += data.result[i] + "\n";
+					if (FinalDown > 0) {
+						if (data.result[i].indexOf('[START RESTORE]') != -1 && FinalDown == 1) {
 							FinalDown++;
 							$('.TextFinalisation').text('{{Début de restauration de la sauvegarde !}}');
 							$('.progress-bar').width('95%');
 							$('.progress-bar').text('95%');
-						}else if(data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2){
+						} else if (data.result[i].indexOf('[END RESTORE SUCCESS]') != -1 && FinalDown == 2) {
 							End = 1;
 							_autoUpdate = 0
 							$('.progress-bar').width('100%');
 							$('.progress-bar').text('100%');
 							window.location.replace("index.php?v=d&logout=1");
 						}
-					}else{
-						if(data.result[i].indexOf('[END BACKUP SUCCESS]') != -1){
+					} else {
+						if (data.result[i].indexOf('[END BACKUP SUCCESS]') != -1) {
 							$('.TextBackup').text('{{Sauvegarde terminée. Copie en cours sur la clé USB, veuillez ne pas la débrancher...}}');
 							$('.progress-bar').width('75%');
 							$('.progress-bar').text('75%');
 							backupToUsb();
 							_autoUpdate = 0;
-						}if(data.result[i].indexOf('[END UPDATE SUCCESS]') != -1){
-							if(Maj == 0){
+						}
+						if (data.result[i].indexOf('[END UPDATE SUCCESS]') != -1) {
+							if (Maj == 0) {
 								$('.TextFinalisation').text('{{Test de l\'image}}');
 								var textProgress = $('.progress-bar').text();
 								$('.progress-bar').width('50%');
 								$('.progress-bar').text('50%');
-							}else{
+							} else {
 								$('.TextFinalisation').text('{{La mise à jour de votre box Jeedom s\'est terminée avec succès.}}');
 								var textProgress = $('.progress-bar').text();
 								$('.progress-bar').width('70%');
@@ -193,86 +200,89 @@ function getJeedomLog(_autoUpdate, _log) {
 							}
 							_autoUpdate = 0;
 							final();
-						}else if(data.result[i].indexOf('[END BACKUP ERROR]') != -1){
-							$('#div_alert').showAlert({message: '{{L\'opération a échoué.}}', level: 'danger'});
+						} else if (data.result[i].indexOf('[END BACKUP ERROR]') != -1) {
+							$('#div_alert').showAlert({
+								message: '{{L\'opération a échoué.}}',
+								level: 'danger'
+							});
 							_autoUpdate = 0;
-						}else if(_log == 'backup'){
-							if(data.result[i].indexOf("Persist cache") != -1){
-								if(persiste == 0){
+						} else if (_log == 'backup') {
+							if (data.result[i].indexOf("Persist cache") != -1) {
+								if (persiste == 0) {
 									persiste = 1;
 									$('.TextBackup').text('{{Création de la sauvegarde en cours...}}');
 									$('.progress-bar').width('25%');
 									$('.progress-bar').text('25%');
 								}
 							}
-							if(data.result[i].indexOf("Créer l'archive...") != -1){
+							if (data.result[i].indexOf("Créer l'archive...") != -1) {
 								var textProgress = $('.progress-bar').text();
-								if(netoyage == 0 && Number(textProgress.substring(0, 2)) < 70){
-									$('.progress-bar').width((Number(textProgress.substring(0, 2))+1)+'%');
-									$('.progress-bar').text((Number(textProgress.substring(0, 2))+1)+'%');
+								if (netoyage == 0 && Number(textProgress.substring(0, 2)) < 70) {
+									$('.progress-bar').width((Number(textProgress.substring(0, 2)) + 1) + '%');
+									$('.progress-bar').text((Number(textProgress.substring(0, 2)) + 1) + '%');
 								}
 							}
-							if(data.result[i].indexOf("Nettoyage l'ancienne sauvegarde...OK") != -1){
+							if (data.result[i].indexOf("Nettoyage l'ancienne sauvegarde...OK") != -1) {
 								netoyage = 1;
 								$('.TextBackup').text('{{Validation du Backup...}}');
 								$('.progress-bar').width('70%');
 								$('.progress-bar').text('70%');
 							}
-						}else if(_log == 'update'){
-							if(data.result[i].indexOf("Téléchargement") != -1 || data.result[i].indexOf("Download url") != -1){
-								if(telechargement == 0){
+						} else if (_log == 'update') {
+							if (data.result[i].indexOf("Téléchargement") != -1 || data.result[i].indexOf("Download url") != -1) {
+								if (telechargement == 0) {
 									telechargement = 1;
 									$('.TextFinalisation').text('{{Téléchargement de la mise à jour.}}');
 									$('.progress-bar').width('15%');
 									$('.progress-bar').text('15%');
 								}
 							}
-							if(data.result[i].indexOf("Cleaning folders") != -1){
-								if(Cleaning == 0){
+							if (data.result[i].indexOf("Cleaning folders") != -1) {
+								if (Cleaning == 0) {
 									Cleaning = 1;
 									$('.progress-bar').width('20%');
 									$('.progress-bar').text('20%');
 								}
 							}
-							if(data.result[i].indexOf("Check update") != -1){
-								if(Cleaning == 0){
+							if (data.result[i].indexOf("Check update") != -1) {
+								if (Cleaning == 0) {
 									Cleaning = 1;
 									$('.TextFinalisation').text('{{Vérification de la mise à jour.}}');
 									$('.progress-bar').width('30%');
 									$('.progress-bar').text('30%');
 								}
 							}
-						}else if(_log == 'migrate'){
-							if(migrateGo == 0){
-								if(data.result[i].indexOf("Saving to: '/media/migrate/backupJeedomDownload.tar.gz'") != -1){
+						} else if (_log == 'migrate') {
+							if (migrateGo == 0) {
+								if (data.result[i].indexOf("Saving to: '/media/migrate/backupJeedomDownload.tar.gz'") != -1) {
 									$('.TextImage').text('{{Cette tâche peut prendre jusqu\'à 10 minutes pour commencer. Téléchargement de l\'image en cours...}}');
 									pourcentageBar = 0;
 									migrateGo = 1;
-								}else{
-									if(data.result[i].indexOf("%") != -1){
+								} else {
+									if (data.result[i].indexOf("%") != -1) {
 										var indexOfFirst = data.result[i].lastIndexOf("%");
-										var pourcentage = data.result[i].substring((indexOfFirst-2),indexOfFirst);
+										var pourcentage = data.result[i].substring((indexOfFirst - 2), indexOfFirst);
 										pourcentage = Number(pourcentage);
-										if(pourcentageBar < pourcentage){
-											$('.progress-bar').width(Math.round(pourcentage/5+80)+'%');
-											$('.progress-bar').text(Math.round(pourcentage/5+80)+'%');
+										if (pourcentageBar < pourcentage) {
+											$('.progress-bar').width(Math.round(pourcentage / 5 + 80) + '%');
+											$('.progress-bar').text(Math.round(pourcentage / 5 + 80) + '%');
 											pourcentageBar = pourcentage;
-											if(pourcentage == 99){
+											if (pourcentage == 99) {
 												_autoUpdate = 0;
 											}
 										}
 									}
 								}
-							}else{
-								if(data.result[i].indexOf("%") != -1){
+							} else {
+								if (data.result[i].indexOf("%") != -1) {
 									var indexOfFirst = data.result[i].indexOf("%");
-									var pourcentage = data.result[i].substring((indexOfFirst-2),indexOfFirst);
+									var pourcentage = data.result[i].substring((indexOfFirst - 2), indexOfFirst);
 									pourcentage = Number(pourcentage);
-									if(pourcentageBar < pourcentage){
-										$('.progress-bar').width(pourcentage+'%');
-										$('.progress-bar').text(pourcentage+'%');
+									if (pourcentageBar < pourcentage) {
+										$('.progress-bar').width(pourcentage + '%');
+										$('.progress-bar').text(pourcentage + '%');
 										pourcentageBar = pourcentage;
-										var filterVal = 'blur('+(10-Number(pourcentage/10))+'px)';
+										var filterVal = 'blur(' + (10 - Number(pourcentage / 10)) + 'px)';
 										console.log(filterVal);
 										$('.imageUpBlur').css({
 											'filter': filterVal,
@@ -282,7 +292,7 @@ function getJeedomLog(_autoUpdate, _log) {
 											'-ms-filter': filterVal
 										});
 									}
-								}else if(data.result[i].indexOf("Downloaded: 1 files") != -1){
+								} else if (data.result[i].indexOf("Downloaded: 1 files") != -1) {
 									_autoUpdate = 0;
 									$('.TextImage').text('{{Image Téléchargée et validée !}}');
 									var filterVal = 'blur(0)';
@@ -302,7 +312,7 @@ function getJeedomLog(_autoUpdate, _log) {
 				}
 			}
 			if (init(_autoUpdate, 0) == 1) {
-				setTimeout(function () {
+				setTimeout(function() {
 					getJeedomLog(_autoUpdate, _log)
 				}, 1000);
 			}
@@ -310,7 +320,7 @@ function getJeedomLog(_autoUpdate, _log) {
 	});
 }
 
-function backupToUsb(){
+function backupToUsb() {
 	pourcentageBar = 0;
 	$('.progress-bar').width('80%');
 	$('.progress-bar').text('80%');
@@ -323,32 +333,35 @@ function backupToUsb(){
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function (result){
+		success: function(result) {
 			var backupToUsbResult = result.result;
-			switch(backupToUsbResult){
-				case 'nok' :
-				alert('{{La sauvegarde n\'a pas été copiée}}');
-				break;
-				case 'ok' :
-				$('.TextBackup').text('{{Sauvegarde Copiée...}}');
-				setTimeout(function () {
-					UpImage();
-				}, 1000);
-				break;
+			switch (backupToUsbResult) {
+				case 'nok':
+					alert('{{La sauvegarde n\'a pas été copiée}}');
+					break;
+				case 'ok':
+					$('.TextBackup').text('{{Sauvegarde Copiée...}}');
+					setTimeout(function() {
+						UpImage();
+					}, 1000);
+					break;
 				default:
-				alert(backupToUsbResult);
+					alert(backupToUsbResult);
 			}
 		}
 	});
 }
 
-function UpImage(go){
+function UpImage(go) {
 	pourcentage = 0;
 	var filterVal = 'blur(10px)';
-	if(go == 1){
+	if (go == 1) {
 		setStep('3');
 		migrateGo = 1;
 		$('#step1').hide();
@@ -367,7 +380,7 @@ function UpImage(go){
 		});
 		$('#contenuWithStepTree').addClass('animated');
 		getJeedomLog(1, 'migrate');
-	}else{
+	} else {
 		setStep('3');
 		$('#step1').hide();
 		$('#step2').hide();
@@ -392,27 +405,30 @@ function UpImage(go){
 			},
 			dataType: 'json',
 			global: false,
-			error: function (request, status, error) {
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
+			error: function(request, status, error) {
+				$('#div_alert').showAlert({
+					message: error.message,
+					level: 'danger'
+				});
 			},
-			success: function (result){
+			success: function(result) {
 				var imageToUsbResult = result.result;
-				switch(imageToUsbResult){
-					case 'telechargement' :
-					getJeedomLog(1, 'migrate');
-					break;
+				switch (imageToUsbResult) {
+					case 'telechargement':
+						getJeedomLog(1, 'migrate');
+						break;
 					case 'fileExist':
-					GoReload();
-					break;
+						GoReload();
+						break;
 					default:
-					alert(imageToUsbResult);
+						alert(imageToUsbResult);
 				}
 			}
 		});
 	}
 }
 
-function renameImage(){
+function renameImage() {
 	$.ajax({
 		type: 'POST',
 		url: 'core/ajax/migrate.ajax.php',
@@ -421,16 +437,19 @@ function renameImage(){
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function (result){
+		success: function(result) {
 			GoReload();
 		}
 	});
 }
 
-function GoReload(){
+function GoReload() {
 	setStep('4');
 	$('#step1').hide();
 	$('#step2').hide();
@@ -442,15 +461,15 @@ function GoReload(){
 	$('#step4').show();
 	$('#contenuWithStepFor').addClass('animated');
 	$('#jqueryLoadingDiv').html('');
-	setTimeout(function(){
+	setTimeout(function() {
 		jeedom.rebootSystem();
 	}, 5000);
-	setTimeout(function(){
+	setTimeout(function() {
 		reboot_jeedom();
-	},30000);
+	}, 30000);
 }
 
-function finalisation(go){
+function finalisation(go) {
 	$('#step1').hide();
 	$('#step2').hide();
 	$('#step3').hide();
@@ -468,12 +487,12 @@ function finalisation(go){
 			action: 'getInfoApplication'
 		},
 		dataType: 'json',
-		error: function (request, status, error) {
+		error: function(request, status, error) {
 			confirm('Erreur de communication. Êtes-vous connecté à Internet ? Voulez-vous réessayer ?');
 		},
-		success: function (data) {
-			console.log('getInfoApplication > '+JSON.stringify(data));
-			setTimeout(function(){
+		success: function(data) {
+			console.log('getInfoApplication > ' + JSON.stringify(data));
+			setTimeout(function() {
 				$.ajax({
 					type: 'POST',
 					url: 'core/ajax/user.ajax.php',
@@ -481,16 +500,19 @@ function finalisation(go){
 						action: 'login',
 						username: 'admin',
 						password: 'admin',
-						storeConnection : 1
+						storeConnection: 1
 					},
 					dataType: 'json',
 					global: false,
-					error: function (request, status, error) {
+					error: function(request, status, error) {
 						console.log('Ajax User Error');
-						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+						$('#div_alert').showAlert({
+							message: error.message,
+							level: 'danger'
+						});
 					},
-					success: function (result){
-						console.log('Succes Login ;) > '+JSON.stringify(result));
+					success: function(result) {
+						console.log('Succes Login ;) > ' + JSON.stringify(result));
 						final();
 					}
 				});
@@ -499,26 +521,29 @@ function finalisation(go){
 	});
 }
 
-function final(){
-		setStep('5');
-		$.ajax({
-			type: 'POST',
-			url: 'core/ajax/migrate.ajax.php',
-			data: {
-				action: 'finalisation'
-			},
-			dataType: 'json',
-			global: false,
-			error: function (request, status, error) {
-				$('#div_alert').showAlert({message: error.message, level: 'danger'});
-			},
-			success: function (result){
-				$('#modalFinalStep').modal('show');
-			}
-		});
+function final() {
+	setStep('5');
+	$.ajax({
+		type: 'POST',
+		url: 'core/ajax/migrate.ajax.php',
+		data: {
+			action: 'finalisation'
+		},
+		dataType: 'json',
+		global: false,
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
+		},
+		success: function(result) {
+			$('#modalFinalStep').modal('show');
+		}
+	});
 }
 
-function installBackup(){
+function installBackup() {
 	$.ajax({
 		type: 'POST',
 		url: 'core/ajax/migrate.ajax.php',
@@ -527,17 +552,20 @@ function installBackup(){
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function (result){
+		success: function(result) {
 			FinalDown = 1;
 			getJeedomLog(1, 'restore');
 		}
 	});
 }
 
-function setStep(stepValue){
+function setStep(stepValue) {
 	$.ajax({
 		type: 'POST',
 		url: 'core/ajax/migrate.ajax.php',
@@ -547,15 +575,17 @@ function setStep(stepValue){
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function (result){
-		}
+		success: function(result) {}
 	});
 }
 
-function returnStep(){
+function returnStep() {
 	$.ajax({
 		type: 'POST',
 		url: 'core/ajax/migrate.ajax.php',
@@ -564,12 +594,15 @@ function returnStep(){
 		},
 		dataType: 'json',
 		global: false,
-		error: function (request, status, error) {
-			$('#div_alert').showAlert({message: error.message, level: 'danger'});
+		error: function(request, status, error) {
+			$('#div_alert').showAlert({
+				message: error.message,
+				level: 'danger'
+			});
 		},
-		success: function (result){
+		success: function(result) {
 			var statusUsb = result.result.statut;
-			if(statusUsb == 'ok'){
+			if (statusUsb == 'ok') {
 				$.ajax({
 					type: 'POST',
 					url: 'core/ajax/migrate.ajax.php',
@@ -578,30 +611,33 @@ function returnStep(){
 					},
 					dataType: 'json',
 					global: false,
-					error: function (request, status, error) {
-						$('#div_alert').showAlert({message: error.message, level: 'danger'});
+					error: function(request, status, error) {
+						$('#div_alert').showAlert({
+							message: error.message,
+							level: 'danger'
+						});
 					},
-					success: function (result){
+					success: function(result) {
 						var stepResult = result.result;
-						switch(stepResult){
-							case '2' :
-							$('#modalReloadStep').modal('show');
-							stepReload = 2;
-							break;
-							case '3' :
-							$('#modalReloadStep').modal('show');
-							stepReload = 3;
-							break;
-							case '4' :
-							$('#modalReloadStep').modal('show');
-							stepReload = 4;
-							break;
-							case '5' :
-							$('#modalReloadStep').modal('show');
-							stepReload = 5;
-							break;
+						switch (stepResult) {
+							case '2':
+								$('#modalReloadStep').modal('show');
+								stepReload = 2;
+								break;
+							case '3':
+								$('#modalReloadStep').modal('show');
+								stepReload = 3;
+								break;
+							case '4':
+								$('#modalReloadStep').modal('show');
+								stepReload = 4;
+								break;
+							case '5':
+								$('#modalReloadStep').modal('show');
+								stepReload = 5;
+								break;
 							default:
-							$('#modalFirstStep').modal('show');
+								$('#modalFirstStep').modal('show');
 						}
 					}
 				});
@@ -612,38 +648,38 @@ function returnStep(){
 
 function refresh() {
 	$.ajax({
-		url: "desktop/js/rebootjs.js?t="+Date.now(),
-		success:function(retour){
+		url: "desktop/js/rebootjs.js?t=" + Date.now(),
+		success: function(retour) {
 			$('#reboot_jeedom').html(retour);
 		}
 	});
 }
 
-function page_rebootjs(){
+function page_rebootjs() {
 	refresh();
-	if(rebooti == '1'){
+	if (rebooti == '1') {
 		$('.TextMigrate').text('{{Votre box Jeedom vient de redémarrer. Merci de patienter, le premier redémarrage pouvant durer jusqu\'à 5 minutes.}}');
 		$('.progress-bar').width('90%');
 		$('.progress-bar').text('90%');
-		setTimeout(function(){
+		setTimeout(function() {
 			finalisation();
 		}, 300000);
-	}else{
+	} else {
 		testjeedom++;
-		pourcentageBar = pourcentageBar+3;
-		$('.progress-bar').width(pourcentageBar+'%');
-		$('.progress-bar').text(pourcentageBar+'%');
-		if(pourcentageBar > '80'){
+		pourcentageBar = pourcentageBar + 3;
+		$('.progress-bar').width(pourcentageBar + '%');
+		$('.progress-bar').text(pourcentageBar + '%');
+		if (pourcentageBar > '80') {
 			$('.progress-bar').addClass('progress-bar-danger').removeClass('progress-bar-success');
 			$('.TextMigrate').text('{{Migration en Cours... Veuillez ne surtout pas débrancher votre box Jeedom}}');
 		}
-		setTimeout(function(){
+		setTimeout(function() {
 			page_rebootjs();
 		}, 150000);
 	}
 }
 
-function reboot_jeedom(){
+function reboot_jeedom() {
 	$('.TextMigrate').text('{{Merci de patienter... Jeedom est en cours de migration}}');
 	$('.progress-bar').width('5%');
 	$('.progress-bar').text('5%');
@@ -654,13 +690,15 @@ function reboot_jeedom(){
 }
 
 function confirmOnLeave(msg) {
-	window.onbeforeunload = function (e) {
-		if(End == 0){
+	window.onbeforeunload = function(e) {
+		if (End == 0) {
 			e = e || window.event;
 			msg = msg || '';
 
 			// For IE and Firefox
-			if (e) {e.returnValue = msg;}
+			if (e) {
+				e.returnValue = msg;
+			}
 
 			// For Chrome and Safari
 			return msg;

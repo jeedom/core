@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -27,7 +27,7 @@ $(function() {
     cmdIds = cmdIds.split('-')
     if (is_numeric(cmdIds[0])) {
       cmdIds.forEach(function(cmd_id) {
-        var li = $('.li_history[data-cmd_id='+cmd_id+']')
+        var li = $('.li_history[data-cmd_id=' + cmd_id + ']')
         if (li) {
           li.find('.history').click()
           li.closest('.cmdList').show()
@@ -41,12 +41,13 @@ $(function() {
 
 //handle resizing:
 var resizeDone
+
 function resizeDn() {
   var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true) - $('#div_alertHistory').outerHeight(true)
   if (chart) {
-    chart.setSize( $('#div_graph').width(), height)
+    chart.setSize($('#div_graph').width(), height)
   }
-  $('.bs-sidebar').height( height)
+  $('.bs-sidebar').height(height)
 }
 $(window).resize(function() {
   clearTimeout(resizeDone)
@@ -55,7 +56,7 @@ $(window).resize(function() {
 
 
 /************Left button list UI***********/
-$('#bt_validChangeDate').on('click',function() {
+$('#bt_validChangeDate').on('click', function() {
   if (jeedom.history.chart['div_graph'] === undefined) return
   $('.highcharts-plot-band').remove()
   $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
@@ -69,7 +70,13 @@ $('#bt_validChangeDate').on('click',function() {
 
 
 $('#bt_findCmdCalculHistory').on('click', function() {
-  jeedom.cmd.getSelectModal({cmd: {type: 'info',subType : 'numeric',isHistorized : 1}}, function(result) {
+  jeedom.cmd.getSelectModal({
+    cmd: {
+      type: 'info',
+      subType: 'numeric',
+      isHistorized: 1
+    }
+  }, function(result) {
     $('#in_calculHistory').atCaret('insert', result.human)
   })
 })
@@ -78,12 +85,16 @@ $('#bt_displayCalculHistory').on('click', function() {
   if (calcul != '') addChart(calcul, 1)
 })
 $('#bt_configureCalculHistory').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration des formules de calcul}}"}).load('index.php?v=d&modal=history.calcul').dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration des formules de calcul}}"
+  }).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
 
 
 $('#bt_openCmdHistoryConfigure').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration de l'historique des commandes}}"
+  }).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
 })
 
 //search filter opening:
@@ -137,7 +148,7 @@ $(".li_history .remove").on('click', function() {
   $.hideAlert();
   bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
     if (result !== null) {
-      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'),result)
+      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
     }
   })
 })
@@ -191,22 +202,30 @@ function setChartOptions() {
 function initHistoryTrigger() {
   $('#sel_groupingType').off('change').on('change', function() {
     if (lastId == null) return
-    
+
     var currentId = lastId
     var groupingType = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
     addChart(currentId, 0)
     jeedom.cmd.save({
-      cmd: {id: currentId, display: {groupingType: groupingType}},
+      cmd: {
+        id: currentId,
+        display: {
+          groupingType: groupingType
+        }
+      },
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
         $('.li_history[data-cmd_id=' + currentId + '] .history').click()
       }
     })
   })
-  
+
   $('#sel_chartType').off('change').on('change', function() {
     if (lastId == null) return
     var currentId = lastId
@@ -214,9 +233,17 @@ function initHistoryTrigger() {
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
     addChart(currentId, 0)
     jeedom.cmd.save({
-      cmd: {id: currentId, display: {graphType: graphType}},
+      cmd: {
+        id: currentId,
+        display: {
+          graphType: graphType
+        }
+      },
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
         $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
@@ -224,21 +251,29 @@ function initHistoryTrigger() {
       }
     })
   })
-  
+
   $('#cb_derive').off('change').on('change', function() {
     var graphDerive = $(this).value()
     var nbSeries = chart.series.length
     $(chart.series).each(function(idx, serie) {
-      var cmdId = $('g.highcharts-legend-item.highcharts-series-'+idx).attr('data-cmd_id')
+      var cmdId = $('g.highcharts-legend-item.highcharts-series-' + idx).attr('data-cmd_id')
       if (cmdId == undefined) {
         nbSeries--
         return
       }
       addChart(cmdId, 0)
       jeedom.cmd.save({
-        cmd: {id: cmdId, display: {graphDerive: graphDerive}},
+        cmd: {
+          id: cmdId,
+          display: {
+            graphDerive: graphDerive
+          }
+        },
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function(data) {
           nbSeries--
@@ -250,60 +285,68 @@ function initHistoryTrigger() {
         }, 1000)
       }
       */
-    }
-  })
-})
-
-})
-
-$('#cb_step').off('change').on('change', function() {
-  var graphStep = $(this).value()
-  var nbSeries = chart.series.length
-  $(chart.series).each(function(idx, serie) {
-    var cmdId = $('g.highcharts-legend-item.highcharts-series-'+idx).attr('data-cmd_id')
-    if (cmdId == undefined) {
-      nbSeries--
-      return
-    }
-    addChart(cmdId, 0)
-    jeedom.cmd.save({
-      cmd: {id: cmdId, display: {graphStep: graphStep}},
-      error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function(data) {
-        nbSeries--
-        addChart(data.id, 1)
-        if (nbSeries == 0) {
-          setTimeout(function(){
-            setChartYExtremes()
-          }, 1000)
         }
-      }
+      })
     })
-  })
-  setChartYExtremes()
-})
 
-$('.highcharts-legend-item').off('click').on('click',function(event) {
-  if (event.ctrlKey || event.metaKey || event.altKey) {
-    event.stopImmediatePropagation()
-    var chart = $('#div_graph').highcharts()
-    if (event.altKey) {
-      $(chart.series).each(function(idx, item) {
-        item.show()
+  })
+
+  $('#cb_step').off('change').on('change', function() {
+    var graphStep = $(this).value()
+    var nbSeries = chart.series.length
+    $(chart.series).each(function(idx, serie) {
+      var cmdId = $('g.highcharts-legend-item.highcharts-series-' + idx).attr('data-cmd_id')
+      if (cmdId == undefined) {
+        nbSeries--
+        return
+      }
+      addChart(cmdId, 0)
+      jeedom.cmd.save({
+        cmd: {
+          id: cmdId,
+          display: {
+            graphStep: graphStep
+          }
+        },
+        error: function(error) {
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          nbSeries--
+          addChart(data.id, 1)
+          if (nbSeries == 0) {
+            setTimeout(function() {
+              setChartYExtremes()
+            }, 1000)
+          }
+        }
       })
-    } else {
-      var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
-      $(chart.series).each(function(idx, item) {
-        item.hide()
-      })
-      chart.series[serieId].show()
+    })
+    setChartYExtremes()
+  })
+
+  $('.highcharts-legend-item').off('click').on('click', function(event) {
+    if (event.ctrlKey || event.metaKey || event.altKey) {
+      event.stopImmediatePropagation()
+      var chart = $('#div_graph').highcharts()
+      if (event.altKey) {
+        $(chart.series).each(function(idx, item) {
+          item.show()
+        })
+      } else {
+        var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
+        $(chart.series).each(function(idx, item) {
+          item.hide()
+        })
+        chart.series[serieId].show()
+      }
     }
-  }
-  setChartOptions()
-  setTimeout(setChartYExtremes, 500)
-})
+    setChartOptions()
+    setTimeout(setChartYExtremes, 500)
+  })
 }
 
 function addChart(_cmd_id, _action, _options) {
@@ -316,30 +359,30 @@ function addChart(_cmd_id, _action, _options) {
           if (serie.options.id == _cmd_id) {
             serie.remove()
             setChartOptions()
-            setTimeout(function(){
+            setTimeout(function() {
               setChartYExtremes()
             }, 500)
           }
-        } catch(error) {}
+        } catch (error) {}
       })
     }
     return
   }
-  
+
   var dateStart = $('#in_startDate').value()
   var dateEnd = $('#in_endDate').value()
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
     el: 'div_graph',
-    dateRange : 'all',
-    dateStart : dateStart,
-    dateEnd :  dateEnd,
-    height : $('#div_graph').height(),
-    option : _options,
+    dateRange: 'all',
+    dateStart: dateStart,
+    dateEnd: dateEnd,
+    height: $('#div_graph').height(),
+    option: _options,
     compare: 0,
     success: function(data) {
       if (isset(data.error)) {
-        $('.li_history[data-cmd_id='+_cmd_id+']').removeClass('active')
+        $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
         return
       }
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
@@ -349,22 +392,24 @@ function addChart(_cmd_id, _action, _options) {
       setChartYExtremes()
     }, 500)
     */
-  }
-})
+    }
+  })
 }
 
 $('#bt_clearGraph').on('click', function() {
   clearGraph()
 })
 
-function clearGraph(_lastId=null) {
+function clearGraph(_lastId = null) {
   isComparing = false
   if (jeedom.history.chart['div_graph'] === undefined) return
   while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
     jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
   $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
-  chart.xAxis[1].update({visible: false})
+  chart.xAxis[1].update({
+    visible: false
+  })
   delete jeedom.history.chart['div_graph']
   $('#ul_history').find('.li_history.active').removeClass('active')
   setChartOptions()
@@ -382,7 +427,9 @@ $('#cb_tracking').off('change').on('change', function() {
       plotOptions: {
         series: {
           states: {
-            inactive: {opacity: opacity}
+            inactive: {
+              opacity: opacity
+            }
           }
         }
       }
@@ -397,27 +444,36 @@ $("#md_getCompareRange").dialog({
   width: 520,
   height: 180,
   open: function() {
-    $(this).parent().css({'top': 120})
+    $(this).parent().css({
+      'top': 120
+    })
     $('#in_compareStart1').value($('#in_startDate').value())
     $('#in_compareEnd1').value($('#in_endDate').value())
   },
-  beforeClose: function(event, ui) {
-  }
+  beforeClose: function(event, ui) {}
 })
 
 $('#bt_compare').off().on('click', function() {
   if (!isComparing) {
     if (lastId == null) return
-    $('#md_getCompareRange').removeClass('hidden').dialog({title: "{{Période de comparaison}}"}).dialog('open')
+    $('#md_getCompareRange').removeClass('hidden').dialog({
+      title: "{{Période de comparaison}}"
+    }).dialog('open')
   } else {
     clearGraph(lastId)
-    chart.xAxis[1].update({visible: false})
+    chart.xAxis[1].update({
+      visible: false
+    })
     chart.update({
-      navigator: { enabled: true },
-      scrollbar: { enabled: true }
+      navigator: {
+        enabled: true
+      },
+      scrollbar: {
+        enabled: true
+      }
     })
     addChart(lastId)
-    $('li.li_history[data-cmd_id="'+lastId+'"]').addClass('active')
+    $('li.li_history[data-cmd_id="' + lastId + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
   }
 })
@@ -426,41 +482,43 @@ $('#bt_doCompare').off('click').on('click', function() {
   isComparing = true
   $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
   $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
-  chart.xAxis[1].update({visible: true})
+  chart.xAxis[1].update({
+    visible: true
+  })
   compareChart(lastId)
 })
 
 function compareChart(_cmd_id, _options) {
   //compare:
   var fromStart, fromEnd, toStart, toEnd
-  fromStart = $('#in_compareStart1').value() +' 00:00:00'
-  fromEnd = $('#in_compareEnd1').value() +' 23:59:59'
-  toStart = $('#in_compareStart2').value() +' 00:00:00'
-  toEnd = $('#in_compareEnd2').value() +' 23:59:59'
-  
+  fromStart = $('#in_compareStart1').value() + ' 00:00:00'
+  fromEnd = $('#in_compareEnd1').value() + ' 23:59:59'
+  toStart = $('#in_compareStart2').value() + ' 00:00:00'
+  toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
+
   //remove all series from chart:
   while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
     jeedom.history.chart['div_graph'].chart.series[0].remove(true)
   }
-  
+
   //add data from both date range:
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
     el: 'div_graph',
-    dateRange : 'all',
-    dateStart : fromStart,
-    dateEnd :  fromEnd,
-    height : $('#div_graph').height(),
-    option : _options,
+    dateRange: 'all',
+    dateStart: fromStart,
+    dateEnd: fromEnd,
+    height: $('#div_graph').height(),
+    option: _options,
     success: function(data) {
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
         el: 'div_graph',
-        dateRange : 'all',
-        dateStart : toStart,
-        dateEnd :  toEnd,
-        height : $('#div_graph').height(),
-        option : _options,
+        dateRange: 'all',
+        dateStart: toStart,
+        dateEnd: toEnd,
+        height: $('#div_graph').height(),
+        option: _options,
         compare: 1,
         success: function(data) {
           setTimeout(function() {
@@ -489,10 +547,16 @@ function emptyHistory(_cmd_id, _date) {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({message: data.result, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: data.result,
+          level: 'danger'
+        })
         return
       }
-      $('#div_alert').showAlert({message: '{{Historique supprimé avec succès}}', level: 'success'})
+      $('#div_alert').showAlert({
+        message: '{{Historique supprimé avec succès}}',
+        level: 'success'
+      })
       li = $('li[data-cmd_id=' + _cmd_id + ']')
       if (li && li.hasClass('active')) {
         li.find('.history').click()
@@ -506,8 +570,8 @@ function setChartYExtremes() {
   var max = 0
   var min = 10000
   chart.yAxis.forEach((axis, index) => {
-    if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min ) min = axis.getExtremes().dataMin
-    if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max ) max = axis.getExtremes().dataMax
+    if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min) min = axis.getExtremes().dataMin
+    if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max) max = axis.getExtremes().dataMax
   })
   chart.yAxis.forEach((axis, index) => {
     axis.setExtremes(min / 1.005, max * 1.005, true, false)
@@ -522,9 +586,12 @@ function setChartXExtremes() {
     chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
     chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
     chart.update({
-      navigator: { enabled: false },
-      scrollbar: { enabled: false }
+      navigator: {
+        enabled: false
+      },
+      scrollbar: {
+        enabled: false
+      }
     })
-  }
-  catch(error) {}
+  } catch (error) {}
 }

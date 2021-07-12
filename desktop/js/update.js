@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -28,25 +28,33 @@ $("#md_specifyUpdate").dialog({
   width: 480,
   height: 460,
   open: function() {
-    $("body").css({overflow: 'hidden'})
-    $(this).parent().css({'top': 120})
+    $("body").css({
+      overflow: 'hidden'
+    })
+    $(this).parent().css({
+      'top': 120
+    })
   },
   beforeClose: function(event, ui) {
-    $("body").css({overflow: 'inherit'})
+    $("body").css({
+      overflow: 'inherit'
+    })
   }
 })
 
 $('#bt_updateJeedom').off('click').on('click', function() {
-  $('#md_specifyUpdate').dialog({title: "{{Options}}"}).dialog('open')
+  $('#md_specifyUpdate').dialog({
+    title: "{{Options}}"
+  }).dialog('open')
 })
 
-$('.updateOption[data-l1key=force]').off('click').on('click',function() {
+$('.updateOption[data-l1key=force]').off('click').on('click', function() {
   if ($(this).value() == 1) {
     $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').value(0);
-    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled','disabled')
+    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled', 'disabled')
   } else {
     $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').value(1);
-    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled',false)
+    $('#md_specifyUpdate .updateOption[data-l1key="backup::before"]').attr('disabled', false)
   }
 })
 
@@ -60,7 +68,10 @@ $('#bt_doUpdate').off('click').on('click', function() {
   jeedom.update.doAll({
     options: options,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function() {
       getJeedomLog(1, 'update')
@@ -89,7 +100,7 @@ $('#table_update').on({
     if ($(this).hasClass('disabled')) return
     var id = $(this).closest('tr').attr('data-id')
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour : }}'+logicalId+' ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour : }}' + logicalId + ' ?', function(result) {
       if (result) {
         progress = -1;
         $('.progressbarContainer').removeClass('hidden')
@@ -98,7 +109,10 @@ $('#table_update').on({
         jeedom.update.do({
           id: id,
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
           success: function() {
             getJeedomLog(1, 'update')
@@ -113,13 +127,16 @@ $('#table_update').on({
   'click': function(event) {
     var id = $(this).closest('tr').attr('data-id');
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer : }}'+logicalId+' ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer : }}' + logicalId + ' ?', function(result) {
       if (result) {
         $.hideAlert();
         jeedom.update.remove({
           id: id,
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
           success: function() {
             printUpdate()
@@ -137,7 +154,10 @@ $('#table_update').on({
     jeedom.update.check({
       id: id,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
         printUpdate()
@@ -146,11 +166,14 @@ $('#table_update').on({
   }
 }, '.checkUpdate')
 
-$('#bt_saveUpdate').on('click',function() {
+$('#bt_saveUpdate').on('click', function() {
   jeedom.update.saves({
-    updates : $('tbody tr').getValues('.updateAttr'),
+    updates: $('tbody tr').getValues('.updateAttr'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
@@ -169,9 +192,13 @@ $(function() {
   $('#md_specifyUpdate').removeClass('hidden')
 
   $('#table_update').on('sortEnd', function(e, t) {
-      $("#table_update tbody").prepend($('tr[data-type="core"]'))
-    })
-  $('#table_update').trigger('sorton', [[[0,1]]])
+    $("#table_update tbody").prepend($('tr[data-type="core"]'))
+  })
+  $('#table_update').trigger('sorton', [
+    [
+      [0, 1]
+    ]
+  ])
 })
 
 function checkAllUpdate() {
@@ -179,7 +206,10 @@ function checkAllUpdate() {
   $('.progressbarContainer').addClass('hidden')
   jeedom.update.checkAll({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function() {
       printUpdate()
@@ -188,6 +218,7 @@ function checkAllUpdate() {
 }
 
 var alertTimeout = null
+
 function getJeedomLog(_autoUpdate, _log) {
   $.ajax({
     type: 'POST',
@@ -213,7 +244,7 @@ function getJeedomLog(_autoUpdate, _log) {
       var log = ''
       if ($.isArray(data.result)) {
         for (var i in data.result.reverse()) {
-          log += data.result[i]+"\n"
+          log += data.result[i] + "\n"
           //Update end success:
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
             progress = 100
@@ -233,7 +264,10 @@ function getJeedomLog(_autoUpdate, _log) {
             if (alertTimeout != null) {
               clearTimeout(alertTimeout)
             }
-            $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'})
+            $('#div_alert').showAlert({
+              message: '{{L\'opération a échoué}}',
+              level: 'danger'
+            })
             _autoUpdate = 0
           }
         }
@@ -254,7 +288,10 @@ function getJeedomLog(_autoUpdate, _log) {
 function printUpdate() {
   jeedom.update.get({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       var tr_update = []
@@ -270,12 +307,17 @@ function printUpdate() {
   })
 
   jeedom.config.load({
-    configuration: {"update::lastCheck":0},
+    configuration: {
+      "update::lastCheck": 0
+    },
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
-      $('#span_lastUpdateCheck').attr('title','{{Dernière verification des mises à jour}}').value(data['update::lastCheck'])
+      $('#span_lastUpdateCheck').attr('title', '{{Dernière verification des mises à jour}}').value(data['update::lastCheck'])
     }
   })
 }
@@ -294,7 +336,7 @@ function addUpdate(_update) {
   }
 
   var tr = '<tr data-id="' + init(_update.id) + '" data-logicalId="' + init(_update.logicalId) + '" data-type="' + init(_update.type) + '">'
-  tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass +'" data-l1key="status"></span></td>'
+  tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
   tr += '<td>'
   tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
   tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
@@ -308,16 +350,16 @@ function addUpdate(_update) {
     tr += ' <span class="label">' + _update.branch + '</span>'
   }
 
-  if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0,16) + '...'
-  if (_update.remoteVersion !== null && _update.remoteVersion.length > 19) _update.remoteVersion = _update.remoteVersion.substring(0,16) + '...'
-  if(_update.updateDate == null){
+  if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0, 16) + '...'
+  if (_update.remoteVersion !== null && _update.remoteVersion.length > 19) _update.remoteVersion = _update.remoteVersion.substring(0, 16) + '...'
+  if (_update.updateDate == null) {
     _update.updateDate = 'N/A'
   }
 
   tr += '</td>'
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">'+_update.localVersion+'</span></td>'
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">'+_update.remoteVersion+'</span></td>'
-  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">'+_update.updateDate+'</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">' + _update.localVersion + '</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">' + _update.remoteVersion + '</span></td>'
+  tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
   tr += '<td style="width:180px;">'
   if (_update.type != 'core') {
     tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span>{{Ne pas mettre à jour}}</span>'
@@ -326,7 +368,7 @@ function addUpdate(_update) {
   tr += '<td style="width:350px;">'
   if (_update.type != 'core') {
     if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-      tr += '<a class="btn btn-xs cursor" target="_blank" href="'+_update.plugin.changelog+'"><i class="fas fa-book"></i> {{Changelog}}</a> '
+      tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a> '
     }
   } else {
     tr += '<a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> '
@@ -357,15 +399,18 @@ function addUpdate(_update) {
   return html
 }
 
-$('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
+$('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', function() {
   jeedom.getDocumentationUrl({
     page: 'changelog',
     theme: $('body').attr('data-theme'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(url) {
-      window.open(url,'_blank')
+      window.open(url, '_blank')
     }
   })
 })
@@ -373,42 +418,42 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
 function updateProgressBar() {
   if (progress == -4) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger')
-    .addClass('progress-bar-warning')
+      .addClass('progress-bar-warning')
     return
   }
   if (progress == -3) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-warning')
-    .addClass('progress-bar-danger')
+      .addClass('progress-bar-danger')
     return
   }
   if (progress == -2) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-success progress-bar-danger progress-bar-warning')
-    .width(0)
-    .attr('aria-valuenow', 0)
-    .html('0%')
+      .width(0)
+      .attr('aria-valuenow', 0)
+      .html('0%')
     return
   }
   if (progress == -1) {
     $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
-    .addClass('active progress-bar-info')
-    .width('100%')
-    .attr('aria-valuenow', 100)
-    .html('N/A');
+      .addClass('active progress-bar-info')
+      .width('100%')
+      .attr('aria-valuenow', 100)
+      .html('N/A');
     return
   }
   if (progress == 100) {
     $('#div_progressbar').removeClass('active progress-bar-info progress-bar-danger progress-bar-warning')
-    .addClass('progress-bar-success')
-    .width(progress+'%')
-    .attr('aria-valuenow', progress)
-    .html(progress+'%')
+      .addClass('progress-bar-success')
+      .width(progress + '%')
+      .attr('aria-valuenow', progress)
+      .html(progress + '%')
     return;
   }
   $('#div_progressbar').removeClass('progress-bar-success progress-bar-danger progress-bar-warning')
-  .addClass('active progress-bar-info')
-  .width(progress+'%')
-  .attr('aria-valuenow', progress)
-  .html(progress+'%')
+    .addClass('active progress-bar-info')
+    .width(progress + '%')
+    .attr('aria-valuenow', progress)
+    .html(progress + '%')
 }
 
 //___log interceptor beautifier___
@@ -431,7 +476,7 @@ $(function() {
 function createUpdateObserver() {
   var _UpdateObserver_ = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-      if ( mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
+      if (mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
         cleanUpdateLog()
       }
     })
@@ -457,7 +502,7 @@ function cleanUpdateLog() {
 
   //update progress bar and clean text!
   var linesRev = lines.slice().reverse()
-  for(var i=0; i < l; i++) {
+  for (var i = 0; i < l; i++) {
     var regExpResult = regExLogProgress.exec(linesRev[i])
     if (regExpResult !== null) {
       progress = regExpResult[1]
@@ -467,7 +512,7 @@ function cleanUpdateLog() {
   }
 
   var newLogText = ''
-  for (var i=0; i < l; i++) {
+  for (var i = 0; i < l; i++) {
     var line = lines[i]
     if (line == '') continue
     if (line.startsWith('[PROGRESS]')) line = ''
@@ -494,10 +539,10 @@ function cleanUpdateLog() {
 
     //check ok on next line, escaping progress inbetween:
     var offset = 1
-    if (lines[i+1].startsWith('[PROGRESS]')) {
+    if (lines[i + 1].startsWith('[PROGRESS]')) {
       var offset = 2
     }
-    var nextLine = lines[i+offset]
+    var nextLine = lines[i + offset]
     var letters = /^[0-9a-zA-Z]+$/
     if (!nextLine.replace('OK', '').match(letters)) {
       matches = nextLine.match(/[.]{2,}/g)
@@ -510,7 +555,7 @@ function cleanUpdateLog() {
     nextLine = nextLine.trim()
     if (replaceLogLines.includes(nextLine)) {
       line += ' | OK'
-      lines[i+offset] = ''
+      lines[i + offset] = ''
     }
 
     if (line != '') {
@@ -526,11 +571,14 @@ function cleanUpdateLog() {
     }
   }
   clearTimeout(alertTimeout)
-  alertTimeout = setTimeout(alertTimeout, 60000*10)
+  alertTimeout = setTimeout(alertTimeout, 60000 * 10)
 }
 
 function alertTimeout() {
   progress = -4
   updateProgressBar()
-  $('#div_alert').showAlert({message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}', level: 'warning'})
+  $('#div_alert').showAlert({
+    message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}',
+    level: 'warning'
+  })
 }

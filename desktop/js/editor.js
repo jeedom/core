@@ -1,29 +1,29 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
 $('#sel_widgetType').off('change').on('change', function() {
   $('#sel_widgetSubtype option').hide()
   if ($(this).value() != '') {
-    $('#sel_widgetSubtype option[data-type='+$(this).value()+']').show()
+    $('#sel_widgetSubtype option[data-type=' + $(this).value() + ']').show()
   }
   $('#sel_widgetSubtype option[data-default=1]').show()
   $('#sel_widgetSubtype').value('')
-});
+})
 
 $("#md_widgetCreate").dialog({
   closeText: '',
@@ -32,10 +32,14 @@ $("#md_widgetCreate").dialog({
   height: 260,
   width: 300,
   open: function() {
-    $("body").css({overflow: 'hidden'})
+    $("body").css({
+      overflow: 'hidden'
+    })
   },
   beforeClose: function(event, ui) {
-    $("body").css({overflow: 'inherit'})
+    $("body").css({
+      overflow: 'inherit'
+    })
   }
 })
 
@@ -55,42 +59,59 @@ $('#div_treeFolder').off('click').on('select_node.jstree', function(node, select
       return
     }
     jeedom.getFileFolder({
-      type : 'folders',
-      path : path,
+      type: 'folders',
+      path: path,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
-      success : function(data) {
+      success: function(data) {
         for (var i in data) {
-          node = ref.create_node(sel, {"type":"folder","text":data[i],state:{opened:true},a_attr:{'data-path':path+data[i]}})
-          $('li#'+node+' a').addClass('li_folder')
+          node = ref.create_node(sel, {
+            "type": "folder",
+            "text": data[i],
+            state: {
+              opened: true
+            },
+            a_attr: {
+              'data-path': path + data[i]
+            }
+          })
+          $('li#' + node + ' a').addClass('li_folder')
         }
       }
     })
   }
 })
 
-$("#div_treeFolder").jstree({"core" : {
-  "check_callback": true
-}})
+$("#div_treeFolder").jstree({
+  "core": {
+    "check_callback": true
+  }
+})
 
-$('#div_fileList').off('click').on('click','.li_file', function() {
+$('#div_fileList').off('click').on('click', '.li_file', function() {
   displayFile($(this).attr('data-path'))
 })
 
 function printFileFolder(_path) {
   CURRENT_FOLDER = _path;
   jeedom.getFileFolder({
-    type : 'files',
-    path : _path,
+    type: 'files',
+    path: _path,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function(data){
+    success: function(data) {
       $('#div_fileList').empty()
       var li = ''
       for (var i in data) {
-        li += '<li class="cursor"><a class="li_file" data-path="'+_path+data[i]+'">'+data[i]+'</a></li>'
+        li += '<li class="cursor"><a class="li_file" data-path="' + _path + data[i] + '">' + data[i] + '</a></li>'
       }
       $('#div_fileList').append(li)
     }
@@ -120,11 +141,14 @@ function displayFile(_path) {
   $('#bt_saveFile').attr('data-path', _path)
   $('#bt_deleteFile').attr('data-path', _path)
   jeedom.getFileContent({
-    path : _path,
+    path: _path,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function(data) {
+    success: function(data) {
       if (fileEditor != null) {
         fileEditor.getDoc().setValue(data)
         fileEditor.setOption("mode", getEditorMode(_path))
@@ -139,7 +163,7 @@ function displayFile(_path) {
             lineWrapping: true,
             mode: getEditorMode(_path),
             matchBrackets: true,
-            viewportMargin : Infinity,
+            viewportMargin: Infinity,
             foldGutter: true,
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
           })
@@ -154,38 +178,56 @@ function displayFile(_path) {
 }
 
 $('#bt_saveFile').on('click', function() {
-  if (!fileEditor){
-    $('#div_alert').showAlert({message: '{{Aucun fichier ouvert.}}', level: 'warning'})
+  if (!fileEditor) {
+    $('#div_alert').showAlert({
+      message: '{{Aucun fichier ouvert.}}',
+      level: 'warning'
+    })
     return
   }
   jeedom.setFileContent({
-    path : $(this).attr('data-path'),
-    content :fileEditor.getValue(),
+    path: $(this).attr('data-path'),
+    content: fileEditor.getValue(),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function(data) {
-      $('#div_alert').showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
+    success: function(data) {
+      $('#div_alert').showAlert({
+        message: '{{Fichier enregistré avec succès}}',
+        level: 'success'
+      })
     }
   })
 })
 
 $('#bt_deleteFile').on('click', function() {
   if (!fileEditor) {
-    $('#div_alert').showAlert({message: '{{Aucun fichier ouvert.}}', level: 'warning'})
+    $('#div_alert').showAlert({
+      message: '{{Aucun fichier ouvert.}}',
+      level: 'warning'
+    })
     return
   }
   $('#span_editorFileName').empty()
   var path = $(this).attr('data-path')
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' +path + '</span> ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' + path + '</span> ?', function(result) {
     if (result) {
       jeedom.deleteFile({
-        path : path,
+        path: path,
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
-        success : function(data) {
-          $('#div_alert').showAlert({message: '{{Fichier supprimé avec succès}}', level: 'success'})
+        success: function(data) {
+          $('#div_alert').showAlert({
+            message: '{{Fichier supprimé avec succès}}',
+            level: 'success'
+          })
           if (fileEditor != null) {
             fileEditor.getDoc().setValue('')
             setTimeout(function() {
@@ -211,55 +253,75 @@ $('#bt_deleteFile').on('click', function() {
 })
 
 $('#bt_widgetCreate').off('click').on('click', function() {
-  CURRENT_FOLDER = rootPath+$('#sel_widgetVersion').value()+'/'
+  CURRENT_FOLDER = rootPath + $('#sel_widgetVersion').value() + '/'
   if ($('#sel_widgetSubtype').value() == '') {
-    $('#div_alert').showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
+    $('#div_alert').showAlert({
+      message: '{{Le sous-type ne peut être vide}}',
+      level: 'danger'
+    })
     return
   }
   if ($('#in_widgetName').value() == '') {
-    $('#div_alert').showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
+    $('#div_alert').showAlert({
+      message: '{{Le nom ne peut être vide}}',
+      level: 'danger'
+    })
     return
   }
-  var name = 'cmd.'+$('#sel_widgetType').value()+'.'+$('#sel_widgetSubtype').value()+'.'+$('#in_widgetName').value()+'.html'
+  var name = 'cmd.' + $('#sel_widgetType').value() + '.' + $('#sel_widgetSubtype').value() + '.' + $('#in_widgetName').value() + '.html'
   jeedom.createFile({
-    path : CURRENT_FOLDER,
-    name :name,
+    path: CURRENT_FOLDER,
+    name: name,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function(data) {
+    success: function(data) {
       $("#md_widgetCreate").dialog('close')
-      $('#div_alert').showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
+      $('#div_alert').showAlert({
+        message: '{{Fichier enregistré avec succès}}',
+        level: 'success'
+      })
       printFileFolder(CURRENT_FOLDER)
-      displayFile(CURRENT_FOLDER+'/'+name)
+      displayFile(CURRENT_FOLDER + '/' + name)
     }
   })
 })
 
 $('#bt_createFile').off('click').on('click', function() {
   if (editorType == 'widget') {
-    $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open')
+    $('#md_widgetCreate').dialog({
+      title: "{{Options}}"
+    }).dialog('open')
     $('#sel_widgetType').trigger('change')
 
-    $("#md_widgetCreate").keydown(function (event) {
-        if (event.keyCode == $.ui.keyCode.ENTER) {
-            $('#bt_widgetCreate').trigger('click')
-            return false
-        }
+    $("#md_widgetCreate").keydown(function(event) {
+      if (event.keyCode == $.ui.keyCode.ENTER) {
+        $('#bt_widgetCreate').trigger('click')
+        return false
+      }
     })
   } else {
     bootbox.prompt("{{Nom du fichier ?}}", function(result) {
       if (result !== null) {
         jeedom.createFile({
-          path : CURRENT_FOLDER,
-          name :result,
+          path: CURRENT_FOLDER,
+          name: result,
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
-          success : function(data) {
-            $('#div_alert').showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
+          success: function(data) {
+            $('#div_alert').showAlert({
+              message: '{{Fichier enregistré avec succès}}',
+              level: 'success'
+            })
             printFileFolder(CURRENT_FOLDER)
-            displayFile(CURRENT_FOLDER+'/'+result)
+            displayFile(CURRENT_FOLDER + '/' + result)
           }
         })
       }

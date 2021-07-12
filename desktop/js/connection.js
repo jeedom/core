@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -20,11 +20,14 @@ var deepUrl = window.location.href
 if (deepUrl.includes('logout')) deepUrl = ''
 
 
-$('#in_login_username').on('focusout change keypress',function() {
+$('#in_login_username').on('focusout change keypress', function() {
   jeedom.user.useTwoFactorAuthentification({
     login: $('#in_login_username').value(),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       if (data == 1) {
@@ -43,7 +46,10 @@ $('#bt_login_validate').on('click', function() {
     twoFactorCode: $('#in_twoFactorCode').val(),
     storeConnection: $('#cb_storeConnection').value(),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
       $('.veen').animateCss('shake')
     },
     success: function(data) {
@@ -51,8 +57,8 @@ $('#bt_login_validate').on('click', function() {
         $('#phrase_login_btn').html('{{Alerte de sécurité :<br/>Votre mot de passe doit être changé.}}')
         $('#titre_login_btn').html('{{Information importante :}}')
         $('.veen .wrapper').addClass('move')
-        $('.body').css('background','linear-gradient(360deg, rgba(147,204,1,0.6), rgba(147,204,1,1))')
-        $('.login-btn').css('color','#000000')
+        $('.body').css('background', 'linear-gradient(360deg, rgba(147,204,1,0.6), rgba(147,204,1,1))')
+        $('.login-btn').css('color', '#000000')
         $(".veen .login-btn button").removeClass('active')
         $(this).addClass('active')
       } else {
@@ -73,7 +79,10 @@ $('#bt_change_validate').on('click', function() {
   if ($('#in_change_password').val() == $('#in_change_passwordToo').val()) {
     jeedom.user.get({
       error: function(data) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(data) {
         var user = data
@@ -82,14 +91,20 @@ $('#bt_change_validate').on('click', function() {
         jeedom.user.saveProfils({
           profils: user,
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
             $('.veen').animateCss('shake')
           },
-          success : function() {
+          success: function() {
             jeedom.config.load({
               configuration: 'market::username',
               error: function(error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'})
+                $('#div_alert').showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
               },
               success: function(data) {
                 if (data == '' || data == null) {
@@ -104,7 +119,10 @@ $('#bt_change_validate').on('click', function() {
       }
     });
   } else {
-    $('#div_alert').showAlert({message: 'Les deux mots de passe ne sont pas identiques', level: 'danger'})
+    $('#div_alert').showAlert({
+      message: 'Les deux mots de passe ne sont pas identiques',
+      level: 'danger'
+    })
   }
 })
 
@@ -113,22 +131,35 @@ $('#bt_login_validate_market').on('click', function() {
   var password = $('#in_login_password_market').val()
   var adress = 'https://jeedom.com/market'
   jeedom.config.save({
-    configuration: {'market::username': username},
+    configuration: {
+      'market::username': username
+    },
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       jeedom.config.save({
-        configuration: {'market::password': password},
+        configuration: {
+          'market::password': password
+        },
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
           $('.veen').animateCss('shake')
         },
         success: function(data) {
           jeedom.repo.test({
             repo: 'market',
             error: function(error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'})
+              $('#div_alert').showAlert({
+                message: error.message,
+                level: 'danger'
+              })
               $('.veen').animateCss('shake')
             },
             success: function(data) {
@@ -179,7 +210,7 @@ $(document).ready(function() {
 
   $(".veen .login-btn button").click(function() {
     $('.veen .wrapper').removeClass('move')
-    $('.body').css('background','#ff4931')
+    $('.body').css('background', '#ff4931')
     $(".veen .rgstr-btn button").removeClass('active')
     $(this).addClass('active')
   })
@@ -194,8 +225,8 @@ $(document).ready(function() {
       $('.btn_help').animateCss('shake')
       window.setTimeout(function() {
         $('.btn_help').removeClass('shake')
-      },3000)
-    },5000)
+      }, 3000)
+    }, 5000)
   }, 10000)
 
 })

@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 "use strict"
 
@@ -25,7 +25,10 @@ var $tabContainer = $('#div_pageContainer .tab-content')
 jeedom.config.load({
   configuration: $('#div_spanAlertMessage').getValues('.configKey:not(.noSet)')[0],
   error: function(error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    $('#div_alert').showAlert({
+      message: error.message,
+      level: 'danger'
+    })
   },
   success: function(data) {
     $('#div_spanAlertMessage').setValues(data, '.configKey')
@@ -65,7 +68,6 @@ setTimeout(function() {
     if (editorMobileCSS) editorMobileCSS.setSize(null, $tabContainer.height() - 50)
   })
   $(window).resize()
-
 }, 250)
 
 $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
@@ -75,8 +77,8 @@ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
       mode: "text/javascript",
       matchBrackets: true,
       viewportMargin: Infinity,
-    foldGutter: true,
-    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+      foldGutter: true,
+      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
     })
     editorMobileJS.setOption("extraKeys", {
       "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
@@ -91,8 +93,8 @@ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
       mode: "text/css",
       matchBrackets: true,
       viewportMargin: Infinity,
-    foldGutter: true,
-    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+      foldGutter: true,
+      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
     })
     editorMobileCSS.setOption("extraKeys", {
       "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
@@ -102,7 +104,7 @@ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
   editorMobileCSS.setSize(null, $tabContainer.height() - 50)
 })
 
- $('.saveCustom').on('click', function() {
+$('.saveCustom').on('click', function() {
   var version = $(this).attr('data-version')
   var type = $(this).attr('data-type')
   var content = ''
@@ -126,20 +128,29 @@ $('a[data-toggle="tab"][href="#mobile"]').on('shown.bs.tab', function() {
   jeedom.config.save({
     configuration: $('#div_spanAlertMessage').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function() {
       jeedom.saveCustum({
-      version: version,
-      type: type,
-      content: content,
-      error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-      },
-      success: function(data) {
-        $('#div_alert').showAlert({message: 'Sauvegarde réussie', level: 'success'})
-      }
-    })
+        version: version,
+        type: type,
+        content: content,
+        error: function(error) {
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('#div_alert').showAlert({
+            message: 'Sauvegarde réussie',
+            level: 'success'
+          })
+        }
+      })
     }
   })
 })
