@@ -1,22 +1,20 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-function jeedom() {
-}
-
+function jeedom() {}
 jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
@@ -28,51 +26,51 @@ if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;
 }
 
-jeedom.changes = function(){
+jeedom.changes = function() {
   var paramsRequired = [];
   var paramsSpecifics = {
     global: false,
     success: function(data) {
-      if(jeedom.connect > 0){
+      if (jeedom.connect > 0) {
         jeedom.connect = 0;
       }
       jeedom.datetime = data.datetime;
       var cmd_update = [];
       var eqLogic_update = [];
       var object_summary_update = [];
-      for(var i in data.result){
-        if(data.result[i].name == 'cmd::update'){
+      for (var i in data.result) {
+        if (data.result[i].name == 'cmd::update') {
           cmd_update.push(data.result[i].option);
           continue;
         }
-        if(data.result[i].name == 'eqLogic::update'){
+        if (data.result[i].name == 'eqLogic::update') {
           eqLogic_update.push(data.result[i].option);
           continue;
         }
-        if(data.result[i].name == 'jeeObject::summary::update'){
+        if (data.result[i].name == 'jeeObject::summary::update') {
           object_summary_update.push(data.result[i].option);
           continue;
         }
-        if(isset(data.result[i].option)){
-          $('body').trigger(data.result[i].name,data.result[i].option);
-        }else{
+        if (isset(data.result[i].option)) {
+          $('body').trigger(data.result[i].name, data.result[i].option);
+        } else {
           $('body').trigger(data.result[i].name);
         }
       }
-      if(cmd_update.length > 0){
-        $('body').trigger('cmd::update',[cmd_update]);
+      if (cmd_update.length > 0) {
+        $('body').trigger('cmd::update', [cmd_update]);
       }
-      if(eqLogic_update.length > 0){
-        $('body').trigger('eqLogic::update',[eqLogic_update]);
+      if (eqLogic_update.length > 0) {
+        $('body').trigger('eqLogic::update', [eqLogic_update]);
       }
-      if(object_summary_update.length > 0){
-        $('body').trigger('jeeObject::summary::update',[object_summary_update]);
+      if (object_summary_update.length > 0) {
+        $('body').trigger('jeeObject::summary::update', [object_summary_update]);
       }
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
     },
-    error: function(_error){
-      if(typeof(user_id) != "undefined" && jeedom.connect == 100){
-        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion à Jeedom}} : '+_error.message);
+    error: function(_error) {
+      if (typeof(user_id) != "undefined" && jeedom.connect == 100) {
+        jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion à Jeedom}} : ' + _error.message);
       }
       jeedom.connect++;
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1);
@@ -89,12 +87,12 @@ jeedom.changes = function(){
   paramsAJAX.url = 'core/ajax/event.ajax.php';
   paramsAJAX.data = {
     action: 'changes',
-    datetime:jeedom.datetime,
+    datetime: jeedom.datetime,
   };
   $.ajax(paramsAJAX);
 }
 
-jeedom.init = function () {
+jeedom.init = function() {
   jeedom.datetime = serverDatetime;
   jeedom.display.version = 'desktop';
   if ($.mobile) {
@@ -120,83 +118,86 @@ jeedom.init = function () {
       cssComputedStyle.getPropertyValue('--scBlocAT')
     ]
   });
-  
-  
-  $('body').on('cmd::update', function (_event,_options) {
+
+
+  $('body').on('cmd::update', function(_event, _options) {
     jeedom.cmd.refreshValue(_options);
   });
-  
-  $('body').on('scenario::update', function (_event,_options) {
+
+  $('body').on('scenario::update', function(_event, _options) {
     jeedom.scenario.refreshValue(_options);
   });
-  $('body').on('eqLogic::update', function (_event,_options) {
+  $('body').on('eqLogic::update', function(_event, _options) {
     jeedom.eqLogic.refreshValue(_options);
   });
-  $('body').on('jeeObject::summary::update', function (_event,_options) {
+  $('body').on('jeeObject::summary::update', function(_event, _options) {
     jeedom.object.summaryUpdate(_options);
   });
-  
-  $('body').on('ui::update', function (_event,_options) {
-    if(isset(_options.page) && _options.page != ''){
-      if($.mobile){
-        if(!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _options.page){
+
+  $('body').on('ui::update', function(_event, _options) {
+    if (isset(_options.page) && _options.page != '') {
+      if ($.mobile) {
+        if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _options.page) {
           return;
         }
-      }else if(getUrlVars('p') != _options.page){
+      } else if (getUrlVars('p') != _options.page) {
         return;
       }
     }
-    if(!isset(_options.container) || _options.container == ''){
+    if (!isset(_options.container) || _options.container == '') {
       _options.container = 'body';
     }
     $(_options.container).setValues(_options.data, _options.type);
   });
-  
-  $('body').on('jeedom::gotoplan', function (_event,_plan_id) {
-    if(getUrlVars('p') == 'plan' && 'function' == typeof (displayPlan)){
+
+  $('body').on('jeedom::gotoplan', function(_event, _plan_id) {
+    if (getUrlVars('p') == 'plan' && 'function' == typeof(displayPlan)) {
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
         planHeader_id = _plan_id;
         displayPlan();
       }
     }
   });
-  
-  $('body').on('jeedom::alert', function (_event,_options) {
+
+  $('body').on('jeedom::alert', function(_event, _options) {
     if (!isset(_options.message) || $.trim(_options.message) == '') {
-      if(isset(_options.page) && _options.page != ''){
-        if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+      if (isset(_options.page) && _options.page != '') {
+        if (getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)) {
           $.hideAlert();
         }
-      }else{
+      } else {
         $.hideAlert();
       }
     } else {
-      if(isset(_options.page) && _options.page != ''){
-        let options = {message: _options.message, level: _options.level}
-        if (_options.ttl){
+      if (isset(_options.page) && _options.page != '') {
+        let options = {
+          message: _options.message,
+          level: _options.level
+        }
+        if (_options.ttl) {
           options.ttl = _options.ttl
         }
-        if(getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)){
+        if (getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)) {
           $('#div_alert').showAlert(options);
         }
-      }else{
+      } else {
         $('#div_alert').showAlert(_options);
       }
     }
   });
-  $('body').on('jeedom::alertPopup', function (_event,_message) {
+  $('body').on('jeedom::alertPopup', function(_event, _message) {
     alert(_message);
   });
-  $('body').on('jeedom::coloredIcons', function (_event,_state) {
-    $('body').attr('data-coloredIcons',_state);
+  $('body').on('jeedom::coloredIcons', function(_event, _state) {
+    $('body').attr('data-coloredIcons', _state);
   });
-  $('body').on('message::refreshMessageNumber', function (_event,_options) {
+  $('body').on('message::refreshMessageNumber', function(_event, _options) {
     jeedom.refreshMessageNumber();
   });
-  $('body').on('update::refreshUpdateNumber', function (_event,_options) {
+  $('body').on('update::refreshUpdateNumber', function(_event, _options) {
     jeedom.refreshUpdateNumber();
   });
-  $('body').on('notify', function (_event,_options) {
+  $('body').on('notify', function(_event, _options) {
     jeedom.notify(_options.title, _options.message, _options.theme);
   });
   if (typeof user_id !== 'undefined') {
@@ -208,9 +209,12 @@ jeedom.MESSAGE_NUMBER
 jeedom.refreshMessageNumber = function() {
   jeedom.message.number({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function(_number) {
+    success: function(_number) {
       jeedom.MESSAGE_NUMBER = _number;
       if (_number == 0 || _number == '0') {
         $('#span_nbMessage').hide()
@@ -225,9 +229,12 @@ jeedom.UPDATE_NUMBER
 jeedom.refreshUpdateNumber = function() {
   jeedom.update.number({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function(_number) {
+    success: function(_number) {
       jeedom.UPDATE_NUMBER = _number;
       if (_number == 0 || _number == '0') {
         $('#span_nbUpdate').hide()
@@ -252,10 +259,9 @@ jeedom.notify = function(_title, _text, _class_name) {
     //no toastr in mobile
     jeedomUtils.notify(_title, _text)
   }
-  
 }
 
-jeedom.getStringUsedBy = function (_params) {
+jeedom.getStringUsedBy = function(_params) {
   var paramsRequired = ['search'];
   var paramsSpecifics = {};
   try {
@@ -274,7 +280,7 @@ jeedom.getStringUsedBy = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.getIdUsedBy = function (_params) {
+jeedom.getIdUsedBy = function(_params) {
   var paramsRequired = ['search'];
   var paramsSpecifics = {};
   try {
@@ -293,14 +299,14 @@ jeedom.getIdUsedBy = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.getConfiguration = function (_params) {
+jeedom.getConfiguration = function(_params) {
   var paramsRequired = ['key'];
   var paramsSpecifics = {
-    pre_success: function (data) {
+    pre_success: function(data) {
       jeedom.cache.getConfiguration = data.result;
       var keys = _params.key.split(':');
       data.result = jeedom.cache.getConfiguration;
-      for(var i in keys){
+      for (var i in keys) {
         if (data.result[keys[i]]) {
           data.result = data.result[keys[i]];
         }
@@ -318,7 +324,7 @@ jeedom.getConfiguration = function (_params) {
   if (jeedom.cache.getConfiguration != null) {
     var keys = _params.key.split(':');
     var result = jeedom.cache.getConfiguration;
-    for(var i in keys){
+    for (var i in keys) {
       if (result[keys[i]]) {
         result = result[keys[i]];
       }
@@ -333,9 +339,9 @@ jeedom.getConfiguration = function (_params) {
     key: ''
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.haltSystem = function (_params) {
+jeedom.haltSystem = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -351,12 +357,12 @@ jeedom.haltSystem = function (_params) {
     action: 'haltSystem',
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.ssh = function (_params) {
-  if($.isPlainObject(_params)){
+jeedom.ssh = function(_params) {
+  if ($.isPlainObject(_params)) {
     command = _params.command;
-  }else{
+  } else {
     command = _params;
     _params = {};
   }
@@ -373,16 +379,16 @@ jeedom.ssh = function (_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'ssh',
-    command : command
+    command: command
   };
   $.ajax(paramsAJAX);
-  return 'Execute command : '+command;
-};
+  return 'Execute command : ' + command;
+}
 
-jeedom.db = function (_params) {
-  if($.isPlainObject(_params)){
+jeedom.db = function(_params) {
+  if ($.isPlainObject(_params)) {
     command = _params.command;
-  }else{
+  } else {
     command = _params;
     _params = {};
   }
@@ -399,13 +405,13 @@ jeedom.db = function (_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'db',
-    command : command
+    command: command
   };
   $.ajax(paramsAJAX);
-  return 'Execute command : '+command;
-};
+  return 'Execute command : ' + command;
+}
 
-jeedom.dbcorrectTable = function (_params) {
+jeedom.dbcorrectTable = function(_params) {
   var paramsRequired = ['table'];
   var paramsSpecifics = {};
   try {
@@ -419,12 +425,12 @@ jeedom.dbcorrectTable = function (_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'dbcorrectTable',
-    table : _params.table
+    table: _params.table
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.rebootSystem = function (_params) {
+jeedom.rebootSystem = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -440,9 +446,9 @@ jeedom.rebootSystem = function (_params) {
     action: 'rebootSystem',
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.systemCorrectPackage = function (_params) {
+jeedom.systemCorrectPackage = function(_params) {
   var paramsRequired = ['package'];
   var paramsSpecifics = {};
   try {
@@ -456,12 +462,12 @@ jeedom.systemCorrectPackage = function (_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'systemCorrectPackage',
-    package : _params.package
+    package: _params.package
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.health = function (_params) {
+jeedom.health = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -477,9 +483,9 @@ jeedom.health = function (_params) {
     action: 'health',
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.saveCustum = function (_params) {
+jeedom.saveCustum = function(_params) {
   var paramsRequired = ['version', 'type', 'content'];
   var paramsSpecifics = {};
   try {
@@ -498,9 +504,9 @@ jeedom.saveCustum = function (_params) {
     content: _params.content,
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.forceSyncHour = function (_params) {
+jeedom.forceSyncHour = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -516,9 +522,9 @@ jeedom.forceSyncHour = function (_params) {
     action: 'forceSyncHour',
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.getCronSelectModal = function(_options,_callback) {
+jeedom.getCronSelectModal = function(_options, _callback) {
   if ($("#mod_insertCronValue").length == 0) {
     $('body').append('<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>');
     $("#mod_insertCronValue").dialog({
@@ -551,9 +557,9 @@ jeedom.getCronSelectModal = function(_options,_callback) {
     }
   });
   $('#mod_insertCronValue').dialog('open');
-};
+}
 
-jeedom.getSelectActionModal = function(_options, _callback){
+jeedom.getSelectActionModal = function(_options, _callback) {
   if (!isset(_options)) {
     _options = {};
   }
@@ -610,9 +616,9 @@ jeedom.getGraphData = function(_params) {
     filter_id: params.filter_id || null,
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.getDocumentationUrl = function (_params) {
+jeedom.getDocumentationUrl = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -631,7 +637,7 @@ jeedom.getDocumentationUrl = function (_params) {
     theme: params.theme || null,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.addWarnme = function(_params) {
   var paramsRequired = [];
@@ -651,10 +657,10 @@ jeedom.addWarnme = function(_params) {
     test: params.test,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.getFileFolder = function(_params) {
-  var paramsRequired = ['type','path'];
+  var paramsRequired = ['type', 'path'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -667,11 +673,11 @@ jeedom.getFileFolder = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'getFileFolder',
-    type : _params.type,
-    path : _params.path,
+    type: _params.type,
+    path: _params.path,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.getFileContent = function(_params) {
   var paramsRequired = ['path'];
@@ -687,13 +693,13 @@ jeedom.getFileContent = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'getFileContent',
-    path : _params.path,
+    path: _params.path,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.setFileContent = function(_params) {
-  var paramsRequired = ['path','content'];
+  var paramsRequired = ['path', 'content'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -706,11 +712,11 @@ jeedom.setFileContent = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'setFileContent',
-    path : _params.path,
-    content : _params.content,
+    path: _params.path,
+    content: _params.content,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.deleteFile = function(_params) {
   var paramsRequired = ['path'];
@@ -726,13 +732,13 @@ jeedom.deleteFile = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'deleteFile',
-    path : _params.path,
+    path: _params.path,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.createFile = function(_params) {
-  var paramsRequired = ['path','name'];
+  var paramsRequired = ['path', 'name'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -745,11 +751,11 @@ jeedom.createFile = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'createFile',
-    path : _params.path,
-    name : _params.name,
+    path: _params.path,
+    name: _params.name,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.emptyRemoveHistory = function(_params) {
   var paramsRequired = [];
@@ -767,7 +773,7 @@ jeedom.emptyRemoveHistory = function(_params) {
     action: 'emptyRemoveHistory',
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.version = function(_params) {
   var paramsRequired = [];
@@ -785,7 +791,7 @@ jeedom.version = function(_params) {
     action: 'version'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.removeImageIcon = function(_params) {
   var paramsRequired = ['filepath'];
@@ -801,10 +807,10 @@ jeedom.removeImageIcon = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'removeImageIcon',
-    filepath : _params.filepath
+    filepath: _params.filepath
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.cleanFileSystemRight = function(_params) {
   var paramsRequired = [];
@@ -822,7 +828,7 @@ jeedom.cleanFileSystemRight = function(_params) {
     action: 'cleanFileSystemRight'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.consistency = function(_params) {
   var paramsRequired = [];
@@ -840,7 +846,7 @@ jeedom.consistency = function(_params) {
     action: 'consistency'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.cleanDatabase = function(_params) {
   var paramsRequired = [];
@@ -858,10 +864,10 @@ jeedom.cleanDatabase = function(_params) {
     action: 'cleanDatabase'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.massEditSave = function(_params) {
-  var paramsRequired = ['type','objects'];
+  var paramsRequired = ['type', 'objects'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -874,8 +880,8 @@ jeedom.massEditSave = function(_params) {
   paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
   paramsAJAX.data = {
     action: 'massEditSave',
-    type : _params.type,
-    objects : json_encode(_params.objects)
+    type: _params.type,
+    objects: json_encode(_params.objects)
   };
   $.ajax(paramsAJAX);
-};
+}

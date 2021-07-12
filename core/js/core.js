@@ -1,20 +1,20 @@
-
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
-$(function () {
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+$(function() {
   if (!$.mobile) {
     jeedom.init();
   }
@@ -31,10 +31,10 @@ function getTemplate(_folder, _version, _filename, _replace) {
     type: "POST",
     url: path,
     async: false,
-    error: function (request, status, error) {
+    error: function(request, status, error) {
       handleAjaxError(request, status, error);
     },
-    success: function (data) {
+    success: function(data) {
       if (isset(_replace) && _replace != null) {
         var reg = null;
         for (i in _replace) {
@@ -53,9 +53,15 @@ function handleAjaxError(_request, _status, _error, _div_alert) {
   var div_alert = init(_div_alert, $('#div_alert'));
   if (_request.status != '0') {
     if (init(_request.responseText, '') != '') {
-      div_alert.showAlert({message: _request.responseText, level: 'danger'});
+      div_alert.showAlert({
+        message: _request.responseText,
+        level: 'danger'
+      });
     } else {
-      div_alert.showAlert({message: _request.status + ' : ' + _error, level: 'danger'});
+      div_alert.showAlert({
+        message: _request.status + ' : ' + _error,
+        level: 'danger'
+      });
     }
   }
 }
@@ -71,8 +77,9 @@ function init(_value, _default) {
 }
 
 function getUrlVars(_key) {
-  var vars = [], hash, nbVars = 0;
-  var hashes = window.location.search.replace('?','').split('&');
+  var vars = [],
+    hash, nbVars = 0;
+  var hashes = window.location.search.replace('?', '').split('&');
   for (var i = 0; i < hashes.length; i++) {
     if (hashes[i] !== "" && hashes[i] !== "?") {
       hash = hashes[i].split('=');
@@ -93,15 +100,15 @@ function getUrlVars(_key) {
 function setCookie(cname, cvalue, exdays) {
   var d = new Date();
   if (!isset(exdays)) exdays = 1;
-  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  var expires = "expires="+ d.toUTCString();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/;samesite=Strict";
 }
 
 function getCookie(name) {
   var cookies = document.cookie.split(';');
   var csplit = null;
-  for(var i in cookies){
+  for (var i in cookies) {
     csplit = cookies[i].split('=');
     if (name.trim() == csplit[0].trim()) {
       return csplit[1];
@@ -109,7 +116,6 @@ function getCookie(name) {
   }
   return '';
 }
-
 
 function getDeviceType() {
   var result = {};

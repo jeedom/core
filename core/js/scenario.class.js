@@ -1,24 +1,20 @@
-
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-
-jeedom.scenario = function () {
-};
-
+jeedom.scenario = function() {};
 jeedom.scenario.cache = Array();
 
 if (!isset(jeedom.scenario.update)) {
@@ -28,10 +24,10 @@ if (!isset(jeedom.scenario.cache.byGroupObjectName)) {
   jeedom.scenario.cache.byGroupObjectName = Array()
 }
 
-jeedom.scenario.all = function (_params) {
+jeedom.scenario.all = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {
-    pre_success: function (data) {
+    pre_success: function(data) {
       jeedom.scenario.cache.all = data.result;
       return data;
     }
@@ -43,7 +39,7 @@ jeedom.scenario.all = function (_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.scenario.cache.all) && jeedom.scenario.cache.all != null && init(_params.nocache,false) == false) {
+  if (isset(jeedom.scenario.cache.all) && jeedom.scenario.cache.all != null && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.all);
     return;
   }
@@ -55,12 +51,12 @@ jeedom.scenario.all = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
+jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
   var asGroup = _params.asGroup ? _params.asGroup : 0
   var asTag = _params.asTag ? _params.asTag : 0
   var paramsRequired = [];
   var paramsSpecifics = {
-    pre_success: function (data) {
+    pre_success: function(data) {
       if (!isset(jeedom.scenario.cache.byGroupObjectName)) jeedom.scenario.cache.byGroupObjectName = Array()
       if (asTag) return data
       jeedom.scenario.cache.byGroupObjectName[asGroup] = data.result
@@ -90,7 +86,7 @@ jeedom.scenario.allOrderedByGroupObjectName = function (_params) {
   $.ajax(paramsAJAX)
 }
 
-jeedom.scenario.saveAll = function (_params) {
+jeedom.scenario.saveAll = function(_params) {
   var paramsRequired = ['scenarios'];
   var paramsSpecifics = {};
   try {
@@ -111,7 +107,7 @@ jeedom.scenario.saveAll = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.toHtml = function (_params) {
+jeedom.scenario.toHtml = function(_params) {
   var paramsRequired = ['id', 'version'];
   var paramsSpecifics = {};
   try {
@@ -131,9 +127,11 @@ jeedom.scenario.toHtml = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.changeState = function (_params) {
+jeedom.scenario.changeState = function(_params) {
   var paramsRequired = ['id', 'state'];
-  var paramsSpecifics = {global: false};
+  var paramsSpecifics = {
+    global: false
+  };
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -151,9 +149,11 @@ jeedom.scenario.changeState = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.getTemplate = function (_params) {
+jeedom.scenario.getTemplate = function(_params) {
   var paramsRequired = [];
-  var paramsSpecifics = {global: false};
+  var paramsSpecifics = {
+    global: false
+  };
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -169,7 +169,7 @@ jeedom.scenario.getTemplate = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.convertToTemplate = function (_params) {
+jeedom.scenario.convertToTemplate = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -189,7 +189,7 @@ jeedom.scenario.convertToTemplate = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.removeTemplate = function (_params) {
+jeedom.scenario.removeTemplate = function(_params) {
   var paramsRequired = ['template'];
   var paramsSpecifics = {};
   try {
@@ -208,7 +208,7 @@ jeedom.scenario.removeTemplate = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.loadTemplateDiff = function (_params) {
+jeedom.scenario.loadTemplateDiff = function(_params) {
   var paramsRequired = ['template', 'id'];
   var paramsSpecifics = {};
   try {
@@ -228,7 +228,7 @@ jeedom.scenario.loadTemplateDiff = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.applyTemplate = function (_params) {
+jeedom.scenario.applyTemplate = function(_params) {
   var paramsRequired = ['template', 'id', 'convert'];
   var paramsSpecifics = {};
   try {
@@ -249,7 +249,7 @@ jeedom.scenario.applyTemplate = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.scenario.refreshValue = function (_params) {
+jeedom.scenario.refreshValue = function(_params) {
   if (!isset(_params.global) || !_params.global) {
     if (isset(jeedom.scenario.update) && isset(jeedom.scenario.update[_params.scenario_id])) {
       jeedom.scenario.update[_params.scenario_id](_params);
@@ -263,7 +263,7 @@ jeedom.scenario.refreshValue = function (_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {
     global: false,
-    success: function (result) {
+    success: function(result) {
       $('.scenario[data-scenario_id=' + params.scenario_id + ']').empty().html($(result).children());
       if ($.mobile) {
         $('.scenario[data-scenario_id=' + params.scenario_id + ']').trigger("create");
@@ -286,9 +286,9 @@ jeedom.scenario.refreshValue = function (_params) {
     version: _params.version || version
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.copy = function (_params) {
+jeedom.scenario.copy = function(_params) {
   var paramsRequired = ['id', 'name'];
   var paramsSpecifics = {};
   try {
@@ -308,9 +308,9 @@ jeedom.scenario.copy = function (_params) {
     name: _params.name
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.byId = function (_params) {
+jeedom.scenario.byId = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -327,9 +327,9 @@ jeedom.scenario.byId = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.get = function (_params) {
+jeedom.scenario.get = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -346,9 +346,9 @@ jeedom.scenario.get = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.save = function (_params) {
+jeedom.scenario.save = function(_params) {
   var paramsRequired = ['scenario'];
   var paramsSpecifics = {};
   try {
@@ -367,9 +367,9 @@ jeedom.scenario.save = function (_params) {
     scenario: json_encode(_params.scenario)
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.remove = function (_params) {
+jeedom.scenario.remove = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -388,9 +388,9 @@ jeedom.scenario.remove = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.emptyLog = function (_params) {
+jeedom.scenario.emptyLog = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -407,9 +407,9 @@ jeedom.scenario.emptyLog = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.scenario.getSelectModal = function (_options, callback) {
+jeedom.scenario.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
     _options = {};
   }
@@ -424,16 +424,20 @@ jeedom.scenario.getSelectModal = function (_options, callback) {
     height: 250,
     width: 800
   });
-  jQuery.ajaxSetup({async: false});
+  jQuery.ajaxSetup({
+    async: false
+  });
   $('#mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert');
-  jQuery.ajaxSetup({async: true});
+  jQuery.ajaxSetup({
+    async: true
+  });
 
   mod_insertScenario.setOptions(_options);
   $("#mod_insertScenarioValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function () {
+    "{{Annuler}}": function() {
       $(this).dialog("close");
     },
-    "{{Valider}}": function () {
+    "{{Valider}}": function() {
       var retour = {};
       retour.human = mod_insertScenario.getValue();
       retour.id = mod_insertScenario.getId();
@@ -444,9 +448,9 @@ jeedom.scenario.getSelectModal = function (_options, callback) {
     }
   });
   $('#mod_insertScenarioValue').dialog('open');
-};
+}
 
-jeedom.scenario.testExpression = function (_params) {
+jeedom.scenario.testExpression = function(_params) {
   var paramsRequired = ['expression'];
   var paramsSpecifics = {};
   try {
@@ -463,7 +467,7 @@ jeedom.scenario.testExpression = function (_params) {
     expression: _params.expression
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.scenario.setOrder = function(_params) {
   var paramsRequired = ['scenarios'];
@@ -482,7 +486,7 @@ jeedom.scenario.setOrder = function(_params) {
     scenarios: json_encode(_params.scenarios)
   };
   $.ajax(paramsAJAX);
-};
+}
 
 /* Actions Autocomplete */
 jeedom.scenario.autoCompleteCondition = [
@@ -557,12 +561,12 @@ jeedom.scenario.setAutoComplete = function(_params) {
 
   _params.parent.find('.expression').each(function() {
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'condition') {
-      $(this).find('.expressionAttr[data-l1key='+_params.type+']').autocomplete({
+      $(this).find('.expressionAttr[data-l1key=' + _params.type + ']').autocomplete({
         minLength: 1,
         source: function(request, response) {
           //return last term after last space:
           var values = request.term.split(' ')
-          var term = values[values.length-1]
+          var term = values[values.length - 1]
           if (term == '') return false //only space entered
           response(
             $.ui.autocomplete.filter(jeedom.scenario.autoCompleteCondition, term)
@@ -585,7 +589,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
             this.value = this.value.slice(0, -1) + ui.item.value
           } else {
             var values = this.value.split(' ')
-            var term = values[values.length-1]
+            var term = values[values.length - 1]
             this.value = this.value.slice(0, -term.length) + ui.item.value
           }
           return false
@@ -594,7 +598,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
     }
 
     if ($(this).find('.expressionAttr[data-l1key=type]').value() == 'action') {
-      $(this).find('.expressionAttr[data-l1key='+_params.type+']').autocomplete({
+      $(this).find('.expressionAttr[data-l1key=' + _params.type + ']').autocomplete({
         source: jeedom.scenario.autoCompleteAction,
         close: function(event, ui) {
           $(this).blur()

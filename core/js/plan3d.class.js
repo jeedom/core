@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,13 +14,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jeedom.plan3d = function() {};
+jeedom.plan3d.cache = Array();
 
- jeedom.plan3d = function () {
- };
-
- jeedom.plan3d.cache = Array();
-
- jeedom.plan3d.remove = function (_params) {
+jeedom.plan3d.remove = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -41,9 +37,9 @@
         plan3dHeader_id: _params.plan3dHeader_id || ''
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.save = function (_params) {
+jeedom.plan3d.save = function(_params) {
     var paramsRequired = ['plan3ds'];
     var paramsSpecifics = {
         global: _params.global || true,
@@ -63,9 +59,9 @@ jeedom.plan3d.save = function (_params) {
         plan3ds: json_encode(_params.plan3ds),
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.byId = function (_params) {
+jeedom.plan3d.byId = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -82,10 +78,10 @@ jeedom.plan3d.byId = function (_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.byName = function (_params) {
-    var paramsRequired = ['name','plan3dHeader_id'];
+jeedom.plan3d.byName = function(_params) {
+    var paramsRequired = ['name', 'plan3dHeader_id'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -102,10 +98,9 @@ jeedom.plan3d.byName = function (_params) {
         plan3dHeader_id: _params.plan3dHeader_id
     };
     $.ajax(paramsAJAX);
-};
+}
 
-
-jeedom.plan3d.byplan3dHeader = function (_params) {
+jeedom.plan3d.byplan3dHeader = function(_params) {
     var paramsRequired = ['plan3dHeader_id'];
     var paramsSpecifics = {};
     try {
@@ -122,9 +117,9 @@ jeedom.plan3d.byplan3dHeader = function (_params) {
         plan3dHeader_id: _params.plan3dHeader_id
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.saveHeader = function (_params) {
+jeedom.plan3d.saveHeader = function(_params) {
     var paramsRequired = ['plan3dHeader'];
     var paramsSpecifics = {};
     try {
@@ -141,9 +136,9 @@ jeedom.plan3d.saveHeader = function (_params) {
         plan3dHeader: json_encode(_params.plan3dHeader)
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.removeHeader = function (_params) {
+jeedom.plan3d.removeHeader = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -160,9 +155,9 @@ jeedom.plan3d.removeHeader = function (_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.getHeader = function (_params) {
+jeedom.plan3d.getHeader = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -180,9 +175,9 @@ jeedom.plan3d.getHeader = function (_params) {
         code: _params.code
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan3d.allHeader = function (_params) {
+jeedom.plan3d.allHeader = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {
         pre_success: function(data) {

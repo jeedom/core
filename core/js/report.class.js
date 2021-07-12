@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,13 +14,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jeedom.report = function() {};
 
- jeedom.report = function () {
- };
-
-
- jeedom.report.list = function (_params) {
-    var paramsRequired = ['type','id'];
+jeedom.report.list = function(_params) {
+    var paramsRequired = ['type', 'id'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -40,8 +36,8 @@
     $.ajax(paramsAJAX);
 }
 
-jeedom.report.get = function (_params) {
-    var paramsRequired = ['type','id','report'];
+jeedom.report.get = function(_params) {
+    var paramsRequired = ['type', 'id', 'report'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -61,8 +57,8 @@ jeedom.report.get = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.report.remove = function (_params) {
-    var paramsRequired = ['type','id','report'];
+jeedom.report.remove = function(_params) {
+    var paramsRequired = ['type', 'id', 'report'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -82,8 +78,8 @@ jeedom.report.remove = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.report.removeAll = function (_params) {
-    var paramsRequired = ['type','id'];
+jeedom.report.removeAll = function(_params) {
+    var paramsRequired = ['type', 'id'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);

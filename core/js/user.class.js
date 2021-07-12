@@ -1,23 +1,20 @@
-
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-
-jeedom.user = function() {
-};
+jeedom.user = function() {};
 jeedom.user.connectCheck = 0;
 
 jeedom.user.all = function(_params) {
@@ -110,10 +107,10 @@ jeedom.user.get = function(_params) {
   paramsAJAX.data = {
     action: 'get',
     profils: json_encode(_params.profils),
-    id : _params.id || -1
+    id: _params.id || -1
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.isConnect = function(_params) {
   if (Math.round(+new Date() / 1000) > (jeedom.user.connectCheck + 300)) {
@@ -121,10 +118,16 @@ jeedom.user.isConnect = function(_params) {
     var paramsSpecifics = {
       pre_success: function(data) {
         if (data.state != 'ok') {
-          return {state: 'ok', result: false};
+          return {
+            state: 'ok',
+            result: false
+          };
         } else {
           jeedom.user.connectCheck = Math.round(+new Date() / 1000);
-          return {state: 'ok', result: true};
+          return {
+            state: 'ok',
+            result: true
+          };
         }
       }
     };
@@ -143,7 +146,7 @@ jeedom.user.isConnect = function(_params) {
     };
     $.ajax(paramsAJAX);
   } else {
-    if ('function' == typeof (_params.success)) {
+    if ('function' == typeof(_params.success)) {
       _params.success(true);
     }
   }
@@ -164,10 +167,10 @@ jeedom.user.validateTwoFactorCode = function(_params) {
   paramsAJAX.data = {
     action: 'validateTwoFactorCode',
     code: _params.code,
-    enableTwoFactorAuthentification : _params.enableTwoFactorAuthentification || 0
+    enableTwoFactorAuthentification: _params.enableTwoFactorAuthentification || 0
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.removeTwoFactorCode = function(_params) {
   var paramsRequired = ['id'];
@@ -186,7 +189,7 @@ jeedom.user.removeTwoFactorCode = function(_params) {
     id: _params.id,
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.useTwoFactorAuthentification = function(_params) {
   var paramsRequired = ['login'];
@@ -207,10 +210,10 @@ jeedom.user.useTwoFactorAuthentification = function(_params) {
     login: _params.login
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.login = function(_params) {
-  var paramsRequired = ['username','password'];
+  var paramsRequired = ['username', 'password'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -229,8 +232,7 @@ jeedom.user.login = function(_params) {
     storeConnection: _params.storeConnection || 0,
   };
   $.ajax(paramsAJAX);
-};
-
+}
 
 jeedom.user.refresh = function(_params) {
   var paramsRequired = [];
@@ -248,8 +250,7 @@ jeedom.user.refresh = function(_params) {
     action: 'refresh',
   };
   $.ajax(paramsAJAX);
-};
-
+}
 
 jeedom.user.removeBanIp = function(_params) {
   var paramsRequired = [];
@@ -267,7 +268,7 @@ jeedom.user.removeBanIp = function(_params) {
     action: 'removeBanIp',
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.removeRegisterDevice = function(_params) {
   var paramsRequired = [];
@@ -284,10 +285,10 @@ jeedom.user.removeRegisterDevice = function(_params) {
   paramsAJAX.data = {
     action: 'removeRegisterDevice',
     key: _params.key,
-    user_id : _params.user_id || ''
+    user_id: _params.user_id || ''
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.deleteSession = function(_params) {
   var paramsRequired = ['id'];
@@ -306,7 +307,7 @@ jeedom.user.deleteSession = function(_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.user.supportAccess = function(_params) {
   var paramsRequired = ['enable'];
@@ -325,4 +326,4 @@ jeedom.user.supportAccess = function(_params) {
     enable: _params.enable
   };
   $.ajax(paramsAJAX);
-};
+}

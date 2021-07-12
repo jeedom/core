@@ -1,24 +1,20 @@
-
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-
-jeedom.object = function() {
-};
-
+jeedom.object = function() {};
 jeedom.object.cache = Array();
 
 if (!isset(jeedom.object.cache.getEqLogic)) {
@@ -45,11 +41,11 @@ jeedom.object.getEqLogic = function(_params) {
     action: "listByObject",
     object_id: _params.id,
     onlyEnable: _params.onlyEnable || 0,
-    orderByName : _params.orderByName || 0,
-    onlyHasCmds : json_encode(_params.onlyHasCmds) || 0
+    orderByName: _params.orderByName || 0,
+    onlyHasCmds: json_encode(_params.onlyHasCmds) || 0
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.getEqLogicsFromSummary = function(_params) {
   var paramsRequired = ['id', 'summary'];
@@ -69,16 +65,16 @@ jeedom.object.getEqLogicsFromSummary = function(_params) {
     id: _params.id,
     summary: _params.summary,
     onlyEnable: _params.onlyEnable || '1',
-    onlyVisible : _params.onlyVisible || '0'
+    onlyVisible: _params.onlyVisible || '0'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.all = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {
     pre_success: function(data) {
-      if(!isset(_params.onlyHasEqLogic)){
+      if (!isset(_params.onlyHasEqLogic)) {
         jeedom.object.cache.all = data.result;
       }
       return data;
@@ -95,19 +91,19 @@ jeedom.object.all = function(_params) {
     params.success(jeedom.object.cache.all);
     return;
   }
-  if(_params.onlyVisible == undefined){
+  if (_params.onlyVisible == undefined) {
     _params.onlyVisible = true
   }
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/object.ajax.php';
   paramsAJAX.data = {
     action: 'all',
-    onlyHasEqLogic : _params.onlyHasEqLogic || '',
-    searchOnchild : _params.searchOnchild || '1',
-    onlyVisible : _params.onlyVisible
+    onlyHasEqLogic: _params.onlyHasEqLogic || '',
+    searchOnchild: _params.searchOnchild || '1',
+    onlyVisible: _params.onlyVisible
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.toHtml = function(_params) {
   var paramsRequired = ['id'];
@@ -125,12 +121,12 @@ jeedom.object.toHtml = function(_params) {
     action: 'toHtml',
     id: ($.isArray(_params.id)) ? json_encode(_params.id) : _params.id,
     version: _params.version || 'dashboard',
-    category :  _params.category || 'all',
-    summary :  _params.summary || '',
-    tag :  _params.tag || 'all',
+    category: _params.category || 'all',
+    summary: _params.summary || '',
+    tag: _params.tag || 'all',
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.remove = function(_params) {
   var paramsRequired = ['id'];
@@ -142,7 +138,7 @@ jeedom.object.remove = function(_params) {
       if (isset(jeedom.object.cache.getEqLogic[_params.id])) {
         delete jeedom.object.cache.getEqLogic[_params.id];
       }
-      if(isset(jeedom.object.cache.byId[_params.id])){
+      if (isset(jeedom.object.cache.byId[_params.id])) {
         delete jeedom.object.cache.byId[_params.id];
       }
       return data;
@@ -162,7 +158,7 @@ jeedom.object.remove = function(_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.save = function(_params) {
   var paramsRequired = ['object'];
@@ -174,7 +170,7 @@ jeedom.object.save = function(_params) {
       if (isset(jeedom.object.cache.getEqLogic[data.result.id])) {
         delete jeedom.object.cache.getEqLogic[data.result.id];
       }
-      if(isset(jeedom.object.cache.byId[data.result.id])){
+      if (isset(jeedom.object.cache.byId[data.result.id])) {
         delete jeedom.object.cache.byId[data.result.id];
       }
       return data;
@@ -194,7 +190,7 @@ jeedom.object.save = function(_params) {
     object: json_encode(_params.object),
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.byId = function(_params) {
   var paramsRequired = ['id'];
@@ -211,7 +207,7 @@ jeedom.object.byId = function(_params) {
     return;
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  if (isset(jeedom.object.cache.byId[params.id]) && init(_params.cache,true) == true) {
+  if (isset(jeedom.object.cache.byId[params.id]) && init(_params.cache, true) == true) {
     params.success(jeedom.object.cache.byId[params.id]);
     return;
   }
@@ -222,10 +218,10 @@ jeedom.object.byId = function(_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.getActionSummary = function(_params) {
-  var paramsRequired = ['object_id','summary'];
+  var paramsRequired = ['object_id', 'summary'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -243,7 +239,7 @@ jeedom.object.getActionSummary = function(_params) {
     version: _params.version || 'dashboard'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.setOrder = function(_params) {
   var paramsRequired = ['objects'];
@@ -262,7 +258,7 @@ jeedom.object.setOrder = function(_params) {
     objects: json_encode(_params.objects)
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.object.summaryUpdate = function(_params) {
   var objects = {};
@@ -281,8 +277,8 @@ jeedom.object.summaryUpdate = function(_params) {
     if (isset(_params[i]['keys'])) {
       updated = false;
       for (var key in _params[i]['keys']) {
-        summarySpan = object.find('.objectSummaryParent[data-summary="'+key+'"]')
-        keySpan = summarySpan.find('.objectSummary'+key);
+        summarySpan = object.find('.objectSummaryParent[data-summary="' + key + '"]')
+        keySpan = summarySpan.find('.objectSummary' + key);
         if (summarySpan.html() != undefined) {
           updated = true;
           //hide if no display if nul:
@@ -314,8 +310,13 @@ jeedom.object.summaryUpdate = function(_params) {
         continue;
       }
     }
-    objects[_params[i].object_id] = {object : object, version : object.attr('data-version')};
-    sends[_params[i].object_id] = {version : object.attr('data-version')};
+    objects[_params[i].object_id] = {
+      object: object,
+      version: object.attr('data-version')
+    };
+    sends[_params[i].object_id] = {
+      version: object.attr('data-version')
+    };
   }
   if (Object.keys(objects).length == 0) {
     return;
@@ -323,7 +324,7 @@ jeedom.object.summaryUpdate = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {
     global: false,
-    success: function (result) {
+    success: function(result) {
       for (var i in result) {
         objects[i].object.replaceWith($(result[i].html));
         if ($('.objectSummary' + i).closest('.objectSummaryHide') != []) {
@@ -350,21 +351,21 @@ jeedom.object.summaryUpdate = function(_params) {
     ids: json_encode(sends),
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.object.getImgPath = function(_params){
-  if(_params.id == 'all'){
+jeedom.object.getImgPath = function(_params) {
+  if (_params.id == 'all') {
     return;
   }
   jeedom.object.byId({
-    id : _params.id,
+    id: _params.id,
     global: false,
-    async : false,
-    error : function(data){
+    async: false,
+    error: function(data) {
       return;
     },
-    success : function(data){
-      if(!isset(data.img)){
+    success: function(data) {
+      if (!isset(data.img)) {
         return '';
       }
       if (isset(data.configuration.useBackground) && data.configuration.useBackground == 1) {
@@ -376,7 +377,7 @@ jeedom.object.getImgPath = function(_params){
   });
 }
 
-jeedom.object.removeImage = function (_params) {
+jeedom.object.removeImage = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -393,10 +394,10 @@ jeedom.object.removeImage = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.object.uploadImage = function (_params) {
-  var paramsRequired = ['id','file'];
+jeedom.object.uploadImage = function(_params) {
+  var paramsRequired = ['id', 'file'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -413,4 +414,4 @@ jeedom.object.uploadImage = function (_params) {
     file: _params.file
   };
   $.ajax(paramsAJAX);
-};
+}

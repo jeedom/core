@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,8 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.dataStore = function() {
-};
+jeedom.dataStore = function() {};
 
 jeedom.dataStore.save = function(_params) {
     var paramsRequired = ['id', 'value', 'type', 'key', 'link_id'];
@@ -29,7 +27,7 @@ jeedom.dataStore.save = function(_params) {
     }
     var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
     var paramsAJAX = jeedom.private.getParamsAJAX(params);
-    paramsAJAX.async =  _params.async || true;
+    paramsAJAX.async = _params.async || true;
 
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
@@ -66,7 +64,7 @@ jeedom.dataStore.byTypeLinkIdKey = function(_params) {
 }
 
 jeedom.dataStore.all = function(_params) {
-    var paramsRequired = ['type','usedBy'];
+    var paramsRequired = ['type', 'usedBy'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -100,9 +98,13 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
         height: 250,
         width: 800
     });
-    jQuery.ajaxSetup({async: false});
+    jQuery.ajaxSetup({
+        async: false
+    });
     $('#mod_insertDataStoreValue').load('index.php?v=d&modal=dataStore.human.insert');
-    jQuery.ajaxSetup({async: true});
+    jQuery.ajaxSetup({
+        async: true
+    });
     mod_insertDataStore.setOptions(_options);
     $("#mod_insertDataStoreValue").dialog('option', 'buttons', {
         "{{Annuler}}": function() {
@@ -119,7 +121,7 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
         }
     });
     $('#mod_insertDataStoreValue').dialog('open');
-};
+}
 
 jeedom.dataStore.remove = function(_params) {
     var paramsRequired = ['id'];
@@ -138,4 +140,4 @@ jeedom.dataStore.remove = function(_params) {
         id: _params.id
     };
     $.ajax(paramsAJAX);
-};
+}

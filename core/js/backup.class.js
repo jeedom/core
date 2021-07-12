@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,11 +14,9 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jeedom.backup = function() {};
 
- jeedom.backup = function() {
- };
-
- jeedom.backup.backup = function(_params) {
+jeedom.backup.backup = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -35,8 +32,7 @@
         action: 'backup',
     };
     $.ajax(paramsAJAX);
-};
-
+}
 
 jeedom.backup.restoreLocal = function(_params) {
     var paramsRequired = [];
@@ -52,10 +48,10 @@ jeedom.backup.restoreLocal = function(_params) {
     paramsAJAX.url = 'core/ajax/jeedom.ajax.php';
     paramsAJAX.data = {
         action: 'restore',
-        backup : _params.backup
+        backup: _params.backup
     };
     $.ajax(paramsAJAX);
-};
+}
 
 jeedom.backup.remove = function(_params) {
     var paramsRequired = ['backup'];
@@ -74,7 +70,7 @@ jeedom.backup.remove = function(_params) {
         backup: _params.backup,
     };
     $.ajax(paramsAJAX);
-};
+}
 
 jeedom.backup.uploadCloud = function(_params) {
     var paramsRequired = ['backup'];
@@ -93,10 +89,10 @@ jeedom.backup.uploadCloud = function(_params) {
         backup: _params.backup
     };
     $.ajax(paramsAJAX);
-};
+}
 
 jeedom.backup.restoreCloud = function(_params) {
-    var paramsRequired = ['backup','repo'];
+    var paramsRequired = ['backup', 'repo'];
     var paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -113,7 +109,7 @@ jeedom.backup.restoreCloud = function(_params) {
         repo: _params.repo,
     };
     $.ajax(paramsAJAX);
-};
+}
 
 jeedom.backup.list = function(_params) {
     var paramsRequired = [];
@@ -131,4 +127,4 @@ jeedom.backup.list = function(_params) {
         action: 'listBackup',
     };
     $.ajax(paramsAJAX);
-};
+}
