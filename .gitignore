@@ -9,6 +9,7 @@ ui
 test.php
 core/config/common.config.php
 .remote-sync.json
+sftp.json
 core2019-light
 core2019-dark
 
