@@ -4,6 +4,7 @@ nbproject/
 Thumbs.db
 .DS_Store
 /.buildpath
+/.vscode
 ui
 
 test.php
