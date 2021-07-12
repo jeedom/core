@@ -1417,183 +1417,183 @@ class jeedom {
 		$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../*;';
 		$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . __DIR__ . '/../../*;';
 		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 665 {} +;';
-			$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . __DIR__ . '/../../.* ;';
-			exec($cmd);
+		$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . __DIR__ . '/../../.* ;';
+		exec($cmd);
+	}
+		
+	public static function checkSpaceLeft($_dir = null) {
+		if ($_dir == null) {
+			$path = __DIR__ . '/../../';
+		} else {
+			$path = $_dir;
 		}
-		
-		public static function checkSpaceLeft($_dir = null) {
-			if ($_dir == null) {
-				$path = __DIR__ . '/../../';
-			} else {
-				$path = $_dir;
-			}
-			return round(disk_free_space($path) / disk_total_space($path) * 100);
+		return round(disk_free_space($path) / disk_total_space($path) * 100);
+	}
+
+	public static function getTmpFolder($_plugin = null) {
+		$return = '/' . trim(config::byKey('folder::tmp'), '/');
+		if ($_plugin !== null) {
+			$return .= '/' . $_plugin;
 		}
-		
-		public static function getTmpFolder($_plugin = null) {
-			$return = '/' . trim(config::byKey('folder::tmp'), '/');
-			if ($_plugin !== null) {
-				$return .= '/' . $_plugin;
-			}
-			if (!file_exists($return)) {
-				mkdir($return, 0774, true);
-				$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
-				com_shell::execute($cmd);
-			}
-			return $return;
+		if (!file_exists($return)) {
+			mkdir($return, 0774, true);
+			$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
+			com_shell::execute($cmd);
 		}
-		
-		/*     * ******************hardware management*************************** */
-		
-		public static function getHardwareKey() {
-			$return = config::byKey('jeedom::installKey');
-			if ($return == '') {
-				$return = substr(sha512(microtime() . config::genKey()), 0, 63);
-				config::save('jeedom::installKey', $return);
-			}
-			return $return;
+		return $return;
+	}
+
+	/*     * ******************hardware management*************************** */
+
+	public static function getHardwareKey() {
+		$return = config::byKey('jeedom::installKey');
+		if ($return == '') {
+			$return = substr(sha512(microtime() . config::genKey()), 0, 63);
+			config::save('jeedom::installKey', $return);
 		}
-		
-		public static function getHardwareName() {
-			if (config::byKey('hardware_name') != '') {
-				return config::byKey('hardware_name');
-			}
-			$result = 'diy';
-			$uname = shell_exec('uname -a');
-			if (file_exists('/.dockerinit')) {
-				$result = 'docker';
-			} else if (file_exists('/usr/bin/raspi-config')) {
-				$result = 'rpi';
-				$hardware_revision = strtolower(shell_exec('cat /proc/cpuinfo | grep Revision'));
-				global $JEEDOM_RPI_HARDWARE;
-				foreach ($JEEDOM_RPI_HARDWARE as $key => $values) {
-					foreach ($values as $value) {
-						if(strpos($hardware_revision,$value) !== false){
-							$result = $key;
-						}
-					}
-				}
-			} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
-				$result = 'miniplus';
-			} else if (file_exists('/usr/bin/grille-pain')) {
-				$result = 'freeboxDelta';
-			}
-			if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
-				$result = 'smart';
-			}
-			config::save('hardware_name', $result);
+		return $return;
+	}
+
+	public static function getHardwareName() {
+		if (config::byKey('hardware_name') != '') {
 			return config::byKey('hardware_name');
 		}
-		
-		public static function isCapable($_function, $_forceRefresh = false) {
-			global $JEEDOM_COMPATIBILIY_CONFIG;
-			if ($_function == 'sudo') {
-				if (!$_forceRefresh) {
-					$cache = cache::byKey('jeedom::isCapable::sudo');
-					if ($cache->getValue(0) == 1) {
-						return true;
+		$result = 'diy';
+		$uname = shell_exec('uname -a');
+		if (file_exists('/.dockerinit')) {
+			$result = 'docker';
+		} else if (file_exists('/usr/bin/raspi-config')) {
+			$result = 'rpi';
+			$hardware_revision = strtolower(shell_exec('cat /proc/cpuinfo | grep Revision'));
+			global $JEEDOM_RPI_HARDWARE;
+			foreach ($JEEDOM_RPI_HARDWARE as $key => $values) {
+				foreach ($values as $value) {
+					if(strpos($hardware_revision,$value) !== false){
+						$result = $key;
 					}
 				}
-				$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
-				cache::set('jeedom::isCapable::sudo', $result,3600*24);
-				return $result;
 			}
-			$hardware = self::getHardwareName();
-			if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
-				return false;
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			$result = 'miniplus';
+		} else if (file_exists('/usr/bin/grille-pain')) {
+			$result = 'freeboxDelta';
+		}
+		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+			$result = 'smart';
+		}
+		config::save('hardware_name', $result);
+		return config::byKey('hardware_name');
+	}
+
+	public static function isCapable($_function, $_forceRefresh = false) {
+		global $JEEDOM_COMPATIBILIY_CONFIG;
+		if ($_function == 'sudo') {
+			if (!$_forceRefresh) {
+				$cache = cache::byKey('jeedom::isCapable::sudo');
+				if ($cache->getValue(0) == 1) {
+					return true;
+				}
 			}
-			if (in_array($_function, $JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
-				return true;
-			}
+			$result = (shell_exec('sudo -l > /dev/null 2>&1; echo $?') == 0) ? true : false;
+			cache::set('jeedom::isCapable::sudo', $result,3600*24);
+			return $result;
+		}
+		$hardware = self::getHardwareName();
+		if (!isset($JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
 			return false;
 		}
-		
-		/*     * ******************Benchmark*************************** */
-		
-		public static function benchmark() {
-			$return = array();
-			
-			$param = array('cache_write' => 5000, 'cache_read' => 5000, 'database_write_delete' => 1000, 'database_update' => 1000, 'database_replace' => 1000, 'database_read' => 50000, 'subprocess' => 200);
-			
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['cache_write']; $i++) {
-				cache::set('jeedom_benchmark', $i);
-			}
-			$return['cache_write_' . $param['cache_write']] = getmicrotime() - $starttime;
-			
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['cache_read']; $i++) {
-				$cache = cache::byKey('jeedom_benchmark');
-				$cache->getValue();
-			}
-			$return['cache_read_' . $param['cache_read']] = getmicrotime() - $starttime;
-			
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['database_write_delete']; $i++) {
-				$sql = 'DELETE FROM config
-				WHERE `key`="jeedom_benchmark"
-				AND plugin="core"';
-				try {
-					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-				} catch (Exception $e) {
-					
-				}
-				$sql = 'INSERT INTO config
-				SET `key`="jeedom_benchmark",plugin="core",`value`="' . $i . '"';
-				try {
-					DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-				} catch (Exception $e) {
-					
-				}
-			}
-			$return['database_write_delete_' . $param['database_write_delete']] = getmicrotime() - $starttime;
-			
-			$sql = 'INSERT INTO config
-			SET `key`="jeedom_benchmark",plugin="core",`value`="0"';
+		if (in_array($_function, $JEEDOM_COMPATIBILIY_CONFIG[$hardware])) {
+			return true;
+		}
+		return false;
+	}
+
+	/*     * ******************Benchmark*************************** */
+
+	public static function benchmark() {
+		$return = array();
+
+		$param = array('cache_write' => 5000, 'cache_read' => 5000, 'database_write_delete' => 1000, 'database_update' => 1000, 'database_replace' => 1000, 'database_read' => 50000, 'subprocess' => 200);
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['cache_write']; $i++) {
+			cache::set('jeedom_benchmark', $i);
+		}
+		$return['cache_write_' . $param['cache_write']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['cache_read']; $i++) {
+			$cache = cache::byKey('jeedom_benchmark');
+			$cache->getValue();
+		}
+		$return['cache_read_' . $param['cache_read']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_write_delete']; $i++) {
+			$sql = 'DELETE FROM config
+			WHERE `key`="jeedom_benchmark"
+			AND plugin="core"';
 			try {
 				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 			} catch (Exception $e) {
-				
+
 			}
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['database_update']; $i++) {
-				$sql = 'UPDATE config
-				SET `value`=:value
-				WHERE `key`="jeedom_benchmark"
-				AND plugin="core"';
-				try {
-					DB::Prepare($sql, array('value' => $i), DB::FETCH_TYPE_ROW);
-				} catch (Exception $e) {
-					
-				}
+			$sql = 'INSERT INTO config
+			SET `key`="jeedom_benchmark",plugin="core",`value`="' . $i . '"';
+			try {
+				DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+			} catch (Exception $e) {
+
 			}
-			$return['database_update_' . $param['database_update']] = getmicrotime() - $starttime;
-			
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['database_replace']; $i++) {
-				config::save('jeedom_benchmark', $i);
-			}
-			$return['database_replace_' . $param['database_replace']] = getmicrotime() - $starttime;
-			
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['database_read']; $i++) {
-				config::byKey('jeedom_benchmark');
-			}
-			$return['database_read_' . $param['database_read']] = getmicrotime() - $starttime;
-			
-			$starttime = getmicrotime();
-			for ($i = 0; $i < $param['subprocess']; $i++) {
-				shell_exec('echo ' . $i);
-			}
-			$return['subprocess_' . $param['subprocess']] = getmicrotime() - $starttime;
-			
-			$total = 0;
-			foreach ($return as $value) {
-				$total += $value;
-			}
-			$return['total'] = $total;
-			return $return;
 		}
+		$return['database_write_delete_' . $param['database_write_delete']] = getmicrotime() - $starttime;
+
+		$sql = 'INSERT INTO config
+		SET `key`="jeedom_benchmark",plugin="core",`value`="0"';
+		try {
+			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		} catch (Exception $e) {
+
+		}
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_update']; $i++) {
+			$sql = 'UPDATE config
+			SET `value`=:value
+			WHERE `key`="jeedom_benchmark"
+			AND plugin="core"';
+			try {
+				DB::Prepare($sql, array('value' => $i), DB::FETCH_TYPE_ROW);
+			} catch (Exception $e) {
+
+			}
+		}
+		$return['database_update_' . $param['database_update']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_replace']; $i++) {
+			config::save('jeedom_benchmark', $i);
+		}
+		$return['database_replace_' . $param['database_replace']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['database_read']; $i++) {
+			config::byKey('jeedom_benchmark');
+		}
+		$return['database_read_' . $param['database_read']] = getmicrotime() - $starttime;
+
+		$starttime = getmicrotime();
+		for ($i = 0; $i < $param['subprocess']; $i++) {
+			shell_exec('echo ' . $i);
+		}
+		$return['subprocess_' . $param['subprocess']] = getmicrotime() - $starttime;
+
+		$total = 0;
+		foreach ($return as $value) {
+			$total += $value;
+		}
+		$return['total'] = $total;
+		return $return;
 	}
+}
 	
 	

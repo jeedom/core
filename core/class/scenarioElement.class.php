@@ -401,133 +401,133 @@ class scenarioElement {
 			$return .= "\n";
 			switch ($subElement->getType()) {
 				case 'if':
-					$return .= __('SI', __FILE__);
-					break;
-					case 'then':
-					$return .= __('ALORS', __FILE__);
-					break;
-					case 'else':
-						$return .= __('SINON', __FILE__);
-						break;
-						case 'for':
-							$return .= __('POUR', __FILE__);
-							break;
-							case 'do':
-							$return .= __('FAIRE', __FILE__);
-							break;
-							case 'code':
-							$return .= __('CODE', __FILE__);
-							break;
-							case 'action':
-							$return .= __('ACTION', __FILE__);
-							break;
-							case 'in':
-							$return .= __('DANS', __FILE__);
-							break;
-							case 'at':
-							$return .= __('A', __FILE__);
-							break;
-							default:
-							$return .= $subElement->getType();
-							break;
-						}
-						
-						foreach(($subElement->getExpression()) as $expression) {
-							$export = $expression->export();
-							if ($expression->getType() != 'condition' && trim($export) != '') {
-								$return .= "\n";
-							}
-							if (trim($export) != '') {
-								$return .= ' ' . $expression->export();
-							}
-						}
-					}
-					return $return;
-				}
-				
-				public function copy() {
-					$elementCopy = clone $this;
-					$elementCopy->setId('');
-					$elementCopy->save();
-					foreach(($this->getSubElement()) as $subelement) {
-						$subelement->copy($elementCopy->getId());
-					}
-					return $elementCopy->getId();
-				}
-				
-				public function getScenario() {
-					$scenario = scenario::byElement($this->getId());
-					if (is_object($scenario)) {
-						return $scenario;
-					}
-					$expression = scenarioExpression::byElement($this->getId());
-					if (is_object($expression)) {
-						return $expression->getSubElement()->getElement()->getScenario();
-					}
-					return null;
-				}
-				
-				/*     * **********************Getteur Setteur*************************** */
-				
-				public function getId() {
-					return $this->id;
-				}
-				
-				public function setId($_id) {
-					$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
-					$this->id = $_id;
-					return $this;
-				}
-				
-				public function getName() {
-					return $this->name;
-				}
-				
-				public function setName($_name) {
-					$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
-					$this->name = $_name;
-					return $this;
-				}
-				
-				public function getType() {
-					return $this->type;
-				}
-				
-				public function setType($_type) {
-					$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
-					$this->type = $_type;
-					return $this;
-				}
-				
-				public function getOptions($_key = '', $_default = '') {
-					return utils::getJsonAttr($this->options, $_key, $_default);
-				}
-				
-				public function setOptions($_key, $_value) {
-					$options =  utils::setJsonAttr($this->options, $_key, $_value);
-					$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
-					$this->options =$options;
-					return $this;
-				}
-				
-				public function getOrder() {
-					return $this->order;
-				}
-				
-				public function setOrder($_order) {
-					$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
-					$this->order = $_order;
-					return $this;
-				}
-				
-				public function getChanged() {
-					return $this->_changed;
-				}
-				
-				public function setChanged($_changed) {
-					$this->_changed = $_changed;
-					return $this;
-				}
-				
+				$return .= __('SI', __FILE__);
+				break;
+				case 'then':
+				$return .= __('ALORS', __FILE__);
+				break;
+				case 'else':
+				$return .= __('SINON', __FILE__);
+				break;
+				case 'for':
+				$return .= __('POUR', __FILE__);
+				break;
+				case 'do':
+				$return .= __('FAIRE', __FILE__);
+				break;
+				case 'code':
+				$return .= __('CODE', __FILE__);
+				break;
+				case 'action':
+				$return .= __('ACTION', __FILE__);
+				break;
+				case 'in':
+				$return .= __('DANS', __FILE__);
+				break;
+				case 'at':
+				$return .= __('A', __FILE__);
+				break;
+				default:
+				$return .= $subElement->getType();
+				break;
 			}
+
+			foreach(($subElement->getExpression()) as $expression) {
+				$export = $expression->export();
+				if ($expression->getType() != 'condition' && trim($export) != '') {
+					$return .= "\n";
+				}
+				if (trim($export) != '') {
+					$return .= ' ' . $expression->export();
+				}
+			}
+		}
+		return $return;
+	}
+				
+	public function copy() {
+		$elementCopy = clone $this;
+		$elementCopy->setId('');
+		$elementCopy->save();
+		foreach(($this->getSubElement()) as $subelement) {
+			$subelement->copy($elementCopy->getId());
+		}
+		return $elementCopy->getId();
+	}
+
+	public function getScenario() {
+		$scenario = scenario::byElement($this->getId());
+		if (is_object($scenario)) {
+			return $scenario;
+		}
+		$expression = scenarioExpression::byElement($this->getId());
+		if (is_object($expression)) {
+			return $expression->getSubElement()->getElement()->getScenario();
+		}
+		return null;
+	}
+
+	/*     * **********************Getteur Setteur*************************** */
+
+	public function getId() {
+		return $this->id;
+	}
+
+	public function setId($_id) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->id = $_id;
+		return $this;
+	}
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function setName($_name) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->name = $_name;
+		return $this;
+	}
+
+	public function getType() {
+		return $this->type;
+	}
+
+	public function setType($_type) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->type = $_type;
+		return $this;
+	}
+
+	public function getOptions($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->options, $_key, $_default);
+	}
+
+	public function setOptions($_key, $_value) {
+		$options =  utils::setJsonAttr($this->options, $_key, $_value);
+		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+		$this->options =$options;
+		return $this;
+	}
+
+	public function getOrder() {
+		return $this->order;
+	}
+
+	public function setOrder($_order) {
+		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->order = $_order;
+		return $this;
+	}
+
+	public function getChanged() {
+		return $this->_changed;
+	}
+
+	public function setChanged($_changed) {
+		$this->_changed = $_changed;
+		return $this;
+	}
+
+}
 			
