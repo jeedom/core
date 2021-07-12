@@ -17,9 +17,9 @@
 "use strict"
 
 var _filterType_
+var _editIds_ = []
 
 $(function () {
-  //console.log(typePossibilities)
   _filterType_ = $('#sel_FilterByType').value()
   setEdit()
   $('.selectEditKey').change()
@@ -317,42 +317,57 @@ function getEdits() {
   return edits
 }
 
-function getTestSQLstring() {
+function getTestSQLstring(_filters) {
   var sqlTable = _filterType_
-  var filters = getFilters()
   var sqlCmd = ''
   sqlCmd = 'SELECT id, name FROM `' + sqlTable + '`'
-  for (var i = 0; i < filters.length; i++) {
+  for (var i = 0; i < _filters.length; i++) {
     if (i == 0) {
       sqlCmd += ' WHERE '
     } else {
       sqlCmd += ' AND '
     }
-    if (filters[i].jValue) {
-      //SELECT * from `eqLogic` WHERE JSON_CONTAINS(`configuration`, '{"createtime" : "2021-01-01 12:00:00"}')
-      sqlCmd += 'JSON_CONTAINS(`' + filters[i].key + '`, \'{"' + filters[i].value + '" : "' + filters[i].jValue + '"}\')'
-      //sqlCmd += '`' + filters[i].key + '` LIKE \'%"' + filters[i].value + '":"' + filters[i].jValue + '%\''
+    if (_filters[i].jValue) {
+      sqlCmd += 'JSON_CONTAINS(`' + _filters[i].key + '`, \'{"' + _filters[i].value + '" : "' + _filters[i].jValue + '"}\')'
     } else {
-      sqlCmd += '`' + filters[i].key + '` = "' + filters[i].value + '"'
+      sqlCmd += '`' + _filters[i].key + '` = "' + _filters[i].value + '"'
     }
   }
   return sqlCmd
 }
 
-function getExecSQLstring() {
+function getExecSQLstring(_filters, _edits) {
   var sqlTable = _filterType_
-  var filters = getFilters()
-  var edits = getEdits()
   var sqlCmd = ''
 
-  var condition = 'WHERE' + getTestSQLstring().split('WHERE')[1]
+  var condition = 'WHERE' + getTestSQLstring(_filters).split('WHERE')[1]
 
   //only support one edit at that time:
-  var edit = edits[0]
+  var edit = _edits[0]
   if (edit.jValue) {
-    // UPDATE `eqLogic` SET `configuration` = JSON_REPLACE(`configuration`, "$.createtime", "2021-01-01 12:00:00") WHERE `name` = "noParent"
     sqlCmd = 'UPDATE `' + sqlTable + '`'
     sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "'+"$."+edit.value+'", "' + edit.jValue + '")'
+  } else {
+    sqlCmd = 'UPDATE `' + sqlTable + '`'
+    sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
+  }
+
+  sqlCmd += ' ' + condition
+  //sqlCmd += ' ' + condition + ' RETURNING `' + sqlTable + '.id`'
+
+  return sqlCmd
+}
+
+function getCleaningSpaceSQLstring(_edits) {
+  var sqlTable = _filterType_
+  var sqlCmd = ''
+
+  var condition = 'WHERE id in (' + _editIds_.join(', ') + ')'
+
+  var edit = _edits[0]
+  if (edit.jValue) {
+    sqlCmd = 'UPDATE `' + sqlTable + '`'
+    sqlCmd += ' SET `' + edit.key + '` = REPLACE(`' + edit.key + '`, ": ", ":")'
   } else {
     sqlCmd = 'UPDATE `' + sqlTable + '`'
     sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
@@ -363,16 +378,28 @@ function getExecSQLstring() {
   return sqlCmd
 }
 
-function dbExecuteCommand(_command) {
+function dbExecuteCommand(_command, _mode=0) { // _mode 0: test, 1: exec, 2: get modified ids
+  //console.log('___dbExecuteCommand: ' + _mode + ' -> ' + _command)
   jeedom.db({
+    async: false,
     command : _command,
     error: function(error) {
       $('#div_alert').showAlert({message: error.message, level: 'danger'})
     },
     success: function(result) {
       $('#testResult').empty().show()
-      for (var i in result.sql) {
-        $('#testResult').append('<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
+      if (_mode == 0) {
+        for (var i in result.sql) {
+          $('#testResult').append('<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
+        }
+      }
+
+      if (_mode == 1) {
+
+      }
+
+      if (_mode == 2) {
+        _editIds_ = result.sql.map(function(d) { return d['id'] })
       }
     }
   })
@@ -431,7 +458,6 @@ $("#bt_importFilter").change(function(event) {
 
         //edits:
         for (var idx in massEditData.edits) {
-          console.log(massEditData.edits[idx])
           $('.selectEditKey').val(massEditData.edits[idx].key).change()
           $('.selectEditValue').val(massEditData.edits[idx].value)
           if (massEditData.edits[idx].jValue != false) {
@@ -453,13 +479,29 @@ $('#bt_testFilter').off('click').on('click',function() {
   var filters = getFilters()
   var sqlCmd = getTestSQLstring(filters)
   $('#testSQL').empty().append(sqlCmd)
-  dbExecuteCommand(sqlCmd)
+  dbExecuteCommand(sqlCmd, 0)
 })
 
 $('#bt_execMassEdit').off('click').on('click',function() {
   var filters = getFilters()
   var edits = getEdits()
-  var sqlCmd = getExecSQLstring(filters)
-  $('#execSQL').empty().append(sqlCmd)
-  dbExecuteCommand(sqlCmd)
+
+  //get ids of modifying items to clean spaces in json string later.
+  var sqlCmd = getTestSQLstring(filters)
+  dbExecuteCommand(sqlCmd, 2)
+
+  //exec user edition:
+  sqlCmd = getExecSQLstring(filters, edits)
+  $('#execSQL').empty().append(sqlCmd + '<br>' + 'Editing items: ' + _editIds_.length)
+  dbExecuteCommand(sqlCmd, 1)
+
+  //clean spaces:
+  //may integrate later json_search in searchconfiguration functions
+  if (sqlCmd.includes('JSON_REPLACE') && _editIds_.length > 0) {
+    sqlCmd = getCleaningSpaceSQLstring(edits)
+    dbExecuteCommand(sqlCmd, 1)
+  }
+
+  _editIds_ = []
+
 })
