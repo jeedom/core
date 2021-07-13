@@ -5,7 +5,9 @@
   <div class="content-lg">
     <div class="widget-compass-container">
       <div class="widget-compass-outline"></div>
-      <div class="widget-compass-needle"></div>
+      <div class="widget-compass-needle-placer">
+        <div class="widget-compass-needle"></div>
+      </div>
       <div class="state"></div>
       <div class="winDir"></div>
     </div>
@@ -16,16 +18,18 @@
     </div>
   </div>
   <script>
-    jeedom.cmd.update['#id#'] = function(_options){
-      let cmd = $('.cmd[data-cmd_id=#id#]');
-      cmd.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+'°')
+    var cmd#id# = $('.cmd[data-cmd_id=#id#]')
+    jeedom.cmd.update['#id#'] = function(_options) {
+      cmd#id#.attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+
       let directions#id# = ['{{Nord}}', '{{Nord-Est}}', '{{Est}}', '{{Sud-Est}}', '{{Sud}}', '{{Sud-Ouest}}', '{{Ouest}}', '{{Nord-Ouest}}']
-      let windDir = directions#id#[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8];
-      cmd.find('.widget-compass-needle').css('transform', 'rotate(' + _options.display_value +'deg)');
-      cmd.find('.state').text(_options.display_value.toString()+'°')
-      cmd.find('.winDir').html(windDir)
+      var windDir#id# = directions#id#[Math.round(((_options.display_value %= 360) < 0 ? _options.display_value + 360 : _options.display_value) / 45) % 8]
+      cmd#id#.find('.widget-compass-needle-placer').css('transform', 'rotate(' + _options.display_value +'deg)')
+      cmd#id#.find('.state').text(_options.display_value.toString()+'°')
+      cmd#id#.find('.winDir').html(windDir#id#)
     }
 
-    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+    jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'})
+
   </script>
 </div>

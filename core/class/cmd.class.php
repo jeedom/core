@@ -1494,14 +1494,14 @@ class cmd {
 		} else if ($this->getSubType() == 'binary' && trim($value) === '') {
 			$display_value = 0;
 		}
-		if ($repeat && $this->getConfiguration('repeatEventManagement', 'auto') == 'never') {
+		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
 			$eqLogic->emptyCacheWidget();
 			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
 			return;
 		}
 		$_loop++;
-		if ($repeat && ($this->getConfiguration('repeatEventManagement', 'auto') == 'always' || $this->getSubtype() == 'binary')) {
+		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'always') {
 			$repeat = false;
 		}
 		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;

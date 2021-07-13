@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.1
 
+## 4.1.24
+
+- Révision de l'option de configuration des commandes **Gestion de la répétition des valeurs** qui devient **Répéter les valeurs identiques (Oui|Non)**. [Voir l'article du blog pour + de détails](https://blog.jeedom.com/5414-nouvelle-gestion-de-la-repetition-des-valeurs/)
+
 ## 4.1.23
 
 - Correction de bugs sur l'archivage de l'historique
@@ -322,6 +326,3 @@
 >**IMPORTANT**
 >
 > Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte.
-
-
-

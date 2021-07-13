@@ -561,19 +561,18 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Gestion de la répétition des valeurs}}</label>
+              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Répéter les valeurs identiques}}</label>
               <div class="col-xs-3">
                 <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement" >
-                  <option value="auto">{{Automatique}}</option>
-                  <option value="always">{{Toujours répéter}}</option>
-                  <option value="never">{{Jamais répéter}}</option>
+                  <option value="never">{{Non}}</option>
+                  <option value="always">{{Oui}}</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
+                <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
               </div>
             </div>
           </fieldset>
@@ -956,6 +955,10 @@ $('#bt_addWidgetParametersCmd').off().on('click', function() {
   $('#table_widgetParametersCmd tbody').append(tr)
 })
 
+if(cmdInfo.configuration && (!cmdInfo.configuration.repeatEventManagement || cmdInfo.configuration.repeatEventManagement == 'auto')){
+  cmdInfo.configuration.repeatEventManagement = 'never';
+}
+
 $('#div_displayCmdConfigure').setValues(cmdInfo, '.cmdAttr')
 
 $('#bt_cmdConfigureRawObject').off('click').on('click',function() {
@@ -967,35 +970,35 @@ $('#bt_cmdConfigureGraph').on('click', function() {
 })
 
 $('#bt_influxDelete').off('click').on('click',function() {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
-      if (result) {
-          jeedom.cmd.dropInflux({
-          cmd_id : cmdInfo.id,
-          error: function(error) {
-            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
-          },
-          success: function(data) {
-            $('#md_displayCmdConfigure').showAlert({message: '{{Action envoyée avec succés}}', level: 'success'})
-          }
-        })
-      }
-    })
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
+    if (result) {
+      jeedom.cmd.dropInflux({
+        cmd_id : cmdInfo.id,
+        error: function(error) {
+          $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          $('#md_displayCmdConfigure').showAlert({message: '{{Action envoyée avec succés}}', level: 'success'})
+        }
+      })
+    }
+  })
 })
 
 $('#bt_influxHistory').off('click').on('click',function() {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
-      if (result) {
-          jeedom.cmd.historyInflux({
-          cmd_id : cmdInfo.id,
-          error: function(error) {
-            $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
-          },
-          success: function(data) {
-            $('#md_displayCmdConfigure').showAlert({message: '{{Programmation envoyée avec succés}}', level: 'success'})
-          }
-        })
-      }
-    })
+  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
+    if (result) {
+      jeedom.cmd.historyInflux({
+        cmd_id : cmdInfo.id,
+        error: function(error) {
+          $('#md_displayCmdConfigure').showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          $('#md_displayCmdConfigure').showAlert({message: '{{Programmation envoyée avec succés}}', level: 'success'})
+        }
+      })
+    }
+  })
 })
 
 $('#bt_cmdConfigureCopyHistory').off('click').on('click',function() {
