@@ -137,6 +137,7 @@ try {
 				if (!is_object($eqLogic)) {
 					continue;
 				}
+				unset($component['type']);
 				utils::a2o($eqLogic, $component);
 				$eqLogic->save(true);
 			}elseif($component['type'] == 'scenario'){
@@ -144,6 +145,7 @@ try {
 				if (!is_object($scenario)) {
 					continue;
 				}
+				unset($component['type']);
 				utils::a2o($scenario, $component);
 				$scenario->save(true);
 			}
