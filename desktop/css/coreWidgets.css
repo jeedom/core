@@ -476,6 +476,7 @@ Desktop
 /* ____________________others */
   div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] {
     text-align: center;
+    margin: 0 5px;
   }
   div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] .state {
     width: 90px;
@@ -483,6 +484,7 @@ Desktop
   .cmd-widget.widget-hygrothermographe {
     width: 220px;
     height: 220px;
+    margin: 0 5px;
   }
 
   div.arcgauge .gauge,
@@ -490,21 +492,21 @@ Desktop
     position: absolute;
     top: 14px;
     left: 0;
-    width: 90px;
+    width: 84px;
     height: 45px;
-    border-top-left-radius: 90px;
-    border-top-right-radius: 90px;
+    border-top-left-radius: 84px;
+    border-top-right-radius: 84px;
     border: 5px solid var(--el-defaultColor);
     border-bottom: 0 !important;
   }
   div.arcgauge .content-sm {
-    width: 90px;
-    height: 45px;
+    width: 84px;
+    height: 42px;
     clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
   }
   div.arcgauge .gaugeValue {
     border: 8px solid var(--link-color);
-    transform-origin: 45px 45px;
+    transform-origin: 42px 42px;
     transform: scale(0.94) rotate(-180deg);
   }
   .arcgauge .cmdStats {
