@@ -340,7 +340,6 @@ class network {
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
-		$openvpn->setConfiguration('optionsAfterStart', 'sudo ip link set dev #interface# mtu '.config::byKey('market::dns::mtu'));
 		$openvpn->save($direct);
 		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
