@@ -1651,7 +1651,6 @@
         "Mac": "マック",
         "Désactiver la gestion du réseau par": "ネットワーク管理を無効にする",
         "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "ローカルIPマスク（ドッカータイプのインストールでのみ、192.168.1の形式で使用できます。*）",
-        "MTU spécifique pour le DNS (expert)": "MTU spécifique pour le DNS (expert)",
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le ": "注：この機能は、コミュニティサービスパックでは使用できません（サービスパックのプロファイルページで参照してください",
         "Utiliser les DNS": "DNSを使用する",

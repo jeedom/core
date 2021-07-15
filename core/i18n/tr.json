@@ -1651,7 +1651,6 @@
         "Mac": "Mac",
         "Désactiver la gestion du réseau par": "Désactiver la gestion du réseau par",
         "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)",
-        "MTU spécifique pour le DNS (expert)": "MTU spécifique pour le DNS (expert)",
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le ": "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le",
         "Utiliser les DNS": "Utiliser les DNS",
