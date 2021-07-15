@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -16,9 +15,7 @@
  */
 
 
-jeedom.message = function() {
-};
-
+jeedom.message = function() {};
 jeedom.message.cache = Array();
 
 jeedom.message.all = function(_params) {

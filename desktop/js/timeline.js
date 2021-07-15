@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -21,7 +21,9 @@ $(function() {
 })
 
 $('#bt_openCmdHistoryConfigure').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'historique des commandes}}"}).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration de l'historique des commandes}}"
+  }).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
 })
 
 $('#sel_timelineFolder').off('change').on('change', function() {
@@ -33,20 +35,26 @@ $('#bt_tabTimeline').on('click', function() {
   displayTimeline()
 })
 
-$('#timelineContainer ul').on('click','.bt_scenarioLog', function() {
-  $('#md_modal').dialog({title: "{{Log d'exécution du scénario}}"}).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open')
+$('#timelineContainer ul').on('click', '.bt_scenarioLog', function() {
+  $('#md_modal').dialog({
+    title: "{{Log d'exécution du scénario}}"
+  }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open')
 })
 
-$('#timelineContainer ul').on('click','.bt_gotoScenario', function() {
-  jeedomUtils.loadPage('index.php?v=d&p=scenario&id='+ $(this).closest('.tml-scenario').attr('data-id'))
+$('#timelineContainer ul').on('click', '.bt_gotoScenario', function() {
+  jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + $(this).closest('.tml-scenario').attr('data-id'))
 })
 
-$('#timelineContainer ul').on('click','.bt_historicCmd', function() {
-  $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
+$('#timelineContainer ul').on('click', '.bt_historicCmd', function() {
+  $('#md_modal2').dialog({
+    title: "{{Historique}}"
+  }).load('index.php?v=d&modal=cmd.history&id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
 })
 
-$('#timelineContainer ul').on('click','.bt_configureCmd', function() {
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
+$('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
+  $('#md_modal').dialog({
+    title: "{{Configuration de la commande}}"
+  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
 })
 
 $('#bt_refreshTimeline').on('click', function() {
@@ -56,9 +64,12 @@ $('#bt_refreshTimeline').on('click', function() {
 //exact same success function desktop/mobile:
 function displayTimeline() {
   jeedom.timeline.byFolder({
-    folder : $('#sel_timelineFolder').value(),
+    folder: $('#sel_timelineFolder').value(),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       $('#timelineContainer ul').empty()
@@ -72,21 +83,21 @@ function displayTimeline() {
       var nextDate, thisDateTs = false
       var prevDate = moment().format("YYYY-MM-DD")
       var prevDateTs = moment().unix()
-      var content = '<div class="label-warning day">'+data[0].date.substring(0,10)+'</div>'
+      var content = '<div class="label-warning day">' + data[0].date.substring(0, 10) + '</div>'
 
       var thisData, date, time, lineClass, style, height, li
       for (var i in data) {
         thisData = data[i]
-        date = thisData.date.substring(0,10)
-        time = thisData.date.substring(11,19)
-        thisDateTs = moment(thisData.date.substring(0,19)).unix()
+        date = thisData.date.substring(0, 10)
+        time = thisData.date.substring(11, 19)
+        thisDateTs = moment(thisData.date.substring(0, 19)).unix()
         lineClass = ''
         if (prevDate != date) {
           isFirstOfDay = true
           prevDateTs = moment(prevDate + ' 00:00:00').unix()
         } else {
-          if (i < dataLength -1) {
-            nextDate = data[parseInt(i)+1].date.substring(0,10)
+          if (i < dataLength - 1) {
+            nextDate = data[parseInt(i) + 1].date.substring(0, 10)
             if (date != nextDate) {
               isLastOfDay = true
             }
@@ -106,13 +117,13 @@ function displayTimeline() {
         style = ''
         height = Math.abs((prevDateTs - thisDateTs) / decayFactor)
         if (height > 5) {
-          style = 'margin-top:'+height+'px!important;'
+          style = 'margin-top:' + height + 'px!important;'
         }
-        if (isLastOfDay && i < dataLength -1) {
-          height = Math.abs((thisDateTs - moment(data[parseInt(i)+1].date.substring(0,19)).unix()) / decayFactor)
-          style += 'margin-bottom:'+height+'px!important;'
+        if (isLastOfDay && i < dataLength - 1) {
+          height = Math.abs((thisDateTs - moment(data[parseInt(i) + 1].date.substring(0, 19)).unix()) / decayFactor)
+          style += 'margin-bottom:' + height + 'px!important;'
         }
-        li = '<li style="'+style+'">'
+        li = '<li style="' + style + '">'
         li += '<div>'
 
         //scenario or cmd info/action:
@@ -134,22 +145,22 @@ function displayTimeline() {
         li += '</div>'
 
         //html:
-        li += '<div class="html">'+thisData.html+'</div>'
+        li += '<div class="html">' + thisData.html + '</div>'
 
         li += '</div>'
-        li += '<span class="vertLine '+lineClass+'"></span>'
+        li += '<span class="vertLine ' + lineClass + '"></span>'
         //time:
-        li += '<div class="time '+lineClass+'">'+time+'</div>'
+        li += '<div class="time ' + lineClass + '">' + time + '</div>'
 
         //date:
-        li += '<div class="date">'+date+'</div>'
+        li += '<div class="date">' + date + '</div>'
 
         li += '</li>'
         content += li
 
         //newDay ?
         if (isLastOfDay) {
-          content += '<div class="label-warning day">'+nextDate+'</div>'
+          content += '<div class="label-warning day">' + nextDate + '</div>'
         }
 
         prevDate = date
@@ -160,6 +171,7 @@ function displayTimeline() {
     }
   })
 }
+
 function sortByDateConsistentASC(itemA, itemB) {
   var valueA = itemA.date
   var valueB = itemB.date
@@ -169,9 +181,9 @@ function sortByDateConsistentASC(itemA, itemB) {
   if (a.isValid() && b.isValid()) {
     r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
   }
-  if(r === 0){
-    r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined')?
-    itemA.key - itemB.key : 0
+  if (r === 0) {
+    r = (typeof itemA.key !== 'undefined' && typeof itemB.key !== 'undefined') ?
+      itemA.key - itemB.key : 0
   }
   return r
 }

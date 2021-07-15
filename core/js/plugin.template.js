@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 $('body').attr('data-type', 'plugin')
 $('.nav-tabs a:not(.eqLogicAction)').first().click()
@@ -35,18 +35,21 @@ $(function() {
     if ('undefined' !== typeof Core_noEqContextMenu) return false
     if ($('.nav.nav-tabs').length == 0) return false
     $.contextMenu('destroy', $('.nav.nav-tabs'))
-    pluginId =  $('body').attr('data-page')
+    pluginId = $('body').attr('data-page')
     jeedom.eqLogic.byType({
       type: pluginId,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(_eqs) {
-        if(_eqs.length == 0){
+        if (_eqs.length == 0) {
           return;
         }
         var eqsGroups = []
-        for (var i=0; i<_eqs.length; i++) {
+        for (var i = 0; i < _eqs.length; i++) {
           eq = _eqs[i]
           humanName = eq.humanName
           humanCut = humanName.split(']')
@@ -57,10 +60,10 @@ $(function() {
         eqsGroups = Array.from(new Set(eqsGroups))
         eqsGroups.sort()
         var eqsList = []
-        for (var i=0; i<eqsGroups.length; i++) {
+        for (var i = 0; i < eqsGroups.length; i++) {
           group = eqsGroups[i]
           eqsList[group] = []
-          for(j=0; j<_eqs.length; j++){
+          for (j = 0; j < _eqs.length; j++) {
             eq = _eqs[j]
             humanName = eq.humanName
             humanCut = humanName.split(']')
@@ -80,10 +83,16 @@ $(function() {
             eq = groupEq[index]
             eqName = eq[0]
             eqId = eq[1]
-            items[uniqId] = {'name': eqName, 'id' : eqId}
-            uniqId ++
+            items[uniqId] = {
+              'name': eqName,
+              'id': eqId
+            }
+            uniqId++
           }
-          contextmenuitems[group] = {'name':group, 'items':items}
+          contextmenuitems[group] = {
+            'name': group,
+            'items': items
+          }
         }
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
           $('.nav.nav-tabs').contextMenu({
@@ -103,7 +112,7 @@ $(function() {
               $.hideAlert()
               if (event.ctrlKey || event.originalEvent.which == 2) {
                 var type = $('body').attr('data-page')
-                var url = 'index.php?v=d&m='+type+'&p='+type+'&id='+options.commands[key].id
+                var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
                 if (tabObj) url += tab
                 window.open(url).focus()
               } else {
@@ -116,7 +125,7 @@ $(function() {
         }
       }
     })
-  } catch(err) {
+  } catch (err) {
     console.log(err)
   }
 })
@@ -133,7 +142,7 @@ if ($('#bt_pluginDisplayAsTable').length) {
     }
   }
   //core event:
-  $('#bt_pluginDisplayAsTable[data-coreSupport="1"]').off('click').on('click', function () {
+  $('#bt_pluginDisplayAsTable[data-coreSupport="1"]').off('click').on('click', function() {
     if ($(this).data('state') == "0") {
       $(this).data('state', '1').addClass('active')
       setCookie('jeedom_displayAsTable', 'true', 2)
@@ -164,27 +173,29 @@ $('#div_pageContainer').on({
 }, '.cmd .cmdAttr:visible, .eqLogic .eqLogicAttr:visible')
 
 $('.eqLogicAction[data-action=gotoPluginConf]').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration du plugin}}"}).load('index.php?v=d&p=plugin&ajax=1&id='+eqType).dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration du plugin}}"
+  }).load('index.php?v=d&p=plugin&ajax=1&id=' + eqType).dialog('open')
 })
 
 $('.eqLogicAction[data-action=returnToThumbnailDisplay]').removeAttr('href').off('click').on('click', function(event) {
-  setTimeout(function(){
+  setTimeout(function() {
     $('.nav li.active').removeClass('active')
-    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+    $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
   }, 500)
   if (jeedomUtils.checkPageModified()) return
   $.hideAlert()
   $('.eqLogic').hide()
   $('.eqLogicThumbnailDisplay').show()
   $(this).closest('ul').find('li').removeClass('active')
-  jeedomUtils.addOrUpdateUrl('id',null,)
+  jeedomUtils.addOrUpdateUrl('id', null, )
 })
 
 $(".eqLogicDisplayCard").on('click', function(event) {
   $.hideAlert()
   if (event.ctrlKey) {
     var type = $('body').attr('data-page')
-    var url = 'index.php?v=d&m='+type+'&p='+type+'&id='+$(this).attr('data-eqlogic_id')
+    var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + $(this).attr('data-eqlogic_id')
     window.open(url).focus()
   } else {
     jeedom.eqLogic.cache.getCmd = Array()
@@ -192,7 +203,7 @@ $(".eqLogicDisplayCard").on('click', function(event) {
       $('.eqLogicThumbnailDisplay').hide()
     }
     $('.eqLogic').hide()
-    if ('function' == typeof (prePrintEqLogic)) {
+    if ('function' == typeof(prePrintEqLogic)) {
       prePrintEqLogic($(this).attr('data-eqLogic_id'))
     }
     if (isset($(this).attr('data-eqLogic_type')) && isset($('.' + $(this).attr('data-eqLogic_type')))) {
@@ -206,10 +217,13 @@ $(".eqLogicDisplayCard").on('click', function(event) {
     jeedom.eqLogic.print({
       type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
       id: $(this).attr('data-eqLogic_id'),
-      status : 1,
+      status: 1,
       error: function(error) {
         $.hideLoading()
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(data) {
         $('body .eqLogicAttr').value('')
@@ -219,10 +233,10 @@ $(".eqLogicDisplayCard").on('click', function(event) {
         $('body').setValues(data, '.eqLogicAttr')
         if (!isset(data.category.opening)) $('input[data-l2key="opening"]').prop('checked', false)
 
-        if ('function' == typeof (printEqLogic)) {
+        if ('function' == typeof(printEqLogic)) {
           printEqLogic(data)
         }
-        if ('function' == typeof (addCmdToTable)) {
+        if ('function' == typeof(addCmdToTable)) {
           $('.cmd').remove()
           for (var i in data.cmd) {
             addCmdToTable(data.cmd[i])
@@ -240,10 +254,10 @@ $(".eqLogicDisplayCard").on('click', function(event) {
           }
         }, '.cmd .cmdAttr[data-l1key=subType]')
 
-        jeedomUtils.addOrUpdateUrl('id',data.id)
+        jeedomUtils.addOrUpdateUrl('id', data.id)
         $.hideLoading()
         modifyWithoutSave = false
-        setTimeout(function(){
+        setTimeout(function() {
           modifyWithoutSave = false
         }, 1000)
       }
@@ -253,10 +267,12 @@ $(".eqLogicDisplayCard").on('click', function(event) {
 })
 
 $('.eqLogicDisplayCard').off('mouseup').on('mouseup', function(event) {
-  if( event.which == 2 ) {
+  if (event.which == 2) {
     event.preventDefault()
     var id = $(this).attr('data-eqlogic_id')
-    $('.eqLogicDisplayCard[data-eqlogic_id="'+id+'"]').trigger(jQuery.Event('click', {ctrlKey: true}))
+    $('.eqLogicDisplayCard[data-eqlogic_id="' + id + '"]').trigger(jQuery.Event('click', {
+      ctrlKey: true
+    }))
   }
 })
 
@@ -266,15 +282,18 @@ $('.eqLogicAction[data-action=copy]').off('click').on('click', function() {
   if ($('.eqLogicAttr[data-l1key=id]').value() != undefined && $('.eqLogicAttr[data-l1key=id]').value() != '') {
     bootbox.prompt({
       size: 'small',
-      value : $('.eqLogicAttr[data-l1key=name]').value(),
-      title:'{{Nom de la copie de l\'équipement ?}}',
-      callback : function(result) {
+      value: $('.eqLogicAttr[data-l1key=name]').value(),
+      title: '{{Nom de la copie de l\'équipement ?}}',
+      callback: function(result) {
         if (result !== null) {
           jeedom.eqLogic.copy({
             id: $('.eqLogicAttr[data-l1key=id]').value(),
             name: result,
             error: function(error) {
-              $('#div_alert').showAlert({message: error.message, level: 'danger'});
+              $('#div_alert').showAlert({
+                message: error.message,
+                level: 'danger'
+              });
             },
             success: function(data) {
               modifyWithoutSave = false
@@ -308,7 +327,7 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
       var eqLogic = $(this).getValues('.eqLogicAttr')
       eqLogic = eqLogic[0]
       eqLogic.cmd = $(this).find('.cmd').getValues('.cmdAttr')
-      if ('function' == typeof (saveEqLogic)) {
+      if ('function' == typeof(saveEqLogic)) {
         eqLogic = saveEqLogic(eqLogic)
       }
       eqLogics.push(eqLogic)
@@ -319,7 +338,10 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
     id: $(this).attr('data-eqLogic_id'),
     eqLogics: eqLogics,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       modifyWithoutSave = false
@@ -346,7 +368,10 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
     jeedom.eqLogic.getUseBeforeRemove({
       id: $('.eqLogicAttr[data-l1key=id]').value(),
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(data) {
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?'
@@ -356,9 +381,9 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
           for (var i in data) {
             complement = ''
             if ('sourceName' in data[i]) {
-              complement = ' ('+data[i].sourceName+')'
+              complement = ' (' + data[i].sourceName + ')'
             }
-            text += '- ' + '<a href="'+data[i].url+'" target="_blank">' +data[i].type +'</a> : <b>'+ data[i].name + '</b>'+ complement+' <sup><a href="'+data[i].url+'" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
+            text += '- ' + '<a href="' + data[i].url + '" target="_blank">' + data[i].type + '</a> : <b>' + data[i].name + '</b>' + complement + ' <sup><a href="' + data[i].url + '" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
           }
         }
         text = text.substring(0, text.length - 2)
@@ -368,7 +393,10 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
               type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
               id: $('.eqLogicAttr[data-l1key=id]').value(),
               error: function(error) {
-                $('#div_alert').showAlert({message: error.message, level: 'danger'})
+                $('#div_alert').showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
               },
               success: function() {
                 var vars = getUrlVars()
@@ -388,7 +416,10 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
       }
     })
   } else {
-    $('#div_alert').showAlert({message: '{{Veuillez d\'abord sélectionner un}} ' + eqType, level: 'danger'})
+    $('#div_alert').showAlert({
+      message: '{{Veuillez d\'abord sélectionner un}} ' + eqType,
+      level: 'danger'
+    })
   }
 })
 
@@ -397,9 +428,14 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
     if (result !== null) {
       jeedom.eqLogic.save({
         type: eqType,
-        eqLogics: [{name: result}],
+        eqLogics: [{
+          name: result
+        }],
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'});
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          });
         },
         success: function(_data) {
           var vars = getUrlVars()
@@ -420,7 +456,7 @@ $('.eqLogicAction[data-action=add]').off('click').on('click', function() {
 
 $('.eqLogic .eqLogicAction[data-action=configure]').off('click').on('click', function() {
   var eqName = $('input.eqLogicAttr[data-l1key="name"]')
-  eqName = (eqName.length ? ' : '+eqName.val() : '')
+  eqName = (eqName.length ? ' : ' + eqName.val() : '')
   $('#md_modal').dialog().load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open')
 });
 
@@ -441,12 +477,12 @@ $('#in_searchEqlogic').off('keyup').keyup(function() {
   })
 })
 
- /*
+/*
  * Remise à zéro du champ de Recherche
  */
- $('#bt_resetSearch').on('click', function() {
-   $('#in_searchEqlogic').val('').keyup()
- })
+$('#bt_resetSearch').on('click', function() {
+  $('#in_searchEqlogic').val('').keyup()
+})
 
 /**************************CMD*********************************************/
 $('.cmdAction[data-action=add]').on('click', function() {
@@ -484,9 +520,14 @@ $('#div_pageContainer').on('click', '.cmd .cmdAction[data-action=test]', functio
   $.hideAlert()
   if ($('.eqLogicAttr[data-l1key=isEnable]').is(':checked')) {
     var id = $(this).closest('.cmd').attr('data-cmd_id')
-    jeedom.cmd.test({id: id})
+    jeedom.cmd.test({
+      id: id
+    })
   } else {
-    $('#div_alert').showAlert({message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}', level: 'warning'})
+    $('#div_alert').showAlert({
+      message: '{{Veuillez activer l\'équipement avant de tester une de ses commandes}}',
+      level: 'warning'
+    })
   }
 })
 

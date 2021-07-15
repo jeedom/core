@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -28,7 +28,7 @@ document.onkeydown = function(event) {
 }
 
 $(function() {
-  $('sub.itemsNumber').html('('+$('.objectDisplayCard').length+')')
+  $('sub.itemsNumber').html('(' + $('.objectDisplayCard').length + ')')
 
   if (is_numeric(getUrlVars('id'))) {
     if ($('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').length != 0) {
@@ -68,20 +68,26 @@ $(function() {
     jeedom.object.all({
       onlyVisible: 0,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(_objects) {
         if (_objects.length == 0) return
 
         var contextmenuitems = {}
         var ob, decay
-        for (var i=0; i<_objects.length; i++) {
+        for (var i = 0; i < _objects.length; i++) {
           ob = _objects[i]
           decay = 0
           if (isset(ob.configuration) && isset(ob.configuration.parentNumber)) {
             decay = ob.configuration.parentNumber
           }
-          contextmenuitems[i] = {'name': '\u00A0\u00A0\u00A0'.repeat(decay) + ob.name, 'id' : ob.id}
+          contextmenuitems[i] = {
+            'name': '\u00A0\u00A0\u00A0'.repeat(decay) + ob.name,
+            'id': ob.id
+          }
         }
 
         $('.nav.nav-tabs').contextMenu({
@@ -104,12 +110,13 @@ $(function() {
         })
       }
     })
-  }
-  catch(err) {}
+  } catch (err) {}
 })
 
 $('#bt_graphObject').on('click', function() {
-  $('#md_modal').dialog({title: "{{Graphique des liens}}"}).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id='+$('.objectAttr[data-l1key=id]').value()).dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Graphique des liens}}"
+  }).load('index.php?v=d&modal=graph.link&filter_type=object&filter_id=' + $('.objectAttr[data-l1key=id]').value()).dialog('open')
 })
 
 $('#bt_libraryBackgroundImage').on('click', function() {
@@ -117,16 +124,24 @@ $('#bt_libraryBackgroundImage').on('click', function() {
     $('.objectImg').show().find('img').replaceWith(_icon)
     $('.objectImg img').attr('width', '240px')
     jeedom.object.uploadImage({
-      id : $('.objectAttr[data-l1key=id]').value(),
-      file : $('.objectImg img').data('filename'),
-      error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      id: $('.objectAttr[data-l1key=id]').value(),
+      file: $('.objectImg img').data('filename'),
+      error: function(error) {
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
-      success: function (data) {
-        $('#div_alert').showAlert({message: '{{Image de fond appliquée avec succès}}', level: 'success'})
+      success: function(data) {
+        $('#div_alert').showAlert({
+          message: '{{Image de fond appliquée avec succès}}',
+          level: 'success'
+        })
       }
     })
-  },{object_id:$('.objectAttr[data-l1key=id]').value()})
+  }, {
+    object_id: $('.objectAttr[data-l1key=id]').value()
+  })
 })
 
 $('#bt_removeBackgroundImage').off('click').on('click', function() {
@@ -135,11 +150,17 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
       jeedom.object.removeImage({
         id: $('.objectAttr[data-l1key=id]').value(),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           $('.objectImg').hide()
-          $('#div_alert').showAlert({message: '{{Image de fond enlevée}}', level: 'success'})
+          $('#div_alert').showAlert({
+            message: '{{Image de fond enlevée}}',
+            level: 'success'
+          })
         },
       })
     }
@@ -147,20 +168,20 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
   return false
 })
 
-$('#bt_returnToThumbnailDisplay').on('click',function() {
+$('#bt_returnToThumbnailDisplay').on('click', function() {
   setTimeout(function() {
     $('.nav li.active').removeClass('active')
-    $('a[href="#'+$('.tab-pane.active').attr('id')+'"]').closest('li').addClass('active')
+    $('a[href="#' + $('.tab-pane.active').attr('id') + '"]').closest('li').addClass('active')
   }, 500)
   if (jeedomUtils.checkPageModified()) return
   $('#div_conf').hide()
   $('#div_resumeObjectList').show()
-  jeedomUtils.addOrUpdateUrl('id',null,'{{Objets}} - '+JEEDOM_PRODUCT_NAME)
+  jeedomUtils.addOrUpdateUrl('id', null, '{{Objets}} - ' + JEEDOM_PRODUCT_NAME)
 })
 
 $(".objectDisplayCard").off('click').on('click', function(event) {
   if (event.ctrlKey || event.metaKey) {
-    var url = '/index.php?v=d&p=object&id='+$(this).attr('data-object_id')
+    var url = '/index.php?v=d&p=object&id=' + $(this).attr('data-object_id')
     window.open(url).focus()
   } else {
     printObject($(this).attr('data-object_id'))
@@ -168,61 +189,72 @@ $(".objectDisplayCard").off('click').on('click', function(event) {
   return false
 })
 $('.objectDisplayCard').off('mouseup').on('mouseup', function(event) {
-  if( event.which == 2 ) {
+  if (event.which == 2) {
     event.preventDefault()
     var id = $(this).attr('data-object_id')
-    $('.objectDisplayCard[data-object_id="'+id+'"]').trigger(jQuery.Event('click', { ctrlKey: true }))
+    $('.objectDisplayCard[data-object_id="' + id + '"]').trigger(jQuery.Event('click', {
+      ctrlKey: true
+    }))
   }
 })
 
-$('select[data-l2key="synthToAction"]').off().on('change',function() {
+$('select[data-l2key="synthToAction"]').off().on('change', function() {
   $('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').parent().addClass('hidden')
-  $('select[data-l2key="'+$(this).val()+'"]').parent().removeClass('hidden')
+  $('select[data-l2key="' + $(this).val() + '"]').parent().removeClass('hidden')
 })
 
 function printObject(_id) {
   $.hideAlert()
-  var objName = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_name')
-  var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="'+_id+'"]').attr('data-object_icon')
+  var objName = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_name')
+  var objIcon = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_icon')
   loadObjectConfiguration(_id)
-  $('.objectname_resume').empty().append(objIcon+'  '+objName)
+  $('.objectname_resume').empty().append(objIcon + '  ' + objName)
 }
 
 function loadObjectConfiguration(_id) {
   try {
     $('#bt_uploadImage').fileupload('destroy')
     $('#bt_uploadImage').parent().html('<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">')
-  } catch(error) {}
+  } catch (error) {}
 
   $('#bt_uploadImage').fileupload({
     replaceFileInput: false,
-    url: 'core/ajax/object.ajax.php?action=uploadImage&id=' +_id,
+    url: 'core/ajax/object.ajax.php?action=uploadImage&id=' + _id,
     dataType: 'json',
     done: function(e, data) {
       if (data.result.state != 'ok') {
-        $('#div_alert').showAlert({message: data.result.result, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: data.result.result,
+          level: 'danger'
+        })
         return
       }
       if (isset(data.result.result.filepath)) {
         var filePath = data.result.result.filepath
         filePath = '/data/object/' + filePath.split('/data/object/')[1]
-        $('.objectImg').show().find('img').attr('src',filePath)
+        $('.objectImg').show().find('img').attr('src', filePath)
       } else {
         $('.objectImg').hide()
       }
-      $('#div_alert').showAlert({message: '{{Image de fond ajoutée avec succès}}', level: 'success'})
+      $('#div_alert').showAlert({
+        message: '{{Image de fond ajoutée avec succès}}',
+        level: 'success'
+      })
     }
   })
 
   $(".objectDisplayCard").removeClass('active')
-  $('.objectDisplayCard[data-object_id='+_id+']').addClass('active')
+  $('.objectDisplayCard[data-object_id=' + _id + ']').addClass('active')
   $('#div_conf').show()
   $('#div_resumeObjectList').hide()
   jeedom.object.byId({
     id: _id,
     cache: false,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       $('.objectAttr').value('')
@@ -273,7 +305,7 @@ function loadObjectConfiguration(_id) {
       $('.tabnumber').empty()
 
       if (isset(data.img) && data.img != '') {
-        $('.objectImg').show().find('img').attr('src',data.img)
+        $('.objectImg').show().find('img').attr('src', data.img)
       } else {
         $('.objectImg').hide()
       }
@@ -283,13 +315,13 @@ function loadObjectConfiguration(_id) {
         var el
         var summary = data.configuration.summary
         for (var i in summary) {
-          el = $('.type'+i)
+          el = $('.type' + i)
           if (el != undefined) {
             for (var j in summary[i]) {
               addSummaryInfo(el, summary[i][j])
             }
             if (summary[i].length != 0) {
-              $('.summarytabnumber'+i).append('(' + summary[i].length + ')')
+              $('.summarytabnumber' + i).append('(' + summary[i].length + ')')
             }
           }
         }
@@ -301,7 +333,7 @@ function loadObjectConfiguration(_id) {
       addEqlogicsInfo(_id, data.name, summary)
 
       var hash = window.location.hash
-      jeedomUtils.addOrUpdateUrl('id',data.id)
+      jeedomUtils.addOrUpdateUrl('id', data.id)
       if (hash == '') {
         $('.nav-tabs a[href="#objecttab"]').click()
       } else {
@@ -319,9 +351,15 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
   bootbox.prompt("Nom de l'objet ?", function(result) {
     if (result !== null) {
       jeedom.object.save({
-        object: {name: result, isVisible: 1},
+        object: {
+          name: result,
+          isVisible: 1
+        },
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function(data) {
           modifyWithoutSave = false
@@ -332,7 +370,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
   })
 })
 
-$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick',function() {
+$('.objectAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
   $(this).value('')
 })
 
@@ -359,7 +397,10 @@ $("#bt_saveObject").on('click', function(event) {
   jeedom.object.save({
     object: object,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       modifyWithoutSave = false
@@ -376,7 +417,10 @@ $("#bt_removeObject").on('click', function(event) {
       jeedom.object.remove({
         id: $('.objectDisplayCard.active').attr('data-object_id'),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           modifyWithoutSave = false
@@ -392,11 +436,11 @@ $('#bt_chooseIcon').on('click', function() {
   var _icon = false
   var icon = false
   var color = false
-  if ( $('div[data-l2key="icon"] > i').length ) {
+  if ($('div[data-l2key="icon"] > i').length) {
     color = '';
     var class_icon = $('div[data-l2key="icon"] > i').attr('class')
     class_icon = class_icon.replace(' ', '.').split(' ')
-    icon = '.'+class_icon[0]
+    icon = '.' + class_icon[0]
     if (class_icon[1]) {
       color = class_icon[1]
     }
@@ -404,28 +448,31 @@ $('#bt_chooseIcon').on('click', function() {
   jeedomUtils.chooseIcon(function(_icon) {
     modifyWithoutSave = true
     $('.objectAttr[data-l1key=display][data-l2key=icon]').empty().append(_icon)
-  }, {icon:icon,color:color})
-})
-
-$('#div_pageContainer').off('change','.objectAttr').on('change','.objectAttr:visible', function() {
-  modifyWithoutSave = true
-});
-
-$('.addSummary').on('click',function() {
-  var type = $(this).attr('data-type')
-  addSummaryInfo($('.type'+type))
-  modifyWithoutSave = true
-})
-
-$('.bt_checkAll').on('click',function() {
-  $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop("checked", true )
+  }, {
+    icon: icon,
+    color: color
   })
 })
 
-$('.bt_checkNone').on('click',function() {
+$('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:visible', function() {
+  modifyWithoutSave = true
+});
+
+$('.addSummary').on('click', function() {
+  var type = $(this).attr('data-type')
+  addSummaryInfo($('.type' + type))
+  modifyWithoutSave = true
+})
+
+$('.bt_checkAll').on('click', function() {
   $(this).closest('tr').find('input[type="checkbox"]').each(function() {
-    $(this).prop("checked", false )
+    $(this).prop("checked", true)
+  })
+})
+
+$('.bt_checkNone').on('click', function() {
+  $(this).closest('tr').find('input[type="checkbox"]').each(function() {
+    $(this).prop("checked", false)
   })
 })
 
@@ -434,7 +481,14 @@ $('#div_pageContainer').on({
   'click': function(event) {
     var el = $(this).closest('.summary').find('.summaryAttr[data-l1key=cmd]')
     var type = $(this).closest('.div_summary').data('type')
-    jeedom.cmd.getSelectModal({object:{id:$('.objectAttr[data-l1key="id"]').val()},cmd:{type:'info'}}, function(result) {
+    jeedom.cmd.getSelectModal({
+      object: {
+        id: $('.objectAttr[data-l1key="id"]').val()
+      },
+      cmd: {
+        type: 'info'
+      }
+    }, function(result) {
       el.value(result.human)
       updateSummaryTabNbr(type)
       updateSummaryButton(result.human, type, true)
@@ -482,7 +536,9 @@ function addSummaryInfo(_el, _summary) {
 }
 
 $('.bt_showObjectSummary').off('click').on('click', function() {
-  $('#md_modal').dialog({title: "{{Vue d'ensemble des objets}}"}).load('index.php?v=d&modal=object.summary').dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Vue d'ensemble des objets}}"
+  }).load('index.php?v=d&modal=object.summary').dialog('open')
 })
 
 //eqLogics tab searching
@@ -498,19 +554,19 @@ $('#in_searchCmds').keyup(function() {
   $('#eqLogicsCmds .form-group').each(function() {
     text = jeedomUtils.normTextLower($(this).attr('data-cmdname'))
     if (text.indexOf(search) >= 0) {
-      $(this).closest('.panel-collapse').attr('data-show',1)
+      $(this).closest('.panel-collapse').attr('data-show', 1)
     }
   })
   $('#eqLogicsCmds .panel-collapse[data-show=1]').collapse('show')
   $('#eqLogicsCmds .panel-collapse[data-show=0]').collapse('hide')
 })
 $('#bt_openAll').off('click').on('click', function() {
-  $(".accordion-toggle[aria-expanded='false']").each(function(){
+  $(".accordion-toggle[aria-expanded='false']").each(function() {
     $(this).click()
   })
 })
 $('#bt_closeAll').off('click').on('click', function() {
-  $(".accordion-toggle[aria-expanded='true']").each(function(){
+  $(".accordion-toggle[aria-expanded='true']").each(function() {
     $(this).click()
   })
 })
@@ -527,7 +583,10 @@ function addEqlogicsInfo(_id, _objName, _summay) {
     onlyEnable: '0',
     getCmd: '1',
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(eqLogics) {
       var summarySelect = '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">'
@@ -535,13 +594,13 @@ function addEqlogicsInfo(_id, _objName, _summay) {
       summarySelect += '</button>'
       summarySelect += '<ul class="dropdown-menu" role="menu" style="top:unset;left:unset;height: 190px;overflow: auto;">'
       Object.keys(config_objSummary).forEach(function(key) {
-        summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + config_objSummary[key].key + '" data-name="'+config_objSummary[key].name+'" />&nbsp' + config_objSummary[key].name + '</a></li>'
+        summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + config_objSummary[key].key + '" data-name="' + config_objSummary[key].name + '" />&nbsp' + config_objSummary[key].name + '</a></li>'
       })
       summarySelect += '</ul>'
 
       var nbEqs = eqLogics.length
       var thisEq, thisId, thisEqName, panel, nbCmds, ndCmdsInfo, humanName
-      for (var i=0; i<nbEqs; i++) {
+      for (var i = 0; i < nbEqs; i++) {
         thisEq = eqLogics[i]
         thisId = thisEq.id
         thisEqName = thisEq.name
@@ -549,23 +608,23 @@ function addEqlogicsInfo(_id, _objName, _summay) {
         panel += '<div class="panel panel-default">'
         panel += '<div class="panel-heading">'
         panel += '<h3 class="panel-title">'
-        panel += '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#eqlogicId-'+thisId+'">'+thisEqName+'</a>'
-        panel += '<span><a href="index.php?v=d&p='+thisEq.eqType_name+'&m='+thisEq.eqType_name+'&id='+thisId+'" class="pull-right"><i class="fas fa-external-link-alt"></i></a></span>'
+        panel += '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#eqlogicId-' + thisId + '">' + thisEqName + '</a>'
+        panel += '<span><a href="index.php?v=d&p=' + thisEq.eqType_name + '&m=' + thisEq.eqType_name + '&id=' + thisId + '" class="pull-right"><i class="fas fa-external-link-alt"></i></a></span>'
         panel += '</h3>'
         panel += '</div>'
-        panel += '<div id="eqlogicId-'+thisId+'" class="panel-collapse collapse">'
+        panel += '<div id="eqlogicId-' + thisId + '" class="panel-collapse collapse">'
         panel += '<div class="panel-body">'
 
         nbCmds = thisEq.cmds.length
         ndCmdsInfo = 0
-        for (var j=0; j<nbCmds; j++) {
+        for (var j = 0; j < nbCmds; j++) {
           if (thisEq.cmds[j].type != 'info') continue
 
           ndCmdsInfo += 1
           humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
           panel += '<form class="form-horizontal">'
-          panel += '<div class="form-group" data-cmdname="'+humanName+'">'
-          panel += '<label class="col-sm-5 control-label">'+humanName+'</label>'
+          panel += '<div class="form-group" data-cmdname="' + humanName + '">'
+          panel += '<label class="col-sm-5 control-label">' + humanName + '</label>'
           panel += '<div class="col-sm-2">'
           panel += summarySelect
           panel += '</div>'
@@ -637,7 +696,7 @@ $('#eqlogicsTab').on({
     updateSummaryButton(cmd, type, state)
     modifyWithoutSave = true
 
-    var el = $('.type'+type)
+    var el = $('.type' + type)
     var summary = {
       cmd: cmd,
       enable: "1",
@@ -660,8 +719,8 @@ $('#eqlogicsTab').on({
 
 //update summary tab number:
 function updateSummaryTabNbr(type) {
-  var tab = $('.summarytabnumber'+type)
-  var nbr = $('#summarytab'+type).find('.summary').length
+  var tab = $('.summarytabnumber' + type)
+  var nbr = $('#summarytab' + type).find('.summary').length
   tab.empty()
   if (nbr > 0) tab.append('(' + nbr + ')')
 }

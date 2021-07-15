@@ -1,32 +1,32 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
 var _filterType_
 var _editIds_ = []
 
-$(function () {
+$(function() {
   _filterType_ = $('#sel_FilterByType').value()
   setEdit()
   $('.selectEditKey').change()
 })
 
 //change filter type:
-$('#sel_FilterByType').off('change').on('change',function() {
+$('#sel_FilterByType').off('change').on('change', function() {
   resetUI()
   _filterType_ = $(this).value()
   setEdit()
@@ -42,7 +42,7 @@ function resetUI() {
 }
 
 //add filter:
-$('#bt_addFilter').off('click').on('click',function() {
+$('#bt_addFilter').off('click').on('click', function() {
   addFilter()
   $('#testResult').empty().hide()
   $('#testSQL').empty()
@@ -57,7 +57,7 @@ function addFilter() {
   newFilterHtml += '<select class="selectFilterKey form-control input-sm">'
   var keys = Object.keys(typePossibilities[_filterType_])
   keys.forEach((key, index) => {
-    newFilterHtml +='<option value="' + key + '">' + key + '</option>'
+    newFilterHtml += '<option value="' + key + '">' + key + '</option>'
   })
   newFilterHtml += '</select>'
   newFilterHtml += '</div>'
@@ -158,22 +158,22 @@ function setEdit() {
   newEditHtml += '<select class="selectEditKey form-control input-sm">'
   var keys = Object.keys(typePossibilities[_filterType_])
   keys.forEach((key, index) => {
-    newEditHtml +='<option value="' + key + '">' + key + '</option>'
+    newEditHtml += '<option value="' + key + '">' + key + '</option>'
   })
   newEditHtml += '</select>'
   newEditHtml += '</div>'
 
   var editId = Math.random().toString(36).substr(2, 9)
   newEditHtml += '<div class="col-md-3 col-xs-3">'
-  newEditHtml += '<input class="selectEditValue form-control input-sm" type="text" value="" list="'+editId+'_EditvaluesList" />'
-  newEditHtml += '<datalist id="'+editId+'_EditvaluesList">'
+  newEditHtml += '<input class="selectEditValue form-control input-sm" type="text" value="" list="' + editId + '_EditvaluesList" />'
+  newEditHtml += '<datalist id="' + editId + '_EditvaluesList">'
   newEditHtml += '<option></option>'
   newEditHtml += '</datalist>'
   newEditHtml += '</div>'
 
   newEditHtml += '<div class="col-md-3 col-xs-3">'
-  newEditHtml += '<input class="inputEditJValue form-control input-sm" type="text" value="" list="'+editId+'_EditJValuesList" disabled />'
-  newEditHtml += '<datalist id="'+editId+'_EditJValuesList">'
+  newEditHtml += '<input class="inputEditJValue form-control input-sm" type="text" value="" list="' + editId + '_EditJValuesList" disabled />'
+  newEditHtml += '<datalist id="' + editId + '_EditJValuesList">'
   newEditHtml += '<option></option>'
   newEditHtml += '</datalist>'
   newEditHtml += '</div>'
@@ -193,7 +193,7 @@ $('body').on({
     inputJValue.val('')
 
     //set possible values for key if necessary
-    var inputValues = $(this).closest('div.form-group').find('#'+editValueId)
+    var inputValues = $(this).closest('div.form-group').find('#' + editValueId)
     inputValues.empty()
     var key = $(this).value()
     var option
@@ -225,7 +225,7 @@ $('body').on({
     inputJValue.val('')
     //set possible json values for value:
     var editJValueId = inputJValue.attr('list')
-    var inputJValues = $(this).closest('div.form-group').find('#'+editJValueId)
+    var inputJValues = $(this).closest('div.form-group').find('#' + editJValueId)
     inputJValues.empty()
 
     var jValues = typePossibilities[_filterType_][key][value]
@@ -250,7 +250,10 @@ $('body').on({
     jeedom[_filterType_]['byId']({
       id: thisId,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(_item) {
         if (isset(_item.result)) _item = _item.result
@@ -261,7 +264,9 @@ $('body').on({
           return true
         }
         if (_filterType_ == 'cmd') {
-          $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + _item.id).dialog('open')
+          $('#md_modal').dialog({
+            title: "{{Configuration de la commande}}"
+          }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + _item.id).dialog('open')
           return true
         }
         if (_filterType_ == 'object') {
@@ -346,7 +351,7 @@ function getExecSQLstring(_filters, _edits) {
   var edit = _edits[0]
   if (edit.jValue) {
     sqlCmd = 'UPDATE `' + sqlTable + '`'
-    sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "'+"$."+edit.value+'", "' + edit.jValue + '")'
+    sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "' + "$." + edit.value + '", "' + edit.jValue + '")'
   } else {
     sqlCmd = 'UPDATE `' + sqlTable + '`'
     sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
@@ -378,13 +383,16 @@ function getCleaningSpaceSQLstring(_edits) {
   return sqlCmd
 }
 
-function dbExecuteCommand(_command, _mode=0) { // _mode 0: test, 1: exec, 2: get modified ids
+function dbExecuteCommand(_command, _mode = 0) { // _mode 0: test, 1: exec, 2: get modified ids
   //console.log('___dbExecuteCommand: ' + _mode + ' -> ' + _command)
   jeedom.db({
     async: false,
-    command : _command,
+    command: _command,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(result) {
       $('#testResult').empty().show()
@@ -399,7 +407,9 @@ function dbExecuteCommand(_command, _mode=0) { // _mode 0: test, 1: exec, 2: get
       }
 
       if (_mode == 2) {
-        _editIds_ = result.sql.map(function(d) { return d['id'] })
+        _editIds_ = result.sql.map(function(d) {
+          return d['id']
+        })
       }
     }
   })
@@ -408,7 +418,7 @@ function dbExecuteCommand(_command, _mode=0) { // _mode 0: test, 1: exec, 2: get
 function downloadObjectAsJson(exportObj, exportName) {
   var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
   var downloadAnchorNode = document.createElement('a')
-  downloadAnchorNode.setAttribute("href",     dataStr)
+  downloadAnchorNode.setAttribute("href", dataStr)
   downloadAnchorNode.setAttribute("target", "_blank")
   downloadAnchorNode.setAttribute("download", exportName + ".json")
   document.body.appendChild(downloadAnchorNode) // required for firefox
@@ -417,7 +427,7 @@ function downloadObjectAsJson(exportObj, exportName) {
 }
 
 //page buttons:
-$('#bt_exportFilter').off('click').on('click',function() {
+$('#bt_exportFilter').off('click').on('click', function() {
   var filters = getFilters()
   var edits = getEdits()
   var jsonData = {
@@ -431,7 +441,10 @@ $('#bt_exportFilter').off('click').on('click',function() {
 $("#bt_importFilter").change(function(event) {
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
-    $('#div_alert').showAlert({message: "{{L'import d'édition en masse se fait au format json.}}", level: 'danger'})
+    $('#div_alert').showAlert({
+      message: "{{L'import d'édition en masse se fait au format json.}}",
+      level: 'danger'
+    })
     return false
   }
   if (uploadedFile) {
@@ -448,11 +461,11 @@ $("#bt_importFilter").change(function(event) {
         for (var idx in massEditData.filters) {
           newFilter = addFilter()
           newFilter.find('.selectFilterKey').val(massEditData.filters[idx].key).change()
-          newFilter.find('.selectFilterValue option:contains('+massEditData.filters[idx].value+')').attr('selected', 'selected')
+          newFilter.find('.selectFilterValue option:contains(' + massEditData.filters[idx].value + ')').attr('selected', 'selected')
           newFilter.find('.selectFilterValue').change()
           if (massEditData.filters[idx].jValue != false) {
             newFilter.find('.selectFilterJValue').prop('disabled', false)
-            newFilter.find('.selectFilterJValue option:contains('+massEditData.filters[idx].jValue+')').attr('selected', 'selected')
+            newFilter.find('.selectFilterJValue option:contains(' + massEditData.filters[idx].jValue + ')').attr('selected', 'selected')
           }
         }
 
@@ -470,19 +483,22 @@ $("#bt_importFilter").change(function(event) {
       }
     }
   } else {
-    $('#div_alert').showAlert({message: "{{Problème lors de la lecture du fichier.}}", level: 'danger'})
+    $('#div_alert').showAlert({
+      message: "{{Problème lors de la lecture du fichier.}}",
+      level: 'danger'
+    })
     return false
   }
 })
 
-$('#bt_testFilter').off('click').on('click',function() {
+$('#bt_testFilter').off('click').on('click', function() {
   var filters = getFilters()
   var sqlCmd = getTestSQLstring(filters)
   $('#testSQL').empty().append(sqlCmd)
   dbExecuteCommand(sqlCmd, 0)
 })
 
-$('#bt_execMassEdit').off('click').on('click',function() {
+$('#bt_execMassEdit').off('click').on('click', function() {
   var filters = getFilters()
   var edits = getEdits()
 

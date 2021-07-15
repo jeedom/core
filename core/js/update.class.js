@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,12 +14,9 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jeedom.update = function() {};
 
- jeedom.update = function () {
- };
-
-
- jeedom.update.doAll = function (_params) {
+jeedom.update.doAll = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -39,7 +35,7 @@
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.do = function (_params) {
+jeedom.update.do = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -58,7 +54,7 @@ jeedom.update.do = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.remove = function (_params) {
+jeedom.update.remove = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -77,7 +73,7 @@ jeedom.update.remove = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.checkAll = function (_params) {
+jeedom.update.checkAll = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -95,7 +91,7 @@ jeedom.update.checkAll = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.check = function (_params) {
+jeedom.update.check = function(_params) {
     var paramsRequired = ['id'];
     var paramsSpecifics = {};
     try {
@@ -114,8 +110,7 @@ jeedom.update.check = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-
-jeedom.update.get = function (_params) {
+jeedom.update.get = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -133,7 +128,7 @@ jeedom.update.get = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.save = function (_params) {
+jeedom.update.save = function(_params) {
     var paramsRequired = ['update'];
     var paramsSpecifics = {};
     try {
@@ -152,7 +147,7 @@ jeedom.update.save = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.update.saves = function (_params) {
+jeedom.update.saves = function(_params) {
     var paramsRequired = ['updates'];
     var paramsSpecifics = {};
     try {

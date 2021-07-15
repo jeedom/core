@@ -1,27 +1,23 @@
-
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-
-jeedom.plan = function () {
-};
-
+jeedom.plan = function() {};
 jeedom.plan.cache = Array();
 
-jeedom.plan.remove = function (_params) {
+jeedom.plan.remove = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -41,11 +37,13 @@ jeedom.plan.remove = function (_params) {
     planHeader_id: _params.planHeader_id || ''
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.execute = function (_params) {
+jeedom.plan.execute = function(_params) {
   var paramsRequired = ['id'];
-  var paramsSpecifics = {global: false};
+  var paramsSpecifics = {
+    global: false
+  };
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
@@ -60,10 +58,9 @@ jeedom.plan.execute = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-
-jeedom.plan.save = function (_params) {
+jeedom.plan.save = function(_params) {
   var paramsRequired = ['plans'];
   var paramsSpecifics = {
     global: _params.global || true,
@@ -83,10 +80,9 @@ jeedom.plan.save = function (_params) {
     plans: json_encode(_params.plans),
   };
   $.ajax(paramsAJAX);
-};
+}
 
-
-jeedom.plan.byId = function (_params) {
+jeedom.plan.byId = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -103,9 +99,9 @@ jeedom.plan.byId = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.getObjectPlan = function (_params) {
+jeedom.plan.getObjectPlan = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -123,9 +119,9 @@ jeedom.plan.getObjectPlan = function (_params) {
     version: _params.version || 'dashboard'
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.create = function (_params) {
+jeedom.plan.create = function(_params) {
   var paramsRequired = ['plan'];
   var paramsSpecifics = {};
   try {
@@ -143,9 +139,9 @@ jeedom.plan.create = function (_params) {
     version: _params.version
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.copy = function (_params) {
+jeedom.plan.copy = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
   try {
@@ -165,9 +161,9 @@ jeedom.plan.copy = function (_params) {
     planHeader_id: _params.planHeader_id || ''
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.byPlanHeader = function (_params) {
+jeedom.plan.byPlanHeader = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -182,13 +178,13 @@ jeedom.plan.byPlanHeader = function (_params) {
   paramsAJAX.data = {
     action: 'planHeader',
     planHeader_id: _params.id,
-    noHtml : _params.noHtml,
+    noHtml: _params.noHtml,
     version: _params.version || 'dashboard'
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.removeImageHeader = function (_params) {
+jeedom.plan.removeImageHeader = function(_params) {
   var paramsRequired = ['planHeader_id'];
   var paramsSpecifics = {};
   try {
@@ -205,9 +201,9 @@ jeedom.plan.removeImageHeader = function (_params) {
     id: _params.planHeader_id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.saveHeader = function (_params) {
+jeedom.plan.saveHeader = function(_params) {
   var paramsRequired = ['planHeader'];
   var paramsSpecifics = {};
   try {
@@ -224,9 +220,9 @@ jeedom.plan.saveHeader = function (_params) {
     planHeader: json_encode(_params.planHeader)
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.copyHeader = function (_params) {
+jeedom.plan.copyHeader = function(_params) {
   var paramsRequired = ['id', 'name'];
   var paramsSpecifics = {};
   try {
@@ -244,9 +240,9 @@ jeedom.plan.copyHeader = function (_params) {
     name: _params.name
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.removeHeader = function (_params) {
+jeedom.plan.removeHeader = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -263,9 +259,9 @@ jeedom.plan.removeHeader = function (_params) {
     id: _params.id
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.getHeader = function (_params) {
+jeedom.plan.getHeader = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};
   try {
@@ -283,9 +279,9 @@ jeedom.plan.getHeader = function (_params) {
     code: _params.code
   };
   $.ajax(paramsAJAX);
-};
+}
 
-jeedom.plan.allHeader = function (_params) {
+jeedom.plan.allHeader = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {
     pre_success: function(data) {

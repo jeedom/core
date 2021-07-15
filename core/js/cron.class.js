@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,9 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-jeedom.cron = function() {
-};
+jeedom.cron = function() {};
 
 jeedom.cron.setState = function(_params) {
     var paramsRequired = ['id', 'state'];
@@ -37,7 +34,6 @@ jeedom.cron.setState = function(_params) {
     };
     $.ajax(paramsAJAX);
 }
-
 
 jeedom.cron.all = function(_params) {
     var paramsRequired = [];
@@ -75,4 +71,3 @@ jeedom.cron.save = function(_params) {
     };
     $.ajax(paramsAJAX);
 }
-

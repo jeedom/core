@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -30,19 +30,28 @@ $("#bt_saveBackup").on('click', function(event) {
   jeedom.config.save({
     configuration: $('#backup').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function() {
       jeedom.config.load({
         configuration: $('#backup').getValues('.configKey')[0],
         plugin: 'core',
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function(data) {
           $('#backup').setValues(data, '.configKey')
           modifyWithoutSave = false
-          $('#div_alert').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
+          $('#div_alert').showAlert({
+            message: '{{Sauvegarde réussie}}',
+            level: 'success'
+          })
         }
       })
     }
@@ -51,13 +60,16 @@ $("#bt_saveBackup").on('click', function(event) {
 
 $(".bt_backupJeedom").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} '+JEEDOM_PRODUCT_NAME+' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
       $.hideAlert()
       el.find('.fa-sync').show()
       jeedom.backup.backup({
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           getJeedomLog(1, 'backup')
@@ -69,14 +81,17 @@ $(".bt_backupJeedom").on('click', function(event) {
 
 $("#bt_restoreJeedom").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} '+JEEDOM_PRODUCT_NAME+' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}}<span style="color:red;font-weight: bold;">IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours.</span>', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} <b>' + $('#sel_restoreBackup option:selected').text() + '</b> ? {{Une fois lancée cette opération ne peut être annulée.}}<span style="color:red;font-weight: bold;">IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours.</span>', function(result) {
     if (result) {
       $.hideAlert()
       el.find('.fa-sync').show()
       jeedom.backup.restoreLocal({
         backup: $('#sel_restoreBackup').value(),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           getJeedomLog(1, 'restore')
@@ -94,11 +109,17 @@ $("#bt_removeBackup").on('click', function(event) {
       jeedom.backup.remove({
         backup: $('#sel_restoreBackup').value(),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           updateListBackup()
-          $('#div_alert').showAlert({message: '{{Sauvegarde supprimée avec succès}}', level: 'success'})
+          $('#div_alert').showAlert({
+            message: '{{Sauvegarde supprimée avec succès}}',
+            level: 'success'
+          })
         }
       })
     }
@@ -114,23 +135,32 @@ $('#bt_uploadBackup').fileupload({
   replaceFileInput: false,
   done: function(e, data) {
     if (data.result.state != 'ok') {
-      $('#div_alert').showAlert({message: data.result.result, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: data.result.result,
+        level: 'danger'
+      })
       return
     }
     updateListBackup()
-    $('#div_alert').showAlert({message: '{{Fichier(s) ajouté(s) avec succès}}', level: 'success'})
+    $('#div_alert').showAlert({
+      message: '{{Fichier(s) ajouté(s) avec succès}}',
+      level: 'success'
+    })
   }
 })
 
 $(".bt_uploadCloudBackup").on('click', function(event) {
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} '+JEEDOM_PRODUCT_NAME+' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{sur le cloud ? Une fois lancée cette opération ne peut être annulée}}', function(result) {
     if (result) {
       el.find('.fa-sync').show()
       jeedom.backup.uploadCloud({
         backup: $('#sel_restoreBackup').value(),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           getJeedomLog(1, 'backupCloud')
@@ -149,11 +179,17 @@ $(".bt_restoreRepoBackup").on('click', function(event) {
         backup: el.closest('.repo').find('.sel_restoreCloudBackup').value(),
         repo: el.attr('data-repo'),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           updateListBackup()
-          $('#div_alert').showAlert({message: '{{Sauvegarde rapatrier avec succès}}', level: 'success'})
+          $('#div_alert').showAlert({
+            message: '{{Sauvegarde rapatrier avec succès}}',
+            level: 'success'
+          })
         }
       })
     }
@@ -164,7 +200,10 @@ $.showLoading()
 jeedom.config.load({
   configuration: $('#backup').getValues('.configKey')[0],
   error: function(error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    $('#div_alert').showAlert({
+      message: error.message,
+      level: 'danger'
+    })
   },
   success: function(data) {
     $('#backup').setValues(data, '.configKey')
@@ -173,7 +212,7 @@ jeedom.config.load({
 })
 updateListBackup()
 
-$('#div_pageContainer').off('change','.configKey').on('change','.configKey:visible',  function() {
+$('#div_pageContainer').off('change', '.configKey').on('change', '.configKey:visible', function() {
   modifyWithoutSave = true
 })
 
@@ -209,9 +248,12 @@ function getJeedomLog(_autoUpdate, _log) {
       var log = ''
       if ($.isArray(data.result)) {
         for (var i in data.result.reverse()) {
-          log += data.result[i]+"\n"
+          log += data.result[i] + "\n"
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
-            $('#div_alert').showAlert({message: '{{L\'opération est réussie}}', level: 'success'})
+            $('#div_alert').showAlert({
+              message: '{{L\'opération est réussie}}',
+              level: 'success'
+            })
             if (_log == 'restore') {
               jeedom.user.refresh()
             }
@@ -219,7 +261,10 @@ function getJeedomLog(_autoUpdate, _log) {
             _autoUpdate = 0
           }
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
-            $('#div_alert').showAlert({message: '{{L\'opération a échoué}}', level: 'danger'})
+            $('#div_alert').showAlert({
+              message: '{{L\'opération a échoué}}',
+              level: 'danger'
+            })
             if (_log == 'restore') {
               jeedom.user.refresh()
             }
@@ -237,7 +282,7 @@ function getJeedomLog(_autoUpdate, _log) {
         $('#bt_' + _log + 'Jeedom .fa-sync').hide()
         $('.bt_' + _log + 'Jeedom .fa-sync').hide()
         updateListBackup();
-        for(var i in REPO_LIST){
+        for (var i in REPO_LIST) {
           updateRepoListBackup(REPO_LIST[i])
         }
       }
@@ -248,7 +293,10 @@ function getJeedomLog(_autoUpdate, _log) {
 function updateListBackup() {
   jeedom.backup.list({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       var options = ''
@@ -266,17 +314,20 @@ for (var i in REPO_LIST) {
 
 function updateRepoListBackup(_repo) {
   jeedom.repo.backupList({
-    repo : _repo,
-    global : false,
+    repo: _repo,
+    global: false,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       var options = ''
       for (var i in data) {
         options += '<option value="' + data[i] + '">' + data[i] + '</option>'
       }
-      $('.sel_restoreCloudBackup[data-repo='+_repo+']').empty().html(options)
+      $('.sel_restoreCloudBackup[data-repo=' + _repo + ']').empty().html(options)
     }
   })
 }

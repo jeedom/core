@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -153,7 +152,7 @@ jeedom.config.locales = {
     }
 }
 
-jeedom.config.save = function (_params) {
+jeedom.config.save = function(_params) {
     var paramsRequired = ['configuration'];
     var paramsSpecifics = {};
     try {
@@ -173,9 +172,11 @@ jeedom.config.save = function (_params) {
     $.ajax(paramsAJAX);
 }
 
-jeedom.config.load = function (_params) {
+jeedom.config.load = function(_params) {
     var paramsRequired = ['configuration'];
-    var paramsSpecifics = {global: _params.global || true};
+    var paramsSpecifics = {
+        global: _params.global || true
+    };
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
@@ -189,12 +190,12 @@ jeedom.config.load = function (_params) {
         action: 'getKey',
         key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? json_encode(_params.configuration) : _params.configuration,
         plugin: _params.plugin || 'core',
-        convertToHumanReadable :  _params.convertToHumanReadable || false
+        convertToHumanReadable: _params.convertToHumanReadable || false
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.config.remove = function (_params) {
+jeedom.config.remove = function(_params) {
     var paramsRequired = ['configuration'];
     var paramsSpecifics = {};
     try {
@@ -212,23 +213,23 @@ jeedom.config.remove = function (_params) {
         plugin: _params.plugin || 'core'
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.config.removeImage = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/config.ajax.php';
-  paramsAJAX.data = {
-    action: 'removeImage',
-    id: _params.id
-  };
-  $.ajax(paramsAJAX);
-};
+jeedom.config.removeImage = function(_params) {
+    var paramsRequired = ['id'];
+    var paramsSpecifics = {};
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+        return;
+    }
+    var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/config.ajax.php';
+    paramsAJAX.data = {
+        action: 'removeImage',
+        id: _params.id
+    };
+    $.ajax(paramsAJAX);
+}

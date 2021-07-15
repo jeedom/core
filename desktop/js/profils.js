@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -30,7 +30,11 @@ $(function() {
   $tableDevices[0].config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
   $tableDevices.trigger('applyWidgets')
     .trigger('resizableReset')
-    .trigger('sorton', [[[2,1]]])
+    .trigger('sorton', [
+      [
+        [2, 1]
+      ]
+    ])
 })
 
 $("#bt_saveProfils").on('click', function(event) {
@@ -38,19 +42,31 @@ $("#bt_saveProfils").on('click', function(event) {
   var profil = $('#div_userProfils').getValues('.userAttr')[0]
   if (profils_user_id == -1) {
     if (profil.password != $('#in_passwordCheck').value()) {
-      $('#div_alert').showAlert({message: "{{Les deux mots de passe ne sont pas identiques}}", level: 'danger'})
+      $('#div_alert').showAlert({
+        message: "{{Les deux mots de passe ne sont pas identiques}}",
+        level: 'danger'
+      })
       return
     }
     jeedom.user.saveProfils({
       profils: profil,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
-        $('#div_alert').showAlert({message: "{{Sauvegarde effectuée}}", level: 'success'})
+        $('#div_alert').showAlert({
+          message: "{{Sauvegarde effectuée}}",
+          level: 'success'
+        })
         jeedom.user.get({
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
           success: function(data) {
             $('#div_userProfils').setValues(data, '.userAttr')
@@ -64,13 +80,22 @@ $("#bt_saveProfils").on('click', function(event) {
     jeedom.user.save({
       users: [profil],
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
-        $('#div_alertProfils').showAlert({message: "{{Sauvegarde effectuée}}", level: 'success'})
+        $('#div_alertProfils').showAlert({
+          message: "{{Sauvegarde effectuée}}",
+          level: 'success'
+        })
         jeedom.user.get({
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
           success: function(data) {
             modifyWithoutSave = false
@@ -85,7 +110,10 @@ $("#bt_saveProfils").on('click', function(event) {
 jeedom.user.get({
   id: profils_user_id,
   error: function(error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    $('#div_alert').showAlert({
+      message: error.message,
+      level: 'danger'
+    })
   },
   success: function(data) {
     $('#div_userProfils').setValues(data, '.userAttr')
@@ -94,19 +122,26 @@ jeedom.user.get({
   }
 })
 
-$('#div_userProfils').off('change','.userAttr').on('change','.userAttr:visible',  function() {
+$('#div_userProfils').off('change', '.userAttr').on('change', '.userAttr:visible', function() {
   modifyWithoutSave = true
 })
 
 $('.bt_selectWarnMeCmd').on('click', function() {
-  jeedom.cmd.getSelectModal({cmd: {type: 'action', subType: 'message'}}, function(result) {
+  jeedom.cmd.getSelectModal({
+    cmd: {
+      type: 'action',
+      subType: 'message'
+    }
+  }, function(result) {
     $('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').value(result.human)
   })
 })
 
 $('#bt_configureTwoFactorAuthentification').on('click', function() {
   var profil = $('#div_userProfils').getValues('.userAttr')[0]
-  $('#md_modal').dialog({title: "{{Authentification 2 étapes}}"}).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Authentification 2 étapes}}"
+  }).load('index.php?v=d&modal=twoFactor.authentification').dialog('open')
 })
 
 
@@ -117,13 +152,22 @@ if (profils_user_id == -1) {
     jeedom.user.saveProfils({
       profils: profil,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function() {
-        $('#div_alert').showAlert({message: "{{Opération effectuée}}", level: 'success'})
+        $('#div_alert').showAlert({
+          message: "{{Opération effectuée}}",
+          level: 'success'
+        })
         jeedom.user.get({
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $('#div_alert').showAlert({
+              message: error.message,
+              level: 'danger'
+            })
           },
           success: function(data) {
             $('#div_userProfils').setValues(data, '.userAttr')
@@ -139,7 +183,10 @@ if (profils_user_id == -1) {
     jeedom.user.removeRegisterDevice({
       key: key,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(data) {
         modifyWithoutSave = false
@@ -152,7 +199,10 @@ if (profils_user_id == -1) {
     jeedom.user.removeRegisterDevice({
       key: '',
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(data) {
         modifyWithoutSave = false
@@ -166,7 +216,10 @@ if (profils_user_id == -1) {
     jeedom.user.deleteSession({
       id: id,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
       success: function(data) {
         window.location.reload()

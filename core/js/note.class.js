@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,8 +14,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.note = function() {
-};
+jeedom.note = function() {};
 
 jeedom.note.remove = function(_params) {
     var paramsRequired = ['id'];

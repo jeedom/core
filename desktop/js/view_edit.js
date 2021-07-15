@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -41,7 +41,10 @@ $("#ul_view").sortable({
     jeedom.view.setOrder({
       views: views,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       }
     })
   }
@@ -65,11 +68,14 @@ $(".li_view").on('click', function(event) {
   jeedom.view.get({
     id: $(this).attr('data-view_id'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       $('#div_viewZones').empty()
-      $('#div_view').setValues(data,'.viewAttr')
+      $('#div_view').setValues(data, '.viewAttr')
       var viewZone
       for (var i in data.viewZone) {
         viewZone = data.viewZone[i]
@@ -100,9 +106,14 @@ $("#bt_addView").on('click', function(event) {
     if (result !== null) {
       jeedom.view.save({
         id: '',
-        view: {name:result},
+        view: {
+          name: result
+        },
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function(data) {
           jeedomUtils.loadPage('index.php?v=d&p=view_edit&view_id=' + data.id)
@@ -113,7 +124,9 @@ $("#bt_addView").on('click', function(event) {
 })
 
 $("#bt_editView").on('click', function(event) {
-  $('#md_modal').dialog({title: "{{Configuration de la vue}}"}).load('index.php?v=d&modal=view.configure&view_id='+$('.li_view.active').attr('data-view_id')).dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration de la vue}}"
+  }).load('index.php?v=d&modal=view.configure&view_id=' + $('.li_view.active').attr('data-view_id')).dialog('open')
 })
 
 $('#bt_saveView').on('click', function(event) {
@@ -128,7 +141,9 @@ function saveView(_viewResult) {
   $('.viewZone').each(function() {
     viewZoneInfo = $(this).getValues('.viewZoneAttr')[0]
     if (viewZoneInfo.type == 'table') {
-      viewZoneInfo.viewData = [{'configuration' : {}}]
+      viewZoneInfo.viewData = [{
+        'configuration': {}
+      }]
       line = 0
       col = 0
       $(this).find('table tbody tr').each(function() {
@@ -151,10 +166,16 @@ function saveView(_viewResult) {
     id: $(".li_view.active").attr('data-view_id'),
     view: view,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function() {
-      $('#div_alert').showAlert({message: '{{Modification enregistrée}}', level: 'success'})
+      $('#div_alert').showAlert({
+        message: '{{Modification enregistrée}}',
+        level: 'success'
+      })
       modifyWithoutSave = false
       if (isset(_viewResult) && _viewResult) {
         window.location.href = 'index.php?v=d&p=view&view_id=' + $(".li_view.active").attr('data-view_id')
@@ -172,7 +193,10 @@ $("#bt_removeView").on('click', function(event) {
       jeedom.view.remove({
         id: $(".li_view.active").attr('data-view_id'),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function() {
           modifyWithoutSave = false
@@ -193,7 +217,13 @@ if (is_numeric(getUrlVars('view_id'))) {
   $('#ul_view .li_view').first().click()
 }
 
-$('#div_viewZones').sortable({axis: "y", cursor: "move", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
+$('#div_viewZones').sortable({
+  axis: "y",
+  cursor: "move",
+  placeholder: "ui-state-highlight",
+  tolerance: "intersect",
+  forcePlaceholderSize: true
+})
 
 $('#div_pageContainer').on({
   'change': function(event) {
@@ -217,7 +247,11 @@ $('#bt_addviewZone').on('click', function() {
 
 $('#bt_addEditviewZoneSave').on('click', function() {
   if ($.trim($('#in_addEditviewZoneName').val()) != '') {
-    var viewZone = {name: $('#in_addEditviewZoneName').value(), emplacement: $('#in_addEditviewZoneEmplacement').value(), type: $('#sel_addEditviewZoneType').value()}
+    var viewZone = {
+      name: $('#in_addEditviewZoneName').value(),
+      emplacement: $('#in_addEditviewZoneEmplacement').value(),
+      type: $('#sel_addEditviewZoneType').value()
+    }
     addEditviewZone(viewZone)
     $('#md_addEditviewZone').modal('hide')
   } else {
@@ -263,7 +297,7 @@ function addEditviewZone(_viewZone) {
   }
   if (init(_viewZone.emplacement) == '') {
     var id = $('#div_viewZones .viewZone').length
-    var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone'+id+'">'
+    var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone' + id + '">'
     div += '<legend><span class="viewZoneAttr" data-l1key="name"></span>'
     div += '<div class="input-group pull-right" style="display:inline-flex">'
     div += '<span class="input-group-btn" style="width: 100%;">'
@@ -294,7 +328,7 @@ function addEditviewZone(_viewZone) {
     }
     if (init(_viewZone.type, 'widget') == 'graph') {
       div += '<a class="btn btn-primary btn-sm bt_addViewGraph"><i class="fas fa-plus-circle"></i> {{Ajouter courbe}}</a>'
-    } else  if (init(_viewZone.type, 'widget') == 'table') {
+    } else if (init(_viewZone.type, 'widget') == 'table') {
       div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="col"><i class="fas fa-plus-circle"></i> {{Ajouter colonne}}</a>'
       div += '<a class="btn btn-primary btn-sm bt_addViewTable" data-type="line"><i class="fas fa-plus-circle"></i> {{Ajouter ligne}}</a>'
     } else {
@@ -326,18 +360,18 @@ function addEditviewZone(_viewZone) {
       div += '<thead>'
       div += '<tr>'
       div += '<td></td>'
-      for (var i=0; i<_viewZone.configuration.nbcol; i++) {
+      for (var i = 0; i < _viewZone.configuration.nbcol; i++) {
         div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>'
       }
       div += '</thead>'
       div += '<tbody>'
-      for (var j=0; j<_viewZone.configuration.nbline; j++) {
+      for (var j = 0; j < _viewZone.configuration.nbline; j++) {
         div += '<tr class="viewData">';
         div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
-        for (var i=0; i<_viewZone.configuration.nbcol; i++) {
+        for (var i = 0; i < _viewZone.configuration.nbcol; i++) {
           div += '<td>'
           div += '<div class="input-group">'
-          div += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" data-l2key="'+j+'" data-l3key="'+i+'" />'
+          div += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" data-l2key="' + j + '" data-l3key="' + i + '" />'
           div += '<span class="input-group-btn">'
           div += '<a class="btn btn-default bt_listEquipementInfo roundedRight"><i class="fas fa-list-alt"></i></a>'
           div += '</span>'
@@ -359,19 +393,26 @@ function addEditviewZone(_viewZone) {
     }
     div += '</div>'
     $('#div_viewZones').append(div)
-    $('#div_viewZones .viewZone').last().setValues(_viewZone,'.viewZoneAttr')
-    $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({axis: "y", cursor: "move", items: ".viewData", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true})
+    $('#div_viewZones .viewZone').last().setValues(_viewZone, '.viewZoneAttr')
+    $("#div_viewZones .viewZone:last .div_viewData tbody").sortable({
+      axis: "y",
+      cursor: "move",
+      items: ".viewData",
+      placeholder: "ui-state-highlight",
+      tolerance: "intersect",
+      forcePlaceholderSize: true
+    })
   } else {
     $('#' + _viewZone.emplacement).find('.viewZoneAttr[data-l1key=name]').html(_viewZone.name)
   }
 }
 
-$('#div_viewZones').on('click','.bt_addViewTable', function() {
+$('#div_viewZones').on('click', '.bt_addViewTable', function() {
   var table = $(this).closest('.viewZone').find('table.div_viewData')
   if ($(this).attr('data-type') == 'line') {
     var line = '<tr class="viewData">'
     line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
-    for (var i=0; i<table.find('tbody tr:first td').length - 1; i++) {
+    for (var i = 0; i < table.find('tbody tr:first td').length - 1; i++) {
       line += '<td>'
       line += '<div class="input-group">'
       line += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
@@ -400,7 +441,7 @@ $('#div_viewZones').on('click','.bt_addViewTable', function() {
   }
 })
 
-$('#div_viewZones').on('click','.bt_removeAddViewTable', function() {
+$('#div_viewZones').on('click', '.bt_removeAddViewTable', function() {
   if ($(this).attr('data-type') == 'line') {
     $(this).closest('tr').remove()
   } else if ($(this).attr('data-type') == 'col') {
@@ -408,7 +449,7 @@ $('#div_viewZones').on('click','.bt_removeAddViewTable', function() {
   }
 })
 
-$('#div_viewZones').on('click','.bt_listEquipementInfo', function() {
+$('#div_viewZones').on('click', '.bt_listEquipementInfo', function() {
   var el = $(this)
   jeedom.cmd.getSelectModal({}, function(result) {
     el.closest('td').find('input.viewDataAttr[data-l1key=configuration]').atCaret('insert', result.human)
@@ -418,15 +459,23 @@ $('#div_viewZones').on('click','.bt_listEquipementInfo', function() {
 $('#div_viewZones').on({
   'click': function(event) {
     var el = $(this)
-    jeedom.cmd.getSelectModal({cmd : {isHistorized : 1}}, function(result) {
-      el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({name : result.human.replace(/\#/g, ''),link_id : result.cmd.id,type : 'cmd'}))
+    jeedom.cmd.getSelectModal({
+      cmd: {
+        isHistorized: 1
+      }
+    }, function(result) {
+      el.closest('.viewZone').find('.div_viewData tbody').append(addGraphService({
+        name: result.human.replace(/\#/g, ''),
+        link_id: result.cmd.id,
+        type: 'cmd'
+      }))
     })
   }
 }, '.bt_addViewGraph')
 
 $('#div_viewZones').on({
   'change': function(event) {
-    $(this).css('background-color',$(this).value())
+    $(this).css('background-color', $(this).value())
   }
 }, '.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]')
 
@@ -457,11 +506,11 @@ function addGraphService(_viewData) {
   tr += '</td>'
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphType">'
-  tr +=  '<option value="line">{{Ligne}}</option>'
-  tr +=  '<option value="area">{{Aire}}</option>'
-  tr +=  '<option value="column">{{Colonne}}</option>'
-  tr +=  '<option value="pie">{{Camembert}}</option>'
-  tr +=  '</select>'
+  tr += '<option value="line">{{Ligne}}</option>'
+  tr += '<option value="area">{{Aire}}</option>'
+  tr += '<option value="column">{{Colonne}}</option>'
+  tr += '<option value="pie">{{Camembert}}</option>'
+  tr += '</select>'
   tr += '</td>'
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="groupingType">'
@@ -486,7 +535,7 @@ function addGraphService(_viewData) {
   tr += '<option value="average::year">{{Moyenne par année}}</option>'
   tr += '<option value="low::year">{{Minimum par année}}</option>'
   tr += '<option value="high::year">{{Maximum par année}}</option>'
-  tr +=  '</select>'
+  tr += '</select>'
   tr += '</td>'
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 90px;">'
@@ -514,8 +563,8 @@ function addGraphService(_viewData) {
   tr += '</td>'
   tr += '</tr>'
   var result = $(tr)
-  result.setValues(_viewData,'.viewDataAttr')
-  result.find('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]').css('background-color',init(_viewData.configuration.graphColor,'#4572A7'))
+  result.setValues(_viewData, '.viewDataAttr')
+  result.find('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]').css('background-color', init(_viewData.configuration.graphColor, '#4572A7'))
   return result
 }
 
@@ -523,7 +572,11 @@ $('#div_viewZones').on({
   'click': function(event) {
     var el = $(this)
     jeedom.eqLogic.getSelectModal({}, function(result) {
-      el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'eqLogic'}))
+      el.closest('.viewZone').find('.div_viewData tbody').append(addWidgetService({
+        name: result.human.replace('#', '').replace('#', ''),
+        link_id: result.id,
+        type: 'eqLogic'
+      }))
     })
   }
 }, '.bt_addViewWidget')
@@ -532,7 +585,11 @@ $('#div_viewZones').on({
   'click': function(event) {
     var el = $(this)
     jeedom.scenario.getSelectModal({}, function(result) {
-      el.closest('.viewZone').find('.div_viewData tbody').append( addWidgetService({name : result.human.replace('#','').replace('#',''),link_id : result.id,type : 'scenario'}))
+      el.closest('.viewZone').find('.div_viewData tbody').append(addWidgetService({
+        name: result.human.replace('#', '').replace('#', ''),
+        link_id: result.id,
+        type: 'scenario'
+      }))
     })
   }
 }, '.bt_addViewScenario')
@@ -550,6 +607,6 @@ function addWidgetService(_viewData) {
   tr += '</td>'
   tr += '</tr>'
   var result = $(tr)
-  result.setValues(_viewData,'.viewDataAttr')
+  result.setValues(_viewData, '.viewDataAttr')
   return result
 }

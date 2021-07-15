@@ -1,18 +1,19 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 jeedom.cmd = function() {};
 jeedom.cmd.disableExecute = false;
 jeedom.cmd.cache = Array();
@@ -26,8 +27,8 @@ if (!isset(jeedom.cmd.update)) {
   jeedom.cmd.update = Array();
 }
 
-jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
-  if (!_eqlogic){
+jeedom.cmd.notifyEq = function(_eqlogic, _hide) {
+  if (!_eqlogic) {
     return;
   }
   if (_eqlogic.find('.cmd.refresh').length) {
@@ -47,7 +48,7 @@ jeedom.cmd.notifyEq = function(_eqlogic,_hide) {
 }
 
 jeedom.cmd.execute = function(_params) {
-  if(jeedom.cmd.disableExecute){
+  if (jeedom.cmd.disableExecute) {
     return;
   }
   var notify = _params.notify || true;
@@ -63,14 +64,16 @@ jeedom.cmd.execute = function(_params) {
     global: false,
     pre_success: function(data) {
       if (data.state != 'ok') {
-        if(data.code == -32005){
+        if (data.code == -32005) {
           if ($.mobile) {
             var result = prompt("{{Veuillez indiquer le code ?}}", "")
-            if(result != null){
+            if (result != null) {
               _params.codeAccess = result;
               jeedom.cmd.execute(_params);
-            }else{
-              jeedom.cmd.refreshValue({id:_params.id});
+            } else {
+              jeedom.cmd.refreshValue({
+                id: _params.id
+              });
               if ('function' != typeof(_params.error)) {
                 $('#div_alert').showAlert({
                   message: data.result,
@@ -82,13 +85,15 @@ jeedom.cmd.execute = function(_params) {
               }
               return data;
             }
-          }else{
-            bootbox.prompt("{{Veuillez indiquer le code ?}}", function (result) {
-              if(result != null){
+          } else {
+            bootbox.prompt("{{Veuillez indiquer le code ?}}", function(result) {
+              if (result != null) {
                 _params.codeAccess = result;
                 jeedom.cmd.execute(_params);
-              }else{
-                jeedom.cmd.refreshValue({id:_params.id});
+              } else {
+                jeedom.cmd.refreshValue({
+                  id: _params.id
+                });
                 if ('function' != typeof(_params.error)) {
                   $('#div_alert').showAlert({
                     message: data.result,
@@ -100,17 +105,19 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
-        }else if(data.code == -32006){
+        } else if (data.code == -32006) {
           if ($.mobile) {
             var result = confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}")
-            if(result){
+            if (result) {
               _params.confirmAction = 1;
               jeedom.cmd.execute(_params);
-            }else{
-              jeedom.cmd.refreshValue({id:_params.id});
+            } else {
+              jeedom.cmd.refreshValue({
+                id: _params.id
+              });
               if ('function' != typeof(_params.error)) {
                 $('#div_alert').showAlert({
                   message: data.result,
@@ -122,13 +129,15 @@ jeedom.cmd.execute = function(_params) {
               }
               return data;
             }
-          }else{
-            bootbox.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function (result) {
-              if(result){
+          } else {
+            bootbox.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function(result) {
+              if (result) {
                 _params.confirmAction = 1;
                 jeedom.cmd.execute(_params);
-              }else{
-                jeedom.cmd.refreshValue({id:_params.id});
+              } else {
+                jeedom.cmd.refreshValue({
+                  id: _params.id
+                });
                 if ('function' != typeof(_params.error)) {
                   $('#div_alert').showAlert({
                     message: data.result,
@@ -140,10 +149,10 @@ jeedom.cmd.execute = function(_params) {
                 }
                 return data;
               }
-              
+
             });
           }
-        }else{
+        } else {
           if ('function' != typeof(_params.error)) {
             $('#div_alert').showAlert({
               message: data.result,
@@ -183,17 +192,17 @@ jeedom.cmd.execute = function(_params) {
     cache: cache,
     value: _params.value || '',
   };
-  if(typeof user_login != "undefined"){
+  if (typeof user_login != "undefined") {
     paramsAJAX.data.user_login = user_login
   }
-  if(typeof user_id != "undefined"){
+  if (typeof user_id != "undefined") {
     paramsAJAX.data.user_id = user_id
   }
   $.ajax(paramsAJAX);
 };
 
 jeedom.cmd.test = function(_params) {
-  if(typeof _params.alert == 'undefined'){
+  if (typeof _params.alert == 'undefined') {
     _params.alert = '#div_alert';
   }
   var paramsRequired = ['id'];
@@ -202,99 +211,129 @@ jeedom.cmd.test = function(_params) {
     success: function(result) {
       switch (result.type) {
         case 'info':
-        jeedom.cmd.execute({
-          id: _params.id,
-          cache: 0,
-          notify: false,
-          success: function(result) {
-            $(_params.alert).showAlert({message: '{{Résultat de la commande : }}' + result,level: 'success'});
-          }
-        });
-        break;
-        case 'action':
-        switch (result.subType) {
-          case 'other':
           jeedom.cmd.execute({
             id: _params.id,
             cache: 0,
-            error: function(error) {
-              $(_params.alert).showAlert({message: error.message,level: 'danger'});
-            },
-            success: function() {
-              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
-            }
-          });
-          break;
-          case 'slider':
-          var slider = 50;
-          if(isset(result.configuration) && isset(result.configuration.maxValue) && isset(result.configuration.minValue)){
-            slider = (result.configuration.maxValue - result.configuration.minValue) / 2;
-          }
-          jeedom.cmd.execute({
-            id: _params.id,
-            value: {
-              slider: slider
-            },
-            cache: 0,
-            error: function(error) {
-              $(_params.alert).showAlert({message: error.message,level: 'danger'});
-            },
-            success: function() {
-              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
-            }
-          });
-          break;
-          case 'color':
-          jeedom.cmd.execute({
-            id: _params.id,
-            value: {
-              color: '#fff000'
-            },
-            cache: 0,
-            error: function(error) {
-              $(_params.alert).showAlert({message: error.message,level: 'danger'});
-            },
-            success: function() {
-              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
-            }
-          });
-          break;
-          case 'select':
-          jeedom.cmd.execute({
-            id: _params.id,
-            value: {
-              select: result.configuration.listValue.split(';')[0].split('|')[0]
-            },
-            cache: 0,
-            error: function(error) {
-              $(_params.alert).showAlert({message: error.message,level: 'danger'});
-            },
-            success: function() {
-              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
-            }
-          });
-          break;
-          case 'message':
-          jeedom.cmd.execute({
-            id: _params.id,
-            value: {
-              title: '{{[Jeedom] Message de test}}',
-              message: '{{Ceci est un test de message pour la commande}} ' + result.name
-            },
-            cache: 0,
-            error: function(error) {
-              $('#div_alert').showAlert({
-                message: error.message,
-                level: 'danger'
+            notify: false,
+            success: function(result) {
+              $(_params.alert).showAlert({
+                message: '{{Résultat de la commande : }}' + result,
+                level: 'success'
               });
-            },
-            success: function() {
-              $(_params.alert).showAlert({message: '{{Action exécutée avec succès}}',level: 'success'});
             }
           });
           break;
-        }
-        break;
+        case 'action':
+          switch (result.subType) {
+            case 'other':
+              jeedom.cmd.execute({
+                id: _params.id,
+                cache: 0,
+                error: function(error) {
+                  $(_params.alert).showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  });
+                },
+                success: function() {
+                  $(_params.alert).showAlert({
+                    message: '{{Action exécutée avec succès}}',
+                    level: 'success'
+                  });
+                }
+              });
+              break;
+            case 'slider':
+              var slider = 50;
+              if (isset(result.configuration) && isset(result.configuration.maxValue) && isset(result.configuration.minValue)) {
+                slider = (result.configuration.maxValue - result.configuration.minValue) / 2;
+              }
+              jeedom.cmd.execute({
+                id: _params.id,
+                value: {
+                  slider: slider
+                },
+                cache: 0,
+                error: function(error) {
+                  $(_params.alert).showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  });
+                },
+                success: function() {
+                  $(_params.alert).showAlert({
+                    message: '{{Action exécutée avec succès}}',
+                    level: 'success'
+                  });
+                }
+              });
+              break;
+            case 'color':
+              jeedom.cmd.execute({
+                id: _params.id,
+                value: {
+                  color: '#fff000'
+                },
+                cache: 0,
+                error: function(error) {
+                  $(_params.alert).showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  });
+                },
+                success: function() {
+                  $(_params.alert).showAlert({
+                    message: '{{Action exécutée avec succès}}',
+                    level: 'success'
+                  });
+                }
+              });
+              break;
+            case 'select':
+              jeedom.cmd.execute({
+                id: _params.id,
+                value: {
+                  select: result.configuration.listValue.split(';')[0].split('|')[0]
+                },
+                cache: 0,
+                error: function(error) {
+                  $(_params.alert).showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  });
+                },
+                success: function() {
+                  $(_params.alert).showAlert({
+                    message: '{{Action exécutée avec succès}}',
+                    level: 'success'
+                  });
+                }
+              });
+              break;
+            case 'message':
+              jeedom.cmd.execute({
+                id: _params.id,
+                value: {
+                  title: '{{[Jeedom] Message de test}}',
+                  message: '{{Ceci est un test de message pour la commande}} ' + result.name
+                },
+                cache: 0,
+                error: function(error) {
+                  $('#div_alert').showAlert({
+                    message: error.message,
+                    level: 'danger'
+                  });
+                },
+                success: function() {
+                  $(_params.alert).showAlert({
+                    message: '{{Action exécutée avec succès}}',
+                    level: 'success'
+                  });
+                }
+              });
+              break;
+          }
+          break;
       }
     }
   };
@@ -316,23 +355,23 @@ jeedom.cmd.test = function(_params) {
 
 jeedom.cmd.refreshByEqLogic = function(_params) {
   var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']');
-  if(cmds.length == 0){
+  if (cmds.length == 0) {
     return;
   }
-  $(cmds).each(function(){
+  $(cmds).each(function() {
     var cmd = $(this);
-    if(cmd.closest('.eqLogic[data-eqLogic_id='+ _params.eqLogic_id+']').html() != undefined){
+    if (cmd.closest('.eqLogic[data-eqLogic_id=' + _params.eqLogic_id + ']').html() != undefined) {
       return true;
     }
     jeedom.cmd.toHtml({
-      global : false,
-      id : $(this).attr('data-cmd_id'),
-      version : $(this).attr('data-version'),
-      success : function(data){
+      global: false,
+      id: $(this).attr('data-cmd_id'),
+      version: $(this).attr('data-version'),
+      success: function(data) {
         var html = $(data.html);
         var uid = html.attr('data-cmd_uid');
-        if(uid != 'undefined'){
-          cmd.attr('data-cmd_uid',uid);
+        if (uid != 'undefined') {
+          cmd.attr('data-cmd_uid', uid);
         }
         cmd.empty().html(html.children()).attr("class", html.attr("class"));
       }
@@ -342,7 +381,7 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 
 jeedom.cmd.refreshValue = function(_params) {
   var cmd = null;
-  for(var i in _params){
+  for (var i in _params) {
     //update tile graph info:
     if ($('.eqlogicbackgraph[data-cmdid=' + _params[i].cmd_id + ']').length) {
       jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
@@ -359,7 +398,7 @@ jeedom.cmd.refreshValue = function(_params) {
   }
 };
 
-jeedom.cmd.getWidgetHelp = function (_params) {
+jeedom.cmd.getWidgetHelp = function(_params) {
   var paramsRequired = ['id', 'version'];
   var paramsSpecifics = {};
   try {
@@ -380,7 +419,7 @@ jeedom.cmd.getWidgetHelp = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.cmd.toHtml = function (_params) {
+jeedom.cmd.toHtml = function(_params) {
   var paramsRequired = ['id', 'version'];
   var paramsSpecifics = {};
   try {
@@ -400,7 +439,7 @@ jeedom.cmd.toHtml = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.cmd.replaceCmd = function (_params) {
+jeedom.cmd.replaceCmd = function(_params) {
   var paramsRequired = ['source_id', 'target_id'];
   var paramsSpecifics = {};
   try {
@@ -450,7 +489,7 @@ jeedom.cmd.save = function(_params) {
 };
 
 jeedom.cmd.setIsVisibles = function(_params) {
-  var paramsRequired = ['cmds','isVisible'];
+  var paramsRequired = ['cmds', 'isVisible'];
   var paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
@@ -464,7 +503,7 @@ jeedom.cmd.setIsVisibles = function(_params) {
   paramsAJAX.data = {
     action: 'setIsVisibles',
     cmds: json_encode(_params.cmds),
-    isVisible : _params.isVisible
+    isVisible: _params.isVisible
   };
   $.ajax(paramsAJAX);
 };
@@ -712,22 +751,22 @@ jeedom.cmd.changeSubType = function(_cmd) {
             el = el.parent();
           }
           if (subtype[i].visible) {
-            if(el.hasClass('bootstrapSwitch')){
+            if (el.hasClass('bootstrapSwitch')) {
               el.parent().parent().show();
               el.parent().parent().removeClass('hide');
             }
-            if( el.attr('type') == 'checkbox'){
+            if (el.attr('type') == 'checkbox') {
               el.parent().show();
               el.parent().removeClass('hide');
             }
             el.show();
             el.removeClass('hide');
           } else {
-            if(el.hasClass('bootstrapSwitch')){
+            if (el.hasClass('bootstrapSwitch')) {
               el.parent().parent().hide();
               el.parent().parent().addClass('hide');
             }
-            if( el.attr('type') == 'checkbox'){
+            if (el.attr('type') == 'checkbox') {
               el.parent().hide();
               el.parent().addClass('hide');
             }
@@ -749,25 +788,25 @@ jeedom.cmd.changeSubType = function(_cmd) {
             if (el.attr('type') == 'checkbox' && el.parent().is('span')) {
               el = el.parent();
             }
-            
+
             if (isset(subtype[i][j].visible)) {
               if (subtype[i][j].visible) {
-                if(el.hasClass('bootstrapSwitch')){
+                if (el.hasClass('bootstrapSwitch')) {
                   el.parent().parent().parent().show();
                   el.parent().parent().parent().removeClass('hide');
                 }
-                if( el.attr('type') == 'checkbox'){
+                if (el.attr('type') == 'checkbox') {
                   el.parent().show();
                   el.parent().removeClass('hide');
                 }
                 el.show();
                 el.removeClass('hide');
               } else {
-                if(el.hasClass('bootstrapSwitch')){
+                if (el.hasClass('bootstrapSwitch')) {
                   el.parent().parent().parent().hide();
                   el.parent().parent().parent().addClass('hide');
                 }
-                if( el.attr('type') == 'checkbox'){
+                if (el.attr('type') == 'checkbox') {
                   el.parent().hide();
                   el.parent().addClass('hide');
                 }
@@ -787,14 +826,14 @@ jeedom.cmd.changeSubType = function(_cmd) {
           }
         }
       }
-      
+
       if (_cmd.find('.cmdAttr[data-l1key=type]').value() == 'action') {
         _cmd.find('.cmdAttr[data-l1key=value]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdId]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=updateCmdToValue]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').hide();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').hide();
-      }else{
+      } else {
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateValue]').show();
         _cmd.find('.cmdAttr[data-l1key=configuration][data-l2key=returnStateTime]').show();
         _cmd.find('.cmdAttr[data-l1key=value]').hide();
@@ -907,7 +946,7 @@ jeedom.cmd.displayActionsOption = function(_params) {
   }
   var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.async =  _params.async || true;
+  paramsAJAX.async = _params.async || true;
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'actionToHtml',
@@ -921,31 +960,31 @@ jeedom.cmd.normalizeName = function(_tagname) {
   var cmdTests = []
   var cmdType = null
   var cmdList = {
-    'on':'on',
-    'off':'off',
-    'monter':'on',
-    'descendre':'off',
-    'ouvrir':'on',
-    'ouvrirStop':'on',
-    'ouvert':'on',
-    'fermer':'off',
-    'activer':'on',
-    'desactiver':'off',
-    'désactiver':'off',
-    'lock':'on',
-    'unlock':'off',
-    'marche':'on',
-    'arret':'off',
-    'arrêt':'off',
-    'stop':'off',
-    'go':'on'
+    'on': 'on',
+    'off': 'off',
+    'monter': 'on',
+    'descendre': 'off',
+    'ouvrir': 'on',
+    'ouvrirStop': 'on',
+    'ouvert': 'on',
+    'fermer': 'off',
+    'activer': 'on',
+    'desactiver': 'off',
+    'désactiver': 'off',
+    'lock': 'on',
+    'unlock': 'off',
+    'marche': 'on',
+    'arret': 'off',
+    'arrêt': 'off',
+    'stop': 'off',
+    'go': 'on'
   }
   var cmdTestsList = [' ', '-', '_']
-  for(var i in cmdTestsList){
+  for (var i in cmdTestsList) {
     cmdTests = cmdTests.concat(cmdName.split(cmdTestsList[i]))
   }
-  for(var j in cmdTests){
-    if(cmdList[cmdTests[j]]){
+  for (var j in cmdTests) {
+    if (cmdList[cmdTests[j]]) {
       return cmdList[cmdTests[j]];
     }
   }
@@ -969,7 +1008,7 @@ jeedom.cmd.setOrder = function(_params) {
     cmds: json_encode(_params.cmds)
   };
   $.ajax(paramsAJAX);
-};
+}
 
 jeedom.cmd.getDeadCmd = function(_params) {
   var paramsRequired = [];
@@ -987,14 +1026,14 @@ jeedom.cmd.getDeadCmd = function(_params) {
     action: 'getDeadCmd'
   };
   $.ajax(paramsAJAX);
-};
+}
 
 /* time widgets */
 jeedom.cmd.formatMomentDuration = function(_duration) {
   //moment.locale(jeedom_langage.substring(0, 2))
   var durationString = ''
   var used = 0
-  
+
   if (_duration._data.years > 0) {
     durationString += _duration._data.years + jeedom.config.locales[jeedom_langage].duration.year
     used++
@@ -1007,29 +1046,29 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
     durationString += _duration._data.days + jeedom.config.locales[jeedom_langage].duration.day
     used++
   }
-  
+
   if (used == 3) return durationString
   if (_duration._data.hours > 0) {
     durationString += _duration._data.hours + jeedom.config.locales[jeedom_langage].duration.hour
     used++
   }
-  
+
   if (used == 3) return durationString
   if (_duration._data.minutes > 0) {
     durationString += _duration._data.minutes + jeedom.config.locales[jeedom_langage].duration.minute
     used++
   }
-  
+
   if (used == 3) return durationString
   if (_duration._data.seconds > 0) {
     durationString += _duration._data.seconds + jeedom.config.locales[jeedom_langage].duration.second
     used++
   }
-  
+
   return durationString
 }
 
-jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
+jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
   if (_type == 'date') {
     moment.locale(jeedom_langage.substring(0, 2))
     if (isset(jeedom.config.locales[jeedom_langage].calendar)) {
@@ -1040,14 +1079,14 @@ jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
     _el.empty().append(dateString)
     return true
   }
-  
+
   if (_el.attr('data-interval') != undefined) {
     clearInterval(_el.attr('data-interval'))
   }
-  
+
   var tsDate = moment(_date).unix() * 1000
-  var now = Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime
-  
+  var now = Date.now() + ((new Date).getTimezoneOffset() + serverTZoffsetMin) * 60000 + clientServerDiffDatetime
+
   var interval = 10000
   //_past more than one second ?
   if (now - tsDate > 1000) {
@@ -1060,16 +1099,16 @@ jeedom.cmd.displayDuration = function(_date, _el, _type='duration') {
     }
     var durationString = jeedom.cmd.formatMomentDuration(duration)
   } else {
-    var durationString = "0"+jeedom.config.locales[jeedom_langage].duration.second
+    var durationString = "0" + jeedom.config.locales[jeedom_langage].duration.second
   }
   _el.empty().append(durationString)
-  
+
   //set refresh interval:
   var myinterval = setInterval(function() {
     var duration = moment.duration(moment() - moment(_date))
     var durationString = jeedom.cmd.formatMomentDuration(duration)
     _el.empty().append(durationString)
   }, interval)
-  
+
   _el.attr('data-interval', myinterval)
 }

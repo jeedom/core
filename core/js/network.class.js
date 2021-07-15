@@ -1,4 +1,3 @@
-
 /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
@@ -15,11 +14,9 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+jeedom.network = function() {};
 
- jeedom.network = function () {
- };
-
- jeedom.network.restartDns = function (_params) {
+jeedom.network.restartDns = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -35,9 +32,9 @@
         action: 'restartDns',
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.network.stopDns = function (_params) {
+jeedom.network.stopDns = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -53,9 +50,9 @@ jeedom.network.stopDns = function (_params) {
         action: 'stopDns',
     };
     $.ajax(paramsAJAX);
-};
+}
 
-jeedom.network.getInterfacesInfo = function (_params) {
+jeedom.network.getInterfacesInfo = function(_params) {
     var paramsRequired = [];
     var paramsSpecifics = {};
     try {
@@ -71,4 +68,4 @@ jeedom.network.getInterfacesInfo = function (_params) {
         action: 'getInterfacesInfo'
     };
     $.ajax(paramsAJAX);
-};
+}

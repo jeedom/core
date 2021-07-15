@@ -1,25 +1,25 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
 var GLOBAL_ACTION_MODE = null
 
 //searching
-$('#in_search').on('keyup',function() {
+$('#in_search').on('keyup', function() {
   try {
     var search = $(this).value()
     var searchID = search
@@ -30,11 +30,11 @@ $('#in_search').on('keyup',function() {
     $('.eqLogic').show()
     $('.cmdSortable').hide()
     if (!search.startsWith('*') && searchID == false) {
-      if( (search == '' || _nbCmd_ <= 1500 && search.length < 3) || (_nbCmd_ > 1500 && search.length < 4) ) {
+      if ((search == '' || _nbCmd_ <= 1500 && search.length < 3) || (_nbCmd_ > 1500 && search.length < 4)) {
         return
       }
     } else {
-      if(search == '*') return
+      if (search == '*') return
       search = search.substr(1)
     }
     search = jeedomUtils.normTextLower(search)
@@ -84,8 +84,7 @@ $('#in_search').on('keyup',function() {
         })
       }
     })
-  }
-  catch(error) {
+  } catch (error) {
     console.error(error)
   }
 })
@@ -94,13 +93,13 @@ $('#bt_resetdisplaySearch').on('click', function() {
 })
 $('#bt_openAll').off('click').on('click', function(event) {
   $(".accordion-toggle[aria-expanded='false']").click()
-  if(event.ctrlKey || event.metaKey) {
+  if (event.ctrlKey || event.metaKey) {
     $('.cmdSortable').show()
   }
 })
 $('#bt_closeAll').off('click').on('click', function(event) {
   $(".accordion-toggle[aria-expanded='true']").click()
-  if(event.ctrlKey || event.metaKey) {
+  if (event.ctrlKey || event.metaKey) {
     $('.cmdSortable').hide()
   }
 })
@@ -117,7 +116,10 @@ $('#accordionObject').sortable({
     jeedom.object.setOrder({
       objects: objects,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       }
     })
   }
@@ -126,7 +128,7 @@ $('#accordionObject').sortable({
 $('.eqLogicSortable').sortable({
   cursor: "move",
   connectWith: ".eqLogicSortable",
-  start:function(event, info) {
+  start: function(event, info) {
     //get checked eqlogics in this object:
     $(this).closest('ul.eqLogicSortable').find('.ui-sortable-handle').each(function() {
       if ($(this).find('.cb_selEqLogic').prop('checked') == true) {
@@ -140,7 +142,7 @@ $('.eqLogicSortable').sortable({
       ui.item.find('li.eqLogic').each(function(index) {
         ui.item.after($(this))
       })
-    } catch(error) {
+    } catch (error) {
       console.log('eqLogic sorting error:' + error)
     }
     //set object order:
@@ -160,8 +162,11 @@ $('.eqLogicSortable').sortable({
     jeedom.eqLogic.setOrder({
       eqLogics: eqLogics,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
-        $( ".eqLogicSortable" ).sortable( "cancel" )
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+        $(".eqLogicSortable").sortable("cancel")
       }
     })
     $(event.originalEvent.target).click()
@@ -185,40 +190,51 @@ $('.cmdSortable').sortable({
     jeedom.cmd.setOrder({
       cmds: cmds,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       }
     })
   }
 }).disableSelection()
 
 //Modals:
-$('.configureObject').off('click').on('click',function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'objet}}"}).load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
+$('.configureObject').off('click').on('click', function() {
+  $('#md_modal').dialog({
+    title: "{{Configuration de l'objet}}"
+  }).load('index.php?v=d&modal=object.configure&object_id=' + $(this).closest('.panel-heading').attr('data-id')).dialog('open')
 })
 
-$('.configureEqLogic').off('click').on('click',function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
+$('.configureEqLogic').off('click').on('click', function() {
+  $('#md_modal').dialog({
+    title: "{{Configuration de l'équipement}}"
+  }).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-id')).dialog('open')
 })
 
-$('.configureCmd').off('click').on('click',function() {
-  $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open')
+$('.configureCmd').off('click').on('click', function() {
+  $('#md_modal').dialog({
+    title: "{{Configuration de la commande}}"
+  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.cmd').attr('data-id')).dialog('open')
 })
 
-$('.cmd').off('dblclick').on('dblclick',function() {
+$('.cmd').off('dblclick').on('dblclick', function() {
   if ($(this).find('.configureCmd').length) {
-    $('#md_modal').dialog({title: "{{Configuration de la commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
+    $('#md_modal').dialog({
+      title: "{{Configuration de la commande}}"
+    }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-id')).dialog('open')
   }
 })
 
 //events:
-$('.bt_exportcsv').on('click',function() {
+$('.bt_exportcsv').on('click', function() {
   var fullFile = ''
   var eqLogic, eqParent, cmd
   $('.eqLogic').each(function() {
     eqLogic = $(this)
     eqParent = eqLogic.parents('.panel.panel-default').first()
     eqParent = eqParent.find('a.accordion-toggle').text()
-    fullFile += eqParent + ','  + eqLogic.attr('data-id') + ',' + eqLogic.attr('data-name') + ',' + eqLogic.attr('data-type') + "\n"
+    fullFile += eqParent + ',' + eqLogic.attr('data-id') + ',' + eqLogic.attr('data-name') + ',' + eqLogic.attr('data-type') + "\n"
     eqLogic.find('.cmd').each(function() {
       cmd = $(this)
       fullFile += "\t\t" + cmd.attr('data-id') + ',' + cmd.attr('data-name') + "\n"
@@ -228,7 +244,7 @@ $('.bt_exportcsv').on('click',function() {
 })
 
 
-$('.objectSelectEqlogics').on('click',function() {
+$('.objectSelectEqlogics').on('click', function() {
   var object = $(this).closest('.objectSortable')
   if (object.find('.accordion-toggle').attr('aria-expanded') == 'false') object.find('.accordion-toggle').click()
 
@@ -242,7 +258,7 @@ $('.objectSelectEqlogics').on('click',function() {
   })
   setEqActions()
 })
-$('.objectUnselectEqlogics').on('click',function() {
+$('.objectUnselectEqlogics').on('click', function() {
   var object = $(this).closest('.objectSortable')
   $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
     $(this).prop('checked', false)
@@ -250,7 +266,7 @@ $('.objectUnselectEqlogics').on('click',function() {
   setEqActions()
 })
 
-$('.eqLogicSortable > li.eqLogic').on('click',function(event) {
+$('.eqLogicSortable > li.eqLogic').on('click', function(event) {
   if (event.target.tagName.toUpperCase() == 'I') return
   //checkbox clicked:
   if (event.target.tagName.toUpperCase() == 'INPUT') return
@@ -272,7 +288,7 @@ $('.eqLogicSortable > li.eqLogic').on('click',function(event) {
   }
 })
 
-$('#cb_actifDisplay').on('change',function() {
+$('#cb_actifDisplay').on('change', function() {
   if ($(this).value() == 1) {
     $('.eqLogic[data-enable=0]').show()
   } else {
@@ -280,7 +296,7 @@ $('#cb_actifDisplay').on('change',function() {
   }
 })
 
-$('[aria-controls="historytab"]').on('click',function() {
+$('[aria-controls="historytab"]').on('click', function() {
   $('.eqActions').hide()
   setRemoveHistoryTable()
 })
@@ -291,16 +307,20 @@ function setRemoveHistoryTable() {
   $tableRemoveHistory[0].config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
   $tableRemoveHistory.trigger('applyWidgets')
     .trigger('resizableReset')
-    .trigger('sorton', [[[0,1]]])
+    .trigger('sorton', [
+      [
+        [0, 1]
+      ]
+    ])
   $tableRemoveHistory.trigger("update")
 }
 
-$('[aria-controls="displaytab"]').on('click',function() {
+$('[aria-controls="displaytab"]').on('click', function() {
   $('#display').show()
-  if(GLOBAL_ACTION_MODE) $('.eqActions').show()
+  if (GLOBAL_ACTION_MODE) $('.eqActions').show()
 })
 
-$('.cb_selEqLogic').on('change',function() {
+$('.cb_selEqLogic').on('change', function() {
   setEqActions()
 })
 
@@ -329,7 +349,7 @@ function setEqActions() {
   }
 }
 
-$('.cb_selCmd').on('change',function() {
+$('.cb_selCmd').on('change', function() {
   var found = false
   $('.cb_selCmd').each(function() {
     if ($(this).value() == 1) {
@@ -350,7 +370,7 @@ $('.cb_selCmd').on('change',function() {
   }
 })
 
-$('#bt_removeEqlogic').on('click',function() {
+$('#bt_removeEqlogic').on('click', function() {
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function(result) {
     if (result) {
       var eqLogics = []
@@ -362,9 +382,12 @@ $('#bt_removeEqlogic').on('click',function() {
       jeedom.eqLogic.removes({
         eqLogics: eqLogics,
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $('#div_alert').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
-        success : function() {
+        success: function() {
           jeedomUtils.loadPage('index.php?v=d&p=display')
         }
       })
@@ -372,7 +395,7 @@ $('#bt_removeEqlogic').on('click',function() {
   })
 })
 
-$('.bt_setIsVisible').on('click',function() {
+$('.bt_setIsVisible').on('click', function() {
   if (GLOBAL_ACTION_MODE == 'eqLogic') {
     var eqLogics = []
     $('.cb_selEqLogic').each(function() {
@@ -382,11 +405,14 @@ $('.bt_setIsVisible').on('click',function() {
     })
     jeedom.eqLogic.setIsVisibles({
       eqLogics: eqLogics,
-      isVisible : $(this).attr('data-value'),
+      isVisible: $(this).attr('data-value'),
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
-      success : function() {
+      success: function() {
         jeedomUtils.loadPage('index.php?v=d&p=display')
       }
     })
@@ -394,56 +420,69 @@ $('.bt_setIsVisible').on('click',function() {
 
   if (GLOBAL_ACTION_MODE == 'cmd') {
     var cmds = []
-    $ ('.cb_selCmd').each(function() {
+    $('.cb_selCmd').each(function() {
       if ($(this).value() == 1) {
         cmds.push($(this).closest('.cmd').attr('data-id'))
       }
     })
     jeedom.cmd.setIsVisibles({
       cmds: cmds,
-      isVisible : $(this).attr('data-value'),
+      isVisible: $(this).attr('data-value'),
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
       },
-      success : function() {
+      success: function() {
         jeedomUtils.loadPage('index.php?v=d&p=display')
       }
     })
   }
 })
 
-$('.bt_setIsEnable').on('click',function() {
+$('.bt_setIsEnable').on('click', function() {
   var eqLogics = []
   $('.cb_selEqLogic').each(function() {
-    if($(this).value() == 1){
+    if ($(this).value() == 1) {
       eqLogics.push($(this).closest('.eqLogic').attr('data-id'))
     }
   })
   jeedom.eqLogic.setIsEnables({
     eqLogics: eqLogics,
-    isEnable : $(this).attr('data-value'),
+    isEnable: $(this).attr('data-value'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
-    success : function() {
+    success: function() {
       jeedomUtils.loadPage('index.php?v=d&p=display')
     }
   })
 })
 
-$('#bt_removeHistory').on('click',function() {
-  $('#md_modal').dialog({title: "{{Historique des suppressions}}"}).load('index.php?v=d&modal=remove.history').dialog('open')
+$('#bt_removeHistory').on('click', function() {
+  $('#md_modal').dialog({
+    title: "{{Historique des suppressions}}"
+  }).load('index.php?v=d&modal=remove.history').dialog('open')
 })
 
-$('#bt_emptyRemoveHistory').on('click',function() {
+$('#bt_emptyRemoveHistory').on('click', function() {
   jeedom.emptyRemoveHistory({
     error: function(error) {
-      $('#div_alertRemoveHistory').showAlert({message: error.message, level: 'danger'})
+      $('#div_alertRemoveHistory').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       $('#table_removeHistory tbody').empty()
-      $('#div_alertRemoveHistory').showAlert({message: '{{Historique vidé avec succès}}', level: 'success'})
+      $('#div_alertRemoveHistory').showAlert({
+        message: '{{Historique vidé avec succès}}',
+        level: 'success'
+      })
     }
   })
 })
-

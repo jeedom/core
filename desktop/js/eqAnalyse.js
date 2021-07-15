@@ -1,18 +1,18 @@
 /* This file is part of Jeedom.
-*
-* Jeedom is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Jeedom is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
-*/
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 "use strict"
 
@@ -39,7 +39,7 @@ var $tableDeadCmd = $('#table_deadCmd')
 
 $('.alertListContainer').packery({
   itemSelector: ".eqLogic-widget",
-  gutter : 2
+  gutter: 2
 })
 
 $('.alerts, .batteries').on('click', function() {
@@ -47,13 +47,15 @@ $('.alerts, .batteries').on('click', function() {
     jeedomUtils.positionEqLogic()
     $('.alertListContainer').packery({
       itemSelector: ".eqLogic-widget",
-      gutter : 2
+      gutter: 2
     })
   }, 10)
 })
 
 $('.cmdAction[data-action=configure]').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration commande}}"}).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration commande}}"
+  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
 })
 
 //searching
@@ -87,11 +89,15 @@ $('#bt_resetSearch').on('click', function() {
 })
 
 $('.batteryTime').off('click').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration de l'équipement}}"}).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration de l'équipement}}"
+  }).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
 })
 
 $('#bt_massConfigureEqLogic').off('click').on('click', function() {
-  $('#md_modal').dialog({title: "{{Configuration en masse}}"}).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
+  $('#md_modal').dialog({
+    title: "{{Configuration en masse}}"
+  }).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
 })
 
 $(function() {
@@ -121,7 +127,10 @@ function getRemoveCmd(_id) {
 function displayDeadCmd() {
   jeedom.cmd.getDeadCmd({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $('#div_alert').showAlert({
+        message: error.message,
+        level: 'danger'
+      })
     },
     success: function(data) {
       var tr = ''
@@ -140,10 +149,10 @@ function displayDeadCmd() {
           tr += '<td>'
           tr += data[i].cmd[j].who
 
-          removed = getRemoveCmd(data[i].cmd[j].who.replaceAll('#',''))
+          removed = getRemoveCmd(data[i].cmd[j].who.replaceAll('#', ''))
           if (removed) {
-            tr += ' <span class="lebel label-sm label-info">'+removed.name + '</span>'
-            tr += ' {{Supprimée le}} '+removed.date
+            tr += ' <span class="lebel label-sm label-info">' + removed.name + '</span>'
+            tr += ' {{Supprimée le}} ' + removed.date
           }
 
           tr += '</td>'
@@ -159,8 +168,11 @@ function displayDeadCmd() {
       $tableDeadCmd.trigger('update')
         .trigger('applyWidgets')
         .trigger('resizableReset')
-        .trigger('sorton', [[[0,0]]])
+        .trigger('sorton', [
+          [
+            [0, 0]
+          ]
+        ])
     }
   })
 }
-
