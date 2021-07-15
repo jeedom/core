@@ -19,7 +19,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once dirname(__DIR__).'/core/php/console.php';
+require_once dirname(__DIR__) . '/core/php/console.php';
 
 set_time_limit(1800);
 echo "[START UPDATE]\n";
@@ -44,9 +44,9 @@ try {
 	echo "****Update from " . jeedom::version() . " (" . date('Y-m-d H:i:s') . ")****\n";
 	echo "Parameters : " . json_encode($_GET) . "\n";
 	$curentVersion = config::byKey('version');
-	
+
 	/*         * ************************MISE A JOUR********************************** */
-	
+
 	try {
 		echo "Send begin of update event...";
 		jeedom::event('begin_update', true);
@@ -58,7 +58,7 @@ try {
 			echo '***ERROR***' . $e->getMessage();
 		}
 	}
-	
+
 	try {
 		if (init('plugins', 1) == 1 && init('force') != 1) {
 			echo "Check update...";
@@ -159,7 +159,7 @@ try {
 					throw new Exception('Unable to unzip file : ' . $tmp);
 				}
 				echo "OK\n";
-				if(disk_free_space($cibDir) < 10){
+				if (disk_free_space($cibDir) < 10) {
 					throw new Exception('Error no more free space on ' . $cibDir . '. Free space : ' . disk_free_space($cibDir));
 				}
 				echo "[PROGRESS][40]\n";
@@ -169,7 +169,7 @@ try {
 						$cibDir = $cibDir . '/' . $files[0];
 					}
 				}
-				
+
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
 					rmove($cibDir . '/install/update.php', __DIR__ . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));
@@ -215,20 +215,18 @@ try {
 				echo "OK\n";
 				echo "[PROGRESS][52]\n";
 				echo "Remove useless files...\n";
-				foreach (array('3rdparty','desktop','mobile','core','docs','install','script','vendor') as $folder) {
-					echo 'Cleaning '.$folder."\n";
-					shell_exec('find '.__DIR__.'/../'.$folder.'/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
+				foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor') as $folder) {
+					echo 'Cleaning ' . $folder . "\n";
+					shell_exec('find ' . __DIR__ . '/../' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 				}
 				try {
 					$update = update::byLogicalId('jeedom');
-					if(is_object($update)){
+					if (is_object($update) && method_exists($update, 'setUpdateDate')) {
 						$update->setUpdateDate(date('Y-m-d H:i:s'));
 						$update->save();
 					}
 				} catch (\Exception $e) {
-					
 				}
-				
 			} catch (Exception $e) {
 				if (init('force') != 1) {
 					throw $e;
@@ -236,7 +234,7 @@ try {
 					echo '***ERROR***' . $e->getMessage();
 				}
 			}
-		}else{
+		} else {
 			jeedom::stop();
 		}
 		echo "[PROGRESS][55]\n";
@@ -338,7 +336,6 @@ try {
 	}
 	echo "OK\n";
 } catch (Exception $e) {
-	
 }
 
 try {
@@ -346,7 +343,6 @@ try {
 	jeedom::event('end_update');
 	echo "OK\n";
 } catch (Exception $e) {
-	
 }
 echo "Update duration : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END UPDATE SUCCESS]\n";
