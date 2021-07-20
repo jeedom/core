@@ -1,3 +1,11 @@
+### 1.26.1 (2021-05-28)
+
+  * Fixed PHP 8.1 deprecation warning
+
+### 1.26.0 (2020-12-14)
+
+  * Added $dateFormat and $removeUsedContextFields arguments to PsrLogMessageProcessor (backport from 2.x)
+
 ### 1.25.5 (2020-07-23)
 
   * Fixed array access on null in RavenHandler
