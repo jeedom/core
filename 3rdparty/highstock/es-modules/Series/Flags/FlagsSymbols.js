@@ -3,8 +3,7 @@
  *  Imports
  *
  * */
-import H from '../../Core/Globals.js';
-var Renderer = H.Renderer, VMLRenderer = H.VMLRenderer;
+import RendererRegistry from '../../Core/Renderer/RendererRegistry.js';
 import SVGRenderer from '../../Core/Renderer/SVG/SVGRenderer.js';
 var symbols = SVGRenderer.prototype.symbols;
 /* *
@@ -28,8 +27,9 @@ symbols.flag = function (x, y, w, h, options) {
  * @return {void}
  */
 function createPinSymbol(shape) {
-    symbols[shape + 'pin'] = function (x, y, w, h, options) {
-        var anchorX = options && options.anchorX, anchorY = options && options.anchorY, path;
+    symbols[(shape + 'pin')] = function (x, y, w, h, options) {
+        var anchorX = options && options.anchorX, anchorY = options && options.anchorY;
+        var path;
         // For single-letter flags, make sure circular flags are not taller
         // than their width
         if (shape === 'circle' && h > w) {
@@ -76,10 +76,11 @@ createPinSymbol('square');
  * Even VML browsers need this in order to generate shapes in export. Now share
  * them with the VMLRenderer.
  */
-if (Renderer === VMLRenderer) {
-    ['circlepin', 'flag', 'squarepin'].forEach(function (shape) {
-        VMLRenderer.prototype.symbols[shape] = symbols[shape];
-    });
+var Renderer = RendererRegistry.getRendererType();
+if (Renderer !== SVGRenderer) {
+    Renderer.prototype.symbols.circlepin = symbols.circlepin;
+    Renderer.prototype.symbols.flag = symbols.flag;
+    Renderer.prototype.symbols.squarepin = symbols.squarepin;
 }
 /* *
  *

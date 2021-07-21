@@ -17,46 +17,11 @@ import Series from '../Core/Series/Series.js';
 import StackingAxis from '../Core/Axis/StackingAxis.js';
 import U from '../Core/Utilities.js';
 var correctFloat = U.correctFloat, defined = U.defined, destroyObjectProperties = U.destroyObjectProperties, isArray = U.isArray, isNumber = U.isNumber, objectEach = U.objectEach, pick = U.pick;
-/**
- * Stack of data points
+/* *
  *
- * @product highcharts
+ *  Class
  *
- * @interface Highcharts.StackItemObject
- */ /**
-* Alignment settings
-* @name Highcharts.StackItemObject#alignOptions
-* @type {Highcharts.AlignObject}
-*/ /**
-* Related axis
-* @name Highcharts.StackItemObject#axis
-* @type {Highcharts.Axis}
-*/ /**
-* Cumulative value of the stacked data points
-* @name Highcharts.StackItemObject#cumulative
-* @type {number}
-*/ /**
-* True if on the negative side
-* @name Highcharts.StackItemObject#isNegative
-* @type {boolean}
-*/ /**
-* Related SVG element
-* @name Highcharts.StackItemObject#label
-* @type {Highcharts.SVGElement}
-*/ /**
-* Related stack options
-* @name Highcharts.StackItemObject#options
-* @type {Highcharts.YAxisStackLabelsOptions}
-*/ /**
-* Total value of the stacked data points
-* @name Highcharts.StackItemObject#total
-* @type {number}
-*/ /**
-* Shared x value of the stack
-* @name Highcharts.StackItemObject#x
-* @type {number}
-*/
-''; // detached doclets above
+ * */
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * The class for stacks. Each stack, on a specific X value and either negative
@@ -362,8 +327,7 @@ Series.prototype.setStackedPoints = function (stackingParam) {
         key = isNegative ? negKey : stackKey;
         // Create empty object for this stack if it doesn't exist yet
         if (!stacks[key]) {
-            stacks[key] =
-                {};
+            stacks[key] = {};
         }
         // Initialize StackItem for this x
         if (!stacks[key][x]) {
@@ -521,5 +485,50 @@ Series.prototype.getStackIndicator = function (stackIndicator, x, index, key) {
         [index, x, stackIndicator.index].join(',');
     return stackIndicator;
 };
-H.StackItem = StackItem;
+H.StackItem = StackItem; // @todo -> master
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default H.StackItem;
+/**
+ * Stack of data points
+ *
+ * @product highcharts
+ *
+ * @interface Highcharts.StackItemObject
+ */ /**
+* Alignment settings
+* @name Highcharts.StackItemObject#alignOptions
+* @type {Highcharts.AlignObject}
+*/ /**
+* Related axis
+* @name Highcharts.StackItemObject#axis
+* @type {Highcharts.Axis}
+*/ /**
+* Cumulative value of the stacked data points
+* @name Highcharts.StackItemObject#cumulative
+* @type {number}
+*/ /**
+* True if on the negative side
+* @name Highcharts.StackItemObject#isNegative
+* @type {boolean}
+*/ /**
+* Related SVG element
+* @name Highcharts.StackItemObject#label
+* @type {Highcharts.SVGElement}
+*/ /**
+* Related stack options
+* @name Highcharts.StackItemObject#options
+* @type {Highcharts.YAxisStackLabelsOptions}
+*/ /**
+* Total value of the stacked data points
+* @name Highcharts.StackItemObject#total
+* @type {number}
+*/ /**
+* Shared x value of the stack
+* @name Highcharts.StackItemObject#x
+* @type {number}
+*/
+''; // keeps doclets above in JS file

@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.0 (2021-05-03)
+ Highstock JS v9.1.2 (2021-06-16)
 
  Indicator series type for Highcharts Stock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(f){"object"===typeof module&&module.exports?(f["default"]=f,module.exports=f):"function"===typeof define&&define.amd?define("highcharts/indicators/ichimoku-kinko-hyo",["highcharts","highcharts/modules/stock"],function(h){f(h);f.Highcharts=h;return f}):f("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(f){function h(f,h,p,n){f.hasOwnProperty(h)||(f[h]=n.apply(null,p))}f=f?f._modules:{};h(f,"Stock/Indicators/IKH/IKHIndicator.js",[f["Core/Color/Color.js"],f["Core/Globals.js"],
+'use strict';(function(f){"object"===typeof module&&module.exports?(f["default"]=f,module.exports=f):"function"===typeof define&&define.amd?define("highcharts/indicators/ichimoku-kinko-hyo",["highcharts","highcharts/modules/stock"],function(h){f(h);f.Highcharts=h;return f}):f("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(f){function h(f,h,p,n){f.hasOwnProperty(h)||(f[h]=n.apply(null,p))}f=f?f._modules:{};h(f,"Stock/Indicators/IKH/IKHIndicator.js",[f["Core/Color/Color.js"],f["Core/Globals.js"],
 f["Core/Series/SeriesRegistry.js"],f["Core/Utilities.js"]],function(f,h,p,n){function F(d){return d.reduce(function(b,a){return Math.max(b,a[1])},-Infinity)}function G(d){return d.reduce(function(b,a){return Math.min(b,a[2])},Infinity)}function y(d){return{high:F(d),low:G(d)}}function H(d){var b,a,m,c,q;d.series.forEach(function(d){if(d.xData)for(c=d.xData,q=a=d.xIncrement?1:c.length-1;0<q;q--)if(m=c[q]-c[q-1],"undefined"===typeof b||m<b)b=m});return b}function I(d,b,a,m){if(d&&b&&a&&m){var c=b.plotX-
 d.plotX;b=b.plotY-d.plotY;var q=m.plotX-a.plotX;m=m.plotY-a.plotY;var f=d.plotX-a.plotX,z=d.plotY-a.plotY;a=(-b*f+c*z)/(-q*b+c*m);q=(q*z-m*f)/(-q*b+c*m);if(0<=a&&1>=a&&0<=q&&1>=q)return{plotX:d.plotX+q*c,plotY:d.plotY+q*b}}return!1}function D(d){var b=d.indicator;b.points=d.points;b.nextPoints=d.nextPoints;b.color=d.color;b.options=B(d.options.senkouSpan.styles,d.gap);b.graph=d.graph;b.fillGraph=!0;p.seriesTypes.sma.prototype.drawGraph.call(b)}var J=this&&this.__extends||function(){var d=function(b,
 a){d=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,c){a.__proto__=c}||function(a,c){for(var b in c)c.hasOwnProperty(b)&&(a[b]=c[b])};return d(b,a)};return function(b,a){function m(){this.constructor=b}d(b,a);b.prototype=null===a?Object.create(a):(m.prototype=a.prototype,new m)}}(),v=f.parse,E=p.seriesTypes.sma,K=n.defined;f=n.extend;var L=n.isArray,M=n.isNumber,B=n.merge,N=n.objectEach;h.approximations["ichimoku-averages"]=function(){var d=[],b;[].forEach.call(arguments,function(a,

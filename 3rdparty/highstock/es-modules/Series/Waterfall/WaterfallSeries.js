@@ -21,8 +21,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import Axis from '../../Core/Axis/Axis.js';
 import Chart from '../../Core/Chart/Chart.js';
-import H from '../../Core/Globals.js';
 import palette from '../../Core/Color/Palette.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, LineSeries = _a.line;
@@ -30,7 +30,7 @@ import U from '../../Core/Utilities.js';
 var arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, extend = U.extend, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
 import WaterfallAxis from '../../Core/Axis/WaterfallAxis.js';
 import WaterfallPoint from './WaterfallPoint.js';
-import '../../Core/Options.js';
+import '../../Core/DefaultOptions.js';
 /**
  * Returns true if the key is a direct property of the object.
  * @private
@@ -626,7 +626,7 @@ extend(WaterfallSeries.prototype, {
     pointClass: WaterfallPoint
 });
 SeriesRegistry.registerSeriesType('waterfall', WaterfallSeries);
-WaterfallAxis.compose(H.Axis, Chart);
+WaterfallAxis.compose(Axis, Chart);
 /* *
  *
  * Export

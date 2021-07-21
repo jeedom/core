@@ -27,7 +27,7 @@ import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ScatterSeries = SeriesRegistry.seriesTypes.scatter;
 import U from '../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge;
-import '../../Core/Options.js';
+import '../../Core/DefaultOptions.js';
 import '../Scatter/ScatterSeries.js';
 /* *
  *

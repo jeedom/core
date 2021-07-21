@@ -77,7 +77,7 @@ import palette from '../../Core/Color/Palette.js';
  * @return {string}
  *         Formatted string for the screen reader module.
  */
-var options = {
+var Options = {
     /**
      * Options for configuring accessibility for the chart. Requires the
      * [accessibility module](https://code.highcharts.com/modules/accessibility.js)
@@ -813,4 +813,4 @@ var options = {
         }
     }
 };
-export default options;
+export default Options;

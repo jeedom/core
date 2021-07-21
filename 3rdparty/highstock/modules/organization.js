@@ -1,12 +1,12 @@
 /*
- Highcharts JS v9.1.0 (2021-05-03)
+ Highcharts JS v9.1.2 (2021-06-16)
  Organization chart series type
 
  (c) 2019-2021 Torstein Honsi
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/organization",["highcharts","highcharts/modules/sankey"],function(h){b(h);b.Highcharts=h;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function h(b,n,q,a){b.hasOwnProperty(n)||(b[n]=a.apply(null,q))}b=b?b._modules:{};h(b,"Series/Organization/OrganizationPoint.js",[b["Core/Series/SeriesRegistry.js"]],function(b){var n=
+'use strict';(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/organization",["highcharts","highcharts/modules/sankey"],function(h){b(h);b.Highcharts=h;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function h(b,n,q,a){b.hasOwnProperty(n)||(b[n]=a.apply(null,q))}b=b?b._modules:{};h(b,"Series/Organization/OrganizationPoint.js",[b["Core/Series/SeriesRegistry.js"]],function(b){var n=
 this&&this.__extends||function(){var b=function(a,d){b=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(b,a){b.__proto__=a}||function(b,a){for(var d in a)a.hasOwnProperty(d)&&(b[d]=a[d])};return b(a,d)};return function(a,d){function q(){this.constructor=a}b(a,d);a.prototype=null===d?Object.create(d):(q.prototype=d.prototype,new q)}}();return function(b){function a(){var a=null!==b&&b.apply(this,arguments)||this;a.fromNode=void 0;a.linksFrom=void 0;a.linksTo=void 0;a.options=void 0;
 a.series=void 0;a.toNode=void 0;return a}n(a,b);a.prototype.getSum=function(){return 1};return a}(b.seriesTypes.sankey.prototype.pointClass)});h(b,"Series/Organization/OrganizationSeries.js",[b["Series/Organization/OrganizationPoint.js"],b["Core/Color/Palette.js"],b["Core/Series/SeriesRegistry.js"],b["Core/Utilities.js"]],function(b,n,q,a){var d=this&&this.__extends||function(){var b=function(a,c){b=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(c,b){c.__proto__=b}||function(c,b){for(var e in b)b.hasOwnProperty(e)&&
 (c[e]=b[e])};return b(a,c)};return function(a,c){function e(){this.constructor=a}b(a,c);a.prototype=null===c?Object.create(c):(e.prototype=c.prototype,new e)}}(),h=q.seriesTypes.sankey,t=a.css,u=a.extend,v=a.merge,w=a.pick,x=a.wrap;a=function(b){function a(){var c=null!==b&&b.apply(this,arguments)||this;c.data=void 0;c.options=void 0;c.points=void 0;return c}d(a,b);a.curvedPath=function(c,b){for(var a=[],e=0;e<c.length;e++){var f=c[e][1],g=c[e][2];if("number"===typeof f&&"number"===typeof g)if(0===

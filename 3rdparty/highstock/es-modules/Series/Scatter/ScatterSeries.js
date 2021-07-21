@@ -102,13 +102,11 @@ var ScatterSeries = /** @class */ (function (_super) {
      * @function Highcharts.seriesTypes.scatter#drawGraph
      */
     ScatterSeries.prototype.drawGraph = function () {
-        if (this.options.lineWidth ||
-            // In case we have a graph from before and we update the line
-            // width to 0 (#13816)
-            (this.options.lineWidth === 0 &&
-                this.graph &&
-                this.graph.strokeWidth())) {
+        if (this.options.lineWidth) {
             _super.prototype.drawGraph.call(this);
+        }
+        else if (this.graph) {
+            this.graph = this.graph.destroy();
         }
     };
     /**

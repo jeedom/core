@@ -22,8 +22,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import Chart from './Chart.js';
-import O from '../../Core/Options.js';
-var getOptions = O.getOptions;
+import D from '../DefaultOptions.js';
+var getOptions = D.getOptions;
 import SVGRenderer from '../Renderer/SVG/SVGRenderer.js';
 import U from '../Utilities.js';
 var merge = U.merge, pick = U.pick;
@@ -67,15 +67,13 @@ var MapChart = /** @class */ (function (_super) {
             minPadding: 0,
             maxPadding: 0,
             startOnTick: false
-        }, seriesOptions = userOptions.series, defaultCreditsOptions = getOptions().credits;
+        }, defaultCreditsOptions = getOptions().credits;
         /* For visual testing
         hiddenAxis.gridLineWidth = 1;
         hiddenAxis.gridZIndex = 10;
         hiddenAxis.tickPositions = undefined;
         // */
-        // Don't merge the data
-        userOptions.series = void 0;
-        userOptions = merge({
+        var options = merge({
             chart: {
                 panning: {
                     enabled: true,
@@ -100,8 +98,7 @@ var MapChart = /** @class */ (function (_super) {
                 alignTicks: false
             }
         });
-        userOptions.series = seriesOptions;
-        _super.prototype.init.call(this, userOptions, callback);
+        _super.prototype.init.call(this, options, callback);
     };
     return MapChart;
 }(Chart));

@@ -34,7 +34,11 @@ addEvent(Chart, 'render', function collectAndHide() {
             !yAxis.options.stackLabels.allowOverlap) {
             objectEach(yAxis.stacking.stacks, function (stack) {
                 objectEach(stack, function (stackItem) {
-                    labels.push(stackItem.label);
+                    if (stackItem.label &&
+                        stackItem.label.visibility !== 'hidden' // #15607
+                    ) {
+                        labels.push(stackItem.label);
+                    }
                 });
             });
         }
@@ -199,7 +203,6 @@ function hideOrShow(label, chart) {
                     if (!chart.styledMode) {
                         label.css({ pointerEvents: newOpacity ? 'auto' : 'none' });
                     }
-                    label.visibility = newOpacity ? 'inherit' : 'hidden';
                 };
                 isLabelAffected = true;
                 // Animate or set the opacity

@@ -12,8 +12,8 @@
 'use strict';
 import Chart from '../../Core/Chart/Chart.js';
 import H from '../../Core/Globals.js';
-import O from '../../Core/Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../../Core/DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import Point from '../../Core/Series/Point.js';
 import Series from '../../Core/Series/Series.js';
 import U from '../../Core/Utilities.js';

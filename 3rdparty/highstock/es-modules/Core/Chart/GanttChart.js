@@ -9,6 +9,7 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -23,11 +24,16 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 import Chart from './Chart.js';
-import O from '../../Core/Options.js';
-var getOptions = O.getOptions;
+import D from '../DefaultOptions.js';
+var getOptions = D.getOptions;
 import U from '../Utilities.js';
 var isArray = U.isArray, merge = U.merge, splat = U.splat;
 import '../../Series/Gantt/GanttSeries.js';
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * Gantt-optimized chart. Use {@link Highcharts.Chart|Chart} for common charts.
  *
@@ -61,45 +67,11 @@ var GanttChart = /** @class */ (function (_super) {
      * @fires Highcharts.GanttChart#event:afterInit
      */
     GanttChart.prototype.init = function (userOptions, callback) {
-        var seriesOptions = userOptions.series, defaultOptions = getOptions(), defaultLinkedTo;
-        // If user hasn't defined axes as array, make it into an array and add a
-        // second axis by default.
-        if (!isArray(userOptions.xAxis)) {
-            userOptions.xAxis = [userOptions.xAxis || {}, {}];
-        }
-        // apply X axis options to both single and multi x axes
-        userOptions.xAxis = userOptions.xAxis.map(function (xAxisOptions, i) {
-            if (i === 1) { // Second xAxis
-                defaultLinkedTo = 0;
-            }
-            return merge(defaultOptions.xAxis, {
-                grid: {
-                    enabled: true
-                },
-                opposite: true,
-                linkedTo: defaultLinkedTo
-            }, xAxisOptions, // user options
-            {
-                type: 'datetime'
-            });
-        });
-        // apply Y axis options to both single and multi y axes
-        userOptions.yAxis = (splat(userOptions.yAxis || {})).map(function (yAxisOptions) {
-            return merge(defaultOptions.yAxis, // #3802
-            {
-                grid: {
-                    enabled: true
-                },
-                staticScale: 50,
-                reversed: true,
-                // Set default type treegrid, but only if 'categories' is
-                // undefined
-                type: yAxisOptions.categories ? yAxisOptions.type : 'treegrid'
-            }, yAxisOptions // user options
-            );
-        });
-        delete userOptions.series;
-        userOptions = merge(true, {
+        var defaultOptions = getOptions(), xAxisOptions = userOptions.xAxis, yAxisOptions = userOptions.yAxis;
+        var defaultLinkedTo;
+        // Avoid doing these twice
+        userOptions.xAxis = userOptions.yAxis = void 0;
+        var options = merge(true, {
             chart: {
                 type: 'gantt'
             },
@@ -121,8 +93,44 @@ var GanttChart = /** @class */ (function (_super) {
         {
             isGantt: true
         });
-        userOptions.series = seriesOptions;
-        _super.prototype.init.call(this, userOptions, callback);
+        userOptions.xAxis = xAxisOptions;
+        userOptions.yAxis = yAxisOptions;
+        // apply X axis options to both single and multi x axes
+        // If user hasn't defined axes as array, make it into an array and add a
+        // second axis by default.
+        options.xAxis = (!isArray(userOptions.xAxis) ?
+            [userOptions.xAxis || {}, {}] :
+            userOptions.xAxis).map(function (xAxisOptions, i) {
+            if (i === 1) { // Second xAxis
+                defaultLinkedTo = 0;
+            }
+            return merge(defaultOptions.xAxis, {
+                grid: {
+                    enabled: true
+                },
+                opposite: true,
+                linkedTo: defaultLinkedTo
+            }, xAxisOptions, // user options
+            {
+                type: 'datetime'
+            });
+        });
+        // apply Y axis options to both single and multi y axes
+        options.yAxis = (splat(userOptions.yAxis || {})).map(function (yAxisOptions) {
+            return merge(defaultOptions.yAxis, // #3802
+            {
+                grid: {
+                    enabled: true
+                },
+                staticScale: 50,
+                reversed: true,
+                // Set default type treegrid, but only if 'categories' is
+                // undefined
+                type: yAxisOptions.categories ? yAxisOptions.type : 'treegrid'
+            }, yAxisOptions // user options
+            );
+        });
+        _super.prototype.init.call(this, options, callback);
     };
     return GanttChart;
 }(Chart));

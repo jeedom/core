@@ -31,10 +31,10 @@ import palette from '../../Core/Color/Palette.js';
 import PiePoint from './PiePoint.js';
 import Series from '../../Core/Series/Series.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
-import SVGRenderer from '../../Core/Renderer/SVG/SVGRenderer.js';
+import Symbols from '../../Core/Renderer/SVG/Symbols.js';
 import U from '../../Core/Utilities.js';
 var clamp = U.clamp, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength;
-import '../../Core/Options.js';
+import '../../Core/DefaultOptions.js';
 /* *
  *
  *  Class
@@ -124,7 +124,7 @@ var PieSeries = /** @class */ (function (_super) {
                     .add(this.group);
             }
             this.graph.attr({
-                d: SVGRenderer.prototype.symbols.arc(centerX, centerY, this.center[2] / 2, 0, {
+                d: Symbols.arc(centerX, centerY, this.center[2] / 2, 0, {
                     start: start,
                     end: end,
                     innerR: this.center[3] / 2

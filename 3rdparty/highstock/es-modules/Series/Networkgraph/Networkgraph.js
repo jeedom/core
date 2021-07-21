@@ -31,7 +31,7 @@ import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var seriesTypes = SeriesRegistry.seriesTypes;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, css = U.css, defined = U.defined, extend = U.extend, merge = U.merge, pick = U.pick;
-import '../../Core/Options.js';
+import '../../Core/DefaultOptions.js';
 import './Layouts.js';
 import './DraggableNodes.js';
 var dragNodesMixin = H.dragNodesMixin;

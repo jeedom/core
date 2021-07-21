@@ -21,12 +21,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/* *
+ *
+ *  Imports
+ *
+ * */
+import '../Column/ColumnSeries.js';
 import BulletPoint from './BulletPoint.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ColumnSeries = SeriesRegistry.seriesTypes.column;
 import U from '../../Core/Utilities.js';
 var extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength;
-import '../Column/ColumnSeries.js';
 /* *
  *
  *  Class
@@ -80,7 +85,8 @@ var BulletSeries = /** @class */ (function (_super) {
         var series = this, chart = series.chart, options = series.options, animationLimit = options.animationLimit || 250;
         _super.prototype.drawPoints.apply(this, arguments);
         series.points.forEach(function (point) {
-            var pointOptions = point.options, targetGraphic = point.targetGraphic, targetShapeArgs, targetVal = point.target, pointVal = point.y, width, height, targetOptions, y;
+            var pointOptions = point.options, targetVal = point.target, pointVal = point.y;
+            var targetShapeArgs, targetGraphic = point.targetGraphic, width, height, targetOptions, y;
             if (isNumber(targetVal) && targetVal !== null) {
                 targetOptions = merge(options.targetOptions, pointOptions.targetOptions);
                 height = targetOptions.height;
@@ -134,7 +140,8 @@ var BulletSeries = /** @class */ (function (_super) {
                             options: {}
                         }).color || series.color)) || void 0, point.color, series.color),
                         stroke: pick(targetOptions.borderColor, point.borderColor, series.options.borderColor),
-                        'stroke-width': targetOptions.borderWidth
+                        'stroke-width': targetOptions.borderWidth,
+                        r: targetOptions.borderRadius
                     });
                 }
                 // Add tooltip reference
@@ -157,8 +164,8 @@ var BulletSeries = /** @class */ (function (_super) {
      * @function Highcharts.Series#getExtremes
      */
     BulletSeries.prototype.getExtremes = function (yData) {
-        var series = this, targetData = series.targetData, yMax, yMin;
-        var dataExtremes = _super.prototype.getExtremes.call(this, yData);
+        var dataExtremes = _super.prototype.getExtremes.call(this, yData), series = this, targetData = series.targetData;
+        var yMax, yMin;
         if (targetData && targetData.length) {
             var targetExtremes = _super.prototype.getExtremes.call(this, targetData);
             if (isNumber(targetExtremes.dataMin)) {
@@ -241,7 +248,11 @@ var BulletSeries = /** @class */ (function (_super) {
              *
              * @since   6.0.0
              */
-            borderWidth: 0
+            borderWidth: 0,
+            /**
+             * The border radius of the rectangle representing the target.
+             */
+            borderRadius: 0
         },
         tooltip: {
             pointFormat: '<span style="color:{series.color}">\u25CF</span>' +

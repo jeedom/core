@@ -10,12 +10,13 @@
  *
  * */
 'use strict';
+import Chart from '../Core/Chart/Chart.js';
 import ChartUtilities from './Utils/ChartUtilities.js';
 import H from '../Core/Globals.js';
 var doc = H.doc;
 import KeyboardNavigationHandler from './KeyboardNavigationHandler.js';
-import O from '../Core/Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../Core/DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import Point from '../Core/Series/Point.js';
 import Series from '../Core/Series/Series.js';
 import U from '../Core/Utilities.js';
@@ -192,7 +193,7 @@ Accessibility.prototype = {
 /**
  * @private
  */
-H.Chart.prototype.updateA11yEnabled = function () {
+Chart.prototype.updateA11yEnabled = function () {
     var a11y = this.accessibility, accessibilityOptions = this.options.accessibility;
     if (accessibilityOptions && accessibilityOptions.enabled) {
         if (a11y) {
@@ -215,7 +216,7 @@ H.Chart.prototype.updateA11yEnabled = function () {
     }
 };
 // Handle updates to the module and send render updates to components
-addEvent(H.Chart, 'render', function (e) {
+addEvent(Chart, 'render', function (e) {
     // Update/destroy
     if (this.a11yDirty && this.renderTo) {
         delete this.a11yDirty;
@@ -229,7 +230,7 @@ addEvent(H.Chart, 'render', function (e) {
     }
 });
 // Update with chart/series/point updates
-addEvent(H.Chart, 'update', function (e) {
+addEvent(Chart, 'update', function (e) {
     // Merge new options
     var newOptions = e.options.accessibility;
     if (newOptions) {
@@ -256,7 +257,7 @@ addEvent(Point, 'update', function () {
     }
 });
 ['addSeries', 'init'].forEach(function (event) {
-    addEvent(H.Chart, event, function () {
+    addEvent(Chart, event, function () {
         this.a11yDirty = true;
     });
 });
@@ -271,14 +272,14 @@ addEvent(Point, 'update', function () {
 [
     'afterDrilldown', 'drillupall'
 ].forEach(function (event) {
-    addEvent(H.Chart, event, function () {
+    addEvent(Chart, event, function () {
         if (this.accessibility) {
             this.accessibility.update();
         }
     });
 });
 // Destroy with chart
-addEvent(H.Chart, 'destroy', function () {
+addEvent(Chart, 'destroy', function () {
     if (this.accessibility) {
         this.accessibility.destroy();
     }

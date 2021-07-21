@@ -1214,7 +1214,8 @@ var Data = /** @class */ (function () {
              * @private
              */
             function request(url, done, tp) {
-                if (!url || url.indexOf('http') !== 0) {
+                if (!url ||
+                    !/^(http|\/|\.\/|\.\.\/)/.test(url)) {
                     if (url && options.error) {
                         options.error('Invalid URL');
                     }

@@ -25,8 +25,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import H from '../../Core/Globals.js';
 import ItemPoint from './ItemPoint.js';
-import O from '../../Core/Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../../Core/DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var PieSeries = SeriesRegistry.seriesTypes.pie;
 import U from '../../Core/Utilities.js';

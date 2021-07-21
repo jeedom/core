@@ -169,5 +169,15 @@ CrookedLine.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions
         }
     }
 });
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.crookedLine = CrookedLine;
+/* *
+ *
+ *  Export Default
+ *
+ * */
 export default CrookedLine;

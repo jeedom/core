@@ -27,9 +27,9 @@ import Axis from '../Axis/Axis.js';
 import Chart from '../Chart/Chart.js';
 import F from '../../Core/FormatUtilities.js';
 var format = F.format;
-import O from '../../Core/Options.js';
-var getOptions = O.getOptions;
-import palette from '../../Core/Color/Palette.js';
+import D from '../DefaultOptions.js';
+var getOptions = D.getOptions;
+import Palette from '../../Core/Color/Palette.js';
 import Point from '../Series/Point.js';
 var pointTooltipFormatter = Point.prototype.tooltipFormatter;
 import Series from '../Series/Series.js';
@@ -47,6 +47,11 @@ import '../Scrollbar.js';
 // Has a dependency on RangeSelector due to the use of
 // defaultOptions.rangeSelector
 import '../../Extensions/RangeSelector.js';
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * Stock-optimized chart. Use {@link Highcharts.Chart|Chart} for common charts.
  *
@@ -99,7 +104,7 @@ var StockChart = /** @class */ (function (_super) {
             },
             scrollbar: {
                 // #4988 - check if setOptions was called
-                enabled: pick(defaultOptions.scrollbar.enabled, true)
+                enabled: pick(defaultOptions.scrollbar && defaultOptions.scrollbar.enabled, true)
             },
             rangeSelector: {
                 // #4988 - check if setOptions was called
@@ -511,8 +516,9 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
     if (!crossLabel) {
         crossLabel = this.crossLabel = chart.renderer
             .label('', 0, void 0, options.shape || 'callout')
-            .addClass('highcharts-crosshair-label' + (this.series[0] &&
-            ' highcharts-color-' + this.series[0].colorIndex))
+            .addClass('highcharts-crosshair-label highcharts-color-' + (point ?
+            point.series.colorIndex :
+            this.series[0] && this.series[0].colorIndex))
             .attr({
             align: options.align || align,
             padding: pick(options.padding, 8),
@@ -526,12 +532,12 @@ addEvent(Axis, 'afterDrawCrosshair', function (event) {
                 .attr({
                 fill: options.backgroundColor ||
                     point && point.series && point.series.color || // #14888
-                    palette.neutralColor60,
+                    Palette.neutralColor60,
                 stroke: options.borderColor || '',
                 'stroke-width': options.borderWidth || 0
             })
                 .css(extend({
-                color: palette.backgroundColor,
+                color: Palette.backgroundColor,
                 fontWeight: 'normal',
                 fontSize: '11px',
                 textAlign: 'center'
@@ -816,7 +822,7 @@ addEvent(Series, 'render', function () {
         // First render, initial clip box. clipBox also needs to be updated if
         // the series is rendered again before starting animating, in
         // compliance with a responsive rule (#13858).
-        if (!chart.hasRendered || (!this.clipBox && this.isDirty && !this.isDirtyData)) {
+        if (!chart.hasLoaded || (!this.clipBox && this.isDirty && !this.isDirtyData)) {
             this.clipBox = this.clipBox || merge(chart.clipBox);
             this.clipBox.width = this.xAxis.len;
             this.clipBox.height = clipHeight;

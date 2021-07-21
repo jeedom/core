@@ -81,5 +81,15 @@ ElliottWave.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOption
         y: -5
     }
 });
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.elliottWave = ElliottWave;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default ElliottWave;

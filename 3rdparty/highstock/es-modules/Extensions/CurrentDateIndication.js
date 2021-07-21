@@ -11,10 +11,10 @@
  * */
 'use strict';
 import Axis from '../Core/Axis/Axis.js';
-import palette from '../Core/Color/Palette.js';
+import Palette from '../Core/Color/Palette.js';
+import PlotLineOrBand from '../Core/Axis/PlotLineOrBand.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, merge = U.merge, wrap = U.wrap;
-import PlotLineOrBand from '../Core/Axis/PlotLineOrBand.js';
 /**
  * Show an indicator on the axis for the current date and time. Can be a
  * boolean or a configuration object similar to
@@ -34,7 +34,7 @@ import PlotLineOrBand from '../Core/Axis/PlotLineOrBand.js';
  * @apioption xAxis.currentDateIndicator
  */
 var defaultOptions = {
-    color: palette.highlightColor20,
+    color: Palette.highlightColor20,
     width: 2,
     /**
      * @declare Highcharts.AxisCurrentDateIndicatorLabelOptions

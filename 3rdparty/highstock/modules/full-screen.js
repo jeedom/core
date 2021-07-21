@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.0 (2021-05-03)
+ Highstock JS v9.1.2 (2021-06-16)
 
  Advanced Highcharts Stock tools
 
@@ -8,7 +8,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/full-screen",["highcharts"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,g,c,e){a.hasOwnProperty(g)||(a[g]=e.apply(null,c))}a=a?a._modules:{};c(a,"Extensions/FullScreen.js",[a["Core/Chart/Chart.js"],a["Core/Globals.js"],a["Core/Renderer/HTML/AST.js"],a["Core/Utilities.js"]],
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/full-screen",["highcharts"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,g,c,e){a.hasOwnProperty(g)||(a[g]=e.apply(null,c))}a=a?a._modules:{};c(a,"Extensions/FullScreen.js",[a["Core/Chart/Chart.js"],a["Core/Globals.js"],a["Core/Renderer/HTML/AST.js"],a["Core/Utilities.js"]],
 function(a,c,h,e){var f=e.addEvent;e=function(){function a(b){this.chart=b;this.isOpen=!1;b=b.renderTo;this.browserProps||("function"===typeof b.requestFullscreen?this.browserProps={fullscreenChange:"fullscreenchange",requestFullscreen:"requestFullscreen",exitFullscreen:"exitFullscreen"}:b.mozRequestFullScreen?this.browserProps={fullscreenChange:"mozfullscreenchange",requestFullscreen:"mozRequestFullScreen",exitFullscreen:"mozCancelFullScreen"}:b.webkitRequestFullScreen?this.browserProps={fullscreenChange:"webkitfullscreenchange",
 requestFullscreen:"webkitRequestFullScreen",exitFullscreen:"webkitExitFullscreen"}:b.msRequestFullscreen&&(this.browserProps={fullscreenChange:"MSFullscreenChange",requestFullscreen:"msRequestFullscreen",exitFullscreen:"msExitFullscreen"}))}a.prototype.close=function(){var b=this.chart,a=b.options.chart;if(this.isOpen&&this.browserProps&&b.container.ownerDocument instanceof Document)b.container.ownerDocument[this.browserProps.exitFullscreen]();this.unbindFullscreenEvent&&(this.unbindFullscreenEvent=
 this.unbindFullscreenEvent());b.setSize(this.origWidth,this.origHeight,!1);this.origHeight=this.origWidth=void 0;a.width=this.origWidthOption;a.height=this.origHeightOption;this.origHeightOption=this.origWidthOption=void 0;this.isOpen=!1;this.setButtonText()};a.prototype.open=function(){var b=this,a=b.chart,d=a.options.chart;d&&(b.origWidthOption=d.width,b.origHeightOption=d.height);b.origWidth=a.chartWidth;b.origHeight=a.chartHeight;if(b.browserProps){var c=f(a.container.ownerDocument,b.browserProps.fullscreenChange,

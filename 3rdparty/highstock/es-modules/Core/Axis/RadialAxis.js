@@ -9,10 +9,11 @@
  * */
 'use strict';
 import Axis from './Axis.js';
+import AxisDefaults from './AxisDefaults.js';
 import Tick from './Tick.js';
 import HiddenAxis from './HiddenAxis.js';
 import U from '../Utilities.js';
-var addEvent = U.addEvent, correctFloat = U.correctFloat, defined = U.defined, extend = U.extend, fireEvent = U.fireEvent, isNumber = U.isNumber, merge = U.merge, pick = U.pick, pInt = U.pInt, relativeLength = U.relativeLength, wrap = U.wrap;
+var addEvent = U.addEvent, correctFloat = U.correctFloat, defined = U.defined, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength, wrap = U.wrap;
 /**
  * @private
  * @class
@@ -476,6 +477,7 @@ var RadialAxis = /** @class */ (function () {
                 if (axis.isRadial &&
                     axis.tickPositions &&
                     // undocumented option for now, but working
+                    axis.options.labels &&
                     axis.options.labels.allowOverlap !== true) {
                     return axis.tickPositions
                         .map(function (pos) {
@@ -503,10 +505,8 @@ var RadialAxis = /** @class */ (function () {
         /* eslint-disable no-invalid-this */
         // Actions before axis init.
         addEvent(AxisClass, 'init', function (e) {
-            var axis = this;
-            var chart = axis.chart;
-            var inverted = chart.inverted, angular = chart.angular, polar = chart.polar, isX = axis.isXAxis, coll = axis.coll, isHidden = angular && isX, isCircular, chartOptions = chart.options, paneIndex = e.userOptions.pane || 0, pane = this.pane =
-                chart.pane && chart.pane[paneIndex];
+            var axis = this, chart = axis.chart;
+            var inverted = chart.inverted, angular = chart.angular, polar = chart.polar, isX = axis.isXAxis, coll = axis.coll, isHidden = angular && isX, isCircular, chartOptions = chart.options, paneIndex = e.userOptions.pane || 0, pane = axis.pane = chart.pane && chart.pane[paneIndex];
             // Prevent changes for colorAxis
             if (coll === 'colorAxis') {
                 this.isRadial = false;
@@ -532,11 +532,11 @@ var RadialAxis = /** @class */ (function () {
                 axis.defaultPolarOptions = isCircular ?
                     RadialAxis.defaultCircularOptions :
                     merge(coll === 'xAxis' ?
-                        AxisClass.defaultOptions :
-                        AxisClass.defaultYAxisOptions, RadialAxis.defaultRadialOptions);
+                        AxisDefaults.defaultXAxisOptions :
+                        AxisDefaults.defaultYAxisOptions, RadialAxis.defaultRadialOptions);
                 // Apply the stack labels for yAxis in case of inverted chart
                 if (inverted && coll === 'yAxis') {
-                    axis.defaultPolarOptions.stackLabels = AxisClass.defaultYAxisOptions.stackLabels;
+                    axis.defaultPolarOptions.stackLabels = AxisDefaults.defaultYAxisOptions.stackLabels;
                     axis.defaultPolarOptions.reversedStacks = true;
                 }
             }
@@ -613,9 +613,7 @@ var RadialAxis = /** @class */ (function () {
         });
         // Find the center position of the label based on the distance option.
         addEvent(TickClass, 'afterGetLabelPosition', function (e) {
-            var tick = this;
-            var axis = tick.axis;
-            var label = tick.label;
+            var tick = this, axis = tick.axis, label = tick.label;
             if (!label) {
                 return;
             }

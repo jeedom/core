@@ -11,6 +11,11 @@
  * */
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent;
+/* *
+ *
+ *  Class
+ *
+ * */
 /* eslint-disable valid-jsdoc */
 var VMLAxis3DAdditions = /** @class */ (function () {
     /* *
@@ -33,8 +38,24 @@ var VMLAxis3D = /** @class */ (function () {
      * */
     VMLAxis3D.compose = function (AxisClass) {
         AxisClass.keepProps.push('vml');
+        addEvent(AxisClass, 'destroy', VMLAxis3D.onDestroy);
         addEvent(AxisClass, 'init', VMLAxis3D.onInit);
         addEvent(AxisClass, 'render', VMLAxis3D.onRender);
+    };
+    /**
+     * @private
+     */
+    VMLAxis3D.onDestroy = function () {
+        var axis = this, vml = axis.vml;
+        if (vml) {
+            var el_1;
+            ['backFrame', 'bottomFrame', 'sideFrame'].forEach(function (prop) {
+                el_1 = vml[prop];
+                if (el_1) {
+                    vml[prop] = el_1.destroy();
+                }
+            }, this);
+        }
     };
     /**
      * @private

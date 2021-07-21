@@ -23,12 +23,16 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import Axis from '../../Core/Axis/Axis.js';
+import Chart from '../../Core/Chart/Chart.js';
 import GanttPoint from './GanttPoint.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, XRangeSeries = SeriesRegistry.seriesTypes.xrange;
+import Tick from '../../Core/Axis/Tick.js';
 import U from '../../Core/Utilities.js';
 var extend = U.extend, isNumber = U.isNumber, merge = U.merge, splat = U.splat;
-import '../../Core/Axis/TreeGridAxis.js';
+import TreeGridAxis from '../../Core/Axis/TreeGridAxis.js';
+TreeGridAxis.compose(Axis, Chart, Series, Tick);
 import '../../Extensions/CurrentDateIndication.js';
 import '../../Extensions/StaticScale.js';
 import '../../Gantt/Pathfinder.js';

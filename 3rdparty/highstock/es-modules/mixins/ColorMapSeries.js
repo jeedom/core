@@ -67,7 +67,9 @@ var colorMapSeriesMixin = {
      */
     colorAttribs: function (point) {
         var ret = {};
-        if (defined(point.color)) {
+        if (defined(point.color) &&
+            (!point.state || point.state === 'normal') // #15746
+        ) {
             ret[this.colorProp || 'fill'] = point.color;
         }
         return ret;

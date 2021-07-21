@@ -1,12 +1,12 @@
 /*
- Highcharts JS v9.1.0 (2021-05-03)
+ Highcharts JS v9.1.2 (2021-06-16)
 
  (c) 2017-2021 Highsoft AS
  Authors: Jon Arild Nygard
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/venn",["highcharts"],function(p){a(p);a.Highcharts=p;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function p(a,g,b,m){a.hasOwnProperty(g)||(a[g]=m.apply(null,b))}a=a?a._modules:{};p(a,"Mixins/Geometry.js",[],function(){return{getAngleBetweenPoints:function(a,g){return Math.atan2(g.x-a.x,g.y-a.y)},getCenterOfPoints:function(a){var g=
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/venn",["highcharts"],function(p){a(p);a.Highcharts=p;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function p(a,g,b,m){a.hasOwnProperty(g)||(a[g]=m.apply(null,b))}a=a?a._modules:{};p(a,"Mixins/Geometry.js",[],function(){return{getAngleBetweenPoints:function(a,g){return Math.atan2(g.x-a.x,g.y-a.y)},getCenterOfPoints:function(a){var g=
 a.reduce(function(b,a){b.x+=a.x;b.y+=a.y;return b},{x:0,y:0});return{x:g.x/a.length,y:g.y/a.length}},getDistanceBetweenPoints:function(a,g){return Math.sqrt(Math.pow(g.x-a.x,2)+Math.pow(g.y-a.y,2))}}});p(a,"Mixins/GeometryCircles.js",[a["Mixins/Geometry.js"]],function(a){function g(d,c){c=Math.pow(10,c);return Math.round(d*c)/c}function b(d){if(0>=d)throw Error("radius of circle must be a positive number.");return Math.PI*d*d}function m(d,c){return d*d*Math.acos(1-c/d)-(d-c)*Math.sqrt(c*(2*d-c))}
 function q(d,c){var a=t(d,c),b=d.r,h=c.r,n=[];if(a<b+h&&a>Math.abs(b-h)){b*=b;var e=(b-h*h+a*a)/(2*a);h=Math.sqrt(b-e*e);b=d.x;n=c.x;d=d.y;var k=c.y;c=b+e*(n-b)/a;e=d+e*(k-d)/a;d=h/a*-(k-d);a=h/a*-(n-b);n=[{x:g(c+d,14),y:g(e-a,14)},{x:g(c-d,14),y:g(e+a,14)}]}return n}function l(a){return a.reduce(function(c,a,b,d){d=d.slice(b+1).reduce(function(c,d,h){var g=[b,h+b+1];return c.concat(q(a,d).map(function(c){c.indexes=g;return c}))},[]);return c.concat(d)},[])}function k(a,c){return t(a,c)<=c.r+1e-10}
 function v(a,c){return!c.some(function(c){return!k(a,c)})}function e(a){return l(a).filter(function(c){return v(c,a)})}var h=a.getAngleBetweenPoints,u=a.getCenterOfPoints,t=a.getDistanceBetweenPoints;return{getAreaOfCircle:b,getAreaOfIntersectionBetweenCircles:function(a){var c=e(a);if(1<c.length){var b=u(c);c=c.map(function(c){c.angle=h(b,c);return c}).sort(function(c,a){return a.angle-c.angle});var d=c[c.length-1];c=c.reduce(function(c,b){var d=c.startPoint,g=u([d,b]),e=b.indexes.filter(function(c){return-1<

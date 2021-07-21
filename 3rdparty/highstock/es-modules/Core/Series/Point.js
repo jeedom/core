@@ -14,8 +14,8 @@ var animObject = A.animObject;
 import F from '../FormatUtilities.js';
 var format = F.format;
 import H from '../Globals.js';
-import O from '../Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import U from '../Utilities.js';
 var addEvent = U.addEvent, defined = U.defined, erase = U.erase, extend = U.extend, fireEvent = U.fireEvent, getNestedProperty = U.getNestedProperty, isArray = U.isArray, isFunction = U.isFunction, isNumber = U.isNumber, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pick = U.pick, syncTimeout = U.syncTimeout, removeEvent = U.removeEvent, uniqueKey = U.uniqueKey;
 /**

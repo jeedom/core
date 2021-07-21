@@ -40,7 +40,7 @@ var Globals;
      *  Constants
      *
      * */
-    Globals.SVG_NS = 'http://www.w3.org/2000/svg', Globals.product = 'Highcharts', Globals.version = '9.1.0', Globals.win = w, Globals.doc = Globals.win.document, Globals.svg = (Globals.doc &&
+    Globals.SVG_NS = 'http://www.w3.org/2000/svg', Globals.product = 'Highcharts', Globals.version = '9.1.2', Globals.win = w, Globals.doc = Globals.win.document, Globals.svg = (Globals.doc &&
         Globals.doc.createElementNS &&
         !!Globals.doc.createElementNS(Globals.SVG_NS, 'svg').createSVGRect), Globals.userAgent = (Globals.win.navigator && Globals.win.navigator.userAgent) || '', Globals.isChrome = Globals.userAgent.indexOf('Chrome') !== -1, Globals.isFirefox = Globals.userAgent.indexOf('Firefox') !== -1, Globals.isMS = /(edge|msie|trident)/i.test(Globals.userAgent) && !Globals.win.opera, Globals.isSafari = !Globals.isChrome && Globals.userAgent.indexOf('Safari') !== -1, Globals.isTouchDevice = /(Mobile|Android|Windows Phone)/.test(Globals.userAgent), Globals.isWebKit = Globals.userAgent.indexOf('AppleWebKit') !== -1, Globals.deg2rad = Math.PI * 2 / 360, Globals.hasBidiBug = (Globals.isFirefox &&
         parseInt(Globals.userAgent.split('Firefox/')[1], 10) < 4 // issue #38
@@ -100,6 +100,12 @@ var Globals;
      * @private
      */
     Globals.symbolSizes = {};
+    /* *
+     *
+     *  Properties
+     *
+     * */
+    Globals.chartCount = 0;
 })(Globals || (Globals = {}));
 /* *
  *

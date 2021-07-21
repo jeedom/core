@@ -34,7 +34,7 @@ var addEvent = U.addEvent, pick = U.pick, wrap = U.wrap;
  * @return {Highcharts.Stack3DDictionary}
  */
 function retrieveStacks(chart, stacking) {
-    var series = chart.series, stacks = {};
+    var series = chart.series, stacks = { totalStacks: 0 };
     var stackNumber, i = 1;
     series.forEach(function (s) {
         stackNumber = pick(s.options.stack, (stacking ? 0 : series.length - 1 - s.index)); // #3841, #4532

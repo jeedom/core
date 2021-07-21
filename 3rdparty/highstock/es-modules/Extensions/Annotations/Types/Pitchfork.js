@@ -179,5 +179,15 @@ Pitchfork.prototype.defaultOptions = merge(InfinityLine.prototype.defaultOptions
         }
     }
 });
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.pitchfork = Pitchfork;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default Pitchfork;

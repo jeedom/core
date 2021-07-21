@@ -15,11 +15,16 @@ import Chart from '../Core/Chart/Chart.js';
 import F from '../Core/FormatUtilities.js';
 var format = F.format;
 import H from '../Core/Globals.js';
-import O from '../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 import Series from '../Core/Series/Series.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, defined = U.defined, erase = U.erase, extend = U.extend, merge = U.merge, pick = U.pick, splat = U.splat, wrap = U.wrap;
+/* *
+ *
+ *  Constants
+ *
+ * */
 // Extensions for parallel coordinates plot.
 var ChartProto = Chart.prototype;
 var defaultXAxisOptions = {

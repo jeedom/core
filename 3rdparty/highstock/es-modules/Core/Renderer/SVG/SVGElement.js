@@ -1551,8 +1551,8 @@ var SVGElement = /** @class */ (function () {
     SVGElement.prototype.shadow = function (shadowOptions, group, cutOff) {
         var shadows = [], element = this.element, oldShadowOptions = this.oldShadowOptions, defaultShadowOptions = {
             color: palette.neutralColor100,
-            offsetX: 1,
-            offsetY: 1,
+            offsetX: this.parentInverted ? -1 : 1,
+            offsetY: this.parentInverted ? -1 : 1,
             opacity: 0.15,
             width: 3
         };
@@ -1586,7 +1586,7 @@ var SVGElement = /** @class */ (function () {
         else if (!this.shadows) {
             shadowElementOpacity = options.opacity / options.width;
             transform = this.parentInverted ?
-                'translate(-1,-1)' :
+                "translate(" + options.offsetY + ", " + options.offsetX + ")" :
                 "translate(" + options.offsetX + ", " + options.offsetY + ")";
             for (i = 1; i <= options.width; i++) {
                 shadow = element.cloneNode(false);
@@ -1639,7 +1639,7 @@ var SVGElement = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.SVGElement#strokeSetter
-     * @param {number|string} value
+     * @param {number|string|ColorType} value
      * @param {string} key
      * @param {Highcharts.SVGDOMElement} element
      */

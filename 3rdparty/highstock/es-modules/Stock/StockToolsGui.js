@@ -12,8 +12,8 @@
 import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
 import NavigationBindings from '../Extensions/Annotations/NavigationBindings.js';
-import O from '../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, createElement = U.createElement, css = U.css, extend = U.extend, fireEvent = U.fireEvent, getStyle = U.getStyle, isArray = U.isArray, merge = U.merge, pick = U.pick;
 var DIV = 'div', SPAN = 'span', UL = 'ul', LI = 'li', PREFIX = 'highcharts-', activeClass = PREFIX + 'active';
@@ -891,7 +891,7 @@ var Toolbar = /** @class */ (function () {
         // create submenu container
         this.submenu = submenuWrapper = createElement(UL, {
             className: PREFIX + 'submenu-wrapper'
-        }, null, buttonWrapper);
+        }, void 0, buttonWrapper);
         // create submenu buttons and select the first one
         this.addSubmenuItems(buttonWrapper, button);
         // show / hide submenu
@@ -1006,23 +1006,23 @@ var Toolbar = /** @class */ (function () {
         buttonWrapper = createElement(LI, {
             className: pick(classMapping[btnName], '') + ' ' + userClassName,
             title: lang[btnName] || btnName
-        }, null, target);
+        }, void 0, target);
         // single button
         mainButton = createElement(SPAN, {
             className: PREFIX + 'menu-item-btn'
-        }, null, buttonWrapper);
+        }, void 0, buttonWrapper);
         // submenu
         if (items && items.length) {
             // arrow is a hook to show / hide submenu
             submenuArrow = createElement(SPAN, {
                 className: PREFIX + 'submenu-item-arrow ' +
                     PREFIX + 'arrow-right'
-            }, null, buttonWrapper);
-            submenuArrow.style['background-image'] = 'url(' +
+            }, void 0, buttonWrapper);
+            submenuArrow.style.backgroundImage = 'url(' +
                 this.iconsURL + 'arrow-bottom.svg)';
         }
         else {
-            mainButton.style['background-image'] = 'url(' +
+            mainButton.style.backgroundImage = 'url(' +
                 this.iconsURL + btnOptions.symbol + ')';
         }
         return {
@@ -1043,13 +1043,13 @@ var Toolbar = /** @class */ (function () {
         });
         stockToolbar.arrowUp = createElement(DIV, {
             className: PREFIX + 'arrow-up'
-        }, null, stockToolbar.arrowWrapper);
-        stockToolbar.arrowUp.style['background-image'] =
+        }, void 0, stockToolbar.arrowWrapper);
+        stockToolbar.arrowUp.style.backgroundImage =
             'url(' + this.iconsURL + 'arrow-right.svg)';
         stockToolbar.arrowDown = createElement(DIV, {
             className: PREFIX + 'arrow-down'
-        }, null, stockToolbar.arrowWrapper);
-        stockToolbar.arrowDown.style['background-image'] =
+        }, void 0, stockToolbar.arrowWrapper);
+        stockToolbar.arrowDown.style.backgroundImage =
             'url(' + this.iconsURL + 'arrow-right.svg)';
         wrapper.insertBefore(stockToolbar.arrowWrapper, wrapper.childNodes[0]);
         // attach scroll events
@@ -1065,14 +1065,14 @@ var Toolbar = /** @class */ (function () {
         _self.eventsToUnbind.push(addEvent(_self.arrowUp, 'click', function () {
             if (targetY > 0) {
                 targetY -= step;
-                toolbar.style['margin-top'] = -targetY + 'px';
+                toolbar.style.marginTop = -targetY + 'px';
             }
         }));
         _self.eventsToUnbind.push(addEvent(_self.arrowDown, 'click', function () {
             if (wrapper.offsetHeight + targetY <=
                 toolbar.offsetHeight + step) {
                 targetY += step;
-                toolbar.style['margin-top'] = -targetY + 'px';
+                toolbar.style.marginTop = -targetY + 'px';
             }
         }));
     };
@@ -1081,13 +1081,26 @@ var Toolbar = /** @class */ (function () {
      *
      */
     Toolbar.prototype.createHTML = function () {
-        var stockToolbar = this, chart = stockToolbar.chart, guiOptions = stockToolbar.options, container = chart.container, navigation = chart.options.navigation, bindingsClassName = navigation && navigation.bindingsClassName, listWrapper, toolbar, wrapper;
+        var stockToolbar = this, chart = stockToolbar.chart, guiOptions = stockToolbar.options, container = chart.container, navigation = chart.options.navigation, bindingsClassName = navigation && navigation.bindingsClassName, listWrapper, toolbar;
         // create main container
-        stockToolbar.wrapper = wrapper = createElement(DIV, {
+        var wrapper = stockToolbar.wrapper = createElement(DIV, {
             className: PREFIX + 'stocktools-wrapper ' +
                 guiOptions.className + ' ' + bindingsClassName
         });
-        container.parentNode.insertBefore(wrapper, container);
+        container.appendChild(wrapper);
+        // Mimic event behaviour of being outside chart.container
+        [
+            'mousemove',
+            'click',
+            'touchstart'
+        ].forEach(function (eventType) {
+            addEvent(wrapper, eventType, function (e) {
+                return e.stopPropagation();
+            });
+        });
+        addEvent(wrapper, 'mouseover', function (e) {
+            return chart.pointer.onContainerMouseLeave(e);
+        });
         // toolbar
         stockToolbar.toolbar = toolbar = createElement(UL, {
             className: PREFIX + 'stocktools-toolbar ' +
@@ -1130,8 +1143,8 @@ var Toolbar = /** @class */ (function () {
         // Show hide toolbar
         this.showhideBtn = showhideBtn = createElement(DIV, {
             className: PREFIX + 'toggle-toolbar ' + PREFIX + 'arrow-left'
-        }, null, wrapper);
-        showhideBtn.style['background-image'] =
+        }, void 0, wrapper);
+        showhideBtn.style.backgroundImage =
             'url(' + this.iconsURL + 'arrow-right.svg)';
         if (!visible) {
             // hide
@@ -1186,8 +1199,8 @@ var Toolbar = /** @class */ (function () {
         // set icon
         mainNavButton
             .querySelectorAll('.' + PREFIX + 'menu-item-btn')[0]
-            .style['background-image'] =
-            button.style['background-image'];
+            .style.backgroundImage =
+            button.style.backgroundImage;
         // set active class
         if (redraw) {
             this.selectButton(mainNavButton);
@@ -1227,13 +1240,17 @@ var Toolbar = /** @class */ (function () {
      *
      * @param {Object} - general options for Stock Tools
      */
-    Toolbar.prototype.update = function (options) {
+    Toolbar.prototype.update = function (options, redraw) {
         merge(true, this.chart.options.stockTools, options);
         this.destroy();
         this.chart.setStockTools(options);
         // If Stock Tools are updated, then bindings should be updated too:
         if (this.chart.navigationBindings) {
             this.chart.navigationBindings.update();
+        }
+        this.chart.isDirtyBox = true;
+        if (pick(redraw, true)) {
+            this.chart.redraw();
         }
     };
     /**
@@ -1249,9 +1266,6 @@ var Toolbar = /** @class */ (function () {
         if (parent) {
             parent.removeChild(stockToolsDiv);
         }
-        // redraw
-        this.chart.isDirtyBox = true;
-        this.chart.redraw();
     };
     /**
      * Redraw, GUI requires to verify if the navigation should be visible.
@@ -1263,7 +1277,7 @@ var Toolbar = /** @class */ (function () {
     Toolbar.prototype.getIconsURL = function () {
         return this.chart.options.navigation.iconsURL ||
             this.options.iconsURL ||
-            'https://code.highcharts.com/9.1.0/gfx/stock-icons/';
+            'https://code.highcharts.com/9.1.2/gfx/stock-icons/';
     };
     return Toolbar;
 }());
@@ -1320,7 +1334,7 @@ extend(Chart.prototype, {
      * @param {Highcharts.StockToolsOptions} - chart options
      */
     setStockTools: function (options) {
-        var chartOptions = this.options, lang = chartOptions.lang, guiOptions = merge(chartOptions.stockTools && chartOptions.stockTools.gui, options && options.gui), langOptions = lang.stockTools && lang.stockTools.gui;
+        var chartOptions = this.options, lang = chartOptions.lang, guiOptions = merge(chartOptions.stockTools && chartOptions.stockTools.gui, options && options.gui), langOptions = lang && lang.stockTools && lang.stockTools.gui;
         this.stockTools = new Toolbar(guiOptions, langOptions, this);
         if (this.stockTools.guiEnabled) {
             this.isDirtyBox = true;
@@ -1352,7 +1366,7 @@ addEvent(NavigationBindings, 'deselectButton', function (event) {
     }
 });
 // Check if the correct price indicator button is displayed, #15029.
-addEvent(H.Chart, 'render', function () {
+addEvent(Chart, 'render', function () {
     var chart = this, stockTools = chart.stockTools, button = stockTools &&
         stockTools.toolbar &&
         stockTools.toolbar.querySelector('.highcharts-current-price-indicator');

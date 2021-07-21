@@ -394,7 +394,7 @@ function error(code, stop, chart, params) {
         });
         message += additionalMessages_1;
     }
-    fireEvent(Highcharts, 'displayError', { chart: chart, code: code, message: message, params: params }, defaultHandler);
+    fireEvent(H, 'displayError', { chart: chart, code: code, message: message, params: params }, defaultHandler);
     error.messages.push(message);
 }
 (function (error) {
@@ -1352,7 +1352,6 @@ function inArray(item, arr, fromIndex) {
     error(32, false, void 0, { 'Highcharts.inArray': 'use Array.indexOf' });
     return arr.indexOf(item, fromIndex);
 }
-/* eslint-disable valid-jsdoc */
 /**
  * Return the value of the first element in the array that satisfies the
  * provided testing function.
@@ -1370,7 +1369,6 @@ function inArray(item, arr, fromIndex) {
  *         The value of the element.
  */
 var find = Array.prototype.find ?
-    /* eslint-enable valid-jsdoc */
     function (arr, callback) {
         return arr.find(callback);
     } :
@@ -1906,7 +1904,7 @@ if (win.jQuery) {
     };
 }
 // TODO use named exports when supported.
-var utilitiesModule = {
+var Utilities = {
     addEvent: addEvent,
     arrayMax: arrayMax,
     arrayMin: arrayMin,
@@ -1955,4 +1953,4 @@ var utilitiesModule = {
     useSerialIds: useSerialIds,
     wrap: wrap
 };
-export default utilitiesModule;
+export default Utilities;

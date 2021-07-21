@@ -11,13 +11,18 @@
  * */
 'use strict';
 import H from '../Globals.js';
+var deg2rad = H.deg2rad;
 import Math3D from '../../Extensions/Math3D.js';
 var perspective = Math3D.perspective, perspective3D = Math3D.perspective3D, shapeArea = Math3D.shapeArea;
 import Tick from './Tick.js';
 import Tick3D from './Tick3D.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, merge = U.merge, pick = U.pick, wrap = U.wrap;
-var deg2rad = H.deg2rad;
+/* *
+ *
+ *  Classes
+ *
+ * */
 /* eslint-disable valid-jsdoc */
 /**
  * Adds 3D support to axes.
@@ -62,10 +67,11 @@ var Axis3DAdditions = /** @class */ (function () {
             !chart.is3d()) {
             return pos;
         }
-        var alpha = deg2rad * chart.options.chart.options3d.alpha, beta = deg2rad * chart.options.chart.options3d.beta, positionMode = pick(isTitle && axis.options.title.position3d, axis.options.labels.position3d), skew = pick(isTitle && axis.options.title.skew3d, axis.options.labels.skew3d), frame = chart.chart3d.frame3d, plotLeft = chart.plotLeft, plotRight = chart.plotWidth + plotLeft, plotTop = chart.plotTop, plotBottom = chart.plotHeight + plotTop, 
+        var alpha = deg2rad * chart.options.chart.options3d.alpha, beta = deg2rad * chart.options.chart.options3d.beta, positionMode = pick(isTitle && axis.options.title.position3d, axis.options.labels.position3d), skew = pick(isTitle && axis.options.title.skew3d, axis.options.labels.skew3d), frame = chart.chart3d.frame3d, plotLeft = chart.plotLeft, plotRight = chart.plotWidth + plotLeft, plotTop = chart.plotTop, plotBottom = chart.plotHeight + plotTop;
+        var offsetX = 0, offsetY = 0, vecX, vecY = { x: 0, y: 1, z: 0 }, 
         // Indicates that we are labelling an X or Z axis on the "back" of
         // the chart
-        reverseFlap = false, offsetX = 0, offsetY = 0, vecX, vecY = { x: 0, y: 1, z: 0 };
+        reverseFlap = false;
         pos = axis.axis3D.swapZ({ x: pos.x, y: pos.y, z: 0 });
         if (axis.isZAxis) { // Z Axis
             if (axis.opposite) {
@@ -265,7 +271,6 @@ var Axis3D = /** @class */ (function () {
         addEvent(AxisClass, 'init', Axis3D.onInit);
         addEvent(AxisClass, 'afterSetOptions', Axis3D.onAfterSetOptions);
         addEvent(AxisClass, 'drawCrosshair', Axis3D.onDrawCrosshair);
-        addEvent(AxisClass, 'destroy', Axis3D.onDestroy);
         var axisProto = AxisClass.prototype;
         wrap(axisProto, 'getLinePath', Axis3D.wrapGetLinePath);
         wrap(axisProto, 'getPlotBandPath', Axis3D.wrapGetPlotBandPath);
@@ -285,16 +290,6 @@ var Axis3D = /** @class */ (function () {
             options.tickWidth = pick(options.tickWidth, 0);
             options.gridLineWidth = pick(options.gridLineWidth, 1);
         }
-    };
-    /**
-     * @private
-     */
-    Axis3D.onDestroy = function () {
-        ['backFrame', 'bottomFrame', 'sideFrame'].forEach(function (prop) {
-            if (this[prop]) {
-                this[prop] = this[prop].destroy();
-            }
-        }, this);
     };
     /**
      * @private
@@ -359,10 +354,7 @@ var Axis3D = /** @class */ (function () {
      * @private
      */
     Axis3D.wrapGetPlotLinePath = function (proceed) {
-        var axis = this;
-        var axis3D = axis.axis3D;
-        var chart = axis.chart;
-        var path = proceed.apply(axis, [].slice.call(arguments, 1));
+        var axis = this, axis3D = axis.axis3D, chart = axis.chart, path = proceed.apply(axis, [].slice.call(arguments, 1));
         // Do not do this if the chart is not 3D
         if (axis.coll === 'colorAxis' ||
             !chart.chart3d ||
@@ -372,7 +364,8 @@ var Axis3D = /** @class */ (function () {
         if (path === null) {
             return path;
         }
-        var options3d = chart.options.chart.options3d, d = axis.isZAxis ? chart.plotWidth : options3d.depth, frame = chart.chart3d.frame3d, startSegment = path[0], endSegment = path[1], pArr, pathSegments = [];
+        var options3d = chart.options.chart.options3d, d = axis.isZAxis ? chart.plotWidth : options3d.depth, frame = chart.chart3d.frame3d, startSegment = path[0], endSegment = path[1];
+        var pArr, pathSegments = [];
         if (startSegment[0] === 'M' && endSegment[0] === 'L') {
             pArr = [
                 axis3D.swapZ({ x: startSegment[1], y: startSegment[2], z: 0 }),
@@ -432,10 +425,7 @@ var Axis3D = /** @class */ (function () {
      * @private
      */
     Axis3D.wrapGetSlotWidth = function (proceed, tick) {
-        var axis = this;
-        var chart = axis.chart;
-        var ticks = axis.ticks;
-        var gridGroup = axis.gridGroup;
+        var axis = this, chart = axis.chart, ticks = axis.ticks, gridGroup = axis.gridGroup;
         if (axis.categories &&
             chart.frameShapes &&
             chart.is3d() &&
@@ -447,7 +437,8 @@ var Axis3D = /** @class */ (function () {
                 y: chart.plotHeight / 2,
                 z: options3d.depth / 2,
                 vd: pick(options3d.depth, 1) * pick(options3d.viewDistance, 0)
-            }, labelPos = void 0, prevLabelPos = void 0, nextLabelPos = void 0, slotWidth = void 0, tickId = tick.pos, prevTick = ticks[tickId - 1], nextTick = ticks[tickId + 1];
+            }, tickId = tick.pos, prevTick = ticks[tickId - 1], nextTick = ticks[tickId + 1];
+            var labelPos = void 0, prevLabelPos = void 0, nextLabelPos = void 0;
             // Check whether the tick is not the first one and previous tick
             // exists, then calculate position of previous label.
             if (tickId !== 0 && prevTick && prevTick.label && prevTick.label.xy) {
@@ -477,11 +468,10 @@ var Axis3D = /** @class */ (function () {
             // the second label. If there is no next label position calculated,
             // return the difference between the first grid line and left 3d
             // frame.
-            slotWidth = Math.abs(prevLabelPos ?
+            return Math.abs(prevLabelPos ?
                 labelPos.x - prevLabelPos.x : nextLabelPos ?
                 nextLabelPos.x - labelPos.x :
                 firstGridLine.x - frame3DLeft.x);
-            return slotWidth;
         }
         return proceed.apply(axis, [].slice.call(arguments, 1));
     };
@@ -608,4 +598,9 @@ var Axis3D = /** @class */ (function () {
     };
     return Axis3D;
 }());
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default Axis3D;

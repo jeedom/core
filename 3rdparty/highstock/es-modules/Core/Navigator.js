@@ -15,9 +15,10 @@ var color = Color.parse;
 import H from './Globals.js';
 var hasTouch = H.hasTouch, isTouchDevice = H.isTouchDevice;
 import NavigatorAxis from './Axis/NavigatorAxis.js';
-import O from './Options.js';
-var defaultOptions = O.defaultOptions;
-import palette from './Color/Palette.js';
+import D from './DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
+import Palette from './Color/Palette.js';
+import RendererRegistry from './Renderer/RendererRegistry.js';
 import Scrollbar from './Scrollbar.js';
 import Series from './Series/Series.js';
 import SeriesRegistry from './Series/SeriesRegistry.js';
@@ -202,13 +203,13 @@ extend(defaultOptions, {
              *
              * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
              */
-            backgroundColor: palette.neutralColor5,
+            backgroundColor: Palette.neutralColor5,
             /**
              * The stroke for the handle border and the stripes inside.
              *
              * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
              */
-            borderColor: palette.neutralColor40
+            borderColor: Palette.neutralColor40
         },
         /**
          * The color of the mask covering the areas of the navigator series
@@ -225,7 +226,7 @@ extend(defaultOptions, {
          * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @default rgba(102,133,194,0.3)
          */
-        maskFill: color(palette.highlightColor60).setOpacity(0.3).get(),
+        maskFill: color(Palette.highlightColor60).setOpacity(0.3).get(),
         /**
          * The color of the line marking the currently zoomed area in the
          * navigator.
@@ -236,7 +237,7 @@ extend(defaultOptions, {
          * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @default #cccccc
          */
-        outlineColor: palette.neutralColor20,
+        outlineColor: Palette.neutralColor20,
         /**
          * The width of the line marking the currently zoomed area in the
          * navigator.
@@ -427,7 +428,7 @@ extend(defaultOptions, {
             className: 'highcharts-navigator-xaxis',
             tickLength: 0,
             lineWidth: 0,
-            gridLineColor: palette.neutralColor10,
+            gridLineColor: Palette.neutralColor10,
             gridLineWidth: 1,
             tickPixelInterval: 200,
             labels: {
@@ -437,7 +438,7 @@ extend(defaultOptions, {
                  */
                 style: {
                     /** @ignore */
-                    color: palette.neutralColor40
+                    color: Palette.neutralColor40
                 },
                 x: 3,
                 y: -4
@@ -502,7 +503,7 @@ extend(defaultOptions, {
  * @return {Highcharts.SVGPathArray}
  *         Path to be used in a handle
  */
-H.Renderer.prototype.symbols['navigator-handle'] = function (x, y, w, h, options) {
+RendererRegistry.getRendererType().prototype.symbols['navigator-handle'] = function (_x, _y, _w, _h, options) {
     var halfWidth = (options && options.width || 0) / 2, markerPosition = Math.round(halfWidth / 3) + 0.5, height = options && options.height || 0;
     return [
         ['M', -halfWidth - 1, 0.5],
@@ -1706,23 +1707,41 @@ var Navigator = /** @class */ (function () {
      * @function Highcharts.Navigator#updateDataHandler
      */
     Navigator.prototype.updatedDataHandler = function () {
-        var navigator = this.chart.navigator, baseSeries = this, navigatorSeries = this.navigatorSeries, xDataMin = navigator.getBaseSeriesMin(baseSeries.xData[0]);
+        var navigator = this.chart.navigator, baseSeries = this, navigatorSeries = this.navigatorSeries;
         // If the scrollbar is scrolled all the way to the right, keep right as
         // new data  comes in.
         navigator.stickToMax = navigator.reversedExtremes ?
             Math.round(navigator.zoomedMin) === 0 :
             Math.round(navigator.zoomedMax) >= Math.round(navigator.size);
-        // Detect whether the zoomed area should stick to the minimum or
-        // maximum. If the current axis minimum falls outside the new updated
-        // dataset, we must adjust.
-        navigator.stickToMin = isNumber(baseSeries.xAxis.min) &&
-            (baseSeries.xAxis.min <= xDataMin) &&
-            (!this.chart.fixedRange || !navigator.stickToMax);
+        navigator.stickToMin = navigator.shouldStickToMin(baseSeries, navigator);
         // Set the navigator series data to the new data of the base series
         if (navigatorSeries && !navigator.hasNavigatorData) {
             navigatorSeries.options.pointStart = baseSeries.xData[0];
             navigatorSeries.setData(baseSeries.options.data, false, null, false); // #5414
         }
+    };
+    /**
+     * Detect if the zoomed area should stick to the minimum, #14742.
+     *
+     * @private
+     * @function Highcharts.Navigator#shouldStickToMin
+     */
+    Navigator.prototype.shouldStickToMin = function (baseSeries, navigator) {
+        var xDataMin = navigator.getBaseSeriesMin(baseSeries.xData[0]), xAxis = baseSeries.xAxis, max = xAxis.max, min = xAxis.min, range = xAxis.options.range;
+        var stickToMin = true;
+        if (isNumber(max) && isNumber(min)) {
+            // If range declared, stick to the minimum only if the range
+            // is smaller than the data set range.
+            if (range && max - xDataMin > 0) {
+                stickToMin = max - xDataMin < range && (!this.chart.fixedRange);
+            }
+            else {
+                // If the current axis minimum falls outside the new
+                // updated dataset, we must adjust.
+                stickToMin = min <= xDataMin;
+            }
+        }
+        return stickToMin;
     };
     /**
      * Add chart events, like redrawing navigator, when chart requires that.
@@ -1846,7 +1865,7 @@ if (!H.Navigator) {
                 navigator.top = this.plotTop + scrollbarHeight;
             }
             else {
-                navigator.left = this.plotLeft + scrollbarHeight;
+                navigator.left = pick(xAxis.left, this.plotLeft + scrollbarHeight);
                 navigator.top = navigator.navigatorOptions.top ||
                     this.chartHeight -
                         navigator.height -

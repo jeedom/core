@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.0 (2021-05-03)
+ Highstock JS v9.1.2 (2021-06-16)
 
  Indicator series type for Highcharts Stock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/chaikin",["highcharts","highcharts/modules/stock"],function(e){a(e);a.Highcharts=e;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function e(a,b,f,r){a.hasOwnProperty(b)||(a[b]=r.apply(null,f))}a=a?a._modules:{};e(a,"Mixins/IndicatorRequired.js",[a["Core/Utilities.js"]],function(a){var b=a.error;return{isParentLoaded:function(a,
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/chaikin",["highcharts","highcharts/modules/stock"],function(e){a(e);a.Highcharts=e;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function e(a,b,f,r){a.hasOwnProperty(b)||(a[b]=r.apply(null,f))}a=a?a._modules:{};e(a,"Mixins/IndicatorRequired.js",[a["Core/Utilities.js"]],function(a){var b=a.error;return{isParentLoaded:function(a,
 r,n,e,h){if(a)return e?e(a):!0;b(h||this.generateMessage(n,r));return!1},generateMessage:function(a,b){return'Error: "'+a+'" indicator type requires "'+b+'" indicator loaded before. Please read docs: https://api.highcharts.com/highstock/plotOptions.'+a}}});e(a,"Stock/Indicators/AD/ADIndicator.js",[a["Core/Series/SeriesRegistry.js"],a["Core/Utilities.js"]],function(a,b){var f=this&&this.__extends||function(){var a=function(b,p){a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,d){a.__proto__=
 d}||function(a,d){for(var c in d)d.hasOwnProperty(c)&&(a[c]=d[c])};return a(b,p)};return function(b,p){function q(){this.constructor=b}a(b,p);b.prototype=null===p?Object.create(p):(q.prototype=p.prototype,new q)}}(),e=a.seriesTypes.sma,n=b.error,t=b.extend,h=b.merge;b=function(a){function b(){var b=null!==a&&a.apply(this,arguments)||this;b.data=void 0;b.options=void 0;b.points=void 0;return b}f(b,a);b.populateAverage=function(a,b,d,c,g){g=b[c][1];var k=b[c][2];b=b[c][3];d=d[c];return[a[c],b===g&&
 b===k||g===k?0:(2*b-k-g)/(g-k)*d]};b.prototype.getValues=function(a,q){var d=q.period,c=a.xData,g=a.yData,k=q.volumeSeriesID,m=a.chart.get(k);q=m&&m.yData;var e=g?g.length:0,f=[],h=[],l=[];if(!(c.length<=d&&e&&4!==g[0].length)){if(m){for(k=d;k<e;k++)a=f.length,m=b.populateAverage(c,g,q,k,d),0<a&&(m[1]+=f[a-1][1]),f.push(m),h.push(m[0]),l.push(m[1]);return{values:f,xData:h,yData:l}}n("Series "+k+" not found! Check `volumeSeriesID`.",!0,a.chart)}};b.defaultOptions=h(e.defaultOptions,{params:{index:void 0,

@@ -12,8 +12,8 @@
 'use strict';
 import H from '../Core/Globals.js';
 import NavigationBindings from '../Extensions/Annotations/NavigationBindings.js';
-import O from '../Core/Options.js';
-var getOptions = O.getOptions, setOptions = O.setOptions;
+import D from '../Core/DefaultOptions.js';
+var getOptions = D.getOptions, setOptions = D.setOptions;
 import Series from '../Core/Series/Series.js';
 import U from '../Core/Utilities.js';
 import palette from '../Core/Color/Palette.js';

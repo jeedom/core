@@ -9,7 +9,6 @@
  * */
 'use strict';
 import Axis from './Axis.js';
-import H from '../Globals.js';
 import palette from '../../Core/Color/Palette.js';
 /**
  * Options for plot bands on axes.
@@ -955,7 +954,7 @@ extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */ {
      */
     addPlotBandOrLine: function (options, coll) {
         var _this = this;
-        var obj = new H.PlotLineOrBand(this, options), userOptions = this.userOptions;
+        var obj = new PlotLineOrBand(this, options), userOptions = this.userOptions;
         if (this.visible) {
             obj = obj.render();
         }
@@ -989,25 +988,28 @@ extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */ {
      * @return {void}
      */
     removePlotBandOrLine: function (id) {
-        var plotLinesAndBands = this.plotLinesAndBands, options = this.options, userOptions = this.userOptions, i = plotLinesAndBands.length;
-        while (i--) {
-            if (plotLinesAndBands[i].id === id) {
-                plotLinesAndBands[i].destroy();
-            }
-        }
-        ([
-            options.plotLines || [],
-            userOptions.plotLines || [],
-            options.plotBands || [],
-            userOptions.plotBands || []
-        ]).forEach(function (arr) {
-            i = arr.length;
-            while (i--) {
-                if ((arr[i] || {}).id === id) {
-                    erase(arr, arr[i]);
+        var plotLinesAndBands = this.plotLinesAndBands, options = this.options, userOptions = this.userOptions;
+        if (plotLinesAndBands) { // #15639
+            var i_1 = plotLinesAndBands.length;
+            while (i_1--) {
+                if (plotLinesAndBands[i_1].id === id) {
+                    plotLinesAndBands[i_1].destroy();
                 }
             }
-        });
+            ([
+                options.plotLines || [],
+                userOptions.plotLines || [],
+                options.plotBands || [],
+                userOptions.plotBands || []
+            ]).forEach(function (arr) {
+                i_1 = arr.length;
+                while (i_1--) {
+                    if ((arr[i_1] || {}).id === id) {
+                        erase(arr, arr[i_1]);
+                    }
+                }
+            });
+        }
     },
     /**
      * Remove a plot band by its id.
@@ -1046,5 +1048,4 @@ extend(Axis.prototype, /** @lends Highcharts.Axis.prototype */ {
         this.removePlotBandOrLine(id);
     }
 });
-H.PlotLineOrBand = PlotLineOrBand;
-export default H.PlotLineOrBand;
+export default PlotLineOrBand;

@@ -10,6 +10,7 @@
  *
  * */
 'use strict';
+import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
 var doc = H.doc, win = H.win;
 import U from '../Core/Utilities.js';
@@ -34,7 +35,7 @@ addEvent(doc, 'keydown', function (e) {
 /**
  * Dismiss popup content in chart, including export menu and tooltip.
  */
-H.Chart.prototype.dismissPopupContent = function () {
+Chart.prototype.dismissPopupContent = function () {
     var chart = this;
     fireEvent(this, 'dismissPopupContent', {}, function () {
         if (chart.tooltip) {
@@ -134,7 +135,11 @@ KeyboardNavigation.prototype = {
         var focusComesFromChart = (e.relatedTarget &&
             chart.container.contains(e.relatedTarget));
         // Init keyboard nav if tabbing into chart
-        if (!this.exiting && !this.isClickingChart && !focusComesFromChart && this.modules[0]) {
+        if (!this.exiting &&
+            !this.tabbingInBackwards &&
+            !this.isClickingChart &&
+            !focusComesFromChart &&
+            this.modules[0]) {
             this.modules[0].init(1);
         }
         this.exiting = false;
@@ -325,7 +330,10 @@ KeyboardNavigation.prototype = {
             var e = ev || win.event, curModule, focusComesFromChart = (e.relatedTarget &&
                 chart.container.contains(e.relatedTarget)), comingInBackwards = !(focusComesFromChart || keyboardNavigation.exiting);
             if (comingInBackwards) {
+                // Focus the container instead
+                keyboardNavigation.tabbingInBackwards = true;
                 keyboardNavigation.tabindexContainer.focus();
+                delete keyboardNavigation.tabbingInBackwards;
                 e.preventDefault();
                 // Move to last valid keyboard nav module
                 // Note the we don't run it, just set the index

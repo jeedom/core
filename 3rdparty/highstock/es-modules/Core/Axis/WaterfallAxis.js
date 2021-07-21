@@ -7,6 +7,7 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 import StackItem from '../../Extensions/Stacking.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, objectEach = U.objectEach;

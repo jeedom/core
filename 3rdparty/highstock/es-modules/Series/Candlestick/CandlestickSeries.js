@@ -21,8 +21,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import O from '../../Core/Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../../Core/DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import palette from '../../Core/Color/Palette.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, ColumnSeries = _a.column, OHLCSeries = _a.ohlc;

@@ -194,5 +194,15 @@ Tunnel.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions,
         }
     }
 });
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.tunnel = Tunnel;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default Tunnel;

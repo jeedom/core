@@ -15,8 +15,8 @@
  * */
 'use strict';
 import H from '../../Core/Globals.js';
-import O from '../../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 var textBright = '#F0F0F3';
 H.theme = {
     colors: [

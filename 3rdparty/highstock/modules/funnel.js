@@ -1,5 +1,5 @@
 /*
- Highcharts JS v9.1.0 (2021-05-03)
+ Highcharts JS v9.1.2 (2021-06-16)
 
  Highcharts funnel module
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/funnel",["highcharts"],function(z){a(z);a.Highcharts=z;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function z(a,t,k,m){a.hasOwnProperty(t)||(a[t]=m.apply(null,k))}a=a?a._modules:{};z(a,"Series/Funnel/FunnelSeries.js",[a["Core/Chart/Chart.js"],a["Core/Globals.js"],a["Core/Color/Palette.js"],a["Core/Series/SeriesRegistry.js"],
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/funnel",["highcharts"],function(z){a(z);a.Highcharts=z;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function z(a,t,k,m){a.hasOwnProperty(t)||(a[t]=m.apply(null,k))}a=a?a._modules:{};z(a,"Series/Funnel/FunnelSeries.js",[a["Core/Chart/Chart.js"],a["Core/Globals.js"],a["Core/Color/Palette.js"],a["Core/Series/SeriesRegistry.js"],
 a["Core/Utilities.js"]],function(a,t,k,m,c){var H=this&&this.__extends||function(){var a=function(b,d){a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(d,e){d.__proto__=e}||function(d,e){for(var a in e)e.hasOwnProperty(a)&&(d[a]=e[a])};return a(b,d)};return function(b,d){function D(){this.constructor=b}a(b,d);b.prototype=null===d?Object.create(d):(D.prototype=d.prototype,new D)}}(),f=t.noop,n=m.series,E=m.seriesTypes.pie;t=c.addEvent;var F=c.extend,z=c.fireEvent,A=c.isArray,M=c.merge,
 K=c.pick;c=function(a){function b(){var d=null!==a&&a.apply(this,arguments)||this;d.data=void 0;d.options=void 0;d.points=void 0;return d}H(b,a);b.prototype.alignDataLabel=function(d,a,e,b,h){var v=d.series;b=v.options.reversed;var g=d.dlBox||d.shapeArgs,c=e.align,f=e.verticalAlign,D=((v.options||{}).dataLabels||{}).inside,l=v.center[1];v=v.getWidthAt((b?2*l-d.plotY:d.plotY)-g.height/2+a.height);v="middle"===f?(g.topWidth-g.bottomWidth)/4:(v-g.bottomWidth)/2;l=g.y;var p=g.x;"middle"===f?l=g.y-g.height/
 2+a.height/2:"top"===f&&(l=g.y-g.height+a.height+e.padding);if("top"===f&&!b||"bottom"===f&&b||"middle"===f)"right"===c?p=g.x-e.padding+v:"left"===c&&(p=g.x+e.padding-v);b={x:p,y:b?l-g.height:l,width:g.bottomWidth,height:g.height};e.verticalAlign="bottom";D&&!d.visible||n.prototype.alignDataLabel.call(this,d,a,e,b,h);D&&(!d.visible&&d.dataLabel&&(d.dataLabel.placed=!1),d.contrastColor&&a.css({color:d.contrastColor}))};b.prototype.drawDataLabels=function(){var a=this.data,b=this.options.dataLabels.distance,

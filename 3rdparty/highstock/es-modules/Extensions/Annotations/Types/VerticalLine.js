@@ -142,5 +142,15 @@ VerticalLine.prototype.defaultOptions = merge(Annotation.prototype.defaultOption
         }
     }
 });
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.verticalLine = VerticalLine;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default VerticalLine;

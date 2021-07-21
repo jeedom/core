@@ -8,15 +8,18 @@
  *
  * */
 'use strict';
-import H from '../Core/Globals.js';
-var Renderer = H.Renderer, VMLRenderer = H.VMLRenderer;
 import SVGRenderer from '../Core/Renderer/SVG/SVGRenderer.js';
+var symbols = SVGRenderer.prototype.symbols;
 /* *
  *
  *  Functions
  *
  * */
-// eslint-disable-next-line valid-jsdoc
+/* eslint-disable require-jsdoc, valid-jsdoc */
+function bottomButton(x, y, w, h, options) {
+    var r = (options && options.r) || 0;
+    return selectiveRoundedRect(x - 1, y - 1, w, h, 0, 0, r, r);
+}
 /**
  * Create symbols for the zoom buttons
  * @private
@@ -43,20 +46,15 @@ function selectiveRoundedRect(x, y, w, h, rTopLeft, rTopRight, rBottomRight, rBo
         ['Z']
     ];
 }
-SVGRenderer.prototype.symbols.topbutton = function (x, y, w, h, options) {
+function topButton(x, y, w, h, options) {
     var r = (options && options.r) || 0;
     return selectiveRoundedRect(x - 1, y - 1, w, h, r, r, 0, 0);
-};
-SVGRenderer.prototype.symbols.bottombutton = function (x, y, w, h, options) {
-    var r = (options && options.r) || 0;
-    return selectiveRoundedRect(x - 1, y - 1, w, h, 0, 0, r, r);
-};
-// The symbol callbacks are generated on the SVGRenderer object in all browsers.
-// Even VML browsers need this in order to generate shapes in export. Now share
-// them with the VMLRenderer.
-if (Renderer !== SVGRenderer) {
-    ['topbutton', 'bottombutton'].forEach(function (shape) {
-        Renderer.prototype.symbols[shape] = SVGRenderer.prototype.symbols[shape];
-    });
 }
-export default SVGRenderer.prototype.symbols;
+symbols.bottombutton = bottomButton;
+symbols.topbutton = topButton;
+/* *
+ *
+ *  Default Export
+ *
+ * */
+export default symbols;

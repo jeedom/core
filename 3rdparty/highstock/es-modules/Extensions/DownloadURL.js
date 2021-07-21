@@ -11,6 +11,7 @@
  * */
 'use strict';
 import Highcharts from '../Core/Globals.js';
+var isSafari = Highcharts.isSafari;
 var win = Highcharts.win, doc = win.document, domurl = win.URL || win.webkitURL || win;
 /**
  * Convert base64 dataURL to Blob if supported, otherwise returns undefined.
@@ -53,8 +54,7 @@ var dataURLtoBlob = Highcharts.dataURLtoBlob = function (dataURL) {
  * @return {void}
  */
 var downloadURL = Highcharts.downloadURL = function (dataURL, filename) {
-    var nav = win.navigator;
-    var a = doc.createElement('a'), windowRef;
+    var nav = win.navigator, a = doc.createElement('a');
     // IE specific blob implementation
     // Don't use for normal dataURLs
     if (typeof dataURL !== 'string' &&
@@ -66,8 +66,12 @@ var downloadURL = Highcharts.downloadURL = function (dataURL, filename) {
     dataURL = "" + dataURL;
     // Some browsers have limitations for data URL lengths. Try to convert to
     // Blob or fall back. Edge always needs that blob.
-    var isEdgeBrowser = /Edge\/\d+/.test(nav.userAgent);
-    if (isEdgeBrowser || dataURL.length > 2000000) {
+    var isOldEdgeBrowser = /Edge\/\d+/.test(nav.userAgent);
+    // Safari on iOS needs Blob in order to download PDF
+    var safariBlob = (isSafari &&
+        typeof dataURL === 'string' &&
+        dataURL.indexOf('data:application/pdf') === 0);
+    if (safariBlob || isOldEdgeBrowser || dataURL.length > 2000000) {
         dataURL = dataURLtoBlob(dataURL) || '';
         if (!dataURL) {
             throw new Error('Failed to convert to blob');
@@ -84,7 +88,7 @@ var downloadURL = Highcharts.downloadURL = function (dataURL, filename) {
     else {
         // No download attr, just opening data URI
         try {
-            windowRef = win.open(dataURL, 'chart');
+            var windowRef = win.open(dataURL, 'chart');
             if (typeof windowRef === 'undefined' || windowRef === null) {
                 throw new Error('Failed to open window');
             }

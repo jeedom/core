@@ -8,8 +8,8 @@
  *
  * */
 'use strict';
-import O from './Options.js';
-var defaultOptions = O.defaultOptions, defaultTime = O.defaultTime;
+import D from './DefaultOptions.js';
+var defaultOptions = D.defaultOptions, defaultTime = D.defaultTime;
 import U from './Utilities.js';
 var getNestedProperty = U.getNestedProperty, isNumber = U.isNumber, pick = U.pick, pInt = U.pInt;
 /* *
@@ -238,9 +238,9 @@ function numberFormat(number, decimals, decimalPoint, thousandsSep) {
  *  Default Export
  *
  * */
-var exports = {
+var FormatUtilities = {
     dateFormat: dateFormat,
     format: format,
     numberFormat: numberFormat
 };
-export default exports;
+export default FormatUtilities;

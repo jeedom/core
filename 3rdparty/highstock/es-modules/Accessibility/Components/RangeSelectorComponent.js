@@ -14,7 +14,7 @@ import AccessibilityComponent from '../AccessibilityComponent.js';
 import ChartUtilities from '../Utils/ChartUtilities.js';
 var unhideChartElementFromAT = ChartUtilities.unhideChartElementFromAT, getAxisRangeDescription = ChartUtilities.getAxisRangeDescription;
 import Announcer from '../Utils/Announcer.js';
-import H from '../../Core/Globals.js';
+import Chart from '../../Core/Chart/Chart.js';
 import HTMLUtilities from '../Utils/HTMLUtilities.js';
 var setElAttrs = HTMLUtilities.setElAttrs;
 import KeyboardNavigationHandler from '../KeyboardNavigationHandler.js';
@@ -44,7 +44,7 @@ function shouldRunInputNavigation(chart) {
  *
  * @return {boolean}
  */
-H.Chart.prototype.highlightRangeSelectorButton = function (ix) {
+Chart.prototype.highlightRangeSelectorButton = function (ix) {
     var buttons = (this.rangeSelector &&
         this.rangeSelector.buttons ||
         []);

@@ -16,7 +16,7 @@
  *  Imports
  *
  * */
-import H from '../../Core/Globals.js';
+import Axis from '../../Core/Axis/Axis.js';
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent;
 /* *
@@ -28,7 +28,7 @@ var addEvent = U.addEvent;
 // Extension to add pixel padding for series. Uses getSeriesPixelPadding on each
 // series and adds the largest padding required. If no series has this function
 // defined, we add nothing.
-addEvent(H.Axis, 'afterSetAxisTranslation', function () {
+addEvent(Axis, 'afterSetAxisTranslation', function () {
     if (this.recomputingForTilemap || this.coll === 'colorAxis') {
         return;
     }

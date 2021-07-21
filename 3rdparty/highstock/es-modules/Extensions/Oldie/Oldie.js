@@ -15,12 +15,13 @@ import Color from '../../Core/Color/Color.js';
 var color = Color.parse;
 import H from '../../Core/Globals.js';
 var deg2rad = H.deg2rad, doc = H.doc, noop = H.noop, svg = H.svg, win = H.win;
-import O from '../../Core/Options.js';
-var getOptions = O.getOptions;
+import D from '../../Core/DefaultOptions.js';
+var getOptions = D.getOptions;
 import palette from '../../Core/Color/Palette.js';
 import Pointer from '../../Core/Pointer.js';
+import RendererRegistry from '../../Core/Renderer/RendererRegistry.js';
 import SVGElement from '../../Core/Renderer/SVG/SVGElement.js';
-import SVGRenderer from '../../Core/Renderer/SVG/SVGRenderer3D.js';
+import SVGRenderer from '../../Core/Renderer/SVG/SVGRenderer.js';
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, createElement = U.createElement, css = U.css, defined = U.defined, discardElement = U.discardElement, erase = U.erase, extend = U.extend, extendClass = U.extendClass, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, pick = U.pick, pInt = U.pInt, uniqueKey = U.uniqueKey;
 import VMLRenderer3D from './VMLRenderer3D.js';
@@ -36,7 +37,7 @@ var VMLRenderer, VMLElement;
  * @apioption global.VMLRadialGradientURL
  */
 getOptions().global.VMLRadialGradientURL =
-    'http://code.highcharts.com/9.1.0/gfx/vml-radial-gradient.png';
+    'http://code.highcharts.com/9.1.2/gfx/vml-radial-gradient.png';
 // Utilites
 if (doc && !doc.defaultView) {
     H.getStyle = U.getStyle = function getStyle(el, prop) {
@@ -1222,7 +1223,7 @@ if (!svg) {
     extend(VMLRenderer.prototype, SVGRenderer.prototype);
     extend(VMLRenderer.prototype, VMLRendererExtension);
     // general renderer
-    H.Renderer = VMLRenderer;
+    RendererRegistry.registerRendererType('VMLRenderer', VMLRenderer, true);
     // 3D additions
     VMLRenderer3D.compose(VMLRenderer, SVGRenderer);
 }

@@ -14,8 +14,8 @@ import chartNavigationMixin from '../../Mixins/Navigation.js';
 import F from '../../Core/FormatUtilities.js';
 var format = F.format;
 import H from '../../Core/Globals.js';
-import O from '../../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, attr = U.attr, fireEvent = U.fireEvent, isArray = U.isArray, isFunction = U.isFunction, isNumber = U.isNumber, isObject = U.isObject, merge = U.merge, objectEach = U.objectEach, pick = U.pick;
 /**
@@ -1020,7 +1020,7 @@ setOptions({
          * from a different server.
          *
          * @type      {string}
-         * @default   https://code.highcharts.com/9.1.0/gfx/stock-icons/
+         * @default   https://code.highcharts.com/9.1.2/gfx/stock-icons/
          * @since     7.1.3
          * @apioption navigation.iconsURL
          */
@@ -1085,7 +1085,7 @@ setOptions({
         }
     }
 });
-addEvent(H.Chart, 'render', function () {
+addEvent(Chart, 'render', function () {
     var chart = this, navigationBindings = chart.navigationBindings, disabledClassName = 'highcharts-disabled-btn';
     if (chart && navigationBindings) {
         // Check if the buttons should be enabled/disabled based on

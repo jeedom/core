@@ -13,8 +13,8 @@
  *
  * */
 import H from '../../Core/Globals.js';
-import O from '../../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 H.theme = {
     colors: ['#F3E796', '#95C471', '#35729E', '#251735'],
     colorAxis: {

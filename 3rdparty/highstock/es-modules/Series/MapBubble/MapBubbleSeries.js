@@ -27,7 +27,7 @@ import MapSeries from '../Map/MapSeries.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 import U from '../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge;
-import '../../Core/Options.js';
+import '../../Core/DefaultOptions.js';
 import '../Bubble/BubbleSeries.js';
 import '../Map/MapSeries.js';
 /* *
