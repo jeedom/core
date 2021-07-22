@@ -300,7 +300,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 - ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Donnent la moyenne de la commande sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Donne la moyenne des valeurs de la commande pondérée par leur durée d'existence sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Donnent la moyenne des valeurs de la commande pondérée par leur durée d'existence sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Donnent le minimum de la commande sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
