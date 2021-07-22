@@ -27,6 +27,7 @@
 - **Bloques de código** : (Editor de archivos, escenarios, personalización avanzada) Función de reserva de código (*plegado de código*). Atajos Ctrl + Y y Ctrl + I.
 - **Complementos / Gestión** : Visualización de la categoría de complementos y un enlace para abrir directamente su página sin pasar por el menú Complementos.
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
+- **Guión** : Agregar la función de cálculo ``averageTemporal(commande,start,end)`` permitiendo obtener la media ponderada por la duración del período.
 - **Configuración de OSDB** : Adición de una herramienta para la edición masiva de equipos, comandos, objetos, escenarios.
 - **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
