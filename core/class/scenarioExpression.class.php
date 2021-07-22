@@ -305,7 +305,7 @@ class scenarioExpression {
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
-		return round(history::getTemporalAvg($cmd->getId(), $_startTime, $_endTime), 1);
+		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
 	}
 
 	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate) {
@@ -315,7 +315,7 @@ class scenarioExpression {
 		}
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
-		return round(history::getTemporalAvg($cmd->getId(), $_startTime, $_endTime), 1);
+		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
 	}
 
 	public static function max($_cmd_id, $_period = '1 hour') {
