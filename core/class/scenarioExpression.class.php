@@ -297,7 +297,7 @@ class scenarioExpression {
 		return round($historyStatistique['avg'], 1);
 	}
 
-	public static function averageTemporal($_cmd_id, $_period) {
+	public static function averageTemporal($_cmd_id, $_period = '1 hour') {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
