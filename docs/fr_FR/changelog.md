@@ -27,6 +27,7 @@
 - **Blocs Code** : (Éditeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code (*code folding*). Raccourcis Ctrl+Y et Ctrl+I.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
+- **Scénario** : Ajout de la fonction de calcul ``averageTemporal(commande,start,end)`` permettant d'obtenir la moyenne pondérée par la durée sur la période.
 - **Réglages OSDB** : Ajout d'un outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
