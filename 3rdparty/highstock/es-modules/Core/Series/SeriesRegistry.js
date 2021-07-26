@@ -9,8 +9,8 @@
  * */
 'use strict';
 import H from '../Globals.js';
-import O from '../Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import Point from './Point.js';
 import U from '../Utilities.js';
 var error = U.error, extendClass = U.extendClass, merge = U.merge;

@@ -13,8 +13,8 @@
  * */
 import AST from '../Core/Renderer/HTML/AST.js';
 import Chart from '../Core/Chart/Chart.js';
-import O from '../Core/Options.js';
-var getOptions = O.getOptions;
+import D from '../Core/DefaultOptions.js';
+var getOptions = D.getOptions;
 import palette from '../Core/Color/Palette.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, extend = U.extend;

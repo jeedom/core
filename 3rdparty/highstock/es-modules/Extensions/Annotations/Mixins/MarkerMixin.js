@@ -7,7 +7,7 @@
 import Chart from '../../../Core/Chart/Chart.js';
 import SVGRenderer from '../../../Core/Renderer/SVG/SVGRenderer.js';
 import U from '../../../Core/Utilities.js';
-var addEvent = U.addEvent, defined = U.defined, merge = U.merge, objectEach = U.objectEach, uniqueKey = U.uniqueKey;
+var addEvent = U.addEvent, defined = U.defined, merge = U.merge, uniqueKey = U.uniqueKey;
 /**
  * Options for configuring markers for annotations.
  *

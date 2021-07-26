@@ -10,6 +10,7 @@
  *
  * */
 'use strict';
+import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
 import SVGElement from '../Core/Renderer/SVG/SVGElement.js';
 import SVGLabel from '../Core/Renderer/SVG/SVGLabel.js';
@@ -211,7 +212,7 @@ extend(SVGElement.prototype, {
  * @private
  * @function Highcharts.Chart#renderFocusBorder
  */
-H.Chart.prototype.renderFocusBorder = function () {
+Chart.prototype.renderFocusBorder = function () {
     var focusElement = this.focusElement, focusBorderOptions = this.options.accessibility.keyboardNavigation.focusBorder;
     if (focusElement) {
         focusElement.removeFocusBorder();
@@ -238,7 +239,7 @@ H.Chart.prototype.renderFocusBorder = function () {
  *        If supplied, it draws the border around svgElement and sets the focus
  *        to focusElement.
  */
-H.Chart.prototype.setFocusToElement = function (svgElement, focusElement) {
+Chart.prototype.setFocusToElement = function (svgElement, focusElement) {
     var focusBorderOptions = this.options.accessibility.keyboardNavigation.focusBorder, browserFocusElement = focusElement || svgElement.element;
     // Set browser focus if possible
     if (browserFocusElement &&

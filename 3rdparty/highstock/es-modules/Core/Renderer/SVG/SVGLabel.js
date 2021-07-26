@@ -23,16 +23,11 @@ var __extends = (this && this.__extends) || (function () {
 import SVGElement from './SVGElement.js';
 import U from '../../Utilities.js';
 var defined = U.defined, extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick, removeEvent = U.removeEvent;
-/* eslint require-jsdoc: 0, no-invalid-this: 0 */
-function paddingSetter(value, key) {
-    if (!isNumber(value)) {
-        this[key] = void 0;
-    }
-    else if (value !== this[key]) {
-        this[key] = value;
-        this.updateTextPadding();
-    }
-}
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * SVG label to render text.
  * @private
@@ -49,9 +44,8 @@ var SVGLabel = /** @class */ (function (_super) {
      * */
     function SVGLabel(renderer, str, x, y, shape, anchorX, anchorY, useHTML, baseline, className) {
         var _this = _super.call(this) || this;
-        _this.paddingSetter = paddingSetter;
-        _this.paddingLeftSetter = paddingSetter;
-        _this.paddingRightSetter = paddingSetter;
+        _this.paddingLeftSetter = _this.paddingSetter;
+        _this.paddingRightSetter = _this.paddingSetter;
         _this.init(renderer, 'g');
         _this.textStr = str;
         _this.x = x;
@@ -60,9 +54,9 @@ var SVGLabel = /** @class */ (function (_super) {
         _this.anchorY = anchorY;
         _this.baseline = baseline;
         _this.className = className;
-        if (className !== 'button') {
-            _this.addClass('highcharts-label');
-        }
+        _this.addClass(className === 'button' ?
+            'highcharts-no-tooltip' :
+            'highcharts-label');
         if (className) {
             _this.addClass('highcharts-' + className);
         }
@@ -71,7 +65,7 @@ var SVGLabel = /** @class */ (function (_super) {
         var hasBGImage;
         if (typeof shape === 'string') {
             hasBGImage = /^url\((.*?)\)$/.test(shape);
-            if (_this.renderer.symbols[shape] || hasBGImage) {
+            if (hasBGImage || _this.renderer.symbols[shape]) {
                 _this.symbolKey = shape;
             }
         }
@@ -127,7 +121,7 @@ var SVGLabel = /** @class */ (function (_super) {
      */
     SVGLabel.prototype.css = function (styles) {
         if (styles) {
-            var textStyles_1 = {}, isWidth = void 0, isFontStyle = void 0;
+            var textStyles_1 = {};
             // Create a copy to avoid altering the original object
             // (#537)
             styles = merge(styles);
@@ -138,9 +132,7 @@ var SVGLabel = /** @class */ (function (_super) {
                 }
             });
             this.text.css(textStyles_1);
-            isWidth = 'width' in textStyles_1;
-            isFontStyle = 'fontSize' in textStyles_1 ||
-                'fontWeight' in textStyles_1;
+            var isWidth = 'width' in textStyles_1, isFontStyle = ('fontSize' in textStyles_1 || 'fontWeight' in textStyles_1);
             // Update existing text, box (#9400, #12163)
             if (isFontStyle) {
                 this.updateTextPadding();
@@ -251,6 +243,15 @@ var SVGLabel = /** @class */ (function (_super) {
             });
         }
     };
+    SVGLabel.prototype.paddingSetter = function (value, key) {
+        if (!isNumber(value)) {
+            this[key] = void 0;
+        }
+        else if (value !== this[key]) {
+            this[key] = value;
+            this.updateTextPadding();
+        }
+    };
     SVGLabel.prototype.rSetter = function (value, key) {
         this.boxAttr(key, value);
     };
@@ -291,22 +292,31 @@ var SVGLabel = /** @class */ (function (_super) {
      * the new bounding box and reflect it in the border box.
      */
     SVGLabel.prototype.updateBoxSize = function () {
-        var style = this.text.element.style, crispAdjust, attribs = {};
-        var padding = this.padding;
+        var style = this.text.element.style, attribs = {}, padding = this.padding, 
         // #12165 error when width is null (auto)
         // #12163 when fontweight: bold, recalculate bBox withot cache
         // #3295 && 3514 box failure when string equals 0
-        var bBox = this.bBox = ((!isNumber(this.widthSetting) || !isNumber(this.heightSetting) || this.textAlign) &&
-            defined(this.text.textStr)) ?
-            this.text.getBBox() : SVGLabel.emptyBBox;
+        bBox = this.bBox = (((!isNumber(this.widthSetting) ||
+            !isNumber(this.heightSetting) ||
+            this.textAlign) && defined(this.text.textStr)) ?
+            this.text.getBBox() :
+            SVGLabel.emptyBBox);
+        var crispAdjust;
         this.width = this.getPaddedWidth();
         this.height = (this.heightSetting || bBox.height || 0) + 2 * padding;
+        var metrics = this.renderer.fontMetrics(style && style.fontSize, this.text);
         // Update the label-scoped y offset. Math.min because of inline
         // style (#9400)
-        this.baselineOffset = padding + Math.min(this.renderer.fontMetrics(style && style.fontSize, this.text).b, 
+        this.baselineOffset = padding + Math.min(
+        // When applicable, use the font size of the first line (#15707)
+        (this.text.firstLineMetrics || metrics).b, 
         // When the height is 0, there is no bBox, so go with the font
         // metrics. Highmaps CSS demos.
         bBox.height || Infinity);
+        // #15491: Vertical centering
+        if (this.heightSetting) {
+            this.baselineOffset += (this.heightSetting - metrics.h) / 2;
+        }
         if (this.needsBox) {
             // Create the border box if it is not already present
             if (!this.box) {

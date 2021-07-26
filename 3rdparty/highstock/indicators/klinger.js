@@ -1,5 +1,5 @@
 /*
- Highcharts Stock JS v9.1.0 (2021-05-03)
+ Highcharts Stock JS v9.1.2 (2021-06-16)
 
  Indicator series type for Highcharts Stock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/klinger",["highcharts","highcharts/modules/stock"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,e,n,b){a.hasOwnProperty(e)||(a[e]=b.apply(null,n))}a=a?a._modules:{};c(a,"Mixins/IndicatorRequired.js",[a["Core/Utilities.js"]],function(a){var e=a.error;return{isParentLoaded:function(a,
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/indicators/klinger",["highcharts","highcharts/modules/stock"],function(c){a(c);a.Highcharts=c;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function c(a,e,n,b){a.hasOwnProperty(e)||(a[e]=b.apply(null,n))}a=a?a._modules:{};c(a,"Mixins/IndicatorRequired.js",[a["Core/Utilities.js"]],function(a){var e=a.error;return{isParentLoaded:function(a,
 b,c,f,g){if(a)return f?f(a):!0;e(g||this.generateMessage(c,b));return!1},generateMessage:function(a,b){return'Error: "'+a+'" indicator type requires "'+b+'" indicator loaded before. Please read docs: https://api.highcharts.com/highstock/plotOptions.'+a}}});c(a,"Mixins/MultipleLines.js",[a["Core/Globals.js"],a["Core/Utilities.js"]],function(a,e){var c=e.defined,b=e.error,v=e.merge,f=a.seriesTypes.sma;return{pointArrayMap:["top","bottom"],pointValKey:"top",linesApiNames:["bottomLine"],getTranslatedLinesNames:function(a){var g=
 [];(this.pointArrayMap||[]).forEach(function(b){b!==a&&g.push("plot"+b.charAt(0).toUpperCase()+b.slice(1))});return g},toYData:function(a){var g=[];(this.pointArrayMap||[]).forEach(function(b){g.push(a[b])});return g},translate:function(){var a=this,b=a.pointArrayMap,e=[],c;e=a.getTranslatedLinesNames();f.prototype.translate.apply(a,arguments);a.points.forEach(function(g){b.forEach(function(b,f){c=g[b];null!==c&&(g[e[f]]=a.yAxis.toPixels(c,!0))})})},drawGraph:function(){var a=this,e=a.linesApiNames,
 k=a.points,p=k.length,l=a.options,n=a.graph,x={options:{gapSize:l.gapSize}},q=[],d;a.getTranslatedLinesNames(a.pointValKey).forEach(function(a,t){for(q[t]=[];p--;)d=k[p],q[t].push({x:d.x,plotX:d.plotX,plotY:d[a],isNull:!c(d[a])});p=k.length});e.forEach(function(d,t){q[t]?(a.points=q[t],l[d]?a.options=v(l[d].styles,x):b('Error: "There is no '+d+' in DOCS options declared. Check if linesApiNames are consistent with your DOCS line names." at mixin/multiple-line.js:34'),a.graph=a["graph"+d],f.prototype.drawGraph.call(a),

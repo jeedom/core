@@ -33,8 +33,8 @@ import H from '../Core/Globals.js';
  * @typedef {"fastAvoid"|"simpleConnect"|"straight"|string} Highcharts.PathfinderTypeValue
  */
 ''; // detach doclets above
-import O from '../Core/Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../Core/DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import Point from '../Core/Series/Point.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, defined = U.defined, error = U.error, extend = U.extend, merge = U.merge, objectEach = U.objectEach, pick = U.pick, splat = U.splat;

@@ -20,7 +20,8 @@ var addEvent = U.addEvent, wrap = U.wrap;
  *
  * */
 Tick.prototype.postTranslate = function (xy, xOrY, index) {
-    var axis = this.axis, pos = xy[xOrY] - axis.pos;
+    var axis = this.axis;
+    var pos = xy[xOrY] - axis.pos;
     if (!axis.horiz) {
         pos = axis.len - pos;
     }

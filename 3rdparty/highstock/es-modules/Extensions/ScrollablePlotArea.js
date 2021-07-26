@@ -22,73 +22,9 @@ var stop = A.stop;
 import Axis from '../Core/Axis/Axis.js';
 import Chart from '../Core/Chart/Chart.js';
 import Series from '../Core/Series/Series.js';
-import H from '../Core/Globals.js';
+import RendererRegistry from '../Core/Renderer/RendererRegistry.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, createElement = U.createElement, merge = U.merge, pick = U.pick;
-/**
- * Options for a scrollable plot area. This feature provides a minimum size for
- * the plot area of the chart. If the size gets smaller than this, typically
- * on mobile devices, a native browser scrollbar is presented. This scrollbar
- * provides smooth scrolling for the contents of the plot area, whereas the
- * title, legend and unaffected axes are fixed.
- *
- * Since v7.1.2, a scrollable plot area can be defined for either horizontal or
- * vertical scrolling, depending on whether the `minWidth` or `minHeight`
- * option is set.
- *
- * @sample highcharts/chart/scrollable-plotarea
- *         Scrollable plot area
- * @sample highcharts/chart/scrollable-plotarea-vertical
- *         Vertically scrollable plot area
- * @sample {gantt} highcharts/chart/scrollable-plotarea-vertical
- *         Gantt chart with vertically scrollable plot area
- *
- * @since     6.1.0
- * @product   highcharts gantt
- * @apioption chart.scrollablePlotArea
- */
-/**
- * The minimum height for the plot area. If it gets smaller than this, the plot
- * area will become scrollable.
- *
- * @type      {number}
- * @apioption chart.scrollablePlotArea.minHeight
- */
-/**
- * The minimum width for the plot area. If it gets smaller than this, the plot
- * area will become scrollable.
- *
- * @type      {number}
- * @apioption chart.scrollablePlotArea.minWidth
- */
-/**
- * The initial scrolling position of the scrollable plot area. Ranges from 0 to
- * 1, where 0 aligns the plot area to the left and 1 aligns it to the right.
- * Typically we would use 1 if the chart has right aligned Y axes.
- *
- * @type      {number}
- * @apioption chart.scrollablePlotArea.scrollPositionX
- */
-/**
- * The initial scrolling position of the scrollable plot area. Ranges from 0 to
- * 1, where 0 aligns the plot area to the top and 1 aligns it to the bottom.
- *
- * @type      {number}
- * @apioption chart.scrollablePlotArea.scrollPositionY
- */
-/**
- * The opacity of mask applied on one of the sides of the plot
- * area.
- *
- * @sample {highcharts} highcharts/chart/scrollable-plotarea-opacity
- *         Disabled opacity for the mask
- *
- * @type        {number}
- * @default     0.85
- * @since       7.1.1
- * @apioption   chart.scrollablePlotArea.opacity
- */
-''; // detach API doclets
 /* eslint-disable no-invalid-this, valid-jsdoc */
 addEvent(Chart, 'afterSetChartSize', function (e) {
     var scrollablePlotArea = this.options.chart.scrollablePlotArea, scrollableMinWidth = scrollablePlotArea && scrollablePlotArea.minWidth, scrollableMinHeight = scrollablePlotArea && scrollablePlotArea.minHeight, scrollablePixelsX, scrollablePixelsY, corrections;
@@ -141,7 +77,7 @@ addEvent(Chart, 'afterSetChartSize', function (e) {
                         margin = this[marginName], path;
                         // Temporarily adjust
                         this[marginName] = margin - correctionValue;
-                        path = H.Axis.prototype.getPlotLinePath.apply(this, arguments);
+                        path = Axis.prototype.getPlotLinePath.apply(this, arguments);
                         // Reset
                         this[marginName] = margin;
                         return path;
@@ -262,7 +198,8 @@ Chart.prototype.moveFixedElements = function () {
  * @return {void}
  */
 Chart.prototype.applyFixed = function () {
-    var fixedRenderer, scrollableWidth, scrollableHeight, firstTime = !this.fixedDiv, chartOptions = this.options.chart, scrollableOptions = chartOptions.scrollablePlotArea;
+    var firstTime = !this.fixedDiv, chartOptions = this.options.chart, scrollableOptions = chartOptions.scrollablePlotArea, Renderer = RendererRegistry.getRendererType();
+    var fixedRenderer, scrollableWidth, scrollableHeight;
     // First render
     if (firstTime) {
         this.fixedDiv = createElement('div', {
@@ -278,7 +215,7 @@ Chart.prototype.applyFixed = function () {
             this.scrollingContainer.parentNode.insertBefore(this.fixedDiv, this.scrollingContainer);
         }
         this.renderTo.style.overflow = 'visible';
-        this.fixedRenderer = fixedRenderer = new H.Renderer(this.fixedDiv, this.chartWidth, this.chartHeight, this.options.chart.style);
+        this.fixedRenderer = fixedRenderer = new Renderer(this.fixedDiv, this.chartWidth, this.chartHeight, this.options.chart.style);
         // Mask
         this.scrollableMask = fixedRenderer
             .path()
@@ -379,3 +316,72 @@ addEvent(Axis, 'afterInit', function () {
 addEvent(Series, 'show', function () {
     this.chart.scrollableDirty = true;
 });
+/* *
+ *
+ *  API Declarations
+ *
+ * */
+/**
+ * Options for a scrollable plot area. This feature provides a minimum size for
+ * the plot area of the chart. If the size gets smaller than this, typically
+ * on mobile devices, a native browser scrollbar is presented. This scrollbar
+ * provides smooth scrolling for the contents of the plot area, whereas the
+ * title, legend and unaffected axes are fixed.
+ *
+ * Since v7.1.2, a scrollable plot area can be defined for either horizontal or
+ * vertical scrolling, depending on whether the `minWidth` or `minHeight`
+ * option is set.
+ *
+ * @sample highcharts/chart/scrollable-plotarea
+ *         Scrollable plot area
+ * @sample highcharts/chart/scrollable-plotarea-vertical
+ *         Vertically scrollable plot area
+ * @sample {gantt} highcharts/chart/scrollable-plotarea-vertical
+ *         Gantt chart with vertically scrollable plot area
+ *
+ * @since     6.1.0
+ * @product   highcharts gantt
+ * @apioption chart.scrollablePlotArea
+ */
+/**
+ * The minimum height for the plot area. If it gets smaller than this, the plot
+ * area will become scrollable.
+ *
+ * @type      {number}
+ * @apioption chart.scrollablePlotArea.minHeight
+ */
+/**
+ * The minimum width for the plot area. If it gets smaller than this, the plot
+ * area will become scrollable.
+ *
+ * @type      {number}
+ * @apioption chart.scrollablePlotArea.minWidth
+ */
+/**
+ * The initial scrolling position of the scrollable plot area. Ranges from 0 to
+ * 1, where 0 aligns the plot area to the left and 1 aligns it to the right.
+ * Typically we would use 1 if the chart has right aligned Y axes.
+ *
+ * @type      {number}
+ * @apioption chart.scrollablePlotArea.scrollPositionX
+ */
+/**
+ * The initial scrolling position of the scrollable plot area. Ranges from 0 to
+ * 1, where 0 aligns the plot area to the top and 1 aligns it to the bottom.
+ *
+ * @type      {number}
+ * @apioption chart.scrollablePlotArea.scrollPositionY
+ */
+/**
+ * The opacity of mask applied on one of the sides of the plot
+ * area.
+ *
+ * @sample {highcharts} highcharts/chart/scrollable-plotarea-opacity
+ *         Disabled opacity for the mask
+ *
+ * @type        {number}
+ * @default     0.85
+ * @since       7.1.1
+ * @apioption   chart.scrollablePlotArea.opacity
+ */
+(''); // keep doclets above in transpiled file

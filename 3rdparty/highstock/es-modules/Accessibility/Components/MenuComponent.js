@@ -10,7 +10,7 @@
  *
  * */
 'use strict';
-import H from '../../Core/Globals.js';
+import Chart from '../../Core/Chart/Chart.js';
 import U from '../../Core/Utilities.js';
 var extend = U.extend;
 import AccessibilityComponent from '../AccessibilityComponent.js';
@@ -36,7 +36,7 @@ function getExportMenuButtonElement(chart) {
  * @private
  * @function Highcharts.Chart#showExportMenu
  */
-H.Chart.prototype.showExportMenu = function () {
+Chart.prototype.showExportMenu = function () {
     var exportButton = getExportMenuButtonElement(this);
     if (exportButton) {
         var el = exportButton.element;
@@ -49,7 +49,7 @@ H.Chart.prototype.showExportMenu = function () {
  * @private
  * @function Highcharts.Chart#hideExportMenu
  */
-H.Chart.prototype.hideExportMenu = function () {
+Chart.prototype.hideExportMenu = function () {
     var chart = this, exportList = chart.exportDivElements;
     if (exportList && chart.exportContextMenu) {
         // Reset hover states etc.
@@ -75,7 +75,7 @@ H.Chart.prototype.hideExportMenu = function () {
  *
  * @return {boolean}
  */
-H.Chart.prototype.highlightExportItem = function (ix) {
+Chart.prototype.highlightExportItem = function (ix) {
     var listItem = this.exportDivElements && this.exportDivElements[ix], curHighlighted = this.exportDivElements &&
         this.exportDivElements[this.highlightedExportItemIx], hasSVGFocusSupport;
     if (listItem &&
@@ -106,7 +106,7 @@ H.Chart.prototype.highlightExportItem = function (ix) {
  * @function Highcharts.Chart#highlightLastExportItem
  * @return {boolean}
  */
-H.Chart.prototype.highlightLastExportItem = function () {
+Chart.prototype.highlightLastExportItem = function () {
     var chart = this, i;
     if (chart.exportDivElements) {
         i = chart.exportDivElements.length;

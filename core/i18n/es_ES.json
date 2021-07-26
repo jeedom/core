@@ -1651,7 +1651,6 @@
         "Mac": "Mac",
         "Désactiver la gestion du réseau par": "Deshabilitar la gestión de red por",
         "Masque IP local (utile que pour les installations type docker, sous la forme 192.168.1.*)": "Máscara de IP local (útil solo para instalaciones de tipo acoplador, en la forma 192.168.1. *)",
-        "MTU spécifique pour le DNS (expert)": "MTU específica para DNS (experto)",
         "Gestion DNS": "Gestión de DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le ": "Tenga en cuenta que esta función no está disponible en el paquete de servicio comunitario (consulte su paquete de servicio en la página de su perfil en",
         "Utiliser les DNS": "Usar DNS",

@@ -768,6 +768,7 @@ var Legend = /** @class */ (function () {
              * @type {Highcharts.SVGElement}
              */
             legend.group = legendGroup = renderer.g('legend')
+                .addClass(options.className || '')
                 .attr({ zIndex: 7 })
                 .add();
             legend.contentGroup = renderer.g()

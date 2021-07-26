@@ -11,6 +11,7 @@
  *
  * */
 'use strict';
+import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
 import F from '../Core/FormatUtilities.js';
 var format = F.format;
@@ -243,7 +244,7 @@ H.i18nFormat = function (formatString, context, chart) {
  * @return {string}
  *         The formatted string.
  */
-H.Chart.prototype.langFormat = function (langKey, context) {
+Chart.prototype.langFormat = function (langKey, context) {
     var keys = langKey.split('.'), formatString = this.options.lang, i = 0;
     for (; i < keys.length; ++i) {
         formatString = formatString && formatString[keys[i]];

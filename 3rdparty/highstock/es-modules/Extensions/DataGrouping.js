@@ -17,7 +17,7 @@ import Point from '../Core/Series/Point.js';
 import Series from '../Core/Series/Series.js';
 var seriesProto = Series.prototype;
 import Tooltip from '../Core/Tooltip.js';
-import O from '../Core/Options.js';
+import D from '../Core/DefaultOptions.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, defined = U.defined, error = U.error, extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
 /**
@@ -670,7 +670,7 @@ addEvent(Series, 'destroy', seriesProto.destroyGroupedData);
 // Handle default options for data grouping. This must be set at runtime because
 // some series types are defined after this.
 addEvent(Series, 'afterSetOptions', function (e) {
-    var options = e.options, type = this.type, plotOptions = this.chart.options.plotOptions, defaultOptions = O.defaultOptions.plotOptions[type].dataGrouping, 
+    var options = e.options, type = this.type, plotOptions = this.chart.options.plotOptions, defaultOptions = D.defaultOptions.plotOptions[type].dataGrouping, 
     // External series, for example technical indicators should also
     // inherit commonOptions which are not available outside this module
     baseOptions = this.useCommonDataGrouping && commonOptions;
@@ -742,8 +742,6 @@ Axis.prototype.getGroupPixelWidth = function () {
  * @param {boolean} [redraw=true]
  *        Whether to redraw the chart or wait for a later call to
  *        {@link Chart#redraw}.
- *
- * @return {void}
  */
 Axis.prototype.setDataGrouping = function (dataGrouping, redraw) {
     var axis = this;

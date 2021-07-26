@@ -12,8 +12,8 @@
 import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
 var win = H.win, doc = H.doc;
-import O from '../Core/Options.js';
-var getOptions = O.getOptions;
+import D from '../Core/DefaultOptions.js';
+var getOptions = D.getOptions;
 import SVGRenderer from '../Core/Renderer/SVG/SVGRenderer.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, error = U.error, extend = U.extend, fireEvent = U.fireEvent, merge = U.merge;
@@ -60,8 +60,9 @@ function svgToDataUrl(svg) {
     try {
         // Safari requires data URI since it doesn't allow navigation to blob
         // URLs. Firefox has an issue with Blobs and internal references,
-        // leading to gradients not working using Blobs (#4550)
-        if (!webKit && !H.isFirefox) {
+        // leading to gradients not working using Blobs (#4550).
+        // foreignObjects also dont work well in Blobs in Chrome (#14780).
+        if (!webKit && !H.isFirefox && svg.indexOf('<foreignObject') === -1) {
             return domurl.createObjectURL(new win.Blob([svg], {
                 type: 'image/svg+xml;charset-utf-16'
             }));
@@ -352,7 +353,8 @@ function downloadSVGLocal(svg, options, failCallback, successCallback) {
             // Failed due to tainted canvas
             // Create new and untainted canvas
             var canvas = doc.createElement('canvas'), ctx = canvas.getContext('2d'), imageWidth = svg.match(/^<svg[^>]*width\s*=\s*\"?(\d+)\"?[^>]*>/)[1] * scale, imageHeight = svg.match(/^<svg[^>]*height\s*=\s*\"?(\d+)\"?[^>]*>/)[1] * scale, downloadWithCanVG = function () {
-                ctx.drawSvg(svg, 0, 0, imageWidth, imageHeight);
+                var v = win.canvg.Canvg.fromString(ctx, svg);
+                v.start();
                 try {
                     downloadURL(win.navigator.msSaveOrOpenBlob ?
                         canvas.msToBlob() :
@@ -379,11 +381,8 @@ function downloadSVGLocal(svg, options, failCallback, successCallback) {
                 // yet since we are doing things asynchronously. A cleaner
                 // solution would be nice, but this will do for now.
                 objectURLRevoke = true;
-                // Get RGBColor.js first, then canvg
-                getScript(libURL + 'rgbcolor.js', function () {
-                    getScript(libURL + 'canvg.js', function () {
-                        downloadWithCanVG();
-                    });
+                getScript(libURL + 'canvg.js', function () {
+                    downloadWithCanVG();
                 });
             }
         }, 
@@ -510,10 +509,12 @@ Chart.prototype.exportChartLocal = function (exportingOptions, chartOptions) {
             chart.exportChart(options);
         }
     }, svgSuccess = function (svg) {
-        // If SVG contains foreignObjects all exports except SVG will fail,
-        // as both CanVG and svg2pdf choke on this. Gracefully fall back.
+        // If SVG contains foreignObjects PDF fails in all browsers and all
+        // exports except SVG will fail in IE, as both CanVG and svg2pdf
+        // choke on this. Gracefully fall back.
         if (svg.indexOf('<foreignObject') > -1 &&
-            options.type !== 'image/svg+xml') {
+            options.type !== 'image/svg+xml' &&
+            (H.isMS || options.type === 'application/pdf')) {
             fallbackToExportServer('Image type not supported' +
                 'for charts with embedded HTML');
         }
@@ -580,7 +581,7 @@ Chart.prototype.exportChartLocal = function (exportingOptions, chartOptions) {
 };
 // Extend the default options to use the local exporter logic
 merge(true, getOptions().exporting, {
-    libURL: 'https://code.highcharts.com/9.1.0/lib/',
+    libURL: 'https://code.highcharts.com/9.1.2/lib/',
     // When offline-exporting is loaded, redefine the menu item definitions
     // related to download.
     menuItemDefinitions: {

@@ -11,15 +11,15 @@
  * */
 'use strict';
 import Chart from '../../Core/Chart/Chart.js';
-import O from '../../Core/Options.js';
-var getOptions = O.getOptions;
+import D from '../../Core/DefaultOptions.js';
+var getOptions = D.getOptions;
 import Point from '../../Core/Series/Point.js';
 import Series from '../../Core/Series/Series.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var seriesTypes = SeriesRegistry.seriesTypes;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, error = U.error, isArray = U.isArray, isNumber = U.isNumber, pick = U.pick, wrap = U.wrap;
-import '../../Core/Options.js';
+import '../../Core/DefaultOptions.js';
 import butils from './BoostUtils.js';
 import boostable from './Boostables.js';
 import boostableMap from './BoostableMap.js';

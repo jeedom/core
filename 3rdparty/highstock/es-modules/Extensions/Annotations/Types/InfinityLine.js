@@ -22,6 +22,11 @@ import CrookedLine from './CrookedLine.js';
 import MockPoint from '../MockPoint.js';
 import U from '../../../Core/Utilities.js';
 var merge = U.merge;
+/* *
+ *
+ *  Class
+ *
+ * */
 /* eslint-disable no-invalid-this, valid-jsdoc */
 var InfinityLine = /** @class */ (function (_super) {
     __extends(InfinityLine, _super);
@@ -126,6 +131,23 @@ var InfinityLine = /** @class */ (function (_super) {
     return InfinityLine;
 }(CrookedLine));
 InfinityLine.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptions, {});
+/* *
+ *
+ *  Registry
+ *
+ * */
+Annotation.types.infinityLine = InfinityLine;
+/* *
+ *
+ *  Default Export
+ *
+ * */
+export default InfinityLine;
+/* *
+ *
+ *  API Declarations
+ *
+ * */
 /**
  * An infinity line annotation.
  *
@@ -136,5 +158,4 @@ InfinityLine.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOptio
  * @product   highstock
  * @apioption annotations.infinityLine
  */
-Annotation.types.infinityLine = InfinityLine;
-export default InfinityLine;
+(''); // keeps doclets above in transpiled file

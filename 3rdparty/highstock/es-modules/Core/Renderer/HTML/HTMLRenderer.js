@@ -7,19 +7,47 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import AST from './AST.js';
 import SVGElement from '../SVG/SVGElement.js';
 import SVGRenderer from '../SVG/SVGRenderer.js';
 import U from '../../Utilities.js';
 var attr = U.attr, createElement = U.createElement, extend = U.extend, pick = U.pick;
-/**
- * Renderer placebo
- * @private
- */
-var HTMLRenderer = SVGRenderer;
+/* *
+ *
+ *  Composition
+ *
+ * */
 /* eslint-disable valid-jsdoc */
 // Extend SvgRenderer for useHTML option.
-extend(SVGRenderer.prototype, /** @lends SVGRenderer.prototype */ {
+var HTMLRenderer = /** @class */ (function (_super) {
+    __extends(HTMLRenderer, _super);
+    function HTMLRenderer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /** @private */
+    HTMLRenderer.compose = function (SVGRendererClass) {
+        var svgRendererProto = SVGRendererClass.prototype, htmlRendererProto = HTMLRenderer.prototype;
+        svgRendererProto.html = htmlRendererProto.html;
+    };
     /**
      * Create HTML text node. This is used by the VML renderer as well as the
      * SVG renderer through the useHTML option.
@@ -38,7 +66,7 @@ extend(SVGRenderer.prototype, /** @lends SVGRenderer.prototype */ {
      *
      * @return {Highcharts.HTMLDOMElement}
      */
-    html: function (str, x, y) {
+    HTMLRenderer.prototype.html = function (str, x, y) {
         var wrapper = this.createElement('span'), element = wrapper.element, renderer = wrapper.renderer, isSVG = renderer.isSVG, addSetters = function (gWrapper, style) {
             // These properties are set as attributes on the SVG group, and
             // as identical CSS properties on the div. (#3542)
@@ -214,6 +242,12 @@ extend(SVGRenderer.prototype, /** @lends SVGRenderer.prototype */ {
             };
         }
         return wrapper;
-    }
-});
+    };
+    return HTMLRenderer;
+}(SVGRenderer));
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default HTMLRenderer;

@@ -9,7 +9,9 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 import AST from '../../Core/Renderer/HTML/AST.js';
+import Chart from '../../Core/Chart/Chart.js';
 import F from '../../Core/FormatUtilities.js';
 var format = F.format;
 import H from '../../Core/Globals.js';
@@ -74,7 +76,7 @@ function getTableSummary(chart) {
  * @param {Array<string>} types The series types in this chart.
  * @return {string} The text description of the chart type.
  */
-H.Chart.prototype.getTypeDescription = function (types) {
+Chart.prototype.getTypeDescription = function (types) {
     var firstType = types[0], firstSeries = this.series && this.series[0] || {}, formatContext = {
         numSeries: this.series.length,
         numPoints: firstSeries.points && firstSeries.points.length,

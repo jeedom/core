@@ -71,8 +71,10 @@ import Axis from '../../Core/Axis/Axis.js';
 var MockPoint = /** @class */ (function () {
     function MockPoint(chart, target, options) {
         this.isInside = void 0;
+        this.negative = void 0;
         this.plotX = void 0;
         this.plotY = void 0;
+        this.ttBelow = void 0;
         this.x = void 0;
         this.y = void 0;
         /* *

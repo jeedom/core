@@ -50,7 +50,8 @@ Series.prototype.keyboardMoveVertical = true;
  *         The index in the series.points array of the point.
  */
 function getPointIndex(point) {
-    var index = point.index, points = point.series.points, i = points.length;
+    var index = point.index, points = point.series.points;
+    var i = points.length;
     if (points[index] !== point) {
         while (i--) {
             if (points[i] === point) {
@@ -120,7 +121,8 @@ function isSkipPoint(point) {
  * @return {Highcharts.Point|undefined}
  */
 function getClosestPoint(point, series, xWeight, yWeight) {
-    var minDistance = Infinity, dPoint, minIx, distance, i = series.points.length, hasUndefinedPosition = function (point) {
+    var minDistance = Infinity, dPoint, minIx, distance, i = series.points.length;
+    var hasUndefinedPosition = function (point) {
         return !(defined(point.plotX) && defined(point.plotY));
     };
     if (hasUndefinedPosition(point)) {
@@ -188,7 +190,8 @@ Point.prototype.highlight = function () {
  */
 Chart.prototype.highlightAdjacentPoint = function (next) {
     var chart = this, series = chart.series, curPoint = chart.highlightedPoint, curPointIndex = curPoint && getPointIndex(curPoint) || 0, curPoints = (curPoint && curPoint.series.points), lastSeries = chart.series && chart.series[chart.series.length - 1], lastPoint = lastSeries && lastSeries.points &&
-        lastSeries.points[lastSeries.points.length - 1], newSeries, newPoint;
+        lastSeries.points[lastSeries.points.length - 1];
+    var newSeries, newPoint;
     // If no points, return false
     if (!series[0] || !series[0].points) {
         return false;
@@ -272,8 +275,9 @@ Series.prototype.highlightFirstValidPoint = function () {
  * @return {Highcharts.Point|boolean}
  */
 Chart.prototype.highlightAdjacentSeries = function (down) {
-    var chart = this, newSeries, newPoint, adjacentNewPoint, curPoint = chart.highlightedPoint, lastSeries = chart.series && chart.series[chart.series.length - 1], lastPoint = lastSeries && lastSeries.points &&
+    var chart = this, curPoint = chart.highlightedPoint, lastSeries = chart.series && chart.series[chart.series.length - 1], lastPoint = lastSeries && lastSeries.points &&
         lastSeries.points[lastSeries.points.length - 1];
+    var newSeries, newPoint, adjacentNewPoint;
     // If no point is highlighted, highlight the first/last point
     if (!chart.highlightedPoint) {
         newSeries = down ? (chart.series && chart.series[0]) : lastSeries;
@@ -319,7 +323,8 @@ Chart.prototype.highlightAdjacentSeries = function (down) {
  * @return {Highcharts.Point|boolean}
  */
 Chart.prototype.highlightAdjacentPointVertical = function (down) {
-    var curPoint = this.highlightedPoint, minDistance = Infinity, bestPoint;
+    var curPoint = this.highlightedPoint;
+    var minDistance = Infinity, bestPoint;
     if (!defined(curPoint.plotX) || !defined(curPoint.plotY)) {
         return false;
     }
@@ -332,7 +337,8 @@ Chart.prototype.highlightAdjacentPointVertical = function (down) {
                 point === curPoint) {
                 return;
             }
-            var yDistance = point.plotY - curPoint.plotY, width = Math.abs(point.plotX - curPoint.plotX), distance = Math.abs(yDistance) * Math.abs(yDistance) +
+            var yDistance = point.plotY - curPoint.plotY;
+            var width = Math.abs(point.plotX - curPoint.plotX), distance = Math.abs(yDistance) * Math.abs(yDistance) +
                 width * width * 4; // Weigh horizontal distance highly
             // Reverse distance number if axis is reversed
             if (series.yAxis && series.yAxis.reversed) {
@@ -370,7 +376,8 @@ function highlightFirstValidPointInChart(chart) {
  * @return {Highcharts.Point|boolean}
  */
 function highlightLastValidPointInChart(chart) {
-    var numSeries = chart.series.length, i = numSeries, res = false;
+    var numSeries = chart.series.length;
+    var i = numSeries, res = false;
     while (i--) {
         chart.highlightedPoint = chart.series[i].points[chart.series[i].points.length - 1];
         // Highlight first valid point in the series will also
@@ -443,7 +450,8 @@ extend(SeriesKeyboardNavigation.prototype, /** @lends Highcharts.SeriesKeyboardN
     onDrillupAll: function () {
         // After drillup we want to find the point that was drilled down to and
         // highlight it.
-        var last = this.lastDrilledDownPoint, chart = this.chart, series = last && getSeriesFromName(chart, last.seriesName), point;
+        var last = this.lastDrilledDownPoint, chart = this.chart, series = last && getSeriesFromName(chart, last.seriesName);
+        var point;
         if (last && series && defined(last.x) && defined(last.y)) {
             point = getPointFromXY(series, last.x, last.y);
         }
@@ -544,9 +552,12 @@ extend(SeriesKeyboardNavigation.prototype, /** @lends Highcharts.SeriesKeyboardN
      */
     onHandlerTerminate: function () {
         var chart = this.chart;
-        var curPoint = chart.highlightedPoint;
         if (chart.tooltip) {
             chart.tooltip.hide(0);
+        }
+        var hoverSeries = chart.highlightedPoint && chart.highlightedPoint.series;
+        if (hoverSeries && hoverSeries.onMouseOut) {
+            hoverSeries.onMouseOut();
         }
         if (chart.highlightedPoint && chart.highlightedPoint.onMouseOut) {
             chart.highlightedPoint.onMouseOut();

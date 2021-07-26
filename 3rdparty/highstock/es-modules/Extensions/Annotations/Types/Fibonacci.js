@@ -26,7 +26,11 @@ var merge = U.merge;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 var createPathDGenerator = function (retracementIndex, isBackground) {
     return function () {
-        var annotation = this.annotation, leftTop = this.anchor(annotation.startRetracements[retracementIndex]).absolutePosition, rightTop = this.anchor(annotation.endRetracements[retracementIndex]).absolutePosition, d = [
+        var annotation = this.annotation;
+        if (!annotation.startRetracements || !annotation.endRetracements) {
+            return [];
+        }
+        var leftTop = this.anchor(annotation.startRetracements[retracementIndex]).absolutePosition, rightTop = this.anchor(annotation.endRetracements[retracementIndex]).absolutePosition, d = [
             ['M', Math.round(leftTop.x), Math.round(leftTop.y)],
             ['L', Math.round(rightTop.x), Math.round(rightTop.y)]
         ], rightBottom, leftBottom;
@@ -194,4 +198,9 @@ Fibonacci.prototype.defaultOptions = merge(Tunnel.prototype.defaultOptions,
     }
 });
 Annotation.types.fibonacci = Fibonacci;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default Fibonacci;

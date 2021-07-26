@@ -10,18 +10,20 @@
 'use strict';
 import A from '../Animation/AnimationUtilities.js';
 var animObject = A.animObject, setAnimation = A.setAnimation;
+import F from '../Foundation.js';
+var registerEventOptions = F.registerEventOptions;
 import H from '../Globals.js';
 var hasTouch = H.hasTouch, svg = H.svg, win = H.win;
 import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
-import O from '../Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import palette from '../Color/Palette.js';
 import Point from './Point.js';
 import SeriesRegistry from './SeriesRegistry.js';
 var seriesTypes = SeriesRegistry.seriesTypes;
 import SVGElement from '../Renderer/SVG/SVGElement.js';
 import U from '../Utilities.js';
-var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, clamp = U.clamp, cleanRecursively = U.cleanRecursively, correctFloat = U.correctFloat, defined = U.defined, erase = U.erase, error = U.error, extend = U.extend, find = U.find, fireEvent = U.fireEvent, getNestedProperty = U.getNestedProperty, isArray = U.isArray, isFunction = U.isFunction, isNumber = U.isNumber, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, removeEvent = U.removeEvent, splat = U.splat, syncTimeout = U.syncTimeout;
+var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, clamp = U.clamp, cleanRecursively = U.cleanRecursively, correctFloat = U.correctFloat, defined = U.defined, erase = U.erase, error = U.error, extend = U.extend, find = U.find, fireEvent = U.fireEvent, getNestedProperty = U.getNestedProperty, isArray = U.isArray, isNumber = U.isNumber, isString = U.isString, merge = U.merge, objectEach = U.objectEach, pick = U.pick, removeEvent = U.removeEvent, splat = U.splat, syncTimeout = U.syncTimeout;
 /* *
  *
  *  Class
@@ -116,11 +118,7 @@ var Series = /** @class */ (function () {
     /* eslint-disable valid-jsdoc */
     Series.prototype.init = function (chart, userOptions) {
         fireEvent(this, 'init', { options: userOptions });
-        var series = this, events, chartSeries = chart.series, lastSeries;
-        // A lookup over those events that are added by _options_ (not
-        // programmatically). These are updated through Series.update()
-        // (#10861).
-        this.eventOptions = this.eventOptions || {};
+        var series = this, chartSeries = chart.series;
         // The 'eventsToUnbind' property moved from prototype into the
         // Series init to avoid reference to the same array between
         // the different series and charts. #12959, #13937
@@ -180,21 +178,8 @@ var Series = /** @class */ (function () {
              */
             selected: options.selected === true // false by default
         });
-        // Register event listeners
-        events = options.events;
-        objectEach(events, function (event, eventType) {
-            if (isFunction(event)) {
-                // If event does not exist, or is changed by Series.update
-                if (series.eventOptions[eventType] !== event) {
-                    // Remove existing if set by option
-                    if (isFunction(series.eventOptions[eventType])) {
-                        removeEvent(series, eventType, series.eventOptions[eventType]);
-                    }
-                    series.eventOptions[eventType] = event;
-                    addEvent(series, eventType, event);
-                }
-            }
-        });
+        registerEventOptions(this, options);
+        var events = options.events;
         if ((events && events.click) ||
             (options.point &&
                 options.point.events &&
@@ -216,6 +201,7 @@ var Series = /** @class */ (function () {
         }
         // Get the index and register the series in the chart. The index is
         // one more than the current latest series index (#5960).
+        var lastSeries;
         if (chartSeries.length) {
             lastSeries = chartSeries[chartSeries.length - 1];
         }
@@ -745,7 +731,7 @@ var Series = /** @class */ (function () {
             data.forEach(function (point, i) {
                 // .update doesn't exist on a linked, hidden series (#3709)
                 // (#10187)
-                if (oldData[i].update && point !== oldData[i].y) {
+                if (point !== oldData[i].y && oldData[i].update) {
                     oldData[i].update(point, false, null, false);
                 }
             });
@@ -1757,7 +1743,7 @@ var Series = /** @class */ (function () {
                 // only draw the point if y is defined
                 if (shouldDrawMarker) {
                     // Shortcuts
-                    var symbol = pick(pointMarkerOptions.symbol, series.symbol);
+                    var symbol = pick(pointMarkerOptions.symbol, series.symbol, 'rect');
                     markerAttribs = series.markerAttribs(point, (point.selected && 'select'));
                     // Set starting position for point sliding animation.
                     if (series.enabledDataSorting) {
@@ -2152,7 +2138,8 @@ var Series = /** @class */ (function () {
      * @function Highcharts.Series#plotGroup
      */
     Series.prototype.plotGroup = function (prop, name, visibility, zIndex, parent) {
-        var group = this[prop], isNew = !group, attrs = {
+        var group = this[prop];
+        var isNew = !group, attrs = {
             visibility: visibility,
             zIndex: zIndex || 0.1 // IE8 and pointer logic use this
         };
@@ -2346,8 +2333,23 @@ var Series = /** @class */ (function () {
         }
     };
     /**
-     * @private
+     * Find the nearest point from a pointer event. This applies to series that
+     * use k-d-trees to get the nearest point. Native pointer events must be
+     * normalized using `Pointer.normalize`, that adds `chartX` and `chartY`
+     * properties.
+     *
+     * @sample highcharts/demo/synchronized-charts
+     *         Synchronized charts with tooltips
+     *
      * @function Highcharts.Series#searchPoint
+     *
+     * @param {Highcharts.PointerEvent} e
+     *        The normalized pointer event
+     * @param {boolean} [compareX=false]
+     *        Search only by the X value, not Y
+     *
+     * @return {Point|undefined}
+     *        The closest point to the pointer event
      */
     Series.prototype.searchPoint = function (e, compareX) {
         var series = this, xAxis = series.xAxis, yAxis = series.yAxis, inverted = series.chart.inverted;
@@ -3776,7 +3778,7 @@ var Series = /** @class */ (function () {
          */
         /**
          * Same as
-         * [accessibility.pointDescriptionFormatter](#accessibility.pointDescriptionFormatter),
+         * [accessibility.series.descriptionFormatter](#accessibility.series.descriptionFormatter),
          * but for an individual series. Overrides the chart wide configuration.
          *
          * @type      {Function}

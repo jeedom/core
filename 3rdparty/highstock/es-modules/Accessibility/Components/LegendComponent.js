@@ -10,10 +10,11 @@
  *
  * */
 'use strict';
+import Chart from '../../Core/Chart/Chart.js';
 import H from '../../Core/Globals.js';
 import Legend from '../../Core/Legend.js';
 import U from '../../Core/Utilities.js';
-var addEvent = U.addEvent, extend = U.extend, find = U.find, fireEvent = U.fireEvent;
+var addEvent = U.addEvent, extend = U.extend, find = U.find, fireEvent = U.fireEvent, isNumber = U.isNumber;
 import AccessibilityComponent from '../AccessibilityComponent.js';
 import KeyboardNavigationHandler from '../KeyboardNavigationHandler.js';
 import HTMLUtilities from '../Utils/HTMLUtilities.js';
@@ -47,10 +48,11 @@ function shouldDoLegendA11y(chart) {
  *
  * @return {boolean}
  */
-H.Chart.prototype.highlightLegendItem = function (ix) {
-    var items = this.legend.allItems, oldIx = this.highlightedLegendItemIx;
+Chart.prototype.highlightLegendItem = function (ix) {
+    var items = this.legend.allItems, oldIx = this.accessibility &&
+        this.accessibility.components.legend.highlightedLegendItemIx;
     if (items[ix]) {
-        if (items[oldIx]) {
+        if (isNumber(oldIx) && items[oldIx]) {
             fireEvent(items[oldIx].legendGroup.element, 'mouseout');
         }
         scrollLegendToItem(this.legend, ix);
@@ -156,6 +158,7 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
         this.removeProxies();
         if (shouldDoLegendA11y(this.chart)) {
             this.addLegendProxyGroup();
+            this.addLegendListContainer();
             this.proxyLegendItems();
             this.updateLegendItemProxyVisibility();
         }
@@ -198,6 +201,16 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
     /**
      * @private
      */
+    addLegendListContainer: function () {
+        if (this.legendProxyGroup) {
+            var container = this.legendListContainer = this.createElement('ul');
+            container.style.listStyle = 'none';
+            this.legendProxyGroup.appendChild(container);
+        }
+    },
+    /**
+     * @private
+     */
     proxyLegendItems: function () {
         var component = this, items = (this.chart.legend &&
             this.chart.legend.allItems || []);
@@ -212,7 +225,7 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
      * @param {Highcharts.BubbleLegend|Point|Highcharts.Series} item
      */
     proxyLegendItem: function (item) {
-        if (!item.legendItem || !item.legendGroup) {
+        if (!item.legendItem || !item.legendGroup || !this.legendListContainer) {
             return;
         }
         var itemLabel = this.chart.langFormat('accessibility.legend.legendItem', {
@@ -227,7 +240,9 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
         // Considers useHTML
         proxyPositioningElement = item.legendGroup.div ?
             item.legendItem : item.legendGroup;
-        item.a11yProxyElement = this.createProxyButton(item.legendItem, this.legendProxyGroup, attribs, proxyPositioningElement);
+        var listItem = this.createElement('li');
+        this.legendListContainer.appendChild(listItem);
+        item.a11yProxyElement = this.createProxyButton(item.legendItem, listItem, attribs, proxyPositioningElement);
         this.proxyElementsList.push({
             item: item,
             element: item.a11yProxyElement,
@@ -263,6 +278,9 @@ extend(LegendComponent.prototype, /** @lends Highcharts.LegendComponent */ {
             },
             init: function (direction) {
                 return component.onKbdNavigationInit(direction);
+            },
+            terminate: function () {
+                chart.legend.allItems.forEach(function (item) { return item.setState('', true); });
             }
         });
     },

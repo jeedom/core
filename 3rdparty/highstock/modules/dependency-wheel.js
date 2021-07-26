@@ -1,5 +1,5 @@
 /*
- Highcharts JS v9.1.0 (2021-05-03)
+ Highcharts JS v9.1.2 (2021-06-16)
 
  Dependency wheel module
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/dependency-wheel",["highcharts","highcharts/modules/sankey"],function(d){b(d);b.Highcharts=d;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function d(b,h,a,d){b.hasOwnProperty(h)||(b[h]=d.apply(null,a))}b=b?b._modules:{};d(b,"Series/DependencyWheel/DependencyWheelPoint.js",[b["Mixins/Nodes.js"],b["Core/Series/SeriesRegistry.js"],
+'use strict';(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/modules/dependency-wheel",["highcharts","highcharts/modules/sankey"],function(d){b(d);b.Highcharts=d;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function d(b,h,a,d){b.hasOwnProperty(h)||(b[h]=d.apply(null,a))}b=b?b._modules:{};d(b,"Series/DependencyWheel/DependencyWheelPoint.js",[b["Mixins/Nodes.js"],b["Core/Series/SeriesRegistry.js"],
 b["Core/Utilities.js"]],function(b,h,a){var d=this&&this.__extends||function(){var b=function(a,e){b=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(b,e){b.__proto__=e}||function(b,e){for(var a in e)e.hasOwnProperty(a)&&(b[a]=e[a])};return b(a,e)};return function(a,e){function g(){this.constructor=a}b(a,e);a.prototype=null===e?Object.create(e):(g.prototype=e.prototype,new g)}}();a=a.extend;h=function(b){function a(){var a=null!==b&&b.apply(this,arguments)||this;a.angle=void 0;a.fromNode=
 void 0;a.index=void 0;a.linksFrom=void 0;a.linksTo=void 0;a.options=void 0;a.series=void 0;a.shapeArgs=void 0;a.toNode=void 0;return a}d(a,b);a.prototype.getDataLabelPath=function(b){var a=this.series.chart.renderer,e=this.shapeArgs,d=0>this.angle||this.angle>Math.PI,p=e.start||0,q=e.end||0;this.dataLabelPath||(this.dataLabelPath=a.arc({open:!0,longArc:Math.abs(Math.abs(p)-Math.abs(q))<Math.PI?0:1}).add(b));this.dataLabelPath.attr({x:e.x,y:e.y,r:e.r+(this.dataLabel.options.distance||0),start:d?p:
 q,end:d?q:p,clockwise:+d});return this.dataLabelPath};a.prototype.isValid=function(){return!0};return a}(h.seriesTypes.sankey.prototype.pointClass);a(h.prototype,{setState:b.setNodeState});return h});d(b,"Series/DependencyWheel/DependencyWheelSeries.js",[b["Core/Animation/AnimationUtilities.js"],b["Series/DependencyWheel/DependencyWheelPoint.js"],b["Core/Globals.js"],b["Core/Series/SeriesRegistry.js"],b["Core/Utilities.js"]],function(b,d,a,r,g){var h=this&&this.__extends||function(){var b=function(a,

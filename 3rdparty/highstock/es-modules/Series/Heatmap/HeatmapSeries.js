@@ -21,10 +21,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import Color from '../../Core/Color/Color.js';
 import ColorMapMixin from '../../Mixins/ColorMapSeries.js';
 var colorMapSeriesMixin = ColorMapMixin.colorMapSeriesMixin;
-import H from '../../Core/Globals.js';
-var noop = H.noop;
 import HeatmapPoint from './HeatmapPoint.js';
 import LegendSymbolMixin from '../../Mixins/LegendSymbol.js';
 import palette from '../../Core/Color/Palette.js';
@@ -86,8 +85,17 @@ var HeatmapSeries = /** @class */ (function (_super) {
         if (seriesMarkerOptions.enabled || this._hasPointMarkers) {
             Series.prototype.drawPoints.call(this);
             this.points.forEach(function (point) {
-                point.graphic &&
+                if (point.graphic) {
                     point.graphic[_this.chart.styledMode ? 'css' : 'animate'](_this.colorAttribs(point));
+                    if (_this.options.borderRadius) {
+                        point.graphic.attr({
+                            r: _this.options.borderRadius
+                        });
+                    }
+                    if (point.value === null) { // #15708
+                        point.graphic.addClass('highcharts-null-point');
+                    }
+                }
             });
         }
     };
@@ -136,9 +144,7 @@ var HeatmapSeries = /** @class */ (function (_super) {
         // general point range
         this.yAxis.axisPointRange = options.rowsize || 1;
         // Bind new symbol names
-        extend(symbols, {
-            ellipse: symbols.circle
-        });
+        symbols.ellipse = symbols.circle;
     };
     /**
      * @private
@@ -200,7 +206,7 @@ var HeatmapSeries = /** @class */ (function (_super) {
             brightness = stateOptions.brightness;
             attr.fill =
                 stateOptions.color ||
-                    H.color(attr.fill).brighten(brightness || 0).get();
+                    Color.parse(attr.fill).brighten(brightness || 0).get();
             attr.stroke = stateOptions.lineColor;
         }
         return attr;
@@ -222,7 +228,7 @@ var HeatmapSeries = /** @class */ (function (_super) {
      * @private
      */
     HeatmapSeries.prototype.translate = function () {
-        var series = this, options = series.options, symbol = options.marker && options.marker.symbol || '', shape = symbols[symbol] ? symbol : 'rect', hasRegularShape = ['circle', 'square'].indexOf(shape) !== -1;
+        var series = this, options = series.options, symbol = options.marker && options.marker.symbol || 'rect', shape = symbols[symbol] ? symbol : 'rect', hasRegularShape = ['circle', 'square'].indexOf(shape) !== -1;
         series.generatePoints();
         series.points.forEach(function (point) {
             var pointAttr, sizeDiff, hasImage, cellAttr = point.getCellAttributes(), shapeArgs = {};
@@ -290,7 +296,11 @@ var HeatmapSeries = /** @class */ (function (_super) {
          */
         animation: false,
         /**
-         * The border width for each heat map item.
+         * The border radius for each heatmap item.
+         */
+        borderRadius: 0,
+        /**
+         * The border width for each heatmap item.
          */
         borderWidth: 0,
         /**

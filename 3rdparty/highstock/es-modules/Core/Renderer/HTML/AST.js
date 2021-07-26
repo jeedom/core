@@ -7,34 +7,30 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 import H from '../../Globals.js';
 var SVG_NS = H.SVG_NS;
 import U from '../../Utilities.js';
 var attr = U.attr, createElement = U.createElement, discardElement = U.discardElement, error = U.error, isString = U.isString, objectEach = U.objectEach, splat = U.splat;
-/**
- * Serialized form of an SVG/HTML definition, including children.
+/* *
  *
- * @interface Highcharts.ASTNode
- */ /**
-* @name Highcharts.ASTNode#attributes
-* @type {Highcharts.SVGAttributes|undefined}
-*/ /**
-* @name Highcharts.ASTNode#children
-* @type {Array<Highcharts.ASTNode>|undefined}
-*/ /**
-* @name Highcharts.ASTNode#tagName
-* @type {string|undefined}
-*/ /**
-* @name Highcharts.ASTNode#textContent
-* @type {string|undefined}
-*/
-''; // detach doclets above
+ *  Constants
+ *
+ * */
 // In IE8, DOMParser is undefined. IE9 and PhantomJS are only able to parse XML.
-var hasValidDOMParser = false;
-try {
-    hasValidDOMParser = Boolean(new DOMParser().parseFromString('', 'text/html'));
-}
-catch (e) { } // eslint-disable-line no-empty
+var hasValidDOMParser = (function () {
+    try {
+        return Boolean(new DOMParser().parseFromString('', 'text/html'));
+    }
+    catch (e) {
+        return false;
+    }
+}());
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * The AST class represents an abstract syntax tree of HTML or SVG content. It
  * can take HTML as an argument, parse it, optionally transform it to SVG, then
@@ -42,9 +38,9 @@ catch (e) { } // eslint-disable-line no-empty
  *
  * @class
  * @name Highcharts.AST
- * @param {string|Highcharts.ASTNode[]} source
- *                                      Either an HTML string or an ASTNode list
- *                                      to populate the tree
+ *
+ * @param {string|Array<Highcharts.ASTNode>} source
+ * Either an HTML string or an ASTNode list to populate the tree.
  */
 var AST = /** @class */ (function () {
     // Construct an AST from HTML markup, or wrap an array of existing AST nodes
@@ -357,6 +353,7 @@ var AST = /** @class */ (function () {
         'orient',
         'padding',
         'paddingLeft',
+        'paddingRight',
         'patternUnits',
         'r',
         'refX',
@@ -371,6 +368,7 @@ var AST = /** @class */ (function () {
         'stroke-linecap',
         'stroke-width',
         'style',
+        'tableValues',
         'result',
         'rowspan',
         'summary',
@@ -413,4 +411,32 @@ var AST = /** @class */ (function () {
     ];
     return AST;
 }());
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default AST;
+/* *
+ *
+ *  API Declarations
+ *
+ * */
+/**
+ * Serialized form of an SVG/HTML definition, including children.
+ *
+ * @interface Highcharts.ASTNode
+ */ /**
+* @name Highcharts.ASTNode#attributes
+* @type {Highcharts.SVGAttributes|undefined}
+*/ /**
+* @name Highcharts.ASTNode#children
+* @type {Array<Highcharts.ASTNode>|undefined}
+*/ /**
+* @name Highcharts.ASTNode#tagName
+* @type {string|undefined}
+*/ /**
+* @name Highcharts.ASTNode#textContent
+* @type {string|undefined}
+*/
+''; // detach doclets above

@@ -7,11 +7,17 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
-import H from '../../Globals.js';
-import U from '../../Utilities.js';
+'use strict';
 import AST from '../HTML/AST.js';
+import H from '../../Globals.js';
 var doc = H.doc, SVG_NS = H.SVG_NS;
-var attr = U.attr, erase = U.erase, isString = U.isString, objectEach = U.objectEach, pick = U.pick;
+import U from '../../Utilities.js';
+var attr = U.attr, isString = U.isString, objectEach = U.objectEach, pick = U.pick;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * SVG Text Builder
  * @private
@@ -114,9 +120,14 @@ var TextBuilder = /** @class */ (function () {
         var _this = this;
         var wrapper = this.svgElement;
         var x = attr(wrapper.element, 'x');
+        wrapper.firstLineMetrics = void 0;
         // Modify hard line breaks by applying the rendered line height
-        [].forEach.call(wrapper.element.querySelectorAll('tspan.highcharts-br'), function (br) {
+        [].forEach.call(wrapper.element.querySelectorAll('tspan.highcharts-br'), function (br, i) {
             if (br.nextSibling && br.previousSibling) { // #5261
+                if (i === 0 && br.previousSibling.nodeType === 1) {
+                    wrapper.firstLineMetrics = wrapper.renderer
+                        .fontMetrics(void 0, br.previousSibling);
+                }
                 attr(br, {
                     // Since the break is inserted in front of the next
                     // line, we need to use the next sibling for the line

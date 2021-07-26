@@ -12,8 +12,8 @@
 'use strict';
 /* global document */
 import Highcharts from '../../Core/Globals.js';
-import O from '../../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 import U from '../../Core/Utilities.js';
 var createElement = U.createElement;
 // Load the fonts

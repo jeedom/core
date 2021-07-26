@@ -11,8 +11,8 @@
 import Axis from '../Core/Axis/Axis.js';
 import Chart from '../Core/Chart/Chart.js';
 import H from '../Core/Globals.js';
-import O from '../Core/Options.js';
-var defaultOptions = O.defaultOptions;
+import D from '../Core/DefaultOptions.js';
+var defaultOptions = D.defaultOptions;
 import palette from '../Core/Color/Palette.js';
 import SVGElement from '../Core/Renderer/SVG/SVGElement.js';
 import U from '../Core/Utilities.js';
@@ -657,6 +657,11 @@ var RangeSelector = /** @class */ (function () {
             }
         }
         else if (type === 'all' && baseAxis) {
+            // If the navigator exist and the axis range is declared reset that
+            // range and from now on only use the range set by a user, #14742.
+            if (chart.navigator && chart.navigator.baseSeries[0]) {
+                chart.navigator.baseSeries[0].xAxis.options.range = void 0;
+            }
             newMin = dataMin;
             newMax = dataMax;
         }
@@ -976,7 +981,7 @@ var RangeSelector = /** @class */ (function () {
                     left: Math.min(Math.round(dateBox.x +
                         translateX -
                         (input.offsetWidth - dateBox.width) / 2), this.chart.chartWidth - input.offsetWidth) + 'px',
-                    top: (translateY - 1 - (input.offsetHeight - dateBox.height) / 2) + 'px'
+                    top: (translateY - (input.offsetHeight - dateBox.height) / 2) + 'px'
                 });
             }
         }
@@ -1084,7 +1089,8 @@ var RangeSelector = /** @class */ (function () {
             .label(text, 0)
             .addClass('highcharts-range-label')
             .attr({
-            padding: text ? 2 : 0
+            padding: text ? 2 : 0,
+            height: text ? options.inputBoxHeight : 0
         })
             .add(inputGroup);
         // Create an SVG label that shows updated date ranges and and records
@@ -1365,7 +1371,13 @@ var RangeSelector = /** @class */ (function () {
             });
         });
         this.zoomText = renderer
-            .text(lang.rangeSelectorZoom, 0, 15)
+            .label((lang && lang.rangeSelectorZoom) || '', 0)
+            .attr({
+            padding: options.buttonTheme.padding,
+            height: options.buttonTheme.height,
+            paddingLeft: 0,
+            paddingRight: 0
+        })
             .add(this.buttonGroup);
         if (!this.chart.styledMode) {
             this.zoomText.css(options.labelStyle);
@@ -1711,12 +1723,14 @@ var RangeSelector = /** @class */ (function () {
      * @return {void}
      */
     RangeSelector.prototype.collapseButtons = function (xOffsetForExportButton) {
-        var _a = this, buttons = _a.buttons, buttonOptions = _a.buttonOptions, dropdown = _a.dropdown, options = _a.options, zoomText = _a.zoomText;
+        var _a = this, buttons = _a.buttons, buttonOptions = _a.buttonOptions, chart = _a.chart, dropdown = _a.dropdown, options = _a.options, zoomText = _a.zoomText;
+        var userButtonTheme = (chart.userOptions.rangeSelector &&
+            chart.userOptions.rangeSelector.buttonTheme) || {};
         var getAttribs = function (text) { return ({
             text: text ? text + " \u25BE" : '▾',
             width: 'auto',
-            paddingLeft: 8,
-            paddingRight: 8
+            paddingLeft: pick(options.buttonTheme.paddingLeft, userButtonTheme.padding, 8),
+            paddingRight: pick(options.buttonTheme.paddingRight, userButtonTheme.padding, 8)
         }); };
         if (zoomText) {
             zoomText.hide();
@@ -1766,8 +1780,8 @@ var RangeSelector = /** @class */ (function () {
             button.attr({
                 text: rangeOptions.text,
                 width: options.buttonTheme.width || 28,
-                paddingLeft: 'unset',
-                paddingRight: 'unset'
+                paddingLeft: pick(options.buttonTheme.paddingLeft, 'unset'),
+                paddingRight: pick(options.buttonTheme.paddingRight, 'unset')
             });
             if (button.state < 2) {
                 button.setState(0);
@@ -2195,4 +2209,4 @@ if (!H.RangeSelector) {
     });
     H.RangeSelector = RangeSelector;
 }
-export default H.RangeSelector;
+export default RangeSelector;

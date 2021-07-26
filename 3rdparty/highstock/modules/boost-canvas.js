@@ -1,5 +1,5 @@
 /*
- Highcharts JS v9.1.0 (2021-05-03)
+ Highcharts JS v9.1.2 (2021-06-16)
 
  Boost module
 
@@ -8,7 +8,7 @@
 
  License: www.highcharts.com/license
 */
-(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/boost-canvas",["highcharts"],function(g){c(g);c.Highcharts=g;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function g(c,g,v,B){c.hasOwnProperty(g)||(c[g]=B.apply(null,v))}c=c?c._modules:{};g(c,"Extensions/BoostCanvas.js",[c["Core/Chart/Chart.js"],c["Core/Color/Color.js"],c["Core/Globals.js"],c["Core/Color/Palette.js"],
+'use strict';(function(c){"object"===typeof module&&module.exports?(c["default"]=c,module.exports=c):"function"===typeof define&&define.amd?define("highcharts/modules/boost-canvas",["highcharts"],function(g){c(g);c.Highcharts=g;return c}):c("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(c){function g(c,g,v,B){c.hasOwnProperty(g)||(c[g]=B.apply(null,v))}c=c?c._modules:{};g(c,"Extensions/BoostCanvas.js",[c["Core/Chart/Chart.js"],c["Core/Color/Color.js"],c["Core/Globals.js"],c["Core/Color/Palette.js"],
 c["Core/Series/Series.js"],c["Core/Series/SeriesRegistry.js"],c["Core/Utilities.js"]],function(c,g,v,B,C,D,r){var ea=g.parse,E=v.doc,fa=v.noop,m=D.seriesTypes,F=r.addEvent,y=r.extend,ha=r.fireEvent,ia=r.isNumber,ja=r.merge,ka=r.pick,z=r.wrap,P;return function(){v.seriesTypes.heatmap&&z(v.seriesTypes.heatmap.prototype,"drawPoints",function(){var a=this.chart,b=this.getContext(),f=this.chart.inverted,c=this.xAxis,d=this.yAxis;b?(this.points.forEach(function(e){var k=e.plotY;if("undefined"!==typeof k&&
 !isNaN(k)&&null!==e.y&&b){var l=e.shapeArgs||{};k=l.x;k=void 0===k?0:k;var g=l.y;g=void 0===g?0:g;var u=l.width;u=void 0===u?0:u;l=l.height;l=void 0===l?0:l;e=a.styledMode?e.series.colorAttribs(e):e.series.pointAttribs(e);b.fillStyle=e.fill;f?b.fillRect(d.len-g+c.left,c.len-k+d.top,-l,-u):b.fillRect(k+c.left,g+d.top,u,l)}}),this.canvasToSVG()):this.chart.showLoading("Your browser doesn't support HTML5 canvas, <br>please use a modern browser")});y(C.prototype,{getContext:function(){var a=this.chart,
 b=a.chartWidth,f=a.chartHeight,c=a.seriesGroup||this.group,d=this,g=function(a,d,f,b,c,e,g){a.call(this,f,d,b,c,e,g)};a.isChartSeriesBoosting()&&(d=a,c=a.seriesGroup);var k=d.ctx;d.canvas||(d.canvas=E.createElement("canvas"),d.renderTarget=a.renderer.image("",0,0,b,f).addClass("highcharts-boost-canvas").add(c),d.ctx=k=d.canvas.getContext("2d"),a.inverted&&["moveTo","lineTo","rect","arc"].forEach(function(a){z(k,a,g)}),d.boostCopy=function(){d.renderTarget.attr({href:d.canvas.toDataURL("image/png")})},

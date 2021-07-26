@@ -11,7 +11,8 @@
 'use strict';
 import palette from '../../Core/Color/Palette.js';
 import U from '../Utilities.js';
-var addEvent = U.addEvent, defined = U.defined, isObject = U.isObject, isNumber = U.isNumber, pick = U.pick, wrap = U.wrap;
+var addEvent = U.addEvent, isObject = U.isObject, isNumber = U.isNumber, pick = U.pick, wrap = U.wrap;
+/* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * @private
  */

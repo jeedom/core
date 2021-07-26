@@ -25,6 +25,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import Funnel3DComposition from './Funnel3DComposition.js';
 import Funnel3DPoint from './Funnel3DPoint.js';
 import H from '../../Core/Globals.js';
 var noop = H.noop;
@@ -34,7 +35,6 @@ import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, ColumnSeries = SeriesRegistry.seriesTypes.column;
 import U from '../../Core/Utilities.js';
 var extend = U.extend, merge = U.merge, pick = U.pick, relativeLength = U.relativeLength;
-import './Funnel3DComposition.js';
 /* *
  *
  *  Class
@@ -52,6 +52,11 @@ import './Funnel3DComposition.js';
 var Funnel3DSeries = /** @class */ (function (_super) {
     __extends(Funnel3DSeries, _super);
     function Funnel3DSeries() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -260,6 +265,7 @@ var Funnel3DSeries = /** @class */ (function (_super) {
             }
         });
     };
+    Funnel3DSeries.compose = Funnel3DComposition.compose;
     /**
      * A funnel3d is a 3d version of funnel series type. Funnel charts are
      * a type of chart often used to visualize stages in a sales project,

@@ -20,7 +20,7 @@ var __extends = (this && this.__extends) || (function () {
 import Annotation from '../Annotations.js';
 import ControlPoint from '../ControlPoint.js';
 import U from '../../../Core/Utilities.js';
-var extend = U.extend, isNumber = U.isNumber, merge = U.merge;
+var extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 var Measure = /** @class */ (function (_super) {
     __extends(Measure, _super);
@@ -137,15 +137,19 @@ var Measure = /** @class */ (function (_super) {
                 dashStyle: 'Dash',
                 overflow: 'allow',
                 align: 'left',
-                vertical: 'top',
+                y: 0,
+                x: 0,
+                verticalAlign: 'top',
                 crop: true,
+                xAxis: 0,
+                yAxis: 0,
                 point: function (target) {
-                    var annotation = target.annotation, chart = annotation.chart, inverted = chart.inverted, xAxis = chart.xAxis[typeOptions.xAxis], yAxis = chart.yAxis[typeOptions.yAxis], top = chart.plotTop, left = chart.plotLeft;
+                    var annotation = target.annotation, options = target.options;
                     return {
-                        x: (inverted ? top : 10) +
-                            xAxis.toPixels(annotation.xAxisMin, !inverted),
-                        y: (inverted ? -left + 10 : top) +
-                            yAxis.toPixels(annotation.yAxisMin)
+                        x: annotation.xAxisMin,
+                        y: annotation.yAxisMin,
+                        xAxis: pick(typeOptions.xAxis, options.xAxis),
+                        yAxis: pick(typeOptions.yAxis, options.yAxis)
                     };
                 },
                 text: (formatter && formatter.call(this)) ||
@@ -763,5 +767,15 @@ Measure.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions,
         }
     }
 });
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.measure = Measure;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default Measure;

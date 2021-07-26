@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.0 (2021-05-03)
+ Highstock JS v9.1.2 (2021-06-16)
 
  Indicator series type for Highcharts Stock
 
@@ -7,7 +7,7 @@
 
  License: www.highcharts.com/license
 */
-(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/indicators/price-envelopes",["highcharts","highcharts/modules/stock"],function(e){b(e);b.Highcharts=e;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function e(b,d,e,h){b.hasOwnProperty(d)||(b[d]=h.apply(null,e))}b=b?b._modules:{};e(b,"Stock/Indicators/PriceEnvelopes/PriceEnvelopesIndicator.js",[b["Core/Series/SeriesRegistry.js"],
+'use strict';(function(b){"object"===typeof module&&module.exports?(b["default"]=b,module.exports=b):"function"===typeof define&&define.amd?define("highcharts/indicators/price-envelopes",["highcharts","highcharts/modules/stock"],function(e){b(e);b.Highcharts=e;return b}):b("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(b){function e(b,d,e,h){b.hasOwnProperty(d)||(b[d]=h.apply(null,e))}b=b?b._modules:{};e(b,"Stock/Indicators/PriceEnvelopes/PriceEnvelopesIndicator.js",[b["Core/Series/SeriesRegistry.js"],
 b["Core/Utilities.js"]],function(b,d){var e=this&&this.__extends||function(){var b=function(c,a){b=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,b){a.__proto__=b}||function(a,b){for(var c in b)b.hasOwnProperty(c)&&(a[c]=b[c])};return b(c,a)};return function(c,a){function k(){this.constructor=c}b(c,a);c.prototype=null===a?Object.create(a):(k.prototype=a.prototype,new k)}}(),h=b.seriesTypes.sma,u=d.extend,v=d.isArray,m=d.merge;d=function(d){function c(){var a=null!==d&&d.apply(this,
 arguments)||this;a.data=void 0;a.options=void 0;a.points=void 0;return a}e(c,d);c.prototype.init=function(){b.seriesTypes.sma.prototype.init.apply(this,arguments);this.options=m({topLine:{styles:{lineColor:this.color}},bottomLine:{styles:{lineColor:this.color}}},this.options)};c.prototype.toYData=function(a){return[a.top,a.middle,a.bottom]};c.prototype.translate=function(){var a=this,c=["plotTop","plotMiddle","plotBottom"];b.seriesTypes.sma.prototype.translate.apply(a);a.points.forEach(function(b){[b.top,
 b.middle,b.bottom].forEach(function(d,k){null!==d&&(b[c[k]]=a.yAxis.toPixels(d,!0))})})};c.prototype.drawGraph=function(){for(var a=this,c=a.points,d=c.length,e=a.options,h=a.graph,w={options:{gapSize:e.gapSize}},n=[[],[]],f;d--;)f=c[d],n[0].push({plotX:f.plotX,plotY:f.plotTop,isNull:f.isNull}),n[1].push({plotX:f.plotX,plotY:f.plotBottom,isNull:f.isNull});["topLine","bottomLine"].forEach(function(c,d){a.points=n[d];a.options=m(e[c].styles,w);a.graph=a["graph"+c];b.seriesTypes.sma.prototype.drawGraph.call(a);

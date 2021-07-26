@@ -1,5 +1,5 @@
 /*
- Highcharts JS v9.1.0 (2021-05-03)
+ Highcharts JS v9.1.2 (2021-06-16)
 
  Arrow Symbols
 
@@ -7,7 +7,6 @@
 
  License: www.highcharts.com/license
 */
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/arrow-symbols",["highcharts"],function(f){a(f);a.Highcharts=f;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function f(a,e,b,c){a.hasOwnProperty(e)||(a[e]=c.apply(null,b))}a=a?a._modules:{};f(a,"Extensions/ArrowSymbols.js",[a["Core/Renderer/SVG/SVGRenderer.js"]],function(a){a.prototype.symbols.arrow=function(a,b,c,
-d){return[["M",a,b+d/2],["L",a+c,b],["L",a,b+d/2],["L",a+c,b+d]]};a.prototype.symbols["arrow-half"]=function(e,b,c,d){return a.prototype.symbols.arrow(e,b,c/2,d)};a.prototype.symbols["triangle-left"]=function(a,b,c,d){return[["M",a+c,b],["L",a,b+d/2],["L",a+c,b+d],["Z"]]};a.prototype.symbols["arrow-filled"]=a.prototype.symbols["triangle-left"];a.prototype.symbols["triangle-left-half"]=function(e,b,c,d){return a.prototype.symbols["triangle-left"](e,b,c/2,d)};a.prototype.symbols["arrow-filled-half"]=
-a.prototype.symbols["triangle-left-half"]});f(a,"masters/modules/arrow-symbols.src.js",[],function(){})});
+'use strict';(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/arrow-symbols",["highcharts"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,b,f,g){a.hasOwnProperty(b)||(a[b]=g.apply(null,f))}a=a?a._modules:{};b(a,"Extensions/ArrowSymbols.js",[a["Core/Renderer/SVG/SVGRenderer.js"]],function(a){function b(a,d,b,c){return[["M",
+a,d+c/2],["L",a+b,d],["L",a,d+c/2],["L",a+b,d+c]]}function f(a,b,e,c){return[["M",a+e,b],["L",a,b+c/2],["L",a+e,b+c],["Z"]]}function g(a,b,e,c){return f(a,b,e/2,c)}a=a.prototype.symbols;a.arrow=b;a["arrow-filled"]=f;a["arrow-filled-half"]=g;a["arrow-half"]=function(a,d,e,c){return b(a,d,e/2,c)};a["triangle-left"]=f;a["triangle-left-half"]=g;return a});b(a,"masters/modules/arrow-symbols.src.js",[],function(){})});
 //# sourceMappingURL=arrow-symbols.js.map

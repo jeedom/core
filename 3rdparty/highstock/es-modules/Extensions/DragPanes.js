@@ -15,10 +15,16 @@
 import H from '../Core/Globals.js';
 var hasTouch = H.hasTouch;
 import Axis from '../Core/Axis/Axis.js';
+import AxisDefaults from '../Core/Axis/AxisDefaults.js';
 import palette from '../Core/Color/Palette.js';
 import Pointer from '../Core/Pointer.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, clamp = U.clamp, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach, relativeLength = U.relativeLength, wrap = U.wrap;
+/* *
+ *
+ *  Class
+ *
+ * */
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * The AxisResizer class.
@@ -502,6 +508,6 @@ wrap(Pointer.prototype, 'drag', function (proceed) {
         proceed.apply(this, Array.prototype.slice.call(arguments, 1));
     }
 });
-merge(true, Axis.defaultYAxisOptions, AxisResizer.resizerOptions);
+merge(true, AxisDefaults.defaultYAxisOptions, AxisResizer.resizerOptions);
 H.AxisResizer = AxisResizer;
 export default H.AxisResizer;

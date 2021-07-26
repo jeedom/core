@@ -12,8 +12,8 @@ import Chart from '../../Core/Chart/Chart.js';
 import ErrorMessages from './ErrorMessages.js';
 import H from '../../Core/Globals.js';
 var charts = H.charts;
-import O from '../../Core/Options.js';
-var setOptions = O.setOptions;
+import D from '../../Core/DefaultOptions.js';
+var setOptions = D.setOptions;
 import U from '../../Core/Utilities.js';
 var addEvent = U.addEvent, find = U.find, isNumber = U.isNumber;
 /* *
@@ -40,7 +40,7 @@ setOptions({
     }
 });
 /* eslint-disable no-invalid-this */
-addEvent(Highcharts, 'displayError', function (e) {
+addEvent(H, 'displayError', function (e) {
     // Display error on the chart causing the error or the last created chart.
     var chart = e.chart ||
         find(charts.slice().reverse(), function (c) { return !!c; });

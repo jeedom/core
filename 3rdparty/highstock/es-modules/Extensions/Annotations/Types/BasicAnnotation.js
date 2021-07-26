@@ -174,5 +174,15 @@ var BasicAnnotation = /** @class */ (function (_super) {
     return BasicAnnotation;
 }(Annotation));
 BasicAnnotation.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions, {});
+/* *
+ *
+ *  Registry
+ *
+ * */
 Annotation.types.basicAnnotation = BasicAnnotation;
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default BasicAnnotation;

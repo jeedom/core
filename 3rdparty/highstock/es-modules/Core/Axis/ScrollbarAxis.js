@@ -7,12 +7,17 @@
  *  !!!!!!! SOURCE GETS TRANSPILED BY TYPESCRIPT. EDIT TS FILE ONLY. !!!!!!!
  *
  * */
+'use strict';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, defined = U.defined, pick = U.pick;
+/* *
+ *
+ *  Composition
+ *
+ * */
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
  * Creates scrollbars if enabled.
- *
  * @private
  */
 var ScrollbarAxis = /** @class */ (function () {
@@ -148,6 +153,7 @@ var ScrollbarAxis = /** @class */ (function () {
                     scrollbar.size + scrollbar.options.margin;
             }
         });
+        return AxisClass;
     };
     return ScrollbarAxis;
 }());
