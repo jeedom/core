@@ -151,7 +151,7 @@
         "Designs": "Design",
         "Scénarios": "Szenarien",
         "Scénario": "Szenario",
-        "Analyse": "Analyse",
+        "Analyse": "Analysieren",
         "Autre": "Andere",
         "Plugins": "Plugins"
     },
@@ -1331,7 +1331,7 @@
         "Vue": "Aussicht",
         "Design": "Design",
         "Design 3D": "3D-Design",
-        "Analyse": "Analyse",
+        "Analyse": "Analysieren",
         "Logs": "Protokolle",
         "Temps réel": "Echtzeit",
         "Equipements": "Geräte",

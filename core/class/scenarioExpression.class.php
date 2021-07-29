@@ -297,6 +297,27 @@ class scenarioExpression {
 		return round($historyStatistique['avg'], 1);
 	}
 
+	public static function averageTemporal($_cmd_id, $_period = '1 hour') {
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$dates = self::getDatesFromPeriod($_period);
+		$_startTime = $dates[0];
+		$_endTime = $dates[1];
+		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
+	}
+
+	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate) {
+		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
+		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
+			return '';
+		}
+		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
+		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
+	}
+
 	public static function max($_cmd_id, $_period = '1 hour') {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
