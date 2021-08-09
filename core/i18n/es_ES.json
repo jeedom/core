@@ -911,7 +911,7 @@
         "Affichage": "Monitor",
         "Disposition": "Provisión",
         "Alertes": "Alertas",
-        "Commentaire": "Observación",
+        "Commentaire": "Comentario",
         "ID": "CARNÉ DE IDENTIDAD",
         "Nom": "Nombre",
         "ID logique": "ID logical",
@@ -2154,7 +2154,7 @@
         "Dans": "Dentro de",
         "A": "A las",
         "Code": "Código",
-        "Commentaire": "Observación",
+        "Commentaire": "Comentario",
         "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {

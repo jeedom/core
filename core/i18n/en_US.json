@@ -911,7 +911,7 @@
         "Affichage": "Display",
         "Disposition": "Layout",
         "Alertes": "Warnings",
-        "Commentaire": "Remark",
+        "Commentaire": "Comment",
         "ID": "ID",
         "Nom": "Name",
         "ID logique": "Logical ID",
@@ -2154,7 +2154,7 @@
         "Dans": "In",
         "A": "At",
         "Code": "Code",
-        "Commentaire": "Remark",
+        "Commentaire": "Comment",
         "Annuler": "Cancel"
     },
     "desktop\/php\/connection.php": {

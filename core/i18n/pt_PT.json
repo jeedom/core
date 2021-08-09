@@ -911,7 +911,7 @@
         "Affichage": "Exibição",
         "Disposition": "Provisão",
         "Alertes": "Notificações",
-        "Commentaire": "Observação",
+        "Commentaire": "COMMENTAIRE",
         "ID": "EU IRIA",
         "Nom": "Nome",
         "ID logique": "ID lógico",
@@ -2154,7 +2154,7 @@
         "Dans": "DANS",
         "A": "à",
         "Code": "CÓDIGO",
-        "Commentaire": "Observação",
+        "Commentaire": "COMMENTAIRE",
         "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
