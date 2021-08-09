@@ -911,7 +911,7 @@
         "Affichage": "Anzeige",
         "Disposition": "Bereitstellung",
         "Alertes": "Warnungen",
-        "Commentaire": "Kommentar",
+        "Commentaire": "Anmerkung",
         "ID": "Identifikation",
         "Nom": "Name",
         "ID logique": "Logische ID",
@@ -2154,7 +2154,7 @@
         "Dans": "In",
         "A": "Bis",
         "Code": "CODE",
-        "Commentaire": "Kommentar",
+        "Commentaire": "Anmerkung",
         "Annuler": "Abbrechen"
     },
     "desktop\/php\/connection.php": {
@@ -2227,6 +2227,7 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Liste der Benutzer (Bezeichner) getrennt durch ein |",
         "Regexp d'exclusion": "Regexp-Ausschluss",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Erlaube Jeedom, syntaktisch falsche Anforderungen zu löschen",
+        "Commentaire": "Anmerkung",
         "Filtrer par :": "Filtern nach:",
         "Commandes de type": "Geben Sie Befehle ein",
         "Commandes de sous-type": "Subtyp-Befehle",

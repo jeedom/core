@@ -2227,6 +2227,7 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Daftar pengguna (pengidentifikasi) dipisahkan oleh |",
         "Regexp d'exclusion": "Regexp pengecualian",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Memungkinkan Jeedom untuk menghilangkan permintaan cacat",
+        "Commentaire": "Commentaire",
         "Filtrer par :": "Filtrer par :",
         "Commandes de type": "Commandes de type",
         "Commandes de sous-type": "Commandes de sous-type",

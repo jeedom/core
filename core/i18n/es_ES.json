@@ -911,7 +911,7 @@
         "Affichage": "Monitor",
         "Disposition": "Provisión",
         "Alertes": "Alertas",
-        "Commentaire": "Comentario",
+        "Commentaire": "Observación",
         "ID": "CARNÉ DE IDENTIDAD",
         "Nom": "Nombre",
         "ID logique": "ID logical",
@@ -2154,7 +2154,7 @@
         "Dans": "Dentro de",
         "A": "A las",
         "Code": "Código",
-        "Commentaire": "Comentario",
+        "Commentaire": "Observación",
         "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
@@ -2227,6 +2227,7 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Lista de usuarios (identificadores) separados por una |",
         "Regexp d'exclusion": "Expresión regular de exclusión",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Permitir que Jeedom elimine solicitudes sintácticamente incorrectas",
+        "Commentaire": "Observación",
         "Filtrer par :": "Filtrar por:",
         "Commandes de type": "Escribir comandos",
         "Commandes de sous-type": "Comandos de subtipo",

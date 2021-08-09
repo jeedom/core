@@ -911,7 +911,7 @@
         "Affichage": "Exibição",
         "Disposition": "Provisão",
         "Alertes": "Notificações",
-        "Commentaire": "COMMENTAIRE",
+        "Commentaire": "Observação",
         "ID": "EU IRIA",
         "Nom": "Nome",
         "ID logique": "ID lógico",
@@ -2154,7 +2154,7 @@
         "Dans": "DANS",
         "A": "à",
         "Code": "CÓDIGO",
-        "Commentaire": "COMMENTAIRE",
+        "Commentaire": "Observação",
         "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
@@ -2227,6 +2227,7 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Lista de usuários (identificadores) separados por uma |",
         "Regexp d'exclusion": "Exclusão regexp",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Permitir Jeedom para eliminar solicitações malformadas",
+        "Commentaire": "Observação",
         "Filtrer par :": "Filtrar por:",
         "Commandes de type": "Comandos de tipo",
         "Commandes de sous-type": "Comandos de subtipo",

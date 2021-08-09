@@ -2227,6 +2227,7 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Elenco di utenti (identificatori) separati da un |",
         "Regexp d'exclusion": "Esclusione Regexp",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Consenti a Jeedom di eliminare richieste sintatticamente errate",
+        "Commentaire": "Commentaire",
         "Filtrer par :": "Filtra per:",
         "Commandes de type": "Digita i comandi",
         "Commandes de sous-type": "Comandi di sottotipo",

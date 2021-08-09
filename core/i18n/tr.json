@@ -2227,6 +2227,7 @@
         "Liste des utilisateurs (identifiants) séparés par un |": "Kullanıcı bir ayırarak listesi (betimleyici) |",
         "Regexp d'exclusion": "Dışlama regexpi",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Jeedom\\'a sözdizimsel olarak yanlış olan istekleri silmesine izin ver",
+        "Commentaire": "Commentaire",
         "Filtrer par :": "Filtrer par :",
         "Commandes de type": "Commandes de type",
         "Commandes de sous-type": "Commandes de sous-type",
