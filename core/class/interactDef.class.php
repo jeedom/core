@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class interactDef {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $filtres;
@@ -33,10 +33,11 @@ class interactDef {
 	private $group;
 	private $actions;
 	private $display;
+	private $comment;
 	private $_changed = false;
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -46,7 +47,7 @@ class interactDef {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function all($_group = '') {
 		$values = array();
 		if ($_group === '') {
@@ -67,7 +68,7 @@ class interactDef {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function listGroup($_group = null) {
 		$values = array();
 		$sql = 'SELECT DISTINCT(`group`)
@@ -79,7 +80,7 @@ class interactDef {
 		$sql .= ' ORDER BY `group`';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
-	
+
 	public static function generateTextVariant($_text) {
 		$return = array();
 		preg_match_all("/(\[.*?\])/", $_text, $words);
@@ -99,7 +100,7 @@ class interactDef {
 		}
 		return $return;
 	}
-	
+
 	public static function searchByQuery($_query) {
 		$values = array(
 			'query' => '%' . $_query . '%',
@@ -109,13 +110,13 @@ class interactDef {
 		WHERE query LIKE :query';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function regenerateInteract() {
-		foreach((self::all()) as $interactDef) {
+		foreach ((self::all()) as $interactDef) {
 			$interactDef->save();
 		}
 	}
-	
+
 	public static function getTagFromQuery($_def, $_query) {
 		$_def = self::sanitizeQuery(trim($_def));
 		$_query = self::sanitizeQuery(trim($_query));
@@ -143,7 +144,7 @@ class interactDef {
 		}
 		return $options;
 	}
-	
+
 	public static function sanitizeQuery($_query) {
 		$_query = str_replace(array("\'"), array("'"), $_query);
 		$_query = preg_replace('/\s+/', ' ', $_query);
@@ -151,10 +152,10 @@ class interactDef {
 		$_query = strtolower(sanitizeAccent($_query));
 		return $_query;
 	}
-	
+
 	public static function deadCmd() {
 		$return = array();
-		foreach((interactDef::all()) as $interact) {
+		foreach ((interactDef::all()) as $interact) {
 			//var_dump($interact->getActions('cmd'));
 			foreach ($interact->getActions('cmd') as $cmd) {
 				$json = json_encode($cmd);
@@ -180,10 +181,10 @@ class interactDef {
 		}
 		return $return;
 	}
-	
+
 	public static function cleanInteract() {
 		$list_id = array();
-		foreach((self::all()) as $interactDef) {
+		foreach ((self::all()) as $interactDef) {
 			$list_id[$interactDef->getId()] = $interactDef->getId();
 		}
 		if (count($list_id) > 0) {
@@ -191,7 +192,7 @@ class interactDef {
 			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
 	}
-	
+
 	public static function searchByUse($_search) {
 		$return = array();
 		if (!is_array($_search)) {
@@ -228,9 +229,9 @@ class interactDef {
 		}
 		return $return;
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
 	public function checkQuery($_query) {
 		if ($this->getOptions('allowSyntaxCheck', 1) == 1) {
 			$exclude_regexp = "/l'(z|r|t|p|q|s|d|f|g|j|k|l|m|w|x|c|v|b|n|y| )|( |^)la (a|e|u|i|o)|( |^)le (a|e|u|i|o)|( |^)du (a|e|u|i|o)/i";
@@ -370,20 +371,20 @@ class interactDef {
 		}
 		return true;
 	}
-	
+
 	public function selectReply() {
 		$replies = self::generateTextVariant($this->getReply());
 		$random = rand(0, count($replies) - 1);
 		return $replies[$random];
 	}
-	
+
 	public function preInsert() {
 		if ($this->getReply() == '') {
 			$this->setReply('#valeur#');
 		}
 		$this->setEnable(1);
 	}
-	
+
 	public function preSave() {
 		if ($this->getOptions('allowSyntaxCheck') === '') {
 			$this->setOptions('allowSyntaxCheck', 1);
@@ -392,7 +393,7 @@ class interactDef {
 			$this->setFiltres('eqLogic_id', 'all');
 		}
 	}
-	
+
 	public function save() {
 		if ($this->getQuery() == '') {
 			throw new Exception(__('La commande (demande) ne peut pas être vide', __FILE__));
@@ -400,7 +401,7 @@ class interactDef {
 		DB::save($this);
 		return true;
 	}
-	
+
 	public function postSave() {
 		$queries = $this->generateQueryVariant();
 		interactQuery::removeByInteractDefId($this->getId());
@@ -424,19 +425,19 @@ class interactDef {
 		}
 		self::cleanInteract();
 	}
-	
+
 	public function remove() {
 		DB::remove($this);
 	}
-	
+
 	public function preRemove() {
 		interactQuery::removeByInteractDefId($this->getId());
 	}
-	
+
 	public function postRemove() {
 		self::cleanInteract();
 	}
-	
+
 	public function generateQueryVariant() {
 		$inputs = self::generateTextVariant($this->getQuery());
 		$return = array();
@@ -451,14 +452,14 @@ class interactDef {
 			preg_match_all("/#(.*?)#/", $input, $matches);
 			$matches = $matches[1];
 			if (in_array('commande', $matches) || (in_array('objet', $matches) || in_array('equipement', $matches))) {
-				foreach((jeeObject::all()) as $object) {
+				foreach ((jeeObject::all()) as $object) {
 					if (isset($object_filter[$object->getId()]) && $object_filter[$object->getId()] == 0) {
 						continue;
 					}
 					if (isset($visible_filter['object']) && $visible_filter['object'] == 1 && $object->getIsVisible() != 1) {
 						continue;
 					}
-					foreach(($object->getEqLogic()) as $eqLogic) {
+					foreach (($object->getEqLogic()) as $eqLogic) {
 						if ($this->getFiltres('eqLogic_id', 'all') != 'all' && $eqLogic->getId() != $this->getFiltres('eqLogic_id')) {
 							continue;
 						}
@@ -468,7 +469,7 @@ class interactDef {
 						if (isset($visible_filter['eqLogic']) && $visible_filter['eqLogic'] == 1 && $eqLogic->getIsVisible() != 1) {
 							continue;
 						}
-						
+
 						$category_ok = true;
 						if (is_array($category_filter)) {
 							$category_ok = false;
@@ -488,7 +489,7 @@ class interactDef {
 						if (!$category_ok) {
 							continue;
 						}
-						foreach(($eqLogic->getCmd()) as $cmd) {
+						foreach (($eqLogic->getCmd()) as $cmd) {
 							if (isset($visible_filter['cmd']) && $visible_filter['cmd'] == 1 && $cmd->getIsVisible() != 1) {
 								continue;
 							}
@@ -507,7 +508,7 @@ class interactDef {
 									continue;
 								}
 							}
-							
+
 							$replace = array(
 								'#objet#' => strtolower($object->getName()),
 								'#commande#' => strtolower($cmd->getName()),
@@ -530,14 +531,14 @@ class interactDef {
 							$return[$query] = array(
 								'query' => $query,
 								'cmd' => array(array('cmd' => '#' . $cmd->getId() . '#', 'options' => $options)),
-								
+
 							);
 						}
 					}
 				}
 			}
 		}
-		
+
 		if (count($return) == 0) {
 			foreach ($inputs as $input) {
 				$return[] = array(
@@ -570,7 +571,7 @@ class interactDef {
 		}
 		return $return;
 	}
-	
+
 	public static function generateSynonymeVariante($_text, $_synonymes, $_deep = 0) {
 		$return = array();
 		if (count($_synonymes) == 0) {
@@ -593,18 +594,18 @@ class interactDef {
 		}
 		return $return;
 	}
-	
+
 	public function getLinkToConfiguration() {
 		return 'index.php?v=d&p=interact&id=' . $this->getId();
 	}
-	
+
 	public function getHumanName() {
 		if ($this->getName() != '') {
 			return $this->getName();
 		}
 		return $this->getQuery();
 	}
-	
+
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
 		if (isset($_data['node']['interactDef' . $this->getId()])) {
 			return;
@@ -616,7 +617,7 @@ class interactDef {
 		$icon = findCodeIcon('fa-comments-o');
 		$_data['node']['interactDef' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
-			'type' => __('Intéraction',__FILE__),
+			'type' => __('Intéraction', __FILE__),
 			'name' => substr($this->getHumanName(), 0, 20),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
@@ -628,130 +629,139 @@ class interactDef {
 			'url' => 'index.php?v=d&p=interact&id=' . $this->getId(),
 		);
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
+
 	public function getId() {
 		return $this->id;
 	}
-	
+
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
+
 	public function getQuery() {
 		return $this->query;
 	}
-	
+
 	public function setQuery($_query) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->query,$_query);
+		$this->_changed = utils::attrChanged($this->_changed, $this->query, $_query);
 		$this->query = $_query;
 		return $this;
 	}
-	
+
 	public function getReply() {
 		return $this->reply;
 	}
-	
+
 	public function setReply($_reply) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->reply,$_reply);
+		$this->_changed = utils::attrChanged($this->_changed, $this->reply, $_reply);
 		$this->reply = $_reply;
 		return $this;
 	}
-	
+
 	public function getPerson() {
 		return $this->person;
 	}
-	
+
 	public function setPerson($_person) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->person,$_person);
+		$this->_changed = utils::attrChanged($this->_changed, $this->person, $_person);
 		$this->person = $_person;
 		return $this;
 	}
-	
+
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-	
+
 	public function setOptions($_key, $_value) {
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
 		$this->options = $options;
 		return $this;
 	}
-	
+
 	public function getFiltres($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->filtres, $_key, $_default);
 	}
-	
+
 	public function setFiltres($_key, $_value) {
 		$filtres = utils::setJsonAttr($this->filtres, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->filtres,$filtres);
+		$this->_changed = utils::attrChanged($this->_changed, $this->filtres, $filtres);
 		$this->filtres = $filtres;
 		return $this;
 	}
-	
+
 	public function getEnable() {
 		return $this->enable;
 	}
-	
+
 	public function setEnable($_enable) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
+		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
 		$this->enable = $_enable;
 		return $this;
 	}
-	
+
 	public function getName() {
 		return $this->name;
 	}
-	
+
 	public function setName($_name) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;
 	}
-	
+
+	public function getComment() {
+		return $this->comment;
+	}
+
+	public function setComment($_comment) {
+		$this->_changed = utils::attrChanged($this->_changed, $this->comment, $_comment);
+		$this->comment = $_comment;
+		return $this;
+	}
+
 	public function getGroup() {
 		return $this->group;
 	}
-	
+
 	public function setGroup($_group) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->group,$_group);
+		$this->_changed = utils::attrChanged($this->_changed, $this->group, $_group);
 		$this->group = $_group;
 		return $this;
 	}
-	
+
 	public function getActions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->actions, $_key, $_default);
 	}
-	
+
 	public function setActions($_key, $_value) {
 		$actions = utils::setJsonAttr($this->actions, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->actions,$actions);
+		$this->_changed = utils::attrChanged($this->_changed, $this->actions, $actions);
 		$this->actions = $actions;
 		return $this;
 	}
-	
+
 	public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
-	
+
 	public function setDisplay($_key, $_value) {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->_changed = utils::attrChanged($this->_changed, $this->display, $display);
 		$this->display = $display;
 		return $this;
 	}
-	
+
 	public function getChanged() {
 		return $this->_changed;
 	}
-	
+
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
 }
