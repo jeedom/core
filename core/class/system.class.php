@@ -217,7 +217,7 @@ class system {
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
 					return self::$_installPackage[$_type];
 				}
-				$datas = json_decode(shell_exec('pip2 list --format=json'), true);
+				$datas = json_decode(shell_exec('pip2 list --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
 					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
@@ -225,7 +225,7 @@ class system {
 				}
 				break;
 			case 'pip3':
-				$datas = json_decode(shell_exec('pip3 list --format=json'), true);
+				$datas = json_decode(shell_exec('pip3 list --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
 					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
@@ -233,7 +233,7 @@ class system {
 				}
 				break;
 			case 'npm':
-				$datas = json_decode(shell_exec('npm -g ls -json -depth 1'), true);
+				$datas = json_decode(shell_exec('npm -g ls -json -depth 1 2>/dev/null'), true);
 				foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
 					self::$_installPackage[$_type][mb_strtolower($key)] = array(
 						'version' => $value['version']
