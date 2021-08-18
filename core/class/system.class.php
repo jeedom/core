@@ -21,6 +21,7 @@
 class system {
 
 	private static $_hasExec = array();
+	private static $_os_version = null;
 	private static $_installPackage = array();
 	private static $_packageUpdateMake = false;
 	private static $_distrib = null;
@@ -213,6 +214,9 @@ class system {
 				}
 				break;
 			case 'pip2':
+				if (version_compare(self::getOsVersion(), '11', '>=')) {
+					return self::$_installPackage[$_type];
+				}
 				$datas = json_decode(shell_exec('pip2 list --format=json'), true);
 				foreach ($datas as $value) {
 					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
@@ -221,11 +225,7 @@ class system {
 				}
 				break;
 			case 'pip3':
-				if (!self::checkHasExec('pip3')) {
-					$datas = json_decode(shell_exec('pip list --format=json'), true);
-				} else {
-					$datas = json_decode(shell_exec('pip3 list --format=json'), true);
-				}
+				$datas = json_decode(shell_exec('pip3 list --format=json'), true);
 				foreach ($datas as $value) {
 					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
@@ -242,6 +242,18 @@ class system {
 				break;
 		}
 		return self::$_installPackage[$_type];
+	}
+
+	public static function os_incompatible($_type, $_package) {
+		if (version_compare(self::getOsVersion(), '11', '>=')) {
+			if ($_type == 'pip2') {
+				return true;
+			}
+			if ($_type == 'apt' && strpos($_package, 'python-') !== false) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '') {
@@ -271,6 +283,22 @@ class system {
 						'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
 						'fix' => ($found == 0) ?  self::installPackage($type, $package) : '',
 						'remark' => isset($info['remark']) ? __($info['remark'], 'install/packages.json') : '',
+					);
+					continue;
+				}
+				if (self::os_incompatible($type, $package)) {
+					$return[$type . '::' . $package] = array(
+						'name' => $package,
+						'status' => 1,
+						'version' => 'N/A',
+						'type' => $type,
+						'needUpdate' => '',
+						'needVersion' => '',
+						'alternative_found' => '',
+						'optional' => true,
+						'reinstall' => false,
+						'fix' => '',
+						'remark' => 'OS incompatible',
 					);
 					continue;
 				}
@@ -463,13 +491,12 @@ class system {
 				}
 				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
 			case 'pip2':
+				if (version_compare(self::getOsVersion(), '11', '>=')) {
+					return '';
+				}
 				return self::getCmdSudo() . ' pip2 install --upgrade ' . $_package;
 			case 'pip3':
-				if (!self::checkHasExec('pip3')) {
-					return self::getCmdSudo() . ' pip install --upgrade ' . $_package;
-				} else {
-					return self::getCmdSudo() . ' pip3 install --upgrade ' . $_package;
-				}
+				return self::getCmdSudo() . ' pip3 install --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
@@ -487,6 +514,14 @@ class system {
 		}
 		self::$_hasExec[$_exec] = (exec('which ' . $_exec . ' | wc -l') != 0);
 		return self::$_hasExec[$_exec];
+	}
+
+	public static function getOsVersion() {
+		if (isset(self::$_os_version)) {
+			return self::$_os_version;
+		}
+		self::$_os_version = exec('cat /etc/debian_version');
+		return self::$_os_version;
 	}
 
 	public static function checkInstallationLog() {
