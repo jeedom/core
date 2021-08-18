@@ -295,8 +295,8 @@ class system {
 						'needUpdate' => '',
 						'needVersion' => '',
 						'alternative_found' => '',
-						'optional' => true,
-						'reinstall' => false,
+						'optional' => isset($info['optional']) ? $info['optional'] : false,
+						'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
 						'fix' => '',
 						'remark' => '',
 					);
@@ -387,7 +387,7 @@ class system {
 		}
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
-			if (($info['status'] != 0 && !$info['reinstall']) || $info['optional']) {
+			if (($info['status'] != 0 && !$info['reinstall']) || $info['optional'] || $info['status'] == 3) {
 				continue;
 			}
 			$has_something_todo = true;
