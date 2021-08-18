@@ -289,7 +289,7 @@ class system {
 				if (self::os_incompatible($type, $package)) {
 					$return[$type . '::' . $package] = array(
 						'name' => $package,
-						'status' => 1,
+						'status' => 3,
 						'version' => 'N/A',
 						'type' => $type,
 						'needUpdate' => '',
@@ -298,7 +298,7 @@ class system {
 						'optional' => true,
 						'reinstall' => false,
 						'fix' => '',
-						'remark' => 'OS incompatible',
+						'remark' => '',
 					);
 					continue;
 				}
