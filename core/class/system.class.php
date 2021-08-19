@@ -517,6 +517,9 @@ class system {
 	}
 
 	public static function getOsVersion() {
+		if (self::getDistrib() != 'debian') {
+			return 0;
+		}
 		if (isset(self::$_os_version)) {
 			return self::$_os_version;
 		}
