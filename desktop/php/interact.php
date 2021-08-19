@@ -15,7 +15,7 @@ if (is_array($interactListGroup)) {
 }
 $optionMaxSize = 15;
 
-function jeedom_displayInteractGroup($_group='', $_index=-1) {
+function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 	global $interacts;
 	$thisDiv = '';
 
@@ -25,23 +25,23 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 		$id = 'config_none';
 	} else {
 		$groupName = $_group;
-		$href = '#config_'.$_index;
-		$id = 'config_'.$_index;
+		$href = '#config_' . $_index;
+		$id = 'config_' . $_index;
 	}
 	$thisDiv .= '<div class="panel panel-default">';
 	$thisDiv .= '<div class="panel-heading">';
 	$thisDiv .= '<h3 class="panel-title">';
-	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="'.$href.'">' . $groupName . ' - ';
+	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
 	$c = count($interacts[$groupName]);
-	$thisDiv .= $c. ($c > 1 ? ' interactions' : ' interaction').'</a>';
+	$thisDiv .= $c . ($c > 1 ? ' interactions' : ' interaction') . '</a>';
 	$thisDiv .= '</h3>';
 	$thisDiv .= '</div>';
-	$thisDiv .= '<div id="'.$id.'" class="panel-collapse collapse">';
+	$thisDiv .= '<div id="' . $id . '" class="panel-collapse collapse">';
 	$thisDiv .= '<div class="panel-body">';
 	$thisDiv .= '<div class="interactListContainer">';
 	foreach ($interacts[$groupName] as $interact) {
 		$inactive = ($interact->getEnable()) ? '' : 'inactive';
-		$thisDiv .= '<div class="interactDisplayCard cursor '.$inactive.'" data-interact_id="' . $interact->getId() . '">';
+		$thisDiv .= '<div class="interactDisplayCard cursor ' . $inactive . '" data-interact_id="' . $interact->getId() . '">';
 		if ($interact->getDisplay('icon') != '') {
 			$thisDiv .= $interact->getDisplay('icon');
 		} else {
@@ -49,7 +49,7 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 		}
 		$thisDiv .= "<br>";
 		$thisDiv .= '<span class="name">' . $interact->getHumanName() . '</span>';
-		$thisDiv .= '<span class="hiddenAsCard displayTableRight">'.$interact->getQuery();
+		$thisDiv .= '<span class="hiddenAsCard displayTableRight">' . $interact->getQuery();
 		$thisDiv .= '</div>';
 	}
 	$thisDiv .= '</div>';
@@ -143,250 +143,256 @@ function jeedom_displayInteractGroup($_group='', $_index=-1) {
 			<li role="presentation"><a href="#actiontab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions}}</a></li>
 		</ul>
 
-	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane active" id="generaltab">
-			<form class="form-horizontal">
-				<br/>
-				<fieldset>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Nom}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="name" placeholder=""/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Groupe}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="group" placeholder="{{Groupe de l'interaction}}"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Actif}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="interactAttr" type="checkbox" data-l1key="enable" placeholder=""/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Icône}}</label>
-						<div class="col-sm-1 col-xs-1">
-							<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
-						</div>
-						<div class="col-sm-1 col-xs-1">
-							<div class="interactAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Demande}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="id" style="display : none;"/>
-							<input class="form-control interactAttr" type="text" data-l1key="query" placeholder=""/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Regexp de correspondance obligatoire}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="mustcontain"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Synonyme}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leurs synonymes lors de la génération des commandes}}"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Réponse}}</label>
-						<div class="col-sm-8 col-xs-8">
-							<textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
-						</div>
-						<div class="col-sm-1">
-							<a class="btn btn-default btn-sm cursor listEquipementInfoReply" title="{{Rechercher une commande}}"><i class="fas fa-list-alt "></i></a>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Attendre avant de répondre (s)}}</label>
-						<div class="col-sm-1 col-xs-9">
-							<input type="number" class="form-control interactAttr" type="text" data-l1key="options" data-l2key="waitBeforeReply" placeholder="" title="{{Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple}}"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Conversion binaire}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaires}}"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Utilisateurs autorisés}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (identifiants) séparés par un |}}"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 col-xs-2 control-label">{{Regexp d'exclusion}}</label>
-						<div class="col-sm-9 col-xs-9">
-							<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="exclude_regexp" placeholder="" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-xs-2 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
-						<div class="col-xs-3">
-							<input type="checkbox" class="interactAttr" data-l1key="options" data-l2key="allowSyntaxCheck">
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
-
-		<div role="tabpanel" class="tab-pane" id="filtertab">
-			<br/>
-			<legend><i class="fas fa-filter"></i> {{Filtrer par :}}</legend>
-			<form class="form-horizontal" id="div_filtre">
-				<fieldset>
-					<div class="form-group">
-						<div class="col-sm-12">
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de type}}</label><br/><br/>
-								<?php
-								$size = 0;
-								$html = '';
-								foreach ((jeedom::getConfiguration('cmd:type')) as $id => $type) {
-									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="'.$id.'">'.$type['name'].'</option>';
-									$size += 1;
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="generaltab">
+				<form class="form-horizontal">
+					<br />
+					<fieldset>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Nom}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="name" placeholder="" />
 							</div>
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de sous-type}}</label><br/><br/>
-								<?php
-								$size = 0;
-								$html = '';
-								foreach ((jeedom::getConfiguration('cmd:type')) as $type) {
-									foreach ($type['subtype'] as $id => $subtype) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="'.$id.'">'.$subtype['name'].'</option>';
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Groupe}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="group" placeholder="{{Groupe de l'interaction}}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Actif}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="interactAttr" type="checkbox" data-l1key="enable" placeholder="" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Icône}}</label>
+							<div class="col-sm-1 col-xs-1">
+								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+							</div>
+							<div class="col-sm-1 col-xs-1">
+								<div class="interactAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Demande}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="id" style="display : none;" />
+								<input class="form-control interactAttr" type="text" data-l1key="query" placeholder="" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Regexp de correspondance obligatoire}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="mustcontain" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Synonyme}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="synonymes" placeholder="" title="{{Remplace les mots par leurs synonymes lors de la génération des commandes}}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Réponse}}</label>
+							<div class="col-sm-8 col-xs-8">
+								<textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a class="btn btn-default btn-sm cursor listEquipementInfoReply" title="{{Rechercher une commande}}"><i class="fas fa-list-alt "></i></a>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Attendre avant de répondre (s)}}</label>
+							<div class="col-sm-1 col-xs-9">
+								<input type="number" class="form-control interactAttr" type="text" data-l1key="options" data-l2key="waitBeforeReply" placeholder="" title="{{Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple}}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Conversion binaire}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="convertBinary" placeholder="" title="{{Convertir les commandes binaires}}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Utilisateurs autorisés}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (identifiants) séparés par un |}}" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Regexp d'exclusion}}</label>
+							<div class="col-sm-9 col-xs-9">
+								<input class="form-control interactAttr" type="text" data-l1key="options" data-l2key="exclude_regexp" placeholder="" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-2 control-label">{{Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes}}</label>
+							<div class="col-xs-3">
+								<input type="checkbox" class="interactAttr" data-l1key="options" data-l2key="allowSyntaxCheck">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-xs-2 control-label">{{Commentaire}}</label>
+							<div class="col-sm-8 col-xs-8">
+								<textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="comment" placeholder=""></textarea>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="filtertab">
+				<br />
+				<legend><i class="fas fa-filter"></i> {{Filtrer par :}}</legend>
+				<form class="form-horizontal" id="div_filtre">
+					<fieldset>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de type}}</label><br /><br />
+									<?php
+									$size = 0;
+									$html = '';
+									foreach ((jeedom::getConfiguration('cmd:type')) as $id => $type) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '">' . $type['name'] . '</option>';
 										$size += 1;
 									}
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
-							</div>
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes par unité}}</label><br/><br/>
-								<?php
-								$size = 1;
-								$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
-								foreach ((cmd::allUnite()) as $unite) {
-									if (trim($unite['unite']) == '') {
-										continue;
-									}
-									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="'.$unite['unite'].'">'.$unite['unite'].'</option>';
-									$size += 1;
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
-							</div>
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Commandes des objets}}</label><br/><br/>
-								<?php
-								$size = 0;
-								$html = '';
-								foreach ((jeeObject::all()) as $object) {
-									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="'.$object->getId().'">'.$object->getName().'</option>';
-									$size += 1;
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
-							</div>
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Plugins}}</label><br/><br/>
-								<?php
-								$size = 0;
-								$html = '';
-								foreach ((eqLogic::allType()) as $type) {
-									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="'.$type['type'].'">'.$type['type'].'</option>';
-									$size += 1;
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
-							</div>
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Catégories}}</label><br/><br/>
-								<?php
-								$size = 1;
-								$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
-								foreach ((jeedom::getConfiguration('eqLogic:category')) as $id => $category) {
-									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="'.$id.'">'.$category['name'].'</option>';
-									$size += 1;
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-12">
-							<div class="col-sm-2">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Visibles}}</label><br/><br/>
-								<?php
-								$size = 0;
-								$html = '';
-								foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
-									$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="'.$id.'">'.$name.'</option>';
-									$size += 1;
-								}
-								if ($size > $optionMaxSize) $size = $optionMaxSize;
-								$html = '<select multiple="multiple" size="'.$size.'" class="custom-select" style="width:100%">'.$html;
-								$html .= '</select>';
-								echo $html;
-								?>
-							</div>
-							<div class="col-sm-4">
-								<label class="control-label"><i class="fas fa-filter"></i> {{Equipement}}</label><br/><br/>
-								<select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id' >
-									<option value="all">{{Tous}}</option>
-									<?php
-									foreach ((eqLogic::all()) as $eqLogic) {
-										echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
-									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
 									?>
-								</select>
+								</div>
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Commandes de sous-type}}</label><br /><br />
+									<?php
+									$size = 0;
+									$html = '';
+									foreach ((jeedom::getConfiguration('cmd:type')) as $type) {
+										foreach ($type['subtype'] as $id => $subtype) {
+											$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="' . $id . '">' . $subtype['name'] . '</option>';
+											$size += 1;
+										}
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
+									?>
+								</div>
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Commandes par unité}}</label><br /><br />
+									<?php
+									$size = 1;
+									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
+									foreach ((cmd::allUnite()) as $unite) {
+										if (trim($unite['unite']) == '') {
+											continue;
+										}
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '">' . $unite['unite'] . '</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
+									?>
+								</div>
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Commandes des objets}}</label><br /><br />
+									<?php
+									$size = 0;
+									$html = '';
+									foreach ((jeeObject::all()) as $object) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '">' . $object->getName() . '</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
+									?>
+								</div>
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Plugins}}</label><br /><br />
+									<?php
+									$size = 0;
+									$html = '';
+									foreach ((eqLogic::allType()) as $type) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '">' . $type['type'] . '</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
+									?>
+								</div>
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Catégories}}</label><br /><br />
+									<?php
+									$size = 1;
+									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
+									foreach ((jeedom::getConfiguration('eqLogic:category')) as $id => $category) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '">' . $category['name'] . '</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
+									?>
+								</div>
 							</div>
 						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
 
-		<div role="tabpanel" class="tab-pane" id="actiontab">
-			<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-			<br/><br/>
-			<form class="form-horizontal">
-				<fieldset>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="col-sm-2">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Visibles}}</label><br /><br />
+									<?php
+									$size = 0;
+									$html = '';
+									foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
+										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '">' . $name . '</option>';
+										$size += 1;
+									}
+									if ($size > $optionMaxSize) $size = $optionMaxSize;
+									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html .= '</select>';
+									echo $html;
+									?>
+								</div>
+								<div class="col-sm-4">
+									<label class="control-label"><i class="fas fa-filter"></i> {{Equipement}}</label><br /><br />
+									<select class='interactAttr form-control' data-l1key='filtres' data-l2key='eqLogic_id'>
+										<option value="all">{{Tous}}</option>
+										<?php
+										foreach ((eqLogic::all()) as $eqLogic) {
+											echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
+										}
+										?>
+									</select>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
 
-					<div id="div_action"></div>
-				</fieldset>
-			</form>
+			<div role="tabpanel" class="tab-pane" id="actiontab">
+				<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+				<br /><br />
+				<form class="form-horizontal">
+					<fieldset>
+
+						<div id="div_action"></div>
+					</fieldset>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
 
-<?php include_file('desktop', 'interact', 'js');?>
+	<?php include_file('desktop', 'interact', 'js'); ?>

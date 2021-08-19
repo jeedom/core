@@ -6,8 +6,9 @@
     "wget" : {},
     "ntpdate" : {},
     "smbclient" : {},
-    "python" : {},
-    "python-pip" : {},
+    "python" : {"debian_version_max" : "10"},
+    "python-pip" :  {"debian_version_max" : "10"},
+    "python-dev" :  {"debian_version_max" : "10"},
     "python3" : {},
     "python3-pip" : {},
     "software-properties-common" : {},
@@ -35,8 +36,7 @@
     "php-ldap" : {"alternative" : ["/php(.*?)-ldap/"],"optional" : true},
     "usbutils" : {"optional" : true},
     "gettext" : {},
-    "librsync-dev" : {},
-    "python-dev" : {}
+    "librsync-dev" : {}
   },
   "pip2" : {
     "future" : {},

@@ -22,9 +22,9 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_samba {
 	/*     * *************************Attributs****************************** */
-	
+
 	public static $_name = 'Samba';
-	
+
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => true,
@@ -33,43 +33,43 @@ class repo_samba {
 		'hasRetentionDay' => true,
 		'test' => true
 	);
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
-	public static function getConfigurationOption(){
+
+	public static function getConfigurationOption() {
 		return array(
 			'parameters_for_add' => array(
 				'path' => array(
-					'name' => __('Chemin',__FILE__),
+					'name' => __('Chemin', __FILE__),
 					'type' => 'input',
 				),
 			),
 			'configuration' => array(
 				'backup::ip' => array(
-					'name' => __('[Backup] IP',__FILE__),
+					'name' => __('[Backup] IP', __FILE__),
 					'type' => 'input',
 				),
 				'backup::username' => array(
-					'name' => __('[Backup] Utilisateur',__FILE__),
+					'name' => __('[Backup] Utilisateur', __FILE__),
 					'type' => 'input',
 				),
 				'backup::password' => array(
-					'name' => __('[Backup] Mot de passe',__FILE__),
+					'name' => __('[Backup] Mot de passe', __FILE__),
 					'type' => 'password',
 				),
 				'backup::share' => array(
-					'name' => __('[Backup] Partage',__FILE__),
+					'name' => __('[Backup] Partage', __FILE__),
 					'type' => 'input',
 				),
 				'backup::folder' => array(
-					'name' => __('[Backup] Chemin',__FILE__),
+					'name' => __('[Backup] Chemin', __FILE__),
 					'type' => 'input',
 				),
 			),
 		);
 	}
-	
-	
+
+
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
 			if (count($_update) < 1) {
@@ -95,11 +95,10 @@ class repo_samba {
 		}
 		$_update->save();
 	}
-	
+
 	public static function deleteObjet($_update) {
-		
 	}
-	
+
 	public static function downloadObject($_update) {
 		$tmp_dir = jeedom::getTmpFolder('samba');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
@@ -123,25 +122,25 @@ class repo_samba {
 		}
 		return array('path' => $tmp, 'localVersion' => $file[0]['datetime']);
 	}
-	
+
 	public static function objectInfo($_update) {
 		return array(
 			'doc' => '',
 			'changelog' => '',
 		);
 	}
-	
+
 	public static function makeSambaCommand($_cmd, $_type = 'backup') {
-		return system::getCmdSudo() . 'smbclient ' . config::byKey('samba::' . $_type . '::share') . ' -U "' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . '" -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
+		return system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -U "' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . '" -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
 	}
-	
+
 	public static function sortByDatetime($a, $b) {
 		if (strtotime($a['datetime']) == strtotime($b['datetime'])) {
 			return 0;
 		}
 		return (strtotime($a['datetime']) < strtotime($b['datetime'])) ? -1 : 1;
 	}
-	
+
 	public static function ls($_dir = '', $_type = 'backup') {
 		$cmd = repo_samba::makeSambaCommand('cd ' . $_dir . ';ls', $_type);
 		$result = explode("\n", com_shell::execute($cmd));
@@ -163,7 +162,7 @@ class repo_samba {
 		usort($return, 'repo_samba::sortByDatetime');
 		return array_reverse($return);
 	}
-	
+
 	public static function test() {
 		$cmd = repo_samba::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';ls', 'backup');
 		try {
@@ -173,21 +172,21 @@ class repo_samba {
 			throw new Exception($e->getMessage());
 		}
 	}
-	
+
 	public static function cleanBackupFolder() {
 		$timelimit = strtotime('-' . config::byKey('samba::keepDays') . ' days');
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if($file['filename'] == '..' || $file['filename'] == '.'){
+			if ($file['filename'] == '..' || $file['filename'] == '.') {
 				continue;
 			}
 			if ($timelimit > strtotime($file['datetime'])) {
-				echo 'Delete backup too old : '.json_encode($file);
+				echo 'Delete backup too old : ' . json_encode($file);
 				$cmd = self::makeSambaCommand('cd ' . config::byKey('samba::backup::folder') . ';del ' . $file['filename']);
 				com_shell::execute($cmd);
 			}
 		}
 	}
-	
+
 	public static function backup_send($_path) {
 		$pathinfo = pathinfo($_path);
 		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
@@ -195,17 +194,17 @@ class repo_samba {
 		com_shell::execute($cmd);
 		self::cleanBackupFolder();
 	}
-	
+
 	public static function backup_list() {
 		$return = array();
 		foreach (self::ls(config::byKey('samba::backup::folder')) as $file) {
-			if (strpos($file['filename'],'.tar.gz') !== false) {
+			if (strpos($file['filename'], '.tar.gz') !== false) {
 				$return[] = $file['filename'];
 			}
 		}
 		return $return;
 	}
-	
+
 	public static function backup_restore($_backup) {
 		$backup_dir = calculPath(config::byKey('backup::path'));
 		$cmd = 'cd ' . $backup_dir . ';';
@@ -214,7 +213,7 @@ class repo_samba {
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $backup_dir . '/*');
 		jeedom::restore('backup/' . $_backup, true);
 	}
-	
+
 	public static function downloadCore($_path) {
 		$pathinfo = pathinfo($_path);
 		$cmd = 'cd ' . $pathinfo['dirname'] . ';';
@@ -223,7 +222,7 @@ class repo_samba {
 		com_shell::execute(system::getCmdSudo() . 'chmod 777 -R ' . $_path);
 		return;
 	}
-	
+
 	public static function versionCore() {
 		try {
 			if (file_exists(jeedom::getTmpFolder('samba') . '/version')) {
@@ -239,15 +238,12 @@ class repo_samba {
 			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('samba') . '/version');
 			return $version;
 		} catch (Exception $e) {
-			
 		} catch (Error $e) {
-			
 		}
 		return null;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
 }

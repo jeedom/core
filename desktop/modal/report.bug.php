@@ -27,21 +27,21 @@ if (config::byKey('market::apikey') == '' && config::byKey('market::username') =
 $healths = jeedom::health();
 $first = true;
 foreach ($healths as $health) {
-  if($health['state']){
+  if ($health['state']) {
     continue;
   }
-  if($first){
+  if ($first) {
     echo '<div class="alert alert-danger">';
-    echo __('Attention nous avons detecté les soucis suivant : ',__FILE__).'<br/>';
+    echo __('Attention nous avons detecté les soucis suivant : ', __FILE__) . '<br/>';
   }
   $first = false;
-  echo '- '.$health['name'].'  : '.$health['result'];
-  if($health['comment'] != ''){
-    echo '('.$health['name'].')';
+  echo '- ' . $health['name'] . '  : ' . $health['result'];
+  if ($health['comment'] != '') {
+    echo '(' . $health['name'] . ')';
   }
   echo '<br/>';
 }
-if(!$first){
+if (!$first) {
   echo '</div>';
 }
 ?>
@@ -49,31 +49,37 @@ if(!$first){
 <div id='div_alertReportBug'></div>
 <form class="form-horizontal" role="form" id="form_reportBug">
   <div class="panel panel-success">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 1 : Information sur les tickets}}</h3>
+    </div>
     <div class="panel-body">
-      {{Merci de vérifier avant toute ouverture de ticket :}}<br/>
-      {{- que la question n'a pas déjà été posée sur le <a href='https://community.jeedom.com/'>forum</a>}}<br/>
-      {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br/>
-      <?php if (config::byKey('doc::base_url', 'core') != ''){ ?>
+      {{Merci de vérifier avant toute ouverture de ticket :}}<br />
+      {{- que la question n'a pas déjà été posée sur le <a href='https://community.jeedom.com/'>forum</a>}}<br />
+      {{- que la catégorie est bien sélectionnée pour que votre ticket soit traité dans les plus courts délais}}<br />
+      <?php if (config::byKey('doc::base_url', 'core') != '') { ?>
         {{- que la réponse n'est pas déjà dans la <a href='<?php echo config::byKey('doc::base_url', 'core'); ?>'>documentation</a>}}
       <?php } ?>
     </div>
   </div>
   <div class="panel panel-danger">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-info"></i> {{Etape 2 : Choix du type de demande}}</h3>
+    </div>
     <div class="panel-body">
-      <strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br/><br/>
-      <strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br/><br/>
-      <strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br/><br/>
+      <strong>{{Assistance technique}}</strong> : {{Rédigez votre question à l'attention de notre service Technique qui y répondra dans les meilleurs délais.}}<br /><br />
+      <strong>{{Rapport}}</strong> : {{Vous pouvez déclarer un bug qui sera publié sur notre Bug Tracker public (ATTENTION votre message sera public, il pourra être supprimé s'il ne s'agit pas d'un bug,  vous ne recevrez pas d'assistance technique suite à cette déclaration).}}<br /><br />
+      <strong>{{Demande d'amélioration}}</strong> : {{Vous pouvez envoyer des propositions d'amélioration qui seront publiées sur notre page publique dédiée et qui pourront être intégrées dans notre feuille de route.}}<br /><br />
       <div class="center">
-        <a href="https://community.jeedom.com/tags/bug" target="_blank" style="font-weight:bold;">{{Voir les bugs}}</a><br/>
-        <a href="https://community.jeedom.com/tags/amelioration" target="_blank" style="font-weight:bold;">{{Voir les propositions d'amélioration}}</a>
+        <a href="https://community.jeedom.com/tags/bug" target="_blank" style="font-weight:bold;">{{Voir les bugs}}</a><br />
+        <a href="https://community.jeedom.com/tag/am%C3%A9lioration" target="_blank" style="font-weight:bold;">{{Voir les propositions d'amélioration}}</a>
       </div>
     </div>
   </div>
-  
+
   <div class="panel panel-primary">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : Catégorie et type de la demande}}</h3>
+    </div>
     <div class="panel-body">
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Type}}</label>
@@ -102,21 +108,23 @@ if(!$first){
     </div>
   </div>
   <div class="panel panel-primary" id="div_reportModalSendAction" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3>
+    </div>
     <div class="panel-body">
       <div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target="_blank" href="https://doc.jeedom.com/fr_FR/howto/remonter_un_bug">documentation}}</a></div>
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Titre}}</label>
         <div class="col-sm-7">
-          <input class="form-control ticketAttr" data-l1key="title"/>
+          <input class="form-control ticketAttr" data-l1key="title" />
         </div>
       </div>
-      
+
       <div class="form-group">
         <label class="col-sm-2 control-label">{{Message}}</label>
         <div class="col-sm-9">
-          <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="8" ></textarea>
-          <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;"/>
+          <textarea class="form-control messageAttr input-sm" data-l1key="message" rows="8"></textarea>
+          <input class="form-control ticketAttr" data-l1key="options" data-l2key="page" style="display: none;" />
         </div>
       </div>
       <div class="form-actions">
@@ -125,9 +133,11 @@ if(!$first){
       </div>
     </div>
   </div>
-  
+
   <div class="panel panel-primary" id="div_reportModalPrivateIssue" style="display:none;">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3>
+    </div>
     <div class="panel-body">
       <div class="form-group">
         <label class="col-sm-5 control-label">{{Ce plugin utilise un gestionnaire de demande de support}}</label>
@@ -140,59 +150,73 @@ if(!$first){
 </form>
 
 <script>
-$('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href)
-if (getUrlVars('m') !== false) {
-  $('.ticketAttr[data-l1key=category]').value('plugin::'+getUrlVars('m'))
-}
+  $('.ticketAttr[data-l1key=options][data-l2key=page]').value(location.href)
+  if (getUrlVars('m') !== false) {
+    $('.ticketAttr[data-l1key=category]').value('plugin::' + getUrlVars('m'))
+  }
 
-$('#bt_sendBugReport').on('click', function() {
-  var ticket = $('#form_reportBug').getValues('.ticketAttr')[0]
-  ticket.messages = $('#form_reportBug').getValues('.messageAttr')
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/repo.ajax.php",
-    data: {
-      action: "sendReportBug",
-      repo : 'market',
-      ticket: json_encode(ticket),
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error, $('#div_alertReportBug'))
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $('#div_alertReportBug').showAlert({message: data.result, level: 'danger'})
-        return
+  $('#bt_sendBugReport').on('click', function() {
+    var ticket = $('#form_reportBug').getValues('.ticketAttr')[0]
+    ticket.messages = $('#form_reportBug').getValues('.messageAttr')
+    $.ajax({
+      type: "POST",
+      url: "core/ajax/repo.ajax.php",
+      data: {
+        action: "sendReportBug",
+        repo: 'market',
+        ticket: json_encode(ticket),
+      },
+      dataType: 'json',
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error, $('#div_alertReportBug'))
+      },
+      success: function(data) {
+        if (data.state != 'ok') {
+          $('#div_alertReportBug').showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+          return
+        }
+        $('#form_reportBug').hide()
+        $('#bt_sendBugReport').hide()
+        $('#md_reportBug').animate({
+          scrollTop: 0
+        }, "slow")
+        if (data.result != '' && data.result != null && data.result != 'ok') {
+          $('#div_alertReportBug').showAlert({
+            message: '{{Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre}} <a target="_blank" href="' + data.result + '">ici</a><br/><br/><strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s\'il ne s\'agit pas d\'un bug, vous ne recevrez pas d\'assistance technique suite à cette déclaration)',
+            level: 'success'
+          })
+        } else {
+          $('#div_alertReportBug').showAlert({
+            message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}',
+            level: 'success'
+          })
+        }
       }
-      $('#form_reportBug').hide()
-      $('#bt_sendBugReport').hide()
-      $('#md_reportBug').animate({ scrollTop: 0 }, "slow")
-      if (data.result != '' && data.result != null && data.result != 'ok') {
-        $('#div_alertReportBug').showAlert({message: '{{Vous venez de déclarer un bug qui sera publié sur notre Bug Tracker public.<br/>Vous pouvez le suivre}} <a target="_blank" href="'+data.result+'">ici</a><br/><br/><strong>ATTENTION</strong> votre message sera public, il pourra être supprimé s\'il ne s\'agit pas d\'un bug, vous ne recevrez pas d\'assistance technique suite à cette déclaration)', level: 'success'})
+    })
+  })
+
+  $('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change', function() {
+    if ($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration') {
+      $('#div_alertReportBug').showAlert({
+        message: '{{ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\'information personnelle (mail, compte market, clé api...)}}',
+        level: 'warning'
+      })
+    } else {
+      $.hideAlert()
+    }
+    $('#div_reportModalPrivateIssue').hide()
+    if ($('.ticketAttr[data-l1key=type]').value() == '' || $('.ticketAttr[data-l1key=category]').value() == '') {
+      $('#div_reportModalSendAction').hide()
+    } else {
+      if ($('.ticketAttr[data-l1key=category] option:selected').attr('data-issue') == '') {
+        $('#div_reportModalSendAction').show()
       } else {
-        $('#div_alertReportBug').showAlert({message: '{{Votre ticket a bien été ouvert. Un mail va vous être envoyé}}', level: 'success'})
+        $('#div_reportModalPrivateIssue').show()
+        $('#bt_reportBugIssueUrl').attr('href', $('.ticketAttr[data-l1key=category] option:selected').attr('data-issue'))
       }
     }
   })
-})
-
-$('.ticketAttr[data-l1key=type],.ticketAttr[data-l1key=category]').on('change',function() {
-  if ($('.ticketAttr[data-l1key=type]').value() == 'Bug' || $('.ticketAttr[data-l1key=type]').value() == 'Amélioration') {
-    $('#div_alertReportBug').showAlert({message: '{{ATTENTION : cette demande sera publique, il ne faut SURTOUT PAS mettre d\'information personnelle (mail, compte market, clé api...)}}', level: 'warning'})
-  } else {
-    $.hideAlert()
-  }
-  $('#div_reportModalPrivateIssue').hide()
-  if ($('.ticketAttr[data-l1key=type]').value() == '' || $('.ticketAttr[data-l1key=category]').value() == '') {
-    $('#div_reportModalSendAction').hide()
-  } else {
-    if ($('.ticketAttr[data-l1key=category] option:selected').attr('data-issue') == '') {
-      $('#div_reportModalSendAction').show()
-    } else {
-      $('#div_reportModalPrivateIssue').show()
-      $('#bt_reportBugIssueUrl').attr('href',$('.ticketAttr[data-l1key=category] option:selected').attr('data-issue'))
-    }
-  }
-})
 </script>
