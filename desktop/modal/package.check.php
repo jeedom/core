@@ -47,7 +47,7 @@ foreach ($result as $key => $packages) {
   }
 }
 ksort($datas);
-if (count(system::ps('dpkg')) > 0 || count(system::ps('apt')) > 0) {
+if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
   echo '<div class="alert alert-danger">{{Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\'a ce que ca soit fini}}</div>';
 }
 ?>

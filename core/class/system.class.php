@@ -244,7 +244,13 @@ class system {
 		return self::$_installPackage[$_type];
 	}
 
-	public static function os_incompatible($_type, $_package) {
+	public static function os_incompatible($_type, $_package, $_info) {
+		if (isset($_info['denyDebianHigherEqual']) && self::getDistrib() == 'debian' && version_compare(self::getOsVersion(), $_info['denyDebianHigherEqual'], '>=')) {
+			return true;
+		}
+		if (isset($_info['denyDebianLower']) && self::getDistrib() == 'debian' && version_compare(self::getOsVersion(), $_info['denyDebianLower'], '<')) {
+			return true;
+		}
 		if (version_compare(self::getOsVersion(), '11', '>=')) {
 			if ($_type == 'pip2') {
 				return true;
@@ -286,7 +292,7 @@ class system {
 					);
 					continue;
 				}
-				if (self::os_incompatible($type, $package)) {
+				if (self::os_incompatible($type, $package, $info)) {
 					$return[$type . '::' . $package] = array(
 						'name' => $package,
 						'status' => 3,
