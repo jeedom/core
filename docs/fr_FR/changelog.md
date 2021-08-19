@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.57
+======
+
+- Correction d'un soucis d'installation de dépendance apt
+
 3.3.56
 ======
 
