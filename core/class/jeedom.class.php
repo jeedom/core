@@ -587,7 +587,7 @@ class jeedom {
 					$usbMapping['Banana PI'] = '/dev/S2';
 				}
 				if (file_exists('/dev/ttyS2')) {
-					$usbMapping['Jeedom Atlas, Banana PI (2)'] = '/dev/ttyS2';
+					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
 				}
 				if (file_exists('/dev/ttyS0')) {
 					$usbMapping['Cubiboard'] = '/dev/ttyS0';
@@ -596,7 +596,7 @@ class jeedom {
 					$usbMapping['Orange PI'] = '/dev/ttyS3';
 				}
 				if (file_exists('/dev/ttyS1')) {
-					$usbMapping['Jeedom Smart, Odroid C2'] = '/dev/ttyS1';
+					$usbMapping['Odroid C2'] = '/dev/ttyS1';
 				}
 				if (file_exists('/dev/ttyAML1')) {
 					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
