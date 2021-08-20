@@ -1438,13 +1438,14 @@ class jeedom {
 					}
 				}
 			}
-		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false) {
 			$result = 'miniplus';
 		} else if (file_exists('/usr/bin/grille-pain')) {
 			$result = 'freeboxDelta';
-		}
-		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+		} else if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			$result = 'smart';
+		} else if (file_exists('/etc/update-motd.d/10-armbian-header-jeedomatlas')) {
+			$result = 'Atlas';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
