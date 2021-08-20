@@ -3738,7 +3738,6 @@
         "Erreur lors du nettoyage des backups cloud, supression > 10": "Erreur lors du nettoyage des backups cloud, supression > 10",
         "Erreur sur le monitoring cloud :": "Erreur sur le monitoring cloud :",
         "Erreur repo_market::getinfo : ": "Repo_market :: errore getinfo:",
-        "Nom d\\'utilisateur ou mot de passe pour market vide": "Nom d\\'utilisateur ou mot de passe pour market vide",
         "Impossible d\\'écrire dans le répertoire : ": "Impossibile scrivere nella directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Eseguire il comando seguente in SSH: sudo chmod 777 -R",
         "Téléchargement de ": "Download di",
