@@ -1570,7 +1570,7 @@
         "Latitude": "Breite",
         "Longitude": "Länge",
         "Altitude": "Höhe",
-        "Adresse": "Adresse",
+        "Adresse": "Die Anschrift",
         "Code postal": "Postleitzahl",
         "Ville": "Stadt",
         "Pays (FR,US...)": "Land (FR, USA ...)",
@@ -3717,7 +3717,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
-        "Adresse": "Adresse",
+        "Adresse": "Die Anschrift",
         "Nom d\\'utilisateur": "Benutzername",
         "Mot de passe": "Passwort",
         "Pas de validation SSL (non recommandé)": "Keine SSL-Validierung (nicht empfohlen)",
