@@ -579,7 +579,7 @@
         "Résultats": "Ergebnisse",
         "Scénario": "Szenario",
         "Actions": "Lager",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Vue": "Aussicht",
         "Interaction": "Interaktion",
         "Note": "Notiz",
@@ -1330,7 +1330,7 @@
         "Synthèse": "Synthese",
         "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Analyse": "Analysieren",
         "Logs": "Protokolle",
@@ -1950,7 +1950,7 @@
         "Dashboard": "Instrumententafel",
         "Synthèse": "Synthese",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Sauvegarder": "Speichern",
         "Préférences": "Vorlieben",
@@ -2052,7 +2052,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Type": "Typ",
         "Vues": "Ansichten",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Plugin": "Plugin",
         "Autre": "Andere",
         "Rechercher": "Suchen nach",
@@ -2352,7 +2352,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
@@ -4127,7 +4127,7 @@
     },
     "core\/class\/planHeader.class.php": {
         "Le nom du plan ne peut pas être vide": "Der Planname darf nicht leer sein",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design :": "Design:"
     },
     "core\/class\/plan.class.php": {
@@ -4427,7 +4427,7 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Design"
+        "Design": "Entwurf"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Befehl auswählen"
@@ -4482,7 +4482,7 @@
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Export",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Plugin": "Plugin",
         "Analyse Equipements": "Geräteanalyse",
         "Timeline": "Zeitleiste",
