@@ -7155,6 +7155,8 @@
         "Rechercher un équipement": "Procure equipamento",
         "Idem pour un équipement": "O mesmo para equipamentos",
         "Sur les blocs de type Si\/Alors\/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que lors de la précédente évaluation": "Em blocos do tipo Se \/ Então \/ Caso contrário, as setas circulares à esquerda do campo de condição permitem ativar ou não a repetição de ações se a avaliação da condição fornecer o mesmo resultado que na avaliação anterior",
+        "SI expression": "Expressão IF",
+        "0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression": "0 é equivalente a expressão IF e expressão IF == 0 é equivalente a expressão IF não",
         "Il existe une liste de tags permettant d'avoir accès à des variables issues du scénario ou d'un autre, ou bien à l'heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags": "Há uma lista de tags que permitem acessar variáveis do cenário ou de outro, ou pela hora, data, número aleatório,… Veja abaixo os capítulos sobre comandos e tags",
         "Une fois la condition renseignée, vous devez utiliser le bouton \"ajouter\", à gauche, afin d'ajouter un nouveau": "Depois que a condição estiver concluída, você deve usar o botão \"adicionar\" à esquerda para adicionar um novo",
         "dans le bloc actuel": "no bloco atual",

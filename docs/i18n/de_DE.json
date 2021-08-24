@@ -7155,6 +7155,8 @@
         "Rechercher un équipement": "Suche nach Ausrüstung",
         "Idem pour un équipement": "Gleiches gilt für die Ausrüstung",
         "Sur les blocs de type Si\/Alors\/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que lors de la précédente évaluation": "Bei Blöcken vom Typ If \/ Then \/ Andernfalls können kreisförmige Pfeile links neben dem Bedingungsfeld die Wiederholung von Aktionen aktivieren oder nicht, wenn die Auswertung der Bedingung das gleiche Ergebnis wie bei der vorherigen Auswertung ergibt",
+        "SI expression": "IF-Ausdruck",
+        "0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression": "0 entspricht IF-Ausdruck und IF-Ausdruck == 0 entspricht IF-nicht-Ausdruck",
         "Il existe une liste de tags permettant d'avoir accès à des variables issues du scénario ou d'un autre, ou bien à l'heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags": "Es gibt eine Liste von Tags, die den Zugriff auf Variablen aus dem einen oder anderen Szenario oder nach Uhrzeit, Datum, Zufallszahl usw. ermöglichen. Siehe unten die Kapitel zu Befehlen und Tags",
         "Une fois la condition renseignée, vous devez utiliser le bouton \"ajouter\", à gauche, afin d'ajouter un nouveau": "Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen",
         "dans le bloc actuel": "im aktuellen Block",
