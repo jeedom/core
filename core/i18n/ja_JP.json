@@ -1379,7 +1379,7 @@
         "Personnalisation": "パーソナライゼーション",
         "Sauvegarde": "安全対策",
         "Log": "ログ",
-        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé"
+        "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page"
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

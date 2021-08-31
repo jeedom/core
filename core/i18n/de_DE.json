@@ -1379,7 +1379,7 @@
         "Personnalisation": "Personalisierung",
         "Sauvegarde": "Schutz",
         "Log": "Protokoll",
-        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "startet, bitte warten. Die Seite wird nach Abschluss des Startvorgangs automatisch neu geladen"
+        "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "wird gestartet, bitte warten Sie 5 Minuten und aktualisieren Sie die Seite"
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
