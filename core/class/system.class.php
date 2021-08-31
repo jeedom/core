@@ -510,7 +510,7 @@ class system {
 				if (!file_exists(__DIR__ . '/../../' . $_package)) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;chown -R www-data:www-data';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;chown -R www-data:www-data *';
 		}
 	}
 
