@@ -1379,7 +1379,7 @@
         "Personnalisation": "Personalisation",
         "Sauvegarde": "Backups",
         "Log": "Log",
-        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "is starting up, please wait. The page will reload automatically when the startup is complete"
+        "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "is starting, please wait 5min and refresh the page"
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -3738,7 +3738,6 @@
         "Erreur lors du nettoyage des backups cloud, supression > 10": "Error when cleaning cloud backups, deletion> 10",
         "Erreur sur le monitoring cloud :": "Cloud monitoring error:",
         "Erreur repo_market::getinfo : ": "Repo_market :: getinfo error:",
-        "Nom d\\'utilisateur ou mot de passe pour market vide": "Username or password for empty market",
         "Impossible d\\'écrire dans le répertoire : ": "Unable to write to directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Execute the following command in SSH: sudo chmod 777 -R",
         "Téléchargement de ": "Download of",

@@ -1379,7 +1379,7 @@
         "Personnalisation": "Personalização",
         "Sauvegarde": "Backup",
         "Log": "Registro",
-        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "está iniciando, aguarde. A página será recarregada automaticamente quando a inicialização estiver concluída"
+        "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "está começando, aguarde 5 minutos e atualize a página"
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -3738,7 +3738,6 @@
         "Erreur lors du nettoyage des backups cloud, supression > 10": "Erro ao limpar backups em nuvem, exclusão> 10",
         "Erreur sur le monitoring cloud :": "Erro de monitoramento de nuvem:",
         "Erreur repo_market::getinfo : ": "Getinfo erro :: repo_market:",
-        "Nom d\\'utilisateur ou mot de passe pour market vide": "Nome de usuário ou senha para o mercado vazio",
         "Impossible d\\'écrire dans le répertoire : ": "Não foi possível gravar no diretório:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Execute o seguinte comando no SSH: sudo chmod 777 -R",
         "Téléchargement de ": "Baixar",

@@ -1379,7 +1379,7 @@
         "Personnalisation": "Personalización",
         "Sauvegarde": "Salvaguardia",
         "Log": "Registro",
-        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "se está iniciando, por favor espere. La página se volverá a cargar automáticamente cuando se complete el inicio"
+        "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "está comenzando, espere 5 minutos y actualice la página"
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3738,7 +3738,6 @@
         "Erreur lors du nettoyage des backups cloud, supression > 10": "Error al limpiar las copias de seguridad en la nube, eliminación> 10",
         "Erreur sur le monitoring cloud :": "Error de monitoreo en la nube:",
         "Erreur repo_market::getinfo : ": "Error repo_market::getinfo :",
-        "Nom d\\'utilisateur ou mot de passe pour market vide": "Nombre de usuario o contraseña para el mercado vacío",
         "Impossible d\\'écrire dans le répertoire : ": "No se puede escribir en el directorio:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Ejecute el siguiente comando en SSH: sudo chmod 777 -R",
         "Téléchargement de ": "Descarga de",

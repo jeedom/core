@@ -3925,6 +3925,8 @@
         "Idem pour un équipement": "Idem pour un équipement",
         "Note": "Note",
         "Sur les blocs de type Si\/Alors\/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que lors de la précédente évaluation": "Sur les blocs de type Si\/Alors\/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que lors de la précédente évaluation",
+        "SI expression": "SI expression",
+        "0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression": "0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression",
         "Il existe une liste de tags permettant d'avoir accès à des variables issues du scénario ou d'un autre, ou bien à l'heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags": "Il existe une liste de tags permettant d'avoir accès à des variables issues du scénario ou d'un autre, ou bien à l'heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags",
         "Une fois la condition renseignée, vous devez utiliser le bouton \"ajouter\", à gauche, afin d'ajouter un nouveau": "Une fois la condition renseignée, vous devez utiliser le bouton \"ajouter\", à gauche, afin d'ajouter un nouveau",
         "dans le bloc actuel": "dans le bloc actuel",

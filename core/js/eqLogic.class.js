@@ -324,7 +324,7 @@ jeedom.eqLogic.byId = function(_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.eqLogic.builSelectCmd = function(_params) {
+jeedom.eqLogic.buildSelectCmd = function(_params) {
   if (!isset(_params.filter)) {
     _params.filter = {};
   }
@@ -685,3 +685,6 @@ jeedom.eqLogic.htmlBattery = function(_params) {
   };
   $.ajax(paramsAJAX);
 }
+
+// deprecated v4.2 -> remove v4.5 (used by plugins!)
+jeedom.eqLogic.builSelectCmd = jeedom.eqLogic.buildSelectCmd

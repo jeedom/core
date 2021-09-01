@@ -16,7 +16,7 @@
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' != '1') cmd.find('.timeCmd').parent().remove()
 
-      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
+      if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         cmd.attr('data-state','on')
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide()
@@ -24,7 +24,7 @@
           cmd.show().find('.imgCmd').empty().append(jeedom.widgets.getThemeImg("#_img_light_on_#", "#_img_dark_on_#"))
           if ('#_time_widget_#' == '1') jeedom.cmd.displayDuration(_options.valueDate, cmd.find('.timeCmd'), '#time#')
         }
-      } else if (['0', 0, 'off'].includes(_options.display_value)) {
+      } else if (_options.display_value == '0' || _options.display_value == 0 ||  _options.display_value == 'off') {
         cmd.attr('data-state','off');
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide()

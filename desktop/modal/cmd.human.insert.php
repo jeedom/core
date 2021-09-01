@@ -126,7 +126,7 @@ mod_insertCmd.changeObjectCmd = function(_select, _options) {
 }
 
 mod_insertCmd.changeEqLogic = function(_select) {
-  jeedom.eqLogic.builSelectCmd({
+  jeedom.eqLogic.buildSelectCmd({
     id: _select.value(),
     filter: mod_insertCmd.options.cmd,
     error: function(error) {

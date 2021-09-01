@@ -579,7 +579,7 @@
         "Résultats": "Ergebnisse",
         "Scénario": "Szenario",
         "Actions": "Lager",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Vue": "Aussicht",
         "Interaction": "Interaktion",
         "Note": "Notiz",
@@ -1330,7 +1330,7 @@
         "Synthèse": "Synthese",
         "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Analyse": "Analysieren",
         "Logs": "Protokolle",
@@ -1379,7 +1379,7 @@
         "Personnalisation": "Personalisierung",
         "Sauvegarde": "Schutz",
         "Log": "Protokoll",
-        "est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.": "startet, bitte warten. Die Seite wird nach Abschluss des Startvorgangs automatisch neu geladen"
+        "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "wird gestartet, bitte warten Sie 5 Minuten und aktualisieren Sie die Seite"
     },
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1570,7 +1570,7 @@
         "Latitude": "Breite",
         "Longitude": "Länge",
         "Altitude": "Höhe",
-        "Adresse": "Adresse",
+        "Adresse": "Die Anschrift",
         "Code postal": "Postleitzahl",
         "Ville": "Stadt",
         "Pays (FR,US...)": "Land (FR, USA ...)",
@@ -2052,7 +2052,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Type": "Typ",
         "Vues": "Ansichten",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Plugin": "Plugin",
         "Autre": "Andere",
         "Rechercher": "Suchen nach",
@@ -2352,7 +2352,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
@@ -3717,7 +3717,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R"
     },
     "core\/repo\/market.repo.php": {
-        "Adresse": "Adresse",
+        "Adresse": "Die Anschrift",
         "Nom d\\'utilisateur": "Benutzername",
         "Mot de passe": "Passwort",
         "Pas de validation SSL (non recommandé)": "Keine SSL-Validierung (nicht empfohlen)",
@@ -3738,7 +3738,6 @@
         "Erreur lors du nettoyage des backups cloud, supression > 10": "Fehler beim Bereinigen von Cloud-Backups, Löschen> 10",
         "Erreur sur le monitoring cloud :": "Cloud-Überwachungsfehler:",
         "Erreur repo_market::getinfo : ": "Repo_market :: getinfo Fehler:",
-        "Nom d\\'utilisateur ou mot de passe pour market vide": "Benutzername oder Passwort für leeren Markt",
         "Impossible d\\'écrire dans le répertoire : ": "In Verzeichnis kann nicht geschrieben werden:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R",
         "Téléchargement de ": "Download von",
@@ -4128,7 +4127,7 @@
     },
     "core\/class\/planHeader.class.php": {
         "Le nom du plan ne peut pas être vide": "Der Planname darf nicht leer sein",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Design :": "Design:"
     },
     "core\/class\/plan.class.php": {
@@ -4428,7 +4427,7 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Design"
+        "Design": "Entwurf"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Befehl auswählen"
@@ -4483,7 +4482,7 @@
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Export",
         "Vue": "Aussicht",
-        "Design": "Design",
+        "Design": "Entwurf",
         "Plugin": "Plugin",
         "Analyse Equipements": "Geräteanalyse",
         "Timeline": "Zeitleiste",

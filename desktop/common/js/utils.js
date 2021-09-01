@@ -1403,7 +1403,7 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
 
 $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 
-//Introduced in v4.2 -> deprecated v4.4 -> remove v4.5
+//Introduced in v4.2 -> deprecated v4.3 -> remove v4.4
 var checkPageModified = jeedomUtils.checkPageModified
 var loadPage = jeedomUtils.loadPage
 var initPage = jeedomUtils.initPage
@@ -1422,7 +1422,3 @@ var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
 var positionEqLogic = jeedomUtils.positionEqLogic
 var chooseIcon = jeedomUtils.chooseIcon
 var getOpenedModal = jeedomUtils.getOpenedModal
-
-//deprecated, remove v4.2
-function initCheckBox() {}
-function editWidgetCmdMode(_mode) {}

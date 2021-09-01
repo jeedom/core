@@ -7155,6 +7155,8 @@
         "Rechercher un équipement": "Search for equipment",
         "Idem pour un équipement": "Same for equipment",
         "Sur les blocs de type Si\/Alors\/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d'activer ou non la répétition des actions si l'évaluation de la condition donne le même résultat que lors de la précédente évaluation": "On blocks of type If \/ Then \/ Otherwise, circular arrows to the left of the condition field allow to activate or not the repetition of actions if the evaluation of the condition gives the same result as during the previous evaluation",
+        "SI expression": "IF expression",
+        "0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression": "0 is equivalent to IF expression and IF expression == 0 is equivalent to IF not expression",
         "Il existe une liste de tags permettant d'avoir accès à des variables issues du scénario ou d'un autre, ou bien à l'heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags": "There is a list of tags allowing access to variables from the scenario or another, or by the time, the date, a random number,… See below the chapters on commands and tags",
         "Une fois la condition renseignée, vous devez utiliser le bouton \"ajouter\", à gauche, afin d'ajouter un nouveau": "Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new",
         "dans le bloc actuel": "in the current block",

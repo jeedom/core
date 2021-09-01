@@ -17,7 +17,7 @@ if (isConnect()) {
 		}
 		if ($homePage[1] == 'plan' && $_SESSION['user']->getOptions('defaultPlanFullScreen') == 1) {
 			$homeLink .= '&fullscreen=1';
-		}else	if ($homePage[1] == 'plan3d' && $_SESSION['user']->getOptions('defaultPlanFullScreen3d') == 1) {
+		} else	if ($homePage[1] == 'plan3d' && $_SESSION['user']->getOptions('defaultPlanFullScreen3d') == 1) {
 			$homeLink .= '&fullscreen=1';
 		}
 	} else {
@@ -65,16 +65,16 @@ if (init('rescue', 0) == 0) {
 			$name = $cat[0];
 			$icon = $cat[1];
 			$plugin_menu .= '<li><a class="submenu"><i class="fas ' . $icon . '"></i> ' . $name;
-			$plugin_menu .= '<label class="drop-icon" for="drop-'.$name.'"><i class="fas fa-chevron-down fa-2x"></i></label>';
+			$plugin_menu .= '<label class="drop-icon" for="drop-' . $name . '"><i class="fas fa-chevron-down fa-2x"></i></label>';
 			$plugin_menu .= '</a>';
-			$plugin_menu .= '<input type="checkbox" id="drop-'.$name.'">';
+			$plugin_menu .= '<input type="checkbox" id="drop-' . $name . '">';
 			$plugin_menu .= '</i><ul>';
 			$plugins = $cat[2];
 			foreach ($plugins as $pluginAr) {
 				$pluginObj = $pluginAr[1];
 				if ($pluginObj->getId() == init('m')) {
 					$plugin = $pluginObj;
-					$title = $pluginObj->getName() . ' - '.config::byKey('product_name');
+					$title = $pluginObj->getName() . ' - ' . config::byKey('product_name');
 				}
 				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getIndex() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
 				if ($pluginObj->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginObj->getId(), 0) != 0) {
@@ -100,7 +100,7 @@ function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
 	$homeLogoSrc = config::byKey('logo_light');
 	$dataNoChange = false;
-	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5='.md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css').'" rel="stylesheet">';
+	$themeCss = '<link id="bootstrap_theme_css" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5=' . md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css') . '" rel="stylesheet">';
 	$themeJs = 'core2019_Light/desktop/core2019_Light';
 
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
@@ -108,26 +108,26 @@ function setTheme() {
 		if ($_COOKIE['currentTheme'] == 'alternate') {
 			$themeDefinition = $jeedom_theme['default_bootstrap_theme_night'];
 			$dataNoChange = true;
-		}else{
+		} else {
 			$themeDefinition = $jeedom_theme['default_bootstrap_theme'];
 			$dataNoChange = true;
 		}
 	}
 	if (init('rescue', 0) == 0) {
-		if (is_dir(__DIR__ . '/../../core/themes/' .$themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
-			$themeCss = '<link id="bootstrap_theme_css" href="core/themes/'.$themeDefinition.'/desktop/'.$themeDefinition.'.css?md5='.md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css').'" rel="stylesheet">';
+		if (is_dir(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
+			$themeCss = '<link id="bootstrap_theme_css" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?md5=' . md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css') . '" rel="stylesheet">';
 			if ($dataNoChange) $themeCss = str_replace('rel="stylesheet"', 'rel="stylesheet" data-nochange="1"', $themeCss);
 		}
 	}
 	$jeedom_theme['currentTheme'] = $themeDefinition;
-	if ( substr($themeDefinition, -5) == '_Dark' ) {
+	if (substr($themeDefinition, -5) == '_Dark') {
 		$homeLogoSrc = config::byKey('logo_dark');
 	}
 	echo $themeCss;
 	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
 		$shdPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/shadows.css';
-		if(file_exists($shdPath)) {
-			echo '<link id="shadows_theme_css" href="core/themes/'.$themeDefinition.'/desktop/shadows.css" rel="stylesheet">';
+		if (file_exists($shdPath)) {
+			echo '<link id="shadows_theme_css" href="core/themes/' . $themeDefinition . '/desktop/shadows.css" rel="stylesheet">';
 		}
 	}
 }
@@ -135,6 +135,7 @@ function setTheme() {
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
@@ -145,12 +146,12 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<script>
-	var clientDatetime = new Date();
-	var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
-	var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
-	var serverDatetime = <?php echo getmicrotime(); ?>;
-	JEEDOM_PRODUCT_NAME='<?php echo $configs['product_name'] ?>';
-	JEEDOM_AJAX_TOKEN='';
+		var clientDatetime = new Date();
+		var clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - clientDatetime.getTime();
+		var serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
+		var serverDatetime = <?php echo getmicrotime(); ?>;
+		JEEDOM_PRODUCT_NAME = '<?php echo $configs['product_name'] ?>';
+		JEEDOM_AJAX_TOKEN = '';
 	</script>
 	<?php
 	include_file('core', 'icon.inc', 'php');
@@ -229,6 +230,7 @@ function setTheme() {
 	?>
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
+
 <body>
 	<div id="backgroundforJeedom">
 		<div id="top"></div>
@@ -262,7 +264,7 @@ function setTheme() {
 				}
 			}
 		}
-		?>
+	?>
 		<?php if (init('rescue', 0) == 0) { ?>
 			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
@@ -298,7 +300,7 @@ function setTheme() {
 											<?php
 											$echo = '';
 											foreach ((jeeObject::buildTree(null, false)) as $object_li) {
-												$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">'.str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')).$object_li->getHumanName(true) . '</a></li>';
+												$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';
 											}
 											echo $echo;
 											?>
@@ -314,10 +316,10 @@ function setTheme() {
 										<?php
 										$echo = '';
 										foreach ((view::all()) as $view_menu) {
-											$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon','<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
+											$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon', '<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 										}
 										if ($echo != '') {
-											echo '<ul>'.$echo.'</ul>';
+											echo '<ul>' . $echo . '</ul>';
 										}
 										?>
 									</li>
@@ -331,10 +333,10 @@ function setTheme() {
 										<?php
 										$echo = '';
 										foreach ((planHeader::all()) as $plan_menu) {
-											$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon','<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
+											$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon', '<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
-											echo '<ul>'.$echo.'</ul>';
+											echo '<ul>' . $echo . '</ul>';
 										}
 										?>
 									</li>
@@ -351,7 +353,7 @@ function setTheme() {
 											$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
-											echo '<ul>'.$echo.'</ul>';
+											echo '<ul>' . $echo . '</ul>';
 										}
 										?>
 									</li>
@@ -394,7 +396,7 @@ function setTheme() {
 									<input type="checkbox" id="drop-tools">
 									<ul>
 										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
-										<li><a href = "index.php?v=d&p=scenario"><i class = "fas fa-cogs"></i> {{Scénarios}}</a></li>
+										<li><a href="index.php?v=d&p=scenario"><i class="fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
 										<li><a href="index.php?v=d&p=widgets"><i class="fas fa-camera-retro"></i> {{Widgets}}</a></li>
 										<li role="separator" class="divider"></li>
@@ -423,7 +425,7 @@ function setTheme() {
 
 							<li class="cursor">
 								<a>
-									<i class="fas fa-cog"></i>  <span class="hidden-sm hidden-md">{{Réglages}}</span> <b class="caret"></b>
+									<i class="fas fa-cog"></i> <span class="hidden-sm hidden-md">{{Réglages}}</span> <b class="caret"></b>
 									<label class="drop-icon" for="drop-settings"><i class="fas fa-chevron-down fa-2x"></i></label>
 								</a>
 								<input type="checkbox" id="drop-settings">
@@ -439,14 +441,14 @@ function setTheme() {
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
-												<?php if(jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true){
+												<?php if (jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true) {
 													echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
 												} ?>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a></li>
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 												<li class="divider"></li>
-												<?php	if (jeedom::isCapable('sudo') && isConnect('admin')) {
+												<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {
 													echo '<li class="cursor"><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
 													echo '<li class="cursor"><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
 												} ?>
@@ -455,7 +457,7 @@ function setTheme() {
 									<?php } ?>
 									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 									<li class="divider"></li>
-									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']){ ?>
+									<?php if ($jeedom_theme['default_bootstrap_theme'] != $jeedom_theme['default_bootstrap_theme_night']) { ?>
 										<li><a id="bt_switchTheme"><i class="fas fa-adjust"></i> {{Thème alternatif}}</a></li>
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
@@ -463,9 +465,9 @@ function setTheme() {
 									<?php if (isConnect('admin')) { ?>
 										<li>
 											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
-												<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle" ></i> {{Rapport de bug}}</a>
-											<?php } else {?>
-												<a class="bt_reportBug"><i class="fas fa-exclamation-circle" ></i> {{Demande de support}}</a>
+												<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
+											<?php } else { ?>
+												<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
 											<?php } ?>
 										</li>
 									<?php } ?>
@@ -477,7 +479,7 @@ function setTheme() {
 						<ul class="nav navbar-nav navbar-right">
 							<?php
 							$nbMessage = message::nbMessage();
-							$displayMessage = ($nbMessage > 0) ? '' : 'display : none;';?>
+							$displayMessage = ($nbMessage > 0) ? '' : 'display : none;'; ?>
 							<li>
 								<a id="bt_messageModal">
 									<span class="badge btn btn-warning" id="span_nbMessage" title="{{Nombre de messages}}" style="<?php echo $displayMessage; ?>">
@@ -492,95 +494,96 @@ function setTheme() {
 							</li>
 							<?php if (isConnect('admin')) {
 								$nbUpdate = update::nbNeedUpdate();
-								$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;';?>
+								$displayUpdate = ($nbUpdate > 0) ? '' : 'display : none;'; ?>
 								<li>
 									<a href="index.php?v=d&p=update" id="bt_nbUpdateNavbar">
-										<span class="badge btn btn-danger" id="span_nbUpdate"  title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
-									</li>
-								<?php } ?>
-								<li class="hidden-sm navTime">
-									<a href="index.php?v=d&p=timeline">
-										<span id="horloge"><?php echo date('H:i:s'); ?></span>
-									</a>
-									<a id="configName">
-										<span class="cmdName"><?php echo config::byKey('name'); ?></span>
-									</a>
+										<span class="badge btn btn-danger" id="span_nbUpdate" title="{{Nombre de mises à jour}}" style="<?php echo $displayUpdate; ?>"><?php echo $nbUpdate; ?></span></a>
 								</li>
-								<?php if (config::byKey('doc::base_url', 'core') != ''){ ?>
-									<li class="hidden-sm">
-										<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle" ></i></a>
-									</li>
-								<?php } ?>
-							</ul>
-						</nav>
-						<div id="summaryGlobalMain"><?php echo jeeObject::getGlobalHtmlSummary(); ?></div>
-					</div>
-				</header>
-			<?php } ?>
-			<?php if (init('rescue', 0) == 1) {?>
-				<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
-					<div class="container-fluid">
-						<div class="navbar-header">
-							<a class="navbar-brand" href="<?php echo $homeLink; ?>">
-								<img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;"/>
-							</a>
-							<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">{{Toggle navigation}}</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<nav class="navbar-collapse collapse">
-							<ul class="nav navbar-nav">
-								<li><a href="index.php?v=d&p=system&rescue=1"><i class="fas fa-terminal"></i> {{Système}}</a></li>
-								<li><a href="index.php?v=d&p=database&rescue=1"><i class="fas fa-database"></i> {{Database}}</a></li>
-								<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fas fa-indent"></i> {{Editeur}}</a></li>
-								<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pen-square"></i> {{Personnalisation}}</a></li>
-								<li><a href="index.php?v=d&p=backup&rescue=1"><i class="far fa-save"></i> {{Sauvegarde}}</a></li>
-								<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
-								<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>
-							</ul>
-						</nav>
-					</div>
-				</header>
-			<?php } ?>
-			<main class="container-fluid" id="div_mainContainer">
-				<div style="display: none;width : 100%" id="div_alert"></div>
-				<div id="div_pageContainer">
-					<?php
-					try {
-						if (!jeedom::isStarted()) {
-							echo '<div class="alert alert-danger">'.config::byKey('product_name').' {{est en cours de démarrage, veuillez patienter. La page se rechargera automatiquement une fois le démarrage terminé.}}</div>';
-						}
-						if (isset($plugin) && is_object($plugin)) {
-							include_file('desktop', $page, 'php', $plugin->getId());
-						} else {
-							include_file('desktop', $page, 'php');
-						}
-					} catch (Exception $e) {
-						ob_end_clean();
-						echo '<div class="alert alert-danger div_alert">';
-						echo displayException($e);
-						echo '</div>';
-					} catch (Error $e) {
-						ob_end_clean();
-						echo '<div class="alert alert-danger div_alert">';
-						echo displayException($e);
-						echo '</div>';
-					}
-					?>
+							<?php } ?>
+							<li class="hidden-sm navTime">
+								<a href="index.php?v=d&p=timeline">
+									<span id="horloge"><?php echo date('H:i:s'); ?></span>
+								</a>
+								<a id="configName">
+									<span class="cmdName"><?php echo config::byKey('name'); ?></span>
+								</a>
+							</li>
+							<?php if (config::byKey('doc::base_url', 'core') != '') { ?>
+								<li class="hidden-sm">
+									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle"></i></a>
+								</li>
+							<?php } ?>
+						</ul>
+					</nav>
+					<div id="summaryGlobalMain"><?php echo jeeObject::getGlobalHtmlSummary(); ?></div>
 				</div>
-				<div id="md_modal"></div>
-				<div id="md_modal2"></div>
-				<div id="md_modal3"></div>
-				<div id="md_reportBug" title="{{Demande de support}}"></div>
-			</main>
-			<?php
-		}
-		?>
-		<?php if (init('report') == 1 && init('delay',-1) != -1) { ?>
-			<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
+			</header>
 		<?php } ?>
-	</body>
-	</html>
+		<?php if (init('rescue', 0) == 1) { ?>
+			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
+							<img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;" />
+						</a>
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">{{Toggle navigation}}</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<nav class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="index.php?v=d&p=system&rescue=1"><i class="fas fa-terminal"></i> {{Système}}</a></li>
+							<li><a href="index.php?v=d&p=database&rescue=1"><i class="fas fa-database"></i> {{Database}}</a></li>
+							<li><a href="index.php?v=d&p=editor&rescue=1"><i class="fas fa-indent"></i> {{Editeur}}</a></li>
+							<li><a href="index.php?v=d&p=custom&rescue=1"><i class="fas fa-pen-square"></i> {{Personnalisation}}</a></li>
+							<li><a href="index.php?v=d&p=backup&rescue=1"><i class="far fa-save"></i> {{Sauvegarde}}</a></li>
+							<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
+							<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+		<?php } ?>
+		<main class="container-fluid" id="div_mainContainer">
+			<div style="display: none;width : 100%" id="div_alert"></div>
+			<div id="div_pageContainer">
+				<?php
+				try {
+					if (!jeedom::isStarted()) {
+						echo '<div class="alert alert-danger">' . config::byKey('product_name') . ' {{est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.}}</div>';
+					}
+					if (isset($plugin) && is_object($plugin)) {
+						include_file('desktop', $page, 'php', $plugin->getId());
+					} else {
+						include_file('desktop', $page, 'php');
+					}
+				} catch (Exception $e) {
+					ob_end_clean();
+					echo '<div class="alert alert-danger div_alert">';
+					echo displayException($e);
+					echo '</div>';
+				} catch (Error $e) {
+					ob_end_clean();
+					echo '<div class="alert alert-danger div_alert">';
+					echo displayException($e);
+					echo '</div>';
+				}
+				?>
+			</div>
+			<div id="md_modal"></div>
+			<div id="md_modal2"></div>
+			<div id="md_modal3"></div>
+			<div id="md_reportBug" title="{{Demande de support}}"></div>
+		</main>
+	<?php
+	}
+	?>
+	<?php if (init('report') == 1 && init('delay', -1) != -1) { ?>
+		<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
+	<?php } ?>
+</body>
+
+</html>
