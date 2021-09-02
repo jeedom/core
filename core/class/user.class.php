@@ -475,7 +475,7 @@ class user {
 	}
 	
 	public function preRemove() {
-		if (count(user::byProfils('admin', true)) == 1 && $this->getProfils() == 'admin') {
+		if (count(user::byProfils('admin', true)) == 1 && ($this->getProfils() == 'admin' && $this->getEnable() == 1)) {
 			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
 		}
 	}
