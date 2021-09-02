@@ -301,6 +301,16 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               ?>
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumés}}</label>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+              <?php
+              foreach ($usedBy['object'] as $usedByObject) {
+                echo '<a href="index.php?v=d&p=object&id=' . $usedByObject->getId() . '" class="btn btn-xs btn-primary">' . $usedByObject->getHumanName(false, true) . '</a><br/>';
+              }
+              ?>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>
