@@ -720,6 +720,8 @@ class plugin {
 			throw new Exception(__('Les dépendances sont déjà en cours d\'installation', __FILE__));
 		}
 		if (file_exists(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json')) {
+			$this->deamon_stop();
+			config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), true, false, $plugin_id);
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
