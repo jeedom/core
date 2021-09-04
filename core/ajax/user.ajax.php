@@ -46,10 +46,13 @@ try {
 			}
 		} catch (\Exception $e) {
 
-		}
+        }
+
 		if (!isConnect()) {
-			if (config::byKey('sso:allowRemoteUser') == 1) {
-				$user = user::byLogin($_SERVER['REMOTE_USER']);
+            if (config::byKey('sso:allowRemoteUser') == 1) {
+                $header = $configs['sso:remoteUserHeader'];
+                $header_value = $_SERVER[$header];
+                $user = user::byLogin($header_value);
 				if (is_object($user) && $user->getEnable() == 1) {
 					@session_start();
 					$_SESSION['user'] = $user;

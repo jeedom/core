@@ -17,7 +17,8 @@
 */
 require_once __DIR__ . '/core.inc.php';
 
-$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:userHeader'));
+$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:remoteUserHeader'));
+//$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
 
 if (!isset($_SESSION)) {
 	$session_lifetime = $configs['session_lifetime'];
@@ -58,18 +59,9 @@ if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 }
 
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
-	$user = user::byLogin($_SERVER['REMOTE_USER']);
-	if (is_object($user) && $user->getEnable() == 1) {
-		@session_start();
-		$_SESSION['user'] = $user;
-		@session_write_close();
-		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
-	}
-}
-
-if (!isConnect() && $configs['sso:userHeader'] != '') {
-	$headers = getallheaders();
-	$user = user::byLogin($headers[$configs['sso:userHeader']]);
+    $header = $configs['sso:remoteUserHeader'];
+    $header_value = $_SERVER[$header];
+    $user = user::byLogin($header_value);
 	if (is_object($user) && $user->getEnable() == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
