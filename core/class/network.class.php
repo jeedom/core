@@ -339,6 +339,7 @@ class network {
 		$openvpn->setConfiguration('compression', 'comp-lzo');
 		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
 		$openvpn->setConfiguration('auth_mode', 'password');
+		$openvpn->setConfiguration('additionalVpnParameters', 'tun-mtu 1300');
 		$openvpn->save($direct);
 		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
 			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
