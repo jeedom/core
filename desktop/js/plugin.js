@@ -210,12 +210,22 @@ function displayPlugin(_pluginId) {
       //top right buttons:
       var $spanRightButton = $container.find('#span_right_button')
       $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
-      if (isset(data.documentation) && data.documentation != '') {
-        $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+      if(data.update.configuration.version == 'beta'){
+        if (isset(data.documentation_beta) && data.documentation_beta != '') {
+          $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+        }
+        if (isset(data.changelog_beta) && data.changelog_beta != '') {
+          $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+        }
+      }else{
+        if (isset(data.documentation) && data.documentation != '') {
+          $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+        }
+        if (isset(data.changelog) && data.changelog != '') {
+          $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+        }
       }
-      if (isset(data.changelog) && data.changelog != '') {
-        $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
-      }
+     
       if (isset(data.info.display) && data.info.display != '') {
         $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
       }

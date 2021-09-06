@@ -37,6 +37,7 @@
 - **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
 - **Ajout de l'utilisateur exécutant une action** : Ajout dans les options d’exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple)
+- **Documentation et changelog plugin beta** : gestion de la documentation et du changelog pour les plugins en beta (attention en beta le changelog n'est pas daté !!!)
 
 ### 4.2 : Widgets Core
 

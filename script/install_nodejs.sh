@@ -129,6 +129,10 @@ else
   fi
   
   npm config set prefix ${npmPrefix} &>/dev/null
+
+  if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then 
+    ln -s $(which node) $(which node)js
+  fi
   
   new=`nodejs -v`;
   echo -n "[Check Version NodeJS après install : ${new} : "

@@ -143,6 +143,7 @@ Hay tres botones disponibles a la derecha de este tipo de bloque para selecciona
 > **Nota**
 >
 > En bloques de tipo Si / Entonces / De lo contrario, las flechas circulares a la izquierda del campo de condición permiten activar o no la repetición de acciones si la evaluación de la condición da el mismo resultado que durante la evaluación previa.
+> SI expresión != 0 es equivalente a SI expresión y SI expresión == 0 es equivalente a SI no expresión
 
 > **Propina**
 >

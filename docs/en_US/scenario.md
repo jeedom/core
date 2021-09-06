@@ -143,6 +143,7 @@ Three buttons are available on the right of this type of block to select an item
 > **Note**
 >
 > On blocks of type If / Then / Otherwise, circular arrows to the left of the condition field allow to activate or not the repetition of actions if the evaluation of the condition gives the same result as during the previous evaluation.
+> IF expression != 0 is equivalent to IF expression and IF expression == 0 is equivalent to IF not expression
 
 > **Tip**
 >

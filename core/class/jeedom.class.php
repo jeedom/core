@@ -587,7 +587,7 @@ class jeedom {
 					$usbMapping['Banana PI'] = '/dev/S2';
 				}
 				if (file_exists('/dev/ttyS2')) {
-					$usbMapping['Banana PI (2)'] = '/dev/ttyS2';
+					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
 				}
 				if (file_exists('/dev/ttyS0')) {
 					$usbMapping['Cubiboard'] = '/dev/ttyS0';
@@ -1064,7 +1064,6 @@ class jeedom {
 				log::add('starting', 'error', __('Erreur sur la connexion au market : ', __FILE__) . log::exception($e));
 			}
 			log::add('starting', 'debug', __('Démarrage de jeedom fini avec succès', __FILE__));
-			event::add('refresh');
 		}
 		self::isDateOk();
 	}
@@ -1473,13 +1472,14 @@ class jeedom {
 					}
 				}
 			}
-		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false || file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+		} else if (strpos($uname, 'cubox') !== false || strpos($uname, 'imx6') !== false) {
 			$result = 'miniplus';
 		} else if (file_exists('/usr/bin/grille-pain')) {
 			$result = 'freeboxDelta';
-		}
-		if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
+		} else if (file_exists('/media/boot/multiboot/meson64_odroidc2.dtb.linux')) {
 			$result = 'smart';
+		} else if (file_exists('/etc/update-motd.d/10-armbian-header-jeedomatlas')) {
+			$result = 'Atlas';
 		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');

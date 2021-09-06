@@ -143,6 +143,7 @@ Três botões estão disponíveis à direita deste tipo de bloco para selecionar
 > **Nota**
 >
 > Em blocos do tipo Se / Então / Caso contrário, as setas circulares à esquerda do campo de condição permitem ativar ou não a repetição de ações se a avaliação da condição fornecer o mesmo resultado que na avaliação anterior.
+> Expressão IF != 0 é equivalente a expressão IF e expressão IF == 0 é equivalente a expressão IF não
 
 > **Dica**
 >
