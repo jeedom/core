@@ -29,9 +29,9 @@ if (!isset($_SESSION)) {
 	ini_set('session.cookie_lifetime', $session_lifetime * 3600);
 	ini_set('session.use_cookies', 1);
 	ini_set('session.cookie_httponly', 1);
-	ini_set('session.cookie_samesite','Lax');
-	if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
-		ini_set('session.cookie_secure',1);
+	ini_set('session.cookie_samesite', 'Lax');
+	if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+		ini_set('session.cookie_secure', 1);
 	}
 }
 @session_start();
@@ -49,8 +49,8 @@ if (user::isBan()) {
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 	if (loginByHash($_COOKIE['registerDevice'])) {
 		if (version_compare(PHP_VERSION, '7.3') >= 0) {
-			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		}else{
+			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+		} else {
 			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 		}
 	} else {
@@ -59,9 +59,8 @@ if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 }
 
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
-    $header = $configs['sso:remoteUserHeader'];
-    $header_value = $_SERVER[$header];
-    $user = user::byLogin($header_value);
+	$header_value = ($configs['sso:remoteUserHeader'] != '') ? $_SERVER[$configs['sso:remoteUserHeader']] : $_SERVER['REMOTE_USER'];
+	$user = user::byLogin($header_value);
 	if (is_object($user) && $user->getEnable() == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
@@ -142,7 +141,7 @@ function loginByHash($_key) {
 	$registerDevice[$kid] = array(
 		'datetime' => date('Y-m-d H:i:s'),
 		'ip' => getClientIp(),
-		'session_id' =>session_id(),
+		'session_id' => session_id(),
 	);
 	$user->setOptions('registerDevice', $registerDevice);
 	$user->save();
@@ -156,9 +155,9 @@ function loginByHash($_key) {
 function logout() {
 	@session_start();
 	if (version_compare(PHP_VERSION, '7.3') >= 0) {
-		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		setcookie('PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-	}else{
+		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+		setcookie('PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+	} else {
 		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 		setcookie('PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 	}
