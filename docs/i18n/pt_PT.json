@@ -1398,6 +1398,8 @@
         "Le centre de mises à jour affiche désormais la date de dernière mise à jour": "Centro de atualização agora exibe a data da última atualização",
         "Ajout de l'utilisateur exécutant une action": "Adicionar o usuário realizando uma ação",
         "Ajout dans les options d'exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple": "Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo",
+        "Documentation et changelog plugin beta": "Documentação e plug-in de changelog beta",
+        "gestion de la documentation et du changelog pour les plugins en beta (attention en beta le changelog n'est pas daté": "documentação e gerenciamento de changelog para plugins em beta (tenha cuidado em beta o changelog não está datado",
         "Widgets Core": "Widgets principais",
         "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard": "As configurações de widgets para a versão Mobile agora estão acessíveis a partir da janela de configuração do equipamento no modo Dashboard Edit",
         "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard": "Os parâmetros opcionais disponíveis nos widgets agora são exibidos para cada widget, seja na configuração do comando ou no modo de edição do painel",

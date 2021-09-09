@@ -37,6 +37,7 @@
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
+- **Documentation and changelog plugin beta** : documentation and changelog management for plugins in beta (be careful in beta the changelog is not dated !!!)
 
 ### 4.2 : Core Widgets
 
