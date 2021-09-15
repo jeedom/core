@@ -14,6 +14,7 @@
     "software-properties-common" : {},
     "ssl-cert" : {},
     "apt-transport-https" : {},
+    "nscd" : {"optional" : true,"remark":"{{Permet d'avoir du cache sur la résolution DNS}}"},
     "libcurl3-gnutls" : {"optional" : true,"remark":"{{Utilisé pour chromium}}"},
     "chromium" : {"optional" : true,"remark":"{{Utilisé pour les rapports}}"},
     "at" : {},
