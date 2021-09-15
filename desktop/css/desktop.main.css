@@ -1791,6 +1791,9 @@ Desktop
     margin-left: 10px;
     vertical-align: middle;
     padding-top: 3px;
+    min-width: 25px !important;
+    min-height: 20px !important;
+    display: inline-block !important;
   }
 
 

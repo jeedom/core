@@ -37,6 +37,7 @@
 - **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
+- **Documentação e plug-in de changelog beta** : documentação e gerenciamento de changelog para plugins em beta (tenha cuidado em beta o changelog não está datado !!!)
 
 ### 4.2 : Widgets principais
 

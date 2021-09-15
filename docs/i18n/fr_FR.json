@@ -859,6 +859,8 @@
         "Le centre de mises à jour affiche désormais la date de dernière mise à jour": "Le centre de mises à jour affiche désormais la date de dernière mise à jour",
         "Ajout de l'utilisateur exécutant une action": "Ajout de l'utilisateur exécutant une action",
         "Ajout dans les options d'exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple": "Ajout dans les options d'exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple",
+        "Documentation et changelog plugin beta": "Documentation et changelog plugin beta",
+        "gestion de la documentation et du changelog pour les plugins en beta (attention en beta le changelog n'est pas daté": "gestion de la documentation et du changelog pour les plugins en beta (attention en beta le changelog n'est pas daté",
         "Widgets Core": "Widgets Core",
         "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard": "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard",
         "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard": "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard",
