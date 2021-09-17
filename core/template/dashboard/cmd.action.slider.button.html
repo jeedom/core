@@ -40,7 +40,7 @@
         clearTimeout(timerHandle#uid#)
       }
       timerHandle#uid# = setTimeout(function() {
-        jeedom.cmd.execute({id:'#id#', value: {slider: $('.cmd[data-cmd_uid=#uid#] .in_value').val().replace("#unite#", "").replace(" ", "")}})
+        jeedom.cmd.execute({id:'#id#', global: $.issetWidgetOptParam('#global#', 'global'), value: {slider: $('.cmd[data-cmd_uid=#uid#] .in_value').val().replace("#unite#", "").replace(" ", "")}})
       }, 1000)
     })
 
