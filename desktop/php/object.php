@@ -271,7 +271,7 @@ $synthToActions = array(
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Image de fond}}</label>
 								<div class="col-sm-7">
-									<label class="checkbox-inline"><input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="hideOnPreview"/>{{Seulement sur la synthèse}}
+									<label class="checkbox-inline"><input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useBackground"/>{{Seulement sur la synthèse}}
 										<sup><i class="fas fa-question-circle tooltips" title="{{L'image de fond sera utilisée seulement sur la Synthèse.}}"></i></sup>
 									</label>
 								</div>
