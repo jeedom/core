@@ -71,7 +71,7 @@ function addFilter() {
   newFilterHtml += '</div>'
 
   newFilterHtml += '<div class="col-md-1 col-xs-2">'
-  newFilterHtml += '<a class="bt_removeFilter"><i class="fas fa-minus"></i></a>'
+  newFilterHtml += '<a class="btn btn-xs btn-warning bt_removeFilter" title="{{Supprimer ce filtre}}"><i class="fas fa-minus"></i></a>'
   newFilterHtml += '</div>'
 
   newFilterHtml += '</div>'

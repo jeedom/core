@@ -38,7 +38,7 @@ sendVarToJS('_tableList_', $tableList);
       <label style="width: 100%;"><i class="fas fa-database"></i> {{Constructeur SQL}}
         <div class="input-group pull-right" style="display:inline-flex; right: -8px;">
           <span class="input-group-btn">
-            <a id="bt_writeDynamicCommand" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
+            <a id="bt_writeDynamicCommand" class="btn btn-info btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
             </a><a id="bt_execDynamicCommand" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
           </span>
         </div>
