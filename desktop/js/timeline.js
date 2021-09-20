@@ -79,17 +79,20 @@ function displayTimeline() {
       var dataLength = data.length
       var decayFactor = 130
 
+      moment.locale(jeedom_langage)
+
       var isFirstOfDay, isLastOfDay = false
       var nextDate, thisDateTs = false
       var prevDate = moment().format("YYYY-MM-DD")
       var prevDateTs = moment().unix()
-      var content = '<div class="label-warning day">' + data[0].date.substring(0, 10) + '</div>'
+      var content = '<div class="label-warning day">' + moment(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
 
-      var thisData, date, time, lineClass, style, height, li
+      var thisData, date, dateFull, time, lineClass, style, height, li
       for (var i in data) {
         thisData = data[i]
         date = thisData.date.substring(0, 10)
         time = thisData.date.substring(11, 19)
+        dateFull = moment(thisData.date).format('ddd YYYY-MM-DD')
         thisDateTs = moment(thisData.date.substring(0, 19)).unix()
         lineClass = ''
         if (prevDate != date) {
@@ -108,7 +111,7 @@ function displayTimeline() {
         if (i == 0) {
           li = '<li style="background-color:transparent!important;">'
           li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
-          li += '<div class="date">' + date + '</div>'
+          li += '<div class="date">' + dateFull + '</div>'
           li += '</li>'
           content += li
         }
@@ -153,14 +156,14 @@ function displayTimeline() {
         li += '<div class="time ' + lineClass + '">' + time + '</div>'
 
         //date:
-        li += '<div class="date">' + date + '</div>'
+        li += '<div class="date">' + dateFull + '</div>'
 
         li += '</li>'
         content += li
 
         //newDay ?
         if (isLastOfDay) {
-          content += '<div class="label-warning day">' + nextDate + '</div>'
+          content += '<div class="label-warning day">' + moment(nextDate).format('ddd YYYY-MM-DD') + '</div>'
         }
 
         prevDate = date
