@@ -678,7 +678,7 @@ jeedom.history.drawChart = function(_params) {
             },
             legend: legend,
             tooltip: {
-              xDateFormat: '%Y-%m-%d %H:%M:%S',
+              xDateFormat: '%a %Y-%m-%d %H:%M:%S',
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
               valueDecimals: 2,
             },
