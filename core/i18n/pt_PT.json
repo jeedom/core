@@ -2016,6 +2016,9 @@
         "Commande": "Ordenado",
         "Objet": "Objeto",
         "Scénario": "Cenário",
+        "Ajouter un filtre": "Adicionar filtro",
+        "Ajouter": "Adicionar",
+        "Test": "Teste",
         "Colonne": "Coluna",
         "Valeur": "Valor",
         "Valeur json": "Valor Json",
@@ -2715,6 +2718,7 @@
         "Historique supprimé avec succès": "Histórico excluído com sucesso"
     },
     "desktop\/js\/massedit.js": {
+        "Supprimer ce filtre": "Remova este filtro",
         "Configuration de la commande": "Configuração de comando",
         "L'import d'édition en masse se fait au format json.": "A importação da edição em massa é feita no formato json",
         "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo"

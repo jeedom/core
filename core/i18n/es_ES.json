@@ -225,7 +225,7 @@
         "Design sauvegardé": "Diseño salvado"
     },
     "desktop\/modal\/history.calcul.php": {
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Sauvegarder": "Guardar",
         "Nom": "Nombre",
         "Calcul": "Cálculo",
@@ -290,7 +290,7 @@
     },
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
         "Titre": "Título",
@@ -330,7 +330,7 @@
     },
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Nom": "Nombre",
         "Valeur": "Valor",
         "Utilisée dans": "Usado por",
@@ -473,7 +473,7 @@
         "Barre": "Cerrada",
         "Couleur": "Color",
         "Paramètres optionnels sur la tuile": "Parámetros opcionales en la teja",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Valeur": "Valor",
         "Action": "Acción",
         "Supprimer": "Eliminar",
@@ -559,7 +559,7 @@
         "Masquer quand le volet est ouvert": "Ocultar cuando el obturador está abierto",
         "Couleur fermé": "Color cerrado",
         "Condition": "Condición",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Masqué si": "Oculto si"
     },
     "desktop\/modal\/search.php": {
@@ -704,7 +704,7 @@
         "différent": "diferente",
         "plus de (min)": "mas de (min)",
         "Action": "Acción",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Action avant exécution de la commande": "Acción antes de la ejecución de la orden",
         "Action après exécution de la commande": "Después de ejecutar la acción de la orden",
         "Historiser": "Guardar historial",
@@ -1676,7 +1676,7 @@
         "Messages": "Mensajes",
         "Ajouter un message à chaque erreur dans les logs": "Añadir un mensaje a cada error en los registros",
         "Action sur message": "Acción sobre mensaje",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Alertes": "Alertas",
         "Ajouter un message à chaque": "Añadir un mensaje a cada uno",
         "Commande sur": "Comando sobre",
@@ -2016,6 +2016,9 @@
         "Commande": "Ordenado",
         "Objet": "Objeto",
         "Scénario": "Guión",
+        "Ajouter un filtre": "Añadir filtro",
+        "Ajouter": "Agregar",
+        "Test": "Prueba",
         "Colonne": "Columna",
         "Valeur": "Valor",
         "Valeur json": "Valor json",
@@ -2025,7 +2028,7 @@
     "desktop\/php\/widgets.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Importer": "Importación",
         "Code": "Código",
         "Remplacement": "Reemplazo",
@@ -2093,7 +2096,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aucun": "No",
         "Gestion": "Gestión",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Activer scénarios": "Activar escenas",
         "Désactiver scénarios": "Desactivar escenarios",
         "Vue d'ensemble": "Resumen",
@@ -2197,7 +2200,7 @@
         "Aucun": "No",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Gestion": "Administración",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Regénérer": "Actualizar",
         "Tester": "Prueba",
         "Mes interactions": "Mis interacciones",
@@ -2305,7 +2308,7 @@
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
         "Annuler": "Cancelar",
-        "Ajouter": "Añadir"
+        "Ajouter": "Agregar"
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2330,7 +2333,7 @@
         "Activer le système cron": "Activar sistema cron",
         "Désactiver le système cron": "Desactivar el sistema cron",
         "Rafraîchir": "Refrescar",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Sauvegarder": "Guardar",
         "ID": "CARNÉ DE IDENTIDAD",
         "Actif": "Activo",
@@ -2357,7 +2360,7 @@
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
         "Gestion": "Administración",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Vue d'ensemble": "Resumen",
         "Mes objets": "Mis objetos",
         "Rechercher": "Buscar",
@@ -2715,6 +2718,7 @@
         "Historique supprimé avec succès": "Historial eliminado correctamente"
     },
     "desktop\/js\/massedit.js": {
+        "Supprimer ce filtre": "Quitar este filtro",
         "Configuration de la commande": "Configuración de comandos",
         "L'import d'édition en masse se fait au format json.": "La importación de la edición masiva se realiza en formato json",
         "Problème lors de la lecture du fichier.": "Problema al leer el archivo"
@@ -3027,7 +3031,7 @@
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copia este bloque. <br> Ctrl + Click: Cortar este bloque",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Pega un bloque después de esto. <br> Ctrl + Click: reemplazar este bloque con el bloque copiado",
         "Afficher\/masquer le bloc Sinon": "Mostrar \/ ocultar bloque lo contrario",
-        "Ajouter": "Añadir",
+        "Ajouter": "Agregar",
         "Action": "ACCIÓN",
         "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",

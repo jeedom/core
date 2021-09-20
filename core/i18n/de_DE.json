@@ -1146,7 +1146,7 @@
     },
     "desktop\/modal\/expression.test.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Test": "Prüfung",
+        "Test": "Prüfen",
         "Rechercher une commande": "Befehl suchen",
         "Rechercher un scénario": "Suchen Sie ein Szenario",
         "Rechercher un équipement": "Suche nach Ausrüstung",
@@ -2016,6 +2016,9 @@
         "Commande": "Bestellt",
         "Objet": "Objekt",
         "Scénario": "Szenario",
+        "Ajouter un filtre": "Filter hinzufügen",
+        "Ajouter": "Hinzufügen",
+        "Test": "Prüfen",
         "Colonne": "Säule",
         "Valeur": "Wert",
         "Valeur json": "Json-Wert",
@@ -2044,7 +2047,7 @@
         "Icône": "Symbol",
         "Choisir": "Wählen",
         "Prévisualisation": "Vorschau",
-        "Test": "Prüfung",
+        "Test": "Prüfen",
         "Expression": "Ausdruck",
         "Résultat thème Light": "Thema Licht Ergebnis",
         "Résultat thème Dark": "Dunkles Themenergebnis",
@@ -2715,6 +2718,7 @@
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht"
     },
     "desktop\/js\/massedit.js": {
+        "Supprimer ce filtre": "Diesen Filter entfernen",
         "Configuration de la commande": "Befehlskonfiguration",
         "L'import d'édition en masse se fait au format json.": "Der Masseneditionsimport erfolgt im JSON-Format",
         "Problème lors de la lecture du fichier.": "Problem beim Lesen der Datei"
@@ -2854,7 +2858,7 @@
         "Modification(s) appliquée(s) avec succès": "Modifikation(en) erfolgreich angewendet",
         "Choisir": "Wählen",
         "Widgets": "Widgets",
-        "Test": "Prüfung",
+        "Test": "Prüfen",
         "Résultat si test ok": "Ergebnis wenn Test ok",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Configuration de la commande": "Befehl Konfiguration",

@@ -2016,6 +2016,9 @@
         "Commande": "Commande",
         "Objet": "Objet",
         "Scénario": "Scénario",
+        "Ajouter un filtre": "Ajouter un filtre",
+        "Ajouter": "Ajouter",
+        "Test": "Test",
         "Colonne": "Colonne",
         "Valeur": "Valeur",
         "Valeur json": "Valeur json",
@@ -2715,6 +2718,7 @@
         "Historique supprimé avec succès": "Historique supprimé avec succès"
     },
     "desktop\/js\/massedit.js": {
+        "Supprimer ce filtre": "Supprimer ce filtre",
         "Configuration de la commande": "Configuration de la commande",
         "L'import d'édition en masse se fait au format json.": "L'import d'édition en masse se fait au format json.",
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier."
