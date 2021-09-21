@@ -26,7 +26,7 @@ include_file('3rdparty', 'animate/animate', 'js');
 						<label>{{Mot de passe}}</label>
 					</div>
 					<div class="passwd" id="div_twoFactorCode" style="display:none;">
-						<input type="text" id="in_twoFactorCode">
+						<input type="text" id="in_twoFactorCode" autocomplete="off">
 						<label>{{Code à 2 facteurs}}</label>
 					</div>
 					<div class="checkbox">
