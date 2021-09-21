@@ -315,7 +315,7 @@ Desktop
   .dropdown-menu .divider {
     background-color: var(--el-defaultColor) !important;
     height: 1px;
-    margin: 9px 0;
+    margin: 1em 0;
     padding: 0 !important;
     overflow: hidden;
   }
