@@ -24,9 +24,9 @@ $date = array(
 					echo $options;
 					?>
 				</select>
-				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}
-					<?php if (isConnect('admin')) { ?>  
-					</a><a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<a class="btn btn-sm btn-success" id="bt_refreshTimeline"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
+					<?php if (isConnect('admin')) { ?>
+					<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm roundedRight"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 				<?php } ?>
 			</span>
 		</div>

@@ -171,6 +171,10 @@ function displayTimeline() {
         isFirstOfDay = isLastOfDay = false
       }
       $('#timelineContainer ul').empty().append(content)
+      if (user_isAdmin != 1) {
+        $('.bt_configureCmd').remove()
+        $('.bt_gotoScenario').remove()
+      }
     }
   })
 }
