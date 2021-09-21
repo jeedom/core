@@ -6,6 +6,9 @@ if (!isConnect()) {
 $list = array();
 $eqLogicsAll = eqLogic::all();
 foreach ($eqLogicsAll as $eqLogic) {
+	if (!$eqLogic->hasRight('r')) {
+		continue;
+	}
 	$battery_type = str_replace(array('(', ')'), array('', ''), $eqLogic->getConfiguration('battery_type', ''));
 	if ($eqLogic->getIsEnable() && $eqLogic->getStatus('battery', -2) != -2) {
 		array_push($list, $eqLogic);
