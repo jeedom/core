@@ -27,7 +27,7 @@ include_file('3rdparty', 'animate/animate', 'js');
 					</div>
 					<div class="passwd" id="div_twoFactorCode" style="display:none;">
 						<label>{{Code à 2 facteurs}}</label>
-						<input type="text" id="in_twoFactorCode">
+						<input type="text" id="in_twoFactorCode" autocomplete="off">
 					</div>
 					<div class="checkbox">
 						<input type="checkbox" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
