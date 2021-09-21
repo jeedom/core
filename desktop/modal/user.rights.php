@@ -31,6 +31,7 @@ sendVarToJs('user_rights', utils::o2a($user));
 <ul class="nav nav-tabs" role="tablist">
   <li role="presentation" class="active"><a href="#tab_eqLogic" aria-controls="tab_eqLogic" role="tab" data-toggle="tab">{{Equipements}}</a></li>
   <li role="presentation"><a href="#tab_scenario" aria-controls="tab_scenario" role="tab" data-toggle="tab">{{Scénarios}}</a></li>
+  <li role="presentation"><a href="#tab_object" aria-controls="tab_object" role="tab" data-toggle="tab">{{Objets}}</a></li>
 </ul>
 
 <div class="tab-content" id="div_tabUserRights">
@@ -89,6 +90,34 @@ sendVarToJs('user_rights', utils::o2a($user));
             $sc .= '<option value="n">{{Aucun}}</option>';
             $sc .= '<option value="r">{{Visualisation}}</option>';
             $sc .= '<option value="rx">{{Visualisation et exécution}}</option>';
+            $sc .= '</select>';
+            $sc .= '</td>';
+            $sc .= '</tr>';
+            echo $sc;
+          }
+        ?>
+      </tbody>
+    </table>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="tab_object">
+    <table class='table table-condensed table-bordered tablesorter'>
+      <thead>
+        <tr>
+          <th>{{Objets}}</th>
+          <th data-sorter="false" data-filter="false">{{Droits}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          foreach ((jeeObject::all()) as $object) {
+            $sc = '';
+            $sc .= '<tr>';
+            $sc .= '<td>' . $object->getHumanName(true, false, true) . '</td>';
+            $sc .= '<td>';
+            $sc .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="jeeObject' . $object->getId() . '">';
+            $sc .= '<option value="n">{{Aucun}}</option>';
+            $sc .= '<option value="r">{{Visualisation}}</option>';
             $sc .= '</select>';
             $sc .= '</td>';
             $sc .= '</tr>';

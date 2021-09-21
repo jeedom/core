@@ -61,6 +61,10 @@ if ($DisplayByObject) {
 	}
 }
 
+if (!$object->hasRight('r') && count($allObject) > 0) {
+	$object = $allObject[0];
+}
+
 //cache object summaries to not duplicate calls:
 global $summaryCache;
 $summaryCache = [];
@@ -183,13 +187,15 @@ foreach ($objectTree as $_object) {
 		<?php
 		if ($DisplayByObject) {
 			//show root object and all its childs:
-			formatJeedomObjectDiv($object);
+			if ($object->hasRight('r')) {
+				formatJeedomObjectDiv($object);
+			}
 			foreach ($allObject as $thisObject) {
 				if ($thisObject->getId() != $object->getId()) {
 					continue;
 				}
 				foreach (($thisObject->getChilds()) as $child) {
-					if ($child->getConfiguration('hideOnDashboard', 0) == 1) {
+					if ($child->getConfiguration('hideOnDashboard', 0) == 1 || !$child->hasRight('r')) {
 						continue;
 					}
 					formatJeedomObjectDiv($child);
