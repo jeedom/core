@@ -116,10 +116,10 @@ function scanDB($_table) {
         </select>
       </div>
       <div class="col-lg-1 col-xs-2">
-        <a id="bt_addFilter"><i class="fas fa-plus"></i></a>
+        <a id="bt_addFilter" class="btn btn-xs btn-success" title="{{Ajouter un filtre}}"><i class="fas fa-plus"></i> {{Ajouter}}</a>
       </div>
       <div class="col-lg-1 col-xs-2">
-        <a id="bt_testFilter" class="btn btn-xs btn-success disabled"><i class="fas fa-vial"></i></a>
+        <a id="bt_testFilter" class="btn btn-xs btn-info disabled" title="{{Test}}"><i class="fas fa-vial"></i> {{Test}}</a>
       </div>
     </div>
   </div>

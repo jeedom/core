@@ -56,7 +56,6 @@ function initOverview() {
         })
 
         $('.resume').show()
-        colorizeSummary()
         createSummaryObserver()
       }, 500)
 
@@ -66,18 +65,6 @@ function initOverview() {
         jeedomUtils.loadPanel(false)
         jeedomUtils.loadPage('equipment', $(this).data('title'), $(this).data('option').toString())
       })
-    }
-  })
-}
-
-function colorizeSummary() {
-  if ($('body').attr('data-coloredicons') == 0) return
-  $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
-    var value = $(this).html()
-    if (value == 0) {
-      $(this).closest('.objectSummaryParent').addClass('success')
-    } else {
-      $(this).closest('.objectSummaryParent').addClass('danger')
     }
   })
 }
@@ -115,5 +102,4 @@ function updateSummary(_className) {
   if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
     pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
   }
-  colorizeSummary()
 }

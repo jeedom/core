@@ -34,6 +34,7 @@
 - **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
 - **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs.
 - **Utilisateurs** : Possibilité de gérer les profils des différents utilisateurs Jeedom depuis la page de gestion des utilisateurs.
+- **Utilisateurs** : Possibilité de masquer des objets pour les utilisateurs limités.
 - **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
 - **Ajout de l'utilisateur exécutant une action** : Ajout dans les options d’exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple)
@@ -57,6 +58,10 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 > Suite à la mise à jour, il faudra OBLIGATOIREMENT aller dans Réglages → Système → Configuration onglet Mise à jour/Market et entrer la confirmation de mot de passe de backup cloud pour que celui-ci puisse se faire.
 
 # Changelog Jeedom V4.1
+
+## 4.1.25
+
+- Correction d'un soucis d'installation de dépendance apt
 
 ## 4.1.24
 

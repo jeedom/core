@@ -909,31 +909,31 @@ class scenario {
 		if ($_only_class) {
 			switch ($this->getState()) {
 				case 'starting':
-				return 'fas fa-hourglass-start';
+					return 'fas fa-hourglass-start';
 				case 'in progress':
-				return 'fas fa-spinner fa-spin';
+					return 'fas fa-spinner fa-spin';
 				case 'error':
-				return 'fas fa-exclamation-triangle';
+					return 'fas fa-exclamation-triangle';
 				default:
-				if (strpos($this->getDisplay('icon'), '<i') === 0) {
-					return str_replace(array('<i', 'class=', '"', '/>'), '', $this->getDisplay('icon'));
-				}
-				return 'fas fa-check';
+					if (strpos($this->getDisplay('icon'), '<i') === 0) {
+						return str_replace(array('<i', 'class=', '"', '/>', '></i>'), '', $this->getDisplay('icon'));
+					}
+					return 'fas fa-check';
 			}
 			return 'fas fa-times';
 		}
 		switch ($this->getState()) {
 			case 'starting':
-			return '	<i class="fas fa-hourglass-start"></i>';
+				return '	<i class="fas fa-hourglass-start"></i>';
 			case 'in progress':
-			return '<i class="fas fa-spinner fa-spin"></i>';
+				return '<i class="fas fa-spinner fa-spin"></i>';
 			case 'error':
-			return '<i class="fas fa-exclamation-triangle"></i>';
+				return '<i class="fas fa-exclamation-triangle"></i>';
 			default:
-			if ($this->getDisplay('icon') != '') {
-				return $this->getDisplay('icon');
-			}
-			return '<i class="fas fa-check"></i>';
+				if ($this->getDisplay('icon') != '') {
+					return $this->getDisplay('icon');
+				}
+				return '<i class="fas fa-check"></i>';
 		}
 		return '<i class="fas fa-times"></i>';
 	}

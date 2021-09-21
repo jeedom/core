@@ -37,7 +37,6 @@ $(function() {
     }
   })
 
-  colorizeSummary()
   checkResumeEmpty()
   $('.resume').show()
   createSummaryObserver()
@@ -50,19 +49,6 @@ function checkResumeEmpty() {
       button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
       $(this).find('.bt_config').remove()
       $(this).find('.topPreview').append(button)
-    }
-  })
-}
-
-function colorizeSummary() {
-  if ($('body').attr('data-coloredicons') == 0) return
-  var value
-  $('.objectPreview .objectSummarysecurity, .objectPreview .objectSummarymotion').each(function() {
-    value = $(this).html()
-    if (value == 0) {
-      $(this).closest('.objectSummaryParent').addClass('success')
-    } else {
-      $(this).closest('.objectSummaryParent').addClass('danger')
     }
   })
 }
@@ -100,7 +86,6 @@ function updateSummary(_className) {
   if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
     pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
   }
-  colorizeSummary()
   checkResumeEmpty()
 }
 

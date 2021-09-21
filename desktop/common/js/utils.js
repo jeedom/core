@@ -1134,42 +1134,44 @@ jeedomUtils.setJeedomMenu = function() {
     $(this).prop("checked", checked)
   })
 
-  $('li.navTime #configName').on('click', function(event) {
-    //center mouse click event to new tab:
-    if (event.newTab) {
-      var url = 'index.php?v=d&p=administration'
-      window.open(url).focus()
-      return false
-    }
+  if (user_isAdmin == 1) {
+    $('li.navTime #configName').on('click', function(event) {
+      //center mouse click event to new tab:
+      if (event.newTab) {
+        var url = 'index.php?v=d&p=administration'
+        window.open(url).focus()
+        return false
+      }
 
-    //shortcuts:
-    if (event.originalEvent.ctrlKey && event.originalEvent.altKey) {
-      jeedomUtils.loadPage('index.php?v=d&p=massedit')
-      return false
-    }
-    if (event.originalEvent.ctrlKey) {
-      jeedomUtils.loadPage('index.php?v=d&p=system')
-      return false
-    }
-    if (event.originalEvent.altKey) {
-      jeedomUtils.loadPage('index.php?v=d&p=database')
-      return false
-    }
-    if (event.originalEvent.shiftKey) {
-      jeedomUtils.loadPage('index.php?v=d&p=editor')
-      return false
-    }
+      //shortcuts:
+      if (event.originalEvent.ctrlKey && event.originalEvent.altKey) {
+        jeedomUtils.loadPage('index.php?v=d&p=massedit')
+        return false
+      }
+      if (event.originalEvent.ctrlKey) {
+        jeedomUtils.loadPage('index.php?v=d&p=system')
+        return false
+      }
+      if (event.originalEvent.altKey) {
+        jeedomUtils.loadPage('index.php?v=d&p=database')
+        return false
+      }
+      if (event.originalEvent.shiftKey) {
+        jeedomUtils.loadPage('index.php?v=d&p=editor')
+        return false
+      }
 
-    //open configuration:
-    jeedomUtils.loadPage('index.php?v=d&p=administration')
-  })
+      //open configuration:
+      jeedomUtils.loadPage('index.php?v=d&p=administration')
+    })
 
-  $('li.navTime #configName').on('mouseup', function(event) {
-    if (event.which == 2) {
-      event.preventDefault()
-      $(this).trigger(jQuery.Event('click', { newTab: true }))
-    }
-  })
+    $('li.navTime #configName').on('mouseup', function(event) {
+      if (event.which == 2) {
+        event.preventDefault()
+        $(this).trigger(jQuery.Event('click', { newTab: true }))
+      }
+    })
+  }
 }
 
 jeedomUtils.closeJeedomMenu = function() {

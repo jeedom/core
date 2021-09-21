@@ -34,6 +34,7 @@
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
 - **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
+- **Benutzer** : Möglichkeit, Objekte für eingeschränkte Benutzer auszublenden.
 - **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
@@ -57,6 +58,10 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 > Nach dem Update MÜSSEN Sie zu Einstellungen → System → Konfigurationsupdate / Markt gehen und die Bestätigung des Cloud-Sicherungskennworts eingeben, damit dies durchgeführt werden kann.
 
 # Changelog Jeedom V4.1
+
+## 4.1.25
+
+- Problem mit der Installation von apt-Abhängigkeiten behoben
 
 ## 4.1.24
 

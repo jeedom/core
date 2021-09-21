@@ -34,6 +34,7 @@
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
+- **Comercial** : Capacidade de ocultar objetos para usuários limitados.
 - **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
@@ -57,6 +58,10 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 > Após a atualização, você DEVE ir para Configurações → Sistema → guia Atualização de configuração / Mercado e inserir a confirmação da senha do backup em nuvem para que isso possa ser feito.
 
 # Registro de alterações Jeedom V4.1
+
+## 4.1.25
+
+- Corrigido o problema de instalação de dependência do apt
 
 ## 4.1.24
 

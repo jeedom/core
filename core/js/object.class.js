@@ -289,21 +289,23 @@ jeedom.object.summaryUpdate = function(_params) {
           if (_params[i]['keys'][key]['value'] === null) {
             continue;
           }
-          //update icon and value:
-          if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-iconnul') != '') {
-            icon = decodeURIComponent(summarySpan.attr('data-iconnul')).replaceAll('+', ' ')
-          } else {
-            icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
-          }
-          summarySpan.find('i').remove()
-          summarySpan.show().prepend(icon)
+          try {
+            //update icon and value:
+            if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-iconnul') != '') {
+              icon = decodeURIComponent(summarySpan.attr('data-iconnul')).replaceAll('+', ' ')
+            } else {
+              icon = decodeURIComponent(summarySpan.attr('data-icon')).replaceAll('+', ' ')
+            }
+            summarySpan.find('i').remove()
+            summarySpan.show().prepend(icon)
 
-          //update number:
-          if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
-            keySpan.empty()
-          } else {
-            keySpan.empty().append(_params[i]['keys'][key]['value']).show();
-          }
+            //update number:
+            if (_params[i]['keys'][key]['value'] == 0 && summarySpan.attr('data-hidenulnumber') == '1') {
+              keySpan.empty()
+            } else {
+              keySpan.empty().append(_params[i]['keys'][key]['value']).show();
+            }
+          } catch(e) {}
         }
       }
       if ((updated && !isset(_params[i]['force'])) || (updated && _params[i]['force'] != 1)) {

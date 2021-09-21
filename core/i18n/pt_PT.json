@@ -353,6 +353,7 @@
         "Sauvegarder": "Salvar",
         "Equipements": "Instalações",
         "Scénarios": "Cenas",
+        "Objets": "Objetos",
         "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Observação: a conta do usuário não possui um perfil \"Usuário limitado\", portanto, nenhuma restrição pode ser aplicada aqui",
         "Equipement": "Equipamento",
         "Droits": "Direitos",
@@ -2016,6 +2017,9 @@
         "Commande": "Ordenado",
         "Objet": "Objeto",
         "Scénario": "Cenário",
+        "Ajouter un filtre": "Adicionar filtro",
+        "Ajouter": "Adicionar",
+        "Test": "Teste",
         "Colonne": "Coluna",
         "Valeur": "Valor",
         "Valeur json": "Valor Json",
@@ -2715,6 +2719,7 @@
         "Historique supprimé avec succès": "Histórico excluído com sucesso"
     },
     "desktop\/js\/massedit.js": {
+        "Supprimer ce filtre": "Remova este filtro",
         "Configuration de la commande": "Configuração de comando",
         "L'import d'édition en masse se fait au format json.": "A importação da edição em massa é feita no formato json",
         "Problème lors de la lecture du fichier.": "Problema ao ler o arquivo"
