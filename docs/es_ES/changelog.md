@@ -34,6 +34,7 @@
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
 - **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
+- **Usuarios** : Posibilidad de ocultar objetos para usuarios limitados.
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
@@ -57,6 +58,10 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 > Después de la actualización, DEBE ir a Configuración → Sistema → pestaña Actualización de configuración / Mercado e ingresar la confirmación de la contraseña de la copia de seguridad en la nube para que se pueda hacer.
 
 # Registro de cambios Jeedom V4.1
+
+## 4.1.25
+
+- Se corrigió el problema de instalación de la dependencia de apt
 
 ## 4.1.24
 
