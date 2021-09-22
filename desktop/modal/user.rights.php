@@ -39,7 +39,7 @@ sendVarToJs('user_rights', utils::o2a($user));
 
   <div role="tabpanel" class="tab-pane active" id="tab_eqLogic">
     <div class="pull-right" style="width: 100%;text-align: right;">
-      Appliquer aux éléments visibles:
+      {{Appliquer aux éléments visibles:}}
       <select id="eqSelectSet" class="input-sm" style="width: 25%;">
         <option value="n">{{Aucun}}</option>
         <option value="r">{{Visualisation}}</option>
@@ -76,7 +76,7 @@ sendVarToJs('user_rights', utils::o2a($user));
 
   <div role="tabpanel" class="tab-pane" id="tab_scenario">
     <div class="pull-right" style="width: 100%;text-align: right;">
-      Appliquer aux éléments visibles:
+      {{Appliquer aux éléments visibles:}}
       <select id="scSelectSet" class="input-sm" style="width: 25%;">
         <option value="n">{{Aucun}}</option>
         <option value="r">{{Visualisation}}</option>
@@ -113,7 +113,7 @@ sendVarToJs('user_rights', utils::o2a($user));
 
   <div role="tabpanel" class="tab-pane" id="tab_object">
     <div class="pull-right" style="width: 100%;text-align: right;">
-      Appliquer aux éléments visibles:
+      {{Appliquer aux éléments visibles:}}
       <select id="objSelectSet" class="input-sm" style="width: 25%;">
         <option value="n">{{Aucun}}</option>
         <option value="r">{{Visualisation}}</option>
