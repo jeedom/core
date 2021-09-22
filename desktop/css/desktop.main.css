@@ -693,7 +693,6 @@ Desktop
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
     background: transparent !important;
-    border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
   }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > a,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
@@ -2727,9 +2726,7 @@ Desktop
   body[data-theme*="Dark"] select:not(.expressionAttr) {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
   }
-  body[data-theme*="Legacy"] select:not(.expressionAttr) {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(240, 240, 240)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
-  }
+
   select::-ms-expand {
     display: none;
   }

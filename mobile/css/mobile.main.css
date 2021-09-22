@@ -514,7 +514,6 @@
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
     background: transparent !important;
-    border-bottom: 1px solid rgba(var(--bg-color), var(--opacity)) !important;
   }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > span,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
