@@ -38,6 +38,14 @@ sendVarToJs('user_rights', utils::o2a($user));
   <span class="userAttr" data-l1key="id" style="display:none;"></span>
 
   <div role="tabpanel" class="tab-pane active" id="tab_eqLogic">
+    <div class="pull-right" style="width: 100%;text-align: right;">
+      Appliquer aux éléments visibles:
+      <select id="eqSelectSet" class="input-sm" style="width: 25%;">
+        <option value="n">{{Aucun}}</option>
+        <option value="r">{{Visualisation}}</option>
+        <option value="rx">{{Visualisation et exécution}}</option>
+      </select>
+    </div>
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
         <tr>
@@ -67,6 +75,14 @@ sendVarToJs('user_rights', utils::o2a($user));
   </div>
 
   <div role="tabpanel" class="tab-pane" id="tab_scenario">
+    <div class="pull-right" style="width: 100%;text-align: right;">
+      Appliquer aux éléments visibles:
+      <select id="scSelectSet" class="input-sm" style="width: 25%;">
+        <option value="n">{{Aucun}}</option>
+        <option value="r">{{Visualisation}}</option>
+        <option value="rx">{{Visualisation et exécution}}</option>
+      </select>
+    </div>
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
         <tr>
@@ -96,6 +112,13 @@ sendVarToJs('user_rights', utils::o2a($user));
   </div>
 
   <div role="tabpanel" class="tab-pane" id="tab_object">
+    <div class="pull-right" style="width: 100%;text-align: right;">
+      Appliquer aux éléments visibles:
+      <select id="objSelectSet" class="input-sm" style="width: 25%;">
+        <option value="n">{{Aucun}}</option>
+        <option value="r">{{Visualisation}}</option>
+      </select>
+    </div>
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
         <tr>
@@ -140,4 +163,32 @@ $("#bt_usersRightsSave").on('click', function(event) {
     }
   })
 })
+
+$('#tab_eqLogic').on({
+  'change': function(event) {
+    var value = $(this).val()
+    $('#tab_eqLogic').find('tbody tr:not(.filtered) select').each(function() {
+      $(this).val(value)
+    })
+  }
+}, '#eqSelectSet')
+
+$('#tab_scenario').on({
+  'change': function(event) {
+    var value = $(this).val()
+    $('#tab_scenario').find('tbody tr:not(.filtered) select').each(function() {
+      $(this).val(value)
+    })
+  }
+}, '#scSelectSet')
+
+$('#tab_object').on({
+  'change': function(event) {
+    var value = $(this).val()
+    $('#tab_object').find('tbody tr:not(.filtered) select').each(function() {
+      $(this).val(value)
+    })
+  }
+}, '#objSelectSet')
+
 </script>
