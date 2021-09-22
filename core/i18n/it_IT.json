@@ -354,11 +354,11 @@
         "Equipements": "Dispositivi",
         "Scénarios": "Scenari",
         "Objets": "Objets",
-        "Equipement": "Dispositivo",
-        "Droits": "Diritti",
         "Aucun": "Nessuno",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
+        "Equipement": "Dispositivo",
+        "Droits": "Diritti",
         "Scénario": "Scena",
         "Sauvegarde effectuée": "Backup completato"
     },

@@ -354,11 +354,11 @@
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Objets": "Objetos",
-        "Equipement": "Dispositivos",
-        "Droits": "Permisos",
         "Aucun": "No",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
+        "Equipement": "Dispositivos",
+        "Droits": "Permisos",
         "Scénario": "Escenario",
         "Sauvegarde effectuée": "Guardado correctamente"
     },

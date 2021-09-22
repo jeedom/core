@@ -354,11 +354,11 @@
         "Equipements": "施設",
         "Scénarios": "シナリオ",
         "Objets": "Objets",
-        "Equipement": "設備",
-        "Droits": "権利",
         "Aucun": "何でもありません",
         "Visualisation": "可視化",
         "Visualisation et exécution": "視覚化と実行",
+        "Equipement": "設備",
+        "Droits": "権利",
         "Scénario": "シナリオ",
         "Sauvegarde effectuée": "バックアップ完了"
     },
