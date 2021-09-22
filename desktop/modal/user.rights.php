@@ -35,11 +35,6 @@ sendVarToJs('user_rights', utils::o2a($user));
 </ul>
 
 <div class="tab-content" id="div_tabUserRights">
-  <?php
-  if ($user->getProfils() != 'restrict') {
-    echo '<div class="alert alert-danger">{{Attention : le compte utilisateur n\'a pas un profil "Utilisateur limité", aucune restriction mise ici ne pourra donc s\'appliquer}}</div>';
-  }
-  ?>
   <span class="userAttr" data-l1key="id" style="display:none;"></span>
 
   <div role="tabpanel" class="tab-pane active" id="tab_eqLogic">
@@ -76,7 +71,7 @@ sendVarToJs('user_rights', utils::o2a($user));
       <thead>
         <tr>
           <th>{{Scénario}}</th>
-          <th data-sorter="false" data-filter="false">{{Droits}}</th>
+          <th data-sorter="select-text">{{Droits}}</th>
         </tr>
       </thead>
       <tbody>
@@ -105,23 +100,23 @@ sendVarToJs('user_rights', utils::o2a($user));
       <thead>
         <tr>
           <th>{{Objets}}</th>
-          <th data-sorter="false" data-filter="false">{{Droits}}</th>
+          <th data-sorter="select-text">{{Droits}}</th>
         </tr>
       </thead>
       <tbody>
         <?php
           foreach ((jeeObject::all()) as $object) {
-            $sc = '';
-            $sc .= '<tr>';
-            $sc .= '<td>' . $object->getHumanName(true, false, true) . '</td>';
-            $sc .= '<td>';
-            $sc .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="jeeObject' . $object->getId() . '">';
-            $sc .= '<option value="n">{{Aucun}}</option>';
-            $sc .= '<option value="r">{{Visualisation}}</option>';
-            $sc .= '</select>';
-            $sc .= '</td>';
-            $sc .= '</tr>';
-            echo $sc;
+            $obj = '';
+            $obj .= '<tr>';
+            $obj .= '<td>' . $object->getHumanName(true, false, true) . '</td>';
+            $obj .= '<td>';
+            $obj .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="jeeObject' . $object->getId() . '">';
+            $obj .= '<option value="n">{{Aucun}}</option>';
+            $obj .= '<option value="r">{{Visualisation}}</option>';
+            $obj .= '</select>';
+            $obj .= '</td>';
+            $obj .= '</tr>';
+            echo $obj;
           }
         ?>
       </tbody>

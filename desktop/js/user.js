@@ -40,6 +40,19 @@ $(function() {
     ])
 })
 
+
+$('#div_administration').on({
+  'change': function(event) {
+    if ($(this).val() != 'restrict') {
+      $(this).closest('tr').find('a.bt_manage_restrict_rights').addClass('disabled')
+    } else {
+      $(this).closest('tr').find('a.bt_manage_restrict_rights').removeClass('disabled')
+    }
+
+  }
+}, 'select[data-l1key="profils"]')
+
+
 $("#bt_addUser").on('click', function(event) {
   $.hideAlert()
   $('#in_newUserLogin').value('')
@@ -265,6 +278,9 @@ function printUsers() {
           }
           userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
           userTR += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights"><i class="fas fa-align-right"></i> {{Droits}}</a>'
+          if (data[i].profils != 'restrict') {
+            userTR = userTR.replace('bt_manage_restrict_rights', 'bt_manage_restrict_rights disabled')
+          }
           userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
 
           userTR += '</span></div>'
@@ -284,7 +300,7 @@ function printUsers() {
 
 $('#table_user').on('click', '.bt_manage_restrict_rights', function() {
   $('#md_modal').dialog({
-    title: "{{Gestion des droits}}"
+    title: "{{Gestion des droits (Utilisateur limité)}}"
   }).load('index.php?v=d&modal=user.rights&id=' + $(this).closest('tr').find('.userAttr[data-l1key=id]').value()).dialog('open')
 })
 
