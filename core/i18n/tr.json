@@ -354,11 +354,11 @@
         "Equipements": "Cihazlar",
         "Scénarios": "Senaryolar",
         "Objets": "Objets",
-        "Equipement": "Cihaz",
-        "Droits": "Haklar",
         "Aucun": "Hiçbir",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
+        "Equipement": "Cihaz",
+        "Droits": "Haklar",
         "Scénario": "Senaryo",
         "Sauvegarde effectuée": "Yedekleme gerçekleştirildi"
     },

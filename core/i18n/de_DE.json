@@ -354,11 +354,11 @@
         "Equipements": "Geräte",
         "Scénarios": "Szenarien",
         "Objets": "Objekte",
-        "Equipement": "Gerät",
-        "Droits": "Rechte",
         "Aucun": "Nein",
         "Visualisation": "Visualisierung",
         "Visualisation et exécution": "Visualisierung und Ausführung",
+        "Equipement": "Gerät",
+        "Droits": "Rechte",
         "Scénario": "Szenario",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
     },
