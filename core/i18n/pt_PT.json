@@ -354,7 +354,6 @@
         "Equipements": "Instalações",
         "Scénarios": "Cenas",
         "Objets": "Objetos",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Observação: a conta do usuário não possui um perfil \"Usuário limitado\", portanto, nenhuma restrição pode ser aplicada aqui",
         "Equipement": "Equipamento",
         "Droits": "Direitos",
         "Aucun": "Não",
@@ -2753,7 +2752,7 @@
         "Régénérer API": "Regenerar API",
         "Droits": "Direitos",
         "Profils": "Perfis",
-        "Gestion des droits": "Gerenciamento de direitos",
+        "Gestion des droits (Utilisateur limité)": "Gerenciamento de direitos (usuário limitado)",
         "Gestion du profils": "Gerenciamento de perfil"
     },
     "desktop\/js\/health.js": {
