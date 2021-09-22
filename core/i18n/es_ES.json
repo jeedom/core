@@ -5,7 +5,7 @@
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
         "Annuler": "Cancelar",
-        "Ok": "Bueno"
+        "Ok": "Ok"
     },
     "mobile\/js\/log.js": {
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
@@ -70,7 +70,7 @@
         "Aucun": "No"
     },
     "mobile\/html\/scenariolog.html": {
-        "Vider": "Vacío",
+        "Vider": "Vacíar",
         "Pause": "Pausa",
         "Rechercher": "Buscar"
     },
@@ -3466,8 +3466,8 @@
     },
     "core\/ajax\/interact.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Interaction inconnue. Vérifiez l\\'ID": "Interacción desconocida Verifica la identificación",
-        "InteractQuery ID inconnu": "ID de InteractQuery desconocido",
+        "Interaction inconnue. Vérifiez l\\'ID": "Interacción desconocida. Verifica el ID",
+        "InteractQuery ID inconnu": "InteractQuery ID desconocido",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "core\/ajax\/view.ajax.php": {
@@ -3522,14 +3522,14 @@
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Ver",
+        "Vue": "Vista",
         "Objet": "Objeto",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aucune documentation trouvée": "Ninguna documentación encontrada",
-        "Commande non trouvée : ": "Orden no encontrada:",
-        "Aucune Commande de Notification : ": "Sin comando de notificación:",
-        "Répertoire de téléversement non trouvé : ": "Subir directorio no encontrado:",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
+        "Commande non trouvée : ": "Comando no encontrado:",
+        "Aucune Commande de Notification : ": "Ningún comando de notificación:",
+        "Répertoire de téléversement non trouvé : ": "Directorio de gestor no encontrado:",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (post size limit)",
         "Extension du fichier non valide (autorisé .tar.gz) : ": "Extensión de archivo no válida (.tar.gz autorizado):",
         "Le fichier est trop gros (maximum 1Go)": "El archivo es demasiado grande (máximo 1 GB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
@@ -3539,7 +3539,7 @@
         "Type :": "Tipo:",
         " avec id : ": "con id:",
         " inconnu": "desconocido",
-        "Vous ne pouvez éditer ce type d\\'extension : ": "No puede editar este tipo de extensión:",
+        "Vous ne pouvez éditer ce type d\\'extension : ": "No puedes editar este tipo de extensión:",
         "Impossible de créer le fichier, vérifiez les droits": "No se puede crear el archivo, verifique los derechos",
         "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extensión de archivo no válida (.jpg .png .gif autorizado):",
         "Le fichier est trop gros (maximum 5Mo)": "El archivo es demasiado grande (máximo 5 MB)",
@@ -3557,7 +3557,7 @@
     },
     "core\/ajax\/listener.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Listener id inconnu": "Identificación de escucha desconocida",
+        "Listener id inconnu": "Listener id desconocido",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
     },
     "core\/ajax\/report.ajax.php": {
@@ -3703,7 +3703,7 @@
         "Type incorrect (classe équipement inexistante) : ": "Tipo incorrecto (clase de equipo inexistente):",
         "Informations reçues incorrectes": "Informaciones recibidas incorrectas",
         "Type incorrect, (classe commande inexistante)": "Tipo incorrecto, (clase de comando inexistente)",
-        "Un équipement portant ce nom (": "Equipos con este nombre (",
+        "Un équipement portant ce nom (": "Un equipos con este nombre (",
         ") existe déjà pour cet objet": ") ya existe para este objeto",
         "Une commande portant ce nom (": "Un comando con este nombre (",
         ") existe déjà pour cet équipement": ") ya existe para este equipo",
@@ -4424,9 +4424,9 @@
         "Question": "Pregunta",
         "Réponse": "Respuesta",
         "Variable": "Variable",
-        "Délai": "Aviso",
+        "Délai": "Plazo",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
