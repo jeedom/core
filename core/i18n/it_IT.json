@@ -354,12 +354,12 @@
         "Equipements": "Dispositivi",
         "Scénarios": "Scenari",
         "Objets": "Objets",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer",
-        "Equipement": "Dispositivo",
-        "Droits": "Diritti",
+        "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "Nessuno",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
+        "Equipement": "Dispositivo",
+        "Droits": "Diritti",
         "Scénario": "Scena",
         "Sauvegarde effectuée": "Backup completato"
     },
@@ -2753,7 +2753,7 @@
         "Régénérer API": "Régénérer API",
         "Droits": "Diritti",
         "Profils": "Profils",
-        "Gestion des droits": "Gestion des droits",
+        "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {

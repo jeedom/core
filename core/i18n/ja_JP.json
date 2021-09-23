@@ -354,12 +354,12 @@
         "Equipements": "施設",
         "Scénarios": "シナリオ",
         "Objets": "Objets",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "注：ユーザーアカウントには「制限付きユーザー」プロファイルがないため、ここでは制限を適用できません。",
-        "Equipement": "設備",
-        "Droits": "権利",
+        "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "何でもありません",
         "Visualisation": "可視化",
         "Visualisation et exécution": "視覚化と実行",
+        "Equipement": "設備",
+        "Droits": "権利",
         "Scénario": "シナリオ",
         "Sauvegarde effectuée": "バックアップ完了"
     },
@@ -2753,7 +2753,7 @@
         "Régénérer API": "APIを再生成",
         "Droits": "権利",
         "Profils": "Profils",
-        "Gestion des droits": "Gestion des droits",
+        "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {

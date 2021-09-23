@@ -354,12 +354,12 @@
         "Equipements": "Equipements",
         "Scénarios": "Scénarios",
         "Objets": "Objets",
-        "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer": "Attention : le compte utilisateur n\\'a pas un profil \"Utilisateur limité\", aucune restriction mise ici ne pourra donc s\\'appliquer",
-        "Equipement": "Equipement",
-        "Droits": "Droits",
+        "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "Aucun",
         "Visualisation": "Visualisation",
         "Visualisation et exécution": "Visualisation et exécution",
+        "Equipement": "Equipement",
+        "Droits": "Droits",
         "Scénario": "Scénario",
         "Sauvegarde effectuée": "Sauvegarde effectuée"
     },
@@ -2753,7 +2753,7 @@
         "Régénérer API": "Régénérer API",
         "Droits": "Droits",
         "Profils": "Profils",
-        "Gestion des droits": "Gestion des droits",
+        "Gestion des droits (Utilisateur limité)": "Gestion des droits (Utilisateur limité)",
         "Gestion du profils": "Gestion du profils"
     },
     "desktop\/js\/health.js": {
