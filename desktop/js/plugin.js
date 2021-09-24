@@ -210,7 +210,7 @@ function displayPlugin(_pluginId) {
       //top right buttons:
       var $spanRightButton = $container.find('#span_right_button')
       $spanRightButton.empty().append('<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
-      if(data.update.configuration.version == 'beta'){
+      if(data.update.configuration && data.update.configuration.version == 'beta'){
         if (isset(data.documentation_beta) && data.documentation_beta != '') {
           $spanRightButton.append('<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
         }
