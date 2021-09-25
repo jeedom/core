@@ -234,11 +234,23 @@ class system {
 				break;
 			case 'npm':
 				$datas = json_decode(shell_exec('npm -g ls -json -depth 1 2>/dev/null'), true);
+				if (isset($datas['dependencies']['yarn'])) {
+					self::$_installPackage[$_type]['yarn'] = array(
+						'version' => $datas['dependencies']['yarn']['version']
+					);
+				}
 				foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
 					self::$_installPackage[$_type][mb_strtolower($key)] = array(
 						'version' => $value['version']
 					);
 				}
+				break;
+			case 'yarn':
+				$datas = json_decode(shell_exec('cat `'.self::getCmdSudo().' yarn global dir`/package.json 2>/dev/null'), true);
+				foreach ($datas['dependencies'] as $key => $value) {
+					self::$_installPackage[$_type][mb_strtolower($key)] = array(
+						'version' => json_decode(shell_exec('yarn info '.$key.' version --json 2>/dev/null'),true)['data']
+					);}
 				break;
 		}
 		return self::$_installPackage[$_type];
@@ -271,16 +283,30 @@ class system {
 			$installPackage = self::getInstallPackage($type);
 
 			foreach ($_packages[$type] as $package => $info) {
-				if ($type == 'npm' && strpos($package, '/') !== false) {
-					exec('cd ' . __DIR__ . '/../../' . $package . ';npm list', $output, $return_var);
-					$found = 0;
-					if ($return_var == 0) {
-						$found = 1;
+				if (($type == 'npm' || $type == 'yarn') && strpos($package, '/') !== false) {
+				$found = 0;
+				if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
+					$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'),true)['version'];
+					if ($type == 'npm') {
+						exec('cd ' . __DIR__ . '/../../' . $package . ';npm list', $output, $return_var);
+						if ($return_var == 0) {
+							$found = 1;
+						}
 					}
+					else {
+						exec('cd ' . __DIR__ . '/../../' . $package . ';'.self::getCmdSudo().' yarn check', $output, $return_var);
+						if ($return_var == 0) {
+							$found = 1;
+						}
+					}
+				}
+				else {
+					$version = __('Erreur',__FILE__);
+				}
 					$return[$type . '::' . $package] = array(
 						'name' => $package,
 						'status' => $found,
-						'version' => 'N/A',
+						'version' => empty($version) ? 'N/A' : $version,
 						'type' => $type,
 						'needUpdate' => '',
 						'needVersion' => '',
@@ -507,10 +533,18 @@ class system {
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package)) {
+				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
 					return '';
 				}
 				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;chown -R www-data:www-data *';
+			case 'yarn':
+				if (strpos($_package, '/') === false) {
+					return self::getCmdSudo() . ' yarn global add ' . $_package;
+				}
+				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+					return '';
+				}
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;chown -R www-data:www-data *';
 		}
 	}
 
