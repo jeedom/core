@@ -4049,6 +4049,7 @@
         "Vue :": "Ansicht:"
     },
     "core\/class\/system.class.php": {
+        "Erreur": "Fehler",
         "Installation de package impossible car il y a déjà une installation en cours": "Paket kann nicht installiert werden, da bereits eine Installation ausgeführt wird"
     },
     "core\/class\/scenarioElement.class.php": {

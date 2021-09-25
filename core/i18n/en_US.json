@@ -1057,7 +1057,7 @@
         "Log": "Log",
         "Timeline": "Timeline",
         "Actions": "Actions",
-        "Erreur": "Error",
+        "Erreur": "Fault",
         "En cours": "Running",
         "Arrêté": "Stopped",
         "Défaut": "Default",
@@ -1694,7 +1694,7 @@
         "Debug": "Debug",
         "Info": "Info",
         "Warning": "Warning",
-        "Erreur": "Error",
+        "Erreur": "Fault",
         "Défaut": "Default",
         "Ajouter un type de résumé": "Add a summary type",
         "Clé": "Key",
@@ -2995,7 +2995,7 @@
         "Ajout d'une nouvelle condition": "Adding a new condition",
         "Ne rien mettre": "Put nothing",
         "Valider": "Validate",
-        "Erreur": "Error",
+        "Erreur": "Fault",
         "Actif": "Active",
         "Démarrage": "Start-up",
         "En cours": "In progress",
@@ -4049,6 +4049,7 @@
         "Vue :": "View :"
     },
     "core\/class\/system.class.php": {
+        "Erreur": "Fault",
         "Installation de package impossible car il y a déjà une installation en cours": "Can't install package, another installation running"
     },
     "core\/class\/scenarioElement.class.php": {

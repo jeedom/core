@@ -1057,7 +1057,7 @@
         "Log": "Registro",
         "Timeline": "Cronología",
         "Actions": "Acciones",
-        "Erreur": "Error",
+        "Erreur": "Culpa",
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Défaut": "Por defecto",
@@ -1694,7 +1694,7 @@
         "Debug": "Depurar",
         "Info": "Información",
         "Warning": "Advertencia",
-        "Erreur": "Error",
+        "Erreur": "Culpa",
         "Défaut": "General",
         "Ajouter un type de résumé": "Agregar un tipo de resumen",
         "Clé": "Llave",
@@ -2995,7 +2995,7 @@
         "Ajout d'une nouvelle condition": "Agregar una nueva condición",
         "Ne rien mettre": "No poner nada",
         "Valider": "Validar",
-        "Erreur": "Error",
+        "Erreur": "Culpa",
         "Actif": "Activo",
         "Démarrage": "Inicia",
         "En cours": "En curso",
@@ -4049,6 +4049,7 @@
         "Vue :": "Vista :"
     },
     "core\/class\/system.class.php": {
+        "Erreur": "Culpa",
         "Installation de package impossible car il y a déjà une installation en cours": "No se puede instalar el paquete porque ya hay una instalación en progreso"
     },
     "core\/class\/scenarioElement.class.php": {
