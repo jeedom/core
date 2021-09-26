@@ -284,8 +284,9 @@ class system {
 			$installPackage = self::getInstallPackage($type);
 
 			foreach ($_packages[$type] as $package => $info) {
+				$found = 0;
+				$version = '';
 				if (($type == 'npm' || $type == 'yarn') && strpos($package, '/') !== false) {
-					$found = 0;
 					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'),true)['version'];
 						if ($type == 'npm') {
@@ -335,9 +336,7 @@ class system {
 					);
 					continue;
 				}
-				$found = 0;
 				$alternative_found = '';
-				$version = '';
 				if (isset($installPackage[$package])) {
 					$found = 1;
 					$version = $installPackage[$package]['version'];
@@ -582,5 +581,5 @@ class system {
 		}
 		return '';
 	}
-	
+
 }
