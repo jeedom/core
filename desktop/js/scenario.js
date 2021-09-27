@@ -33,19 +33,18 @@ $('#in_searchScenario').keyup(function() {
   search = jeedomUtils.normTextLower(search)
   $('.panel-collapse').attr('data-show', 0)
   $('.scenarioDisplayCard').hide()
-  var text
+  var match, text
   $('.scenarioDisplayCard .name').each(function() {
+    match = false
     text = jeedomUtils.normTextLower($(this).text())
-    if (not) {
-      if (!text.includes(search)) {
-        $(this).closest('.scenarioDisplayCard').show()
-        $(this).closest('.panel-collapse').attr('data-show', 1)
-      }
-    } else {
-      if (text.indexOf(search) >= 0) {
-        $(this).closest('.scenarioDisplayCard').show()
-        $(this).closest('.panel-collapse').attr('data-show', 1)
-      }
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
+      $(this).closest('.scenarioDisplayCard').show()
+      $(this).closest('.panel-collapse').attr('data-show', 1)
     }
 
   })

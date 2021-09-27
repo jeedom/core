@@ -41,7 +41,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       }
       $thisDiv .= '<br/>';
       $thisDiv .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> | <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
-      $thisDiv .= '<span class="name">' . $widget->getName() . '</span><br/>';
+      $thisDiv .= '<span class="name search">' . $widget->getName() . '</span><br/>';
       $thisDiv .= '<span class="hiddenAsCard displayTableRight">'.ucfirst($widget->getSubType()).' | '.ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
       if ($widget->getReplace('#_time_widget_#', 0) == 1) $thisDiv .= ' (time)';
       $thisDiv .= '</span>';

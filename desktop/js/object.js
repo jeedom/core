@@ -47,12 +47,20 @@ $('#in_searchObject').keyup(function() {
     return
   }
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
 
   $('.objectDisplayCard').hide()
-  var text
+  var match, text
   $('.objectDisplayCard .name').each(function() {
+    match = false
     text = jeedomUtils.normTextLower($(this).text())
-    if (text.indexOf(search) >= 0) {
+    if (text.includes(search)) match = true
+
+    if (not) match = !match
+    if (match) {
       $(this).closest('.objectDisplayCard').show()
     }
   })

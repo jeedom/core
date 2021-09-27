@@ -70,13 +70,18 @@ $('#in_search').off('keyup').on('keyup', function() {
     return
   }
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+
   var match, text
   $eqlogics.each(function() {
     match = false
     text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
-    if (text.indexOf(search) >= 0) match = true
-    text = jeedomUtils.normTextLower($(this).find('.widget-name span').text())
-    if (text.indexOf(search) >= 0) match = true
+    if (text.includes(search)) match = true
+
+    if (not) match = !match
     if (match) {
       $(this).show()
     } else {
