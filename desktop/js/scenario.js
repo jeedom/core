@@ -21,6 +21,10 @@ var $divScenario = $('#div_editScenario')
 //searching
 $('#in_searchScenario').keyup(function() {
   var search = $(this).value()
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show()
@@ -32,10 +36,18 @@ $('#in_searchScenario').keyup(function() {
   var text
   $('.scenarioDisplayCard .name').each(function() {
     text = jeedomUtils.normTextLower($(this).text())
-    if (text.indexOf(search) >= 0) {
-      $(this).closest('.scenarioDisplayCard').show()
-      $(this).closest('.panel-collapse').attr('data-show', 1)
+    if (not) {
+      if (!text.includes(search)) {
+        $(this).closest('.scenarioDisplayCard').show()
+        $(this).closest('.panel-collapse').attr('data-show', 1)
+      }
+    } else {
+      if (text.indexOf(search) >= 0) {
+        $(this).closest('.scenarioDisplayCard').show()
+        $(this).closest('.panel-collapse').attr('data-show', 1)
+      }
     }
+
   })
   $('.panel-collapse[data-show=1]').collapse('show')
   $('.panel-collapse[data-show=0]').collapse('hide')
