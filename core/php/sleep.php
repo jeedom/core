@@ -17,4 +17,3 @@
 */
 require_once __DIR__ . '/../php/utils.inc.php';
 usleep(init('delay') * 1000);
-?>
