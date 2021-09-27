@@ -1601,6 +1601,8 @@ class cmd {
 
 			if (!isset($replace['#title#'])) {
 				$replace['#title#'] = '';
+			} else {
+				$replace['#title#'] = htmlspecialchars($replace['#title#']);
 			}
 			if (!isset($replace['#message#'])) {
 				$replace['#message#'] = '';
