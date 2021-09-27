@@ -72,7 +72,7 @@
     "mobile\/html\/scenariolog.html": {
         "Vider": "Clear",
         "Pause": "Pause",
-        "Rechercher": "To research"
+        "Rechercher": "Search"
     },
     "mobile\/html\/history.html": {
         "Début": "Start",
@@ -118,7 +118,7 @@
     },
     "mobile\/html\/index.html": {
         "Accueil": "Home",
-        "Rechercher": "To research"
+        "Rechercher": "Search"
     },
     "mobile\/html\/message.html": {
         "Date": "Dated",
@@ -166,7 +166,7 @@
         "Supprimer": "Delete",
         "Vider": "Clear",
         "Pause": "Pause",
-        "Rechercher": "To research"
+        "Rechercher": "Search"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access"
@@ -267,7 +267,7 @@
         "Aucun scénario ne correspondant à : ": "No scenario corresponding to:",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Log brut": "Raw log",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
@@ -567,7 +567,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aide": "Help",
         "Résumé Domotique": "Domotic overview",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Recherche par": "Search by",
         "Equipement": "Equipment",
         "Commande": "Command",
@@ -779,7 +779,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. ": "Please note your log level (event) is lower than info, so you cannot see real time",
         "Configuration": "Configuration",
         "Log brut": "Raw log",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Clear",
@@ -810,7 +810,7 @@
         "Icônes oranges": "Orange icons",
         "Icônes rouges": "Red icons",
         "Icônes vertes": "Green icons",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Envoyer": "Send",
         "Supprimer": "Delete",
         "Êtes-vous sûr de vouloir supprimer cette image": "Are you sure you want to delete this picture"
@@ -1406,7 +1406,7 @@
         "Synchroniser": "Synchronize",
         "Plugins": "Plugins",
         "Mes plugins": "My plugins",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Etat": "State",
         "Ouvrir": "Open",
         "Catégorie": "Category",
@@ -1507,14 +1507,14 @@
         "Vue inconnue. Vérifier l\\'ID.": "Unknown view. Check the ID",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "No view exists, click <a href=\"index.php?v=d&p=view_edit\">here<\/a> to create one",
         "Ajouter une vue": "Add a view",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Afficher\/Masquer les vues": "Show \/ Hide Views",
         "Edition complète": "Full Edition",
         "Mode édition": "Edit mode"
     },
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Sauvegarder": "Save",
         "Général": "General",
         "Interface": "Interface",
@@ -1603,7 +1603,7 @@
         "Icônes widgets colorées": "Colored widget icons",
         "Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').": "Coloring of widget icons according to their state. <br> Editable by scenario, setColoredIcon ('Icon coloring')",
         "Catégories colorées": "Colored categories",
-        "Colorisation du titre des tuiles en fonction de la catégorie.": "Colorization of the title of the tiles according to the category",
+        "Colorisation du titre des tuiles en fonction de la catégorie.": "Colorization of the title of tiles according to the category",
         "Images de fond": "Background images",
         "Afficher les images de fond": "Show background images",
         "Flou des fonds des objets": "Objects background blur",
@@ -1720,7 +1720,7 @@
         "Inférieur à": "Less than",
         "Si le niveau de charge passe en dessous de (%)": "If the charge level drops below (%)",
         "Danger": "Danger",
-        "Scénario à éxecuter lors de la création d'un équipement": "Scenario to run when creating an item of equipment",
+        "Scénario à éxecuter lors de la création d'un équipement": "Scenario to run when creating a new equipment",
         "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.": "This scenario will be launched for each new equipment creation. The eqLogic_id tag will be passed to the scenario and will contain the id of the equipment created",
         "Historique des commandes": "Command history",
         "Afficher les statistiques sur les widgets": "Display widget statistics",
@@ -1744,7 +1744,7 @@
         "3 ans": "3 years",
         "Push": "Push",
         "URL de push globale": "Global push URL",
-        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call when updating the value of the commands. <br> You can use the following tags: <br> # value # (command value), # cmd_id # (command id) and # cmd_name # (orcommand der name)",
+        "Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "Put here the URL to call when updating the value of the commands. <br> You can use the following tags: <br> #value# (command value), #cmd_id# (command id) and #cmd_name# (command name)",
         "InfluxDB": "InfluxDB",
         "URL du serveur InfluxDB": "InfluxDB server URL",
         "Port du serveur InfluxDB": "InfluxDB server port",
@@ -1908,7 +1908,7 @@
         "Outils Système": "System Tools",
         "ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à": "WARNING : these operations are risky, you may lose access to your system and to",
         "L'équipe": "Team",
-        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "Team reserves the right to refuse any Support Request in case of mishandling",
+        "se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.": "reserves the right to refuse any support Request in case of mishandling",
         "Editeur de fichiers": "File Editor",
         "Ouvrir": "Open",
         "Administration Système": "System Administration",
@@ -1921,7 +1921,7 @@
     },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "To research"
+        "Rechercher": "Search"
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1930,7 +1930,7 @@
         "Concepts": "Concepts",
         "Premiers pas": "First steps",
         "Retour à la Synthèse": "Back to Synthesis",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Vider le champ de recherche": "Clear the search field",
         "Filtre par catégorie": "Filter by category",
         "Toutes": "All",
@@ -1942,7 +1942,7 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Log brut": "Raw log",
         "Pause": "Pause",
         "Télécharger": "Download",
@@ -2036,7 +2036,7 @@
         "Code": "Code",
         "Remplacement": "Replacement",
         "Mes widgets": "My widgets",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Appliquer à": "Apply to",
         "Exporter": "Export",
         "Sauvegarder": "Save",
@@ -2063,7 +2063,7 @@
         "Design": "Design",
         "Plugin": "Plugin",
         "Autre": "Other",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Analyse Equipements": "Equipment Analysis",
         "Timeline": "Timeline",
         "URL": "Url",
@@ -2080,7 +2080,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Créer une vue": "Create a view",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Edition": "Editing",
         "Configuration": "Configuration",
         "Ajouter une zone": "Add a zone",
@@ -2104,7 +2104,7 @@
         "Désactiver scénarios": "Disable scenarios",
         "Vue d'ensemble": "Overview",
         "Mes scénarios": "My scenarios",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Etat précédent": "Previous state",
         "Etat suivant": "Next state",
         "Ajouter bloc": "Add block",
@@ -2209,7 +2209,7 @@
         "Tester": "Test",
         "Mes interactions": "My interactions",
         "Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.": "You have no interaction yet. Click add to begin",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Phrase(s)": "Sentence(s)",
         "Dupliquer": "Duplicate",
         "Sauvegarder": "Save",
@@ -2260,7 +2260,7 @@
         "Alertes définies": "Defined alerts",
         "Push définis": "Defined pushes",
         "Commandes orphelines": "Orphan commands",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Aucun équipement en Alerte.": "No equipment on alert",
         "Equipement": "Equipment",
         "Commande": "Command",
@@ -2316,7 +2316,7 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Tables": "Tables",
         "Taille": "Size",
         "Select Variables": "Select Variables",
@@ -2367,7 +2367,7 @@
         "Ajouter": "Add",
         "Vue d'ensemble": "Overview",
         "Mes objets": "My objects",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Liens": "Links",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
@@ -2493,7 +2493,7 @@
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Historique": "History",
         "Configuration": "Configuration",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
         "Exporter cet historique.": "Export this history",
         "Comparer la période": "Compare period",
@@ -2523,7 +2523,7 @@
         "Afficher les éléments inactifs": "Show inactive items",
         "Inactifs": "Inactive",
         "Export CSV": "CSV export",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Vider": "Clear",
         "Date": "Dated",
         "Type": "Type",
@@ -2532,7 +2532,7 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
         "OK": "OK"
     },
@@ -3772,7 +3772,7 @@
         "Partenaire": "Partner",
         "Legacy": "Legacy",
         "Top et nouveautés": "Top and new",
-        "Rechercher": "To research",
+        "Rechercher": "Search",
         "Retour": "Return",
         "Aucune": "None",
         "Widget pour la version mobile": "Mobile version Widget",

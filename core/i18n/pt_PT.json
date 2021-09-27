@@ -72,7 +72,7 @@
     "mobile\/html\/scenariolog.html": {
         "Vider": "Vazio",
         "Pause": "Pausa",
-        "Rechercher": "Pesquisar"
+        "Rechercher": "Pesquisa"
     },
     "mobile\/html\/history.html": {
         "Début": "Começo",
@@ -118,7 +118,7 @@
     },
     "mobile\/html\/index.html": {
         "Accueil": "Home",
-        "Rechercher": "Pesquisar"
+        "Rechercher": "Pesquisa"
     },
     "mobile\/html\/message.html": {
         "Date": "Data",
@@ -166,7 +166,7 @@
         "Supprimer": "Retirar",
         "Vider": "Vazio",
         "Pause": "Pausa",
-        "Rechercher": "Pesquisar"
+        "Rechercher": "Pesquisa"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
@@ -267,7 +267,7 @@
         "Aucun scénario ne correspondant à : ": "Nenhum cenário correspondente a:",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Log brut": "Log bruto",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Pause": "Pausa",
         "Télécharger": "Baixar",
         "Vider": "Vazio",
@@ -567,7 +567,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aide": "Ajuda",
         "Résumé Domotique": "Resumo Automation",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Recherche par": "Pesquisar por",
         "Equipement": "Equipamento",
         "Commande": "Ordem",
@@ -779,7 +779,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. ": "Observe que seu nível de registro (evento) é menor que as informações, para que você não possa ver em tempo real",
         "Configuration": "Configuração",
         "Log brut": "Log bruto",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Pause": "Pausa",
         "Télécharger": "Baixar",
         "Vider": "Vazio",
@@ -810,7 +810,7 @@
         "Icônes oranges": "Ícones laranja",
         "Icônes rouges": "Ícones vermelhos",
         "Icônes vertes": "Ícones verdes",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Envoyer": "Enviar",
         "Supprimer": "Retirar",
         "Êtes-vous sûr de vouloir supprimer cette image": "Tem certeza de que deseja excluir esta imagem"
@@ -1406,7 +1406,7 @@
         "Synchroniser": "Sincronizar",
         "Plugins": "Plugins",
         "Mes plugins": "Meus plugins",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Etat": "Estado",
         "Ouvrir": "Abrir",
         "Catégorie": "Categoria",
@@ -1507,14 +1507,14 @@
         "Vue inconnue. Vérifier l\\'ID.": "Vista desconhecida. Verifique o ID",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Não existe visualização, clique <a href=\"index.php?v=d&p=view_edit\">aqui<\/a> para criar uma",
         "Ajouter une vue": "Adicionar Ver",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Afficher\/Masquer les vues": "Mostrar \/ Ocultar vistas",
         "Edition complète": "Edição completa",
         "Mode édition": "Modo de edição"
     },
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Sauvegarder": "Salvar",
         "Général": "Geral",
         "Interface": "Interface",
@@ -1921,7 +1921,7 @@
     },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher": "Pesquisar"
+        "Rechercher": "Pesquisa"
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1942,7 +1942,7 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Log brut": "Log bruto",
         "Pause": "Pausa",
         "Télécharger": "Baixar",
@@ -2036,7 +2036,7 @@
         "Code": "CÓDIGO",
         "Remplacement": "Substituição",
         "Mes widgets": "Meus widgets",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Appliquer à": "Aplicar",
         "Exporter": "Exportação",
         "Sauvegarder": "Salvar",
@@ -2063,7 +2063,7 @@
         "Design": "Projeto",
         "Plugin": "Plugar",
         "Autre": "Outro",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Analyse Equipements": "Análise de Equipamentos",
         "Timeline": "Linha do tempo",
         "URL": "URL ",
@@ -2080,7 +2080,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Créer une vue": "Criar exibição",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Edition": "Editando",
         "Configuration": "Configuração",
         "Ajouter une zone": "Adicionar Zona",
@@ -2104,7 +2104,7 @@
         "Désactiver scénarios": "Desativar cenários",
         "Vue d'ensemble": "Visão global",
         "Mes scénarios": "Meus scripts",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Etat précédent": "Estado anterior",
         "Etat suivant": "Próximo estado",
         "Ajouter bloc": "Adicionar bloco",
@@ -2209,7 +2209,7 @@
         "Tester": "Teste",
         "Mes interactions": "Minhas interações",
         "Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.": "Você ainda não tem interação. Clique em adicionar para começar",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Phrase(s)": "Frase (s)",
         "Dupliquer": "Duplicar",
         "Sauvegarder": "Salvar",
@@ -2260,7 +2260,7 @@
         "Alertes définies": "Alertas definidos",
         "Push définis": "Push definido",
         "Commandes orphelines": "Controles órfãos",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Aucun équipement en Alerte.": "Nenhum equipamento em alerta",
         "Equipement": "Equipamento",
         "Commande": "Ordem",
@@ -2316,7 +2316,7 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Tables": "Tabelas",
         "Taille": "Tamanho",
         "Select Variables": "Selecionar Variáveis",
@@ -2523,7 +2523,7 @@
         "Afficher les éléments inactifs": "Mostrar itens inativos",
         "Inactifs": "Inativo",
         "Export CSV": "Exportação de CSV",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Vider": "Vazio",
         "Date": "Data",
         "Type": "Tipo",
@@ -2532,7 +2532,7 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Clique em um pedido à esquerda ou digite um pedido personalizado abaixo",
         "OK": "Ok"
     },
@@ -3772,7 +3772,7 @@
         "Partenaire": "Parceiro",
         "Legacy": "Legado",
         "Top et nouveautés": "Principais e novos",
-        "Rechercher": "Pesquisar",
+        "Rechercher": "Pesquisa",
         "Retour": "Voltar",
         "Aucune": "Não",
         "Widget pour la version mobile": "Widget para versão móvel",
