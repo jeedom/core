@@ -138,7 +138,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                   <label class="col-lg-4 col-xs-4 control-label">{{Nom du widget}}</label>
                   <div class="col-lg-4 col-xs-5">
                     <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
-                    <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="Nom du widget"/>
+                    <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="{{Nom du widget}}"/>
                   </div>
                 </div>
                 <div class="form-group">

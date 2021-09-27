@@ -327,7 +327,7 @@ sendVarToJs('initSearch', init('search', 0));
 					<div class="col-sm-12">
 						<div class="form-group">
 							<div class="col-md-12">
-								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
+								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="{{Description}}"></textarea>
 							</div>
 						</div>
 					</div>

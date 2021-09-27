@@ -94,7 +94,7 @@ $synthToActions = array(
 								<label class="col-sm-3 control-label">{{Nom de l'objet}}</label>
 								<div class="col-sm-7">
 									<input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
-									<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
+									<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="{{Nom de l'objet}}"/>
 								</div>
 							</div>
 							<div class="form-group">
