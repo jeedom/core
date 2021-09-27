@@ -962,6 +962,7 @@ user::isBan();
 							</thead>
 							<tbody></tbody>
 						</table>
+						<span><i>{{Pour utiliser des icônes colorées, l'option Interface / Tuiles / Icônes widgets colorées doit être activée.}}</i></span>
 					</fieldset>
 				</form>
 			</div>
