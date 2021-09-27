@@ -72,7 +72,7 @@
     "mobile\/html\/scenariolog.html": {
         "Vider": "Leer",
         "Pause": "Pause",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "mobile\/html\/history.html": {
         "Début": "Anfang",
@@ -118,7 +118,7 @@
     },
     "mobile\/html\/index.html": {
         "Accueil": "Herzlich Willkommen",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "mobile\/html\/message.html": {
         "Date": "Datum",
@@ -166,7 +166,7 @@
         "Supprimer": "Entfernen",
         "Vider": "Leer",
         "Pause": "Pause",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "desktop\/modal\/scenario.human.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
@@ -267,7 +267,7 @@
         "Aucun scénario ne correspondant à : ": "Kein Szenario entsprechend:",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Log brut": "Rohprotokoll",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Leer",
@@ -567,7 +567,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aide": "Hilfe",
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Recherche par": "Suche nach",
         "Equipement": "Gerät",
         "Commande": "Befehl",
@@ -779,7 +779,7 @@
         "Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. ": "Bitte beachten Sie, dass Ihre Protokollstufe (Ereignis) niedriger als die Informationen ist, sodass Sie keine Echtzeit sehen können",
         "Configuration": "Konfiguration",
         "Log brut": "Rohprotokoll",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Leer",
@@ -810,7 +810,7 @@
         "Icônes oranges": "Orange Symbole",
         "Icônes rouges": "Rote Symbole",
         "Icônes vertes": "Grüne Symbole",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Envoyer": "Senden",
         "Supprimer": "Entfernen",
         "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?"
@@ -1406,7 +1406,7 @@
         "Synchroniser": "Synchronisieren",
         "Plugins": "Plugins",
         "Mes plugins": "Meine Plugins",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Etat": "Zustand",
         "Ouvrir": "Öffnen",
         "Catégorie": "Kategorie",
@@ -1507,14 +1507,14 @@
         "Vue inconnue. Vérifier l\\'ID.": "Unbekannte Ansicht. Überprüfen Sie die ID",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Es ist keine Ansicht vorhanden. Klicken Sie <a href=\"index.php?v=d&p=view_edit\">hier<\/a> , um eine zu erstellen",
         "Ajouter une vue": "Fügen Sie eine Ansicht hinzu",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Afficher\/Masquer les vues": "Ansichten ein- \/ ausblenden",
         "Edition complète": "Komplette Ausgabe",
         "Mode édition": "Bearbeitungsmodus"
     },
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Sauvegarder": "Speichern",
         "Général": "Allgemein",
         "Interface": "Schnittstelle",
@@ -1713,6 +1713,7 @@
         "Ignorer si": "Ignorieren, wenn",
         "Ignorer commande si pas d'update depuis plus de (min).": "Befehl ignorieren, wenn länger als (min) keine Aktualisierung erfolgt",
         "Lier à un virtuel": "Link zu einem virtuellen",
+        "Pour utiliser des icônes colorées, l'option Interface \/ Tuiles \/ Icônes widgets colorées doit être activée.": "Um farbige Symbole zu verwenden, muss die Option Benutzeroberfläche \/ Kacheln \/ Farbige Widgetsymbole aktiviert sein",
         "Échecs avant désactivation": "Fehler vor der Deaktivierung",
         "Nombre d'échecs avant désactivation de l'équipement (0: pas de désactivation).": "Anzahl der Fehler vor der Deaktivierung des Geräts (0: keine Deaktivierung)",
         "Seuil des piles": "Batterien  Schwellenwerte",
@@ -1720,7 +1721,7 @@
         "Si le niveau de charge passe en dessous de (%)": "Wenn der Ladezustand unter (%) fällt",
         "Danger": "Gefahr",
         "Scénario à éxecuter lors de la création d'un équipement": "Szenario, das beim Erstellen eines Ausrüstungsgegenstands ausgeführt werden soll",
-        "Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question": "Dieses Szenario wird bei jeder neuen Ausrüstungserstellung gestartet, das Tag eqLogic_id wird an das Szenario übergeben und enthält die ID der betreffenden Ausrüstung",
+        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.": "Dieses Szenario wird für jede neue Ausrüstungserstellung gestartet. Das Tag eqLogic_id wird an das Szenario übergeben und enthält die ID der erstellten Ausrüstung",
         "Historique des commandes": "Bestellhistorie",
         "Afficher les statistiques sur les widgets": "Zeige Statistiken über Widgets",
         "Période de calcul pour min, max, moyenne": "Berechnungszeitraum für min, max, Durchschnitt",
@@ -1920,7 +1921,7 @@
     },
     "desktop\/php\/dashboardit.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach"
+        "Rechercher": "Forschen"
     },
     "desktop\/php\/dashboard.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -1929,6 +1930,7 @@
         "Concepts": "Konzepte",
         "Premiers pas": "Erste Schritte",
         "Retour à la Synthèse": "Zurück zur Zusammenfassung",
+        "Rechercher": "Forschen",
         "Vider le champ de recherche": "Deaktivieren Sie das Suchfeld",
         "Filtre par catégorie": "Nach Kategorie filtern",
         "Toutes": "Alle",
@@ -1940,7 +1942,7 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Log brut": "Rohprotokoll",
         "Pause": "Pause",
         "Télécharger": "Download",
@@ -2034,7 +2036,7 @@
         "Code": "CODE",
         "Remplacement": "Ersatz",
         "Mes widgets": "Meine Widgets",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Appliquer à": "Übernehmen",
         "Exporter": "Export",
         "Sauvegarder": "Speichern",
@@ -2061,7 +2063,7 @@
         "Design": "Entwurf",
         "Plugin": "Plugin",
         "Autre": "Andere",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Analyse Equipements": "Geräteanalyse",
         "Timeline": "Zeitleiste",
         "URL": "URLs",
@@ -2078,7 +2080,7 @@
     "desktop\/php\/view_edit.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Créer une vue": "Erstellen Sie eine Ansicht",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Edition": "Bearbeitung",
         "Configuration": "Konfiguration",
         "Ajouter une zone": "Fügen Sie eine Zone hinzu",
@@ -2102,7 +2104,7 @@
         "Désactiver scénarios": "Szenarien deaktivieren",
         "Vue d'ensemble": "Übersicht",
         "Mes scénarios": "Meine Szenarien",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Etat précédent": "Vorheriger Zustand",
         "Etat suivant": "Nächster Zustand",
         "Ajouter bloc": "Block einfügen",
@@ -2154,6 +2156,7 @@
         "Précédent": "Früher",
         "Prochain": "Nächste",
         "Scénarios liés": "Verwandte Szenarien",
+        "Description": "Beschreibung",
         "Ajouter un bloc": "Block einfügen",
         "Si\/Alors\/Sinon": "If \/ Then \/ Oder",
         "Action": "Aktion",
@@ -2206,7 +2209,7 @@
         "Tester": "Prüfung",
         "Mes interactions": "Meine Interaktionen",
         "Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.": "Sie haben noch keine Interaktion. Klicken Sie auf Hinzufügen, um zu beginnen",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Phrase(s)": "Phrase (n)",
         "Dupliquer": "Duplikat",
         "Sauvegarder": "Speichern",
@@ -2257,7 +2260,7 @@
         "Alertes définies": "Definierte Warnungen",
         "Push définis": "Push definiert",
         "Commandes orphelines": "Orphan Orders",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Aucun équipement en Alerte.": "Keine Ausrüstung in Alarmbereitschaft",
         "Equipement": "Gerät",
         "Commande": "Befehl",
@@ -2313,7 +2316,7 @@
     },
     "desktop\/php\/database.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Tables": "Tische",
         "Taille": "Größe",
         "Select Variables": "Wählen Sie Variablen",
@@ -2364,7 +2367,7 @@
         "Ajouter": "Hinzufügen",
         "Vue d'ensemble": "Übersicht",
         "Mes objets": "Meine Objekte",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Liens": "Links",
         "Sauvegarder": "Speichern",
         "Supprimer": "Entfernen",
@@ -2490,7 +2493,7 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Historique": "Chronik",
         "Configuration": "Konfiguration",
-        "Rechercher": "Suchen",
+        "Rechercher": "Forschen",
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
         "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
         "Comparer la période": "Vergleichen Sie den Zeitraum",
@@ -2520,7 +2523,7 @@
         "Afficher les éléments inactifs": "Inaktive Elemente anzeigen",
         "Inactifs": "Inaktiv",
         "Export CSV": "CSV-Export",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Vider": "Leer",
         "Date": "Datum",
         "Type": "Typ",
@@ -2529,7 +2532,7 @@
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
         "OK": "Ok"
     },
@@ -3769,7 +3772,7 @@
         "Partenaire": "Partner",
         "Legacy": "Vermächtnis",
         "Top et nouveautés": "Top und neu",
-        "Rechercher": "Suchen nach",
+        "Rechercher": "Forschen",
         "Retour": "Rückkehr",
         "Aucune": "Keine",
         "Widget pour la version mobile": "Widget für mobile Version",
