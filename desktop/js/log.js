@@ -77,8 +77,6 @@ $('#in_searchLogFilter').keyup(function() {
     }
 
   })
-  $('.panel-collapse[data-show=1]').collapse('show')
-  $('.panel-collapse[data-show=0]').collapse('hide')
 })
 $('#bt_resetLogFilterSearch').on('click', function() {
   $('#in_searchLogFilter').val('').keyup()
