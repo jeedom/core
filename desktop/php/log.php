@@ -18,38 +18,39 @@ natcasesort($list_logfile);
 	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
 		<div class="bs-sidebar">
 			<ul id="ul_object" class="nav nav-list bs-sidenav">
-				<li class="filter" style="margin-bottom: 5px;">
+				<li style="margin-bottom: 5px;">
 					<div class="input-group">
 						<span class="input-group-btn">
-							<input id="in_searchLogFilter" class="filter form-control input-sm roundedLeft" placeholder="{{Rechercher}}" style="width: calc(100% - 20px)"/>
+							<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" style="width: calc(100% - 20px)"/>
 							<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
 						</span>
 					</div>
 				</li>
 				<?php
-				foreach ($list_logfile as $file) {
-
-					$fsize = filesize('log/' . $file);
-					if ($fsize < 2){
-						$fsizelog = '';
-					}else if ($fsize < 1024){
-						$fsizelog = $fsize.' o';
-					}else if ( $fsize < 1048576){
-						$fsizelog = round($fsize / 1024,1) .' Ko';
-					}else{
-						$fsizelog = round($fsize / 1048576 ,1) .' Mo';
+					$html = '';
+					foreach ($list_logfile as $file) {
+						$fsize = filesize('log/' . $file);
+						if ($fsize < 2) {
+							$fsizelog = '';
+						} else if ($fsize < 1024) {
+							$fsizelog = $fsize.' o';
+						} else if ( $fsize < 1048576) {
+							$fsizelog = round($fsize / 1024,1) .' Ko';
+						} else {
+							$fsizelog = round($fsize / 1048576 ,1) .' Mo';
+						}
+						if ($fsizelog != '') {
+							$fsizelog = ' ('.$fsizelog.')';
+						}
+						$flag = '<i class="fa fa-check"></i>';
+						if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+							$flag = '<i class="fa fa-exclamation-triangle"></i>';
+						} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+							$flag = '<i class="fa fa-exclamation-circle"></i>';
+						}
+						$html .= '<li class="cursor li_log" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
 					}
-					if($fsizelog != ''){
-						$fsizelog = ' ('.$fsizelog.')';
-					}
-					$flag = '<i class="fa fa-check"></i>';
-					if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-triangle"></i>';
-					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-circle"></i>';
-					}
-					echo '<li class="cursor li_log" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
-				}
+					echo $html;
 				?>
 			</ul>
 		</div>

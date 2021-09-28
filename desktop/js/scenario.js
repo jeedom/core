@@ -27,15 +27,26 @@ $('#in_searchScenario').keyup(function() {
     return
   }
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
   $('.panel-collapse').attr('data-show', 0)
   $('.scenarioDisplayCard').hide()
-  var text
+  var match, text
   $('.scenarioDisplayCard .name').each(function() {
+    match = false
     text = jeedomUtils.normTextLower($(this).text())
-    if (text.indexOf(search) >= 0) {
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
       $(this).closest('.scenarioDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show', 1)
     }
+
   })
   $('.panel-collapse[data-show=1]').collapse('show')
   $('.panel-collapse[data-show=0]').collapse('hide')

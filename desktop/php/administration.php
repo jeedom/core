@@ -962,6 +962,7 @@ user::isBan();
 							</thead>
 							<tbody></tbody>
 						</table>
+						<span><i>{{Pour utiliser des icônes colorées, l'option Interface / Tuiles / Icônes widgets colorées doit être activée.}}</i></span>
 					</fieldset>
 				</form>
 			</div>
@@ -1001,15 +1002,17 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-12 control-label">{{Scénario à éxecuter lors de la création d'un équipement}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Ce scénario  sera lancer pour chaque nouvelle création d'équipement, la tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement en question}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée.}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-sm-3 col-xs-4">
+							<div class="col-lg-4 col-sm-5 col-xs-6">
 								<select class="configKey form-control" data-l1key="eqLogic::create::execScenario">
 									<option value="-1">{{Aucun}}</option>
 									<?php
-									foreach (scenario::all() as $scenario) {
-										echo '<option value="' . $scenario->getId() . '">' . $scenario->getHumanName() . '</option>';
-									}
+										$scenarios = '';
+										foreach (scenario::all() as $scenario) {
+											$scenarios .= '<option value="' . $scenario->getId() . '">' . $scenario->getHumanName() . '</option>';
+										}
+										echo $scenarios;
 									?>
 								</select>
 							</div>

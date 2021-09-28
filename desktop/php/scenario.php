@@ -105,7 +105,7 @@ sendVarToJs('initSearch', init('search', 0));
 			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
-			$div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchScenario"/>';
+			$div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchScenario"/>';
 			$div .= '<div class="input-group-btn">';
 			$div .= '<a id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>';
 			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
@@ -327,7 +327,7 @@ sendVarToJs('initSearch', init('search', 0));
 					<div class="col-sm-12">
 						<div class="form-group">
 							<div class="col-md-12">
-								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="Description"></textarea>
+								<textarea class="form-control scenarioAttr ta_autosize" data-l1key="description" placeholder="{{Description}}"></textarea>
 							</div>
 						</div>
 					</div>

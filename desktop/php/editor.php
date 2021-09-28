@@ -2,9 +2,12 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$rootPath = __DIR__ . '/../../';
-if(init('type') == 'widget'){
+$rootPath =  __DIR__ . '/../../';
+if (init('type') == 'widget') {
 	$rootPath = __DIR__ . '/../../data/customTemplates/';
+}
+if (init('root') != '') {
+	$rootPath = __DIR__ . '/../../' . init('root');
 }
 sendVarToJS([
 	'rootPath' => $rootPath,
@@ -17,11 +20,12 @@ global $JEEDOM_INTERNAL_CONFIG;
 	<div class="col-lg-2">
 		<legend>
 			<?php
-			if(init('type') == 'widget'){
+			if (init('type') == 'widget') {
 				echo '<a class="btn btn-default btn-sm pull-left" href="index.php?v=d&p=widgets" style="position:relative;top:-6px;"><i class="fas fa-arrow-left"></i> {{Widget}}</a>';
 			}
 			?>
 			<i class="fas fa-folder"></i> {{Dossiers}}
+			<i class="fas fa-plus pull-right cursor" id="bt_createFolder"></i>
 		</legend>
 		<div id="div_treeFolder">
 			<ul id="ul_Folder">
@@ -68,10 +72,10 @@ global $JEEDOM_INTERNAL_CONFIG;
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Type}}</label>
 				<div class="col-xs-8">
-					<select  id="sel_widgetType">
+					<select id="sel_widgetType">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							echo '<option value="'.$key.'"><a>'.$value['name'].'</option>';
+							echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
 						}
 						?>
 					</select>
@@ -82,46 +86,45 @@ global $JEEDOM_INTERNAL_CONFIG;
 				<div class="col-xs-8">
 					<select id="sel_widgetSubtype">
 						<option value="" data-default="1"><a></option>
-							<?php
-							foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-								foreach ($value['subtype'] as $skey => $svalue) {
-									echo '<option data-type="'.$key.'" value="'.$skey.'"><a>'.$svalue['name'].'</option>';
-								}
+						<?php
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+							foreach ($value['subtype'] as $skey => $svalue) {
+								echo '<option data-type="' . $key . '" value="' . $skey . '"><a>' . $svalue['name'] . '</option>';
 							}
-							?>
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-4 control-label">{{Nom}}</label>
-					<div class="col-xs-8">
-						<input id="in_widgetName" class="form-control" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-xs-4 control-label"></label>
-					<div class="col-xs-8">
-						<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
-					</div>
+						}
+						?>
+					</select>
 				</div>
 			</div>
-		</fieldset>
-	</form>
+			<div class="form-group">
+				<label class="col-xs-4 control-label">{{Nom}}</label>
+				<div class="col-xs-8">
+					<input id="in_widgetName" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-xs-4 control-label"></label>
+				<div class="col-xs-8">
+					<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
+				</div>
+			</div>
+</div>
+</fieldset>
+</form>
 </div>
 <?php
-	include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
-	include_file("desktop", "editor", "js");
-	include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
-	include_file('3rdparty', 'codemirror/addon/search/search', 'js');
-	include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
-	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
-	include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
+include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
+include_file("desktop", "editor", "js");
+include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');
+include_file('3rdparty', 'codemirror/addon/search/search', 'js');
+include_file('3rdparty', 'codemirror/addon/search/searchcursor', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'js');
+include_file('3rdparty', 'codemirror/addon/dialog/dialog', 'css');
 
-	include_file('3rdparty', 'codemirror/addon/fold/brace-fold', 'js');
-	include_file('3rdparty', 'codemirror/addon/fold/comment-fold', 'js');
-	include_file('3rdparty', 'codemirror/addon/fold/foldcode', 'js');
-	include_file('3rdparty', 'codemirror/addon/fold/indent-fold', 'js');
-	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
-	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
+include_file('3rdparty', 'codemirror/addon/fold/brace-fold', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/comment-fold', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/foldcode', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/indent-fold', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
+include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
 ?>
-

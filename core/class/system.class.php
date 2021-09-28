@@ -46,9 +46,9 @@ class system {
 	}
 
 	/**
-	 *
-	 * @return string/object self::
-	 */
+	*
+	* @return string/object self::
+	*/
 	public static function getDistrib() {
 		self::loadCommand();
 		if (isset(self::$_command['custom'])) {
@@ -199,47 +199,60 @@ class system {
 		self::$_installPackage[$_type] = array();
 		switch ($_type) {
 			case 'apt':
-				$lines = explode("\n", shell_exec('dpkg -l | tail -n +6'));
-				foreach ($lines as $line) {
-					$infos = array_values(array_filter(explode(" ", $line)));
-					if (!isset($infos[1])) {
-						continue;
-					}
-					if (strpos($infos[1], ':') !== false) {
-						$infos[1] = explode(':', $infos[1])[0];
-					}
-					self::$_installPackage[$_type][mb_strtolower($infos[1])] = array(
-						'version' => $infos[2]
-					);
+			$lines = explode("\n", shell_exec('dpkg -l | tail -n +6'));
+			foreach ($lines as $line) {
+				$infos = array_values(array_filter(explode(" ", $line)));
+				if (!isset($infos[1])) {
+					continue;
 				}
-				break;
+				if (strpos($infos[1], ':') !== false) {
+					$infos[1] = explode(':', $infos[1])[0];
+				}
+				self::$_installPackage[$_type][mb_strtolower($infos[1])] = array(
+					'version' => $infos[2]
+				);
+			}
+			break;
 			case 'pip2':
-				if (version_compare(self::getOsVersion(), '11', '>=')) {
-					return self::$_installPackage[$_type];
-				}
-				$datas = json_decode(shell_exec('pip2 list --format=json 2>/dev/null'), true);
-				foreach ($datas as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
-						'version' => $value['version']
-					);
-				}
-				break;
+			if (version_compare(self::getOsVersion(), '11', '>=')) {
+				return self::$_installPackage[$_type];
+			}
+			$datas = json_decode(shell_exec('pip2 list --format=json 2>/dev/null'), true);
+			foreach ($datas as $value) {
+				self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					'version' => $value['version']
+				);
+			}
+			break;
 			case 'pip3':
-				$datas = json_decode(shell_exec('pip3 list --format=json 2>/dev/null'), true);
-				foreach ($datas as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
-						'version' => $value['version']
-					);
-				}
-				break;
+			$datas = json_decode(shell_exec('pip3 list --format=json 2>/dev/null'), true);
+			foreach ($datas as $value) {
+				self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					'version' => $value['version']
+				);
+			}
+			break;
 			case 'npm':
-				$datas = json_decode(shell_exec('npm -g ls -json -depth 1 2>/dev/null'), true);
-				foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
-					self::$_installPackage[$_type][mb_strtolower($key)] = array(
-						'version' => $value['version']
-					);
-				}
-				break;
+			$datas = json_decode(shell_exec('npm -g ls -json -depth 1 2>/dev/null'), true);
+			if (isset($datas['dependencies']['yarn'])) {
+				self::$_installPackage[$_type]['yarn'] = array(
+					'version' => $datas['dependencies']['yarn']['version']
+				);
+			}
+			foreach ($datas['dependencies']['npm']['dependencies'] as $key => $value) {
+				self::$_installPackage[$_type][mb_strtolower($key)] = array(
+					'version' => $value['version']
+				);
+			}
+			break;
+			case 'yarn':
+			$datas = json_decode(shell_exec('cat `'.self::getCmdSudo().' yarn global dir`/package.json 2>/dev/null'), true);
+			foreach ($datas['dependencies'] as $key => $value) {
+				self::$_installPackage[$_type][mb_strtolower($key)] = array(
+					'version' => json_decode(shell_exec('yarn info '.$key.' version --json 2>/dev/null'),true)['data']
+				);
+			}
+			break;
 		}
 		return self::$_installPackage[$_type];
 	}
@@ -271,16 +284,31 @@ class system {
 			$installPackage = self::getInstallPackage($type);
 
 			foreach ($_packages[$type] as $package => $info) {
-				if ($type == 'npm' && strpos($package, '/') !== false) {
-					exec('cd ' . __DIR__ . '/../../' . $package . ';npm list', $output, $return_var);
-					$found = 0;
-					if ($return_var == 0) {
-						$found = 1;
+				$found = 0;
+				$version = '';
+				if (($type == 'npm' || $type == 'yarn') && strpos($package, '/') !== false) {
+					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
+						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'),true)['version'];
+						if ($type == 'npm') {
+							exec('cd ' . __DIR__ . '/../../' . $package . ';npm list', $output, $return_var);
+							if ($return_var == 0) {
+								$found = 1;
+							}
+						}
+						else {
+							exec('cd ' . __DIR__ . '/../../' . $package . ';'.self::getCmdSudo().' yarn check', $output, $return_var);
+							if ($return_var == 0) {
+								$found = 1;
+							}
+						}
+					}
+					else {
+						$version = __('Erreur',__FILE__);
 					}
 					$return[$type . '::' . $package] = array(
 						'name' => $package,
 						'status' => $found,
-						'version' => 'N/A',
+						'version' => empty($version) ? 'N/A' : $version,
 						'type' => $type,
 						'needUpdate' => '',
 						'needVersion' => '',
@@ -308,9 +336,7 @@ class system {
 					);
 					continue;
 				}
-				$found = 0;
 				$alternative_found = '';
-				$version = '';
 				if (isset($installPackage[$package])) {
 					$found = 1;
 					$version = $installPackage[$package]['version'];
@@ -492,25 +518,33 @@ class system {
 	public static function installPackage($_type, $_package) {
 		switch ($_type) {
 			case 'apt':
-				if ($_package == 'nodejs' || $_package == 'npm') {
-					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../script/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../script/install_nodejs.sh';
-				}
-				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
+			if ($_package == 'nodejs' || $_package == 'npm') {
+				return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../script/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../script/install_nodejs.sh';
+			}
+			return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
 			case 'pip2':
-				if (version_compare(self::getOsVersion(), '11', '>=')) {
-					return '';
-				}
-				return self::getCmdSudo() . ' pip2 install --upgrade ' . $_package;
+			if (version_compare(self::getOsVersion(), '11', '>=')) {
+				return '';
+			}
+			return self::getCmdSudo() . ' pip2 install --upgrade ' . $_package;
 			case 'pip3':
-				return self::getCmdSudo() . ' pip3 install --upgrade ' . $_package;
+			return self::getCmdSudo() . ' pip3 install --upgrade ' . $_package;
 			case 'npm':
-				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
-				}
-				if (!file_exists(__DIR__ . '/../../' . $_package)) {
-					return '';
-				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;chown -R www-data:www-data *';
+			if (strpos($_package, '/') === false) {
+				return self::getCmdSudo() . ' npm install --force -g ' . $_package;
+			}
+			if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+				return '';
+			}
+			return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;chown -R www-data:www-data *';
+			case 'yarn':
+			if (strpos($_package, '/') === false) {
+				return self::getCmdSudo() . ' yarn global add ' . $_package;
+			}
+			if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+				return '';
+			}
+			return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;chown -R www-data:www-data *';
 		}
 	}
 
@@ -547,4 +581,5 @@ class system {
 		}
 		return '';
 	}
+
 }

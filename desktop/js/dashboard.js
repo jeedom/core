@@ -80,28 +80,34 @@ $('#in_searchDashboard').off('keyup').on('keyup', function() {
   }
 
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
   var match, text
   $('div.eqLogic-widget').each(function() {
     match = false
     text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
-    if (text.indexOf(search) >= 0) match = true
+    if (text.includes(search)) match = true
 
     if ($(this).attr('data-tags') != undefined) {
       text = jeedomUtils.normTextLower($(this).attr('data-tags'))
-      if (text.indexOf(search) >= 0) match = true
+      if (text.includes(search)) match = true
     }
     if ($(this).attr('data-category') != undefined) {
       text = jeedomUtils.normTextLower($(this).attr('data-category'))
-      if (text.indexOf(search) >= 0) match = true
+      if (text.includes(search)) match = true
     }
     if ($(this).attr('data-eqType') != undefined) {
       text = jeedomUtils.normTextLower($(this).attr('data-eqType'))
-      if (text.indexOf(search) >= 0) match = true
+      if (text.includes(search)) match = true
     }
     if ($(this).attr('data-translate-category') != undefined) {
       text = jeedomUtils.normTextLower($(this).attr('data-translate-category'))
-      if (text.indexOf(search) >= 0) match = true
+      if (text.includes(search)) match = true
     }
+
+    if (not) match = !match
 
     if (match) {
       $(this).show()
@@ -112,7 +118,7 @@ $('#in_searchDashboard').off('keyup').on('keyup', function() {
   $('div.scenario-widget').each(function() {
     match = false
     text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
-    if (text.indexOf(search) >= 0) match = true
+    if (text.includes(search)) match = true
     if (match) {
       $(this).show()
     } else {

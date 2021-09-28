@@ -55,12 +55,20 @@ $('#in_searchWidgets').keyup(function() {
     return;
   }
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
   $('.widgetsDisplayCard').hide()
   $('.panel-collapse').attr('data-show', 0)
-  var text
-  $('.widgetsDisplayCard .name').each(function() {
+  var match, text
+  $('.widgetsDisplayCard .search').each(function() {
+    match = false
     text = jeedomUtils.normTextLower($(this).text())
-    if (text.indexOf(search) >= 0) {
+    if (text.includes(search)) match = true
+
+    if (not) match = !match
+    if (match) {
       $(this).closest('.widgetsDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show', 1)
     }
