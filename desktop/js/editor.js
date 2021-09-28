@@ -16,6 +16,25 @@
 
 "use strict"
 
+
+$('#bt_createFolder').off('click').on('click', function() {
+  bootbox.prompt("{{Nom du dossier ?}}", function(result) {
+    jeedom.createFolder({
+      path: CURRENT_FOLDER,
+      name: result,
+      error: function(error) {
+        $('#div_alert').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        window.location.reload(true)
+      }
+    })
+  });
+});
+
 $('#sel_widgetType').off('change').on('change', function() {
   $('#sel_widgetSubtype option').hide()
   if ($(this).value() != '') {

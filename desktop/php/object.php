@@ -38,7 +38,7 @@ $synthToActions = array(
 
 		<legend><i class="fas fa-image"></i>  {{Mes objets}} <sub class="itemsNumber"></sub></legend>
 		<div class="input-group" style="margin-bottom:5px;">
-			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchObject"/>
+			<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchObject"/>
 			<div class="input-group-btn">
 				<a id="bt_resetObjectSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
 				</a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
@@ -94,7 +94,7 @@ $synthToActions = array(
 								<label class="col-sm-3 control-label">{{Nom de l'objet}}</label>
 								<div class="col-sm-7">
 									<input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
-									<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="Nom de l'objet"/>
+									<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="{{Nom de l'objet}}"/>
 								</div>
 							</div>
 							<div class="form-group">

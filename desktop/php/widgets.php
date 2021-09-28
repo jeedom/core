@@ -41,7 +41,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       }
       $thisDiv .= '<br/>';
       $thisDiv .= '<span class="name"><span class="label label-primary cursor" style="font-size:10px !important;padding: 2px 4px">' . $widget->getType() . '</span> | <span class="label label-info cursor" style="font-size:10px !important;padding: 2px 4px">'.$widget->getSubType() .'</span></span>';
-      $thisDiv .= '<span class="name">' . $widget->getName() . '</span><br/>';
+      $thisDiv .= '<span class="name search">' . $widget->getName() . '</span><br/>';
       $thisDiv .= '<span class="hiddenAsCard displayTableRight">'.ucfirst($widget->getSubType()).' | '.ucfirst(str_replace('tmpl', '', $widget->getTemplate()));
       if ($widget->getReplace('#_time_widget_#', 0) == 1) $thisDiv .= ' (time)';
       $thisDiv .= '</span>';
@@ -88,7 +88,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></div>";
     } else {
       $div = '<div class="input-group" style="margin-bottom:5px;">';
-      $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>';
+      $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchWidgets"/>';
       $div .= '<div class="input-group-btn">';
       $div .= '<a id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
       $div .= '</div>';
@@ -138,7 +138,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                   <label class="col-lg-4 col-xs-4 control-label">{{Nom du widget}}</label>
                   <div class="col-lg-4 col-xs-5">
                     <input class="form-control widgetsAttr" type="text" data-l1key="id" style="display : none;"/>
-                    <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="Nom du widget"/>
+                    <input class="form-control widgetsAttr" type="text" data-l1key="name" placeholder="{{Nom du widget}}"/>
                   </div>
                 </div>
                 <div class="form-group">

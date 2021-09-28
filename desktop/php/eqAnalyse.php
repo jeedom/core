@@ -39,7 +39,7 @@ sendVarToJs('_remove_history_', $remove_history);
 			<div role="tabpanel" class="tab-pane active" id="battery">
 				<br/>
 				<div class="input-group" style="margin-bottom:5px;">
-					<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_search"/>
+					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_search"/>
 					<div class="input-group-btn">
 						<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
 					</div>

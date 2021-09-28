@@ -37,7 +37,8 @@ $(".li_log").on('click', function() {
   $.clearDivContent('pre_globallog')
   $(".li_log").removeClass('active')
   $(this).addClass('active')
-  $btGlobalLogStopStart.removeClass('btn-success').addClass('btn-warning')
+  $btGlobalLogStopStart.removeClass('btn-success')
+    .addClass('btn-warning')
     .html('<i class="fas fa-pause"></i> {{Pause}}')
     .attr('data-state', 1)
   jeedom.log.autoupdate({
@@ -48,6 +49,35 @@ $(".li_log").on('click', function() {
   })
 })
 
+
+//searching
+$('#in_searchLogFilter').keyup(function() {
+  var search = $(this).value()
+  if (search == '') {
+    $('#ul_object .li_log').show()
+    return
+  }
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+  search = jeedomUtils.normTextLower(search)
+  $('#ul_object .li_log').hide()
+  var match, text
+  $('#ul_object .li_log').each(function() {
+    match = false
+    text = jeedomUtils.normTextLower($(this).text())
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
+      $(this).show()
+    }
+
+  })
+})
 $('#bt_resetLogFilterSearch').on('click', function() {
   $('#in_searchLogFilter').val('').keyup()
 })

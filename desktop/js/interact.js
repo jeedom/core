@@ -43,14 +43,24 @@ $('#in_searchInteract').keyup(function() {
     return
   }
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
 
   $('.panel-collapse:not(.in)').closest('.panel').find('.accordion-toggle').click()
   $('.interactDisplayCard').hide()
   $('.panel-collapse').attr('data-show', 0)
-  var text
+  var match, text
   $('.interactDisplayCard .name').each(function() {
+    match = false
     text = jeedomUtils.normTextLower($(this).text())
-    if (text.indexOf(search) >= 0) {
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
       $(this).closest('.interactDisplayCard').show()
       $(this).closest('.panel-collapse').attr('data-show', 1)
     }
