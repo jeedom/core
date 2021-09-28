@@ -21,16 +21,16 @@ var $divScenario = $('#div_editScenario')
 //searching
 $('#in_searchScenario').keyup(function() {
   var search = $(this).value()
-  var not = search.startsWith(":not(")
-  if (not) {
-    search = search.replace(':not(', '')
-  }
   if (search == '') {
     $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
     $('.scenarioDisplayCard').show()
     return
   }
   search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
   $('.panel-collapse').attr('data-show', 0)
   $('.scenarioDisplayCard').hide()
   var match, text
