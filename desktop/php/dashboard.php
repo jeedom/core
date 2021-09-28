@@ -86,7 +86,7 @@ foreach ($objectTree as $_object) {
 				</a><a id="bt_overview" class="btn clickable" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
 			<?php } ?>
 		</div>
-		<input class="form-control" id="in_searchDashboard" placeholder="{{Rechercher}}" autocomplete="off">
+		<input class="form-control" id="in_searchDashboard" placeholder="{{Rechercher | nom | :not(nom}}" autocomplete="off">
 		<div class="input-group-btn">
 			<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
 			</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">

@@ -21,7 +21,7 @@ natcasesort($list_logfile);
 				<li style="margin-bottom: 5px;">
 					<div class="input-group">
 						<span class="input-group-btn">
-							<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="{{Rechercher}}" style="width: calc(100% - 20px)"/>
+							<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" style="width: calc(100% - 20px)"/>
 							<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
 						</span>
 					</div>

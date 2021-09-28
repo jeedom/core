@@ -91,7 +91,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>{{Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.}}</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
-			$div .= '<input class="form-control" placeholder="{{Rechercher}}" id="in_searchInteract" />';
+			$div .= '<input class="form-control" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchInteract" />';
 			$div .= '<div class="input-group-btn">';
 			$div .= '<a id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
 			$div .= '</div>';

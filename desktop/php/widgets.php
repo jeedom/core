@@ -88,7 +88,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></div>";
     } else {
       $div = '<div class="input-group" style="margin-bottom:5px;">';
-      $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchWidgets"/>';
+      $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchWidgets"/>';
       $div .= '<div class="input-group-btn">';
       $div .= '<a id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
       $div .= '</div>';
