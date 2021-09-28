@@ -18,10 +18,10 @@ natcasesort($list_logfile);
 	<div class="col-lg-2 col-md-3 col-sm-4" id="div_displayLogList">
 		<div class="bs-sidebar">
 			<ul id="ul_object" class="nav nav-list bs-sidenav">
-				<li class="filter" style="margin-bottom: 5px;">
+				<li style="margin-bottom: 5px;">
 					<div class="input-group">
 						<span class="input-group-btn">
-							<input id="in_searchLogFilter" class="filter form-control input-sm roundedLeft" placeholder="{{Rechercher}}" style="width: calc(100% - 20px)"/>
+							<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="{{Rechercher}}" style="width: calc(100% - 20px)"/>
 							<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
 						</span>
 					</div>

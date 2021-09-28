@@ -49,6 +49,37 @@ $(".li_log").on('click', function() {
   })
 })
 
+
+//searching
+$('#in_searchLogFilter').keyup(function() {
+  var search = $(this).value()
+  if (search == '') {
+    $('#ul_object .li_log').show()
+    return
+  }
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+  search = jeedomUtils.normTextLower(search)
+  $('#ul_object .li_log').hide()
+  var match, text
+  $('#ul_object .li_log').each(function() {
+    match = false
+    text = jeedomUtils.normTextLower($(this).text())
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
+      $(this).show()
+    }
+
+  })
+  $('.panel-collapse[data-show=1]').collapse('show')
+  $('.panel-collapse[data-show=0]').collapse('hide')
+})
 $('#bt_resetLogFilterSearch').on('click', function() {
   $('#in_searchLogFilter').val('').keyup()
 })
