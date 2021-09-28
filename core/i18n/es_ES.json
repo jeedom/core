@@ -2561,6 +2561,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
     "desktop\/js\/editor.js": {
+        "Nom du dossier ?": "¿Nombre de la carpeta?",
         "Aucun fichier ouvert.": "No hay archivos abiertos",
         "Fichier enregistré avec succès": "Archivo guardado correctamente",
         "Êtes-vous sûr de vouloir supprimer ce fichier : ": "¿Está seguro de que desea eliminar este archivo?",
