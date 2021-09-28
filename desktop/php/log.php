@@ -27,29 +27,30 @@ natcasesort($list_logfile);
 					</div>
 				</li>
 				<?php
-				foreach ($list_logfile as $file) {
-
-					$fsize = filesize('log/' . $file);
-					if ($fsize < 2){
-						$fsizelog = '';
-					}else if ($fsize < 1024){
-						$fsizelog = $fsize.' o';
-					}else if ( $fsize < 1048576){
-						$fsizelog = round($fsize / 1024,1) .' Ko';
-					}else{
-						$fsizelog = round($fsize / 1048576 ,1) .' Mo';
+					$html = '';
+					foreach ($list_logfile as $file) {
+						$fsize = filesize('log/' . $file);
+						if ($fsize < 2) {
+							$fsizelog = '';
+						} else if ($fsize < 1024) {
+							$fsizelog = $fsize.' o';
+						} else if ( $fsize < 1048576) {
+							$fsizelog = round($fsize / 1024,1) .' Ko';
+						} else {
+							$fsizelog = round($fsize / 1048576 ,1) .' Mo';
+						}
+						if ($fsizelog != '') {
+							$fsizelog = ' ('.$fsizelog.')';
+						}
+						$flag = '<i class="fa fa-check"></i>';
+						if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+							$flag = '<i class="fa fa-exclamation-triangle"></i>';
+						} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
+							$flag = '<i class="fa fa-exclamation-circle"></i>';
+						}
+						$html .= '<li class="cursor li_log" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
 					}
-					if($fsizelog != ''){
-						$fsizelog = ' ('.$fsizelog.')';
-					}
-					$flag = '<i class="fa fa-check"></i>';
-					if (shell_exec('grep -ci -E "\[:error\]|\[error\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-triangle"></i>';
-					} else if (shell_exec('grep -c -E "\[WARNING\]" ' . __DIR__ . '/../../log/' . $file) != 0) {
-						$flag = '<i class="fa fa-exclamation-circle"></i>';
-					}
-					echo '<li class="cursor li_log" data-log="' . $file . '" ><a>' . $flag . ' ' . $file . $fsizelog . '</a></li>';
-				}
+					echo $html;
 				?>
 			</ul>
 		</div>
