@@ -53,8 +53,7 @@ $(function() {
         ['view']
       ]
     },
-    handlers:
-    {
+    handlers: {
       dblclick: function(event, elfinderInstance)
       {
         elfinderInstance.exec('edit')
@@ -93,10 +92,22 @@ $(function() {
               info = CodeMirror.findModeByExtension(m[1]);
             }
             if (info) {
-              mode = info.mode;
-              spec = info.mime;
-              editor.setOption('mode', spec);
-              CodeMirror.autoLoadMode(editor, mode);
+              mode = info.mode
+              spec = info.mime
+              editor.setOption('mode', spec)
+              CodeMirror.autoLoadMode(editor, mode)
+            }
+
+            //is python ?
+            if (self.file.mime == 'text/x-python') {
+              self.myCodeMirror.setOption('mode', {
+                  name: "python",
+                  version: 3,
+                  singleLineStringErrors: false
+                }
+              )
+              self.myCodeMirror.setOption('indentUnit', 4)
+              self.myCodeMirror.setOption('smartIndent', false)
             }
 
             $(".cm-s-default").style('height', '100%', 'important')
@@ -108,12 +119,13 @@ $(function() {
             })
             $modal.width('75%').css('left', '15%')
 
-            setTimeout(function(){
-            editor.scrollIntoView({line:0, char:0}, 20)
-            editor.setOption("extraKeys", {
-              "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
-              "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
-            })
+            setTimeout(function() {
+              editor.scrollIntoView({line:0, char:0}, 20)
+              editor.setOption("extraKeys", {
+                "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+                "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+              })
+
             }, 250)
           },
           close : function(textarea, instance) {
