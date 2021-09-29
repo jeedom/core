@@ -1,4 +1,10 @@
 <?php
+
+require '../../core/php/authentification.php';
+if (!isConnect('admin')) {
+  throw new Exception('{{401 - Accès non autorisé}}');
+}
+
 @session_start();
 error_reporting(0); // Set E_ALL for debuging
 
