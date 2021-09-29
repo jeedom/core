@@ -46,7 +46,7 @@ include_file('3rdparty', 'elfinder/js/elfinder.full', 'js');
 <div id="elfinder" class=""></div>
 
 <?php
-
+$lang = substr(config::byKey('language', 'core', 'en'), 0, 2);
 if ($lang != 'en') {
 	$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang .'.js';
 	echo '<script src="' . $plufinSrc . '"></script>';
