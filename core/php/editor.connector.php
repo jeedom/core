@@ -35,11 +35,11 @@ require '../../3rdparty/elfinder/php/autoload.php';
  **/
 
 function access($attr, $path, $data, $volume, $isDir, $relpath) {
-	$basename = basename($path);
-	return $basename[0] === '.'                  // if file/folder begins with '.' (dot)
-			 && strlen($relpath) !== 1           // but with out volume root
-		? !($attr == 'read' || $attr == 'write') // set read+write to false, other (locked+hidden) set to true
-		:  null;                                 // else elFinder decide it itself
+  $basename = basename($path);
+  return $basename[0] === '.'                  // if file/folder begins with '.' (dot)
+    && strlen($relpath) !== 1           // but with out volume root
+    ? !($attr == 'read' || $attr == 'write') // set read+write to false, other (locked+hidden) set to true
+    :  null;                                 // else elFinder decide it itself
 }
 
 // Documentation for connector options:
