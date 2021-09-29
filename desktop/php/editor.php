@@ -7,6 +7,9 @@ $rootPath = false;
 if (init('type') == 'widget') {
 	$rootPath = 'data/customTemplates';
 }
+if (init('root') != '') {
+	$rootPath =  init('root');
+}
 sendVarToJS([
 	'rootPath' => $rootPath
 ]);
@@ -45,8 +48,8 @@ include_file('3rdparty', 'elfinder/js/elfinder.full', 'js');
 <?php
 
 $lang = substr(config::byKey('language', 'core', 'en'), 0, 2);
-$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang .'.js';
-echo '<script src="'.$plufinSrc.'"></script>';
+$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang . '.js';
+echo '<script src="' . $plufinSrc . '"></script>';
 
 include_file("desktop", "editor", "js");
 ?>
