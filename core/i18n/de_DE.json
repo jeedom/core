@@ -2561,6 +2561,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Möchten Sie wirklich alle Protokolle löschen?"
     },
     "desktop\/js\/editor.js": {
+        "Nom du dossier ?": "Name des Ordners?",
         "Aucun fichier ouvert.": "Es sind keine Dateien geöffnet",
         "Fichier enregistré avec succès": "Datei erfolgreich gespeichert",
         "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Möchten Sie diese Datei wirklich löschen:",

@@ -2561,6 +2561,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os logs?"
     },
     "desktop\/js\/editor.js": {
+        "Nom du dossier ?": "Nome da pasta?",
         "Aucun fichier ouvert.": "Nenhum arquivo aberto",
         "Fichier enregistré avec succès": "Arquivo salvo com sucesso",
         "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier :",
