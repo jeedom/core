@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class jeeObject {
 	/*     * *************************Attributs****************************** */
-	
+
 	protected $id;
 	protected $name;
 	protected $father_id = null;
@@ -33,9 +33,9 @@ class jeeObject {
 	protected $_child = array();
 	protected $_changed = false;
 	protected $_summaryChanged = false;
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function byId($_id) {
 		if ($_id == '' || $_id == -1) {
 			return;
@@ -48,7 +48,7 @@ class jeeObject {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byName($_name) {
 		$values = array(
 			'name' => $_name,
@@ -58,7 +58,7 @@ class jeeObject {
 		WHERE name=:name';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function all($_onlyVisible=false, $_byPosition=false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object ';
@@ -70,10 +70,10 @@ class jeeObject {
 		} else {
 			$sql .= ' ORDER BY position, father_id, name';
 		}
-		
+
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function rootObject($_all = false, $_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object
@@ -109,7 +109,7 @@ class jeeObject {
 		}
 		return $result;
 	}
-	
+
 	public static function buildTree($_object = null, $_visible = true) {
 		$return = array();
 		if (!is_object($_object)) {
@@ -125,7 +125,7 @@ class jeeObject {
 		}
 		$rightReturn = array();
 		foreach ($return as $object) {
-		    if ($object->hasRight('r')) {
+			if ($object->hasRight('r')) {
 				$rightReturn[] = $object;
 			}
 		}
@@ -193,8 +193,11 @@ class jeeObject {
 			}
 			foreach ($sumaries as $key => $summary) {
 				foreach ($summary as $cmdInfo) {
-					if (!cmd::byId(str_replace('#', '', $cmdInfo['cmd']))) {
-						$return[] = array('detail' => 'Résumé ' . $object->getName(), 'help' => config::byKey('object:summary')[$key]['name'], 'who' => $cmdInfo['cmd']);
+					preg_match_all("/#([0-9]*)#/", $cmdInfo['cmd'], $matches);
+					foreach ($matches[1] as $cmd_id) {
+						if (!cmd::byId($cmd_id)) {
+							$return[] = array('detail' => 'Résumé ' . $object->getName(), 'help' => config::byKey('object:summary')[$key]['name'], 'who' => $cmdInfo['cmd']);
+						}
 					}
 				}
 			}
