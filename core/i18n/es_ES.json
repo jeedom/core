@@ -1301,21 +1301,7 @@
         "Extensions php": "Extensiones de php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Widget": "Widget",
-        "Dossiers": "Archivos",
-        "Fichiers": "Archivos",
-        "Edition": "Edición",
-        "Nouveau": "Nuevo",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
-        "Version": "Versión",
-        "Dashboard": "Tablero",
-        "Mobile": "Móvil",
-        "Type": "Tipo",
-        "Sous-type": "Sub-tipo",
-        "Nom": "Nombre",
-        "Créer": "Crear"
+        "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1360,9 +1346,10 @@
         "Sauvegardes": "Copias de seguridad",
         "Centre de mise à jour": "Centro de actualizaciones",
         "Restauration Image": "Restauración de imagen",
+        "Utilisateurs": "Usuarios",
         "Moteur de tâches": "Motor de tareas",
         "Personnalisation avancée": "Personalización avanzada",
-        "Utilisateurs": "Usuarios",
+        "Editeur de fichier": "Editor de archivos",
         "Redémarrer": "Reiniciar",
         "Eteindre": "Apagar",
         "Préférences": "Preferencias",
@@ -2561,15 +2548,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
     "desktop\/js\/editor.js": {
-        "Nom du dossier ?": "¿Nombre de la carpeta?",
-        "Aucun fichier ouvert.": "No hay archivos abiertos",
-        "Fichier enregistré avec succès": "Archivo guardado correctamente",
-        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "¿Está seguro de que desea eliminar este archivo?",
-        "Fichier supprimé avec succès": "Archivo eliminado con éxito",
-        "Le sous-type ne peut être vide": "El subtipo no puede estar vacío",
-        "Le nom ne peut être vide": "El nombre no puede estar vacío",
-        "Options": "Opciones",
-        "Nom du fichier ?": "Nombre del archivo ?"
+        "Editer": "Editar"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Actualizar",
@@ -3145,6 +3124,9 @@
         "Scenario  : ": "Escenario:",
         "Erreur : ": "Error :",
         "Scénario non trouvé. Vérifiez ID : ": "Escenario no encontrado. ID de verificación:"
+    },
+    "core\/php\/editor.connector.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
     "core\/js\/cmd.class.js": {
         "Veuillez indiquer le code ?": "Por favor, indique el código ?",

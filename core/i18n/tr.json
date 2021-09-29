@@ -1301,21 +1301,7 @@
         "Extensions php": "Extensions php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Widget": "Widget'ı",
-        "Dossiers": "Dossiers",
-        "Fichiers": "Fichiers",
-        "Edition": "Düzenleme",
-        "Nouveau": "Yeni",
-        "Sauvegarder": "Kaydet",
-        "Supprimer": "Sil",
-        "Version": "Versiyon",
-        "Dashboard": "Gösterge paneli",
-        "Mobile": "Mobil",
-        "Type": "Çeşit",
-        "Sous-type": "Alt türü(tipi)",
-        "Nom": "İsim",
-        "Créer": "Créer"
+        "401 - Accès non autorisé": "401 - Yetkisiz erişim"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -1360,9 +1346,10 @@
         "Sauvegardes": "Kayıtlar",
         "Centre de mise à jour": "Güncelleme merkezi",
         "Restauration Image": "Restauration Image",
+        "Utilisateurs": "Kulanıcılar",
         "Moteur de tâches": "Görev motoru",
         "Personnalisation avancée": "Gelişmiş kişileştirme",
-        "Utilisateurs": "Kulanıcılar",
+        "Editeur de fichier": "Editeur de fichier",
         "Redémarrer": "Tekrar başlat",
         "Eteindre": "Kapat",
         "Préférences": "Tercihleri",
@@ -2561,15 +2548,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tüm günlükleri silmek istediğinizden emin misiniz?"
     },
     "desktop\/js\/editor.js": {
-        "Nom du dossier ?": "Nom du dossier ?",
-        "Aucun fichier ouvert.": "Aucun fichier ouvert",
-        "Fichier enregistré avec succès": "Fichier enregistré avec succès",
-        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Etes-vous sûr de vouloir supprimer ce fichier :",
-        "Fichier supprimé avec succès": "Fichier supprimé avec succès",
-        "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
-        "Le nom ne peut être vide": "Le nom ne peut être vide",
-        "Options": "Opsiyonlar",
-        "Nom du fichier ?": "Nom du fichier ?"
+        "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Yenile",
@@ -3145,6 +3124,9 @@
         "Scenario  : ": "Senaryo:",
         "Erreur : ": "Hata:",
         "Scénario non trouvé. Vérifiez ID : ": "Senaryo bulunamadı. Kontrol Kimliği:"
+    },
+    "core\/php\/editor.connector.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
     "core\/js\/cmd.class.js": {
         "Veuillez indiquer le code ?": "Pin i girin",

@@ -38,7 +38,8 @@
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
-- **Complemento de documentación y registro de cambios beta** : gestión de documentación y registro de cambios para complementos en beta (tenga cuidado en beta, el registro de cambios no está fechado !!!)
+- **Complemento de documentación y registro de cambios beta** : Gestión de documentación y registro de cambios para complementos en versión beta. Atención, en beta, el registro de cambios no tiene fecha.
+- **Principal** : Integración del complemento JeeXplorer en el Core.
 
 ### 4.2 : Widgets principales
 
