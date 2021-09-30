@@ -2719,6 +2719,8 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
+        "Le login d\\'un utilisateur ne peut être vide !": "Das Login eines Benutzers darf nicht leer sein!",
+        "Deux utilisateurs ne peuvent avoir le même login !": "Zwei Benutzer können nicht das gleiche Login haben!",
         "Vous allez supprimer l\\'utilisateur : ": "Sie werden den Benutzer löschen:",
         "L\\'utilisateur a bien été supprimé": "Benutzer wurde gelöscht",
         "Quel est le nouveau mot de passe ?": "Was ist das neue Passwort?",

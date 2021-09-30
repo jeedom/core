@@ -2719,6 +2719,8 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Backup feito",
+        "Le login d\\'un utilisateur ne peut être vide !": "O login de um usuário não pode estar vazio!",
+        "Deux utilisateurs ne peuvent avoir le même login !": "Dois usuários não podem ter o mesmo login!",
         "Vous allez supprimer l\\'utilisateur : ": "Você excluirá o usuário:",
         "L\\'utilisateur a bien été supprimé": "O usuário \\ 'foi excluído",
         "Quel est le nouveau mot de passe ?": "Qual é a nova senha?",
