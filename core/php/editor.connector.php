@@ -48,7 +48,7 @@ $opts = array(
   'roots' => array(
     array(
       'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
-      'path'          => dirname(__FILE__) . '/../../',         // path to files (REQUIRED)
+      'path'          => dirname(__FILE__) . $_SESSION["elFinderRoot"],         // path to files (REQUIRED)
       'URL'           => dirname($_SERVER['PHP_SELF']) . '/../../', // URL to files (REQUIRED)
       'accessControl' => 'access',             // disable and hide dot starting files (OPTIONAL)
       'tmpPath'       => dirname(__FILE__) . '/../../data/editorTemp',
