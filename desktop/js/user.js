@@ -87,8 +87,12 @@ $("#bt_newUserSave").on('click', function(event) {
 })
 
 $("#bt_saveUser").on('click', function(event) {
+  var users =  $('#table_user tbody tr').getValues('.userAttr')
+
+  if (!checkUsersLogins(users)) return
+
   jeedom.user.save({
-    users: $('#table_user tbody tr').getValues('.userAttr'),
+    users: users,
     error: function(error) {
       $('#div_alert').showAlert({
         message: error.message,
@@ -105,6 +109,25 @@ $("#bt_saveUser").on('click', function(event) {
     }
   })
 })
+
+function checkUsersLogins(_users) {
+  _users = _users.map(a => a.login)
+  if (_users.includes('')) {
+    $('#div_alert').showAlert({
+      message: '{{Le login d\'un utilisateur ne peut être vide !}}',
+      level: 'danger'
+    })
+    return false
+  }
+  if (new Set(_users).size !== _users.length) {
+    $('#div_alert').showAlert({
+    message: '{{Deux utilisateurs ne peuvent avoir le même login !}}',
+      level: 'danger'
+    })
+    return false
+  }
+  return true
+}
 
 $("#table_user").on('click', ".bt_del_user", function(event) {
   $.hideAlert();
