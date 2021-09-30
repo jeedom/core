@@ -553,7 +553,7 @@ user::isBan();
 							</div>
 							<span class="col-lg-1 col-sm-1 col-xs-6"></span>
 							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-								<a class="btn btn-sm btn-primary form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
+								<a class="btn btn-sm btn-warning form-control" href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
 							</div>
 
 							<label class="col-lg-1 col-sm-2 col-xs-3 control-label">{{Activer}}
