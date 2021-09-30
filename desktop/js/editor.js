@@ -64,6 +64,9 @@ $(function() {
       edit: {
         editors: [
           {
+          info : {
+            name : '{{Editer}}'
+          },
           load : function(textarea) {
             self = this
             var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
@@ -152,11 +155,6 @@ $(function() {
   elfinstance
     .bind('open', function(event) {
       killTooltips()
-    })
-    .bind('contextmenucreate', function(event) {
-      setTimeout(function() {
-        $('.elfinder-button-icon-edit').next().text('{{Editer}}')
-      }, 0)
     })
 })
 
