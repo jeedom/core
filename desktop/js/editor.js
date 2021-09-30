@@ -22,7 +22,7 @@ $(function() {
 
   var hash = 'l1_'
   if (rootPath != '') {
-  	hash += btoa(rootPath).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '.').replace(/\.+$/, '')
+    hash += btoa(rootPath).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '.').replace(/\.+$/, '')
   }
   var lang = jeedom_langage.substring(0, 2)
 

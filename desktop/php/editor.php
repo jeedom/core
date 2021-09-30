@@ -13,6 +13,8 @@ if (init('root') != '') {
 sendVarToJS([
 	'rootPath' => $rootPath
 ]);
+@session_start();
+$_SESSION["elFinderRoot"] = '/../../' . $rootPath;
 
 //Core CodeMirror:
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
@@ -41,11 +43,7 @@ include_file('3rdparty', 'elfinder/css/elfinder.min', 'css');
 include_file('3rdparty', 'elfinder/themes/css/theme-gray', 'css');
 include_file('desktop', 'editor', 'css');
 include_file('3rdparty', 'elfinder/js/elfinder.full', 'js');
-?>
 
-<div id="elfinder" class=""></div>
-
-<?php
 $lang = substr(config::byKey('language', 'core', 'en'), 0, 2);
 if ($lang != 'en') {
 	$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang .'.js';
@@ -54,3 +52,5 @@ if ($lang != 'en') {
 
 include_file("desktop", "editor", "js");
 ?>
+
+<div id="elfinder" class=""></div>
