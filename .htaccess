@@ -4,7 +4,7 @@ Options -Indexes
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
 mod_gzip_dechunk Yes
-mod_gzip_item_include file .(html?|txt|css|js|php|pl)$
+mod_gzip_item_include file .(html?|css|js|php)$
 mod_gzip_item_include handler ^cgi-script$
 mod_gzip_item_include mime ^text/.*
 mod_gzip_item_include mime ^application/x-javascript.*
@@ -35,8 +35,6 @@ php_flag log_errors on
 php_value error_log  log/http.error
 php_value memory_limit 512M
 
-
-#php_value xdebug.profiler_enable 1
 php_value xdebug.profiler_output_name callgrind.%t.%s
 php_value xdebug.profiler_output_dir /tmp
 php_value xdebug.profiler_enable_trigger 1
@@ -51,91 +49,29 @@ AddEncoding gzip svgz
 DirectoryIndex index.php
 </IfModule>
 
-<Files .htaccess>
+# Right on file
+
 Order Allow,Deny
-Deny from all
-</Files>
 
-<Files ~ ".*\.gz$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
+# Allow all :
 
-<Files ~ ".*\.sql$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
+<FilesMatch ".*\.(css|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
 
-<Files ~ ".*\.ini$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
+<FilesMatch "^$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
 
-<Files ~ ".*\.tar$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.xml$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.sh$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.sqlite$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.service$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.db$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.log$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.py$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files ~ ".*\.pyc$">
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
-<Files Dockerfile>
-order allow,deny
-deny from all
-satisfy all
-</Files>
-
+# Deny some php file
 <Files sick.php>
-order allow,deny
-deny from all
-satisfy all
+    Order Allow,Deny
+    Deny from all
 </Files>
+
+<FilesMatch ".*\.(class|com|config|sample)\.(php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

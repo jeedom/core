@@ -1,0 +1,46 @@
+Order allow,deny
+
+<FilesMatch downloadFile.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch editor.connector.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch export.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch getCSS.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch getJS.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch getResource.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch icon.inc.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch js.inc.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch sleep.php>
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

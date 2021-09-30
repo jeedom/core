@@ -444,13 +444,12 @@ function setTheme() {
 												<?php if (jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true) {
 													echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
 												} ?>
-												<li class="divider"></li>
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
-												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 												<li class="divider"></li>
-												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a></li>
+												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
+												<li><a href="index.php?v=d&p=custom"><i class="fas fa-pencil-alt warning"></i> {{Personnalisation avancée}}</a></li>
 												<?php if (isConnect('admin')) {
-													echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open"></i> {{Editeur de fichier}}</a></li>';
+													echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichier}}</a></li>';
 												} ?>
 												<li class="divider"></li>
 												<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {
