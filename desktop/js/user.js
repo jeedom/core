@@ -236,8 +236,8 @@ function printUsers() {
           disable = 'disabled'
         }
         userTR = '<tr><td class="login">'
-        userTR += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>'
-        userTR += '<span class="userAttr" data-l1key="login"></span>'
+        userTR += '<span class="userAttr" data-l1key="id" style="display:none;"/></span>'
+        userTR += '<span><input class="' + disable + ' userAttr" data-l1key="login" /></span>'
         userTR += '</td>'
         userTR += '<td>'
         userTR += '<span><input type="checkbox" class="userAttr" data-l1key="enable" ' + disable + ' />{{Actif}}</span><br/>'
@@ -273,7 +273,7 @@ function printUsers() {
           userTR += '<span class="input-group-btn">'
 
           if (ldapEnable != '1') {
-            userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
+            userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user roundedRight"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
             userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
           }
           userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i> {{Régénérer API}}</a>'
@@ -281,7 +281,7 @@ function printUsers() {
           if (data[i].profils != 'restrict') {
             userTR = userTR.replace('bt_manage_restrict_rights', 'bt_manage_restrict_rights disabled')
           }
-          userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
+          userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils roundedLeft"><i class="fas fa-briefcase"></i> {{Profils}}</a>'
 
           userTR += '</span></div>'
         }
