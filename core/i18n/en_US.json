@@ -1301,21 +1301,7 @@
         "Extensions php": "Php extensions"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Widget": "Widget",
-        "Dossiers": "Records",
-        "Fichiers": "Files",
-        "Edition": "Editing",
-        "Nouveau": "New",
-        "Sauvegarder": "Save",
-        "Supprimer": "Remove",
-        "Version": "Version",
-        "Dashboard": "Dashboard",
-        "Mobile": "Mobile",
-        "Type": "Type",
-        "Sous-type": "Sub-type",
-        "Nom": "Name",
-        "Créer": "Create"
+        "401 - Accès non autorisé": "401 - Unauthorized access"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1360,9 +1346,10 @@
         "Sauvegardes": "Backups",
         "Centre de mise à jour": "Update center",
         "Restauration Image": "Image Restoration",
+        "Utilisateurs": "Users",
         "Moteur de tâches": "Task engine",
         "Personnalisation avancée": "Advanced customization",
-        "Utilisateurs": "Users",
+        "Editeur de fichier": "File editor",
         "Redémarrer": "Restart",
         "Eteindre": "Turn off",
         "Préférences": "Preferences",
@@ -2561,15 +2548,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
     },
     "desktop\/js\/editor.js": {
-        "Nom du dossier ?": "Name of the folder?",
-        "Aucun fichier ouvert.": "No files open",
-        "Fichier enregistré avec succès": "File saved successfully",
-        "Êtes-vous sûr de vouloir supprimer ce fichier : ": "Are you sure you want to delete this file:",
-        "Fichier supprimé avec succès": "File successfully deleted",
-        "Le sous-type ne peut être vide": "Subtype cannot be empty",
-        "Le nom ne peut être vide": "Name cannot be empty",
-        "Options": "Options",
-        "Nom du fichier ?": "File name ?"
+        "Editer": "Edit"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refresh",
@@ -3145,6 +3124,9 @@
         "Scenario  : ": "Scenario: ",
         "Erreur : ": "Error : ",
         "Scénario non trouvé. Vérifiez ID : ": "Scenario not found. Check ID:"
+    },
+    "core\/php\/editor.connector.php": {
+        "401 - Accès non autorisé": "401 - Unauthorized Access"
     },
     "core\/js\/cmd.class.js": {
         "Veuillez indiquer le code ?": "Please indicate the code?",

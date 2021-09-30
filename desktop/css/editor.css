@@ -1,0 +1,234 @@
+/*
+Theme ElFinder File Editor 2021 @Jeedom
+*/
+
+[data-page="editor"] #div_mainContainer {
+  overflow: hidden;
+}
+[data-page="editor"] #div_pageContainer {
+  margin-left: -15px;
+  margin-right: -15px;  
+}
+#elfinder > .ui-icon-gripsmall-diagonal-se {
+  display: none !important;
+}
+
+/* ____________________ELFINDER EDITOR */
+  #elfinder .elfinder-toolbar::after {
+    height: unset;
+    line-height: 1;
+  }
+  #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search {
+    min-width: 220px;
+  }
+  #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search > input {
+    padding-left: 24px !important;
+    color: rgb(225, 225, 225) !important;
+  }
+  #elfinder .elfinder-button-icon,
+  .elfinder-dialog .ui-dialog-titlebar .ui-icon,
+  #elfinder .elfinder-path-dir {
+    cursor: pointer !important;
+  }
+
+  #elfinder .elfinder-edit-editor .CodeMirror {
+    font-size: 12px !important;
+  }
+  #elfinder {
+    background-image: none !important;
+    background: none !important;
+  }
+
+  #elfinder .elfinder-dialog.elfinder-to-editing {
+    /* overide z-index! */
+    position: fixed;
+  }
+  #elfinder .elfinder-bottomtray .elfinder-dialog.elfinder-to-editing {
+    position: relative;
+    margin: 2px;
+  }
+
+  .elfinder-cwd-file {
+    color: unset;
+  }
+  .elfinder .elfinder-navbar {
+   font-size: 0.78em
+  }
+
+  .std42-dialog .ui-dialog-content {
+   font-size: inherit;
+  }
+
+  .elfinder-bottomtray {
+    padding: 5px;
+  }
+  .elfinder-dialog .ui-dialog-buttonset .ui-button-text {
+    font-family: "Roboto";
+    text-transform: capitalize;
+  }
+
+  .elfinder-dialog-edit .elfinder-edit-extras select {
+    width : 150px !important;
+  }
+
+  .elfinder-contextmenu-item {
+    color: rgb(75, 75, 75) !important;
+    font-size: 14px;
+  }
+  .elfinder-cwd-wrapper {
+    color: rgb(115, 115, 115) !important;
+    line-height: 11px !important;
+  }
+
+
+  .elfinder-cwd-view-list table {
+    background-color: rgb(75, 75, 75) !important;
+    color: rgb(240, 240, 240);
+  }
+  .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:hover,
+  .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(odd):hover,
+  .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(even):hover{
+    background-color: rgb(160, 160, 160) !important;
+  }
+
+  .elfinder-cwd-view-list table > tbody tr,
+  .elfinder-cwd-view-list table:not(.tableCmd) > tbody tr:nth-child(odd),
+  .elfinder-cwd-view-list table:not(.tableCmd) > tbody tr:nth-child(even) {
+    background-color: rgb(75, 75, 75) !important;
+  }
+
+  #elfinder .elfinder-cwd-view-list thead .ui-state-active {
+    background: rgb(160, 160, 160);
+  }
+  #elfinder .elfinder-cwd-view-list thead tr > td  {
+    text-align: left;
+  }
+  #elfinder .elfinder-cwd-view-list thead tr > td .ui-icon::before {
+    display: none;
+  }
+
+  #elfinder .elfinder-toolbar > .elfinder-button-search > input {
+    background-color: rgb(75, 75, 75) !important;
+  }
+  #elfinder .elfinder-toolbar > .elfinder-button-search > span.ui-icon {
+    background-image: none !important
+  }
+
+  #elfinder .elfinder-cwd-filename > textarea {
+    font-size: 14px !important;
+  }
+
+  /* overwrite core css */
+  #elfinder .ui-dialog-buttonset .elfinder-dialog-confirm-applyall {
+    margin-bottom: 10px;
+  }
+  #elfinder input[type="checkbox"]::after {
+    display: none;
+  }
+  #elfinder input[type="checkbox"] {
+    height: 10px;
+    width: 10px !important;
+    border: none;
+  }
+  #elfinder input[type="checkbox"]::before {
+    top: 2px;
+    left: 7px;
+  }
+
+
+  .elfinder-dialog-edit .CodeMirror pre {
+    background: initial !important;
+  }
+
+  .CodeMirror-dialog-top {
+    background-color: rgb(40, 40, 40);
+  }
+
+  .elfinder-dialog .ui-helper-clearfix .elfinder-cwd-icon:before,
+  .elfinder-dialog .elfinder-dialog-icon-confirm {
+    display: none;
+  }
+
+  .ui-dialog.elfinder-maximized {
+    top: 50px !important;
+    max-height: calc(100% - 60px) !important;
+    max-width: 100% !important;
+  }
+  .ui-dialog.elfinder-maximized .elfinder-edit-editor {
+    max-width: calc(100% - 12px) !important;
+  }
+  .ui-dialog.elfinder-maximized .ui-resizable-handle {
+    display: none !important;
+  }
+
+  .std42-dialog.elfinder-dialog-minimized .ui-dialog-titlebar {
+    line-height: 10px;
+  }
+
+  .elfinder-navbar-wrapper {
+    line-height: 10px !important;
+  }
+
+  .ui-dialog-titlebar .elfinder-titlebar-button-right {
+    opacity: 1 !important;
+  }
+
+  .elfinder-dialog .CodeMirror-gutter,
+  .elfinder-dialog .CodeMirror-gutters,
+  .elfinder-dialog .CodeMirror-linenumber,
+  .elfinder-dialog .CodeMirror-foldgutter-open {
+    background: rgb(70,70,70) !important;
+  }
+
+  .elfinder-button-sort-menu,
+  .elfinder-button-menu-item {
+    background-color: rgb(255,255,255) !important;
+  }
+
+  .elfinder-dialog .ui-dialog-titlebar {
+    vertical-align: middle;
+    background-color: rgb(85,85,85) !important;
+  }
+  .elfinder-dialog .elfinder-dialog-title {
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: normal !important;
+    padding: 5px;
+    color: rgb(225,225,225) !important;
+    font-weight: bold;
+  }
+  .elfinder-dialog .elfinder-dialog-title:before {
+    content: "> "
+  }
+  .elfinder-dialog .ui-icon {
+    width: 16px;
+    background-image: none !important;
+    text-indent: 0 !important;
+    margin: 2px 0 !important;
+  }
+
+  /* CodeMirror */
+  [data-page="editor"] .CodeMirror-code { background: rgb(35,35,35) !important; }
+  [data-page="editor"] .CodeMirror-selected { background: rgba(65,65,65,1) !important; }
+
+  [data-page="editor"] .CodeMirror-foldmarker {
+    color: green;
+    text-shadow: none;
+    font-family: arial;
+    line-height: .3;
+    font-size: 18px;
+    position:relative;
+    top: 1px;
+    cursor: pointer !important;
+  }
+
+  [data-page="editor"] .CodeMirror-foldgutter-open,
+  [data-page="editor"] .CodeMirror-foldgutter-folded {
+    cursor: pointer;
+    transform: scale(1.6) translate(-1.5px,0) !important;
+  }
+
+  [data-page="editor"] .CodeMirror-lines {
+    border-top: 4px solid rgb(35,35,35) !important;
+    padding: 0;
+  }

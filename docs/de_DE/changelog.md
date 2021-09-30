@@ -38,7 +38,8 @@
 - **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
-- **Dokumentation und Changelog-Plugin Beta** : Dokumentation und Changelog-Verwaltung für Plugins in der Beta (Achtung, in der Beta ist das Changelog nicht datiert !!!)
+- **Dokumentation und Changelog-Plugin Beta** : Dokumentation und Changelog-Management für Plugins in der Beta. Achtung, in der Beta ist das Changelog nicht datiert.
+- **Allgemein** : Integration des JeeXplorer-Plugins in den Core.
 
 ### 4.2 : Kern-Widgets
 

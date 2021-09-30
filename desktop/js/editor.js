@@ -17,333 +17,163 @@
 "use strict"
 
 
-$('#bt_createFolder').off('click').on('click', function() {
-  bootbox.prompt("{{Nom du dossier ?}}", function(result) {
-    jeedom.createFolder({
-      path: CURRENT_FOLDER,
-      name: result,
-      error: function(error) {
-        $('#div_alert').showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        window.location.reload(true)
-      }
-    })
-  });
-});
+$(function() {
+  CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
-$('#sel_widgetType').off('change').on('change', function() {
-  $('#sel_widgetSubtype option').hide()
-  if ($(this).value() != '') {
-    $('#sel_widgetSubtype option[data-type=' + $(this).value() + ']').show()
+  var hash = 'l1_'
+  if (rootPath != '') {
+  	hash += btoa(rootPath).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '.').replace(/\.+$/, '')
   }
-  $('#sel_widgetSubtype option[data-default=1]').show()
-  $('#sel_widgetSubtype').value('')
-})
+  var lang = jeedom_langage.substring(0, 2)
 
-$("#md_widgetCreate").dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  height: 260,
-  width: 300,
-  open: function() {
-    $("body").css({
-      overflow: 'hidden'
-    })
-  },
-  beforeClose: function(event, ui) {
-    $("body").css({
-      overflow: 'inherit'
-    })
-  }
-})
-
-var fileEditor = null
-var CURRENT_FOLDER = rootPath
-printFileFolder(CURRENT_FOLDER)
-
-$('#div_treeFolder').off('click').on('select_node.jstree', function(node, selected) {
-  if (selected.node.a_attr['data-path'] != undefined) {
-    var path = selected.node.a_attr['data-path']
-    printFileFolder(path)
-    var ref = $('#div_treeFolder').jstree(true)
-    var sel = ref.get_selected()[0]
-    ref.open_node(sel)
-    var nodesList = ref.get_children_dom(sel)
-    if (nodesList.length != 0) {
-      return
-    }
-    jeedom.getFileFolder({
-      type: 'folders',
-      path: path,
-      error: function(error) {
-        $('#div_alert').showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        for (var i in data) {
-          node = ref.create_node(sel, {
-            "type": "folder",
-            "text": data[i],
-            state: {
-              opened: true
-            },
-            a_attr: {
-              'data-path': path + data[i]
-            }
-          })
-          $('li#' + node + ' a').addClass('li_folder')
-        }
-      }
-    })
-  }
-})
-
-$("#div_treeFolder").jstree({
-  "core": {
-    "check_callback": true
-  }
-})
-
-$('#div_fileList').off('click').on('click', '.li_file', function() {
-  displayFile($(this).attr('data-path'))
-})
-
-function printFileFolder(_path) {
-  CURRENT_FOLDER = _path;
-  jeedom.getFileFolder({
-    type: 'files',
-    path: _path,
-    error: function(error) {
-      $('#div_alert').showAlert({
-        message: error.message,
-        level: 'danger'
-      })
+  var options = {
+    url: 'core/php/editor.connector.php',
+    cssAutoLoad: false,
+    lang: lang,
+    startPathHash: hash,
+    rememberLastDir: false,
+    defaultView: 'list',
+    sort: 'kindDirsFirst',
+    sortDirect: 'kindDirsFirst',
+    contextmenu: {
+      cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
+      files: ['cmdedit', 'edit', '|', 'rename' ,'|', 'getfile' , 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|','rm', '|', 'archive', 'extract', '|', 'info', 'places']
     },
-    success: function(data) {
-      $('#div_fileList').empty()
-      var li = ''
-      for (var i in data) {
-        li += '<li class="cursor"><a class="li_file" data-path="' + _path + data[i] + '">' + data[i] + '</a></li>'
-      }
-      $('#div_fileList').append(li)
-    }
-  })
-}
-
-function getEditorMode(_path) {
-  var ext = _path.split('.').pop()
-  switch (ext) {
-    case 'sh':
-      return 'shell'
-    case 'py':
-      return 'text/x-python'
-    case 'rb':
-      return 'text/x-ruby'
-    case 'js':
-      return 'text/javascript'
-    case 'json':
-      return 'application/json'
-  }
-  return 'application/x-httpd-php'
-}
-
-function displayFile(_path) {
-  $.hideAlert();
-  $('#span_editorFileName').empty().html(_path.replace(/^.*[\\\/]/, '')).attr('title', _path)
-  $('#bt_saveFile').attr('data-path', _path)
-  $('#bt_deleteFile').attr('data-path', _path)
-  jeedom.getFileContent({
-    path: _path,
-    error: function(error) {
-      $('#div_alert').showAlert({
-        message: error.message,
-        level: 'danger'
-      })
+    uiOptions: {
+      toolbar: [
+        ['back', 'forward'],
+        ['reload', 'sort'],
+        ['home', 'up'],
+        ['mkdir', 'mkfile', 'upload','download'],
+        ['info'],
+        ['copy', 'cut', 'paste'],
+        ['edit','duplicate', 'rename', 'rm'],
+        ['extract', 'archive'],
+        ['search'],
+        ['view']
+      ]
     },
-    success: function(data) {
-      if (fileEditor != null) {
-        fileEditor.getDoc().setValue(data)
-        fileEditor.setOption("mode", getEditorMode(_path))
-        setTimeout(function() {
-          fileEditor.refresh()
-        }, 1)
-      } else {
-        $('#ta_fileContent').val(data)
-        setTimeout(function() {
-          fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_fileContent"), {
-            lineNumbers: true,
-            lineWrapping: true,
-            mode: getEditorMode(_path),
-            matchBrackets: true,
-            viewportMargin: Infinity,
-            foldGutter: true,
-            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
-          })
-          fileEditor.setOption("extraKeys", {
-            "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
-            "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
-          })
-        }, 1)
-      }
-    }
-  })
-}
-
-$('#bt_saveFile').on('click', function() {
-  if (!fileEditor) {
-    $('#div_alert').showAlert({
-      message: '{{Aucun fichier ouvert.}}',
-      level: 'warning'
-    })
-    return
-  }
-  jeedom.setFileContent({
-    path: $(this).attr('data-path'),
-    content: fileEditor.getValue(),
-    error: function(error) {
-      $('#div_alert').showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $('#div_alert').showAlert({
-        message: '{{Fichier enregistré avec succès}}',
-        level: 'success'
-      })
-    }
-  })
-})
-
-$('#bt_deleteFile').on('click', function() {
-  if (!fileEditor) {
-    $('#div_alert').showAlert({
-      message: '{{Aucun fichier ouvert.}}',
-      level: 'warning'
-    })
-    return
-  }
-  $('#span_editorFileName').empty()
-  var path = $(this).attr('data-path')
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce fichier : }} <span style="font-weight: bold ;">' + path + '</span> ?', function(result) {
-    if (result) {
-      jeedom.deleteFile({
-        path: path,
-        error: function(error) {
-          $('#div_alert').showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          $('#div_alert').showAlert({
-            message: '{{Fichier supprimé avec succès}}',
-            level: 'success'
-          })
-          if (fileEditor != null) {
-            fileEditor.getDoc().setValue('')
-            setTimeout(function() {
-              fileEditor.refresh()
-            }, 1)
-          } else {
-            $('#ta_fileContent').val('');
-            setTimeout(function() {
-              fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_fileContent"), {
-                lineNumbers: true,
-                mode: 'application/x-httpd-php',
-                matchBrackets: true
-              })
-              fileEditor.getWrapperElement().style.height = ($('#ta_fileContent').closest('.row-overflow').find('.col-lg-2').height() - 60) + 'px'
-              fileEditor.refresh()
-            }, 1)
-          }
-          printFileFolder(CURRENT_FOLDER)
-        }
-      })
-    }
-  })
-})
-
-$('#bt_widgetCreate').off('click').on('click', function() {
-  CURRENT_FOLDER = rootPath + $('#sel_widgetVersion').value() + '/'
-  if ($('#sel_widgetSubtype').value() == '') {
-    $('#div_alert').showAlert({
-      message: '{{Le sous-type ne peut être vide}}',
-      level: 'danger'
-    })
-    return
-  }
-  if ($('#in_widgetName').value() == '') {
-    $('#div_alert').showAlert({
-      message: '{{Le nom ne peut être vide}}',
-      level: 'danger'
-    })
-    return
-  }
-  var name = 'cmd.' + $('#sel_widgetType').value() + '.' + $('#sel_widgetSubtype').value() + '.' + $('#in_widgetName').value() + '.html'
-  jeedom.createFile({
-    path: CURRENT_FOLDER,
-    name: name,
-    error: function(error) {
-      $('#div_alert').showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $("#md_widgetCreate").dialog('close')
-      $('#div_alert').showAlert({
-        message: '{{Fichier enregistré avec succès}}',
-        level: 'success'
-      })
-      printFileFolder(CURRENT_FOLDER)
-      displayFile(CURRENT_FOLDER + '/' + name)
-    }
-  })
-})
-
-$('#bt_createFile').off('click').on('click', function() {
-  if (editorType == 'widget') {
-    $('#md_widgetCreate').dialog({
-      title: "{{Options}}"
-    }).dialog('open')
-    $('#sel_widgetType').trigger('change')
-
-    $("#md_widgetCreate").keydown(function(event) {
-      if (event.keyCode == $.ui.keyCode.ENTER) {
-        $('#bt_widgetCreate').trigger('click')
+    handlers: {
+      dblclick: function(event, elfinderInstance)
+      {
+        elfinderInstance.exec('edit')
         return false
       }
-    })
-  } else {
-    bootbox.prompt("{{Nom du fichier ?}}", function(result) {
-      if (result !== null) {
-        jeedom.createFile({
-          path: CURRENT_FOLDER,
-          name: result,
-          error: function(error) {
-            $('#div_alert').showAlert({
-              message: error.message,
-              level: 'danger'
+    },
+    commandsOptions: {
+      edit: {
+        editors: [
+          {
+          load : function(textarea) {
+            self = this
+            var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
+            var fileUrl = elfinderInstance.url(self.file.hash)
+            fileUrl = fileUrl.replace('/core/php/../../', '')
+            var $modal = $(textarea).closest('.ui-front')
+            $modal.find('.elfinder-dialog-title').html(fileUrl)
+
+            this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
+              styleActiveLine: true,
+              lineNumbers: true,
+              lineWrapping: true,
+              matchBrackets: true,
+              autoRefresh: true,
+              foldGutter: true,
+              gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
             })
+            var editor = this.myCodeMirror
+
+            //Auto mode set:
+            var info, m, mode, spec;
+            if (!info) {
+              info = CodeMirror.findModeByMIME(self.file.mime);
+            }
+            if (!info && (m = self.file.name.match(/.+\.([^.]+)$/))) {
+              info = CodeMirror.findModeByExtension(m[1]);
+            }
+            if (info) {
+              mode = info.mode
+              spec = info.mime
+              editor.setOption('mode', spec)
+              CodeMirror.autoLoadMode(editor, mode)
+            }
+
+            //is python ?
+            if (self.file.mime == 'text/x-python') {
+              self.myCodeMirror.setOption('mode', {
+                  name: "python",
+                  version: 3,
+                  singleLineStringErrors: false
+                }
+              )
+              self.myCodeMirror.setOption('indentUnit', 4)
+              self.myCodeMirror.setOption('smartIndent', false)
+            }
+
+            $(".cm-s-default").style('height', '100%', 'important')
+            editor.setOption('theme', 'monokai')
+
+            //expand on resize modal:
+            $('.elfinder-dialog-edit').resize(function() {
+              editor.refresh()
+            })
+            $modal.width('75%').css('left', '15%')
+
+            setTimeout(function() {
+              editor.scrollIntoView({line:0, char:0}, 20)
+              editor.setOption("extraKeys", {
+                "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+                "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+              })
+
+            }, 250)
           },
-          success: function(data) {
-            $('#div_alert').showAlert({
-              message: '{{Fichier enregistré avec succès}}',
-              level: 'success'
-            })
-            printFileFolder(CURRENT_FOLDER)
-            displayFile(CURRENT_FOLDER + '/' + result)
+          close : function(textarea, instance) {
+            //this.myCodeMirror = null;
+          },
+          save : function(textarea, editor) {
+            textarea.value = this.myCodeMirror.getValue();
+            //this.myCodeMirror = null;
+            }
           }
-        })
-      }
-    })
+        ]
+      },
+    }
   }
+  var elfinstance
+  elfinstance = $('#elfinder').elfinder(options).elfinder('instance')
+
+  $('#elfinder').css("height", $(window).height() - 50)
+  $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
+
+  elfinstance.one('init', function(event) {
+    killTooltips()
+  })
+  elfinstance
+    .bind('open', function(event) {
+      killTooltips()
+    })
+    .bind('contextmenucreate', function(event) {
+      setTimeout(function() {
+        $('.elfinder-button-icon-edit').next().text('{{Editer}}')
+      }, 0)
+    })
+})
+
+function killTooltips() {
+  setTimeout(function() {
+  try {
+    $('.elfinder-workzone .tooltipstered').tooltipster('destroy')
+  } catch(error) {}
+  try {
+    $('.elfinder-workzone [title]').removeAttr('title')
+  } catch(error) {}
+  }, 500)
+}
+
+
+//resize explorer in browser window:
+$(window).resize(function() {
+  $('#elfinder').css("width", $(window).width())
+  $('#elfinder').css("height", $(window).height() - 50)
 })

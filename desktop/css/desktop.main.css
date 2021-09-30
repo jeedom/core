@@ -314,7 +314,7 @@ Desktop
   #jeedomMenuBar ul.navbar-nav .divider,
   .dropdown-menu .divider {
     background-color: var(--el-defaultColor) !important;
-    height: 1px;
+    height: 1.1px;
     margin: 1em 0;
     padding: 0 !important;
     overflow: hidden;
@@ -1760,25 +1760,6 @@ Desktop
   }
   .glyphicon-star-empty::before {
     content: "☆";
-  }
-
-  /* editor page */
-  #editorOptions {
-    position: fixed;
-    text-align: right;
-    top: 55px;
-    right: 19px;
-    padding: 0 5px !important;
-    width: calc(66.66666667% - 31px);
-    z-index: 10;
-    background: rgba(var(--panel-bg-color), var(--opacity));
-  }
-  #editorContainer {
-    padding-right: 5px !important;
-    width: calc(66.66666667% - 12px)
-  }
-  #editorContainer div.CodeMirror.CodeMirror-wrap {
-    top: 55px !important;
   }
 
   /* administration */

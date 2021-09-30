@@ -467,7 +467,7 @@ try {
 	if (init('action') == 'getFileContent') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'html', 'py', 'css', 'html'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		ajax::success(file_get_contents(init('path')));
@@ -476,7 +476,7 @@ try {
 	if (init('action') == 'setFileContent') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'html', 'py', 'css', 'html'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		ajax::success(file_put_contents(init('path'), init('content')));
@@ -485,7 +485,7 @@ try {
 	if (init('action') == 'deleteFile') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'html'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		ajax::success(unlink(init('path')));
@@ -494,7 +494,7 @@ try {
 	if (init('action') == 'createFile') {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('name'));
-		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'html'))) {
+		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
 			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
 		}
 		touch(init('path') . init('name'));
