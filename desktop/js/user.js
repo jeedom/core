@@ -236,8 +236,8 @@ function printUsers() {
           disable = 'disabled'
         }
         userTR = '<tr><td class="login">'
-        userTR += '<span class="userAttr" data-l1key="id" style="display : none;"/></span>'
-        userTR += '<span class="userAttr" data-l1key="login"></span>'
+        userTR += '<span class="userAttr" data-l1key="id" style="display:none;"/></span>'
+        userTR += '<span><input class="' + disable + ' userAttr" data-l1key="login" /></span>'
         userTR += '</td>'
         userTR += '<td>'
         userTR += '<span><input type="checkbox" class="userAttr" data-l1key="enable" ' + disable + ' />{{Actif}}</span><br/>'
