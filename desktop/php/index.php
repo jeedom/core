@@ -585,7 +585,7 @@ function setTheme() {
 	<?php
 	}
 	?>
-	<?php if (init('report') == 1 && init('delay', -1) != -1) { ?>
+	<?php if (init('report') == 1 && init('delay', -1) != -1 && is_numeric(init('delay'))) { ?>
 		<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
 	<?php } ?>
 </body>
