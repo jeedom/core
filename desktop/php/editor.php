@@ -14,7 +14,7 @@ sendVarToJS([
 	'rootPath' => $rootPath
 ]);
 @session_start();
-$_SESSION["elFinderRoot"] = '/../../' . $rootPath;
+$_SESSION["elFinderRoot"] =  $rootPath;
 
 //Core CodeMirror:
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
@@ -46,7 +46,7 @@ include_file('3rdparty', 'elfinder/js/elfinder.full', 'js');
 
 $lang = substr(config::byKey('language', 'core', 'en'), 0, 2);
 if ($lang != 'en') {
-	$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang .'.js';
+	$plufinSrc = '3rdparty/elfinder/js/i18n/elfinder.' . $lang . '.js';
 	echo '<script src="' . $plufinSrc . '"></script>';
 }
 
