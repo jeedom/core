@@ -49,6 +49,41 @@ AddEncoding gzip svgz
 DirectoryIndex index.php
 </IfModule>
 
+# Right on folder
+
+RedirectMatch 403 ^.*\/3rdparty\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 ^.*\/backup\/.*$
+
+RedirectMatch 403 ^.*\/core/ajax\/.*\/((?!ajax\.php).)*$
+RedirectMatch 403 ^.*\/core/api\/.*\/((?!\.php).)*$
+RedirectMatch 403 ^.*\/core/class\/.*$
+RedirectMatch 403 ^.*\/core/com\/.*$
+RedirectMatch 403 ^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg).)*$
+RedirectMatch 403 ^.*\/core/css\/.*\/((?!\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 ^.*\/core/i18n\/.*$
+RedirectMatch 403 ^.*\/core/img\/.*\/((?!\.png|\.jpg|\.jpeg).)*$
+RedirectMatch 403 ^.*\/core/php\/.*\/((?!\.php).)*$
+RedirectMatch 403 ^.*\/core/js\/.*$
+RedirectMatch 403 ^.*\/core/repo\/.*$
+RedirectMatch 403 ^.*\/core/template\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 ^.*\/core/themes\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
+
+RedirectMatch 403 ^.*\/data\/.*$
+RedirectMatch 403 ^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 ^.*\/docs\/.*$
+RedirectMatch 403 ^.*\/install\/.*$
+RedirectMatch 403 ^.*\/log\/.*$
+RedirectMatch 403 ^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.css).)*$
+RedirectMatch 403 ^.*\/script\/.*$
+RedirectMatch 403 ^.*\/support\/.*$
+RedirectMatch 403 ^.*\/tests\/.*$
+RedirectMatch 403 ^.*\/vendor\/.*$
+
+# Plugin specific
+RedirectMatch 403 ^.*\/plugin_info\/.*\/((?!\.png|\.jpg|\.jpeg).)*$
+RedirectMatch 403 ^.*\/ressources\/.*$
+RedirectMatch 403 ^.*\/resources\/.*$
+
 # Right on file
 
 Order Allow,Deny
@@ -75,3 +110,4 @@ Order Allow,Deny
     Order Allow,Deny
     Deny from all
 </FilesMatch>
+
