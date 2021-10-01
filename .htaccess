@@ -68,8 +68,7 @@ RedirectMatch 403 ^.*\/core/repo\/.*$
 RedirectMatch 403 ^.*\/core/template\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
 RedirectMatch 403 ^.*\/core/themes\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
 
-RedirectMatch 403 ^.*\/data\/.*$
-RedirectMatch 403 ^.*\/deskdatatop\/.*\/((?!\.m3u8|\.ts).)*$
+RedirectMatch 403 ^.*\/data\/.*\/((?!\.m3u8|\.ts|\.jpg|\.jpg|\.png).)*$
 RedirectMatch 403 ^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
 RedirectMatch 403 ^.*\/docs\/.*$
 RedirectMatch 403 ^.*\/install\/.*$
