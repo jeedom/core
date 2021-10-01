@@ -328,7 +328,8 @@ jeedom.eqLogic.byId = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.eqLogic.builSelectCmd = function (_params) {
+jeedom.eqLogic.builSelectCmd = jeedom.eqLogic.buildSelectCmd
+jeedom.eqLogic.buildSelectCmd = function (_params) {
   if (!isset(_params.filter)) {
     _params.filter = {};
   }
