@@ -73,7 +73,7 @@ RedirectMatch 403 ^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.woff|\.woff2|
 RedirectMatch 403 ^.*\/docs\/.*$
 RedirectMatch 403 ^.*\/install\/.*$
 RedirectMatch 403 ^.*\/log\/.*$
-RedirectMatch 403 ^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.css).)*$
+RedirectMatch 403 ^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
 RedirectMatch 403 ^.*\/script\/.*$
 RedirectMatch 403 ^.*\/support\/.*$
 RedirectMatch 403 ^.*\/tests\/.*$
