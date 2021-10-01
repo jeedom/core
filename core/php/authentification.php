@@ -53,6 +53,9 @@ if (!isConnect() && isset($_COOKIE['registerDevice'])) {
 		} else {
 			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 		}
+		@session_start();
+		session_regenerate_id(true);
+		@session_write_close();
 	} else {
 		setcookie('registerDevice', '');
 	}
@@ -64,6 +67,7 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	if (is_object($user) && $user->getEnable() == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
+		session_regenerate_id(true);
 		@session_write_close();
 		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
 	}
@@ -104,6 +108,7 @@ function login($_login, $_password, $_twoFactor = null) {
 	}
 	@session_start();
 	$_SESSION['user'] = $user;
+	session_regenerate_id(true);
 	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
 	return true;
@@ -147,6 +152,7 @@ function loginByHash($_key) {
 	$user->save();
 	@session_start();
 	$_SESSION['user'] = $user;
+	session_regenerate_id(true);
 	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
 	return true;

@@ -55,7 +55,7 @@ Order Allow,Deny
 
 # Allow all :
 
-<FilesMatch ".*\.(css|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts)$">
+<FilesMatch ".*\.(css|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico)$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>
