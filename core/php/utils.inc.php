@@ -22,7 +22,13 @@ use League\ColorExtractor\ColorExtractor;
 use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
-	if (strpos($_folder, '..') !== false || strpos($_fn, '..') !== false) {
+	if (strpos($_folder, '..') !== false || strpos($_fn, '..') !== false || strpos($_fn, '\\') !== false) {
+		return;
+	}
+	if (strpos($_plugin, '..') !== false || strpos($_plugin, '/') !== false || strpos($_plugin, '\\') !== false) {
+		return;
+	}
+	if (strpos($_type, '..') !== false || strpos($_type, '/') !== false || strpos($_type, '\\') !== false) {
 		return;
 	}
 	$_rescue = false;
@@ -53,6 +59,9 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			'html' => array('/html', '.html', 'php'),
 			'configuration' => array('', '.php', 'php'),
 		);
+		if (!isset($config[$_type])) {
+			return;
+		}
 		$_folder .= $config[$_type][0];
 		$_fn .= $config[$_type][1];
 		$type = $config[$_type][2];
@@ -86,8 +95,6 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$md5 = md5_file($path);
 		if (strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false) {
 			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '"></script>';
-		} elseif (file_exists($_folder . '/' . $md5 . '.' . translate::getLanguage() . '.jeemin.js')) {
-			echo '<script type="text/javascript" src="' . $_folder . '/' . $md5 . '.' . translate::getLanguage() . '.jeemin.js"></script>';
 		} else {
 			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
 		}
@@ -96,6 +103,18 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 }
 
 function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
+	if (strpos($_plugin, '..') !== false || strpos($_plugin, '/') !== false || strpos($_plugin, '\\') !== false) {
+		return;
+	}
+	if (strpos($_version, '..') !== false || strpos($_version, '/') !== false || strpos($_version, '\\') !== false) {
+		return;
+	}
+	if (strpos($_filename, '..') !== false || strpos($_filename, '/') !== false || strpos($_filename, '\\') !== false) {
+		return;
+	}
+	if (strpos($_folder, '..') !== false) {
+		return;
+	}
 	$path = ($_plugin == '')
 		? __DIR__ . '/../../' . $_folder . '/template/' . $_version . '/' . $_filename . '.html'
 		: __DIR__ . '/../../plugins/' . $_plugin . '/core/template/' . $_version . '/' . $_filename . '.html';
