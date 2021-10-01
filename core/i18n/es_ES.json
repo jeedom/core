@@ -2719,6 +2719,8 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Guardado correctamente",
+        "Le login d\\'un utilisateur ne peut être vide !": "¡El inicio de sesión de un usuario no puede estar vacío!",
+        "Deux utilisateurs ne peuvent avoir le même login !": "¡Dos usuarios no pueden tener el mismo inicio de sesión!",
         "Vous allez supprimer l\\'utilisateur : ": "Eliminarás al usuario:",
         "L\\'utilisateur a bien été supprimé": "Se ha borrado el usuario",
         "Quel est le nouveau mot de passe ?": "¿ Cual es la nueva contraseña ?",

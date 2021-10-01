@@ -2719,6 +2719,8 @@
     },
     "desktop\/js\/user.js": {
         "Sauvegarde effectuée": "Backup completed",
+        "Le login d\\'un utilisateur ne peut être vide !": "A user's login cannot be empty!",
+        "Deux utilisateurs ne peuvent avoir le même login !": "Two users cannot have the same login!",
         "Vous allez supprimer l\\'utilisateur : ": "You will delete the user:",
         "L\\'utilisateur a bien été supprimé": "User has been deleted",
         "Quel est le nouveau mot de passe ?": "What is the new password?",
