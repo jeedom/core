@@ -385,14 +385,14 @@ class history {
 		return array_merge($result2, $result1);
 	}
 
-	public static function getOldestValue($_cmd_id) {
+	public static function getOldestValue($_cmd_id, $limit=1) {
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__);
 		$sql .= ' FROM historyArch
 		WHERE cmd_id=:cmd_id ';
-		$sql .= ' ORDER BY `datetime` ASC LIMIT 1';
+		$sql .= ' ORDER BY `datetime` ASC LIMIT '.$limit;
 		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
 
 		return array_merge($result);
