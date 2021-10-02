@@ -328,7 +328,6 @@ jeedom.eqLogic.byId = function (_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.eqLogic.builSelectCmd = jeedom.eqLogic.buildSelectCmd
 jeedom.eqLogic.buildSelectCmd = function (_params) {
   if (!isset(_params.filter)) {
     _params.filter = {};
@@ -352,6 +351,7 @@ jeedom.eqLogic.buildSelectCmd = function (_params) {
   }
 });
 }
+jeedom.eqLogic.builSelectCmd = jeedom.eqLogic.buildSelectCmd
 
 jeedom.eqLogic.getSelectModal = function (_options, callback) {
   if (!isset(_options)) {
