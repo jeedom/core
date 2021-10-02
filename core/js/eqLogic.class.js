@@ -348,8 +348,6 @@ jeedom.eqLogic.buildSelectCmd = function(_params) {
   });
 }
 
-jeedom.eqLogic.builSelectCmd = jeedom.eqLogic.buildSelectCmd
-
 jeedom.eqLogic.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
     _options = {};
