@@ -348,7 +348,7 @@ class network {
 		if (file_exists($path_ca)) {
 			unlink($path_ca);
 		}
-		copy(__DIR__ . '/../../script/ca_dns.crt', $path_ca);
+		copy(__DIR__ . '/../../resources/ca_dns.crt', $path_ca);
 		if (!file_exists($path_ca)) {
 			throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
 		}
