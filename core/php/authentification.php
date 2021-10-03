@@ -50,16 +50,7 @@ if (user::isBan()) {
 }
 
 if (!isConnect() && isset($_COOKIE['registerDevice'])) {
-	if (loginByHash($_COOKIE['registerDevice'])) {
-		if (version_compare(PHP_VERSION, '7.3') >= 0) {
-			setcookie('registerDevice', $_COOKIE['registerDevice'], ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		} else {
-			setcookie('registerDevice', $_COOKIE['registerDevice'], time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-		}
-		@session_start();
-		session_regenerate_id(true);
-		@session_write_close();
-	} else {
+	if (!loginByHash($_COOKIE['registerDevice'])) {
 		setcookie('registerDevice', '');
 	}
 }
@@ -135,28 +126,35 @@ function loginByHash($_key) {
 		sleep(5);
 		return false;
 	}
-	$kid = sha512($key[1]);
+	$rdk = sha512($key[1]);
 	$registerDevice = $user->getOptions('registerDevice', array());
-	if (!isset($registerDevice[$kid])) {
+	if (!isset($registerDevice[$rdk])) {
 		user::failedLogin();
 		sleep(5);
 		return false;
 	}
-	$registerDevice = $user->getOptions('registerDevice', array());
 	if (!is_array($registerDevice)) {
-		$registerDevice = array();
+		sleep(5);
+		return false;
 	}
-	$registerDevice[$kid] = array(
-		'datetime' => date('Y-m-d H:i:s'),
-		'ip' => getClientIp(),
-		'session_id' => session_id(),
-	);
-	$user->setOptions('registerDevice', $registerDevice);
-	$user->save();
 	@session_start();
 	$_SESSION['user'] = $user;
 	session_regenerate_id(true);
 	@session_write_close();
+	unset($registerDevice[$rdk]);
+	$rdk = config::genKey();
+	$registerDevice[sha512($rdk)] = array(
+		'datetime' => date('Y-m-d H:i:s'),
+		'ip' => getClientIp(),
+		'session_id' => session_id(),
+	);
+	if (version_compare(PHP_VERSION, '7.3') >= 0) {
+		setcookie('registerDevice', sha512($user->getHash()) . '-' . $rdk, ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+	} else {
+		setcookie('registerDevice', sha512($user->getHash()) . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+	}
+	$user->setOptions('registerDevice', $registerDevice);
+	$user->save();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
 	return true;
 }
