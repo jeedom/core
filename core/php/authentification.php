@@ -18,9 +18,8 @@
 require_once __DIR__ . '/core.inc.php';
 
 $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:remoteUserHeader'));
-//$configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser'));
 
-if (!isset($_SESSION)) {
+if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	$session_lifetime = $configs['session_lifetime'];
 	if (!is_numeric($session_lifetime)) {
 		$session_lifetime = 24;
@@ -29,7 +28,11 @@ if (!isset($_SESSION)) {
 	ini_set('session.cookie_lifetime', $session_lifetime * 3600);
 	ini_set('session.use_cookies', 1);
 	ini_set('session.cookie_httponly', 1);
-	ini_set('session.cookie_samesite', 'Lax');
+	ini_set('session.use_only_cookies', 1);
+	ini_set('session.sid_length', 64);
+	ini_set('session.hash_function', 'sha256');
+	ini_set('session.cookie_samesite', 'Strict');
+	ini_set('session.use_strict_mode', 1);
 	if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 		ini_set('session.cookie_secure', 1);
 	}
