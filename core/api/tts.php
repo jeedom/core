@@ -24,10 +24,7 @@ if (!jeedom::apiAccess(init('apikey'))) {
 	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
-if (network::getUserLocation() != 'internal') {
-	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
-	die();
-}
+
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
 $engine = config::byKey('tts::engine', 'core', 'pico');
 if (strpos($engine, 'plugin::') !== false) {
