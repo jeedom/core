@@ -1037,26 +1037,20 @@ function sanitizeAccent($_message) {
 }
 
 function isConnect($_right = '') {
-	if (isset($_SESSION['user']) && is_object($_SESSION['user'])) {
-		$user = user::byId($_SESSION['user']->getId());
-		if (!is_object($user)) {
-			return false;
-		}
+	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user']) || !is_object($_SESSION['user'])) {
+		return false;
 	}
-	if (isset($_SESSION['user']) && isset($GLOBALS['isConnect::' . $_right]) && $GLOBALS['isConnect::' . $_right]) {
-		return $GLOBALS['isConnect::' . $_right];
+	$user = user::byId($_SESSION['user']->getId());
+	if (!is_object($user)) {
+		return false;
 	}
-	$GLOBALS['isConnect::' . $_right] = false;
-	if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION) || !isset($_SESSION['user'])) {
-		$GLOBALS['isConnect::' . $_right] = false;
-	} else if (isset($_SESSION['user']) && is_object($_SESSION['user']) && $_SESSION['user']->is_Connected()) {
-		if ($_right != '') {
-			$GLOBALS['isConnect::' . $_right] = ($_SESSION['user']->getProfils() == $_right);
-		} else {
-			$GLOBALS['isConnect::' . $_right] = true;
-		}
+	if (!$_SESSION['user']->is_Connected()) {
+		return false;
 	}
-	return $GLOBALS['isConnect::' . $_right];
+	if ($_right != '') {
+		return ($_SESSION['user']->getProfils() == $_right);
+	}
+	return true;
 }
 
 function ZipErrorMessage($code) {
