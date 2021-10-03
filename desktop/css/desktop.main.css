@@ -625,6 +625,7 @@ Desktop
   .eqLogicSortable {
     list-style-type: none;
     padding-left: 0px;
+    min-height: 30px !important;
   }
   #searchResult a[role=searchTabLink] {
     display: table;
