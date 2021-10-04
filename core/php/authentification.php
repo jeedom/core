@@ -61,7 +61,6 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 	if (is_object($user) && $user->getEnable() == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
-		session_regenerate_id(true);
 		@session_write_close();
 		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
 	}
@@ -139,7 +138,6 @@ function loginByHash($_key) {
 	}
 	@session_start();
 	$_SESSION['user'] = $user;
-	session_regenerate_id(true);
 	@session_write_close();
 	unset($registerDevice[$rdk]);
 	$rdk = config::genKey();
