@@ -323,7 +323,7 @@ try {
 		$params['plugin'] = 'core';
 	}
 	if (!jeedom::apiAccess($apikey, $params['plugin'])) {
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1', __FILE__), -32002);
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
 	}
 	if ($_RESTRICTED) {
 		if ($params['plugin'] != 'core') {
