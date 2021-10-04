@@ -41,7 +41,7 @@ if (init('type') != '') {
 	try {
 		$type = init('type');
 		$plugin = init('plugin', 'core');
-		if ($plugin == 'core' && !in_array(init('type'), array('ask', 'cmd', 'interact', 'scenario', 'message', 'object', 'eqLogic', 'command', 'fullData', 'variable'))) {
+		if ($plugin == 'core' && !in_array($type, array('ask', 'cmd', 'interact', 'scenario', 'message', 'object', 'eqLogic', 'command', 'fullData', 'variable'))) {
 			$plugin = init('type');
 		}
 		if (!jeedom::apiAccess(init('apikey', init('api')), $plugin)) {
