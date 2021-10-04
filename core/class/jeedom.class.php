@@ -446,7 +446,7 @@ class jeedom {
 		system::php($cmd);
 	}
 
-	public static function getApiKey($_plugin = 'core', $_no_create = false) {
+	public static function getApiKey($_plugin = 'core') {
 		if ($_plugin == 'apipro') {
 			if (config::byKey('apipro') == '') {
 				config::save('apipro', config::genKey());
@@ -465,10 +465,12 @@ class jeedom {
 			}
 			return config::byKey('apimarket');
 		}
+		try {
+			plugin::byId($_plugin);
+		} catch (\Throwable $th) {
+			return '';
+		}
 		if (config::byKey('api', $_plugin) == '') {
-			if ($_no_create) {
-				return '';
-			}
 			config::save('api', config::genKey(), $_plugin);
 		}
 		return config::byKey('api', $_plugin);
@@ -522,7 +524,7 @@ class jeedom {
 		if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
 			return false;
 		}
-		$apikey = self::getApiKey($_plugin, true);
+		$apikey = self::getApiKey($_plugin);
 		if (trim($apikey) != '' && $apikey == $_apikey) {
 			global $_RESTRICTED;
 			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
