@@ -272,6 +272,9 @@ try {
 	if (!isset($params['plugin']) || $params['plugin'] == '') {
 		$params['plugin'] = 'core';
 	}
+	if (in_array($params['plugin'], array('apitts', 'apipro', 'apimarket'))) {
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+	}
 
 	if ($params['plugin'] == 'core' && !jeedom::apiModeResult(config::byKey('api::' . $params['plugin'] . '::mode', 'core', 'enable'))) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
