@@ -447,6 +447,12 @@ class jeedom {
 	}
 
 	public static function getApiKey($_plugin = 'core') {
+		if ($_plugin == 'core') {
+			if (config::byKey('api') == '') {
+				config::save('api', config::genKey());
+			}
+			return config::byKey('api');
+		}
 		if ($_plugin == 'apipro') {
 			if (config::byKey('apipro') == '') {
 				config::save('apipro', config::genKey());

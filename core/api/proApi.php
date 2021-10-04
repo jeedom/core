@@ -18,16 +18,21 @@
 
 require_once __DIR__ . "/../php/core.inc.php";
 
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_REQUEST[$argList[0]] = $argList[1];
-		}
-	}
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
 }
 
 try {
+
+	if (!headers_sent()) {
+		header('Content-Type: application/json');
+	}
+
 	$IP = getClientIp();
 	$request = init('request');
 	if ($request == '') {

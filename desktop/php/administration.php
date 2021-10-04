@@ -1896,26 +1896,6 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
-							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
-								<div class="input-group">
-									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apitts']; ?>" />
-									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apitts"><i class="fas fa-sync"></i></a>
-									</span>
-								</div>
-							</div>
-							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::apitts::mode">
-									<option value="enable">{{Activé}}</option>
-									<option value="whiteip">{{IP blanche}}</option>
-									<option value="localhost">{{Localhost}}</option>
-									<option value="disable">{{Désactivé}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Clé API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 							</label>
@@ -1929,14 +1909,33 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::api::mode">
+								<select class="form-control configKey" data-l1key="api::core::mode">
 									<option value="enable">{{Activé}}</option>
 									<option value="whiteip">{{IP blanche}}</option>
 									<option value="disable">{{Désactivé}}</option>
 								</select>
 							</div>
 						</div>
-
+						<div class="form-group">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
+							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
+								<div class="input-group">
+									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apitts']; ?>" />
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apitts"><i class="fas fa-sync"></i></a>
+									</span>
+								</div>
+							</div>
+							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+								<select class="form-control configKey" data-l1key="api::apitts::mode">
+									<option value="enable">{{Activé}}</option>
+									<option value="whiteip">{{IP blanche}}</option>
+									<option value="localhost">{{Localhost}}</option>
+									<option value="disable">{{Désactivé}}</option>
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
@@ -1951,7 +1950,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::apipro::mode">
+								<select class="form-control configKey" data-l1key="api::apipro::mode">
 									<option value="enable">{{Activé}}</option>
 									<option value="disable">{{Désactivé}}</option>
 								</select>
@@ -1971,7 +1970,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::market::mode">
+								<select class="form-control configKey" data-l1key="api::apimarket::mode">
 									<option value="enable">{{Activé}}</option>
 									<option value="disable">{{Désactivé}}</option>
 								</select>

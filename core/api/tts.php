@@ -16,6 +16,17 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . "/../php/core.inc.php";
+
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
+}
+
+
 if (!jeedom::apiAccess(init('apikey'), 'apitts')) {
 	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();

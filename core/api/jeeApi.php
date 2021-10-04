@@ -49,7 +49,6 @@ if (init('type') != '') {
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1, IP : ', __FILE__) . getClientIp());
 		}
-		$_RESTRICTED = config::byKey('api::' . $plugin . '::restricted', 'core', 0);
 		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp() . ' => ' . json_encode($_GET));
 		if ($type == 'ask') {
 			if ($_RESTRICTED) {
@@ -270,41 +269,47 @@ try {
 
 	$params = $jsonrpc->getParams();
 
-	if ($jsonrpc->getMethod() == 'user::useTwoFactorAuthentification') {
-		if (network::getUserLocation() == 'internal') {
-			$jsonrpc->makeSuccess(0);
-		}
-		$user = user::byLogin($params['login']);
-		if (!is_object($user)) {
-			$jsonrpc->makeSuccess(0);
-		}
-		$jsonrpc->makeSuccess($user->getOptions('twoFactorAuthentification', 0));
+	if (!isset($params['plugin']) || $params['plugin'] == '') {
+		$params['plugin'] = 'core';
 	}
 
-	if ($jsonrpc->getMethod() == 'user::getHash') {
-		if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
-			user::failedLogin();
-			sleep(5);
-			throw new Exception(__('L\'identifiant ou le mot de passe ne peuvent pas être vide', __FILE__), -32001);
+	if ($params['plugin'] == 'core' && !jeedom::apiModeResult(config::byKey('api::' . $params['plugin'] . '::mode', 'core', 'enable'))) {
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
+	}
+
+	if ($params['plugin'] == 'core') {
+		if ($jsonrpc->getMethod() == 'user::useTwoFactorAuthentification') {
+			if (network::getUserLocation() == 'internal') {
+				$jsonrpc->makeSuccess(0);
+			}
+			$user = user::byLogin($params['login']);
+			if (!is_object($user)) {
+				$jsonrpc->makeSuccess(0);
+			}
+			$jsonrpc->makeSuccess($user->getOptions('twoFactorAuthentification', 0));
 		}
-		$user = user::connect($params['login'], $params['password']);
-		if (!is_object($user) || $user->getEnable() != 1) {
-			user::failedLogin();
-			sleep(5);
-			throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
-		}
-		if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
-			if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
+
+		if ($jsonrpc->getMethod() == 'user::getHash') {
+			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
+				user::failedLogin();
+				sleep(5);
+				throw new Exception(__('L\'identifiant ou le mot de passe ne peuvent pas être vide', __FILE__), -32001);
+			}
+			$user = user::connect($params['login'], $params['password']);
+			if (!is_object($user) || $user->getEnable() != 1) {
 				user::failedLogin();
 				sleep(5);
 				throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
 			}
+			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
+				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
+					user::failedLogin();
+					sleep(5);
+					throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
+				}
+			}
+			$jsonrpc->makeSuccess($user->getHash());
 		}
-		$jsonrpc->makeSuccess($user->getHash());
-	}
-
-	if ($jsonrpc->getMethod() == 'ping') {
-		$jsonrpc->makeSuccess('pong');
 	}
 
 	if (!isset($params['apikey']) && !isset($params['api'])) {
@@ -317,7 +322,6 @@ try {
 	if (!jeedom::apiAccess($apikey, $params['plugin'])) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1', __FILE__), -32002);
 	}
-
 	if ($_RESTRICTED) {
 		if ($params['plugin'] != 'core') {
 			log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
@@ -330,6 +334,10 @@ try {
 			}
 		}
 		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
+	}
+
+	if ($jsonrpc->getMethod() == 'ping') {
+		$jsonrpc->makeSuccess('pong');
 	}
 
 	/*             * ************************config*************************** */
