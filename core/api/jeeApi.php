@@ -25,14 +25,6 @@ if (user::isBan()) {
 	echo "The page that you have requested could not be found.";
 	die();
 }
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_REQUEST[$argList[0]] = $argList[1];
-		}
-	}
-}
 global $_USER_GLOBAL;
 $_USER_GLOBAL = null;
 global $_RESTRICTED;
