@@ -1896,28 +1896,6 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API HTTP}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::http::mode">
-									<option value="enable">{{Activé}}</option>
-									<option value="whiteip">{{IP blanche}}</option>
-									<option value="localhost">{{Localhost}}</option>
-									<option value="disable">{{Désactivé}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC (App Mobile)}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
-									<option value="enable">{{Activé}}</option>
-									<option value="whiteip">{{IP blanche}}</option>
-									<option value="localhost">{{Localhost}}</option>
-									<option value="disable">{{Désactivé}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
