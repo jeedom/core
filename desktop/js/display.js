@@ -25,12 +25,13 @@ $('#in_search').on('keyup', function() {
     var searchID = search
     if (isNaN(search)) searchID = false
 
-    $('div.panel-collapse').removeClass('in')
+    $('.panel-collapse').attr('data-show', 0)
     $('.cmd').show().removeClass('alert-success').addClass('alert-info')
     $('.eqLogic').show()
     $('.cmdSortable').hide()
     if (!search.startsWith('*') && searchID == false) {
       if ((search == '' || _nbCmd_ <= 1500 && search.length < 3) || (_nbCmd_ > 1500 && search.length < 4)) {
+        $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
         return
       }
     } else {
@@ -55,7 +56,7 @@ $('#in_search').on('keyup', function() {
           cmd = $(this)
           cmdId = cmd.attr('data-id')
           if (cmdId == searchID) {
-            eqParent.find('div.panel-collapse').addClass('in')
+            eqLogic.parents('.panel-collapse').attr('data-show', 1)
             eqLogic.show()
             eqLogic.find('.cmdSortable').show()
             cmd.removeClass('alert-warning').addClass('alert-success')
@@ -69,14 +70,14 @@ $('#in_search').on('keyup', function() {
         if (eqName.indexOf(search) < 0 && type.indexOf(search) < 0 && category.indexOf(search) < 0) {
           eqLogic.hide()
         } else {
-          eqParent.find('div.panel-collapse').addClass('in')
+          eqLogic.parents('.panel-collapse').attr('data-show', 1)
         }
         eqLogic.find('.cmd').each(function() {
           cmd = $(this)
           cmdName = cmd.attr('data-name')
           cmdName = jeedomUtils.normTextLower(cmdName)
           if (cmdName.indexOf(search) >= 0) {
-            eqParent.find('div.panel-collapse').addClass('in')
+            eqLogic.parents('.panel-collapse').attr('data-show', 1)
             eqLogic.show()
             eqLogic.find('.cmdSortable').show()
             cmd.removeClass('alert-warning').addClass('alert-success')
@@ -84,6 +85,8 @@ $('#in_search').on('keyup', function() {
         })
       }
     })
+    $('.panel-collapse[data-show=1]').collapse('show')
+    $('.panel-collapse[data-show=0]').collapse('hide')
   } catch (error) {
     console.error(error)
   }
