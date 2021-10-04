@@ -503,6 +503,19 @@ class jeedom {
 		if (trim($_apikey) == '') {
 			return false;
 		}
+		$user = user::byHash($_apikey);
+		if (is_object($user)) {
+			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
+				return false;
+			}
+			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
+				return false;
+			}
+			global $_USER_GLOBAL;
+			$_USER_GLOBAL = $user;
+			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
+			return true;
+		}
 		if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
 			return false;
 		}
@@ -510,22 +523,6 @@ class jeedom {
 		if (trim($apikey) != '' && $apikey == $_apikey) {
 			global $_RESTRICTED;
 			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
-			return true;
-		}
-		$user = user::byHash($_apikey);
-		if (is_object($user)) {
-			if ($user->getEnable() == 0) {
-				return false;
-			}
-			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
-				return false;
-			}
-			if (!self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
-				return false;
-			}
-			global $_USER_GLOBAL;
-			$_USER_GLOBAL = $user;
-			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
 			return true;
 		}
 		return false;

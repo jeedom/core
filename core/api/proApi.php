@@ -37,10 +37,6 @@ try {
 
 	$jsonrpc = new jsonrpc($request);
 
-	if (!jeedom::apiModeResult(config::byKey('api::core::apipro::mode', 'core', 'enable'))) {
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
-	}
-
 	if ($jsonrpc->getJsonrpc() != '2.0') {
 		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
 	}
@@ -51,7 +47,7 @@ try {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	if (isset($params['proapi']) && !jeedom::apiAccess($params['proapi'], 'apipro')) {
+	if (!jeedom::apiAccess($params['proapi'], 'apipro')) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
