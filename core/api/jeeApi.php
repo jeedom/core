@@ -321,9 +321,6 @@ try {
 	if ($_RESTRICTED) {
 		if ($params['plugin'] != 'core') {
 			log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
-			if (!is_object(plugin::byId($params['plugin']))) {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2', __FILE__), -32002);
-			}
 			try {
 				include_file('core', $params['plugin'], 'api', $params['plugin']);
 			} catch (\Exception $e) {
