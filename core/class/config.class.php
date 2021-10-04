@@ -24,7 +24,7 @@ class config {
 
 	private static $defaultConfiguration = array();
 	private static $cache = array();
-	private static $encryptKey = array('apipro','apimarket','samba::backup::password','samba::backup::ip','samba::backup::username','ldap:password','ldap:host','ldap:username','dns::token','api');
+	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
 	private static $nocache = array('enableScenario');
 
 	/*     * ***********************Methode static*************************** */
@@ -35,7 +35,7 @@ class config {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
 				if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
 					$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
-					self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'],$custom['core']);
+					self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
 				}
 			} else {
 				$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
@@ -50,12 +50,12 @@ class config {
 		return self::$defaultConfiguration[$_plugin];
 	}
 	/**
-	* Save key to config
-	* @param string $_key
-	* @param string | object | array $_value
-	* @param string $_plugin
-	* @return boolean
-	*/
+	 * Save key to config
+	 * @param string $_key
+	 * @param string | object | array $_value
+	 * @param string $_plugin
+	 * @return boolean
+	 */
 	public static function save($_key, $_value, $_plugin = 'core') {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
@@ -78,15 +78,15 @@ class config {
 
 		$class = ($_plugin == 'core') ? 'config' : $_plugin;
 
-		$function = 'preConfig_' . str_replace(array('::', ':','-'), '_', $_key);
+		$function = 'preConfig_' . str_replace(array('::', ':', '-'), '_', $_key);
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
-		if($_plugin == 'core' && in_array($_key,self::$encryptKey)){
+		if ($_plugin == 'core' && in_array($_key, self::$encryptKey)) {
 			$_value = utils::encrypt($_value);
-		}else if($_plugin != 'core' && class_exists($class) && property_exists($class, '_encryptConfigKey') && in_array($_key,$class::$_encryptConfigKey)){
+		} else if ($_plugin != 'core' && class_exists($class) && property_exists($class, '_encryptConfigKey') && in_array($_key, $class::$_encryptConfigKey)) {
 			$_value = utils::encrypt($_value);
-		}else if($_key == 'api'){
+		} else if ($_key == 'api') {
 			$_value = utils::encrypt($_value);
 		}
 		$values = array(
@@ -107,10 +107,10 @@ class config {
 	}
 
 	/**
-	* Delete key from config
-	* @param string $_key nom de la clef à supprimer
-	* @return boolean vrai si ok faux sinon
-	*/
+	 * Delete key from config
+	 * @param string $_key nom de la clef à supprimer
+	 * @return boolean vrai si ok faux sinon
+	 */
 	public static function remove($_key, $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(
@@ -135,12 +135,12 @@ class config {
 	}
 
 	/**
-	* Get config by key
-	* @param string $_key nom de la clef dont on veut la valeur
-	* @return string valeur de la clef
-	*/
+	 * Get config by key
+	 * @param string $_key nom de la clef dont on veut la valeur
+	 * @return string valeur de la clef
+	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
-		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key,self::$nocache)) {
+		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {
 			return self::$cache[$_plugin . '::' . $_key];
 		}
 		$values = array(
@@ -156,15 +156,15 @@ class config {
 			$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 			if (isset($defaultConfiguration[$_plugin][$_key])) {
 				self::$cache[$_plugin . '::' . $_key] = $defaultConfiguration[$_plugin][$_key];
-			}else if ($_default !== '') {
+			} else if ($_default !== '') {
 				self::$cache[$_plugin . '::' . $_key] = $_default;
 			}
 		} else {
-			if($_plugin == 'core' && in_array($_key,self::$encryptKey)){
+			if ($_plugin == 'core' && in_array($_key, self::$encryptKey)) {
 				$value['value'] = utils::decrypt($value['value']);
-			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key,$_plugin::$_encryptConfigKey)){
+			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key, $_plugin::$_encryptConfigKey)) {
 				$value['value'] = utils::decrypt($value['value']);
-			}else if($_key == 'api'){
+			} else if ($_key == 'api') {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
@@ -187,11 +187,11 @@ class config {
 		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
-			if($_plugin == 'core' && in_array($value['key'],self::$encryptKey)){
+			if ($_plugin == 'core' && in_array($value['key'], self::$encryptKey)) {
 				$value['value'] = utils::decrypt($value['value']);
-			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'],$_plugin::$_encryptConfigKey)){
+			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'], $_plugin::$_encryptConfigKey)) {
 				$value['value'] = utils::decrypt($value['value']);
-			}else if($value['key'] == 'api'){
+			} else if ($value['key'] == 'api') {
 				$value['key'] = utils::decrypt($value['key']);
 			}
 			$return[$value['key']] = $value['value'];
@@ -229,11 +229,11 @@ class config {
 		AND plugin=:plugin';
 		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($results as &$result) {
-			if($_plugin == 'core' && in_array($result['key'],self::$encryptKey)){
+			if ($_plugin == 'core' && in_array($result['key'], self::$encryptKey)) {
 				$result['value'] = utils::decrypt($result['value']);
-			}else	if($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($result['key'],$_plugin::$_encryptConfigKey)){
+			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($result['key'], $_plugin::$_encryptConfigKey)) {
 				$result['value'] = utils::decrypt($result['value']);
-			}else if($result['key'] == 'api'){
+			} else if ($result['key'] == 'api') {
 				$result['value'] = utils::decrypt($result['value']);
 			}
 			$result['value'] = is_json($result['value'], $result['value']);
@@ -280,14 +280,14 @@ class config {
 
 	/*     * *********************Generic check value************************* */
 
-	public static function checkValueBetween($_value,$_min=null,$_max=null){
-		if($_min !== null && $_value<$_min){
+	public static function checkValueBetween($_value, $_min = null, $_max = null) {
+		if ($_min !== null && $_value < $_min) {
 			return $_min;
 		}
-		if($_max !== null && $_value>$_max){
+		if ($_max !== null && $_value > $_max) {
 			return $_max;
 		}
-		if(is_nan($_value) || $_value === ''){
+		if (is_nan($_value) || $_value === '') {
 			return ($_min !== 0) ? $_min : 0;
 		}
 		return $_value;
@@ -295,7 +295,7 @@ class config {
 
 	/*     * *********************Action sur config************************* */
 
-	public static function postConfig_market_allowDns($_value){
+	public static function postConfig_market_allowDns($_value) {
 		if ($_value == 1) {
 			if (!network::dns_run()) {
 				network::dns_start();
@@ -307,13 +307,13 @@ class config {
 		}
 	}
 
-	public static function postConfig_interface_advance_vertCentering($_value){
+	public static function postConfig_interface_advance_vertCentering($_value) {
 		cache::flushWidget();
 	}
 
-	public static function postConfig_object_summary($_value){
+	public static function postConfig_object_summary($_value) {
 		try {
-			foreach(jeeObject::all() as $object) {
+			foreach (jeeObject::all() as $object) {
 				$object->setChanged(true);
 				$object->cleanSummary();
 			}
@@ -339,7 +339,8 @@ class config {
 						$result = jeeObject::getGlobalSummary($key);
 						if ($result === null) continue;
 						$event['keys'][$key] = array('value' => $result);
-					} catch (Exception $e) {}
+					} catch (Exception $e) {
+					}
 				}
 				$events[] = $event;
 			}
@@ -347,16 +348,15 @@ class config {
 				event::adds('jeeObject::summary::update', $events);
 			}
 		} catch (\Exception $e) {
-
 		}
 	}
 
-	public static function preConfig_historyArchivePackage($_value){
-		return self::checkValueBetween($_value,1);
+	public static function preConfig_historyArchivePackage($_value) {
+		return self::checkValueBetween($_value, 1);
 	}
 
-	public static function preConfig_historyArchiveTime($_value){
-		return self::checkValueBetween($_value,2);
+	public static function preConfig_historyArchiveTime($_value) {
+		return self::checkValueBetween($_value, 2);
 	}
 
 	public static function preConfig_market_password($_value) {
@@ -367,56 +367,55 @@ class config {
 	}
 
 	public static function preConfig_widget_margin($_value) {
-		return self::checkValueBetween($_value,0);
+		return self::checkValueBetween($_value, 0);
 	}
 
 	public static function preConfig_widget_step_width($_value) {
-		return self::checkValueBetween($_value,1);
+		return self::checkValueBetween($_value, 1);
 	}
 
 	public static function preConfig_widget_step_height($_value) {
-		return self::checkValueBetween($_value,1);
+		return self::checkValueBetween($_value, 1);
 	}
 
 	public static function preConfig_css_background_opacity($_value) {
-		return self::checkValueBetween($_value,0,1);
+		return self::checkValueBetween($_value, 0, 1);
 	}
 
 	public static function preConfig_css_border_radius($_value) {
-		return self::checkValueBetween($_value,0,1);
+		return self::checkValueBetween($_value, 0, 1);
 	}
 
-	public static function preConfig_name($_value){
-		return str_replace(array('\\','/',"'",'"'),'',$_value);
+	public static function preConfig_name($_value) {
+		return str_replace(array('\\', '/', "'", '"'), '', $_value);
 	}
 
-	public static function preConfig_info_latitude($_value){
-		return str_replace(',','.',$_value);
+	public static function preConfig_info_latitude($_value) {
+		return str_replace(',', '.', $_value);
 	}
 
-	public static function preConfig_info_longitude($_value){
-		return str_replace(',','.',$_value);
+	public static function preConfig_info_longitude($_value) {
+		return str_replace(',', '.', $_value);
 	}
 
-	public static function preConfig_tts_engine($_value){
+	public static function preConfig_tts_engine($_value) {
 		try {
-			if($_value != config::byKey('tts::engine')){
+			if ($_value != config::byKey('tts::engine')) {
 				rrmdir(jeedom::getTmpFolder('tts'));
 			}
 		} catch (\Exception $e) {
-
 		}
 		return $_value;
 	}
 
 	/*     * *********************Stats************************************* */
-	public static function getHistorizedCmdNum(){
+	public static function getHistorizedCmdNum() {
 		$sql = 'SELECT COUNT(*) FROM `cmd` WHERE `isHistorized` = 1';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		return $result[0]['COUNT(*)'];
 	}
 
-	public static function getTimelinedCmdNum(){
+	public static function getTimelinedCmdNum() {
 		$sql = 'SELECT COUNT(*) FROM `cmd` WHERE `configuration` LIKE \'%"timeline::enable":"1"%\'';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		return $result[0]['COUNT(*)'];

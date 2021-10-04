@@ -453,6 +453,12 @@ class jeedom {
 			}
 			return config::byKey('apipro');
 		}
+		if ($_plugin == 'apitts') {
+			if (config::byKey('apitts') == '') {
+				config::save('apitts', config::genKey());
+			}
+			return config::byKey('apitts');
+		}
 		if ($_plugin == 'apimarket') {
 			if (config::byKey('apimarket') == '') {
 				config::save('apimarket', config::genKey());
@@ -497,10 +503,7 @@ class jeedom {
 		if (trim($_apikey) == '') {
 			return false;
 		}
-		if ($_plugin != 'core' && self::apiAccess($_apikey)) {
-			return true;
-		}
-		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
+		if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
 			return false;
 		}
 		$apikey = self::getApiKey($_plugin);
@@ -515,6 +518,9 @@ class jeedom {
 				return false;
 			}
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
+				return false;
+			}
+			if (!self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
 				return false;
 			}
 			global $_USER_GLOBAL;

@@ -37,7 +37,7 @@ try {
 
 	$jsonrpc = new jsonrpc($request);
 
-	if (!jeedom::apiModeResult(config::byKey('api::core::pro::mode', 'core', 'enable'))) {
+	if (!jeedom::apiModeResult(config::byKey('api::core::apipro::mode', 'core', 'enable'))) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
@@ -235,7 +235,6 @@ try {
 						$health[] = array('plugin' => $plugin_id, 'type' => 'dépendance', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 					}
 				} catch (Exception $e) {
-
 				}
 				try {
 					if ($plugin->getHasOwnDeamon() == 1) {
@@ -277,7 +276,6 @@ try {
 						$health[] = array('plugin' => $plugin_id, 'type' => 'Statut démon', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 					}
 				} catch (Exception $e) {
-
 				}
 
 				try {
@@ -293,7 +291,6 @@ try {
 						}
 					}
 				} catch (Exception $e) {
-
 				}
 			}
 
@@ -485,7 +482,6 @@ try {
 				$return[$id] = $info_eqLogic;
 			}
 			$jsonrpc->makeSuccess($return);
-
 		}
 
 		/*             * ************************Commande*************************** */
@@ -627,7 +623,6 @@ try {
 				try {
 					$plugin->launch('slaveReload');
 				} catch (Exception $ex) {
-
 				}
 			}
 			$jsonrpc->makeSuccess('ok');
@@ -826,14 +821,14 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'plugin::specificInfos') {
-		    $infos = array();
-		    foreach (plugin::listPlugin() as $plugin) {
-			$pluginId = $plugin->getId();
-			if(method_exists($pluginId, 'proApi')){
-			    $infos[] = $pluginId::proApi();
+			$infos = array();
+			foreach (plugin::listPlugin() as $plugin) {
+				$pluginId = $plugin->getId();
+				if (method_exists($pluginId, 'proApi')) {
+					$infos[] = $pluginId::proApi();
+				}
 			}
-		    }
-		    $jsonrpc->makeSuccess($infos);
+			$jsonrpc->makeSuccess($infos);
 		}
 
 		/*             * ************************Update*************************** */
@@ -891,7 +886,7 @@ try {
 		/*             * ************************************************************************ */
 	}
 	throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
-/*         * *********Catch exeption*************** */
+	/*         * *********Catch exeption*************** */
 } catch (Exception $e) {
 	$message = $e->getMessage();
 	$jsonrpc = new jsonrpc(init('request'));

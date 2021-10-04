@@ -16,11 +16,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . "/../php/core.inc.php";
-if (!jeedom::apiModeResult(config::byKey('api::core::tts::mode', 'core', 'enable'))) {
-	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
-	die();
-}
-if (!jeedom::apiAccess(init('apikey'))) {
+if (!jeedom::apiAccess(init('apikey'), 'apitts')) {
 	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
