@@ -49,10 +49,8 @@ if (user::isBan()) {
 	die();
 }
 
-if (!isConnect() && isset($_COOKIE['registerDevice'])) {
-	if (!loginByHash($_COOKIE['registerDevice'])) {
-		setcookie('registerDevice', '');
-	}
+if (!isConnect() && isset($_COOKIE['registerDevice']) && !loginByHash($_COOKIE['registerDevice'])) {
+	setcookie('registerDevice', '');
 }
 
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
