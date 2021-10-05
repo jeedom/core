@@ -271,7 +271,7 @@ try {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	if ($params['plugin'] == 'core' && !jeedom::apiModeResult(config::byKey('api::' . $params['plugin'] . '::mode', 'core', 'enable'))) {
+	if (!jeedom::apiModeResult(config::byKey('api::' . $params['plugin'] . '::mode', 'core', 'enable'))) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
