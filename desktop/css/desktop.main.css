@@ -626,6 +626,7 @@ Desktop
     list-style-type: none;
     padding-left: 0px;
     min-height: 30px !important;
+    border: 1px dashed var(--placeholder-color) !important;
   }
   #searchResult a[role=searchTabLink] {
     display: table;
