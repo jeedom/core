@@ -38,7 +38,7 @@ try {
 	if ($request == '') {
 		$request = file_get_contents("php://input");
 	}
-	log::add('apipro', 'info', $request . ' - IP :' . $IP);
+	log::add('apipro', 'info', secureXSS($request) . ' - IP :' . $IP);
 
 	$jsonrpc = new jsonrpc($request);
 
