@@ -42,28 +42,16 @@ if (init('type') != '') {
 		}
 		$type = init('type');
 		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp() . ' => ' . json_encode($_GET));
-		if ($type == 'ask') {
-			if ($_RESTRICTED) {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
-			}
-			$cmd = cmd::byId(init('cmd_id'));
-			if (!is_object($cmd)) {
-				throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd_id'));
-			}
-			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
-				throw new Exception(__('Token invalide', __FILE__) . $cmd->getCache('ask::token') . ' != ' . init('token'));
-			}
-			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
-				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
-				die();
-			}
-			$cmd->askResponse(init('response'));
-		}
 
+		if ($type == 'event' && class_exists($plugin) && method_exists($plugin, 'event')) {
+			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($plugin) . '::event()');
+			$plugin::event();
+			die();
+		}
+		if ($_RESTRICTED) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+		}
 		if ($type == 'cmd') {
-			if ($_RESTRICTED) {
-				throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
-			}
 			if (is_json(init('id'))) {
 				$ids = json_decode(init('id'), true);
 				$result = array();
@@ -72,7 +60,7 @@ if (init('type') != '') {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS($id));
 					}
-					if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
+					if ($plugin != 'core' && $plugin != $cmd->getEqType()) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2, IP : ', __FILE__) . getClientIp());
 					}
 					if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
@@ -87,7 +75,7 @@ if (init('type') != '') {
 				if (!is_object($cmd)) {
 					throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 				}
-				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
+				if ($plugin != 'core' && $plugin != $cmd->getEqType()) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 				}
 				if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
@@ -98,16 +86,19 @@ if (init('type') != '') {
 				die();
 			}
 		}
-		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
-		}
-		if (class_exists($type) && method_exists($type, 'event')) {
-			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
-			$type::event();
-			die();
-		}
-		if ($_RESTRICTED) {
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+		if ($type == 'ask') {
+			$cmd = cmd::byId(init('cmd_id'));
+			if (!is_object($cmd)) {
+				throw new Exception(__('Commande inconnue : ', __FILE__) . init('cmd_id'));
+			}
+			if ($cmd->getCache('ask::token', config::genKey()) != init('token')) {
+				throw new Exception(__('Token invalide', __FILE__) . $cmd->getCache('ask::token') . ' != ' . init('token'));
+			}
+			if (init('count', 0) != 0 && init('count', 0) > $cmd->getCache('ask::count', 0)) {
+				$cmd->setCache('ask::count', $cmd->getCache('ask::count', 0) + 1);
+				die();
+			}
+			$cmd->askResponse(init('response'));
 		}
 		if ($type == 'interact') {
 			$query = init('query');
