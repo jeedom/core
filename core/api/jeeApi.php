@@ -31,11 +31,7 @@ global $_RESTRICTED;
 $_RESTRICTED = false;
 if (init('type') != '') {
 	try {
-		$type = init('type');
 		$plugin = init('plugin', 'core');
-		if ($plugin == 'core' && !in_array($type, array('ask', 'cmd', 'interact', 'scenario', 'message', 'object', 'eqLogic', 'command', 'fullData', 'variable'))) {
-			$plugin = init('type');
-		}
 		if (in_array($plugin, array('apitts', 'apipro', 'apimarket'))) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
 		}
@@ -44,6 +40,7 @@ if (init('type') != '') {
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 		}
+		$type = init('type');
 		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp() . ' => ' . json_encode($_GET));
 		if ($type == 'ask') {
 			if ($_RESTRICTED) {
