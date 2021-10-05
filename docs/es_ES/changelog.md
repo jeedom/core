@@ -60,15 +60,15 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 ### 4.2 : Seguridad
 
-Jeedom 4.2 contiene una gran parte sobre el aumento de la seguridad de Jeedom. Esto puede tener un impacto en algunos complementos (todavía es limitado). En particular hay : 
+Jeedom 4.2 contiene una parte importante en el aumento de la seguridad.
 
-- cambio de política de acceso a archivos : antes prohibíamos ciertos archivos ahora solo permitimos ciertos archivos
-- cambio a nivel de la API, antes era "tolerante" si llegas con la clave del core e indicando plugin XXXXX deja pasar, este ya no es el caso debes llegar con la clave correspondiente al plugin
-- en http api podría indicar un nombre de complemento en el tipo, ya no es posible el tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd ...) y el complemento corresponde al complemento
-- fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto)
-- la cookie "permanecer conectado" (3 meses como máximo) y ahora "one shot" se renueva con cada uso
+- Cambio de política de acceso a archivos : Antes prohibíamos ciertos archivos, ahora solo permitimos ciertos archivos.
+- Cambie en el nivel de la API, antes de que fuera "tolerante" si llegaba con la clave principal indicando complemento XXXXX. Este ya no es el caso, debes llegar con la clave correspondiente al plugin.
+- En la API http, puede indicar un nombre de complemento en el tipo, esto ya no es posible. El tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd, etc.) debe corresponder al complemento.
+- Fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto).
+- La cookie "permanecer conectado" (3 meses como máximo) ahora es "de una sola vez", que se renueva con cada uso.
 
-El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad 
+El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad .
 
 # Registro de cambios Jeedom V4.1
 

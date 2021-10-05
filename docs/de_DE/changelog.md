@@ -60,15 +60,15 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 
 ### 4.2 : Sicherheit
 
-Jeedom 4.2 enthält einen großen Teil über die Erhöhung der Sicherheit von Jeedom. Dies kann sich auf einige Plugins auswirken (es ist immer noch begrenzt .)). Insbesondere gibt es : 
+Jeedom 4.2 enthält einen großen Teil zur Erhöhung der Sicherheit.
 
-- Änderung der Dateizugriffsrichtlinie : bevor wir bestimmte Dateien verboten haben jetzt erlauben wir nur bestimmte Dateien
-- auf der Ebene der API ändern, bevor es "tolerant" war, wenn Sie mit dem Kernschlüssel ankommen und angeben, dass das Plugin XXXXX passieren lässt, ist dies nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel ankommen
-- in http api könnten Sie einen Plugin-Namen im Typ angeben, es ist nicht mehr möglich, dass der Typ dem Typ der Anfrage entspricht (szenario, eqLogic, cmd ...) und das Plugin dem Plugin entspricht
-- Verstärkung der Sitzungen (Änderung zu sha256 mit 64 Zeichen im strikten Modus)
-- der "Bleib in Verbindung"-Cookie (maximal 3 Monate) und jetzt "one shot" wird er bei jeder Verwendung erneuert
+- Änderung der Dateizugriffsrichtlinie : Bevor wir bestimmte Dateien verboten haben, erlauben wir jetzt nur bestimmte Dateien.
+- Ändern Sie auf der Ebene der API, bevor sie "tolerant" war, wenn Sie mit dem Core-Schlüssel angekommen sind, indem Sie das Plugin angeben XXXXX. Dies ist nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel anreisen.
+- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen.
+- Verstärkung der Sitzungen (Änderung zu sha256 mit 64 Zeichen im strikten Modus).
+- Der "Bleib in Verbindung"-Cookie (maximal 3 Monate) ist jetzt "einmalig", bei jeder Verwendung erneuert.
 
-Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen 
+Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen .
 
 # Changelog Jeedom V4.1
 

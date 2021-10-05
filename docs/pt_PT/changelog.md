@@ -60,15 +60,15 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ### 4.2 : Segurança
 
-Jeedom 4.2 contém uma grande parte sobre o aumento da segurança da Jeedom. Isso pode ter um impacto em alguns plugins (ainda é limitado). Em particular, há : 
+Jeedom 4.2 contém uma grande parte no aumento da segurança.
 
-- mudança de política de acesso a arquivos : antes de proibirmos certos arquivos, agora permitimos apenas alguns arquivos
-- mudança no nível da API, antes que fosse "tolerante" se você chegasse com a chave do núcleo e indicando o plugin XXXXX ele deixou passar, não é mais o caso você deve chegar com a chave correspondente ao plugin
-- na api http você poderia indicar um nome de plugin em tipo, não é mais possível o tipo correspondente ao tipo da solicitação (cenário, eqLogic, cmd ...) e plugin corresponde ao plugin
-- fortalecimento das sessões (mudar para sha256 com 64 caracteres em modo estrito)
-- o cookie "fique conectado" (3 meses no máximo) e agora "one shot" é renovado a cada uso
+- Mudança de política de acesso a arquivos : Antes proibíamos certos arquivos, agora permitimos apenas alguns arquivos.
+- Mudança no nível da API, antes que fosse "tolerante" se você chegasse com a chave Core indicando plugin XXXXX. Este não é mais o caso, você deve chegar com a chave correspondente ao plugin.
+- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin.
+- Fortalecimento das sessões (mudar para sha256 com 64 caracteres em modo estrito).
+- O cookie "fique conectado" (3 meses no máximo) agora é "one shot", renovado a cada uso.
 
-A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança 
+A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança .
 
 # Registro de alterações Jeedom V4.1
 

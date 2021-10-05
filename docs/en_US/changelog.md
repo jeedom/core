@@ -60,15 +60,15 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 ### 4.2 : Security
 
-Jeedom 4.2 contains a big part on increasing Jeedom's security. This can have an impact on some plugins (it's still limited). In particular there is : 
+Jeedom 4.2 contains a big part on increasing security.
 
-- change of file access policy : before we prohibited certain files now we only allow certain files
-- change at the level of the API, before it was "tolerant" if you arrive with the core key and indicating plugin XXXXX it let pass, this is no longer the case you must arrive with the key corresponding to the plugin
-- in http api you could indicate a plugin name in type, it is no longer possible the type corresponding to the type of the request (scenario, eqLogic, cmd ...) and plugin corresponds to the plugin
-- strengthening of sessions (change to sha256 with 64 characters in strict mode)
-- the "stay connected" cookie (3 months max) and now "one shot" it is renewed with each use
+- Change of file access policy : Before we prohibited certain files, now we only allow certain files.
+- Change at the level of the API, before it was "tolerant" if you arrived with the Core key by indicating plugin XXXXX. This is no longer the case, you must arrive with the key corresponding to the plugin.
+- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin.
+- Strengthening of sessions (change to sha256 with 64 characters in strict mode).
+- The "stay connected" cookie (3 months max) is now "one shot", renewed with each use.
 
-The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety 
+The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety .
 
 # Changelog Jeedom V4.1
 
