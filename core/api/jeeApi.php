@@ -36,10 +36,13 @@ if (init('type') != '') {
 		if ($plugin == 'core' && !in_array($type, array('ask', 'cmd', 'interact', 'scenario', 'message', 'object', 'eqLogic', 'command', 'fullData', 'variable'))) {
 			$plugin = init('type');
 		}
+		if (in_array($plugin, array('apitts', 'apipro', 'apimarket'))) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+		}
 		if (!jeedom::apiAccess(init('apikey', init('api')), $plugin)) {
 			user::failedLogin();
 			sleep(5);
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1, IP : ', __FILE__) . getClientIp());
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 		}
 		log::add('api', 'debug', __('Demande sur l\'api http venant de : ', __FILE__) . getClientIp() . ' => ' . json_encode($_GET));
 		if ($type == 'ask') {
@@ -88,10 +91,10 @@ if (init('type') != '') {
 					throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 				}
 				if (init('plugin', 'core') != 'core' && init('plugin', 'core') != $cmd->getEqType()) {
-					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 3, IP : ', __FILE__) . getClientIp());
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 				}
 				if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
-					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4, IP : ', __FILE__) . getClientIp());
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 				}
 				log::add('api', 'debug', __('Exécution de : ', __FILE__) . $cmd->getHumanName());
 				echo $cmd->execCmd($_REQUEST);
@@ -99,7 +102,7 @@ if (init('type') != '') {
 			}
 		}
 		if ($type != init('plugin', 'core') && init('plugin', 'core') != 'core') {
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 4, IP : ', __FILE__) . getClientIp());
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 		}
 		if (class_exists($type) && method_exists($type, 'event')) {
 			log::add('api', 'info', __('Appels de ', __FILE__) . secureXSS($type) . '::event()');
