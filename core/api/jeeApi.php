@@ -253,7 +253,7 @@ try {
 	if ($request == '') {
 		$request = file_get_contents("php://input");
 	}
-	log::add('api', 'info', $request . ' - IP :' . $IP);
+	log::add('api', 'info', secureXSS($request) . ' - IP :' . $IP);
 
 	$jsonrpc = new jsonrpc($request);
 
@@ -329,7 +329,7 @@ try {
 				}
 			}
 		}
-		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
+		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . $jsonrpc->getMethod(), -32500);
 	}
 
 	if ($jsonrpc->getMethod() == 'ping') {
@@ -1276,6 +1276,6 @@ try {
 	$message = $e->getMessage();
 	$jsonrpc = new jsonrpc(init('request'));
 	$errorCode = (is_numeric($e->getCode())) ? -32000 - $e->getCode() : -32599;
-	log::add('api', 'info', 'Error code ' . $errorCode . ' : ' . $message);
+	log::add('api', 'info', 'Error code ' . $errorCode . ' : ' . secureXSS($message));
 	$jsonrpc->makeError($errorCode, $message);
 }
