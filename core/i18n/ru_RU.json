@@ -4530,15 +4530,13 @@
         "Aucune méthode correspondante : ": "Aucune méthode correspondante :"
     },
     "core\/api\/jeeApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",
-        "Demande sur l\\'api http venant de : ": "Demande sur l\\'api http venant de :",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Vous n\\'êtes pas autorisé à effectuer cette action",
+        "Vous n\\'êtes pas autorisé à effectuer cette action, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
+        "Demande sur l\\'api http venant de : ": "Demande sur l\\'api http venant de :",
         "Commande inconnue : ": "Commande inconnue :",
         "Token invalide": "Token invalide",
         "Aucune commande correspondant à l\\'ID : ": "Aucune commande correspondant à l\\'ID :",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP :",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 3, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 3, IP :",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 4, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 4, IP :",
         "Exécution de : ": "Exécution de :",
         "Appels de ": "звонки",
         "Demande API pour les scénarios": "Demande API pour les scénarios",

@@ -4530,15 +4530,13 @@
         "Aucune méthode correspondante : ": "Karşılık gelen yöntem yok:"
     },
     "core\/api\/jeeApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",
-        "Demande sur l\\'api http venant de : ": "Http API'sından gelen istek:",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
+        "Vous n\\'êtes pas autorisé à effectuer cette action, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
+        "Demande sur l\\'api http venant de : ": "Http API'sından gelen istek:",
         "Commande inconnue : ": "Bilinmeyen komut:",
         "Token invalide": "Geçersiz simge",
         "Aucune commande correspondant à l\\'ID : ": "Kimliğe karşılık gelen komut yok:",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP :",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 3, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 3, IP :",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 4, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 4, IP :",
         "Exécution de : ": "Yürütme:",
         "Appels de ": "Tarafından yapılan aramalar",
         "Demande API pour les scénarios": "Senaryolar için API isteği",
