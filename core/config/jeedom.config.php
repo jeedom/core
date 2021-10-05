@@ -171,7 +171,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'FLAP_UP' => array('name' => __('Volet Bouton Monter',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action','summary' => array('subtype' => 'other'),'subtype' => array('other')),
 		'FLAP_DOWN' => array('name' => __('Volet Bouton Descendre',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action','summary' => array('subtype' => 'other'),'subtype' => array('other')),
 		'FLAP_STOP' => array('name' => __('Volet Bouton Stop',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action'),
-		'FLAP_SLIDER' => array('name' => __('Volet Bouton Slider',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action','summary' => array('subtype' => 'slider')),
+		'FLAP_SLIDER' => array('name' => __('Volet Bouton Slider',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action','summary' => array('subtype' => 'slider'),'subtype' => array('slider')),
 		'FLAP_BSO_STATE' => array('name' => __('Volet BSO Etat',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Info','subtype' => array('binary','numeric')),
 		'FLAP_BSO_UP' => array('name' => __('Volet BSO Bouton Monter',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action','summary' => array('subtype' => 'other'),'subtype' => array('other')),
 		'FLAP_BSO_DOWN' => array('name' => __('Volet BSO Bouton Descendre',__FILE__), 'family' => __('Volet',__FILE__), 'type' => 'Action','summary' => array('subtype' => 'other'),'subtype' => array('other')),

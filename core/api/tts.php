@@ -26,7 +26,6 @@ if (user::isBan()) {
 	die();
 }
 
-
 if (!jeedom::apiAccess(init('apikey'), 'apitts')) {
 	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();

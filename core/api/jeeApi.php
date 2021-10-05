@@ -25,14 +25,6 @@ if (user::isBan()) {
 	echo "The page that you have requested could not be found.";
 	die();
 }
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_REQUEST[$argList[0]] = $argList[1];
-		}
-	}
-}
 global $_USER_GLOBAL;
 $_USER_GLOBAL = null;
 global $_RESTRICTED;
@@ -319,9 +311,7 @@ try {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 	$apikey = isset($params['apikey']) ? $params['apikey'] : $params['api'];
-	if (!isset($params['plugin']) || $params['plugin'] == '') {
-		$params['plugin'] = 'core';
-	}
+
 	if (!jeedom::apiAccess($apikey, $params['plugin'])) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
 	}
