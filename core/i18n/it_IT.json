@@ -4502,7 +4502,7 @@
         "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",
+        "Vous n\\'êtes pas autorisé à effectuer cette action, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Tous les crons sont actuellement désactivés": "Tutti i croni sono attualmente disabilitati"
     },
     "core\/api\/proApi.php": {
@@ -4533,12 +4533,12 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Non sei autorizzato a eseguire questa azione",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de : ": "Richiesta sull'API http proveniente da:",
-        "Commande inconnue : ": "Comando sconosciuto:",
-        "Token invalide": "Token non valido",
+        "Appels de ": "Chiamate da",
         "Aucune commande correspondant à l\\'ID : ": "Nessun comando corrispondente all'ID:",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP :",
         "Exécution de : ": "Esecuzione di:",
-        "Appels de ": "Chiamate da",
+        "Commande inconnue : ": "Comando sconosciuto:",
+        "Token invalide": "Token non valido",
         "Demande API pour les scénarios": "Richiesta API per scenari",
         "Aucun scénario correspondant à l\\'ID : ": "Nessuno scenario corrispondente all'ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Non ti è permesso di agire in questo scenario",

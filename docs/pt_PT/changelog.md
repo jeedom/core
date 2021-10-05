@@ -58,6 +58,18 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 >
 > Após a atualização, você DEVE ir para Configurações → Sistema → guia Atualização de configuração / Mercado e inserir a confirmação da senha do backup em nuvem para que isso possa ser feito.
 
+### 4.2 : Segurança
+
+Jeedom 4.2 contém uma grande parte sobre o aumento da segurança da Jeedom. Isso pode ter um impacto em alguns plugins (ainda é limitado). Em particular, há : 
+
+- mudança de política de acesso a arquivos : antes de proibirmos certos arquivos, agora permitimos apenas alguns arquivos
+- mudança no nível da API, antes que fosse "tolerante" se você chegasse com a chave do núcleo e indicando o plugin XXXXX ele deixou passar, não é mais o caso você deve chegar com a chave correspondente ao plugin
+- na api http você poderia indicar um nome de plugin em tipo, não é mais possível o tipo correspondente ao tipo da solicitação (cenário, eqLogic, cmd ...) e plugin corresponde ao plugin
+- fortalecimento das sessões (mudar para sha256 com 64 caracteres em modo estrito)
+- o cookie "fique conectado" (3 meses no máximo) e agora "one shot" é renovado a cada uso
+
+A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança 
+
 # Registro de alterações Jeedom V4.1
 
 ## 4.1.25
