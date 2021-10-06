@@ -514,20 +514,18 @@ class jeedom {
 		if (trim($_apikey) == '') {
 			return false;
 		}
-		if ($_plugin == 'core') {
-			$user = user::byHash($_apikey);
-			if (is_object($user)) {
-				if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
-					return false;
-				}
-				if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
-					return false;
-				}
-				global $_USER_GLOBAL;
-				$_USER_GLOBAL = $user;
-				log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
-				return true;
+		$user = user::byHash($_apikey);
+		if (is_object($user)) {
+			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
+				return false;
 			}
+			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
+				return false;
+			}
+			global $_USER_GLOBAL;
+			$_USER_GLOBAL = $user;
+			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
+			return true;
 		}
 		if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
 			return false;

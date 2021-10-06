@@ -296,6 +296,10 @@ try {
 			}
 			$jsonrpc->makeSuccess($user->getHash());
 		}
+
+		if ($jsonrpc->getMethod() == 'ping') {
+			$jsonrpc->makeSuccess('pong');
+		}
 	}
 
 	if (!isset($params['apikey']) && !isset($params['api'])) {
@@ -318,10 +322,6 @@ try {
 			}
 		}
 		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . $jsonrpc->getMethod(), -32500);
-	}
-
-	if ($jsonrpc->getMethod() == 'ping') {
-		$jsonrpc->makeSuccess('pong');
 	}
 
 	/*             * ************************config*************************** */
