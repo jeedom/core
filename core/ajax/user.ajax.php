@@ -21,17 +21,6 @@ try {
 	include_file('core', 'authentification', 'php');
 	ajax::init();
 
-	if (init('action') == 'useTwoFactorAuthentification') {
-		$user = user::byLogin(init('login'));
-		if (!is_object($user)) {
-			ajax::success(0);
-		}
-		if (network::getUserLocation() == 'internal') {
-			ajax::success(0);
-		}
-		ajax::success($user->getOptions('twoFactorAuthentification', 0));
-	}
-
 	if (init('action') == 'login') {
 		if (!file_exists(session_save_path())) {
 			try {
@@ -57,6 +46,10 @@ try {
 					@session_write_close();
 					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $_SESSION['user']->getLogin());
 				}
+			}
+			$user = user::connect(init('username'), init('password'));
+			if (is_object($user) && network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '' && init('twoFactorCode') == '') {
+				throw new Exception('Double authentification requise', -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
 				throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
