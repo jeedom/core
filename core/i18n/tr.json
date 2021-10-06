@@ -4502,7 +4502,7 @@
         "Principal": "Principal"
     },
     "core\/api\/marketApi.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 1, IP :",
+        "Vous n\\'êtes pas autorisé à effectuer cette action, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Tous les crons sont actuellement désactivés": "Tüm crons şu anda devre dışı"
     },
     "core\/api\/proApi.php": {
@@ -4533,12 +4533,12 @@
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
         "Demande sur l\\'api http venant de : ": "Http API'sından gelen istek:",
-        "Commande inconnue : ": "Bilinmeyen komut:",
-        "Token invalide": "Geçersiz simge",
+        "Appels de ": "Tarafından yapılan aramalar",
         "Aucune commande correspondant à l\\'ID : ": "Kimliğe karşılık gelen komut yok:",
         "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP :",
         "Exécution de : ": "Yürütme:",
-        "Appels de ": "Tarafından yapılan aramalar",
+        "Commande inconnue : ": "Bilinmeyen komut:",
+        "Token invalide": "Geçersiz simge",
         "Demande API pour les scénarios": "Senaryolar için API isteği",
         "Aucun scénario correspondant à l\\'ID : ": "Kimliğe karşılık gelen senaryo yok:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Bu senaryoda işlem yapmanıza izin verilmiyor",

@@ -58,6 +58,18 @@ Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Einga
 >
 > Nach dem Update MÜSSEN Sie zu Einstellungen → System → Konfigurationsupdate / Markt gehen und die Bestätigung des Cloud-Sicherungskennworts eingeben, damit dies durchgeführt werden kann.
 
+### 4.2 : Sicherheit
+
+Jeedom 4.2 enthält einen großen Teil zur Erhöhung der Sicherheit.
+
+- Änderung der Dateizugriffsrichtlinie : Bevor wir bestimmte Dateien verboten haben, erlauben wir jetzt nur bestimmte Dateien.
+- Ändern Sie auf der Ebene der API, bevor sie "tolerant" war, wenn Sie mit dem Core-Schlüssel angekommen sind, indem Sie das Plugin angeben XXXXX. Dies ist nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel anreisen.
+- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen.
+- Verstärkung der Sitzungen (Änderung zu sha256 mit 64 Zeichen im strikten Modus).
+- Der "Bleib in Verbindung"-Cookie (maximal 3 Monate) ist jetzt "einmalig", bei jeder Verwendung erneuert.
+
+Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen .
+
 # Changelog Jeedom V4.1
 
 ## 4.1.25

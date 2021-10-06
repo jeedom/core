@@ -58,6 +58,18 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 >
 > Después de la actualización, DEBE ir a Configuración → Sistema → pestaña Actualización de configuración / Mercado e ingresar la confirmación de la contraseña de la copia de seguridad en la nube para que se pueda hacer.
 
+### 4.2 : Seguridad
+
+Jeedom 4.2 contiene una parte importante en el aumento de la seguridad.
+
+- Cambio de política de acceso a archivos : Antes prohibíamos ciertos archivos, ahora solo permitimos ciertos archivos.
+- Cambie en el nivel de la API, antes de que fuera "tolerante" si llegaba con la clave principal indicando complemento XXXXX. Este ya no es el caso, debes llegar con la clave correspondiente al plugin.
+- En la API http, puede indicar un nombre de complemento en el tipo, esto ya no es posible. El tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd, etc.) debe corresponder al complemento.
+- Fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto).
+- La cookie "permanecer conectado" (3 meses como máximo) ahora es "de una sola vez", que se renueva con cada uso.
+
+El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad .
+
 # Registro de cambios Jeedom V4.1
 
 ## 4.1.25

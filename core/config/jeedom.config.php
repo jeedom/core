@@ -209,7 +209,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		'CAMERA_RECORD' => array('name' => __('Enregistrement caméra',__FILE__), 'family' => __('Caméra',__FILE__), 'type' => 'Action'),
 		'CAMERA_TAKE' => array('name' => __('Snapshot caméra',__FILE__), 'family' => __('Caméra',__FILE__), 'type' => 'Action'),
 		'MODE_STATE' => array('name' => __('Mode',__FILE__), 'family' => __('Mode',__FILE__), 'type' => 'Info','subtype' => array('string')),
-		'MODE_SET_STATE' => array('name' => __('Mode',__FILE__), 'family' => __('Mode',__FILE__), 'type' => 'Action','subtype' => array('string')),
+		'MODE_SET_STATE' => array('name' => __('Mode',__FILE__), 'family' => __('Mode',__FILE__), 'type' => 'Action','subtype' => array('other')),
 		'ALARM_STATE' => array('name' => __('Alarme état',__FILE__), 'family' => __('Sécurité',__FILE__), 'type' => 'Info', 'noapp' => true,'subtype' => array('binary','string')),
 		'ALARM_MODE' => array('name' => __('Alarme mode',__FILE__), 'family' => __('Sécurité',__FILE__), 'type' => 'Info', 'noapp' => true,'subtype' => array('string')),
 		'ALARM_ENABLE_STATE' => array('name' => __('Alarme état activée',__FILE__), 'family' => __('Sécurité',__FILE__), 'type' => 'Info', 'noapp' => true,'subtype' => array('binary')),
