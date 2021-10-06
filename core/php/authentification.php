@@ -125,12 +125,8 @@ function loginByHash($_key) {
 	}
 	$rdk = sha512($key[1]);
 	$registerDevice = $user->getOptions('registerDevice', array());
-	if (!isset($registerDevice[$rdk])) {
+	if (!is_array($registerDevice) || !isset($registerDevice[$rdk])) {
 		user::failedLogin();
-		sleep(5);
-		return false;
-	}
-	if (!is_array($registerDevice)) {
 		sleep(5);
 		return false;
 	}
