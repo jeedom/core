@@ -590,7 +590,7 @@ Desktop
     display: inline-block;
   }
 
-  /* résumé domo */
+  /* résumé domo*/
   [data-page=display] legend a,
   [data-page=display] legend i {
     color: inherit !important;
@@ -604,6 +604,18 @@ Desktop
     padding: 1px 5px !important;
     border-bottom: 1px solid var(--el-defaultColor);
   }
+
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic:hover {
+    font-weight: bold;
+  }
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd {
+    font-weight: normal;
+  }
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd:hover {
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
   [data-page=display] #div_pageContainer #displaytab ul > li input {
     border: 1px solid rgba(100, 100, 100, 0.5);
     font-size: 12px !important;
@@ -622,7 +634,7 @@ Desktop
     margin-right: -5px;
   }
 
-  .eqLogicSortable {
+  ul.eqLogicSortable {
     list-style-type: none;
     padding-left: 0px;
     min-height: 30px !important;
