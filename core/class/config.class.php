@@ -241,7 +241,7 @@ class config {
 		return $results;
 	}
 
-	public static function genKey($_car = 32) {
+	public static function genKey($_car = 64) {
 		$key = '';
 		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
