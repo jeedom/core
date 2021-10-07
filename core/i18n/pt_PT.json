@@ -1125,7 +1125,7 @@
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Demande": "Demanda",
+        "Demande": "Aplicação",
         "Exécuter": "Executar",
         "Résultat": "Resultado",
         "La demande ne peut être vide": "O pedido não pode estar vazio"
@@ -2210,7 +2210,7 @@
         "Actif": "Ativos",
         "Icône": "ícone",
         "Choisir": "Escolher",
-        "Demande": "Demanda",
+        "Demande": "Aplicação",
         "Regexp de correspondance obligatoire": "Regexp de correspondência obrigatória",
         "Synonyme": "Sinônimo",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Substitua as palavras com seus sinônimos ao gerar ordens",

@@ -1125,7 +1125,7 @@
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Demande": "Demand",
+        "Demande": "Request",
         "Exécuter": "Execute",
         "Résultat": "Result",
         "La demande ne peut être vide": "The request cannot be empty"
@@ -2210,7 +2210,7 @@
         "Actif": "Active",
         "Icône": "Icon",
         "Choisir": "Select",
-        "Demande": "Demand",
+        "Demande": "Request",
         "Regexp de correspondance obligatoire": "Mandatory correspondence regexp",
         "Synonyme": "Synonymous",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Replace words with their synonyms when generating commands",
@@ -3800,7 +3800,7 @@
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Name",
+        "Nom": "Nombre",
         "Développé par": "Desarrollado por",
         "Conseillé": "Recomendado",
         "Legacy": "Legacy",
