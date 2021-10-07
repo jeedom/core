@@ -2,6 +2,11 @@
 Changelog
 =========
 
+3.3.58
+======
+
+- Correction d'un soucis d'installation de dépendance apt sur smart du au changement de certificat chez let's encrypt
+
 3.3.57
 ======
 
