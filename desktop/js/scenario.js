@@ -215,7 +215,7 @@ $(function() {
 /* ---------Scenario Management UI---------- */
 var tab = null
 $("#bt_addScenario").off('click').on('click', function(event) {
-  bootbox.prompt("Nom du scénario ?", function(result) {
+  bootbox.prompt("{{Nom du scénario}} ?", function(result) {
     if (result !== null) {
       jeedom.scenario.save({
         scenario: {
@@ -598,7 +598,7 @@ $('#bt_logScenario').off('click').on('click', function() {
 })
 
 $("#bt_copyScenario").off('click').on('click', function() {
-  bootbox.prompt("Nom du scénario ?", function(result) {
+  bootbox.prompt("{{Nom du scénario}} ?", function(result) {
     if (result !== null) {
       jeedom.scenario.copy({
         id: $('.scenarioAttr[data-l1key=id]').value(),
