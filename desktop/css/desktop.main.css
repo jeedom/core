@@ -587,42 +587,42 @@ Desktop
   }
   .name > .labelObjectHuman {
     padding-left: 0x !important;
-    display: inline-block;
-  }
+  display: inline-block;
+}
 
-  /* résumé domo*/
-  [data-page=display] legend a,
-  [data-page=display] legend i {
-    color: inherit !important;
-  }
-  [data-page=display] .object legend {
-    border-left: none;
-  }
-  [data-page=display] #div_pageContainer #displaytab ul > li {
-    list-style-type: none;
-    margin: 2px 25px !important;
-    padding: 1px 5px !important;
-    border-bottom: 1px solid var(--el-defaultColor);
-  }
+/* résumé domo*/
+[data-page=display] legend a,
+[data-page=display] legend i {
+  color: inherit !important;
+}
+[data-page=display] .object legend {
+  border-left: none;
+}
+[data-page=display] #div_pageContainer #displaytab ul > li {
+  list-style-type: none;
+  margin: 2px 25px !important;
+  padding: 1px 5px !important;
+  border-bottom: 1px solid var(--el-defaultColor);
+}
 
-  [data-page=display] #div_pageContainer #displaytab li.eqLogic:hover {
-    font-weight: bold;
-  }
-  [data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd {
-    font-weight: normal;
-  }
-  [data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd:hover {
-    font-weight: bold;
-    letter-spacing: 1px;
+[data-page=display] #div_pageContainer #displaytab li.eqLogic:hover {
+  font-weight: bold;
+}
+[data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd {
+  font-weight: normal;
+}
+[data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd:hover {
+  font-weight: bold;
+  letter-spacing: 1px;
   }
 
   [data-page=display] #div_pageContainer #displaytab ul > li input {
-    border: 1px solid rgba(100, 100, 100, 0.5);
-    font-size: 12px !important;
-  }
-  [data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
-    margin: 0 !important;
-    padding: 3px 5px !important;
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  font-size: 12px !important;
+}
+[data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
+  margin: 0 !important;
+  padding: 3px 5px !important;
     color: var(--linkHoverLight-color) !important;
   }
   [data-page=display] #div_pageContainer #displaytab ul > li > ul > li > i {
@@ -2061,7 +2061,7 @@ Desktop
     margin-top: 8px !important;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:last-child {
-    margin-bottom: 5px !important;
+    margin-bottom: 13px !important;
   }
 
 /* ____________________BUTTONS */
