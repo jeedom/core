@@ -34,12 +34,15 @@ try {
 		if (init('plugin') == 'core') {
 			config::save('api', config::genKey());
 			ajax::success(config::byKey('api'));
-		} if (init('plugin') == 'apimarket') {
+		} else if (init('plugin') == 'apimarket') {
 			config::save('apimarket', config::genKey());
 			ajax::success(config::byKey('apimarket'));
-		} else if (init('plugin') == 'pro') {
+		} else if (init('plugin') == 'apipro') {
 			config::save('apipro', config::genKey());
 			ajax::success(config::byKey('apipro'));
+		} else if (init('plugin') == 'apitts') {
+			config::save('apitts', config::genKey());
+			ajax::success(config::byKey('apitts'));
 		} else {
 			config::save('api', config::genKey(), init('plugin'));
 			ajax::success(config::byKey('api', init('plugin')));
@@ -104,7 +107,7 @@ try {
 		unautorizedInDemo();
 
 		$page = init('id');
-		$key = 'interface::background::'.$page;
+		$key = 'interface::background::' . $page;
 		config::save($key, config::getDefaultConfiguration('core')['core'][$key], 'core');
 
 		if (!isset($_FILES['file'])) {
@@ -124,14 +127,14 @@ try {
 		}
 
 
-		$filepath = $uploaddir.'/config_'.$page.$extension;
+		$filepath = $uploaddir . '/config_' . $page . $extension;
 		@unlink($filepath);
 		file_put_contents($filepath, file_get_contents($_FILES['file']['tmp_name']));
 		if (!file_exists($filepath)) {
 			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
 		}
 
-		config::save($key, '/data/backgrounds/config_'.$page.$extension);
+		config::save($key, '/data/backgrounds/config_' . $page . $extension);
 		ajax::success();
 	}
 
@@ -142,8 +145,8 @@ try {
 		unautorizedInDemo();
 
 		$page = init('id');
-		$key = 'interface::background::'.$page;
-		$filepath = '../..'.config::byKey($key, 'core');
+		$key = 'interface::background::' . $page;
+		$filepath = '../..' . config::byKey($key, 'core');
 
 		@unlink($filepath);
 		config::save($key, config::getDefaultConfiguration('core')['core'][$key], 'core');

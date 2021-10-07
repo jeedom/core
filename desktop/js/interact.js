@@ -261,7 +261,7 @@ $('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAt
 })
 
 $('#bt_duplicate').on('click', function() {
-  bootbox.prompt("Nom ?", function(result) {
+  bootbox.prompt("{{Nom}} ?", function(result) {
     if (result !== null) {
       var interact = $('.interact').getValues('.interactAttr')[0]
       interact.actions = {}
@@ -386,7 +386,7 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function() {
 })
 
 $("#bt_addInteract,#bt_addInteract2").on('click', function() {
-  bootbox.prompt("Demande ?", function(result) {
+  bootbox.prompt("{{Demande}} ?", function(result) {
     if (result !== null) {
       jeedom.interact.save({
         interact: {

@@ -18,28 +18,29 @@
 
 require_once __DIR__ . "/../php/core.inc.php";
 
-if (isset($argv)) {
-	foreach ($argv as $arg) {
-		$argList = explode('=', $arg);
-		if (isset($argList[0]) && isset($argList[1])) {
-			$_REQUEST[$argList[0]] = $argList[1];
-		}
-	}
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
 }
 
 try {
+
+	if (!headers_sent()) {
+		header('Content-Type: application/json');
+	}
+
 	$IP = getClientIp();
 	$request = init('request');
 	if ($request == '') {
 		$request = file_get_contents("php://input");
 	}
-	log::add('apipro', 'info', $request . ' - IP :' . $IP);
+	log::add('apipro', 'info', secureXSS($request) . ' - IP :' . $IP);
 
 	$jsonrpc = new jsonrpc($request);
-
-	if (!jeedom::apiModeResult(config::byKey('api::core::pro::mode', 'core', 'enable'))) {
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
-	}
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
 		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
@@ -51,7 +52,7 @@ try {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	if (isset($params['proapi']) && !jeedom::apiAccess($params['proapi'], 'apipro')) {
+	if (!jeedom::apiAccess($params['proapi'], 'apipro')) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
@@ -235,7 +236,6 @@ try {
 						$health[] = array('plugin' => $plugin_id, 'type' => 'dépendance', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 					}
 				} catch (Exception $e) {
-
 				}
 				try {
 					if ($plugin->getHasOwnDeamon() == 1) {
@@ -277,7 +277,6 @@ try {
 						$health[] = array('plugin' => $plugin_id, 'type' => 'Statut démon', 'defaut' => $defaut, 'result' => $result, 'advice' => $advice);
 					}
 				} catch (Exception $e) {
-
 				}
 
 				try {
@@ -293,7 +292,6 @@ try {
 						}
 					}
 				} catch (Exception $e) {
-
 				}
 			}
 
@@ -485,7 +483,6 @@ try {
 				$return[$id] = $info_eqLogic;
 			}
 			$jsonrpc->makeSuccess($return);
-
 		}
 
 		/*             * ************************Commande*************************** */
@@ -627,7 +624,6 @@ try {
 				try {
 					$plugin->launch('slaveReload');
 				} catch (Exception $ex) {
-
 				}
 			}
 			$jsonrpc->makeSuccess('ok');
@@ -826,14 +822,14 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'plugin::specificInfos') {
-		    $infos = array();
-		    foreach (plugin::listPlugin() as $plugin) {
-			$pluginId = $plugin->getId();
-			if(method_exists($pluginId, 'proApi')){
-			    $infos[] = $pluginId::proApi();
+			$infos = array();
+			foreach (plugin::listPlugin() as $plugin) {
+				$pluginId = $plugin->getId();
+				if (method_exists($pluginId, 'proApi')) {
+					$infos[] = $pluginId::proApi();
+				}
 			}
-		    }
-		    $jsonrpc->makeSuccess($infos);
+			$jsonrpc->makeSuccess($infos);
 		}
 
 		/*             * ************************Update*************************** */
@@ -891,7 +887,7 @@ try {
 		/*             * ************************************************************************ */
 	}
 	throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
-/*         * *********Catch exeption*************** */
+	/*         * *********Catch exeption*************** */
 } catch (Exception $e) {
 	$message = $e->getMessage();
 	$jsonrpc = new jsonrpc(init('request'));

@@ -589,6 +589,25 @@ jeedom.eqLogic.setOrder = function(_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.eqLogic.setGenericType = function(_params) {
+  var paramsRequired = ['eqLogics'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  paramsAJAX.data = {
+    action: 'setGenericType',
+    eqLogics: json_encode(_params.eqLogics)
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.eqLogic.removes = function(_params) {
   var paramsRequired = ['eqLogics'];
   var paramsSpecifics = {};

@@ -447,11 +447,23 @@ class jeedom {
 	}
 
 	public static function getApiKey($_plugin = 'core') {
+		if ($_plugin == 'core') {
+			if (config::byKey('api') == '') {
+				config::save('api', config::genKey());
+			}
+			return config::byKey('api');
+		}
 		if ($_plugin == 'apipro') {
 			if (config::byKey('apipro') == '') {
 				config::save('apipro', config::genKey());
 			}
 			return config::byKey('apipro');
+		}
+		if ($_plugin == 'apitts') {
+			if (config::byKey('apitts') == '') {
+				config::save('apitts', config::genKey());
+			}
+			return config::byKey('apitts');
 		}
 		if ($_plugin == 'apimarket') {
 			if (config::byKey('apimarket') == '') {
@@ -460,6 +472,11 @@ class jeedom {
 			return config::byKey('apimarket');
 		}
 		if (config::byKey('api', $_plugin) == '') {
+			try {
+				plugin::byId($_plugin);
+			} catch (\Throwable $th) {
+				return '';
+			}
 			config::save('api', config::genKey(), $_plugin);
 		}
 		return config::byKey('api', $_plugin);
@@ -497,21 +514,9 @@ class jeedom {
 		if (trim($_apikey) == '') {
 			return false;
 		}
-		if ($_plugin != 'core' && self::apiAccess($_apikey)) {
-			return true;
-		}
-		if ($_plugin != 'core' && $_plugin != 'proapi' && !self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
-			return false;
-		}
-		$apikey = self::getApiKey($_plugin);
-		if (trim($apikey) != '' && $apikey == $_apikey) {
-			global $_RESTRICTED;
-			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
-			return true;
-		}
 		$user = user::byHash($_apikey);
 		if (is_object($user)) {
-			if ($user->getEnable() == 0) {
+			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
 				return false;
 			}
 			if ($user->getOptions('localOnly', 0) == 1 && !self::apiModeResult('whiteip')) {
@@ -520,6 +525,15 @@ class jeedom {
 			global $_USER_GLOBAL;
 			$_USER_GLOBAL = $user;
 			log::add('connection', 'info', __('Connexion par API de l\'utilisateur : ', __FILE__) . $user->getLogin());
+			return true;
+		}
+		if (!self::apiModeResult(config::byKey('api::' . $_plugin . '::mode', 'core', 'enable'))) {
+			return false;
+		}
+		$apikey = self::getApiKey($_plugin);
+		if (trim($apikey) != '' && $apikey == $_apikey) {
+			global $_RESTRICTED;
+			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
 			return true;
 		}
 		return false;

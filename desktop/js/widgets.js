@@ -533,7 +533,7 @@ function addTest(_test) {
 }
 
 $("#bt_addWidgets").off('click').on('click', function(event) {
-  bootbox.prompt("Nom du widget ?", function(result) {
+  bootbox.prompt("{{Nom du widget}} ?", function(result) {
     if (result !== null) {
       jeedom.widgets.save({
         widgets: {
@@ -654,7 +654,7 @@ $("#bt_mainImportWidgets").change(function(event) {
   }
 
   if (uploadedFile) {
-    bootbox.prompt("Nom du widget ?", function(result) {
+    bootbox.prompt("{{Nom du widget}} ?", function(result) {
       if (result !== null) {
         jeedom.widgets.save({
           widgets: {

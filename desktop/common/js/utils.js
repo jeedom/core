@@ -1134,7 +1134,7 @@ jeedomUtils.setJeedomMenu = function() {
     $(this).prop("checked", checked)
   })
 
-  if (user_isAdmin == 1) {
+  if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
     $('li.navTime #configName').on('click', function(event) {
       //center mouse click event to new tab:
       if (event.newTab) {

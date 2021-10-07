@@ -85,4 +85,6 @@ if (!isConnect('admin')) {
 	include_file('3rdparty', 'codemirror/addon/fold/indent-fold', 'js');
 	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
 	include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
+
+	include_file('3rdparty', 'codemirror/theme/monokai', 'css');
 ?>

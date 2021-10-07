@@ -15,9 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-header('Access-Control-Allow-Origin: *');
 require_once __DIR__ . "/../php/core.inc.php";
-if (user::isBan() && false) {
+
+if (user::isBan()) {
 	header("Status: 404 Not Found");
 	header('HTTP/1.0 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
@@ -25,11 +25,12 @@ if (user::isBan() && false) {
 	echo "The page that you have requested could not be found.";
 	die();
 }
+
 try {
 	if (!jeedom::apiAccess(init('apikey'), 'apimarket')) {
 		user::failedLogin();
 		sleep(5);
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 1, IP : ', __FILE__) . getClientIp());
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 	}
 	if (init('action') == 'resync') {
 		if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
@@ -43,7 +44,7 @@ try {
 		$cron->save();
 		$cron->start();
 	}
-	
+
 	if (init('action') == 'pullInstall') {
 		if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
 			die(__('Tous les crons sont actuellement désactivés', __FILE__));

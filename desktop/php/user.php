@@ -8,7 +8,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 <form class="form-horizontal">
 	<div id="div_administration">
 		<div class="tab-pane" id="user">
-			<legend><i class="icon personne-toilet1"></i>  {{Liste des utilisateurs}}
+			<legend><i class="icon personne-toilet1"></i> {{Liste des utilisateurs}}
 				<div class="input-group pull-right" style="display:inline-flex">
 					<span class="input-group-btn">
 						<a class="btn btn-sm roundedLeft" id="bt_addUser"><i class="fas fa-plus-circle"></i> {{Ajouter un utilisateur}}
@@ -19,10 +19,10 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 								} else {
 									echo '</a><a class="btn btn-danger btn-sm " id="bt_supportAccess" data-enable="0"><i class="fas fa-user"></i> {{Désactiver accès support}}';
 								}
-								?>
-							</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUser"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-						<?php }
-						?>
+							?>
+						</a><a class="btn btn-success btn-sm roundedRight" id="bt_saveUser"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+					<?php }
+					?>
 					</span>
 				</div>
 			</legend>
@@ -31,7 +31,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 					<th style="min-width: 120px;">{{Utilisateur}}</th>
 					<th style="width: 250px;">{{Actif}}</th>
 					<th>{{Profil}}</th>
-					<th style="width: 15%;">{{Clef API}}</th>
+					<th style="width: 15%;">{{API}}</th>
 					<th>{{Double authentification}}</th>
 					<th>{{Dernière connexion}}</th>
 					<th>{{Actions}}</th>
@@ -56,10 +56,10 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 		</thead>
 		<tbody>
 			<?php
-			try{
+			try {
 				$sessions = listSession();
-			}catch (Exception $e) {
-				echo '<div class="alert alert-danger">'.$e->getMessage().'</div>';
+			} catch (Exception $e) {
+				echo '<div class="alert alert-danger">' . $e->getMessage() . '</div>';
 			}
 			if (is_array($sessions) && count($sessions) > 0) {
 				foreach ($sessions as $id => $session) {
@@ -106,7 +106,7 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 				foreach (($user->getOptions('registerDevice')) as $key => $value) {
 					$tr = '';
 					$tr .= '<tr data-key="' . $key . '" data-user_id="' . $user->getId() . '">';
-					$tr .= '<td title="'.$key.'">';
+					$tr .= '<td title="' . $key . '">';
 					$tr .= substr($key, 0, 20) . '...';
 					$tr .= '</td>';
 					$tr .= '<td>';
@@ -139,8 +139,8 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 			</div>
 			<div class="modal-body">
 				<div style="display: none;" id="div_newUserAlert"></div>
-				<input class="form-control" type="text"  id="in_newUserLogin" placeholder="{{Identifiant}}"/><br/><br/>
-				<input class="form-control" type="password" autocomplete="new-password"  id="in_newUserMdp" placeholder="{{Mot de passe}}"/>
+				<input class="form-control" type="text" id="in_newUserLogin" placeholder="{{Identifiant}}" /><br /><br />
+				<input class="form-control" type="password" autocomplete="new-password" id="in_newUserMdp" placeholder="{{Mot de passe}}" />
 			</div>
 			<div class="modal-footer">
 				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
@@ -150,4 +150,4 @@ sendVarToJS('ldapEnable', config::byKey('ldap::enable'));
 	</div>
 </div>
 
-<?php include_file("desktop", "user", "js");?>
+<?php include_file("desktop", "user", "js"); ?>

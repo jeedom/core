@@ -356,7 +356,7 @@ function loadObjectConfiguration(_id) {
 }
 
 $("#bt_addObject, #bt_addObject2").on('click', function(event) {
-  bootbox.prompt("Nom de l'objet ?", function(result) {
+  bootbox.prompt("{{Nom du nouvel objet}} ?", function(result) {
     if (result !== null) {
       jeedom.object.save({
         object: {

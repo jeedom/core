@@ -19,26 +19,6 @@
 var deepUrl = window.location.href
 if (deepUrl.includes('logout')) deepUrl = ''
 
-
-$('#in_login_username').on('focusout change keypress', function() {
-  jeedom.user.useTwoFactorAuthentification({
-    login: $('#in_login_username').value(),
-    error: function(error) {
-      $('#div_alert').showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      if (data == 1) {
-        $('#div_twoFactorCode').show()
-      } else {
-        $('#div_twoFactorCode').hide()
-      }
-    }
-  })
-})
-
 $('#bt_login_validate').on('click', function() {
   jeedom.user.login({
     username: $('#in_login_username').val(),
@@ -46,6 +26,10 @@ $('#bt_login_validate').on('click', function() {
     twoFactorCode: $('#in_twoFactorCode').val(),
     storeConnection: $('#cb_storeConnection').value(),
     error: function(error) {
+      if(error.code == -32012){
+        $('#div_twoFactorCode').show()
+        return
+      }
       $('#div_alert').showAlert({
         message: error.message,
         level: 'danger'

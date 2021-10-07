@@ -21,44 +21,35 @@ try {
 	include_file('core', 'authentification', 'php');
 	ajax::init();
 
-	if (init('action') == 'useTwoFactorAuthentification') {
-		$user = user::byLogin(init('login'));
-		if (!is_object($user)) {
-			ajax::success(0);
-		}
-		if (network::getUserLocation() == 'internal') {
-			ajax::success(0);
-		}
-		ajax::success($user->getOptions('twoFactorAuthentification', 0));
-	}
-
 	if (init('action') == 'login') {
-		if(!file_exists(session_save_path())){
+		if (!file_exists(session_save_path())) {
 			try {
-				com_shell::execute(system::getCmdSudo() . ' mkdir ' .session_save_path().';'.system::getCmdSudo() . ' chmod 777 -R ' .session_save_path());
+				com_shell::execute(system::getCmdSudo() . ' mkdir ' . session_save_path() . ';' . system::getCmdSudo() . ' chmod 777 -R ' . session_save_path());
 			} catch (\Exception $e) {
-
 			}
 		}
 		try {
-			if(com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path().' | wc -l') > 500){
-				com_shell::execute(system::getCmdSudo() .'/usr/lib/php/sessionclean');
+			if (com_shell::execute(system::getCmdSudo() . ' ls ' . session_save_path() . ' | wc -l') > 500) {
+				com_shell::execute(system::getCmdSudo() . '/usr/lib/php/sessionclean');
 			}
 		} catch (\Exception $e) {
-
-        }
+		}
 
 		if (!isConnect()) {
-            if (config::byKey('sso:allowRemoteUser') == 1) {
-                $header = $configs['sso:remoteUserHeader'];
-                $header_value = $_SERVER[$header];
-                $user = user::byLogin($header_value);
+			if (config::byKey('sso:allowRemoteUser') == 1) {
+				$header = $configs['sso:remoteUserHeader'];
+				$header_value = $_SERVER[$header];
+				$user = user::byLogin($header_value);
 				if (is_object($user) && $user->getEnable() == 1) {
 					@session_start();
 					$_SESSION['user'] = $user;
 					@session_write_close();
 					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $_SESSION['user']->getLogin());
 				}
+			}
+			$user = user::connect(init('username'), init('password'));
+			if (is_object($user) && network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '' && init('twoFactorCode') == '') {
+				throw new Exception('Double authentification requise', -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
 				throw new Exception('Mot de passe ou nom d\'utilisateur incorrect');
@@ -74,12 +65,12 @@ try {
 			$registerDevice[sha512($rdk)] = array(
 				'datetime' => date('Y-m-d H:i:s'),
 				'ip' => getClientIp(),
-				'session_id' =>session_id(),
+				'session_id' => session_id(),
 			);
 			if (version_compare(PHP_VERSION, '7.3') >= 0) {
-				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk,['expires' => time() + 365 * 24 * 3600,'samesite' => 'Strict','httponly' => true,'path' => '/','secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']=='https')]);
-			}else{
-				setcookie('registerDevice', $_SESSION['user']->getHash() . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '',  (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+				setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+			} else {
+				setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 			}
 			@session_start();
 			$_SESSION['user']->refresh();
@@ -152,7 +143,7 @@ try {
 		}
 		unautorizedInDemo();
 		$users = array();
-		foreach((user::all()) as $user) {
+		foreach ((user::all()) as $user) {
 			$user_info = utils::o2a($user);
 			$users[] = $user_info;
 		}
@@ -231,8 +222,8 @@ try {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__));
 			}
 			$user = user::byId(init('id'));
-			if(!is_object($user)){
-				throw new Exception(__('Utilisateur non trouvé : ',__FILE__).init('id'));
+			if (!is_object($user)) {
+				throw new Exception(__('Utilisateur non trouvé : ', __FILE__) . init('id'));
 			}
 			ajax::success(jeedom::toHumanReadable(utils::o2a($user)));
 		}
@@ -245,7 +236,7 @@ try {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 			}
-			foreach((user::all()) as $user) {
+			foreach ((user::all()) as $user) {
 				if ($user->getId() == $_SESSION['user']->getId()) {
 					@session_start();
 					$_SESSION['user']->refresh();

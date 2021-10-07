@@ -58,6 +58,18 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 >
 > Suite à la mise à jour, il faudra OBLIGATOIREMENT aller dans Réglages → Système → Configuration onglet Mise à jour/Market et entrer la confirmation de mot de passe de backup cloud pour que celui-ci puisse se faire.
 
+### 4.2 : Sécurité
+
+Jeedom 4.2 contient une grosse partie sur l'augmentation de la sécurité.
+
+- Changement de la politique d'accès aux fichiers : Avant nous interdisions certains fichier, maintenant nous n'autorisons que certains fichiers.
+- Changement au niveau de l'api, avant elle était "tolérante" si vous arriviez avec la clef du Core en indiquant plugin XXXXX. Ce n'est plus le cas, vous devez arriver avec la clef correspondante au plugin.
+- En api http vous pouviez indiquer un nom de plugin en type, ce n'est plus possible. Le type correspondant au type de la demande (scenario, eqLogic, cmd, etc.) doit correspondre au plugin.
+- Renforcement des sessions (passage en sha256 avec 64 caractères en mode strict).
+- Le cookie de "rester connecté" (3 mois max) est maintenant "one shot", renouvelé à chaque utilisation.
+
+L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité .
+
 # Changelog Jeedom V4.1
 
 ## 4.1.25

@@ -18,11 +18,12 @@
 
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
+
 use PragmaRX\Google2FA\Google2FA;
 
 class user {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $login;
 	private $profils = 'admin';
@@ -32,10 +33,10 @@ class user {
 	private $enable = 1;
 	private $hash;
 	private $_changed = false;
-	
-	
+
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -45,19 +46,19 @@ class user {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	/**
-	* Retourne un object utilisateur (si les information de connection sont valide)
-	* @param string $_login nom d'utilisateur
-	* @param string $_mdp motsz de passe en sha512
-	* @return user object user
-	*/
+	 * Retourne un object utilisateur (si les information de connection sont valide)
+	 * @param string $_login nom d'utilisateur
+	 * @param string $_mdp motsz de passe en sha512
+	 * @return user object user
+	 */
 	public static function connect($_login, $_mdp) {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", __('LDAP Authentification', __FILE__));
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
-			if(!$ad) {
+			if (!$ad) {
 				log::add("connection", "info", __('Connection LDAP Error', __FILE__));
 				return false;
 			}
@@ -68,41 +69,38 @@ class user {
 				if (!ldap_start_tls($ad)) {
 					log::add("connection", "debug", __('start TLS KO', __FILE__));
 					return false;
-				}
-				else {
+				} else {
 					log::add("connection", "debug", __('start TLS OK', __FILE__));
 				}
 			}
-			if(config::byKey('ldap:samba4')) {
+			if (config::byKey('ldap:samba4')) {
 				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_mdp)) {
 					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
 					return false;
 				}
-			}
-			else {
+			} else {
 				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
 					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
 					return false;
 				}
 			}
 			log::add("connection", "debug", __('LDAP Bind user - OK', __FILE__));
-			if (config::bykey('ldap:filter:admin')=="" && config::bykey('ldap:filter:user')=="" && config::bykey('ldap:filter:restrict')=="") {
-				log::add("connection", "warning", __('LDAP Profile Check - [WARNING] None filter was set, "'.$_login.'"  authenticated as an administrator', __FILE__));
-				$profile='admin';
-			}
-			else {
-				foreach (array('admin', 'user', 'restrict','none') as $profile) {
+			if (config::bykey('ldap:filter:admin') == "" && config::bykey('ldap:filter:user') == "" && config::bykey('ldap:filter:restrict') == "") {
+				log::add("connection", "warning", __('LDAP Profile Check - [WARNING] None filter was set, "' . $_login . '"  authenticated as an administrator', __FILE__));
+				$profile = 'admin';
+			} else {
+				foreach (array('admin', 'user', 'restrict', 'none') as $profile) {
 					if ($profile == 'none') {
-						log::add("connection", "warning", __('LDAP Profile Check - [WARNING] No profile has been set for the "', __FILE__).$_login.__('" user in the LDAP', __FILE__));
+						log::add("connection", "warning", __('LDAP Profile Check - [WARNING] No profile has been set for the "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
 						break;
 					}
-					if (config::bykey('ldap:filter:'.$profile)!="") {
-						$filters='(&('.config::bykey('ldap::usersearch').'=' . $_login . ')'.config::bykey('ldap:filter:'.$profile).')';
-						log::add("connection", "debug", __('LDAP Profile Check - filter:, "'.$filters.'"', __FILE__));
+					if (config::bykey('ldap:filter:' . $profile) != "") {
+						$filters = '(&(' . config::bykey('ldap::usersearch') . '=' . $_login . ')' . config::bykey('ldap:filter:' . $profile) . ')';
+						log::add("connection", "debug", __('LDAP Profile Check - filter:, "' . $filters . '"', __FILE__));
 						$result = ldap_search($ad, config::byKey('ldap:basedn'), $filters);
 						$entries = ldap_get_entries($ad, $result);
 						if ($entries['count'] > 0) {
-							log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__).$profile.__('" profile was FOUND for the "', __FILE__).$_login.__('" user in the LDAP', __FILE__));
+							log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__) . $profile . __('" profile was FOUND for the "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
 							break;
 						}
 					}
@@ -112,16 +110,16 @@ class user {
 				$user = self::byLogin($_login);
 				if (is_object($user)) {
 					$user->setPassword($sMdp)
-					->setOptions('lastConnection', date('Y-m-d H:i:s'))
-					->setProfils($profile);
+						->setOptions('lastConnection', date('Y-m-d H:i:s'))
+						->setProfils($profile);
 					$user->save();
 					return $user;
 				}
 				$user = (new user)
-				->setLogin($_login)
-				->setPassword($sMdp)
-				->setOptions('lastConnection', date('Y-m-d H:i:s'))
-				->setProfils($profile);
+					->setLogin($_login)
+					->setPassword($sMdp)
+					->setOptions('lastConnection', date('Y-m-d H:i:s'))
+					->setProfils($profile);
 				$user->save();
 				log::add("connection", "info", __('User created from the LDAP : ', __FILE__) . $_login);
 				jeedom::event('user_connect');
@@ -153,7 +151,7 @@ class user {
 		}
 		return $user;
 	}
-	
+
 	public static function connectToLDAP() {
 		$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 		ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -161,19 +159,18 @@ class user {
 		if (config::byKey('ldap:tls') && !ldap_start_tls($ad)) {
 			return false;
 		}
-		if(config::byKey('ldap:samba4')) {
-			if(ldap_bind($ad, config::byKey('ldap:username')."@".config::byKey('ldap:domain'), config::byKey('ldap:password'))) {
+		if (config::byKey('ldap:samba4')) {
+			if (ldap_bind($ad, config::byKey('ldap:username') . "@" . config::byKey('ldap:domain'), config::byKey('ldap:password'))) {
 				return $ad;
 			}
-		}
-		else {
+		} else {
 			if (ldap_bind($ad, config::byKey('ldap:username'), config::byKey('ldap:password'))) {
 				return $ad;
 			}
 		}
 		return false;
 	}
-	
+
 	public static function byLogin($_login) {
 		$values = array(
 			'login' => $_login,
@@ -183,17 +180,21 @@ class user {
 		WHERE login=:login';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byHash($_hash) {
 		$values = array(
 			'hash' => $_hash,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM user
-		WHERE hash=:hash';
+		FROM user';
+		if (is_sha512($_hash)) {
+			$sql .= ' WHERE SHA2(hash,512)=:hash';
+		} else {
+			$sql .= ' WHERE hash=:hash';
+		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byLoginAndHash($_login, $_hash) {
 		$values = array(
 			'login' => $_login,
@@ -205,7 +206,7 @@ class user {
 		AND hash=:hash';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byLoginAndPassword($_login, $_password) {
 		$values = array(
 			'login' => $_login,
@@ -217,17 +218,17 @@ class user {
 		AND password=:password';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	/**
-	*
-	* @return array de tous les utilisateurs
-	*/
+	 *
+	 * @return array de tous les utilisateurs
+	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM user ORDER by login';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function searchByRight($_rights) {
 		$values = array(
 			'rights' => '%"' . $_rights . '":1%',
@@ -239,7 +240,7 @@ class user {
 		OR rights LIKE :rights2';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function searchByOptions($_search) {
 		$value = array(
 			'search' => '%' . $_search . '%'
@@ -249,7 +250,7 @@ class user {
 		WHERE options LIKE :search';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byProfils($_profils, $_enable = false) {
 		$values = array(
 			'profils' => $_profils,
@@ -262,7 +263,7 @@ class user {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byEnable($_enable) {
 		$values = array(
 			'enable' => $_enable,
@@ -272,19 +273,19 @@ class user {
 		WHERE enable=:enable';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function failedLogin() {
 		@session_start();
 		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
 		$_SESSION['failed_datetime'] = strtotime('now');
 		@session_write_close();
 	}
-	
+
 	public static function removeBanIp() {
 		$cache = cache::byKey('security::banip');
 		$cache->remove();
 	}
-	
+
 	public static function isBan() {
 		$ip = getClientIp();
 		if ($ip == '') {
@@ -346,7 +347,7 @@ class user {
 		}
 		return false;
 	}
-	
+
 	public static function getAccessKeyForReport() {
 		$user = user::byLogin('internal_report');
 		if (!is_object($user)) {
@@ -373,16 +374,15 @@ class user {
 		try {
 			$sessions = listSession();
 			foreach ($sessions as $id => $session) {
-				if($session['user_id'] == $user->getId()){
+				if ($session['user_id'] == $user->getId()) {
 					deleteSession($id);
 				}
 			}
 		} catch (\Exception $e) {
-			
 		}
 		return $user->getHash() . '-' . $key;
 	}
-	
+
 	public static function supportAccess($_enable = true) {
 		if ($_enable) {
 			$user = user::byLogin('jeedom_support');
@@ -412,47 +412,47 @@ class user {
 			repo_market::supportAccess(false);
 		}
 	}
-	
+
 	public static function deadCmd() {
 		$return = array();
-		foreach((user::all()) as $user) {
+		foreach ((user::all()) as $user) {
 			$cmd = $user->getOptions('notification::cmd');
 			if ($cmd != '') {
 				if (!cmd::byId(str_replace('#', '', $cmd))) {
-					$return[] = array('detail' => __('Utilisateur',__FILE__), 'help' => __('Commande notification utilisateur', __FILE__), 'who' => $cmd);
+					$return[] = array('detail' => __('Utilisateur', __FILE__), 'help' => __('Commande notification utilisateur', __FILE__), 'who' => $cmd);
 				}
 			}
 		}
 		return $return;
 	}
-	
-	public static function regenerateHash(){
-		foreach((user::all()) as $user) {
-			if($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash',0) == 1 || $user->getEnable() == 0){
+
+	public static function regenerateHash() {
+		foreach ((user::all()) as $user) {
+			if ($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash', 0) == 1 || $user->getEnable() == 0) {
 				continue;
 			}
-			if(strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')){
+			if (strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')) {
 				continue;
 			}
 			$user->setHash('');
 			$user->getHash();
 		}
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
 	public function preInsert() {
 		if (is_object(self::byLogin($this->getLogin()))) {
 			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
 		}
 	}
-	
+
 	public function preSave() {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
 		$admins = user::byProfils('admin', true);
-		if(count($admins) == 1 && $admins[0]->getId() == $this->getId()){
+		if (count($admins) == 1 && $admins[0]->getId() == $this->getId()) {
 			if ($this->getProfils() == 'admin' && $this->getEnable() == 0) {
 				throw new Exception(__('Vous ne pouvez désactiver le dernier utilisateur', __FILE__));
 			}
@@ -461,112 +461,112 @@ class user {
 			}
 		}
 	}
-	
-	public function encrypt(){
+
+	public function encrypt() {
 		$this->getOptions('twoFactorAuthentification', utils::encrypt($this->getOptions('twoFactorAuthentification')));
 	}
-	
-	public function decrypt(){
+
+	public function decrypt() {
 		$this->getOptions('twoFactorAuthentification', utils::decrypt($this->getOptions('twoFactorAuthentification')));
 	}
-	
+
 	public function save() {
 		return DB::save($this);
 	}
-	
+
 	public function preRemove() {
 		if (count(user::byProfils('admin', true)) == 1 && ($this->getProfils() == 'admin' && $this->getEnable() == 1)) {
 			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
 		}
 	}
-	
+
 	public function remove() {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getLogin(), 'date' => date('Y-m-d H:i:s'), 'type' => 'user'));
 		return DB::remove($this);
 	}
-	
+
 	public function refresh() {
 		DB::refresh($this);
 	}
-	
+
 	/**
-	*
-	* @return boolean vrai si l'utilisateur est valide
-	*/
+	 *
+	 * @return boolean vrai si l'utilisateur est valide
+	 */
 	public function is_Connected() {
 		return (is_numeric($this->id) && $this->login != '');
 	}
-	
+
 	public function validateTwoFactorCode($_code) {
 		$google2fa = new Google2FA();
 		return $google2fa->verifyKey($this->getOptions('twoFactorAuthentificationSecret'), $_code);
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
+
 	public function getId() {
 		return $this->id;
 	}
-	
+
 	public function getLogin() {
 		return $this->login;
 	}
-	
+
 	public function getPassword() {
 		return $this->password;
 	}
-	
+
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
+
 	public function setLogin($_login) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->login,$_login);
+		$this->_changed = utils::attrChanged($this->_changed, $this->login, $_login);
 		$this->login = $_login;
 		return $this;
 	}
-	
+
 	public function setPassword($_password) {
 		$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
-		$this->_changed = utils::attrChanged($this->_changed,$this->password,$_password);
+		$this->_changed = utils::attrChanged($this->_changed, $this->password, $_password);
 		$this->password = $_password;
 		return $this;
 	}
-	
+
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-	
+
 	public function setOptions($_key, $_value) {
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
 		$this->options = $options;
 		return $this;
 	}
-	
+
 	public function getRights($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->rights, $_key, $_default);
 	}
-	
+
 	public function setRights($_key, $_value) {
 		$rights = utils::setJsonAttr($this->rights, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->rights,$rights);
+		$this->_changed = utils::attrChanged($this->_changed, $this->rights, $rights);
 		$this->rights = $rights;
 		return $this;
 	}
-	
+
 	public function getEnable() {
 		return $this->enable;
 	}
-	
+
 	public function setEnable($_enable) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
+		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
 		$this->enable = $_enable;
 		return $this;
 	}
-	
+
 	public function getHash() {
 		if ($this->hash == '' && $this->id != '') {
 			$hash = config::genKey();
@@ -574,35 +574,34 @@ class user {
 				$hash = config::genKey();
 			}
 			$this->setHash($hash);
-			$this->setOptions('hashGenerated',date('Y-m-d H:i:s'));
+			$this->setOptions('hashGenerated', date('Y-m-d H:i:s'));
 			$this->save();
 		}
 		return $this->hash;
 	}
-	
+
 	public function setHash($_hash) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->hash,$_hash);
+		$this->_changed = utils::attrChanged($this->_changed, $this->hash, $_hash);
 		$this->hash = $_hash;
 		return $this;
 	}
-	
+
 	public function getProfils() {
 		return $this->profils;
 	}
-	
+
 	public function setProfils($_profils) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->profils,$_profils);
+		$this->_changed = utils::attrChanged($this->_changed, $this->profils, $_profils);
 		$this->profils = $_profils;
 		return $this;
 	}
-	
+
 	public function getChanged() {
 		return $this->_changed;
 	}
-	
+
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
 }

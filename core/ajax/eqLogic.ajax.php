@@ -215,6 +215,26 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'setGenericType') {
+		unautorizedInDemo();
+		$eqLogics = json_decode(init('eqLogics'), true);
+		foreach ($eqLogics as $eqLogic_json) {
+			if (!isset($eqLogic_json['id']) || trim($eqLogic_json['id']) == '') {
+				continue;
+			}
+			if (!isset($eqLogic_json['generic_type'])) {
+				throw new Exception(__('Pas de Type Generic fourni', __FILE__));
+			}
+			$eqLogic = eqLogic::byId($eqLogic_json['id']);
+			if (!is_object($eqLogic)) {
+				continue;
+			}
+			$eqLogic->setGenericType($eqLogic_json['generic_type']);
+			$eqLogic->save(true);
+		}
+		ajax::success();
+	}
+
 	if (init('action') == 'removes') {
 		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);

@@ -240,6 +240,15 @@ $('#bt_supportAccess').on('click', function() {
   })
 })
 
+$('#table_user').off('change','.userAttr[data-l1key=options][data-l2key="api::mode"]').on('change','.userAttr[data-l1key=options][data-l2key="api::mode"]',function(){
+  var tr = $(this).closest('tr');
+  if($(this).value() == 'disable'){
+    tr.find('.userAttr[data-l1key=hash]').hide()
+  }else{
+    tr.find('.userAttr[data-l1key=hash]').show()
+  }
+})
+
 function printUsers() {
   $.showLoading()
   jeedom.user.all({
@@ -277,6 +286,12 @@ function printUsers() {
         userTR += '</select>'
         userTR += '</td>'
         userTR += '<td>'
+        if(disable != 'disabled'){
+          userTR += '<select class="userAttr form-control input-sm" data-l1key="options" data-l2key="api::mode">'
+          userTR += '<option value="enable">{{Activé}}</option>'
+          userTR += '<option value="disable">{{Désactivé}}</option>'
+          userTR += '</select>'
+        }
         userTR += '<input class="userAttr form-control input-sm" data-l1key="hash" disabled />'
         userTR += '</td>'
         userTR += '<td>'
@@ -315,6 +330,7 @@ function printUsers() {
         tr.push(result)
       }
       $('#table_user tbody').append(tr)
+      $('#table_user tbody .userAttr[data-l1key=options][data-l2key="api::mode"]').trigger('change')
       modifyWithoutSave = false
       $.hideLoading()
     }

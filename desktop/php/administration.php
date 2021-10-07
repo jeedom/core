@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 
 $repos = update::listRepo();
-$keys = array('api', 'apipro', 'dns::token', 'market::allowDNS', 'ldap::enable', 'apimarket');
+$keys = array('api', 'apipro', 'apitts', 'dns::token', 'market::allowDNS', 'ldap::enable', 'apimarket');
 foreach ($repos as $key => $value) {
 	$keys[] = $key . '::enable';
 }
@@ -1008,11 +1008,11 @@ user::isBan();
 								<select class="configKey form-control" data-l1key="eqLogic::create::execScenario">
 									<option value="-1">{{Aucun}}</option>
 									<?php
-										$scenarios = '';
-										foreach (scenario::all() as $scenario) {
-											$scenarios .= '<option value="' . $scenario->getId() . '">' . $scenario->getHumanName() . '</option>';
-										}
-										echo $scenarios;
+									$scenarios = '';
+									foreach (scenario::all() as $scenario) {
+										$scenarios .= '<option value="' . $scenario->getId() . '">' . $scenario->getHumanName() . '</option>';
+									}
+									echo $scenarios;
 									?>
 								</select>
 							</div>
@@ -1579,20 +1579,20 @@ user::isBan();
 						} ?>
 
 						<legend>{{Single Sign On}}</legend>
-                        <div class="form-group">
+						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Activer l'authentification SSO}}</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="checkbox"  class="configKey" data-l1key="sso:allowRemoteUser" />
+								<input type="checkbox" class="configKey" data-l1key="sso:allowRemoteUser" />
 							</div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Configurer Entête HTTP}}
-                                <sup><i class="fas fa-question-circle" tooltip="{{Champ à utiliser comme déterminer l'entête HTTP contenant l'identifiant utilisateur (e.g HTTP_REMOTE_USER)}}"></i></sup>
-                            </label>
-                            <div class="col-md-3 col-sm-4 col-xs-12">
-                                <input type="text" class="configKey form-control" data-l1key="sso:remoteUserHeader" />
-                            </div>
-                        </div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Configurer Entête HTTP}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Champ à utiliser comme déterminer l'entête HTTP contenant l'identifiant utilisateur (e.g HTTP_REMOTE_USER)}}"></i></sup>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="sso:remoteUserHeader" />
+							</div>
+						</div>
 
 						<legend>{{Dépendance et démon}}</legend>
 						<div class="form-group">
@@ -1896,39 +1896,6 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API HTTP}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::http::mode">
-									<option value="enable">{{Activé}}</option>
-									<option value="whiteip">{{IP blanche}}</option>
-									<option value="localhost">{{Localhost}}</option>
-									<option value="disable">{{Désactivé}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API JSONRPC (App Mobile)}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::jsonrpc::mode">
-									<option value="enable">{{Activé}}</option>
-									<option value="whiteip">{{IP blanche}}</option>
-									<option value="localhost">{{Localhost}}</option>
-									<option value="disable">{{Désactivé}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::tts::mode">
-									<option value="enable">{{Activé}}</option>
-									<option value="whiteip">{{IP blanche}}</option>
-									<option value="localhost">{{Localhost}}</option>
-									<option value="disable">{{Désactivé}}</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Clé API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 							</label>
@@ -1940,8 +1907,35 @@ user::isBan();
 									</span>
 								</div>
 							</div>
+							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+								<select class="form-control configKey" data-l1key="api::core::mode">
+									<option value="enable">{{Activé}}</option>
+									<option value="whiteip">{{IP blanche}}</option>
+									<option value="disable">{{Désactivé}}</option>
+								</select>
+							</div>
 						</div>
-
+						<div class="form-group">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Accès API TTS}}</label>
+							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
+								<div class="input-group">
+									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apitts']; ?>" />
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apitts"><i class="fas fa-sync"></i></a>
+									</span>
+								</div>
+							</div>
+							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+								<select class="form-control configKey" data-l1key="api::apitts::mode">
+									<option value="enable">{{Activé}}</option>
+									<option value="whiteip">{{IP blanche}}</option>
+									<option value="localhost">{{Localhost}}</option>
+									<option value="disable">{{Désactivé}}</option>
+								</select>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
@@ -1950,13 +1944,13 @@ user::isBan();
 								<div class="input-group">
 									<input class="span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apipro']; ?>" />
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="pro"><i class="fas fa-sync"></i></a>
+										<a class="btn btn-default form-control bt_regenerate_api roundedRight" data-plugin="apipro"><i class="fas fa-sync"></i></a>
 									</span>
 								</div>
 							</div>
 							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::pro::mode">
+								<select class="form-control configKey" data-l1key="api::apipro::mode">
 									<option value="enable">{{Activé}}</option>
 									<option value="disable">{{Désactivé}}</option>
 								</select>
@@ -1976,7 +1970,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-2 col-sm-4 col-xs-12 control-label">{{Accès API}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-								<select class="form-control configKey" data-l1key="api::core::market::mode">
+								<select class="form-control configKey" data-l1key="api::apimarket::mode">
 									<option value="enable">{{Activé}}</option>
 									<option value="disable">{{Désactivé}}</option>
 								</select>

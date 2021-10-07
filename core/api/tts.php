@@ -16,23 +16,30 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . "/../php/core.inc.php";
-if (!jeedom::apiModeResult(config::byKey('api::core::tts::mode', 'core', 'enable'))) {
+
+if (user::isBan()) {
+	header("Status: 404 Not Found");
+	header('HTTP/1.0 404 Not Found');
+	$_SERVER['REDIRECT_STATUS'] = 404;
+	echo "<h1>404 Not Found</h1>";
+	echo "The page that you have requested could not be found.";
+	die();
+}
+
+if (!jeedom::apiAccess(init('apikey'), 'apitts')) {
 	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
 	die();
 }
-if (!jeedom::apiAccess(init('apikey'))) {
-	echo __('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__);
-	die();
-}
+
 log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
-$engine = config::byKey('tts::engine','core','pico');
-if(strpos($engine,'plugin::') !== false){
-	$engine = str_replace('plugin::','',$engine);
-	if(!class_exists($engine) || !method_exists($engine,'tts')){
+$engine = config::byKey('tts::engine', 'core', 'pico');
+if (strpos($engine, 'plugin::') !== false) {
+	$engine = str_replace('plugin::', '', $engine);
+	if (!class_exists($engine) || !method_exists($engine, 'tts')) {
 		$engine = 'pico';
 	}
 }
-if(trim($engine) == ''){
+if (trim($engine) == '') {
 	$engine = 'pico';
 }
 $text = init('text');
@@ -40,18 +47,18 @@ if ($text == '') {
 	echo __('Aucun texte à dire', __FILE__);
 	die();
 }
-if(substr(init('text'), -1) == '#' && substr(init('text'), 0,1) == '#' && class_exists('songs_song')){
-	log::add('tts','debug',__('Tag detécté dans le tts et plugin song présent',__FILE__));
-	$song = songs_song::byLogicalId(strtolower(str_replace('#','',init('text'))));
-	if(is_object($song) && file_exists($song->getPath())){
-		log::add('tts','debug',__('Son trouvé path : ',__FILE__).$song->getPath());
+if (substr(init('text'), -1) == '#' && substr(init('text'), 0, 1) == '#' && class_exists('songs_song')) {
+	log::add('tts', 'debug', __('Tag detécté dans le tts et plugin song présent', __FILE__));
+	$song = songs_song::byLogicalId(strtolower(str_replace('#', '', init('text'))));
+	if (is_object($song) && file_exists($song->getPath())) {
+		log::add('tts', 'debug', __('Son trouvé path : ', __FILE__) . $song->getPath());
 		if (init('path') == 1) {
 			echo $song->getPath();
 		} else {
 			header('Content-Type: audio/mpeg');
 			header("Content-Transfer-Encoding: binary");
 			header("Pragma: no-cache");
-			header('Content-length: '.filesize($song->getPath()));
+			header('Content-length: ' . filesize($song->getPath()));
 			readfile($song->getPath());
 		}
 		die();
@@ -70,38 +77,38 @@ if (file_exists($filename)) {
 	header('Content-Type: audio/mpeg');
 	header("Content-Transfer-Encoding: binary");
 	header("Pragma: no-cache");
-	header('Content-length: '.filesize($filename));
+	header('Content-length: ' . filesize($filename));
 	readfile($filename);
 	die();
 }
-log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') with engine '.$engine);
+log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') with engine ' . $engine);
 
 try {
-	if($engine == 'espeak'){
+	if ($engine == 'espeak') {
 		$voice = init('voice', 'fr+f4');
 		$avconv = 'avconv';
-		if(!com_shell::commandExists('avconv')){
+		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
-		$cmd = 'espeak -v' . $voice . ' "' . $text . '" --stdout | '.$avconv.' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
+		$cmd = 'espeak -v' . $voice . ' "' . $text . '" --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
-	}else if($engine == 'pico'){
+	} else if ($engine == 'pico') {
 		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
-		$lang = str_replace('_','-',init('lang',config::byKey('language')));
+		$lang = str_replace('_', '-', init('lang', config::byKey('language')));
 		$avconv = 'avconv';
-		if(!com_shell::commandExists('avconv')){
+		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
 		$cmd = 'pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;';
-		$cmd .= $avconv.' -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
+		$cmd .= $avconv . ' -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
-	}else{
-		$engine::tts($filename,$text);
+	} else {
+		$engine::tts($filename, $text);
 	}
 } catch (Exception $e) {
-	log::add('tts','error',$e->getMessage());
+	log::add('tts', 'error', $e->getMessage());
 }
 
 if (init('path') == 1) {
@@ -110,7 +117,7 @@ if (init('path') == 1) {
 	header('Content-Type: audio/mpeg');
 	header("Content-Transfer-Encoding: binary");
 	header("Pragma: no-cache");
-	header('Content-length: '.filesize($filename));
+	header('Content-length: ' . filesize($filename));
 	readfile($filename);
 }
 try {
