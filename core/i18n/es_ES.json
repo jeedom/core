@@ -127,13 +127,13 @@
         "Occurrences": "Ocurrencias"
     },
     "mobile\/html\/deamon.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado",
         "Date lancement": "Fecha lanzamiento",
         "Action": "Acción"
     },
     "mobile\/html\/health.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado"
     },
     "mobile\/html\/connection.html": {
@@ -156,7 +156,7 @@
         "Plugins": "Plugins"
     },
     "mobile\/html\/cron.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado",
         "Date lancement": "Fecha lanzamiento",
         "Action": "Acción"
@@ -199,7 +199,7 @@
         "Général": "General",
         "Composants": "Componentes",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Position": "Posición",
         "Fond transparent": "Fondo transparente",
         "Couleur de fond": "Color de fondo",
@@ -227,7 +227,7 @@
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Añadir",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Calcul": "Cálculo",
         "Type": "Tipo",
         "Groupement": "Agrupar",
@@ -275,7 +275,7 @@
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Statut": "Estado",
         "Configuration": "Configuración",
         "(Re)Démarrer": "(Re)Iniciar",
@@ -303,7 +303,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Icône": "Icono",
         "Choisir": "Elegir",
         "Image (marche uniquement avec le thème Jeedom)": "Imagen (solo funciona con el tema Jeedom)",
@@ -331,7 +331,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Ajouter": "Añadir",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Valeur": "Valor",
         "Utilisée dans": "Usado por",
         "Action": "Acción",
@@ -374,12 +374,12 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Informations": "Información",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Visible": "Visible"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Statut": "Estado",
         "Installation": "Instalación",
         "Dernière installation": "Última instalación",
@@ -457,7 +457,7 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "EqLogic non trouvé : ": "EqLogic no encontrado:",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Visible": "Visible",
         "Affichage": "Monitor",
         "Graphique de fond": "Gráfico de fondo",
@@ -513,7 +513,7 @@
         "Général": "General",
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Type de lien": "Tipo de enlace",
         "Equipement": "Dispositivos",
         "Lien": "Enlace",
@@ -640,7 +640,7 @@
     },
     "desktop\/modal\/dataStore.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -655,7 +655,7 @@
         "Général": "General",
         "ID": "CARNÉ DE IDENTIDAD",
         "Logical ID": "ID lógica",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Type": "Tipo",
         "Sous-type": "Sub-tipo",
         "Mise à jour par": "Actualizado por",
@@ -787,7 +787,7 @@
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Temps": "Tiempo"
     },
     "desktop\/modal\/js.error.php": {
@@ -826,7 +826,7 @@
         "Commandes historisées : ": "Órdenes históricas:",
         "Commandes timeline : ": "Comandos de la línea de tiempo:",
         "par page": "por página",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Plugin": "Enchufar",
         "Type": "Tipo",
         "Historisé": "Historizar",
@@ -864,7 +864,7 @@
     "desktop\/modal\/cmd.graph.select.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Affichage": "Monitor",
         "Ligne": "Línea",
         "Aire": "Area",
@@ -915,7 +915,7 @@
         "Alertes": "Alertas",
         "Commentaire": "Comentario",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "ID logique": "ID logical",
         "ID de l'objet": "ID del objeto",
         "Création": "Creación",
@@ -983,7 +983,7 @@
         "Composants": "Componentes",
         "Supprimer": "Eliminar",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Position": "Posición",
         "Code d'accès": "Código de acceso",
         "Icône": "Icono",
@@ -1125,7 +1125,7 @@
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Demande": "Solicitud",
+        "Demande": "Demanda",
         "Exécuter": "Ejecutar",
         "Résultat": "Resultado",
         "La demande ne peut être vide": "La solicitud no puede estar vacía"
@@ -1137,7 +1137,7 @@
         "Valider": "Validar",
         "Objet": "Objeto",
         "Equipement": "Dispositivos",
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1164,7 +1164,7 @@
         "Type non trouvé : ": "Tipo no encontrado:",
         "Sauvegarder": "Guardar",
         "Type": "Tipo",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Modification sauvegardées avec succès": "Cambios guardados exitosamente"
     },
     "desktop\/modal\/plan.configure.php": {
@@ -1201,7 +1201,7 @@
         "Afficher le sélecteur de période": "Mostrar el selector de período",
         "Afficher la barre de défilement": "Mostrar la barra de desplazamiento",
         "Fond transparent": "Fondo transparente",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Lien": "Enlace",
         "Aucun": "No",
         "Icône": "Icono",
@@ -1468,7 +1468,7 @@
         "Core et plugins": "Core y plugins",
         "Informations": "Informaciones",
         "Etat": "Estado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Version installée": "Versión instalada",
         "Dernière version": "Última versión",
         "Dernière mise à jour": "Última actualización",
@@ -1685,7 +1685,7 @@
         "Défaut": "General",
         "Ajouter un type de résumé": "Agregar un tipo de resumen",
         "Clé": "Llave",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Calcul": "Cálculo",
         "Icône": "Icono",
         "Icône si nul": "Si el icono es nulo",
@@ -2057,7 +2057,7 @@
         "Télécharger": "Descargar",
         "Supprimer": "Eliminar",
         "Tout supprimer": "Borrar todo",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Chemin": "Ruta",
         "Id rapport": "Id informe",
         "Extension": "Extensión",
@@ -2074,7 +2074,7 @@
         "Sauvegarder": "Guardar",
         "Supprimer": "Borrar",
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Type": "Tipo",
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
@@ -2109,7 +2109,7 @@
         "Général": "General",
         "Scénario": "Escenario",
         "Paramètres": "Parámetros",
-        "Nom du scénario": "Nombre de escenario",
+        "Nom du scénario": "Nombre del escenario",
         "Nom à afficher": "Nombre a mostrar",
         "Ne rien mettre pour laisser le nom par défaut": "No poner nada para dejar el nombre por defecto",
         "Groupe": "Grupo",
@@ -2204,13 +2204,13 @@
         "Général": "General",
         "Filtres": "Filtros",
         "Actions": "Acciones",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Groupe": "Grupo",
         "Groupe de l'interaction": "Grupo de interacción",
         "Actif": "Activo",
         "Icône": "Icono",
         "Choisir": "Elegir",
-        "Demande": "Solicitud",
+        "Demande": "Demanda",
         "Regexp de correspondance obligatoire": "Regexp de correspondencia obligatoria",
         "Synonyme": "Sinónimo",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Sustituir las palabras con sus sinónimos cuando se generan órdenes",
@@ -2339,7 +2339,7 @@
         "Statut": "Estado",
         "Actions": "Acciones",
         "Event": "Evento",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado",
         "Date lancement": "Fecha Lanzamiento",
         "Action": "Acción"
@@ -2516,7 +2516,7 @@
         "Date": "Fecha",
         "Type": "Tipo",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2618,7 +2618,7 @@
         "Ajouter Scénario": "Añadir escenario",
         "Editer": "Editar",
         "Supprimer": "Eliminar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Couleur": "Color",
         "Type": "Tipo",
         "Groupement": "Agrupar",
@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Lista de Interacciones",
         "Interactions": "Interacciones",
+        "Nom": "Apellido",
         "Tester les interactions": "Probar las interacciones",
         "Sauvegarde réussie avec succès": "Backup generado con éxito",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "¿Estás seguro de que deseas regenerar todas las interacciones (esto puede ser muy largo)?",
         "Toutes les interactions ont été régénérées": "Todas las interacciones han sido regeneradas",
+        "Demande": "Demanda",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?",
         "Action": "Acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "Prueba",
         "Résultat si test ok": "Resultado si la prueba está bien",
+        "Nom du widget": "Nombre del widget",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "¿Seguro que quieres eliminar este widget?",
@@ -2918,6 +2921,7 @@
         "Objets": "Objetos",
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
+        "Nom du nouvel objet": "Nombre del nuevo objeto",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "¿Está seguro de que desea eliminar el objeto?",
         "Commande": "Comando",
         "Activer": "Activar",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Nom du scénario": "Nombre del escenario",
         "Vue d'ensemble des scénarios": "Resumen de escenarios",
         "Scénario": "Escenario",
         "Graphique de lien(s)": "Gráfico de enlace",
@@ -3795,7 +3800,7 @@
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Développé par": "Desarrollado por",
         "Conseillé": "Recomendable",
         "Legacy": "Legado",
@@ -4391,7 +4396,7 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/variable.default.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccione la orden"
     },
@@ -4402,7 +4407,7 @@
         "Désactiver": "Desactivar"
     },
     "core\/template\/scenario\/delete_variable.default.html": {
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Dispositivos",
@@ -4441,7 +4446,7 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/tag.default.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccione el comando"
     },
@@ -4474,7 +4479,7 @@
         "Sélectionner la commande": "Seleccione el comando",
         "De": "De",
         "à": "A las",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Exporter en": "Exportar a",
         "CSV": "CSV",
         "Commandes": "Comandos"

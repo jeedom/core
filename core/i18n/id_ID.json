@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Daftar interaksi",
         "Interactions": "Interaksi",
+        "Nom": "Nom",
         "Tester les interactions": "Interaksi uji",
         "Sauvegarde réussie avec succès": "Backup sukses berhasil",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Demande": "Demande",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Apakah Anda yakin ingin menghapus \\ 's interaksi",
         "Action": "Tindakan",
         "Sélectionner un mot-clé": "Pilih kata kunci"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "Uji",
         "Résultat si test ok": "Résultat si test ok",
+        "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
         "Configuration de la commande": "Set Kontrol",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Êtes-vous sûr de vouloir supprimer ce widget ?",
@@ -2918,6 +2921,7 @@
         "Objets": "Item",
         "Envoyer": "Kirim",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Apakah Anda yakin ingin menghapus \\ 's objek",
         "Commande": "Pesanan",
         "Activer": "Mengaktifkan",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log eksekusi script",
+        "Nom du scénario": "Nom du scénario",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Skenario",
         "Graphique de lien(s)": "Graphique de lien(s)",

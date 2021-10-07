@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Lista interazioni",
         "Interactions": "Interazioni",
+        "Nom": "Nom",
         "Tester les interactions": "Prova interazioni",
         "Sauvegarde réussie avec succès": "Backup riuscito con successo",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Demande": "Demande",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Sei sicuro di voler eliminare l\\'interazione",
         "Action": "Azione",
         "Sélectionner un mot-clé": "Seleziona una parola chiave"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widget",
         "Test": "Prova",
         "Résultat si test ok": "Résultat si test ok",
+        "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Backup completato con successo",
         "Configuration de la commande": "Impostazione comando",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Sei sicuro di voler eliminare questo widget?",
@@ -2918,6 +2921,7 @@
         "Objets": "Oggetti",
         "Envoyer": "Invia",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Sei sicuro di voler eliminare l'oggetto",
         "Commande": "Comando",
         "Activer": "Attivare",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
+        "Nom du scénario": "Nom du scénario",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Scena",
         "Graphique de lien(s)": "Link grafico",

@@ -1125,7 +1125,7 @@
     },
     "desktop\/modal\/interact.test.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Demande": "Aplicação",
+        "Demande": "Demanda",
         "Exécuter": "Executar",
         "Résultat": "Resultado",
         "La demande ne peut être vide": "O pedido não pode estar vazio"
@@ -2210,7 +2210,7 @@
         "Actif": "Ativos",
         "Icône": "ícone",
         "Choisir": "Escolher",
-        "Demande": "Aplicação",
+        "Demande": "Demanda",
         "Regexp de correspondance obligatoire": "Regexp de correspondência obrigatória",
         "Synonyme": "Sinônimo",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Substitua as palavras com seus sinônimos ao gerar ordens",
@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Lista de interação",
         "Interactions": "Interações",
+        "Nom": "Nome",
         "Tester les interactions": "Interações de teste",
         "Sauvegarde réussie avec succès": "Backup bem-sucedido com sucesso",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Tem certeza de que deseja regenerar todas as interações (isso pode ser muito longo)?",
         "Toutes les interactions ont été régénérées": "Todas as interações foram regeneradas",
+        "Demande": "Demanda",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Tem certeza de que deseja excluir interação 's \\",
         "Action": "Açao",
         "Sélectionner un mot-clé": "Selecione uma palavra-chave"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "Teste",
         "Résultat si test ok": "Resultado se teste ok",
+        "Nom du widget": "Nome do widget",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
         "Configuration de la commande": "Set Controle",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Tem certeza de que deseja excluir este widget?",
@@ -2918,6 +2921,7 @@
         "Objets": "Objetos",
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagem de fundo adicionada com sucesso",
+        "Nom du nouvel objet": "Nome do novo objeto",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Tem certeza de que deseja excluir o objeto 's \\",
         "Commande": "Ordem",
         "Activer": "Ativar",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log execução do script",
+        "Nom du scénario": "Nome do cenário",
         "Vue d'ensemble des scénarios": "Visão geral dos cenários",
         "Scénario": "Cenas",
         "Graphique de lien(s)": "Gráfico do link",
