@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Liste der Interaktionen",
         "Interactions": "Interaktion",
+        "Nom": "Name",
         "Tester les interactions": "Interaktionen testen",
         "Sauvegarde réussie avec succès": "Backup erfolgreich erfolgreich",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Sind Sie sicher, dass Sie alle Interaktionen neu generieren möchten (dies kann sehr lange dauern)?",
         "Toutes les interactions ont été régénérées": "Alle Wechselwirkungen wurden regeneriert",
+        "Demande": "Anforderung",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Möchten Sie die Interaktion wirklich löschen?",
         "Action": "Aktion",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "Prüfung",
         "Résultat si test ok": "Ergebnis wenn Test ok",
+        "Nom du widget": "Widget Name",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Configuration de la commande": "Befehl Konfiguration",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Möchten Sie dieses Widget wirklich löschen?",
@@ -2918,6 +2921,7 @@
         "Objets": "Objekte",
         "Envoyer": "Senden",
         "Image de fond ajoutée avec succès": "Hintergrundbild erfolgreich hinzugefügt",
+        "Nom du nouvel objet": "Name des neuen Objekts",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Möchten Sie das Objekt wirklich löschen?",
         "Commande": "Befehl",
         "Activer": "Aktivieren",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
+        "Nom du scénario": "Szenarioname",
         "Vue d'ensemble des scénarios": "Überblick über Szenarien",
         "Scénario": "Szenario",
         "Graphique de lien(s)": "Grafik verknüpfen",

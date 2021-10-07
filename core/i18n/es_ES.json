@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Lista de Interacciones",
         "Interactions": "Interacciones",
+        "Nom": "Apellido",
         "Tester les interactions": "Probar las interacciones",
         "Sauvegarde réussie avec succès": "Backup generado con éxito",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "¿Estás seguro de que deseas regenerar todas las interacciones (esto puede ser muy largo)?",
         "Toutes les interactions ont été régénérées": "Todas las interacciones han sido regeneradas",
+        "Demande": "Demanda",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "¿Está seguro de que desea eliminar la interacción?",
         "Action": "Acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "Prueba",
         "Résultat si test ok": "Resultado si la prueba está bien",
+        "Nom du widget": "Nombre del widget",
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Configuration de la commande": "Configuración del comando",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "¿Seguro que quieres eliminar este widget?",
@@ -2918,6 +2921,7 @@
         "Objets": "Objetos",
         "Envoyer": "Enviar",
         "Image de fond ajoutée avec succès": "Imagen de fondo agregada correctamente",
+        "Nom du nouvel objet": "Nombre del nuevo objeto",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "¿Está seguro de que desea eliminar el objeto?",
         "Commande": "Comando",
         "Activer": "Activar",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Nom du scénario": "Nombre del escenario",
         "Vue d'ensemble des scénarios": "Resumen de escenarios",
         "Scénario": "Escenario",
         "Graphique de lien(s)": "Gráfico de enlace",

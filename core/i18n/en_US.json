@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "List of interactions",
         "Interactions": "Interactions",
+        "Nom": "Name",
         "Tester les interactions": "Test interactions",
         "Sauvegarde réussie avec succès": "Backup successful",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Are you sure you want to regenerate all interactions (this can be very long)?",
         "Toutes les interactions ont été régénérées": "All interactions have been regenerated",
+        "Demande": "Demand",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Are you sure you want to delete the interaction",
         "Action": "Action",
         "Sélectionner un mot-clé": "Select a keyword"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "Test",
         "Résultat si test ok": "Result if test ok",
+        "Nom du widget": "Widget name",
         "Sauvegarde effectuée avec succès": "Successfully saved",
         "Configuration de la commande": "Command setup",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Are you sure you want to delete this widget?",
@@ -2918,6 +2921,7 @@
         "Objets": "Objects",
         "Envoyer": "Send",
         "Image de fond ajoutée avec succès": "Background image successfully added",
+        "Nom du nouvel objet": "Name of the new object",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Are you sure you want to delete the object",
         "Commande": "Command",
         "Activer": "Activate",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Scenario execution log",
+        "Nom du scénario": "Scenario name",
         "Vue d'ensemble des scénarios": "Overview of scenarios",
         "Scénario": "Scenario",
         "Graphique de lien(s)": "Link graphic",

@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Список взаимодействий",
         "Interactions": "Взаимодействие",
+        "Nom": "Nom",
         "Tester les interactions": "Тестовые взаимодействия",
         "Sauvegarde réussie avec succès": "Успешное резервное копирование успешно",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Demande": "Demande",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Вы уверены, что хотите удалить взаимодействие \\ «ы",
         "Action": "Действие",
         "Sélectionner un mot-clé": "Выберите ключевое слово"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widgets",
         "Test": "тест",
         "Résultat si test ok": "Résultat si test ok",
+        "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
         "Configuration de la commande": "управляющий набор",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Êtes-vous sûr de vouloir supprimer ce widget ?",
@@ -2918,6 +2921,7 @@
         "Objets": "Объекты",
         "Envoyer": "Отправить",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Вы уверены, что хотите удалить этот объект",
         "Commande": "Команда",
         "Activer": "активировать",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Журнал запуска скрипта",
+        "Nom du scénario": "Nom du scénario",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Сценарий",
         "Graphique de lien(s)": "Ссылка графическая",

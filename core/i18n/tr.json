@@ -2793,10 +2793,12 @@
     "desktop\/js\/interact.js": {
         "Liste des interactions": "Etkileşimlerin listesi",
         "Interactions": "Etkileşim",
+        "Nom": "Nom",
         "Tester les interactions": "Etkileşimi test et",
         "Sauvegarde réussie avec succès": "Kayıt başarıyla sonuçlandı",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
+        "Demande": "Demande",
         "Êtes-vous sûr de vouloir supprimer l\\'interaction": "Etkileşimi kaldırmak istediğinizden emin misiniz",
         "Action": "Eylem",
         "Sélectionner un mot-clé": "Anahtar kelime seçin"
@@ -2849,6 +2851,7 @@
         "Widgets": "Widget'lar",
         "Test": "Test, denetleme",
         "Résultat si test ok": "Résultat si test ok",
+        "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Configuration de la commande": "Komutanın ayarları",
         "Êtes-vous sûr de vouloir supprimer ce widget ?": "Êtes-vous sûr de vouloir supprimer ce widget ?",
@@ -2918,6 +2921,7 @@
         "Objets": "Nesneler",
         "Envoyer": "Gönder",
         "Image de fond ajoutée avec succès": "Image de fond ajoutée avec succès",
+        "Nom du nouvel objet": "Nom du nouvel objet",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "Nesneyi silmek istediğinizden eminmisiniz",
         "Commande": "Komuta",
         "Activer": "Etkinleştir",
@@ -2949,6 +2953,7 @@
     },
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Senaryonun çalışma logu",
+        "Nom du scénario": "Nom du scénario",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Senaryo",
         "Graphique de lien(s)": "Graphique de lien(s)",
