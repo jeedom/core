@@ -49,6 +49,7 @@ AddEncoding gzip svgz
 DirectoryIndex index.php
 </IfModule>
 
+
 # Right on folder
 
 RedirectMatch 403 ^.*\/3rdparty\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
@@ -83,6 +84,7 @@ RedirectMatch 403 ^.*\/plugin_info\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif).)*$
 RedirectMatch 403 ^.*\/ressources\/.*$
 RedirectMatch 403 ^.*\/resources\/.*$
 
+
 # Right on file
 
 Order Allow,Deny
@@ -99,7 +101,13 @@ Order Allow,Deny
     Allow from all
 </FilesMatch>
 
+<Files robots.txt>
+    Order Allow,Deny
+    Allow from all
+</Files>
+
 # Deny some php file
+
 <Files sick.php>
     Order Allow,Deny
     Deny from all
@@ -109,4 +117,3 @@ Order Allow,Deny
     Order Allow,Deny
     Deny from all
 </FilesMatch>
-
