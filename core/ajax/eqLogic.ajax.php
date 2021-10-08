@@ -229,6 +229,7 @@ try {
 			if (!is_object($eqLogic)) {
 				continue;
 			}
+			if ($eqLogic_json['generic_type'] == '') $eqLogic_json['generic_type'] = null;
 			$eqLogic->setGenericType($eqLogic_json['generic_type']);
 			$eqLogic->save(true);
 		}
