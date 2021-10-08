@@ -3079,11 +3079,13 @@ Desktop
   table.table-condensed tbody tr > td {
     vertical-align: middle !important;
   }
-  table.table-condensed tbody td .checkbox-inline {
+  table.table-condensed tbody td .checkbox-inline,
+  table.table-condensed tbody td label.checkbox-inline .cmdAttr {
     line-height: 26px;
   }
-  table.table-condensed tbody td .checkbox-inline > input[type="checkbox"]:checked::after {
-    margin-top: -4px;
+  table.table-condensed tbody td .checkbox-inline > input[type="checkbox"]:checked::after,
+  table.table-condensed tbody td label.checkbox-inline input[type="checkbox"]:checked::after {
+    margin-top: -4px !important;
   }
 
   table.tablesorter .tablesorter-pager {
