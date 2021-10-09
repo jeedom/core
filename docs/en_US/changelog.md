@@ -19,6 +19,7 @@
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
 - **Summaries** : It is now possible to configure actions on the summaries (ctrl + click on a summary) thanks to the virtual ones.
+- **Types of equipment** New page **Tools → Equipment types** allowing generic types to be assigned to equipment and commands, with support for types dedicated to installed plugins.
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
@@ -64,7 +65,7 @@ Jeedom 4.2 contains a big part on increasing security.
 
 - Change of file access policy : Before we prohibited certain files, now we only allow certain files.
 - Change at the level of the API, before it was "tolerant" if you arrived with the Core key by indicating plugin XXXXX. This is no longer the case, you must arrive with the key corresponding to the plugin.
-- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin.
+- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin. For example for the virtual plugin you had type = virtual in the url you must now replace by plugin = virtual & type = event, ditto for the plugin ipx800v4 or type = ipx800v4 becomes plugin = ipx800v4 & type = event
 - Strengthening of sessions (change to sha256 with 64 characters in strict mode).
 - The "stay connected" cookie (3 months max) is now "one shot", renewed with each use.
 
@@ -72,9 +73,13 @@ The Jeedom team is well aware that these changes can have an impact and be embar
 
 # Changelog Jeedom V4.1
 
+## 4.1.26
+
+- Fixed an apt dependency installation problem on Smart due to the change of certificate at let's encrypt.
+
 ## 4.1.25
 
-- Fixed apt dependency installation issue
+- Fixed apt dependency installation issue.
 
 ## 4.1.24
 

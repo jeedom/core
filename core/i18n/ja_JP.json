@@ -1334,6 +1334,7 @@
         "Scénarios": "シナリオ",
         "Interactions": "相互作用",
         "Widgets": "ウィジェット",
+        "Types d'équipement": "Types d'équipement",
         "Notes": "注釈",
         "Testeur expression": "発現テスター",
         "Variables": "変数",
@@ -2167,6 +2168,21 @@
         "CHANGER VOTRE MOT DE PASSE": "CHANGER VOTRE MOT DE PASSE",
         "C'est parti !": "C'est parti !"
     },
+    "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Equipements sans type": "Equipements sans type",
+        "Aucun": "Aucun",
+        "Non actif": "Non actif",
+        "Non visible": "Non visible",
+        "Reset types": "Reset types",
+        "Types auto": "Types auto",
+        "Inconnu": "Inconnu",
+        "Rechercher | nom | id": "Rechercher | nom | id",
+        "Sauvegarder": "Sauvegarder",
+        "Appliquer": "Appliquer",
+        "Types inconnus": "Types inconnus"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401-不正アクセス"
     },
@@ -2906,6 +2922,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "セキュリティ警告： <br\/>パスワードを変更する必要があります。",
         "Information importante :": "重要な情報："
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
+        "Oui": "Oui",
+        "Non": "Non",
+        "Supprimer": "Supprimer",
+        "Ajouter au résumé": "Ajouter au résumé",
+        "Aucun": "Aucun",
+        "Types Génériques automatiques": "Types Génériques automatiques",
+        "Types Génériques sauvegardés": "Types Génériques sauvegardés"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "コマンド構成",
@@ -3850,6 +3876,7 @@
         "Désactivation de": "Désactivation de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
         "Erreur exécution de la commande ": "コマンドの実行エラー",
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "Aucun paramètre optionnel disponible.": "Aucun paramètre optionnel disponible",
         "Aucune description trouvée pour ce Widget.": "Aucune description trouvée pour ce Widget",
         "Titre": "タイトル",
@@ -3871,8 +3898,7 @@
         "Erreur delete influx sur : ": "Erreur delete influx sur :",
         "Envoie de l\\'historique à influx : ": "Envoie de l\\'historique à influx :",
         "Erreur history influx sur : ": "Erreur history influx sur :",
-        "Commande": "オーダー",
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+        "Commande": "オーダー"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "行政",
@@ -4561,7 +4587,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Requête invalide. Version JSON-RPC invalide :",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "L\\'identifiant ou le mot de passe ne peuvent pas être vide",
         "Echec lors de l\\'authentification": "Echec lors de l\\'authentification",
-        "Demande pour le plugin : ": "プラグインのリクエスト：",
         "Aucune méthode correspondante : ": "対応する方法はありません：",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "このアクションを実行する権限がありません",
         "Objet introuvable : ": "オブジェクトが見つかりません：",
@@ -4579,7 +4604,8 @@
         "Scénario exécuté sur appel API": "API呼び出しで実行されるシナリオ",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver l\\'objet associé : ": "関連するオブジェクトが見つかりません：",
-        "Impossible de trouver l\\'objet": "オブジェクトが見つかりません"
+        "Impossible de trouver l\\'objet": "オブジェクトが見つかりません",
+        "Demande pour le plugin : ": "プラグインのリクエスト："
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",

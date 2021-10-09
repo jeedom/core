@@ -19,6 +19,7 @@
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
 - **Resumos** : Agora é possível configurar ações nos resumos (ctrl + clique em um resumo) graças aos virtuais.
+- **Tipos de equipamento** Nova página **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a equipamentos e comandos, com suporte para tipos dedicados a plug-ins instalados.
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
 - **Categorias coloridas** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
 - **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Plugins podem usar esta nova função principal.
@@ -64,7 +65,7 @@ Jeedom 4.2 contém uma grande parte no aumento da segurança.
 
 - Mudança de política de acesso a arquivos : Antes proibíamos certos arquivos, agora permitimos apenas alguns arquivos.
 - Mudança no nível da API, antes que fosse "tolerante" se você chegasse com a chave Core indicando plugin XXXXX. Este não é mais o caso, você deve chegar com a chave correspondente ao plugin.
-- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin.
+- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin. Por exemplo, para o plugin virtual que você tinha type = virtual no url, você deve agora substituir por plugin = virtual & type = event, idem para o plugin ipx800v4 ou type = ipx800v4 torna-se plugin = ipx800v4 & type = event
 - Fortalecimento das sessões (mudar para sha256 com 64 caracteres em modo estrito).
 - O cookie "fique conectado" (3 meses no máximo) agora é "one shot", renovado a cada uso.
 
@@ -72,9 +73,13 @@ A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e se
 
 # Registro de alterações Jeedom V4.1
 
+## 4.1.26
+
+- Corrigido um problema de instalação de dependência apt no Smart devido à mudança de certificado em vamos criptografar.
+
 ## 4.1.25
 
-- Corrigido o problema de instalação de dependência do apt
+- Corrigido o problema de instalação de dependência do apt.
 
 ## 4.1.24
 

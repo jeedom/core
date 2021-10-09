@@ -1334,6 +1334,7 @@
         "Scénarios": "Cenas",
         "Interactions": "Interações",
         "Widgets": "Widgets",
+        "Types d'équipement": "Tipos de equipamento",
         "Notes": "Anotações",
         "Testeur expression": "Testador de expressão",
         "Variables": "Variáveis",
@@ -2167,6 +2168,21 @@
         "CHANGER VOTRE MOT DE PASSE": "MUDE SUA SENHA",
         "C'est parti !": "Vamos lá !"
     },
+    "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)",
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Equipements sans type": "Equipamento sem tipo",
+        "Aucun": "Não",
+        "Non actif": "Não ativo",
+        "Non visible": "Não visível",
+        "Reset types": "Tipos de redefinição",
+        "Types auto": "Tipos de automóveis",
+        "Inconnu": "Desconhecido",
+        "Rechercher | nom | id": "Pesquisa | nome | Eu iria",
+        "Sauvegarder": "Para salvaguardar",
+        "Appliquer": "Aplicar",
+        "Types inconnus": "Tipos desconhecidos"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
     },
@@ -2906,6 +2922,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de segurança: <br\/> Sua senha deve ser alterada",
         "Information importante :": "Informação importante:"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Remover tipos genéricos dos pedidos?",
+        "Oui": "Sim",
+        "Non": "Não",
+        "Supprimer": "Deletar",
+        "Ajouter au résumé": "Adicionar ao resumo",
+        "Aucun": "Não",
+        "Types Génériques automatiques": "Tipos Genéricos Automáticos",
+        "Types Génériques sauvegardés": "Tipos genéricos salvos"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuração de controle",
@@ -3850,6 +3876,7 @@
         "Désactivation de": "Desativação de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque não respondeu ou respondeu incorretamente durante as últimas 3 tentativas",
         "Erreur exécution de la commande ": "Erro ao executar o comando",
+        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)",
         "Aucun paramètre optionnel disponible.": "Nenhum parâmetro opcional disponível",
         "Aucune description trouvée pour ce Widget.": "Nenhuma descrição encontrada para este widget",
         "Titre": "Título",
@@ -3871,8 +3898,7 @@
         "Erreur delete influx sur : ": "Erro ao excluir influxo em:",
         "Envoie de l\\'historique à influx : ": "Envia histórico de influxo:",
         "Erreur history influx sur : ": "Erro de influxo de histórico em:",
-        "Commande": "Ordem",
-        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)"
+        "Commande": "Ordem"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Administração",
@@ -4561,7 +4587,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Pedido inválido. Versão JSON-RPC inválida:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Nome de utilizador ou senha não podem ficar em branco",
         "Echec lors de l\\'authentification": "Falha ao autenticar",
-        "Demande pour le plugin : ": "Pedido de plugin:",
         "Aucune méthode correspondante : ": "Nenhum método correspondente:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Não está autorizado a executar esta ação",
         "Objet introuvable : ": "Objeto não encontrado:",
@@ -4579,7 +4604,8 @@
         "Scénario exécuté sur appel API": "Cenário executado na chamada da API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "O parâmetro \"state\" não pode estar vazio e deve ter o valor [executar, parar, ativar, desativar]",
         "Impossible de trouver l\\'objet associé : ": "Não foi possível encontrar o objeto associado:",
-        "Impossible de trouver l\\'objet": "Não foi possível encontrar o objeto"
+        "Impossible de trouver l\\'objet": "Não foi possível encontrar o objeto",
+        "Demande pour le plugin : ": "Pedido de plugin:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",

@@ -11,6 +11,9 @@ global $GENRICSTYPES;
 $GENRICSTYPES = array();
 $families = array();
 foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
+	if (isset($info['noapp']) && $info['noapp']) {
+		 $info['name'] .= ' ' . __('(Non géré par Application Mobile)', __FILE__);
+	}
 	$GENRICSTYPES[$key] = $info;
 	$families[$info['familyid']] = $info['family'];
 }

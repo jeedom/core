@@ -1334,6 +1334,7 @@
         "Scénarios": "Scenarios",
         "Interactions": "Interactions",
         "Widgets": "Widgets",
+        "Types d'équipement": "Equipment Type",
         "Notes": "Notes",
         "Testeur expression": "Expression tester",
         "Variables": "Variables",
@@ -2167,6 +2168,21 @@
         "CHANGER VOTRE MOT DE PASSE": "CHANGE YOUR PASSWORD",
         "C'est parti !": "Let's go !"
     },
+    "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(Not managed by Application Mobile)",
+        "401 - Accès non autorisé": "401 - Unauthorized Access",
+        "Equipements sans type": "Equipment without type",
+        "Aucun": "None",
+        "Non actif": "Disabled",
+        "Non visible": "Not visible",
+        "Reset types": "Reset types",
+        "Types auto": "Auto types",
+        "Inconnu": "Unknown",
+        "Rechercher | nom | id": "Search | name | id",
+        "Sauvegarder": "Save",
+        "Appliquer": "Apply",
+        "Types inconnus": "Unknown types"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access"
     },
@@ -2906,6 +2922,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Security alert: <br\/> Your password must be changed",
         "Information importante :": "Important information:"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Remove generic types from commands ?",
+        "Oui": "Yes",
+        "Non": "No",
+        "Supprimer": "Delete",
+        "Ajouter au résumé": "Add to summary",
+        "Aucun": "None",
+        "Types Génériques automatiques": "Automatic Generic Types",
+        "Types Génériques sauvegardés": "Generic types saved"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Control configuration",
@@ -3850,6 +3876,7 @@
         "Désactivation de": "Deactivation of",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "because it did not respond or responded incorrectly during the last 3 attempts",
         "Erreur exécution de la commande ": "Command execution error",
+        "(Non géré par Application Mobile)": "(Not supported by Application Mobile)",
         "Aucun paramètre optionnel disponible.": "No optional parameter available for this widget",
         "Aucune description trouvée pour ce Widget.": "No description found for this widget",
         "Titre": "Title",
@@ -3871,8 +3898,7 @@
         "Erreur delete influx sur : ": "Error delete influx on:",
         "Envoie de l\\'historique à influx : ": "Sends influx history:",
         "Erreur history influx sur : ": "History influx error on:",
-        "Commande": "Command",
-        "(Non géré par Application Mobile)": "(Not managed by Application Mobile)"
+        "Commande": "Command"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Settings",
@@ -4561,7 +4587,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Invalid request. Invalid JSON-RPC version:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Username or password cannot be blank",
         "Echec lors de l\\'authentification": "Failed to authenticate",
-        "Demande pour le plugin : ": "Request for plugin:",
         "Aucune méthode correspondante : ": "No corresponding method:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "You are not authorized to perform this action",
         "Objet introuvable : ": "Object not found:",
@@ -4579,7 +4604,8 @@
         "Scénario exécuté sur appel API": "Scenario executed on API call",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "The \"state\" parameter cannot be empty and must have the value [run, stop, enable, disable]",
         "Impossible de trouver l\\'objet associé : ": "Unable to find the associated object:",
-        "Impossible de trouver l\\'objet": "Unable to find object"
+        "Impossible de trouver l\\'objet": "Unable to find object",
+        "Demande pour le plugin : ": "Request for plugin:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",

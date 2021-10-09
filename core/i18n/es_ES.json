@@ -1334,6 +1334,7 @@
         "Scénarios": "Escenarios",
         "Interactions": "Interacciones",
         "Widgets": "Widgets",
+        "Types d'équipement": "Tipos de equipo",
         "Notes": "Notas",
         "Testeur expression": "Probador de expresión",
         "Variables": "Las variables",
@@ -2167,6 +2168,21 @@
         "CHANGER VOTRE MOT DE PASSE": "CAMBIA TU CONTRASEÑA",
         "C'est parti !": "Se fue !"
     },
+    "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)",
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Equipements sans type": "Equipo sin tipo",
+        "Aucun": "No",
+        "Non actif": "No activo",
+        "Non visible": "No visible",
+        "Reset types": "Tipos de reinicio",
+        "Types auto": "Tipos de auto",
+        "Inconnu": "Desconocido",
+        "Rechercher | nom | id": "Buscar | nombre | identificación",
+        "Sauvegarder": "Para salvaguardar",
+        "Appliquer": "Aplicar",
+        "Types inconnus": "Tipos desconocidos"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
@@ -2906,6 +2922,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de seguridad: <br\/> Su contraseña debe ser cambiada",
         "Information importante :": "Información importante:"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "¿Eliminar tipos genéricos de los pedidos?",
+        "Oui": "Sí",
+        "Non": "No",
+        "Supprimer": "Borrar",
+        "Ajouter au résumé": "Agregar al resumen",
+        "Aucun": "No",
+        "Types Génériques automatiques": "Tipos genéricos automáticos",
+        "Types Génériques sauvegardés": "Tipos genéricos guardados"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuración de control",
@@ -3850,6 +3876,7 @@
         "Désactivation de": "Desactivación de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque no respondió o respondió incorrectamente durante los últimos 3 intentos",
         "Erreur exécution de la commande ": "Error de ejecución del comando",
+        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)",
         "Aucun paramètre optionnel disponible.": "No hay parámetros opcionales disponibles",
         "Aucune description trouvée pour ce Widget.": "No se encontró una descripción para este widget",
         "Titre": "Título",
@@ -3871,8 +3898,7 @@
         "Erreur delete influx sur : ": "Error al eliminar la afluencia en:",
         "Envoie de l\\'historique à influx : ": "Envía historial de afluencia:",
         "Erreur history influx sur : ": "Error de flujo de historial en:",
-        "Commande": "Comando",
-        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)"
+        "Commande": "Comando"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Administración",
@@ -4561,7 +4587,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Solicitud inválida Versión JSON-RPC no válida:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "El nombre de usuario o la contraseña no pueden estar en blanco",
         "Echec lors de l\\'authentification": "Error al autenticar",
-        "Demande pour le plugin : ": "Solicitud de complemento:",
         "Aucune méthode correspondante : ": "No hay método correspondiente:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "No tiene autorización para realizar esta acción",
         "Objet introuvable : ": "Objeto no encontrado:",
@@ -4579,7 +4604,8 @@
         "Scénario exécuté sur appel API": "Escenario ejecutado en llamada API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "El parámetro \"estado\" no puede estar vacío y debe tener el valor [ejecutar, detener, habilitar, deshabilitar]",
         "Impossible de trouver l\\'objet associé : ": "No se puede encontrar el objeto asociado:",
-        "Impossible de trouver l\\'objet": "Incapaz de encontrar el objeto"
+        "Impossible de trouver l\\'objet": "Incapaz de encontrar el objeto",
+        "Demande pour le plugin : ": "Solicitud de complemento:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",

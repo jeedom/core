@@ -1334,6 +1334,7 @@
         "Scénarios": "Senaryolar",
         "Interactions": "Etkileşim",
         "Widgets": "Widget'lar",
+        "Types d'équipement": "Types d'équipement",
         "Notes": "Notes",
         "Testeur expression": "Testeur expression",
         "Variables": "Değişkenler",
@@ -2167,6 +2168,21 @@
         "CHANGER VOTRE MOT DE PASSE": "CHANGER VOTRE MOT DE PASSE",
         "C'est parti !": "C'est parti !"
     },
+    "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Equipements sans type": "Equipements sans type",
+        "Aucun": "Aucun",
+        "Non actif": "Non actif",
+        "Non visible": "Non visible",
+        "Reset types": "Reset types",
+        "Types auto": "Types auto",
+        "Inconnu": "Inconnu",
+        "Rechercher | nom | id": "Rechercher | nom | id",
+        "Sauvegarder": "Sauvegarder",
+        "Appliquer": "Appliquer",
+        "Types inconnus": "Types inconnus"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim"
     },
@@ -2906,6 +2922,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerte de sécurité :<br\/>Votre mot de passe doit être changé",
         "Information importante :": "Information importante :"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
+        "Oui": "Oui",
+        "Non": "Non",
+        "Supprimer": "Supprimer",
+        "Ajouter au résumé": "Ajouter au résumé",
+        "Aucun": "Aucun",
+        "Types Génériques automatiques": "Types Génériques automatiques",
+        "Types Génériques sauvegardés": "Types Génériques sauvegardés"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Komuta ayarları",
@@ -3850,6 +3876,7 @@
         "Désactivation de": "Désactivation de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
         "Erreur exécution de la commande ": "Komut yürütme hatası",
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "Aucun paramètre optionnel disponible.": "Aucun paramètre optionnel disponible",
         "Aucune description trouvée pour ce Widget.": "Aucune description trouvée pour ce Widget",
         "Titre": "Başlık",
@@ -3871,8 +3898,7 @@
         "Erreur delete influx sur : ": "Erreur delete influx sur :",
         "Envoie de l\\'historique à influx : ": "Envoie de l\\'historique à influx :",
         "Erreur history influx sur : ": "Erreur history influx sur :",
-        "Commande": "Komuta",
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+        "Commande": "Komuta"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Yönetim",
@@ -4561,7 +4587,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Geçersiz istek. Geçersiz JSON-RPC sürümü:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Kullanıcı adı veya şifre boş bırakılamaz",
         "Echec lors de l\\'authentification": "Kimlik doğrulaması başarısız oldu",
-        "Demande pour le plugin : ": "Eklenti talebi:",
         "Aucune méthode correspondante : ": "Karşılık gelen yöntem yok:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Objet introuvable : ": "Nesne bulunamadı:",
@@ -4579,7 +4604,8 @@
         "Scénario exécuté sur appel API": "API çağrısında senaryo yürütüldü",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver l\\'objet associé : ": "İlişkili nesne bulunamıyor:",
-        "Impossible de trouver l\\'objet": "Nesne bulunamadı"
+        "Impossible de trouver l\\'objet": "Nesne bulunamadı",
+        "Demande pour le plugin : ": "Eklenti talebi:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
