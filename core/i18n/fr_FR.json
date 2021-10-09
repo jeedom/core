@@ -1334,6 +1334,7 @@
         "Scénarios": "Scénarios",
         "Interactions": "Interactions",
         "Widgets": "Widgets",
+        "Types d'équipement": "Types d'équipement",
         "Notes": "Notes",
         "Testeur expression": "Testeur expression",
         "Variables": "Variables",
@@ -2167,6 +2168,20 @@
         "CHANGER VOTRE MOT DE PASSE": "CHANGER VOTRE MOT DE PASSE",
         "C'est parti !": "C'est parti !"
     },
+    "desktop\/php\/types.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Equipements sans type": "Equipements sans type",
+        "Aucun": "Aucun",
+        "Non actif": "Non actif",
+        "Non visible": "Non visible",
+        "Reset types": "Reset types",
+        "Types auto": "Types auto",
+        "Inconnu": "Inconnu",
+        "Rechercher | nom | id": "Rechercher | nom | id",
+        "Sauvegarder": "Sauvegarder",
+        "Appliquer": "Appliquer",
+        "Types inconnus": "Types inconnus"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
@@ -2906,6 +2921,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.",
         "Information importante :": "Information importante :"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
+        "Oui": "Oui",
+        "Non": "Non",
+        "Supprimer": "Supprimer",
+        "Ajouter au résumé": "Ajouter au résumé",
+        "Aucun": "Aucun",
+        "Types Génériques automatiques": "Types Génériques automatiques",
+        "Types Génériques sauvegardés": "Types Génériques sauvegardés"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuration commande",
@@ -4561,7 +4586,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Requête invalide. Version JSON-RPC invalide : ",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "L\\'identifiant ou le mot de passe ne peuvent pas être vide",
         "Echec lors de l\\'authentification": "Echec lors de l\\'authentification",
-        "Demande pour le plugin : ": "Demande pour le plugin : ",
         "Aucune méthode correspondante : ": "Aucune méthode correspondante : ",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Vous n\\'êtes pas autorisé à effectuer cette action ",
         "Objet introuvable : ": "Objet introuvable : ",
@@ -4579,7 +4603,8 @@
         "Scénario exécuté sur appel API": "Scénario exécuté sur appel API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver l\\'objet associé : ": "Impossible de trouver l\\'objet associé : ",
-        "Impossible de trouver l\\'objet": "Impossible de trouver l\\'objet"
+        "Impossible de trouver l\\'objet": "Impossible de trouver l\\'objet",
+        "Demande pour le plugin : ": "Demande pour le plugin : "
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Vous n\\'êtes pas autorisé à effectuer cette action",

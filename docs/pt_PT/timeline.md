@@ -19,7 +19,7 @@ Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do
 >
 > Se você não usar mais uma pasta, ela aparecerá na lista enquanto existirem eventos vinculados a essa pasta. Ele desaparecerá da lista por si só.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você tem acesso às janelas de resumo do cenário ou de configuração do histórico diretamente da página da linha do tempo.
 

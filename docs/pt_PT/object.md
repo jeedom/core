@@ -19,7 +19,7 @@ Você tem duas opções :
 
 Depois de criar um objeto, ele aparecerá nesta parte.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode abrir um objeto fazendo :
 > - Clique em um deles.
@@ -58,15 +58,15 @@ Aqui estão as diferentes características para configurar um objeto :
 - **Somente na síntese** : Permite que você coloque uma imagem para a Síntese sem que seja usada como imagem de fundo, especialmente na página *Painel de controle* deste objeto.
 - **Cenário** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral (ou no Resumo da automação residencial), selecione seu objeto com o mouse, arrastando e soltando, para dar um novo local.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode ver um gráfico representando todos os elementos do Jeedom anexados a esse objeto clicando no botão **Conexões**, canto superior direito.
 
-> **Dica**
+> **Gorjeta**
 >
 > Quando um dispositivo é criado e nenhum pai foi definido, ele terá como pai : **Não**.
 
@@ -87,7 +87,7 @@ As colunas representam os resumos atribuídos ao objeto atual. Três linhas são
 
 Cada guia representa um tipo de resumo definido na configuração do Jeedom. Clique em **Adicionar comando** para que seja levado em consideração no resumo. Você tem a opção de selecionar o comando de qualquer equipamento Jeedom, mesmo que ele não tenha esse objeto como pai.
 
-> **Dica**
+> **Gorjeta**
 >
 > Se você deseja adicionar um tipo de resumo ou configurar o método de cálculo do resultado, a unidade, o ícone e o nome de um resumo, deve-se acessar a configuração geral do Jeedom : **Configurações → Sistema → Configuração : Guia Resumos**.
 

@@ -4,7 +4,7 @@
 As visualizações permitem criar visualizações personalizadas.
 Não é tão poderoso quanto os designs, mas permite em poucos minutos uma exibição mais personalizada que o Dashboard, com equipamentos de diferentes objetos, gráficos ou controles.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode escolher a visualização padrão no seu perfil ao clicar no menu de visualização.
 
@@ -18,7 +18,7 @@ Em uma visualização, encontramos :
 - O lápis à direita para editar a ordem e o tamanho do equipamento, da mesma maneira que o Dashboard.
 - Um botão *Edição completa* permitindo editar as zonas e elementos da Visualização.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode, em seu perfil, modificar esta opção para que a lista de Visualizações fique visível por padrão.
 
@@ -33,7 +33,7 @@ O princípio é bastante simples : uma vista é composta de áreas. Cada zona é
 - Um botão que permite salvar esta visualização.
 - Um botão que permite excluir esta visualização.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode mover a ordem das zonas arrastando e soltando.
 
@@ -50,11 +50,11 @@ Uma zona de tipo de equipamento permite que você adicione equipamentos :
 
 - **Adicionar equipamento** : Permite adicionar / modificar equipamentos a serem exibidos na área.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode excluir um item de equipamento diretamente clicando na lata de lixo à esquerda dele.
 
-> **Dica**
+> **Gorjeta**
 >
 > É possível alterar a ordem das peças na área arrastando e soltando.
 
@@ -71,14 +71,14 @@ Quando você pressiona o botão **Adicionar curva**, O Jeedom exibe a lista de c
 - **Lixeira** : Remover comando do gráfico.
 - **Último nome** : Nome do comando para desenhar.
 - **Cor** : Cor da curva.
-- **Tipo** : Tipo de curva.
+- **Modelo** : Tipo de curva.
 - **Grupo** : Permite agrupar dados (tipo máximo por dia).
 - **Escada** : Escala (direita ou esquerda) da curva.
 - **Escadaria** : Exibe a curva da escada.
 - **Pilha** : Empilha a curva com as outras curvas de tipo.
 - **Variação** : Desenhar apenas variações com o valor anterior.
 
-> **Dica**
+> **Gorjeta**
 >
 > Você pode alterar a ordem dos gráficos na área, arrastando e soltando.
 

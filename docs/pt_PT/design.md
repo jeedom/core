@@ -4,7 +4,7 @@
 Esta página permite configurar a exibição de toda a sua automação residencial de uma maneira muito fina.
 Leva tempo, mas seu único limite é a sua imaginação.
 
-> **Dica**
+> **Gorjeta**
 >
 > É possível ir diretamente a um design graças ao submenu.
 
@@ -151,7 +151,7 @@ Permite escolher os comandos para grapher.
 - **Cor do texto** : Permite escolher uma cor de plano de fundo personalizada ou usar a cor padrão.
 - **Arredondamento** : Valor em pixels do arredondamento dos ângulos do bloco do equipamento.
 - **Fronteira** : Definição CSS de uma borda de bloco de equipamento. Ex : 1px preto sólido.
-- **Opacidade** : Opacidade do ladrilho do equipamento, entre 0 e 1. Atenção : uma cor de fundo deve ser definida.
+- **Opacidade** : Opacidade do ladrilho do equipamento, entre 0 e 1. Aviso : uma cor de fundo deve ser definida.
 - **CSS personalizado** : Regras CSS a serem aplicadas no equipamento.
 - **Aplicar css personalizado em** : Seletor de CSS no qual aplicar CSS personalizado.
 

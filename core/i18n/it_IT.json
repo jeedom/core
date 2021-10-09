@@ -1334,6 +1334,7 @@
         "Scénarios": "Scenari",
         "Interactions": "Interazioni",
         "Widgets": "Widget",
+        "Types d'équipement": "Types d'équipement",
         "Notes": "Note",
         "Testeur expression": "Tester di espressione",
         "Variables": "Variabili",
@@ -2167,6 +2168,20 @@
         "CHANGER VOTRE MOT DE PASSE": "CHANGER VOTRE MOT DE PASSE",
         "C'est parti !": "C'est parti !"
     },
+    "desktop\/php\/types.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Equipements sans type": "Equipements sans type",
+        "Aucun": "Aucun",
+        "Non actif": "Non actif",
+        "Non visible": "Non visible",
+        "Reset types": "Reset types",
+        "Types auto": "Types auto",
+        "Inconnu": "Inconnu",
+        "Rechercher | nom | id": "Rechercher | nom | id",
+        "Sauvegarder": "Sauvegarder",
+        "Appliquer": "Appliquer",
+        "Types inconnus": "Types inconnus"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato"
     },
@@ -2906,6 +2921,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerte de sécurité :<br\/>Votre mot de passe doit être changé",
         "Information importante :": "Information importante :"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Supprimer les types generiques sur les commandes ?",
+        "Oui": "Oui",
+        "Non": "Non",
+        "Supprimer": "Supprimer",
+        "Ajouter au résumé": "Ajouter au résumé",
+        "Aucun": "Aucun",
+        "Types Génériques automatiques": "Types Génériques automatiques",
+        "Types Génériques sauvegardés": "Types Génériques sauvegardés"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configurazione del comando",
@@ -4561,7 +4586,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Richiesta non valida Versione JSON-RPC non valida:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Nome utente o password non possono essere vuoti",
         "Echec lors de l\\'authentification": "Autenticazione non riuscita",
-        "Demande pour le plugin : ": "Richiesta di plug-in:",
         "Aucune méthode correspondante : ": "Nessun metodo corrispondente:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Non sei autorizzato a eseguire questa azione",
         "Objet introuvable : ": "Oggetto non trovato:",
@@ -4579,7 +4603,8 @@
         "Scénario exécuté sur appel API": "Scenario eseguito su chiamata API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver l\\'objet associé : ": "Impossibile trovare l'oggetto associato:",
-        "Impossible de trouver l\\'objet": "Impossibile trovare l'oggetto"
+        "Impossible de trouver l\\'objet": "Impossibile trovare l'oggetto",
+        "Demande pour le plugin : ": "Richiesta di plug-in:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Non sei autorizzato a eseguire questa azione",

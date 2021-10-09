@@ -19,6 +19,7 @@
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
 - **Resúmenes** : Ahora es posible configurar acciones sobre los resúmenes (ctrl + clic en un resumen) gracias a los virtuales.
+- **Tipos de equipo** Nueva página **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a equipos y comandos, con soporte para tipos dedicados a complementos instalados.
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
 - **Categorías coloreadas** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
 - **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función principal.
@@ -64,7 +65,7 @@ Jeedom 4.2 contiene una parte importante en el aumento de la seguridad.
 
 - Cambio de política de acceso a archivos : Antes prohibíamos ciertos archivos, ahora solo permitimos ciertos archivos.
 - Cambie en el nivel de la API, antes de que fuera "tolerante" si llegaba con la clave principal indicando complemento XXXXX. Este ya no es el caso, debes llegar con la clave correspondiente al plugin.
-- En la API http, puede indicar un nombre de complemento en el tipo, esto ya no es posible. El tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd, etc.) debe corresponder al complemento.
+- En la API http, puede indicar un nombre de complemento en el tipo, esto ya no es posible. El tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd, etc.) debe corresponder al complemento. Por ejemplo, para el complemento virtual que tenía type = virtual en la url, ahora debe reemplazarlo por plugin = virtual & type = event, lo mismo para el complemento ipx800v4 o type = ipx800v4 se convierte en plugin = ipx800v4 & type = event
 - Fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto).
 - La cookie "permanecer conectado" (3 meses como máximo) ahora es "de una sola vez", que se renueva con cada uso.
 
@@ -72,9 +73,13 @@ El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y
 
 # Registro de cambios Jeedom V4.1
 
+## 4.1.26
+
+- Se corrigió un problema de instalación de dependencia de apt en Smart debido al cambio de certificado en Let's encrypt.
+
 ## 4.1.25
 
-- Se corrigió el problema de instalación de la dependencia de apt
+- Se corrigió el problema de instalación de la dependencia de apt.
 
 ## 4.1.24
 

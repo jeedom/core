@@ -1,6 +1,6 @@
 {
     "index.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Wert",
@@ -163,21 +163,21 @@
     },
     "mobile\/html\/log.html": {
         "Supprimer tous": "Alles löschen",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Vider": "Leer",
         "Pause": "Pause",
         "Rechercher": "Suchen nach"
     },
     "desktop\/modal\/scenario.human.insert.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/modal\/summary.action.php": {
         "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/modal\/object.summary.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Sauvegarder": "Speichern",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
+        "Sauvegarder": "Um zu schützen",
         "ID": "Identifikation",
         "Objet": "Objekt",
         "Parent": "Relativ",
@@ -195,10 +195,10 @@
         "Modification sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
     },
     "desktop\/modal\/planHeader.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Général": "Allgemein",
         "Composants": "Komponenten",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Nom": "Name",
         "Position": "Position",
         "Fond transparent": "Transparenter Hintergrund",
@@ -217,7 +217,7 @@
         "Lien": "Link",
         "Action": "Aktion",
         "Lien mort ou absent": "Totes oder fehlendes Glied",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Configuration": "Konfiguration",
         "Composant supprimée": "Komponente entfernt",
         "Configuration du composant": "Komponentenkonfiguration",
@@ -226,7 +226,7 @@
     },
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Hinzufügen",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Nom": "Name",
         "Calcul": "Berechnung",
         "Type": "Typ",
@@ -259,13 +259,13 @@
         "Moyenne par année": "Durchschnitt pro Jahr",
         "Minimum par année": "Minimum pro Jahr",
         "Maximum par année": "Maximum pro Jahr",
-        "Non": "Nicht",
-        "Oui": "Ja",
+        "Non": "Nein",
+        "Oui": "Jawohl",
         "Afficher le graphique": "Diagramm anzeigen"
     },
     "desktop\/modal\/scenario.log.execution.php": {
         "Aucun scénario ne correspondant à : ": "Kein Szenario entsprechend:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
         "Pause": "Pause",
@@ -274,7 +274,7 @@
         "Log vidé avec succès": "Protokoll erfolgreich geleert"
     },
     "desktop\/modal\/plugin.deamon.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Nom": "Name",
         "Statut": "Status",
         "Configuration": "Konfiguration",
@@ -289,10 +289,10 @@
         "Activer": "Aktivieren"
     },
     "desktop\/modal\/note.manager.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Ajouter": "Hinzufügen",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Titre": "Titel",
         "Texte": "Text",
         "Note sauvegardée avec succès": "Hinweis erfolgreich gespeichert",
@@ -300,9 +300,9 @@
         "Note supprimée avec succès": "Hinweis erfolgreich gelöscht"
     },
     "desktop\/modal\/view.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Général": "Allgemein",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Nom": "Name",
         "Icône": "Symbol",
         "Choisir": "Wählen",
@@ -315,7 +315,7 @@
         "Vue sauvegardé": "Gespeicherte Ansicht"
     },
     "desktop\/modal\/db.check.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Corriger tout": "Alles reparieren",
         "Table": "Tabelle",
         "Status": "Status",
@@ -329,7 +329,7 @@
         "Vérification base de données": "Datenbanküberprüfung"
     },
     "desktop\/modal\/dataStore.management.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Ajouter": "Hinzufügen",
         "Nom": "Name",
         "Valeur": "Wert",
@@ -341,7 +341,7 @@
         "Graphique de lien(s)": "Grafik verknüpfen"
     },
     "desktop\/modal\/cron.human.insert.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "A exécuter": "Ausführen",
         "une seule fois": "nur einmal",
         "récurrent": "wiederkehrend",
@@ -349,8 +349,8 @@
     },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur : ": "Benutzer konnte nicht gefunden werden:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Sauvegarder": "Speichern",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
+        "Sauvegarder": "Um zu schützen",
         "Equipements": "Geräte",
         "Scénarios": "Szenarien",
         "Objets": "Objekte",
@@ -371,14 +371,14 @@
         "Scénario : ": "Szenario:"
     },
     "desktop\/modal\/object.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Informations": "Information",
         "ID": "Identifikation",
         "Nom": "Name",
         "Visible": "Sichtbar"
     },
     "desktop\/modal\/plugin.dependancy.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Nom": "Name",
         "Statut": "Status",
         "Installation": "Installation",
@@ -390,7 +390,7 @@
         "Relancer": "Beleben"
     },
     "desktop\/modal\/action.insert.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Pause": "Pause",
         "Variable": "Variable",
         "Supprimer une variable": "Variable löschen",
@@ -441,7 +441,7 @@
         "Permets d'activer ou non la coloration des icones sur le dashboard": "Aktivieren oder Deaktivieren der Farbgebung von Symbolen im Dashboard"
     },
     "desktop\/modal\/cmd.human.insert.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Objet": "Objekt",
         "Equipement": "Gerät",
         "Commande": "Befehl",
@@ -449,13 +449,13 @@
         "Commande action": "Aktionsbefehl"
     },
     "desktop\/modal\/scenario.export.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Scénario introuvable": "Szenario nicht gefunden",
         "Télécharger": "Download",
         "Copier": "Kopie"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "EqLogic non trouvé : ": "EqLogic nicht gefunden:",
         "Nom": "Name",
         "Visible": "Sichtbar",
@@ -477,14 +477,14 @@
         "Ajouter": "Hinzufügen",
         "Valeur": "Wert",
         "Action": "Aktion",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Disposition": "Bereitstellung",
         "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "Layout von Widgets im Standard- oder Tabellenmodus. <br> Ausgabe der Tabelle und Layout der Steuerelemente",
         "Défaut": "Standard",
         "Tableau": "Tabelle",
         "Lignes": "Linien",
         "Colonnes": "Säulen",
-        "Appliquer": "Anwenden",
+        "Appliquer": "Bewerben",
         "Centrer dans les cases": "In Kisten zentrieren",
         "Style général des cases (CSS)": "Allgemeiner Boxstil (CSS)",
         "Style du tableau (CSS)": "Tabellenstil (CSS)",
@@ -500,19 +500,19 @@
         "Retour à la ligne avant le widget": "Vor Widget wickeln",
         "Retour à la ligne après le widget": "Nach Widget umbrechen",
         "Paramètres optionnels sur le widget:": "Optionale Parameter im Widget:",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Pas de description des paramètres optionnels sur ce Widget.": "Keine Beschreibung der optionalen Parameter in diesem Widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Objet": "Objekt",
         "Equipement": "Gerät"
     },
     "desktop\/modal\/plan3d.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Général": "Allgemein",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Nom": "Name",
         "Type de lien": "Art des Links",
         "Equipement": "Gerät",
@@ -564,7 +564,7 @@
         "Masqué si": "Versteckt wenn"
     },
     "desktop\/modal\/search.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aide": "Hilfe",
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
         "Rechercher": "Suchen nach",
@@ -597,7 +597,7 @@
     },
     "desktop\/modal\/report.bug.php": {
         "Attention nous avons detecté les soucis suivant : ": "Achtung, wir haben folgende Bedenken festgestellt:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune adresse pour le market n\\'est renseignée": "Es wird keine Adresse für den Markt eingegeben",
         "Aucun compte market n\\'est renseigné. Veuillez vous enregistrer sur le market, puis renseignez vos identifiants dans": "Es wird kein Marktkonto eingegeben. Bitte registrieren Sie sich am Markt und geben Sie Ihre Anmeldeinformationen in ein",
         "avant d\\'ouvrir un ticket": "vor dem Öffnen eines Tickets",
@@ -636,19 +636,19 @@
     },
     "desktop\/modal\/update.list.php": {
         "Le dépôt est inactif : ": "Die Anzahlung ist inaktiv:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/modal\/dataStore.human.insert.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Nom": "Name"
     },
     "desktop\/modal\/cmd.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Commande non trouvée": "Befehl nicht gefunden",
         "Tester": "Prüfung",
         "Liens": "Links",
         "Informations": "Information",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Configuration": "Konfiguration",
         "Alertes": "Warnungen",
         "Affichage": "Anzeige",
@@ -676,7 +676,7 @@
         "Nom personnalisé Équipement": "Benutzerdefinierte Namensausrüstung",
         "Nom personnalisé Valeur": "Benutzerdefinierter Name Wert",
         "Actions": "Lager",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Envoyer Historique": "Verlauf senden",
         "Interdire dans les interactions automatique": "In automatischen Interaktionen verbieten",
         "Icône": "Symbol",
@@ -733,7 +733,7 @@
         "Autres": "Andere",
         "Répéter les valeurs identiques": "Identische Werte wiederholen",
         "Non": "Nein",
-        "Oui": "Ja",
+        "Oui": "Jawohl",
         "Push URL": "Push-URL",
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL, die aufgerufen werden soll, wenn der Wert des Befehls aktualisiert wird. Sie können die folgenden Tags verwenden: # value # (Befehlswert), # cmd_id # (Befehls-ID) und # cmd_name # (Befehlsname)",
         "Niveau": "Ebene",
@@ -783,15 +783,15 @@
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Leer",
-        "Supprimer": "Entfernen"
+        "Supprimer": "Löschen"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Nom": "Name",
         "Temps": "Zeit"
     },
     "desktop\/modal\/js.error.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rafraichir": "Aktualisieren",
         "Vider": "Leer",
         "Fichier": "Datei",
@@ -799,7 +799,7 @@
         "Message": "Nachricht"
     },
     "desktop\/modal\/icon.selector.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Icônes": "Symbole",
         "Images": "Bilder",
         "Images de fond": "Hintergrundbilder",
@@ -812,15 +812,15 @@
         "Icônes vertes": "Grüne Symbole",
         "Rechercher": "Suchen nach",
         "Envoyer": "Senden",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?"
     },
     "desktop\/modal\/update.send.php": {
         "Le dépôt est inactif : ": "Die Anzahlung ist inaktiv:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/modal\/cmd.configureHistory.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Valider": "Validate",
         "Commandes : ": "Aufträge :",
         "Commandes historisées : ": "Historische Ordnungen:",
@@ -855,14 +855,14 @@
     },
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à : ": "Kein Szenario entsprechend:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Sauvegarder": "Speichern",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
+        "Sauvegarder": "Um zu schützen",
         "Erreur editeur non défini": "Undefinierter Editorfehler",
         "Champs json invalide": "Ungültige JSON-Felder",
         "Sauvegarde réussie": "Speichern erfolgreich"
     },
     "desktop\/modal\/cmd.graph.select.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Objet": "Objekt",
         "Nom": "Name",
         "Affichage": "Anzeige",
@@ -897,19 +897,19 @@
         "Echelle": "Maßstab"
     },
     "desktop\/modal\/interact.query.display.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Interact Def ID ne peut être vide": "Interact Def ID darf nicht leer sein",
         "Aucune phrase trouvée": "Keine Phrase gefunden",
         "Phrase": "Satz"
     },
     "desktop\/modal\/eqLogic.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "EqLogic non trouvé : ": "EqLogic nicht gefunden:",
         "Informations": "Information",
         "Log": "Protokoll",
         "Liens": "Links",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Affichage": "Anzeige",
         "Disposition": "Bereitstellung",
         "Alertes": "Warnungen",
@@ -958,7 +958,7 @@
         "Tableau": "Tabelle",
         "Nombre de lignes": "Anzahl der Zeilen",
         "Nombre de colonnes": "Anzahl der Spalten",
-        "Appliquer": "Anwenden",
+        "Appliquer": "Bewerben",
         "Centrer dans les cases": "In Kisten zentrieren",
         "Style général des cases (CSS)": "Allgemeiner Boxstil (CSS)",
         "Style du tableau (CSS)": "Tabellenstil (CSS)",
@@ -977,12 +977,12 @@
         "Changement de pile(s) pris en compte": "Batteriewechsel berücksichtigt"
     },
     "desktop\/modal\/plan3dHeader.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Impossible de trouver le design 3D": "Das 3D-Design konnte nicht gefunden werden",
         "Général": "Allgemein",
         "Composants": "Komponenten",
-        "Supprimer": "Entfernen",
-        "Sauvegarder": "Speichern",
+        "Supprimer": "Löschen",
+        "Sauvegarder": "Um zu schützen",
         "Nom": "Name",
         "Position": "Position",
         "Code d'accès": "Zugangscode",
@@ -1003,7 +1003,7 @@
         "Chargement réussi merci de recharger la page pour voir le résultat": "Laden Sie die Seite erfolgreich, um das Ergebnis zu sehen"
     },
     "desktop\/modal\/package.check.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "Achtung, es wird bereits eine Paketinstallation ausgeführt. Klicken Sie auf die Schaltfläche Aktualisieren, bis die Installation abgeschlossen ist",
         "Rafraichir": "Aktualisieren",
         "Corriger tout": "Alles reparieren",
@@ -1028,7 +1028,7 @@
         "Installation des packages": "Installation von Paketen"
     },
     "desktop\/modal\/about.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Version": "Ausführung",
         "Source": "Quelle",
         "Branche": "Zweig",
@@ -1040,12 +1040,12 @@
         "Bienvenue dans Jeedom": "Willkommen in Jeedom"
     },
     "desktop\/modal\/widget.modal.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/modal\/scenario.summary.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rafraîchir": "Aktualisieren",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "ID": "Identifikation",
         "Scénario": "Szenario",
         "Statut": "Status",
@@ -1071,21 +1071,21 @@
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios"
     },
     "desktop\/modal\/scenario.template.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Charger un template": "Laden Sie eine Vorlage",
         "Nom du template": "Vorlagenname",
         "Template": "Schablone",
         "Général": "Allgemein",
         "Gérer": "Verwalten",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Télécharger": "Download",
         "Paramètres du scénario": "Szenarioeinstellungen",
-        "Appliquer": "Anwenden",
+        "Appliquer": "Bewerben",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Möchten Sie diese Vorlage wirklich anwenden? Dadurch wird Ihr aktuelles Szenario überschrieben",
         "Template ajouté avec succès": "Vorlage erfolgreich hinzugefügt"
     },
     "desktop\/modal\/update.add.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Source": "Quelle",
         "Attention, il n’y a pas d’assistance de l’équipe ": "Bitte beachten Sie, dass es keine Teamunterstützung gibt",
         " sur les plugins installés depuis une autre source que le Market ": "auf Plugins, die von einer anderen Quelle als dem Markt installiert wurden",
@@ -1096,11 +1096,11 @@
         "Configuration": "Konfiguration",
         "ID logique du plugin": "Logische Plugin ID",
         "Envoyer un plugin": "Senden Sie ein Plugin",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Sauvegarde réussie": "Speichern erfolgreich"
     },
     "desktop\/modal\/widget.replace.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Dashboard": "Instrumententafel",
         "Je veux remplacer": "Ich möchte ersetzen",
         "Par": "Durch",
@@ -1111,7 +1111,7 @@
         "Remplacement réalisé avec succès. Nombre de widget remplacé :": "Austausch erfolgreich abgeschlossen. Anzahl der ersetzten Widgets:"
     },
     "desktop\/modal\/first.use.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Configuration de votre": "Konfiguration Ihres",
         "Bienvenue dans": "Willkommen bei",
         ", et merci d'avoir choisi cette solution pour votre habitat connecté.": "und vielen Dank, dass Sie sich für diese Lösung für Ihr vernetztes Zuhause entschieden haben",
@@ -1124,7 +1124,7 @@
         "Sauvegarde réussie": "Speichern erfolgreich"
     },
     "desktop\/modal\/interact.test.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Demande": "Anwendung",
         "Exécuter": "Ausführen",
         "Résultat": "Ergebnis",
@@ -1132,7 +1132,7 @@
     },
     "desktop\/modal\/cmd.selectMultiple.php": {
         "Aucune commande trouvées": "Keine Bestellungen gefunden",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Inverser": "Umgekehrt",
         "Valider": "Validate",
         "Objet": "Objekt",
@@ -1140,13 +1140,13 @@
         "Nom": "Name"
     },
     "desktop\/modal\/cmd.history.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden",
         "Ouvrir dans Analyse \/ Historique.": "Öffnen Sie in Analyse \/ Verlauf",
         "Historique": "Chronik"
     },
     "desktop\/modal\/expression.test.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Test": "Prüfung",
         "Rechercher une commande": "Befehl suchen",
         "Rechercher un scénario": "Suchen Sie ein Szenario",
@@ -1160,17 +1160,17 @@
         "Résultat : ": "Ergebnis:"
     },
     "desktop\/modal\/object.massEdit.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Type non trouvé : ": "Typ nicht gefunden:",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Type": "Typ",
         "Nom": "Name",
         "Modification sauvegardées avec succès": "Änderungen erfolgreich gespeichert"
     },
     "desktop\/modal\/plan.configure.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Général": "Allgemein",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Profondeur": "Tiefe",
         "Niveau 0": "Stufe 0",
         "Niveau 1": "Stufe 1",
@@ -1255,10 +1255,10 @@
     },
     "desktop\/modal\/update.display.php": {
         "Le dépôt est inactif : ": "Die Anzahlung ist inaktiv:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/modal\/twoFactor.authentification.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Etape 1 : Installation sur le téléphone": "Schritt 1: Installation auf dem Telefon",
         "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte": "Die Bestätigung in zwei Schritten bietet eine zusätzliche Schutzschicht für Ihr Konto",
         ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à": "Sobald die Bestätigung in zwei Schritten konfiguriert wurde, wird Ihr Kennwort zusätzlich zu einem eindeutigen Bestätigungscode für die Verbindung benötigt",
@@ -1277,7 +1277,7 @@
         "Code invalide": "Ungültiger Code"
     },
     "desktop\/php\/health.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Démon en mode automatique": "Daemon im automatischen Modus",
         "Démon en mode manuel": "Dämon im manuellen Modus",
         "Port configuré": "Konfigurierter Port",
@@ -1301,10 +1301,10 @@
         "Extensions php": "PHP-Erweiterungen"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/php\/plan3d.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Configuration du design 3D": "3D-Design-Setup",
         "Créer un nouveau design 3D": "Erstellen Sie ein neues 3D-Design",
         "Afficher tous les objets du design 3D": "Alle 3D-Designobjekte anzeigen",
@@ -1334,6 +1334,7 @@
         "Scénarios": "Szenarien",
         "Interactions": "Interaktion",
         "Widgets": "Widgets",
+        "Types d'équipement": "Gerätearten",
         "Notes": "Hinweis",
         "Testeur expression": "Expressionstester",
         "Variables": "Variablen",
@@ -1371,14 +1372,14 @@
         "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "wird gestartet, bitte warten Sie 5 Minuten und aktualisieren Sie die Seite"
     },
     "desktop\/php\/timeline.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Principal": "Primär",
         "Timelines": "Zeitleisten",
         "Rafraîchir": "Aktualisieren",
         "Configuration": "Konfiguration"
     },
     "desktop\/php\/reboot.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Redémarrage": "Wiederaufnahme",
         "Merci de patienter...": "Bitte warten",
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Möchten Sie das System wirklich neu starten?",
@@ -1388,7 +1389,7 @@
         "est en cours de redémarrage.": "wird neu gestartet"
     },
     "desktop\/php\/plugin.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Gestion": "Management",
         "Synchroniser": "Synchronisieren",
         "Plugins": "Plugins",
@@ -1404,7 +1405,7 @@
         "Prérequis": "Voraussetzungen",
         "Version minimale du Core supportée par le plugin.": "Minimale Core-Version, die vom Plugin unterstützt wird",
         "Logs et surveillance": "Protokolle und Überwachung",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Dépendances": "Nebengebäude",
         "Démon": "Dämon",
         "Installation": "Installation",
@@ -1413,16 +1414,16 @@
         "Panel": "Platte"
     },
     "desktop\/php\/custom.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Bitte beachten Sie: Alles, was Sie hier schreiben, ist global und auf allen Seiten enthalten. Der kleinste Fehler kann Ihre machen",
         "non fonctionnel.": "nicht funktionsfähig",
         "Activer": "Aktivieren",
         "Desktop": "Desktop",
         "Mobile": "Handy",
-        "Sauvegarder": "Speichern"
+        "Sauvegarder": "Um zu schützen"
     },
     "desktop\/php\/migrate.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Étape 1": "Schritt 1",
         "Insérez une clé USB avec plus de 8Go libres": "Stecken Sie einen USB-Stick mit mehr als 8 GB frei",
         "dans votre box Jeedom et cliquez sur": "in Ihrer Jeedom-Box und klicken Sie auf",
@@ -1452,7 +1453,7 @@
         "C'est parti": "Lass uns gehen"
     },
     "desktop\/php\/update.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Erreur sur la vérification des mises à jour : ": "Fehler beim Überprüfen auf Updates:",
         "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.": "Da Ihr aktuelles System ordnungsgemäß funktioniert und nicht mehr effizient genug ist, um dies unter den besten Bedingungen der Zukunft auch weiterhin tun zu können, bitten wir Sie, den Jeedom-Kern nicht mehr zu aktualisieren",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box Smart": "Um auf zukünftige Updates des Kerns zugreifen zu können, aktualisieren Sie bitte die Linux-Umgebung Ihrer Smart Box",
@@ -1462,7 +1463,7 @@
         "pour plus d\\'informations.": "für mehr Informationen",
         "Dernière vérification : ": "Letzte Überprüfung:",
         "Vérifier les mises à jour": "Suchen Sie nach Updates",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Mettre à jour": "Update",
         "Mettre à niveau": "Aktualisierung",
         "Core et plugins": "Core und Plugins",
@@ -1490,7 +1491,7 @@
         "Aucune": "Keine"
     },
     "desktop\/php\/view.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Vue inconnue. Vérifier l\\'ID.": "Unbekannte Ansicht. Überprüfen Sie die ID",
         "Aucune vue n\\'existe, cliquez <a href=\"index.php?v=d&p=view_edit\">ici<\/a> pour en créer une.": "Es ist keine Ansicht vorhanden. Klicken Sie <a href=\"index.php?v=d&p=view_edit\">hier<\/a> , um eine zu erstellen",
         "Ajouter une vue": "Fügen Sie eine Ansicht hinzu",
@@ -1500,9 +1501,9 @@
         "Mode édition": "Bearbeitungsmodus"
     },
     "desktop\/php\/administration.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rechercher": "Suchen nach",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Général": "Allgemein",
         "Interface": "Schnittstelle",
         "Réseaux": "Netzwerke",
@@ -1660,7 +1661,7 @@
         "Timeline": "Zeitleiste",
         "Nombre maximum d'évènements sur chaque Timeline": "Maximale Anzahl von Ereignissen auf jeder Timeline",
         "Supprimer tous les évènements de la Timeline": "Löschen Sie alle Ereignisse aus der Zeitleiste",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Messages": "Nachricht",
         "Ajouter un message à chaque erreur dans les logs": "Eine Nachricht zu jedem Fehler in den Protokollen hinzufügen",
         "Action sur message": "Aktion auf Nachricht",
@@ -1905,11 +1906,11 @@
         "Utilisateur": "Nutzer"
     },
     "desktop\/php\/dashboardit.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rechercher": "Suchen nach"
     },
     "desktop\/php\/dashboard.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucun objet racine trouvé. Pour en créer un, allez dans Outils -> Objets": "Kein Stammobjekt gefunden. Um eine zu erstellen, gehen Sie zu Extras -> Objekte",
         "Documentation": "Dokumentation",
         "Concepts": "Konzepte",
@@ -1926,14 +1927,14 @@
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Stellen Sie alle Kacheln auf die höchste Höhe"
     },
     "desktop\/php\/log.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
         "Pause": "Pause",
         "Télécharger": "Download",
         "Vider": "Leer",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Supprimer tous": "Alles löschen"
     },
     "desktop\/php\/profils.php": {
@@ -1943,7 +1944,7 @@
         "Vue": "Aussicht",
         "Design": "Design",
         "Design 3D": "3D-Design",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Préférences": "Vorlieben",
         "Sécurité": "Sicherheit",
         "Interface": "Schnittstelle",
@@ -1988,10 +1989,10 @@
         "Identification": "Identifizierung",
         "Date dernière utilisation": "Datum der letzten Verwendung",
         "Action": "Aktion",
-        "Supprimer": "Entfernen"
+        "Supprimer": "Löschen"
     },
     "desktop\/php\/modaldisplay.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
@@ -2015,7 +2016,7 @@
         "Edition": "Bearbeitung"
     },
     "desktop\/php\/widgets.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Importer": "Import",
@@ -2025,8 +2026,8 @@
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Appliquer à": "Übernehmen",
         "Exporter": "Export",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Widgets": "Widgets",
         "Général": "Allgemein",
         "Nom du widget": "Widget-Name",
@@ -2043,7 +2044,7 @@
         "Commandes liées": "Verknüpfte Bestellungen"
     },
     "desktop\/php\/report.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Type": "Typ",
         "Vues": "Ansichten",
         "Design": "Entwurf",
@@ -2055,7 +2056,7 @@
         "URL": "URLs",
         "Rapport(s)": "Berichte)",
         "Télécharger": "Download",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Tout supprimer": "Alle löschen",
         "Nom": "Name",
         "Chemin": "Weg",
@@ -2064,15 +2065,15 @@
         "Aperçu": "Umfrage"
     },
     "desktop\/php\/view_edit.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Créer une vue": "Erstellen Sie eine Ansicht",
         "Rechercher": "Suchen nach",
         "Edition": "Bearbeitung",
         "Configuration": "Konfiguration",
         "Ajouter une zone": "Fügen Sie eine Zone hinzu",
         "Voir le résultat": "Siehe das Ergebnis",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Ajouter\/Editer viewZone": "ViewZone einfügen \/ bearbeiten",
         "Nom": "Name",
         "Type": "Typ",
@@ -2082,7 +2083,7 @@
         "Annuler": "Abbrechen"
     },
     "desktop\/php\/scenario.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucun": "Nein",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
@@ -2104,8 +2105,8 @@
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Bitte vor dem Testen speichern. Dies ist möglicherweise nicht erfolgreich. <br> Strg + Klicken, um das Protokoll zu speichern, auszuführen und zu öffnen",
         "Exécuter": "Ausführen",
         "Arrêter": "Beenden",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Général": "Allgemein",
         "Scénario": "Szenario",
         "Paramètres": "Die Einstellungen",
@@ -2167,17 +2168,31 @@
         "CHANGER VOTRE MOT DE PASSE": "ÄNDERN SIE IHR PASSWORT",
         "C'est parti !": "Lass uns gehen !"
     },
+    "desktop\/php\/types.php": {
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
+        "Equipements sans type": "Geräte ohne Typ",
+        "Aucun": "Nein",
+        "Non actif": "Nicht aktiv",
+        "Non visible": "Nicht sichtbar",
+        "Reset types": "Reset-Typen",
+        "Types auto": "Autotypen",
+        "Inconnu": "Unbekannt",
+        "Rechercher | nom | id": "Suche | Name | Ich würde",
+        "Sauvegarder": "Um zu schützen",
+        "Appliquer": "Bewerben",
+        "Types inconnus": "Unbekannte Typen"
+    },
     "desktop\/php\/overview.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
     },
     "desktop\/php\/shutdown.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Êtes-vous sûr de vouloir arrêter le système ?": "Möchten Sie das System wirklich stoppen?",
         "Votre box": "Deine Box",
         "est éteinte.<br \/> Pour la redémarrer, débranchez-la et rebranchez-la.": "ist aus. <br \/> Um es neu zu starten, ziehen Sie den Stecker heraus und schließen Sie es wieder an"
     },
     "desktop\/php\/message.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Tout": "Alle",
         "Rafraichir": "Aktualisieren",
         "Vider": "Leer",
@@ -2189,7 +2204,7 @@
     },
     "desktop\/php\/interact.php": {
         "Aucun": "Nein",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
         "Regénérer": "Regenerat",
@@ -2199,8 +2214,8 @@
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Phrase(s)": "Phrase (n)",
         "Dupliquer": "Duplikat",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Général": "Allgemein",
         "Filtres": "Filter",
         "Actions": "Aktionen",
@@ -2239,7 +2254,7 @@
         "Tous": "Alle"
     },
     "desktop\/php\/eqAnalyse.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Configuration": "Konfiguration",
         "Batteries": "Batterien",
         "Equipements en alerte": "Ausrüstung in Alarmbereitschaft",
@@ -2274,12 +2289,12 @@
         "Utilisation": "Verwendung"
     },
     "desktop\/php\/user.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Liste des utilisateurs": "Liste der Benutzer",
         "Ajouter un utilisateur": "Benutzer einfügen",
         "Activer accès support": "Aktivieren Sie den Support-Zugriff",
         "Désactiver accès support": "Deaktivieren Sie den Supportzugriff",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Utilisateur": "Nutzer",
         "Actif": "Aktiviert",
         "Profil": "Profil",
@@ -2295,14 +2310,14 @@
         "Périphérique(s) enregistré(s)": "Registrierte Geräte",
         "Supprimer tout": "Alle löschen",
         "Action": "Aktion",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Identifiant": "Login",
         "Mot de passe": "Passwort",
         "Annuler": "Abbrechen",
         "Ajouter": "Hinzufügen"
     },
     "desktop\/php\/database.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rechercher": "Suchen nach",
         "Tables": "Tische",
         "Taille": "Größe",
@@ -2317,7 +2332,7 @@
         "Commande SQL": "SQL-Befehl"
     },
     "desktop\/php\/cron.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Cron": "Cron",
         "Listener": "Zuhörer",
         "Démon": "Dämon",
@@ -2325,7 +2340,7 @@
         "Désactiver le système cron": "Cron-System deaktivieren",
         "Rafraîchir": "Aktualisieren",
         "Ajouter": "Hinzufügen",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "ID": "Identifikation",
         "Actif": "Aktiviert",
         "PID": "PID",
@@ -2345,7 +2360,7 @@
         "Action": "Aktion"
     },
     "desktop\/php\/object.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Dashboard": "Instrumententafel",
         "Vue": "Aussicht",
         "Design": "Entwurf",
@@ -2356,8 +2371,8 @@
         "Mes objets": "Meine Objekte",
         "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Liens": "Links",
-        "Sauvegarder": "Speichern",
-        "Supprimer": "Entfernen",
+        "Sauvegarder": "Um zu schützen",
+        "Supprimer": "Löschen",
         "Objet": "Objekt",
         "Résumé": "Zusammenfassung",
         "Résumé par équipements": "Zusammenfassung nach Ausrüstung",
@@ -2417,8 +2432,8 @@
         "Rechercher": "Suchen nach"
     },
     "desktop\/php\/backup.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Sauvegarder": "Speichern",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
+        "Sauvegarder": "Um zu schützen",
         "Sauvegardes locales": "Lokale Backups",
         "Emplacement": "Lage",
         "Rétention temporelle (jours)": "Zeitliche Retention (Tage)",
@@ -2436,14 +2451,14 @@
         "Informations": "Information"
     },
     "desktop\/php\/plan.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucun design n\\'existe, cliquez": "Es ist kein Design vorhanden. Klicken Sie auf",
         "ici": "hier",
         "pour en créer un.": "einen erstellen"
     },
     "desktop\/php\/history.php": {
         "Aucun": "Nein",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden",
         "Aucun groupement": "Keine Gruppe",
         "Somme par heure": "Mengen pro Stunde",
@@ -2489,7 +2504,7 @@
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucun": "Nein",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Aller sur la configuration de l\\'objet": "Gehen Sie zur Konfiguration des Objekts",
@@ -2498,7 +2513,7 @@
         "Non actif": "Nicht aktiv",
         "Non visible": "Nicht sichtbar",
         "Aller sur la configuration de l\\'équipement": "Gehen Sie zur Konfiguration des Geräts",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Visible": "Sichtbar",
         "Invisible": "Unsichtbar",
         "Actif": "Aktiviert",
@@ -2519,7 +2534,7 @@
         "Nom": "Name"
     },
     "desktop\/php\/system.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Rechercher": "Suchen nach",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
         "OK": "Ok"
@@ -2536,7 +2551,7 @@
         "Changelog": "Änderungsprotokoll",
         "Mettre à jour": "Update",
         "Réinstaller": "Wieder einstellen",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Vérifier": "überprüfen",
         "Aucune mise à jour en cours.": "Kein Update läuft",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "Das Update scheint blockiert zu sein (keine Änderung für 10 Minuten. Überprüfen Sie das Protokoll)"
@@ -2553,12 +2568,12 @@
         "Documentation": "Dokumentation",
         "Changelog": "Änderungsprotokoll",
         "Détails": "Details",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Afficher le panneau desktop": "Desktop-Panel anzeigen",
         "Afficher le panneau mobile": "Mobiles Panel anzeigen",
-        "Oui": "Ja",
+        "Oui": "Jawohl",
         "Activer": "Aktivieren",
-        "Non": "Nicht",
+        "Non": "Nein",
         "Statut": "Status",
         "Actif": "Aktiviert",
         "Inactif": "Inaktiv",
@@ -2617,7 +2632,7 @@
         "Ajouter Equipement": "Ausrüstung einfügen",
         "Ajouter Scénario": "Szenario einfügen",
         "Editer": "Bearbeiten",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Nom": "Name",
         "Couleur": "Farbe",
         "Type": "Typ",
@@ -2663,8 +2678,8 @@
         "Maximum par année": "Maximum pro Jahr",
         "Droite": "Recht",
         "Gauche": "Links",
-        "Non": "Nicht",
-        "Oui": "Ja"
+        "Non": "Nein",
+        "Oui": "Jawohl"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Objektkonfiguration",
@@ -2735,7 +2750,7 @@
         "OK": "Ok",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Mot de passe": "Passwort",
         "Renouveler la clef API": "Erneuern Sie den API-Schlüssel",
         "Régénérer API": "API neu generieren",
@@ -2778,13 +2793,13 @@
         "Nom la copie du design ?": "Nennen Sie die Kopie des Designs?",
         "Configurer le design": "Konfigurieren Sie das Design",
         "Configuration du design": "Designkonfiguration",
-        "Sauvegarder": "Speichern",
+        "Sauvegarder": "Um zu schützen",
         "Paramètres d\\'affichage": "Anzeigeeinstellungen",
         "Configuration du composant": "Komponentenkonfiguration",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Annuler": "Abbrechen",
         "Valider": "Validate",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Dupliquer": "Duplikat",
         "Verrouiller": "Schloss",
         "Nom du design ?": "Name des Designs?",
@@ -2906,6 +2921,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Sicherheitswarnung: <br\/> Ihr Passwort muss geändert werden",
         "Information importante :": "Wichtige Informationen:"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "Generische Typen aus Bestellungen entfernen?",
+        "Oui": "Jawohl",
+        "Non": "Nein",
+        "Supprimer": "Löschen",
+        "Ajouter au résumé": "Zur Zusammenfassung hinzufügen",
+        "Aucun": "Nein",
+        "Types Génériques automatiques": "Automatische generische Typen",
+        "Types Génériques sauvegardés": "Generische Typen gespeichert"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Steuerungskonfiguration",
@@ -3094,7 +3119,7 @@
         ", ": "."
     },
     "core\/php\/export.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Commande introuvable : ": "Bestellung nicht gefunden:"
     },
     "core\/php\/jeeListener.php": {
@@ -3112,7 +3137,7 @@
         "Il n\\'existe aucune méthode : ": "Es gibt keine Methode:"
     },
     "core\/php\/downloadFile.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Fichier non trouvé : ": "Datei nicht gefunden:"
     },
     "core\/php\/authentification.php": {
@@ -3461,13 +3486,13 @@
         "Echec de la requête HTTP : ": "Fehler bei der HTTP Abfrage :"
     },
     "core\/ajax\/interact.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Interaction inconnue. Vérifiez l\\'ID": "Unbekannte Interaktion. Überprüfen Sie die ID",
         "InteractQuery ID inconnu": "Unbekannte InteractQuery-ID",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/view.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Vue non trouvée. Vérifiez l\\'iD": "Ansicht nicht gefunden. Überprüfen Sie den iD",
         "Vue non trouvée. Vérifiez l\\'ID": "Ansicht nicht gefunden. Überprüfen Sie den iD",
         "Vue inconnu. Vérifiez l\\'ID ": "Unbekannte Ansicht. Überprüfen Sie die ID",
@@ -3479,12 +3504,12 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/timeline.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Benutzeranmeldung mit REMOTE_USER:",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer hinzuzufügen",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer löschen zu können",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Sie können das Konto, mit dem Sie verbunden sind, nicht löschen",
@@ -3492,17 +3517,17 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/plugin.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Plugin introuvable : ": "Plugin nicht gefunden:",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/note.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Note inconnue. Vérifiez l\\'ID": "Hinweis unbekannt. Überprüfen Sie die ID",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/object.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Objet inconnu. Vérifiez l\\'ID": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "Objet inconnu. Vérifiez l\\'ID ": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "L\\'objet n\\'existe pas : ": "Objekt existiert nicht:",
@@ -3514,13 +3539,13 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/log.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/jeedom.ajax.php": {
         "Vue": "Aussicht",
         "Objet": "Objekt",
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune documentation trouvée": "Keine Dokumentation gefunden",
         "Commande non trouvée : ": "Bestellung nicht gefunden:",
         "Aucune Commande de Notification : ": "Kein Benachrichtigungsbefehl:",
@@ -3546,28 +3571,28 @@
         "Type non trouvé : ": "Typ nicht gefunden:"
     },
     "core\/ajax\/dataStore.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Dépôt de données inconnu. Vérifiez l\\'ID : ": "Unbekanntes Datenrepository. Überprüfen Sie die ID:",
         "Dépôt de données inconnu.": "Unbekanntes Datenrepository",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/listener.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Listener id inconnu": "Unbekannte Listener-ID",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/report.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Impossible de supprimer : ": "Löschen nicht möglich:",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/repo.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Impossible de trouver l\\'objet associé : ": "Das zugehörige Objekt konnte nicht gefunden werden:",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/scenario.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Scénario ID inconnu : ": "Unbekannte Szenario-ID:",
         "Vous n\\'êtes pas autorisé à faire cette action": "Sie dürfen diese Aktion nicht ausführen",
         "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "Das Szenario kann nicht gestartet werden, da es deaktiviert ist. Bitte aktivieren Sie es",
@@ -3586,7 +3611,7 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/update.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune correspondance pour l\\'ID : ' . init('id')": "Keine Übereinstimmung für ID: '. init ( 'ID')",
         "[START UPDATE]": "[UPDATE STARTEN]",
         "Launch cron dependancy plugins": "Starten Sie Cron-Abhängigkeits-Plugins",
@@ -3600,11 +3625,11 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/event.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/plan.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucun plan correspondant": "Kein passender Plan",
         "Objet inconnu. Vérifiez l\\'ID": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "Plan header inconnu. Vérifiez l\\'ID ": "Unbekannter Header-Plan. Überprüfen Sie die ID",
@@ -3618,26 +3643,26 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/widgets.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Widgets inconnus - Vérifiez l\\'id": "Unbekannte Widgets - Überprüfen Sie die ID",
         "Aucune commande affectée au widget, prévisualisation impossible": "Kein dem Widget zugewiesener Befehl kann keine Vorschau anzeigen",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/message.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Message inconnu. Vérifiez l\\'ID": "Unbekannte Nachricht. Überprüfen Sie die ID",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/migrate.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/network.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/config.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune clef demandée": "Kein Schlüssel angefordert",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
         "Extension du fichier non valide (autorisé .jpg .png) : ": "Ungültige Dateierweiterung (erlaubt .jpg .png):",
@@ -3646,7 +3671,7 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/cmd.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Commande inconnue - Vérifiez l\\'id": "Unbekannter Befehl - ID überprüfen",
         "Cmd inconnu. Vérifiez l\\'ID": "Unbekannter Befehl. Überprüfen Sie die ID",
         "Commande ID inconnu : ": "Unbekannter ID-Befehl:",
@@ -3666,7 +3691,7 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/plan3d.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucun plan3d correspondant": "Kein entsprechender 3D-Plan",
         "Objet inconnu vérifiez l\\'id": "ID zur Überprüfung unbekannter Objekte",
         "plan3d header inconnu vérifiez l\\'id : ": "Plan3d unbekannte Header-Check-ID:",
@@ -3683,12 +3708,12 @@
         "Aucune méthode correspondant à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/cron.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Cron id inconnu": "Unbekannte Cron-ID",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/eqLogic.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Objet inconnu. Vérifiez l\\'ID": "Unbekanntes Objekt. Überprüfen Sie die ID",
         "EqLogic inconnu. Vérifiez l\\'ID": "Unbekanntes EqLogic. Überprüfen Sie die ID",
         "Eqlogic inconnu. Vérifiez l\\'ID": "Unbekanntes EqLogic. Überprüfen Sie die ID",
@@ -3707,7 +3732,7 @@
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/ajax\/cache.ajax.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Aucune méthode correspondante à : ": "Keine Methode entsprechend:"
     },
     "core\/repo\/samba.repo.php": {
@@ -3755,7 +3780,7 @@
         "Impossible de trouver le fichier à envoyer : ": "Datei zum Senden nicht gefunden:"
     },
     "core\/repo\/market.list.repo.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Widget de type information": "Informations-Widget",
         "Widget de type action": "Widget für Aktionstyp",
         "Gratuit": "Kostenlos",
@@ -3799,7 +3824,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R ": "Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R"
     },
     "core\/repo\/market.display.repo.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Nom": "Name",
         "Développé par": "Entwickelt von",
         "Conseillé": "Ratsam",
@@ -3813,7 +3838,7 @@
         "Acheter": "Kaufen",
         "Nous Contacter": "Kontaktieren Sie uns",
         "Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\\'acheter": "Dieser Artikel ist kostenpflichtig. Sie müssen ein Konto auf dem Markt haben und die Marktkennungen in Jeedom eingegeben haben, um es kaufen zu können",
-        "Supprimer": "Entfernen",
+        "Supprimer": "Löschen",
         "Gratuit": "Kostenlos",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Bitte beachten Sie, dass dieses Plugin kein offizielles Plugin ist, wenn Probleme damit (direkt oder indirekt) auftreten. Supportanfragen können abgelehnt werden",
         "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Bitte beachten Sie, dass dieses Plugin nur in der Beta-Version verfügbar ist, daher kann es viele Fehler geben und Sie verlieren alle Möglichkeiten, Support (unabhängig vom Plugin) anzufordern, indem Sie es installieren",
@@ -4561,7 +4586,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Ungültige Anfrage. Ungültige JSON-RPC-Version:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Benutzername oder Passwort dürfen nicht leer sein",
         "Echec lors de l\\'authentification": "Authentifizierung fehlgeschlagen",
-        "Demande pour le plugin : ": "Anfrage für Plugin:",
         "Aucune méthode correspondante : ": "Keine entsprechende Methode:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "Sie sind nicht berechtigt, diese Aktion auszuführen",
         "Objet introuvable : ": "Objekt nicht gefunden:",
@@ -4579,7 +4603,8 @@
         "Scénario exécuté sur appel API": "Szenario beim API-Aufruf ausgeführt",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Der Parameter \"state\" darf nicht leer sein und muss den Wert [run, stop, enable, disable] haben",
         "Impossible de trouver l\\'objet associé : ": "Das zugehörige Objekt konnte nicht gefunden werden:",
-        "Impossible de trouver l\\'objet": "Objekt kann nicht gefunden werden"
+        "Impossible de trouver l\\'objet": "Objekt kann nicht gefunden werden",
+        "Demande pour le plugin : ": "Anfrage für Plugin:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",

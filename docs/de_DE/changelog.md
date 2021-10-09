@@ -19,6 +19,7 @@
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
 - **Zusammenfassungen** : Dank der virtuellen Aktionen können jetzt Aktionen für die Zusammenfassungen konfiguriert werden (Strg + Klicken auf eine Zusammenfassung).
+- **Gerätearten** Neue Seite **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind.
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Farbige Kategorien** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Plugins können diese neue Core-Funktion verwenden.
@@ -64,7 +65,7 @@ Jeedom 4.2 enthält einen großen Teil zur Erhöhung der Sicherheit.
 
 - Änderung der Dateizugriffsrichtlinie : Bevor wir bestimmte Dateien verboten haben, erlauben wir jetzt nur bestimmte Dateien.
 - Ändern Sie auf der Ebene der API, bevor sie "tolerant" war, wenn Sie mit dem Core-Schlüssel angekommen sind, indem Sie das Plugin angeben XXXXX. Dies ist nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel anreisen.
-- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen.
+- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen. Zum Beispiel für das virtuelle Plugin, das Sie in der URL mit type = virtual hatten, müssen Sie jetzt durch plugin = virtual & type = event ersetzen, dito für das Plugin ipx800v4 oder type = ipx800v4 wird zu plugin = ipx800v4 & type = event
 - Verstärkung der Sitzungen (Änderung zu sha256 mit 64 Zeichen im strikten Modus).
 - Der "Bleib in Verbindung"-Cookie (maximal 3 Monate) ist jetzt "einmalig", bei jeder Verwendung erneuert.
 
@@ -72,9 +73,13 @@ Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und 
 
 # Changelog Jeedom V4.1
 
+## 4.1.26
+
+- Es wurde ein Problem bei der Installation von apt-Abhängigkeiten auf Smart aufgrund der Änderung des Zertifikats bei let's encrypt behoben.
+
 ## 4.1.25
 
-- Problem mit der Installation von apt-Abhängigkeiten behoben
+- Problem mit der Installation von apt-Abhängigkeiten behoben.
 
 ## 4.1.24
 

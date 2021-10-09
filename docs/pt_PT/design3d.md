@@ -4,7 +4,7 @@
 Esta página permite criar uma visualização em 3D da sua casa que pode reagir dependendo do estado das várias informações na sua automação residencial.
 
 
-> **Dica**
+> **Gorjeta**
 >
 > É possível ir diretamente para um design 3D graças ao submenu.
 
@@ -45,7 +45,7 @@ Clique no botão "enviar" no nível "Modelo 3D" e selecione seu arquivo zip
 >
 > Você deve ter um arquivo zip.
 
-> **Dica**
+> **Gorjeta**
 >
 > Depois que o arquivo for importado (pode ser bastante longo, dependendo do tamanho do arquivo), você precisará atualizar a página para ver o resultado (F5).
 
@@ -109,6 +109,6 @@ Para configurar um elemento no design 3D, clique duas vezes no elemento que voc�
 
 Se a condição for válida, permite atribuir a cor escolhida ao elemento. Você pode colocar quantas cores / condições desejar.
 
-> **Dica**
+> **Gorjeta**
 >
 > As condições são avaliadas em ordem; a primeira, verdadeira, será adotada; as seguintes, portanto, não serão avaliadas

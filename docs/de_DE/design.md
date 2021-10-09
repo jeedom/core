@@ -4,7 +4,7 @@
 Auf dieser Seite können Sie die Anzeige Ihrer gesamten Hausautomation auf sehr feine Weise konfigurieren.
 Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 

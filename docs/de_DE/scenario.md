@@ -17,7 +17,7 @@ Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese 
 
 Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie werden nach ihren klassifiziert **Gruppe**, möglicherweise für jeden von ihnen definiert. Jedes Szenario wird mit seinem angezeigt **Familienname, Nachname** und seine **übergeordnetes Objekt**. Das **ausgegraute Szenarien** sind diejenigen, die deaktiviert sind.
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Sie können ein Szenario öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -81,7 +81,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 - **Beschreibung** : Ermöglicht das Schreiben eines kleinen Textes zur Beschreibung Ihres Szenarios.
 - **Szenariomodus** : Das Szenario kann programmiert, ausgelöst oder beides sein. Sie haben dann die Wahl, die Auslöser (maximal 15 Auslöser) und die Programmierung (en) anzugeben).
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Bedingungen können jetzt im ausgelösten Modus eingegeben werden. Zum Beispiel : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Warnung : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
@@ -97,11 +97,11 @@ Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhal
 Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordnen zu müssen, wird nach dem Feld, in dem sich der Mauszeiger befindet, ein Block hinzugefügt.
 *Wenn Sie beispielsweise zehn Blöcke haben und auf die IF-Bedingung des ersten Blocks klicken, wird der hinzugefügte Block nach diesem Block auf derselben Ebene hinzugefügt. Wenn kein Feld aktiv ist, wird es am Ende des Szenarios hinzugefügt.*
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Bei Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (') anstelle von doppelten zu bevorzugen (").
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**abbrechen** oder eine Änderung wiederholen (Aktion hinzufügen, blockieren...).
 
@@ -110,7 +110,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 Hier sind die verschiedenen Arten von Blöcken verfügbar :
 
 - **If / Then / Oder** : Ermöglicht die Ausführung von Aktionen unter Bedingungen (wenn dies, dann das).
-- **Aktion** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
+- **Handlung** : Ermöglicht das Starten einfacher Aktionen ohne Bedingungen.
 - **Schleife** : Ermöglicht die wiederholte Ausführung von Aktionen von 1 bis zu einer definierten Zahl (oder sogar dem Wert eines Sensors oder einer Zufallszahl…)).
 - **Im** : Ermöglicht das Starten einer Aktion in X Minute (n) (0 ist ein möglicher Wert). Die Besonderheit ist, dass die Aktionen im Hintergrund gestartet werden, sodass sie den Rest des Szenarios nicht blockieren. Es ist also ein nicht blockierender Block.
 - **BEIM** : Ermöglicht es Jeedom, die Aktionen des Blocks zu einem bestimmten Zeitpunkt (in der Form hhmm) zu starten). Dieser Block ist nicht blockierend. Ex : 0030 für 00:30 oder 0146 für 1h46 und 1050 für 10h50.
@@ -145,7 +145,7 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 > Bei Blöcken vom Typ If / Then / Andernfalls können kreisförmige Pfeile links neben dem Bedingungsfeld die Wiederholung von Aktionen aktivieren oder nicht, wenn die Auswertung der Bedingung das gleiche Ergebnis wie bei der vorherigen Auswertung ergibt.
 > IF-Ausdruck != 0 entspricht IF-Ausdruck und IF-Ausdruck == 0 entspricht IF-nicht-Ausdruck
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Es gibt eine Liste von Tags, die den Zugriff auf Variablen aus dem einen oder anderen Szenario oder nach Uhrzeit, Datum, Zufallszahl usw. ermöglichen. Siehe unten die Kapitel zu Befehlen und Tags.
 
@@ -193,7 +193,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->setLog($message);`` : Schreiben Sie eine Nachricht in das Skriptprotokoll.
 - ``$scenario->persistLog();`` : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Hinzufügen einer Suchfunktion im Codeblock : Suche : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G
 
@@ -215,7 +215,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 - Eine Schaltfläche für bestimmte Aktionen, bei der jedes Mal die Beschreibung (beim Bewegen des Mauszeigers) dieser Aktion angezeigt wird.
 - Eine Schaltfläche zum Suchen nach einem Aktionsbefehl.
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Abhängig vom ausgewählten Befehl werden verschiedene zusätzliche Felder angezeigt.
 
@@ -259,7 +259,7 @@ Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
 Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. Sie können die folgenden Tags verwenden :
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [Hier](http:/./.php.net/.manual/.fr/.function.date.php).
 
@@ -362,7 +362,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``tag(montag,[defaut])`` : Wird verwendet, um den Wert eines Tags oder den Standardwert abzurufen, falls dieser nicht vorhanden ist.
 
-- ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen. Art : cmd, eqLogic oder Objekt.
+- ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen. Typ : cmd, eqLogic oder Objekt.
 
 - ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück. Mit dem zweiten optionalen Parameter können Sie das Rückgabeformat (Details) angeben [Hier](http:/./.php.net/.manual/.fr/.function.date.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
 

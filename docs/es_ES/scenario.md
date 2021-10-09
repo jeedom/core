@@ -362,7 +362,7 @@ Hay varias funciones disponibles para el equipo :
 
 - ``tag(montag,[defaut])`` : Se usa para recuperar el valor de una etiqueta o el valor predeterminado si no existe.
 
-- ``name(type,commande)`` : Se utiliza para recuperar el nombre del pedido, equipo u objeto. Tipo : cmd, eqLogic u objeto.
+- ``name(type,commande)`` : Se utiliza para recuperar el nombre del pedido, equipo u objeto. Escribe : cmd, eqLogic u objeto.
 
 - ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el equipo dada como parámetro, el segundo parámetro opcional le permite especificar el formato de devolución (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
 

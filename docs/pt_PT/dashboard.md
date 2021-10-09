@@ -19,7 +19,7 @@ Este relatório (diferente das visualizações e designs) é gerado automaticame
 - 9 : Ladrilho para equipamento.
 - 10 : Widget de pedidos.
 
-> **Dica**
+> **Gorjeta**
 >
 > A ordem de exibição dos objetos no Painel é visível em **Análise → Resumo da automação residencial**. Você pode modificar esta ordem nesta página arrastando e soltando.
 
@@ -37,7 +37,7 @@ Movendo o mouse sobre um pedido, um marcador colorido aparece na parte inferior 
 
 Além disso, você pode clicar no título do ladrilho (o nome do equipamento) para abrir diretamente a página de configuração deste equipamento.
 
-> **Dica**
+> **Gorjeta**
 >
 > É possível ir diretamente para um único objeto na sua automação residencial, através do menu **Página inicial → Painel de controle → Nome do objeto**.
 > Isso permite que você tenha apenas o equipamento que lhe interessa e carregue a página mais rapidamente.
@@ -66,7 +66,7 @@ Em cada objeto, à direita de seu nome e resumo, dois ícones permitem que você
 
 ## Barra de menus do Jeedom
 
-> **Dica**
+> **Gorjeta**
 >
 > - Clique no relógio (barra de menus) : Abra a linha do tempo.
 > - Clique no nome do Jeedom (barra de menus) : Abre Configurações → Sistema → Configuração.

@@ -19,7 +19,7 @@ Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links 
 >
 > Wenn Sie keinen Ordner mehr verwenden, wird dieser in der Liste angezeigt, solange Ereignisse vorhanden sind, die mit diesem Ordner verknüpft sind. Es wird von selbst aus der Liste verschwinden.
 
-> **Trinkgeld**
+> **Spitze**
 >
 > Sie haben Zugriff auf die Fenster &quot;Szenarioübersicht&quot; oder &quot;Verlaufskonfiguration&quot; direkt über die Timeline-Seite.
 

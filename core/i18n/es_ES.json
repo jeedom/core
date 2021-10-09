@@ -67,7 +67,7 @@
         "Accueil": "Inicio"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "Ninguno"
+        "Aucun": "No"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Vacíar",
@@ -177,7 +177,7 @@
     },
     "desktop\/modal\/object.summary.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "ID": "CARNÉ DE IDENTIDAD",
         "Objet": "Objeto",
         "Parent": "Pariente",
@@ -198,7 +198,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
         "Composants": "Componentes",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Position": "Posición",
         "Fond transparent": "Fondo transparente",
@@ -217,7 +217,7 @@
         "Lien": "Enlace",
         "Action": "Acción",
         "Lien mort ou absent": "Enlace muerto o perdido",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Configuration": "Configuración ",
         "Composant supprimée": "Componente eliminado",
         "Configuration du composant": "Configuración de componentes",
@@ -226,7 +226,7 @@
     },
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Añadir",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Calcul": "Cálculo",
         "Type": "Tipo",
@@ -260,7 +260,7 @@
         "Minimum par année": "Mínimo por año",
         "Maximum par année": "Máximo por año",
         "Non": "No",
-        "Oui": "Si",
+        "Oui": "Sí",
         "Afficher le graphique": "Ver Gráfico"
     },
     "desktop\/modal\/scenario.log.execution.php": {
@@ -291,8 +291,8 @@
     "desktop\/modal\/note.manager.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Ajouter": "Añadir",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Borrar",
         "Titre": "Título",
         "Texte": "Texto",
         "Note sauvegardée avec succès": "Nota guardada con éxito",
@@ -302,7 +302,7 @@
     "desktop\/modal\/view.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Icône": "Icono",
         "Choisir": "Elegir",
@@ -350,7 +350,7 @@
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur : ": "No se puede encontrar el usuario:",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Objets": "Objetos",
@@ -477,7 +477,7 @@
         "Ajouter": "Añadir",
         "Valeur": "Valor",
         "Action": "Acción",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Disposition": "Provisión",
         "Disposition des widgets en mode Standard ou Tableau.<br>Edition du tableau et de la disposition des commandes.": "Diseño de widgets en modo estándar o tabla. <br> Edición de la tabla y el diseño de los controles",
         "Défaut": "Por defecto",
@@ -500,7 +500,7 @@
         "Retour à la ligne avant le widget": "Ajustar antes del widget",
         "Retour à la ligne après le widget": "Ajustar después del widget",
         "Paramètres optionnels sur le widget:": "Parámetros opcionales en el widget:",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Pas de description des paramètres optionnels sur ce Widget.": "No hay descripción de los parámetros opcionales de este widget"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -511,8 +511,8 @@
     "desktop\/modal\/plan3d.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Borrar",
         "Nom": "Nombre",
         "Type de lien": "Tipo de enlace",
         "Equipement": "Dispositivos",
@@ -648,7 +648,7 @@
         "Tester": "Prueba",
         "Liens": "Enlaces",
         "Informations": "Información",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Configuration": "Configuración ",
         "Alertes": "Alertas",
         "Affichage": "Monitor",
@@ -676,7 +676,7 @@
         "Nom personnalisé Équipement": "Equipo de nombre personalizado",
         "Nom personnalisé Valeur": "Nombre personalizado Valor",
         "Actions": "Acciones",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Envoyer Historique": "Enviar historial",
         "Interdire dans les interactions automatique": "Prohibir interacción automática en",
         "Icône": "Icono",
@@ -783,7 +783,7 @@
         "Pause": "Pausa",
         "Télécharger": "Descargar",
         "Vider": "Vacío",
-        "Supprimer": "Eliminar"
+        "Supprimer": "Borrar"
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -812,7 +812,7 @@
         "Icônes vertes": "Iconos verdes",
         "Rechercher": "Buscar",
         "Envoyer": "Enviar",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Êtes-vous sûr de vouloir supprimer cette image": "¿Estás seguro de que deseas eliminar esta imagen?"
     },
     "desktop\/modal\/update.send.php": {
@@ -856,7 +856,7 @@
     "desktop\/modal\/scenario.jsonEdit.php": {
         "Aucun scénario ne correspondant à : ": "Ningún escenario correspondiente a:",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Erreur editeur non défini": "Error de editor indefinido",
         "Champs json invalide": "Campos json inválidos",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito"
@@ -908,8 +908,8 @@
         "Informations": "Información",
         "Log": "Registro",
         "Liens": "Enlaces",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Borrar",
         "Affichage": "Monitor",
         "Disposition": "Provisión",
         "Alertes": "Alertas",
@@ -981,8 +981,8 @@
         "Impossible de trouver le design 3D": "No se pudo encontrar el diseño 3D",
         "Général": "General",
         "Composants": "Componentes",
-        "Supprimer": "Eliminar",
-        "Sauvegarder": "Guardar",
+        "Supprimer": "Borrar",
+        "Sauvegarder": "Para salvaguardar",
         "Nom": "Nombre",
         "Position": "Posición",
         "Code d'accès": "Código de acceso",
@@ -1045,7 +1045,7 @@
     "desktop\/modal\/scenario.summary.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rafraîchir": "Refrescar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "ID": "CARNÉ DE IDENTIDAD",
         "Scénario": "Escenario",
         "Statut": "Estado",
@@ -1077,7 +1077,7 @@
         "Template": "Plantilla",
         "Général": "General",
         "Gérer": "Gestionar",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Télécharger": "Descargar",
         "Paramètres du scénario": "Parámetros del escenario",
         "Appliquer": "Aplicar",
@@ -1096,7 +1096,7 @@
         "Configuration": "Configuración",
         "ID logique du plugin": "ID lógico del plugin",
         "Envoyer un plugin": "Enviar un plugin",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito"
     },
     "desktop\/modal\/widget.replace.php": {
@@ -1162,7 +1162,7 @@
     "desktop\/modal\/object.massEdit.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Type non trouvé : ": "Tipo no encontrado:",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Type": "Tipo",
         "Nom": "Nombre",
         "Modification sauvegardées avec succès": "Cambios guardados exitosamente"
@@ -1170,7 +1170,7 @@
     "desktop\/modal\/plan.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Profondeur": "Profundidad",
         "Niveau 0": "Nivel 0",
         "Niveau 1": "Nivel 1",
@@ -1334,6 +1334,7 @@
         "Scénarios": "Escenarios",
         "Interactions": "Interacciones",
         "Widgets": "Widgets",
+        "Types d'équipement": "Tipos de equipo",
         "Notes": "Notas",
         "Testeur expression": "Probador de expresión",
         "Variables": "Las variables",
@@ -1404,7 +1405,7 @@
         "Prérequis": "Prerrequisitos",
         "Version minimale du Core supportée par le plugin.": "Versión de núcleo mínima admitida por el complemento",
         "Logs et surveillance": "Registros y monitoreo",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Dépendances": "Dependencias",
         "Démon": "Demonio",
         "Installation": "Instalación",
@@ -1419,7 +1420,7 @@
         "Activer": "Activar",
         "Desktop": "Escritorio",
         "Mobile": "Móvil",
-        "Sauvegarder": "Guardar"
+        "Sauvegarder": "Para salvaguardar"
     },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1462,7 +1463,7 @@
         "pour plus d\\'informations.": "para más informaciones",
         "Dernière vérification : ": "Ultima verificación :",
         "Vérifier les mises à jour": "Verifica las actualizaciones",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Mettre à jour": "Actualizar",
         "Mettre à niveau": "Actualizar",
         "Core et plugins": "Core y plugins",
@@ -1502,7 +1503,7 @@
     "desktop\/php\/administration.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rechercher": "Buscar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Général": "General",
         "Interface": "Interfaz",
         "Réseaux": "Redes",
@@ -1660,7 +1661,7 @@
         "Timeline": "Cronología",
         "Nombre maximum d'évènements sur chaque Timeline": "Número máximo de eventos en cada línea de tiempo",
         "Supprimer tous les évènements de la Timeline": "Eliminar todos los eventos de la línea de tiempo",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Messages": "Mensajes",
         "Ajouter un message à chaque erreur dans les logs": "Añadir un mensaje a cada error en los registros",
         "Action sur message": "Acción sobre mensaje",
@@ -1933,7 +1934,7 @@
         "Pause": "Pausa",
         "Télécharger": "Descargar",
         "Vider": "Vacío",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Supprimer tous": "Borrar todos"
     },
     "desktop\/php\/profils.php": {
@@ -1943,7 +1944,7 @@
         "Vue": "Vista",
         "Design": "Diseño",
         "Design 3D": "Diseño 3D",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Préférences": "Preferencias",
         "Sécurité": "Seguridad",
         "Interface": "Interfaz",
@@ -1988,7 +1989,7 @@
         "Identification": "Identificación",
         "Date dernière utilisation": "Fecha de último uso",
         "Action": "Acción",
-        "Supprimer": "Eliminar"
+        "Supprimer": "Borrar"
     },
     "desktop\/php\/modaldisplay.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
@@ -2025,7 +2026,7 @@
         "Rechercher | nom | :not(nom": "Buscar | nombre | :not(nombre",
         "Appliquer à": "Aplicar",
         "Exporter": "Exportar",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Borrar",
         "Widgets": "Widgets",
         "Général": "General",
@@ -2055,7 +2056,7 @@
         "URL": "URL",
         "Rapport(s)": "Informe(s)",
         "Télécharger": "Descargar",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Tout supprimer": "Borrar todo",
         "Nom": "Nombre",
         "Chemin": "Ruta",
@@ -2071,7 +2072,7 @@
         "Configuration": "Configuración ",
         "Ajouter une zone": "Añadir una zona",
         "Voir le résultat": "Ver el resultado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Supprimer": "Borrar",
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
         "Nom": "Nombre",
@@ -2083,7 +2084,7 @@
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun": "Ninguno",
+        "Aucun": "No",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
         "Activer scénarios": "Activar escenarios",
@@ -2104,8 +2105,8 @@
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Por favor guarda antes de probar. Esto puede no ser exitoso. <br>Ctrl+clic para guardar, ejecutar y abrir el registro",
         "Exécuter": "Ejecutar",
         "Arrêter": "Detener",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Borrar",
         "Général": "General",
         "Scénario": "Escenario",
         "Paramètres": "Parámetros",
@@ -2167,6 +2168,20 @@
         "CHANGER VOTRE MOT DE PASSE": "CAMBIA TU CONTRASEÑA",
         "C'est parti !": "Se fue !"
     },
+    "desktop\/php\/types.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Equipements sans type": "Equipo sin tipo",
+        "Aucun": "No",
+        "Non actif": "No activo",
+        "Non visible": "No visible",
+        "Reset types": "Tipos de reinicio",
+        "Types auto": "Tipos de auto",
+        "Inconnu": "Desconocido",
+        "Rechercher | nom | id": "Buscar | nombre | identificación",
+        "Sauvegarder": "Para salvaguardar",
+        "Appliquer": "Aplicar",
+        "Types inconnus": "Tipos desconocidos"
+    },
     "desktop\/php\/overview.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
@@ -2199,8 +2214,8 @@
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Phrase(s)": "Frase(s)",
         "Dupliquer": "Duplicar",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Borrar",
         "Général": "General",
         "Filtres": "Filtros",
         "Actions": "Acciones",
@@ -2279,7 +2294,7 @@
         "Ajouter un utilisateur": "Añadir un usuario",
         "Activer accès support": "Activar acceso soporte",
         "Désactiver accès support": "Deshabilitar acceso de soporte",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Utilisateur": "Usuario",
         "Actif": "Activo",
         "Profil": "Perfil",
@@ -2325,7 +2340,7 @@
         "Désactiver le système cron": "Desactivar el sistema cron",
         "Rafraîchir": "Refrescar",
         "Ajouter": "Añadir",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "ID": "CARNÉ DE IDENTIDAD",
         "Actif": "Activo",
         "PID": "PID",
@@ -2356,8 +2371,8 @@
         "Mes objets": "Mis objetos",
         "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Liens": "Enlaces",
-        "Sauvegarder": "Guardar",
-        "Supprimer": "Eliminar",
+        "Sauvegarder": "Para salvaguardar",
+        "Supprimer": "Borrar",
         "Objet": "Objeto",
         "Résumé": "Resumen",
         "Résumé par équipements": "Resumen por equipos",
@@ -2418,7 +2433,7 @@
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Sauvegardes locales": "Copias de seguridad locales",
         "Emplacement": "Ubicación",
         "Rétention temporelle (jours)": "Retención temporal (días)",
@@ -2498,7 +2513,7 @@
         "Non actif": "No activo",
         "Non visible": "No visible",
         "Aller sur la configuration de l\\'équipement": "Ir a la configuración del equipo",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Visible": "Visible",
         "Invisible": "Invisible",
         "Actif": "Activo",
@@ -2536,7 +2551,7 @@
         "Changelog": "Cambios",
         "Mettre à jour": "Actualización",
         "Réinstaller": "Restablecer",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Vérifier": "Verificar",
         "Aucune mise à jour en cours.": "No hay actualizaciones en progreso",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La actualización parece estar bloqueada (sin cambios durante 10 minutos. Verifique el registro)"
@@ -2553,10 +2568,10 @@
         "Documentation": "Documentación",
         "Changelog": "Cambios",
         "Détails": "Detalles",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Afficher le panneau desktop": "Vista del panel de escritorio",
         "Afficher le panneau mobile": "Vista del panel móvil",
-        "Oui": "Si",
+        "Oui": "Sí",
         "Activer": "Activar",
         "Non": "No",
         "Statut": "Estado",
@@ -2617,7 +2632,7 @@
         "Ajouter Equipement": "Agregar dispositivo",
         "Ajouter Scénario": "Añadir escenario",
         "Editer": "Editar",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Nom": "Nombre",
         "Couleur": "Color",
         "Type": "Tipo",
@@ -2664,7 +2679,7 @@
         "Droite": "Derecha",
         "Gauche": "Izquierda",
         "Non": "No",
-        "Oui": "Si"
+        "Oui": "Sí"
     },
     "desktop\/js\/display.js": {
         "Configuration de l'objet": "Configuración del objeto",
@@ -2735,7 +2750,7 @@
         "OK": "Bueno",
         "Désactiver": "Desactivar",
         "NOK": "NOK",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Mot de passe": "Contraseña",
         "Renouveler la clef API": "Renovar clave de API",
         "Régénérer API": "Regenerar API",
@@ -2778,13 +2793,13 @@
         "Nom la copie du design ?": "¿Nombre de la copia del diseño?",
         "Configurer le design": "Configurar el diseño",
         "Configuration du design": "Configuración del diseño",
-        "Sauvegarder": "Guardar",
+        "Sauvegarder": "Para salvaguardar",
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
         "Annuler": "Cancelar",
         "Valider": "Validar",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Cerrar",
         "Nom du design ?": "¿El nombre del diseño?",
@@ -2906,6 +2921,16 @@
     "desktop\/js\/connection.js": {
         "Alerte de sécurité :<br\/>Votre mot de passe doit être changé.": "Alerta de seguridad: <br\/> Su contraseña debe ser cambiada",
         "Information importante :": "Información importante:"
+    },
+    "desktop\/js\/types.js": {
+        "Supprimer les types generiques sur les commandes ?": "¿Eliminar tipos genéricos de los pedidos?",
+        "Oui": "Sí",
+        "Non": "No",
+        "Supprimer": "Borrar",
+        "Ajouter au résumé": "Agregar al resumen",
+        "Aucun": "No",
+        "Types Génériques automatiques": "Tipos genéricos automáticos",
+        "Types Génériques sauvegardés": "Tipos genéricos guardados"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuración de control",
@@ -3813,7 +3838,7 @@
         "Acheter": "Comprar",
         "Nous Contacter": "Contáctenos",
         "Cet article est payant. Vous devez avoir un compte sur le market et avoir renseigné les identifiants market dans Jeedom pour pouvoir l\\'acheter": "Este artículo es de pago. Debe tener una cuenta en el market y haber ingresado los identificadores de market en Jeedom para poder comprarla",
-        "Supprimer": "Eliminar",
+        "Supprimer": "Borrar",
         "Gratuit": "Gratis",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Tenga en cuenta que este plugin no es un plugin oficial en caso de problemas con él (directo o indirecto), cualquier solicitud de soporte puede ser rechazada",
         "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Tenga en cuenta que este complemento solo está disponible en versión beta, por lo que puede tener muchos errores y perderá toda posibilidad de solicitar soporte (independientemente del complemento) al instalarlo",
@@ -4561,7 +4586,6 @@
         "Requête invalide. Version JSON-RPC invalide : ": "Solicitud inválida Versión JSON-RPC no válida:",
         "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "El nombre de usuario o la contraseña no pueden estar en blanco",
         "Echec lors de l\\'authentification": "Error al autenticar",
-        "Demande pour le plugin : ": "Solicitud de complemento:",
         "Aucune méthode correspondante : ": "No hay método correspondiente:",
         "Vous n\\'êtes pas autorisé à effectuer cette action ": "No tiene autorización para realizar esta acción",
         "Objet introuvable : ": "Objeto no encontrado:",
@@ -4579,7 +4603,8 @@
         "Scénario exécuté sur appel API": "Escenario ejecutado en llamada API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "El parámetro \"estado\" no puede estar vacío y debe tener el valor [ejecutar, detener, habilitar, deshabilitar]",
         "Impossible de trouver l\\'objet associé : ": "No se puede encontrar el objeto asociado:",
-        "Impossible de trouver l\\'objet": "Incapaz de encontrar el objeto"
+        "Impossible de trouver l\\'objet": "Incapaz de encontrar el objeto",
+        "Demande pour le plugin : ": "Solicitud de complemento:"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",

@@ -74,7 +74,7 @@ La tabla **Información** contiene información general sobre el equipo y sus co
 - **Fecha de creación** : Fecha de creación del equipo.
 - **Activar** : Marque la casilla para activar el equipo (no olvide guardar).
 - **Visible** : Marque la casilla para hacer visible el equipo (no olvide guardar).
-- **Tipo** : Identificador del complemento por el cual fue creado.
+- **Escribe** : Identificador del complemento por el cual fue creado.
 - **Intento fallido** : Número de intentos fallidos de comunicaciones consecutivas con el equipo.
 - **Fecha de la última comunicación** : Fecha de la última comunicación del equipo.
 - **última actualización** : Fecha de la última comunicación con el equipo.
@@ -166,7 +166,7 @@ La tabla **Información** contiene información general sobre el pedido :
 - **Carné de identidad** : Identificador único en la base de datos.
 - **ID lógica** : Identificador lógico del comando (puede estar vacío).
 - **Apellido** : Nombre de la orden.
-- **Tipo** : Tipo de comando (acción o información).
+- **Escribe** : Tipo de comando (acción o información).
 - **Subtipo** : Subtipo de comando (binario, digital, etc.)).
 - **URL directa** : Proporciona la URL para acceder a este equipo. (clic derecho, copie la dirección del enlace) La URL iniciará el comando para un **acción** y devolver la información para un **info**.
 - **Unidad** : Unidad de control.
