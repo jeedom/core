@@ -19,6 +19,7 @@
 - **Résumés** : Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif.
 - **Résumés** : Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé.
 - **Résumés** : Il est maintenant possible de configurer des actions sur les résumés (ctrl + clic sur un résumé) grâce aux virtuels.
+- **Types d'équipement** Nouvelle page **Outils → Types d'équipement** permettant d'attribuer des types génériques aux équipements et commandes, avec support des types dédiés aux plugins installés.
 - **Sélection d'illustrations** : Nouvelle fenêtre globale pour le choix des illustrations *(icônes, images, fonds)*.
 - **Catégories colorées** : Nouvelle option en configuration / interface pour ne pas colorer le bandeau de titre des équipements.
 - **Affichage en tableau** : Ajout d'un bouton à droite de la recherche sur les pages *Objets* *Scénarios* *Interactions* *Widgets* et *Plugins* pour basculer en mode tableau. Celui-ci est conservé par un cookie ou dans **Réglages → Système → Configuration / Interface, Options**. Les plugins peuvent faire appel à cette nouvelle fonction du Core.
@@ -64,7 +65,7 @@ Jeedom 4.2 contient une grosse partie sur l'augmentation de la sécurité.
 
 - Changement de la politique d'accès aux fichiers : Avant nous interdisions certains fichier, maintenant nous n'autorisons que certains fichiers.
 - Changement au niveau de l'api, avant elle était "tolérante" si vous arriviez avec la clef du Core en indiquant plugin XXXXX. Ce n'est plus le cas, vous devez arriver avec la clef correspondante au plugin.
-- En api http vous pouviez indiquer un nom de plugin en type, ce n'est plus possible. Le type correspondant au type de la demande (scenario, eqLogic, cmd, etc.) doit correspondre au plugin.
+- En api http vous pouviez indiquer un nom de plugin en type, ce n'est plus possible. Le type correspondant au type de la demande (scenario, eqLogic, cmd, etc.) doit correspondre au plugin. Par exemple pour le plugin virtuel vous aviez type=virtual dans l'url il faut maintenant remplacer par plugin=virtual&type=event, idem pour le plugin ipx800v4 ou type=ipx800v4 devient plugin=ipx800v4&type=event
 - Renforcement des sessions (passage en sha256 avec 64 caractères en mode strict).
 - Le cookie de "rester connecté" (3 mois max) est maintenant "one shot", renouvelé à chaque utilisation.
 
@@ -72,9 +73,13 @@ L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact e
 
 # Changelog Jeedom V4.1
 
+## 4.1.26
+
+- Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt.
+
 ## 4.1.25
 
-- Correction d'un soucis d'installation de dépendance apt
+- Correction d'un soucis d'installation de dépendance apt.
 
 ## 4.1.24
 

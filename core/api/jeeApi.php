@@ -310,17 +310,18 @@ try {
 	if (!jeedom::apiAccess($apikey, $params['plugin'])) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
 	}
-	if ($_RESTRICTED) {
-		if ($params['plugin'] != 'core') {
-			log::add('api', 'info', __('Demande pour le plugin : ', __FILE__) . secureXSS($params['plugin']));
-			try {
-				include_file('core', $params['plugin'], 'api', $params['plugin']);
-			} catch (\Exception $e) {
-				if ($e->getCode() != 35486) {
-					throw $e;
-				}
+
+	if ($params['plugin'] != 'core') {
+		try {
+			include_file('core', $params['plugin'], 'api', $params['plugin']);
+		} catch (\Exception $e) {
+			if ($e->getCode() != 35486) {
+				throw $e;
 			}
 		}
+	}
+
+	if ($_RESTRICTED) {
 		throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . $jsonrpc->getMethod(), -32500);
 	}
 
