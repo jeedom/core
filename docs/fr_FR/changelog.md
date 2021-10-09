@@ -73,9 +73,13 @@ L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact e
 
 # Changelog Jeedom V4.1
 
+## 4.1.26
+
+- Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt.
+
 ## 4.1.25
 
-- Correction d'un soucis d'installation de dépendance apt
+- Correction d'un soucis d'installation de dépendance apt.
 
 ## 4.1.24
 
