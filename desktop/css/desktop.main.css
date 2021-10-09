@@ -95,6 +95,12 @@ Desktop
   .small {
     font-size:  0.8em;
   }
+  .mediumText {
+    font-size: 0.9em;
+  }
+  .biggerText {
+    font-size: 1.2em;
+  }
   .italic {
     font-style: italic;
   }
@@ -587,42 +593,58 @@ Desktop
   }
   .name > .labelObjectHuman {
     padding-left: 0x !important;
-  display: inline-block;
-}
+    display: inline-block;
+  }
 
-/* résumé domo*/
-[data-page=display] legend a,
-[data-page=display] legend i {
-  color: inherit !important;
-}
-[data-page=display] .object legend {
-  border-left: none;
-}
-[data-page=display] #div_pageContainer #displaytab ul > li {
-  list-style-type: none;
-  margin: 2px 25px !important;
-  padding: 1px 5px !important;
-  border-bottom: 1px solid var(--el-defaultColor);
-}
+  /* résumé domo / types page*/
+  [data-page=types] #div_pageContainer #genericsContainer .genericType {
+    position: absolute;
+    left: 50%;
+    height: 13px;
+    overflow: hidden;
+  }
+  [data-page=display] legend a,
+  [data-page=display] legend i {
+    color: inherit !important;
+  }
+  [data-page=display] .object legend {
+    border-left: none;
+  }
+  [data-page=types] #div_pageContainer #genericsContainer ul > li,
+  [data-page=display] #div_pageContainer #displaytab ul > li {
+    list-style-type: none;
+    margin: 2px 25px !important;
+    padding: 1px 5px !important;
+    border-bottom: 1px solid var(--el-defaultColor);
+  }
 
-[data-page=display] #div_pageContainer #displaytab li.eqLogic:hover {
-  font-weight: bold;
-}
-[data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd {
-  font-weight: normal;
-}
-[data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd:hover {
-  font-weight: bold;
-  letter-spacing: 1px;
+  [data-page=types] #div_pageContainer #genericsContainer li.eqLogic:hover,
+  [data-page=types] #div_pageContainer #genericsContainer li.eqLogic.hover,
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic:hover {
+    font-weight: bold;
+  }
+  [data-page=types] #div_pageContainer #genericsContainer li.eqLogic li.cmd,
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd {
+    font-weight: normal;
+  }
+  [data-page=types] #div_pageContainer #genericsContainer li.eqLogic li.cmd:hover,
+  [data-page=types] #div_pageContainer #genericsContainer li.eqLogic li.cmd.hover,
+  [data-page=display] #div_pageContainer #displaytab li.eqLogic li.cmd:hover {
+    font-weight: bold;
+    letter-spacing: 1px;
   }
 
   [data-page=display] #div_pageContainer #displaytab ul > li input {
-  border: 1px solid rgba(100, 100, 100, 0.5);
-  font-size: 12px !important;
-}
-[data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
-  margin: 0 !important;
-  padding: 3px 5px !important;
+    border: 1px solid rgba(100, 100, 100, 0.5);
+    font-size: 12px !important;
+  }
+  [data-page=types] #div_pageContainer #genericsContainer ul > li > ul > li {
+    position: relative;
+  }
+  [data-page=types] #div_pageContainer #genericsContainer ul > li > ul > li,
+  [data-page=display] #div_pageContainer #displaytab ul > li > ul > li {
+    margin: 0 !important;
+    padding: 3px 5px !important;
     color: var(--linkHoverLight-color) !important;
   }
   [data-page=display] #div_pageContainer #displaytab ul > li > ul > li > i {
