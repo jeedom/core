@@ -19,7 +19,7 @@ Sie haben zwei Möglichkeiten :
 
 Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können ein Objekt öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -58,15 +58,15 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird, insbesondere auf der Seite *Instrumententafel* dieses Objekts.
 - **Bild** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht (oder in der Zusammenfassung der Hausautomation) Ihr Objekt mit der Maus per Drag & Drop aus, um ihm einen neuen Platz zu geben.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Verbindungen**, oben rechts.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Nein**.
 
@@ -87,7 +87,7 @@ Die Spalten stellen die Zusammenfassungen dar, die dem aktuellen Objekt zugewies
 
 Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration von Jeedom definiert ist. Klicken Sie auf **Bestellung hinzufügen** so dass es in der Zusammenfassung berücksichtigt wird. Sie haben die Wahl, den Befehl eines Jeedom-Geräts auszuwählen, auch wenn dieses Objekt nicht als übergeordnetes Objekt vorhanden ist.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Wenn Sie eine Art von Zusammenfassung hinzufügen oder die Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung konfigurieren möchten, müssen Sie zur allgemeinen Konfiguration von Jeedom wechseln : **Einstellungen → System → Konfiguration : Registerkarte &quot;Zusammenfassungen&quot;**.
 

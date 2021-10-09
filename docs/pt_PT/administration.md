@@ -102,11 +102,11 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **Conecte-se** : Digite o login do proxy,
     - **Senha** : Digite a senha.
 
-> **Gorjeta**
+> **Dica**
 >
 > Se você estiver em HTTPS, a porta é 443 (padrão) e em HTTP, a porta é 80 (padrão)). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
 
-> **Gorjeta**
+> **Dica**
 >
 > Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
@@ -235,9 +235,9 @@ Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as
 
 Essa guia permite definir parâmetros globais relativos às interações que você encontrará em Ferramentas → Interações.
 
-> **Gorjeta**
+> **Dica**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Aviso : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
 
 ### Geral
 
@@ -341,7 +341,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Aviso : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.

@@ -15,7 +15,7 @@ Durch die Datenarchivierung kann Jeedom die im Speicher gespeicherte Datenmenge 
 
 Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellten Daten. Standardmäßig ruft Jeedom alle älteren Daten von 2 Stunden ab und erstellt 1-Stunden-Pakete daraus (entweder ein Durchschnitt, ein Minimum oder ein Maximum, abhängig von den Einstellungen). Hier haben wir also zwei Parameter, einen für die Paketgröße und einen anderen, um zu wissen, wann dies zu tun ist (standardmäßig sind dies 1-Stunden-Pakete mit Daten, die älter als 2 Stunden sind).
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Warum ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
@@ -45,7 +45,7 @@ Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diag
 - **Vergleichen Sie** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
 
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Wenn Sie mehrere Kurven gleichzeitig anzeigen:
 > - Klicken Sie auf eine Legende unter dem Diagramm, um diese Kurve anzuzeigen / auszublenden.
@@ -59,7 +59,7 @@ Sie können die Diagramme auch in den Ansichten anzeigen (wir sehen hier die Kon
 
 Sobald eine Daten aktiviert sind, können Sie auswählen :
 - **Farbe** : Die Farbe der Kurve.
-- **Typ** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
+- **Art** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
 - **Leiter** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
 - **Stapel** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).
@@ -77,7 +77,7 @@ abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Wohnraum \] \ [Hygro
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie diese zur einfacheren erneuten Anzeige speichern können.
 
-> **Spitze**
+> **Trinkgeld**
 >
 > Klicken Sie einfach auf den Namen des Objekts, um es zu entfalten, und rufen Sie die historischen Befehle auf, die angezeigt werden können.
 

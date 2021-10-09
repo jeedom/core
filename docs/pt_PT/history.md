@@ -15,7 +15,7 @@ O arquivamento de dados permite que o Jeedom reduza a quantidade de dados armaze
 
 O arquivamento é uma tarefa que começa à noite e compacta os dados recuperados durante o dia. Por padrão, o Jeedom recupera todos os dados antigos de 2 horas e faz pacotes de 1 hora (uma média, um mínimo ou um máximo, dependendo das configurações). Portanto, aqui temos dois parâmetros, um para o tamanho do pacote e outro para saber quando fazê-lo (por padrão, são pacotes de 1 hora com dados com mais de 2 horas)).
 
-> **Gorjeta**
+> **Dica**
 >
 > Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Por quê ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
 
@@ -45,7 +45,7 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 - **Comparar** : Compare a curva entre diferentes períodos.
 
 
-> **Gorjeta**
+> **Dica**
 >
 > Se você exibir várias curvas ao mesmo tempo:
 > - Clique em uma legenda abaixo do gráfico para exibir / ocultar esta curva.
@@ -59,7 +59,7 @@ Você também pode exibir os gráficos nas visualizações (veremos aqui as opç
 
 Depois que os dados são ativados, você pode escolher :
 - **Cor** : A cor da curva.
-- **Modelo** : O tipo de gráfico (área, linha ou coluna).
+- **Tipo** : O tipo de gráfico (área, linha ou coluna).
 - **Escada** : Como você pode colocar várias curvas (dados) no mesmo gráfico, é possível distinguir as escalas (direita ou esquerda)).
 - **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua.
 - **Pilha** : Empilhe os valores das curvas (veja abaixo o resultado).
@@ -77,7 +77,7 @@ abs(*\ [Jardim \] \ [Higrometria \] \ [Temperatura \]* - *\ [Espaço vital]] [Hi
 
 Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite salvá-las para facilitar a exibição novamente.
 
-> **Gorjeta**
+> **Dica**
 >
 > Basta clicar no nome do objeto para desdobrar e exibir os comandos históricos que podem ser exibidos.
 

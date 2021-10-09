@@ -59,7 +59,7 @@ También puede mostrar los gráficos en las vistas (veremos aquí las opciones d
 
 Una vez que se activan los datos, puede elegir :
 - **Color** : El color de la curva.
-- **Escribe** : El tipo de gráfico (área, línea o columna).
+- **Tipo** : El tipo de gráfico (área, línea o columna).
 - **Escalera** : Como puede colocar varias curvas (datos) en el mismo gráfico, es posible distinguir las escalas (derecha o izquierda).
 - **Escalera** : Muestra la curva como una escalera o una pantalla continua.
 - **Apilar** : Apila los valores de las curvas (ver abajo el resultado).

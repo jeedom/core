@@ -71,7 +71,7 @@ Cuando presionas el botón **Agregar curva**, Jeedom muestra la lista de pedidos
 - **Bote de basura** : Eliminar comando del gráfico.
 - **Apellido** : Nombre del comando para dibujar.
 - **Color** : Color de la curva.
-- **Escribe** : Tipo de curva.
+- **Tipo** : Tipo de curva.
 - **Grupo** : Permite la agrupación de datos (tipo máximo por día).
 - **Escalera** : Escala (derecha o izquierda) de la curva.
 - **Escalera** : Muestra la curva de la escalera.

@@ -24,11 +24,11 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 - O primeiro é usado para abrir a página de configuração do objeto em uma nova guia.
 - O segundo fornece algumas informações sobre o objeto,
 
-> **Gorjeta**
+> **Dica**
 >
 > A cor do plano de fundo dos quadros do objeto depende da cor escolhida na configuração do objeto.
 
-> **Gorjeta**
+> **Dica**
 >
 > Com um clique e soltar nos objetos ou equipamentos, você pode alterar a ordem deles ou até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
 
@@ -51,7 +51,7 @@ Se o plug-in do equipamento estiver desativado, os dois ícones à direita não 
 
 ## Configuração avançada de equipamentos
 
-> **Gorjeta**
+> **Dica**
 >
 > É possível acessar (se o plugin o suportar) diretamente a esta janela a partir da página de configuração do equipamento, clicando no botão de configuração avançada
 
@@ -74,7 +74,7 @@ A guia **Em formação** contém informações gerais sobre o equipamento e seus
 - **Data de criação** : Data de criação do equipamento.
 - **Ativar** : Marque a caixa para ativar o equipamento (não esqueça de salvar).
 - **Visível** : Marque a caixa para tornar o equipamento visível (não esqueça de salvar).
-- **Modelo** : Identificador do plug-in pelo qual ele foi criado.
+- **Tipo** : Identificador do plug-in pelo qual ele foi criado.
 - **Tentativa fracassada** : Número de falhas consecutivas de tentativas de comunicação com o equipamento.
 - **Data da última chamada** : Data da última comunicação do equipamento.
 - **Última atualização** : Data da última comunicação com o equipamento.
@@ -97,7 +97,7 @@ Na aba **Exibição**, você poderá configurar certos comportamentos de exibiç
 Abaixo, há parâmetros opcionais de exibição que podem ser aplicados ao equipamento. Esses parâmetros são compostos de um nome e um valor. Basta clicar em **Adicionar** aplicar um
 novo. Para equipamentos, apenas o valor **estilo** atualmente utilizado, permite inserir código CSS no equipamento em questão.
 
-> **Gorjeta**
+> **Dica**
 >
 > Não se esqueça de salvar após qualquer modificação.
 
@@ -116,7 +116,7 @@ esta :
 - **Caixa de texto** : Adicione texto além do comando (ou sozinho, se não houver comando na caixa).
 - **Estilo do caso (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
 
-> **Gorjeta**
+> **Dica**
 >
 > Em uma caixa da tabela, se você deseja colocar 2 comandos um abaixo do outro, não se esqueça de adicionar uma quebra de linha após o primeiro no **Configuração avançada** disso.
 
@@ -132,7 +132,7 @@ Abaixo, você também pode definir os limites de alerta de bateria específicos 
 
 Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exemplo, 30 informa ao jeedom que se o equipamento não se comunicar por 30 minutos, ele deve ser colocado em alerta.
 
-> **Gorjeta**
+> **Dica**
 >
 > Os parâmetros globais estão em **Configurações → Sistema → Configuração : Histórico** ou **Equipamento**
 
@@ -151,7 +151,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 -  **Aplicar** : Permite que a mesma configuração seja aplicada a vários comandos.
 - **Salve ** : Salve as modificações feitas no equipamento.
 
-> **Gorjeta**
+> **Dica**
 >
 > Em um gráfico, um clique duplo em um elemento leva você à sua configuração.
 
@@ -166,7 +166,7 @@ A guia **Em formação** contém informações gerais sobre o pedido :
 - **Eu iria** : Identificador exclusivo no banco de dados.
 - **ID lógico** : Identificador lógico do comando (pode estar vazio).
 - **último nome** : Nome do comando.
-- **Modelo** : Tipo de comando (ação ou informação).
+- **Tipo** : Tipo de comando (ação ou informação).
 - **Subtipo** : Subtipo de comando (binário, digital etc.)).
 - **URL direta** : Fornece a URL para acessar este equipamento. (clique com o botão direito do mouse, copie o endereço do link) O URL iniciará o comando para um **açao** e retorne as informações para um **informação**.
 - **Unidade** : Unidade de controle.
@@ -240,6 +240,6 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 
-> **Gorjeta**
+> **Dica**
 >
 > Não se esqueça de salvar após qualquer modificação.
