@@ -23,11 +23,17 @@ foreach (plugin::listPlugin(true) as $plugin) {
 		try {
 			$generics = $plugin->getId()::pluginGenericTypes();
 			foreach ($generics as $key => $info) {
+				//check data:
 				if (!isset($info['familyid']) || !isset($info['family']) || !isset($info['name']) || !isset($info['type'])) {
 					unset($generics[$key]);
 					continue;
 				}
-				$families[$info['familyid']] = $info['family'];
+				//Do not overide Core Family/id:
+				if (!isset($families[$info['familyid']])) {
+					$families[$info['familyid']] = $info['family'];
+				} else {
+					$generics[$key]['family'] = $families[$info['familyid']];
+				}
 			}
 			$GENRICSTYPES = array_merge($GENRICSTYPES, $generics);
 
