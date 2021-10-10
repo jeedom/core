@@ -22,10 +22,15 @@ foreach (plugin::listPlugin(true) as $plugin) {
 	if (method_exists($plugin->getId(), 'pluginGenericTypes')) {
 		try {
 			$generics = $plugin->getId()::pluginGenericTypes();
-			$GENRICSTYPES = array_merge($GENRICSTYPES, $generics);
 			foreach ($generics as $key => $info) {
+				if (!isset($info['familyid']) || !isset($info['family']) || !isset($info['name']) || !isset($info['type'])) {
+					unset($generics[$key]);
+					continue;
+				}
 				$families[$info['familyid']] = $info['family'];
 			}
+			$GENRICSTYPES = array_merge($GENRICSTYPES, $generics);
+
 		} catch(Exception $e) {}
 	}
 }
