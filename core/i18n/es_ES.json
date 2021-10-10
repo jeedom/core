@@ -2169,6 +2169,7 @@
         "C'est parti !": "Se fue !"
     },
     "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Equipements sans type": "Equipo sin tipo",
         "Aucun": "No",
@@ -3875,6 +3876,7 @@
         "Désactivation de": "Desactivación de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque no respondió o respondió incorrectamente durante los últimos 3 intentos",
         "Erreur exécution de la commande ": "Error de ejecución del comando",
+        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)",
         "Aucun paramètre optionnel disponible.": "No hay parámetros opcionales disponibles",
         "Aucune description trouvée pour ce Widget.": "No se encontró una descripción para este widget",
         "Titre": "Título",
@@ -3896,8 +3898,7 @@
         "Erreur delete influx sur : ": "Error al eliminar la afluencia en:",
         "Envoie de l\\'historique à influx : ": "Envía historial de afluencia:",
         "Erreur history influx sur : ": "Error de flujo de historial en:",
-        "Commande": "Comando",
-        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)"
+        "Commande": "Comando"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Administración",

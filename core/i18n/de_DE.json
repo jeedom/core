@@ -2169,6 +2169,7 @@
         "C'est parti !": "Lass uns gehen !"
     },
     "desktop\/php\/types.php": {
+        "(Non géré par Application Mobile)": "(Nicht von Application Mobile verwaltet)",
         "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
         "Equipements sans type": "Geräte ohne Typ",
         "Aucun": "Nein",
@@ -3875,6 +3876,7 @@
         "Désactivation de": "Deaktivierung von",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "weil es in den letzten 3 Versuchen nicht oder falsch geantwortet hat",
         "Erreur exécution de la commande ": "Befehlsausführungsfehler",
+        "(Non géré par Application Mobile)": "(Nicht von Application Mobile verwaltet)",
         "Aucun paramètre optionnel disponible.": "Keine optionalen Parameter verfügbar",
         "Aucune description trouvée pour ce Widget.": "Für dieses Widget wurde keine Beschreibung gefunden",
         "Titre": "Titel",
@@ -3896,8 +3898,7 @@
         "Erreur delete influx sur : ": "Fehler beim Löschen des Zuflusses bei:",
         "Envoie de l\\'historique à influx : ": "Sendet die Zuflusshistorie:",
         "Erreur history influx sur : ": "Verlaufszuflussfehler bei:",
-        "Commande": "Befehl",
-        "(Non géré par Application Mobile)": "(Nicht von Application Mobile verwaltet)"
+        "Commande": "Befehl"
     },
     "core\/class\/jeedom.class.php": {
         "Administration": "Verwaltung",
