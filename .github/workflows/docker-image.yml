@@ -1,7 +1,7 @@
 name: Docker Image CI
 on:
   push:
-    branches: [ alpha V4-stable ]
+    branches: [ alpha, V4-stable ]
 jobs:
   build:
     runs-on: ubuntu-latest
