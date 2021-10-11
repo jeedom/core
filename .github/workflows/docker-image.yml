@@ -25,6 +25,6 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: jeedom/jeedom:alpha
+          tags: jeedom/jeedom:${{ github.head_ref }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
