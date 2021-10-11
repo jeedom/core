@@ -216,10 +216,8 @@ step_8_jeedom_customization() {
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/sites-available/000-default.conf
   rm /etc/apache2/sites-enabled/000-default.conf > /dev/null 2>&1
   ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/
-  
   rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
   rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
-  
   echo '' > /etc/apache2/mods-available/alias.conf
   
   mkdir /etc/systemd/system/apache2.service.d
