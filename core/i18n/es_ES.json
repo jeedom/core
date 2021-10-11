@@ -270,7 +270,7 @@
         "Rechercher": "Buscar",
         "Pause": "Pausa",
         "Télécharger": "Descargar",
-        "Vider": "Vacío",
+        "Vider": "Vaciar",
         "Log vidé avec succès": "Registro vaciado con éxito"
     },
     "desktop\/modal\/plugin.deamon.php": {
@@ -566,33 +566,33 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aide": "Ayuda",
-        "Résumé Domotique": "Resumen de domótica",
+        "Résumé Domotique": "Resumen Domótica",
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
-        "Equipement": "Dispositivos",
+        "Equipement": "Dispositivo",
         "Commande": "Comando",
         "Variable": "Variable",
-        "Plugin": "Enchufar",
+        "Plugin": "Plugin",
         "Mot": "Palabra",
-        "ID": "CARNÉ DE IDENTIDAD",
-        "Rechercher un équipement": "Busca equipo",
-        "Rechercher une commande": "Buscar una orden",
+        "ID": "ID",
+        "Rechercher un équipement": "Busca un dispositivo",
+        "Rechercher une commande": "Buscar un comando",
         "Résultats": "Resultados",
         "Scénario": "Escenario",
         "Actions": "Acciones",
         "Design": "Diseño",
-        "Vue": "Ver",
+        "Vue": "Vista",
         "Interaction": "Interacción",
         "Note": "Nota",
         "Voir les logs": "Ver los registros",
-        "Aller sur la page du scénario.": "Ve a la página del escenario",
-        "Aller sur le design.": "Ve a diseñar",
-        "Aller sur la vue.": "Ve a la vista",
-        "Aller sur l\\'interaction.": "Ve a la interacción",
-        "Aller sur l\\'équipement.": "Ve al equipo",
-        "Ouvrir configuration de la commande.": "Configuración de orden abierta",
-        "Ouvrir la note.": "Abre la nota",
-        "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Aller sur la page du scénario.": "Acceder en la página del escenario",
+        "Aller sur le design.": "Acceder en el diseño",
+        "Aller sur la vue.": "Acceder en la vista",
+        "Aller sur l\\'interaction.": "Acceder en la interacción",
+        "Aller sur l\\'équipement.": "Acceder en el dispositivo",
+        "Ouvrir configuration de la commande.": "Abrir configuración del comando",
+        "Ouvrir la note.": "Abrir la nota",
+        "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/modal\/report.bug.php": {
@@ -1046,7 +1046,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rafraîchir": "Refrescar",
         "Sauvegarder": "Guardar",
-        "ID": "CARNÉ DE IDENTIDAD",
+        "ID": "ID",
         "Scénario": "Escenario",
         "Statut": "Estado",
         "Dernier lancement": "Última ejecución",
@@ -1060,15 +1060,15 @@
         "Erreur": "Error",
         "En cours": "En curso",
         "Arrêté": "Detenido",
-        "Défaut": "Por defecto",
-        "Aucun": "No",
+        "Défaut": "Defecto",
+        "Aucun": "Ningún",
         "Temps réel": "Tiempo real",
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
         "Exécuter": "Ejecutar",
         "Supprimer ce scénario": "Eliminar este escenario",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Está seguro de que desea eliminar el escenario?",
-        "Log d'exécution du scénario": "Log de ejecución de la escena"
+        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Estas seguro de que deseas eliminar el escenario?",
+        "Log d'exécution du scénario": "Log de ejecución del escenario"
     },
     "desktop\/modal\/scenario.template.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2978,13 +2978,13 @@
         "L\\'opération a échoué": "La operación falló"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Nom du scénario": "Nombre del escenario",
-        "Vue d'ensemble des scénarios": "Resumen de escenarios",
+        "Vue d'ensemble des scénarios": "Resumen de los escenarios",
         "Scénario": "Escenario",
         "Graphique de lien(s)": "Gráfico de enlace",
-        "Edition texte scénarios": "Escenarios de edición de texto",
-        "Export du scénario": "Exportar escenario",
+        "Edition texte scénarios": "Edición texto escenarios",
+        "Export du scénario": "Exportación del escenario",
         "Template de scénario": "Plantilla de escenario",
         "Lancement du scénario réussi": "Ejecución de escenario realizada con éxito",
         "Arrêt du scénario réussi": "Parada de escenario correcta",
@@ -2999,7 +2999,7 @@
         "supérieur": "superior",
         "inférieur": "inferior",
         "différent": "diferente",
-        "égale": "iguales",
+        "égale": "igual",
         "contient": "contiene",
         "Ouvert": "Abierto",
         "Fermé": "Cerrado",
@@ -3050,16 +3050,16 @@
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Eliminar este bloque. <br> Ctrl + Click: Eliminar sin confirmación",
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copia este bloque. <br> Ctrl + Click: Cortar este bloque",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Pega un bloque después de esto. <br> Ctrl + Click: reemplazar este bloque con el bloque copiado",
-        "Afficher\/masquer le bloc Sinon": "Mostrar \/ ocultar bloque lo contrario",
+        "Afficher\/masquer le bloc Sinon": "Mostrar\/ocultar el bloque",
         "Ajouter": "Añadir",
         "Action": "ACCIÓN",
         "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",
         "Bloc Boucle": "Bloque de bucle",
-        "Bloc Dans": "Bloquear Dentro de",
+        "Bloc Dans": "Bloque Dentro de",
         "Bloc A": "Bloque A",
         "Bloc Code": "Bloque Código",
-        "Bloc Commentaire": "Bloque de comentarios"
+        "Bloc Commentaire": "Bloque Comentario"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historial"
@@ -3506,7 +3506,7 @@
     },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Inicio de sesión de usuario por REMOTE_USER:",
@@ -3519,8 +3519,8 @@
     },
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Plugin introuvable : ": "Plugin no encontrado:",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Plugin introuvable : ": "Plugin no encontrado :",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3584,28 +3584,28 @@
     },
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Impossible de supprimer : ": "No se puede eliminar:",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Impossible de supprimer : ": "No se puede eliminar :",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Impossible de trouver l\\'objet associé : ": "No se puede encontrar el objeto asociado:",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Impossible de trouver l\\'objet associé : ": "No se puede encontrar el objeto asociado :",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Scénario ID inconnu : ": "ID de escenario desconocido:",
+        "Scénario ID inconnu : ": "ID de escenario desconocido :",
         "Vous n\\'êtes pas autorisé à faire cette action": "No tienes permiso para hacer esta acción",
-        "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "El escenario no se puede iniciar porque está desactivado. Por favor actívelo",
+        "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "El escenario no se puede iniciar porque está desactivado. Por favor actívalo",
         "Le nom du template ne peut être vide ": "El nombre de la plantilla no puede estar vacío",
-        "Impossible de créer le template, vérifiez les droits : ": "No se puede crear la plantilla, verifique los derechos:",
+        "Impossible de créer le template, vérifiez les droits : ": "No se puede crear la plantilla, verifica los derechos :",
         "Fichier non trouvé : ": "Archivo no encontrado :",
-        "La conversion suivante ne peut être vide : ": "La siguiente conversión no puede estar vacía:",
+        "La conversion suivante ne peut être vide : ": "La siguiente conversión no puede estar vacía :",
         "Scénario ID inconnu": "ID de escenario desconocido",
         "Champs json invalide": "Campos json inválidos",
-        "Répertoire de téléversement non trouvé : ": "Subir directorio no encontrado:",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
-        "Extension du fichier non valide (autorisé .json) : ": "Extensión de archivo no válida (.json autorizado):",
+        "Répertoire de téléversement non trouvé : ": "Directorio de carga no encontrado :",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifica la configuración de PHP (post size limit)",
+        "Extension du fichier non valide (autorisé .json) : ": "Extensión de archivo no válida (.json autorizado) :",
         "Le fichier est trop gros (maximum 10Mo)": "El archivo es demasiado grande (máximo 10 MB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "No se puede cargar el archivo (¿límite del servidor web?)",
@@ -3613,12 +3613,12 @@
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune correspondance pour l\\'ID : ' . init('id')": "No hay coincidencia para ID: '. init ( 'id')",
-        "[START UPDATE]": "[INICIAR ACTUALIZACIÓN]",
-        "Launch cron dependancy plugins": "Ejecutar cron dependencia plugins",
-        "[END UPDATE SUCCESS]": "[FINALIZAR ÉXITO ACTUALIZADO]",
-        "[END UPDATE ERROR]": "[FINALIZAR ERROR DE ACTUALIZACIÓN]",
-        "Répertoire de téléversement non trouvé : ": "Subir directorio no encontrado:",
+        "Aucune correspondance pour l\\'ID : ' . init('id')": "No hay coincidencia para el ID: ' . init('id')",
+        "[START UPDATE]": "[START UPDATE]",
+        "Launch cron dependancy plugins": "Ejecutar cron plugins dependencia",
+        "[END UPDATE SUCCESS]": "[END UPDATE SUCCESS]",
+        "[END UPDATE ERROR]": "[END UPDATE ERROR]",
+        "Répertoire de téléversement non trouvé : ": "Directorio de carga no encontrado :",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
         "Le fichier est trop gros (maximum 100Mo)": "El archivo es demasiado grande (máximo 100 MB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
@@ -4180,7 +4180,7 @@
         "Désactivation de": "Desactivación de",
         "Masquage de": "Enmascaramiento de",
         "Affichage de": "Visualización de",
-        "Aucun": "No",
+        "Aucun": "Ningún",
         "Type inconnu": "Tipo desconocido",
         "Execution du lancement en arriere plan : ": "Iniciar ejecución en segundo plano :",
         "Exécution d\\'un bloc élément : ": "Ejecución de un bloque de elementos:",
@@ -4419,7 +4419,7 @@
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nombre",
@@ -4455,7 +4455,7 @@
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Diseño"
@@ -4465,11 +4465,11 @@
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nombre",
@@ -4498,15 +4498,15 @@
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
-        "Historique à exporter": "Historia para exportar",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Historique à exporter": "Historial para exportar",
+        "Sélectionner la commande": "Seleccionar el comando",
         "De": "De",
-        "à": "A las",
+        "à": "a",
         "Nom": "Nombre",
-        "Exporter en": "Exportar a",
+        "Exporter en": "Exportar en",
         "CSV": "CSV",
         "Commandes": "Comandos"
     },
@@ -4514,7 +4514,7 @@
         "Exporter": "Exportar",
         "Vue": "Ver",
         "Design": "Diseño",
-        "Plugin": "Enchufar",
+        "Plugin": "Plugin",
         "Analyse Equipements": "Análisis de equipos",
         "Timeline": "Cronología",
         "URL": "URL",
