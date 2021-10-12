@@ -4392,7 +4392,8 @@
         "Hauteur maximale en pixel": "Hauteur maximale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "期間"
+        "Durée": "期間",
+        "Durée en secondes": "Durée en secondes"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "コマンドを選択"
@@ -4415,6 +4416,7 @@
         "Time out": "タイムアウト"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Couleur",
         "Sélectionner la commande": "コマンドを選択"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4448,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "質問",
+        "Questions": "Questions",
         "Réponse": "答え",
+        "Réponses possibles (séparé par des ;)": "Réponses possibles (séparé par des ;)",
         "Variable": "変数",
         "Délai": "お知らせ",
+        "Délai en s": "Délai en s",
         "Commandes": "コマンド",
         "Sélectionner la commande": "コマンドを選択"
     },
@@ -4487,6 +4492,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "検索アイコン"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Message"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "レベル",
         "Succès": "成功",
@@ -4502,13 +4510,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historique à exporter",
+        "Commandes": "コマンド",
         "Sélectionner la commande": "コマンドを選択",
         "De": "De",
         "à": "へ",
         "Nom": "表題",
         "Exporter en": "にエクスポート",
-        "CSV": "CSV",
-        "Commandes": "コマンド"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "輸出",

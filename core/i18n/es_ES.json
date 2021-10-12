@@ -4392,7 +4392,8 @@
         "Hauteur maximale en pixel": "Altura máxima en píxeles"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Duración"
+        "Durée": "Duración",
+        "Durée en secondes": "Duración en segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Seleccione el comando"
@@ -4415,6 +4416,7 @@
         "Time out": "Se acabó el tiempo"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Color",
         "Sélectionner la commande": "Seleccione la orden"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4448,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pregunta",
+        "Questions": "Preguntas",
         "Réponse": "Respuesta",
+        "Réponses possibles (séparé par des ;)": "Posibles respuestas (separadas por;)",
         "Variable": "Variable",
         "Délai": "Plazo",
+        "Délai en s": "Retraso en s",
         "Commandes": "Comandos",
         "Sélectionner la commande": "Seleccionar el comando"
     },
@@ -4487,6 +4492,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Mensaje"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Nivel",
         "Succès": "Conseguido",
@@ -4502,13 +4510,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historial para exportar",
+        "Commandes": "Comandos",
         "Sélectionner la commande": "Seleccionar el comando",
         "De": "De",
         "à": "a",
         "Nom": "Nombre",
         "Exporter en": "Exportar en",
-        "CSV": "CSV",
-        "Commandes": "Comandos"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",

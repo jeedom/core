@@ -4392,7 +4392,8 @@
         "Hauteur maximale en pixel": "Altura máxima em pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Duração"
+        "Durée": "Duração",
+        "Durée en secondes": "Duração em segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Selecione o comando"
@@ -4415,6 +4416,7 @@
         "Time out": "Tempo limite"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Cor",
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4448,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pergunta",
+        "Questions": "Perguntas",
         "Réponse": "Resposta",
+        "Réponses possibles (séparé par des ;)": "Respostas possíveis (separadas por;)",
         "Variable": "Variável",
         "Délai": "Prazo",
+        "Délai en s": "Atraso em s",
         "Commandes": "Comandos",
         "Sélectionner la commande": "Selecione o comando"
     },
@@ -4487,6 +4492,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Mensagem"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Nível",
         "Succès": "Êxito",
@@ -4502,13 +4510,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "História para exportar",
+        "Commandes": "Comandos",
         "Sélectionner la commande": "Selecione o comando",
         "De": "Do",
         "à": "em",
         "Nom": "Nome",
         "Exporter en": "Exportação",
-        "CSV": "CSV",
-        "Commandes": "Comandos"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportação",
