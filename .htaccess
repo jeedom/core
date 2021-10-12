@@ -1,7 +1,5 @@
 ServerSignature Off
-ServerTokens Prod
 Options -Indexes -ExecCGI -FollowSymLinks
-TraceEnable Off
 
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
