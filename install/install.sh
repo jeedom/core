@@ -243,6 +243,7 @@ step_8_jeedom_customization() {
   done
   
   a2dismod status
+  a2enmod headers
   service_action restart apache2 > /dev/null 2>&1
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
