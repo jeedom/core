@@ -2169,7 +2169,6 @@
         "C'est parti !": "Vamos lá !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Equipements sans type": "Equipamento sem tipo",
         "Aucun": "Não",
@@ -4238,6 +4237,9 @@
         "Evaluation de la condition": "Avaliação de condição",
         "Vrai": "Real",
         "Faux": "Falso"
+    },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Método não permitido no GET:"
