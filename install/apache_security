@@ -4,29 +4,10 @@
 </Directory>
 
 <IfModule mod_headers.c>
-        <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-                Header unset Content-Security-Policy
-        </FilesMatch>
-
-        # Reducing MIME type security risks
         Header set X-Content-Type-Options "nosniff"
-
-        # Clickjacking
         Header set X-Frame-Options "DENY"
-        <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-                Header unset X-Frame-Options
-        </FilesMatch>
-
-        # Reflected Cross-Site Scripting (XSS) attacks
-        Header set X-XSS-Protection "1; mode=block"
-        <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-                Header unset X-XSS-Protection
-        </FilesMatch>
-
         Header unset X-Powered-By
         Header set Referrer-Policy: strict-origin-when-cross-origin
-
         Header set Permissions-Policy "accelerometer=(),battery=(),fullscreen=(self),geolocation=(), camera=(),ambient-light-sensor=(self), autoplay=(self)"
-
         Header set Content-Security-Policy "default-src 'self';script-src-attr 'self' 'unsafe-inline';script-src 'self' ;script-src-elem 'self' 'unsafe-inline';img-src 'self' data:;style-src 'self';style-src-elem 'self' 'unsafe-inline';style-src-attr 'self' 'unsafe-inline';"
 </IfModule>
