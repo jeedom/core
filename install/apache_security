@@ -6,6 +6,7 @@
 <IfModule mod_headers.c>
         Header set X-Content-Type-Options "nosniff"
         Header set X-Frame-Options "DENY"
+        Header set X-XSS-Protection "1; mode=block"
         Header unset X-Powered-By
         Header set Referrer-Policy: strict-origin-when-cross-origin
         Header set Permissions-Policy "accelerometer=(),battery=(),fullscreen=(self),geolocation=(), camera=(),ambient-light-sensor=(self), autoplay=(self)"
