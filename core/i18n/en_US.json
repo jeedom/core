@@ -2441,7 +2441,7 @@
         "Commandes des résumés": "Commands on summaries",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "For each type of summary, add the desired info commands",
         "Ajouter une commande": "Add a command",
-        "Rechercher un équipement de cet objet": "Search for equipment of this item"
+        "Rechercher un équipement de cet objet": "Search for equipment of this object"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
