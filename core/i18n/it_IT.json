@@ -2441,7 +2441,7 @@
         "Commandes des résumés": "Ordini di riepilogo",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Per ogni tipo di riepilogo, aggiungi i comandi info desiderati",
         "Ajouter une commande": "Aggiungi un comando",
-        "Rechercher": "Cerca"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",

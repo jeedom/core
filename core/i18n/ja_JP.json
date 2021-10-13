@@ -2441,7 +2441,7 @@
         "Commandes des résumés": "要約注文",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "要約のタイプごとに、目的のinfoコマンドを追加します。",
         "Ajouter une commande": "コマンドの追加",
-        "Rechercher": "検索する"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401-不正アクセス",

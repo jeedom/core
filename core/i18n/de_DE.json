@@ -2441,7 +2441,7 @@
         "Commandes des résumés": "Zusammenfassende Bestellungen",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Fügen Sie für jede Art von Zusammenfassung die gewünschten Info-Befehle hinzu",
         "Ajouter une commande": "Kommando einfügen",
-        "Rechercher": "Suchen nach"
+        "Rechercher un équipement de cet objet": "Nach Ausrüstung dieses Artikels suchen"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
