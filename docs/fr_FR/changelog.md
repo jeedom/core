@@ -2,6 +2,14 @@
 Changelog
 =========
 
+## 3.3.59
+
+- Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+
+>**IMPORTANT**
+>
+>La mise à jour est plus que recommande nous vous invitons à la faire au plus vite
+
 3.3.58
 ======
 
