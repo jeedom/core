@@ -35,6 +35,7 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	ini_set('session.use_strict_mode', 1);
 	if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 		ini_set('session.cookie_secure', 1);
+		session_name('__Host-PHPSESSID');
 	}
 }
 @session_start();

@@ -1,0 +1,33 @@
+name: Docker Image CI
+on:
+  schedule:
+    - cron: "00 00 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repo 
+        uses: actions/checkout@v2
+      - name: What
+        run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: jeedom/jeedom:${{ env.BRANCH }}
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

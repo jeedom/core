@@ -278,6 +278,48 @@ class config {
 		return $return;
 	}
 
+	public static function getGenericTypes($_coreOnly = false, $_useNoApp = true) {
+		$types = array(
+			'byType',
+			'byFamily
+		');
+
+		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
+			if ($_useNoApp && isset($info['noapp']) && $info['noapp']) {
+				 $info['name'] .= ' ' . __('(Non géré par Application Mobile)', __FILE__);
+			}
+			$types['byType'][$key] = $info;
+			$types['byFamily'][$info['familyid']] = $info['family'];
+		}
+
+		if (!$_coreOnly) {
+			foreach (plugin::listPlugin(true) as $plugin) {
+				if (method_exists($plugin->getId(), 'pluginGenericTypes')) {
+					try {
+						$generics = $plugin->getId()::pluginGenericTypes();
+						foreach ($generics as $key => $info) {
+							//check data:
+							if (!isset($info['familyid']) || !isset($info['family']) || !isset($info['name']) || !isset($info['type'])) {
+								unset($generics[$key]);
+								continue;
+							}
+							//Do not overide Core Family/id:
+							if (!isset($types['byFamily'][$info['familyid']])) {
+								$types['byFamily'][$info['familyid']] = $info['family'];
+							} else {
+								$generics[$key]['family'] = $types['byFamily'][$info['familyid']];
+							}
+						}
+						$types['byType'] = array_merge($types['byType'], $generics);
+
+					} catch(Exception $e) {}
+				}
+			}
+		}
+		asort($types['byFamily'], SORT_STRING | SORT_FLAG_CASE);
+		return $types;
+	}
+
 	/*     * *********************Generic check value************************* */
 
 	public static function checkValueBetween($_value, $_min = null, $_max = null) {

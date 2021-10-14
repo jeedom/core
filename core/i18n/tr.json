@@ -666,8 +666,9 @@
         "URL directe": "Direkt URL",
         "Unité": "Ünite",
         "Visible": "Görülebilir",
-        "Valeur minimum (défaut : 0)": "Valeur minimum (défaut : 0)",
-        "Valeur maximum (défaut : 100)": "Valeur maximum (défaut : 100)",
+        "Valeur minimum": "Valeur minimum",
+        "défaut": "défaut",
+        "Valeur maximum": "Valeur maximum",
         "Suivre dans la timeline": "Çizelgesi'nde izleyin",
         "Dossier": "Dossier",
         "Envoyer à InfluxDB": "Envoyer à InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "Işlemler",
         "Supprimer": "Sil",
         "Envoyer Historique": "Envoyer Historique",
-        "Interdire dans les interactions automatique": "Otomatik etkileşime sınırla",
+        "Interdire dans les interactions automatiques": "Interdire dans les interactions automatiques",
         "Icône": "Icon",
         "Historique": "Geçmiş",
         "Voir": "Bak",
@@ -691,30 +692,35 @@
         "Scénario": "Senaryo",
         "Résumés": "Résumés",
         "Calcul et arrondi": "Calcul et arrondi",
-        "Formule de calcul (#value# pour la valeur)": "Hesaplama formülü (değer için # değer #)",
-        "Arrondi (chiffre après la virgule)": "Yuvarlama (virgül sonrası sayı sayısı)",
+        "Formule de calcul": "Formule de calcul",
+        "valeur de la commande": "valeur de la commande",
+        "Arrondi": "Arrondi",
+        "Nombre de décimales": "Nombre de décimales",
         "Type générique": "Genel tip",
         "Restriction de l'action": "Eylemin sınırlandırılması",
         "Confirmer l'action": "Eylemi onaylayın",
         "Code d'accès": "Giriş kodu",
-        "Action sur la valeur": "Değer üzerinde eylem",
+        "Action sur valeur": "Action sur valeur",
         "Action sur valeur, si": "Değer üzerinde eylem, eğer",
         "égal": "eşittir",
         "supérieur": "üstün",
         "inférieur": "düşük",
         "différent": "değişik",
-        "plus de (min)": "bundan fazla (dak.)",
+        "pendant plus de": "pendant plus de",
+        "durée en minutes (laisser vide pour une action immédiate)": "durée en minutes (laisser vide pour une action immédiate)",
         "Action": "Eylem",
         "Ajouter": "Ekle",
         "Action avant exécution de la commande": "Komutanın uygulamasından önceki eylem",
         "Action après exécution de la commande": "Komuanın uygulanmasından sonraki eylem",
         "Historiser": "Tarihe göre sırala",
+        "Copier historique de cette commande sur une autre commande": "Copier historique de cette commande sur une autre commande",
         "Mode de lissage": "Pürüzsüzleştirme yöntemi",
         "Moyenne": "Ortalama",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Aucun": "Hiçbir",
-        "Purger l'historique si plus vieux que ": "Bundan daha eski ise geçmişi temizle",
+        "Purger historique": "Purger historique",
+        "si plus vieux que": "si plus vieux que",
         "1 jour": "1 gün",
         "7 jours": "7 gün",
         "1 mois": "1 ay",
@@ -724,12 +730,12 @@
         "2 ans": "2 ans",
         "3 ans": "3 ans",
         "Jamais": "Hiçbir zaman",
-        "Copie des données historisées": "Geçmiş verilerinin kopyası",
-        "Copier l'historique de cette commande sur une autre commande": "Bu komutun geçmişini başka bir komuta kopyala",
         "Gestion des valeurs": "Değerlerin yönetimi",
-        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Valeurs interdites": "Valeurs interdites",
+        "séparées par un point-virgule": "séparées par un point-virgule",
         "Valeur retour d'état": "İade durumu değeri",
-        "Durée avant retour d'état (min)": "İade durumu değerinden önce süre (dakika)",
+        "Durée avant retour d'état": "Durée avant retour d'état",
+        "en minutes": "en minutes",
         "Autres": "Diger",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
         "Niveau": "Seviye",
         "En": "Da",
-        "si (#value# pour la valeur)": "eğer (#value# değer için)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)",
+        "si": "si",
+        "Pendant plus de": "Pendant plus de",
         "Widget": "Widget'ı",
         "Appliquer à": "Buna uygula",
         "Afficher le nom": "Ismi göster",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Equipements sans type": "Equipements sans type",
         "Aucun": "Aucun",
@@ -2270,20 +2275,26 @@
         "Type": "Çeşit",
         "Actions": "Işlemler",
         "Action sur état": "Action sur état",
+        "Si": "Si",
         "plus de": "plus de",
-        "minutes alors": "minutes alors",
-        "Pre exécution": "Ön yürütme",
-        "Post exécution": "Sonrası uygulama",
+        "minutes": "minutes",
+        "alors": "alors",
+        "Pré-exécution": "Pré-exécution",
+        "Post-exécution": "Post-exécution",
         " avec code": "avec code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Code de confirmation de l\\'action",
         "sur le folder": "sur le folder",
         "Timeline active": "Timeline active",
-        "Influx actif : ": "Influx actif :",
-        "Push actif sur : ": "Push actif sur :",
+        "Influx actif": "Influx actif",
+        "Push actif sur": "Push actif sur",
         "Alertes": "Uyarılar",
         "Timeout": "Zaman aşımı",
         "Seuils batterie": "Eşikler pil",
+        "effet immédiat": "effet immédiat",
+        "pendant plus de": "pendant plus de",
+        "minute(s)": "minute(s)",
+        "si": "Si",
         "Danger": "Tehlike",
         "Warning": "Uyarı",
         "Détail": "Detay",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "Commandes des résumés",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Pour chaque type de résumé, ajoutez les commandes infos souhaitées",
         "Ajouter une commande": "Komuta ekle",
-        "Rechercher": "Arayın"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
@@ -4239,6 +4250,9 @@
         "Vrai": "Doğru",
         "Faux": "Yanlış"
     },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Hauteur maximale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Süre"
+        "Durée": "Süre",
+        "Durée en secondes": "Durée en secondes"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Komutayı seçin"
@@ -4415,6 +4430,7 @@
         "Time out": "Zaman aşımı"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Couleur",
         "Sélectionner la commande": "Komutayı seçin"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4462,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Soru",
+        "Questions": "Questions",
         "Réponse": "Cevap",
+        "Réponses possibles (séparé par des ;)": "Réponses possibles (séparé par des ;)",
         "Variable": "Değişken",
         "Délai": "Ihbar",
+        "Délai en s": "Délai en s",
         "Commandes": "Komutalar",
         "Sélectionner la commande": "Komutayı seçin"
     },
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Arama simgesi"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Message"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Seviye",
         "Succès": "Başarı",
@@ -4502,13 +4524,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historique à exporter",
+        "Commandes": "Komutalar",
         "Sélectionner la commande": "Komutayı seçin",
         "De": "De",
         "à": "Bir",
         "Nom": "İsim",
         "Exporter en": "Dışa aktar",
-        "CSV": "CSV",
-        "Commandes": "Komutalar"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Ihracat",

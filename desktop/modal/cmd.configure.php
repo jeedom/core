@@ -170,13 +170,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
               <?php if ($cmd->getType() == 'info' && $cmd->getSubtype() == 'numeric') {?>
                 <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Valeur minimum (défaut : 0)}}</label>
+                  <label class="col-xs-4 control-label">{{Valeur minimum}}
+                    <sup><i class="fas fa-question-circle" title="{{défaut}} : 0"></i></sup>
+                  </label>
                   <div class="col-xs-2">
                     <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" />
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-xs-4 control-label">{{Valeur maximum (défaut : 100)}}</label>
+                  <label class="col-xs-4 control-label">{{Valeur maximum}}
+                    <sup><i class="fas fa-question-circle" title="{{défaut}} : 100"></i></sup>
+                  </label>
                   <div class="col-xs-2">
                     <input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" />
                   </div>
@@ -227,7 +231,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               <?php }?>
               <div class="form-group">
-                <label class="col-xs-4 control-label">{{Interdire dans les interactions automatique}}</label>
+                <label class="col-xs-4 control-label">{{Interdire dans les interactions automatiques}}</label>
                 <div class="col-xs-4">
                   <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="interact::auto::disable" />
                 </div>
@@ -314,6 +318,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         </fieldset>
       </form>
     </div>
+
     <div role="tabpanel" class="tab-pane" id="cmd_configuration">
       <br/>
       <form class="form-horizontal">
@@ -322,15 +327,19 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             ?>
             <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Formule de calcul (#value# pour la valeur)}}</label>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Formule de calcul}}
+                <sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup>
+              </label>
+              <div class="col-sm-6">
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
               </div>
             </div>
             <?php if ($cmd->getSubType() == 'numeric') {?>
               <div class="form-group">
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi (chiffre après la virgule)}}</label>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <label class="col-md-2 col-sm-3 control-label">{{Arrondi}}
+                  <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
                   <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
                 </div>
               </div>
@@ -344,8 +353,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         <fieldset>
           <legend><i class="fas fa-building"></i> {{Type générique}}</legend>
           <div class="form-group">
-            <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur}}</label>
-            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+            <label class="col-md-2 col-sm-3 control-label">{{Valeur}}</label>
+            <div class="col-sm-6">
               <select class="cmdAttr form-control" data-l1key="generic_type">
                 <?php
                 echo $cmd->getGenericTypeSelectOptions();
@@ -356,19 +365,18 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         </fieldset>
       </form>
       <?php if ($cmd->getType() == 'action') {?>
-
         <form class="form-horizontal">
           <fieldset>
             <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Confirmer l'action}}</label>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Confirmer l'action}}</label>
+              <div class="col-sm-6">
                 <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Code d'accès}}</label>
-              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Code d'accès}}</label>
+              <div class="col-sm-6">
                 <input class="cmdAttr form-control inputPassword" data-l1key="configuration" data-l2key="actionCodeAccess"/>
               </div>
             </div>
@@ -380,29 +388,35 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         ?>
         <form class="form-horizontal">
           <fieldset>
-            <legend><i class="fas fa-sign-out-alt"></i> {{Action sur la valeur}}</legend>
+            <legend><i class="fas fa-sign-out-alt"></i> {{Action sur valeur}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action sur valeur, si}}</label>
-              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+              <label class="col-md-2 col-sm-3 col-xs-12 control-label">{{Action sur valeur, si}}</label>
+              <div class="col-sm-2 col-xs-3">
                 <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator" >
                   <option value="==">{{égal}}</option>
-                  <option value=">">{{supérieur}}</option>
-                  <option value="<">{{inférieur}}</option>
-                  <option value="!=">{{différent}}</option>
+                  <?php if ($cmd->getSubType() == 'numeric') { ?>
+                    <option value=">">{{supérieur}}</option>
+                    <option value="<">{{inférieur}}</option>
+                  <?php }
+                  if  ($cmd->getSubType() != 'binary') { ?>
+                    <option value="!=">{{différent}}</option>
+                  <?php } ?>
                 </select>
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <div class="col-sm-2 col-xs-3">
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTest" />
               </div>
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">{{plus de (min)}}</label>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <label class="col-sm-2 col-xs-3 control-label">{{pendant plus de}}
+                <sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup>
+              </label>
+              <div class="col-sm-2 col-xs-3">
                 <input type="number" class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdTime" />
               </div>
             </div>
 
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Action}}</label>
+              <div class="col-sm-6">
                 <a class="btn btn-xs" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
             </div>
@@ -425,8 +439,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-sign-out-alt"></i> {{Action avant exécution de la commande}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Action}}</label>
+              <div class="col-sm-6">
                 <a class="btn btn-xs" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
             </div>
@@ -443,8 +457,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-sign-out-alt"></i> {{Action après exécution de la commande}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Action}}</label>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Action}}</label>
+              <div class="col-sm-6">
                 <a class="btn btn-xs" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
             </div>
@@ -466,15 +480,18 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="far fa-chart-bar"></i> {{Historique}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Historiser}}</label>
-              <div class="col-xs-1">
+              <label class="col-md-2 col-sm-3 control-label">{{Historiser}}</label>
+              <div class="col-sm-6">
                 <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
+                <?php if ($cmd->getIsHistorized() == 1) { ?>
+                  <a class="btn btn-xs btn-warning pull-right" id="bt_cmdConfigureCopyHistory"><i class="fas fa-clone"></i> {{Copier historique de cette commande sur une autre commande}}</a>
+                <?php } ?>
               </div>
             </div>
             <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) {?>
               <div class="form-group">
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Mode de lissage}}</label>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <label class="col-md-2 col-sm-3 control-label">{{Mode de lissage}}</label>
+                <div class="col-sm-6">
                   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
                     <option value="avg">{{Moyenne}}</option>
                     <option value="min">{{Minimum}}</option>
@@ -486,8 +503,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <?php }
             ?>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
-              <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Purger historique}}
+                <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
+              </label>
+              <div class="col-sm-6">
                 <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
                   <option value="-1 day">{{1 jour}}</option>
                   <option value="-7 days">{{7 jours}}</option>
@@ -501,38 +520,32 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </select>
               </div>
             </div>
-            <?php if ($cmd->getIsHistorized() == 1) {?>
-              <div class="form-group">
-                <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Copie des données historisées}}</label>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-                  <a class="btn btn-warning" id="bt_cmdConfigureCopyHistory"><i class="fas fa-clone"></i> {{Copier l'historique de cette commande sur une autre commande}}</a>
-                </div>
-              </div>
-            <?php }
-            ?>
           </fieldset>
         </form>
       <?php }
-      ?>
-      <?php if ($cmd->getType() == 'info') {?>
+      if ($cmd->getType() == 'info') {?>
         <form class="form-horizontal">
           <fieldset>
             <legend><i class="fas fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeurs interdites (séparées par ";")}}</label>
-              <div class="col-xs-3">
+              <label class="col-md-2 col-sm-3 control-label">{{Valeurs interdites}}
+                <sup><i class="fas fa-question-circle" title="{{séparées par un point-virgule}}"></i></sup>
+              </label>
+              <div class="col-sm-6">
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="denyValues" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Valeur retour d'état}}</label>
-              <div class="col-xs-3">
+              <label class="col-md-2 col-sm-3 control-label">{{Valeur retour d'état}}</label>
+              <div class="col-sm-6">
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateValue" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée avant retour d'état (min)}}</label>
-              <div class="col-xs-3">
+              <label class="col-md-2 col-sm-3 control-label">{{Durée avant retour d'état}}
+                <sup><i class="fas fa-question-circle" title="{{en minutes}}"></i></sup>
+              </label>
+              <div class="col-sm-6">
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateTime" />
               </div>
             </div>
@@ -542,8 +555,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Répéter les valeurs identiques}}</label>
-              <div class="col-xs-3">
+              <label class="col-md-2 col-sm-3 control-label">{{Répéter les valeurs identiques}}</label>
+              <div class="col-sm-6">
                 <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement" >
                   <option value="never">{{Non}}</option>
                   <option value="always">{{Oui}}</option>
@@ -551,8 +564,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Push URL}}</label>
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <label class="col-md-2 col-sm-3 control-label">{{Push URL}}</label>
+              <div class="col-sm-6">
                 <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"/>
               </div>
             </div>
@@ -574,21 +587,25 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           $form .= '<form class="form-horizontal">';
           $form .= '<fieldset>';
           $form .= '<legend>';
-          if($value['name'] == 'Warning'){
+          if ($value['name'] == 'Warning') {
             $form .= '<i class="fas fa-exclamation"></i>';
-          } elseif ($value['name'] == 'Danger') {
+          }
+          else if ($value['name'] == 'Danger') {
             $form .= '<i class="fas fa-exclamation-triangle"></i>';
           }
           $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
           $form .= '<div class="form-group">';
-          $form .= '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{En}} ' . $value['name'] . ' {{si (#value# pour la valeur)}}</label>';
-          $form .= '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">';
+          $form .= '<label class="col-md-2 col-sm-3 control-label">{{En}} ' . $value['name'] . ' {{si}} ';
+          $form .= '<sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup></label>';
+          $form .= '<div class="col-sm-6">';
           $form .= '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
           $form .= '</div>';
           $form .= '</div>';
           $form .= '<div class="form-group">';
-          $form .= '<label class="col-lg-3 col-md-3 col-sm-4 col-xs-6 control-label">{{Pendant plus de (en min, laisser vide pour immédiat)}}</label>';
-          $form .= '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">';
+          $form .= '<label class="col-md-2 col-sm-3 control-label">{{Pendant plus de}} ';
+          $form .= '<sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup></label>';
+
+          $form .= '<div class="col-sm-6">';
           $form .= '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
           $form .= '</div>';
           $form .= '</div>';

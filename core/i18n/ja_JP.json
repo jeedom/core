@@ -666,8 +666,9 @@
         "URL directe": "直接URL",
         "Unité": "団結",
         "Visible": "目に見えます",
-        "Valeur minimum (défaut : 0)": "最小値（デフォルト：0）",
-        "Valeur maximum (défaut : 100)": "最大値（デフォルト：100）",
+        "Valeur minimum": "Valeur minimum",
+        "défaut": "défaut",
+        "Valeur maximum": "Valeur maximum",
         "Suivre dans la timeline": "タイムラインに従ってください",
         "Dossier": "記録",
         "Envoyer à InfluxDB": "Envoyer à InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "株式",
         "Supprimer": "取り除きます",
         "Envoyer Historique": "Envoyer Historique",
-        "Interdire dans les interactions automatique": "自動相互作用の禁止",
+        "Interdire dans les interactions automatiques": "Interdire dans les interactions automatiques",
         "Icône": "アイコン",
         "Historique": "歴史的",
         "Voir": "ビュー",
@@ -691,30 +692,35 @@
         "Scénario": "シナリオ",
         "Résumés": "Résumés",
         "Calcul et arrondi": "計算と丸め",
-        "Formule de calcul (#value# pour la valeur)": "式（値を得るためには##）",
-        "Arrondi (chiffre après la virgule)": "丸め（10進数）",
+        "Formule de calcul": "Formule de calcul",
+        "valeur de la commande": "valeur de la commande",
+        "Arrondi": "Arrondi",
+        "Nombre de décimales": "Nombre de décimales",
         "Type générique": "ジェネリック型",
         "Restriction de l'action": "アクションの制限",
         "Confirmer l'action": "アクションを確認",
         "Code d'accès": "アクセスコード",
-        "Action sur la valeur": "値上のアクション",
+        "Action sur valeur": "Action sur valeur",
         "Action sur valeur, si": "値の場合のアクション",
         "égal": "等しいです",
         "supérieur": "トップ",
         "inférieur": "下",
         "différent": "異なります",
-        "plus de (min)": "もっと（分）",
+        "pendant plus de": "pendant plus de",
+        "durée en minutes (laisser vide pour une action immédiate)": "durée en minutes (laisser vide pour une action immédiate)",
         "Action": "アクション",
         "Ajouter": "加えます",
         "Action avant exécution de la commande": "コマンド実行前のアクション",
         "Action après exécution de la commande": "コマンド実行後のアクション",
         "Historiser": "Historicize",
+        "Copier historique de cette commande sur une autre commande": "Copier historique de cette commande sur une autre commande",
         "Mode de lissage": "ファッションスムージング",
         "Moyenne": "平均",
         "Minimum": "最小",
         "Maximum": "最大",
         "Aucun": "何でもありません",
-        "Purger l'historique si plus vieux que ": "より古い場合は履歴のパージ",
+        "Purger historique": "Purger historique",
+        "si plus vieux que": "si plus vieux que",
         "1 jour": "1日",
         "7 jours": "7日",
         "1 mois": "1ヶ月",
@@ -724,12 +730,12 @@
         "2 ans": "2年",
         "3 ans": "3年",
         "Jamais": "今までに",
-        "Copie des données historisées": "過去のデータをコピーします。",
-        "Copier l'historique de cette commande sur une autre commande": "別のコマンドには、このコマンドの履歴のコピー",
         "Gestion des valeurs": "値を管理します",
-        "Valeurs interdites (séparées par \";\")": "禁止された値（「;」で区切られた）",
+        "Valeurs interdites": "Valeurs interdites",
+        "séparées par un point-virgule": "séparées par un point-virgule",
         "Valeur retour d'état": "状態フィードバック値",
-        "Durée avant retour d'état (min)": "フィードバックを述べる時間（分）",
+        "Durée avant retour d'état": "Durée avant retour d'état",
+        "en minutes": "en minutes",
         "Autres": "他の",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
         "Niveau": "レベル",
         "En": "で",
-        "si (#value# pour la valeur)": "もし（値の値は##）",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "以上（分単位で、空のままにしておく）",
+        "si": "si",
+        "Pendant plus de": "Pendant plus de",
         "Widget": "ウィジェット",
         "Appliquer à": "適用します",
         "Afficher le nom": "表示名",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Equipements sans type": "Equipements sans type",
         "Aucun": "Aucun",
@@ -2270,20 +2275,26 @@
         "Type": "タイプ",
         "Actions": "株式",
         "Action sur état": "州の行動",
+        "Si": "Si",
         "plus de": "以上",
-        "minutes alors": "数分",
-        "Pre exécution": "事前実行",
-        "Post exécution": "実行後",
+        "minutes": "minutes",
+        "alors": "alors",
+        "Pré-exécution": "Pré-exécution",
+        "Post-exécution": "Post-exécution",
         " avec code": "avec code",
         "Confirmation": "確認",
         "Code de confirmation de l\\'action": "Code de confirmation de l\\'action",
         "sur le folder": "sur le folder",
         "Timeline active": "Timeline active",
-        "Influx actif : ": "Influx actif :",
-        "Push actif sur : ": "Push actif sur :",
+        "Influx actif": "Influx actif",
+        "Push actif sur": "Push actif sur",
         "Alertes": "通知",
         "Timeout": "タイムアウト",
         "Seuils batterie": "バッテリーのしきい値",
+        "effet immédiat": "effet immédiat",
+        "pendant plus de": "pendant plus de",
+        "minute(s)": "minute(s)",
+        "si": "Si",
         "Danger": "危険",
         "Warning": "警告",
         "Détail": "ディテール",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "要約注文",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "要約のタイプごとに、目的のinfoコマンドを追加します。",
         "Ajouter une commande": "コマンドの追加",
-        "Rechercher": "検索する"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -4239,6 +4250,9 @@
         "Vrai": "リアル",
         "Faux": "偽"
     },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Hauteur maximale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "期間"
+        "Durée": "期間",
+        "Durée en secondes": "Durée en secondes"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "コマンドを選択"
@@ -4415,6 +4430,7 @@
         "Time out": "タイムアウト"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Couleur",
         "Sélectionner la commande": "コマンドを選択"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4462,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "質問",
+        "Questions": "Questions",
         "Réponse": "答え",
+        "Réponses possibles (séparé par des ;)": "Réponses possibles (séparé par des ;)",
         "Variable": "変数",
         "Délai": "お知らせ",
+        "Délai en s": "Délai en s",
         "Commandes": "コマンド",
         "Sélectionner la commande": "コマンドを選択"
     },
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "検索アイコン"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Message"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "レベル",
         "Succès": "成功",
@@ -4502,13 +4524,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historique à exporter",
+        "Commandes": "コマンド",
         "Sélectionner la commande": "コマンドを選択",
         "De": "De",
         "à": "へ",
         "Nom": "表題",
         "Exporter en": "にエクスポート",
-        "CSV": "CSV",
-        "Commandes": "コマンド"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "輸出",

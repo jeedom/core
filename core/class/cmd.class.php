@@ -1749,7 +1749,12 @@ class cmd {
 		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime', 0))) {
 			return;
 		}
-		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $this->getConfiguration('jeedomCheckCmdTest'));
+		$checkCmdValue = $this->getConfiguration('jeedomCheckCmdTest');
+		if ($this->getSubType() == 'string') {
+			$checkCmdValue = '"' . trim($checkCmdValue, '"\'') . '"';
+			$_value = '"' . trim($_value, '"\'') . '"';
+		}
+		$check = jeedom::evaluateExpression($_value . $this->getConfiguration('jeedomCheckCmdOperator') . $checkCmdValue);
 		if ($check == 1 || $check || $check == '1') {
 			if ($this->getConfiguration('jeedomCheckCmdTime', 0) == 0) {
 				$this->executeAlertCmdAction();

@@ -666,8 +666,9 @@
         "URL directe": "URL langsung",
         "Unité": "Satuan",
         "Visible": "Terlihat",
-        "Valeur minimum (défaut : 0)": "Valeur minimum (défaut : 0)",
-        "Valeur maximum (défaut : 100)": "Valeur maximum (défaut : 100)",
+        "Valeur minimum": "Valeur minimum",
+        "défaut": "défaut",
+        "Valeur maximum": "Valeur maximum",
         "Suivre dans la timeline": "Ikuti di Timeline",
         "Dossier": "Dossier",
         "Envoyer à InfluxDB": "Envoyer à InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "Tindakan",
         "Supprimer": "Menghapus",
         "Envoyer Historique": "Envoyer Historique",
-        "Interdire dans les interactions automatique": "Melarang interaksi otomatis dalam",
+        "Interdire dans les interactions automatiques": "Interdire dans les interactions automatiques",
         "Icône": "Icon",
         "Historique": "Historis",
         "Voir": "Liat",
@@ -691,30 +692,35 @@
         "Scénario": "Skenario",
         "Résumés": "Résumés",
         "Calcul et arrondi": "Calcul et arrondi",
-        "Formule de calcul (#value# pour la valeur)": "Formula (# # untuk mendapatkan nilai)",
-        "Arrondi (chiffre après la virgule)": "Pembulatan (desimal)",
+        "Formule de calcul": "Formule de calcul",
+        "valeur de la commande": "valeur de la commande",
+        "Arrondi": "Arrondi",
+        "Nombre de décimales": "Nombre de décimales",
         "Type générique": "Jenis generik",
         "Restriction de l'action": "Membatasi tindakan",
         "Confirmer l'action": "Konfirmasi tindakan",
         "Code d'accès": "Kode akses",
-        "Action sur la valeur": "Aksi nilai",
+        "Action sur valeur": "Action sur valeur",
         "Action sur valeur, si": "Aksi nilai jika",
         "égal": "sama",
         "supérieur": "teratas",
         "inférieur": "Lebih rendah",
         "différent": "berbeda",
-        "plus de (min)": "lebih (min)",
+        "pendant plus de": "pendant plus de",
+        "durée en minutes (laisser vide pour une action immédiate)": "durée en minutes (laisser vide pour une action immédiate)",
         "Action": "Tindakan",
         "Ajouter": "Tambahan",
         "Action avant exécution de la commande": "Tindakan sebelum mengeksekusi perintah",
         "Action après exécution de la commande": "Tindakan setelah pelaksanaan perintah",
         "Historiser": "Historicize",
+        "Copier historique de cette commande sur une autre commande": "Copier historique de cette commande sur une autre commande",
         "Mode de lissage": "Mode smoothing",
         "Moyenne": "Rata-rata",
         "Minimum": "Minimum",
         "Maximum": "Maksimum",
         "Aucun": "Tak ada",
-        "Purger l'historique si plus vieux que ": "Membersihkan sejarah jika lebih tua dari",
+        "Purger historique": "Purger historique",
+        "si plus vieux que": "si plus vieux que",
         "1 jour": "A hari",
         "7 jours": "7 hari",
         "1 mois": "1 bulan",
@@ -724,12 +730,12 @@
         "2 ans": "2 ans",
         "3 ans": "3 ans",
         "Jamais": "Pernah",
-        "Copie des données historisées": "Menyalin data historis",
-        "Copier l'historique de cette commande sur une autre commande": "Salin sejarah perintah ini untuk perintah lain",
         "Gestion des valeurs": "Mengelola nilai-nilai",
-        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Valeurs interdites": "Valeurs interdites",
+        "séparées par un point-virgule": "séparées par un point-virgule",
         "Valeur retour d'état": "Nilai umpan balik negara",
-        "Durée avant retour d'état (min)": "Waktu untuk menyatakan umpan balik (min)",
+        "Durée avant retour d'état": "Durée avant retour d'état",
+        "en minutes": "en minutes",
         "Autres": "Lain",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
         "Niveau": "Tingkat",
         "En": "Di",
-        "si (#value# pour la valeur)": "if (nilai # # untuk nilai)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)",
+        "si": "si",
+        "Pendant plus de": "Pendant plus de",
         "Widget": "Widget",
         "Appliquer à": "Berlaku",
         "Afficher le nom": "Tampilkan Nama",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Equipements sans type": "Equipements sans type",
         "Aucun": "Aucun",
@@ -2270,20 +2275,26 @@
         "Type": "Jenis",
         "Actions": "Tindakan",
         "Action sur état": "Action sur état",
+        "Si": "Si",
         "plus de": "plus de",
-        "minutes alors": "minutes alors",
-        "Pre exécution": "Eksekusi pra",
-        "Post exécution": "Pasca eksekusi",
+        "minutes": "minutes",
+        "alors": "alors",
+        "Pré-exécution": "Pré-exécution",
+        "Post-exécution": "Post-exécution",
         " avec code": "avec code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Code de confirmation de l\\'action",
         "sur le folder": "sur le folder",
         "Timeline active": "Timeline active",
-        "Influx actif : ": "Influx actif :",
-        "Push actif sur : ": "Push actif sur :",
+        "Influx actif": "Influx actif",
+        "Push actif sur": "Push actif sur",
         "Alertes": "Pemberitahuan",
         "Timeout": "Timeout",
         "Seuils batterie": "Baterai ambang",
+        "effet immédiat": "effet immédiat",
+        "pendant plus de": "pendant plus de",
+        "minute(s)": "minute(s)",
+        "si": "Si",
         "Danger": "Bahaya",
         "Warning": "Peringatan",
         "Détail": "Rinci",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "Commandes des résumés",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Pour chaque type de résumé, ajoutez les commandes infos souhaitées",
         "Ajouter une commande": "Tambahan pesanan",
-        "Rechercher": "Mencari"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
@@ -4239,6 +4250,9 @@
         "Vrai": "Benar",
         "Faux": "Palsu"
     },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Hauteur maximale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Lamanya"
+        "Durée": "Lamanya",
+        "Durée en secondes": "Durée en secondes"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Pilih perintah"
@@ -4415,6 +4430,7 @@
         "Time out": "Time out"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Couleur",
         "Sélectionner la commande": "Pilih perintah"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4462,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Question",
+        "Questions": "Questions",
         "Réponse": "Réponse",
+        "Réponses possibles (séparé par des ;)": "Réponses possibles (séparé par des ;)",
         "Variable": "Variabel",
         "Délai": "Délai",
+        "Délai en s": "Délai en s",
         "Commandes": "Perintah",
         "Sélectionner la commande": "Pilih perintah"
     },
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Ikon pencarian"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Message"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Tingkat",
         "Succès": "Succès",
@@ -4502,13 +4524,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historique à exporter",
+        "Commandes": "Perintah",
         "Sélectionner la commande": "Pilih perintah",
         "De": "De",
         "à": "à",
         "Nom": "Nama",
         "Exporter en": "Ekspor",
-        "CSV": "CSV",
-        "Commandes": "Perintah"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Ekspor",

@@ -1,5 +1,5 @@
 ServerSignature Off
-Options -Indexes
+Options -Indexes -ExecCGI -FollowSymLinks
 
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
@@ -59,10 +59,10 @@ RedirectMatch 403 ^.*\/core/ajax\/.*\/((?!ajax\.php).)*$
 RedirectMatch 403 ^.*\/core/api\/.*\/((?!\.php).)*$
 RedirectMatch 403 ^.*\/core/class\/.*$
 RedirectMatch 403 ^.*\/core/com\/.*$
-RedirectMatch 403 ^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif).)*$
+RedirectMatch 403 ^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.svg).)*$
 RedirectMatch 403 ^.*\/core/css\/.*\/((?!\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
 RedirectMatch 403 ^.*\/core/i18n\/.*$
-RedirectMatch 403 ^.*\/core/img\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif).)*$
+RedirectMatch 403 ^.*\/core/img\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.svg).)*$
 RedirectMatch 403 ^.*\/core/php\/.*\/((?!\.php).)*$
 RedirectMatch 403 ^.*\/core/js\/.*$
 RedirectMatch 403 ^.*\/core/repo\/.*$

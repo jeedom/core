@@ -666,8 +666,9 @@
         "URL directe": "URL directe",
         "Unité": "Unité",
         "Visible": "Visible",
-        "Valeur minimum (défaut : 0)": "Valeur minimum (défaut : 0)",
-        "Valeur maximum (défaut : 100)": "Valeur maximum (défaut : 100)",
+        "Valeur minimum": "Valeur minimum",
+        "défaut": "défaut",
+        "Valeur maximum": "Valeur maximum",
         "Suivre dans la timeline": "Suivre dans la timeline",
         "Dossier": "Dossier",
         "Envoyer à InfluxDB": "Envoyer à InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "Actions",
         "Supprimer": "Supprimer",
         "Envoyer Historique": "Envoyer Historique",
-        "Interdire dans les interactions automatique": "Interdire dans les interactions automatique",
+        "Interdire dans les interactions automatiques": "Interdire dans les interactions automatiques",
         "Icône": "Icône",
         "Historique": "Historique",
         "Voir": "Voir",
@@ -691,30 +692,35 @@
         "Scénario": "Scénario",
         "Résumés": "Résumés",
         "Calcul et arrondi": "Calcul et arrondi",
-        "Formule de calcul (#value# pour la valeur)": "Formule de calcul (#value# pour la valeur)",
-        "Arrondi (chiffre après la virgule)": "Arrondi (chiffre après la virgule)",
+        "Formule de calcul": "Formule de calcul",
+        "valeur de la commande": "valeur de la commande",
+        "Arrondi": "Arrondi",
+        "Nombre de décimales": "Nombre de décimales",
         "Type générique": "Type générique",
         "Restriction de l'action": "Restriction de l'action",
         "Confirmer l'action": "Confirmer l'action",
         "Code d'accès": "Code d'accès",
-        "Action sur la valeur": "Action sur la valeur",
+        "Action sur valeur": "Action sur valeur",
         "Action sur valeur, si": "Action sur valeur, si",
         "égal": "égal",
         "supérieur": "supérieur",
         "inférieur": "inférieur",
         "différent": "différent",
-        "plus de (min)": "plus de (min)",
+        "pendant plus de": "pendant plus de",
+        "durée en minutes (laisser vide pour une action immédiate)": "durée en minutes (laisser vide pour une action immédiate)",
         "Action": "Action",
         "Ajouter": "Ajouter",
         "Action avant exécution de la commande": "Action avant exécution de la commande",
         "Action après exécution de la commande": "Action après exécution de la commande",
         "Historiser": "Historiser",
+        "Copier historique de cette commande sur une autre commande": "Copier historique de cette commande sur une autre commande",
         "Mode de lissage": "Mode de lissage",
         "Moyenne": "Moyenne",
         "Minimum": "Minimum",
         "Maximum": "Maximum",
         "Aucun": "Aucun",
-        "Purger l'historique si plus vieux que ": "Purger l'historique si plus vieux que ",
+        "Purger historique": "Purger historique",
+        "si plus vieux que": "si plus vieux que",
         "1 jour": "1 jour",
         "7 jours": "7 jours",
         "1 mois": "1 mois",
@@ -724,12 +730,12 @@
         "2 ans": "2 ans",
         "3 ans": "3 ans",
         "Jamais": "Jamais",
-        "Copie des données historisées": "Copie des données historisées",
-        "Copier l'historique de cette commande sur une autre commande": "Copier l'historique de cette commande sur une autre commande",
         "Gestion des valeurs": "Gestion des valeurs",
-        "Valeurs interdites (séparées par \";\")": "Valeurs interdites (séparées par \";\")",
+        "Valeurs interdites": "Valeurs interdites",
+        "séparées par un point-virgule": "séparées par un point-virgule",
         "Valeur retour d'état": "Valeur retour d'état",
-        "Durée avant retour d'état (min)": "Durée avant retour d'état (min)",
+        "Durée avant retour d'état": "Durée avant retour d'état",
+        "en minutes": "en minutes",
         "Autres": "Autres",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
         "Niveau": "Niveau",
         "En": "En",
-        "si (#value# pour la valeur)": "si (#value# pour la valeur)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Pendant plus de (en min, laisser vide pour immédiat)",
+        "si": "si",
+        "Pendant plus de": "Pendant plus de",
         "Widget": "Widget",
         "Appliquer à": "Appliquer à",
         "Afficher le nom": "Afficher le nom",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Equipements sans type": "Equipements sans type",
         "Aucun": "Aucun",
@@ -2270,20 +2275,26 @@
         "Type": "Type",
         "Actions": "Actions",
         "Action sur état": "Action sur état",
+        "Si": "Si",
         "plus de": "plus de",
-        "minutes alors": "minutes alors",
-        "Pre exécution": "Pre exécution",
-        "Post exécution": "Post exécution",
+        "minutes": "minutes",
+        "alors": "alors",
+        "Pré-exécution": "Pré-exécution",
+        "Post-exécution": "Post-exécution",
         " avec code": " avec code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Code de confirmation de l\\'action",
         "sur le folder": "sur le folder",
         "Timeline active": "Timeline active",
-        "Influx actif : ": "Influx actif : ",
-        "Push actif sur : ": "Push actif sur : ",
+        "Influx actif": "Influx actif",
+        "Push actif sur": "Push actif sur",
         "Alertes": "Alertes",
         "Timeout": "Timeout",
         "Seuils batterie": "Seuils batterie",
+        "effet immédiat": "effet immédiat",
+        "pendant plus de": "pendant plus de",
+        "minute(s)": "minute(s)",
+        "si": "si",
         "Danger": "Danger",
         "Warning": "Warning",
         "Détail": "Détail",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "Commandes des résumés",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.",
         "Ajouter une commande": "Ajouter une commande",
-        "Rechercher": "Rechercher"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -4239,6 +4250,9 @@
         "Vrai": "Vrai",
         "Faux": "Faux"
     },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET : "
     },
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Hauteur maximale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Durée"
+        "Durée": "Durée",
+        "Durée en secondes": "Durée en secondes"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Sélectionner la commande"
@@ -4415,6 +4430,7 @@
         "Time out": "Time out"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Couleur",
         "Sélectionner la commande": "Sélectionner la commande"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4462,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Question",
+        "Questions": "Questions",
         "Réponse": "Réponse",
+        "Réponses possibles (séparé par des ;)": "Réponses possibles (séparé par des ;)",
         "Variable": "Variable",
         "Délai": "Délai",
+        "Délai en s": "Délai en s",
         "Commandes": "Commandes",
         "Sélectionner la commande": "Sélectionner la commande"
     },
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Rechercher icône"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Message"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Niveau",
         "Succès": "Succès",
@@ -4502,13 +4524,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historique à exporter",
+        "Commandes": "Commandes",
         "Sélectionner la commande": "Sélectionner la commande",
         "De": "De",
         "à": "à",
         "Nom": "Nom",
         "Exporter en": "Exporter en",
-        "CSV": "CSV",
-        "Commandes": "Commandes"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exporter",

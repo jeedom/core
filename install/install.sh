@@ -218,6 +218,8 @@ step_8_jeedom_customization() {
   
   rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
   rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
+
+  echo '' > /etc/apache2/mods-available/alias.conf
   
   mkdir /etc/systemd/system/apache2.service.d
   echo "[Service]" > /etc/systemd/system/apache2.service.d/override.conf
@@ -241,6 +243,7 @@ step_8_jeedom_customization() {
   done
   
   a2dismod status
+  a2enmod headers
   service_action restart apache2 > /dev/null 2>&1
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf

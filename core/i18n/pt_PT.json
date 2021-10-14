@@ -666,8 +666,9 @@
         "URL directe": "URL direta",
         "Unité": "Unidade",
         "Visible": "Visivél",
-        "Valeur minimum (défaut : 0)": "Valor mínimo (padrão: 0)",
-        "Valeur maximum (défaut : 100)": "Valor máximo (padrão: 100)",
+        "Valeur minimum": "Valor mínimo",
+        "défaut": "culpa",
+        "Valeur maximum": "Valor máximo",
         "Suivre dans la timeline": "Siga na Timeline",
         "Dossier": "Ficheiro",
         "Envoyer à InfluxDB": "Enviar para InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "Estoque",
         "Supprimer": "Retirar",
         "Envoyer Historique": "Enviar histórico",
-        "Interdire dans les interactions automatique": "Proibir a interação automática em",
+        "Interdire dans les interactions automatiques": "Proibir em interações automáticas",
         "Icône": "ícone",
         "Historique": "Histórico",
         "Voir": "Vista",
@@ -691,30 +692,35 @@
         "Scénario": "Cenas",
         "Résumés": "Resumos",
         "Calcul et arrondi": "Cálculo e arredondamento",
-        "Formule de calcul (#value# pour la valeur)": "Fórmula (# # para ganhar valor)",
-        "Arrondi (chiffre après la virgule)": "Arredondamento (decimal)",
+        "Formule de calcul": "Algoritmo",
+        "valeur de la commande": "valor do pedido",
+        "Arrondi": "Volta",
+        "Nombre de décimales": "Número de casas decimais",
         "Type générique": "Tipo genérico",
         "Restriction de l'action": "Restringindo a ação",
         "Confirmer l'action": "Confirmar a ação",
         "Code d'accès": "Código de acesso",
-        "Action sur la valeur": "Acção sobre o valor",
+        "Action sur valeur": "Ação de estoque",
         "Action sur valeur, si": "Acção sobre o valor se",
         "égal": "igual",
         "supérieur": "topo",
         "inférieur": "baixar",
         "différent": "diferente",
-        "plus de (min)": "mais (min)",
+        "pendant plus de": "por mais que",
+        "durée en minutes (laisser vide pour une action immédiate)": "duração em minutos (deixe em branco para ação imediata)",
         "Action": "Açao",
         "Ajouter": "Adicionar",
         "Action avant exécution de la commande": "Ação antes de executar o comando",
         "Action après exécution de la commande": "Ação após a execução da ordem",
         "Historiser": "Historicizar",
+        "Copier historique de cette commande sur une autre commande": "Copie o histórico deste pedido para outro pedido",
         "Mode de lissage": "Suavização moda",
         "Moyenne": "Média",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
         "Aucun": "Não",
-        "Purger l'historique si plus vieux que ": "Purgar a história se tiver mais de",
+        "Purger historique": "Limpar histórico",
+        "si plus vieux que": "tão mais velho que",
         "1 jour": "1 dia",
         "7 jours": "7 dias",
         "1 mois": "1 mês",
@@ -724,12 +730,12 @@
         "2 ans": "2 anos",
         "3 ans": "3 anos",
         "Jamais": "Sempre",
-        "Copie des données historisées": "Copiar dados históricos",
-        "Copier l'historique de cette commande sur une autre commande": "Copie a história deste comando para outro comando",
         "Gestion des valeurs": "Gerenciando valores",
-        "Valeurs interdites (séparées par \";\")": "Valores proibidos (separados por \";\")",
+        "Valeurs interdites": "Valores proibidos",
+        "séparées par un point-virgule": "separados por ponto e vírgula",
         "Valeur retour d'état": "Valor de feedback estado",
-        "Durée avant retour d'état (min)": "Tempo para indicar realimentação (min)",
+        "Durée avant retour d'état": "Duração antes do retorno do status",
+        "en minutes": "em minutos",
         "Autres": "Outro",
         "Répéter les valeurs identiques": "Repita valores idênticos",
         "Non": "Não",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL a ser chamado ao atualizar o valor do comando. Você pode usar as seguintes tags: # valor # (valor do comando), # cmd_id # (id do comando) e # cmd_name # (nome do comando)",
         "Niveau": "Nível",
         "En": "Em",
-        "si (#value# pour la valeur)": "if (valor # # para o valor)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Por mais de (em min, deixe em branco para imediato)",
+        "si": "E se",
+        "Pendant plus de": "Por mais que",
         "Widget": "Ferramenta",
         "Appliquer à": "Aplicar",
         "Afficher le nom": "Mostrar nome",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "Vamos lá !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Equipements sans type": "Equipamento sem tipo",
         "Aucun": "Não",
@@ -2270,20 +2275,26 @@
         "Type": "Tipo",
         "Actions": "Estoque",
         "Action sur état": "Ação do Estado",
+        "Si": "Sim",
         "plus de": "sobre",
-        "minutes alors": "minutos então",
-        "Pre exécution": "Execução pré",
-        "Post exécution": "Execução pós",
+        "minutes": "minutos",
+        "alors": "tão",
+        "Pré-exécution": "Pré-execução",
+        "Post-exécution": "Pós-execução",
         " avec code": "com código",
         "Confirmation": "Confirmação",
         "Code de confirmation de l\\'action": "Código de confirmação da ação",
         "sur le folder": "na pasta",
         "Timeline active": "Linha do tempo ativa",
-        "Influx actif : ": "Influxo ativo:",
-        "Push actif sur : ": "Empurre ativo em:",
+        "Influx actif": "Influxo ativo",
+        "Push actif sur": "Empurre ativo em",
         "Alertes": "Notificações",
         "Timeout": "Tempo limite",
         "Seuils batterie": "Bateria limiares",
+        "effet immédiat": "efeito imediato",
+        "pendant plus de": "por mais que",
+        "minute(s)": "minutos)",
+        "si": "sim",
         "Danger": "Perigo",
         "Warning": "Aviso",
         "Détail": "Detalhe",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "Ordens de resumo",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Para cada tipo de resumo, adicione os comandos de informação desejados",
         "Ajouter une commande": "Adicionar comando",
-        "Rechercher": "Pesquisar"
+        "Rechercher un équipement de cet objet": "Pesquise o equipamento deste item"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4239,6 +4250,9 @@
         "Vrai": "Real",
         "Faux": "Falso"
     },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Não gerenciado pelo Application Mobile)"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Método não permitido no GET:"
     },
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Altura máxima em pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Duração"
+        "Durée": "Duração",
+        "Durée en secondes": "Duração em segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Selecione o comando"
@@ -4415,6 +4430,7 @@
         "Time out": "Tempo limite"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Cor",
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4462,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pergunta",
+        "Questions": "Perguntas",
         "Réponse": "Resposta",
+        "Réponses possibles (séparé par des ;)": "Respostas possíveis (separadas por;)",
         "Variable": "Variável",
         "Délai": "Prazo",
+        "Délai en s": "Atraso em s",
         "Commandes": "Comandos",
         "Sélectionner la commande": "Selecione o comando"
     },
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Mensagem"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Nível",
         "Succès": "Êxito",
@@ -4502,13 +4524,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "História para exportar",
+        "Commandes": "Comandos",
         "Sélectionner la commande": "Selecione o comando",
         "De": "Do",
         "à": "em",
         "Nom": "Nome",
         "Exporter en": "Exportação",
-        "CSV": "CSV",
-        "Commandes": "Comandos"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportação",

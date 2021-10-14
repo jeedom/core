@@ -270,7 +270,7 @@
         "Rechercher": "Buscar",
         "Pause": "Pausa",
         "Télécharger": "Descargar",
-        "Vider": "Vacío",
+        "Vider": "Vaciar",
         "Log vidé avec succès": "Registro vaciado con éxito"
     },
     "desktop\/modal\/plugin.deamon.php": {
@@ -566,33 +566,33 @@
     "desktop\/modal\/search.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Aide": "Ayuda",
-        "Résumé Domotique": "Resumen de domótica",
+        "Résumé Domotique": "Resumen Domótica",
         "Rechercher": "Buscar",
         "Recherche par": "Buscar por",
-        "Equipement": "Dispositivos",
+        "Equipement": "Dispositivo",
         "Commande": "Comando",
         "Variable": "Variable",
-        "Plugin": "Enchufar",
+        "Plugin": "Plugin",
         "Mot": "Palabra",
-        "ID": "CARNÉ DE IDENTIDAD",
-        "Rechercher un équipement": "Busca equipo",
-        "Rechercher une commande": "Buscar una orden",
+        "ID": "ID",
+        "Rechercher un équipement": "Busca un dispositivo",
+        "Rechercher une commande": "Buscar un comando",
         "Résultats": "Resultados",
         "Scénario": "Escenario",
         "Actions": "Acciones",
         "Design": "Diseño",
-        "Vue": "Ver",
+        "Vue": "Vista",
         "Interaction": "Interacción",
         "Note": "Nota",
         "Voir les logs": "Ver los registros",
-        "Aller sur la page du scénario.": "Ve a la página del escenario",
-        "Aller sur le design.": "Ve a diseñar",
-        "Aller sur la vue.": "Ve a la vista",
-        "Aller sur l\\'interaction.": "Ve a la interacción",
-        "Aller sur l\\'équipement.": "Ve al equipo",
-        "Ouvrir configuration de la commande.": "Configuración de orden abierta",
-        "Ouvrir la note.": "Abre la nota",
-        "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Aller sur la page du scénario.": "Acceder en la página del escenario",
+        "Aller sur le design.": "Acceder en el diseño",
+        "Aller sur la vue.": "Acceder en la vista",
+        "Aller sur l\\'interaction.": "Acceder en la interacción",
+        "Aller sur l\\'équipement.": "Acceder en el dispositivo",
+        "Ouvrir configuration de la commande.": "Abrir configuración del comando",
+        "Ouvrir la note.": "Abrir la nota",
+        "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/modal\/report.bug.php": {
@@ -666,8 +666,9 @@
         "URL directe": "URL directa",
         "Unité": "Unidad",
         "Visible": "Visible",
-        "Valeur minimum (défaut : 0)": "Valor mínimo (predeterminado: 0)",
-        "Valeur maximum (défaut : 100)": "Valor máximo (predeterminado: 100)",
+        "Valeur minimum": "Valor mínimo",
+        "défaut": "culpa",
+        "Valeur maximum": "Valor máximo",
         "Suivre dans la timeline": "Siga la línea de tiempo",
         "Dossier": "Carpetas",
         "Envoyer à InfluxDB": "Enviar a InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "Acciones",
         "Supprimer": "Eliminar",
         "Envoyer Historique": "Enviar historial",
-        "Interdire dans les interactions automatique": "Prohibir interacción automática en",
+        "Interdire dans les interactions automatiques": "Prohibir en interacciones automáticas",
         "Icône": "Icono",
         "Historique": "Historial",
         "Voir": "Ver",
@@ -691,30 +692,35 @@
         "Scénario": "Escenario",
         "Résumés": "Resúmenes",
         "Calcul et arrondi": "Cálculo y redondeo",
-        "Formule de calcul (#value# pour la valeur)": "Fórmula de cálculo (#value# para el valor)",
-        "Arrondi (chiffre après la virgule)": "Redondeo (cifra después de la coma)",
+        "Formule de calcul": "Algoritmo",
+        "valeur de la commande": "valor del pedido",
+        "Arrondi": "Ronda",
+        "Nombre de décimales": "Número de decimales",
         "Type générique": "Tipo genérico",
         "Restriction de l'action": "Restricción de la acción",
         "Confirmer l'action": "Confirmar la acción",
         "Code d'accès": "Código de acceso",
-        "Action sur la valeur": "Acción sobre el valor",
+        "Action sur valeur": "Acción de stock",
         "Action sur valeur, si": "Acción sobre el valor si",
         "égal": "Igual",
         "supérieur": "superior",
         "inférieur": "inferior",
         "différent": "diferente",
-        "plus de (min)": "mas de (min)",
+        "pendant plus de": "Por más de",
+        "durée en minutes (laisser vide pour une action immédiate)": "duración en minutos (déjelo en blanco para una acción inmediata)",
         "Action": "Acción",
         "Ajouter": "Añadir",
         "Action avant exécution de la commande": "Acción antes de la ejecución de la orden",
         "Action après exécution de la commande": "Después de ejecutar la acción de la orden",
         "Historiser": "Guardar historial",
+        "Copier historique de cette commande sur une autre commande": "Copiar el historial de este pedido en otro pedido",
         "Mode de lissage": "Modo de alisamiento",
         "Moyenne": "Media",
         "Minimum": "Mínimo",
         "Maximum": "Máximo",
         "Aucun": "No",
-        "Purger l'historique si plus vieux que ": "Vaciar el historial si es más antiguo de",
+        "Purger historique": "Historial de purga",
+        "si plus vieux que": "tan mayor que",
         "1 jour": "1 día",
         "7 jours": "7 días",
         "1 mois": "1 mes",
@@ -724,12 +730,12 @@
         "2 ans": "2 años",
         "3 ans": "3 años",
         "Jamais": "Nunca",
-        "Copie des données historisées": "Copiar los datos históricos",
-        "Copier l'historique de cette commande sur une autre commande": "Copiar el histórico de esta orden en otra orden",
         "Gestion des valeurs": "Gestión de valores",
-        "Valeurs interdites (séparées par \";\")": "Valores prohibidos (separados por \";\")",
+        "Valeurs interdites": "Valores prohibidos",
+        "séparées par un point-virgule": "separados por un punto y coma",
         "Valeur retour d'état": "Valor retorno de estado",
-        "Durée avant retour d'état (min)": "Duración antes del retorno de estado (min)",
+        "Durée avant retour d'état": "Duración antes de la devolución del estado",
+        "en minutes": "en minutos",
         "Autres": "Otros",
         "Répéter les valeurs identiques": "Repite valores idénticos",
         "Non": "No",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL para llamar al actualizar el valor del comando. Puede utilizar las siguientes etiquetas: # value # (valor del comando), # cmd_id # (id del comando) y # cmd_name # (nombre del comando)",
         "Niveau": "Nivel",
         "En": "En",
-        "si (#value# pour la valeur)": "si (#value# para el valor)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Por más de (en min, dejar vacío para inmediato)",
+        "si": "si",
+        "Pendant plus de": "Por más de",
         "Widget": "Widget",
         "Appliquer à": "Aplicar",
         "Afficher le nom": "Mostrar el nombre",
@@ -1046,7 +1052,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rafraîchir": "Refrescar",
         "Sauvegarder": "Guardar",
-        "ID": "CARNÉ DE IDENTIDAD",
+        "ID": "ID",
         "Scénario": "Escenario",
         "Statut": "Estado",
         "Dernier lancement": "Última ejecución",
@@ -1060,15 +1066,15 @@
         "Erreur": "Error",
         "En cours": "En curso",
         "Arrêté": "Detenido",
-        "Défaut": "Por defecto",
-        "Aucun": "No",
+        "Défaut": "Defecto",
+        "Aucun": "Ningún",
         "Temps réel": "Tiempo real",
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
         "Exécuter": "Ejecutar",
         "Supprimer ce scénario": "Eliminar este escenario",
-        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Está seguro de que desea eliminar el escenario?",
-        "Log d'exécution du scénario": "Log de ejecución de la escena"
+        "Êtes-vous sûr de vouloir supprimer le scénario": "¿Estas seguro de que deseas eliminar el escenario?",
+        "Log d'exécution du scénario": "Log de ejecución del escenario"
     },
     "desktop\/modal\/scenario.template.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "Se fue !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Equipements sans type": "Equipo sin tipo",
         "Aucun": "No",
@@ -2270,20 +2275,26 @@
         "Type": "Tipo",
         "Actions": "Acciones",
         "Action sur état": "Acción estatal",
+        "Si": "Sí",
         "plus de": "más de",
-        "minutes alors": "minutos entonces",
-        "Pre exécution": "La ejecución de pre",
-        "Post exécution": "La ejecución posterior",
+        "minutes": "minutos",
+        "alors": "entonces",
+        "Pré-exécution": "Preejecución",
+        "Post-exécution": "Post-ejecución",
         " avec code": "con código",
         "Confirmation": "Confirmación",
         "Code de confirmation de l\\'action": "Código de confirmación de acción",
         "sur le folder": "en la carpeta",
         "Timeline active": "Línea de tiempo activa",
-        "Influx actif : ": "Afluencia activa:",
-        "Push actif sur : ": "Empuje activo en:",
+        "Influx actif": "Afluencia activa",
+        "Push actif sur": "Empuje activo en",
         "Alertes": "Alertas",
         "Timeout": "Tiempo de espera",
         "Seuils batterie": "Batería umbrales",
+        "effet immédiat": "efecto inmediato",
+        "pendant plus de": "Por más de",
+        "minute(s)": "minutos)",
+        "si": "si",
         "Danger": "Peligro",
         "Warning": "Advertencia",
         "Détail": "Detalle",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "Resumen de pedidos",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Para cada tipo de resumen, agregue los comandos de información deseados",
         "Ajouter une commande": "Añadir una orden",
-        "Rechercher": "Buscar"
+        "Rechercher un équipement de cet objet": "Buscar equipo de este artículo"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2978,13 +2989,13 @@
         "L\\'opération a échoué": "La operación falló"
     },
     "desktop\/js\/scenario.js": {
-        "Log d'exécution du scénario": "Log de ejecución de la escena",
+        "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Nom du scénario": "Nombre del escenario",
-        "Vue d'ensemble des scénarios": "Resumen de escenarios",
+        "Vue d'ensemble des scénarios": "Resumen de los escenarios",
         "Scénario": "Escenario",
         "Graphique de lien(s)": "Gráfico de enlace",
-        "Edition texte scénarios": "Escenarios de edición de texto",
-        "Export du scénario": "Exportar escenario",
+        "Edition texte scénarios": "Edición texto escenarios",
+        "Export du scénario": "Exportación del escenario",
         "Template de scénario": "Plantilla de escenario",
         "Lancement du scénario réussi": "Ejecución de escenario realizada con éxito",
         "Arrêt du scénario réussi": "Parada de escenario correcta",
@@ -2999,7 +3010,7 @@
         "supérieur": "superior",
         "inférieur": "inferior",
         "différent": "diferente",
-        "égale": "iguales",
+        "égale": "igual",
         "contient": "contiene",
         "Ouvert": "Abierto",
         "Fermé": "Cerrado",
@@ -3050,16 +3061,16 @@
         "Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.": "Eliminar este bloque. <br> Ctrl + Click: Eliminar sin confirmación",
         "Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.": "Copia este bloque. <br> Ctrl + Click: Cortar este bloque",
         "Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.": "Pega un bloque después de esto. <br> Ctrl + Click: reemplazar este bloque con el bloque copiado",
-        "Afficher\/masquer le bloc Sinon": "Mostrar \/ ocultar bloque lo contrario",
+        "Afficher\/masquer le bloc Sinon": "Mostrar\/ocultar el bloque",
         "Ajouter": "Añadir",
         "Action": "ACCIÓN",
         "Bloc Si\/Alors\/Sinon": "Bloque Si\/Entonces\/Si no",
         "Bloc Action": "Bloque de acción",
         "Bloc Boucle": "Bloque de bucle",
-        "Bloc Dans": "Bloquear Dentro de",
+        "Bloc Dans": "Bloque Dentro de",
         "Bloc A": "Bloque A",
         "Bloc Code": "Bloque Código",
-        "Bloc Commentaire": "Bloque de comentarios"
+        "Bloc Commentaire": "Bloque Comentario"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historial"
@@ -3506,7 +3517,7 @@
     },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Inicio de sesión de usuario por REMOTE_USER:",
@@ -3519,8 +3530,8 @@
     },
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Plugin introuvable : ": "Plugin no encontrado:",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Plugin introuvable : ": "Plugin no encontrado :",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3584,28 +3595,28 @@
     },
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Impossible de supprimer : ": "No se puede eliminar:",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Impossible de supprimer : ": "No se puede eliminar :",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Impossible de trouver l\\'objet associé : ": "No se puede encontrar el objeto asociado:",
-        "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
+        "Impossible de trouver l\\'objet associé : ": "No se puede encontrar el objeto asociado :",
+        "Aucune méthode correspondante à : ": "Ningún método correspondiente a :"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Scénario ID inconnu : ": "ID de escenario desconocido:",
+        "Scénario ID inconnu : ": "ID de escenario desconocido :",
         "Vous n\\'êtes pas autorisé à faire cette action": "No tienes permiso para hacer esta acción",
-        "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "El escenario no se puede iniciar porque está desactivado. Por favor actívelo",
+        "Impossible de lancer le scénario car il est désactivé. Veuillez l\\'activer": "El escenario no se puede iniciar porque está desactivado. Por favor actívalo",
         "Le nom du template ne peut être vide ": "El nombre de la plantilla no puede estar vacío",
-        "Impossible de créer le template, vérifiez les droits : ": "No se puede crear la plantilla, verifique los derechos:",
+        "Impossible de créer le template, vérifiez les droits : ": "No se puede crear la plantilla, verifica los derechos :",
         "Fichier non trouvé : ": "Archivo no encontrado :",
-        "La conversion suivante ne peut être vide : ": "La siguiente conversión no puede estar vacía:",
+        "La conversion suivante ne peut être vide : ": "La siguiente conversión no puede estar vacía :",
         "Scénario ID inconnu": "ID de escenario desconocido",
         "Champs json invalide": "Campos json inválidos",
-        "Répertoire de téléversement non trouvé : ": "Subir directorio no encontrado:",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
-        "Extension du fichier non valide (autorisé .json) : ": "Extensión de archivo no válida (.json autorizado):",
+        "Répertoire de téléversement non trouvé : ": "Directorio de carga no encontrado :",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifica la configuración de PHP (post size limit)",
+        "Extension du fichier non valide (autorisé .json) : ": "Extensión de archivo no válida (.json autorizado) :",
         "Le fichier est trop gros (maximum 10Mo)": "El archivo es demasiado grande (máximo 10 MB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "No se puede cargar el archivo (¿límite del servidor web?)",
@@ -3613,12 +3624,12 @@
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune correspondance pour l\\'ID : ' . init('id')": "No hay coincidencia para ID: '. init ( 'id')",
-        "[START UPDATE]": "[INICIAR ACTUALIZACIÓN]",
-        "Launch cron dependancy plugins": "Ejecutar cron dependencia plugins",
-        "[END UPDATE SUCCESS]": "[FINALIZAR ÉXITO ACTUALIZADO]",
-        "[END UPDATE ERROR]": "[FINALIZAR ERROR DE ACTUALIZACIÓN]",
-        "Répertoire de téléversement non trouvé : ": "Subir directorio no encontrado:",
+        "Aucune correspondance pour l\\'ID : ' . init('id')": "No hay coincidencia para el ID: ' . init('id')",
+        "[START UPDATE]": "[START UPDATE]",
+        "Launch cron dependancy plugins": "Ejecutar cron plugins dependencia",
+        "[END UPDATE SUCCESS]": "[END UPDATE SUCCESS]",
+        "[END UPDATE ERROR]": "[END UPDATE ERROR]",
+        "Répertoire de téléversement non trouvé : ": "Directorio de carga no encontrado :",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
         "Le fichier est trop gros (maximum 100Mo)": "El archivo es demasiado grande (máximo 100 MB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
@@ -4180,7 +4191,7 @@
         "Désactivation de": "Desactivación de",
         "Masquage de": "Enmascaramiento de",
         "Affichage de": "Visualización de",
-        "Aucun": "No",
+        "Aucun": "Ningún",
         "Type inconnu": "Tipo desconocido",
         "Execution du lancement en arriere plan : ": "Iniciar ejecución en segundo plano :",
         "Exécution d\\'un bloc élément : ": "Ejecución de un bloque de elementos:",
@@ -4238,6 +4249,9 @@
         "Evaluation de la condition": "Evaluación de condición",
         "Vrai": "Verdadero",
         "Faux": "Falso"
+    },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Método no permitido en GET:"
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Altura máxima en píxeles"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Duración"
+        "Durée": "Duración",
+        "Durée en secondes": "Duración en segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Seleccione el comando"
@@ -4415,11 +4430,12 @@
         "Time out": "Se acabó el tiempo"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Color",
         "Sélectionner la commande": "Seleccione la orden"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nombre",
@@ -4446,16 +4462,19 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pregunta",
+        "Questions": "Preguntas",
         "Réponse": "Respuesta",
+        "Réponses possibles (séparé par des ;)": "Posibles respuestas (separadas por;)",
         "Variable": "Variable",
         "Délai": "Plazo",
+        "Délai en s": "Retraso en s",
         "Commandes": "Comandos",
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Diseño"
@@ -4465,11 +4484,11 @@
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nombre",
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Mensaje"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Nivel",
         "Succès": "Conseguido",
@@ -4498,23 +4520,23 @@
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
-        "Historique à exporter": "Historia para exportar",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Historique à exporter": "Historial para exportar",
+        "Commandes": "Comandos",
+        "Sélectionner la commande": "Seleccionar el comando",
         "De": "De",
-        "à": "A las",
+        "à": "a",
         "Nom": "Nombre",
-        "Exporter en": "Exportar a",
-        "CSV": "CSV",
-        "Commandes": "Comandos"
+        "Exporter en": "Exportar en",
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
         "Vue": "Ver",
         "Design": "Diseño",
-        "Plugin": "Enchufar",
+        "Plugin": "Plugin",
         "Analyse Equipements": "Análisis de equipos",
         "Timeline": "Cronología",
         "URL": "URL",

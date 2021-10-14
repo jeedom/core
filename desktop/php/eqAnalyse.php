@@ -87,7 +87,11 @@ sendVarToJs('_remove_history_', $remove_history);
 							foreach (($eqLogic->getCmd('info')) as $cmd) {
 								if (count($cmd->getConfiguration('actionCheckCmd', array())) > 0) {
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Action sur état}}</td>';
-									$div .= '<td>Si ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest') . ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes alors}} : ';
+									$div .= '<td>{{Si}} ' . $cmd->getConfiguration('jeedomCheckCmdOperator') . ' ' . $cmd->getConfiguration('jeedomCheckCmdTest');
+									if ($cmd->getConfiguration('jeedomCheckCmdTime', 0) > 0) {
+										$div .= ' {{plus de}} ' . $cmd->getConfiguration('jeedomCheckCmdTime') . ' {{minutes}}';
+									}
+									$div .=  ' {{alors}} : ';
 									$actions = '';
 									foreach (($cmd->getConfiguration('actionCheckCmd')) as $actionCmd) {
 										$actions .= scenarioExpression::humanAction($actionCmd) . '<br/>';
@@ -104,7 +108,7 @@ sendVarToJs('_remove_history_', $remove_history);
 							$div = '';
 							foreach (($eqLogic->getCmd('action')) as $cmd) {
 								if (count($cmd->getConfiguration('jeedomPreExecCmd', array())) > 0) {
-									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pre exécution}}</td><td>';
+									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Pré-exécution}}</td><td>';
 									$actions = '';
 									foreach ($cmd->getConfiguration('jeedomPreExecCmd') as $actionCmd) {
 										$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
@@ -117,7 +121,7 @@ sendVarToJs('_remove_history_', $remove_history);
 									$div .= '</tr>';
 								}
 								if (count($cmd->getConfiguration('jeedomPostExecCmd', array())) > 0) {
-									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post exécution}}</td><td>';
+									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Post-exécution}}</td><td>';
 									$actions = '';
 									foreach (($cmd->getConfiguration('jeedomPostExecCmd')) as $actionCmd) {
 										$actions .= '<div>'.scenarioExpression::humanAction($actionCmd).'</div>';
@@ -194,10 +198,10 @@ sendVarToJs('_remove_history_', $remove_history);
 										if ($cmd->getConfiguration('influx::nameEq','') != '') {
 											$nameEqLogic = $cmd->getConfiguration('influx::nameEq');
 										}
-										$div .= '<div>- {{Influx actif : }}' . $nameCmd . '-' . $nameEqLogic.'</div>';
+										$div .= '<div>- {{Influx actif}} : ' . $nameCmd . '-' . $nameEqLogic.'</div>';
 									}
 									if ($pushEnable != ''){
-										$div .= '<div>- {{Push actif sur : }}' . $pushEnable.'</div>';
+										$div .= '<div>- {{Push actif sur}} : ' . $pushEnable.'</div>';
 									}
 									$div .= '</td>';
 									$div .= '<td>';
@@ -258,15 +262,15 @@ sendVarToJs('_remove_history_', $remove_history);
 											continue;
 										}
 										if ($cmdalert->getAlert($level . 'if', '') != '') {
-											$during = $cmdalert->getAlert($level . 'during', '') == '' ? ' effet immédiat' : ' pendant plus de ' . $cmdalert->getAlert($level . 'during', '') . ' minute(s)';
-											$tr .= ucfirst($level) . ' si ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>', $cmdalert->getAlert($level . 'if', ''))) . $during . '</br>';
+											$during = $cmdalert->getAlert($level . 'during', '') == '' ? ' {{effet immédiat}}' : ' {{pendant plus de}} ' . $cmdalert->getAlert($level . 'during') . ' {{minute(s)}}';
+											$tr .= ucfirst($level) . ' {{si}} ' . jeedom::toHumanReadable(str_replace('#value#', '<b>' . $cmdalert->getName() . '</b>', $cmdalert->getAlert($level . 'if', ''))) . $during . '</br>';
 										}
 									}
 								}
 								$tr .= '</td>';
 								$tr .= '<td>';
 								if ($eqLogic->getTimeout('') != '') {
-									$tr .= $eqLogic->getTimeout('') . ' minute(s)';
+									$tr .= $eqLogic->getTimeout('') . ' {{minute(s)}}';
 								}
 								$tr .= '</td>';
 								$tr .= '<td>';

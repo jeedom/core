@@ -666,8 +666,9 @@
         "URL directe": "прямой URL",
         "Unité": "Устройство",
         "Visible": "Видимый",
-        "Valeur minimum (défaut : 0)": "Минимальное значение (по умолчанию: 0)",
-        "Valeur maximum (défaut : 100)": "Максимальное значение (по умолчанию: 100)",
+        "Valeur minimum": "Valeur minimum",
+        "défaut": "défaut",
+        "Valeur maximum": "Valeur maximum",
         "Suivre dans la timeline": "Следуйте на временной шкале",
         "Dossier": "запись",
         "Envoyer à InfluxDB": "Envoyer à InfluxDB",
@@ -678,7 +679,7 @@
         "Actions": "акции",
         "Supprimer": "удаление",
         "Envoyer Historique": "Envoyer Historique",
-        "Interdire dans les interactions automatique": "Запретить в автоматических взаимодействиях",
+        "Interdire dans les interactions automatiques": "Interdire dans les interactions automatiques",
         "Icône": "Иконка",
         "Historique": "История",
         "Voir": "Вид",
@@ -691,30 +692,35 @@
         "Scénario": "Сценарий",
         "Résumés": "Résumés",
         "Calcul et arrondi": "Расчет и округление",
-        "Formule de calcul (#value# pour la valeur)": "Формула расчета (в #value# исходное значение)",
-        "Arrondi (chiffre après la virgule)": "Округление (в десятичной системе)",
+        "Formule de calcul": "Formule de calcul",
+        "valeur de la commande": "valeur de la commande",
+        "Arrondi": "Arrondi",
+        "Nombre de décimales": "Nombre de décimales",
         "Type générique": "общий тип",
         "Restriction de l'action": "Ограничение действия",
         "Confirmer l'action": "Подтвердите действие",
         "Code d'accès": "Код доступа",
-        "Action sur la valeur": "Действие по значению",
+        "Action sur valeur": "Action sur valeur",
         "Action sur valeur, si": "Действие по значению, если",
         "égal": "равный",
         "supérieur": "высший",
         "inférieur": "Нижний",
         "différent": "другой",
-        "plus de (min)": "более (мин)",
+        "pendant plus de": "pendant plus de",
+        "durée en minutes (laisser vide pour une action immédiate)": "durée en minutes (laisser vide pour une action immédiate)",
         "Action": "Действие",
         "Ajouter": "Добавить",
         "Action avant exécution de la commande": "Действие перед выполнением команды",
         "Action après exécution de la commande": "Действие после выполнения команды",
         "Historiser": "История",
+        "Copier historique de cette commande sur une autre commande": "Copier historique de cette commande sur une autre commande",
         "Mode de lissage": "Режим сглаживания",
         "Moyenne": "Средний",
         "Minimum": "Минимум",
         "Maximum": "Максимум",
         "Aucun": "Нет",
-        "Purger l'historique si plus vieux que ": "Выпустите историю, если старше",
+        "Purger historique": "Purger historique",
+        "si plus vieux que": "si plus vieux que",
         "1 jour": "1 день",
         "7 jours": "7 дней",
         "1 mois": "1 месяц",
@@ -724,12 +730,12 @@
         "2 ans": "2 года",
         "3 ans": "3 года",
         "Jamais": "Никогда",
-        "Copie des données historisées": "Копирование исторических данных",
-        "Copier l'historique de cette commande sur une autre commande": "Скопируйте историю этой команды в другую команду",
         "Gestion des valeurs": "Управление значений",
-        "Valeurs interdites (séparées par \";\")": "Запрещенные значения (разделенные \";\")",
+        "Valeurs interdites": "Valeurs interdites",
+        "séparées par un point-virgule": "séparées par un point-virgule",
         "Valeur retour d'état": "Значение состояния обратной связи",
-        "Durée avant retour d'état (min)": "Время заявить обратной связи (мин)",
+        "Durée avant retour d'état": "Durée avant retour d'état",
+        "en minutes": "en minutes",
         "Autres": "другой",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
@@ -738,8 +744,8 @@
         "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)": "URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)",
         "Niveau": "Уровень",
         "En": "в",
-        "si (#value# pour la valeur)": "если (значение # # для значения)",
-        "Pendant plus de (en min, laisser vide pour immédiat)": "Для более чем (через минуту оставьте пустым для немедленного)",
+        "si": "si",
+        "Pendant plus de": "Pendant plus de",
         "Widget": "Виджет",
         "Appliquer à": "Применить",
         "Afficher le nom": "Показать имя",
@@ -2169,7 +2175,6 @@
         "C'est parti !": "C'est parti !"
     },
     "desktop\/php\/types.php": {
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)",
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Equipements sans type": "Equipements sans type",
         "Aucun": "Aucun",
@@ -2270,20 +2275,26 @@
         "Type": "Тип",
         "Actions": "акции",
         "Action sur état": "Action sur état",
+        "Si": "Si",
         "plus de": "plus de",
-        "minutes alors": "minutes alors",
-        "Pre exécution": "Предварительное исполнение",
-        "Post exécution": "после выполнения",
+        "minutes": "minutes",
+        "alors": "alors",
+        "Pré-exécution": "Pré-exécution",
+        "Post-exécution": "Post-exécution",
         " avec code": "avec code",
         "Confirmation": "Confirmation",
         "Code de confirmation de l\\'action": "Code de confirmation de l\\'action",
         "sur le folder": "sur le folder",
         "Timeline active": "Timeline active",
-        "Influx actif : ": "Influx actif :",
-        "Push actif sur : ": "Push actif sur :",
+        "Influx actif": "Influx actif",
+        "Push actif sur": "Push actif sur",
         "Alertes": "Уведомления",
         "Timeout": "Тайм-аут",
         "Seuils batterie": "пороги батареи",
+        "effet immédiat": "effet immédiat",
+        "pendant plus de": "pendant plus de",
+        "minute(s)": "minute(s)",
+        "si": "Si",
         "Danger": "Опасность",
         "Warning": "предупреждение",
         "Détail": "подробно",
@@ -2430,7 +2441,7 @@
         "Commandes des résumés": "Commandes des résumés",
         "Pour chaque type de résumé, ajoutez les commandes infos souhaitées.": "Pour chaque type de résumé, ajoutez les commandes infos souhaitées",
         "Ajouter une commande": "Добавить команду",
-        "Rechercher": "Искать"
+        "Rechercher un équipement de cet objet": "Rechercher un équipement de cet objet"
     },
     "desktop\/php\/backup.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -4239,6 +4250,9 @@
         "Vrai": "Реальный",
         "Faux": "Ложный"
     },
+    "core\/class\/config.class.php": {
+        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4392,7 +4406,8 @@
         "Hauteur maximale en pixel": "Hauteur maximale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
-        "Durée": "Продолжительность"
+        "Durée": "Продолжительность",
+        "Durée en secondes": "Durée en secondes"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
         "Sélectionner la commande": "Выберите команду"
@@ -4415,6 +4430,7 @@
         "Time out": "Time out"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
+        "Couleur": "Couleur",
         "Sélectionner la commande": "Выберите команду"
     },
     "core\/template\/scenario\/popup.default.html": {
@@ -4446,9 +4462,12 @@
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Question",
+        "Questions": "Questions",
         "Réponse": "Réponse",
+        "Réponses possibles (séparé par des ;)": "Réponses possibles (séparé par des ;)",
         "Variable": "переменная",
         "Délai": "Délai",
+        "Délai en s": "Délai en s",
         "Commandes": "Команды",
         "Sélectionner la commande": "Выберите команду"
     },
@@ -4487,6 +4506,9 @@
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "значок поиска"
     },
+    "core\/template\/scenario\/cmd.action.text.default.html": {
+        "Message": "Message"
+    },
     "core\/template\/scenario\/alert.default.html": {
         "Niveau": "Уровень",
         "Succès": "Succès",
@@ -4502,13 +4524,13 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historique à exporter",
+        "Commandes": "Команды",
         "Sélectionner la commande": "Выберите команду",
         "De": "De",
         "à": "В определенное время",
         "Nom": "Имя",
         "Exporter en": "экспорт",
-        "CSV": "CSV",
-        "Commandes": "Команды"
+        "CSV": "CSV"
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "экспорт",
