@@ -252,14 +252,16 @@ $('#sel_searchByType').change(function() {
 
 $('.bt_selectEqLogic').on('click', function() {
   jeedom.eqLogic.getSelectModal({}, function(result) {
-    $('#in_searchFor_equipment').value(result.human).attr('data-id', result.id)
+    $('#in_searchFor_equipment').value(result.human)
+    $('#in_searchFor_equipment').attr('data-id', result.id)
     searchFor()
   })
 })
 
 $('.bt_selectCommand').on('click', function() {
   jeedom.cmd.getSelectModal({},function (result) {
-    $('#in_searchFor_command').value(result.human).attr('data-id', result.cmd.id)
+    $('#in_searchFor_command').value(result.human)
+    $('#in_searchFor_command').attr('data-id', result.cmd.id)
     searchFor()
    })
 })
