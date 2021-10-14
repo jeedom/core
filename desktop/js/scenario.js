@@ -841,14 +841,14 @@ $divScenario.on('click', '.bt_collapse', function(event) {
         if (isset(_EDITORS[id])) txt = _EDITORS[id].getValue()
       } else {
         //comment
-        txt = _el.find('.expression textarea').val()
+        txt = _el.find('.expression textarea').val().HTMLFormat()
         if (typeof txt === 'object') {
           txt = JSON.stringify(expression.expression)
         }
         txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
         if (!txt) txt = _el.find('.expression input.form-control').val()
       }
-      if (txt) $(this).html(txt.substring(0, 200).HTMLFormat())
+      if (txt) $(this).html(txt.substring(0, 200))
     })
     updateTooltips()
   } else {
@@ -1932,9 +1932,9 @@ function addSubElement(_subElement) {
         if (typeof expression.expression === 'object') {
           expression.expression = JSON.stringify(expression.expression, null, 2)
         }
-        var txt = expression.expression.substring(0, 200)
+        var txt = expression.expression.substring(0, 200).HTMLFormat()
         txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
-        retour += '<div class="blocPreview">' + txt.HTMLFormat() + '</div>'
+        retour += '<div class="blocPreview">' + txt + '</div>'
       } else {
         retour += '<div class="blocPreview"></div>'
       }
