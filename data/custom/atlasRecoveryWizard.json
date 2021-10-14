@@ -1,0 +1,34 @@
+{
+"trame": {
+  "welcome" :
+    {
+      "title": "Bienvenue",
+      "wizard": "welcome",
+      "order": 0,
+      "custom": "",
+      "visible": 1
+    }
+  ,
+   "atlas" :
+   	{
+	  "title": "Options Atlas",
+      "wizard": "atlas",
+      "order": 1,
+      "custom": {
+        "branch" : "stable"
+      },
+      "visible": 1
+   	}
+  ,
+  "recoveryAtlas" :
+    {
+      "title": "Lancement du recovery",
+      "wizard": "recoveryAtlas",
+      "order": 2,
+      "custom": "",
+      "visible": 1
+    }
+
+  },
+  "update": 1
+}

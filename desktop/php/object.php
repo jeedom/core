@@ -403,7 +403,7 @@ $synthToActions = array(
 			<div role="tabpanel" class="tab-pane" id="eqlogicsTab" style="margin-bottom: 200px;">
 				<br/>
 				<div class="input-group" style="margin-bottom:5px;">
-					<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchCmds"/>
+					<input class="form-control roundedLeft" placeholder="{{Rechercher un équipement de cet objet}}" id="in_searchCmds"/>
 					<div class="input-group-btn">
 						<a id="bt_resetCmdSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
 						</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
