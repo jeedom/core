@@ -655,6 +655,28 @@ class scenario {
 	}
 	/**
 	*
+	* @param type $_search
+	* @return type
+	*/
+	public static function searchByTrigger($_search, $_options = null, $_and = true) {
+		$values = array(
+			'search' => '%' . $_search . '%',
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM ' . __CLASS__ . '
+		WHERE `trigger` LIKE :search';
+		if ($_options !== null) {
+			$values['options'] = '%' . $_options . '%';
+			if ($_and) {
+				$sql .= ' AND options LIKE :options';
+			} else {
+				$sql .= ' OR options LIKE :options';
+			}
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+	/**
+	*
 	* @param type $_template
 	* @return type
 	*/
