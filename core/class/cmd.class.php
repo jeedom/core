@@ -2370,11 +2370,6 @@ class cmd {
 		if ($this->getType() != 'action' || trim($this->getConfiguration('actionCodeAccess')) == '') {
 			return true;
 		}
-		if (sha1($_code) == $this->getConfiguration('actionCodeAccess')) {
-			$this->setConfiguration('actionCodeAccess', sha512($_code));
-			$this->save();
-			return true;
-		}
 		if (sha512($_code) == $this->getConfiguration('actionCodeAccess')) {
 			return true;
 		}
