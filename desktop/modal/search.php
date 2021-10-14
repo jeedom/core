@@ -90,7 +90,12 @@ if (!isConnect()) {
     </div>
 
     <div class="col-lg-4 searchType" data-searchType="string" data-tableFilter="1001111" style="display: none;">
-      <input id="in_searchFor_string" class="form-control" placeholder="{{Rechercher}}"/>
+      <div class="input-group input-group-sm" >
+        <input id="in_searchFor_string" class="form-control roundedLeft" placeholder="{{Rechercher}}"/>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default cursor bt_selectGeneric roundedRight" title="{{Type Générique}}"><i class="fas fa-puzzle-piece"></i></button>
+        </span>
+      </div>
     </div>
 
     <div class="col-lg-4 searchType" data-searchType="id" data-tableFilter="1111111" style="display: none;">
@@ -247,18 +252,22 @@ $('#sel_searchByType').change(function() {
 
 $('.bt_selectEqLogic').on('click', function() {
   jeedom.eqLogic.getSelectModal({}, function(result) {
-    $('#in_searchFor_equipment').value(result.human)
-    $('#in_searchFor_equipment').attr('data-id', result.id)
+    $('#in_searchFor_equipment').value(result.human).attr('data-id', result.id)
     searchFor()
   })
 })
 
 $('.bt_selectCommand').on('click', function() {
   jeedom.cmd.getSelectModal({},function (result) {
-    $('#in_searchFor_command').value(result.human)
-    $('#in_searchFor_command').attr('data-id', result.cmd.id)
+    $('#in_searchFor_command').value(result.human).attr('data-id', result.cmd.id)
     searchFor()
    })
+})
+
+$('.bt_selectGeneric').on('click', function() {
+  jeedom.config.getGenericTypeModal({type: 'all', object: false}, function(result) {
+    $('#in_searchFor_string').value(result.id)
+  })
 })
 
 //Push the button!
