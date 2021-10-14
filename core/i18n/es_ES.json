@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ok": "Ok"
     },
     "mobile\/js\/log.js": {
@@ -67,7 +67,7 @@
         "Accueil": "Inicio"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "No"
+        "Aucun": "Ninguno"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Vacíar",
@@ -1075,7 +1075,7 @@
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Défaut": "Defecto",
-        "Aucun": "No",
+        "Aucun": "Ningún",
         "Temps réel": "Tiempo real",
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
@@ -2094,11 +2094,11 @@
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
-        "Annuler": "Anular"
+        "Annuler": "Cancelar"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun": "No",
+        "Aucun": "Ninguno",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
         "Activer scénarios": "Activar escenarios",
@@ -2167,7 +2167,7 @@
         "A": "A",
         "Code": "Código",
         "Commentaire": "Comentario",
-        "Annuler": "Anular"
+        "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
         "Nom d'utilisateur": "Nombre de usuario",
@@ -2333,7 +2333,7 @@
         "Supprimer": "Borrar",
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Ajouter": "Añadir"
     },
     "desktop\/php\/database.php": {
@@ -2817,7 +2817,7 @@
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
@@ -3190,17 +3190,17 @@
         "Info": "Información",
         "Action": "Acción",
         "Sélectionner la commande": "Seleccione el comando",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione el escenario",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
@@ -3238,13 +3238,13 @@
         "Vendredi": "Viernes",
         "Samedi": "Sábado",
         "Assistant cron": "Asistente cron",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar",
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
-        "Annuler": "Anular",
+        "Annuler": "Cancelar",
         "Valider": "Validar"
     },
     "core\/js\/config.class.js": {
@@ -4210,7 +4210,7 @@
         "Désactivation de": "Desactivación de",
         "Masquage de": "Enmascaramiento de",
         "Affichage de": "Visualización de",
-        "Aucun": "No",
+        "Aucun": "Ningún",
         "Type inconnu": "Tipo desconocido",
         "Execution du lancement en arriere plan : ": "Iniciar ejecución en segundo plano :",
         "Exécution d\\'un bloc élément : ": "Ejecución de un bloque de elementos:",

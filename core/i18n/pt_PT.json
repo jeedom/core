@@ -828,7 +828,7 @@
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Commandes : ": "Pedidos:",
         "Commandes historisées : ": "Pedidos históricos:",
         "Commandes timeline : ": "Comandos da linha do tempo:",
@@ -1148,7 +1148,7 @@
         "Aucune commande trouvées": "Nenhum pedido encontrado",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Inverser": "Inverter",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Objet": "Objeto",
         "Equipement": "Equipamento",
         "Nom": "Nome"
@@ -2818,7 +2818,7 @@
         "Configuration du composant": "Configuração de componentes",
         "Configuration avancée": "Configuração avançada",
         "Annuler": "Cancelar",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Supprimer": "Retirar",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Trancar",
@@ -3032,7 +3032,7 @@
         "ou": "onde",
         "Ajout d'une nouvelle condition": "Adicionando uma nova condição",
         "Ne rien mettre": "Não ponha nada",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Erreur": "Erro",
         "Actif": "Ativos",
         "Démarrage": "Introdução",
@@ -3191,17 +3191,17 @@
         "Action": "Açao",
         "Sélectionner la commande": "Selecione o comando",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Selecione o cenário",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Selecione o equipamento",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuração de plug-in",
@@ -3239,13 +3239,13 @@
         "Samedi": "Sábado",
         "Assistant cron": "Assistente de cron",
         "Annuler": "Cancelar",
-        "Valider": "Para validar",
+        "Valider": "Validar",
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",
         "Annuler": "Cancelar",
-        "Valider": "Para validar"
+        "Valider": "Validar"
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Selecione um tipo genérico",
