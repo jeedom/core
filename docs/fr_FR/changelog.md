@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.1
 
+## 4.1.27
+
+- Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+
+>**IMPORTANT**
+>
+>La mise à jour est plus que recommande nous vous invitons à la faire au plus vite
+
+
 ## 4.1.26
 
 - Correction d'un soucis d'installation de dépendance apt sur smart du au changement de certificat chez let's encrypt
