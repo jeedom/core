@@ -481,7 +481,7 @@ class jeedom {
 	}
 
 	public static function apiAccess($_apikey = '', $_plugin = 'core') {
-		if (trim($_apikey) == '') {
+		if (trim($_apikey) == '' || strlen($_apikey) < 16) {
 			return false;
 		}
 		if($_plugin != 'core' && self::apiAccess($_apikey)){
