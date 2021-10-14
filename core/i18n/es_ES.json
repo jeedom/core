@@ -4,7 +4,7 @@
     },
     "mobile\/modal\/warnme.html": {
         "Valeur": "Valor",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Ok": "Ok"
     },
     "mobile\/js\/log.js": {
@@ -67,7 +67,7 @@
         "Accueil": "Inicio"
     },
     "mobile\/js\/scenario.js": {
-        "Aucun": "Ninguno"
+        "Aucun": "No"
     },
     "mobile\/html\/scenariolog.html": {
         "Vider": "Vacíar",
@@ -577,6 +577,7 @@
         "ID": "ID",
         "Rechercher un équipement": "Busca un dispositivo",
         "Rechercher une commande": "Buscar un comando",
+        "Type Générique": "Tipo genérico",
         "Résultats": "Resultados",
         "Scénario": "Escenario",
         "Actions": "Acciones",
@@ -902,6 +903,13 @@
         "Variation": "Variación",
         "Echelle": "Nivel"
     },
+    "desktop\/modal\/genericType.human.insert.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Type Générique": "Tipo genérico",
+        "Objet": "Objeto",
+        "Aucun": "No",
+        "Tous": "Todos"
+    },
     "desktop\/modal\/interact.query.display.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Interact Def ID ne peut être vide": "El ID de Interact Def no puede estar vacío",
@@ -1067,7 +1075,7 @@
         "En cours": "En curso",
         "Arrêté": "Detenido",
         "Défaut": "Defecto",
-        "Aucun": "Ningún",
+        "Aucun": "No",
         "Temps réel": "Tiempo real",
         "Dossier": "Carpetas",
         "Voir les logs": "Ver los registros",
@@ -2086,11 +2094,11 @@
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
-        "Annuler": "Cancelar"
+        "Annuler": "Anular"
     },
     "desktop\/php\/scenario.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucun": "Ninguno",
+        "Aucun": "No",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
         "Activer scénarios": "Activar escenarios",
@@ -2159,7 +2167,7 @@
         "A": "A",
         "Code": "Código",
         "Commentaire": "Comentario",
-        "Annuler": "Cancelar"
+        "Annuler": "Anular"
     },
     "desktop\/php\/connection.php": {
         "Nom d'utilisateur": "Nombre de usuario",
@@ -2325,7 +2333,7 @@
         "Supprimer": "Borrar",
         "Identifiant": "Identificador",
         "Mot de passe": "Contraseña",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Ajouter": "Añadir"
     },
     "desktop\/php\/database.php": {
@@ -2809,7 +2817,7 @@
         "Paramètres d\\'affichage": "Pantalla de ajustes",
         "Configuration du composant": "Configuración de componentes",
         "Configuration avancée": "Configuración avanzada",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar",
         "Supprimer": "Eliminar",
         "Dupliquer": "Duplicar",
@@ -3182,17 +3190,17 @@
         "Info": "Información",
         "Action": "Acción",
         "Sélectionner la commande": "Seleccione el comando",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Seleccione el escenario",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/plugin.template.js": {
@@ -3230,13 +3238,18 @@
         "Vendredi": "Viernes",
         "Samedi": "Sábado",
         "Assistant cron": "Asistente cron",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
         "Valider": "Validar",
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
-        "Annuler": "Cancelar",
+        "Annuler": "Anular",
+        "Valider": "Validar"
+    },
+    "core\/js\/config.class.js": {
+        "Sélectionner un type générique": "Seleccione un tipo genérico",
+        "Annuler": "Anular",
         "Valider": "Validar"
     },
     "core\/js\/history.class.js": {
@@ -3318,8 +3331,8 @@
         "Portail ou garage bouton d\\'ouverture": "Apertura de Puerta de Garaje",
         "Portail ou garage bouton de fermeture": "Cierre de Puerta de Garaje",
         "Portail ou garage bouton toggle": "Conmutación de Cierre de Puerta de Garaje",
-        "Portail état ouvrant": "Estado de Puerta Abierta",
-        "Garage état ouvrant": "Estado de Garaje Abierto",
+        "Portail (ouvrant) Etat": "Estado del portal (apertura)",
+        "Garage (ouvrant) Etat": "Estado del garaje (apertura)",
         "Porte": "Puerta",
         "Fenêtre": "Ventana",
         "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Estado de Termostato (Binario) (solo para Plugin de termostato)",
@@ -3346,13 +3359,15 @@
         "État enregistrement caméra": "Estado de grabación de la cámara",
         "Enregistrement caméra": "Grabación de la cámara",
         "Snapshot caméra": "Instantánea de cámara",
+        "Mode Etat": "Modo de estado",
         "Mode": "Modo",
+        "Changer Mode": "Modo de cambio",
         "Sirène Etat": "Estado de Sirena",
         "Sirène Bouton Off": "Desactivar Sirena",
         "Sirène Bouton On": "Activar Sirena",
-        "Alarme état": "Estado de Alarma",
+        "Alarme Etat": "Estado de Alarma",
         "Alarme mode": "Modo de Alarma",
-        "Alarme état activée": "Estado de Alarma Activada",
+        "Alarme Etat activée": "Estado de Alarma Activada",
         "Alarme armée": "Alarma Armada",
         "Alarme libérée": "Alarma Desarmada",
         "Alarme Mode": "Modo de Alarma",
@@ -3436,11 +3451,15 @@
         "Non Muet": "Sin silencio",
         "Vitesse ventilateur": "Velocidad del ventilador",
         "Ventilateur": "Ventilador",
+        "Vitesse ventilateur Etat": "Estado de la velocidad del ventilador",
         "Rotation": "Rotación",
-        "Sur sa base": "Sobre su base",
+        "Rotation Etat": "Rotación de estado",
+        "Retour base": "De regreso a la base",
         "Robot": "Robot",
+        "Base Etat": "Base estatal",
+        "Minuteur Etat": "Temporizador de estado",
         "Minuteur": "Temporizador",
-        "Minuteur état (pause ou non)": "Temporizador de estado (pausa o no)",
+        "Minuteur Etat (pause ou non)": "Temporizador de estado (pausa o no)",
         "Minuteur pause": "Pausar temporizador",
         "Minuteur reprendre": "Reanudar el temporizador",
         "Info": "Información",
@@ -4191,7 +4210,7 @@
         "Désactivation de": "Desactivación de",
         "Masquage de": "Enmascaramiento de",
         "Affichage de": "Visualización de",
-        "Aucun": "Ningún",
+        "Aucun": "No",
         "Type inconnu": "Tipo desconocido",
         "Execution du lancement en arriere plan : ": "Iniciar ejecución en segundo plano :",
         "Exécution d\\'un bloc élément : ": "Ejecución de un bloque de elementos:",

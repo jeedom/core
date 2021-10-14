@@ -577,6 +577,7 @@
         "ID": "EU IRIA",
         "Rechercher un équipement": "Procure equipamento",
         "Rechercher une commande": "Ordem de pesquisa",
+        "Type Générique": "Tipo Genérico",
         "Résultats": "Resultados",
         "Scénario": "Cenas",
         "Actions": "Estoque",
@@ -827,7 +828,7 @@
     },
     "desktop\/modal\/cmd.configureHistory.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Valider": "Validar",
+        "Valider": "Para validar",
         "Commandes : ": "Pedidos:",
         "Commandes historisées : ": "Pedidos históricos:",
         "Commandes timeline : ": "Comandos da linha do tempo:",
@@ -901,6 +902,13 @@
         "Empiler": "Pilha",
         "Variation": "Mudança",
         "Echelle": "Escala"
+    },
+    "desktop\/modal\/genericType.human.insert.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Type Générique": "Tipo Genérico",
+        "Objet": "Objeto",
+        "Aucun": "Não",
+        "Tous": "Tudo"
     },
     "desktop\/modal\/interact.query.display.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1140,7 +1148,7 @@
         "Aucune commande trouvées": "Nenhum pedido encontrado",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Inverser": "Inverter",
-        "Valider": "Validar",
+        "Valider": "Para validar",
         "Objet": "Objeto",
         "Equipement": "Equipamento",
         "Nom": "Nome"
@@ -2810,7 +2818,7 @@
         "Configuration du composant": "Configuração de componentes",
         "Configuration avancée": "Configuração avançada",
         "Annuler": "Cancelar",
-        "Valider": "Validar",
+        "Valider": "Para validar",
         "Supprimer": "Retirar",
         "Dupliquer": "Duplicar",
         "Verrouiller": "Trancar",
@@ -3024,7 +3032,7 @@
         "ou": "onde",
         "Ajout d'une nouvelle condition": "Adicionando uma nova condição",
         "Ne rien mettre": "Não ponha nada",
-        "Valider": "Validar",
+        "Valider": "Para validar",
         "Erreur": "Erro",
         "Actif": "Ativos",
         "Démarrage": "Introdução",
@@ -3183,17 +3191,17 @@
         "Action": "Açao",
         "Sélectionner la commande": "Selecione o comando",
         "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Para validar"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Selecione o cenário",
         "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Para validar"
     },
     "core\/js\/eqLogic.class.js": {
         "Sélectionner un équipement": "Selecione o equipamento",
         "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Para validar"
     },
     "core\/js\/plugin.template.js": {
         "Configuration du plugin": "Configuração de plug-in",
@@ -3231,13 +3239,18 @@
         "Samedi": "Sábado",
         "Assistant cron": "Assistente de cron",
         "Annuler": "Cancelar",
-        "Valider": "Validar",
+        "Valider": "Para validar",
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",
         "Annuler": "Cancelar",
-        "Valider": "Validar"
+        "Valider": "Para validar"
+    },
+    "core\/js\/config.class.js": {
+        "Sélectionner un type générique": "Selecione um tipo genérico",
+        "Annuler": "Cancelar",
+        "Valider": "Para validar"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "O valor foi editado com sucesso",
@@ -3318,8 +3331,8 @@
         "Portail ou garage bouton d\\'ouverture": "Botão de abertura do portão ou garagem",
         "Portail ou garage bouton de fermeture": "Botão de fechamento de portão ou garagem",
         "Portail ou garage bouton toggle": "Alternar botão de portão ou garagem",
-        "Portail état ouvrant": "Abrindo portal do estado",
-        "Garage état ouvrant": "Abrindo a garagem do estado",
+        "Portail (ouvrant) Etat": "Estado do portal (abertura)",
+        "Garage (ouvrant) Etat": "Estado de garagem (abertura)",
         "Porte": "Porta",
         "Fenêtre": "Janela",
         "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Termostato de estado (BINÁRIO) (apenas para plug-in de termostato)",
@@ -3346,13 +3359,15 @@
         "État enregistrement caméra": "Status de gravação da câmera",
         "Enregistrement caméra": "Gravação da câmera",
         "Snapshot caméra": "Instantâneo da câmera",
+        "Mode Etat": "Modo de status",
         "Mode": "Modo",
+        "Changer Mode": "Modo de mudança",
         "Sirène Etat": "Estado Sirene",
         "Sirène Bouton Off": "Botão da sirene desativado",
         "Sirène Bouton On": "Botão da sirene ativado",
-        "Alarme état": "Alarme de estado",
+        "Alarme Etat": "Alarme de estado",
         "Alarme mode": "Alarme de modo",
-        "Alarme état activée": "Alarme de status ativado",
+        "Alarme Etat activée": "Alarme de status ativado",
         "Alarme armée": "Alarme armado",
         "Alarme libérée": "Alarme liberado",
         "Alarme Mode": "Alarme de modo",
@@ -3436,11 +3451,15 @@
         "Non Muet": "Sem som",
         "Vitesse ventilateur": "Velocidade do ventilador",
         "Ventilateur": "Ventilador",
+        "Vitesse ventilateur Etat": "Status da velocidade do ventilador",
         "Rotation": "Rotação",
-        "Sur sa base": "Em sua base",
+        "Rotation Etat": "Rotação de estado",
+        "Retour base": "De volta à base",
         "Robot": "Robô",
+        "Base Etat": "Base estadual",
+        "Minuteur Etat": "Cronômetro de estado",
         "Minuteur": "Cronômetro",
-        "Minuteur état (pause ou non)": "Temporizador de estado (pausa ou não)",
+        "Minuteur Etat (pause ou non)": "Temporizador de estado (pausa ou não)",
         "Minuteur pause": "Pausar cronômetro",
         "Minuteur reprendre": "Resumo do cronômetro",
         "Info": "Informações",
