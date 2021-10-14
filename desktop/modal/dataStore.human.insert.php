@@ -29,16 +29,16 @@ if (!isConnect()) {
   <tbody>
     <tr>
       <td class="mod_insertDataStoreValue_name">
-      <select class='form-control'>
+        <select class='form-control'>
           <?php
-          foreach ((dataStore::byTypeLinkId(init('type', 'scenario'))) as $dataStore) {
-            echo '<option value="' . $dataStore->getKey() . '">' . $dataStore->getKey() . '</option>';
-          }
+            foreach ((dataStore::byTypeLinkId(init('type', 'scenario'))) as $dataStore) {
+              echo '<option value="' . $dataStore->getKey() . '">' . $dataStore->getKey() . '</option>';
+            }
           ?>
          </select>
-       </td>
-     </tr>
-   </tbody>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <script>

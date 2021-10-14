@@ -82,18 +82,18 @@ class scenarioSubElement {
 			}
 		}
 	}
-	
+
 	public function save() {
 		DB::save($this);
 	}
-	
+
 	public function remove() {
 		foreach(($this->getExpression()) as $expression) {
 			$expression->remove();
 		}
 		DB::remove($this);
 	}
-	
+
 	public function getExpression() {
 		if (is_array($this->_expression) && count($this->_expression) > 0) {
 			return $this->_expression;
@@ -101,7 +101,7 @@ class scenarioSubElement {
 		$this->_expression = scenarioExpression::byscenarioSubElementId($this->getId());
 		return $this->_expression;
 	}
-	
+
 	public function getAllId() {
 		$return = array(
 			'element' => array(),
@@ -116,7 +116,7 @@ class scenarioSubElement {
 		}
 		return $return;
 	}
-	
+
 	public function copy($_scenarioElement_id) {
 		$subElementCopy = clone $this;
 		$subElementCopy->setId('');
@@ -127,91 +127,91 @@ class scenarioSubElement {
 		}
 		return $subElementCopy->getId();
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
+
 	public function getId() {
 		return $this->id;
 	}
-	
+
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
+
 	public function getName() {
 		return $this->name;
 	}
-	
+
 	public function setName($_name) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;
 	}
-	
+
 	public function getType() {
 		return $this->type;
 	}
-	
+
 	public function setType($_type) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
-	
+
 	public function getScenarioElement_id() {
 		return $this->scenarioElement_id;
 	}
-	
+
 	public function getElement() {
 		return scenarioElement::byId($this->getScenarioElement_id());
 	}
-	
+
 	public function setScenarioElement_id($_scenarioElement_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->scenarioElement_id,$_scenarioElement_id);
 		$this->scenarioElement_id = $_scenarioElement_id;
 		return $this;
 	}
-	
+
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-	
+
 	public function setOptions($_key, $_value) {
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
 		$this->options = $options;
 		return $this;
 	}
-	
+
 	public function getOrder() {
 		return $this->order;
 	}
-	
+
 	public function setOrder($_order) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
 		$this->order = $_order;
 		return $this;
 	}
-	
+
 	public function getSubtype() {
 		return $this->subtype;
 	}
-	
+
 	public function setSubtype($_subtype) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
 		$this->subtype = $_subtype;
 		return $this;
 	}
-	
+
 	public function getChanged() {
 		return $this->_changed;
 	}
-	
+
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
+
 }
