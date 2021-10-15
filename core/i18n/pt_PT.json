@@ -212,7 +212,7 @@
         "Tailles": "Tamanhos",
         "Taille (LxH)": "Tamanho (LxA)",
         "ID": "EU IRIA",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "ID du lien": "ID do link",
         "Lien": "Link",
         "Action": "Açao",
@@ -229,13 +229,13 @@
         "Sauvegarder": "Salvar",
         "Nom": "Nome",
         "Calcul": "Cálculo",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Groupement": "Grupo",
         "Escalier": "Escada",
         "Action": "Açao",
         "Sauvegarde effectuée": "Backup feito",
         "Formule de calcul": "Fórmula",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Ligne": "Linha",
         "Aire": "área",
         "Colonne": "Coluna",
@@ -617,7 +617,7 @@
         "Voir les bugs": "Veja os erros",
         "Voir les propositions d'amélioration": "Veja sugestões de melhoria",
         "Etape 3 : Catégorie et type de la demande": "Passo 3: O tamanho e tipo de demanda",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Aucun": "Não",
         "Catégorie": "Categoria",
         "Aucune": "Não",
@@ -657,7 +657,7 @@
         "ID": "EU IRIA",
         "Logical ID": "ID lógico",
         "Nom": "Nome",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Sous-type": "Subtipo",
         "Mise à jour par": "Atualizado por",
         "Valeurs possibles": "Valores possíveis",
@@ -835,7 +835,7 @@
         "par page": "por página",
         "Nom": "Nome",
         "Plugin": "Plugar",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Historisé": "Historized",
         "Timeline": "Linha do tempo",
         "Inversée": "Invertido",
@@ -937,7 +937,7 @@
         "Tag(s)": "Tag (s)",
         "Activer": "Ativar",
         "Visible": "Visivél",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Tentative échouée": "Tentativa fracassada",
         "Dernière communication": "última mensagem",
         "Dernière sauvegarde": "Último backup",
@@ -1008,7 +1008,7 @@
         "Puissance éclairage général (Défaut : 0.4)": "Potência de iluminação geral (Padrão: 0,4)",
         "ID": "EU IRIA",
         "Nom object": "Nome do objeto",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "ID du lien": "ID do link",
         "Action": "Açao",
         "Configuration": "Configuração",
@@ -1022,7 +1022,7 @@
         "Rafraichir": "Legal",
         "Corriger tout": "Corrigir tudo",
         "Package": "Pacote",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Status": "Status",
         "Obligatoire": "Obrigatório",
         "Voulu par": "Procurado por",
@@ -1177,7 +1177,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Type non trouvé : ": "Type não encontrado:",
         "Sauvegarder": "Salvar",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Nom": "Nome",
         "Modification sauvegardées avec succès": "Alterações salvas com sucesso"
     },
@@ -2045,7 +2045,7 @@
         "Widgets": "Widgets",
         "Général": "Geral",
         "Nom du widget": "Nome do widget",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Sous-Type": "Subtipo",
         "Template": "Modelo",
         "Icône": "ícone",
@@ -2059,7 +2059,7 @@
     },
     "desktop\/php\/report.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Vues": "Visualizações",
         "Design": "Projeto",
         "Plugin": "Plugar",
@@ -2090,7 +2090,7 @@
         "Supprimer": "Retirar",
         "Ajouter\/Editer viewZone": "Adicionar \/ Editar Viewzone",
         "Nom": "Nome",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Equipement": "Equipamento",
         "Graphique": "Gráfico",
         "Tableau": "Mesa",
@@ -2280,7 +2280,7 @@
         "Aucun équipement en Alerte.": "Nenhum equipamento em alerta",
         "Equipement": "Equipamento",
         "Commande": "Ordem",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Actions": "Estoque",
         "Action sur état": "Ação do Estado",
         "Si": "Sim",
@@ -2410,7 +2410,7 @@
         "Action depuis la synthèse": "Ação de síntese",
         "Sur la synthèse, définissez l'action au clic sur la vignette.": "No resumo, defina a ação ao clicar na miniatura",
         "Informations complémentaires": "Outras informações",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Pièce": "Quarto",
         "Orientation": "Orientação",
         "Nord": "Norte",
@@ -2511,7 +2511,7 @@
         "Vide l'affichage des courbes sur la zone.": "Limpe a exibição de curvas na área",
         "Affichage": "Exibição",
         "Historique calculé": "História calculado",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Afficher le graphique calculé": "Mostrar gráfico calculado",
         "Configuration des formules de calcul": "Configurando fórmulas",
         "Historique": "Histórico",
@@ -2549,7 +2549,7 @@
         "Rechercher | nom | id | :not(nom": "Pesquisa | nome | id | : não (nome",
         "Vider": "Vazio",
         "Date": "Data",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "ID": "EU IRIA",
         "Nom": "Nome"
     },
@@ -2655,7 +2655,7 @@
         "Supprimer": "Retirar",
         "Nom": "Nome",
         "Couleur": "Cor",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Groupement": "Grupo",
         "Echelle": "Escala",
         "Escalier": "Escada",
@@ -2911,7 +2911,7 @@
         "Décocher pour desactiver l\\'action": "Desmarque para desativar Ação 's \\",
         "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Verifique a ordem \\ 's executadas em paralelo com outras acções",
         "Sélectionner un mot-clé": "Selecione uma palavra-chave",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Création des commandes virtuel réussies": "Criando controles virtuais de sucesso",
         "Somme": "Soma",
         "Moyenne": "Média",
@@ -3054,7 +3054,7 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Verifique para o comando \\ 's em execução em outras ações paralelas",
         "Supprimer l\\'action": "Excluir \\ Ação",
         "Sélectionner un mot-clé": "Selecione uma palavra-chave",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Décocher pour désactiver l\\'élément": "Desmarque para desativar \\ 'elemento",
         "SI": "SE",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Se a permitir a repetição de ações, se a avaliação \\ 's da doença é o mesmo que o anterior",
@@ -3191,7 +3191,7 @@
         "Ceci est un test de message pour la commande": "Esta é uma mensagem para o controle de teste",
         "Info": "Informações",
         "Action": "Açao",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Annuler": "Cancelar",
         "Valider": "Validar"
     },
@@ -3242,7 +3242,7 @@
         "Assistant cron": "Assistente de cron",
         "Annuler": "Cancelar",
         "Valider": "Validar",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",
@@ -3886,7 +3886,7 @@
         "Taille": "Tamanho",
         "Lien": "Link",
         "Installation": "Instalação",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Langue disponible": "Idioma disponível",
         "Dernière mise à jour le": "Última Atualização em",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Quer ir para a página de configuração de seu novo plugin?",
@@ -4433,7 +4433,7 @@
         "Durée en secondes": "Duração em segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Cenas",
@@ -4449,21 +4449,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condição",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Time out": "Tempo limite"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Cor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visivél",
@@ -4501,31 +4501,31 @@
         "Délai": "Prazo",
         "Délai en s": "Atraso em s",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Ordem",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Projeto"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Ativos",
@@ -4533,7 +4533,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
@@ -4548,16 +4548,16 @@
         "Important": "IMPORTANTE",
         "Information": "Informação",
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "História para exportar",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "De": "Do",
         "à": "em",
         "Nom": "Nome",
@@ -4577,7 +4577,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Largeur (px)": "Largura (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai": "Prazo",
