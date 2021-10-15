@@ -52,37 +52,37 @@ DirectoryIndex index.php
 
 # Right on folder
 
-RedirectMatch 403 ^.*\/3rdparty\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
-RedirectMatch 403 ^((?!plugins).)*\/backup\/.*$
+RedirectMatch 403 (?i)^.*\/3rdparty\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^((?!plugins).)*\/backup\/.*$
 
-RedirectMatch 403 ^.*\/core/ajax\/.*\/((?!ajax\.php).)*$
-RedirectMatch 403 ^.*\/core/api\/.*\/((?!\.php).)*$
-RedirectMatch 403 ^.*\/core/class\/.*$
-RedirectMatch 403 ^.*\/core/com\/.*$
-RedirectMatch 403 ^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.svg).)*$
-RedirectMatch 403 ^.*\/core/css\/.*\/((?!\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
-RedirectMatch 403 ^.*\/core/i18n\/.*$
-RedirectMatch 403 ^.*\/core/img\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.svg).)*$
-RedirectMatch 403 ^.*\/core/php\/.*\/((?!\.php).)*$
-RedirectMatch 403 ^.*\/core/js\/.*$
-RedirectMatch 403 ^.*\/core/repo\/.*$
-RedirectMatch 403 ^.*\/core/template\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
-RedirectMatch 403 ^.*\/core/themes\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/core/ajax\/.*\/((?!ajax\.php).)*$
+RedirectMatch 403 (?i)^.*\/core/api\/.*\/((?!\.php).)*$
+RedirectMatch 403 (?i)^.*\/core/class\/.*$
+RedirectMatch 403 (?i)^.*\/core/com\/.*$
+RedirectMatch 403 (?i)^.*\/core/config\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/core/css\/.*\/((?!\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/core/i18n\/.*$
+RedirectMatch 403 (?i)^.*\/core/img\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/core/php\/.*\/((?!\.php).)*$
+RedirectMatch 403 (?i)^.*\/core/js\/.*$
+RedirectMatch 403 (?i)^.*\/core/repo\/.*$
+RedirectMatch 403 (?i)^.*\/core/template\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/core/themes\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
 
-RedirectMatch 403 ^.*\/data\/.*\/((?!\.m3u8|\.ts|\.jpg|\.jpeg|\.gif|\.png).)*$
-RedirectMatch 403 ^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
-RedirectMatch 403 ^.*\/docs\/.*$
-RedirectMatch 403 ^.*\/install\/.*$
-RedirectMatch 403 ^.*\/log\/.*$
-RedirectMatch 403 ^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
-RedirectMatch 403 ^.*\/support\/.*$
-RedirectMatch 403 ^.*\/tests\/.*$
-RedirectMatch 403 ^.*\/vendor\/.*$
+RedirectMatch 403 (?i)^.*\/data\/.*\/((?!\.m3u8|\.ts|\.jpg|\.jpeg|\.gif|\.png).)*$
+RedirectMatch 403 (?i)^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/docs\/.*$
+RedirectMatch 403 (?i)^.*\/install\/.*$
+RedirectMatch 403 (?i)^.*\/log\/.*$
+RedirectMatch 403 (?i)^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/support\/.*$
+RedirectMatch 403 (?i)^.*\/tests\/.*$
+RedirectMatch 403 (?i)^.*\/vendor\/.*$
 
 # Plugin specific
-RedirectMatch 403 ^.*\/plugin_info\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif).)*$
-RedirectMatch 403 ^.*\/ressources\/.*$
-RedirectMatch 403 ^.*\/resources\/.*$
+RedirectMatch 403 (?i)^.*\/plugin_info\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif).)*$
+RedirectMatch 403 (?i)^.*\/ressources\/.*$
+RedirectMatch 403 (?i)^.*\/resources\/.*$
 
 
 # Right on file
