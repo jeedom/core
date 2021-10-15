@@ -1145,6 +1145,9 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
     $(this).parents('.element').first().addClass('elementCollapse')
   })
   //Synch disabled elements:
+  pastedElement.find('input[data-l1key="options"][data-l2key="enable"]:not(:checked)').each(function() {
+    $(this).trigger('change')
+  })
 
   updateElseToggle()
 
