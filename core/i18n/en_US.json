@@ -235,7 +235,7 @@
         "Action": "Action",
         "Sauvegarde effectuée": "Backup completed",
         "Formule de calcul": "Algorithm",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Ligne": "Line",
         "Aire": "Area",
         "Colonne": "Column",
@@ -2511,7 +2511,7 @@
         "Vide l'affichage des courbes sur la zone.": "Clear the display of curves on the area",
         "Affichage": "Display",
         "Historique calculé": "Calculated history",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Afficher le graphique calculé": "Show calculated graph",
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Historique": "History",
@@ -2911,7 +2911,7 @@
         "Décocher pour desactiver l\\'action": "Uncheck to disable the action",
         "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Check for the command to be executed in parallel with other actions",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Création des commandes virtuel réussies": "Virtual commands creation succeeded",
         "Somme": "Sum",
         "Moyenne": "Average",
@@ -3043,16 +3043,18 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "To constitute your scenario, please add blocks",
         "Evénement": "Event",
         "Choisir une commande": "Choose a command",
+        "Choisir un Type Générique": "Choose a Generic Type",
         "Choisir une variable": "Choose a variable",
         "Programmation": "Programming",
         "Rechercher une commande": "Search a command",
+        "Rechercher un type générique": "Find a generic type",
         "Rechercher un scénario": "Search a scenario",
         "Rechercher un équipement": "Search for equipment",
         "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Check for the command to run in parallel with the other actions",
         "Supprimer l\\'action": "Delete action",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Décocher pour désactiver l\\'élément": "Uncheck to deactivate the element",
         "SI": "IF",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Allow or not repeat actions if the condition assessment is the same as the previous one",
@@ -3189,7 +3191,7 @@
         "Ceci est un test de message pour la commande": "This is a test message for the command",
         "Info": "Info",
         "Action": "Action",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Annuler": "Cancel",
         "Valider": "Validate"
     },
@@ -3240,7 +3242,7 @@
         "Assistant cron": "Cron assistant",
         "Annuler": "Cancel",
         "Valider": "Validate",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Select a variable",
@@ -3632,6 +3634,7 @@
         "Fichier non trouvé : ": "File not found:",
         "La conversion suivante ne peut être vide : ": "The following conversion cannot be empty:",
         "Scénario ID inconnu": "Unknown scenario ID",
+        "Tous": "All",
         "Champs json invalide": "Invalid json fields",
         "Répertoire de téléversement non trouvé : ": "Upload directory not found:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",
@@ -4143,6 +4146,7 @@
         "Exécution du scénario ": "Execution of the scenario",
         " déclenché par : ": "triggered by:",
         "Le scénario est de type programmé mais la programmation est vide": "The scenario is of programmed type but the programming is empty",
+        "Tous": "All",
         "Impossible d\\'arrêter la sous tâche : ": "Unable to stop the sub task:",
         "Impossible d\\'arrêter le scénario : ": "Unable to stop scenario:",
         ". PID : ": ". PID:",
@@ -4429,7 +4433,7 @@
         "Durée en secondes": "Duration in seconds"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
@@ -4445,21 +4449,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condition",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Time out": "Time out"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Color",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Name",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
@@ -4479,6 +4483,15 @@
         "Activer": "Enable",
         "Désactiver": "Disable"
     },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Type",
+        "Type Info (event)": "Type Info (event)",
+        "Type Action (exec)": "Type Action (exec)",
+        "Objet": "Object",
+        "Valeur": "Value",
+        "Sélectionner la commande": "Select order",
+        "Tous": "All"
+    },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Question",
         "Questions": "Questions",
@@ -4488,31 +4501,31 @@
         "Délai": "Delay",
         "Délai en s": "Delay in s",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Command",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Design"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Name",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Active",
@@ -4520,7 +4533,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
@@ -4535,16 +4548,16 @@
         "Important": "Important",
         "Information": "Information",
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "History to export",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "De": "Of",
         "à": "At",
         "Nom": "Name",
@@ -4564,7 +4577,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Largeur (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
         "Délai": "Delay",

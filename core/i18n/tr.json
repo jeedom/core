@@ -3043,9 +3043,11 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "Olay",
         "Choisir une commande": "Komuta seçin",
+        "Choisir un Type Générique": "Choisir un Type Générique",
         "Choisir une variable": "Değişken seçin",
         "Programmation": "Programlama",
         "Rechercher une commande": "Komuta arayın",
+        "Rechercher un type générique": "Rechercher un type générique",
         "Rechercher un scénario": "Senaryo arayın",
         "Rechercher un équipement": "Rechercher un équipement",
         "Décocher pour désactiver l\\'action": "\\ Eylem devre dışı bırakmak için işaretini kaldırın",
@@ -3632,6 +3634,7 @@
         "Fichier non trouvé : ": "Dosya bulunamadı:",
         "La conversion suivante ne peut être vide : ": "La conversion suivante ne peut être vide :",
         "Scénario ID inconnu": "Scénario ID inconnu",
+        "Tous": "Tous",
         "Champs json invalide": "Champs json invalide",
         "Répertoire de téléversement non trouvé : ": "Yükleme dizini bulunamadı:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Dosya bulunamadı. PHP ayarını kontrol edin (yazı boyutu sınırı)",
@@ -4143,6 +4146,7 @@
         "Exécution du scénario ": "Senaryonun uygulanması",
         " déclenché par : ": "den tetiklenmiş",
         "Le scénario est de type programmé mais la programmation est vide": "Senaryo programlanmış tiptedir ancak programlama boş",
+        "Tous": "Tous",
         "Impossible d\\'arrêter la sous tâche : ": "Impossible d\\'arrêter la sous tâche :",
         "Impossible d\\'arrêter le scénario : ": "Senaryo durdurulamıyor:",
         ". PID : ": ". PID:",
@@ -4478,6 +4482,15 @@
         "Masquer": "Sakla",
         "Activer": "Etkinleştir",
         "Désactiver": "Demount"
+    },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Type",
+        "Type Info (event)": "Type Info (event)",
+        "Type Action (exec)": "Type Action (exec)",
+        "Objet": "Objet",
+        "Valeur": "Valeur",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Tous": "Tous"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Soru",

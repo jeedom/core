@@ -233,8 +233,10 @@ Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 - ``#begin_restore#`` : Evento enviado no início de uma restauração.
 - ``#end_restore#`` : Evento enviado no final de uma restauração.
 - ``#user_connect#`` : Login do usuário
+- ``#variable(nom_variable)#`` : Alterando o valor da variável name_name.
+- ``#genericType (GENERIC, Object)#`` : Alteração de um comando de informação do tipo GENÉRICO genérico, no objeto Object.
 
-Você também pode disparar um cenário quando uma variável é atualizada, colocando : #variable(nom_variable)# ou usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.1/api_http).
+Você também pode acionar um cenário usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.1/api_http).
 
 ### Operadores de comparação e links entre condições
 
@@ -333,6 +335,8 @@ Várias funções estão disponíveis para o equipamento :
 - ``lastBetween(commande,start,end)`` : Dá o último valor registrado para o dispositivo entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera o valor de uma variável ou o valor desejado por padrão.
+
+- ``#genericType (GENERIC, Object)#`` : Recupera a soma das informações GENERIC Generic Type no objeto Object.
 
 - ``scenario(scenario)`` : Retorna o status do cenário.
     1 : Contínuo,
@@ -458,6 +462,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variável** (variable) : Criação / modificação de uma variável ou o valor de uma variável.
 - **Remover variável** (delete_variable) : Permite excluir uma variável.
+- **genericType (GENERIC, Object) : Modificação de um comando info (evento) ou ação (execCmd) por tipo genérico, em um objeto. Por exemplo, desligue todas as luzes da sala de estar.
 - **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele).
 - **Pare** (stop) : Pára o script.
 - **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).

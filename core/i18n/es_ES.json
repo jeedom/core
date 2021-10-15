@@ -212,7 +212,7 @@
         "Tailles": "Tamaños",
         "Taille (LxH)": "Tamaño (ancho x alto)",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "ID du lien": "Identificación del enlace",
         "Lien": "Enlace",
         "Action": "Acción",
@@ -229,13 +229,13 @@
         "Sauvegarder": "Guardar",
         "Nom": "Nombre",
         "Calcul": "Cálculo",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Groupement": "Agrupar",
         "Escalier": "Escalera",
         "Action": "Acción",
         "Sauvegarde effectuée": "Guardado correctamente",
         "Formule de calcul": "Fórmula",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "Ligne": "Línea",
         "Aire": "Area",
         "Colonne": "Columna",
@@ -468,7 +468,7 @@
         "Semaine": "Semana",
         "Jour": "Día",
         "Heure": "Hora",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Courbe": "Curva",
         "Escalier": "Escalera",
         "Barre": "Cerrada",
@@ -617,7 +617,7 @@
         "Voir les bugs": "Ver los insectos",
         "Voir les propositions d'amélioration": "Ver sugerencias de mejora",
         "Etape 3 : Catégorie et type de la demande": "Paso 3: El tamaño y tipo de demanda",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Aucun": "No",
         "Catégorie": "Categoría",
         "Aucune": "Ninguno",
@@ -657,7 +657,7 @@
         "ID": "CARNÉ DE IDENTIDAD",
         "Logical ID": "ID lógica",
         "Nom": "Nombre",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Sous-type": "Sub-tipo",
         "Mise à jour par": "Actualizado por",
         "Valeurs possibles": "Valores posibles",
@@ -835,7 +835,7 @@
         "par page": "por página",
         "Nom": "Nombre",
         "Plugin": "Enchufar",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Historisé": "Historizar",
         "Timeline": "Cronología",
         "Inversée": "Invertido",
@@ -937,7 +937,7 @@
         "Tag(s)": "Tag (s)",
         "Activer": "Activar",
         "Visible": "Visible",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Tentative échouée": "Intento fracasado",
         "Dernière communication": "Última comunicación",
         "Dernière sauvegarde": "Última copia de seguridad",
@@ -1008,7 +1008,7 @@
         "Puissance éclairage général (Défaut : 0.4)": "Potencia de iluminación general (predeterminado: 0,4)",
         "ID": "CARNÉ DE IDENTIDAD",
         "Nom object": "Nombre objeto",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "ID du lien": "Identificación del enlace",
         "Action": "Acción",
         "Configuration": "Configuración ",
@@ -1022,7 +1022,7 @@
         "Rafraichir": "Refrescar",
         "Corriger tout": "Arreglar todo",
         "Package": "Paquete",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Status": "Estado",
         "Obligatoire": "Obligatorio",
         "Voulu par": "Buscado por",
@@ -1177,7 +1177,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Type non trouvé : ": "Tipo no encontrado:",
         "Sauvegarder": "Guardar",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Nom": "Nombre",
         "Modification sauvegardées avec succès": "Cambios guardados exitosamente"
     },
@@ -2045,7 +2045,7 @@
         "Widgets": "Widgets",
         "Général": "General",
         "Nom du widget": "Nombre del widget",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Sous-Type": "Subtipo",
         "Template": "Plantilla",
         "Icône": "Icono",
@@ -2059,7 +2059,7 @@
     },
     "desktop\/php\/report.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Vues": "Vistas",
         "Design": "Diseño",
         "Plugin": "Plugin",
@@ -2090,7 +2090,7 @@
         "Supprimer": "Borrar",
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
         "Nom": "Nombre",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
@@ -2280,7 +2280,7 @@
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
         "Equipement": "Dispositivos",
         "Commande": "Comando",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Actions": "Acciones",
         "Action sur état": "Acción estatal",
         "Si": "Sí",
@@ -2410,7 +2410,7 @@
         "Action depuis la synthèse": "Acción de síntesis",
         "Sur la synthèse, définissez l'action au clic sur la vignette.": "En el resumen, defina la acción al hacer clic en la miniatura",
         "Informations complémentaires": "Informaciones complementarias",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Pièce": "Habitación",
         "Orientation": "Orientación",
         "Nord": "Norte",
@@ -2511,7 +2511,7 @@
         "Vide l'affichage des courbes sur la zone.": "Borre la visualización de curvas en el área",
         "Affichage": "Monitor",
         "Historique calculé": "Historia calculada",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "Afficher le graphique calculé": "Mostrar gráfico calculado",
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Historique": "Historial",
@@ -2549,7 +2549,7 @@
         "Rechercher | nom | id | :not(nom": "Buscar | nombre | id | : sin nombre",
         "Vider": "Vacío",
         "Date": "Fecha",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "ID": "CARNÉ DE IDENTIDAD",
         "Nom": "Nombre"
     },
@@ -2655,7 +2655,7 @@
         "Supprimer": "Eliminar",
         "Nom": "Nombre",
         "Couleur": "Color",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Groupement": "Agrupar",
         "Echelle": "Nivel",
         "Escalier": "Escalera",
@@ -2911,7 +2911,7 @@
         "Décocher pour desactiver l\\'action": "Desmarque para desactivar la acción",
         "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Marque para que el comando se ejecute en paralelo con las otras acciones",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Sélectionner la commande": "Seleccione la orden",
+        "Sélectionner la commande": "Seleccione el orden",
         "Création des commandes virtuel réussies": "Creación de comandos virtuales correctos",
         "Somme": "Suma",
         "Moyenne": "Media",
@@ -3043,16 +3043,18 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "Para constituir su escenario, agregue bloques",
         "Evénement": "Evento",
         "Choisir une commande": "Elija una orden",
+        "Choisir un Type Générique": "Elija un tipo genérico",
         "Choisir une variable": "Elija una variable",
         "Programmation": "Programación",
         "Rechercher une commande": "Buscar un comando",
+        "Rechercher un type générique": "Encuentra un tipo genérico",
         "Rechercher un scénario": "Buscar un escenario",
         "Rechercher un équipement": "Buscar un dispositivo",
         "Décocher pour désactiver l\\'action": "Desactive la casilla para desactivar Acción",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Compruebe si la ejecución del comando \\'s en otras acciones paralelas",
         "Supprimer l\\'action": "Borrar acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "Décocher pour désactiver l\\'élément": "Desactive para desactivar elemento",
         "SI": "Si",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Permitir o no permitir la repetición de acciones si la evaluación de la condición es la misma que la anterior",
@@ -3189,7 +3191,7 @@
         "Ceci est un test de message pour la commande": "Este es un mensaje de prueba para el comando",
         "Info": "Información",
         "Action": "Acción",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "Annuler": "Cancelar",
         "Valider": "Validar"
     },
@@ -3240,7 +3242,7 @@
         "Assistant cron": "Asistente cron",
         "Annuler": "Cancelar",
         "Valider": "Validar",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
@@ -3632,6 +3634,7 @@
         "Fichier non trouvé : ": "Archivo no encontrado :",
         "La conversion suivante ne peut être vide : ": "La siguiente conversión no puede estar vacía :",
         "Scénario ID inconnu": "ID de escenario desconocido",
+        "Tous": "Todos",
         "Champs json invalide": "Campos json inválidos",
         "Répertoire de téléversement non trouvé : ": "Directorio de carga no encontrado :",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifica la configuración de PHP (post size limit)",
@@ -3883,7 +3886,7 @@
         "Taille": "Tamaño",
         "Lien": "Enlace",
         "Installation": "Instalación",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Langue disponible": "Idioma disponible",
         "Dernière mise à jour le": "Última actualización",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "¿Quieres ir a la página de configuración de su nuevo plugin?",
@@ -4143,6 +4146,7 @@
         "Exécution du scénario ": "Ejecución del escenario",
         " déclenché par : ": "desencadenado por :",
         "Le scénario est de type programmé mais la programmation est vide": "El escenario es del tipo programado pero la programación está vacía",
+        "Tous": "Todos",
         "Impossible d\\'arrêter la sous tâche : ": "No se puede detener la subtarea:",
         "Impossible d\\'arrêter le scénario : ": "Incapaz de detener el escenario:",
         ". PID : ": ". PID:",
@@ -4429,7 +4433,7 @@
         "Durée en secondes": "Duración en segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Escenario",
@@ -4445,21 +4449,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condición",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "Time out": "Se acabó el tiempo"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Color",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccionar el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nombre",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccione la orden"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
@@ -4479,6 +4483,15 @@
         "Activer": "Activar",
         "Désactiver": "Desactivar"
     },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Escribe",
+        "Type Info (event)": "Tipo de información (evento)",
+        "Type Action (exec)": "Tipo Acción (ejecutivo)",
+        "Objet": "Objeto",
+        "Valeur": "Valor",
+        "Sélectionner la commande": "Seleccione el orden",
+        "Tous": "Todos"
+    },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Pregunta",
         "Questions": "Preguntas",
@@ -4488,31 +4501,31 @@
         "Délai": "Plazo",
         "Délai en s": "Retraso en s",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Seleccionar el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccionar el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Diseño"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccionar el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccionar el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nombre",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Activo",
@@ -4520,7 +4533,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
@@ -4535,16 +4548,16 @@
         "Important": "Importante",
         "Information": "Información",
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Seleccionar el comando"
+        "Sélectionner la commande": "Seleccione el orden"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historial para exportar",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Seleccionar el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "De": "De",
         "à": "a",
         "Nom": "Nombre",
@@ -4564,7 +4577,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner la commande": "Seleccione el orden",
         "Largeur (px)": "Ancho (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai": "Aviso",

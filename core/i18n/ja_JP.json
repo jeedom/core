@@ -3043,9 +3043,11 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "イベント",
         "Choisir une commande": "注文する",
+        "Choisir un Type Générique": "Choisir un Type Générique",
         "Choisir une variable": "変数を選択してください",
         "Programmation": "プログラミング",
         "Rechercher une commande": "検索順序",
+        "Rechercher un type générique": "Rechercher un type générique",
         "Rechercher un scénario": "シナリオを検索する",
         "Rechercher un équipement": "機器を探す",
         "Décocher pour désactiver l\\'action": "\\アクションを無効にするにはチェックを外し",
@@ -3632,6 +3634,7 @@
         "Fichier non trouvé : ": "ファイルが見つかりません：",
         "La conversion suivante ne peut être vide : ": "次の変換は空にできません。",
         "Scénario ID inconnu": "不明なシナリオID",
+        "Tous": "Tous",
         "Champs json invalide": "無効なJSONフィールド",
         "Répertoire de téléversement non trouvé : ": "アップロードディレクトリが見つかりません：",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
@@ -4143,6 +4146,7 @@
         "Exécution du scénario ": "シナリオを実行します",
         " déclenché par : ": "によってトリガ：",
         "Le scénario est de type programmé mais la programmation est vide": "Le scénario est de type programmé mais la programmation est vide",
+        "Tous": "Tous",
         "Impossible d\\'arrêter la sous tâche : ": "Impossible d\\'arrêter la sous tâche :",
         "Impossible d\\'arrêter le scénario : ": "Impossible d\\'arrêter le scénario :",
         ". PID : ": ". PID : ",
@@ -4478,6 +4482,15 @@
         "Masquer": "隠します",
         "Activer": "アクティブ",
         "Désactiver": "非アクティブ化"
+    },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Type",
+        "Type Info (event)": "Type Info (event)",
+        "Type Action (exec)": "Type Action (exec)",
+        "Objet": "Objet",
+        "Valeur": "Valeur",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Tous": "Tous"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "質問",

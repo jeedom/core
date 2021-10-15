@@ -235,7 +235,7 @@
         "Action": "Aktion",
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
         "Formule de calcul": "Berechnungsformel",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Ligne": "Linie",
         "Aire": "Fläche",
         "Colonne": "Spalte",
@@ -468,7 +468,7 @@
         "Semaine": "Woche",
         "Jour": "Tag",
         "Heure": "Stunde",
-        "Type": "Art",
+        "Type": "Typ",
         "Courbe": "Kurve",
         "Escalier": "Treppe",
         "Barre": "Abgesperrt",
@@ -2410,7 +2410,7 @@
         "Action depuis la synthèse": "Aktion aus der Synthese",
         "Sur la synthèse, définissez l'action au clic sur la vignette.": "Definieren Sie in der Zusammenfassung die Aktion, wenn Sie auf die Miniaturansicht klicken",
         "Informations complémentaires": "Weitere Informationen",
-        "Type": "Art",
+        "Type": "Typ",
         "Pièce": "Zimmer",
         "Orientation": "Orientierung",
         "Nord": "Norden",
@@ -2511,7 +2511,7 @@
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
         "Affichage": "Anzeige",
         "Historique calculé": "Berechnete Historie",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Historique": "Chronik",
@@ -2911,7 +2911,7 @@
         "Décocher pour desactiver l\\'action": "Deaktivieren Sie diese Option, um die Aktion zu deaktivieren",
         "Cocher pour que la commande s\\'éxecute en parrallele des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Création des commandes virtuel réussies": "Erstellen des virtuellen Befehls erfolgreich",
         "Somme": "Summe",
         "Moyenne": "Durchschnitt",
@@ -3043,16 +3043,18 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "Fügen Sie zur Erstellung Ihres Szenarios Blöcke hinzu",
         "Evénement": "Ereignis",
         "Choisir une commande": "Wählen Sie eine Bestellung",
+        "Choisir un Type Générique": "Wählen Sie einen generischen Typ",
         "Choisir une variable": "Wählen Sie eine Variable",
         "Programmation": "Programmierung",
         "Rechercher une commande": "Befehl suchen",
+        "Rechercher un type générique": "Finden Sie einen generischen Typ",
         "Rechercher un scénario": "Suchen Sie ein Szenario",
         "Rechercher un équipement": "Suche nach Ausrüstung",
         "Décocher pour désactiver l\\'action": "Auswählen, um die Aktion zu deaktivieren",
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
         "Supprimer l\\'action": "Aktion löschen",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Décocher pour désactiver l\\'élément": "Deaktivieren Sie diese Option, um das Element zu deaktivieren",
         "SI": "Wenn",
         "Autoriser ou non la répétition des actions si l\\'évaluation de la condition est la même que la précédente": "Aktionen zulassen oder nicht wiederholen, wenn die Zustandsbewertung mit der vorherigen identisch ist",
@@ -3189,7 +3191,7 @@
         "Ceci est un test de message pour la commande": "Dies ist ein Nachrichtentest für den Befehl",
         "Info": "Die Info",
         "Action": "Aktion",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Annuler": "Abbrechen",
         "Valider": "Validate"
     },
@@ -3240,7 +3242,7 @@
         "Assistant cron": "Cron Assistent",
         "Annuler": "Abbrechen",
         "Valider": "Validate",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Wählen Sie eine Variable aus",
@@ -3632,6 +3634,7 @@
         "Fichier non trouvé : ": "Datei nicht gefunden:",
         "La conversion suivante ne peut être vide : ": "Die folgende Konvertierung darf nicht leer sein:",
         "Scénario ID inconnu": "Unbekannte Szenario-ID",
+        "Tous": "Alle",
         "Champs json invalide": "Ungültige JSON-Felder",
         "Répertoire de téléversement non trouvé : ": "Upload-Verzeichnis nicht gefunden:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Keine Dateien gefunden. Überprüfen Sie die PHP-Einstellung (Postgrößenbeschränkung)",
@@ -4143,6 +4146,7 @@
         "Exécution du scénario ": "Szenario Ausführung",
         " déclenché par : ": "ausgelöst durch:",
         "Le scénario est de type programmé mais la programmation est vide": "Das Szenario ist vom programmierten Typ, aber die Programmierung ist leer",
+        "Tous": "Alle",
         "Impossible d\\'arrêter la sous tâche : ": "Die Unteraufgabe kann nicht gestoppt werden:",
         "Impossible d\\'arrêter le scénario : ": "Das Szenario kann nicht gestoppt werden:",
         ". PID : ": ". PID:",
@@ -4429,7 +4433,7 @@
         "Durée en secondes": "Dauer in Sekunden"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Szenario",
@@ -4445,21 +4449,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Zustand",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Time out": "Auszeit"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Farbe",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Name",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Sichtbar",
@@ -4479,6 +4483,15 @@
         "Activer": "Aktivieren",
         "Désactiver": "Deactivate"
     },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Typ",
+        "Type Info (event)": "Typ Info (Ereignis)",
+        "Type Action (exec)": "Typ Aktion (exec)",
+        "Objet": "Objekt",
+        "Valeur": "Wert",
+        "Sélectionner la commande": "Bestellung auswählen",
+        "Tous": "Alle"
+    },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Frage",
         "Questions": "Fragen",
@@ -4488,31 +4501,31 @@
         "Délai": "Bekanntmachung",
         "Délai en s": "Verzögerung in s",
         "Commandes": "Befehle",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Befehl",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Entwurf"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Name",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Aktiviert",
@@ -4520,7 +4533,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Suchsymbol"
@@ -4535,16 +4548,16 @@
         "Important": "Wichtig",
         "Information": "Information",
         "Message": "Nachricht",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Bestellung auswählen"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Verlauf zum Exportieren",
         "Commandes": "Befehle",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "De": "Von",
         "à": "Bis",
         "Nom": "Name",
@@ -4564,7 +4577,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Befehle",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Largeur (px)": "Breite (px)",
         "Hauteur (px)": "Höhe (px)",
         "Délai": "Bekanntmachung",

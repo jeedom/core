@@ -28,7 +28,11 @@
 - **Blocos de Código** : (Editor de arquivos, cenários, personalização avançada) Função de fallback de código (*dobradura de código*). Atalhos Ctrl + Y e Ctrl + I.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
-- **Cenas** : Adicionando funções de cálculo ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` permitindo obter a média ponderada pela duração ao longo do período.
+- **Cenas** : Adicionando funções de cálculo ````averageTemporal(commande,période)```` E ````averageTemporalBetween(commande,start,end)```` permitindo obter a média ponderada pela duração ao longo do período.
+- **Cenas** : Adicionado suporte para tipos genéricos em cenários.
+	- Desencadear : ``#genericType(LIGHT_STATE,Salon)# > 0`
+	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- Ação `GenericType`
 - **Configurações OSDB** : Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
 - **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
@@ -69,7 +73,8 @@ Jeedom 4.2 contém uma grande parte no aumento da segurança.
 - Fortalecimento das sessões (mudar para sha256 com 64 caracteres em modo estrito).
 - O cookie "fique conectado" (3 meses no máximo) agora é "one shot", renovado a cada uso.
 
-A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança .
+A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.
+Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doc](https://doc.jeedom.com/pt_PT/dev/plugin_template)
 
 # Registro de alterações Jeedom V4.1
 

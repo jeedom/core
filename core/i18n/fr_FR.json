@@ -3043,9 +3043,11 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "Pour constituer votre scénario, veuillez ajouter des blocs",
         "Evénement": "Evénement",
         "Choisir une commande": "Choisir une commande",
+        "Choisir un Type Générique": "Choisir un Type Générique",
         "Choisir une variable": "Choisir une variable",
         "Programmation": "Programmation",
         "Rechercher une commande": "Rechercher une commande",
+        "Rechercher un type générique": "Rechercher un type générique",
         "Rechercher un scénario": "Rechercher un scénario",
         "Rechercher un équipement": "Rechercher un équipement",
         "Décocher pour désactiver l\\'action": "Décocher pour désactiver l\\'action",
@@ -3632,6 +3634,7 @@
         "Fichier non trouvé : ": "Fichier non trouvé : ",
         "La conversion suivante ne peut être vide : ": "La conversion suivante ne peut être vide : ",
         "Scénario ID inconnu": "Scénario ID inconnu",
+        "Tous": "Tous",
         "Champs json invalide": "Champs json invalide",
         "Répertoire de téléversement non trouvé : ": "Répertoire de téléversement non trouvé : ",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
@@ -4143,6 +4146,7 @@
         "Exécution du scénario ": "Exécution du scénario ",
         " déclenché par : ": " déclenché par : ",
         "Le scénario est de type programmé mais la programmation est vide": "Le scénario est de type programmé mais la programmation est vide",
+        "Tous": "Tous",
         "Impossible d\\'arrêter la sous tâche : ": "Impossible d\\'arrêter la sous tâche : ",
         "Impossible d\\'arrêter le scénario : ": "Impossible d\\'arrêter le scénario : ",
         ". PID : ": ". PID : ",
@@ -4478,6 +4482,15 @@
         "Masquer": "Masquer",
         "Activer": "Activer",
         "Désactiver": "Désactiver"
+    },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Type",
+        "Type Info (event)": "Type Info (event)",
+        "Type Action (exec)": "Type Action (exec)",
+        "Objet": "Objet",
+        "Valeur": "Valeur",
+        "Sélectionner la commande": "Sélectionner la commande",
+        "Tous": "Tous"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Question",
