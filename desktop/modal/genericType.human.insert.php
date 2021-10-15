@@ -110,7 +110,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
     if (object_name == undefined) {
       object_name = ''
     }
-    return '#genericType(' + genericType_name + ',' + object_name + ')#'
+    return 'genericType(' + genericType_name + ',' + object_name + ')'
   }
 
   mod_insertGenericType.getId = function() {
