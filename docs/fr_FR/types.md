@@ -3,11 +3,11 @@
 
 Les capteurs et actionneurs dans Jeedom sont gérés par des plugins, qui créent des équipements avec des commandes *Info* (capteur) ou *Action* (actionneur). Ce qui permet ensuite de déclencher des actions en fonctions du changement de certains capteurs, comme allumer une lumière sur une détection de mouvement. Mais le Core de Jeedom, et des plugins comme *Mobile*, *Homebridge*, *Google Smarthome*, *Alexa* etc., ne savent pas ce que sont ces équipements : Une prise, une lumière, un volet, etc.
 
-Pour palier à ce problème, notamment avec les assistants vocaux (*Allume la lumière de la salle*), le Cote a introduit les **Types Génériques**, utilisés par ces plugins.
+Pour palier à ce problème, notamment avec les assistants vocaux (*Allume la lumière de la salle*), le Core a introduit il y a quelques années les **Types Génériques**, utilisés par ces plugins.
 
 Le paramétrage des ces Types Génériques peut se faire directement dans certains plugins, ou par commande dans *Configuration avancée* de celle-ci.
 
-Cette page permet de paramétrer ces Types Génériques directement, ce manière plus directe et plus simple, et propose même une assignation automatique une fois les équipements assignés correctement.
+Cette page permet de paramétrer ces Types Génériques directement, de manière plus directe et plus simple, et propose même une assignation automatique une fois les équipements assignés correctement.
 
 ![Types d'équipement](./images/coreGenerics.gif)
 
