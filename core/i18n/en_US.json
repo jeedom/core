@@ -3047,7 +3047,7 @@
         "Choisir une variable": "Choose a variable",
         "Programmation": "Programming",
         "Rechercher une commande": "Search a command",
-        "Rechercher un type générique": "Find a generic type",
+        "Rechercher un type générique": "Search generic type",
         "Rechercher un scénario": "Search a scenario",
         "Rechercher un équipement": "Search for equipment",
         "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
@@ -4485,11 +4485,11 @@
     },
     "core\/template\/scenario\/genericType.default.html": {
         "Type": "Type",
-        "Type Info (event)": "Type Info (event)",
-        "Type Action (exec)": "Type Action (exec)",
+        "Type Info (event)": "Info type (event)",
+        "Type Action (exec)": "Action type (exec)",
         "Objet": "Object",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Tous": "All"
     },
     "core\/template\/scenario\/ask.default.html": {
