@@ -19,7 +19,7 @@
 - **Resumos** : Possibilidade de nunca mostrar o número à direita do ícone, ou apenas se for positivo.
 - **Resumos** : A alteração do parâmetro de resumo na configuração e nos objetos agora está visível, sem esperar por uma alteração no valor de resumo.
 - **Resumos** : Agora é possível configurar ações nos resumos (ctrl + clique em um resumo) graças aos virtuais.
-- **Tipos de equipamento** Nova página **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a equipamentos e comandos, com suporte para tipos dedicados a plug-ins instalados.
+- **Tipos de equipamento** : Nova página **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
 - **Categorias coloridas** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
 - **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Plugins podem usar esta nova função principal.

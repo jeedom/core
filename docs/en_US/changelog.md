@@ -19,7 +19,7 @@
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
 - **Summaries** : It is now possible to configure actions on the summaries (ctrl + click on a summary) thanks to the virtual ones.
-- **Types of equipment** New page **Tools → Equipment types** allowing generic types to be assigned to equipment and commands, with support for types dedicated to installed plugins.
+- **Types of equipment** : New page **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.

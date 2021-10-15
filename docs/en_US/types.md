@@ -3,7 +3,7 @@
 
 The sensors and actuators in Jeedom are managed by plugins, which create equipment with commands *Info* (sensor) or *Action* (actuator). This then makes it possible to trigger actions based on the change of certain sensors, such as turning on a light on motion detection. But the Jeedom Core, and plugins like *Mobile*, *Homebridge*, *Google Smarthome*, *Alexa* etc., do not know what this equipment is : A socket, a light, a shutter, etc.
 
-To overcome this problem, especially with voice assistants (*Turn on the room light*), Cote introduced the **Generic Types**, used by these plugins.
+To overcome this problem, especially with voice assistants (*Turn on the room light*), Core introduced the **Generic Types**, used by these plugins.
 
 The configuration of these Generic Types can be done directly in certain plugins, or by command in *Advanced configuration* of it.
 

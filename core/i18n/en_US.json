@@ -907,7 +907,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized Access",
         "Type Générique": "Generic Type",
         "Objet": "Object",
-        "Aucun": "No",
+        "Aucun": "None",
         "Tous": "All"
     },
     "desktop\/modal\/interact.query.display.php": {
@@ -3249,8 +3249,8 @@
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Select a generic type",
-        "Annuler": "To cancel",
-        "Valider": "To validate"
+        "Annuler": "Cancel",
+        "Valider": "Ok"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",
