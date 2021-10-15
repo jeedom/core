@@ -1144,6 +1144,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
   pastedElement.find('i.fa-eye-slash').each(function() {
     $(this).parents('.element').first().addClass('elementCollapse')
   })
+  //Synch disabled elements:
 
   updateElseToggle()
 
