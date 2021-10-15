@@ -526,6 +526,17 @@ $divScenario.on('click', '.bt_selectDataStoreTrigger', function(event) {
   })
 })
 
+$divScenario.on('click', '.bt_selectGenericTrigger', function(event) {
+  var el = $(this);
+  jeedom.config.getGenericTypeModal({
+    type: 'info',
+    object: true
+  }, function(result) {
+    el.closest('.trigger').find('.scenarioAttr[data-l1key=trigger]').value('#' + result.human + '#')
+  })
+})
+
+
 //Scenario bar:
 var SC_CLIPBOARD = null
 
@@ -1050,6 +1061,13 @@ $divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
   })
 })
 
+$divScenario.on('click', '.bt_selectGenericExpression', function(event) {
+  var expression = $(this).closest('.expression')
+  jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
+    expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
+  })
+})
+
 $divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.eqLogic.getSelectModal({}, function(result) {
@@ -1410,10 +1428,12 @@ function printScenario(_id) {
       for (var i in data.schedules) {
         $('#div_schedules').schedule.display(data.schedules[i])
       }
+
       jeedom.scenario.update[_id](data)
       if (data.isActive != 1) {
         $('#in_ongoing').removeClass('label-danger').removeClass('label-success').text('{{Inactif}}')
       }
+
       if ($.isArray(data.trigger)) {
         for (var i in data.trigger) {
           if (data.trigger[i] != '' && data.trigger[i] != null) {
@@ -1425,6 +1445,7 @@ function printScenario(_id) {
           addTrigger(data.trigger)
         }
       }
+
       if ($.isArray(data.schedule)) {
         for (var i in data.schedule) {
           if (data.schedule[i] != '' && data.schedule[i] != null) {
@@ -1539,6 +1560,7 @@ function addTrigger(_trigger) {
   div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="trigger" value="' + _trigger.replace(/"/g, '&quot;') + '" >'
   div += '<span class="input-group-btn">'
   div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" tooltip="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
+  div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" tooltip="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
   div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" tooltip="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
   div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger roundedRight"><i class="fas fa-minus-circle"></i></a>'
   div += '</span>'
@@ -1588,8 +1610,9 @@ function addExpression(_expression) {
       retour += '<div class="input-group input-group-sm" >'
       retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />'
       retour += '<span class="input-group-btn">'
-      retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression"  tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
-      retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression"  tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
+      retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
+      retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" tooltip="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
+      retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
       retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
       retour += '</span>'
       retour += '</div>'

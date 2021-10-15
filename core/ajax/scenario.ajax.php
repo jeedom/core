@@ -86,7 +86,7 @@ try {
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
-		$return['evaluate'] = scenarioExpression::setTags(jeedom::fromHumanReadable(init('expression')), $scenario,true);
+		$return['evaluate'] = scenarioExpression::setTags(jeedom::fromHumanReadable(init('expression')), $scenario, true);
 		$return['result'] = evaluate($return['evaluate']);
 		$return['correct'] = 'ok';
 		if (trim($return['result']) == trim($return['evaluate'])) {
@@ -368,6 +368,24 @@ try {
 		}
 		$return = utils::o2a($scenario);
 		$return['trigger'] = jeedom::toHumanReadable($return['trigger']);
+
+		//Change Id by Name:
+		for ($i = 0; $i < count($return['trigger']); ++$i) {
+			if (strpos($return['trigger'][$i], '#genericType') !== false) {
+				$trigger = $return['trigger'][$i];
+				$suffix = explode(')#', $trigger)[1];
+				$ar = explode('#genericType(', $trigger);
+				$ar = explode(')', $ar[1]);
+				$ar = explode(',', $ar[0]);
+				if (is_object(jeeObject::byId($ar[1]))) {
+					$ar = array($ar[0], jeeObject::byId($ar[1])->getName());
+				} else if ($ar[1] == '-1') {
+					$ar = array($ar[0], __('Tous', __FILE__));
+				}
+				$str = implode(',', $ar);
+				$return['trigger'][$i] = '#genericType(' . $str . ')#' . $suffix;
+			}
+		}
 		$return['forecast'] = $scenario->calculateScheduleDate();
 		$return['elements'] = array();
 		$return['humanNameTag'] = $scenario->getHumanName(true, false, true);

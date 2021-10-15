@@ -29,6 +29,10 @@
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
 - **Scénario** : Ajout des fonctions de calcul ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` permettant d'obtenir la moyenne pondérée par la durée sur la période.
+- **Scénario** : Ajout du support des Types Génériques dans les scénarios.
+	- Déclencheur : `#genericType(LIGHT_STATE,Salon)# > 0`
+	- IF `genericType(LIGHT_STATE,Salon) > 0`
+	- Action `genericType`
 - **Réglages OSDB** : Ajout d'un outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
