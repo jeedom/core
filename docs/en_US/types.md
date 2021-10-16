@@ -5,6 +5,10 @@ The sensors and actuators in Jeedom are managed by plugins, which create equipme
 
 To overcome this problem, especially with voice assistants (*Turn on the room light*), Core introduced the **Generic Types**, used by these plugins.
 
+This makes it possible to identify a piece of equipment by *The light of the room* for example.
+
+Generic Types are also integrated into scenarios. You can thus trigger a scenario if a lamp comes on in a room, if movement is detected in the house, turn off all the lights or close all the shutters with a single action, etc. In addition, if you add an equipment, you only have to indicate these types, it will not be necessary to edit such scenarios.
+
 The configuration of these Generic Types can be done directly in certain plugins, or by command in *Advanced configuration* of it.
 
 This page allows these Generic Types to be configured directly, in a more direct and simpler way, and even offers automatic assignment once the devices have been correctly assigned.

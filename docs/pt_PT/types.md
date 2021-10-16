@@ -5,6 +5,10 @@ Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equip
 
 Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
 
+Isso torna possível identificar uma peça de equipamento por *A luz da sala* por exemplo.
+
+Tipos genéricos também são integrados em cenários. Você pode, assim, acionar um cenário se uma lâmpada acender em uma sala, se for detectado movimento na casa, desligar todas as luzes ou fechar todas as venezianas com uma única ação, etc. Além disso, se você adicionar um equipamento, basta indicar esses tipos, não será necessário editar tais cenários.
+
 A configuração destes Tipos Genéricos pode ser feita diretamente em certos plugins, ou por comando em *Configuração avançada* disso.
 
 Esta página permite que esses Tipos Genéricos sejam configurados diretamente, de forma mais direta e simples, e ainda oferece atribuição automática uma vez que os dispositivos tenham sido atribuídos corretamente.

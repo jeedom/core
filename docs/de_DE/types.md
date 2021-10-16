@@ -5,6 +5,10 @@ Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit
 
 Um dieses Problem zu lösen, insbesondere bei Sprachassistenten (*Mach das Zimmerlicht an*), Core stellte die . vor **Generische Typen**, von diesen Plugins verwendet.
 
+Dies ermöglicht die Identifizierung eines Gerätes durch *Das Licht des Zimmers* zum Beispiel.
+
+Auch generische Typen sind in Szenarien integriert. So können Sie ein Szenario auslösen, wenn in einem Raum eine Lampe angeht, eine Bewegung im Haus erkannt wird, alle Lichter ausgeschaltet oder alle Rollläden mit einer einzigen Aktion geschlossen werden usw. Wenn Sie eine Ausrüstung hinzufügen, müssen Sie außerdem nur diese Typen angeben, es ist nicht erforderlich, solche Szenarien zu bearbeiten.
+
 Die Konfiguration dieser generischen Typen kann direkt in bestimmten Plugins oder per Befehl in . erfolgen *Erweiterte Konfiguration* davon.
 
 Auf dieser Seite können diese Generic Types direkt, direkter und einfacher konfiguriert werden und bietet sogar eine automatische Zuordnung nach korrekter Zuordnung der Geräte.
