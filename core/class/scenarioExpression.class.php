@@ -690,9 +690,18 @@ class scenarioExpression {
 	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate, $_unit = 60) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
-		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
+		}
+		else {
+			$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
+		}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
+		}
+		if (strtotime($_startTime) >= time()) {
+			return 0;
+		}
+		if (time() < strtotime($_endTime)) {
+			$_endTime = date('Y-m-d H:i:s');
 		}
 
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
@@ -716,6 +725,7 @@ class scenarioExpression {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($_endTime) - $lastDuration);
 					}
+					$lastValue = round($history->getValue(), $_decimal);
 					break;
 				}
 				$lastDuration = strtotime($history->getDatetime());
