@@ -706,6 +706,7 @@ class scenarioExpression {
 			if (time() < strtotime($_endTime)) $_endTime = date('Y-m-d H:i:s');
 			$duration = $duration + (strtotime($_endTime) - $lastDuration);
 		}
+		if (strtotime($_startTime) >= time()) $duration = 0;
 		return floor($duration / $_unit);
 	}
 	
