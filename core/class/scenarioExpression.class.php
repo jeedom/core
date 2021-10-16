@@ -692,6 +692,7 @@ class scenarioExpression {
 				} else {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($_endTime) - $lastDuration);
+						$lastValue = round($history->getValue(), $_decimal);
 					}
 					break;
 				}
@@ -702,6 +703,7 @@ class scenarioExpression {
 			$lastValue = round($history->getValue(), $_decimal);
 		}
 		if ($lastValue == $_value && $lastDuration <= strtotime($_endTime)) {
+			if (time() < strtotime($_endTime)) $_endTime = date('Y-m-d H:i:s');
 			$duration = $duration + (strtotime($_endTime) - $lastDuration);
 		}
 		return floor($duration / $_unit);
