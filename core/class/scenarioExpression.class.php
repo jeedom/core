@@ -1533,7 +1533,7 @@ class scenarioExpression {
 					return;
 				} elseif ($this->getExpression() == 'genericType') {
 					try {
-						$cmds = cmd::byGenericTypeObjectId($options['type'], $options['object'], );
+						$cmds = cmd::byGenericTypeObjectId($options['type'], $options['object']);
 						foreach ($cmds as $cmd) {
 							if ($cmd->getType() == 'info') {
 								$cmd->event(jeedom::evaluateExpression($options['value']));
