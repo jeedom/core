@@ -697,11 +697,11 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		if (strtotime($_startTime) >= time()) {
+		if (strtotime($_startDate) >= time()) {
 			return 0;
 		}
-		if (time() < strtotime($_endTime)) {
-			$_endTime = date('Y-m-d H:i:s');
+		if (time() < strtotime($_endDate)) {
+			$_endDate = date('Y-m-d H:i:s');
 		}
 
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
