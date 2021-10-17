@@ -1433,6 +1433,9 @@ Desktop
     padding-top: 0!important;
     text-align: center;
   }
+  div.eqLogicDisplayCard span.name > span.label {
+    cursor: pointer !important;
+  }
 
   .scenarioDisplayCard .label {
     cursor: pointer !important;
@@ -2075,6 +2078,7 @@ Desktop
     margin: 0 20px !important;
     min-width: 20% !important;
     text-align: center !important;
+    cursor: pointer !important;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label i {
     margin-right: 5px;
