@@ -30,8 +30,8 @@
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
 - **Guión** : Agregar funciones de cálculo ''''averageTemporal(commande,période)'''' Y ''''averageTemporalBetween(commande,start,end)'''' permitiendo obtener la media ponderada por la duración del período.
 - **Guión** : Se agregó soporte para tipos genéricos en escenarios.
-	- Desencadenar : ''#genericType(LIGHT_STATE,Salon)# > 0`
-	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- Desencadenar : ''#genericType(LIGHT_STATE,#[Salón]#)# > 0`
+	- IF `genericType (LIGHT_STATE,#[Salón]#) > 0`
 	- Acción `GenericType`
 - **Configuración de OSDB** : Adición de una herramienta para la edición masiva de equipos, comandos, objetos, escenarios.
 - **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.

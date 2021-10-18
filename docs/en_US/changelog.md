@@ -30,8 +30,8 @@
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
 - **Scenario** : Adding calculation functions ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` allowing to obtain the average weighted by the duration over the period.
 - **Scenario** : Added support for Generic Types in scenarios.
-	- Trigger : ``#genericType(LIGHT_STATE,Salon)# > 0`
-	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- Trigger : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+	- IF `genericType (LIGHT_STATE,#[Salon]#) > 0`
 	- `GenericType` action
 - **OSDB settings** : Addition of a tool for mass editing of equipment, commands, objects, scenarios.
 - **OSDB settings** : Adding a dynamic SQL query constructor.
