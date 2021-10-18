@@ -237,7 +237,7 @@ class scenario {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
 		WHERE mode != "schedule"
-		AND `trigger` LIKE :trigger ';
+		AND `trigger` LIKE :trigger';
 		if ($_onlyEnable) {
 			$sql .= ' AND isActive=1';
 		}
