@@ -228,9 +228,9 @@ class scenario {
 	 * @return type
 	 */
 	public static function byGenericTrigger($_generic, $_object, $_onlyEnable = true) {
-		$object_id = (is_object($_object)) ? $_object->getId() : $_object;
+		$object_id = (is_object($_object)) ? '#object' . $_object->getId() . '#' : $_object;
 		$values = array(
-			'trigger' => '%genericType(' . $_generic . ',#object' . $object_id . '#)%',
+			'trigger' => '%genericType(' . $_generic . ',' . $object_id . ')%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
