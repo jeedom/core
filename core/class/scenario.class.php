@@ -232,13 +232,12 @@ class scenario {
 			return;
 		}
 		$values = array(
-			'generic_type' => '%genericType(' . $_generic . '%',
-			'object_id' => '%,#object' . $_object->getId() . '#)%',
+			'trigger' => '%genericType(' . $_generic . ',#object' . $_object->getId() . '#)%',
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
 		WHERE mode != "schedule"
-		AND ((`trigger` LIKE :generic_type AND `trigger` LIKE :object_id)';
+		AND `trigger` LIKE :trigger ';
 		if ($_onlyEnable) {
 			$sql .= ' AND isActive=1';
 		}
