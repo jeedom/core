@@ -76,8 +76,8 @@ class scenarioSubElement {
 			return $return;
 		}
 		if ($this->getSubtype() == 'condition') {
-			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execCondition']['txt'] . $this->getType() . ' ' . jeedom::toHumanReadable($this->getExpression()[0]->getExpression()));
 			foreach (($this->getExpression()) as $expression) {
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execCondition']['txt'] . $this->getType() . ' ' . jeedom::toHumanReadable($expression->getExpression()));
 				return $expression->execute($_scenario);
 			}
 		}
