@@ -1242,11 +1242,11 @@ class jeedom {
 	}
 
 	public static function toHumanReadable($_input) {
-		return scenario::toHumanReadable(eqLogic::toHumanReadable(cmd::cmdToHumanReadable($_input)));
+		return object::toHumanReadable(scenario::toHumanReadable(eqLogic::toHumanReadable(cmd::cmdToHumanReadable($_input))));
 	}
 
 	public static function fromHumanReadable($_input) {
-		return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
+		return object::fromHumanReadable(scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input))));
 	}
 
 	public static function evaluateExpression($_input, $_scenario = null) {

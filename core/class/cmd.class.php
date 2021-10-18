@@ -366,27 +366,27 @@ class cmd {
 	}
 
 	public static function byGenericTypeObjectId($_generic_type, $_object_id = null, $_type = null) {
-    $values = array(
+		$values = array(
 			'generic_type' => $_generic_type
 		);
-    $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
 		WHERE generic_type=:generic_type';
 
-  	if ($_object_id && $_object_id != '-1') {
-      if (!is_numeric($_object_id)) {
-        $object = jeeObject::byName($_object_id);
-        if (!is_object($object)) return array();
-        $_object_id = $object->getId();
-      }
-      $eqLogics = eqLogic::byObjectId($_object_id);
-      $eqLogicIds = array();
-      foreach ($eqLogics as $eqLogic) {
-          array_push($eqLogicIds, $eqLogic->getId());
-      }
-      $eqLogicIds = implode(',', $eqLogicIds);
-      $sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
-    }
+		if ($_object_id && $_object_id != '-1') {
+			if (!is_numeric($_object_id)) {
+				$object = jeeObject::byName($_object_id);
+				if (!is_object($object)) return array();
+				$_object_id = $object->getId();
+			}
+			$eqLogics = eqLogic::byObjectId($_object_id);
+			$eqLogicIds = array();
+			foreach ($eqLogics as $eqLogic) {
+				array_push($eqLogicIds, $eqLogic->getId());
+			}
+			$eqLogicIds = implode(',', $eqLogicIds);
+			$sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
+		}
 
 		if ($_type !== null) {
 			$values['type'] = $_type;

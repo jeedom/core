@@ -59,7 +59,7 @@ class jeeObject {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function all($_onlyVisible=false, $_byPosition=false) {
+	public static function all($_onlyVisible = false, $_byPosition = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object ';
 		if ($_onlyVisible) {
@@ -85,7 +85,7 @@ class jeeObject {
 		if ($_all === false) {
 			$sql .= ' LIMIT 1';
 			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-			if(!is_object($result)){
+			if (!is_object($result)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 				FROM object';
 				if ($_onlyVisible) {
@@ -98,7 +98,7 @@ class jeeObject {
 			return $result;
 		}
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		if(count($result) == 0){
+		if (count($result) == 0) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM object';
 			if ($_onlyVisible) {
@@ -108,6 +108,89 @@ class jeeObject {
 			$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		}
 		return $result;
+	}
+
+	public static function toHumanReadable($_input) {
+		if (is_object($_input)) {
+			$reflections = array();
+			$uuid = spl_object_hash($_input);
+			if (!isset($reflections[$uuid])) {
+				$reflections[$uuid] = new ReflectionClass($_input);
+			}
+			$reflection = $reflections[$uuid];
+			$properties = $reflection->getProperties();
+			foreach ($properties as $property) {
+				$property->setAccessible(true);
+				$value = $property->getValue($_input);
+				$property->setValue($_input, self::toHumanReadable($value));
+				$property->setAccessible(false);
+			}
+			return $_input;
+		}
+		if (is_array($_input)) {
+			foreach ($_input as $key => $value) {
+				$_input[$key] = self::toHumanReadable($value);
+			}
+			return $_input;
+		}
+		$text = $_input;
+		preg_match_all("/#object([0-9]*)#/", $text, $matches);
+		foreach ($matches[1] as $object_id) {
+			if (is_numeric($object_id)) {
+				$object = self::byId($object_id);
+				if (is_object($object_id)) {
+					$text = str_replace('#object' . $object_id . '#', '#' . $object->getHumanName() . '#', $text);
+				}
+			}
+		}
+		return $text;
+	}
+
+	public static function fromHumanReadable($_input) {
+		$isJson = false;
+		if (is_json($_input)) {
+			$isJson = true;
+			$_input = json_decode($_input, true);
+		}
+		if (is_object($_input)) {
+			$reflections = array();
+			$uuid = spl_object_hash($_input);
+			if (!isset($reflections[$uuid])) {
+				$reflections[$uuid] = new ReflectionClass($_input);
+			}
+			$reflection = $reflections[$uuid];
+			$properties = $reflection->getProperties();
+			foreach ($properties as $property) {
+				$property->setAccessible(true);
+				$value = $property->getValue($_input);
+				$property->setValue($_input, self::fromHumanReadable($value));
+				$property->setAccessible(false);
+			}
+			return $_input;
+		}
+		if (is_array($_input)) {
+			foreach ($_input as $key => $value) {
+				$_input[$key] = self::fromHumanReadable($value);
+			}
+			if ($isJson) {
+				return json_encode($_input, JSON_UNESCAPED_UNICODE);
+			}
+			return $_input;
+		}
+		$text = $_input;
+		preg_match_all("/#\[(.*?)\]#/", $text, $matches);
+		if (count($matches) == 3) {
+			$countMatches = count($matches[0]);
+			for ($i = 0; $i < $countMatches; $i++) {
+				if (isset($matches[1][$i]) && isset($matches[2][$i])) {
+					$object = self::byName($matches[1][$i]);
+					if (isset($object[0]) && is_object($object[0])) {
+						$text = str_replace($matches[0][$i], '#object' . $object[0]->getId() . '#', $text);
+					}
+				}
+			}
+		}
+		return $text;
 	}
 
 	public static function buildTree($_object = null, $_visible = true) {
@@ -132,10 +215,10 @@ class jeeObject {
 		return $rightReturn;
 	}
 
-	public static function getUISelectList($_none=true) {
+	public static function getUISelectList($_none = true) {
 		$allObject = self::buildTree(null, false);
 		$options = '';
-		if ($_none) $options .= '<option value="">'.__('Aucun', __FILE__).'</option>';
+		if ($_none) $options .= '<option value="">' . __('Aucun', __FILE__) . '</option>';
 		foreach ($allObject as $object) {
 			$decay = $object->getConfiguration('parentNumber');
 			$options .= '<option value="' . $object->getId() . '">' . str_repeat('&nbsp;&nbsp;', $decay) . $object->getName() . '</option>';
@@ -143,20 +226,20 @@ class jeeObject {
 		return $options;
 	}
 
-	public static function fullData($_restrict = array(),$_user = null) {
+	public static function fullData($_restrict = array(), $_user = null) {
 		$return = array();
 		foreach (jeeObject::all(true) as $object) {
 			if (!isset($_restrict['object']) || !is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
 				foreach ($object->getEqLogic(true, true) as $eqLogic) {
-					if (is_object($_user) && !$eqLogic->hasRight('r',$_user)) {
+					if (is_object($_user) && !$eqLogic->hasRight('r', $_user)) {
 						continue;
 					}
 					if (!isset($_restrict['eqLogic']) || !is_array($_restrict['eqLogic']) || isset($_restrict['eqLogic'][$eqLogic->getId()])) {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
-						foreach(($eqLogic->getCmd()) as $cmd) {
+						foreach (($eqLogic->getCmd()) as $cmd) {
 							if (!isset($_restrict['cmd']) || !is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
 								$cmd_return = utils::o2a($cmd);
 								if ($cmd->getType() == 'info') {
@@ -186,9 +269,9 @@ class jeeObject {
 
 	public static function deadCmd() {
 		$return = array();
-		foreach((jeeObject::all()) as $object) {
+		foreach ((jeeObject::all()) as $object) {
 			$sumaries = $object->getConfiguration('summary');
-			if(!is_array($sumaries) || count($sumaries) < 1){
+			if (!is_array($sumaries) || count($sumaries) < 1) {
 				continue;
 			}
 			foreach ($sumaries as $key => $summary) {
@@ -255,7 +338,6 @@ class jeeObject {
 					}
 					$cmd->event($value['value']);
 				} catch (Exception $e) {
-
 				}
 			}
 		}
@@ -280,7 +362,6 @@ class jeeObject {
 					}
 					$cmd->event($result);
 				} catch (Exception $e) {
-
 				}
 			}
 			$events[] = $event;
@@ -316,7 +397,7 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
-	public static function getGlobalHtmlSummary($_version='dashboard') {
+	public static function getGlobalHtmlSummary($_version = 'dashboard') {
 		$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 		$objects = self::all();
 		$def = config::byKey('object:summary');
@@ -362,15 +443,15 @@ class jeeObject {
 				if ($result == 0) $icon = $def[$key]['iconnul'];
 			}
 			$classSummaryAction = '';
-			if(is_object($virtual)){
+			if (is_object($virtual)) {
 				foreach ($virtual->getCmd('action') as $cmd) {
-					if($cmd->getConfiguration('summary::key') == $key){
+					if ($cmd->getConfiguration('summary::key') == $key) {
 						$classSummaryAction = 'objectSummaryAction';
 						break;
 					}
 				}
 			}
-			$return .= '<span class="objectSummaryParent '.$classSummaryAction.' cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '" data-hidenulnumber="'. $def[$key]['hidenulnumber'] . '">';
+			$return .= '<span class="objectSummaryParent ' . $classSummaryAction . ' cursor" data-summary="' . $key . '" data-object_id="" style="' . $style . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="' . urlencode($def[$key]['icon']) . '" data-iconnul="' . urlencode($def[$key]['iconnul']) . '" data-hidenulnumber="' . $def[$key]['hidenulnumber'] . '">';
 			if ($def[$key]['hidenumber'] == 1 || ($result == 0 && $def[$key]['hidenulnumber'] == 1)) {
 				$return .= $icon . ' <sup><span style="display:none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $def[$key]['unit'] . '</sup></span>';
 			} else {
@@ -437,7 +518,7 @@ class jeeObject {
 			$virtualGlobal->setIsEnable(1);
 		}
 		$virtualGlobal->setIsEnable(1);
-		$virtualGlobal->setConfiguration('icon','virtual_summary_icon');
+		$virtualGlobal->setConfiguration('icon', 'virtual_summary_icon');
 		$virtualGlobal->setLogicalId('summaryglobal');
 		$virtualGlobal->setEqType_name('virtual');
 		$virtualGlobal->save();
@@ -458,7 +539,7 @@ class jeeObject {
 		$cmd->setUnite($def[$_key]['unit']);
 		$cmd->save();
 
-		foreach((jeeObject::all()) as $object) {
+		foreach ((jeeObject::all()) as $object) {
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
 				continue;
@@ -477,7 +558,7 @@ class jeeObject {
 			$virtual->setLogicalId('summary' . $object->getId());
 			$virtual->setEqType_name('virtual');
 			$virtual->setObject_id($object->getId());
-			$virtual->setConfiguration('icon','virtual_summary_icon');
+			$virtual->setConfiguration('icon', 'virtual_summary_icon');
 			$virtual->save();
 			$object->setConfiguration('summary_virtual_id', $virtual->getId());
 			$object->save();
@@ -498,88 +579,88 @@ class jeeObject {
 			$cmd->setUnite($def[$_key]['unit']);
 			$cmd->save();
 
-			$eqLogics = $object->getEqLogicBySummary($_key, true,false);
+			$eqLogics = $object->getEqLogicBySummary($_key, true, false);
 			$cmd_genericType = array();
 			foreach ($eqLogics as $eqLogic) {
 				foreach ($eqLogic->getCmd() as $cmd) {
-					if($cmd->getGeneric_type() == ''){
+					if ($cmd->getGeneric_type() == '') {
 						continue;
 					}
-					if(!isset($cmd_genericType[$cmd->getGeneric_type()])){
+					if (!isset($cmd_genericType[$cmd->getGeneric_type()])) {
 						$cmd_genericType[$cmd->getGeneric_type()] = array();
 					}
 					$cmd_genericType[$cmd->getGeneric_type()][] = $cmd->getId();
 				}
 			}
 			foreach ($cmd_genericType as $genericType => $cmds) {
-				if(!isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype'])){
+				if (!isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']) || !isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype'])) {
 					continue;
 				}
-				$cmd = $virtual->getCmd('action', $_key.'::action::'.$genericType);
+				$cmd = $virtual->getCmd('action', $_key . '::action::' . $genericType);
 				if (!is_object($cmd)) {
 					$cmd = new virtualCmd();
-					$cmd->setName($def[$_key]['name'].' '.$JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setName($def[$_key]['name'] . ' ' . $JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
 					$cmd->setIsHistorized(0);
 				}
 				$cmd->setEqLogic_id($virtual->getId());
-				$cmd->setLogicalId($_key.'::action::'.$genericType);
+				$cmd->setLogicalId($_key . '::action::' . $genericType);
 				$cmd->setType('action');
 				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype']);
-				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
-				$cmd->setConfiguration('summary::object_id',$object->getId());
-				$cmd->setConfiguration('summary::generic_type',$genericType);
-				$cmd->setConfiguration('summary::key',$_key);
+				$cmd->setConfiguration('infoName', 'core::jeeObject::summary::' . $_key);
+				$cmd->setConfiguration('summary::object_id', $object->getId());
+				$cmd->setConfiguration('summary::generic_type', $genericType);
+				$cmd->setConfiguration('summary::key', $_key);
 				$cmd->save();
 
-				$cmd = $virtualGlobal->getCmd('action', $_key.'::action::'.$genericType);
+				$cmd = $virtualGlobal->getCmd('action', $_key . '::action::' . $genericType);
 				if (!is_object($cmd)) {
 					$cmd = new virtualCmd();
-					$cmd->setName($def[$_key]['name'].' '.$JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
+					$cmd->setName($def[$_key]['name'] . ' ' . $JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['name']);
 					$cmd->setIsHistorized(0);
 				}
 				$cmd->setEqLogic_id($virtualGlobal->getId());
-				$cmd->setLogicalId($_key.'::action::'.$genericType);
+				$cmd->setLogicalId($_key . '::action::' . $genericType);
 				$cmd->setType('action');
 				$cmd->setSubtype($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$genericType]['summary']['subtype']);
-				$cmd->setConfiguration('infoName','core::jeeObject::summary::'.$_key);
-				$cmd->setConfiguration('summary::object_id','global');
-				$cmd->setConfiguration('summary::generic_type',$genericType);
-				$cmd->setConfiguration('summary::key',$_key);
+				$cmd->setConfiguration('infoName', 'core::jeeObject::summary::' . $_key);
+				$cmd->setConfiguration('summary::object_id', 'global');
+				$cmd->setConfiguration('summary::generic_type', $genericType);
+				$cmd->setConfiguration('summary::key', $_key);
 				$cmd->save();
 			}
 		}
 	}
 
-	public static function actionOnSummary($_cmd,$_options = null){
-		if($_cmd->getConfiguration('summary::object_id') == 'global'){
-			foreach((jeeObject::all()) as $object) {
+	public static function actionOnSummary($_cmd, $_options = null) {
+		if ($_cmd->getConfiguration('summary::object_id') == 'global') {
+			foreach ((jeeObject::all()) as $object) {
 				if ($object->getConfiguration('summary::global::' . $_cmd->getConfiguration('summary::key'), 0) == 0) {
 					continue;
 				}
-				$object->summaryAction($_cmd,$_options);
+				$object->summaryAction($_cmd, $_options);
 			}
-		}else{
+		} else {
 			$object = self::byId($_cmd->getConfiguration('summary::object_id'));
-			if(!is_object($object)){
+			if (!is_object($object)) {
 				throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $_cmd->getConfiguration('summary::object_id'));
 			}
-			$object->summaryAction($_cmd,$_options);
+			$object->summaryAction($_cmd, $_options);
 		}
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function summaryAction($_cmd,$_options = null){
-		$eqLogics = $this->getEqLogicBySummary($_cmd->getConfiguration('summary::key'), true,false);
+	public function summaryAction($_cmd, $_options = null) {
+		$eqLogics = $this->getEqLogicBySummary($_cmd->getConfiguration('summary::key'), true, false);
 		foreach ($eqLogics as $eqLogic) {
 			foreach ($eqLogic->getCmd() as $cmd) {
-				if($cmd->getGeneric_type() == '' || $cmd->getGeneric_type() != $_cmd->getConfiguration('summary::generic_type')){
+				if ($cmd->getGeneric_type() == '' || $cmd->getGeneric_type() != $_cmd->getConfiguration('summary::generic_type')) {
 					continue;
 				}
 				try {
 					$cmd->execCmd($_options);
 				} catch (\Exception $e) {
-					log::add('cmd','error',$cmd->getHumanName().' '.$e->getMessage());
+					log::add('cmd', 'error', $cmd->getHumanName() . ' ' . $e->getMessage());
 				}
 			}
 		}
@@ -625,7 +706,7 @@ class jeeObject {
 	}
 
 	public function save($_direct = false) {
-		if($this->_changed){
+		if ($this->_changed) {
 			cache::set('globalSummaryHtmldashboard', '');
 			cache::set('globalSummaryHtmlmobile', '');
 			$this->setCache('summaryHtmldashboard', '');
@@ -653,7 +734,7 @@ class jeeObject {
 
 	public function getChilds() {
 		$return = array();
-		foreach(($this->getChild()) as $child) {
+		foreach (($this->getChild()) as $child) {
 			$return[] = $child;
 			$return = array_merge($return, $child->getChilds());
 		}
@@ -761,14 +842,13 @@ class jeeObject {
 					$child->setFather_id($this->getFather_id());
 					$child->save();
 				} catch (\Exception $e) {
-
 				}
 			}
 		}
-		$files = ls(__DIR__ . '/../../data/object/','object'.$this->getId().'-*');
+		$files = ls(__DIR__ . '/../../data/object/', 'object' . $this->getId() . '-*');
 		if (count($files)  > 0) {
 			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/object/'.$file);
+				unlink(__DIR__ . '/../../data/object/' . $file);
 			}
 		}
 	}
@@ -803,29 +883,29 @@ class jeeObject {
 			if ($_prettify) {
 				if ($this->getConfiguration('useCustomColor') == 1) {
 					return '<span class="label" style="background-color:' . $this->getDisplay('tagColor') . ' ;color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
-				}else{
+				} else {
 					return '<span class="label labelObjectHuman">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
 				}
 			} else {
 				return $this->getDisplay('icon') . ' ' . $this->getName();
 			}
 		} else {
-			return '['. $this->getName().']';
+			return '[' . $this->getName() . ']';
 		}
 	}
 
-	public function cleanSummary(){
+	public function cleanSummary() {
 		$def = config::byKey('object:summary');
 		$summaries = $this->getConfiguration('summary');
-		if(!is_array($summaries) || count($summaries) == 0){
+		if (!is_array($summaries) || count($summaries) == 0) {
 			return;
 		}
 		foreach ($summaries as $key => $value) {
-			if(!isset($def[$key])){
+			if (!isset($def[$key])) {
 				unset($summaries[$key]);
 			}
 		}
-		$this->setConfiguration('summary',$summaries);
+		$this->setConfiguration('summary', $summaries);
 		$this->save();
 	}
 
@@ -848,27 +928,27 @@ class jeeObject {
 				continue;
 			}
 			$cmds = cmd::byIds($matches[1]);
-			if(count($cmds) == 0){
+			if (count($cmds) == 0) {
 				continue;
 			}
 			foreach ($cmds as $cmd) {
-				if($cmd->getType() != 'info'){
-					continue(2);
+				if ($cmd->getType() != 'info') {
+					continue (2);
 				}
-				if(!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0){
-					continue(2);
+				if (!is_object($cmd->getEqLogic()) || $cmd->getEqLogic()->getIsEnable() == 0) {
+					continue (2);
 				}
 				$value = $cmd->execCmd();
-				if(isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0){
-					if((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)){
-						continue(2);
+				if (isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0) {
+					if ((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)) {
+						continue (2);
 					}
 				}
-				$infos['cmd'] = str_replace('#'.$cmd->getId().'#',$value,$infos['cmd']);
+				$infos['cmd'] = str_replace('#' . $cmd->getId() . '#', $value, $infos['cmd']);
 			}
 			$value = evaluate($infos['cmd']);
 
-			$value = trim($value,'"');
+			$value = trim($value, '"');
 			if (isset($infos['invert']) && $infos['invert'] == 1) {
 				$value = !$value;
 			}
@@ -889,7 +969,7 @@ class jeeObject {
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}
 
-	public function getHtmlSummary($_version='dashboard') {
+	public function getHtmlSummary($_version = 'dashboard') {
 		$virtual = eqLogic::byLogicalId('summary' . $this->getId(), 'virtual');
 		$return = '<span class="objectSummaryContainer objectSummary' . $this->getId() . '" data-version="' . $_version . '">';
 		$def = config::byKey('object:summary');
@@ -916,15 +996,15 @@ class jeeObject {
 					if ($result == 0) $icon = $value['iconnul'];
 				}
 				$classSummaryAction = '';
-				if(is_object($virtual)){
+				if (is_object($virtual)) {
 					foreach ($virtual->getCmd('action') as $cmd) {
-						if($cmd->getConfiguration('summary::key') == $key){
+						if ($cmd->getConfiguration('summary::key') == $key) {
 							$classSummaryAction = 'objectSummaryAction';
 							break;
 						}
 					}
 				}
-				$return .= '<span style="' . $style . '" class="objectSummaryParent '.$classSummaryAction.' cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="'. urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="'. $value['hidenulnumber'] . '">';
+				$return .= '<span style="' . $style . '" class="objectSummaryParent ' . $classSummaryAction . ' cursor" data-summary="' . $key . '" data-object_id="' . $this->getId() . '" data-displayZeroValue="' . $allowDisplayZero . '" data-icon="' . urlencode($value['icon']) . '" data-iconnul="' . urlencode($value['iconnul']) . '" data-hidenulnumber="' . $value['hidenulnumber'] . '">';
 				if ($value['hidenumber'] == 1 || ($result == 0 && $value['hidenulnumber'] == 1)) {
 					$return .= $icon . ' <sup><span style="display: none;" class="objectSummary' . $key . '">' . $result . '</span> ' . $value['unit'] . '</sup></span>';
 				} else {
@@ -951,7 +1031,7 @@ class jeeObject {
 		$icon = findCodeIcon($this->getDisplay('icon'));
 		$_data['node']['object' . $this->getId()] = array(
 			'id' => 'object' . $this->getId(),
-			'type' => __('Objet',__FILE__),
+			'type' => __('Objet', __FILE__),
 			'name' => $this->getName(),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
@@ -982,7 +1062,7 @@ class jeeObject {
 		if ($this->getImage('sha512') == '') {
 			return '';
 		}
-		$filename = 'object'.$this->getId().'-'.$this->getImage('sha512') . '.' . $this->getImage('type');
+		$filename = 'object' . $this->getId() . '-' . $this->getImage('sha512') . '.' . $this->getImage('type');
 		return 'data/object/' . $filename;
 	}
 
@@ -1039,27 +1119,27 @@ class jeeObject {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
 
 	public function setName($_name) {
-		$_name = substr(cleanComponanteName($_name),0,127);
-		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;
 	}
 
 	public function setFather_id($_father_id = null) {
 		$_father_id = ($_father_id == '') ? null : $_father_id;
-		$this->_changed = utils::attrChanged($this->_changed,$this->father_id,$_father_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->father_id, $_father_id);
 		$this->father_id = $_father_id;
 		return $this;
 	}
 
 	public function setIsVisible($_isVisible) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->isVisible,$_isVisible);
+		$this->_changed = utils::attrChanged($this->_changed, $this->isVisible, $_isVisible);
 		$this->isVisible = $_isVisible;
 		return $this;
 	}
@@ -1072,7 +1152,7 @@ class jeeObject {
 	}
 
 	public function setPosition($_position) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->position,$_position);
+		$this->_changed = utils::attrChanged($this->_changed, $this->position, $_position);
 		$this->position = $_position;
 		return $this;
 	}
@@ -1083,7 +1163,7 @@ class jeeObject {
 
 	public function setConfiguration($_key, $_value) {
 		$configuration =  utils::setJsonAttr($this->configuration, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->_changed = utils::attrChanged($this->_changed, $this->configuration, $configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
@@ -1094,7 +1174,7 @@ class jeeObject {
 
 	public function setDisplay($_key, $_value) {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->_changed = utils::attrChanged($this->_changed, $this->display, $display);
 		$this->display = $display;
 		return $this;
 	}
@@ -1114,7 +1194,7 @@ class jeeObject {
 
 	public function setImage($_key, $_value) {
 		$image = utils::setJsonAttr($this->image, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->image,$image);
+		$this->_changed = utils::attrChanged($this->_changed, $this->image, $image);
 		$this->image = $image;
 		return $this;
 	}
@@ -1127,5 +1207,4 @@ class jeeObject {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
 }
