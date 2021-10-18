@@ -228,7 +228,7 @@ class scenario {
 	 * @return type
 	 */
 	public static function byGenericTrigger($_generic, $_object, $_onlyEnable = true) {
-		if (is_object()) {
+		if (is_object($_object)) {
 			$values = array('trigger' => '%genericType(' . $_generic . ',#object' . $_object->getId() . '#)%');
 		} else {
 			$values = array('trigger' => '%genericType(' . $_generic . ')%');
