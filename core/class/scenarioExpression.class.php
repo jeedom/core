@@ -786,7 +786,11 @@ class scenarioExpression {
 
 	public static function genericType($_genericType, $_object = null, $_default = '') {
 		$_genericType = trim(trim(trim($_genericType), '"'));
-		$cmds = cmd::byGenericTypeObjectId($_genericType, str_replace(array('#object', '#'), '', $_object), 'info');
+		if ($_object == null) {
+			$cmds = cmd::byGenericTypeObjectId($_genericType, str_replace(array('#object', '#'), '', $_object), 'info');
+		} else {
+			$cmds = cmd::byGenericTypeObjectId($_genericType, -1, 'info');
+		}
 		if (count($cmds) > 0) {
 			$result = 0;
 			foreach ($cmds as $cmd) {
