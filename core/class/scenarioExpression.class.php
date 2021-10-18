@@ -786,8 +786,7 @@ class scenarioExpression {
 
 	public static function genericType($_genericType, $_object = null, $_default = '') {
 		$_genericType = trim(trim(trim($_genericType), '"'));
-		$object = jeeObject::byId(str_replace(array('#object', '#'), '', $_object));
-		$cmds = cmd::byGenericTypeObjectId($_genericType, $object->getId(), 'info');
+		$cmds = cmd::byGenericTypeObjectId($_genericType, str_replace(array('#object', '#'), '', $_object), 'info');
 		if (count($cmds) > 0) {
 			$result = 0;
 			foreach ($cmds as $cmd) {
@@ -1541,7 +1540,7 @@ class scenarioExpression {
 					return;
 				} elseif ($this->getExpression() == 'genericType') {
 					try {
-						$cmds = cmd::byGenericTypeObjectId($options['type'], $options['object']);
+						$cmds = cmd::byGenericTypeObjectId($options['type'], str_replace(array('#object', '#'), '', $options['object']));
 						foreach ($cmds as $cmd) {
 							if ($cmd->getType() == 'info') {
 								$cmd->event(jeedom::evaluateExpression($options['value']));
