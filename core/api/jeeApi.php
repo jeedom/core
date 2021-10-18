@@ -169,7 +169,17 @@ if (init('type') != '') {
 					$scenario->setIsActive(0);
 					$scenario->save();
 					break;
+				case 'disable':
+					log::add('api', 'debug', __('Désactivation scénario de : ', __FILE__) . $scenario->getHumanName());
+					$scenario->setIsActive(0);
+					$scenario->save();
+					break;
 				case 'activate':
+					log::add('api', 'debug', __('Activation scénario de : ', __FILE__) . $scenario->getHumanName());
+					$scenario->setIsActive(1);
+					$scenario->save();
+					break;
+				case 'enable':
 					log::add('api', 'debug', __('Activation scénario de : ', __FILE__) . $scenario->getHumanName());
 					$scenario->setIsActive(1);
 					$scenario->save();
