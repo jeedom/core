@@ -233,8 +233,10 @@ There are specific triggers (other than those provided by commands) :
 - ``#begin_restore#`` : Event sent at the start of a restoration.
 - ``#end_restore#`` : Event sent at the end of a restoration.
 - ``#user_connect#`` : User login
+- ``#variable(nom_variable)#`` : Changing the value of the variable name_name.
+- ``#genericType (GENERIC, Object)#`` : Change of a Generic GENERIC type info command, in the Object object.
 
-You can also trigger a scenario when a variable is updated by putting : #variable(nom_variable)# or using the HTTP API described [here](https://doc.jeedom.com/en_US/core/4.1/api_http).
+You can also trigger a scenario using the HTTP API described [here](https://doc.jeedom.com/en_US/core/4.1/api_http).
 
 ### Comparison operators and links between conditions
 
@@ -333,6 +335,8 @@ Several functions are available for the equipment :
 - ``lastBetween(commande,start,end)`` : Gives the last value recorded for the device between the 2 requested terminals (in the form ``Y-m-d H:i:s`` or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Retrieves the value of a variable or the desired value by default.
+
+- ``#genericType (GENERIC, Object)#`` : Retrieves the sum of the GENERIC Generic Type information in the Object object.
 
 - ``scenario(scenario)`` : Returns the status of the scenario.
     1 : In progress,
@@ -458,6 +462,7 @@ In addition to home automation commands, you have access to the following action
 - **Pause** (sleep) : Pause of x second (s).
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
+- **genericType (GENERIC, Object) : Modification of an info (event) or action (execCmd) command by Generic Type, in an object. For example, turn off all the lights in the Living Room.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it).
 - **Stop** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).

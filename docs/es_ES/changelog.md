@@ -19,7 +19,7 @@
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
 - **Resúmenes** : Ahora es posible configurar acciones sobre los resúmenes (ctrl + clic en un resumen) gracias a los virtuales.
-- **Tipos de equipo** Nueva página **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a equipos y comandos, con soporte para tipos dedicados a complementos instalados.
+- **Tipos de equipo** : Nueva página **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2)).
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
 - **Categorías coloreadas** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
 - **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función principal.
@@ -28,7 +28,11 @@
 - **Bloques de código** : (Editor de archivos, escenarios, personalización avanzada) Función de reserva de código (*plegado de código*). Atajos Ctrl + Y y Ctrl + I.
 - **Complementos / Gestión** : Visualización de la categoría de complementos y un enlace para abrir directamente su página sin pasar por el menú Complementos.
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
-- **Guión** : Agregar funciones de cálculo ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` permitiendo obtener la media ponderada por la duración del período.
+- **Guión** : Agregar funciones de cálculo ''''averageTemporal(commande,période)'''' Y ''''averageTemporalBetween(commande,start,end)'''' permitiendo obtener la media ponderada por la duración del período.
+- **Guión** : Se agregó soporte para tipos genéricos en escenarios.
+	- Desencadenar : ''#genericType(LIGHT_STATE,Salon)# > 0`
+	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- Acción `GenericType`
 - **Configuración de OSDB** : Adición de una herramienta para la edición masiva de equipos, comandos, objetos, escenarios.
 - **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
@@ -69,7 +73,8 @@ Jeedom 4.2 contiene una parte importante en el aumento de la seguridad.
 - Fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto).
 - La cookie "permanecer conectado" (3 meses como máximo) ahora es "de una sola vez", que se renueva con cada uso.
 
-El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad .
+El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad.
+Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Doc](https://doc.jeedom.com/es_ES/dev/plugin_template)
 
 # Registro de cambios Jeedom V4.1
 

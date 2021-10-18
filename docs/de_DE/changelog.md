@@ -19,7 +19,7 @@
 - **Zusammenfassungen** : Es ist möglich, die Zahl rechts neben dem Symbol niemals oder nur dann anzuzeigen, wenn sie positiv ist.
 - **Zusammenfassungen** : Die Änderung des Zusammenfassungsparameters in der Konfiguration und für Objekte ist jetzt sichtbar, ohne auf eine Änderung des Zusammenfassungswerts zu warten.
 - **Zusammenfassungen** : Dank der virtuellen Aktionen können jetzt Aktionen für die Zusammenfassungen konfiguriert werden (Strg + Klicken auf eine Zusammenfassung).
-- **Gerätearten** Neue Seite **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind.
+- **Gerätearten** : Neue Seite **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2)).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
 - **Farbige Kategorien** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
 - **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Plugins können diese neue Core-Funktion verwenden.
@@ -28,7 +28,11 @@
 - **Codeblöcke** : (Datei-Editor, Szenarien, erweiterte Anpassung) Code-Fallback-Funktion (*Code falten*). Tastenkombinationen Strg + Y und Strg + I.
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
-- **Szenario** : Berechnungsfunktionen hinzufügen ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
+- **Szenario** : Berechnungsfunktionen hinzufügen ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
+- **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
+	- Abzug : ``#genericType(LIGHT_STATE,Salon)# > 0`
+	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- `GenericType`-Aktion
 - **OSDB-Einstellungen** : Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
 - **OSDB-Einstellungen** : Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
 - **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). Siehe Entwicklerdokument v4.2.
@@ -69,7 +73,8 @@ Jeedom 4.2 enthält einen großen Teil zur Erhöhung der Sicherheit.
 - Verstärkung der Sitzungen (Änderung zu sha256 mit 64 Zeichen im strikten Modus).
 - Der "Bleib in Verbindung"-Cookie (maximal 3 Monate) ist jetzt "einmalig", bei jeder Verwendung erneuert.
 
-Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen .
+Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen.
+Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien respektieren : [Dokument](https://doc.jeedom.com/de_DE/dev/plugin_template)
 
 # Changelog Jeedom V4.1
 

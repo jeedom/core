@@ -505,6 +505,7 @@ jeedom.scenario.autoCompleteCondition = [
   '##hostname#',
   '#tag(montag,defaut)',
   '#variable(mavariable,defaut)',
+  '#genericType(generic,object)',
   '#delete_variable(mavariable)',
   '#tendance(commande,periode)',
   '#average(commande,periode)',
@@ -550,7 +551,8 @@ jeedom.scenario.autoCompleteAction = [
   'popup',
   'icon',
   'event',
-  'remove_inat'
+  'remove_inat',
+  'genericType'
 ]
 jeedom.scenario.setAutoComplete = function(_params) {
   if (!isset(_params)) {

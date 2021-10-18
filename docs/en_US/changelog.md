@@ -19,7 +19,7 @@
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
 - **Summaries** : It is now possible to configure actions on the summaries (ctrl + click on a summary) thanks to the virtual ones.
-- **Types of equipment** New page **Tools → Equipment types** allowing generic types to be assigned to equipment and commands, with support for types dedicated to installed plugins.
+- **Types of equipment** : New page **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
@@ -28,7 +28,11 @@
 - **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
-- **Scenario** : Adding calculation functions ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` allowing to obtain the average weighted by the duration over the period.
+- **Scenario** : Adding calculation functions ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` allowing to obtain the average weighted by the duration over the period.
+- **Scenario** : Added support for Generic Types in scenarios.
+	- Trigger : ``#genericType(LIGHT_STATE,Salon)# > 0`
+	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- `GenericType` action
 - **OSDB settings** : Addition of a tool for mass editing of equipment, commands, objects, scenarios.
 - **OSDB settings** : Adding a dynamic SQL query constructor.
 - **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
@@ -69,7 +73,8 @@ Jeedom 4.2 contains a big part on increasing security.
 - Strengthening of sessions (change to sha256 with 64 characters in strict mode).
 - The "stay connected" cookie (3 months max) is now "one shot", renewed with each use.
 
-The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety .
+The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety.
+The plugins must respect the recommendations on the tree structure of folders and files : [Doc](https://doc.jeedom.com/en_US/dev/plugin_template)
 
 # Changelog Jeedom V4.1
 

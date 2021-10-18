@@ -3,7 +3,11 @@
 
 Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Informações* (sensor) ou *Açao* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Google Smarthome*, *Alexa* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
 
-Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Cote apresentou o **Tipos Genéricos**, usado por esses plugins.
+Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
+
+Isso torna possível identificar uma peça de equipamento por *A luz da sala* por exemplo.
+
+Tipos genéricos também são integrados em cenários. Você pode, assim, acionar um cenário se uma lâmpada acender em uma sala, se for detectado movimento na casa, desligar todas as luzes ou fechar todas as venezianas com uma única ação, etc. Além disso, se você adicionar um equipamento, basta indicar esses tipos, não será necessário editar tais cenários.
 
 A configuração destes Tipos Genéricos pode ser feita diretamente em certos plugins, ou por comando em *Configuração avançada* disso.
 

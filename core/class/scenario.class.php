@@ -224,6 +224,29 @@ class scenario {
 	}
 	/**
 	*
+	* @param type $_generic
+	* @return type
+	*/
+	public static function byGenericTrigger($_generic, $_object, $_onlyEnable = true) {
+		$objectId = $_object->getId();
+		$objectName = $_object->getName();
+		$values = array(
+			'generic_type' => '%#genericType(' . $_generic . '%',
+			'object_id' => '%,' . $objectId . ')#%',
+			'object_name' => '%,' . $objectName . ')#%'
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM scenario
+		WHERE mode != "schedule"
+		AND ((`trigger` LIKE :generic_type AND `trigger` LIKE :object_id)
+		OR (`trigger` LIKE :generic_type AND `trigger` LIKE :object_name))';
+		if ($_onlyEnable) {
+			$sql .= ' AND isActive=1';
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+	/**
+	*
 	* @param type $_element_id
 	* @return type
 	*/
@@ -268,12 +291,13 @@ class scenario {
 	* @param type $_forceSyncMode
 	* @return boolean
 	*/
-	public static function check($_event = null, $_forceSyncMode = false) {
+	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null) {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
 		$message = '';
 		if ($_event !== null) {
+			//check from a cmd event:
 			$scenarios = array();
 			if (is_object($_event)) {
 				$scenarios1 = self::byTrigger($_event->getId());
@@ -284,6 +308,22 @@ class scenario {
 				$trigger = $_event;
 				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startOnEvent']['txt'] . ' : #' . $_event . '#';
 			}
+
+			//cmd generic trigger:
+			if ($_generic) {
+				$scenarios2 = self::byGenericTrigger($_generic, $_object);
+				if (is_array($scenarios2) && count($scenarios2) > 0) {
+					foreach ($scenarios2 as $scenario) {
+						if ($scenario->testTrigger($trigger)) {
+							$trigger = 'Generic Type';
+							$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . ' genericType ' . $_generic;
+                          	if ($_object) $message .= '::' . $_object->getName();
+							$scenario->launch($trigger, $message, $_forceSyncMode);
+						}
+					}
+				}
+			}
+
 			if (is_array($scenarios1) && count($scenarios1) > 0) {
 				foreach ($scenarios1 as $scenario) {
 					if ($scenario->testTrigger($trigger)) {
@@ -305,6 +345,7 @@ class scenario {
 				}
 			}
 		}
+
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
 				$scenario_->launch($trigger, $message, $_forceSyncMode);
@@ -694,9 +735,12 @@ class scenario {
 	public function testTrigger($_event) {
 		foreach(($this->getTrigger()) as $trigger) {
 			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
+			$trigger = str_replace(array('#genericType(', ')#'), array('genericType(', ')'), $trigger);
 			if ($trigger == $_event) {
 				return true;
 			} elseif (strpos($trigger, $_event) !== false && jeedom::evaluateExpression($trigger)) {
+				return true;
+			} elseif (strpos($trigger, 'genericType') !== false && jeedom::evaluateExpression($trigger)) {
 				return true;
 			}
 		}
@@ -986,6 +1030,28 @@ class scenario {
 		if ($this->getConfiguration('logmode') == '') {
 			$this->setConfiguration('logmode', 'default');
 		}
+
+		//ensure no spaces between args and change name by Id:
+		$triggers = array();
+		foreach($this->getTrigger() as $trigger) {
+			try {
+				if (strpos($trigger, '#genericType') !== false) {
+					$suffix = explode(')#', $trigger)[1];
+					$ar = explode('#genericType(', $trigger);
+					$ar = explode(')', $ar[1]);
+					$ar = explode(',', $ar[0]);
+					if (is_object(jeeObject::byName($ar[1]))) {
+						$ar = array($ar[0], jeeObject::byName($ar[1])->getId());
+					} else if ($ar[1] == __('Tous', __FILE__)) {
+						$ar = array($ar[0], '-1');
+					}
+					$str = implode(',', array_map('trim', $ar));
+					$trigger = '#genericType(' . $str . ')#' . $suffix;
+				}
+				array_push($triggers, $trigger);
+			} catch (Exception $e) {}
+		}
+		$this->setTrigger($triggers);
 	}
 	/**
 	*
@@ -2053,4 +2119,3 @@ class scenario {
 	}
 
 }
-			

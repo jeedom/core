@@ -365,6 +365,36 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function byGenericTypeObjectId($_generic_type, $_object_id = null, $_type = null) {
+    $values = array(
+			'generic_type' => $_generic_type
+		);
+    $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE generic_type=:generic_type';
+
+  	if ($_object_id && $_object_id != '-1') {
+      if (!is_numeric($_object_id)) {
+        $object = jeeObject::byName($_object_id);
+        if (!is_object($object)) return array();
+        $_object_id = $object->getId();
+      }
+      $eqLogics = eqLogic::byObjectId($_object_id);
+      $eqLogicIds = array();
+      foreach ($eqLogics as $eqLogic) {
+          array_push($eqLogicIds, $eqLogic->getId());
+      }
+      $eqLogicIds = implode(',', $eqLogicIds);
+      $sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
+    }
+
+		if ($_type !== null) {
+			$values['type'] = $_type;
+			$sql .= ' AND type=:type';
+		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function byValue($_value, $_type = null, $_onlyEnable = false) {
 		$values = array(
 			'value' => $_value,
@@ -1628,6 +1658,7 @@ class cmd {
 			return;
 		}
 		$eqLogic = $this->getEqLogic();
+		$object = $eqLogic->getObject();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
 		}
@@ -1673,7 +1704,7 @@ class cmd {
 		$events = array();
 		if (!$repeat) {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
-			scenario::check($this);
+			scenario::check($this, false, $this->getGeneric_type(), $object);
 			$level = $this->checkAlertLevel($value);
 			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;

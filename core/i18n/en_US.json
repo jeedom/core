@@ -473,6 +473,7 @@
         "Escalier": "Steps",
         "Barre": "Bar",
         "Couleur": "Color",
+        "Hauteur fixe (px)": "Fixed height (px)",
         "Paramètres optionnels sur la tuile": "Tile optional parameters",
         "Ajouter": "Add",
         "Valeur": "Value",
@@ -907,7 +908,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized Access",
         "Type Générique": "Generic Type",
         "Objet": "Object",
-        "Aucun": "No",
+        "Aucun": "None",
         "Tous": "All"
     },
     "desktop\/modal\/interact.query.display.php": {
@@ -955,6 +956,7 @@
         "Escalier": "Steps",
         "Barre": "Bar",
         "Couleur": "Color",
+        "Hauteur fixe (px)": "Fixed height (px)",
         "Widget": "Widget",
         "Defaut": "Default",
         "Transparent": "Transparent",
@@ -3043,9 +3045,11 @@
         "Pour constituer votre scénario, veuillez ajouter des blocs": "To constitute your scenario, please add blocks",
         "Evénement": "Event",
         "Choisir une commande": "Choose a command",
+        "Choisir un Type Générique": "Choose a Generic Type",
         "Choisir une variable": "Choose a variable",
         "Programmation": "Programming",
         "Rechercher une commande": "Search a command",
+        "Rechercher un type générique": "Search generic type",
         "Rechercher un scénario": "Search a scenario",
         "Rechercher un équipement": "Search for equipment",
         "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
@@ -3249,8 +3253,8 @@
     },
     "core\/js\/config.class.js": {
         "Sélectionner un type générique": "Select a generic type",
-        "Annuler": "To cancel",
-        "Valider": "To validate"
+        "Annuler": "Cancel",
+        "Valider": "Ok"
     },
     "core\/js\/history.class.js": {
         "La valeur a été éditée avec succès": "The value was successfully edited",
@@ -3632,6 +3636,7 @@
         "Fichier non trouvé : ": "File not found:",
         "La conversion suivante ne peut être vide : ": "The following conversion cannot be empty:",
         "Scénario ID inconnu": "Unknown scenario ID",
+        "Tous": "All",
         "Champs json invalide": "Invalid json fields",
         "Répertoire de téléversement non trouvé : ": "Upload directory not found:",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",
@@ -4143,6 +4148,7 @@
         "Exécution du scénario ": "Execution of the scenario",
         " déclenché par : ": "triggered by:",
         "Le scénario est de type programmé mais la programmation est vide": "The scenario is of programmed type but the programming is empty",
+        "Tous": "All",
         "Impossible d\\'arrêter la sous tâche : ": "Unable to stop the sub task:",
         "Impossible d\\'arrêter le scénario : ": "Unable to stop scenario:",
         ". PID : ": ". PID:",
@@ -4478,6 +4484,15 @@
         "Masquer": "Hide",
         "Activer": "Enable",
         "Désactiver": "Disable"
+    },
+    "core\/template\/scenario\/genericType.default.html": {
+        "Type": "Type",
+        "Type Info (event)": "Info type (event)",
+        "Type Action (exec)": "Action type (exec)",
+        "Objet": "Object",
+        "Valeur": "Value",
+        "Sélectionner la commande": "Select command",
+        "Tous": "All"
     },
     "core\/template\/scenario\/ask.default.html": {
         "Question": "Question",

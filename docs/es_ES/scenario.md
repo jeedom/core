@@ -233,8 +233,10 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - ``#begin_restore#`` : Evento enviado al inicio de una restauración.
 - ``#end_restore#`` : Evento enviado al final de una restauración.
 - ``#user_connect#`` : Inicio de sesión de usuario
+- ``#variable(nom_variable)#`` : Cambiar el valor de la variable name_name.
+- ``#genericType (GENÉRICO, Objeto)#`` : Cambio de un comando de información de tipo GENÉRICO genérico, en el objeto Objeto.
 
-También puede activar un escenario cuando se actualiza una variable poniendo : #variable(nom_variable)# o usando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.1/ /api_http).
+También puede activar un escenario utilizando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.1/ /api_http).
 
 ### Operadores de comparación y enlaces entre condiciones
 
@@ -333,6 +335,8 @@ Hay varias funciones disponibles para el equipo :
 - ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera el valor de una variable o el valor deseado por defecto.
+
+- ``#genericType (GENÉRICO, Objeto)#`` : Recupera la suma de la información GENÉRICA del tipo genérico en el objeto Objeto.
 
 - ``scenario(scenario)`` : Devuelve el estado del escenario.
     1 : En curso,
@@ -458,6 +462,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variable** (variable) : Creación / modificación de una variable o el valor de una variable.
 - **Eliminar variable** (delete_variable) : Le permite eliminar una variable.
+- **genericType (GENÉRICO, Objeto) : Modificación de un comando de información (evento) o acción (execCmd) por tipo genérico, en un objeto. Por ejemplo, apague todas las luces de la sala de estar.
 - **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag). El comando "Restablecer a SI" permite restablecer el estado de "SI" (este estado se utiliza para la no repetición de las acciones de un "SI" si pasa por segunda vez consecutiva en él).
 - **Detener** (stop) : Detener el escenario.
 - **Esperar** (wait) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos (s).

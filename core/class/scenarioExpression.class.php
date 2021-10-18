@@ -690,9 +690,18 @@ class scenarioExpression {
 	public static function durationBetween($_cmd_id, $_value, $_startDate, $_endDate, $_unit = 60) {
 		if (!is_numeric(str_replace('#', '', $_cmd_id))) {
 			$cmd = cmd::byId(str_replace('#', '', cmd::humanReadableToCmd($_cmd_id)));
-		} else { $cmd = cmd::byId(str_replace('#', '', $_cmd_id));}
+		}
+		else {
+			$cmd = cmd::byId(str_replace('#', '', $_cmd_id));
+		}
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
+		}
+		if (strtotime($_startDate) >= time()) {
+			return 0;
+		}
+		if (time() < strtotime($_endDate)) {
+			$_endDate = date('Y-m-d H:i:s');
 		}
 
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
@@ -782,6 +791,22 @@ class scenarioExpression {
 			return $value;
 		}
 		return $_default;
+	}
+
+	public static function genericType($_genericType, $_object = null, $_default = '') {
+		$_genericType = trim(trim(trim($_genericType), '"'));
+		$_object = trim($_object);
+		$cmds = cmd::byGenericTypeObjectId($_genericType, $_object, 'info');
+        if (count($cmds) > 0) {
+          $result = 0;
+          foreach ($cmds as $cmd) {
+            if (is_numeric($cmd->execCmd())) {
+            	$result += $cmd->execCmd();
+            }
+          }
+          return $result;
+        }
+        return $_default;
 	}
 
 	public static function stateDuration($_cmd_id, $_value = null) {
@@ -1140,7 +1165,7 @@ class scenarioExpression {
 	}
 
 	public static function setTags($_expression, &$_scenario = null, $_quote = false, $_nbCall = 0) {
-		if(config::byKey('expression::autoQuote','core',1) == 0){
+		if (config::byKey('expression::autoQuote', 'core', 1) == 0) {
 			$_quote = false;
 		}
 		if (file_exists(__DIR__ . '/../../data/php/user.function.class.php')) {
@@ -1515,6 +1540,25 @@ class scenarioExpression {
 					$dataStore->setLink_id(-1);
 					$dataStore->save();
 					return;
+				} elseif ($this->getExpression() == 'genericType') {
+					try {
+						$cmds = cmd::byGenericTypeObjectId($options['type'], $options['object']);
+						foreach ($cmds as $cmd) {
+							if ($cmd->getType() == 'info') {
+								$cmd->event(jeedom::evaluateExpression($options['value']));
+								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . __(' à ', __FILE__) . $options['value']);
+							} else if ($cmd->getType() == 'action') {
+								$cmd->execCmd($options);
+								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $cmd->getHumanName());
+								$cmd->execCmd($options['value']);
+							}
+						}
+						return;
+					} catch (Exception $ex) {
+						$result = $options['value'];
+					} catch (Error $ex) {
+						$result = $options['value'];
+					}
 				} elseif ($this->getExpression() == 'delete_variable') {
 					scenario::removeData($options['name']);
 					$this->setLog($scenario, __('Suppression de la variable ', __FILE__) . $options['name']);

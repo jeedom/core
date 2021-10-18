@@ -5,6 +5,10 @@ Les capteurs et actionneurs dans Jeedom sont gérés par des plugins, qui créen
 
 Pour palier à ce problème, notamment avec les assistants vocaux (*Allume la lumière de la salle*), le Core a introduit il y a quelques années les **Types Génériques**, utilisés par ces plugins.
 
+Cela permet ainsi d'identifier un équipement par *La lumière de la salle* par exemple.
+
+Les Types Génériques sont également intégrés dans les scénarios. Vous pouvez ainsi déclencher un scénario si une lampe s'allume dans une pièce, si un mouvement est détecté dans la maison, éteindre toutes les lumières ou fermer tous les volets avec une seule action, etc. De plus, si vous ajoutez un équipement, vous n'avez qu'à indiquer ces types, il ne sera pas nécessaire de retoucher de tels scénarios.
+
 Le paramétrage des ces Types Génériques peut se faire directement dans certains plugins, ou par commande dans *Configuration avancée* de celle-ci.
 
 Cette page permet de paramétrer ces Types Génériques directement, de manière plus directe et plus simple, et propose même une assignation automatique une fois les équipements assignés correctement.

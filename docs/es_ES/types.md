@@ -3,7 +3,11 @@
 
 Los sensores y actuadores en Jeedom son administrados por complementos, que crean equipos con comandos *Información* (sensor) o *Acción* (solenoide). Esto luego permite activar acciones basadas en el cambio de ciertos sensores, como encender una luz en la detección de movimiento. Pero Jeedom Core y complementos como *Móvil*, *Homebridge*, *Google Smarthome*, *Alexa* etc., no sé qué es este equipo : Un enchufe, una luz, una persiana, etc.
 
-Para superar este problema, especialmente con asistentes de voz (*Enciende la luz de la habitación*), Cote presentó el **Tipos genéricos**, utilizado por estos complementos.
+Para superar este problema, especialmente con asistentes de voz (*Enciende la luz de la habitación*), Core presentó el **Tipos genéricos**, utilizado por estos complementos.
+
+Esto permite identificar un equipo mediante *La luz de la habitación* por ejemplo.
+
+Los tipos genéricos también se integran en escenarios. De esta forma se puede desencadenar un escenario si se enciende una lámpara en una habitación, si se detecta movimiento en la casa, apagar todas las luces o cerrar todas las persianas con una sola acción, etc. Además, si agrega un equipo, solo debe indicar estos tipos, no será necesario editar dichos escenarios.
 
 La configuración de estos tipos genéricos se puede hacer directamente en ciertos complementos, o mediante comando en *Configuración avanzada* del mismo.
 

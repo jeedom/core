@@ -236,7 +236,7 @@ class DB {
 
 	public static function refresh($object) {
 		if (!self::getField($object, 'id')) {
-			throw new Exception('DB ne peut rafraîchir l\'objet sans son ID');
+			throw new Exception('Can\'t refresh DB object without its ID');
 		}
 		$parameters = array('id' => self::getField($object, 'id'));
 		$sql = 'SELECT ' . self::buildField(get_class($object)) .

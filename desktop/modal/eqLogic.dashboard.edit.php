@@ -77,7 +77,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           <fieldset>
             <div class="form-group">
               <label class="col-sm-2 control-label">{{Information}}</label>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <select class="eqLogicAttr form-control sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
                   <option value="0">{{Aucune}}</option>
                   <?php
@@ -93,7 +93,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               </div>
 
               <label class="col-sm-2 control-label">{{Format}}</label>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::format">
                   <option value="month">{{Mois}}</option>
                   <option value="week">{{Semaine}}</option>
@@ -105,7 +105,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
             <div class="form-group">
               <label class="col-sm-2 control-label">{{Type}}</label>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::type">
                   <option value="areaspline">{{Courbe}}</option>
                   <option value="area">{{Escalier}}</option>
@@ -114,8 +114,15 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               </div>
 
               <label class="col-sm-2 control-label">{{Couleur}}</label>
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <input type="color" class="eqLogicAttr html form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-8 control-label">{{Hauteur fixe (px)}}</label>
+              <div class="col-sm-4">
+                <input class="eqLogicAttr html form-control input-sm" value="" data-l1key="display" data-l2key="backGraph::height"/>
               </div>
             </div>
           </fieldset>

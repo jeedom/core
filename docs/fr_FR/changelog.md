@@ -29,6 +29,10 @@
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
 - **Scénario** : Bugfix des copier / coller et undo / redo (réécriture complète).
 - **Scénario** : Ajout des fonctions de calcul ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` permettant d'obtenir la moyenne pondérée par la durée sur la période.
+- **Scénario** : Ajout du support des Types Génériques dans les scénarios.
+	- Déclencheur : `#genericType(LIGHT_STATE,Salon)# > 0`
+	- IF `genericType(LIGHT_STATE,Salon) > 0`
+	- Action `genericType`
 - **Réglages OSDB** : Ajout d'un outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Réglages OSDB** : Ajout d'un constructeur dynamique de requête SQL.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir doc développeur v4.2.
@@ -69,7 +73,8 @@ Jeedom 4.2 contient une grosse partie sur l'augmentation de la sécurité.
 - Renforcement des sessions (passage en sha256 avec 64 caractères en mode strict).
 - Le cookie de "rester connecté" (3 mois max) est maintenant "one shot", renouvelé à chaque utilisation.
 
-L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité .
+L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité.
+Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers : [Doc](https://doc.jeedom.com/fr_FR/dev/plugin_template)
 
 # Changelog Jeedom V4.1
 
