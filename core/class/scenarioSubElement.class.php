@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class scenarioSubElement {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $scenarioElement_id;
@@ -31,9 +31,9 @@ class scenarioSubElement {
 	private $order;
 	private $_expression;
 	private $_changed = false;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -43,7 +43,7 @@ class scenarioSubElement {
 		WHERE id=:id';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byScenarioElementId($_scenarioElementId, $_type = '') {
 		$values = array(
 			'scenarioElement_id' => $_scenarioElementId,
@@ -57,12 +57,12 @@ class scenarioSubElement {
 			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 		}
 		$sql .= ' ORDER BY `order`';
-		
+
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	public function execute(&$_scenario = null) {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
@@ -70,14 +70,14 @@ class scenarioSubElement {
 		if ($this->getSubtype() == 'action') {
 			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execAction']['txt'] . $this->getType());
 			$return = true;
-			foreach(($this->getExpression()) as $expression) {
+			foreach (($this->getExpression()) as $expression) {
 				$return = $expression->execute($_scenario);
 			}
 			return $return;
 		}
 		if ($this->getSubtype() == 'condition') {
-			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execCondition']['txt'] . $this->getType() . ' ' . $this->getExpression()[0]->getExpression());
-			foreach(($this->getExpression()) as $expression) {
+			$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['execCondition']['txt'] . $this->getType() . ' ' . jeedom::toHumanReadable($this->getExpression()[0]->getExpression()));
+			foreach (($this->getExpression()) as $expression) {
 				return $expression->execute($_scenario);
 			}
 		}
@@ -88,7 +88,7 @@ class scenarioSubElement {
 	}
 
 	public function remove() {
-		foreach(($this->getExpression()) as $expression) {
+		foreach (($this->getExpression()) as $expression) {
 			$expression->remove();
 		}
 		DB::remove($this);
@@ -108,7 +108,7 @@ class scenarioSubElement {
 			'subelement' => array($this->getId()),
 			'expression' => array(),
 		);
-		foreach(($this->getExpression()) as $expression) {
+		foreach (($this->getExpression()) as $expression) {
 			$result = $expression->getAllId();
 			$return['element'] = array_merge($return['element'], $result['element']);
 			$return['subelement'] = array_merge($return['subelement'], $result['subelement']);
@@ -122,7 +122,7 @@ class scenarioSubElement {
 		$subElementCopy->setId('');
 		$subElementCopy->setScenarioElement_id($_scenarioElement_id);
 		$subElementCopy->save();
-		foreach(($this->getExpression()) as $expression) {
+		foreach (($this->getExpression()) as $expression) {
 			$expression->copy($subElementCopy->getId());
 		}
 		return $subElementCopy->getId();
@@ -135,7 +135,7 @@ class scenarioSubElement {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
@@ -145,7 +145,7 @@ class scenarioSubElement {
 	}
 
 	public function setName($_name) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;
 	}
@@ -155,7 +155,7 @@ class scenarioSubElement {
 	}
 
 	public function setType($_type) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
+		$this->_changed = utils::attrChanged($this->_changed, $this->type, $_type);
 		$this->type = $_type;
 		return $this;
 	}
@@ -169,7 +169,7 @@ class scenarioSubElement {
 	}
 
 	public function setScenarioElement_id($_scenarioElement_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->scenarioElement_id,$_scenarioElement_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->scenarioElement_id, $_scenarioElement_id);
 		$this->scenarioElement_id = $_scenarioElement_id;
 		return $this;
 	}
@@ -180,7 +180,7 @@ class scenarioSubElement {
 
 	public function setOptions($_key, $_value) {
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->options,$options);
+		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
 		$this->options = $options;
 		return $this;
 	}
@@ -190,7 +190,7 @@ class scenarioSubElement {
 	}
 
 	public function setOrder($_order) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->_changed = utils::attrChanged($this->_changed, $this->order, $_order);
 		$this->order = $_order;
 		return $this;
 	}
@@ -200,7 +200,7 @@ class scenarioSubElement {
 	}
 
 	public function setSubtype($_subtype) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->subtype,$_subtype);
+		$this->_changed = utils::attrChanged($this->_changed, $this->subtype, $_subtype);
 		$this->subtype = $_subtype;
 		return $this;
 	}
@@ -213,5 +213,4 @@ class scenarioSubElement {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
 }
