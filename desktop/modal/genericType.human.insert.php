@@ -106,13 +106,14 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
     if (genericType_name == undefined) {
       return ''
     }
-    var object_name = $('#table_mod_insertGenericType tbody td.mod_insertGenericType_object select option:selected').html()
-    if (object_name == undefined) {
-      object_name = ''
-    } else {
-      object_name = '[#' + object_name + '#]'
+    var selected = $('#table_mod_insertGenericType tbody td.mod_insertGenericType_object select option:selected')
+    if (selected.html() == undefined) {
+      return 'genericType(' + genericType_name + ')'
     }
-    return 'genericType(' + genericType_name + ',' + object_name + ')'
+    if (selected.val() == '-1') {
+      return 'genericType(' + genericType_name + ')'
+    }
+    return 'genericType(' + genericType_name + ',[#' + selected.html() + '#])'
   }
 
   mod_insertGenericType.getId = function() {
