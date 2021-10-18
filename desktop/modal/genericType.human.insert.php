@@ -86,7 +86,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
             $objects = jeeObject::all();
             $select .= '<option value="-1">{{Tous}}</option>';
             foreach ($objects as $object) {
-              $select .= '<option value="' . $object->getName() . '">' . $object->getName() . '</option>';
+              $select .= '<option value="' . $object->getId() . '">' . $object->getName() . '</option>';
             }
             $select .= '</select>';
             echo $select;
@@ -109,6 +109,8 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
     var object_name = $('#table_mod_insertGenericType tbody td.mod_insertGenericType_object select option:selected').html()
     if (object_name == undefined) {
       object_name = ''
+    } else {
+      object_name = '[#' + object_name + '#]'
     }
     return 'genericType(' + genericType_name + ',' + object_name + ')'
   }
