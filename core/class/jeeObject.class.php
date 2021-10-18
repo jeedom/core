@@ -138,7 +138,7 @@ class jeeObject {
 		foreach ($matches[1] as $object_id) {
 			if (is_numeric($object_id)) {
 				$object = self::byId($object_id);
-				if (is_object($object_id)) {
+				if (is_object($object)) {
 					$text = str_replace('#object' . $object_id . '#', '#' . $object->getHumanName() . '#', $text);
 				}
 			}
@@ -179,14 +179,12 @@ class jeeObject {
 		}
 		$text = $_input;
 		preg_match_all("/#\[(.*?)\]#/", $text, $matches);
-		if (count($matches) == 3) {
-			$countMatches = count($matches[0]);
-			for ($i = 0; $i < $countMatches; $i++) {
-				if (isset($matches[1][$i]) && isset($matches[2][$i])) {
-					$object = self::byName($matches[1][$i]);
-					if (is_object($object)) {
-						$text = str_replace($matches[0][$i], '#object' . $object->getId() . '#', $text);
-					}
+		$countMatches = count($matches[0]);
+		for ($i = 0; $i < $countMatches; $i++) {
+			if (isset($matches[1][$i])) {
+				$object = self::byName($matches[1][$i]);
+				if (is_object($object)) {
+					$text = str_replace($matches[0][$i], '#object' . $object->getId() . '#', $text);
 				}
 			}
 		}

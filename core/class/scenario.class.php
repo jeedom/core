@@ -1030,29 +1030,6 @@ class scenario {
 		if ($this->getConfiguration('logmode') == '') {
 			$this->setConfiguration('logmode', 'default');
 		}
-
-		//ensure no spaces between args and change name by Id:
-		$triggers = array();
-		foreach ($this->getTrigger() as $trigger) {
-			try {
-				if (strpos($trigger, '#genericType') !== false) {
-					$suffix = explode(')#', $trigger)[1];
-					$ar = explode('#genericType(', $trigger);
-					$ar = explode(')', $ar[1]);
-					$ar = explode(',', $ar[0]);
-					if (is_object(jeeObject::byName($ar[1]))) {
-						$ar = array($ar[0], jeeObject::byName($ar[1])->getId());
-					} else if ($ar[1] == __('Tous', __FILE__)) {
-						$ar = array($ar[0], '-1');
-					}
-					$str = implode(',', array_map('trim', $ar));
-					$trigger = '#genericType(' . $str . ')#' . $suffix;
-				}
-				array_push($triggers, $trigger);
-			} catch (Exception $e) {
-			}
-		}
-		$this->setTrigger($triggers);
 	}
 	/**
 	 *
@@ -1868,6 +1845,7 @@ class scenario {
 			$_trigger = json_encode($_trigger, JSON_UNESCAPED_UNICODE);
 		}
 		$_trigger = cmd::humanReadableToCmd($_trigger);
+		$_trigger = jeeObject::fromHumanReadable($_trigger);
 		$this->_changed = utils::attrChanged($this->_changed, $this->trigger, $_trigger);
 		$this->trigger = $_trigger;
 		return $this;
