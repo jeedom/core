@@ -184,8 +184,8 @@ class jeeObject {
 			for ($i = 0; $i < $countMatches; $i++) {
 				if (isset($matches[1][$i]) && isset($matches[2][$i])) {
 					$object = self::byName($matches[1][$i]);
-					if (isset($object[0]) && is_object($object[0])) {
-						$text = str_replace($matches[0][$i], '#object' . $object[0]->getId() . '#', $text);
+					if (is_object($object)) {
+						$text = str_replace($matches[0][$i], '#object' . $object->getId() . '#', $text);
 					}
 				}
 			}
