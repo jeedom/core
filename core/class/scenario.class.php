@@ -231,12 +231,10 @@ class scenario {
 		if (!is_object($_object)) {
 			return;
 		}
-		$objectId = $_object->getId();
-		$objectName = $_object->getName();
 		$values = array(
 			'generic_type' => '%#genericType(' . $_generic . '%',
-			'object_id' => '%,' . $objectId . ')#%',
-			'object_name' => '%,' . $objectName . ')#%'
+			'object_id' => '%,' . $_object->getId() . ')#%',
+			'object_name' => '%,' . $_object->getName() . ')#%'
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
