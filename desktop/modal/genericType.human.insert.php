@@ -113,7 +113,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
     if (selected.val() == '-1') {
       return 'genericType(' + genericType_name + ')'
     }
-    return 'genericType(' + genericType_name + ',[#' + selected.html() + '#])'
+    return 'genericType(' + genericType_name + ',#[' + selected.html() + ']#)'
   }
 
   mod_insertGenericType.getId = function() {
