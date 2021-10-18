@@ -30,8 +30,8 @@
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
 - **Szenario** : Berechnungsfunktionen hinzufügen ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
 - **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
-	- Abzug : ``#genericType(LIGHT_STATE,Salon)# > 0`
-	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+	- IF `genericType (LIGHT_STATE .),#[Salon]#) > 0`
 	- `GenericType`-Aktion
 - **OSDB-Einstellungen** : Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
 - **OSDB-Einstellungen** : Hinzufügen eines dynamischen SQL-Abfragekonstruktors.

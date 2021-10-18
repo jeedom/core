@@ -234,7 +234,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#end_restore#`` : Ereignis gesendet am Ende einer Restaurierung.
 - ``#user_connect#`` : Benutzeranmeldung
 - ``#variable(nom_variable)#`` : Ändern des Wertes der Variablen name_name.
-- ``#GenericType (GENERIC, Object)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
+- ``#GenericType (GENERIC, #[Object]#)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
 
 Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [Hier](https:/./.doc.jeedom.com/de_DE/core/.4.1/.api_http).
 
@@ -336,7 +336,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``variable(mavariable,valeur par défaut)`` : Ruft standardmäßig den Wert einer Variablen oder den gewünschten Wert ab.
 
-- ``#GenericType (GENERIC, Object)#`` : Ruft die Summe der GENERIC Generic Type-Informationen im Object-Objekt ab.
+- ``#GenericType (GENERIC, #[Object]#)#`` : Ruft die Summe der GENERIC Generic Type-Informationen im Object-Objekt ab.
 
 - ``scenario(scenario)`` : Gibt den Status des Szenarios zurück.
     1 : In Bearbeitung,
@@ -462,7 +462,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Pause** (sleep) : Pause von x Sekunden (s).
 - **Variable** (variable) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
 - **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen.
-- **GenericType (GENERIC, Object) : Änderung eines Info- (Ereignis)- oder Aktions- (execCmd) Befehls nach generischem Typ in einem Objekt. Schalten Sie beispielsweise alle Lichter im Wohnzimmer aus.
+- **GenericType (GENERIC, #[Object]#) : Änderung eines Info- (Ereignis)- oder Aktions- (execCmd) Befehls nach generischem Typ in einem Objekt. Schalten Sie beispielsweise alle Lichter im Wohnzimmer aus.
 - **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her). Mit dem Befehl "Auf SI zurücksetzen" können Sie den Status von "SI" zurücksetzen (dieser Status wird verwendet, um die Aktionen eines "SI" nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben).
 - **Halt** (stop) : Stoppen Sie das Szenario.
 - **Warten** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
