@@ -990,7 +990,7 @@
         "dans \"Outils\" → \"Scénarios\", cliquez sur \"Vue d'ensemble": "en \"Herramientas\" → \"Escenarios\", haga clic en \"Descripción general",
         "correspond à l'action que vous voulez appliquer": "corresponde a la acción que desea aplicar",
         "Les commandes disponibles sont": "Los comandos disponibles son",
-        "start\", \"stop\", \"désactiver\" et \"activer\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "iniciar \",\" detener \",\" desactivar \"y\" activar \"para iniciar, detener, desactivar o activar el escenario, respectivamente",
+        "start\", \"stop\", \"disable\" et \"enable\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "iniciar \",\" detener \",\" deshabilitar \"y\" habilitar \"para iniciar, detener, desactivar o activar respectivamente el escenario",
         "\\[optionnel\\": "\\ [Opcional \\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à": "si la acción es \"inicio\", puede pasar etiquetas al escenario (consulte la documentación sobre los escenarios) en el formulario etiquetas = toto% 3D1% 20tata% 3D2 (tenga en cuenta que% 20 corresponde a un espacio y% 3D a",
         "Info\/Action commande": "Comando de información \/ acción",

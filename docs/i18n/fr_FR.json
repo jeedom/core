@@ -637,7 +637,7 @@
         "action": "action",
         "correspond à l'action que vous voulez appliquer": "correspond à l'action que vous voulez appliquer",
         "Les commandes disponibles sont": "Les commandes disponibles sont",
-        "start\", \"stop\", \"désactiver\" et \"activer\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "start\", \"stop\", \"désactiver\" et \"activer\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario",
+        "start\", \"stop\", \"disable\" et \"enable\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "start\", \"stop\", \"disable\" et \"enable\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario",
         "tags": "tags",
         "\\[optionnel\\": "\\[optionnel\\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à": "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à",

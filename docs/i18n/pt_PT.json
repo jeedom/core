@@ -990,7 +990,7 @@
         "dans \"Outils\" → \"Scénarios\", cliquez sur \"Vue d'ensemble": "em \"Ferramentas\" → \"Cenários\", clique em \"Visão geral",
         "correspond à l'action que vous voulez appliquer": "corresponde à ação que você deseja aplicar",
         "Les commandes disponibles sont": "Os comandos disponíveis são",
-        "start\", \"stop\", \"désactiver\" et \"activer\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "iniciar \",\" parar \",\" desativar \"e\" ativar \"para iniciar, parar, desativar ou ativar o cenário, respectivamente",
+        "start\", \"stop\", \"disable\" et \"enable\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "iniciar \",\" parar \",\" desabilitar \"e\" habilitar \"para, respectivamente, iniciar, parar, desativar ou ativar o cenário",
         "\\[optionnel\\": "\\ [opcional \\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à": "se a ação for \"iniciar\", você pode passar as tags para o cenário (consulte a documentação sobre os cenários) nas tags de formulário = para% 3D1% 20tata% 3D2 (observe que% 20 corresponde a um espaço e% 3D para",
         "Info\/Action commande": "Comando Info \/ Ação",

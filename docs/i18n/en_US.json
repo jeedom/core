@@ -990,7 +990,7 @@
         "dans \"Outils\" → \"Scénarios\", cliquez sur \"Vue d'ensemble": "in \"Tools\" → \"Scenarios\", click on \"Overview",
         "correspond à l'action que vous voulez appliquer": "corresponds to the action you want to apply",
         "Les commandes disponibles sont": "Available commands are",
-        "start\", \"stop\", \"désactiver\" et \"activer\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "start \",\" stop \",\" deactivate \"and\" activate \"to start, stop, deactivate or activate the scenario, respectively",
+        "start\", \"stop\", \"disable\" et \"enable\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "start \",\" stop \",\" disable \"and\" enable \"to respectively start, stop, deactivate or activate the scenario",
         "\\[optionnel\\": "\\[optional\\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à": "if the action is \"start\", you can pass tags to the scenario (see the documentation on the scenarios) in the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a space and% 3D to",
         "Info\/Action commande": "Info \/ Action command",

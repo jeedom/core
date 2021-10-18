@@ -990,7 +990,7 @@
         "dans \"Outils\" → \"Scénarios\", cliquez sur \"Vue d'ensemble": "Klicken Sie unter \"Extras\" → \"Szenarien\" auf \"Übersicht\"",
         "correspond à l'action que vous voulez appliquer": "entspricht der Aktion, die Sie anwenden möchten",
         "Les commandes disponibles sont": "Verfügbare Befehle sind",
-        "start\", \"stop\", \"désactiver\" et \"activer\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "Start \",\" Stopp \",\" Deaktivieren \"und\" Aktivieren \", um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren",
+        "start\", \"stop\", \"disable\" et \"enable\" pour respectivement démarrer, arrêter, désactiver ou activer le scénario": "start \",\" stop \",\" deaktivieren \"und\" aktivieren \"um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren",
         "\\[optionnel\\": "\\ [Optional \\",
         "si l'action est \"start\", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à": "Wenn die Aktion \"Start\" ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht",
         "Info\/Action commande": "Info \/ Aktionsbefehl",
