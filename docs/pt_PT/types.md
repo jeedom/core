@@ -49,16 +49,16 @@ Em cada dispositivo, você tem dois botões :
 
 | **Outro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CRONÔMETRO | Timer de estado (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| TIMER_STATE | Status do temporizador (pausa ou não) (não gerenciado pelo aplicativo móvel) | Informações | binário, numérico
-| DEFINIR TEMPORIZADOR | Timer (não gerenciado pelo aplicativo móvel) | Açao | slider
-| TIMER_PAUSE | Temporizador de pausa (não gerenciado pelo aplicativo móvel) | Açao | other
-| TIMER_RESUME | Resumo do cronômetro (não gerenciado pelo aplicativo móvel) | Açao | other
+| CRONÔMETRO | Cronômetro de estado | Informações | numeric
+| TIMER_STATE | Status do temporizador (pausa ou não) | Informações | binário, numérico
+| DEFINIR TEMPORIZADOR | Cronômetro | Açao | slider
+| TIMER_PAUSE | Pausar cronômetro | Açao | other
+| TIMER_RESUME | Resumo do cronômetro | Açao | other
 
 | **Bateria (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| BATERIA | Bateria (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| BATTERY_CHARGING | Carregamento da bateria (não gerenciado pelo aplicativo móvel) | Informações | binary
+| BATERIA | Bateria | Informações | numeric
+| BATTERY_CHARGING | Carregamento de bateria | Informações | binary
 
 | **Câmera (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -85,30 +85,30 @@ Em cada dispositivo, você tem dois botões :
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | POTÊNCIA | Energia elétrica | Informações | numeric
-| CONSUMO | Consumo de eletricidade (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| VOLTAGEM | Voltage (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| REINÍCIO | Reiniciar (não gerenciado pelo Application Mobile) | Açao | other
+| CONSUMO | Consumo de energia | Informações | numeric
+| VOLTAGEM | Voltagem | Informações | numeric
+| REINÍCIO | Reiniciar | Açao | other
 
 | **Ambiente (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TEMPERATURA | Temperatura | Informações | numeric
+| TEMPERATURA | TEMPERATURA | Informações | numeric
 | QUALIDADE DO AR | Qualidade do ar | Informações | numeric
 | BRILHO | Brilho | Informações | numeric
-| PRESENÇA | Presença | Informações | binary
+| PRESENÇA | PRESENÇA | Informações | binary
 | FUMAÇA | Detecção de fumaça | Informações | binary
 | UMIDADE | Umidade | Informações | numeric
-| UV | UV (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| CO2 | CO2 (ppm) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| CO | CO (ppm) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| BARULHO | Som (dB) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| PRESSÃO | Pressão (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| VAZAMENTO DE ÁGUA | Vazamento de água (não gerenciado pelo aplicativo móvel) | Informações |
-| FILTER_CLEAN_STATE | Status do filtro (não gerenciado pelo aplicativo móvel) | Informações | binary
+| UV | UV | Informações | numeric
+| CO2 | CO2 (ppm) | Informações | numeric
+| CO | CO (ppm) | Informações | numeric
+| BARULHO | Som (dB) | Informações | numeric
+| PRESSÃO | Pressão | Informações | numeric
+| VAZAMENTO DE ÁGUA | Vazamento de água | Informações |
+| FILTER_CLEAN_STATE | Estado do filtro | Informações | binary
 
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | PROFUNDIDADE | Profundidade | Informações | numeric
-| DISTÂNCIA | Distância | Informações | numeric
+| DISTÂNCIA | DISTÂNCIA | Informações | numeric
 | BOTÃO | Botão | Informações | binário, numérico
 | GENERIC_INFO |  Genérico | Informações |
 | GENERIC_ACTION |  Genérico | Açao | other
@@ -116,17 +116,17 @@ Em cada dispositivo, você tem dois botões :
 | **Light (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | LIGHT_STATE | Estado claro | Informações | binário, numérico
-| LIGHT_BRIGHTNESS | Brilho da luz (não gerenciado pelo aplicativo móvel) | Informações | numeric
+| LIGHT_BRIGHTNESS | Brilho da luz | Informações | numeric
 | COR CLARA | Cor clara | Informações | string
-| LIGHT_STATE_BOOL | Estado leve (binário) (não gerenciado pelo aplicativo móvel) | Informações | binary
-| LIGHT_COLOR_TEMP | Temperatura da luz de cor (não gerenciado pelo aplicativo móvel) | Informações | numeric
+| LIGHT_STATE_BOOL | Estado Leve (Binário) | Informações | binary
+| LIGHT_COLOR_TEMP | Cor da temperatura da luz | Informações | numeric
 | LIGHT_TOGGLE | Alternar luz | Açao | other
 | LUZES LIGADAS | Botão de luz ligado | Açao | other
 | LUZ APAGADA | Botão de luz apagado | Açao | other
 | LIGHT_SLIDER | Luz deslizante | Açao | slider
 | LIGHT_SET_COLOR | Cor clara | Açao | color
 | LIGHT_MODE | Modo de luz | Açao | other
-| LIGHT_SET_COLOR_TEMP | Temperatura da luz de cor (não gerenciado pelo aplicativo móvel) | Açao |
+| LIGHT_SET_COLOR_TEMP | Cor da temperatura da luz | Açao |
 
 | **Modo (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -135,14 +135,14 @@ Em cada dispositivo, você tem dois botões :
 
 | **Multimídia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume | Informações | numeric
-| MEDIA_STATUS | Status (não gerenciado pelo aplicativo móvel) | Informações | string
-| MEDIA_ALBUM | Álbum (não gerenciado por Application Mobile) | Informações | string
-| MEDIA_ARTIST | Artista (não gerenciado pelo Application Mobile) | Informações | string
-| MEDIA_TITLE | Título (não gerenciado pelo aplicativo móvel) | Informações | string
-| MEDIA_POWER | Power (não gerenciado pelo Application Mobile) | Informações | string
+| Volume | Volume | Informações | numeric
+| MEDIA_STATUS | Status | Informações | string
+| MEDIA_ALBUM | Álbum | Informações | string
+| MEDIA_ARTIST | Artista | Informações | string
+| MEDIA_TITLE | Título | Informações | string
+| MEDIA_POWER | POTÊNCIA | Informações | string
 | CANAL | Cadeia | Informações | numérico, string
-| MEDIA_STATE | Status (não gerenciado pelo aplicativo móvel) | Informações | binary
+| MEDIA_STATE | Estado | Informações | binary
 | SET_VOLUME | Volume | Açao | slider
 | SET_CHANNEL | Cadeia | Açao | outro controle deslizante
 | MEDIA_PAUSE | Pausa | Açao | other
@@ -150,44 +150,44 @@ Em cada dispositivo, você tem dois botões :
 | MEDIA_STOP | Pare | Açao | other
 | MEDIA_NEXT | Seguindo | Açao | other
 | MEDIA_PREVIOUS | Anterior | Açao | other
-| MEDIA_ON | Ligado (não gerenciado pelo aplicativo móvel) | Açao | other
-| MEDIA_OFF | Desligado (não gerenciado pelo aplicativo móvel) | Açao | other
-| MEDIA_MUTE | Mudo (não gerenciado pelo aplicativo móvel) | Açao | other
-| MEDIA_UNMUTE | Sem mudo (não gerenciado pelo aplicativo móvel) | Açao | other
+| MEDIA_ON | Nós | Açao | other
+| MEDIA_OFF | Desligado | Açao | other
+| MEDIA_MUTE | Mudo | Açao | other
+| MEDIA_UNMUTE | Sem mudo | Açao | other
 
 | **Tempo (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| WEATHER_TEMPERATURE | Temperatura do tempo (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_TEMPERATURE_MAX_2 | Condição climática d + 1 max d + 2 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| VELOCIDADE DO VENTO | Vento (velocidade) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| RAIN_TOTAL | Chuva (acumulação) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| RAIN_CURRENT | Chuva (mm / h) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_ID_4 | Condição climática (id) d + 4 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_4 | Condição climática d + 4 (não gerenciado pelo aplicativo móvel) | Informações | string
-| WEATHER_TEMPERATURE_MAX_4 | Temperatura máxima do tempo d + 4 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_TEMPERATURE_MIN_4 | Temperatura do tempo min d + 4 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_ID_3 | Condição climática (id) d + 3 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_3 | Condição climática d + 3 (não gerenciado pelo aplicativo móvel) | Informações | string
-| WEATHER_TEMPERATURE_MAX_3 | Temperatura máxima do tempo d + 3 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_TEMPERATURE_MIN_3 | Temperatura do tempo min d + 3 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_ID_2 | Condição climática (id) d + 2 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_2 | Condição climática d + 2 (não gerenciado pelo aplicativo móvel) | Informações | string
-| WEATHER_TEMPERATURE_MIN_2 | Temperatura do tempo min d + 2 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_HUMIDITY | Umidade do tempo (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_ID_1 | Condição climática (id) d + 1 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_1 | Condição climática d + 1 (não gerenciado pelo aplicativo móvel) | Informações | string
-| WEATHER_TEMPERATURE_MAX_1 | Temperatura máxima do tempo d + 1 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_TEMPERATURE_MIN_1 | Temperatura do tempo min d + 1 (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION_ID | Condição climática (id) (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_CONDITION | Condições meteorológicas (não gerenciado pelo aplicativo móvel) | Informações | string
-| WEATHER_TEMPERATURE_MAX | Temperatura máxima do tempo (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_TEMPERATURE_MIN | Temperatura mínima do tempo (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_SUNRISE | Clima do pôr do sol (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_SUNSET | Tempo do nascer do sol (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_WIND_DIRECTION | Previsão do tempo na direção do vento (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_WIND_SPEED | Previsão do tempo para a velocidade do vento (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| WEATHER_PRESSURE | Pressão do clima (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| DIREÇÃO DO VENTO | Vento (direção) (não gerenciado pelo aplicativo móvel) | Informações | numeric
+| WEATHER_TEMPERATURE | Temperatura do tempo | Informações | numeric
+| WEATHER_TEMPERATURE_MAX_2 | Condição climática d + 1 max d + 2 | Informações | numeric
+| VELOCIDADE DO VENTO | Velocidade do vento) | Informações | numeric
+| RAIN_TOTAL | Chuva (acumulação) | Informações | numeric
+| RAIN_CURRENT | Chuva (mm / h) | Informações | numeric
+| WEATHER_CONDITION_ID_4 | Condição climática (id) d + 4 | Informações | numeric
+| WEATHER_CONDITION_4 | Condição climática d + 4 | Informações | string
+| WEATHER_TEMPERATURE_MAX_4 | Temperatura máxima do tempo d + 4 | Informações | numeric
+| WEATHER_TEMPERATURE_MIN_4 | Temperatura do tempo min d + 4 | Informações | numeric
+| WEATHER_CONDITION_ID_3 | Condição climática (id) d + 3 | Informações | numeric
+| WEATHER_CONDITION_3 | Condição climática d + 3 | Informações | string
+| WEATHER_TEMPERATURE_MAX_3 | Temperatura máxima do tempo d + 3 | Informações | numeric
+| WEATHER_TEMPERATURE_MIN_3 | Temperatura do tempo min d + 3 | Informações | numeric
+| WEATHER_CONDITION_ID_2 | Condição climática (id) d + 2 | Informações | numeric
+| WEATHER_CONDITION_2 | Condição climática d + 2 | Informações | string
+| WEATHER_TEMPERATURE_MIN_2 | Temperatura do tempo min d + 2 | Informações | numeric
+| WEATHER_HUMIDITY | Umidade do tempo | Informações | numeric
+| WEATHER_CONDITION_ID_1 | Condição climática (id) d + 1 | Informações | numeric
+| WEATHER_CONDITION_1 | Condição climática d + 1 | Informações | string
+| WEATHER_TEMPERATURE_MAX_1 | Temperatura máxima do tempo d + 1 | Informações | numeric
+| WEATHER_TEMPERATURE_MIN_1 | Temperatura do tempo min d + 1 | Informações | numeric
+| WEATHER_CONDITION_ID | Condições meteorológicas (id) | Informações | numeric
+| WEATHER_CONDITION | Condição do tempo | Informações | string
+| WEATHER_TEMPERATURE_MAX | Temperatura máxima do tempo | Informações | numeric
+| WEATHER_TEMPERATURE_MIN | Temperatura mínima do tempo | Informações | numeric
+| WEATHER_SUNRISE | Clima de pôr do sol | Informações | numeric
+| WEATHER_SUNSET | Clima do nascer do sol | Informações | numeric
+| WEATHER_WIND_DIRECTION | Tempo de direção do vento | Informações | numeric
+| WEATHER_WIND_SPEED | Tempo de velocidade do vento | Informações | numeric
+| WEATHER_PRESSURE | Pressão do Tempo | Informações | numeric
+| DIREÇÃO DO VENTO | Direção do vento) | Informações | numeric
 
 | **Abrindo (id: Opening)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -211,23 +211,23 @@ Em cada dispositivo, você tem dois botões :
 
 | **Robot (id: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| DOCK_STATE | Base estadual (não gerenciado por aplicativo móvel) | Informações | binary
-| DOCA | Retornar à base (não gerenciado pelo aplicativo móvel) | Açao | other
+| DOCK_STATE | Base estadual | Informações | binary
+| DOCA | De volta à base | Açao | other
 
 | **Segurança (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | SIREN_STATE | Estado da sereia | Informações | binary
-| ALARM_STATE | Status do alarme (não gerenciado pelo aplicativo móvel) | Informações | binário, string
-| ALARM_MODE | Modo de alarme (não gerenciado pelo aplicativo móvel) | Informações | string
-| ALARM_ENABLE_STATE | Status de alarme ativado (não gerenciado pelo aplicativo móvel) | Informações | binary
+| ALARM_STATE | Status de Alarme | Informações | binário, string
+| ALARM_MODE | Modo de alarme | Informações | string
+| ALARM_ENABLE_STATE | Status de alarme ativado | Informações | binary
 | ENCHENTE | Enchente | Informações | binary
-| SABOTAR | Sabotar | Informações | binary
+| SABOTAR | SABOTAR | Informações | binary
 | CHOQUE | Choque | Informações | binário, numérico
 | SIREN_OFF | Botão da sirene desligado | Açao | other
 | SIREN_ON | Botão de sirene ligado | Açao | other
-| ALARM_ARMED | Alarme armado (não gerenciado pelo aplicativo móvel) | Açao | other
-| ALARM_RELEASED | Alarme liberado (não gerenciado pelo aplicativo móvel) | Açao | other
-| ALARM_SET_MODE | Modo de alarme (não gerenciado pelo aplicativo móvel) | Açao | other
+| ALARM_ARMED | Alarme armado | Açao | other
+| ALARM_RELEASED | Alarme liberado | Açao | other
+| ALARM_SET_MODE | Modo de Alarme | Açao | other
 
 | **Termostato (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -238,20 +238,20 @@ Em cada dispositivo, você tem dois botões :
 | THERMOSTAT_LOCK | Termostato de bloqueio (apenas para termostato de plug-in) | Informações | binary
 | THERMOSTAT_TEMPERATURE_OUTDOOR | Termostato de temperatura externa (apenas para termostato de plug-in) | Informações | numeric
 | THERMOSTAT_STATE_NAME | Status do termostato (HUMANO) (apenas para termostato de plug-in) | Informações | string
-| THERMOSTAT_HUMIDITY | Termostato de umidade ambiente (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| HUMIDITY_SETPOINT | Definir umidade (não gerenciado pelo aplicativo móvel) | Informações | slider
+| THERMOSTAT_HUMIDITY | Termostato de umidade ambiente | Informações | numeric
+| HUMIDITY_SETPOINT | Definir umidade | Informações | slider
 | THERMOSTAT_SET_SETPOINT | Termostato de ponto de ajuste | Açao | slider
 | THERMOSTAT_SET_MODE | Modo do termostato (apenas para termostato de plug-in) | Açao | other
 | THERMOSTAT_SET_LOCK | Termostato de bloqueio (apenas para termostato de plug-in) | Açao | other
 | THERMOSTAT_SET_UNLOCK | Desbloquear termostato (apenas para termostato de plug-in) | Açao | other
-| HUMIDITY_SET_SETPOINT | Definir umidade (não gerenciado pelo aplicativo móvel) | Açao | slider
+| HUMIDITY_SET_SETPOINT | Definir umidade | Açao | slider
 
 | **Ventilador (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FAN_SPEED_STATE | Status de velocidade do ventilador (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| ROTATION_STATE | Rotação de estado (não gerenciado pelo aplicativo móvel) | Informações | numeric
-| VELOCIDADE DO VENTILADOR | Velocidade do ventilador (não gerenciado pelo aplicativo móvel) | Açao | slider
-| ROTAÇÃO | Rotação (não gerenciado pelo aplicativo móvel) | Açao | slider
+| FAN_SPEED_STATE | Status da velocidade do ventilador | Informações | numeric
+| ROTATION_STATE | Rotação de estado | Informações | numeric
+| VELOCIDADE DO VENTILADOR | Velocidade do ventilador | Açao | slider
+| ROTAÇÃO | ROTAÇÃO | Açao | slider
 
 | **Painel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
