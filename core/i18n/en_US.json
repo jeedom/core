@@ -3339,15 +3339,15 @@
         "Garage (ouvrant) Etat": "Garage (opening) State",
         "Porte": "Door",
         "Fenêtre": "Window",
-        "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Thermostat State (Binary) (Thermostat Plugin only)",
+        "Thermostat Etat": "Thermostat Status",
         "Thermostat": "Thermostat",
         "Thermostat Température ambiante": "Thermostat Room temperature",
         "Thermostat consigne": "Thermostat Order",
-        "Thermostat Mode (pour Plugin Thermostat uniquement)": "Thermostat Mode (Thermostat Plugin only)",
-        "Thermostat Verrouillage (pour Plugin Thermostat uniquement)": "Thermostat Lock (Thermostat Plugin only)",
-        "Thermostat Déverrouillage (pour Plugin Thermostat uniquement)": "Thermostat Unlock (Thermostat Plugin only)",
-        "Thermostat Température Exterieur (pour Plugin Thermostat uniquement)": "Thermostat Outdoor Temperature (Thermostat Plugin only)",
-        "Thermostat Etat (HUMAIN) (pour Plugin Thermostat uniquement)": "Thermostat  State (Human) (Thermostat Plugin only)",
+        "Thermostat Mode": "Thermostat Mode",
+        "Thermostat Verrouillage": "Lock Thermostat",
+        "Thermostat Déverrouillage": "Unlock thermostat",
+        "Thermostat Température Exterieur": "Outside Temperature Thermostat",
+        "Thermostat Etat (HUMAIN)": "Thermostat Status (HUMAN)",
         "Thermostat humidité ambiante": "Room humidity thermostat",
         "Humidité consigne": "Set humidity",
         "Mouvement caméra vers le haut": "Camera Move Up",
@@ -4271,9 +4271,6 @@
         "Evaluation de la condition": "Condition evaluation",
         "Vrai": "True",
         "Faux": "False"
-    },
-    "core\/class\/config.class.php": {
-        "(Non géré par Application Mobile)": "(Not managed by Application Mobile)"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Method not allowed in GET:"

@@ -3339,15 +3339,15 @@
         "Garage (ouvrant) Etat": "Garage (ouvrant) Etat",
         "Porte": "Porte",
         "Fenêtre": "Fenêtre",
-        "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)",
+        "Thermostat Etat": "Thermostat Etat",
         "Thermostat": "Thermostat",
         "Thermostat Température ambiante": "Thermostat Température ambiante",
         "Thermostat consigne": "Thermostat consigne",
-        "Thermostat Mode (pour Plugin Thermostat uniquement)": "Thermostat Mode (pour Plugin Thermostat uniquement)",
-        "Thermostat Verrouillage (pour Plugin Thermostat uniquement)": "Thermostat Verrouillage (pour Plugin Thermostat uniquement)",
-        "Thermostat Déverrouillage (pour Plugin Thermostat uniquement)": "Thermostat Déverrouillage (pour Plugin Thermostat uniquement)",
-        "Thermostat Température Exterieur (pour Plugin Thermostat uniquement)": "Thermostat Température Exterieur (pour Plugin Thermostat uniquement)",
-        "Thermostat Etat (HUMAIN) (pour Plugin Thermostat uniquement)": "Thermostat Etat (HUMAIN) (pour Plugin Thermostat uniquement)",
+        "Thermostat Mode": "Thermostat Mode",
+        "Thermostat Verrouillage": "Thermostat Verrouillage",
+        "Thermostat Déverrouillage": "Thermostat Déverrouillage",
+        "Thermostat Température Exterieur": "Thermostat Température Exterieur",
+        "Thermostat Etat (HUMAIN)": "Thermostat Etat (HUMAIN)",
         "Thermostat humidité ambiante": "Thermostat humidité ambiante",
         "Humidité consigne": "Humidité consigne",
         "Mouvement caméra vers le haut": "Mouvement caméra vers le haut",
@@ -4271,9 +4271,6 @@
         "Evaluation de la condition": "Evaluation de la condition",
         "Vrai": "Vero",
         "Faux": "Falso"
-    },
-    "core\/class\/config.class.php": {
-        "(Non géré par Application Mobile)": "(Non géré par Application Mobile)"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
