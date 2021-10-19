@@ -49,16 +49,16 @@ Sur chaque équipement, vous avez deux boutons :
 
 | **Autre (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TIMER | Minuteur Etat (Non géré par Application Mobile) | Info | numeric
-| TIMER_STATE | Minuteur Etat (pause ou non) (Non géré par Application Mobile) | Info | binary, numeric
-| SET_TIMER | Minuteur (Non géré par Application Mobile) | Action | slider
-| TIMER_PAUSE | Minuteur pause (Non géré par Application Mobile) | Action | other
-| TIMER_RESUME | Minuteur reprendre (Non géré par Application Mobile) | Action | other
+| TIMER | Minuteur Etat | Info | numeric
+| TIMER_STATE | Minuteur Etat (pause ou non) | Info | binary, numeric
+| SET_TIMER | Minuteur | Action | slider
+| TIMER_PAUSE | Minuteur pause | Action | other
+| TIMER_RESUME | Minuteur reprendre | Action | other
 
 | **Batterie (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| BATTERY | Batterie (Non géré par Application Mobile) | Info | numeric
-| BATTERY_CHARGING | Batterie en charge (Non géré par Application Mobile) | Info | binary
+| BATTERY | Batterie | Info | numeric
+| BATTERY_CHARGING | Batterie en charge | Info | binary
 
 | **Caméra (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -85,9 +85,9 @@ Sur chaque équipement, vous avez deux boutons :
 | **Electricité (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | POWER | Puissance Electrique | Info | numeric
-| CONSUMPTION | Consommation Electrique (Non géré par Application Mobile) | Info | numeric
-| VOLTAGE | Tension (Non géré par Application Mobile) | Info | numeric
-| REBOOT | Redémarrage (Non géré par Application Mobile) | Action | other
+| CONSUMPTION | Consommation Electrique | Info | numeric
+| VOLTAGE | Tension | Info | numeric
+| REBOOT | Redémarrage | Action | other
 
 | **Environnement (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -97,13 +97,13 @@ Sur chaque équipement, vous avez deux boutons :
 | PRESENCE | Présence | Info | binary
 | SMOKE | Détection de fumée | Info | binary
 | HUMIDITY | Humidité | Info | numeric
-| UV | UV (Non géré par Application Mobile) | Info | numeric
-| CO2 | CO2 (ppm) (Non géré par Application Mobile) | Info | numeric
-| CO | CO (ppm) (Non géré par Application Mobile) | Info | numeric
-| NOISE | Son (dB) (Non géré par Application Mobile) | Info | numeric
-| PRESSURE | Pression (Non géré par Application Mobile) | Info | numeric
-| WATER_LEAK | Fuite d'eau (Non géré par Application Mobile) | Info |
-| FILTER_CLEAN_STATE | Etat du filtre (Non géré par Application Mobile) | Info | binary
+| UV | UV | Info | numeric
+| CO2 | CO2 (ppm) | Info | numeric
+| CO | CO (ppm) | Info | numeric
+| NOISE | Son (dB) | Info | numeric
+| PRESSURE | Pression | Info | numeric
+| WATER_LEAK | Fuite d'eau | Info |
+| FILTER_CLEAN_STATE | Etat du filtre | Info | binary
 
 | **Generic (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -116,17 +116,17 @@ Sur chaque équipement, vous avez deux boutons :
 | **Lumière (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | LIGHT_STATE | Lumière Etat | Info | binary, numeric
-| LIGHT_BRIGHTNESS | Lumière Luminosité (Non géré par Application Mobile) | Info | numeric
+| LIGHT_BRIGHTNESS | Lumière Luminosité | Info | numeric
 | LIGHT_COLOR | Lumière Couleur | Info | string
-| LIGHT_STATE_BOOL | Lumière Etat (Binaire) (Non géré par Application Mobile) | Info | binary
-| LIGHT_COLOR_TEMP | Lumière Température Couleur (Non géré par Application Mobile) | Info | numeric
+| LIGHT_STATE_BOOL | Lumière Etat (Binaire) | Info | binary
+| LIGHT_COLOR_TEMP | Lumière Température Couleur | Info | numeric
 | LIGHT_TOGGLE | Lumière Toggle | Action | other
 | LIGHT_ON | Lumière Bouton On | Action | other
 | LIGHT_OFF | Lumière Bouton Off | Action | other
 | LIGHT_SLIDER | Lumière Slider | Action | slider
 | LIGHT_SET_COLOR | Lumière Couleur | Action | color
 | LIGHT_MODE | Lumière Mode | Action | other
-| LIGHT_SET_COLOR_TEMP | Lumière Température Couleur (Non géré par Application Mobile) | Action |
+| LIGHT_SET_COLOR_TEMP | Lumière Température Couleur | Action |
 
 | **Mode (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -136,13 +136,13 @@ Sur chaque équipement, vous avez deux boutons :
 | **Multimédia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | VOLUME | Volume | Info | numeric
-| MEDIA_STATUS | Status (Non géré par Application Mobile) | Info | string
-| MEDIA_ALBUM | Album (Non géré par Application Mobile) | Info | string
-| MEDIA_ARTIST | Artiste (Non géré par Application Mobile) | Info | string
-| MEDIA_TITLE | Titre (Non géré par Application Mobile) | Info | string
-| MEDIA_POWER | Power (Non géré par Application Mobile) | Info | string
+| MEDIA_STATUS | Status | Info | string
+| MEDIA_ALBUM | Album | Info | string
+| MEDIA_ARTIST | Artiste | Info | string
+| MEDIA_TITLE | Titre | Info | string
+| MEDIA_POWER | Power | Info | string
 | CHANNEL | Chaine | Info | numeric, string
-| MEDIA_STATE | Etat (Non géré par Application Mobile) | Info | binary
+| MEDIA_STATE | Etat | Info | binary
 | SET_VOLUME | Volume | Action | slider
 | SET_CHANNEL | Chaine | Action | other, slider
 | MEDIA_PAUSE | Pause | Action | other
@@ -150,44 +150,44 @@ Sur chaque équipement, vous avez deux boutons :
 | MEDIA_STOP | Stop | Action | other
 | MEDIA_NEXT | Suivant | Action | other
 | MEDIA_PREVIOUS | Précedent | Action | other
-| MEDIA_ON | On (Non géré par Application Mobile) | Action | other
-| MEDIA_OFF | Off (Non géré par Application Mobile) | Action | other
-| MEDIA_MUTE | Muet (Non géré par Application Mobile) | Action | other
-| MEDIA_UNMUTE | Non Muet (Non géré par Application Mobile) | Action | other
+| MEDIA_ON | On | Action | other
+| MEDIA_OFF | Off | Action | other
+| MEDIA_MUTE | Muet | Action | other
+| MEDIA_UNMUTE | Non Muet | Action | other
 
 | **Météo (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| WEATHER_TEMPERATURE | Météo Température (Non géré par Application Mobile) | Info | numeric
-| WEATHER_TEMPERATURE_MAX_2 | Météo condition j+1 max j+2 (Non géré par Application Mobile) | Info | numeric
-| WIND_SPEED | Vent (vitesse) (Non géré par Application Mobile) | Info | numeric
-| RAIN_TOTAL | Pluie (accumulation) (Non géré par Application Mobile) | Info | numeric
-| RAIN_CURRENT | Pluie (mm/h) (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_ID_4 | Météo condition (id) j+4 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_4 | Météo condition j+4 (Non géré par Application Mobile) | Info | string
-| WEATHER_TEMPERATURE_MAX_4 | Météo Température max j+4 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_TEMPERATURE_MIN_4 | Météo Température min j+4 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_ID_3 | Météo condition (id) j+3 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_3 | Météo condition j+3 (Non géré par Application Mobile) | Info | string
-| WEATHER_TEMPERATURE_MAX_3 | Météo Température max j+3 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_TEMPERATURE_MIN_3 | Météo Température min j+3 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_ID_2 | Météo condition (id) j+2 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_2 | Météo condition j+2 (Non géré par Application Mobile) | Info | string
-| WEATHER_TEMPERATURE_MIN_2 | Météo Température min j+2 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_HUMIDITY | Météo Humidité (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_ID_1 | Météo condition (id) j+1 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_1 | Météo condition j+1 (Non géré par Application Mobile) | Info | string
-| WEATHER_TEMPERATURE_MAX_1 | Météo Température max j+1 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_TEMPERATURE_MIN_1 | Météo Température min j+1 (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION_ID | Météo condition (id) (Non géré par Application Mobile) | Info | numeric
-| WEATHER_CONDITION | Météo condition (Non géré par Application Mobile) | Info | string
-| WEATHER_TEMPERATURE_MAX | Météo Température max (Non géré par Application Mobile) | Info | numeric
-| WEATHER_TEMPERATURE_MIN | Météo Température min (Non géré par Application Mobile) | Info | numeric
-| WEATHER_SUNRISE | Météo coucher de soleil (Non géré par Application Mobile) | Info | numeric
-| WEATHER_SUNSET | Météo lever de soleil (Non géré par Application Mobile) | Info | numeric
-| WEATHER_WIND_DIRECTION | Météo direction du vent (Non géré par Application Mobile) | Info | numeric
-| WEATHER_WIND_SPEED | Météo vitesse du vent (Non géré par Application Mobile) | Info | numeric
-| WEATHER_PRESSURE | Météo Pression (Non géré par Application Mobile) | Info | numeric
-| WIND_DIRECTION | Vent (direction) (Non géré par Application Mobile) | Info | numeric
+| WEATHER_TEMPERATURE | Météo Température | Info | numeric
+| WEATHER_TEMPERATURE_MAX_2 | Météo condition j+1 max j+2 | Info | numeric
+| WIND_SPEED | Vent (vitesse) | Info | numeric
+| RAIN_TOTAL | Pluie (accumulation) | Info | numeric
+| RAIN_CURRENT | Pluie (mm/h) | Info | numeric
+| WEATHER_CONDITION_ID_4 | Météo condition (id) j+4 | Info | numeric
+| WEATHER_CONDITION_4 | Météo condition j+4 | Info | string
+| WEATHER_TEMPERATURE_MAX_4 | Météo Température max j+4 | Info | numeric
+| WEATHER_TEMPERATURE_MIN_4 | Météo Température min j+4 | Info | numeric
+| WEATHER_CONDITION_ID_3 | Météo condition (id) j+3 | Info | numeric
+| WEATHER_CONDITION_3 | Météo condition j+3 | Info | string
+| WEATHER_TEMPERATURE_MAX_3 | Météo Température max j+3 | Info | numeric
+| WEATHER_TEMPERATURE_MIN_3 | Météo Température min j+3 | Info | numeric
+| WEATHER_CONDITION_ID_2 | Météo condition (id) j+2 | Info | numeric
+| WEATHER_CONDITION_2 | Météo condition j+2 | Info | string
+| WEATHER_TEMPERATURE_MIN_2 | Météo Température min j+2 | Info | numeric
+| WEATHER_HUMIDITY | Météo Humidité | Info | numeric
+| WEATHER_CONDITION_ID_1 | Météo condition (id) j+1 | Info | numeric
+| WEATHER_CONDITION_1 | Météo condition j+1 | Info | string
+| WEATHER_TEMPERATURE_MAX_1 | Météo Température max j+1 | Info | numeric
+| WEATHER_TEMPERATURE_MIN_1 | Météo Température min j+1 | Info | numeric
+| WEATHER_CONDITION_ID | Météo condition (id) | Info | numeric
+| WEATHER_CONDITION | Météo condition | Info | string
+| WEATHER_TEMPERATURE_MAX | Météo Température max | Info | numeric
+| WEATHER_TEMPERATURE_MIN | Météo Température min | Info | numeric
+| WEATHER_SUNRISE | Météo coucher de soleil | Info | numeric
+| WEATHER_SUNSET | Météo lever de soleil | Info | numeric
+| WEATHER_WIND_DIRECTION | Météo direction du vent | Info | numeric
+| WEATHER_WIND_SPEED | Météo vitesse du vent | Info | numeric
+| WEATHER_PRESSURE | Météo Pression | Info | numeric
+| WIND_DIRECTION | Vent (direction) | Info | numeric
 
 | **Ouvrant (id: Opening)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -211,23 +211,23 @@ Sur chaque équipement, vous avez deux boutons :
 
 | **Robot (id: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| DOCK_STATE | Base Etat (Non géré par Application Mobile) | Info | binary
-| DOCK | Retour base (Non géré par Application Mobile) | Action | other
+| DOCK_STATE | Base Etat | Info | binary
+| DOCK | Retour base | Action | other
 
 | **Sécurité (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | SIREN_STATE | Sirène Etat | Info | binary
-| ALARM_STATE | Alarme Etat (Non géré par Application Mobile) | Info | binary, string
-| ALARM_MODE | Alarme mode (Non géré par Application Mobile) | Info | string
-| ALARM_ENABLE_STATE | Alarme Etat activée (Non géré par Application Mobile) | Info | binary
+| ALARM_STATE | Alarme Etat | Info | binary, string
+| ALARM_MODE | Alarme mode | Info | string
+| ALARM_ENABLE_STATE | Alarme Etat activée | Info | binary
 | FLOOD | Inondation | Info | binary
 | SABOTAGE | Sabotage | Info | binary
 | SHOCK | Choc | Info | binary, numeric
 | SIREN_OFF | Sirène Bouton Off | Action | other
 | SIREN_ON | Sirène Bouton On | Action | other
-| ALARM_ARMED | Alarme armée (Non géré par Application Mobile) | Action | other
-| ALARM_RELEASED | Alarme libérée (Non géré par Application Mobile) | Action | other
-| ALARM_SET_MODE | Alarme Mode (Non géré par Application Mobile) | Action | other
+| ALARM_ARMED | Alarme armée | Action | other
+| ALARM_RELEASED | Alarme libérée | Action | other
+| ALARM_SET_MODE | Alarme Mode | Action | other
 
 | **Thermostat (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -238,20 +238,20 @@ Sur chaque équipement, vous avez deux boutons :
 | THERMOSTAT_LOCK | Thermostat Verrouillage (pour Plugin Thermostat uniquement) | Info | binary
 | THERMOSTAT_TEMPERATURE_OUTDOOR | Thermostat Température Exterieur (pour Plugin Thermostat uniquement) | Info | numeric
 | THERMOSTAT_STATE_NAME | Thermostat Etat (HUMAIN) (pour Plugin Thermostat uniquement) | Info | string
-| THERMOSTAT_HUMIDITY | Thermostat humidité ambiante (Non géré par Application Mobile) | Info | numeric
-| HUMIDITY_SETPOINT | Humidité consigne (Non géré par Application Mobile) | Info | slider
+| THERMOSTAT_HUMIDITY | Thermostat humidité ambiante | Info | numeric
+| HUMIDITY_SETPOINT | Humidité consigne | Info | slider
 | THERMOSTAT_SET_SETPOINT | Thermostat consigne | Action | slider
 | THERMOSTAT_SET_MODE | Thermostat Mode (pour Plugin Thermostat uniquement) | Action | other
 | THERMOSTAT_SET_LOCK | Thermostat Verrouillage (pour Plugin Thermostat uniquement) | Action | other
 | THERMOSTAT_SET_UNLOCK | Thermostat Déverrouillage (pour Plugin Thermostat uniquement) | Action | other
-| HUMIDITY_SET_SETPOINT | Humidité consigne (Non géré par Application Mobile) | Action | slider
+| HUMIDITY_SET_SETPOINT | Humidité consigne | Action | slider
 
 | **Ventilateur (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FAN_SPEED_STATE | Vitesse ventilateur Etat (Non géré par Application Mobile) | Info | numeric
-| ROTATION_STATE | Rotation Etat (Non géré par Application Mobile) | Info | numeric
-| FAN_SPEED | Vitesse ventilateur (Non géré par Application Mobile) | Action | slider
-| ROTATION | Rotation (Non géré par Application Mobile) | Action | slider
+| FAN_SPEED_STATE | Vitesse ventilateur Etat | Info | numeric
+| ROTATION_STATE | Rotation Etat | Info | numeric
+| FAN_SPEED | Vitesse ventilateur | Action | slider
+| ROTATION | Rotation | Action | slider
 
 | **Volet (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
