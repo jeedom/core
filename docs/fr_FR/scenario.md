@@ -234,7 +234,7 @@ Il existe des déclencheurs spécifiques (autre que ceux fournis par les command
 - ``#end_restore#`` : Événement envoyé à la fin d’une restauration.
 - ``#user_connect#`` : Connexion d'un utilisateur
 - ``#variable(nom_variable)#`` : Changement de valeur de la variable nom_variable.
-- ``#genericType(GENERIC, Objet)#`` : Changement d'une commande info de Type Generic GENERIC, dans l'objet Objet.
+- ``#genericType(GENERIC, #[Object]#)#`` : Changement d'une commande info de Type Generic GENERIC, dans l'objet Object.
 
 Vous pouvez aussi déclencher un scénario en utilisant l’API HTTP décrite [ici](https://doc.jeedom.com/fr_FR/core/4.1/api_http).
 
@@ -336,7 +336,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 - ``variable(mavariable,valeur par défaut)`` : Récupère la valeur d’une variable ou de la valeur souhaitée par défaut.
 
-- ``#genericType(GENERIC, Objet)#`` : Récupère la somme des infos de Type Générique GENERIC dans l'objet Objet.
+- ``#genericType(GENERIC, #[Object]#)#`` : Récupère la somme des infos de Type Générique GENERIC dans l'objet Object.
 
 - ``scenario(scenario)`` : Renvoie le statut du scénario.
     1 : En cours,
@@ -462,7 +462,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **Pause** (sleep) : Pause de x seconde(s).
 - **variable** (variable) : Création/modification d’une variable ou de la valeur d’une variable.
 - **Supprimer variable** (delete_variable) : Permet de supprimer une variable.
-- **genericType(GENERIC, Objet) : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
+- **genericType(GENERIC, #[Object]#) : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
 - **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags permet d’envoyer des tags au scénario, ex : montag=2 (attention il ne faut utiliser que des lettre de a à z. Pas de majuscules, pas d’accents et pas de caractères spéciaux). On récupère le tag dans le scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le statut des "SI" (ce statut est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans).
 - **Stop** (stop) : Arrête le scénario.
 - **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s).

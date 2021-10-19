@@ -30,8 +30,8 @@
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Cenas** : Adicionando funções de cálculo ````averageTemporal(commande,période)```` E ````averageTemporalBetween(commande,start,end)```` permitindo obter a média ponderada pela duração ao longo do período.
 - **Cenas** : Adicionado suporte para tipos genéricos em cenários.
-	- Desencadear : ``#genericType(LIGHT_STATE,Salon)# > 0`
-	- IF `genericType (LIGHT_STATE, Lounge)> 0`
+	- Desencadear : ``#genericType(LIGHT_STATE,#[Salão]#)# > 0`
+	- IF `genericType (LIGHT_STATE,#[Salão]#) > 0`
 	- Ação `GenericType`
 - **Configurações OSDB** : Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
 - **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.

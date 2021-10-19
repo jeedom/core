@@ -440,6 +440,7 @@ jeedomUtils.triggerThemechange = function() {
 }
 
 jeedomUtils.setBackgroundImage = function(_path) {
+  if (getUrlVars('rescue') == 1) return false
   //Exact same function desktop/mobile, only transitionJeedomBackground() differ
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
