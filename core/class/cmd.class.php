@@ -1229,7 +1229,7 @@ class cmd {
 	public function getGenericTypeSelectOptions() {
 		$display = '<option value="">{{Aucun}}</option>';
 		$groups = array();
-		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
+		foreach ((config::getGenericTypes(false, false)['byType']) as $key => $info) {
 			if (strtolower($this->getType()) != strtolower($info['type'])) {
 				continue;
 			}
@@ -1254,9 +1254,6 @@ class cmd {
 					$optgroup .= '<optgroup label="' . $info['family'] . '">';
 				}
 				$name = $info['name'];
-				if (isset($info['noapp']) && $info['noapp']) {
-					$name .= ' ' . __('(Non géré par Application Mobile)', __FILE__);
-				}
 				$optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
 			}
 			$optgroup .= '</optgroup>';
