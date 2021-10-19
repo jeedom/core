@@ -278,16 +278,13 @@ class config {
 		return $return;
 	}
 
-	public static function getGenericTypes($_coreOnly = false, $_useNoApp = true) {
+	public static function getGenericTypes($_coreOnly = false) {
 		$types = array(
 			'byType',
 			'byFamily
 		');
 
 		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
-			if ($_useNoApp && isset($info['noapp']) && $info['noapp']) {
-				 $info['name'] .= ' ' . __('(Non géré par Application Mobile)', __FILE__);
-			}
 			$types['byType'][$key] = $info;
 			$types['byFamily'][$info['familyid']] = $info['family'];
 		}

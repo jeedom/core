@@ -1229,7 +1229,7 @@ class cmd {
 	public function getGenericTypeSelectOptions() {
 		$display = '<option value="">{{Aucun}}</option>';
 		$groups = array();
-		foreach ((config::getGenericTypes(false, false)['byType']) as $key => $info) {
+		foreach ((config::getGenericTypes(false)['byType']) as $key => $info) {
 			if (strtolower($this->getType()) != strtolower($info['type'])) {
 				continue;
 			}
