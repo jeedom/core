@@ -10,5 +10,5 @@ Header set X-XSS-Protection "1; mode=block"
 Header unset X-Powered-By
 Header set Referrer-Policy: strict-origin-when-cross-origin
 Header set Permissions-Policy "accelerometer=(),battery=(),fullscreen=(self),geolocation=(), camera=(),ambient-light-sensor=(self), autoplay=(self)"
-Header set Content-Security-Policy "default-src 'self';script-src-attr 'self' 'unsafe-inline' 'unsafe-eval';script-src 'self' 'unsafe-inline' 'unsafe-eval';script-src-elem 'self' 'unsafe-inline' 'unsafe-eval';img-src 'self' *.jeedom.com data:;style-src 'self';style-src-elem 'self' 'unsafe-inline';style-src-attr 'self' 'unsafe-inline';"
+Header set Content-Security-Policy "default-src 'self';script-src-attr 'self' 'unsafe-inline' 'unsafe-eval';script-src 'self' 'unsafe-inline' 'unsafe-eval';script-src-elem 'self' 'unsafe-inline' 'unsafe-eval';img-src 'self' *.jeedom.com data:;style-src 'self' 'unsafe-inline''self' 'unsafe-inline';style-src-attr 'self' 'unsafe-inline';"
 </IfModule>
