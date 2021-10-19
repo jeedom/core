@@ -218,7 +218,7 @@ Em cada dispositivo, você tem dois botões :
 |:--------|:----------------|:--------:|:---------:|
 | SIREN_STATE | Estado da sereia | Informações | binary
 | ALARM_STATE | Status de Alarme | Informações | binário, string
-| ALARM_MODE | Modo de alarme | Informações | string
+| ALARM_MODE | Modo de Alarme | Informações | string
 | ALARM_ENABLE_STATE | Status de alarme ativado | Informações | binary
 | ENCHENTE | Enchente | Informações | binary
 | SABOTAR | SABOTAR | Informações | binary

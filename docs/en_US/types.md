@@ -218,7 +218,7 @@ On each device, you have two buttons :
 |:--------|:----------------|:--------:|:---------:|
 | SIREN_STATE | Mermaid State | Info | binary
 | ALARM_STATE | Alarm Status | Info | binary, string
-| ALARM_MODE | Alarm mode | Info | string
+| ALARM_MODE | Alarm Mode | Info | string
 | ALARM_ENABLE_STATE | Alarm Status activated | Info | binary
 | FLOOD | Flood | Info | binary
 | SABOTAGE | SABOTAGE | Info | binary
