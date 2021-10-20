@@ -928,7 +928,7 @@
         "Affichage": "Display",
         "Disposition": "Layout",
         "Alertes": "Warnings",
-        "Commentaire": "Comment",
+        "Commentaire": "Remark",
         "ID": "ID",
         "Nom": "Name",
         "ID logique": "Logical ID",
@@ -2168,7 +2168,7 @@
         "Dans": "In",
         "A": "At",
         "Code": "Code",
-        "Commentaire": "Comment",
+        "Commentaire": "Remark",
         "Annuler": "Cancel"
     },
     "desktop\/php\/connection.php": {
@@ -2194,6 +2194,7 @@
         "Types auto": "Auto types",
         "Inconnu": "Unknown",
         "Rechercher | nom | id": "Search | name | id",
+        "Liste": "Listing",
         "Sauvegarder": "Save",
         "Appliquer": "Apply",
         "Types inconnus": "Unknown types"
@@ -2948,11 +2949,16 @@
         "Supprimer les types generiques sur les commandes ?": "Remove generic types from commands ?",
         "Oui": "Yes",
         "Non": "No",
-        "Supprimer": "Delete",
-        "Ajouter au résumé": "Add to summary",
         "Aucun": "None",
+        "Supprimer": "Delete",
         "Types Génériques automatiques": "Automatic Generic Types",
-        "Types Génériques sauvegardés": "Generic types saved"
+        "Types Génériques sauvegardés": "Generic types saved",
+        "Liste des Types Génériques (Core et Plugins)": "List of Generic Types (Core and Plugins)",
+        "Générique": "Generic",
+        "Nom": "Name",
+        "Type": "Type",
+        "Sous type": "Sub type",
+        "Commentaire": "Remark"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Control configuration",
@@ -3474,7 +3480,7 @@
         "Curseur": "Cursor",
         "Message": "Message",
         "Couleur": "Color",
-        "Liste": "List",
+        "Liste": "Listing",
         "Scénario lancé manuellement": "Manually launched scenario",
         "Scénario exécuté automatiquement sur événement venant de : ": "Scenario executed automatically on event from:",
         "Scénario exécuté sur événement": "Scenario executed on event",
@@ -3860,7 +3866,7 @@
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Name",
         "Développé par": "Desarrollado por",
         "Conseillé": "Recomendado",
         "Legacy": "Legacy",

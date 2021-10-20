@@ -468,7 +468,7 @@
         "Semaine": "Woche",
         "Jour": "Tag",
         "Heure": "Stunde",
-        "Type": "Art",
+        "Type": "Typ",
         "Courbe": "Kurve",
         "Escalier": "Treppe",
         "Barre": "Abgesperrt",
@@ -928,7 +928,7 @@
         "Affichage": "Anzeige",
         "Disposition": "Bereitstellung",
         "Alertes": "Warnungen",
-        "Commentaire": "Kommentar",
+        "Commentaire": "Anmerkung",
         "ID": "Identifikation",
         "Nom": "Name",
         "ID logique": "Logische ID",
@@ -2168,7 +2168,7 @@
         "Dans": "In",
         "A": "Bis",
         "Code": "CODE",
-        "Commentaire": "Kommentar",
+        "Commentaire": "Anmerkung",
         "Annuler": "Abbrechen"
     },
     "desktop\/php\/connection.php": {
@@ -2194,6 +2194,7 @@
         "Types auto": "Autotypen",
         "Inconnu": "Unbekannt",
         "Rechercher | nom | id": "Suche | Name | Ich würde",
+        "Liste": "Auflistung",
         "Sauvegarder": "Um zu schützen",
         "Appliquer": "Bewerben",
         "Types inconnus": "Unbekannte Typen"
@@ -2412,7 +2413,7 @@
         "Action depuis la synthèse": "Aktion aus der Synthese",
         "Sur la synthèse, définissez l'action au clic sur la vignette.": "Definieren Sie in der Zusammenfassung die Aktion, wenn Sie auf die Miniaturansicht klicken",
         "Informations complémentaires": "Weitere Informationen",
-        "Type": "Art",
+        "Type": "Typ",
         "Pièce": "Zimmer",
         "Orientation": "Orientierung",
         "Nord": "Norden",
@@ -2948,11 +2949,16 @@
         "Supprimer les types generiques sur les commandes ?": "Generische Typen aus Bestellungen entfernen?",
         "Oui": "Jawohl",
         "Non": "Nein",
-        "Supprimer": "Löschen",
-        "Ajouter au résumé": "Zur Zusammenfassung hinzufügen",
         "Aucun": "Nein",
+        "Supprimer": "Löschen",
         "Types Génériques automatiques": "Automatische generische Typen",
-        "Types Génériques sauvegardés": "Generische Typen gespeichert"
+        "Types Génériques sauvegardés": "Generische Typen gespeichert",
+        "Liste des Types Génériques (Core et Plugins)": "Liste der generischen Typen (Kern und Plugins)",
+        "Générique": "Generisch",
+        "Nom": "Name",
+        "Type": "Typ",
+        "Sous type": "Untertyp",
+        "Commentaire": "Anmerkung"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Steuerungskonfiguration",

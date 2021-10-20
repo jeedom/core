@@ -127,13 +127,13 @@
         "Occurrences": "Ocurrencias"
     },
     "mobile\/html\/deamon.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado",
         "Date lancement": "Fecha lanzamiento",
         "Action": "Acción"
     },
     "mobile\/html\/health.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado"
     },
     "mobile\/html\/connection.html": {
@@ -156,7 +156,7 @@
         "Plugins": "Plugins"
     },
     "mobile\/html\/cron.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado",
         "Date lancement": "Fecha lanzamiento",
         "Action": "Acción"
@@ -199,7 +199,7 @@
         "Général": "General",
         "Composants": "Componentes",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Position": "Posición",
         "Fond transparent": "Fondo transparente",
         "Couleur de fond": "Color de fondo",
@@ -212,7 +212,7 @@
         "Tailles": "Tamaños",
         "Taille (LxH)": "Tamaño (ancho x alto)",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "ID du lien": "Identificación del enlace",
         "Lien": "Enlace",
         "Action": "Acción",
@@ -227,9 +227,9 @@
     "desktop\/modal\/history.calcul.php": {
         "Ajouter": "Añadir",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Calcul": "Cálculo",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Groupement": "Agrupar",
         "Escalier": "Escalera",
         "Action": "Acción",
@@ -275,7 +275,7 @@
     },
     "desktop\/modal\/plugin.deamon.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Statut": "Estado",
         "Configuration": "Configuración",
         "(Re)Démarrer": "(Re)Iniciar",
@@ -303,7 +303,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Général": "General",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Icône": "Icono",
         "Choisir": "Elegir",
         "Image (marche uniquement avec le thème Jeedom)": "Imagen (solo funciona con el tema Jeedom)",
@@ -331,7 +331,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Ajouter": "Añadir",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Valeur": "Valor",
         "Utilisée dans": "Usado por",
         "Action": "Acción",
@@ -374,12 +374,12 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Informations": "Información",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Visible": "Visible"
     },
     "desktop\/modal\/plugin.dependancy.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Statut": "Estado",
         "Installation": "Instalación",
         "Dernière installation": "Última instalación",
@@ -457,7 +457,7 @@
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "EqLogic non trouvé : ": "EqLogic no encontrado:",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Visible": "Visible",
         "Affichage": "Monitor",
         "Graphique de fond": "Gráfico de fondo",
@@ -468,7 +468,7 @@
         "Semaine": "Semana",
         "Jour": "Día",
         "Heure": "Hora",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Courbe": "Curva",
         "Escalier": "Escalera",
         "Barre": "Cerrada",
@@ -514,7 +514,7 @@
         "Général": "General",
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Type de lien": "Tipo de enlace",
         "Equipement": "Dispositivos",
         "Lien": "Enlace",
@@ -618,7 +618,7 @@
         "Voir les bugs": "Ver los insectos",
         "Voir les propositions d'amélioration": "Ver sugerencias de mejora",
         "Etape 3 : Catégorie et type de la demande": "Paso 3: El tamaño y tipo de demanda",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Aucun": "No",
         "Catégorie": "Categoría",
         "Aucune": "Ninguno",
@@ -642,7 +642,7 @@
     },
     "desktop\/modal\/dataStore.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "desktop\/modal\/cmd.configure.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -657,8 +657,8 @@
         "Général": "General",
         "ID": "CARNÉ DE IDENTIDAD",
         "Logical ID": "ID lógica",
-        "Nom": "Nombre",
-        "Type": "Tipo",
+        "Nom": "Apellido",
+        "Type": "Escribe",
         "Sous-type": "Sub-tipo",
         "Mise à jour par": "Actualizado por",
         "Valeurs possibles": "Valores posibles",
@@ -795,7 +795,7 @@
     },
     "desktop\/modal\/jeedom.benchmark.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Temps": "Tiempo"
     },
     "desktop\/modal\/js.error.php": {
@@ -834,9 +834,9 @@
         "Commandes historisées : ": "Órdenes históricas:",
         "Commandes timeline : ": "Comandos de la línea de tiempo:",
         "par page": "por página",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Plugin": "Enchufar",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Historisé": "Historizar",
         "Timeline": "Cronología",
         "Inversée": "Invertido",
@@ -872,7 +872,7 @@
     "desktop\/modal\/cmd.graph.select.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet": "Objeto",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Affichage": "Monitor",
         "Ligne": "Línea",
         "Aire": "Area",
@@ -928,9 +928,9 @@
         "Affichage": "Monitor",
         "Disposition": "Provisión",
         "Alertes": "Alertas",
-        "Commentaire": "Comentario",
+        "Commentaire": "Observación",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "ID logique": "ID logical",
         "ID de l'objet": "ID del objeto",
         "Création": "Creación",
@@ -938,7 +938,7 @@
         "Tag(s)": "Tag (s)",
         "Activer": "Activar",
         "Visible": "Visible",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Tentative échouée": "Intento fracasado",
         "Dernière communication": "Última comunicación",
         "Dernière sauvegarde": "Última copia de seguridad",
@@ -999,7 +999,7 @@
         "Composants": "Componentes",
         "Supprimer": "Eliminar",
         "Sauvegarder": "Guardar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Position": "Posición",
         "Code d'accès": "Código de acceso",
         "Icône": "Icono",
@@ -1010,7 +1010,7 @@
         "Puissance éclairage général (Défaut : 0.4)": "Potencia de iluminación general (predeterminado: 0,4)",
         "ID": "CARNÉ DE IDENTIDAD",
         "Nom object": "Nombre objeto",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "ID du lien": "Identificación del enlace",
         "Action": "Acción",
         "Configuration": "Configuración ",
@@ -1024,7 +1024,7 @@
         "Rafraichir": "Refrescar",
         "Corriger tout": "Arreglar todo",
         "Package": "Paquete",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Status": "Estado",
         "Obligatoire": "Obligatorio",
         "Voulu par": "Buscado por",
@@ -1153,7 +1153,7 @@
         "Valider": "Validar",
         "Objet": "Objeto",
         "Equipement": "Dispositivos",
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1179,8 +1179,8 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Type non trouvé : ": "Tipo no encontrado:",
         "Sauvegarder": "Guardar",
-        "Type": "Tipo",
-        "Nom": "Nombre",
+        "Type": "Escribe",
+        "Nom": "Apellido",
         "Modification sauvegardées avec succès": "Cambios guardados exitosamente"
     },
     "desktop\/modal\/plan.configure.php": {
@@ -1217,7 +1217,7 @@
         "Afficher le sélecteur de période": "Mostrar el selector de período",
         "Afficher la barre de défilement": "Mostrar la barra de desplazamiento",
         "Fond transparent": "Fondo transparente",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Lien": "Enlace",
         "Aucun": "No",
         "Icône": "Icono",
@@ -1485,7 +1485,7 @@
         "Core et plugins": "Core y plugins",
         "Informations": "Informaciones",
         "Etat": "Estado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Version installée": "Versión instalada",
         "Dernière version": "Última versión",
         "Dernière mise à jour": "Última actualización",
@@ -1702,7 +1702,7 @@
         "Défaut": "General",
         "Ajouter un type de résumé": "Agregar un tipo de resumen",
         "Clé": "Llave",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Calcul": "Cálculo",
         "Icône": "Icono",
         "Icône si nul": "Si el icono es nulo",
@@ -2047,7 +2047,7 @@
         "Widgets": "Widgets",
         "Général": "General",
         "Nom du widget": "Nombre del widget",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Sous-Type": "Subtipo",
         "Template": "Plantilla",
         "Icône": "Icono",
@@ -2061,7 +2061,7 @@
     },
     "desktop\/php\/report.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Vues": "Vistas",
         "Design": "Diseño",
         "Plugin": "Plugin",
@@ -2074,7 +2074,7 @@
         "Télécharger": "Descargar",
         "Supprimer": "Eliminar",
         "Tout supprimer": "Borrar todo",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Chemin": "Ruta",
         "Id rapport": "Id informe",
         "Extension": "Extensión",
@@ -2091,8 +2091,8 @@
         "Sauvegarder": "Guardar",
         "Supprimer": "Borrar",
         "Ajouter\/Editer viewZone": "Añadir\/Editar viewZone",
-        "Nom": "Nombre",
-        "Type": "Tipo",
+        "Nom": "Apellido",
+        "Type": "Escribe",
         "Equipement": "Dispositivo",
         "Graphique": "Gráfico",
         "Tableau": "Panel",
@@ -2168,7 +2168,7 @@
         "Dans": "Dentro de",
         "A": "A",
         "Code": "Código",
-        "Commentaire": "Comentario",
+        "Commentaire": "Observación",
         "Annuler": "Cancelar"
     },
     "desktop\/php\/connection.php": {
@@ -2194,6 +2194,7 @@
         "Types auto": "Tipos de auto",
         "Inconnu": "Desconocido",
         "Rechercher | nom | id": "Buscar | nombre | identificación",
+        "Liste": "Listado",
         "Sauvegarder": "Para salvaguardar",
         "Appliquer": "Aplicar",
         "Types inconnus": "Tipos desconocidos"
@@ -2235,7 +2236,7 @@
         "Général": "General",
         "Filtres": "Filtros",
         "Actions": "Acciones",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Groupe": "Grupo",
         "Groupe de l'interaction": "Grupo de interacción",
         "Actif": "Activo",
@@ -2282,7 +2283,7 @@
         "Aucun équipement en Alerte.": "No hay equipos en alerta",
         "Equipement": "Dispositivos",
         "Commande": "Comando",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Actions": "Acciones",
         "Action sur état": "Acción estatal",
         "Si": "Sí",
@@ -2376,7 +2377,7 @@
         "Statut": "Estado",
         "Actions": "Acciones",
         "Event": "Evento",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Status": "Estado",
         "Date lancement": "Fecha Lanzamiento",
         "Action": "Acción"
@@ -2412,7 +2413,7 @@
         "Action depuis la synthèse": "Acción de síntesis",
         "Sur la synthèse, définissez l'action au clic sur la vignette.": "En el resumen, defina la acción al hacer clic en la miniatura",
         "Informations complémentaires": "Informaciones complementarias",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Pièce": "Habitación",
         "Orientation": "Orientación",
         "Nord": "Norte",
@@ -2551,9 +2552,9 @@
         "Rechercher | nom | id | :not(nom": "Buscar | nombre | id | : sin nombre",
         "Vider": "Vacío",
         "Date": "Fecha",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "ID": "CARNÉ DE IDENTIDAD",
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2655,9 +2656,9 @@
         "Ajouter Scénario": "Añadir escenario",
         "Editer": "Editar",
         "Supprimer": "Eliminar",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Couleur": "Color",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Groupement": "Agrupar",
         "Echelle": "Nivel",
         "Escalier": "Escalera",
@@ -2948,11 +2949,16 @@
         "Supprimer les types generiques sur les commandes ?": "¿Eliminar tipos genéricos de los pedidos?",
         "Oui": "Sí",
         "Non": "No",
-        "Supprimer": "Borrar",
-        "Ajouter au résumé": "Agregar al resumen",
         "Aucun": "No",
+        "Supprimer": "Borrar",
         "Types Génériques automatiques": "Tipos genéricos automáticos",
-        "Types Génériques sauvegardés": "Tipos genéricos guardados"
+        "Types Génériques sauvegardés": "Tipos genéricos guardados",
+        "Liste des Types Génériques (Core et Plugins)": "Lista de tipos genéricos (núcleo y complementos)",
+        "Générique": "Genérico",
+        "Nom": "Apellido",
+        "Type": "Escribe",
+        "Sous type": "Subtipo",
+        "Commentaire": "Observación"
     },
     "desktop\/js\/eqAnalyse.js": {
         "Configuration commande": "Configuración de control",
@@ -3474,7 +3480,7 @@
         "Curseur": "Cursor",
         "Message": "Mensaje",
         "Couleur": "Color",
-        "Liste": "Lista",
+        "Liste": "Listado",
         "Scénario lancé manuellement": "Escenario lanzado manualmente",
         "Scénario exécuté automatiquement sur événement venant de : ": "Escenario ejecutado automáticamente en evento proveniente de:",
         "Scénario exécuté sur événement": "Escenario ejecutado en el evento",
@@ -3860,7 +3866,7 @@
     },
     "core\/repo\/market.display.repo.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Développé par": "Desarrollado por",
         "Conseillé": "Recomendable",
         "Legacy": "Legado",
@@ -3887,7 +3893,7 @@
         "Taille": "Tamaño",
         "Lien": "Enlace",
         "Installation": "Instalación",
-        "Type": "Tipo",
+        "Type": "Escribe",
         "Langue disponible": "Idioma disponible",
         "Dernière mise à jour le": "Última actualización",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "¿Quieres ir a la página de configuración de su nuevo plugin?",
@@ -4457,7 +4463,7 @@
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/variable.default.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccione la orden"
     },
@@ -4468,7 +4474,7 @@
         "Désactiver": "Desactivar"
     },
     "core\/template\/scenario\/delete_variable.default.html": {
-        "Nom": "Nombre"
+        "Nom": "Apellido"
     },
     "core\/template\/scenario\/equipement.default.html": {
         "Equipement": "Dispositivos",
@@ -4519,7 +4525,7 @@
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/tag.default.html": {
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Valeur": "Valor",
         "Sélectionner la commande": "Seleccione el comando"
     },
@@ -4556,7 +4562,7 @@
         "Sélectionner la commande": "Seleccionar el comando",
         "De": "De",
         "à": "a",
-        "Nom": "Nombre",
+        "Nom": "Apellido",
         "Exporter en": "Exportar en",
         "CSV": "CSV"
     },
