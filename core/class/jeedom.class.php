@@ -1251,7 +1251,7 @@ class jeedom {
 
 	public static function evaluateExpression($_input, $_scenario = null) {
 		try {
-			return scenarioExpression::setTags($_input, $_scenario, true);
+			return evaluate(scenarioExpression::setTags($_input, $_scenario, true));
 		} catch (Exception $exc) {
 			return $_input;
 		}
