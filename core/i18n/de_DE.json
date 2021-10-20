@@ -3339,15 +3339,15 @@
         "Garage (ouvrant) Etat": "Garage (Eröffnung) Zustand",
         "Porte": "Tür",
         "Fenêtre": "Fenster",
-        "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Zustandsthermostat (BINARY) (nur für Thermostat-Plugin)",
+        "Thermostat Etat": "Thermostatstatus",
         "Thermostat": "Thermostat",
         "Thermostat Température ambiante": "Thermostat Raumtemperatur",
         "Thermostat consigne": "Thermostat einstellen",
-        "Thermostat Mode (pour Plugin Thermostat uniquement)": "Thermostat-Modus (nur für Thermostat-Plugin)",
-        "Thermostat Verrouillage (pour Plugin Thermostat uniquement)": "Sperren des Thermostats (nur für das Thermostat-Plugin)",
-        "Thermostat Déverrouillage (pour Plugin Thermostat uniquement)": "Thermostat entsperren (nur für Thermostat-Plugin)",
-        "Thermostat Température Exterieur (pour Plugin Thermostat uniquement)": "Außentemperatur-Thermostat (nur für Thermostat-Plugin)",
-        "Thermostat Etat (HUMAIN) (pour Plugin Thermostat uniquement)": "Zustandsthermostat (MENSCHLICH) (nur für Thermostat-Plugin)",
+        "Thermostat Mode": "Thermostatmodus",
+        "Thermostat Verrouillage": "Thermostat sperren",
+        "Thermostat Déverrouillage": "Thermostat entsperren",
+        "Thermostat Température Exterieur": "Außentemperaturthermostat",
+        "Thermostat Etat (HUMAIN)": "Thermostatstatus (MENSCH)",
         "Thermostat humidité ambiante": "Raumfeuchtigkeitsthermostat",
         "Humidité consigne": "Stellen Sie die Luftfeuchtigkeit ein",
         "Mouvement caméra vers le haut": "Kamerabewegung nach oben",
@@ -3910,7 +3910,6 @@
         "Désactivation de": "Deaktivierung von",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "weil es in den letzten 3 Versuchen nicht oder falsch geantwortet hat",
         "Erreur exécution de la commande ": "Befehlsausführungsfehler",
-        "(Non géré par Application Mobile)": "(Nicht von Application Mobile verwaltet)",
         "Aucun paramètre optionnel disponible.": "Keine optionalen Parameter verfügbar",
         "Aucune description trouvée pour ce Widget.": "Für dieses Widget wurde keine Beschreibung gefunden",
         "Titre": "Titel",
@@ -4272,9 +4271,6 @@
         "Evaluation de la condition": "Zustandsbewertung",
         "Vrai": "War",
         "Faux": "Falsch"
-    },
-    "core\/class\/config.class.php": {
-        "(Non géré par Application Mobile)": "(Nicht von Application Mobile verwaltet)"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Methode in GET nicht erlaubt:"

@@ -49,16 +49,16 @@ Auf jedem Gerät haben Sie zwei Tasten :
 
 | **Andere (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TIMER | Statustimer (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| TIMER_STATE | Timer-Status (Pause oder nicht) (Nicht von der mobilen Anwendung verwaltet) | Die Info | binär, numerisch
-| SET_TIMER | Timer (Nicht von der mobilen Anwendung verwaltet) | Handlung | slider
-| TIMER_PAUSE | Pausentimer (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
-| TIMER_RESUME | Timer-Resume (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
+| TIMER | Status-Timer | Die Info | numeric
+| TIMER_STATE | Timer-Status (Pause oder nicht)) | Die Info | binär, numerisch
+| SET_TIMER | Timer | Handlung | slider
+| TIMER_PAUSE | Pause-Timer | Handlung | other
+| TIMER_RESUME | Timer fortsetzen | Handlung | other
 
 | **Batterie (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| BATTERIE | Akku (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| BATTERY_CHARGING | Aufladen des Akkus (wird nicht von der mobilen Anwendung verwaltet) | Die Info | binary
+| BATTERIE | Schlagzeug | Die Info | numeric
+| BATTERY_CHARGING | Aufladen des Akkus | Die Info | binary
 
 | **Kamera (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -85,30 +85,30 @@ Auf jedem Gerät haben Sie zwei Tasten :
 | **Strom (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | ENERGIE | Elektrische Energie | Die Info | numeric
-| VERBRAUCH | Stromverbrauch (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| STROMSPANNUNG | Spannung (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| NEUSTART | Neustart (Nicht von Application Mobile verwaltet) | Handlung | other
+| VERBRAUCH | Energieverbrauch | Die Info | numeric
+| STROMSPANNUNG | Stromspannung | Die Info | numeric
+| NEUSTART | Neu starten | Handlung | other
 
 | **Umgebung (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TEMPERATUR | Temperatur | Die Info | numeric
+| TEMPERATUR | TEMPERATUR | Die Info | numeric
 | LUFTQUALITÄT | Luftqualität | Die Info | numeric
 | HELLIGKEIT | Helligkeit | Die Info | numeric
-| GEGENWART | Gegenwart | Die Info | binary
+| GEGENWART | GEGENWART | Die Info | binary
 | RAUCH | Rauchmelder | Die Info | binary
 | FEUCHTIGKEIT | Feuchtigkeit | Die Info | numeric
-| UV | UV (Nicht von Application Mobile verwaltet) | Die Info | numeric
-| CO2 | CO2 (ppm) (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| CO | CO (ppm) (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| LÄRM | Ton (dB) (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| DRUCK | Druck (wird nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WASSERLECK | Wasserleck (Nicht von der mobilen Anwendung verwaltet) | Die Info |
-| FILTER_CLEAN_STATE | Filterstatus (Nicht von Application Mobile verwaltet) | Die Info | binary
+| UV | UV | Die Info | numeric
+| CO2 | CO2 (ppm) | Die Info | numeric
+| CO | CO (ppm) | Die Info | numeric
+| LÄRM | Ton (dB) | Die Info | numeric
+| DRUCK | Druck | Die Info | numeric
+| WASSERLECK | Wasserleck | Die Info |
+| FILTER_CLEAN_STATE | Filterstatus | Die Info | binary
 
 | **Generisch (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | TIEFE | Tiefe | Die Info | numeric
-| DISTANZ | Distanz | Die Info | numeric
+| DISTANZ | DISTANZ | Die Info | numeric
 | TASTE | Taste | Die Info | binär, numerisch
 | GENERIC_INFO |  Generisch | Die Info |
 | GENERIC_ACTION |  Generisch | Handlung | other
@@ -116,17 +116,17 @@ Auf jedem Gerät haben Sie zwei Tasten :
 | **Licht (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | LIGHT_STATE | Lichtzustand | Die Info | binär, numerisch
-| LICHT_HELLIGKEIT | Lichthelligkeit (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
+| LICHT_HELLIGKEIT | Lichthelligkeit | Die Info | numeric
 | HELLE FARBE | Helle Farbe | Die Info | string
-| LIGHT_STATE_BOOL | Lichtstatus (binär) (Nicht von der mobilen Anwendung verwaltet) | Die Info | binary
-| LIGHT_COLOR_TEMP | Lichttemperatur Farbe (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
+| LIGHT_STATE_BOOL | Lichtzustand (Binär) | Die Info | binary
+| LIGHT_COLOR_TEMP | Lichttemperatur Farbe | Die Info | numeric
 | LIGHT_TOGGLE | Licht umschalten | Handlung | other
 | LICHT AN | Lichttaste Ein | Handlung | other
 | LICHT AUS | Lichttaste aus | Handlung | other
 | LIGHT_SLIDER | Lichtschieber | Handlung | slider
 | LIGHT_SET_COLOR | Helle Farbe | Handlung | color
 | LIGHT_MODE | Lichtmodus | Handlung | other
-| LIGHT_SET_COLOR_TEMP | Lichttemperatur Farbe (Nicht von der mobilen Anwendung verwaltet) | Handlung |
+| LIGHT_SET_COLOR_TEMP | Lichttemperatur Farbe | Handlung |
 
 | **Modus (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -135,14 +135,14 @@ Auf jedem Gerät haben Sie zwei Tasten :
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUMEN | Volumen | Die Info | numeric
-| MEDIA_STATUS | Status (Nicht von Application Mobile verwaltet) | Die Info | string
-| MEDIA_ALBUM | Album (Nicht von Application Mobile verwaltet) | Die Info | string
-| MEDIA_ARTIST | Künstler (Nicht von Application Mobile verwaltet) | Die Info | string
-| MEDIA_TITLE | Titel (Nicht von Application Mobile verwaltet) | Die Info | string
-| MEDIA_POWER | Leistung (Nicht von Application Mobile verwaltet) | Die Info | string
+| Volumen | Volumen | Die Info | numeric
+| MEDIA_STATUS | Status | Die Info | string
+| MEDIA_ALBUM | Album | Die Info | string
+| MEDIA_ARTIST | Künstler | Die Info | string
+| MEDIA_TITLE | Titel | Die Info | string
+| MEDIA_POWER | ENERGIE | Die Info | string
 | KANAL | Kette | Die Info | numerisch, Zeichenfolge
-| MEDIA_STATE | Status (Nicht von Application Mobile verwaltet) | Die Info | binary
+| MEDIA_STATE | Zustand | Die Info | binary
 | SET_VOLUME | Volumen | Handlung | slider
 | SET_CHANNEL | Kette | Handlung | anderer Schieberegler
 | MEDIA_PAUSE | Pause | Handlung | other
@@ -150,44 +150,44 @@ Auf jedem Gerät haben Sie zwei Tasten :
 | MEDIA_STOP | Halt | Handlung | other
 | MEDIA_NEXT | Folge | Handlung | other
 | MEDIA_PREVIOUS | Vorherige | Handlung | other
-| MEDIA_ON | Ein (Nicht von Application Mobile verwaltet) | Handlung | other
-| MEDIA_OFF | Aus (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
-| MEDIA_MUTE | Stumm (nicht von Application Mobile verwaltet) | Handlung | other
-| MEDIA_UNMUTE | Keine Stummschaltung (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
+| MEDIA_ON | Wir | Handlung | other
+| MEDIA_OFF | Aus | Handlung | other
+| MEDIA_MUTE | Stumm | Handlung | other
+| MEDIA_UNMUTE | Keine Stummschaltung | Handlung | other
 
 | **Wetter (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| WEATHER_TEMPERATURE | Wettertemperatur (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_TEMPERATURE_MAX_2 | Wetterbedingungen d + 1 max d + 2 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WINDGESCHWINDIGKEIT | Wind (Geschwindigkeit) (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| REGEN_TOTAL | Regen (Ansammlung) (Nicht von Application Mobile verwaltet) | Die Info | numeric
-| REGEN_AKTUELL | Regen (mm / h) (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_ID_4 | Wetterbedingung (id) d + 4 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_4 | Wetterbedingung d + 4 (Nicht von der mobilen Anwendung verwaltet) | Die Info | string
-| WEATHER_TEMPERATURE_MAX_4 | Wetter Max. Temperatur d + 4 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_TEMPERATURE_MIN_4 | Wettertemperatur min d + 4 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_ID_3 | Wetterbedingung (id) d + 3 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_3 | Wetterbedingung d + 3 (Nicht von der mobilen Anwendung verwaltet) | Die Info | string
-| WEATHER_TEMPERATURE_MAX_3 | Wetter Max. Temperatur d + 3 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_TEMPERATURE_MIN_3 | Wettertemperatur min d + 3 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_ID_2 | Wetterbedingung (id) d + 2 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_2 | Wetterbedingung d + 2 (Nicht von der mobilen Anwendung verwaltet) | Die Info | string
-| WEATHER_TEMPERATURE_MIN_2 | Wettertemperatur min d + 2 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_HUMIDITY | Wetterfeuchtigkeit (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_ID_1 | Wetterbedingung (id) d + 1 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_1 | Wetterbedingung d + 1 (Nicht von der mobilen Anwendung verwaltet) | Die Info | string
-| WEATHER_TEMPERATURE_MAX_1 | Wetter Max. Temperatur d + 1 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_TEMPERATURE_MIN_1 | Wettertemperatur min d + 1 (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_CONDITION_ID | Wetterbedingung (ID) (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WETTERLAGE | Wetterbedingungen (Nicht von der mobilen Anwendung verwaltet) | Die Info | string
-| WEATHER_TEMPERATURE_MAX | Wetter Max. Temperatur (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_TEMPERATURE_MIN | Wettertemperatur min (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_SUNRISE | Sonnenuntergangswetter (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_SUNSET | Sonnenaufgangswetter (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_WIND_DIRECTION | Wettervorhersage für die Windrichtung (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_WIND_SPEED | Windgeschwindigkeits-Wettervorhersage (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WEATHER_PRESSURE | Wetterdruck (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| WINDRICHTUNG | Wind (Richtung) (Nicht von Application Mobile verwaltet) | Die Info | numeric
+| WEATHER_TEMPERATURE | Wetter Temperatur | Die Info | numeric
+| WEATHER_TEMPERATURE_MAX_2 | Wetterbedingung d + 1 max d + 2 | Die Info | numeric
+| WINDGESCHWINDIGKEIT | Windgeschwindigkeit) | Die Info | numeric
+| REGEN_TOTAL | Regen (Akkumulation)) | Die Info | numeric
+| REGEN_AKTUELL | Regen (mm / h) | Die Info | numeric
+| WEATHER_CONDITION_ID_4 | Wetterbedingung (id) d + 4 | Die Info | numeric
+| WEATHER_CONDITION_4 | Wetterbedingungen d + 4 | Die Info | string
+| WEATHER_TEMPERATURE_MAX_4 | Wetter Max Temperatur d + 4 | Die Info | numeric
+| WEATHER_TEMPERATURE_MIN_4 | Wettertemperatur min d + 4 | Die Info | numeric
+| WEATHER_CONDITION_ID_3 | Wetterbedingung (id) d + 3 | Die Info | numeric
+| WEATHER_CONDITION_3 | Wetterbedingung d + 3 | Die Info | string
+| WEATHER_TEMPERATURE_MAX_3 | Wetter Max Temperatur d + 3 | Die Info | numeric
+| WEATHER_TEMPERATURE_MIN_3 | Wetter Temperatur min d + 3 | Die Info | numeric
+| WEATHER_CONDITION_ID_2 | Wetterbedingung (id) d + 2 | Die Info | numeric
+| WEATHER_CONDITION_2 | Wetterbedingungen d + 2 | Die Info | string
+| WEATHER_TEMPERATURE_MIN_2 | Wetter Temperatur min d + 2 | Die Info | numeric
+| WEATHER_HUMIDITY | Wetter Luftfeuchtigkeit | Die Info | numeric
+| WEATHER_CONDITION_ID_1 | Wetterbedingung (id) d + 1 | Die Info | numeric
+| WEATHER_CONDITION_1 | Wetterbedingung d + 1 | Die Info | string
+| WEATHER_TEMPERATURE_MAX_1 | Wetter Max Temperatur d + 1 | Die Info | numeric
+| WEATHER_TEMPERATURE_MIN_1 | Wetter Temperatur min d + 1 | Die Info | numeric
+| WEATHER_CONDITION_ID | Wetterbedingungen (id) | Die Info | numeric
+| WETTERLAGE | Wetterlage | Die Info | string
+| WEATHER_TEMPERATURE_MAX | Wetter Höchsttemperatur | Die Info | numeric
+| WEATHER_TEMPERATURE_MIN | Wetter Temperatur min | Die Info | numeric
+| WEATHER_SUNRISE | Sonnenuntergang Wetter | Die Info | numeric
+| WEATHER_SUNSET | Sonnenaufgang Wetter | Die Info | numeric
+| WEATHER_WIND_DIRECTION | Windrichtung Wetter | Die Info | numeric
+| WEATHER_WIND_SPEED | Wetter mit Windgeschwindigkeit | Die Info | numeric
+| WEATHER_PRESSURE | Wetterdruck | Die Info | numeric
+| WINDRICHTUNG | Windrichtung) | Die Info | numeric
 
 | **Eröffnung (id: Opening)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -211,23 +211,23 @@ Auf jedem Gerät haben Sie zwei Tasten :
 
 | **Roboter (id: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| DOCK_STATE | State Base (Nicht von der mobilen Anwendung verwaltet) | Die Info | binary
-| DOCK | Zurück zur Basis (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
+| DOCK_STATE | Staatliche Basis | Die Info | binary
+| DOCK | Zurück zur basis | Handlung | other
 
 | **Sicherheit (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | SIREN_STATE | Meerjungfrauenstaat | Die Info | binary
-| ALARM_STATE | Alarmstatus (Nicht von der mobilen Anwendung verwaltet) | Die Info | binär, string
-| ALARM_MODE | Alarmmodus (Nicht von der mobilen Anwendung verwaltet) | Die Info | string
-| ALARM_ENABLE_STATE | Alarmstatus aktiviert (Nicht von der mobilen Anwendung verwaltet) | Die Info | binary
+| ALARM_STATE | Alarmstatus | Die Info | binär, string
+| ALARM_MODE | Alarmmodus | Die Info | string
+| ALARM_ENABLE_STATE | Alarmstatus aktiviert | Die Info | binary
 | FLUT | Flut | Die Info | binary
-| SABOTAGE | Sabotage | Die Info | binary
+| SABOTAGE | SABOTAGE | Die Info | binary
 | SCHOCK | Schock | Die Info | binär, numerisch
 | SIREN_OFF | Sirenentaste aus | Handlung | other
 | SIREN_ON | Sirenenknopf Ein | Handlung | other
-| ALARM_ARMED | Scharfalarm (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
-| ALARM_RELEASED | Alarm ausgelöst (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
-| ALARM_SET_MODE | Alarmmodus (Nicht von der mobilen Anwendung verwaltet) | Handlung | other
+| ALARM_ARMED | Bewaffneter Alarm | Handlung | other
+| ALARM_RELEASED | Alarm ausgelöst | Handlung | other
+| ALARM_SET_MODE | Alarmmodus | Handlung | other
 
 | **Thermostat (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -238,20 +238,20 @@ Auf jedem Gerät haben Sie zwei Tasten :
 | THERMOSTAT_LOCK | Sperrthermostat (nur für Plugin-Thermostat)) | Die Info | binary
 | THERMOSTAT_TEMPERATURE_OUTDOOR | Außentemperatur-Thermostat (nur für Plugin-Thermostat)) | Die Info | numeric
 | THERMOSTAT_STATE_NAME | Thermostatstatus (MENSCH) (nur für Plugin-Thermostat) | Die Info | string
-| THERMOSTAT_HUMIDITY | Raumfeuchtigkeitsthermostat (wird nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| HUMIDITY_SETPOINT | Feuchtigkeit einstellen (Nicht von der mobilen Anwendung verwaltet) | Die Info | slider
+| THERMOSTAT_HUMIDITY | Raumfeuchtigkeitsthermostat | Die Info | numeric
+| HUMIDITY_SETPOINT | Luftfeuchtigkeit einstellen | Die Info | slider
 | THERMOSTAT_SET_SETPOINT | Sollwertthermostat | Handlung | slider
 | THERMOSTAT_SET_MODE | Thermostat-Modus (nur für Plugin-Thermostat)) | Handlung | other
 | THERMOSTAT_SET_LOCK | Sperrthermostat (nur für Plugin-Thermostat)) | Handlung | other
 | THERMOSTAT_SET_UNLOCK | Thermostat entsperren (nur für Plugin-Thermostat)) | Handlung | other
-| HUMIDITY_SET_SETPOINT | Feuchtigkeit einstellen (Nicht von der mobilen Anwendung verwaltet) | Handlung | slider
+| HUMIDITY_SET_SETPOINT | Luftfeuchtigkeit einstellen | Handlung | slider
 
 | **Lüfter (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FAN_SPEED_STATE | Lüftergeschwindigkeitsstatus (Nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| ROTATION_STATE | Statusrotation (nicht von der mobilen Anwendung verwaltet) | Die Info | numeric
-| LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit (wird nicht von der mobilen Anwendung verwaltet) | Handlung | slider
-| DREHUNG | Rotation (Nicht von Application Mobile verwaltet) | Handlung | slider
+| FAN_SPEED_STATE | Lüftergeschwindigkeit Status | Die Info | numeric
+| ROTATION_STATE | Zustandsrotation | Die Info | numeric
+| LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit | Handlung | slider
+| DREHUNG | DREHUNG | Handlung | slider
 
 | **Bereich (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

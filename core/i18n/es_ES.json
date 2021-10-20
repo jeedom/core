@@ -3339,15 +3339,15 @@
         "Garage (ouvrant) Etat": "Estado del garaje (apertura)",
         "Porte": "Puerta",
         "Fenêtre": "Ventana",
-        "Thermostat Etat (BINAIRE) (pour Plugin Thermostat uniquement)": "Estado de Termostato (Binario) (solo para Plugin de termostato)",
+        "Thermostat Etat": "Estado del termostato",
         "Thermostat": "Termostato",
         "Thermostat Température ambiante": "Temperatura Ambiente del Termostato",
         "Thermostat consigne": "Temperatura de Consigna del Termostato",
-        "Thermostat Mode (pour Plugin Thermostat uniquement)": "Modo Termostato (solo para plugin de termostato)",
-        "Thermostat Verrouillage (pour Plugin Thermostat uniquement)": "Bloqueo del Termostato (solo para plugin de termostato)",
-        "Thermostat Déverrouillage (pour Plugin Thermostat uniquement)": "Desbloqueo del Termostato (solo para el plugin del termostato)",
-        "Thermostat Température Exterieur (pour Plugin Thermostat uniquement)": "Termostato de temperatura exterior (solo para plugin de termostato)",
-        "Thermostat Etat (HUMAIN) (pour Plugin Thermostat uniquement)": "Termostato de estado (HUMAN) (solo para Plugin de termostato)",
+        "Thermostat Mode": "Modo termostato",
+        "Thermostat Verrouillage": "Termostato de bloqueo",
+        "Thermostat Déverrouillage": "Desbloquear termostato",
+        "Thermostat Température Exterieur": "Termostato de temperatura exterior",
+        "Thermostat Etat (HUMAIN)": "Estado del termostato (HUMANOS)",
         "Thermostat humidité ambiante": "Termostato de humedad ambiental",
         "Humidité consigne": "Establecer humedad",
         "Mouvement caméra vers le haut": "Movimiento de la cámara hacia arriba",
@@ -3910,7 +3910,6 @@
         "Désactivation de": "Desactivación de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque no respondió o respondió incorrectamente durante los últimos 3 intentos",
         "Erreur exécution de la commande ": "Error de ejecución del comando",
-        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)",
         "Aucun paramètre optionnel disponible.": "No hay parámetros opcionales disponibles",
         "Aucune description trouvée pour ce Widget.": "No se encontró una descripción para este widget",
         "Titre": "Título",
@@ -4272,9 +4271,6 @@
         "Evaluation de la condition": "Evaluación de condición",
         "Vrai": "Verdadero",
         "Faux": "Falso"
-    },
-    "core\/class\/config.class.php": {
-        "(Non géré par Application Mobile)": "(No administrado por Application Mobile)"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Método no permitido en GET:"

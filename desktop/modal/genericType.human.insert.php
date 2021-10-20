@@ -37,7 +37,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
       <td class="mod_insertGenericType_name" style="width: auto;">
         <select class='form-control'>
           <?php
-            $types = config::getGenericTypes(false, false);
+            $types = config::getGenericTypes(false);
 
             $display = '';
             if ($displayNone) {
