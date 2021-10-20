@@ -1251,12 +1251,7 @@ class jeedom {
 
 	public static function evaluateExpression($_input, $_scenario = null) {
 		try {
-			$_input = scenarioExpression::setTags($_input, $_scenario, true);
-			$result = evaluate($_input);
-			if (is_bool($result) || is_numeric($result)) {
-				return $result;
-			}
-			return $_input;
+			return scenarioExpression::setTags($_input, $_scenario, true);
 		} catch (Exception $exc) {
 			return $_input;
 		}
