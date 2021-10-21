@@ -1,23 +1,23 @@
 # Tipos de equipamento
 **Ferramentas → Tipos de equipamento**
 
-Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Informações* (sensor) ou *Açao* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Google Smarthome*, *Alexa* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
+Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Informações* (sensor) ou *Açao* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Google Smarthome*, *Alexa Smarthome* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
 
 Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
 
 Isso torna possível identificar uma peça de equipamento por *A luz da sala* por exemplo.
 
-Tipos genéricos também são integrados em cenários. Você pode, assim, acionar um cenário se uma lâmpada acender em uma sala, se for detectado movimento na casa, desligar todas as luzes ou fechar todas as venezianas com uma única ação, etc. Além disso, se você adicionar um equipamento, basta indicar esses tipos, não será necessário editar tais cenários.
+Tipos genéricos também são integrados em cenários. Você pode, assim, acionar um cenário se uma lâmpada acender em uma sala, se for detectado movimento na casa, desligar todas as luzes ou fechar todas as venezianas com uma única ação, etc. Além disso, se você adicionar um equipamento, basta indicar os tipos corretos em seus pedidos, não será necessário editar tais cenários.
 
-A configuração destes Tipos Genéricos pode ser feita diretamente em certos plugins, ou por comando em *Configuração avançada* disso.
+Na maioria das vezes os tipos genéricos são definidos automaticamente ao configurar o seu módulo (inclusão no Z-wave por exemplo). Mas pode haver momentos em que você precisa reconfigurá-los. A configuração destes Tipos Genéricos pode ser feita diretamente em certos plugins, ou por comando em *Configuração avançada* disso.
 
-Esta página permite que esses Tipos Genéricos sejam configurados diretamente, de forma mais direta e simples, e ainda oferece atribuição automática uma vez que os dispositivos tenham sido atribuídos corretamente.
+Esta página permite que esses Tipos Genéricos sejam configurados de forma mais direta e simples, e ainda oferece atribuição automática uma vez que os dispositivos tenham sido atribuídos corretamente.
 
 ![Tipos de equipamento](./images/coreGenerics.gif)
 
 ## Tipo de equipamento
 
-Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obturador, termostato, câmera, etc. Inicialmente, a maior parte do seu equipamento será classificado em **Equipamento sem tipo**. Para atribuir um tipo a eles, você pode movê-los para outro tipo ou clicar com o botão direito no equipamento para movê-lo diretamente.
+Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obturador, termostato, câmera, etc. Inicialmente, a maior parte do seu equipamento será classificado em **Equipamento sem tipo**. Para atribuir um tipo a eles, você pode movê-los para outro tipo ou clicar com o botão direito no equipamento para movê-lo diretamente. O tipo de equipamento não é realmente útil em si, sendo o mais importante os tipos de pedido. Você pode, portanto, ter um Equipamento sem um Tipo, ou um Tipo que não corresponda necessariamente aos seus comandos. Por enquanto, é mais um armazenamento, uma organização lógica, que talvez servirá em versões futuras.
 
 > **Gorjeta**
 >
@@ -46,6 +46,10 @@ Em cada dispositivo, você tem dois botões :
 
 
 ## Lista de tipos de núcleo genérico
+
+> **Gorjeta**
+>
+> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **Listagem** canto superior direito.
 
 | **Outro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|

@@ -1,23 +1,23 @@
 # Types of equipment
 **Tools → Equipment types**
 
-The sensors and actuators in Jeedom are managed by plugins, which create equipment with commands *Info* (sensor) or *Action* (actuator). This then makes it possible to trigger actions based on the change of certain sensors, such as turning on a light on motion detection. But the Jeedom Core, and plugins like *Mobile*, *Homebridge*, *Google Smarthome*, *Alexa* etc., do not know what this equipment is : A socket, a light, a shutter, etc.
+The sensors and actuators in Jeedom are managed by plugins, which create equipment with commands *Info* (sensor) or *Action* (actuator). This then makes it possible to trigger actions based on the change of certain sensors, such as turning on a light on motion detection. But the Jeedom Core, and plugins like *Mobile*, *Homebridge*, *Google Smarthome*, *Alexa Smarthome* etc., do not know what this equipment is : A socket, a light, a shutter, etc.
 
 To overcome this problem, especially with voice assistants (*Turn on the room light*), Core introduced the **Generic Types**, used by these plugins.
 
 This makes it possible to identify a piece of equipment by *The light of the room* for example.
 
-Generic Types are also integrated into scenarios. You can thus trigger a scenario if a lamp comes on in a room, if movement is detected in the house, turn off all the lights or close all the shutters with a single action, etc. In addition, if you add an equipment, you only have to indicate these types, it will not be necessary to edit such scenarios.
+Generic Types are also integrated into scenarios. You can thus trigger a scenario if a lamp comes on in a room, if movement is detected in the house, turn off all the lights or close all the shutters with a single action, etc. In addition, if you add an equipment, you only have to indicate the correct types on its orders, it will not be necessary to edit such scenarios.
 
-The configuration of these Generic Types can be done directly in certain plugins, or by command in *Advanced configuration* of it.
+Most of the time the generic types are set automatically when configuring your module (inclusion in Z-wave for example). But there may be times when you need to reconfigure them. The configuration of these Generic Types can be done directly in certain plugins, or by command in *Advanced configuration* of it.
 
-This page allows these Generic Types to be configured directly, in a more direct and simpler way, and even offers automatic assignment once the devices have been correctly assigned.
+This page allows these Generic Types to be configured in a more direct and simpler way, and even offers automatic assignment once the devices have been correctly assigned.
 
 ![Types of equipment](./images/coreGenerics.gif)
 
 ## Equipment type
 
-This page offers storage by type of equipment : Socket, Light, Shutter, Thermostat, Camera, etc. Initially, most of your equipment will be classified in **Equipment without type**. To assign them a type, you can either move them to another type, or right click on the equipment to move it directly.
+This page offers storage by type of equipment : Socket, Light, Shutter, Thermostat, Camera, etc. Initially, most of your equipment will be classified in **Equipment without type**. To assign them a type, you can either move them to another type, or right click on the equipment to move it directly. The Equipment Type is not really useful in itself, the most important being the Order Types. You can thus have an Equipment without a Type, or a Type that does not necessarily correspond to its commands. For now, it is more of a storage, a logical organization, which will serve perhaps in future versions.
 
 > **Tip**
 >
@@ -46,6 +46,10 @@ On each device, you have two buttons :
 
 
 ## List of Generic Core Types
+
+> **Tip**
+>
+> - You can find this list directly in Jeedom, on this same page, with the button **Listing** top right.
 
 | **Other (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|

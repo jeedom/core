@@ -1,23 +1,23 @@
 # Gerätearten
 **Werkzeuge → Gerätetypen**
 
-Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen *Die Info* (Sensor) oder *Handlung* (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie *Handy, Mobiltelefon*, *Homebridge*, *Google-Smarthome*, *Alexa* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
+Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen *Die Info* (Sensor) oder *Handlung* (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie *Handy, Mobiltelefon*, *Homebridge*, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
 
 Um dieses Problem zu lösen, insbesondere bei Sprachassistenten (*Mach das Zimmerlicht an*), Core stellte die . vor **Generische Typen**, von diesen Plugins verwendet.
 
 Dies ermöglicht die Identifizierung eines Gerätes durch *Das Licht des Zimmers* zum Beispiel.
 
-Auch generische Typen sind in Szenarien integriert. So können Sie ein Szenario auslösen, wenn in einem Raum eine Lampe angeht, eine Bewegung im Haus erkannt wird, alle Lichter ausgeschaltet oder alle Rollläden mit einer einzigen Aktion geschlossen werden usw. Wenn Sie eine Ausrüstung hinzufügen, müssen Sie außerdem nur diese Typen angeben, es ist nicht erforderlich, solche Szenarien zu bearbeiten.
+Auch generische Typen sind in Szenarien integriert. So können Sie ein Szenario auslösen, wenn in einem Raum eine Lampe angeht, eine Bewegung im Haus erkannt wird, alle Lichter ausgeschaltet oder alle Rollläden mit einer einzigen Aktion geschlossen werden usw. Wenn Sie eine Ausrüstung hinzufügen, müssen Sie außerdem nur die richtigen Typen in ihren Bestellungen angeben, solche Szenarien müssen nicht bearbeitet werden.
 
-Die Konfiguration dieser generischen Typen kann direkt in bestimmten Plugins oder per Befehl in . erfolgen *Erweiterte Konfiguration* davon.
+Meistens werden die generischen Typen automatisch bei der Konfiguration Ihres Moduls gesetzt (z.B. Aufnahme in Z-Wave). Es kann jedoch vorkommen, dass Sie sie neu konfigurieren müssen. Die Konfiguration dieser generischen Typen kann direkt in bestimmten Plugins oder per Befehl in . erfolgen *Erweiterte Konfiguration* davon.
 
-Auf dieser Seite können diese Generic Types direkt, direkter und einfacher konfiguriert werden und bietet sogar eine automatische Zuordnung nach korrekter Zuordnung der Geräte.
+Diese Seite ermöglicht eine direktere und einfachere Konfiguration dieser Generic Types und bietet sogar eine automatische Zuweisung nach korrekter Zuweisung der Geräte.
 
 ![Gerätearten](./images/coreGenerics.gif)
 
 ## Ausstattungsart
 
-Diese Seite bietet Lagerung nach Gerätetyp : Steckdose, Licht, Shutter, Thermostat, Kamera usw. Zunächst werden die meisten Ihrer Geräte klassifiziert in **Geräte ohne Typ**. Um ihnen einen Typ zuzuweisen, können Sie sie entweder auf einen anderen Typ verschieben oder mit der rechten Maustaste auf das Gerät klicken, um es direkt zu verschieben.
+Diese Seite bietet Lagerung nach Gerätetyp : Steckdose, Licht, Shutter, Thermostat, Kamera usw. Zunächst werden die meisten Ihrer Geräte klassifiziert in **Geräte ohne Typ**. Um ihnen einen Typ zuzuweisen, können Sie sie entweder auf einen anderen Typ verschieben oder mit der rechten Maustaste auf das Gerät klicken, um es direkt zu verschieben. Der Ausrüstungstyp ist an sich nicht wirklich nützlich, am wichtigsten sind die Auftragstypen. Sie können also eine Ausrüstung ohne Typ haben oder einen Typ, der nicht unbedingt seinen Befehlen entspricht. Im Moment ist es eher ein Speicher, eine logische Organisation, die vielleicht in zukünftigen Versionen dienen wird.
 
 > **Spitze**
 >
@@ -46,6 +46,10 @@ Auf jedem Gerät haben Sie zwei Tasten :
 
 
 ## Liste der generischen Kerntypen
+
+> **Spitze**
+>
+> - Sie finden diese Liste direkt in Jeedom, auf derselben Seite, mit dem Button **Auflistung** oben rechts.
 
 | **Andere (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
