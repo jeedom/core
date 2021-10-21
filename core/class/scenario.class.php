@@ -228,15 +228,16 @@ class scenario {
 	 * @return type
 	 */
 	public static function byGenericTrigger($_generic, $_object, $_onlyEnable = true) {
-		if (is_object($_object)) {
-			$values = array('trigger' => '%genericType(' . $_generic . ',#object' . $_object->getId() . '#)%');
-		} else {
-			$values = array('trigger' => '%genericType(' . $_generic . ')%');
-		}
+		$values = array('trigger' => '%genericType(' . $_generic . ')%');
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM scenario
 		WHERE mode != "schedule"
 		AND `trigger` LIKE :trigger';
+
+		if (is_object($_object)) {
+			$values['triggerObject'] = '%genericType(' . $_generic . ',#object' . $_object->getId() . '#)%';
+			$sql .= ' OR `trigger` LIKE :triggerObject';
+		}
 		if ($_onlyEnable) {
 			$sql .= ' AND isActive=1';
 		}
