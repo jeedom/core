@@ -312,9 +312,13 @@ class scenario {
 				if (is_array($scenarios2) && count($scenarios2) > 0) {
 					foreach ($scenarios2 as $scenario) {
 						if ($scenario->testTrigger($trigger)) {
-							$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . ' genericType ' . $_generic;
-							if (is_object($_object)) $message .= '::' . $_object->getName();
-							$scenario->launch('Generic Type : ' . $trigger, $message, $_forceSyncMode);
+							$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'];
+							if (is_object($_object)) {
+								$message .= ' genericType(' . $_generic . ',#[' . $_object->getName() . ']#) from ' . $_event->getHumanName();
+							} else {
+								$message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
+							}
+							$scenario->launch($trigger, $message, $_forceSyncMode);
 						}
 					}
 				}
