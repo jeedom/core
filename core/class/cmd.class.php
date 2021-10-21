@@ -858,16 +858,7 @@ class cmd {
 		if (!is_object($cmd)) {
 			return;
 		}
-		$value = $cmd->execCmd();
-		$checkCmdValue = $cmd->getConfiguration('jeedomCheckCmdTest');
-		if ($cmd->getSubType() == 'string') {
-			$checkCmdValue = '"' . trim($checkCmdValue, '"\'') . '"';
-			$value = '"' . trim($value, '"\'') . '"';
-		}
-		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $checkCmdValue);
-		if ($check == 1 || $check || $check == '1') {
-			$cmd->executeAlertCmdAction();
-		}
+		$cmd->executeAlertCmdAction();
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
