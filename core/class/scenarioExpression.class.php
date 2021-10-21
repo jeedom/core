@@ -725,6 +725,7 @@ class scenarioExpression {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($_endTime) - $lastDuration);
 					}
+					$lastDuration = strtotime($history->getDatetime());
 					$lastValue = round($history->getValue(), $_decimal);
 					break;
 				}
