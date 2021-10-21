@@ -698,8 +698,8 @@ class scenarioExpression {
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
 		$_value = str_replace(',', '.', $_value);
-		$_decimal = strlen(substr(strrchr($_value, "."), 1));
-
+		$_decimal = strlen(substr(strrchr($_value, "."), 1));		
+		
 		$histories = $cmd->getHistory();
 
 		$duration = 0;
@@ -716,6 +716,8 @@ class scenarioExpression {
 					if ($lastValue == $_value) {
 						$duration = $duration + (strtotime($_endTime) - $lastDuration);
 					}
+					$lastDuration = strtotime($history->getDatetime());
+					$lastValue = round($history->getValue(), $_decimal);
 					break;
 				}
 				$lastDuration = strtotime($history->getDatetime());
