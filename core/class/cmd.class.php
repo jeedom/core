@@ -859,7 +859,12 @@ class cmd {
 			return;
 		}
 		$value = $cmd->execCmd();
-		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
+		$checkCmdValue = $cmd->getConfiguration('jeedomCheckCmdTest');
+		if ($cmd->getSubType() == 'string') {
+			$checkCmdValue = '"' . trim($checkCmdValue, '"\'') . '"';
+			$value = '"' . trim($value, '"\'') . '"';
+		}
+		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $checkCmdValue);
 		if ($check == 1 || $check || $check == '1') {
 			$cmd->executeAlertCmdAction();
 		}
