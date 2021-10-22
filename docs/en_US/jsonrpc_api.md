@@ -766,7 +766,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::all ', array())){
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-`` ``
+`` ''
 
 Execution of an order (with the option of a title and a message)
 
@@ -777,6 +777,6 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-`` ``
+`` ''
 
 The API is of course usable with other languages (just a post on a page)

@@ -766,7 +766,7 @@ if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::all ', Array())){
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-`` ``
+`` ''
 
 Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
@@ -777,6 +777,6 @@ if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'o
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-`` ``
+`` ''
 
 Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite)
