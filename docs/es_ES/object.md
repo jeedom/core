@@ -15,6 +15,19 @@ Tienes dos opciones :
 - **Añadir** : Crea un nuevo objeto.
 - **Resumen** : Muestra la lista de objetos creados y su configuración.
 
+## Resumen
+
+La descripción general le permite ver todos los objetos en Jeedom, así como su configuración :
+
+- **CARNÉ DE IDENTIDAD** : ID de objeto.
+- **Objeto** : Nombre del objeto.
+- **Padre** : Nombre del objeto padre.
+- **Visible** : Visibilidad del objeto.
+- **Máscara** : Indica si el objeto está oculto en el Tablero.
+- **Resumen definido** : Indica el número de pedidos por resumen. Lo que está en azul se tiene en cuenta en el resumen global.
+- **Resumen de panel oculto** : Indica resúmenes ocultos en el Tablero.
+- **Resumen móvil oculto** : Mostrar resúmenes ocultos en dispositivos móviles.
+
 ## Mis objetos
 
 Una vez que haya creado un objeto, aparecerá en esta parte.
@@ -70,42 +83,8 @@ Aquí están las diferentes características para configurar un objeto :
 >
 > Cuando se crea un dispositivo y no se ha definido ningún padre, tendrá como padre : **No**.
 
-## Pestaña Resumen
+## Pestañas de resumen
 
-Los resúmenes son información global, asignada a un objeto, que se muestra en particular en el Panel de control (junto al nombre del objeto) y en el resumen (en la miniatura del objeto).
+[Ver documentación de resúmenes.](/es_ES/concept/summary)
 
 
-### Tablero de anuncios
-
-Las columnas representan los resúmenes asignados al objeto actual. Se te proponen tres líneas :
-
-- **Subir en el resumen global** : Marque la casilla si desea que el resumen se muestre en la barra de menú de Jeedom.
-- **Ocultar en el escritorio** : Marque la casilla si no desea que el resumen aparezca junto al nombre del objeto en el Tablero.
-- **Ocultar en el móvil** : Marque la casilla si no desea que aparezca el resumen cuando lo vea desde un dispositivo móvil.
-
-### Commandes
-
-Cada pestaña representa un tipo de resumen definido en la configuración de Jeedom. Haga clic en **Agregar un pedido** para que se tenga en cuenta en el resumen. Tiene la opción de seleccionar el comando de cualquier equipo Jeedom, incluso si no tiene este objeto como padre.
-
-> **Propina**
->
-> Si desea agregar un tipo de resumen o configurar el método de cálculo del resultado, la unidad, el icono y el nombre de un resumen, debe ir a la configuración general de Jeedom : **Preferencias → Sistema → Configuración : Pestaña Resúmenes**.
-
-## Pestaña Resumen por dispositivo
-
-Esta página muestra todo el equipo que tiene el objeto como padre. En cada dispositivo, al hacer clic en él, se presenta la lista de comandos de información del dispositivo, con a la derecha los medios para asignar este comando a uno o más resúmenes del objeto.
-
-Si uno o más resúmenes ya están definidos, el selector aparece en naranja, con los tipos de resúmenes marcados a la derecha.
-
-## Resumen
-
-La descripción general le permite ver todos los objetos en Jeedom, así como su configuración :
-
-- **CARNÉ DE IDENTIDAD** : ID de objeto.
-- **Objeto** : Nombre del objeto.
-- **Padre** : Nombre del objeto padre.
-- **Visible** : Visibilidad del objeto.
-- **Máscara** : Indica si el objeto está oculto en el Tablero.
-- **Resumen definido** : Indica el número de pedidos por resumen. Lo que está en azul se tiene en cuenta en el resumen global.
-- **Resumen de panel oculto** : Indica resúmenes ocultos en el Tablero.
-- **Resumen móvil oculto** : Mostrar resúmenes ocultos en dispositivos móviles.

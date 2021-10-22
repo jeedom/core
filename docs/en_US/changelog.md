@@ -18,12 +18,12 @@
 - **Summaries** : Possibility to define a different icon when the summary is null (no shutters open, no light on, etc).
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
-- **Summaries** : It is now possible to configure actions on the summaries (ctrl + click on a summary) thanks to the virtual ones.
-- **Types of equipment** : New page **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
+- **Summaries** : It is now possible to configure [actions on summaries](/en_US/concept/summary#Actions sur résumés) (ctrl + click on a summary) thanks to the virtual ones.
+- **Types of equipment** : [New page](/en_US/core/4.2/types) **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
-- **Configuration** : Possibility to configure the wallpaper on the Dashboard, Analysis, Tools pages and their opacity depending on the theme.
+- **Configuration** : Possibility to configure wallpapers on the Dashboard, Analysis, Tools pages and their opacity according to the theme.
 - **Equipment configuration** : Possibility of configuring a history curve at the bottom of the tile of a device.
 - **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.

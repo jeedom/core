@@ -15,6 +15,19 @@ Você tem duas opções :
 - **Adicionar** : Crie um novo objeto.
 - **Visão global** : Exibe a lista de objetos criados e suas configurações.
 
+## Visão global
+
+A visão geral permite visualizar todos os objetos no Jeedom, bem como suas configurações :
+
+- **EU IRIA** : Object ID.
+- **Objeto** : Nome do objeto.
+- **Pai** : Nome do objeto pai.
+- **Visível** : Visibilidade do objeto.
+- **Mascarar** : Indica se o objeto está oculto no painel.
+- **Resumo definido** : Indica o número de pedidos por resumo. O que está em azul é levado em consideração no resumo global.
+- **Resumo do painel oculto** : Indica resumos ocultos no painel.
+- **Resumo para celular oculto** : Mostrar resumos ocultos no celular.
+
 ## Meus objetos
 
 Depois de criar um objeto, ele aparecerá nesta parte.
@@ -70,42 +83,8 @@ Aqui estão as diferentes características para configurar um objeto :
 >
 > Quando um dispositivo é criado e nenhum pai foi definido, ele terá como pai : **Não**.
 
-## Guia Resumo
+## Abas de resumo
 
-Resumos são informações globais, atribuídas a um objeto, que são exibidas em particular no Painel (ao lado do nome do objeto) e no resumo (na miniatura do objeto).
+[Veja a documentação dos resumos.](/pt_PT/concept/summary)
 
 
-### Quadro de avisos
-
-As colunas representam os resumos atribuídos ao objeto atual. Três linhas são propostas para você :
-
-- **-Se no resumo geral** : Marque a caixa se desejar que o resumo seja exibido na barra de menus do Jeedom.
-- **Esconder no ambiente de trabalho** : Marque a caixa se não desejar que o resumo apareça ao lado do nome do objeto no Painel.
-- **Esconder móvel** : Marque a caixa se você não deseja que o resumo apareça ao vê-lo em um celular.
-
-### Commandes
-
-Cada guia representa um tipo de resumo definido na configuração do Jeedom. Clique em **Adicionar comando** para que seja levado em consideração no resumo. Você tem a opção de selecionar o comando de qualquer equipamento Jeedom, mesmo que ele não tenha esse objeto como pai.
-
-> **Dica**
->
-> Se você deseja adicionar um tipo de resumo ou configurar o método de cálculo do resultado, a unidade, o ícone e o nome de um resumo, deve-se acessar a configuração geral do Jeedom : **Configurações → Sistema → Configuração : Guia Resumos**.
-
-## Guia de resumo por dispositivo
-
-Esta página exibe todos os equipamentos tendo o objeto como pai. Em cada dispositivo, clicando sobre ele, é apresentada a lista de comandos de informação do dispositivo, à direita os meios de atribuir este comando a um ou mais resumos do objeto.
-
-Se um ou mais resumos já estiverem definidos, o seletor aparece em laranja, com os tipos de resumos marcados à direita.
-
-## Visão global
-
-A visão geral permite visualizar todos os objetos no Jeedom, bem como suas configurações :
-
-- **EU IRIA** : Object ID.
-- **Objeto** : Nome do objeto.
-- **Pai** : Nome do objeto pai.
-- **Visível** : Visibilidade do objeto.
-- **Mascarar** : Indica se o objeto está oculto no painel.
-- **Resumo definido** : Indica o número de pedidos por resumo. O que está em azul é levado em consideração no resumo global.
-- **Resumo do painel oculto** : Indica resumos ocultos no painel.
-- **Resumo para celular oculto** : Mostrar resumos ocultos no celular.

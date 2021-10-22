@@ -160,24 +160,7 @@ Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der w
 
 ## Registerkarte &quot;Zusammenfassungen&quot;
 
-Objektzusammenfassungen hinzufügen. Diese Informationen werden oben rechts in der Jeedom-Menüleiste oder neben Objekten angezeigt :
-
-- **Schlüssel** : Schlüssel zur Zusammenfassung, vor allem nicht zu berühren.
-- **Familienname, Nachname** : Abstrakter Name.
-- **Berechnung** : Berechnungsmethode, kann vom Typ sein :
-    - **Summe** : summiere die verschiedenen Werte,
-    - **Durchschnittlich** : Durchschnittswerte,
-    - **Text** : Zeigen Sie den Wert wörtlich an (insbesondere für diejenigen vom Typ string).
-- **Symbol** : Zusammenfassungssymbol.
-- **Wenn null Symbol** : Zusammenfassungssymbol, wenn der Wert 0 ist. Ermöglicht die Angabe eines anderen Symbols wie geschlossener Verschluss, ausgeschaltetes Licht usw.
-- **Einheit** : Zusammenfassungseinheit.
-- **Nummer verstecken** : Zeigt niemals den Zusammenfassungswert an (die Zahl rechts neben dem).
-- ** Nummer ausblenden, wenn Null** : Wird verwendet, um den Zusammenfassungswert nur auszublenden, wenn er 0 ist. Wir können daher wünschen, dass das Verschlusssymbol mit ihrer Nummer geöffnet und das Verschlusssymbol ohne die Nummer geschlossen wird, wenn alle Verschlüsse geschlossen sind.
-- **Zählverfahren** : Wenn Sie Binärdaten zählen, müssen Sie diesen Wert in Binärdaten setzen. Wenn Sie beispielsweise die Anzahl der leuchtenden Lampen zählen, aber nur den Wert des Dimmers (0 bis 100) haben, müssen Sie Binärdaten eingeben, so wie Jeedom dies berücksichtigt hat Wenn der Wert größer als 1 ist, leuchtet die Lampe.
-- **Wenn nein** : Zusammenfassung anzeigen, auch wenn der Wert 0 ist.
-- **Ignoriere wenn** : Ignorieren Sie eine Bestellung für diese Zusammenfassung, wenn sie x Minuten lang nicht aktualisiert wurde.
-- **Link zu einem virtuellen** : Startet die Erstellung virtueller Aufträge, deren Wert denen der Zusammenfassung entspricht.
-- **Zusammenfassung löschen** : Die letzte Schaltfläche ganz rechts löscht die Zusammenfassung aus der Zeile.
+[Siehe Abstracts-Dokumentation.](/de_DE/concept/summary)
 
 ## Registerkarte Ausrüstung
 

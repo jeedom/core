@@ -160,24 +160,7 @@ Abaixo, você encontrará uma tabela para gerenciar com precisão o nível de lo
 
 ## Guia Resumos
 
-Adicionar resumos de objetos. Essas informações são exibidas no canto superior direito da barra de menus do Jeedom ou ao lado de objetos :
-
-- **Chave** : Chave para o resumo, especialmente para não tocar.
-- **Último nome** : Nome do resumo.
-- **Cálculo** : Método de cálculo, pode ser do tipo :
-    - **Soma** : somar os diferentes valores,
-    - **Média** : valores médios,
-    - **Texto** : exibir o valor literalmente (especialmente para aqueles do tipo string).
-- **Ícone** : Ícone Resumo.
-- **Se ícone nulo** : Ícone de resumo se seu valor for 0. Permite que você especifique um ícone diferente, como obturador fechado, luz apagada, etc.
-- **Unidade** : Unidade de resumo.
-- **Numero oculto** : Nunca exibe o valor de resumo (o número à direita do).
-- ** Ocultar número se zero** : Usado para ocultar o valor de resumo, apenas se for 0. Podemos, portanto, desejar que o ícone do obturador seja aberto com seu número, e o ícone do obturador fechado sem o número quando todos os obturadores estiverem fechados.
-- **Método de contagem** : Se você contar dados binários, terá que colocar esse valor em binário, por exemplo, se contar o número de luzes acesas, mas apenas o valor do dimmer (0 a 100), precisará colocar binários, como o que Jeedom considerou se o valor for maior que 1, a lâmpada estará acesa.
-- **Se não** : Mostra o resumo mesmo quando seu valor é 0.
-- **Ignorar se** : Ignore um pedido para este resumo se ele não tiver sido atualizado por x minutos.
-- **Link para um virtual** : Lança a criação de pedidos virtuais que têm como valor aqueles do resumo.
-- **Excluir resumo** : O último botão, na extrema direita, exclui o resumo da linha.
+[Veja a documentação dos resumos.](/pt_PT/concept/summary)
 
 ## Guia Equipamento
 

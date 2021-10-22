@@ -160,24 +160,7 @@ Below you will find a table for finely managing the log level of essential eleme
 
 ## Summaries tab
 
-Add object summaries. This information is displayed at the top right of the Jeedom menu bar, or next to objects :
-
-- **Key** : Key to the summary, especially not to touch.
-- **Last name** : Abstract name.
-- **Calculation** : Calculation method, can be of type :
-    - **Sum** : sum the different values,
-    - **Average** : averages values,
-    - **Text** : display the value verbatim (especially for those of type string).
-- **Icon** : Summary icon.
-- **If null icon** : Summary icon if its value is 0. Allows you to specify a different icon like shutter closed, light off, etc.
-- **Unit** : Summary unit.
-- **Hide number** : Never displays the summary value (the number to the right of the).
-- ** Hide number if zero** : Used to hide the summary value, only if it is 0. We can thus wish to have the shutter icon open with their number, and the shutter icon closed without the number when all the shutters are closed.
-- **Counting method** : If you count a binary data then you have to put this value in binary, example if you count the number of lights on but you just have the value of the dimmer (0 to 100), then you have to put binary, like that Jeedom considered that if the value is greater than 1, then the lamp is on.
-- **If no** : Show summary even when its value is 0.
-- **Ignore if** : Ignore an order for this summary if it has not been updated for x minutes.
-- **Link to a virtual** : Launches the creation of virtual command having for value those of the summary.
-- **Delete summary** : The last button, on the far right, deletes the summary from the line.
+[See abstracts documentation.](/en_US/concept/summary)
 
 ## Equipment tab
 
