@@ -7,8 +7,6 @@ Pour palier à ce problème, notamment avec les assistants vocaux (*Allume la lu
 
 Cela permet ainsi d'identifier un équipement par *La lumière de la salle* par exemple.
 
-Les Types Génériques sont également intégrés dans les scénarios. Vous pouvez ainsi déclencher un scénario si une lampe s'allume dans une pièce, si un mouvement est détecté dans la maison, éteindre toutes les lumières ou fermer tous les volets avec une seule action, etc. De plus, si vous ajoutez un équipement, vous n'avez qu'à indiquer les bons types sur ses commandes, il ne sera pas nécessaire de retoucher de tels scénarios.
-
 La pluspart du temps les types génériques sont mis automatiquement lors la configuration de votre module (inclusion sous Z-wave par exemple). Mais il peut arriver que vous deviez les reconfigurer. Le paramétrage des ces Types Génériques peut se faire directement dans certains plugins, ou par commande dans *Configuration avancée* de celle-ci.
 
 Cette page permet de paramétrer ces Types Génériques, de manière plus directe et plus simple, et propose même une assignation automatique une fois les équipements assignés correctement.
@@ -43,6 +41,41 @@ Sur chaque équipement, vous avez deux boutons :
 > **Attention**
 >
 > Aucun changement n'est effectué avant de sauvegarder, avec le bouton en haut à droite de la page.
+
+## Types Génériques et scénarios
+
+En v4.2, le Core a intégré les types génériques dans les scénarios. Vous pouvez ainsi déclencher un scénario si une lampe s'allume dans une pièce, si un mouvement est détecté dans la maison, éteindre toutes les lumières ou fermer tous les volets avec une seule action, etc. De plus, si vous ajoutez un équipement, vous n'avez qu'à indiquer les bons types sur ses commandes, il ne sera pas nécessaire de retoucher de tels scénarios.
+
+#### Déclencheur
+
+Vous pouvez déclencher un scénario à partir de capteurs. Par exemple, si vous avez des détecteurs de mouvements dans la maison, vous pouvez créer un scénario d'alarme avec chaque détecteur en déclencheur : `#[Salon][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc. Dans un tel scénario, il vous faudra donc tous vos détecteurs de mouvement, et si vous en ajoutez un il faudra le rajouter dans les déclencheurs. Logique.
+
+Grâce aux types génériques, vous pourrez utiliser un seul déclencheur : `#genericType(PRESENCE)# == 1`. Ici, aucun objet n'est indiqué, donc le moindre mouvement dans toute la maison déclenchera le scénario. Si vous ajoutez un nouveau détecteur dans la maison, inutile de retoucher au(x) scénario(s).
+
+Ici, un déclencheur sur l'allumage d'une lumière dans le Salon : `#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+
+#### Expression
+
+Si vous souhaitez, dans un scénario, savoir si une lumière est allumée dans le Salon, vous pouvez faire :
+
+SI `#[Salon][Lumiere Canapé][Etat]# == 1 OU #[Salon][Lumiere Salon][Etat]# == 1 OU #[Salon][Lumiere Angle][Etat]# == 1`
+
+Ou plus simplement : SI `genericType(LIGHT_STATE,#[Salon]#) > 0` soit si une ou plusieurs lumiere(s) sont allumée dans le Salon.
+
+Si demain vous ajoutez une lumière dans votre Salon, inutile de retoucher vos scénarios !
+
+
+#### Action
+
+Si vous souhaitez allumez toutes les lumières dans le Salon, vous pouvez créer une action par lumière:
+
+```
+#[Salon][Lumiere Canapé][On]#
+#[Salon][Lumiere Salon][On]#
+#[Salon][Lumiere Angle][On]#
+```
+
+Ou plus simplement, créer une action `genericType` avec `LIGHT_ON` dans `Salon`. Si demain vous ajoutez une lumière dans votre Salon, inutile de retoucher vos scénarios !
 
 
 ## Liste des Types génériques du Core
