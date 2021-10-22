@@ -18,12 +18,12 @@
 - **Résumés** : Possibilité de définir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc).
 - **Résumés** : Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif.
 - **Résumés** : Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé.
-- **Résumés** : Il est maintenant possible de configurer des actions sur les résumés (ctrl + clic sur un résumé) grâce aux virtuels.
-- **Types d'équipement** : Nouvelle page **Outils → Types d'équipement** permettant d'attribuer des types génériques aux équipements et commandes, avec support des types dédiés aux plugins installés (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2)).
+- **Résumés** : Il est maintenant possible de configurer des [actions sur les résumés](/fr_FR/concept/summary#Actions sur résumés) (ctrl + clic sur un résumé) grâce aux virtuels.
+- **Types d'équipement** : [Nouvelle page](/fr_FR/core/4.2/types) **Outils → Types d'équipement** permettant d'attribuer des types génériques aux équipements et commandes, avec support des types dédiés aux plugins installés (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2)).
 - **Sélection d'illustrations** : Nouvelle fenêtre globale pour le choix des illustrations *(icônes, images, fonds)*.
 - **Catégories colorées** : Nouvelle option en configuration / interface pour ne pas colorer le bandeau de titre des équipements.
 - **Affichage en tableau** : Ajout d'un bouton à droite de la recherche sur les pages *Objets* *Scénarios* *Interactions* *Widgets* et *Plugins* pour basculer en mode tableau. Celui-ci est conservé par un cookie ou dans **Réglages → Système → Configuration / Interface, Options**. Les plugins peuvent faire appel à cette nouvelle fonction du Core.
-- **Configuration** : Possibilité de paramétrer des fond d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème.
+- **Configuration** : Possibilité de paramétrer des fonds d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème.
 - **Configuration Equipement** : Possibilité de paramétrer une courbe d'historique en fond de tuile d'un équipement.
 - **Blocs Code** : (Éditeur de fichier, Scénarios, personnalisation avancée) Fonction de repli de code (*code folding*). Raccourcis Ctrl+Y et Ctrl+I.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
