@@ -75,7 +75,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
 >Deaktivieren Sie *"Afficher"* des Befehls info / binary, der nicht angezeigt werden muss.
 
 - Damit der Jeedom Core erkennen kann, welcher Befehl welcher Aktion entspricht, muss die folgende Benennung beachtet werden **2 Aktions- / Fehlerbefehle** :
-`` ''
+`` ``
     'on':'on',
     'off':'off',
     'monter':'on',
@@ -94,7 +94,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
     'halt':'off',
     'stop':'off',
     'go':'on'
-`` ''
+`` ``
 
 >**Trick**      
 >Solange der standardisierte Name lesbar bleibt, kann beispielsweise die Benennung angepasst werden *open_volet* oder *shutter_close*, *Schritt 2* und *stop_2*, usw.
@@ -224,13 +224,13 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 
 Wenn ein neuer Wert Jeedom auf der Seite sucht, wenn der Befehl vorhanden ist, und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
 
-`` ''
+`` ``
 {display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-`` ''
+`` ``
 
 Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr Widget einfügen können :
 
-`` ''
+`` ``
 <script>
     Jeedom.cmd.update ['#id#'] = Funktion (_Optionen){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Datum der Abholung : '+ _options.collectDate)
@@ -238,21 +238,21 @@ Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr Widget einf
     }
     Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});;
 </script>
-`` ''
+`` ``
 
 Hier sind zwei wichtige Dinge :
 
-`` ''
+`` ``
 Jeedom.cmd.update ['#id#'] = Funktion (_Optionen){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Datum der Abholung : '+ _options.collectDate)
   $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');;
 }
-`` ''
+`` ``
 Die Funktion wird während einer Aktualisierung des Widgets aufgerufen. Anschließend wird der HTML-Code der Widget-Vorlage aktualisiert.
 
-`` ''
+`` ``
 Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});;
-`` ''
+`` ``
  Der Aufruf dieser Funktion zur Initialisierung des Widgets.
 
 ### Exemples

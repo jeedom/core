@@ -75,7 +75,7 @@ To do so, it is necessary to take into account 2 prerequisites :
 >Uncheck *"Afficher"* of the info / binary command which will not need to be displayed.
 
 - In order for the Jeedom Core to be able to identify which command corresponds to which action, it is essential to respect the following naming for **2 action / fault commands** :
-`` ''
+`` ``
     'on':'on',
     'off':'off',
     'monter':'on',
@@ -94,7 +94,7 @@ To do so, it is necessary to take into account 2 prerequisites :
     'stop':'off',
     'stop':'off',
     'go':'on'
-`` ''
+`` ``
 
 >**Trick**      
 >As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* or *shutter_close*, *step_2* and *stop_2*, etc.
@@ -224,13 +224,13 @@ In code mode you have access to different tags for orders, here is a list (not n
 
 When a new value Jeedom will search in the page if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
 
-`` ''
+`` ``
 {display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
-`` ''
+`` ``
 
 Here is a simple example of javascript code to put in your widget :
 
-`` ''
+`` ``
 <script>
     Jeedom.cmd.update ['#id#'] = function (_options){
       $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
@@ -238,21 +238,21 @@ Here is a simple example of javascript code to put in your widget :
     }
     Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
 </script>
-`` ''
+`` ``
 
 Here are two important things :
 
-`` ''
+`` ``
 Jeedom.cmd.update ['#id#'] = function (_options){
   $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Collect date : '+ _options.collectDate)
   $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value +' #unite#');
 }
-`` ''
+`` ``
 The function is called during an update of the widget. It then updates the html code of the widget_template.
 
-`` ''
+`` ``
 Jeedom.cmd.update ['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-`` ''
+`` ``
  The call to this function for the initialization of the widget.
 
 ### Exemples
