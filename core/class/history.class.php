@@ -385,17 +385,18 @@ class history {
 		return array_merge($result2, $result1);
 	}
 
-	public static function getOldestValue($_cmd_id) {
+	public static function getOldestValue($_cmd_id, $_limit = 1) {
 		$values = array(
-			'cmd_id' => $_cmd_id,
+			'cmd_id' => $_cmd_id
 		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__);
-		$sql .= ' FROM historyArch
-		WHERE cmd_id=:cmd_id ';
-		$sql .= ' ORDER BY `datetime` ASC LIMIT 1';
-		$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
-
-		return array_merge($result);
+		$_limit = intval($_limit);
+		if ($_limit > 0 && $_limit < 100) {
+			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql .= ' FROM historyArch WHERE cmd_id=:cmd_id ORDER BY `datetime` ASC LIMIT ' . $_limit;
+			$result = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'historyArch');
+			return array_merge($result);
+		}
+		return array();
 	}
 
 	public static function removes($_cmd_id, $_startTime = null, $_endTime = null) {
