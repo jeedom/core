@@ -20,6 +20,13 @@ Desktop
   div.eqlogicbackgraph  path.highcharts-graph {
     stroke-width: 2;
   }
+  div.eqlogicbackgraph .eqLogicGraphPeriod {
+    font-size: 11px;
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    z-index: 1;
+  }
 
   .eqLogic-widget div.cmd-widget {
     position: relative;

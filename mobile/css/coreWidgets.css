@@ -48,6 +48,13 @@ Mobile WebApp
   div.eqlogicbackgraph  path.highcharts-graph {
     stroke-width: 2;
   }
+  div.eqlogicbackgraph .eqLogicGraphPeriod {
+    font-size: 11px;
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    z-index: 1;
+  }
 
   /* v4.2 nouislider */
   div.cmd-widget .slider {
