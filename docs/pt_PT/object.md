@@ -13,9 +13,9 @@ Para dar livre escolha à personalização, você pode nomear esses objetos como
 
 Você tem duas opções :
 - **Adicionar** : Crie um novo objeto.
-- **Visão global** : Exibe a lista de objetos criados e suas configurações.
+- **Visão geral** : Exibe a lista de objetos criados e suas configurações.
 
-## Visão global
+## Visão geral
 
 A visão geral permite visualizar todos os objetos no Jeedom, bem como suas configurações :
 

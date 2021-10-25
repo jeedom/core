@@ -141,7 +141,7 @@ JSON Summary API
 summary::global
 ---------------
 
-Return the global summary for the key passed in parameter
+Returns the global summary for the key passed in parameter
 
 Settings:
 

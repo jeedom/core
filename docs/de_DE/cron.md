@@ -46,7 +46,7 @@ Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei ein
 
 ## Registerkarte Dämon
 
-Übersichtstabelle der Dämonen mit ihrem Zustand, dem Datum des letzten Starts sowie der Möglichkeit von
+Tabelle aller Daemons mit ihrem Status, dem Datum des letzten Starts sowie der Möglichkeit, :
 - Starten / Starten Sie einen Daemon neu.
 - Stoppen Sie einen Daemon, wenn die automatische Verwaltung deaktiviert ist.
 - Aktivieren / Deaktivieren der automatischen Verwaltung eines Daemons.

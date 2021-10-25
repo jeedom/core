@@ -9,7 +9,7 @@ Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jee
 ![Tablero](../images/doc-dashboard-legends.png)
 
 - 1 : Menú principal de Jeedom.
-- 2 : Resumen global.
+- 2 : Resumen global [Documentación abstracta.](/es_ES/concept/summary).
 - 3 : Tiempo del navegador, acceso directo a la línea de tiempo.
 - 4 : Botón para acceder a la documentación de la página actual.
 - 5 : Nombre de su Jeedom, acceso directo a la configuración.
