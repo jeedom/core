@@ -13,9 +13,9 @@ Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihr
 
 Sie haben zwei Möglichkeiten :
 - **Hinzufügen** : Erstellen Sie ein neues Objekt.
-- **Überblick** : Zeigt die Liste der erstellten Objekte und deren Konfiguration an.
+- **Übersicht** : Zeigt die Liste der erstellten Objekte und deren Konfiguration an.
 
-## Überblick
+## Übersicht
 
 In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
 
