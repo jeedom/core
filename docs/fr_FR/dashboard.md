@@ -9,7 +9,7 @@ Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedo
 ![Dashboard](../images/doc-dashboard-legends.png)
 
 - 1 : Menu principal de Jeedom.
-- 2 : Résumé global.
+- 2 : Résumé global [Documentation sur les résumés.](/fr_FR/concept/summary).
 - 3 : Heure du navigateur, raccourci vers la Timeline.
 - 4 : Bouton pour accéder à la documentation de la page en cours.
 - 5 : Nom de votre Jeedom, raccourci vers la configuration.
