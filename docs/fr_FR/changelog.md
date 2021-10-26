@@ -54,6 +54,7 @@
 - Les Widgets Core avec affichage d'un *time* supportent maintenant un paramètre optionnel **time : date** pour afficher une date relative (Hier à 16h48, Lundi dernier à 14h00, etc).
 - Les Widgets de type curseur (action) acceptent maintenant un paramètre optionnel *step* pour définir le pas de changement au curseur.
 - Le Widget **action.slider.value** est maintenant disponible en desktop, avec un paramètre optionnel *noslider*, ce qui en fait un *input* simple.
+- Le Widget **info.numeric.default** (*Gauge*) a été refait en pur css, et intégré en mobile. Ils sont donc maintenant identiques en desktop et mobile.
 
 ### 4.2 : Backup cloud
 
