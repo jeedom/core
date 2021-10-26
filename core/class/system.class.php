@@ -253,6 +253,12 @@ class system {
 					);
 				}
 				break;
+			case 'plugin':
+				$updates = update::byType('plugin');
+				foreach ($updates as $update) {
+					self::$_installPackage[$_type][mb_strtolower($update->getLogicalId())] = array('version' => $update->getVersion());
+				}
+				break;
 		}
 		return self::$_installPackage[$_type];
 	}
@@ -543,6 +549,8 @@ class system {
 					return '';
 				}
 				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;chown -R www-data:www-data *';
+			case 'plugin':
+				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 		}
 	}
 
