@@ -54,6 +54,7 @@
 - Widgets principais com exibição de um *Tempo* agora suporta um parâmetro opcional **Tempo : datado** para exibir uma data relativa (ontem às 16h48, segunda-feira passada às 14h, etc).
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degrau* para definir a etapa de mudança no cursor.
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
+- O widget **info.numeric.default** (*Medidor*) foi refeito em puro css e integrado em dispositivos móveis. Eles são, portanto, agora idênticos em computadores e dispositivos móveis.
 
 ### 4.2 : Backup na nuvem
 
