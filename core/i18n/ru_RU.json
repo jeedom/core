@@ -24,9 +24,12 @@
         "A propos": "о",
         "Déconnexion": "Выход",
         "Synthèse": "Synthèse",
-        "Tout": "Все",
+        "Tous": "Tous",
         "Designs": "конструкции",
         "Designs 3D": "Designs 3D"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Обновить",

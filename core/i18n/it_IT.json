@@ -24,9 +24,12 @@
         "A propos": "Su",
         "Déconnexion": "Disconnetti",
         "Synthèse": "Sintesi",
-        "Tout": "Tutto",
+        "Tous": "Tous",
         "Designs": "Disegni",
         "Designs 3D": "Disegni 3D"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Aggiorna",

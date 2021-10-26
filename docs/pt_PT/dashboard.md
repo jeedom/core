@@ -9,7 +9,7 @@ Este relatório (diferente das visualizações e designs) é gerado automaticame
 ![Painel de controle](../images/doc-dashboard-legends.png)
 
 - 1 : Menu principal do Jeedom.
-- 2 : Resumo Global.
+- 2 : Resumo Global [Documentação abstrata.](/pt_PT/concept/summary).
 - 3 : Hora do navegador, atalho para a Linha do tempo.
 - 4 : Botão para acessar a documentação da página atual.
 - 5 : Nome do seu Jeedom, atalho para configuração.

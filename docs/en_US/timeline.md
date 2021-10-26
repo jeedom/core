@@ -7,7 +7,7 @@ The Timeline page allows you to chronologically display events, such as order ch
 
 To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
 
-- **Scenario** : Either directly on the scenario page, or on the scenario summary page to do it in bulk".
+- **Scenario** : Either directly on a scenario page, or on *Overview* scenarios.
 - **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
 ![Timeline](images/timeline_intro.jpg)
@@ -18,10 +18,6 @@ You can then filter the timeline by this folder by selecting it to the left of t
 > **Note**
 >
 > If you no longer use a folder, it will appear in the list as long as events linked to this folder exist. It will disappear from the list by itself.
-
-> **Tip**
->
-> You have access to the scenario summary or history configuration windows directly from the timeline page.
 
 Once you have activated tracking in the timeline of the commands and scenarios you want, you will be able to see them appear on the timeline.
 

@@ -7,7 +7,7 @@ La page Timeline permet d'afficher chronologiquement des évènements, comme des
 
 Pour les voir, il vous faut d’abord activer le suivi sur la timeline des commandes ou scénarios voulus, puis que ces évènements se produisent.
 
-- **Scenario** : Soit directement sur la page de scénario, soit sur la page de résumé des scénarios pour le faire en "masse".
+- **Scenario** : Soit directement sur la page d'un scénario, soit sur *Vue d'ensemble* des scénarios.
 - **Commande** : Soit dans la configuration avancée de la commande, soit dans la configuration de l’historique pour le faire en "masse".
 
 ![Timeline](images/timeline_intro.jpg)
@@ -18,10 +18,6 @@ Vous pourrez alors filtrer la timeline par ce dossier en le sélectionnant à ga
 > **Note**
 >
 > Si vous n'utilisez plus un dossier, il apparaitra dans la liste tant que des évènements liés a ce dossier existent. Il disparaitra tout seul de la liste ensuite.
-
-> **Tip**
->
-> Vous avez accès aux fenêtres de résumé des scénarios ou de la configuration de l’historique directement à partir de la page de timeline.
 
 Une fois que vous avez activé le suivi dans la timeline des commandes et scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 

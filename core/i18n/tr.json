@@ -24,9 +24,12 @@
         "A propos": "Hakkında",
         "Déconnexion": "Oturumu kapat",
         "Synthèse": "Sentez",
-        "Tout": "Hepsi",
+        "Tous": "Tous",
         "Designs": "Tasarımlar",
         "Designs 3D": "3D tasarımlar"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Yenile",
