@@ -256,7 +256,7 @@ class system {
 			case 'plugin':
 				$updates = update::byType('plugin');
 				foreach ($updates as $update) {
-					self::$_installPackage[$_type][mb_strtolower($update->getLogicalId())] = array('version' => $update->getVersion());
+					self::$_installPackage[$_type][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
 				}
 				break;
 		}
