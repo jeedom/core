@@ -55,7 +55,11 @@ Mobile WebApp
     right: 2px;
     z-index: 1;
   }
-
+  div.eqlogicbackgraph.fixedbackgraph {
+    position: relative;
+    margin-bottom: -50px;
+    bottom: 50px;
+  }
   /* v4.2 nouislider */
   div.cmd-widget .slider {
     margin-top: 8px !important;
