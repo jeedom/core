@@ -24,9 +24,12 @@
         "A propos": "A proposito",
         "Déconnexion": "Salir",
         "Synthèse": "Síntesis",
-        "Tout": "Todo",
+        "Tous": "Todos",
         "Designs": "Diseños",
         "Designs 3D": "Diseños en 3D"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Refrescar",

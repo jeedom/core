@@ -160,24 +160,7 @@ A continuación encontrará una tabla para administrar con precisión el nivel d
 
 ## Pestaña Resúmenes
 
-Agregar resúmenes de objetos. Esta información se muestra en la parte superior derecha de la barra de menú de Jeedom, o al lado de los objetos :
-
-- **Llave** : Clave para el resumen, especialmente para no tocar.
-- **Apellido** : Nombre abstracto.
-- **Cálculo** : Método de cálculo, puede ser de tipo :
-    - **Suma** : suma los diferentes valores,
-    - **Promedio** : valores promedio,
-    - **Texto** : muestra el valor literalmente (especialmente para aquellos de tipo string).
-- **Icono** : Ícono de resumen.
-- **Si el icono es nulo** : Icono de resumen si su valor es 0. Le permite especificar un icono diferente como el obturador cerrado, la luz apagada, etc.
-- **Unidad** : Unidad de resumen.
-- **Número oculto** : Nunca muestra el valor de resumen (el número a la derecha del).
-- ** Ocultar número si es cero** : Se usa para ocultar el valor de resumen, solo si es 0. Por lo tanto, podemos desear tener el icono de la contraventana abierto con su número y el icono de la contraventana cerrado sin el número cuando todas las contraventanas estén cerradas.
-- **Método de conteo** : Si cuenta un dato binario, entonces tiene que poner este valor en binario, por ejemplo, si cuenta el número de luces encendidas pero solo tiene el valor del atenuador (0 a 100), entonces tiene que poner el valor binario, así Jeedom consideró que Si el valor es mayor que 1, entonces la lámpara está encendida.
-- **Si no** : Mostrar resumen incluso cuando su valor sea 0.
-- **Ignorar si** : Ignore un pedido para este resumen si no se ha actualizado durante x minutos.
-- **Enlace a un virtual** : Inicia la creación de pedidos virtuales que tienen como valor los del resumen.
-- **Eliminar resumen** : El último botón, en el extremo derecho, elimina el resumen de la línea.
+[Ver documentación de resúmenes.](/es_ES/concept/summary)
 
 ## Pestaña del equipo
 

@@ -24,9 +24,12 @@
         "A propos": "について",
         "Déconnexion": "ログアウト",
         "Synthèse": "合成",
-        "Tout": "全て",
+        "Tous": "Tous",
         "Designs": "デザイン",
         "Designs 3D": "3Dデザイン"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "クール",

@@ -15,26 +15,42 @@ Mobile WebApp
   }
 
   /* arc gauges and sliders */
-  .highcharts-pane {
-    stroke-width: 0;
+  div.arcgauge {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    clip-path: polygon(0 -5px, 105% -5px, 105% 65px, 0 65px);
   }
-  .highcharts-data-label > span > span {
-    font-size: 12px !important;
+  div.arcgauge .gauge,
+  div.arcgauge .gaugeValue {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 84px;
+    height: 45px;
+    border-top-left-radius: 84px;
+    border-top-right-radius: 84px;
+    border: 5px solid var(--el-defaultColor);
+    border-bottom: 0 !important;
+    box-sizing: border-box;
   }
-  .highcharts-color-0 {
-    fill: var(--link-color);
+  div.arcgauge .gaugeValue {
+    border: 8px solid var(--link-color);
+    transform-origin: 42px 42px;
+    transform: scale(0.94) rotate(-180deg);
   }
-  .ui-slider-handle {
-    font-size: 1em;
-    border-radius: 1em !important;
-    cursor: pointer !important;
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] {
+    height: unset;
   }
-  .ui-slider-horizontal{
-    height: 5px !important;
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] .state {
+    position: relative;
+    top: -20px;
   }
-  .ui-slider{
-    border:none !important;
+  div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="default"] .cmdStats {
+    position: relative;
+    top: -20px;
   }
+
 
   div.eqlogicbackgraph {
     width: 100%;
@@ -48,7 +64,18 @@ Mobile WebApp
   div.eqlogicbackgraph  path.highcharts-graph {
     stroke-width: 2;
   }
-
+  div.eqlogicbackgraph .eqLogicGraphPeriod {
+    font-size: 11px;
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    z-index: 1;
+  }
+  div.eqlogicbackgraph.fixedbackgraph {
+    position: relative;
+    margin-bottom: -50px;
+    bottom: 50px;
+  }
   /* v4.2 nouislider */
   div.cmd-widget .slider {
     margin-top: 8px !important;
@@ -141,28 +168,28 @@ Mobile WebApp
   }
 
 /* ____________________Specific */
-  .cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
+  div.cmd.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="tile"] .state {
     font-size: 1.4em !important;
   }
-  .cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
+  div.cmd.cmd-widget[data-type="action"][data-subtype="other"][data-template="tmpliconline"] .iconCmdLine {
     font-size: 1.2em !important;
   }
-  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .ui-input-text {
+  div.cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .ui-input-text {
     opacity: 1;
   }
-  .cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
+  div.cmd.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
     width: 55px;
     opacity: 1 !important;
     color: var(--txt-color) !important;
   }
-  .cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
+  div.cmd.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] .text {
     margin-top: 5px;
     height: 50px;
   }
-  .cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
+  div.cmd.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
     height: 100px;
   }
-  .cmd.cmd-widget .selectCmd {
+  div.cmd.cmd-widget .selectCmd {
     max-height: 50px;
     overflow: auto;
   }

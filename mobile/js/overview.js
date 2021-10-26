@@ -61,9 +61,17 @@ function initOverview() {
 
       $('.objectPreview').off('click').on('click', function(event) {
         if (event.target !== this) return
+      if ($(event.target).hasClass('topPreview') || $(event.target).hasClass('name')) return
         jeedomUtils.loadModal(false)
         jeedomUtils.loadPanel(false)
         jeedomUtils.loadPage('equipment', $(this).data('title'), $(this).data('option').toString())
+      })
+
+      $('.objectPreview .name').off('click').on('click', function(event) {
+        event.preventDefault()
+        jeedomUtils.loadModal(false)
+        jeedomUtils.loadPanel(false)
+        jeedomUtils.loadPage('equipment', '<i class=\'fas fa-globe\'></i> {{Tous}}', 'all')
       })
     }
   })

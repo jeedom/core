@@ -43,7 +43,7 @@ function initHome() {
       var li = ''
       var summaries = []
       li += '<a href="#" class="summaryMenu link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="overview" data-title="<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"><i class="fab fa-hubspot"></i> {{Synthèse}}</a>'
-      li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tout}}" data-option="all"><i class="fas fa-globe"></i> {{Tout}}</a>'
+      li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="<i class=\'fas fa-globe\'></i> {{Tous}}" data-option="all"><i class="fas fa-globe"></i> {{Tous}}</a>'
       var icon, decay
       for (var i in objects) {
         if (objects[i].isVisible == 1) {

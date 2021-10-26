@@ -7,7 +7,7 @@ La página Línea de tiempo le permite mostrar eventos cronológicamente, como c
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 
-- **Guión** : Ya sea directamente en la página del escenario o en la página de resumen del escenario para hacerlo de forma masiva".
+- **Guión** : Ya sea directamente en una página de escenario o en *Visión general* escenarios.
 - **Ordenado** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
 ![Cronología](images/timeline_intro.jpg)
@@ -18,10 +18,6 @@ Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la i
 > **Nota**
 >
 > Si ya no usa una carpeta, aparecerá en la lista mientras existan eventos vinculados a esta carpeta. Desaparecerá de la lista por sí mismo.
-
-> **Propina**
->
-> Tiene acceso a las ventanas de resumen del escenario o de configuración del historial directamente desde la página de la línea de tiempo.
 
 Una vez que haya activado el seguimiento en la línea de tiempo de los comandos y escenarios que desee, podrá verlos aparecer en la línea de tiempo.
 

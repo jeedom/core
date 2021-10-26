@@ -15,6 +15,19 @@ Deux options s’offrent à vous :
 - **Ajouter** : Permet de créer un nouvel objet.
 - **Vue d’ensemble** : Permet d’afficher la liste des objets créés ainsi que leur configuration.
 
+## Vue d’ensemble
+
+La vue d’ensemble vous permet de visualiser l’ensemble des objets dans Jeedom, ainsi que leur configuration :
+
+- **ID** : ID de l’objet.
+- **Objet** : Nom de l’objet.
+- **Père** : Nom de l’objet parent.
+- **Visible** : Visibilité de l’objet.
+- **Masqué** : Indique si l’objet est masqué sur le Dashboard.
+- **Résumé Défini** : Indique le nombre de commandes par résumé. Ce qui est en bleu est pris en compte dans le résumé global.
+- **Résumé Dashboard Masqué** : Indique les résumés masqués sur le Dashboard.
+- **Résumé Mobile Masqué** : Indique les résumés masqués sur le mobile.
+
 ## Mes objets
 
 Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
@@ -70,42 +83,8 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 >
 > Quand un équipement est créé et qu’aucun parent n’a été défini, il aura comme parent : **Aucun**.
 
-## Onglet Résumé
+## Onglets Résumés
 
-Les résumés sont des informations globales, affectées à un objet, qui s’affichent notamment sur le Dashboard (à côté du nom de l'objet), et sur la synthèse (sur la vignette de l'objet).
+[Voir documentation sur les résumés.](/fr_FR/concept/summary)
 
 
-### Tableau d’affichage
-
-Les colonnes représentent les résumés affectés à l’objet courant. Trois lignes vous sont proposées :
-
-- **Remonter dans le résumé global** : Cochez la case si vous souhaitez que le résumé soit affiché dans la barre de menu de Jeedom.
-- **Masquer en desktop** : Cochez la case si vous ne souhaitez pas que le résumé s’affiche à côté du nom de l’objet sur le Dashboard.
-- **Masquer en mobile** : Cochez la case si vous ne souhaitez pas que le résumé s’affiche quand vous l’affichez depuis un mobile.
-
-### Commandes
-
-Chaque onglet représente un type de résumé défini dans la configuration de Jeedom. Cliquez sur **Ajouter une commande** pour que celle-ci soit prise en compte dans le résumé. Vous avez le choix de sélectionner la commande de n’importe quel équipement de Jeedom, même s’il n’a pas pour parent cet objet.
-
-> **Tip**
->
-> Si vous souhaitez ajouter un type de résumé ou pour configurer la méthode de calcul du résultat, l’unité, l’icône et le nom d’un résumé, vous devez aller dans la configuration générale de Jeedom : **Réglages → Système → Configuration : Onglet Résumés**.
-
-## Onglet Résumé par équipement
-
-Cette page affiche tout les équipements ayant l'objet comme parent. Sur chaque équipement, en cliquant dessus, la liste des commandes info de l'équipement est présentée, avec sur la droite le moyen d'attribuer cette commande à un ou plusieurs résumés de l'objet.
-
-Si un ou des résumé(s) sont déjà définis, le sélecteur apparait en orange, avec les types de résumés cochés sur la droite.
-
-## Vue d’ensemble
-
-La vue d’ensemble vous permet de visualiser l’ensemble des objets dans Jeedom, ainsi que leur configuration :
-
-- **ID** : ID de l’objet.
-- **Objet** : Nom de l’objet.
-- **Père** : Nom de l’objet parent.
-- **Visible** : Visibilité de l’objet.
-- **Masqué** : Indique si l’objet est masqué sur le Dashboard.
-- **Résumé Défini** : Indique le nombre de commandes par résumé. Ce qui est en bleu est pris en compte dans le résumé global.
-- **Résumé Dashboard Masqué** : Indique les résumés masqués sur le Dashboard.
-- **Résumé Mobile Masqué** : Indique les résumés masqués sur le mobile.

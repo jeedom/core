@@ -331,6 +331,10 @@ jeedomUtils.setJeedomTheme = function() {
   //button event:
   $body.on('click', '#bt_switchTheme', function() {
     jeedomUtils.closeJeedomMenu()
+    jeedomUtils.switchTheme()
+  })
+
+  jeedomUtils.switchTheme = function() {
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/'+jeedom.theme.default_bootstrap_theme_night+'.css'
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
@@ -352,10 +356,10 @@ jeedomUtils.setJeedomTheme = function() {
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.find('#bottom').css('background-image')
-    if(backgroundImgPath.indexOf('/data/') == -1){
+    if (backgroundImgPath.indexOf('/data/') == -1) {
       jeedomUtils.setBackgroundImage('')
     }
-  })
+  }
 
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
     for (var i in jeedom.theme.css) {

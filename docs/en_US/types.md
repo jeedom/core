@@ -7,8 +7,6 @@ To overcome this problem, especially with voice assistants (*Turn on the room li
 
 This makes it possible to identify a piece of equipment by *The light of the room* for example.
 
-Generic Types are also integrated into scenarios. You can thus trigger a scenario if a lamp comes on in a room, if movement is detected in the house, turn off all the lights or close all the shutters with a single action, etc. In addition, if you add an equipment, you only have to indicate the correct types on its orders, it will not be necessary to edit such scenarios.
-
 Most of the time the generic types are set automatically when configuring your module (inclusion in Z-wave for example). But there may be times when you need to reconfigure them. The configuration of these Generic Types can be done directly in certain plugins, or by command in *Advanced configuration* of it.
 
 This page allows these Generic Types to be configured in a more direct and simpler way, and even offers automatic assignment once the devices have been correctly assigned.
@@ -43,6 +41,41 @@ On each device, you have two buttons :
 > **Warning**
 >
 > No changes are made before saving, with the button at the top right of the page.
+
+## Generic types and scenarios
+
+In v4.2, the Core has integrated the generic types in the scenarios. You can thus trigger a scenario if a lamp comes on in a room, if movement is detected in the house, turn off all the lights or close all the shutters with a single action, etc. In addition, if you add an equipment, you only have to indicate the correct types on its orders, it will not be necessary to edit such scenarios.
+
+#### Trigger
+
+You can trigger a scenario from sensors. For example, if you have motion detectors in the house, you can create an alarm scenario with each detector triggering : ``#[Salon][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc. In such a scenario, you will therefore need all your motion detectors, and if you add one, you will have to add it to the triggers. Logic.
+
+Thanks to generic types, you will be able to use a single trigger : ``#genericType(PRESENCE)# == 1`. Here, no object is indicated, so the slightest movement throughout the house will trigger the scenario. If you add a new detector in the house, no need to edit the scenario (s)).
+
+Here, a trigger on the switching on of a light in the Living room : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+
+#### Expression
+
+If, in a scenario, you want to know if a light is on in the Living Room, you can do :
+
+IF `#[Salon][Lumiere Canapé][State]# == 1 OR #[Salon][Lumiere Salon][State]# == 1 OR #[Salon][Lumiere Angle][State]# == 1`
+
+Or more simply : IF `genericType (LIGHT_STATE,#[Salon]#) > 0` or if one or more light (s) are on in the Living room.
+
+If tomorrow you add a light in your living room, no need to retouch your scenarios !
+
+
+#### Action
+
+If you want to turn on all the lights in the Living Room, you can create a light action:
+
+`` ``
+#[Salon][Lumiere Canapé][We]#
+#[Salon][Lumiere Salon][We]#
+#[Salon][Lumiere Angle][We]#
+`` ``
+
+Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tomorrow you add a light in your living room, no need to retouch your scenarios !
 
 
 ## List of Generic Core Types

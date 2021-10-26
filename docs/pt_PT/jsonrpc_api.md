@@ -141,7 +141,7 @@ API de resumo JSON
 summary::global
 ---------------
 
-Retornar o resumo global da chave passada no parâmetro
+Retorna o resumo global da chave passada no parâmetro
 
 Configurações:
 

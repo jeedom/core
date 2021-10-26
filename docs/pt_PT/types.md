@@ -7,8 +7,6 @@ Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz 
 
 Isso torna possível identificar uma peça de equipamento por *A luz da sala* por exemplo.
 
-Tipos genéricos também são integrados em cenários. Você pode, assim, acionar um cenário se uma lâmpada acender em uma sala, se for detectado movimento na casa, desligar todas as luzes ou fechar todas as venezianas com uma única ação, etc. Além disso, se você adicionar um equipamento, basta indicar os tipos corretos em seus pedidos, não será necessário editar tais cenários.
-
 Na maioria das vezes os tipos genéricos são definidos automaticamente ao configurar o seu módulo (inclusão no Z-wave por exemplo). Mas pode haver momentos em que você precisa reconfigurá-los. A configuração destes Tipos Genéricos pode ser feita diretamente em certos plugins, ou por comando em *Configuração avançada* disso.
 
 Esta página permite que esses Tipos Genéricos sejam configurados de forma mais direta e simples, e ainda oferece atribuição automática uma vez que os dispositivos tenham sido atribuídos corretamente.
@@ -43,6 +41,41 @@ Em cada dispositivo, você tem dois botões :
 > **Aviso**
 >
 > Nenhuma alteração é feita antes de salvar, com o botão no canto superior direito da página.
+
+## Tipos e cenários genéricos
+
+Na v4.2, o Core integrou os tipos genéricos nos cenários. Você pode, assim, acionar um cenário se uma lâmpada acender em uma sala, se for detectado movimento na casa, desligar todas as luzes ou fechar todas as venezianas com uma única ação, etc. Além disso, se você adicionar um equipamento, basta indicar os tipos corretos em seus pedidos, não será necessário editar tais cenários.
+
+#### Desencadear
+
+Você pode acionar um cenário a partir de sensores. Por exemplo, se você tiver detectores de movimento em casa, pode criar um cenário de alarme com cada detector acionando : ``#[Salão][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc. Nesse cenário, você precisará de todos os detectores de movimento e, se adicionar um, terá que adicioná-lo aos gatilhos. Lógica.
+
+Os tipos genéricos permitem que você use um único gatilho : ``#genericType(PRESENCE)# == 1`. Aqui, nenhum objeto é indicado, então o menor movimento em toda a casa irá desencadear o cenário. Se você adicionar um novo detector na casa, não há necessidade de editar o (s) cenário (s)).
+
+Aqui, um gatilho para acender uma luz na sala de estar : ``#genericType(LIGHT_STATE,#[Salão]#)# > 0`
+
+#### Expression
+
+Se, em um cenário, você quiser saber se uma luz está acesa na sala de estar, você pode fazer :
+
+SE `#[Salão][Lumiere Canapé][Estado]# == 1 OU #[Salão][Lumiere Salon][Estado]# == 1 OU #[Salão][Lumiere Angle][Estado]# == 1`
+
+Ou mais simplesmente : IF `genericType (LIGHT_STATE,#[Salão]#) > 0` ou se uma ou mais luzes estiverem acesas na sala de estar.
+
+Se amanhã você adicionar uma luz em sua sala, não há necessidade de retocar seus cenários !
+
+
+#### Action
+
+Se você deseja acender todas as luzes da sala de estar, pode criar uma ação leve:
+
+`` ``
+#[Salão][Lumiere Canapé][Nós]#
+#[Salão][Lumiere Salon][Nós]#
+#[Salão][Lumiere Angle][Nós]#
+`` ``
+
+Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. Se amanhã você adicionar uma luz em sua sala, não há necessidade de retocar seus cenários !
 
 
 ## Lista de tipos de núcleo genérico

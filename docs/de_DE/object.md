@@ -15,6 +15,19 @@ Sie haben zwei Möglichkeiten :
 - **Hinzufügen** : Erstellen Sie ein neues Objekt.
 - **Übersicht** : Zeigt die Liste der erstellten Objekte und deren Konfiguration an.
 
+## Übersicht
+
+In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
+
+- **ICH WÜRDE** : Objekt-ID.
+- **Objekt** : Objektname.
+- **Vater** : Name des übergeordneten Objekts.
+- **Sichtbar** : Objektsichtbarkeit.
+- **Maske** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
+- **Zusammenfassung definiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.
+- **Versteckte Dashboard-Zusammenfassung** : Zeigt versteckte Zusammenfassungen im Dashboard an.
+- **Versteckte mobile Zusammenfassung** : Versteckte Zusammenfassungen auf dem Handy anzeigen.
+
 ## Meine Objekte
 
 Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
@@ -70,42 +83,8 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 >
 > Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Nein**.
 
-## Registerkarte &quot;Zusammenfassung&quot;
+## Zusammenfassungs-Tabs
 
-Zusammenfassungen sind globale Informationen, die einem Objekt zugewiesen sind und insbesondere im Dashboard (neben dem Namen des Objekts) und in der Zusammenfassung (auf der Miniaturansicht des Objekts) angezeigt werden).
+[Siehe Abstracts-Dokumentation.](/de_DE/concept/summary)
 
 
-### Schwarzes Brett
-
-Die Spalten stellen die Zusammenfassungen dar, die dem aktuellen Objekt zugewiesen sind. Ihnen werden drei Zeilen vorgeschlagen :
-
-- **Gehen Sie in die globale Zusammenfassung** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung in der Jeedom-Menüleiste angezeigt werden soll.
-- **Auf dem Desktop ausblenden** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung nicht neben dem Objektnamen im Dashboard angezeigt werden soll.
-- **Auf dem Handy verstecken** : Aktivieren Sie das Kontrollkästchen, wenn die Zusammenfassung nicht angezeigt werden soll, wenn Sie sie von einem Mobiltelefon aus anzeigen.
-
-### Commandes
-
-Jede Registerkarte stellt eine Art Zusammenfassung dar, die in der Konfiguration von Jeedom definiert ist. Klicken Sie auf **Bestellung hinzufügen** so dass es in der Zusammenfassung berücksichtigt wird. Sie haben die Wahl, den Befehl eines Jeedom-Geräts auszuwählen, auch wenn dieses Objekt nicht als übergeordnetes Objekt vorhanden ist.
-
-> **Trinkgeld**
->
-> Wenn Sie eine Art von Zusammenfassung hinzufügen oder die Methode zur Berechnung des Ergebnisses, der Einheit, des Symbols und des Namens einer Zusammenfassung konfigurieren möchten, müssen Sie zur allgemeinen Konfiguration von Jeedom wechseln : **Einstellungen → System → Konfiguration : Registerkarte &quot;Zusammenfassungen&quot;**.
-
-## Registerkarte "Zusammenfassung" nach Gerät
-
-Auf dieser Seite werden alle Geräte angezeigt, bei denen das Objekt übergeordnet ist. Wenn Sie auf jedes Gerät klicken, wird die Liste der Geräteinfobefehle angezeigt. Rechts können Sie diesen Befehl einer oder mehreren Zusammenfassungen des Objekts zuweisen.
-
-Wenn bereits eine oder mehrere Zusammenfassungen definiert sind, wird der Selektor orange angezeigt, wobei die Arten von Zusammenfassungen rechts aktiviert sind.
-
-## Übersicht
-
-In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
-
-- **ICH WÜRDE** : Objekt-ID.
-- **Objekt** : Objektname.
-- **Vater** : Name des übergeordneten Objekts.
-- **Sichtbar** : Objektsichtbarkeit.
-- **Maske** : Gibt an, ob das Objekt im Dashboard ausgeblendet ist.
-- **Zusammenfassung definiert** : Gibt die Anzahl der Bestellungen pro Zusammenfassung an. Was blau ist, wird in der globalen Zusammenfassung berücksichtigt.
-- **Versteckte Dashboard-Zusammenfassung** : Zeigt versteckte Zusammenfassungen im Dashboard an.
-- **Versteckte mobile Zusammenfassung** : Versteckte Zusammenfassungen auf dem Handy anzeigen.

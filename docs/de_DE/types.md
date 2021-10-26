@@ -7,8 +7,6 @@ Um dieses Problem zu lösen, insbesondere bei Sprachassistenten (*Mach das Zimme
 
 Dies ermöglicht die Identifizierung eines Gerätes durch *Das Licht des Zimmers* zum Beispiel.
 
-Auch generische Typen sind in Szenarien integriert. So können Sie ein Szenario auslösen, wenn in einem Raum eine Lampe angeht, eine Bewegung im Haus erkannt wird, alle Lichter ausgeschaltet oder alle Rollläden mit einer einzigen Aktion geschlossen werden usw. Wenn Sie eine Ausrüstung hinzufügen, müssen Sie außerdem nur die richtigen Typen in ihren Bestellungen angeben, solche Szenarien müssen nicht bearbeitet werden.
-
 Meistens werden die generischen Typen automatisch bei der Konfiguration Ihres Moduls gesetzt (z.B. Aufnahme in Z-Wave). Es kann jedoch vorkommen, dass Sie sie neu konfigurieren müssen. Die Konfiguration dieser generischen Typen kann direkt in bestimmten Plugins oder per Befehl in . erfolgen *Erweiterte Konfiguration* davon.
 
 Diese Seite ermöglicht eine direktere und einfachere Konfiguration dieser Generic Types und bietet sogar eine automatische Zuweisung nach korrekter Zuweisung der Geräte.
@@ -43,6 +41,41 @@ Auf jedem Gerät haben Sie zwei Tasten :
 > **Warnung**
 >
 > Vor dem Speichern werden keine Änderungen vorgenommen, mit der Schaltfläche oben rechts auf der Seite.
+
+## Generische Typen und Szenarien
+
+In v4.2 hat der Core die generischen Typen in die Szenarien integriert. So können Sie ein Szenario auslösen, wenn in einem Raum eine Lampe angeht, eine Bewegung im Haus erkannt wird, alle Lichter ausgeschaltet oder alle Rollläden mit einer einzigen Aktion geschlossen werden usw. Wenn Sie eine Ausrüstung hinzufügen, müssen Sie außerdem nur die richtigen Typen in ihren Bestellungen angeben, solche Szenarien müssen nicht bearbeitet werden.
+
+#### Abzug
+
+Sie können ein Szenario über Sensoren auslösen. Wenn Sie beispielsweise Bewegungsmelder im Haus haben, können Sie ein Alarmszenario erstellen, bei dem jeder Melder auslöst : ``#[Salon][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1` usw.. In einem solchen Szenario benötigen Sie daher alle Ihre Bewegungsmelder, und wenn Sie einen hinzufügen, müssen Sie ihn zu den Auslösern hinzufügen. Logik.
+
+Generische Typen ermöglichen die Verwendung eines einzigen Triggers : ``#genericType(PRESENCE)# == 1`. Hier wird kein Objekt angezeigt, so dass die kleinste Bewegung im ganzen Haus das Szenario auslöst. Wenn Sie einen neuen Melder im Haus hinzufügen, müssen Sie das Szenario (die Szenarien) nicht bearbeiten).
+
+Hier ein Auslöser beim Einschalten eines Lichts im Wohnzimmer : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+
+#### Expression
+
+Wenn Sie in einem Szenario wissen möchten, ob im Wohnzimmer Licht brennt, können Sie dies tun :
+
+WENN `#[Salon][Lumiere Canapé][Zustand]# == 1 ODER #[Salon][Lumiere Salon][Zustand]# == 1 ODER #[Salon][Lumiere Angle][Zustand]# == 1`
+
+Oder einfacher : IF `genericType (LIGHT_STATE .),#[Salon]#) > 0` oder wenn ein oder mehrere Licht(e) im Wohnzimmer leuchten.
+
+Wenn Sie morgen ein Licht in Ihrem Wohnzimmer hinzufügen, müssen Sie Ihre Szenarien nicht retuschieren !
+
+
+#### Action
+
+Wenn Sie alle Lichter im Wohnzimmer einschalten möchten, können Sie eine Lichtaktion erstellen:
+
+`` ``
+#[Salon][Lumiere Canapé][Wir]#
+#[Salon][Lumiere Salon][Wir]#
+#[Salon][Lumiere Angle][Wir]#
+`` ``
+
+Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon`. Wenn Sie morgen ein Licht in Ihrem Wohnzimmer hinzufügen, müssen Sie Ihre Szenarien nicht retuschieren !
 
 
 ## Liste der generischen Kerntypen

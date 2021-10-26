@@ -24,9 +24,12 @@
         "A propos": "Sobre",
         "Déconnexion": "Sair",
         "Synthèse": "Síntese",
-        "Tout": "Tudo",
+        "Tous": "Tudo",
         "Designs": "Projetos",
         "Designs 3D": "Projetos 3D"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tudo"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Legal",

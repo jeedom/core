@@ -46,7 +46,7 @@ Los oyentes solo son visibles en la lectura y le permiten ver las funciones llam
 
 ## Pestaña demonio
 
-Tabla resumen de los demonios con su estado, la fecha del último lanzamiento y la posibilidad de
+Tabla de todos los demonios con su estado, la fecha del último lanzamiento así como la posibilidad de :
 - Iniciar / reiniciar un demonio.
 - Detener un demonio si la gestión automática está desactivada.
 - Habilitar / deshabilitar la gestión automática de un demonio.

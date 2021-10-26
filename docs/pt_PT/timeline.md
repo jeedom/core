@@ -7,7 +7,7 @@ A página Timeline permite que você exiba eventos cronologicamente, como mudan�
 
 Para vê-los, você deve primeiro ativar o rastreamento na linha do tempo dos comandos ou cenários desejados, para que esses eventos ocorram.
 
-- **Cenário** : Diretamente na página do cenário ou na página de resumo do cenário para fazê-lo em massa".
+- **Cenário** : Tanto diretamente em uma página de cenário, ou em *Visão geral* cenários.
 - **Encomendado** : Na configuração avançada do comando ou na configuração do histórico para fazê-lo em "massa".
 
 ![Linha do tempo](images/timeline_intro.jpg)
@@ -18,10 +18,6 @@ Você pode filtrar a linha do tempo por esta pasta selecionando-a à esquerda do
 > **Nota**
 >
 > Se você não usar mais uma pasta, ela aparecerá na lista enquanto existirem eventos vinculados a essa pasta. Ele desaparecerá da lista por si só.
-
-> **Dica**
->
-> Você tem acesso às janelas de resumo do cenário ou de configuração do histórico diretamente da página da linha do tempo.
 
 Depois de ativar o rastreamento na linha do tempo dos comandos e cenários desejados, você poderá vê-los aparecer na linha do tempo.
 
