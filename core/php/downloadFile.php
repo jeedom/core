@@ -18,9 +18,36 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	if (!isConnect('admin')) {
+
+	$isAdmin = false;
+	$fromPlugin = (init('plugin') != '');
+	$fromPluginId = (init('plugin') != '') ? init('plugin') : 'core';
+	$onlyPluginId = 'all';
+
+	if (init('apikey') != '') {
+		$apiConnect = ($fromPlugin) ? jeedom::apiAccess(init('apikey'), $fromPluginId) : jeedom::apiAccess(init('apikey'));
+
+		if (!$apiConnect) {
+			log::add('api', 'debug', 'downloadFile - connexion via API -- FAILED' . ($fromPlugin ? ' -- avec pluginId ' . $fromPluginId : ''));
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+	} elseif (!isConnect()) {
+		log::add('api', 'debug', 'downloadFile - non connecté');
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+
+	//global user created with an api key attached to a user
+	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) {
+		$isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
+		log::add('api', 'debug', 'downloadFile - profil connecté est admin : ' . ($isAdmin ? 'true' : 'false'));
+	}
+	// if not a user and usage of apiKey => get from which plugin this apiKey comes from
+	elseif (init('apikey') != '' && $fromPlugin) {
+		$onlyPluginId = $fromPluginId;
+	}
+
+	$isAdmin = $isAdmin ?: isConnect('admin');
+
 	unautorizedInDemo();
 	$pathfile = calculPath(urldecode(init('pathfile')));
 	if (strpos($pathfile, '*') !== false) {
@@ -28,9 +55,17 @@ try {
 	} else {
 		$pathfile = realpath($pathfile);
 	}
+
 	if ($pathfile === false) {
+		log::add('api', 'debug', 'downloadFile - fichier introuvable');
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+
+	if (!$isAdmin && !in_array(dirname($pathfile), getWhiteListFolders($onlyPluginId))) {
+		log::add('api', 'debug', 'downloadFile - fichier non accessible en zone blanche');
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
+
 	if (strpos($pathfile, '.php') !== false) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
@@ -45,7 +80,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 	}
-	if (!isConnect('admin')) {
+	if (!$isAdmin) {
 		$adminFiles = array('log', 'backup', '.sql', 'scenario', '.tar', '.gz');
 		foreach ($adminFiles as $adminFile) {
 			if (strpos($pathfile, $adminFile) !== false) {
@@ -58,13 +93,13 @@ try {
 			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 		}
 	} elseif (is_dir(str_replace('*', '', $pathfile))) {
-		if (!isConnect('admin')) {
+		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz * > /dev/null 2>&1');
 		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	} else {
-		if (!isConnect('admin')) {
+		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$pattern = array_pop(explode('/', $pathfile));

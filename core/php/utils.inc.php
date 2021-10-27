@@ -1534,3 +1534,45 @@ function startsWith($haystack, $needle) {
 function endsWith($haystack, $needle) {
 	return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
+
+function getWhiteListFolders($_plugin = 'all') {
+	if ($_plugin != 'all') {
+		$pluginsAll = array($_plugin);
+	} else {
+		$pluginsAll = plugin::listPlugin(true,    false,   true,  true);
+	}
+
+	$result = array();
+	foreach ($pluginsAll as $pluginId) {
+		$plugin = plugin::byId($pluginId);
+		if (!is_object($plugin)) continue;
+
+		$publicFolders = $plugin->getWhiteListFolders();
+		if (count($publicFolders) == 0) continue;
+
+		$rootPath = realpath(plugin::getPluginPath($pluginId));
+		if ($rootPath === false) continue;
+
+		foreach ($publicFolders as $folder) {
+			$current = realpath($rootPath . '/' . getAbsolutePath($folder));
+
+			if ($current != "" && !in_array($current, $result)) $result[] =  $current;
+		}
+	}
+
+	return $result;
+}
+
+function getAbsolutePath($path) {
+	$parts = array_filter(explode('/', $path), 'strlen');
+	$absolutes = array();
+	foreach ($parts as $part) {
+		if ('.' == $part) continue;
+		if ('..' == $part) {
+			array_pop($absolutes);
+		} else {
+			$absolutes[] = $part;
+		}
+	}
+	return implode('/', $absolutes);
+}
