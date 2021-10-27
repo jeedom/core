@@ -1585,3 +1585,15 @@ function getAbsolutePath($path) {
 	}
 	return implode('/', $absolutes);
 }
+
+
+function getPluginIdFromApiKey($_apiKey) {
+	$pluginId = '';
+	$pluginsAll = plugin::listPlugin(true,    false,   true,  true);
+	foreach ($pluginsAll as $plugin) {
+		$pluginId = (config::byKey('api', $plugin) === $_apiKey) ? $plugin : '';
+		if ($pluginId != '') break;
+	}
+
+	return $pluginId;
+}

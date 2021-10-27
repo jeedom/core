@@ -20,6 +20,7 @@ try {
 	include_file('core', 'authentification', 'php');
 
 	$isAdmin = false;
+	$onlyPluginId = 'all';
 
 	if (!isConnect() && !jeedom::apiAccess(init('apikey'))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -27,6 +28,12 @@ try {
 
 	//global user created with an api key attached to a user
 	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) $isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
+
+	// if not an admin and usage of apiKey => get from which plugin this apiKey comes from
+	if (!$isAdmin && init('apikey') != '') {
+		$apiFromPlugin = getPluginIdFromApiKey(init('apikey'));
+		$onlyPluginId = ($apiFromPlugin == '' || $apiFromPlugin == 'core') ? 'none' : $apiFromPlugin;
+	}
 
 	$isAdmin = $isAdmin ?: isConnect('admin');
 
@@ -38,7 +45,7 @@ try {
 		$pathfile = realpath($pathfile);
 	}
 
-	if (!$isAdmin && !in_array(dirname($pathfile), getWhiteListFolders())) {
+	if (!$isAdmin && !in_array(dirname($pathfile), getWhiteListFolders($onlyPluginId))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
