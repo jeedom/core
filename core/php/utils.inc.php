@@ -1534,3 +1534,15 @@ function startsWith($haystack, $needle) {
 function endsWith($haystack, $needle) {
 	return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
+
+function implode_recursive($_array, $_separator, $_key = '') {
+	$result = array();
+	foreach ($_array as $i => $a) {
+		if (is_array($a)) {
+			$result = array_merge($result, implode_recursive($a, $_separator,  $_key . $i . $_separator));
+		} else {
+			$result = array_merge($result, array($_key . $i => $a));
+		}
+	}
+	return $result;
+}
