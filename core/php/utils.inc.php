@@ -1534,3 +1534,46 @@ function startsWith($haystack, $needle) {
 function endsWith($haystack, $needle) {
 	return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
+
+
+function setPublicFolder($_path_array, $_pluginId) {
+
+	$rootPath = realpath(__DIR__ . '/../../plugins/' . $_pluginId . '/');
+	if ($rootPath === false) return;
+
+	$finalPathsList = array();
+	foreach ($_path_array as $path) {
+		// avoid "../" repetition in each path received
+		// only paths below the plugin folder are allowed
+		$current = realpath($rootPath . '/' . getAbsolutePath($path));
+		if ($current !== false && !in_array($current, $finalPathsList)) $finalPathsList[] = $current;
+	}
+
+	config::save('folder::public', json_encode($finalPathsList), $_pluginId);
+}
+
+function getPublicFolder() {
+	$plugins = plugin::listPlugin(true,    false,   true,  true);
+
+	$result = array();
+	foreach ($plugins as $plugin) {
+		$publicFolder = config::byKey('folder::public', $plugin);
+		if ($publicFolder != "") $result = array_merge($result, $publicFolder);
+	}
+
+	return $result;
+}
+
+function getAbsolutePath($path) {
+	$parts = array_filter(explode('/', $path), 'strlen');
+	$absolutes = array();
+	foreach ($parts as $part) {
+		if ('.' == $part) continue;
+		if ('..' == $part) {
+			array_pop($absolutes);
+		} else {
+			$absolutes[] = $part;
+		}
+	}
+	return implode('/', $absolutes);
+}

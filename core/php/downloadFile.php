@@ -18,9 +18,17 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	if (!isConnect('admin')) {
+
+	$isAdmin = false;
+
+	if (!isConnect() && !jeedom::apiAccess(init('apikey'))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+
+	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) $isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
+
+	$isAdmin = $isAdmin ?: isConnect('admin');
+
 	unautorizedInDemo();
 	$pathfile = calculPath(urldecode(init('pathfile')));
 	if (strpos($pathfile, '*') !== false) {
@@ -28,6 +36,11 @@ try {
 	} else {
 		$pathfile = realpath($pathfile);
 	}
+
+	if (!$isAdmin && !in_array(dirname($pathfile), getPublicFolder())) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
+
 	if ($pathfile === false) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
@@ -45,7 +58,7 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 	}
-	if (!isConnect('admin')) {
+	if (!$isAdmin) {
 		$adminFiles = array('log', 'backup', '.sql', 'scenario', '.tar', '.gz');
 		foreach ($adminFiles as $adminFile) {
 			if (strpos($pathfile, $adminFile) !== false) {
@@ -58,13 +71,13 @@ try {
 			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
 		}
 	} elseif (is_dir(str_replace('*', '', $pathfile))) {
-		if (!isConnect('admin')) {
+		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz * > /dev/null 2>&1');
 		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	} else {
-		if (!isConnect('admin')) {
+		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		$pattern = array_pop(explode('/', $pathfile));
