@@ -20,19 +20,19 @@ try {
 	include_file('core', 'authentification', 'php');
 
 	$isAdmin = false;
-	$fromPlugin = (init('plugin') != '');
-	$fromPluginId = (init('plugin') != '') ? init('plugin') : 'core';
+	$apiKey = init('apikey');
+	$initPlugin = init('plugin');
+	$fromPlugin = ($initPlugin != '');
+	$fromPluginId = ($fromPlugin) ? $initPlugin : 'core';
 	$onlyPluginId = 'all';
 
-	if (init('apikey') != '') {
-		$apiConnect = ($fromPlugin) ? jeedom::apiAccess(init('apikey'), $fromPluginId) : jeedom::apiAccess(init('apikey'));
-
-		if (!$apiConnect) {
+	if (!isConnect() && !jeedom::apiAccess($apiKey, $initPlugin)) {
+		if ($apiKey != '') {
 			log::add('api', 'debug', 'downloadFile - connexion via API -- FAILED' . ($fromPlugin ? ' -- avec pluginId ' . $fromPluginId : ''));
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		} else {
+			log::add('api', 'debug', 'downloadFile - non connecté');
 		}
-	} elseif (!isConnect()) {
-		log::add('api', 'debug', 'downloadFile - non connecté');
+
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
@@ -42,7 +42,7 @@ try {
 		log::add('api', 'debug', 'downloadFile - profil connecté est admin : ' . ($isAdmin ? 'true' : 'false'));
 	}
 	// if not a user and usage of apiKey => get from which plugin this apiKey comes from
-	elseif (init('apikey') != '' && $fromPlugin) {
+	elseif ($apiKey != '' && $fromPlugin) {
 		$onlyPluginId = $fromPluginId;
 	}
 
