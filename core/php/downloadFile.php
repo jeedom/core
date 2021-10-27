@@ -27,10 +27,11 @@ try {
 	}
 
 	//global user created with an api key attached to a user
-	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) $isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
-
-	// if not an admin and usage of apiKey => get from which plugin this apiKey comes from
-	if (!$isAdmin && init('apikey') != '') {
+	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) {
+		$isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
+	}
+	// if not a user and usage of apiKey => get from which plugin this apiKey comes from
+	elseif (init('apikey') != '') {
 		$apiFromPlugin = getPluginIdFromApiKey(init('apikey'));
 		$onlyPluginId = ($apiFromPlugin == '' || $apiFromPlugin == 'core') ? 'none' : $apiFromPlugin;
 	}
@@ -45,13 +46,14 @@ try {
 		$pathfile = realpath($pathfile);
 	}
 
+	if ($pathfile === false) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
+
 	if (!$isAdmin && !in_array(dirname($pathfile), getWhiteListFolders($onlyPluginId))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	if ($pathfile === false) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
 	if (strpos($pathfile, '.php') !== false) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
