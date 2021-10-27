@@ -25,6 +25,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
+	//global user created with an api key attached to a user
 	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) $isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
 
 	$isAdmin = $isAdmin ?: isConnect('admin');
@@ -37,7 +38,7 @@ try {
 		$pathfile = realpath($pathfile);
 	}
 
-	if (!$isAdmin && !in_array(dirname($pathfile), getPublicFolder())) {
+	if (!$isAdmin && !in_array(dirname($pathfile), getWhiteListFolders())) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 

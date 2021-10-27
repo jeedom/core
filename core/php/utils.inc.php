@@ -1535,30 +1535,38 @@ function endsWith($haystack, $needle) {
 	return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
 
+function getPluginInfo($_plugin = '', $_key = '', $_default = '') {
 
-function setPublicFolder($_path_array, $_pluginId) {
+	$jsonInfo =  __DIR__ . '/../../plugins/' . $_plugin . '/plugin_info/info.json';
+	if (!file_exists($jsonInfo)) return $_default;
 
-	$rootPath = realpath(__DIR__ . '/../../plugins/' . $_pluginId . '/');
-	if ($rootPath === false) return;
+	$data = json_decode(file_get_contents($jsonInfo), true);
 
-	$finalPathsList = array();
-	foreach ($_path_array as $path) {
-		// avoid "../" repetition in each path received
-		// only paths below the plugin folder are allowed
-		$current = realpath($rootPath . '/' . getAbsolutePath($path));
-		if ($current !== false && !in_array($current, $finalPathsList)) $finalPathsList[] = $current;
-	}
+	if ($_key == '') return $data;
 
-	config::save('folder::public', json_encode($finalPathsList), $_pluginId);
+	return $data[$_key] ?? $_default;
 }
 
-function getPublicFolder() {
-	$plugins = plugin::listPlugin(true,    false,   true,  true);
+function getWhiteListFolders($_plugin = 'all') {
+	if ($_plugin != 'all') {
+		$pluginsAll = array($_plugin);
+	} else {
+		$pluginsAll = plugin::listPlugin(true,    false,   true,  true);
+	}
 
 	$result = array();
-	foreach ($plugins as $plugin) {
-		$publicFolder = config::byKey('folder::public', $plugin);
-		if ($publicFolder != "") $result = array_merge($result, $publicFolder);
+	foreach ($pluginsAll as $plugin) {
+		$publicFolders = getPluginInfo($plugin, 'whiteListFolders');
+		if ($publicFolders == '') continue;
+
+		$rootPath = realpath(__DIR__ . '/../../plugins/' . $plugin . '/');
+		if ($rootPath === false) continue;
+
+		foreach ($publicFolders as $folder) {
+			$current = realpath($rootPath . '/' . getAbsolutePath($folder));
+
+			if ($current != "" && !in_array($current, $result)) $result[] =  $current;
+		}
 	}
 
 	return $result;
