@@ -1549,25 +1549,12 @@ function getWhiteListFolders($_plugin = 'all') {
 		if ($rootPath === false) continue;
 
 		foreach ($publicFolders as $folder) {
-			$current = realpath($rootPath . '/' . getAbsolutePath($folder));
+			if (strpos($folder, '..') !== false) continue;
+			$current = realpath($rootPath . '/' . $folder);
 			if ($current != "" && !in_array($current, $result)) $result[] =  $current;
 		}
 	}
 	return $result;
-}
-
-function getAbsolutePath($path) {
-	$parts = array_filter(explode('/', $path), 'strlen');
-	$absolutes = array();
-	foreach ($parts as $part) {
-		if ('.' == $part) continue;
-		if ('..' == $part) {
-			array_pop($absolutes);
-		} else {
-			$absolutes[] = $part;
-		}
-	}
-	return implode('/', $absolutes);
 }
 
 function implode_recursive($_array, $_separator, $_key = '') {
