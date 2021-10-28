@@ -1536,12 +1536,7 @@ function endsWith($haystack, $needle) {
 }
 
 function getWhiteListFolders($_plugin = 'all') {
-	if ($_plugin != 'all') {
-		$pluginsAll = array($_plugin);
-	} else {
-		$pluginsAll = plugin::listPlugin(true,    false,   true,  true);
-	}
-
+	$pluginsAll = ($_plugin != 'all') ? array($_plugin) : plugin::listPlugin(true,    false,   true,  true);
 	$result = array();
 	foreach ($pluginsAll as $pluginId) {
 		$plugin = plugin::byId($pluginId);
@@ -1559,7 +1554,6 @@ function getWhiteListFolders($_plugin = 'all') {
 			if ($current != "" && !in_array($current, $result)) $result[] =  $current;
 		}
 	}
-
 	return $result;
 }
 
@@ -1575,6 +1569,7 @@ function getAbsolutePath($path) {
 		}
 	}
 	return implode('/', $absolutes);
+}
 
 function implode_recursive($_array, $_separator, $_key = '') {
 	$result = array();

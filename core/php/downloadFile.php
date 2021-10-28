@@ -19,20 +19,10 @@ try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
-	$isAdmin = false;
-	$apiKey = init('apikey');
-	$initPlugin = init('plugin');
-	$fromPlugin = ($initPlugin != '');
-	$fromPluginId = ($fromPlugin) ? $initPlugin : 'core';
+	$isAdmin = isConnect('admin');
 	$onlyPluginId = 'all';
 
-	if (!isConnect() && !jeedom::apiAccess($apiKey, $initPlugin)) {
-		if ($apiKey != '') {
-			log::add('api', 'debug', 'downloadFile - connexion via API -- FAILED' . ($fromPlugin ? ' -- avec pluginId ' . $fromPluginId : ''));
-		} else {
-			log::add('api', 'debug', 'downloadFile - non connecté');
-		}
-
+	if (!isConnect() && !jeedom::apiAccess(init('apikey'), init('plugin'))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
@@ -40,21 +30,13 @@ try {
 	if (isset($_USER_GLOBAL) && is_object($_USER_GLOBAL)) {
 		$isAdmin = ($_USER_GLOBAL->getProfils() == 'admin');
 		log::add('api', 'debug', 'downloadFile - profil connecté est admin : ' . ($isAdmin ? 'true' : 'false'));
+	} else { // if not a user and usage of apikey => get from which plugin this apikey comes from
+		$onlyPluginId = init('plugin', 'core');
 	}
-	// if not a user and usage of apiKey => get from which plugin this apiKey comes from
-	elseif ($apiKey != '' && $fromPlugin) {
-		$onlyPluginId = $fromPluginId;
-	}
-
-	$isAdmin = $isAdmin ?: isConnect('admin');
 
 	unautorizedInDemo();
 	$pathfile = calculPath(urldecode(init('pathfile')));
-	if (strpos($pathfile, '*') !== false) {
-		$pathfile = realpath(str_replace('*', '', $pathfile)) . '/*';
-	} else {
-		$pathfile = realpath($pathfile);
-	}
+	$pathfile = (strpos($pathfile, '*') !== false) ? realpath(str_replace('*', '', $pathfile)) . '/*' : realpath($pathfile);
 
 	if ($pathfile === false) {
 		log::add('api', 'debug', 'downloadFile - fichier introuvable');
