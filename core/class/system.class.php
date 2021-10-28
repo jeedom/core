@@ -461,6 +461,9 @@ class system {
 		if ($_foreground || !$has_something_todo) {
 			return;
 		}
+		if ($_plugin != '') {
+			$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+		}
 		$cmd .= "rm $progress_file\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
 		if (file_exists('/tmp/jeedom_fix_package')) {

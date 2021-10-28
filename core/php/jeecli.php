@@ -46,6 +46,15 @@ switch ($argv[1]) {
                 $update->save();
                 $update->doUpdate();
                 break;
+            case 'dependancy_end':
+                if (!isset($argv[3])) {
+                    echo "Plugin id is mandatory";
+                    die();
+                }
+                if (method_exists($argv[3], 'dependancy_end')) {
+                    $argv[3]::dependancy_end();
+                }
+                break;
             default:
                 echo "No action provide : install";
                 die();
@@ -95,7 +104,9 @@ function help() {
     echo "Commands : \n";
     echo "\t plugin : manage Jeedom plugin\n";
     echo "\t\t install [plugin_id] : install plugin_id from market\n";
+    echo "\t\t dependancy_end [plugin_id] : send end of dependancy install for plugin_id\n";
 
+    echo "\n";
     echo "\t user : manage Jeedom user\n";
     echo "\t\t list : list jeedom user\n";
     echo "\t\t password [username] [password] : change password of [username] to [password]\n";
