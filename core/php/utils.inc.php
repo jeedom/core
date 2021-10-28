@@ -1550,7 +1550,6 @@ function getWhiteListFolders($_plugin = 'all') {
 
 		foreach ($publicFolders as $folder) {
 			$current = realpath($rootPath . '/' . getAbsolutePath($folder));
-
 			if ($current != "" && !in_array($current, $result)) $result[] =  $current;
 		}
 	}
