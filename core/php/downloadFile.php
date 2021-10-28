@@ -53,14 +53,7 @@ try {
 	}
 	$rootPath = realpath(__DIR__ . '/../../');
 	if (strpos($pathfile, $rootPath) === false) {
-		if (config::byKey('recordDir', 'camera') != '' && substr(config::byKey('recordDir', 'camera'), 0, 1) == '/') {
-			$cameraPath = realpath(config::byKey('recordDir', 'camera'));
-			if (strpos($pathfile, $cameraPath) === false) {
-				throw new Exception(__('401 - Accès non autorisé', __FILE__));
-			}
-		} else {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+		$pathfile = $rootPath . '/' . str_replace('..', '', $pathfile);
 	}
 	if (!$isAdmin) {
 		$adminFiles = array('log', 'backup', '.sql', 'scenario', '.tar', '.gz');
