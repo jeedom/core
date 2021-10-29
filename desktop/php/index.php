@@ -300,6 +300,9 @@ function setTheme() {
 											<?php
 											$echo = '';
 											foreach ((jeeObject::buildTree(null, false)) as $object_li) {
+												if (!$object_li->hasRight('r')) {
+													continue;
+												}
 												$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';
 											}
 											echo $echo;
