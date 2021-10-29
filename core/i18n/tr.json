@@ -357,6 +357,9 @@
         "Equipements": "Cihazlar",
         "Scénarios": "Senaryolar",
         "Objets": "Objets",
+        "Vues": "Vues",
+        "Design": "Design",
+        "Design 3d": "Design 3d",
         "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "Hiçbir",
         "Visualisation": "Visualisation",
@@ -364,6 +367,7 @@
         "Equipement": "Cihaz",
         "Droits": "Haklar",
         "Scénario": "Senaryo",
+        "Desing": "Desing",
         "Sauvegarde effectuée": "Yedekleme gerçekleştirildi"
     },
     "desktop\/modal\/object.display.php": {

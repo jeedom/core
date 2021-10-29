@@ -1330,7 +1330,7 @@
         "Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets": "Plugins können jetzt bestimmte objektspezifische Parameter anfordern",
         "Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs": "Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern",
         "Possibilité de gérer les profils des différents utilisateurs Jeedom depuis la page de gestion des utilisateurs": "Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite",
-        "Possibilité de masquer des objets pour les utilisateurs limités": "Möglichkeit, Objekte für eingeschränkte Benutzer auszublenden",
+        "Possibilité de masquer des objets\/vue\/design\/design 3d pour les utilisateurs limités": "Möglichkeit zum Ausblenden von Objekten \/ Ansicht \/ Design \/ 3D-Design für eingeschränkte Benutzer",
         "Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande": "Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen",
         "Centre de Mises à jour": "Updates Center",
         "Le centre de mises à jour affiche désormais la date de dernière mise à jour": "Das Update Center zeigt jetzt das Datum des letzten Updates an",
