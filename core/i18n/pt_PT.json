@@ -357,6 +357,9 @@
         "Equipements": "Instalações",
         "Scénarios": "Cenas",
         "Objets": "Objetos",
+        "Vues": "Visualizações",
+        "Design": "Projeto",
+        "Design 3d": "Design 3D",
         "Appliquer aux éléments visibles": "Aplicar a elementos visíveis",
         "Aucun": "Não",
         "Visualisation": "Visualização",
@@ -364,6 +367,7 @@
         "Equipement": "Equipamento",
         "Droits": "Direitos",
         "Scénario": "Cenas",
+        "Desing": "Desing",
         "Sauvegarde effectuée": "Backup feito"
     },
     "desktop\/modal\/object.display.php": {

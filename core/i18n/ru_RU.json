@@ -357,6 +357,9 @@
         "Equipements": "Оборудование",
         "Scénarios": "Сценарии",
         "Objets": "Objets",
+        "Vues": "Vues",
+        "Design": "Design",
+        "Design 3d": "Design 3d",
         "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "Нет",
         "Visualisation": "визуализация",
@@ -364,6 +367,7 @@
         "Equipement": "Оборудование",
         "Droits": "права",
         "Scénario": "Сценарий",
+        "Desing": "Desing",
         "Sauvegarde effectuée": "Резервное копирование завершено"
     },
     "desktop\/modal\/object.display.php": {

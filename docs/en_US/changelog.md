@@ -39,7 +39,7 @@
 - **Objects** : Plugins can now request specific parameters specific to objects.
 - **Users** : Plugins can now request specific parameters specific to users.
 - **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
-- **Users** : Ability to hide objects for limited users.
+- **Users** : Ability to hide objects / view / design / 3d design for limited users.
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)

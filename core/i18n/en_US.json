@@ -357,6 +357,9 @@
         "Equipements": "Equipments",
         "Scénarios": "Scenarios",
         "Objets": "Objects",
+        "Vues": "Views",
+        "Design": "Design",
+        "Design 3d": "3d design",
         "Appliquer aux éléments visibles": "Apply to visible elements",
         "Aucun": "None",
         "Visualisation": "Visualization",
@@ -364,6 +367,7 @@
         "Equipement": "Equipment",
         "Droits": "Rights",
         "Scénario": "Scenario",
+        "Desing": "Desing",
         "Sauvegarde effectuée": "Backup completed"
     },
     "desktop\/modal\/object.display.php": {
