@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class view {
 	/*     * *************************Attributs****************************** */
-	
+
 	private $id;
 	private $name;
 	private $display;
@@ -29,16 +29,16 @@ class view {
 	private $image;
 	private $configuration;
 	private $_changed = false;
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM view
 		ORDER BY `order`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function byId($_id) {
 		$value = array(
 			'id' => $_id,
@@ -48,7 +48,7 @@ class view {
 		WHERE id=:id';
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
+
 	public static function searchByUse($_type, $_id) {
 		$return = array();
 		$viewDatas = viewData::byTypeLinkId($_type, $_id);
@@ -56,20 +56,20 @@ class view {
 		$viewDatas = array_merge($viewDatas, viewData::searchByConfiguration($search));
 		foreach ($viewDatas as $viewData) {
 			$viewZone = $viewData->getviewZone();
-			if(!is_object($viewZone)){
+			if (!is_object($viewZone)) {
 				continue;
 			}
 			$view = $viewZone->getView();
-			if(!is_object($view)){
+			if (!is_object($view)) {
 				continue;
 			}
 			$return[$view->getId()] = $view;
 		}
 		return $return;
 	}
-	
+
 	/*     * *********************Méthodes d'instance************************* */
-	
+
 	public function report($_format = 'pdf', $_parameters = array()) {
 		$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=view';
 		$url .= '&view_id=' . $this->getId();
@@ -80,95 +80,95 @@ class view {
 		return report::generate($url, 'view', $this->getId(), $_format, $_parameters);
 	}
 	/**
-	*
-	* @throws Exception
-	*/
+	 *
+	 * @throws Exception
+	 */
 	public function presave() {
 		if (trim($this->getName()) == '') {
 			throw new Exception(__('Le nom de la vue ne peut pas être vide', __FILE__));
 		}
 	}
-	
+
 	public function save() {
 		return DB::save($this);
 	}
-	
+
 	public function remove() {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'view'));
 		return DB::remove($this);
 	}
-	
+
 	public function getviewZone() {
 		return viewZone::byView($this->getId());
 	}
-	
+
 	public function removeviewZone() {
 		return viewZone::removeByViewId($this->getId());
 	}
-	
+
 	public function getImgLink() {
 		if ($this->getImage('sha512') == '') {
 			return '';
 		}
-		$filename = 'view'.$this->getId().'-'.$this->getImage('sha512') . '.' . $this->getImage('type');
+		$filename = 'view' . $this->getId() . '-' . $this->getImage('sha512') . '.' . $this->getImage('type');
 		return 'data/view/' . $filename;
 	}
-	
+
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		$return['img'] = $this->getImgLink();
 		return $return;
 	}
-	
+
 	public function toAjax($_version = 'dashboard', $_html = false) {
 		$return = utils::o2a($this);
 		$return['viewZone'] = array();
-		foreach(($this->getViewZone()) as $viewZone) {
+		foreach (($this->getViewZone()) as $viewZone) {
 			$viewZone_info = utils::o2a($viewZone);
 			$viewZone_info['viewData'] = array();
-			foreach(($viewZone->getViewData()) as $viewData) {
+			foreach (($viewZone->getViewData()) as $viewData) {
 				$viewData_info = utils::o2a($viewData);
 				$viewData_info['name'] = '';
 				switch ($viewData->getType()) {
 					case 'cmd':
-					$cmd = $viewData->getLinkObject();
-					if (!is_object($cmd) || !$cmd->hasRight()) {
+						$cmd = $viewData->getLinkObject();
+						if (!is_object($cmd) || !$cmd->hasRight()) {
+							break;
+						}
+						$viewData_info['type'] = 'cmd';
+						if ($_html) {
+							$viewData_info['html'] = $cmd->toHtml($_version);
+						} else {
+							$viewData_info['name'] = $cmd->getHumanName();
+							$viewData_info['id'] = $cmd->getId();
+						}
 						break;
-					}
-					$viewData_info['type'] = 'cmd';
-					if ($_html) {
-						$viewData_info['html'] = $cmd->toHtml($_version);
-					} else {
-						$viewData_info['name'] = $cmd->getHumanName();
-						$viewData_info['id'] = $cmd->getId();
-					}
-					break;
 					case 'eqLogic':
-					$eqLogic = $viewData->getLinkObject();
-					if (!is_object($eqLogic) || !$eqLogic->hasRight('r')) {
+						$eqLogic = $viewData->getLinkObject();
+						if (!is_object($eqLogic) || !$eqLogic->hasRight('r')) {
+							break;
+						}
+						$viewData_info['type'] = 'eqLogic';
+						if ($_html) {
+							$viewData_info['html'] = $eqLogic->toHtml($_version);
+						} else {
+							$viewData_info['name'] = $eqLogic->getHumanName();
+							$viewData_info['id'] = $eqLogic->getId();
+						}
 						break;
-					}
-					$viewData_info['type'] = 'eqLogic';
-					if ($_html) {
-						$viewData_info['html'] = $eqLogic->toHtml($_version);
-					} else {
-						$viewData_info['name'] = $eqLogic->getHumanName();
-						$viewData_info['id'] = $eqLogic->getId();
-					}
-					break;
 					case 'scenario':
-					$scenario = $viewData->getLinkObject();
-					if (!is_object($scenario) || !$scenario->hasRight('r')) {
+						$scenario = $viewData->getLinkObject();
+						if (!is_object($scenario) || !$scenario->hasRight('r')) {
+							break;
+						}
+						$viewData_info['type'] = 'scenario';
+						if ($_html) {
+							$viewData_info['html'] = $scenario->toHtml($_version);
+						} else {
+							$viewData_info['name'] = $scenario->getHumanName();
+							$viewData_info['id'] = $scenario->getId();
+						}
 						break;
-					}
-					$viewData_info['type'] = 'scenario';
-					if ($_html) {
-						$viewData_info['html'] = $scenario->toHtml($_version);
-					} else {
-						$viewData_info['name'] = $scenario->getHumanName();
-						$viewData_info['id'] = $scenario->getId();
-					}
-					break;
 				}
 				$viewZone_info['viewData'][] = $viewData_info;
 				if ($_html && $viewZone->getType() == 'table') {
@@ -209,7 +209,7 @@ class view {
 		}
 		return jeedom::toHumanReadable($return);
 	}
-	
+
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = 3) {
 		if (isset($_data['node']['view' . $this->getId()])) {
 			return;
@@ -218,10 +218,10 @@ class view {
 		if ($_level > $_drill) {
 			return $_data;
 		}
-		$icon = findCodeIcon($this->getDisplay('icon','<i class="far fa-image"></i>'));
+		$icon = findCodeIcon($this->getDisplay('icon', '<i class="far fa-image"></i>'));
 		$_data['node']['view' . $this->getId()] = array(
 			'id' => 'interactDef' . $this->getId(),
-			'type' => __('Vue',__FILE__),
+			'type' => __('Vue', __FILE__),
 			'name' => substr($this->getName(), 0, 20),
 			'icon' => $icon['icon'],
 			'fontfamily' => $icon['fontfamily'],
@@ -233,85 +233,106 @@ class view {
 			'url' => 'index.php?v=d&p=view&view_id=' . $this->getId(),
 		);
 	}
-	
+
+	public function hasRight($_right, $_user = null) {
+		if ($_user != null) {
+			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
+				return true;
+			}
+			if (strpos($_user->getRights('view' . $this->getId()), $_right) !== false) {
+				return true;
+			}
+			return false;
+		}
+		if (!isConnect()) {
+			return false;
+		}
+		if (isConnect('admin') || isConnect('user')) {
+			return true;
+		}
+		if (strpos($_SESSION['user']->getRights('view' . $this->getId()), $_right) !== false) {
+			return true;
+		}
+		return false;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
-	
+
 	public function getId() {
 		return $this->id;
 	}
-	
+
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
-	
+
 	public function getName() {
 		return $this->name;
 	}
-	
+
 	public function setName($_name) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
+		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;
 	}
-	
+
 	public function getOrder($_default = null) {
 		if ($this->order == '' || !is_numeric($this->order)) {
 			return $_default;
 		}
 		return $this->order;
 	}
-	
+
 	public function setOrder($_order) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->order,$_order);
+		$this->_changed = utils::attrChanged($this->_changed, $this->order, $_order);
 		$this->order = $_order;
 		return $this;
 	}
-	
+
 	public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
-	
+
 	public function setDisplay($_key, $_value) {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->_changed = utils::attrChanged($this->_changed, $this->display, $display);
 		$this->display = $display;
 		return $this;
 	}
-	
+
 	public function getImage($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->image, $_key, $_default);
 	}
-	
+
 	public function setImage($_key, $_value) {
 		$image = utils::setJsonAttr($this->image, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->image,$image);
+		$this->_changed = utils::attrChanged($this->_changed, $this->image, $image);
 		$this->image = $image;
 		return $this;
 	}
-	
+
 	public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
-	
+
 	public function setConfiguration($_key, $_value) {
 		if ($_key == 'accessCode' && $_value != '' && !is_sha512($_value)) {
 			$_value = sha512($_value);
 		}
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->_changed = utils::attrChanged($this->_changed, $this->configuration, $configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}
-	
+
 	public function getChanged() {
 		return $this->_changed;
 	}
-	
+
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
 	}
-	
 }
