@@ -927,9 +927,9 @@
     "desktop\/modal\/eqLogic.configure.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "EqLogic non trouvé : ": "EqLogic not found:",
-        "Informations": "Information",
         "Log": "Log",
         "Liens": "Links",
+        "Informations": "Information",
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Affichage": "Display",
