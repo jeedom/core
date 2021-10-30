@@ -39,7 +39,7 @@
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
-- **Comercial** : Capacidade de ocultar objetos para usuários limitados.
+- **Comercial** : Capacidade de ocultar objetos / visualização / design / design 3D para usuários limitados.
 - **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
@@ -54,6 +54,7 @@
 - Widgets principais com exibição de um *Tempo* agora suporta um parâmetro opcional **Tempo : datado** para exibir uma data relativa (ontem às 16h48, segunda-feira passada às 14h, etc).
 - Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degrau* para definir a etapa de mudança no cursor.
 - O widget **action.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
+- O widget **info.numeric.default** (*Medidor*) foi refeito em puro css e integrado em dispositivos móveis. Eles são, portanto, agora idênticos em computadores e dispositivos móveis.
 
 ### 4.2 : Backup na nuvem
 

@@ -24,9 +24,12 @@
         "A propos": "について",
         "Déconnexion": "ログアウト",
         "Synthèse": "合成",
-        "Tout": "全て",
+        "Tous": "Tous",
         "Designs": "デザイン",
         "Designs 3D": "3Dデザイン"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "クール",
@@ -354,6 +357,9 @@
         "Equipements": "施設",
         "Scénarios": "シナリオ",
         "Objets": "Objets",
+        "Vues": "Vues",
+        "Design": "Design",
+        "Design 3d": "Design 3d",
         "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "何でもありません",
         "Visualisation": "可視化",
@@ -361,6 +367,7 @@
         "Equipement": "設備",
         "Droits": "権利",
         "Scénario": "シナリオ",
+        "Desing": "Desing",
         "Sauvegarde effectuée": "バックアップ完了"
     },
     "desktop\/modal\/object.display.php": {

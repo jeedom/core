@@ -60,7 +60,7 @@ if (init('type') != '') {
 					if (!is_object($cmd)) {
 						throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS($id));
 					}
-					if ($plugin != 'core' && $plugin != $cmd->getEqType()) {
+					if ($plugin != 'core' && $plugin != $cmd->getEqType() && $_RESTRICTED) {
 						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action 2, IP : ', __FILE__) . getClientIp());
 					}
 					if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
@@ -75,7 +75,7 @@ if (init('type') != '') {
 				if (!is_object($cmd)) {
 					throw new Exception(__('Aucune commande correspondant à l\'ID : ', __FILE__) . secureXSS(init('id')));
 				}
-				if ($plugin != 'core' && $plugin != $cmd->getEqType()) {
+				if ($plugin != 'core' && $plugin != $cmd->getEqType() && $_RESTRICTED) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP : ', __FILE__) . getClientIp());
 				}
 				if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {

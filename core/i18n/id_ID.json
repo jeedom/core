@@ -24,9 +24,12 @@
         "A propos": "A propos",
         "Déconnexion": "Keluar",
         "Synthèse": "Synthèse",
-        "Tout": "Semua",
+        "Tous": "Tous",
         "Designs": "Desain",
         "Designs 3D": "Designs 3D"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Tous"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Dingin",
@@ -354,6 +357,9 @@
         "Equipements": "Peralatan",
         "Scénarios": "Skenario",
         "Objets": "Objets",
+        "Vues": "Vues",
+        "Design": "Design",
+        "Design 3d": "Design 3d",
         "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "Tak ada",
         "Visualisation": "Visualisation",
@@ -361,6 +367,7 @@
         "Equipement": "Peralatan",
         "Droits": "Droits",
         "Scénario": "Skenario",
+        "Desing": "Desing",
         "Sauvegarde effectuée": "Backup dibuat"
     },
     "desktop\/modal\/object.display.php": {

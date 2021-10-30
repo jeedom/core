@@ -39,7 +39,7 @@
 - **Objects** : Plugins can now request specific parameters specific to objects.
 - **Users** : Plugins can now request specific parameters specific to users.
 - **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
-- **Users** : Ability to hide objects for limited users.
+- **Users** : Ability to hide objects / view / design / 3d design for limited users.
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
@@ -54,6 +54,7 @@
 - Core Widgets with display of a *time* now support an optional parameter **time : dated** to display a relative date (Yesterday at 4:48 p.m., Last Monday at 2:00 p.m., etc).
 - Cursor (action) type Widgets now accept an optional parameter *step* to define the change step at the cursor.
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
+- The Widget **info.numeric.default** (*Gauge*) has been redone in pure css, and integrated in mobile. They are therefore now identical in desktop and mobile.
 
 ### 4.2 : Cloud backup
 

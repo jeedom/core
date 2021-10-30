@@ -9,7 +9,7 @@ Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom selbst er
 ![Instrumententafel](../images/doc-dashboard-legends.png)
 
 - 1 : Jeedom Hauptmenü.
-- 2 : Globale Zusammenfassung.
+- 2 : Globale Zusammenfassung [Abstrakte Dokumentation.](/de_DE/concept/summary).
 - 3 : Browserzeit, Verknüpfung zur Zeitleiste.
 - 4 : Schaltfläche, um auf die Dokumentation der aktuellen Seite zuzugreifen.
 - 5 : Name Ihres Jeedom, Verknüpfung zur Konfiguration.

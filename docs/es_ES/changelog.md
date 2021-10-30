@@ -39,7 +39,7 @@
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
 - **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
-- **Usuarios** : Posibilidad de ocultar objetos para usuarios limitados.
+- **Usuarios** : Capacidad para ocultar objetos / ver / diseñar / diseño 3d para usuarios limitados.
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
@@ -54,6 +54,7 @@
 - Widgets principales con visualización de *hora* ahora admite un parámetro opcional **hora : con fecha de** para mostrar una fecha relativa (ayer a las 4:48 p.m., último lunes a las 2:00 p.m., etc).
 - Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *paso* para definir el paso de cambio en el cursor.
 - El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
+- El widget **info.numeric.default** (*Indicador*) se ha rehecho en CSS puro y se ha integrado en dispositivos móviles. Por lo tanto, ahora son idénticos en computadoras de escritorio y dispositivos móviles.
 
 ### 4.2 : Respaldo en la nube
 

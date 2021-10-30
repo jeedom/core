@@ -69,12 +69,12 @@ RedirectMatch 403 (?i)^.*\/core/repo\/.*$
 RedirectMatch 403 (?i)^.*\/core/template\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
 RedirectMatch 403 (?i)^.*\/core/themes\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.js|\.woff|\.woff2|\.ttf|\.svg).)*$
 
-RedirectMatch 403 (?i)^.*\/data\/.*\/((?!\.m3u8|\.ts|\.jpg|\.jpeg|\.gif|\.webp|\.png).)*$
+RedirectMatch 403 (?i)^.*\/data\/.*\/((?!\.m3u8|\.ts|\.jpg|\.jpeg|\.gif|\.webp|\.png|\.mp3).)*$
 RedirectMatch 403 (?i)^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
 RedirectMatch 403 (?i)^.*\/docs\/.*$
 RedirectMatch 403 (?i)^.*\/install\/.*$
 RedirectMatch 403 (?i)^.*\/log\/.*$
-RedirectMatch 403 (?i)^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.woff|\.woff2|\.ttf|\.svg).)*$
+RedirectMatch 403 (?i)^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.woff|\.woff2|\.ttf|\.svg|\.html).)*$
 RedirectMatch 403 (?i)^.*\/support\/.*$
 RedirectMatch 403 (?i)^.*\/tests\/.*$
 RedirectMatch 403 (?i)^.*\/vendor\/.*$
@@ -91,7 +91,7 @@ Order Allow,Deny
 
 # Allow all :
 
-<FilesMatch ".*\.(css|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp)$">
+<FilesMatch ".*\.(css|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3)$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>

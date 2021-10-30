@@ -141,7 +141,7 @@ API JSON Summary
 summary::global
 ---------------
 
-Retour le résumé global pour la clef passée en paramètre
+Retourne le résumé global pour la clef passée en paramètre
 
 Paramètres:
 

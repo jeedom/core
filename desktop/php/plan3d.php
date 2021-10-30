@@ -24,7 +24,9 @@ if (is_object($plan3dHeader)) {
 }
 ?>
 
-<div class="row <?php if (init('fullscreen') != 1) { echo 'row-overflow'; }	?>">
+<div class="row <?php if (init('fullscreen') != 1) {
+					echo 'row-overflow';
+				}	?>">
 	<div class="col-lg-10" style="height: 100%" id="div_colPlan3d">
 		<div class="div_background3d" style="height: 100%">
 			<div class="container-fluid" id="div_display3d" style="position: relative;padding:0;user-select: none;-khtml-user-select: none;-o-user-select: none;-moz-user-select: -moz-none;-webkit-user-select: none;height: 100%">
@@ -46,6 +48,9 @@ if (is_object($plan3dHeader)) {
 			<?php
 			$plan3dHeaders = plan3dHeader::all();
 			foreach ($plan3dHeaders as $li_plan3dHeader) {
+				if (!$li_plan3dHeader->hasRight('r')) {
+					continue;
+				}
 				if ($li_plan3dHeader->getId() == $plan3dHeader->getId()) {
 					echo '<li class="cursor active" ><a data-3d_id="' . $li_plan3dHeader->getId() . '" href="index.php?v=d&p=plan3d&plan3d_id=' . $li_plan3dHeader->getId() . '" style="padding: 2px 0px;">' . $li_plan3dHeader->getName() . '</a></li>';
 				} else {

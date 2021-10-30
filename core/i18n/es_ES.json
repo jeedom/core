@@ -24,9 +24,12 @@
         "A propos": "A proposito",
         "Déconnexion": "Salir",
         "Synthèse": "Síntesis",
-        "Tout": "Todo",
+        "Tous": "Todos",
         "Designs": "Diseños",
         "Designs 3D": "Diseños en 3D"
+    },
+    "mobile\/js\/overview.js": {
+        "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
         "Rafraichir": "Refrescar",
@@ -354,6 +357,9 @@
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Objets": "Objetos",
+        "Vues": "Puntos de vista",
+        "Design": "Diseño",
+        "Design 3d": "Diseño 3d",
         "Appliquer aux éléments visibles": "Aplicar a elementos visibles",
         "Aucun": "No",
         "Visualisation": "Visualización",
@@ -361,6 +367,7 @@
         "Equipement": "Dispositivos",
         "Droits": "Permisos",
         "Scénario": "Escenario",
+        "Desing": "Diseño",
         "Sauvegarde effectuée": "Guardado correctamente"
     },
     "desktop\/modal\/object.display.php": {

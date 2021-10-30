@@ -807,6 +807,7 @@ class eqLogic {
 			if ($height != '0') {
 				$replace['#isVerticalAlign#'] = 0;
 				$replace['#divGraphInfo#'] = str_replace('data-cmdid=', 'style="height:'.$height.'px;" data-cmdid=', $replace['#divGraphInfo#']);
+              	$replace['#divGraphInfo#'] = str_replace('eqlogicbackgraph', 'eqlogicbackgraph fixedbackgraph', $replace['#divGraphInfo#']);
 			}
 		}
 		return $replace;

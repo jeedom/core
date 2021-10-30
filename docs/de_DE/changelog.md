@@ -39,7 +39,7 @@
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
 - **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
-- **Benutzer** : Möglichkeit, Objekte für eingeschränkte Benutzer auszublenden.
+- **Benutzer** : Möglichkeit zum Ausblenden von Objekten / Ansicht / Design / 3D-Design für eingeschränkte Benutzer.
 - **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
@@ -54,6 +54,7 @@
 - Kern-Widgets mit Anzeige von a *Zeit* unterstützen jetzt einen optionalen Parameter **Zeit : datiert** um ein relatives Datum anzuzeigen (Gestern um 16:48 Uhr, Letzter Montag um 14:00 Uhr usw.)).
 - Widgets vom Typ Cursor (Aktion) akzeptieren jetzt einen optionalen Parameter *Schritt* um den Änderungsschritt am Cursor zu definieren.
 - Das Widget **action.slider.value** ist jetzt auf dem Desktop mit einem optionalen Parameter verfügbar *Noslider*, was macht es ein *Eingang* einfach.
+- Das Widget **info.numeric.default** (*Messgerät*) wurde in reinem CSS überarbeitet und in mobile integriert. Sie sind daher jetzt in Desktop und Mobile identisch.
 
 ### 4.2 : Cloud-Backup
 
