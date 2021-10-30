@@ -726,6 +726,7 @@ class eqLogic {
 			'#divGraphInfo#' => '',
 		);
 
+		//Automatic height when first displayed:
 		if ($this->getDisplay('height', 'auto') == 'auto') {
 			$replace['#height#'] = '110px';
 			$replace['#isVerticalAlign#'] = $replace['#isVerticalAlign#'] . ' autoResize';
@@ -733,6 +734,7 @@ class eqLogic {
 		if ($replace['#width#'] == 'auto') {
 			$replace['#width#'] = '230px';
 		}
+
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
 			$replace['#alert_name#'] = $alert['name'];
@@ -751,6 +753,8 @@ class eqLogic {
 		if (is_object($refresh_cmd) && $refresh_cmd->getIsVisible() == 1) {
 			$replace['#refresh_id#'] = $refresh_cmd->getId();
 		}
+
+		//Custom parameter css class:
 		if (is_array($this->getDisplay('parameters')) && count($this->getDisplay('parameters')) > 0) {
 			foreach ($this->getDisplay('parameters') as $key => $value) {
 				if ($key == $_version . '_class') {
@@ -795,9 +799,16 @@ class eqLogic {
 			}
 		}
 
-		if ($_version == 'dashboard' && $this->getDisplay('backGraph::info', 0) != 0 && is_object(cmd::byId($this->getDisplay('backGraph::info')))) {
-			//set background graph:
+		//History graph:
+		if ($this->getDisplay('backGraph::info', 0) != 0 && is_object(cmd::byId($this->getDisplay('backGraph::info')))) {
 			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"><script>jeedom.eqLogic.initGraphInfo(' . $this->getId() . ')</script></div>';
+
+			$height = $this->getDisplay('backGraph::height', '0');
+			if ($height != '0') {
+				$replace['#isVerticalAlign#'] = 0;
+				$replace['#divGraphInfo#'] = str_replace('data-cmdid=', 'style="height:'.$height.'px;" data-cmdid=', $replace['#divGraphInfo#']);
+              	$replace['#divGraphInfo#'] = str_replace('eqlogicbackgraph', 'eqlogicbackgraph fixedbackgraph', $replace['#divGraphInfo#']);
+			}
 		}
 		return $replace;
 	}

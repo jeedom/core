@@ -1168,6 +1168,8 @@ class jeedom {
 			$datas = array_merge($datas, scenarioExpression::searchExpression($key, $key, false));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable(' . str_replace('#', '', $key) . ')'));
 			$datas = array_merge($datas, scenarioExpression::searchExpression('variable', str_replace('#', '', $key), true));
+			$datas = array_merge($datas, scenarioExpression::searchExpression('genericType(' . str_replace('#', '', $key) . ')'));
+			$datas = array_merge($datas, scenarioExpression::searchExpression('genericType', str_replace('#', '', $key), true));
 			$datas = array_merge($datas, viewData::searchByConfiguration($key));
 			$datas = array_merge($datas, plan::searchByConfiguration($key));
 			$datas = array_merge($datas, plan3d::searchByConfiguration($key));
@@ -1240,21 +1242,16 @@ class jeedom {
 	}
 
 	public static function toHumanReadable($_input) {
-		return scenario::toHumanReadable(eqLogic::toHumanReadable(cmd::cmdToHumanReadable($_input)));
+		return jeeObject::toHumanReadable(scenario::toHumanReadable(eqLogic::toHumanReadable(cmd::cmdToHumanReadable($_input))));
 	}
 
 	public static function fromHumanReadable($_input) {
-		return scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input)));
+		return jeeObject::fromHumanReadable(scenario::fromHumanReadable(eqLogic::fromHumanReadable(cmd::humanReadableToCmd($_input))));
 	}
 
 	public static function evaluateExpression($_input, $_scenario = null) {
 		try {
-			$_input = scenarioExpression::setTags($_input, $_scenario, true);
-			$result = evaluate($_input);
-			if (is_bool($result) || is_numeric($result)) {
-				return $result;
-			}
-			return $_input;
+			return evaluate(scenarioExpression::setTags($_input, $_scenario, true));
 		} catch (Exception $exc) {
 			return $_input;
 		}

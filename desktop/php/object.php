@@ -79,7 +79,7 @@ $synthToActions = array(
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}}</a></li>
+			<li role="presentation" class="active"><a href="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}} (ID : <span class="objectAttr" data-l1key="id" ></span>)</a></a></li>
 			<li role="presentation"><a href="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 			<li role="presentation"><a href="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé par équipements}}</a></li>
 		</ul>
@@ -93,7 +93,6 @@ $synthToActions = array(
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Nom de l'objet}}</label>
 								<div class="col-sm-7">
-									<input class="form-control objectAttr" type="text" data-l1key="id" style="display : none;"/>
 									<input class="form-control objectAttr" type="text" data-l1key="name" placeholder="{{Nom de l'objet}}"/>
 								</div>
 							</div>

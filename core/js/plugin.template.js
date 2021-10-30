@@ -159,12 +159,18 @@ if ($('#bt_pluginDisplayAsTable').length) {
   })
 }
 
-
 $(function() {
   if ($("#table_cmd").sortable("instance")) {
-    $("#table_cmd").sortable("option", "delay", 500).sortable("option", "distance", 30)
+    $("#table_cmd").sortable({
+      delay: 500,
+      distance: 30,
+      stop: function(event, ui) {
+        modifyWithoutSave = true
+      }
+    })
   }
 })
+
 
 $('#div_pageContainer').on({
   'change': function(event) {

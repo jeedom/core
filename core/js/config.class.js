@@ -233,3 +233,48 @@ jeedom.config.removeImage = function(_params) {
     };
     $.ajax(paramsAJAX);
 }
+
+jeedom.config.getGenericTypeModal = function(_options, callback) {
+    if (!isset(_options)) {
+        _options = {};
+    }
+    if (!isset(_options.type)) {
+        _options.type = 'info';
+    }
+    if ($("#mod_insertGenericType").length != 0) {
+        $("#mod_insertGenericType").remove();
+    }
+    $('body').append('<div id="mod_insertGenericType" title="{{Sélectionner un type générique}}" ></div>');
+    $("#mod_insertGenericType").dialog({
+        closeText: '',
+        autoOpen: false,
+        modal: true,
+        height: 250,
+        width: 800
+    });
+    jQuery.ajaxSetup({
+        async: false
+    });
+    var url = 'index.php?v=d&modal=genericType.human.insert&type=' + _options.type
+    if (_options.object) url += '&object=' + _options.object
+    $('#mod_insertGenericType').load(url);
+    jQuery.ajaxSetup({
+        async: true
+    });
+    mod_insertGenericType.setOptions(_options);
+    $("#mod_insertGenericType").dialog('option', 'buttons', {
+        "{{Annuler}}": function() {
+            $(this).dialog("close");
+        },
+        "{{Valider}}": function() {
+            var retour = {};
+            retour.human = mod_insertGenericType.getValue();
+            retour.id = mod_insertGenericType.getId();
+            if ($.trim(retour) != '') {
+                callback(retour);
+            }
+            $(this).dialog('close');
+        }
+    });
+    $('#mod_insertGenericType').dialog('open');
+}

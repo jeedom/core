@@ -186,6 +186,17 @@ try {
 				}
 			}
 		}
+		$result = scenario::searchByTrigger($_search);
+		foreach ($result as $scenario) {
+			if (is_object($scenario)) {
+				$info = utils::o2a($scenario);
+				$info['humanNameTag'] = $scenario->getHumanName(true, false, true);
+				$info['humanName'] = $scenario->getHumanName();
+				$info['link'] = $scenario->getLinkToConfiguration();
+				$info['linkId'] = $scenario->getId();
+				$return['scenario'][] = $info;
+			}
+		}
 
 		$result = interactQuery::searchQueries($_search);
 		foreach ($result as $interactQuery) {

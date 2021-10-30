@@ -18,24 +18,28 @@
 - **Resúmenes** : Posibilidad de definir un icono diferente cuando el resumen es nulo (sin persianas abiertas, sin luz encendida, etc).
 - **Resúmenes** : Posibilidad de no mostrar nunca el número a la derecha del icono, o solo si es positivo.
 - **Resúmenes** : El cambio del parámetro de resumen en la configuración y en los objetos ahora es visible, sin esperar un cambio en el valor de resumen.
-- **Resúmenes** : Ahora es posible configurar acciones sobre los resúmenes (ctrl + clic en un resumen) gracias a los virtuales.
-- **Tipos de equipo** Nueva página **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a equipos y comandos, con soporte para tipos dedicados a complementos instalados.
+- **Resúmenes** : Ahora es posible configurar [acciones sobre resúmenes](/es_ES/concept/summary#Actions sur résumés) (ctrl + clic en un resumen) gracias a los virtuales.
+- **Tipos de equipo** : [Nueva página](/es_ES/core/4.2/types) **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2)).
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
 - **Categorías coloreadas** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
 - **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función principal.
-- **Configuración** : Posibilidad de configurar el fondo de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema.
+- **Configuración** : Posibilidad de configurar fondos de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema.
 - **Configuración del equipo** : Posibilidad de configurar una curva de historial en la parte inferior del mosaico de un dispositivo.
 - **Bloques de código** : (Editor de archivos, escenarios, personalización avanzada) Función de reserva de código (*plegado de código*). Atajos Ctrl + Y y Ctrl + I.
 - **Complementos / Gestión** : Visualización de la categoría de complementos y un enlace para abrir directamente su página sin pasar por el menú Complementos.
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
-- **Guión** : Agregar funciones de cálculo ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` permitiendo obtener la media ponderada por la duración del período.
+- **Guión** : Agregar funciones de cálculo ''''averageTemporal(commande,période)'''' Y ''''averageTemporalBetween(commande,start,end)'''' permitiendo obtener la media ponderada por la duración del período.
+- **Guión** : Se agregó soporte para tipos genéricos en escenarios.
+	- Desencadenar : ''#genericType(LIGHT_STATE,#[Salón]#)# > 0`
+	- IF `genericType (LIGHT_STATE,#[Salón]#) > 0`
+	- Acción `GenericType`
 - **Configuración de OSDB** : Adición de una herramienta para la edición masiva de equipos, comandos, objetos, escenarios.
 - **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
 - **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
-- **Usuarios** : Posibilidad de ocultar objetos para usuarios limitados.
+- **Usuarios** : Capacidad para ocultar objetos / ver / diseñar / diseño 3d para usuarios limitados.
 - **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
@@ -50,6 +54,7 @@
 - Widgets principales con visualización de *hora* ahora admite un parámetro opcional **hora : con fecha de** para mostrar una fecha relativa (ayer a las 4:48 p.m., último lunes a las 2:00 p.m., etc).
 - Los widgets de tipo Cursor (acción) ahora aceptan un parámetro opcional *paso* para definir el paso de cambio en el cursor.
 - El widget **action.slider.value** ahora está disponible en el escritorio, con un parámetro opcional *noslider*, lo que lo convierte en un *entrada* sencillo.
+- El widget **info.numeric.default** (*Indicador*) se ha rehecho en CSS puro y se ha integrado en dispositivos móviles. Por lo tanto, ahora son idénticos en computadoras de escritorio y dispositivos móviles.
 
 ### 4.2 : Respaldo en la nube
 
@@ -69,7 +74,8 @@ Jeedom 4.2 contiene una parte importante en el aumento de la seguridad.
 - Fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto).
 - La cookie "permanecer conectado" (3 meses como máximo) ahora es "de una sola vez", que se renueva con cada uso.
 
-El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad .
+El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad.
+Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Doc](https://doc.jeedom.com/es_ES/dev/plugin_template)
 
 # Registro de cambios Jeedom V4.1
 

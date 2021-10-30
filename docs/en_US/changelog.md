@@ -18,24 +18,28 @@
 - **Summaries** : Possibility to define a different icon when the summary is null (no shutters open, no light on, etc).
 - **Summaries** : Possibility to never display the number to the right of the icon, or only if it is positive.
 - **Summaries** : The change of summary parameter in configuration and on objects is now visible, without waiting for a change in summary value.
-- **Summaries** : It is now possible to configure actions on the summaries (ctrl + click on a summary) thanks to the virtual ones.
-- **Types of equipment** New page **Tools → Equipment types** allowing generic types to be assigned to equipment and commands, with support for types dedicated to installed plugins.
+- **Summaries** : It is now possible to configure [actions on summaries](/en_US/concept/summary#Actions sur résumés) (ctrl + click on a summary) thanks to the virtual ones.
+- **Types of equipment** : [New page](/en_US/core/4.2/types) **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
 - **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
 - **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
-- **Configuration** : Possibility to configure the wallpaper on the Dashboard, Analysis, Tools pages and their opacity depending on the theme.
+- **Configuration** : Possibility to configure wallpapers on the Dashboard, Analysis, Tools pages and their opacity according to the theme.
 - **Equipment configuration** : Possibility of configuring a history curve at the bottom of the tile of a device.
 - **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
-- **Scenario** : Adding calculation functions ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` allowing to obtain the average weighted by the duration over the period.
+- **Scenario** : Adding calculation functions ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` allowing to obtain the average weighted by the duration over the period.
+- **Scenario** : Added support for Generic Types in scenarios.
+	- Trigger : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
+	- IF `genericType (LIGHT_STATE,#[Salon]#) > 0`
+	- `GenericType` action
 - **OSDB settings** : Addition of a tool for mass editing of equipment, commands, objects, scenarios.
 - **OSDB settings** : Adding a dynamic SQL query constructor.
 - **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
 - **Objects** : Plugins can now request specific parameters specific to objects.
 - **Users** : Plugins can now request specific parameters specific to users.
 - **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
-- **Users** : Ability to hide objects for limited users.
+- **Users** : Ability to hide objects / view / design / 3d design for limited users.
 - **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
@@ -50,6 +54,7 @@
 - Core Widgets with display of a *time* now support an optional parameter **time : dated** to display a relative date (Yesterday at 4:48 p.m., Last Monday at 2:00 p.m., etc).
 - Cursor (action) type Widgets now accept an optional parameter *step* to define the change step at the cursor.
 - The Widget **action.slider.value** is now available in desktop, with an optional parameter *noslider*, which makes it a *input* simple.
+- The Widget **info.numeric.default** (*Gauge*) has been redone in pure css, and integrated in mobile. They are therefore now identical in desktop and mobile.
 
 ### 4.2 : Cloud backup
 
@@ -69,7 +74,8 @@ Jeedom 4.2 contains a big part on increasing security.
 - Strengthening of sessions (change to sha256 with 64 characters in strict mode).
 - The "stay connected" cookie (3 months max) is now "one shot", renewed with each use.
 
-The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety .
+The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety.
+The plugins must respect the recommendations on the tree structure of folders and files : [Doc](https://doc.jeedom.com/en_US/dev/plugin_template)
 
 # Changelog Jeedom V4.1
 

@@ -316,6 +316,9 @@ function setTheme() {
 										<?php
 										$echo = '';
 										foreach ((view::all()) as $view_menu) {
+											if (!$view_menu->hasRight('r')) {
+												continue;
+											}
 											$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon', '<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 										}
 										if ($echo != '') {
@@ -333,6 +336,9 @@ function setTheme() {
 										<?php
 										$echo = '';
 										foreach ((planHeader::all()) as $plan_menu) {
+											if (!$plan_menu->hasRight('r')) {
+												continue;
+											}
 											$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon', '<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
@@ -350,6 +356,9 @@ function setTheme() {
 										<?php
 										$echo = '';
 										foreach ((plan3dHeader::all()) as $plan3d_menu) {
+											if (!$plan3d_menu->hasRight('r')) {
+												continue;
+											}
 											$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {

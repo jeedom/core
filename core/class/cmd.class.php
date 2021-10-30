@@ -365,6 +365,36 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	public static function byGenericTypeObjectId($_generic_type, $_object_id = null, $_type = null) {
+		$values = array(
+			'generic_type' => $_generic_type
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM cmd
+		WHERE generic_type=:generic_type';
+
+		if ($_object_id && $_object_id != '-1') {
+			if (!is_numeric($_object_id)) {
+				$object = jeeObject::byName($_object_id);
+				if (!is_object($object)) return array();
+				$_object_id = $object->getId();
+			}
+			$eqLogics = eqLogic::byObjectId($_object_id);
+			$eqLogicIds = array();
+			foreach ($eqLogics as $eqLogic) {
+				array_push($eqLogicIds, $eqLogic->getId());
+			}
+			$eqLogicIds = implode(',', $eqLogicIds);
+			$sql .= ' AND eqLogic_id IN (' . $eqLogicIds . ')';
+		}
+
+		if ($_type !== null) {
+			$values['type'] = $_type;
+			$sql .= ' AND type=:type';
+		}
+		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
 	public static function byValue($_value, $_type = null, $_onlyEnable = false) {
 		$values = array(
 			'value' => $_value,
@@ -828,11 +858,7 @@ class cmd {
 		if (!is_object($cmd)) {
 			return;
 		}
-		$value = $cmd->execCmd();
-		$check = jeedom::evaluateExpression($value . $cmd->getConfiguration('jeedomCheckCmdOperator') . $cmd->getConfiguration('jeedomCheckCmdTest'));
-		if ($check == 1 || $check || $check == '1') {
-			$cmd->executeAlertCmdAction();
-		}
+		$cmd->executeAlertCmdAction();
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
@@ -1199,7 +1225,7 @@ class cmd {
 	public function getGenericTypeSelectOptions() {
 		$display = '<option value="">{{Aucun}}</option>';
 		$groups = array();
-		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
+		foreach ((config::getGenericTypes(false)['byType']) as $key => $info) {
 			if (strtolower($this->getType()) != strtolower($info['type'])) {
 				continue;
 			}
@@ -1224,9 +1250,6 @@ class cmd {
 					$optgroup .= '<optgroup label="' . $info['family'] . '">';
 				}
 				$name = $info['name'];
-				if (isset($info['noapp']) && $info['noapp']) {
-					$name .= ' ' . __('(Non géré par Application Mobile)', __FILE__);
-				}
 				$optgroup .= '<option value="' . $info['key'] . '">' . $name . '</option>';
 			}
 			$optgroup .= '</optgroup>';
@@ -1628,6 +1651,7 @@ class cmd {
 			return;
 		}
 		$eqLogic = $this->getEqLogic();
+		$object = $eqLogic->getObject();
 		if (!is_object($eqLogic) || $eqLogic->getIsEnable() == 0) {
 			return;
 		}
@@ -1673,7 +1697,7 @@ class cmd {
 		$events = array();
 		if (!$repeat) {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
-			scenario::check($this);
+			scenario::check($this, false, $this->getGeneric_type(), $object);
 			$level = $this->checkAlertLevel($value);
 			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
@@ -2368,11 +2392,6 @@ class cmd {
 
 	public function checkAccessCode($_code) {
 		if ($this->getType() != 'action' || trim($this->getConfiguration('actionCodeAccess')) == '') {
-			return true;
-		}
-		if (sha1($_code) == $this->getConfiguration('actionCodeAccess')) {
-			$this->setConfiguration('actionCodeAccess', sha512($_code));
-			$this->save();
 			return true;
 		}
 		if (sha512($_code) == $this->getConfiguration('actionCodeAccess')) {

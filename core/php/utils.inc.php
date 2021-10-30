@@ -1534,3 +1534,37 @@ function startsWith($haystack, $needle) {
 function endsWith($haystack, $needle) {
 	return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
+
+function getWhiteListFolders($_plugin = 'all') {
+	$pluginsAll = ($_plugin != 'all') ? array($_plugin) : plugin::listPlugin(true,    false,   true,  true);
+	$result = array();
+	foreach ($pluginsAll as $pluginId) {
+		$plugin = plugin::byId($pluginId);
+		if (!is_object($plugin)) continue;
+
+		$publicFolders = $plugin->getWhiteListFolders();
+		if (count($publicFolders) == 0) continue;
+
+		$rootPath = realpath(plugin::getPluginPath($pluginId));
+		if ($rootPath === false) continue;
+
+		foreach ($publicFolders as $folder) {
+			if (strpos($folder, '..') !== false) continue;
+			$current = realpath($rootPath . '/' . $folder);
+			if ($current != "" && !in_array($current, $result)) $result[] =  $current;
+		}
+	}
+	return $result;
+}
+
+function implode_recursive($_array, $_separator, $_key = '') {
+	$result = array();
+	foreach ($_array as $i => $a) {
+		if (is_array($a)) {
+			$result = array_merge($result, implode_recursive($a, $_separator,  $_key . $i . $_separator));
+		} else {
+			$result = array_merge($result, array($_key . $i => $a));
+		}
+	}
+	return $result;
+}

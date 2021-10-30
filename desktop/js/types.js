@@ -152,97 +152,6 @@ $('.eqLogicSortable').sortable({
   }
 }).disableSelection()
 
-//Contextmenu commands:
-var genericsByFamily = {}
-for (var i in gen_families) {
-  genericsByFamily[gen_families[i]] = {}
-}
-Object.keys(genericsByFamily).forEach(key => {
-  Object.keys(generics).forEach(genkey => {
-    if (generics[genkey].family == key) {
-      genericsByFamily[key][genkey] = {}
-      genericsByFamily[key][genkey]['genkey'] = genkey
-      genericsByFamily[key][genkey]['name'] = generics[genkey].name
-      genericsByFamily[key][genkey]['shortName'] = generics[genkey].name.replace(key, '').toLowerCase().trim()
-      genericsByFamily[key][genkey]['type'] = generics[genkey].type
-      genericsByFamily[key][genkey]['subtype'] = generics[genkey].subtype == undefined ? [] : generics[genkey].subtype
-    }
-  })
-})
-$.contextMenu({
-  selector: "li.cmd",
-  build: function($trigger) {
-    $trigger.addClass('hover')
-    var eqGeneric = $trigger.closest('.eqlogicSortable').attr('data-id')
-    var cmdId = $trigger.attr('data-id')
-    var cmdType = $trigger.attr('data-type')
-    var cmdSubType = $trigger.attr('data-subType')
-
-    var contextmenuitems = {}
-    contextmenuitems['deleteme'] = {'name': '{{Supprimer}}', 'id': 'delete_me'}
-    contextmenuitems['sep1'] = "---------"
-
-    var items
-    var uniqId = 0
-    for (var group in genericsByFamily) {
-      items = {}
-      for (var i in genericsByFamily[group]) {
-        if (genericsByFamily[group][i].type.toLowerCase() == cmdType.toLowerCase() && (genericsByFamily[group][i].subtype.includes(cmdSubType) || genericsByFamily[group][i].subtype.length == 0) ) {
-          items[uniqId] = {
-            'name': genericsByFamily[group][i].name,
-            'id': group + '::' + genericsByFamily[group][i].genkey
-          }
-          uniqId++
-        }
-      }
-      if (Object.keys(items).length > 0) {
-        if (group == gen_families[eqGeneric]) {
-          group = "<b>" + group + "</b>"
-        }
-        contextmenuitems[group] = {
-          'name': group,
-          'isHtmlName': true,
-          'items': items
-        }
-      }
-    }
-
-    /*
-    if (cmdType.toLowerCase() == 'info') {
-      contextmenuitems['sep2'] = "---------"
-      contextmenuitems['addSummary'] = {
-          'name': '{{Ajouter au résumé}}',
-          'items': [{
-            'id' : 'light',
-            'name': 'lumiere'
-          }]
-        }
-    }
-    */
-
-    return {
-      callback: function(key, options) {
-        if (options.commands[key].id == 'delete_me') {
-          $('li.cmd[data-id="' + cmdId + '"] .genericType').text('None')
-          $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', '')
-        } else {
-          var text = options.commands[key].id.split('::')[0] + ' -> ' + options.commands[key].name
-          $('li.cmd[data-id="' + cmdId + '"] .genericType').text(text)
-          $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', options.commands[key].id.split('::')[1])
-        }
-        $('li.cmd[data-id="' + cmdId + '"]').attr('data-changed', '1')
-        modifyWithoutSave = true
-      },
-      items: contextmenuitems
-    }
-  },
-  events: {
-    hide: function(event) {
-      $('li.cmd.hover').removeClass('hover')
-    }
-  }
-})
-
 //Contextmenu Equipments:
 $.contextMenu({
   selector: "li.eqLogic",
@@ -289,6 +198,89 @@ $.contextMenu({
     }
   }
 })
+
+//Contextmenu commands:
+var genericsByFamily = {}
+for (var i in gen_families) {
+  genericsByFamily[gen_families[i]] = {}
+}
+Object.keys(genericsByFamily).forEach(key => {
+  Object.keys(generics).forEach(genkey => {
+    if (generics[genkey].family == key) {
+      genericsByFamily[key][genkey] = {}
+      genericsByFamily[key][genkey]['genkey'] = genkey
+      genericsByFamily[key][genkey]['name'] = generics[genkey].name
+      genericsByFamily[key][genkey]['shortName'] = generics[genkey].name.replace(key, '').toLowerCase().trim()
+      genericsByFamily[key][genkey]['type'] = generics[genkey].type
+      genericsByFamily[key][genkey]['subtype'] = generics[genkey].subtype == undefined ? [] : generics[genkey].subtype
+      genericsByFamily[key][genkey]['comment'] = generics[genkey].comment == undefined ? '' : generics[genkey].comment
+    }
+  })
+})
+$.contextMenu({
+  selector: "li.cmd",
+  build: function($trigger) {
+    $trigger.addClass('hover')
+    var eqGeneric = $trigger.closest('.eqlogicSortable').attr('data-id')
+    var cmdId = $trigger.attr('data-id')
+    var cmdType = $trigger.attr('data-type')
+    var cmdSubType = $trigger.attr('data-subType')
+
+    var contextmenuitems = {}
+    contextmenuitems['deleteme'] = {'name': '{{Supprimer}}', 'id': 'delete_me'}
+    contextmenuitems['sep1'] = "---------"
+
+    var items
+    var uniqId = 0
+    for (var group in genericsByFamily) {
+      items = {}
+      for (var i in genericsByFamily[group]) {
+        if (genericsByFamily[group][i].type.toLowerCase() == cmdType.toLowerCase() && (genericsByFamily[group][i].subtype.includes(cmdSubType) || genericsByFamily[group][i].subtype.length == 0) ) {
+          items[uniqId] = {
+            //'name': '<span title="'+genericsByFamily[group][i].comment+'">'+genericsByFamily[group][i].name+'</span>',
+            'name': genericsByFamily[group][i].name,
+            'id': group + '::' + genericsByFamily[group][i].genkey,
+            //'isHtmlName': true
+          }
+          uniqId++
+        }
+      }
+      if (Object.keys(items).length > 0) {
+        if (group == gen_families[eqGeneric]) {
+          group = "<b>" + group + "</b>"
+        }
+        contextmenuitems[group] = {
+          'name': group,
+          'isHtmlName': true,
+          'items': items
+        }
+      }
+    }
+
+    return {
+      callback: function(key, options) {
+        if (options.commands[key].id == 'delete_me') {
+          $('li.cmd[data-id="' + cmdId + '"] .genericType').text('None')
+          $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', '')
+        } else {
+          //var text = options.commands[key].id.split('::')[0] + ' -> ' + options.commands[key].$node[0].innerText
+          var text = options.commands[key].id.split('::')[0] + ' -> ' + options.commands[key].name
+          $('li.cmd[data-id="' + cmdId + '"] .genericType').text(text)
+          $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', options.commands[key].id.split('::')[1])
+        }
+        $('li.cmd[data-id="' + cmdId + '"]').attr('data-changed', '1')
+        modifyWithoutSave = true
+      },
+      items: contextmenuitems
+    }
+  },
+  events: {
+    hide: function(event) {
+      $('li.cmd.hover').removeClass('hover')
+    }
+  }
+})
+
 
 //UI:
 $('.eqLogicSortable > li.eqLogic').on('click', function(event) {
@@ -593,6 +585,65 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
   })
 })
 
+$('#bt_listGenericTypes').off('click').on('click', function() {
+  $('#md_applyCmdsTypes').dialog({
+    title: "{{Liste des Types Génériques (Core et Plugins)}}"
+  }).dialog('open')
+  $('#bt_applyCmdsTypes').hide()
+
+  var container = $('#md_applyCmdsTypes .maincontainer')
+  var inner = '<table class="table table-bordered table-condensed">'
+  inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td><td>{{Commentaire}}</td>'
+
+  var family, familyName, generics, generic, infos, actions
+  for (var familyId in gen_families) {
+    infos = []
+    actions = []
+    family = gen_families[familyId]
+    generics = genericsByFamily[family]
+    inner += '<tr class="center"><td colspan=5><legend>' + family + ' (id: ' + familyId + ')</legend></td></tr>'
+
+    //seperate to infos first
+    for (generic in generics) {
+      generic = generics[generic]
+      if (generic.type == 'Info') {
+        infos.push(generic)
+      }
+       if (generic.type == 'Action') {
+        actions.push(generic)
+      }
+    }
+
+    infos.sort(compareGenericName)
+    actions.sort(compareGenericName)
+
+    for (var idx in infos) {
+      generic = infos[idx]
+      inner += '<tr>'
+      inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-info">' + generic.type + '</td><td class="label">' + generic.subtype + '</td><td>' + generic.comment + '</td>'
+      inner += '</tr>'
+    }
+    for (var idx in actions) {
+      generic = actions[idx]
+      inner += '<tr>'
+      inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-warning">' + generic.type + '</td><td class="label">' + generic.subtype + '</td><td>' + generic.comment + '</td>'
+      inner += '</tr>'
+    }
+  }
+  inner += '</table><br/>'
+  container.empty().append(inner)
+})
+
+function compareGenericName(a, b) {
+  if ( a.name < b.name ){
+    return -1;
+  }
+  if ( a.name > b.name ){
+    return 1;
+  }
+  return 0;
+}
+
 $(function() {
   setQueryButtons()
 
@@ -608,7 +659,10 @@ $(function() {
       })
       $(this).css('max-height', $(document).height() - 250)
     },
-    beforeClose: function(event, ui) {}
+    beforeClose: function(event, ui) {
+      $('#md_applyCmdsTypes .maincontainer').empty()
+      $('#bt_applyCmdsTypes').show()
+    }
   })
 
   $('#md_applyCmdsTypes').removeClass('hidden')

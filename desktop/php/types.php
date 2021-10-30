@@ -119,10 +119,11 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 	<div class="input-group-btn">
 		<a id="bt_resetypeSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
 		</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
-		</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+		</a><a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>
 	</div>
 	<div class="input-group-btn">
-		<a class="btn btn-success pull-right roundedRight" id="bt_saveGenericTypes"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+		<a class="btn btn-info" id="bt_listGenericTypes"><i class="fas fa-list-alt"></i> {{Liste}}</a>
+		<a class="btn btn-success roundedRight" id="bt_saveGenericTypes"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	</div>
 </div>
 

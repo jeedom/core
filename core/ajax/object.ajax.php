@@ -211,6 +211,13 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'getUISelectList') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(jeeObject::getUISelectList(init('none'), true));
+	}
+
 	if (init('action') == 'getSummaryHtml') {
 		if (init('ids') != '') {
 			$return = array();

@@ -253,6 +253,12 @@ class system {
 					);
 				}
 				break;
+			case 'plugin':
+				$updates = update::byType('plugin');
+				foreach ($updates as $update) {
+					self::$_installPackage[$_type][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+				}
+				break;
 		}
 		return self::$_installPackage[$_type];
 	}
@@ -455,6 +461,9 @@ class system {
 		if ($_foreground || !$has_something_todo) {
 			return;
 		}
+		if ($_plugin != '') {
+			$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+		}
 		$cmd .= "rm $progress_file\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
 		if (file_exists('/tmp/jeedom_fix_package')) {
@@ -543,6 +552,8 @@ class system {
 					return '';
 				}
 				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;chown -R www-data:www-data *';
+			case 'plugin':
+				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 		}
 	}
 

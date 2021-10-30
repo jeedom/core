@@ -44,6 +44,7 @@ class plugin {
 	private $documentation = '';
 	private $changelog_beta = '';
 	private $documentation_beta = '';
+	private $whiteListFolders = array();
 	private $specialAttributes = array('object' => array(), 'user' => array());
 	private $info = array();
 	private $include = array();
@@ -98,6 +99,7 @@ class plugin {
 		$plugin->index = (isset($data['index'])) ? $data['index'] : $data['id'];
 		$plugin->display = (isset($data['display'])) ? $data['display'] : '';
 		$plugin->issue = (isset($data['issue'])) ? $data['issue'] : '';
+		$plugin->whiteListFolders = (isset($data['whiteListFolders'])) ? $data['whiteListFolders'] : array();
 		$plugin->changelog = (isset($data['changelog'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['changelog']) : '';
 		$plugin->documentation = (isset($data['documentation'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['documentation']) : '';
 		$plugin->changelog_beta = (isset($data['changelog_beta'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['changelog_beta']) : '';
@@ -160,6 +162,10 @@ class plugin {
 		SET isEnable=0
 		WHERE eqType_name=:eqType_name';
 		DB::Prepare($sql, $values);
+	}
+
+	public static function getPluginPath($_pluginId) {
+		return __DIR__ . '/../../plugins/' . $_pluginId;
 	}
 
 	public static function getPathById($_id) {
@@ -1222,6 +1228,15 @@ class plugin {
 
 	public function setDocumentation_beta($documentation_beta) {
 		$this->documentation_beta = $documentation_beta;
+		return $this;
+	}
+
+	public function getWhiteListFolders() {
+		return $this->whiteListFolders;
+	}
+
+	public function setWhiteListFolders($paths) {
+		$this->whiteListFolders = (array) $paths;
 		return $this;
 	}
 }

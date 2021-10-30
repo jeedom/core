@@ -5,7 +5,7 @@ The page *Synthesis* offers you a centralized visual synthesis of your objects a
 
 ![Synthesis](./images/synthesis_intro.gif)
 
-For it to take on its full meaning, it is necessary on each object, to configure the summaries and a background image.
+For it to take on its full meaning, it is necessary on each object, to configure the summaries and a background image : [See abstracts documentation.](/en_US/concept/summary)
 
 You can configure it as the default page in **Settings → Preferences**, in desktop and / or mobile.
 

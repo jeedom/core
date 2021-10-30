@@ -7,7 +7,7 @@ Auf der Seite Zeitleiste können Sie Ereignisse wie Auftragsänderungen chronolo
 
 Um sie anzuzeigen, müssen Sie zuerst die Verfolgung der gewünschten Befehle oder Szenarien auf der Zeitachse aktivieren. Anschließend treten diese Ereignisse auf.
 
-- **Szenario** : Entweder direkt auf der Szenarioseite oder auf der Szenarioübersichtsseite, um dies in großen Mengen zu tun".
+- **Szenario** : Entweder direkt auf einer Szenarioseite oder auf *Überblick* Szenarien.
 - **Bestellt** : Entweder in der erweiterten Konfiguration des Befehls oder in der Konfiguration des Verlaufs, um dies in "Masse" zu tun".
 
 ![Zeitleiste](images/timeline_intro.jpg)
@@ -18,10 +18,6 @@ Sie können die Zeitleiste dann nach diesem Ordner filtern, indem Sie sie links 
 > **Hinweis**
 >
 > Wenn Sie keinen Ordner mehr verwenden, wird dieser in der Liste angezeigt, solange Ereignisse vorhanden sind, die mit diesem Ordner verknüpft sind. Es wird von selbst aus der Liste verschwinden.
-
-> **Trinkgeld**
->
-> Sie haben Zugriff auf die Fenster &quot;Szenarioübersicht&quot; oder &quot;Verlaufskonfiguration&quot; direkt über die Timeline-Seite.
 
 Sobald Sie die Verfolgung in der Zeitleiste der gewünschten Befehle und Szenarien aktiviert haben, können Sie sie in der Zeitleiste anzeigen.
 

@@ -5,7 +5,7 @@ Die Seite *Synthese* bietet Ihnen eine zentralisierte visuelle Synthese Ihrer Ob
 
 ![Synthese](./images/synthesis_intro.gif)
 
-Damit es seine volle Bedeutung annehmen kann, muss es für jedes Objekt die Zusammenfassungen und ein Hintergrundbild konfigurieren.
+Damit es seine volle Bedeutung annehmen kann, muss es für jedes Objekt die Zusammenfassungen und ein Hintergrundbild konfigurieren : [Siehe Abstracts-Dokumentation.](/de_DE/concept/summary)
 
 Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.
 

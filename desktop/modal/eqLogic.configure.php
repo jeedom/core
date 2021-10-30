@@ -224,6 +224,13 @@ sendVarToJS([
             <input type="color" class="eqLogicAttr html form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color" />
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-sm-7 control-label">{{Hauteur fixe (px)}}</label>
+          <div class="col-sm-3">
+            <input class="eqLogicAttr html form-control input-sm" value="" data-l1key="display" data-l2key="backGraph::height"/>
+          </div>
+        </div>
       </form>
 
       <?php if (is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
