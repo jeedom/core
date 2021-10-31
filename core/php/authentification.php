@@ -135,11 +135,7 @@ function loginByHash($_key) {
 		sleep(5);
 		return false;
 	}
-	@session_start();
-	$_SESSION['user'] = $user;
-	@session_write_close();
 	unset($registerDevice[$rdk]);
-	$rdk = config::genKey();
 	$registerDevice[sha512($rdk)] = array(
 		'datetime' => date('Y-m-d H:i:s'),
 		'ip' => getClientIp(),
@@ -152,6 +148,9 @@ function loginByHash($_key) {
 	}
 	$user->setOptions('registerDevice', $registerDevice);
 	$user->save();
+	@session_start();
+	$_SESSION['user'] = $user;
+	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
 	return true;
 }
@@ -160,10 +159,10 @@ function logout() {
 	@session_start();
 	if (version_compare(PHP_VERSION, '7.3') >= 0) {
 		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		setcookie('PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+		setcookie('__Host-PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 	} else {
 		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-		setcookie('PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+		setcookie('__Host-PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 	}
 	session_unset();
 	session_destroy();
