@@ -493,7 +493,7 @@ jeedomUtils.initApplication = function(_reinit) {
             if (APP_MODE) {
               $('#pagecontainer').css('padding-top',0)
             } else {
-              $('#pagecontainer').css('padding-top','64px')
+              $('#pagecontainer').css('padding-top','72px')
             }
           })
         })
@@ -543,9 +543,9 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
         $('div[data-role=header]').remove();
         $('#pagecontainer').css('padding-top',0)
       } else {
-        $('#pagecontainer').css('padding-top','64px')
+        $('#pagecontainer').css('padding-top','72px')
         setTimeout(function() {
-          $('#pagecontainer').css('padding-top','64px')
+          $('#pagecontainer').css('padding-top','72px')
         }, 100)
       }
     })
@@ -621,9 +621,9 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
         $('div[data-role=header]').remove()
         $('#pagecontainer').css('padding-top',0)
       } else {
-        $('#pagecontainer').css('padding-top','64px')
+        $('#pagecontainer').css('padding-top','72px')
         setTimeout(function() {
-          $('#pagecontainer').css('padding-top','64px')
+          $('#pagecontainer').css('padding-top','72px')
         }, 100)
       }
       $('#page').fadeIn(400)

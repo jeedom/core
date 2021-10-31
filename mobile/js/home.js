@@ -190,7 +190,7 @@ function initHome() {
 
   if (!APP_MODE) {
     setTimeout(function() {
-      $('#pagecontainer').css('padding-top','64px')
+      $('#pagecontainer').css('padding-top','72px')
     }, 100)
   }
 }

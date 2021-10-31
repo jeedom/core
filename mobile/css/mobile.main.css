@@ -627,7 +627,7 @@
     color: var(--link-color) !important;
     background-color: var(--bg-modal-color) !important;
     box-shadow: none !important;
-    height: 64px;
+    height: 72px;
   }
   .ui-header .ui-title {
     font-weight: 300 !important;
@@ -663,7 +663,7 @@
     width: 100vw;
   }
   .objectSummaryglobal .objectSummaryParent {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
   }
   .objectSummaryParent {
@@ -981,7 +981,7 @@
 
   #searchContainer {
     position: fixed;
-    top: 65px;
+    top: 72px;
     left: 0;
     height: 35px !important;
     width: 100%;
@@ -995,7 +995,7 @@
   }
   #bt_eraseSearchInput {
     position: fixed;
-    top: 65px;
+    top: 72px;
     height: 35px;
     right: 0;
     line-height: 15px;
@@ -1566,7 +1566,7 @@
     padding: 5px 5px;
   }
   .objectPreview > .topPreview > .name {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
     max-width: calc(100% - 98px);
     max-height: 30px !important;
@@ -1595,7 +1595,7 @@
 
   .objectPreview .objectSummaryParent,
   .objectPreview .objectSummaryParent i {
-    font-size: 14px !important;
+    font-size: 18px !important;
     color: var(--link-color);
   }
   .objectPreview .topPreview .objectSummaryParent {
@@ -1620,7 +1620,6 @@
     width: 32px;
     height: 20px;
     min-width: 0 !important;
-    font-weight: 700;
     text-align: left;
     position: relative;
     display: table-cell;
