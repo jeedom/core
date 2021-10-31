@@ -1572,7 +1572,8 @@
     background-color: transparent;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 8px);
+    right: 4px;
   }
   .objectPreview > .bottomPreview > .resume {
     max-width: 100%;
