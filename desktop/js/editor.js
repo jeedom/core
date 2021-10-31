@@ -64,79 +64,80 @@ $(function() {
       edit: {
         editors: [
           {
-          info : {
-            name : '{{Editer}}'
-          },
-          load : function(textarea) {
-            self = this
-            var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
-            var fileUrl = elfinderInstance.url(self.file.hash)
-            fileUrl = fileUrl.replace('/core/php/../../', '')
-            var $modal = $(textarea).closest('.ui-front')
-            $modal.find('.elfinder-dialog-title').html(fileUrl)
+            info : {
+              name : '{{Editer}}'
+            },
+            load : function(textarea) {
+              self = this
+              var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
+              var fileUrl = elfinderInstance.url(self.file.hash)
+              fileUrl = fileUrl.replace('/core/php/../../', '')
+              var $modal = $(textarea).closest('.ui-front')
+              $modal.find('.elfinder-dialog-title').html(fileUrl)
 
-            this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
-              styleActiveLine: true,
-              lineNumbers: true,
-              lineWrapping: true,
-              matchBrackets: true,
-              autoRefresh: true,
-              foldGutter: true,
-              gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
-            })
-            var editor = this.myCodeMirror
+              this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
+                styleActiveLine: true,
+                lineNumbers: true,
+                lineWrapping: true,
+                matchBrackets: true,
+                autoRefresh: true,
+                foldGutter: true,
+                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+              })
+              var editor = this.myCodeMirror
 
-            //Auto mode set:
-            var info, m, mode, spec;
-            if (!info) {
-              info = CodeMirror.findModeByMIME(self.file.mime);
-            }
-            if (!info && (m = self.file.name.match(/.+\.([^.]+)$/))) {
-              info = CodeMirror.findModeByExtension(m[1]);
-            }
-            if (info) {
-              mode = info.mode
-              spec = info.mime
-              editor.setOption('mode', spec)
-              CodeMirror.autoLoadMode(editor, mode)
-            }
+              //Auto mode set:
+              var info, m, mode, spec;
+              if (!info) {
+                info = CodeMirror.findModeByMIME(self.file.mime);
+              }
+              if (!info && (m = self.file.name.match(/.+\.([^.]+)$/))) {
+                info = CodeMirror.findModeByExtension(m[1]);
+              }
+              if (info) {
+                mode = info.mode
+                spec = info.mime
+                editor.setOption('mode', spec)
+                CodeMirror.autoLoadMode(editor, mode)
+              }
 
-            //is python ?
-            if (self.file.mime == 'text/x-python') {
-              self.myCodeMirror.setOption('mode', {
-                  name: "python",
-                  version: 3,
-                  singleLineStringErrors: false
-                }
-              )
-              self.myCodeMirror.setOption('indentUnit', 4)
-              self.myCodeMirror.setOption('smartIndent', false)
-            }
+              //is python ?
+              if (self.file.mime == 'text/x-python') {
+                self.myCodeMirror.setOption('mode', {
+                    name: "python",
+                    version: 3,
+                    singleLineStringErrors: false
+                  }
+                )
+                self.myCodeMirror.setOption('indentUnit', 4)
+                self.myCodeMirror.setOption('smartIndent', false)
+              }
 
-            $(".cm-s-default").style('height', '100%', 'important')
-            editor.setOption('theme', 'monokai')
+              $(".cm-s-default").style('height', '100%', 'important')
+              editor.setOption('theme', 'monokai')
 
-            //expand on resize modal:
-            $('.elfinder-dialog-edit').resize(function() {
-              editor.refresh()
-            })
-            $modal.width('75%').css('left', '15%')
+              $modal.width('75%').css('left', '15%')
 
-            setTimeout(function() {
-              editor.scrollIntoView({line:0, char:0}, 20)
-              editor.setOption("extraKeys", {
-                "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
-                "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+              //expand on resize modal:
+              $('.elfinder-dialog-edit').resize(function() {
+                editor.refresh()
               })
 
-            }, 250)
-          },
-          close : function(textarea, instance) {
-            //this.myCodeMirror = null;
-          },
-          save : function(textarea, editor) {
-            textarea.value = this.myCodeMirror.getValue();
-            //this.myCodeMirror = null;
+              setTimeout(function() {
+                editor.scrollIntoView({line:0, char:0}, 20)
+                editor.setOption("extraKeys", {
+                  "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+                  "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+                })
+
+              }, 250)
+            },
+            close : function(textarea, instance) {
+              //this.myCodeMirror = null
+            },
+            save : function(textarea, editor) {
+              textarea.value = this.myCodeMirror.getValue()
+              //this.myCodeMirror = null
             }
           }
         ]
@@ -152,10 +153,9 @@ $(function() {
   elfinstance.one('init', function(event) {
     killTooltips()
   })
-  elfinstance
-    .bind('open', function(event) {
-      killTooltips()
-    })
+  elfinstance.bind('open', function(event) {
+    killTooltips()
+  })
 })
 
 function killTooltips() {

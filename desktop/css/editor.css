@@ -162,6 +162,9 @@ Theme ElFinder File Editor 2021 @Jeedom
   .ui-dialog.elfinder-maximized .ui-resizable-handle {
     display: none !important;
   }
+  .ui-dialog.elfinder-maximized .elfinder-titlebar-minimize {
+    display: none;
+  }
 
   .std42-dialog.elfinder-dialog-minimized .ui-dialog-titlebar {
     line-height: 10px;
