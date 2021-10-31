@@ -1464,6 +1464,13 @@
     border-radius: 0 0 var(--border-radius) 0 !important;
   }
 
+  .objectPreview .resume .objectSummaryParent:first-child {
+    border-radius: var(--border-radius) 0 0 0 !important;
+  }
+  .objectPreview .resume .objectSummaryParent:last-child {
+    border-bottom-right-radius: var(--border-radius) !important;
+  }
+
 /* ___________________________________________________________MESSAGES */
   a.ui-table-columntoggle-btn {
     display: none;
