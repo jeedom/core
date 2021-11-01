@@ -68,19 +68,19 @@ $(function() {
     })
   })
   
-  $('body').on('tap', '.link',function(e) {
+  $('body').on('tap', '.link', function(e) {
     jeedomUtils.loadModal(false)
     jeedomUtils.loadPanel(false)
     jeedomUtils.loadPage($(this).attr('data-page'), $(this).attr('data-title'), $(this).attr('data-option'), $(this).attr('data-plugin'))
   })
   
-  $('body').on('tap', '.objectSummaryParent',function(e) {
+  $('body').on('tap', '.objectSummaryParent', function(e) {
     jeedomUtils.loadModal(false)
     jeedomUtils.loadPanel(false)
     jeedomUtils.loadPage('equipment', '{{Résumé}}', $(this).data('object_id') + ':' + $(this).data('summary'))
   })
   
-  $('body').on('click', '.cmd[data-type=info],.cmd .history[data-type=info]',function(event) {
+  $('body').on('click', '.cmd[data-type=info],.cmd .history[data-type=info]', function(event) {
     var mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
     mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
@@ -643,16 +643,17 @@ jeedomUtils.loadModal = function(_name, _callback) {
     } else {
       $('#div_popup').empty().load(_name, function() {
         $('#div_popup').trigger('create').popup("open")
-        
-        $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
         if ('function' == typeof (_callback)) {
           _callback()
-          $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
         }
         setTimeout(function(){
-          $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
-          $('#div_popup-popup').css({top:105,left:($('body').width() - $('#div_popup-popup').width())/2})
-        }, 200)
+          $('#div_popup-popup').css({
+            'position': 'absolute',
+            'top': 105,
+            'left': '50%',
+            'transform': 'translate(-50%)'
+          })
+        }, 100)
       })
     }
   } catch(e) {}
@@ -735,7 +736,7 @@ jeedomUtils.normTextLower = function(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
 
-//deprecated, remove v4.2
+//deprecated, remove v4.3
 function refreshUpdateNumber() {
   jeedomUtils.refreshMessageNumber()
 }
