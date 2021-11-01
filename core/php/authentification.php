@@ -141,7 +141,7 @@ function loginByHash($_key) {
 		'session_id' => session_id(),
 	);
         $user->setOptions('registerDevice', $registerDevice);
-	$user->save()
+	$user->save();
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
