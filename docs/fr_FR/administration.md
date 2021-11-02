@@ -34,8 +34,8 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 
 - **Desktop clair et sombre** : Vous permet de choisir un thème clair et un sombre pour le Desktop.
 - **Mobile clair et sombre** : idem que précédemment pour la version Mobile.
-- **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle le thème clair choisit précédemment sera utilisé. Il faut cependant cocher l'option **Bascule du thème en fonction de l'heure**.
-- **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer *generic extra sensor* dans chrome, page chrome://flags.
+- **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle le thème clair choisi précédemment sera utilisé. Il faut cependant cocher l'option **Bascule du thème en fonction de l'heure**.
+- **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer *generic extra sensor* dans Chrome, page chrome://flags.
 
 ### Tuiles
 
@@ -95,7 +95,7 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
     - **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon, donnez l’URL pointant sur l’adresse IP externe de votre réseau.
     - **Complément** : le fragment d’URL complémentaire (exemple : /Jeedom) pour accéder à Jeedom.
 
-- **Proxy pour market** : activation du proxy.
+- **Proxy pour Market** : activation du proxy.
     - Cocher la case activer le proxy.
     - **Adresse Proxy** : Renseigner l'adresse du proxy,
     - **Port du Proxy** : Renseigner le port du proxy,
@@ -111,8 +111,8 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 > Pour savoir si vous avez besoin de définir une valeur dans le champ **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
 
 - **Gestion avancée** : Cette partie peut ne pas apparaître, en fonction de la compatibilité avec votre matériel.
-    Vous y trouverez la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom de ne pas monitorer le réseau en cliquant sur **désactiver la gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à aucun réseau). Vous pouvez aussi y préciser la plage d'ip locale sous la forme 192.168.1.* (à n'utiliser que dans des installations de type docker).
-- **Proxy market** : permet un accès distant à votre Jeedom sans avoir besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box Internet.
+    Vous y trouverez la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom de ne pas monitorer le réseau en cliquant sur **désactiver la gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à aucun réseau). Vous pouvez aussi y préciser la plage d'ip locale sous la forme 192.168.1.* (à n'utiliser que dans des installations de type Docker).
+- **Proxy Market** : permet un accès distant à votre Jeedom sans avoir besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box Internet.
     - **Utiliser les DNS Jeedom** : active les DNS Jeedom (attention cela nécessite au moins un service pack).
     - **Statut DNS** : statut du DNS HTTP.
     - **Gestion** : permet d’arrêter et relancer le service DNS Jeedom.
@@ -141,9 +141,9 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 - **Ajouter un message à chaque Timeout** : Ajoute un message dans le centre de message si un équipement tombe en **timeout**.
 - **Commande sur Timeout** : Commande de type **message** à utiliser si un équipement est en **timeout**.
 - **Ajouter un message à chaque Batterie en Warning** : Ajoute un message dans le centre de messages si un équipement a son niveau de batterie en **warning**.
-- **Commande sur Batterie en Warning** : Commande de type **message** à utiliser si un équipement à son niveau de batterie en **warning**.
-- **Ajouter un message à chaque Batterie en Danger** : Ajoute un message dans le centre de messages si un équipement à son niveau de batterie en **danger**.
-- **Commande sur Batterie en Danger** : Commande de type **message** à utiliser si un équipement à son niveau de batterie en **danger**.
+- **Commande sur Batterie en Warning** : Commande de type **message** à utiliser si un équipement a son niveau de batterie en **warning**.
+- **Ajouter un message à chaque Batterie en Danger** : Ajoute un message dans le centre de messages si un équipement a son niveau de batterie en **danger**.
+- **Commande sur Batterie en Danger** : Commande de type **message** à utiliser si un équipement a son niveau de batterie en **danger**.
 - **Ajouter un message à chaque Warning** : Ajoute un message dans le centre de messages si une commande passe en alerte **warning**.
 - **Commande sur Warning** : Commande de type **message** à utiliser si une commande passe en alerte **warning**.
 - **Ajouter un message à chaque Danger** : Ajoute un message dans le centre de messages si une commande passe en alerte **danger**.
@@ -269,7 +269,7 @@ Voici donc les différentes options disponibles :
 - **Synonyme pour les commandes** : Liste des synonymes pour les commandes.
 - **Synonyme pour les résumés** : Liste des synonymes pour les résumés.
 - **Synonyme commande slider maximum** : Synonyme pour mettre une commande de type slider au maximum (ex ouvre pour ouvre le volet de la chambre ⇒ volet chambre à 100%).
-- **Synonyme commande slider minimum** : Synonyme pour mettre une commande de type slider au minimu (ex ferme pour fermer le volet de la chambre ⇒ volet chambre à 0%).
+- **Synonyme commande slider minimum** : Synonyme pour mettre une commande de type slider au minimum (ex ferme pour fermer le volet de la chambre ⇒ volet chambre à 0%).
 
 ## Onglet Sécurité
 
@@ -303,7 +303,7 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l’IP,
 
 - **Source de mise à jour** : Choisissez la source de mise à jour du core de Jeedom.
 - **Version du core** : Version du core à récupérer.
-- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement s'il y a de nouvelles mises à jour (attention pour éviter de surcharger le market, l’heure de vérification peut changer).
+- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement s'il y a de nouvelles mises à jour (attention pour éviter de surcharger le Market, l’heure de vérification peut changer).
 
 ### Les dépôts
 
@@ -318,18 +318,18 @@ Dépôt servant à activer l’envoi de plugins par des fichiers.
 Dépôt servant à relier Jeedom à Github.
 
 - **Token** : Token pour l’accès au dépôt privé.
-- **Utilisateur ou organisation du dépôt pour le core Jeedom** : Nom de l’utilisateur ou de l’organisation sur github pour le core.
+- **Utilisateur ou organisation du dépôt pour le core Jeedom** : Nom de l’utilisateur ou de l’organisation sur Github pour le core.
 - **Nom du dépôt pour le core Jeedom** : Nom du dépôt pour le core.
 - **Branche pour le core Jeedom** : Branche du dépôt pour le core.
 
 #### Market
 
-Dépôt servant à relier Jeedom au market, il est vivement conseillé d’utiliser ce dépôt. Attention : toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
+Dépôt servant à relier Jeedom au Market, il est vivement conseillé d’utiliser ce dépôt. Attention : toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
 
 - **Adresse** : Adresse du Market.(https://www.Jeedom.com/market).
 - **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
 - **Mot de passe** : Votre mot de passe du Market.
-- **[Backup cloud] Nom** : Nom de votre backup cloud (attention doit etre unique pour chaque Jeedom sous risque qu'il s'écrase entre eux).
+- **[Backup cloud] Nom** : Nom de votre backup cloud (attention doit être unique pour chaque Jeedom sous risque qu'ils s'écrasent entre eux).
 - **[Backup cloud] Mot de passe** : Mot de passe du backup cloud. IMPORTANT vous ne devez surtout pas le perdre, il n'y a aucun moyen de le récupérer. Sans celui-ci vous ne pourrez plus restaurer votre Jeedom.
 - **[Backup cloud] Fréquence backup full** : Fréquence du backup cloud full. Un backup full est plus long qu'un incrémental (qui n'envoie que les différences). Il est recommandé d'en faire 1 par mois.
 
@@ -358,10 +358,10 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 > **Important**
 >
-> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2 ou la v3 pour se connecter. Donc si vous avez une erreur *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* il y a de forte chance que coté NAS la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
+> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2 ou la v3 pour se connecter. Donc si vous avez une erreur *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* il y a de forte chance que côté NAS la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
 > client max protocol = SMB3
 > client min protocol = SMB2
-> Le smbclient coté Jeedom utilisera alors v2 où v3 et en mettant SMB3 aux 2 uniquement SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
+> Le smbclient côté Jeedom utilisera alors v2 ou v3 et en mettant SMB3 aux 2 uniquement SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
 
 > **Important**
 >
@@ -399,7 +399,7 @@ Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vo
 - **Localhost** : seules les requêtes venant du système sur lequel est installé Jeedom sont autorisées,
 - **Activé** : aucune restriction, n’importe quel système ayant accès à votre Jeedom pourra accéder à cette API.
 
-Pour chaque clé API de plugin vous pouvez leur interdire les méthodes core (général) pour les limiter à leur seule methode embarqué (attention certain plugin comme mobile ou jeelink ont absolument besoin des methodes core)
+Pour chaque clé API de plugin vous pouvez leur interdire les méthodes core (général) pour les limiter à leur seule méthode embarquée (attention certains plugins comme mobile ou jeelink ont absolument besoin des méthodes core)
 
 ## Onglet &gt;\_OS/DB
 
