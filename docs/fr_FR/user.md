@@ -46,7 +46,7 @@ Affiche les sessions de navigateur active sur votre Jeedom, avec les information
 
 ## Périphérique(s) enregistré(s)
 
-Liste les périphériques (ordinateurs, mobiles etc) qui on enregistré leur authentification sur votre Jeedom.
+Liste les périphériques (ordinateurs, mobiles etc) qui ont enregistré leur authentification sur votre Jeedom.
 Vous pouvez voir quel utilisateur, son IP, à quelle date, et supprimer l'enregistrement de ce périphérique.
 
 > **Note**
