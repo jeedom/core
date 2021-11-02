@@ -336,7 +336,7 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 - ``variable(mavariable,valeur par défaut)`` : Récupère la valeur d’une variable ou de la valeur souhaitée par défaut.
 
-- ``#genericType(GENERIC, #[Object]#)#`` : Récupère la somme des infos de Type Générique GENERIC dans l'objet Object.
+- ``genericType(GENERIC, #[Object]#)`` : Récupère la somme des infos de Type Générique GENERIC dans l'objet Object.
 
 - ``scenario(scenario)`` : Renvoie le statut du scénario.
     1 : En cours,
