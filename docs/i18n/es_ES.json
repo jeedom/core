@@ -8841,6 +8841,7 @@
         "Pour leur assigner un type, vous pouvez soit les déplacer dans un autre type, soit faire un clic droit sur l'équipement pour le déplacer directement": "Para asignarles un tipo, puede moverlos a otro tipo o hacer clic con el botón derecho en el equipo para moverlo directamente",
         "Le Type d'équipement n'est pas vraiment utile en soit, le plus important étant le Types des commandes": "El tipo de equipo no es realmente útil en sí mismo, siendo los más importantes los tipos de orden",
         "Vous pouvez ainsi avoir un Equipement sans Type, ou d'un Type ne correspondant pas forcément à ses commandes": "Por tanto, puede tener un Equipo sin un Tipo, o un Tipo que no se corresponda necesariamente con sus comandos",
+        "Vous pouvez bien sûr mixer des types de commandes au sein d'un même équipement": "Por supuesto, puede mezclar tipos de controles dentro del mismo equipo",
         "Pour l'instant, il s'agit plus d'un rangement, d'une organisation logique, qui servira peu-être dans de futures versions": "Por ahora, es más un almacenamiento, una organización lógica, que quizás sirva en futuras versiones",
         "Quand vous déplacer un équipement dans la partie": "Cuando mueves equipo en el juego",
         "Jeedom vous propose de supprimer les Types Génériques sur ses commandes": "Jeedom sugiere que elimines los tipos genéricos de sus órdenes",
