@@ -336,7 +336,7 @@ Several functions are available for the equipment :
 
 - ``variable(mavariable,valeur par défaut)`` : Retrieves the value of a variable or the desired value by default.
 
-- ``#genericType (GENERIC, #[Object]#)#`` : Retrieves the sum of the GENERIC Generic Type information in the Object object.
+- ``genericType (GENERIC, #[Object]#)`` : Retrieves the sum of the GENERIC Generic Type information in the Object object.
 
 - ``scenario(scenario)`` : Returns the status of the scenario.
     1 : In progress,

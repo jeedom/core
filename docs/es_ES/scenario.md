@@ -336,7 +336,7 @@ Hay varias funciones disponibles para el equipo :
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera el valor de una variable o el valor deseado por defecto.
 
-- ``#genericType (GENÉRICO, #[Object]#)#`` : Recupera la suma de la información GENÉRICA del tipo genérico en el objeto Objeto.
+- ``genericType (GENÉRICO, #[Object]#)`` : Recupera la suma de la información GENÉRICA del tipo genérico en el objeto Objeto.
 
 - ``scenario(scenario)`` : Devuelve el estado del escenario.
     1 : En curso,

@@ -336,7 +336,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera o valor de uma variável ou o valor desejado por padrão.
 
-- ``#genericType (GENERIC, #[Object]#)#`` : Recupera a soma das informações GENERIC Generic Type no objeto Object.
+- ``genericType (GENERIC, #[Object]#)`` : Recupera a soma das informações GENERIC Generic Type no objeto Object.
 
 - ``scenario(scenario)`` : Retorna o status do cenário.
     1 : Contínuo,
