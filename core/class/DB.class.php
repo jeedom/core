@@ -48,6 +48,7 @@ class DB {
 	public static function getConnection() {
 		if(self::$connection == null){
 			self::initConnection();
+			self::$lastConnection = strtotime('now');
 		}else if (self::$lastConnection + 120 < strtotime('now')) {
 			try {
 				$result = @self::$connection->query('select 1;');
@@ -57,8 +58,8 @@ class DB {
 			} catch (Exception $e) {
 				self::initConnection();
 			}
+			self::$lastConnection = strtotime('now');
 		}
-		self::$lastConnection = strtotime('now');
 		return self::$connection;
 	}
 
