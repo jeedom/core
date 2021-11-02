@@ -15,7 +15,7 @@ Cette page permet de paramétrer ces Types Génériques, de manière plus direct
 
 ## Type d'équipement
 
-Cette page propose un rangement par type d'équipement : Prise, Lumière, Volet, Thermostat, Camera, etc. Au départ, la plupart de vos équipements seront classés dans **Equipements sans type**. Pour leur assigner un type, vous pouvez soit les déplacer dans un autre type, soit faire un clic droit sur l'équipement pour le déplacer directement. Le Type d'équipement n'est pas vraiment utile en soit, le plus important étant le Types des commandes. Vous pouvez ainsi avoir un Equipement sans Type, ou d'un Type ne correspondant pas forcément à ses commandes. Pour l'instant, il s'agit plus d'un rangement, d'une organisation logique, qui servira peu-être dans de futures versions.
+Cette page propose un rangement par type d'équipement : Prise, Lumière, Volet, Thermostat, Camera, etc. Au départ, la plupart de vos équipements seront classés dans **Equipements sans type**. Pour leur assigner un type, vous pouvez soit les déplacer dans un autre type, soit faire un clic droit sur l'équipement pour le déplacer directement. Le Type d'équipement n'est pas vraiment utile en soit, le plus important étant le Types des commandes. Vous pouvez ainsi avoir un Equipement sans Type, ou d'un Type ne correspondant pas forcément à ses commandes. Vous pouvez bien sûr mixer des types de commandes au sein d'un même équipement. Pour l'instant, il s'agit plus d'un rangement, d'une organisation logique, qui servira peu-être dans de futures versions.
 
 > **Tip**
 >
