@@ -104,6 +104,7 @@ class config {
 		if (method_exists($class, $function)) {
 			$class::$function($_value);
 		}
+		return true;
 	}
 
 	/**
@@ -118,7 +119,7 @@ class config {
 			);
 			$sql = 'DELETE FROM config
 			WHERE plugin=:plugin';
-			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 		} else {
 			$values = array(
 				'plugin' => $_plugin,
@@ -132,6 +133,7 @@ class config {
 				unset(self::$cache[$_plugin . '::' . $_key]);
 			}
 		}
+		return true;
 	}
 
 	/**
@@ -282,7 +284,8 @@ class config {
 		$types = array(
 			'byType',
 			'byFamily
-		');
+		'
+		);
 
 		foreach ((jeedom::getConfiguration('cmd::generic_type')) as $key => $info) {
 			$types['byType'][$key] = $info;
@@ -308,8 +311,8 @@ class config {
 							}
 						}
 						$types['byType'] = array_merge($types['byType'], $generics);
-
-					} catch(Exception $e) {}
+					} catch (Exception $e) {
+					}
 				}
 			}
 		}

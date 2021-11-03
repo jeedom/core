@@ -17,7 +17,7 @@ Vous pourrez alors filtrer la timeline par ce dossier en le sélectionnant à ga
 
 > **Note**
 >
-> Si vous n'utilisez plus un dossier, il apparaitra dans la liste tant que des évènements liés a ce dossier existent. Il disparaitra tout seul de la liste ensuite.
+> Si vous n'utilisez plus un dossier, il apparaitra dans la liste tant que des évènements liés à ce dossier existent. Il disparaitra tout seul de la liste ensuite.
 
 Une fois que vous avez activé le suivi dans la timeline des commandes et scénarios voulus, vous pourrez voir apparaître ceux-ci sur la timeline.
 
@@ -38,4 +38,4 @@ Pour chaque évènement, vous avez:
 - Un évènement de type commande affiche une icône sur la droite pour ouvrir la configuration de la commande.
 - Un évènement de type scénario affiche deux icônes sur la droite pour se rendre sur le scénario, ou ouvrir le log du scénario.
 
-En haut à droite, vous pouvez sélectionné un dossier de timeline. Celui-ci doit être crée avant et doit contenir des évènements.
+En haut à droite, vous pouvez sélectionner un dossier de timeline. Celui-ci doit être créé avant et doit contenir des évènements.

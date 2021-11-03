@@ -213,7 +213,7 @@ Object.keys(genericsByFamily).forEach(key => {
       genericsByFamily[key][genkey]['shortName'] = generics[genkey].name.replace(key, '').toLowerCase().trim()
       genericsByFamily[key][genkey]['type'] = generics[genkey].type
       genericsByFamily[key][genkey]['subtype'] = generics[genkey].subtype == undefined ? [] : generics[genkey].subtype
-      genericsByFamily[key][genkey]['comment'] = generics[genkey].comment == undefined ? '' : generics[genkey].comment
+      //genericsByFamily[key][genkey]['comment'] = generics[genkey].comment == undefined ? '' : generics[genkey].comment
     }
   })
 })
@@ -593,7 +593,8 @@ $('#bt_listGenericTypes').off('click').on('click', function() {
 
   var container = $('#md_applyCmdsTypes .maincontainer')
   var inner = '<table class="table table-bordered table-condensed">'
-  inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td><td>{{Commentaire}}</td>'
+  //inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td><td>{{Commentaire}}</td>'
+  inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td>'
 
   var family, familyName, generics, generic, infos, actions
   for (var familyId in gen_families) {
@@ -620,13 +621,13 @@ $('#bt_listGenericTypes').off('click').on('click', function() {
     for (var idx in infos) {
       generic = infos[idx]
       inner += '<tr>'
-      inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-info">' + generic.type + '</td><td class="label">' + generic.subtype + '</td><td>' + generic.comment + '</td>'
+      inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-info">' + generic.type + '</td><td class="label">' + generic.subtype + '</td>'//<td>' + generic.comment + '</td>'
       inner += '</tr>'
     }
     for (var idx in actions) {
       generic = actions[idx]
       inner += '<tr>'
-      inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-warning">' + generic.type + '</td><td class="label">' + generic.subtype + '</td><td>' + generic.comment + '</td>'
+      inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-warning">' + generic.type + '</td><td class="label">' + generic.subtype + '</td>'//<td>' + generic.comment + '</td>'
       inner += '</tr>'
     }
   }

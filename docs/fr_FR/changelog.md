@@ -58,7 +58,7 @@
 
 ### 4.2 : Backup cloud
 
-Nous avons ajouter une confirmation du mot de passe de backup cloud pour prévenir les erreurs de saisie (pour rappel l'utilisateur est le seul à connaître ce mot de passe, en cas d'oubli, Jeedom ne peut ni le récupérer ni accéder aux backup cloud de l'utilisateur).
+Nous avons ajouté une confirmation du mot de passe de backup cloud pour prévenir les erreurs de saisie (pour rappel l'utilisateur est le seul à connaître ce mot de passe, en cas d'oubli, Jeedom ne peut ni le récupérer ni accéder aux backup cloud de l'utilisateur).
 
 >**IMPORTANT**
 >
@@ -68,7 +68,7 @@ Nous avons ajouter une confirmation du mot de passe de backup cloud pour préven
 
 Jeedom 4.2 contient une grosse partie sur l'augmentation de la sécurité.
 
-- Changement de la politique d'accès aux fichiers : Avant nous interdisions certains fichier, maintenant nous n'autorisons que certains fichiers.
+- Changement de la politique d'accès aux fichiers : Avant nous interdisions certains fichiers, maintenant nous n'autorisons que certains fichiers.
 - Changement au niveau de l'api, avant elle était "tolérante" si vous arriviez avec la clef du Core en indiquant plugin XXXXX. Ce n'est plus le cas, vous devez arriver avec la clef correspondante au plugin.
 - En api http vous pouviez indiquer un nom de plugin en type, ce n'est plus possible. Le type correspondant au type de la demande (scenario, eqLogic, cmd, etc.) doit correspondre au plugin. Par exemple pour le plugin virtuel vous aviez type=virtual dans l'url il faut maintenant remplacer par plugin=virtual&type=event, idem pour le plugin ipx800v4 ou type=ipx800v4 devient plugin=ipx800v4&type=event
 - Renforcement des sessions (passage en sha256 avec 64 caractères en mode strict).

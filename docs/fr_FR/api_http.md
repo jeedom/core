@@ -36,7 +36,7 @@ Le plus simple pour avoir cette URL est d’aller sur la page **Analyse → Rés
 
 > **Note**
 >
-> Les paramètres doivent être encodés pour les url, Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
+> Les paramètres doivent être encodés pour les urls, Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction
 

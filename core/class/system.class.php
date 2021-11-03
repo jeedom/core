@@ -341,17 +341,17 @@ class system {
 					continue;
 				}
 				$alternative_found = '';
-				if (isset($installPackage[$package])) {
+				if (isset($installPackage[mb_strtolower($package)])) {
 					$found = 1;
-					$version = $installPackage[$package]['version'];
+					$version = $installPackage[mb_strtolower($package)]['version'];
 				} elseif (isset($info['alternative'])) {
 					foreach ($info['alternative'] as $alternative) {
-						if (isset($installPackage[$alternative])) {
+						if (isset($installPackage[mb_strtolower($alternative)])) {
 							$found = 2;
 							$alternative_found = $alternative;
 							break;
 						}
-						$keys = array_values(preg_grep($alternative, array_keys($installPackage)));
+						$keys = array_values(preg_grep(mb_strtolower($alternative), array_keys($installPackage)));
 						if (is_array($keys) && count($keys) > 0) {
 							$found = 2;
 							$alternative_found = $keys[0];

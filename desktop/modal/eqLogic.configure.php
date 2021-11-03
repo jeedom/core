@@ -31,9 +31,9 @@ sendVarToJS([
 <div style="display: none;" id="md_displayEqLogicConfigure"></div>
 <div class="input-group pull-right" style="display:inline-flex">
   <span class="input-group-btn">
-    <a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}
-    </a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}
+    <a class="btn btn-default btn-sm" id="bt_eqLogicConfigureLogRealTime"><i class="far fa-file"></i> {{Log}}
     </a><a class="btn btn-default btn-sm" id="bt_eqLogicConfigureGraph"><i class="fas fa-object-group"></i> {{Liens}}
+    </a><a class="btn btn-default roundedLeft btn-sm" id="bt_eqLogicConfigureRawObject"><i class="fas fa-info"></i> {{Informations}}
     </a><a class="btn btn-success btn-sm" id="bt_eqLogicConfigureSave"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
     </a><a class="btn btn-danger roundedRight btn-sm" id="bt_eqLogicConfigureRemove"><i class="fas fa-times"></i> {{Supprimer}}</a>
   </span>
@@ -228,7 +228,7 @@ sendVarToJS([
         <div class="form-group">
           <label class="col-sm-7 control-label">{{Hauteur fixe (px)}}</label>
           <div class="col-sm-3">
-            <input class="eqLogicAttr html form-control input-sm" value="" data-l1key="display" data-l2key="backGraph::height"/>
+            <input class="eqLogicAttr html form-control input-sm" value="" data-l1key="display" data-l2key="backGraph::height" />
           </div>
         </div>
       </form>

@@ -18,7 +18,7 @@ Dans le menu (clic droit), nous retrouvons les actions suivantes :
 - **Edition** : Permet de passer en mode édition.
 - **Plein écran** : Permet d’utiliser toute la page Internet, ce qui enlèvera le menu de Jeedom du haut.
 - **Ajouter graphique** : Permet d’ajouter un graphique.
-- **Ajouter texte/html** : Permet d’ajouter du texte ou du code html/JavaScript.
+- **Ajouter texte/html** : Permet d’ajouter du texte ou du code HTML/JavaScript.
 - **Ajouter scénario** : Permet d’ajouter un scénario.
 - **Ajouter lien**
     - **Vers une vue** : Permet d’ajouter un lien vers une vue.
@@ -55,7 +55,7 @@ On retrouve ici :
     - **Position** : La position du design dans le menu. Permet d'ordonner les designs.
     - **Fond transparent** : Rend le fond transparent. Attention si la case est cochée, la couleur de fond n’est pas utilisée.
     - **Couleur de fond** : Couleur de fond du design.
-    - **Code d'accès* : Code d’accès à votre design (si vide, aucun code n’est demandé).
+    - **Code d'accès** : Code d’accès à votre design (si vide, aucun code n’est demandé).
     - **Icône** : Une icône pour celui-ci (apparaît dans le menu de choix de design).
     - **Image**
         - **Envoyer** : Permet d’ajouter une image de fond au design.

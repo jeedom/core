@@ -336,7 +336,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``variable(mavariable,valeur par défaut)`` : Ruft standardmäßig den Wert einer Variablen oder den gewünschten Wert ab.
 
-- ``#GenericType (GENERIC, #[Object]#)#`` : Ruft die Summe der GENERIC Generic Type-Informationen im Object-Objekt ab.
+- ``GenericType (GENERIC, #[Object]#)`` : Ruft die Summe der GENERIC Generic Type-Informationen im Object-Objekt ab.
 
 - ``scenario(scenario)`` : Gibt den Status des Szenarios zurück.
     1 : In Bearbeitung,

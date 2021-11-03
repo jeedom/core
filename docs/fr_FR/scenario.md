@@ -37,7 +37,7 @@ Après avoir cliqué sur **Ajouter**, vous devez choisir le nom de votre scénar
 Avant cela, en haut de page, on retrouve certaines fonctions utiles pour gérer ce scénario :
 
 - **ID** : A côté du mot **Général**, c’est l’identifiant du scénario.
-- **statut** : *Arrêté* ou *En cours*, il indique l'état actuel du scénario.
+- **Statut** : *Arrêté* ou *En cours*, il indique l'état actuel du scénario.
 - **Etat précédent / suivant** : Permet d'annuler / refaire une action.
 - **Ajouter un bloc** : Permet d'ajouter un bloc du type souhaité au scénario (voir plus bas).
 - **Log** : Permet d’afficher les logs du scénario.
@@ -57,7 +57,7 @@ Avant cela, en haut de page, on retrouve certaines fonctions utiles pour gérer 
     > - Les variables, visibles dans **Outils → Variables**
     > - Le testeur d'expressions, accessible par **Outils → Testeur expression**
 >
-> Un **Ctrl Clic sur le bouton exécuter** vous permet directement de sauvegarder, exécuter et afficher le log du scénario (si le niveau de log n'est pas sur Aucun).
+> Un **Ctrl Clic sur le bouton Exécuter** vous permet directement de sauvegarder, exécuter et afficher le log du scénario (si le niveau de log n'est pas sur Aucun).
 
 ## Onglet Général
 
@@ -73,7 +73,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 - **Multi lancement** : Cochez cette case si vous souhaitez que le scénario puisse être lancé plusieurs fois en même temps.
 >**IMPORTANT**
 >
->Le multi lancement marche à la seconde, c'est à dire que si vous avez 2 lancements dans la même seconde sans la case cochée il y aura quand même 2 lancements du scénario (alors qu'il ne devrait pas). De même lors de plusieurs lancements dans la même seconde il se peut que certains lancements perdent les tags. Conclusion il faut ABSOLUEMENT éviter de multiple lancement dans la même seconde.
+>Le multi lancement marche à la seconde, c'est à dire que si vous avez 2 lancements dans la même seconde sans la case cochée il y aura quand même 2 lancements du scénario (alors qu'il ne devrait pas). De même lors de plusieurs lancements dans la même seconde il se peut que certains lancements perdent les tags. Conclusion il faut ABSOLUMENT éviter de multiples lancements dans la même seconde.
 - **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable.
 - **Log** : Le type de log souhaité pour le scénario. Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel.
 - **Timeline** : Permet de garder un suivi du scénario dans la timeline (voir doc Historique).
@@ -88,7 +88,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 
 > **Tip Mode programmé**
 >
-> Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuté un scénario toutes les 20 minutes avec  ``*/20 * * * *``, ou à 5h du matin pour régler une multitude de choses pour la journée avec ``0 5 * * *``. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron.
+> Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuter un scénario toutes les 20 minutes avec  ``*/20 * * * *``, ou à 5h du matin pour régler une multitude de choses pour la journée avec ``0 5 * * *``. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron.
 
 ## Onglet Scénario
 
@@ -103,7 +103,7 @@ Pour plus de praticité et ne pas avoir à constamment réordonner les blocs dan
 
 > **Tip**
 >
-> Un Ctrl Shift Z ou Ctrl Shift Y vous permet d'**annuler** ou de refaire une modification (ajout d'action, de bloc...).
+> Un Ctrl Shift Z ou Ctrl Shift Y vous permet d'**annuler** ou de **refaire** une modification (ajout d'action, de bloc...).
 
 ## Les blocs
 
@@ -121,7 +121,7 @@ Chaque bloc a ses options pour mieux les manipuler :
 
 - Sur la gauche :
     - La flèche bidirectionnelle permet de déplacer un bloc ou une action pour les réordonner dans le scénario.
-    - L’œil permet de réduire un bloc (*collapse*) pour réduire son impact visuel. Ctrl Clic sur l’œil les réduis ou affiche tous.
+    - L’œil permet de réduire un bloc (*collapse*) pour réduire son impact visuel. Ctrl Clic sur l’œil les réduit ou les affiche tous.
     - La case à cocher permet de désactiver complètement le bloc sans pour autant le supprimer. Il ne sera donc pas exécuté.
 
 - Sur la droite :
@@ -202,7 +202,7 @@ Le bloc Code permet d’exécuter du code PHP. Il est donc très puissant mais n
 ### Bloc Commentaire
 
 Le Bloc commentaire agît différemment quand il est masqué. Ses boutons sur la gauche disparaissent ainsi que le titre du bloc, et réapparaissent au survol. De même, la première ligne du commentaire est affichée en caractères gras.
-Ceci permet d'utiliser ce bloc comme séparation purement visuel au sein du scénario.
+Ceci permet d'utiliser ce bloc comme séparation purement visuelle au sein du scénario.
 
 ### Les Actions
 
@@ -217,7 +217,7 @@ Les actions ajoutées dans les blocs ont plusieurs options :
 
 > **Tip**
 >
-> Suivant la commande sélectionnée, on peut voir d'afficher différents champs supplémentaires.
+> Suivant la commande sélectionnée, on peut voir s'afficher différents champs supplémentaires.
 
 ## Les substitutions possibles
 
@@ -240,7 +240,7 @@ Vous pouvez aussi déclencher un scénario en utilisant l’API HTTP décrite [i
 
 ### Opérateurs de comparaison et liens entre les conditions
 
-Vous pouvez utiliser n’importe lequel des symboles suivant pour les comparaisons dans les conditions :
+Vous pouvez utiliser n’importe lequel des symboles suivants pour les comparaisons dans les conditions :
 
 - ``==`` : Egal à.
 - ``>`` : Strictement supérieur à.
@@ -272,7 +272,7 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 - ``#day#`` : Jour courant (sans les zéros initiaux). Ex : 6 pour 06/07/2017.
 - ``#month#`` : Mois courant (sans les zéros initiaux). Ex : 7 pour 06/07/2017.
 - ``#year#`` : Année courante.
-- ``#time#`` : Heure et minute courante. Ex : 1715 pour 17h15.
+- ``#time#`` : Heure et minute courantes. Ex : 1715 pour 17h15.
 - ``#timestamp#`` : Nombre de secondes depuis le 1er janvier 1970.
 - ``#date#`` : Jour et mois. Attention, le premier nombre est le mois. Ex : 1215 pour le 15 décembre.
 - ``#week#`` : Numéro de la semaine.
@@ -327,16 +327,16 @@ Plusieurs fonctions sont disponibles pour les équipements :
     -1 : Aucun historique n’existe ou la valeur n’existe pas dans l'historique.
     -2 : La commande n’est pas historisée.
 
-- ``age(commande)`` : Donne l'age en secondes de la valeur de la commande (``collecDate``)
+- ``age(commande)`` : Donne l'âge en secondes de la valeur de la commande (``collecDate``)
     -1 : La commande n’existe pas ou elle n'est pas de type info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Donnent le nombre de changements d’état (vers une certaine valeur si indiquée, ou si non indiqué par rapport à sa valeur actuel) sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Donnent le nombre de changements d’état (vers une certaine valeur si indiquée, ou si non indiqué par rapport à sa valeur actuelle) sur la période (period=[month,day,hour,min] ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Donne la dernière valeur enregistrée pour l’équipement entre les 2 bornes demandées (sous la forme ``Y-m-d H:i:s`` ou [expression PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Récupère la valeur d’une variable ou de la valeur souhaitée par défaut.
 
-- ``#genericType(GENERIC, #[Object]#)#`` : Récupère la somme des infos de Type Générique GENERIC dans l'objet Object.
+- ``genericType(GENERIC, #[Object]#)`` : Récupère la somme des infos de Type Générique GENERIC dans l'objet Object.
 
 - ``scenario(scenario)`` : Renvoie le statut du scénario.
     1 : En cours,
@@ -368,9 +368,9 @@ Plusieurs fonctions sont disponibles pour les équipements :
 
 - ``name(type,commande)`` : Permet de récupérer le nom de la commande, de l’équipement ou de l’objet. Type : cmd, eqLogic ou object.
 
-- ``lastCommunication(equipment,[format])`` : Renvoie la date de la dernière communication pour l'équipement donnée en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1 signifie que l’équipement est introuvable.
+- ``lastCommunication(equipment,[format])`` : Renvoie la date de la dernière communication pour l'équipement donné en paramètre, le 2ème paramètre optionnel permet de spécifier le format de retour (détails [ici](http://php.net/manual/fr/function.date.php)). Un retour de -1 signifie que l’équipement est introuvable.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Renvoi une couleur calculée par rapport à valeur dans l'intervalle couleur_debut/couleur_fin. La valeur doit être comprise entre valeur_min et valeur_max.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Renvoie une couleur calculée par rapport à une valeur dans l'intervalle couleur_debut/couleur_fin. La valeur doit être comprise entre valeur_min et valeur_max.
 
 Les périodes et intervalles de ces fonctions peuvent également s'utiliser avec [des expressions PHP](http://php.net/manual/fr/datetime.formats.relative.php) comme par exemple :
 
@@ -430,7 +430,7 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 - ``avg(commande1,commande2…​.commandeN)`` : Renvoie la moyenne des valeurs.
 - ``time_op(time,value)`` : Permet de faire des opérations sur le temps, avec time=temps (ex : 1530) et value=valeur à ajouter ou à soustraire en minutes.
 - ``time_between(time,start,end)`` : Permet de tester si un temps est entre deux valeurs avec ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Les valeurs start et end peuvent être à cheval sur minuit.
-- ``time_diff(date1,date2[,format, round])`` : Permet de connaître la différence entre deux dates (les dates doivent être au format AAAA/MM/JJ HH:MM:SS). Par défaut, la méthode retourne la différence en jour(s). Vous pouvez lui demander en secondes (s), minutes (m), heures (h). Exemple en secondes ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La différence est retournée en absolu, sauf si vous spécifiez ``f`` (``sf``, ``mf``, ``hf``, ``df``). Vous pouvez aussi utiliser ``dhms`` qui ne retournera pas exemple ``7j 2h 5min 46s``. Le paramètre round, optionnel, arrondi à x chiffres après la virgule (2 par défaut). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Permet de connaître la différence entre deux dates (les dates doivent être au format AAAA/MM/JJ HH:MM:SS). Par défaut, la méthode retourne la différence en jour(s). Vous pouvez lui demander en secondes (s), minutes (m), heures (h). Exemple en secondes ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La différence est retournée en absolu, sauf si vous spécifiez ``f`` (``sf``, ``mf``, ``hf``, ``df``). Vous pouvez aussi utiliser ``dhms`` qui ne retournera pas exemple ``7j 2h 5min 46s``. Le paramètre round, optionnel, arrondit à x chiffres après la virgule (2 par défaut). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Permet de formater le retour d’une chaine ``#time#``.
 - ``floor(time/60)`` : Permet de convertir des secondes en minutes, ou des minutes en heures (``floor(time/3600)`` pour des secondes en heures).
 - ``convertDuration(secondes)`` : Permet de convertir des secondes en j/h/mn/s.
@@ -462,7 +462,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **Pause** (sleep) : Pause de x seconde(s).
 - **variable** (variable) : Création/modification d’une variable ou de la valeur d’une variable.
 - **Supprimer variable** (delete_variable) : Permet de supprimer une variable.
-- **genericType(GENERIC, #[Object]#) : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
+- **genericType(GENERIC, #[Object]#)** : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
 - **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags permet d’envoyer des tags au scénario, ex : montag=2 (attention il ne faut utiliser que des lettre de a à z. Pas de majuscules, pas d’accents et pas de caractères spéciaux). On récupère le tag dans le scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le statut des "SI" (ce statut est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans).
 - **Stop** (stop) : Arrête le scénario.
 - **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s).

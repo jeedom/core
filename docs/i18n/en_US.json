@@ -8841,6 +8841,7 @@
         "Pour leur assigner un type, vous pouvez soit les déplacer dans un autre type, soit faire un clic droit sur l'équipement pour le déplacer directement": "To assign them a type, you can either move them to another type, or right click on the equipment to move it directly",
         "Le Type d'équipement n'est pas vraiment utile en soit, le plus important étant le Types des commandes": "The Equipment Type is not really useful in itself, the most important being the Order Types",
         "Vous pouvez ainsi avoir un Equipement sans Type, ou d'un Type ne correspondant pas forcément à ses commandes": "You can thus have an Equipment without a Type, or a Type that does not necessarily correspond to its commands",
+        "Vous pouvez bien sûr mixer des types de commandes au sein d'un même équipement": "You can of course mix control types within the same equipment",
         "Pour l'instant, il s'agit plus d'un rangement, d'une organisation logique, qui servira peu-être dans de futures versions": "For now, it is more of a storage, a logical organization, which will serve perhaps in future versions",
         "Quand vous déplacer un équipement dans la partie": "When you move equipment in the game",
         "Jeedom vous propose de supprimer les Types Génériques sur ses commandes": "Jeedom suggests that you remove Generic Types from its orders",
