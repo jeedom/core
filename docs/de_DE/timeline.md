@@ -38,4 +38,4 @@ Für jede Veranstaltung haben Sie:
 - Ein Befehlstypereignis zeigt rechts ein Symbol zum Öffnen der Befehlskonfiguration an.
 - Bei einem Ereignis vom Typ Szenario werden rechts zwei Symbole angezeigt, mit denen Sie zum Szenario wechseln oder das Szenarioprotokoll öffnen können.
 
-Oben rechts können Sie einen Zeitleistenordner auswählen. Dies muss vorher erstellt werden und Ereignisse enthalten.
+Oben rechts können Sie einen Timeline-Ordner auswählen. Dies muss vorher erstellt werden und Ereignisse enthalten.

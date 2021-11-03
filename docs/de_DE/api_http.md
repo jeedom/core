@@ -36,7 +36,7 @@ Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analy
 
 > **Hinweis**
 >
-> Die Parameter müssen für die URL codiert sein. Sie können ein Tool verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
+> Parameter müssen für URLs codiert werden, Sie können ein Tool verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction
 

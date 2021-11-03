@@ -46,7 +46,7 @@ Muestra las sesiones del navegador activas en su Jeedom, con información del us
 
 ## Dispositivo (s) registrado (s))
 
-Enumere los periféricos (computadoras, móviles, etc.) que han registrado su autenticación en su Jeedom.
+Enumere los dispositivos (ordenadores, móviles, etc.) que han registrado su autenticación en su Jeedom.
 Puede ver qué usuario, su IP, cuándo y eliminar el registro para este dispositivo.
 
 > **Nota**

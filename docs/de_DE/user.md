@@ -46,7 +46,7 @@ Zeigt die auf Ihrem Jeedom aktiven Browsersitzungen mit Benutzerinformationen, d
 
 ## Registrierte Geräte)
 
-Listen Sie die Peripheriegeräte (Computer, Handys usw.) auf, deren Authentifizierung auf Ihrem Jeedom aufgezeichnet wurde.
+Listen Sie die Geräte (Computer, Mobiltelefone usw.) auf, die ihre Authentifizierung auf Ihrem Jeedom registriert haben.
 Sie können sehen, welcher Benutzer, seine IP, wann und die Registrierung für dieses Gerät löschen.
 
 > **Hinweis**

@@ -37,7 +37,7 @@ Depois de clicar em **Adicionar**, você deve escolher o nome do seu cenário. V
 Antes disso, no topo da página, existem algumas funções úteis para gerenciar esse cenário :
 
 - **EU IRIA** : Ao lado da palavra **Geral**, este é o identificador de cenário.
-- **status** : *Preso* ou *Contínuo*, indica o estado atual do cenário.
+- **Status** : *Preso* ou *Contínuo*, indica o estado atual do cenário.
 - **Estado anterior / seguinte** : Cancelar / refazer uma ação.
 - **Adicionar bloco** : Permite adicionar um bloco do tipo desejado ao cenário (veja abaixo).
 - **Registro** : Exibe os logs do cenário.
@@ -73,7 +73,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 - **Multi lançamento** : Marque esta caixa se desejar que o cenário possa ser iniciado várias vezes ao mesmo tempo.
 >**IMPORTANTE**
 >
->O multi lançamento funciona por segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (embora não deva). Da mesma forma, durante vários lançamentos no mesmo segundo, alguns lançamentos podem perder as tags. Conclusão, devemos absolutamente evitar múltiplos lançamentos no mesmo segundo.
+>O multi lançamento funciona por segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (embora não deva). Da mesma forma, durante vários lançamentos no mesmo segundo, alguns lançamentos podem perder as tags. Conclusão é ABSOLUTAMENTE necessário evitar vários lançamentos no mesmo segundo.
 - **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade na qual o cenário é iniciado, mas pode tornar o sistema instável.
 - **Registro** : O tipo de log desejado para o cenário. Você pode cortar os registros do cenário ou, ao contrário, mostrá-lo em Análise → Tempo real.
 - **Linha do tempo** : Mantenha um acompanhamento do cenário na linha do tempo (consulte Histórico doc).
@@ -103,7 +103,7 @@ Para maior comodidade e não ter que reordenar constantemente os blocos no cená
 
 > **Dica**
 >
-> Ctrl Shift Z ou Ctrl Shift Y permite que você'**cancelar** ou refazer uma modificação (adicionando ação, bloco...).
+> Ctrl Shift Z ou Ctrl Shift Y permite que você'**cancelar** ou de **refazer** uma modificação (adição de ação, bloco...).
 
 ## Blocos
 
@@ -121,7 +121,7 @@ Cada bloco tem suas opções para lidar melhor com eles :
 
 - À esquerda :
     - A seta bidirecional permite mover um bloco ou uma ação para reordená-los no cenário.
-    - O olho reduz um bloqueio (*colapso*) para reduzir seu impacto visual. Ctrl Clique nos olhos para reduzi-los ou exibi-los todos.
+    - O olho reduz um bloqueio (*colapso*) para reduzir seu impacto visual. Ctrl Clique no olho reduz ou exibe todos eles.
     - A caixa de seleção permite desativar completamente o bloco sem excluí-lo. Portanto, não será executado.
 
 - À direita :
@@ -217,7 +217,7 @@ As ações adicionadas aos blocos têm várias opções :
 
 > **Dica**
 >
-> Dependendo do comando selecionado, você pode ver diferentes campos adicionais exibidos.
+> Dependendo do comando selecionado, diferentes campos adicionais podem ser exibidos.
 
 ## Possíveis substituições
 
@@ -240,7 +240,7 @@ Você também pode acionar um cenário usando a API HTTP descrita [aqui](https:/
 
 ### Operadores de comparação e links entre condições
 
-Você pode usar qualquer um dos seguintes símbolos para comparações em condições :
+Você pode usar qualquer um dos seguintes símbolos para comparações sob condições :
 
 - ``==`` : Igual a.
 - ``>`` : Estritamente maior que.
@@ -368,7 +368,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto. Tipo : cmd, eqLogic ou objeto.
 
-- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o equipamento dado como parâmetro; o 2º parâmetro opcional permite especificar o formato de retorno (detalhes [aqui](http://php.net/manual/fr/function.date.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
+- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](http://php.net/manual/fr/function.date.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 
@@ -430,7 +430,7 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 - ``avg(commande1,commande2…​.commandeN)`` : Retorna a média dos valores.
 - ``time_op(time,value)`` : Permite executar operações dentro do prazo, com time = time (ex : 1530) e value = value para adicionar ou subtrair em minutos.
 - ``time_between(time,start,end)`` : Usado para testar se um tempo está entre dois valores com ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Os valores inicial e final podem chegar à meia-noite.
-- ``time_diff(date1,date2[,format, round])`` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAA / MM / DD HH:MM:SS). Por padrão, o método retorna a diferença em dia (s)). Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. A diferença é retornada em absoluto, a menos que você especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). Você também pode usar ``dhms`` quem não vai devolver exemplo ``7j 2h 5min 46s``. O parâmetro round opcional arredondado para x dígitos após o ponto decimal (2 por padrão). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Usado para descobrir a diferença entre duas datas (as datas devem estar no formato AAAA / MM / DD HH:MM:SS). Por padrão, o método retorna a diferença em dia (s)). Você pode perguntar em segundos (s), minutos (m), horas (h). Exemplo em segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. A diferença é retornada em absoluto, a menos que você especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). Você também pode usar ``dhms`` quem não vai devolver exemplo ``7j 2h 5min 46s``. O parâmetro opcional round é arredondado para x casas decimais (2 por padrão). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formata o retorno de uma cadeia ``#time#``.
 - ``floor(time/60)`` : Converter segundos em minutos ou minutos em horas (``floor(time/3600)`` por segundos a horas).
 - ``convertDuration(secondes)`` : Converte segundos em d / h / min / s.
@@ -462,7 +462,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variável** (variable) : Criação / modificação de uma variável ou o valor de uma variável.
 - **Remover variável** (delete_variable) : Permite excluir uma variável.
-- **genericType (GENERIC, #[Object]#) : Modificação de um comando info (evento) ou ação (execCmd) por tipo genérico, em um objeto. Por exemplo, desligue todas as luzes da sala de estar.
+- **genericType (GENERIC, #[Object]#)** : Modificação de um comando info (evento) ou ação (execCmd) por tipo genérico, em um objeto. Por exemplo, desligue todas as luzes da sala de estar.
 - **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele).
 - **Pare** (stop) : Pára o script.
 - **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).

@@ -46,7 +46,7 @@ Displays the browser sessions active on your Jeedom, with user information, its 
 
 ## Registered device (s))
 
-List the peripherals (computers, mobiles etc) which have recorded their authentication on your Jeedom.
+List the devices (computers, mobiles, etc.) which have registered their authentication on your Jeedom.
 You can see which user, their IP, when, and delete the registration for this device.
 
 > **Note**

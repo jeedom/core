@@ -34,7 +34,7 @@ In this tab you will find the display customization parameters.
 
 - **Light and dark desktop** : Lets you choose a light and dark theme for the Desktop.
 - **Light and dark mobile** : same as above for the Mobile version.
-- **Clear theme from / to** : Allows you to define a time period during which the previously chosen clear theme will be used. However, check the option **Toggle theme based on time**.
+- **Clear theme from / to** : Allows you to define a time slot during which the light theme chosen previously will be used. However, check the option **Toggle theme based on time**.
 - **Brightness sensor**   : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
 
 ### Tuiles
@@ -269,7 +269,7 @@ Here are the different options available :
 - **Synonym for commands** : List of synonyms for commands.
 - **Synonym for summaries** : List of synonyms for summaries.
 - **Synonym maximum slider command** : Synonym for placing a slider type command to the maximum (ex opens to opens the bedroom shutter ⇒ bedroom shutter at 100%).
-- **Synonym minimum slider command** : Synonym for putting a slider type command to the minimum (ex closes to close the bedroom shutter ⇒ bedroom shutter at 0%).
+- **Synonym minimum slider command** : Synonym for setting a slider type command to a minimum (e.g. close to close the chamber shutter ⇒ chamber shutter at 0%).
 
 ## Security tab
 
@@ -329,7 +329,7 @@ Deposit used to connect Jeedom to the market, it is strongly advised to use this
 - **Address** : Address du Market.(https://www.Jeedom.com/market).
 - **Username** : Your Username on the Market.
 - **Password** : Your Market password.
-- **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom at risk of it crashing between them).
+- **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom under risk of them crashing into each other).
 - **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will no longer be able to restore your Jeedom.
 - **[Backup cloud] Frequency full backup** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month.
 
@@ -399,7 +399,7 @@ For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can defi
 - **Localhost** : only requests from the system on which Jeedom is installed are allowed,
 - **Enabled** : no restrictions, any system with access to your Jeedom will be able to access this API.
 
-For each plugin API key you can prohibit them from core methods (general) to limit them to their only embedded method (be careful some plugin like mobile or jeelink absolutely need core methods)
+For each plugin API key you can prohibit them from core methods (general) to limit them to their only embedded method (be careful some plugins like mobile or jeelink absolutely need core methods)
 
 ## Onglet &gt;\_OS/DB
 
