@@ -1548,9 +1548,15 @@ class scenarioExpression {
 								$cmd->event(jeedom::evaluateExpression($options['value']));
 								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . __(' à ', __FILE__) . $options['value']);
 							} else if ($cmd->getType() == 'action') {
+								if ($cmd->getSubtype() == 'slider') {
+									$options['slider'] = evaluate($options['value']);
+								}
 								$cmd->execCmd($options);
-								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $cmd->getHumanName());
-								$cmd->execCmd($options['value']);
+								$log = $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $cmd->getHumanName();
+								if ($options['value'] != '') {
+									$log .= __(' à ', __FILE__) . $options['value'];
+								}
+								$this->setLog($scenario, $log);
 							}
 						}
 						return;
