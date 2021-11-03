@@ -98,8 +98,10 @@ class DB {
 		}
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
+			self::$lastConnection = 0;
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
 		}
+		self::$lastConnection = strtotime('now');
 		if ($_fetch_param == PDO::FETCH_CLASS) {
 			if(is_array($res) && count($res) > 0){
 				foreach ($res as &$obj) {
