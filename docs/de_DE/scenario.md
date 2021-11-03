@@ -73,7 +73,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 - **Multi-Launch** : Aktivieren Sie dieses Kontrollkästchen, wenn das Szenario mehrmals gleichzeitig gestartet werden soll.
 >**WICHTIG**
 >
->Der Mehrfachstart funktioniert pro Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne das Kontrollkästchen aktiviert zu haben, gibt es immer noch zwei Starts des Szenarios (obwohl dies nicht der Fall sein sollte)). Ebenso können bei mehreren Starts in derselben Sekunde einige Starts die Tags verlieren. Fazit Wir müssen ABSOLUT vermeiden, dass mehrere in derselben Sekunde gestartet werden.
+>Der Mehrfachstart funktioniert pro Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne das Kontrollkästchen aktiviert zu haben, gibt es immer noch zwei Starts des Szenarios (obwohl dies nicht der Fall sein sollte)). Ebenso können bei mehreren Starts in derselben Sekunde einige Starts die Tags verlieren. Fazit Es ist ABSOLUT notwendig, mehrere Starts in derselben Sekunde zu vermeiden.
 - **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen.
 - **Log** : Der für das Szenario gewünschte Protokolltyp. Sie können die Szenarioprotokolle ausschneiden oder im Gegenteil unter Analyse → Echtzeit anzeigen.
 - **Zeitleiste** : Behalten Sie das Szenario in der Zeitleiste im Auge (siehe Verlaufsdokument)).
@@ -88,7 +88,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
 > **Tippmodus programmiert**
 >
-> Der geplante Modus verwendet die Syntax **Cron**. Beispielsweise können Sie mit alle 20 Minuten ein Szenario ausführen  ``*/.20 * * * *``, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag mit zu erledigen ``0 5 * * *``. Das ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
+> Der geplante Modus verwendet die Syntax **Cron**. Sie können beispielsweise alle 20 Minuten ein Szenario mit ausführen  ``*/.20 * * * *``, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag mit zu erledigen ``0 5 * * *``. Das ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
 
 ## Registerkarte &quot;Szenario&quot;
 
@@ -103,7 +103,7 @@ Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordne
 
 > **Trinkgeld**
 >
-> Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**abbrechen** oder eine Änderung wiederholen (Aktion hinzufügen, blockieren...).
+> Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**abbrechen** oder von **neu machen** eine Modifikation (Hinzufügen einer Aktion, Blockieren)...).
 
 ## Blöcke
 
@@ -121,7 +121,7 @@ Jeder Block hat seine Optionen, um besser damit umzugehen :
 
 - Links :
     - Mit dem bidirektionalen Pfeil können Sie einen Block oder eine Aktion verschieben, um sie im Szenario neu anzuordnen.
-    - Das Auge reduziert eine Blockade (*Zusammenbruch*) um seine visuelle Wirkung zu reduzieren. Strg Klicken Sie auf das Auge, um sie zu verkleinern oder alle anzuzeigen.
+    - Das Auge reduziert eine Blockade (*Zusammenbruch*) um seine visuelle Wirkung zu reduzieren. Strg Klick auf das Auge verkleinert sie oder zeigt sie alle an.
     - Mit dem Kontrollkästchen können Sie den Block vollständig deaktivieren, ohne ihn zu löschen. Es wird daher nicht ausgeführt.
 
 - Rechts :
@@ -217,7 +217,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 
 > **Trinkgeld**
 >
-> Abhängig vom ausgewählten Befehl werden verschiedene zusätzliche Felder angezeigt.
+> Je nach gewähltem Befehl können unterschiedliche Zusatzfelder angezeigt werden.
 
 ## Mögliche Substitutionen
 
@@ -330,7 +330,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``age(commande)`` : Gibt das Alter des Befehlswerts in Sekunden an (``collecDate``)
     -1 : Der Befehl existiert nicht oder ist nicht vom Typ info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Werts, falls angegeben oder wenn nicht angegeben im Vergleich zu seinem aktuellen Wert) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Gibt den letzten für das Gerät aufgezeichneten Wert zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -368,9 +368,9 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen. Art : cmd, eqLogic oder Objekt.
 
-- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück. Mit dem zweiten optionalen Parameter können Sie das Rückgabeformat (Details) angeben [Hier](http:/./.php.net/.manual/.fr/.function.date.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
+- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [Hier](http:/./.php.net/.manual/.fr/.function.date.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Gibt eine Farbe zurück, die in Bezug auf einen Wert im Intervall color_start / color_end berechnet wurde. Der Wert muss zwischen min_value und max_value liegen.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Gibt eine relativ zu einem Wert im Intervall color_start / color_end berechnete Farbe zurück. Der Wert muss zwischen min_value und max_value liegen.
 
 Die Perioden und Intervalle dieser Funktionen können auch mit verwendet werden [PHP-Ausdrücke](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php) wie zum Beispiel :
 
@@ -430,7 +430,7 @@ Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen
 - ``avg(commande1,commande2…​.commandeN)`` : Gibt den Durchschnitt der Werte zurück.
 - ``time_op(time,value)`` : Ermöglicht die pünktliche Ausführung von Operationen mit time = time (z : 1530) und Wert = Wert zum Addieren oder Subtrahieren in Minuten.
 - ``time_between(time,start,end)`` : Wird verwendet, um zu testen, ob eine Zeit zwischen zwei Werten mit liegt ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Start- und Endwerte können sich über Mitternacht erstrecken.
-- ``time_diff(date1,date2[,format, round])`` : Wird verwendet, um den Unterschied zwischen zwei Daten zu ermitteln (die Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS). Standardmäßig gibt die Methode die Differenz in Tag (e) zurück). Sie können es in Sekunden (s), Minuten (m), Stunden (h) fragen). Beispiel in Sekunden ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. Die Differenz wird in absoluten Zahlen zurückgegeben, sofern Sie nichts anderes angeben ``f`` (``sf``, ``mf``, ``hf``, ``df``). Sie können auch verwenden ``dhms`` wer wird nicht Beispiel zurückgeben ``7j 2h 5min 46s``. Der optionale runde Parameter wird nach dem Dezimalpunkt auf x Stellen gerundet (standardmäßig 2). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Wird verwendet, um den Unterschied zwischen zwei Daten zu ermitteln (die Daten müssen das Format JJJJ / MM / TT HH haben:MM:SS). Standardmäßig gibt die Methode die Differenz in Tag (e) zurück). Sie können es in Sekunden (s), Minuten (m), Stunden (h) fragen). Beispiel in Sekunden ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. Die Differenz wird in absoluten Zahlen zurückgegeben, sofern Sie nichts anderes angeben ``f`` (``sf``, ``mf``, ``hf``, ``df``). Sie können auch verwenden ``dhms`` wer wird nicht Beispiel zurückgeben ``7j 2h 5min 46s``. Der optionale Parameter round rundet auf x Dezimalstellen (standardmäßig 2). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formatiert die Rückgabe einer Kette ``#time#``.
 - ``floor(time/.60)`` : Konvertieren Sie Sekunden in Minuten oder Minuten in Stunden (``floor(time/.3600)`` für Sekunden bis Stunden).
 - ``convertDuration(secondes)`` : Konvertiert Sekunden in d / h / min / s.
@@ -462,7 +462,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Pause** (sleep) : Pause von x Sekunden (s).
 - **Variable** (variable) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
 - **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen.
-- **GenericType (GENERIC, #[Object]#) : Änderung eines Info- (Ereignis)- oder Aktions- (execCmd) Befehls nach generischem Typ in einem Objekt. Schalten Sie beispielsweise alle Lichter im Wohnzimmer aus.
+- **GenericType (GENERIC, #[Object]#)** : Änderung eines Info- (Ereignis)- oder Aktions- (execCmd) Befehls nach generischem Typ in einem Objekt. Schalten Sie beispielsweise alle Lichter im Wohnzimmer aus.
 - **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her). Mit dem Befehl "Auf SI zurücksetzen" können Sie den Status von "SI" zurücksetzen (dieser Status wird verwendet, um die Aktionen eines "SI" nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben).
 - **Halt** (stop) : Stoppen Sie das Szenario.
 - **Warten** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).

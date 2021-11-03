@@ -34,7 +34,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 - **Área de trabalho clara e escura** : Permite escolher um tema claro e escuro para a área de trabalho.
 - **Celular claro e escuro** : mesmo que acima para a versão Mobile.
-- **Limpar tema de / para** : Permite definir um período de tempo durante o qual o tema claro escolhido anteriormente será usado. No entanto, marque a opção **Alternar tema com base no tempo**.
+- **Limpar tema de / para** : Permite-lhe definir um intervalo de tempo durante o qual o tema claro escolhido anteriormente será usado. No entanto, marque a opção **Alternar tema com base no tempo**.
 - **Sensor de brilho**   : Somente interface móvel, requer ativação *sensor extra genérico* no cromo, página do cromo://flags.
 
 ### Tuiles
@@ -269,7 +269,7 @@ Aqui estão as diferentes opções disponíveis :
 - **Sinônimo de pedidos** : Lista de sinônimos para comandos.
 - **Sinônimo de resumos** : Lista de sinônimos para resumos.
 - **Sinônimo máximo controle deslizante** : Sinônimo para colocar um comando do tipo slider ao máximo (ex abre para abre o obturador do quarto ⇒ obturador do quarto a 100%).
-- **Sinônimo controle deslizante Mínimo** : Sinônimo para colocar um comando do tipo slider no mínimo (ex fecha para fechar a persiana do quarto ⇒ persiana da sala a 0%).
+- **Sinônimo controle deslizante Mínimo** : Sinônimo para definir um comando de tipo deslizante para um mínimo (por exemplo, feche para fechar o obturador da câmara ⇒ obturador da câmara a 0%).
 
 ## Guia Segurança
 
@@ -329,7 +329,7 @@ Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável us
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.
 - **Senha** : Sua senha do Market.
-- **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (a atenção deve ser exclusiva para cada Jeedom em risco de colidir entre eles).
+- **Nome da [nuvem de backup]** : Nome do seu backup na nuvem (atenção deve ser exclusiva para cada Jeedom sob risco de colidirem uns com os outros).
 - **Senha da [nuvem de backup]** : Senha de backup na nuvem. IMPORTANTE, você não deve perdê-lo, não há como recuperá-lo. Sem ele, você não poderá mais restaurar seu Jeedom.
 - **[Nuvem de backup] Backup completo de frequência** : Frequência de backup completo na nuvem. Um backup completo é maior que um incremental (que envia apenas as diferenças). Recomenda-se fazer 1 por mês.
 
@@ -399,7 +399,7 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 - **Localhost** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
 - **Ativado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
 
-Para cada chave de API de plugin você pode proibi-los de métodos básicos (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)
+Para cada chave de API de plugin você pode proibi-los de métodos centrais (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)
 
 ## Onglet &gt;\_OS/DB
 

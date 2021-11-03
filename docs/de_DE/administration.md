@@ -34,7 +34,7 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 
 - **Heller und dunkler Desktop** : Hier können Sie ein helles und ein dunkles Thema für den Desktop auswählen.
 - **Helles und dunkles Handy** : Gleich wie oben für die Mobile-Version.
-- **Klares Thema von / bis** : Hier können Sie einen Zeitraum definieren, in dem das zuvor ausgewählte klare Thema verwendet wird. Aktivieren Sie jedoch die Option **Thema basierend auf der Zeit umschalten**.
+- **Klares Thema von / bis** : Ermöglicht Ihnen, ein Zeitfenster zu definieren, in dem das zuvor ausgewählte Lichtthema verwendet wird. Aktivieren Sie jedoch die Option **Thema basierend auf der Zeit umschalten**.
 - **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chrom Seite://flags.
 
 ### Tuiles
@@ -269,7 +269,7 @@ Hier sind die verschiedenen Optionen verfügbar :
 - **Synonym für Bestellungen** : Liste der Synonyme für Befehle.
 - **Synonym für Zusammenfassungen** : Liste der Synonyme für Zusammenfassungen.
 - **Maximale Schieberegler Synonym** : Synonym für die maximale Platzierung eines Schiebereglerbefehls (ex öffnet sich, um den Schlafzimmerverschluss zu öffnen ⇒ Schlafzimmerverschluss bei 100%).
-- **Mindestschieberegler Synonym** : Synonym für das Minimieren eines Schiebereglerbefehls (ex schließt, um den Schlafzimmerverschluss zu schließen ⇒ Schlafzimmerverschluss bei 0%).
+- **Mindestschieberegler Synonym** : Synonym für das Setzen eines Schiebereglerbefehls auf ein Minimum (z. B. Schließen der Kammerklappe schließen ⇒ Kammerklappe bei 0%).
 
 ## Registerkarte &quot;Sicherheit&quot;
 
@@ -329,7 +329,7 @@ Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dr
 - **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
 - **Benutzername** : Ihr Benutzername auf dem Markt.
 - **Passwort** : Ihr Marktpasswort.
-- **[Backup Cloud] Name** : Name Ihres Cloud-Backups (die Aufmerksamkeit muss für jedes Jeedom eindeutig sein, wenn das Risiko besteht, dass es zwischen ihnen abstürzt).
+- **[Backup Cloud] Name** : Name Ihres Cloud-Backups (Achtung muss für jeden Jeedom eindeutig sein, da die Gefahr besteht, dass sie ineinander stürzen).
 - **[Backup Cloud] Passwort** : Cloud-Backup-Passwort. WICHTIG Sie dürfen es nicht verlieren, es gibt keine Möglichkeit, es wiederherzustellen. Ohne sie können Sie Ihre Freiheit nicht mehr wiederherstellen.
 - **[Backup Cloud] Häufigkeit der vollständigen Sicherung** : Häufigkeit der vollständigen Cloud-Sicherung. Eine vollständige Sicherung ist länger als eine inkrementelle (die nur die Unterschiede sendet). Es wird empfohlen, 1 pro Monat zu tun.
 
@@ -399,7 +399,7 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 - **Localhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
 - **Aktiviert** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
 
-Für jeden Plugin-API-Schlüssel können Sie die Verwendung von Kernmethoden (allgemein) verbieten, um sie auf ihre einzige eingebettete Methode zu beschränken (seien Sie vorsichtig, einige Plugins wie Mobile oder Jeelink benötigen unbedingt Kernmethoden)
+Für jeden Plugin-API-Schlüssel können Sie Kernmethoden (allgemein) verbieten, um sie auf ihre einzige eingebettete Methode zu beschränken (achten Sie darauf, dass einige Plugins wie Mobile oder Jeelink unbedingt Kernmethoden benötigen)
 
 ## Onglet &gt;;\._OS/DB
 

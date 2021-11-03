@@ -37,7 +37,7 @@ Después de hacer clic en **Añadir**, debes elegir el nombre de tu escenario. L
 Antes de eso, en la parte superior de la página, hay algunas funciones útiles para administrar este escenario :
 
 - **CARNÉ DE IDENTIDAD** : Al lado de la palabra **General**, este es el identificador de escenario.
-- **estado** : *Detenido* o *En curso*, indica el estado actual del escenario.
+- **Estado** : *Detenido* o *En curso*, indica el estado actual del escenario.
 - **Estado anterior / siguiente** : Cancelar / rehacer una acción.
 - **Agregar bloque** : Le permite agregar un bloque del tipo deseado al escenario (ver más abajo).
 - **Iniciar sesión** : Muestra los registros del escenario.
@@ -73,7 +73,7 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 - **Lanzamiento múltiple** : Marque esta casilla si desea que el escenario se pueda iniciar varias veces al mismo tiempo.
 >**IMPORTANTE**
 >
->El lanzamiento múltiple funciona por segundo, es decir que si tienes 2 lanzamientos en el mismo segundo sin marcar la casilla, aún habrá 2 lanzamientos del escenario (aunque no debería). Asimismo, durante varios lanzamientos en el mismo segundo, algunos lanzamientos pueden perder las etiquetas. Conclusión debemos evitar ABSOLUTAMENTE lanzamientos múltiples en el mismo segundo.
+>El lanzamiento múltiple funciona por segundo, es decir que si tienes 2 lanzamientos en el mismo segundo sin marcar la casilla, aún habrá 2 lanzamientos del escenario (aunque no debería). Asimismo, durante varios lanzamientos en el mismo segundo, algunos lanzamientos pueden perder las etiquetas. Conclusión es ABSOLUTAMENTE necesario evitar múltiples lanzamientos en el mismo segundo.
 - **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable.
 - **Iniciar sesión** : El tipo de registro deseado para el escenario. Puede cortar los registros del escenario o por el contrario mostrarlo en Análisis → Tiempo real.
 - **Cronología** : Mantenga un seguimiento del escenario en la línea de tiempo (consulte el documento Historial).
@@ -103,7 +103,7 @@ Para mayor comodidad y no tener que reordenar constantemente los bloques en el e
 
 > **Propina**
 >
-> Un Ctrl Shift Z o Ctrl Shift Y le permite'**anular** o rehacer una modificación (agregar acción, bloquear...).
+> Un Ctrl Shift Z o Ctrl Shift Y le permite'**anular** o de **rehacer** una modificación (adición de acción, bloqueo...).
 
 ## Bloques
 
@@ -121,7 +121,7 @@ Cada bloque tiene sus opciones para manejarlos mejor :
 
 - A la izquierda :
     - La flecha bidireccional le permite mover un bloque o una acción para reordenarlos en el escenario.
-    - El ojo reduce un bloqueo (*colapso*) para reducir su impacto visual. Ctrl Haga clic en el ojo para reducirlos o mostrarlos todos.
+    - El ojo reduce un bloqueo (*colapso*) para reducir su impacto visual. Ctrl Clic en el ojo los reduce o los muestra todos.
     - La casilla de verificación le permite desactivar completamente el bloque sin eliminarlo. Por lo tanto, no se ejecutará.
 
 - Sobre la derecha :
@@ -202,7 +202,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 ### Bloque de comentarios
 
 El bloque de comentarios actúa de manera diferente cuando está oculto. Sus botones a la izquierda desaparecen, así como el título del bloque, y reaparecen al pasar el cursor. Del mismo modo, la primera línea del comentario se muestra en negrita.
-Esto permite que este bloque se use como una separación puramente visual dentro del escenario.
+Esto permite que este bloque se utilice como una separación puramente visual dentro del escenario.
 
 ### Las acciones
 
@@ -217,7 +217,7 @@ Las acciones agregadas a los bloques tienen varias opciones :
 
 > **Propina**
 >
-> Dependiendo del comando seleccionado, puede ver diferentes campos adicionales que se muestran.
+> Dependiendo del comando seleccionado, se pueden mostrar diferentes campos adicionales.
 
 ## Posibles sustituciones
 
@@ -240,7 +240,7 @@ También puede activar un escenario utilizando la API HTTP descrita [aquí](http
 
 ### Operadores de comparación y enlaces entre condiciones
 
-Puede usar cualquiera de los siguientes símbolos para comparar en condiciones :
+Puede utilizar cualquiera de los siguientes símbolos para realizar comparaciones en condiciones :
 
 - ``==`` : Igual a.
 - ``>`` : Estrictamente mayor que.
@@ -368,9 +368,9 @@ Hay varias funciones disponibles para el equipo :
 
 - ``name(type,commande)`` : Se utiliza para recuperar el nombre del pedido, equipo u objeto. Tipo : cmd, eqLogic u objeto.
 
-- ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el equipo dada como parámetro, el segundo parámetro opcional le permite especificar el formato de devolución (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
+- ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el dispositivo dada como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](http:/ // /php.net/ /manual/ /fr/ /function.date.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado con respecto a un valor en el intervalo color_start / color_end. El valor debe estar entre min_value y max_value.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado en relación con un valor en el intervalo color_start / color_end. El valor debe estar entre min_value y max_value.
 
 Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php) como por ejemplo :
 
@@ -430,7 +430,7 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 - ``avg(commande1,commande2…​.commandeN)`` : Devuelve el promedio de los valores.
 - ``time_op(time,value)`` : Le permite realizar operaciones a tiempo, con tiempo = tiempo (ej : 1530) y valor = valor para sumar o restar en minutos.
 - ``time_between(time,start,end)`` : Se usa para probar si un tiempo está entre dos valores con ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Los valores iniciales y finales pueden estar a caballo entre la medianoche.
-- ``time_diff(date1,date2[,format, round])`` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La diferencia se devuelve en absoluto, a menos que especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). También puedes usar ``dhms`` quien no devolverá ejemplo ``7j 2h 5min 46s``. El parámetro redondo opcional redondeado a x dígitos después del punto decimal (2 por defecto). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La diferencia se devuelve en absoluto, a menos que especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). También puedes usar ``dhms`` quien no devolverá ejemplo ``7j 2h 5min 46s``. El parámetro de redondeo opcional se redondea a x decimales (2 por defecto). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formatea el retorno de una cadena ``#time#``.
 - ``floor(time/ /60)`` : Convierte segundos a minutos o minutos a horas (``floor(time/ /3600)`` por segundos a horas).
 - ``convertDuration(secondes)`` : Convierte segundos a d / h / min / s.
@@ -462,7 +462,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Pausa** (sleep) : Pausa de x segundo (s).
 - **variable** (variable) : Creación / modificación de una variable o el valor de una variable.
 - **Eliminar variable** (delete_variable) : Le permite eliminar una variable.
-- **genericType (GENÉRICO, #[Object]#) : Modificación de un comando de información (evento) o acción (execCmd) por tipo genérico, en un objeto. Por ejemplo, apague todas las luces de la sala de estar.
+- **genericType (GENÉRICO, #[Object]#)** : Modificación de un comando de información (evento) o acción (execCmd) por tipo genérico, en un objeto. Por ejemplo, apague todas las luces de la sala de estar.
 - **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag). El comando "Restablecer a SI" permite restablecer el estado de "SI" (este estado se utiliza para la no repetición de las acciones de un "SI" si pasa por segunda vez consecutiva en él).
 - **Detener** (stop) : Detener el escenario.
 - **Esperar** (wait) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos (s).

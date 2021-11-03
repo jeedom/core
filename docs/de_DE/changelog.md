@@ -58,7 +58,7 @@
 
 ### 4.2 : Cloud-Backup
 
-Wir haben eine Bestätigung des Cloud-Sicherungskennworts hinzugefügt, um Eingabefehler zu vermeiden (zur Erinnerung, der Benutzer ist der einzige, der dieses Kennwort kennt. Im Falle eines Vergessens kann Jeedom es weder wiederherstellen noch auf die Sicherung zugreifen. Benutzer-Cloud).
+Wir haben eine Bestätigung des Cloud-Backup-Passworts hinzugefügt, um Eingabefehler zu vermeiden (zur Erinnerung, der Benutzer ist der einzige, der dieses Passwort kennt, falls es vergessen wird, kann Jeedom es weder wiederherstellen noch auf die Backups zugreifen. Cloud des Benutzers).
 
 >**WICHTIG**
 >

@@ -34,7 +34,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 - **Escritorio claro y oscuro** : Le permite elegir un tema claro y oscuro para el escritorio.
 - **Móvil claro y oscuro** : igual que el anterior para la versión móvil.
-- **Borrar tema de / a** : Le permite definir un período de tiempo durante el cual se utilizará el tema claro previamente elegido. Sin embargo, marque la opción **Cambiar el tema según el tiempo**.
+- **Borrar tema de / a** : Le permite definir un intervalo de tiempo durante el cual se utilizará el tema de luz elegido previamente. Sin embargo, marque la opción **Cambiar el tema según el tiempo**.
 - **Sensor de brillo**   : Interfaz móvil solamente, requiere activación *sensor adicional genérico* en cromo, página de cromo://flags.
 
 ### Tuiles
@@ -269,7 +269,7 @@ Aquí están las diferentes opciones disponibles :
 - **Sinónimo de pedidos** : Lista de sinónimos para comandos.
 - **Sinónimo de resúmenes** : Lista de sinónimos para resúmenes.
 - **Sinónimo máximo control deslizante** : Sinónimo de colocar un comando de tipo deslizador al máximo (por ejemplo, se abre para abrir el obturador del dormitorio ⇒ obturador del dormitorio al 100%).
-- **Sinónimo control de desplazamiento mínimo** : Sinónimo de poner un comando de tipo deslizante al mínimo (por ejemplo, se cierra para cerrar el obturador del dormitorio ⇒ obturador del dormitorio al 0%).
+- **Sinónimo control de desplazamiento mínimo** : Sinónimo de establecer un comando de tipo deslizador al mínimo (por ejemplo, cerrar para cerrar el obturador de la cámara ⇒ obturador de la cámara al 0%).
 
 ## Pestaña de seguridad
 
@@ -329,7 +329,7 @@ Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamen
 - **Habla a** : Habla a du Mercado.(https://www.Jeedom.com/market).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
-- **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de que se estrelle entre ellos)).
+- **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre sí).
 - **[Copia de seguridad de la nube] Contraseña** : Contraseña de respaldo en la nube. IMPORTANTE no debes perderlo, no hay forma de recuperarlo. Sin ella, ya no podrás restaurar tu Jeedom.
 - **[Nube de respaldo] Frecuencia de respaldo completo** : Frecuencia de copia de seguridad en la nube completa. Una copia de seguridad completa es más larga que una incremental (que solo envía las diferencias). Se recomienda hacer 1 por mes.
 
@@ -399,7 +399,7 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 - **Localhost** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
 - **Habilitado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 
-Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado, algunos complementos como mobile o jeelink necesitan absolutamente métodos básicos)
+Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado con algunos complementos como mobile o jeelink absolutamente necesitan métodos principales)
 
 ## Onglet &gt;\_OS/DB
 
