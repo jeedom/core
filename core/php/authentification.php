@@ -140,7 +140,7 @@ function loginByHash($_key) {
 		'ip' => getClientIp(),
 		'session_id' => session_id(),
 	);
-        $user->setOptions('registerDevice', $registerDevice);
+	$user->setOptions('registerDevice', $registerDevice);
 	$user->save();
 	@session_start();
 	$_SESSION['user'] = $user;
