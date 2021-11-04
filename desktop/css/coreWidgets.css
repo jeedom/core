@@ -417,6 +417,12 @@ Desktop
     max-height: 50px;
     overflow: auto;
   }
+  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"] .value {
+    margin-left: 0;
+  }
+  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="tmplmultistateline"] .timeCmd {
+    display: inline-block;
+  }
 
 /* ____________________binarySwitch */
   div.cmd-widget[data-type="action"][data-subtype="other"][data-template="binarySwitch"] .content-xs {

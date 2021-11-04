@@ -360,7 +360,7 @@ class cron {
 	* @return boolean
 	*/
 	public function isDue() {
-		if(((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4){
+		if(((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('Gi') > 155 && date('Gi') < 305){
 			return false;
 		}
 		//check if already sent on that minute

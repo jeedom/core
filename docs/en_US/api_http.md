@@ -36,7 +36,7 @@ The easiest way to get this URL is to go to the page **Analysis → Home automat
 
 > **Note**
 >
-> Parameters must be encoded for url, You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
+> Parameters must be encoded for urls, You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction
 

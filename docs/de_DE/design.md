@@ -55,7 +55,7 @@ Hier gefunden :
     - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
-    - **Zugangscode* : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
+    - **Zugangscode** : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
         - **Senden** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.

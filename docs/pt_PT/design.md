@@ -55,7 +55,7 @@ Encontrado aqui :
     - **Posição** : A posição do design no menu. Permite que você encomende os desenhos.
     - **Fundo transparente** : Torna o plano de fundo transparente. Atenção, se a caixa estiver marcada, a cor do plano de fundo não será usada.
     - **Cor de fundo** : Cor do plano de fundo do design.
-    - **Código de acesso* : Código de acesso ao seu design (se vazio, nenhum código é necessário).
+    - **Código de acesso** : Código de acesso ao seu design (se vazio, nenhum código é necessário).
     - **Ícone** : Um ícone para ele (aparece no menu de opções de design).
     - **Cenário**
         - **Enviar** : Permite adicionar uma imagem de plano de fundo ao design.

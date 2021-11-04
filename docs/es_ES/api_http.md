@@ -36,7 +36,7 @@ La forma más fácil de obtener esta URL es ir a la página **Análisis → Resu
 
 > **Nota**
 >
-> Los parámetros deben estar codificados para url. Puede usar una herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/).
+> Los parámetros deben estar codificados para las URL. Puede utilizar una herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Interaction
 

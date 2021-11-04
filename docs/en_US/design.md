@@ -55,7 +55,7 @@ Found here :
     - **Position** : The position of the design in the menu. Allows you to order the designs.
     - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
-    - **Access code* : Access code to your design (if empty, no code is required).
+    - **Access code** : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
     - **Picture**
         - **To send** : Allows you to add a background image to the design.

@@ -37,7 +37,7 @@ After clicking on **Add**, you must choose the name of your scenario. You are th
 Before that, at the top of the page, there are some useful functions to manage this scenario :
 
 - **ID** : Next to the word **General**, this is the scenario identifier.
-- **status** : *Stopped* or *In progress*, it indicates the current state of the scenario.
+- **Status** : *Stopped* or *In progress*, it indicates the current state of the scenario.
 - **Previous / next state** : Cancel / redo an action.
 - **Add block** : Allows you to add a block of the desired type to the scenario (see below).
 - **Log** : Displays the scenario logs.
@@ -73,7 +73,7 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Multi launch** : Check this box if you want the scenario to be able to be launched several times at the same time.
 >**IMPORTANT**
 >
->The multi launch works per second, that is to say that if you have 2 launches in the same second without the box checked, there will still be 2 launches of the scenario (although it should not). Likewise, during several launches in the same second, some launches may lose the tags. Conclusion we must ABSOLUTELY avoid multiple launching in the same second.
+>The multi launch works per second, that is to say that if you have 2 launches in the same second without the box checked, there will still be 2 launches of the scenario (although it should not). Likewise, during several launches in the same second, some launches may lose the tags. Conclusion it is ABSOLUTELY necessary to avoid multiple launches in the same second.
 - **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable.
 - **Log** : The type of log desired for the scenario. You can cut the scenario logs or on the contrary show it in Analysis → Real time.
 - **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
@@ -103,7 +103,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 
 > **Tip**
 >
-> A Ctrl Shift Z or Ctrl Shift Y allows you to'**to cancel** or redo a modification (adding action, block...).
+> A Ctrl Shift Z or Ctrl Shift Y allows you to'**to cancel** or from **remake** a modification (addition of action, block...).
 
 ## Blocks
 
@@ -121,7 +121,7 @@ Each block has its options to better handle them :
 
 - On the left :
     - The bidirectional arrow allows you to move a block or an action to reorder them in the scenario.
-    - The eye reduces a block (*collapse*) to reduce its visual impact. Ctrl Click on the eye reduce them or display them all.
+    - The eye reduces a block (*collapse*) to reduce its visual impact. Ctrl Click on the eye reduces them or displays them all.
     - The check box allows you to completely deactivate the block without deleting it. It will therefore not be executed.
 
 - On the right :
@@ -217,7 +217,7 @@ Actions added to blocks have several options :
 
 > **Tip**
 >
-> Depending on the selected command, you can see different additional fields displayed.
+> Depending on the command selected, different additional fields may be displayed.
 
 ## Possible substitutions
 
@@ -240,7 +240,7 @@ You can also trigger a scenario using the HTTP API described [here](https://doc.
 
 ### Comparison operators and links between conditions
 
-You can use any of the following symbols for comparisons in conditions :
+You can use any of the following symbols for comparisons under conditions :
 
 - ``==`` : Equal to.
 - ``>`` : Strictly greater than.
@@ -330,7 +330,7 @@ Several functions are available for the equipment :
 - ``age(commande)`` : Gives the age in seconds of the value of the command (``collecDate``)
     -1 : The command does not exist or it is not of type info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gives the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``lastBetween(commande,start,end)`` : Gives the last value recorded for the device between the 2 requested terminals (in the form ``Y-m-d H:i:s`` or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -368,9 +368,9 @@ Several functions are available for the equipment :
 
 - ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object. Type : cmd, eqLogic or object.
 
-- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the equipment given as a parameter, the 2nd optional parameter allows you to specify the return format (details [here](http://php.net/manual/fr/function.date.php)). A return of -1 means that the equipment cannot be found.
+- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](http://php.net/manual/fr/function.date.php)). A return of -1 means that the equipment cannot be found.
 
-- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated with respect to a value in the interval color_start / color_end. The value must be between min_value and max_value.
+- ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated relative to a value in the interval color_start / color_end. The value must be between min_value and max_value.
 
 The periods and intervals of these functions can also be used with [PHP expressions](http://php.net/manual/fr/datetime.formats.relative.php) For example :
 
@@ -430,7 +430,7 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``avg(commande1,commande2…​.commandeN)`` : Returns the average of the values.
 - ``time_op(time,value)`` : Allows you to perform operations on time, with time = time (ex : 1530) and value = value to add or subtract in minutes.
 - ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
-- ``time_diff(date1,date2[,format, round])`` : Used to find out the difference between two dates (the dates must be in the format YYYY / MM / DD HH:MM:SS). By default, the method returns the difference in day (s). You can ask it in seconds (s), minutes (m), hours (h). Example in seconds ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. The difference is returned in absolute, unless you specify ``f`` (``sf``, ``mf``, ``hf``, ``df``). You can also use ``dhms`` who will not return example ``7j 2h 5min 46s``. The optional round parameter rounded to x digits after the decimal point (2 by default). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
+- ``time_diff(date1,date2[,format, round])`` : Used to find out the difference between two dates (the dates must be in the format YYYY / MM / DD HH:MM:SS). By default, the method returns the difference in day (s). You can ask it in seconds (s), minutes (m), hours (h). Example in seconds ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. The difference is returned in absolute, unless you specify ``f`` (``sf``, ``mf``, ``hf``, ``df``). You can also use ``dhms`` who will not return example ``7j 2h 5min 46s``. The optional round parameter rounds to x decimal places (2 by default). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formats the return of a chain ``#time#``.
 - ``floor(time/60)`` : Convert seconds to minutes, or minutes to hours (``floor(time/3600)`` for seconds to hours).
 - ``convertDuration(secondes)`` : Converts seconds to d / h / min / s.
@@ -462,7 +462,7 @@ In addition to home automation commands, you have access to the following action
 - **Pause** (sleep) : Pause of x second (s).
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
-- **genericType (GENERIC, #[Object]#) : Modification of an info (event) or action (execCmd) command by Generic Type, in an object. For example, turn off all the lights in the Living Room.
+- **genericType (GENERIC, #[Object]#)** : Modification of an info (event) or action (execCmd) command by Generic Type, in an object. For example, turn off all the lights in the Living Room.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it).
 - **Stop** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).

@@ -55,7 +55,7 @@ Encontrado aquí :
     - **Posición** : La posición del diseño en el menú. Le permite ordenar los diseños.
     - **Fondo transparente** : Hace el fondo transparente. Atención si la casilla está marcada, no se usa el color de fondo.
     - **Color de fondo** : Diseño de color de fondo.
-    - **Código de acceso* : Código de acceso a su diseño (si está vacío, no se requiere código).
+    - **Código de acceso** : Código de acceso a su diseño (si está vacío, no se requiere código).
     - **Icono** : Un icono para ello (aparece en el menú de opciones de diseño).
     - **Imagen**
         - **Enviar a** : Le permite agregar una imagen de fondo al diseño.
