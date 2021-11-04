@@ -157,6 +157,7 @@ class config {
 		if (!is_array($value) || !isset($value['value']) || $value['value'] === '' || $value['value'] === null) {
 			$defaultConfiguration = self::getDefaultConfiguration($_plugin);
 			if (isset($defaultConfiguration[$_plugin][$_key])) {
+				$defaultConfiguration[$_plugin][$_key] = is_json($defaultConfiguration[$_plugin][$_key], $defaultConfiguration[$_plugin][$_key]);
 				self::$cache[$_plugin . '::' . $_key] = $defaultConfiguration[$_plugin][$_key];
 			} else if ($_default !== '') {
 				self::$cache[$_plugin . '::' . $_key] = $_default;
