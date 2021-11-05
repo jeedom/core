@@ -53,7 +53,7 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		$objects = jeeObject::buildTree(null,init('onlyVisible',true));
+		$objects = jeeObject::buildTree(null, init('onlyVisible', true));
 		if (init('onlyHasEqLogic') != '') {
 			$return = array();
 			foreach ($objects as $object) {
@@ -124,7 +124,7 @@ try {
 		ajax::success($return);
 	}
 
-	function jeeAjax_objectToHtml($_id=-1, $_version='dashboard', $_category='all', $_tag='all', $_summary='') {
+	function jeeAjax_objectToHtml($_id = -1, $_version = 'dashboard', $_category = 'all', $_tag = 'all', $_summary = '') {
 		$html = array();
 		if ($_summary == '') {
 			$eqLogics = eqLogic::byObjectId($_id, true, true);
@@ -141,18 +141,18 @@ try {
 					continue;
 				}
 				$order = $eqLogic->getOrder();
-				while(isset($html[$order])){
+				while (isset($html[$order])) {
 					$order++;
 				}
 				$html[$order] = $eqLogic->toHtml($_version);
 			}
 		}
 		if ($_summary == '') {
-			$scenarios = scenario::byObjectId($_id,false,true);
-			if(count($scenarios) > 0){
+			$scenarios = scenario::byObjectId($_id, false, true);
+			if (count($scenarios) > 0) {
 				foreach ($scenarios as $scenario) {
 					$order = $scenario->getOrder();
-					while(isset($html[$order])){
+					while (isset($html[$order])) {
 						$order++;
 					}
 					$html[$order] = $scenario->toHtml($_version);
@@ -168,7 +168,7 @@ try {
 				$objects = json_decode(init('id'), true);
 			} else {
 				$objects = array();
-				if(init('summary') == ''){
+				if (init('summary') == '') {
 					foreach (jeeObject::buildTree(null, true) as $object) {
 						if ($object->getConfiguration('hideOnDashboard', 0) == 1) {
 							continue;
@@ -176,7 +176,7 @@ try {
 						$objects[] = $object->getId();
 					}
 				} else {
-					foreach((jeeObject::all()) as $object) {
+					foreach ((jeeObject::all()) as $object) {
 						$objects[] = $object->getId();
 					}
 				}
@@ -265,10 +265,10 @@ try {
 		$object->save();
 		@rrmdir(__DIR__ . '/../../core/img/object');
 
-		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
+		$files = ls(__DIR__ . '/../../data/object/', 'object' . $object->getId() . '-*');
 		if (count($files)  > 0) {
 			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/object/'.$file);
+				unlink(__DIR__ . '/../../data/object/' . $file);
 			}
 		}
 		ajax::success();
@@ -288,7 +288,7 @@ try {
 				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 			}
 			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-			if (!in_array($extension, array('.jpg', '.png'))) {
+			if (!in_array($extension, array('.jpg', '.png', '.gif'))) {
 				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
 			}
 			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
@@ -299,20 +299,20 @@ try {
 			$extension = strtolower(strrchr(init('file'), '.'));
 			$upfilepath = init('file');
 		}
-		$files = ls(__DIR__ . '/../../data/object/','object'.$object->getId().'-*');
+		$files = ls(__DIR__ . '/../../data/object/', 'object' . $object->getId() . '-*');
 
 		if (count($files)  > 0) {
 			foreach ($files as $file) {
-				unlink(__DIR__ . '/../../data/object/'.$file);
+				unlink(__DIR__ . '/../../data/object/' . $file);
 			}
 		}
 		$object->setImage('type', str_replace('.', '', $extension));
 		$object->setImage('sha512', sha512(file_get_contents($upfilepath)));
-		$filename = 'object'.$object->getId().'-'.$object->getImage('sha512') . '.' . $object->getImage('type');
+		$filename = 'object' . $object->getId() . '-' . $object->getImage('sha512') . '.' . $object->getImage('type');
 		$filepath = __DIR__ . '/../../data/object/' . $filename;
-		file_put_contents($filepath,file_get_contents($upfilepath));
+		file_put_contents($filepath, file_get_contents($upfilepath));
 		if (!file_exists($filepath)) {
-			throw new \Exception(__('Impossible de sauvegarder l\'image',__FILE__));
+			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
 		}
 		$object->save();
 		ajax::success(array('filepath' => $filepath));
