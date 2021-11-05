@@ -13,8 +13,19 @@ Theme ElFinder File Editor 2021 @Jeedom
 #elfinder > .ui-icon-gripsmall-diagonal-se {
   display: none !important;
 }
-.elfinder-preference-tabs {
+#elfinder .elfinder-preference-tabs {
   padding: 10px 24px !important;
+}
+
+#elfinder select {
+  background-image: initial !important;
+  background-color: var(--form-bg-color) !important;
+}
+#elfinder .ui-tabs-tab .ui-tabs-anchor,
+#elfinder .ui-tabs-active .ui-tabs-anchor,
+#elfinder .ui-tabs-anchor:hover {
+  border: none;
+  background-color: var(--form-bg-color) !important;
 }
 
 

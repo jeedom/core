@@ -50,7 +50,8 @@ $(function() {
         ['edit','duplicate', 'rename', 'rm'],
         ['extract', 'archive'],
         ['search'],
-        ['view']
+        ['view'],
+        ['preference']
       ]
     },
     handlers: {
