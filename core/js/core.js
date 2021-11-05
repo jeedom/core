@@ -118,40 +118,43 @@ function getCookie(name) {
 }
 
 function getDeviceType() {
-  var result = {};
-  result.type = 'desktop';
-  result.width = $('#pagecontainer').width();
-  if (navigator.userAgent.match(/(android)/gi)) {
-    result.width = screen.width;
-    result.type = 'phone';
-    if ($('#pagecontainer').width() > 899) {
-      result.type = 'tablet';
-    }
-  }
-  if (navigator.userAgent.match(/(phone)/gi)) {
-    result.type = 'phone';
-  }
-  if (navigator.userAgent.match(/(iPhone)/gi)) {
-    result.type = 'phone';
-  }
-  if (navigator.userAgent.match(/(Lumia)/gi)) {
-    result.type = 'phone';
-  }
-  if (navigator.userAgent.match(/(IEMobile)/gi)) {
-    result.type = 'phone';
-  }
-  if (navigator.userAgent.match(/(iPad)/gi)) {
-    result.type = 'tablet';
-  }
-  result.bSize = 220;
-  if (result.type == 'phone') {
-    var ori = window.orientation;
-    if (ori == 90 || ori == -90) { //landscape
-      result.bSize = (result.width / 4) - 12
-    } else { //portrait
-      result.bSize = (result.width / 2) - 12
-    }
+  var ua = navigator.userAgent
+  var result = {}
+  result.width = $('#pagecontainer').width()
+  result.type = 'desktop'
+  result.subType = ''
+  result.bSize = 220
 
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    result.type = 'tablet'
   }
-  return result;
+  if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+    result.type = 'phone'
+  }
+
+  if (/(android)/.test(ua)) {
+    result.subType = 'android'
+  }
+  if (/ipad|iP(hone|od)/.test(ua)) {
+    result.subType = 'ios'
+  }
+
+  if (result.subType == 'android') {
+    result.width = screen.width
+    if ($('#pagecontainer').width() > 899) {
+      result.type = 'tablet'
+    }
+  }
+
+  if (result.type == 'phone') {
+    var margin = (result.subType == 'ios' ? 6 : 12)
+    var ori = window.orientation
+    if (ori == 90 || ori == -90) { //landscape
+      result.bSize = (result.width / 4) - margin
+    } else { //portrait
+      result.bSize = (result.width / 2) - margin
+    }
+  }
+
+  return result
 }

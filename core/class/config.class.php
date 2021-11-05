@@ -204,6 +204,7 @@ class config {
 			if (isset($return[$key])) {
 				$return[$key] = is_json($return[$key], $return[$key]);
 			} elseif (isset($defaultConfiguration[$_plugin][$key])) {
+				$defaultConfiguration[$_plugin][$key] = is_json($defaultConfiguration[$_plugin][$key], $defaultConfiguration[$_plugin][$key]);
 				$return[$key] = $defaultConfiguration[$_plugin][$key];
 			} else {
 				if (is_array($_default)) {

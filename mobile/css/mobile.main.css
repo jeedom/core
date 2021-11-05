@@ -659,6 +659,9 @@
     margin: 0 8px;
     padding: 4px 0;
   }
+  #div_displayEquipement {
+    height: 100%;
+  }
   #div_displayEquipement .objectSummaryContainer {
     width: 100vw;
   }
