@@ -9,12 +9,15 @@ Theme ElFinder File Editor 2021 @Jeedom
   margin-left: -15px;
   margin-right: -15px;  
 }
+
 #elfinder > .ui-icon-gripsmall-diagonal-se {
   display: none !important;
 }
 .elfinder-preference-tabs {
   padding: 10px 24px !important;
 }
+
+
 /* ____________________ELFINDER EDITOR */
   #elfinder .elfinder-toolbar::after {
     height: unset;
@@ -28,7 +31,7 @@ Theme ElFinder File Editor 2021 @Jeedom
     color: rgb(225, 225, 225) !important;
   }
   #elfinder .elfinder-button-icon,
-  .elfinder-dialog .ui-dialog-titlebar .ui-icon,
+  #elfinder .elfinder-dialog .ui-dialog-titlebar .ui-icon,
   #elfinder .elfinder-path-dir {
     cursor: pointer !important;
   }
@@ -50,52 +53,57 @@ Theme ElFinder File Editor 2021 @Jeedom
     margin: 2px;
   }
 
-  .elfinder-cwd-file {
+  #elfinder .elfinder-cwd-file {
     color: unset;
   }
-  .elfinder .elfinder-navbar {
+  #elfinder .elfinder .elfinder-navbar {
    font-size: 0.78em
   }
 
-  .std42-dialog .ui-dialog-content {
+  #elfinder .std42-dialog .ui-dialog-content {
    font-size: inherit;
   }
 
-  .elfinder-bottomtray {
-    padding: 5px;
+  #elfinder .elfinder-bottomtray {
+    padding: 2px 2px 22px 2px;
+    opacity: 0.88;
   }
-  .elfinder-dialog .ui-dialog-buttonset .ui-button-text {
+
+  #elfinder .elfinder-bottomtray > .ui-dialog.elfinder-maximized {
+    padding-top: 0 !important;
+  }
+  #elfinder .elfinder-dialog .ui-dialog-buttonset .ui-button-text {
     font-family: "Roboto";
     text-transform: capitalize;
   }
 
-  .elfinder-dialog-edit .elfinder-edit-extras select {
-    width : 150px !important;
+  #elfinder .elfinder-dialog-edit .elfinder-edit-extras select {
+    width: 150px !important;
   }
 
-  .elfinder-contextmenu-item {
+  #elfinder .elfinder-contextmenu-item {
     color: rgb(75, 75, 75) !important;
     font-size: 14px;
   }
-  .elfinder-cwd-wrapper {
+  #elfinder .elfinder-cwd-wrapper {
     color: rgb(115, 115, 115) !important;
     line-height: 11px !important;
   }
 
 
-  .elfinder-cwd-view-list table {
+  #elfinder .elfinder-cwd-view-list table {
     background-color: rgb(75, 75, 75) !important;
     color: rgb(240, 240, 240);
   }
-  .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:hover,
-  .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(odd):hover,
-  .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(even):hover{
+  #elfinder .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:hover,
+  #elfinder .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(odd):hover,
+  #elfinder .elfinder-cwd-view-list table tbody.elfinder-cwd-fixheader tr:nth-child(even):hover{
     background-color: rgb(160, 160, 160) !important;
   }
 
-  .elfinder-cwd-view-list table > tbody tr,
-  .elfinder-cwd-view-list table:not(.tableCmd) > tbody tr:nth-child(odd),
-  .elfinder-cwd-view-list table:not(.tableCmd) > tbody tr:nth-child(even) {
+  #elfinder .elfinder-cwd-view-list table > tbody tr,
+  #elfinder .elfinder-cwd-view-list table:not(.tableCmd) > tbody tr:nth-child(odd),
+  #elfinder .elfinder-cwd-view-list table:not(.tableCmd) > tbody tr:nth-child(even) {
     background-color: rgb(75, 75, 75) !important;
   }
 
@@ -138,63 +146,67 @@ Theme ElFinder File Editor 2021 @Jeedom
   }
 
 
-  .elfinder-dialog-edit .CodeMirror pre {
+  #elfinder .elfinder-dialog-edit .CodeMirror pre {
     background: initial !important;
   }
 
-  .CodeMirror-dialog-top {
+  #elfinder .CodeMirror-dialog-top {
     background-color: rgb(40, 40, 40);
   }
 
-  .elfinder-dialog .ui-helper-clearfix .elfinder-cwd-icon:before,
-  .elfinder-dialog .elfinder-dialog-icon-confirm {
+  #elfinder .elfinder-dialog .ui-helper-clearfix .elfinder-cwd-icon:before,
+  #elfinder .elfinder-dialog .elfinder-dialog-icon-confirm {
     display: none;
   }
 
-  .ui-dialog.elfinder-maximized {
-    top: 50px !important;
+  #elfinder .ui-dialog.elfinder-maximized {
+    padding-top: 55px !important;
     max-height: calc(100% - 60px) !important;
     max-width: 100% !important;
   }
-  .ui-dialog.elfinder-maximized .elfinder-edit-editor {
+  #elfinder .ui-dialog.elfinder-maximized .elfinder-edit-editor {
     max-width: calc(100% - 12px) !important;
   }
-  .ui-dialog.elfinder-maximized .ui-resizable-handle {
+  #elfinder .ui-dialog.elfinder-maximized .ui-resizable-handle {
     display: none !important;
   }
-  .ui-dialog.elfinder-maximized .elfinder-titlebar-minimize {
-    display: none;
-  }
 
-  .std42-dialog.elfinder-dialog-minimized .ui-dialog-titlebar {
+  #elfinder .std42-dialog.elfinder-dialog-minimized .ui-dialog-titlebar {
     line-height: 10px;
   }
 
-  .elfinder-navbar-wrapper {
+  #elfinder .elfinder-navbar-wrapper {
     line-height: 10px !important;
   }
 
-  .ui-dialog-titlebar .elfinder-titlebar-button-right {
+  #elfinder .ui-dialog-titlebar .elfinder-titlebar-button-right {
     opacity: 1 !important;
   }
 
-  .elfinder-dialog .CodeMirror-gutter,
-  .elfinder-dialog .CodeMirror-gutters,
-  .elfinder-dialog .CodeMirror-linenumber,
-  .elfinder-dialog .CodeMirror-foldgutter-open {
+  #elfinder .std42-dialog .ui-dialog-titlebar .ui-dialog-titlebar-close:hover .ui-icon,
+  #elfinder .std42-dialog .ui-dialog-titlebar .elfinder-titlebar-full:hover .ui-icon,
+  #elfinder .std42-dialog .ui-dialog-titlebar .elfinder-titlebar-minimize:hover .ui-icon {
+    background-color: unset;
+    font-weight: bold;
+  }
+
+  #elfinder .elfinder-dialog .CodeMirror-gutter,
+  #elfinder .elfinder-dialog .CodeMirror-gutters,
+  #elfinder .elfinder-dialog .CodeMirror-linenumber,
+  #elfinder .elfinder-dialog .CodeMirror-foldgutter-open {
     background: rgb(70,70,70) !important;
   }
 
-  .elfinder-button-sort-menu,
-  .elfinder-button-menu-item {
+  #elfinder .elfinder-button-sort-menu,
+  #elfinder .elfinder-button-menu-item {
     background-color: rgb(255,255,255) !important;
   }
 
-  .elfinder-dialog .ui-dialog-titlebar {
+  #elfinder .elfinder-dialog .ui-dialog-titlebar {
     vertical-align: middle;
     background-color: rgb(85,85,85) !important;
   }
-  .elfinder-dialog .elfinder-dialog-title {
+  #elfinder .elfinder-dialog .elfinder-dialog-title {
     font-family: "Roboto";
     font-size: 14px;
     font-weight: normal !important;
@@ -202,10 +214,10 @@ Theme ElFinder File Editor 2021 @Jeedom
     color: rgb(225,225,225) !important;
     font-weight: bold;
   }
-  .elfinder-dialog .elfinder-dialog-title:before {
+  #elfinder .elfinder-dialog .elfinder-dialog-title:before {
     content: "> "
   }
-  .elfinder-dialog .ui-icon {
+  #elfinder .elfinder-dialog .ui-icon {
     width: 16px;
     background-image: none !important;
     text-indent: 0 !important;
