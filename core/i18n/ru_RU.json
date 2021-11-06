@@ -3581,7 +3581,7 @@
         "L\\'objet n\\'existe pas : ": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID ": "Vue inconnu. Vérifiez l\\'ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extension du fichier non valide (autorisé .jpg .png) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
         "Le fichier est trop gros (maximum 5Mo)": "Le fichier est trop gros (maximum 5Mo)",
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
         "Aucune méthode correspondante à : ": "Aucune methode correspondante à :"

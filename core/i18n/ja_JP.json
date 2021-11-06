@@ -3581,7 +3581,7 @@
         "L\\'objet n\\'existe pas : ": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID ": "不明なビュー。 IDを確認してください",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extension du fichier non valide (autorisé .jpg .png) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
