@@ -194,6 +194,7 @@ class log {
 		}
 		return;
 	}
+
 	public static function clearAll() {
 		foreach (array('', 'scenarioLog/') as $logPath) {
 			$logs = ls(self::getPathToLog($logPath), '*');
@@ -203,7 +204,6 @@ class log {
 		}
 		return true;
 	}
-
 
 	/**
 	 * Vide le fichier de log
