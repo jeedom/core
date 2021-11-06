@@ -30,6 +30,14 @@
   ::-webkit-color-swatch-wrapper {
     padding: 0;
   }
+  #summaryglobalContainer::-webkit-scrollbar {
+    display: none !important;
+  }
+  #summaryglobalContainer {
+    -ms-overflow-style: none !important;  /* IE and Edge */
+    scrollbar-width: none !important;  /* Firefox */
+  }
+
   @keyframes "loading" {
     from { left: 0; }
     to { left: 100%; }
