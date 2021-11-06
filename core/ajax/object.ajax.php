@@ -289,7 +289,7 @@ try {
 			}
 			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 			if (!in_array($extension, array('.jpg', '.png', '.gif'))) {
-				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
+				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) : ', __FILE__) . $extension);
 			}
 			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
