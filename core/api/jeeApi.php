@@ -306,10 +306,10 @@ try {
 			}
 			$jsonrpc->makeSuccess($user->getHash());
 		}
+	}
 
-		if ($jsonrpc->getMethod() == 'ping') {
-			$jsonrpc->makeSuccess('pong');
-		}
+	if ($jsonrpc->getMethod() == 'ping') {
+		$jsonrpc->makeSuccess('pong');
 	}
 
 	if (!isset($params['apikey']) && !isset($params['api'])) {
