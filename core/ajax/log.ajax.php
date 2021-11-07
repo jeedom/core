@@ -36,6 +36,12 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'clearAll') {
+		unautorizedInDemo();
+		log::clearAll();
+		ajax::success();
+	}
+
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
 		log::remove(init('log'));

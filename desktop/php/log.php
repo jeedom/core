@@ -66,6 +66,7 @@ natcasesort($list_logfile);
 				<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
 				</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
 				</a><a class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i> {{Vider}}
+				</a><a class="btn btn-warning btn-sm" id="bt_clearAllLog"><i class="fas fa-times"></i> {{Vider tous}}
 				</a><a class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i> {{Supprimer}}
 				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="far fa-trash-alt"></i> {{Supprimer tous}}</a>
 			</span>

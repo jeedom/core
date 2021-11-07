@@ -103,6 +103,24 @@ $("#bt_clearLog").on('click', function(event) {
   })
 })
 
+$("#bt_clearAllLog").on('click', function(event) {
+  bootbox.confirm("{{Êtes-vous sûr de vouloir vider tous les logs ?}}", function(result) {
+    if (result) {
+      jeedom.log.clearAll({
+        error: function(error) {
+          $('#div_alertError').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeedomUtils.loadPage('index.php?v=d&p=log')
+        }
+      })
+    }
+  })
+})
+
 $("#bt_removeLog").on('click', function(event) {
   jeedom.log.remove({
     log: $('.li_log.active').attr('data-log'),
