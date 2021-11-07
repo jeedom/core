@@ -256,10 +256,6 @@ $('.interactDisplayCard').off('mouseup').on('mouseup', function(event) {
   }
 })
 
-$('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAttr:visible', function() {
-  modifyWithoutSave = true
-})
-
 $('#bt_duplicate').on('click', function() {
   bootbox.prompt("{{Nom}} ?", function(result) {
     if (result !== null) {
@@ -584,6 +580,13 @@ function printInteract(_id) {
           }
           jeedomUtils.taAutosize()
         }
+      })
+
+      $('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAttr:visible', function() {
+        modifyWithoutSave = true
+      })
+      $('#div_pageContainer').off('mousedown', 'select option.interactAttr').on('mousedown', 'select option.interactAttr:visible', function() {
+        modifyWithoutSave = true
       })
       modifyWithoutSave = false
     }
