@@ -47,6 +47,9 @@ function initOverview() {
           $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
             $(this).detach().appendTo(parent)
           })
+
+          $(this).find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
+
           if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
             $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
           }
@@ -107,6 +110,7 @@ function updateSummary(_className) {
   pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
     $(this).detach().appendTo(parent.find('.topPreview'))
   })
+  parent.find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
   if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
     pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
   }
