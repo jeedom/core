@@ -1486,6 +1486,9 @@ class cmd {
 		$widget = $this->getWidgetTemplateCode($_version);
 		$template = $widget['template'];
 		$isCorewidget = $widget['isCoreWidget'];
+		if ($_version == 'scenario' && $isCorewidget) {
+			$widget['widgetName'] = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
+		}
 
 		if ($_options != '') {
 			$options = jeedom::toHumanReadable($_options);
@@ -1567,12 +1570,6 @@ class cmd {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
-			$template = template_replace($replace, $template);
-			if ($isCorewidget) {
-				return translate::exec($template, 'core/template/widgets.html');
-			} else {
-				return translate::exec($template, $widget['widgetName']);
-			}
 		}
 
 		if ($this->getType() == 'action') {
@@ -1636,14 +1633,19 @@ class cmd {
 			if (!isset($replace['#color#'])) {
 				$replace['#color#'] = '';
 			}
-
-			$template = template_replace($replace, $template);
-			if ($isCorewidget) {
-				return translate::exec($template, 'core/template/widgets.html');
-			} else {
-				return translate::exec($template, $widget['widgetName']);
-			}
 		}
+
+		$template = template_replace($replace, $template);
+		if ($isCorewidget && $_version == 'scenario') {
+			return translate::exec($template, 'core/template/scenario/'.$widget['widgetName'].'.html');
+		}
+		if ($isCorewidget) {
+			return translate::exec($template, 'core/template/widgets.html');
+		}
+		if (isset($widget['widgetName'])) {
+			return translate::exec($template, $widget['widgetName']);
+		}
+		return $template;
 	}
 
 	public function event($_value, $_datetime = null, $_loop = 1) {
