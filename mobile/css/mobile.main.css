@@ -1492,6 +1492,7 @@
   .objectPreview .resume .objectSummaryParent:first-child {
     border-radius: var(--border-radius) 0 0 0 !important;
   }
+  .objectPreview .topPreview .objectSummaryParent.last,
   .objectPreview .resume .objectSummaryParent:last-child {
     border-bottom-right-radius: var(--border-radius) !important;
   }
