@@ -1957,6 +1957,7 @@
         "Pause": "Pause",
         "Télécharger": "Télécharger",
         "Vider": "Vider",
+        "Vider tous": "Vider tous",
         "Supprimer": "Supprimer",
         "Supprimer tous": "Supprimer tous"
     },
@@ -2588,6 +2589,7 @@
     },
     "desktop\/js\/log.js": {
         "Pause": "Pause",
+        "Êtes-vous sûr de vouloir vider tous les logs ?": "Êtes-vous sûr de vouloir vider tous les logs ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Êtes-vous sûr de vouloir supprimer tous les logs ?"
     },
     "desktop\/js\/editor.js": {

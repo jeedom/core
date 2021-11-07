@@ -1957,6 +1957,7 @@
         "Pause": "Berhenti Sebentar",
         "Télécharger": "Download",
         "Vider": "Abisin",
+        "Vider tous": "Vider tous",
         "Supprimer": "Menghapus",
         "Supprimer tous": "Hapus semua"
     },
@@ -2588,6 +2589,7 @@
     },
     "desktop\/js\/log.js": {
         "Pause": "Berhenti Sebentar",
+        "Êtes-vous sûr de vouloir vider tous les logs ?": "Êtes-vous sûr de vouloir vider tous les logs ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Apakah Anda yakin ingin menghapus semua log?"
     },
     "desktop\/js\/editor.js": {
