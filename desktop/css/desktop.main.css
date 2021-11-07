@@ -2728,11 +2728,13 @@ Desktop
     padding: 6px 12px !important;
   }
   select option {
-    color: var(--txt-color) !important;
-    background-color: rgb(var(--defaultBkg-color)) !important;
     font-size: 13px;
     font-family: 'Roboto', 'Verdana';
     font-weight: 500;
+  }
+  select:not([multiple]) option {
+    color: var(--txt-color) !important;
+    background-color: rgb(var(--defaultBkg-color)) !important;
   }
   select optgroup {
     color: var(--txt-color) !important;
