@@ -196,12 +196,8 @@ class log {
 	}
 
 	public static function clearAll() {
-		foreach (array('', 'scenarioLog/') as $logPath) {
-			$logs = ls(self::getPathToLog($logPath), '*');
-			foreach ($logs as $log) {
-				self::clear($logPath.$log);
-			}
-		}
+		foreach (ls(self::getPathToLog(''), '*', false, array('files')) as $log)
+			self::clear($log);
 		return true;
 	}
 
@@ -225,12 +221,8 @@ class log {
 	}
 
 	public static function removeAll() {
-		foreach (array('', 'scenarioLog/') as $logPath) {
-			$logs = ls(self::getPathToLog($logPath), '*');
-			foreach ($logs as $log) {
-				self::remove($logPath.$log);
-			}
-		}
+		foreach (ls(self::getPathToLog(''), '*', false, array('files')) as $log)
+			self::remove($log);
 		return true;
 	}
 
