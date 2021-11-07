@@ -390,6 +390,8 @@ function is_array(a) {
         if(typeof initRowOverflow == 'function'){
           initRowOverflow();
         }
+      }else{
+        window.toastr.clear()
       }
     };
     
