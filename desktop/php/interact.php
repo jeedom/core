@@ -256,12 +256,9 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									$size = 0;
 									$html = '';
 									foreach ((jeedom::getConfiguration('cmd:type')) as $id => $type) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '">' . $type['name'] . '</option>';
+										$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="type" data-l3key="' . $id . '">' . $type['name'] . '</label><br/>';
 										$size += 1;
 									}
-									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -272,13 +269,11 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									$html = '';
 									foreach ((jeedom::getConfiguration('cmd:type')) as $type) {
 										foreach ($type['subtype'] as $id => $subtype) {
-											$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="' . $id . '">' . $subtype['name'] . '</option>';
+											$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="subtype" data-l3key="' . $id . '">' . $subtype['name'] . '</label><br/>';
 											$size += 1;
 										}
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -286,17 +281,15 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									<label class="control-label"><i class="fas fa-filter"></i> {{Commandes par unité}}</label><br /><br />
 									<?php
 									$size = 1;
-									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</option>';
+									$html = '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="none">{{Sans unité}}</label><br/>';
 									foreach ((cmd::allUnite()) as $unite) {
 										if (trim($unite['unite']) == '') {
 											continue;
 										}
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '">' . $unite['unite'] . '</option>';
+										$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="unite" data-l3key="' . $unite['unite'] . '">' . $unite['unite'] . '</label><br/>';
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -306,12 +299,10 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									$size = 0;
 									$html = '';
 									foreach ((jeeObject::all()) as $object) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '">' . $object->getName() . '</option>';
+										$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="object" data-l3key="' . $object->getId() . '">' . $object->getName() . '</label><br/>';
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -321,12 +312,10 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									$size = 0;
 									$html = '';
 									foreach ((eqLogic::allType()) as $type) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '">' . $type['type'] . '</option>';
+										$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="plugin" data-l3key="' . $type['type'] . '">' . $type['type'] . '</label><br/>';
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -334,14 +323,12 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									<label class="control-label"><i class="fas fa-filter"></i> {{Catégories}}</label><br /><br />
 									<?php
 									$size = 1;
-									$html = '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</option>';
+									$html = '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="noCategory">{{Sans catégorie}}</label><br/>';
 									foreach ((jeedom::getConfiguration('eqLogic:category')) as $id => $category) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '">' . $category['name'] . '</option>';
+										$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="category" data-l3key="' . $id . '">' . $category['name'] . '</label><br/>';
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -356,12 +343,10 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 									$size = 0;
 									$html = '';
 									foreach (array('object' => 'Objets', 'eqlogic' => 'Equipements', 'cmd' => 'Commandes') as $id => $name) {
-										$html .= '<option selected="selected" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '">' . $name . '</option>';
+										$html .= '<label><input type="checkbox" class="interactAttr" data-l1key="filtres" data-l2key="visible" data-l3key="' . $id . '">' . $name . '</label><br/>';
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
-									$html .= '</select>';
 									echo $html;
 									?>
 								</div>
@@ -371,7 +356,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										<option value="all">{{Tous}}</option>
 										<?php
 										foreach ((eqLogic::all()) as $eqLogic) {
-											echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
+											echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</label><br/>';
 										}
 										?>
 									</select>
