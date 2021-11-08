@@ -330,6 +330,19 @@ try {
 		ajax::success();
 	}
 
+	if (init('action') == 'clearAllLogs') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$scenarios = scenario::all();
+		foreach($scenarios as $scenario) {
+			if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
+				unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
+			}
+		}
+		ajax::success();
+	}
+
 	if (init('action') == 'emptyLog') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
@@ -337,9 +350,6 @@ try {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu', __FILE__));
-		}
-		if (!$scenario->hasRight('w')) {
-			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log')) {
 			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $scenario->getId() . '.log');
