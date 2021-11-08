@@ -2862,6 +2862,10 @@ Theme Core 2021 @Jeedom
     background-color: transparent !important;
   }
 
+select:not([multiple]) option {
+    color: var(--txt-color) !important;
+    background-color: rgb(var(--defaultBkg-color)) !important;
+  }
 
 
   /* hihgly special */
