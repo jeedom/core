@@ -303,7 +303,7 @@ function is_array(a) {
       let options_toastr = jeedomUtils.toastrUIoptions
       options_toastr.timeOut = options.ttl
       toastr[options.level](options.message, ' ', options_toastr)
-      if (this.attr('id') != 'div_alert') {
+      if (this.attr('id') && this.attr('id') != 'div_alert') {
         try {
           var modal = $(this).parent('.ui-dialog-content')
           $("#toast-container").appendTo(modal).css('position', 'absolute')
@@ -312,65 +312,6 @@ function is_array(a) {
         }
       }
     }
-    
-    $.fn.showAlertOld = function(_options) {
-      var options = init(_options, {});
-      options.message = init(options.message, '');
-      options.level = init(options.level, '');
-      options.emptyBefore = init(options.emptyBefore, false);
-      options.show = init(options.show, true);
-      options.ttl = init(options.ttl, 5000)
-      if ($.mobile) {
-        new $.nd2Toast({
-          message :  options.message,
-          ttl : options.ttl
-        });
-      } else {
-        if (options.emptyBefore == false) {
-          var html = $(this).find('.displayError').html();
-          if (isset(html)) {
-            options.message = html + '<br/>' + options.message;
-          }
-        }
-        $(this).empty();
-        $(this).html('<span href="#" class="btn_closeAlert pull-right cursor" style="position : relative;top:-2px; left : 30px;color : grey">×</span><span class="displayError">' + options.message + '</span>');
-        $(this).removeClass('alert alert-warning alert-danger alert-info alert-success jqAlert');
-        $(this).addClass('jqAlert');
-        if (options.level != '') {
-          $(this).addClass('alert-' + options.level);
-        }
-        if (options.show) {
-          $(this).show();
-        }
-        if ($(this).offset() != undefined && $(this).offset().top - $(window).scrollTop() < $(this).height()) {
-          $('html, body').animate({
-            scrollTop: $(this).offset().top - 60
-          }, 650);
-        }
-        
-        $(this).find('.btn_closeAlert').on('click', function() {
-          $(this).closest('.jqAlert').hide();
-          if(typeof initRowOverflow == 'function'){
-            initRowOverflow();
-          }
-        });
-        if(typeof initRowOverflow == 'function'){
-          initRowOverflow();
-        }
-      }
-      //Hide/show debug trace
-      $(this).find('.bt_errorShowTrace').on('click', function() {
-        var errorTrace = $(this).parent().find('.pre_errorTrace');
-        if (errorTrace.is(':visible')) {
-          errorTrace.hide();
-          $(this).text('Show traces');
-        } else {
-          errorTrace.show();
-          $(this).text('Hide traces');
-        }
-      });
-      return this;
-    };
     
     $.fn.hideAlert = function() {
       $('#jqAlertSpacer' + $(this).attr('id')).remove();
