@@ -356,7 +356,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										<option value="all">{{Tous}}</option>
 										<?php
 										foreach ((eqLogic::all()) as $eqLogic) {
-											echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</label><br/>';
+											echo '<option value="' . $eqLogic->getId() . '" >' . $eqLogic->getHumanName() . '</option>';
 										}
 										?>
 									</select>
