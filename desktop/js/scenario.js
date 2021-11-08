@@ -265,6 +265,28 @@ $("#bt_changeAllScenarioState").off('click').on('click', function() {
   })
 })
 
+$(".bt_clearAllLogs").on('click', function(event) {
+  bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?}}", function(result) {
+    if (result) {
+      jeedom.scenario.clearAllLogs({
+        error: function(error) {
+          $('#div_alertError').showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('#div_alertError').showAlert({
+            message: "{{Logs des scénarios supprimés.}}",
+            level: 'success'
+          })
+        }
+      })
+    }
+  })
+})
+
+
 $('.bt_showScenarioSummary').off('click').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Vue d'ensemble des scénarios}}"
