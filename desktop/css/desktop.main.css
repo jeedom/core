@@ -2451,8 +2451,6 @@ Theme Core 2021 @Jeedom
     padding: 6px 12px !important;
   }
   select option {
-    color: var(--txt-color) !important;
-    background-color: rgb(var(--defaultBkg-color)) !important;
     font-size: 13px;
     font-family: 'Roboto', 'Verdana';
     font-weight: 500;
