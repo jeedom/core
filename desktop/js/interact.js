@@ -308,32 +308,32 @@ $('#div_conf').on({
 $("#bt_saveInteract").on('click', function() {
   var interact = $('.interact').getValues('.interactAttr')[0]
   interact.filtres.type = {}
-  $('input[data-l1key=filtres][data-l2key=type]').each(function() {
-    interact.filtres.type[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=type]').each(function() {
+    interact.filtres.type[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
   interact.filtres.subtype = {}
-  $('input[data-l1key=filtres][data-l2key=subtype]').each(function() {
-    interact.filtres.subtype[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=subtype]').each(function() {
+    interact.filtres.subtype[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
   interact.filtres.unite = {}
-  $('input[data-l1key=filtres][data-l2key=unite]').each(function() {
-    interact.filtres.unite[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=unite]').each(function() {
+    interact.filtres.unite[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
   interact.filtres.object = {}
-  $('input[data-l1key=filtres][data-l2key=object]').each(function() {
-    interact.filtres.object[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=object]').each(function() {
+    interact.filtres.object[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
   interact.filtres.plugin = {}
-  $('input[data-l1key=filtres][data-l2key=plugin]').each(function() {
-    interact.filtres.plugin[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=plugin]').each(function() {
+    interact.filtres.plugin[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
   interact.filtres.category = {}
-  $('input[data-l1key=filtres][data-l2key=category]').each(function() {
-    interact.filtres.category[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=category]').each(function() {
+    interact.filtres.category[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
   interact.filtres.visible = {}
-  $('input[data-l1key=filtres][data-l2key=visible]').each(function() {
-    interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('checked') === true) ? '1' : '0'
+  $('option[data-l1key=filtres][data-l2key=visible]').each(function() {
+    interact.filtres.visible[$(this).attr('data-l3key')] = ($(this).prop('selected') === true) ? '1' : '0'
   })
 
   interact.actions = {}
