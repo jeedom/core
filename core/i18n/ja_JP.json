@@ -2111,6 +2111,7 @@
         "Aucun": "何でもありません",
         "Gestion": "管理",
         "Ajouter": "加えます",
+        "Supprimer les logs": "Supprimer les logs",
         "Activer scénarios": "シナリオをアクティブにする",
         "Désactiver scénarios": "シナリオを無効にする",
         "Vue d'ensemble": "概要",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "シナリオ",
         "Graphique de lien(s)": "リンク画像",

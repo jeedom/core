@@ -2111,6 +2111,7 @@
         "Aucun": "Nein",
         "Gestion": "Management",
         "Ajouter": "Hinzufügen",
+        "Supprimer les logs": "Protokolle löschen",
         "Activer scénarios": "Szenarien aktivieren",
         "Désactiver scénarios": "Szenarien deaktivieren",
         "Vue d'ensemble": "Übersicht",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
         "Nom du scénario": "Szenarioname",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Möchten Sie wirklich alle Szenarioprotokolle löschen?",
+        "Logs des scénarios supprimés.": "Protokolle gelöschter Szenarien",
         "Vue d'ensemble des scénarios": "Überblick über Szenarien",
         "Scénario": "Szenario",
         "Graphique de lien(s)": "Grafik verknüpfen",

@@ -2111,6 +2111,7 @@
         "Aucun": "Ninguno",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
+        "Supprimer les logs": "Eliminar registros",
         "Activer scénarios": "Activar escenarios",
         "Désactiver scénarios": "Desactivar escenarios",
         "Vue d'ensemble": "Resumen",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Nom du scénario": "Nombre del escenario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
+        "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
         "Scénario": "Escenario",
         "Graphique de lien(s)": "Gráfico de enlace",

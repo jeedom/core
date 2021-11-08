@@ -2111,6 +2111,7 @@
         "Aucun": "None",
         "Gestion": "Management",
         "Ajouter": "Add",
+        "Supprimer les logs": "Delete logs",
         "Activer scénarios": "Enable scenarios",
         "Désactiver scénarios": "Disable scenarios",
         "Vue d'ensemble": "Overview",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Scenario execution log",
         "Nom du scénario": "Scenario name",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Are you sure you want to delete all scenario logs?",
+        "Logs des scénarios supprimés.": "Logs of deleted scenarios",
         "Vue d'ensemble des scénarios": "Overview of scenarios",
         "Scénario": "Scenario",
         "Graphique de lien(s)": "Link graphic",

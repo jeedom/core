@@ -2111,6 +2111,7 @@
         "Aucun": "Tak ada",
         "Gestion": "Manajemen",
         "Ajouter": "Tambahan",
+        "Supprimer les logs": "Supprimer les logs",
         "Activer scénarios": "Mengaktifkan skenario",
         "Désactiver scénarios": "Menonaktifkan skenario",
         "Vue d'ensemble": "Ikhtisar",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log eksekusi script",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Skenario",
         "Graphique de lien(s)": "Graphique de lien(s)",

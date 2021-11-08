@@ -2111,6 +2111,7 @@
         "Aucun": "Нет",
         "Gestion": "Управление",
         "Ajouter": "Добавить",
+        "Supprimer les logs": "Supprimer les logs",
         "Activer scénarios": "Активировать сценарии",
         "Désactiver scénarios": "Отключить сценарии",
         "Vue d'ensemble": "обзор",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Журнал запуска скрипта",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Сценарий",
         "Graphique de lien(s)": "Ссылка графическая",

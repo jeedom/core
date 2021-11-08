@@ -2111,6 +2111,7 @@
         "Aucun": "Nessuno",
         "Gestion": "Gestione",
         "Ajouter": "Aggiungi",
+        "Supprimer les logs": "Supprimer les logs",
         "Activer scénarios": "Attiva scenari",
         "Désactiver scénarios": "Disabilita scenari",
         "Vue d'ensemble": "Panoramica",
@@ -3016,6 +3017,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Registro di esecuzione della scena",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "Scena",
         "Graphique de lien(s)": "Link grafico",
