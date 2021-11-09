@@ -1421,6 +1421,7 @@
         "Etat": "State",
         "Ouvrir": "Open",
         "Catégorie": "Category",
+        "Source": "Source",
         "Auteur": "Author",
         "Version": "Version",
         "Version installée du plugin.": "Installed version of the plugin",
