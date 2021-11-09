@@ -85,7 +85,8 @@ $plugins_list = plugin::listPlugin(false, true);
             }
 
             $div .= '<span class="hiddenAsCard displayTableRight">';
-            $div .= '<span>'.$plugin->getAuthor().' | </span>';
+            $div .= '<span>'.$plugin->getSource() .' </span>';
+            $div .= '<span>'.$plugin->getAuthor().' </span>';
             $div .= '<span>'.$plugin->getCategory().'</span>';
             $div .= ' <a class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></a>';
             $div .= '</span>';

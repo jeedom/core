@@ -44,6 +44,7 @@ class plugin {
 	private $documentation = '';
 	private $changelog_beta = '';
 	private $documentation_beta = '';
+	private $source = '';
 	private $whiteListFolders = array();
 	private $specialAttributes = array('object' => array(), 'user' => array());
 	private $info = array();
@@ -1229,6 +1230,14 @@ class plugin {
 	public function setDocumentation_beta($documentation_beta) {
 		$this->documentation_beta = $documentation_beta;
 		return $this;
+	}
+
+	public function getSource() {
+		if ($this->source == '') {
+			$update = update::byLogicalId($this->id);
+			$this->source = $update->getSource();
+		}
+		return $this->source;
 	}
 
 	public function getWhiteListFolders() {
