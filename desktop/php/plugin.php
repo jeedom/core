@@ -124,7 +124,10 @@ $plugins_list = plugin::listPlugin(false, true);
                   <div class="col-sm-4">
                     <span id="span_plugin_category"></span>
                   </div>
-                  <label class="col-sm-2 control-label"></label>
+                  <label class="col-sm-2 control-label">{{Source}}</label>
+                  <div class="col-sm-4">
+                    <span id="span_plugin_source"></span>
+                  </div>
                 </div>
 
                 <div class="form-group">
