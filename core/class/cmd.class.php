@@ -2600,10 +2600,6 @@ class cmd {
 		return $this;
 	}
 
-	public function setEventOnly($eventOnly) {
-		trigger_error('This method is deprecated', E_USER_DEPRECATED);
-	}
-
 	public function getTemplate($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->template, $_key, $_default);
 	}
