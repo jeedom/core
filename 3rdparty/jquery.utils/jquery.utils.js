@@ -354,7 +354,6 @@ function init(_value, _default) {
   $.fn.hideAlert = function() {
     $('#jqAlertSpacer' + $(this).attr('id')).remove();
     $(this).text('').hide();
-    $.alertTrigger();
     if (typeof jeedomUtils.initRowOverflow == 'function') {
       jeedomUtils.initRowOverflow();
     }
@@ -365,7 +364,6 @@ function init(_value, _default) {
     if (!$.mobile) {
       $('.jqAlert').text('');
       $('.jqAlert').hide();
-      $.alertTrigger();
       if (typeof jeedomUtils.initRowOverflow == 'function') {
         jeedomUtils.initRowOverflow();
       }
@@ -373,8 +371,6 @@ function init(_value, _default) {
       window.toastr.clear()
     }
   };
-
-  $.alertTrigger = function() {}
 
   /**********************Jquery.value******************************/
 

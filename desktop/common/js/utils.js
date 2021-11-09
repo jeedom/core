@@ -176,9 +176,6 @@ $(function() {
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
-  $.alertTrigger = function() {
-    jeedomUtils.initRowOverflow()
-  }
   $body.attr('data-page', getUrlVars('p'))
   $body.off('jeedom_page_load').on('jeedom_page_load', function() {
     if (getUrlVars('saveSuccessFull') == 1) {
