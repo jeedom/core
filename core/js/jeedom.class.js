@@ -178,10 +178,10 @@ jeedom.init = function() {
           options.ttl = _options.ttl
         }
         if (getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)) {
-          $('#div_alert').showAlert(options);
+          $.fn.showAlert(options);
         }
       } else {
-        $('#div_alert').showAlert(_options);
+        $.fn.showAlert(_options);
       }
     }
   });
@@ -209,7 +209,7 @@ jeedom.MESSAGE_NUMBER
 jeedom.refreshMessageNumber = function() {
   jeedom.message.number({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -230,7 +230,7 @@ jeedom.UPDATE_NUMBER
 jeedom.refreshUpdateNumber = function() {
   jeedom.update.number({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

@@ -19,7 +19,7 @@ function initEquipment(_object_id) {
   //set hamburger panel:
   jeedom.object.all({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
       if (_object_id == '') {
@@ -156,7 +156,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
     version: 'mobile',
     summary: _summary,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
       if (_objectId == 'all' || _objectId == '') {
@@ -246,7 +246,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
     onlyEnable: '1',
     onlyVisible: '0',
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(eqLogics) {
       var nbEqs = eqLogics.length
@@ -261,7 +261,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
           id: eqLogics[j].id,
           version: 'mobile',
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(html) {
             $('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').append(html.html)

@@ -515,7 +515,7 @@ function getObjectHtmlFromSummary(_object_id) {
     version: 'dashboard',
     summary: SEL_SUMMARY,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -539,7 +539,7 @@ function getObjectHtmlFromSummary(_object_id) {
           id: data[i].id,
           version: 'dashboard',
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -573,7 +573,7 @@ function getObjectHtml(_object_id) {
     summary: SEL_SUMMARY,
     tag: SEL_TAG,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

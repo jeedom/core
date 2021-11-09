@@ -76,7 +76,7 @@ if (!isConnect()) {
       id: (_select.value() == '' ? -1 : _select.value()),
       orderByName : true,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function(eqLogics) {
         _select.closest('tr').find('.mod_insertEqLogicValue_eqLogic').empty()

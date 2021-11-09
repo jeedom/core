@@ -9,7 +9,7 @@ function initLog(_log) {
   $('#pre_globallog').empty()
   jeedom.log.list({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success : function(_data) {
       var li = ' <ul data-role="listview" data-inset="false">'
@@ -39,7 +39,7 @@ function initLog(_log) {
       jeedom.log.clear({
         log : _log,
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           if($('#bt_globalLogStopStart').attr('data-state') == 0){
@@ -53,7 +53,7 @@ function initLog(_log) {
       jeedom.log.remove({
         log : _log,
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           initLog()
@@ -71,7 +71,7 @@ function initLog(_log) {
     if (result) {
       jeedom.log.removeAll({
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           initLog()

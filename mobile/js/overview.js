@@ -5,7 +5,7 @@ $('body').attr('data-page', 'overview')
 function initOverview() {
   jeedom.object.all({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
       $.clearDivContent('objectOverviewContainer')

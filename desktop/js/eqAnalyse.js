@@ -132,7 +132,7 @@ function getRemoveCmd(_id) {
 function displayDeadCmd() {
   jeedom.cmd.getDeadCmd({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

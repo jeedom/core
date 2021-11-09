@@ -76,7 +76,7 @@ $(function() {
     jeedom.object.all({
       onlyVisible: 0,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -135,13 +135,13 @@ $('#bt_libraryBackgroundImage').on('click', function() {
       id: $('.objectAttr[data-l1key=id]').value(),
       file: $('.objectImg img').data('filename'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
       success: function(data) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: '{{Image de fond appliquée avec succès}}',
           level: 'success'
         })
@@ -158,14 +158,14 @@ $('#bt_removeBackgroundImage').off('click').on('click', function() {
       jeedom.object.removeImage({
         id: $('.objectAttr[data-l1key=id]').value(),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           $('.objectImg').hide()
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Image de fond enlevée}}',
             level: 'success'
           })
@@ -231,7 +231,7 @@ function loadObjectConfiguration(_id) {
     dataType: 'json',
     done: function(e, data) {
       if (data.result.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result.result,
           level: 'danger'
         })
@@ -244,7 +244,7 @@ function loadObjectConfiguration(_id) {
       } else {
         $('.objectImg').hide()
       }
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Image de fond ajoutée avec succès}}',
         level: 'success'
       })
@@ -259,7 +259,7 @@ function loadObjectConfiguration(_id) {
     id: _id,
     cache: false,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -364,7 +364,7 @@ $("#bt_addObject, #bt_addObject2").on('click', function(event) {
           isVisible: 1
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -405,7 +405,7 @@ $("#bt_saveObject").on('click', function(event) {
   jeedom.object.save({
     object: object,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -425,7 +425,7 @@ $("#bt_removeObject").on('click', function(event) {
       jeedom.object.remove({
         id: $('.objectDisplayCard.active').attr('data-object_id'),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -591,7 +591,7 @@ function addEqlogicsInfo(_id, _objName, _summay) {
     onlyEnable: '0',
     getCmd: '1',
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

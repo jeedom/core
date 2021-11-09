@@ -150,7 +150,7 @@ sendVarToJS([
           type: 'folders',
           path: path,
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -187,7 +187,7 @@ sendVarToJS([
       type: 'files',
       path: _path,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })

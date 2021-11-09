@@ -132,13 +132,13 @@ jeedomUI.saveWidgetDisplay = function(_params) {
     jeedom.eqLogic.setOrder({
       eqLogics: eqLogics,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success:function(data){
         jeedom.cmd.setOrder({
           cmds: cmds,
           error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $.fn.showAlert({message: error.message, level: 'danger'})
           }
         });
       }
@@ -146,7 +146,7 @@ jeedomUI.saveWidgetDisplay = function(_params) {
     jeedom.scenario.setOrder({
       scenarios: scenarios,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       }
     })
   } else if (init(_params['view']) == 1) {
@@ -177,13 +177,13 @@ jeedomUI.saveWidgetDisplay = function(_params) {
     jeedom.view.setComponentOrder({
       components: components,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success:function(data){
         jeedom.cmd.setOrder({
           cmds: cmds,
           error: function (error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $.fn.showAlert({message: error.message, level: 'danger'})
           }
         })
       }

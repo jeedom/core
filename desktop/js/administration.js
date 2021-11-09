@@ -155,7 +155,7 @@ function initPickers() {
 jeedom.config.load({
   configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
   error: function(error) {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: error.message,
       level: 'danger'
     })
@@ -182,7 +182,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   jeedom.config.save({
     configuration: config,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -191,7 +191,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
       jeedom.config.load({
         configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -203,7 +203,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
           setTimeout(function() {
             modifyWithoutSave = false
           }, 1000)
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Sauvegarde réussie}}',
             level: 'success'
           })
@@ -224,13 +224,13 @@ $('#bt_forceSyncHour').on('click', function() {
   $.hideAlert()
   jeedom.forceSyncHour({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Commande réalisée avec succès}}',
         level: 'success'
       })
@@ -251,7 +251,7 @@ $('#bt_resetHour').on('click', function() {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
@@ -275,7 +275,7 @@ $('#bt_resetHwKey').on('click', function() {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
@@ -292,7 +292,7 @@ $('#bt_resetHardwareType').on('click', function() {
       hardware_name: ''
     },
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -306,7 +306,7 @@ $('#bt_resetHardwareType').on('click', function() {
 /**************************INTERFACE***********************************/
 $("#bt_resetThemeCookie").on('click', function(event) {
   setCookie('currentTheme', '', -1)
-  $('#div_alert').showAlert({
+  $.fn.showAlert({
     message: '{{Cookie de thème supprimé}}',
     level: 'success'
   })
@@ -319,14 +319,14 @@ $('.bt_uploadImage').each(function() {
     dataType: 'json',
     done: function(e, data) {
       if (data.result.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result.result,
           level: 'danger'
         })
         return
       }
       $('a.bt_removeBackgroundImage[data-page=' + $(this).attr('data-page') + ']').removeClass('disabled')
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Image enregistrée et configurée}}',
         level: 'success'
       })
@@ -342,14 +342,14 @@ $divConfig.on({
         jeedom.config.removeImage({
           id: dataPage,
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
           success: function() {
             $('a.bt_removeBackgroundImage[data-page=' + dataPage + ']').addClass('disabled')
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: '{{Image supprimée}}',
               level: 'success'
             })
@@ -382,7 +382,7 @@ $('#bt_networkTab').on('click', function() {
   if (tableBody.children().length == 0) {
     jeedom.network.getInterfacesInfo({
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -407,7 +407,7 @@ $('#bt_restartDns').on('click', function() {
   jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -415,7 +415,7 @@ $('#bt_restartDns').on('click', function() {
     success: function() {
       jeedom.network.restartDns({
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -434,7 +434,7 @@ $('#bt_haltDns').on('click', function() {
   jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -442,7 +442,7 @@ $('#bt_haltDns').on('click', function() {
     success: function() {
       jeedom.network.stopDns({
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -460,13 +460,13 @@ $('#bt_haltDns').on('click', function() {
 $('#bt_removeTimelineEvent').on('click', function() {
   jeedom.timeline.deleteAll({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Evènement de la timeline supprimé avec succès}}',
         level: 'success'
       })
@@ -491,7 +491,7 @@ function loadActionOnMessage() {
   jeedom.config.load({
     configuration: 'actionOnMessage',
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -506,7 +506,7 @@ function loadActionOnMessage() {
         params: actionOptions,
         async: false,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -716,13 +716,13 @@ $divConfig.on({
       },
       success: function(data) {
         if (data.state != 'ok') {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: data.result,
             level: 'danger'
           })
           return
         }
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: '{{Création des commandes virtuel réussies}}',
           level: 'success'
         })
@@ -768,7 +768,7 @@ function printObjectSummary() {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
@@ -870,7 +870,7 @@ function saveObjectSummary() {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
@@ -945,7 +945,7 @@ $("#bt_testLdapConnection").on('click', function(event) {
   jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -964,13 +964,13 @@ $("#bt_testLdapConnection").on('click', function(event) {
         },
         success: function(data) {
           if (data.state != 'ok') {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: '{{Connexion échouée :}} ' + data.result,
               level: 'danger'
             })
             return
           }
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Connexion réussie}}',
             level: 'success'
           })
@@ -984,7 +984,7 @@ $("#bt_testLdapConnection").on('click', function(event) {
 $('#bt_removeBanIp').on('click', function() {
   jeedom.user.removeBanIp({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -1009,7 +1009,7 @@ $('.testRepoConnection').on('click', function() {
   jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -1018,7 +1018,7 @@ $('.testRepoConnection').on('click', function() {
       jeedom.config.load({
         configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -1029,13 +1029,13 @@ $('.testRepoConnection').on('click', function() {
           jeedom.repo.test({
             repo: repo,
             error: function(error) {
-              $('#div_alert').showAlert({
+              $.fn.showAlert({
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
-              $('#div_alert').showAlert({
+              $.fn.showAlert({
                 message: '{{Test réussi}}',
                 level: 'success'
               })
@@ -1078,14 +1078,14 @@ $("#bt_flushWidgetCache").on('click', function(event) {
 function flushCache() {
   jeedom.cache.flush({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: data.result,
         level: 'danger'
       })
     },
     success: function(data) {
       updateCacheStats()
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Cache vidé}}',
         level: 'success'
       })
@@ -1096,14 +1096,14 @@ function flushCache() {
 function flushWidgetCache() {
   jeedom.cache.flushWidget({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: data.result,
         level: 'danger'
       })
     },
     success: function(data) {
       updateCacheStats()
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Cache vidé}}',
         level: 'success'
       })
@@ -1114,14 +1114,14 @@ function flushWidgetCache() {
 function cleanCache() {
   jeedom.cache.clean({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: data.result,
         level: 'danger'
       })
     },
     success: function(data) {
       updateCacheStats()
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Cache nettoyé}}',
         level: 'success'
       })
@@ -1132,7 +1132,7 @@ function cleanCache() {
 function updateCacheStats() {
   jeedom.cache.stats({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: data.result,
         level: 'danger'
       })
@@ -1162,7 +1162,7 @@ $(".bt_regenerate_api").on('click', function(event) {
         },
         success: function(data) {
           if (data.state != 'ok') {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: data.result,
               level: 'danger'
             })
@@ -1185,13 +1185,13 @@ $('#bt_accessSystemAdministration').on('click', function() {
 $('#bt_cleanFileSystemRight').off('click').on('click', function() {
   jeedom.cleanFileSystemRight({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Rétablissement des droits d\'accès effectué avec succès}}',
         level: 'success'
       })
@@ -1202,7 +1202,7 @@ $('#bt_cleanFileSystemRight').off('click').on('click', function() {
 $('#bt_consistency').off('click').on('click', function() {
   jeedom.consistency({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -1236,13 +1236,13 @@ $('#bt_checkPackage').on('click', function() {
 $('#bt_cleanDatabase').off('click').on('click', function() {
   jeedom.cleanDatabase({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Nettoyage lancé avec succès. Pour suivre l\'avancement merci de regarder le log cleaningdb}}',
         level: 'success'
       })
@@ -1269,7 +1269,7 @@ function printConvertColor() {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
@@ -1324,7 +1324,7 @@ function saveConvertColor() {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
@@ -1342,7 +1342,7 @@ $('.bt_resetColor').on('click', function() {
     key: $(this).attr('data-l1key'),
     default: 1,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

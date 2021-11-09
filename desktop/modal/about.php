@@ -104,7 +104,7 @@ $('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',functi
     page: 'changelog',
     theme: $('body').attr('data-theme'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(url) {
       window.open(url,'_blank')
@@ -117,7 +117,7 @@ $('body').off('click','#bt_faq').on('click','#bt_faq',function() {
     page: 'faq',
     theme: $('body').attr('data-theme'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(url) {
       window.open(url,'_blank')

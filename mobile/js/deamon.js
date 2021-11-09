@@ -21,7 +21,7 @@ function getDeamonState(){
   $('#table_deamon tbody').empty()
   jeedom.plugin.all({
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function (plugins) {
       for (var i in plugins) {
@@ -32,7 +32,7 @@ function getDeamonState(){
         id : plugins[i].id,
         async:false,
         error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function (deamonInfo) {
           var html = '<tr>'
@@ -71,7 +71,7 @@ $('#table_deamon tbody').on('click','.bt_deamonAction',function(){
       id : plugin,
       forceRestart : 1,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function () {
        getDeamonState()
@@ -81,7 +81,7 @@ $('#table_deamon tbody').on('click','.bt_deamonAction',function(){
     jeedom.plugin.deamonStop({
       id : plugin,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function () {
        getDeamonState()
@@ -92,7 +92,7 @@ $('#table_deamon tbody').on('click','.bt_deamonAction',function(){
       id : plugin,
       mode:1,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function () {
        getDeamonState()
@@ -103,7 +103,7 @@ $('#table_deamon tbody').on('click','.bt_deamonAction',function(){
       id : plugin,
       mode:0,
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function () {
        getDeamonState()

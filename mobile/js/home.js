@@ -37,7 +37,7 @@ function initHome() {
   //fill bottom menus:
   jeedom.object.all({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(objects) {
       var li = ''
@@ -68,7 +68,7 @@ function initHome() {
 
   jeedom.view.all({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(views) {
       if (views.length) {
@@ -88,7 +88,7 @@ function initHome() {
 
   jeedom.plan.allHeader({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(planHeader) {
       if (planHeader.length) {
@@ -109,7 +109,7 @@ function initHome() {
 
   jeedom.plan3d.allHeader({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(plan3dHeader) {
       if (plan3dHeader.length) {
@@ -163,7 +163,7 @@ function initHome() {
       },
       success: function(data) {
         if (data.state != 'ok') {
-          $('#div_alert').showAlert({message: data.result, level: 'danger'})
+          $.fn.showAlert({message: data.result, level: 'danger'})
           return
         }
         jeedomUtils.initApplication()

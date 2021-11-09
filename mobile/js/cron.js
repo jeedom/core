@@ -21,7 +21,7 @@ function getCronState() {
   $('#table_cron tbody').empty()
   jeedom.cron.all({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
      var html = ''
@@ -56,7 +56,7 @@ $('#table_cron tbody').on('click','.bt_cronAction',function(){
     state: action,
     forceRestart : 1,
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function () {
      getCronState()

@@ -89,7 +89,7 @@ $(function() {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.interact.all({
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -185,7 +185,7 @@ $('.interactAttr[data-l1key=group]').autocomplete({
       },
       success: function(data) {
         if (data.state != 'ok') {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: data.result,
             level: 'danger'
           })
@@ -267,7 +267,7 @@ $('#bt_duplicate').on('click', function() {
       jeedom.interact.save({
         interact: interact,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -342,14 +342,14 @@ $("#bt_saveInteract").on('click', function() {
   jeedom.interact.save({
     interact: interact,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function(data) {
       $('.interactDisplayCard[data-interact_id=' + data.id + ']').click()
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Sauvegarde réussie avec succès}}',
         level: 'success'
       })
@@ -365,13 +365,13 @@ $("#bt_regenerateInteract,#bt_regenerateInteract2").on('click', function() {
           query: result
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Toutes les interactions ont été régénérées}}',
             level: 'success'
           })
@@ -389,7 +389,7 @@ $("#bt_addInteract,#bt_addInteract2").on('click', function() {
           query: result
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -410,7 +410,7 @@ $("#bt_removeInteract").on('click', function() {
       jeedom.interact.remove({
         id: $('.interactDisplayCard.active').attr('data-interact_id'),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -567,7 +567,7 @@ function printInteract(_id) {
         params: actionOptions,
         async: false,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })

@@ -29,7 +29,7 @@ function getObjectHtml(_object_id) {
     id: _object_id,
     version: 'dashboard',
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

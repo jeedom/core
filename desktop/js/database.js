@@ -45,7 +45,7 @@ function dbExecuteCommand(_command, _addToList) {
   jeedom.db({
     command: _command,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

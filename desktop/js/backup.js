@@ -30,7 +30,7 @@ $("#bt_saveBackup").on('click', function(event) {
   jeedom.config.save({
     configuration: $('#backup').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -40,7 +40,7 @@ $("#bt_saveBackup").on('click', function(event) {
         configuration: $('#backup').getValues('.configKey')[0],
         plugin: 'core',
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -48,7 +48,7 @@ $("#bt_saveBackup").on('click', function(event) {
         success: function(data) {
           $('#backup').setValues(data, '.configKey')
           modifyWithoutSave = false
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Sauvegarde réussie}}',
             level: 'success'
           })
@@ -66,7 +66,7 @@ $(".bt_backupJeedom").on('click', function(event) {
       el.find('.fa-sync').show()
       jeedom.backup.backup({
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -88,7 +88,7 @@ $("#bt_restoreJeedom").on('click', function(event) {
       jeedom.backup.restoreLocal({
         backup: $('#sel_restoreBackup').value(),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -109,14 +109,14 @@ $("#bt_removeBackup").on('click', function(event) {
       jeedom.backup.remove({
         backup: $('#sel_restoreBackup').value(),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           updateListBackup()
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Sauvegarde supprimée avec succès}}',
             level: 'success'
           })
@@ -135,14 +135,14 @@ $('#bt_uploadBackup').fileupload({
   replaceFileInput: false,
   done: function(e, data) {
     if (data.result.state != 'ok') {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: data.result.result,
         level: 'danger'
       })
       return
     }
     updateListBackup()
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: '{{Fichier(s) ajouté(s) avec succès}}',
       level: 'success'
     })
@@ -157,7 +157,7 @@ $(".bt_uploadCloudBackup").on('click', function(event) {
       jeedom.backup.uploadCloud({
         backup: $('#sel_restoreBackup').value(),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -179,14 +179,14 @@ $(".bt_restoreRepoBackup").on('click', function(event) {
         backup: el.closest('.repo').find('.sel_restoreCloudBackup').value(),
         repo: el.attr('data-repo'),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           updateListBackup()
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Sauvegarde rapatrier avec succès}}',
             level: 'success'
           })
@@ -200,7 +200,7 @@ $.showLoading()
 jeedom.config.load({
   configuration: $('#backup').getValues('.configKey')[0],
   error: function(error) {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: error.message,
       level: 'danger'
     })
@@ -250,7 +250,7 @@ function getJeedomLog(_autoUpdate, _log) {
         for (var i in data.result.reverse()) {
           log += data.result[i] + "\n"
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: '{{L\'opération est réussie}}',
               level: 'success'
             })
@@ -261,7 +261,7 @@ function getJeedomLog(_autoUpdate, _log) {
             _autoUpdate = 0
           }
           if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: '{{L\'opération a échoué}}',
               level: 'danger'
             })
@@ -293,7 +293,7 @@ function getJeedomLog(_autoUpdate, _log) {
 function updateListBackup() {
   jeedom.backup.list({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -317,7 +317,7 @@ function updateRepoListBackup(_repo) {
     repo: _repo,
     global: false,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

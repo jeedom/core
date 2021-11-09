@@ -21,7 +21,7 @@ function getHealth(){
   $('#table_health tbody').empty()
   jeedom.health({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       var html = ''

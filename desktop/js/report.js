@@ -34,7 +34,7 @@ function getReportList(_type, _id) {
     type: _type,
     id: _id,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -62,7 +62,7 @@ function getReport(_type, _id, _report) {
     id: _id,
     report: _report,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -101,7 +101,7 @@ $('#bt_remove').on('click', function() {
     id: $('#div_reportForm .reportAttr[data-l1key=id]').value(),
     report: report,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -119,7 +119,7 @@ $('#bt_removeAll').on('click', function() {
     type: $('#div_reportForm .reportAttr[data-l1key=type]').value(),
     id: $('#div_reportForm .reportAttr[data-l1key=id]').value(),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
