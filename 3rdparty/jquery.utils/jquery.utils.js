@@ -352,24 +352,27 @@ function init(_value, _default) {
   }
 
   $.fn.hideAlert = function() {
+    //old div_alert:
     $('#jqAlertSpacer' + $(this).attr('id')).remove();
     $(this).text('').hide();
     if (typeof jeedomUtils.initRowOverflow == 'function') {
       jeedomUtils.initRowOverflow();
     }
+
+    window.toastr.clear()
     return $(this);
   };
 
   $.hideAlert = function() {
     if (!$.mobile) {
+      //Old div_alert:
       $('.jqAlert').text('');
       $('.jqAlert').hide();
       if (typeof jeedomUtils.initRowOverflow == 'function') {
         jeedomUtils.initRowOverflow();
       }
-    } else {
-      window.toastr.clear()
     }
+    window.toastr.clear()
   };
 
   /**********************Jquery.value******************************/
