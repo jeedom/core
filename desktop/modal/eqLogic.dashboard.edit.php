@@ -83,10 +83,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   <?php
                   $options = '';
                   foreach (($eqLogic->getCmd('info')) as $cmd) {
-                    if (!$cmd->getIsHistorized()) {
-                      continue;
+                    if ($cmd->getIsHistorized()) {
+                      $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
                     }
-                    $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
                   }
                   echo $options;
                   ?>
