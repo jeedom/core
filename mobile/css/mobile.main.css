@@ -1343,6 +1343,9 @@
   #div_graph .highcharts-button-disabled {
     opacity: 0.3;
   }
+  .eqLogic-widget .highcharts-background {
+    fill: transparent !important;
+  }
 
   .highcharts-axis-labels > text {
     fill: var(--link-color) !important;
