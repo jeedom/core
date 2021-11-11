@@ -526,8 +526,8 @@ try {
 					throw new Exception($e->getMessage());
 				}
 			}
-			ajax::success(utils::o2a($eqLogic));
 		}
+		ajax::success(utils::o2a($eqLogic));
 	}
 
 	if (init('action') == 'getAlert') {
