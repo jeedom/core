@@ -299,7 +299,7 @@ class update {
 				}
 				mkdir($cibDir);
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-					throw new Exception(__('Impossible de créer le dossier  : ', __FILE__) . $cibDir . __('. Problème de droits ?', __FILE__));
+					throw new Exception(__('Impossible de créer le dossier  : ', __FILE__) . $cibDir . '. ' . __('Problème de droits ?', __FILE__));
 				}
 				log::add('update', 'alert', __('Téléchargement du plugin...', __FILE__));
 				$info = $class::downloadObject($this);
@@ -431,7 +431,7 @@ class update {
 		switch ($this->getType()) {
 			case 'plugin':
 			if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-				throw new Exception(__('Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?', __FILE__));
+				throw new Exception(__('Impossible de créer le dossier  : ', __FILE__) . $cibDir . __('Problème de droits ?', __FILE__));
 			}
 			try {
 				$plugin = plugin::byId($this->getLogicalId());

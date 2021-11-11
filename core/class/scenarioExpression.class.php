@@ -1702,7 +1702,7 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $view->getName());
 							$cmd_parameters['files'] = array($view->report($options['export_type'], $options));
-							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $view->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport ', __FILE__) . $view->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $view->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 						case 'plan':
@@ -1712,7 +1712,7 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plan->getName());
 							$cmd_parameters['files'] = array($plan->report($options['export_type'], $options));
-							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plan->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport ', __FILE__) . $plan->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plan->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 						case 'plugin':
@@ -1722,28 +1722,28 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $plugin->getName());
 							$cmd_parameters['files'] = array($plugin->report($options['export_type'], $options));
-							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $plugin->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport ', __FILE__) . $plugin->getName() . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $plugin->getName() . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 						case 'eqAnalyse':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
-							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport équipement du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport équipement du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport équipement généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 						case 'timeline':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline=' . $options['timeline'];
 							$this->setLog($scenario, __('Génération du rapport timeline ', __FILE__) . $options['timeline']);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'timeline', $options['export_type'], $options));
-							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport ', __FILE__) . $options['timeline'] . __(' du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport ', __FILE__) . $options['timeline'] . __(' du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport ', __FILE__) . $options['timeline'] . __(' généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 						case 'url':
 							$url = $options['url'];
 							$this->setLog($scenario, __('Génération du rapport ', __FILE__) . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'url', $options['export_type'], $options));
-							$cmd_parameters['title'] = __('[' . config::byKey('name') . '] Rapport url du ', __FILE__) . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport url du ', __FILE__) . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport url généré le ', __FILE__) . date('Y-m-d H:i:s');
 							break;
 					}

@@ -349,7 +349,7 @@ class eqLogic {
 								$cmd = cmd::byId(str_replace('#', '', $id));
 								if (is_object($cmd)) {
 									$cmd->execCmd(array(
-										'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+										'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
 										'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 									));
 								}
@@ -695,7 +695,7 @@ class eqLogic {
 		$translate_category = '';
 		foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
 			if ($this->getCategory($key, 0) == 1) {
-				$translate_category .= __($value['name'], __FILE__) . ',';
+				$translate_category .= $value['name'] . ',';
 			}
 		}
 		$translate_category = trim($translate_category, ',');

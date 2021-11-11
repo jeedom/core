@@ -1284,7 +1284,7 @@ class scenario {
 				}
 			}
 			if ($this->running()) {
-				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . __('. PID : ', __FILE__) . $this->getPID());
+				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . '. ' . __('PID : ', __FILE__) . $this->getPID());
 			}
 		}
 		$this->setState('stop');
