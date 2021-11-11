@@ -1034,10 +1034,10 @@ class cmd {
 		$message = '';
 		switch ($_type) {
 			case 'jeedomPreExecCmd':
-				$message .= __('Sur preExec de la commande', __FILE__);
+				$message = '. ' . __('Sur preExec de la commande', __FILE__);
 				break;
 			case 'jeedomPostExecCmd':
-				$message .= __('Sur postExec de la commande', __FILE__);
+				$message = '. ' . __('Sur postExec de la commande', __FILE__);
 				break;
 		}
 
