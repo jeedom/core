@@ -3577,7 +3577,7 @@
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Note inconnue. Vérifiez l\\'ID": "Note unknown. Check the ID",
+        "Note inconnue. Vérifiez l\\'ID": "Unknown Note. Check the ID",
         "Aucune méthode correspondante à : ": "No method corresponding to:"
     },
     "core\/ajax\/object.ajax.php": {
@@ -3613,7 +3613,7 @@
         "La version ne peut être que js ou css": "The version can only be js or css",
         "Type :": "Type:",
         " avec id : ": "with id:",
-        " inconnu": "unknown",
+        " inconnu": " unknown",
         "Vous ne pouvez éditer ce type d\\'extension : ": "You cannot edit this type of extension:",
         "Impossible de créer le fichier, vérifiez les droits": "Unable to create file, check rights",
         "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Invalid file extension (authorized .jpg .png .gif):",
