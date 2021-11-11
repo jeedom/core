@@ -323,6 +323,7 @@ Mobile WebApp
 /* ____________________Compass */
   .widget-compass-container {
     position: relative;
+    top: 6px;
     width: 80px;
     height: 80px;
     margin-bottom: 18px;
