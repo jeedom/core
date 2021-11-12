@@ -190,7 +190,7 @@ $(document).ready(function() {
   var theme = 'core/themes/core2019_Light/desktop/core2019_Light.css'
   $('#bootstrap_theme_css').attr('href', theme)
 
-  document.title = 'Jeedom - Login'
+  document.title = JEEDOM_PRODUCT_NAME + ' - Login';
 
   $(".veen .login-btn button").click(function() {
     $('.veen .wrapper').removeClass('move')
