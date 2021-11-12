@@ -703,6 +703,22 @@ function date_fr($date_en) {
 				'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 			);
 			break;
+		case 'es_ES':
+			$texte_long = array(
+				'Lunes', 'Martes', 'Miércoles', 'Jueves',
+				'Viernes', 'Sábado', 'Domingo', 'Enero',
+				'Febrero', 'Marzo', 'Abril', 'Mayo',
+				'Junio', 'Julio', 'Agosto', 'Septiembre',
+				'Octubre', 'Noviembre', 'Diciembre',
+			);
+			$texte_short_day = array(
+				'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'
+			);
+			$texte_short_month = array(
+				'Ener.', 'Febr.', 'Marz.', 'Abr.', 'May.', 'Jun.',
+				'Jul.', 'Ago.', 'Sept.', 'Oct.', 'Nov.', 'Dic.',
+			);
+			break;
 		default:
 			return $date_en;
 			break;
