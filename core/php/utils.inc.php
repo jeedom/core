@@ -766,6 +766,22 @@ function convertDayFromEn($_day) {
 			'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
 			'sunday' => 'sonntag', 'sun' => 'sonntag',
 		),
+		'es_ES' => array(
+			'Monday' => 'Lunes', 'Mon' => 'Lunes',
+			'monday' => 'lunes', 'mon' => 'lunes',
+			'Tuesday' => 'Martes', 'Tue' => 'Martes',
+			'tuesday' => 'martes', 'tue' => 'martes',
+			'Wednesday' => 'Miércoles', 'Wed' => 'Miércoles',
+			'wednesday' => 'miércoles', 'wed' => 'miércoles',
+			'Thursday' => 'Jueves', 'Thu' => 'Jueves',
+			'thursday' => 'jueves', 'thu' => 'jueves',
+			'Friday' => 'Viernes', 'Fri' => 'Viernes',
+			'friday' => 'viernes', 'fri' => 'viernes',
+			'Saturday' => 'Sábado', 'Sat' => 'Sábado',
+			'saturday' => 'sábado', 'sat' => 'sábado',
+			'Sunday' => 'Domingo', 'Sun' => 'Domingo',
+			'sunday' => 'domingo', 'sun' => 'domingo',
+		),
 	);
 	$language = config::byKey('language', 'core', 'fr_FR');
 	if (array_key_exists($language, $daysMapping)) {
