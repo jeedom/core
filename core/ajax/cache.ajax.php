@@ -47,7 +47,21 @@ try {
 	if (init('action') == 'stats') {
 		ajax::success(cache::stats());
 	}
-	
+
+	if (init('action') == 'set') {
+		if (init('opt') == '') {
+			cache::set(init('key'), init('val'), init('life'));
+		} else {
+			cache::set(init('key'), init('val'), init('life'), json_decode(init('opt')));
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'delete') {
+		cache::delete(init('key'));
+		ajax::success();
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

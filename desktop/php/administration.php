@@ -1859,6 +1859,12 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Editer les objets dans le cache}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<a class="btn btn-warning" id="bt_editCache" style="width:80px"><i class="fas fa-pencil-alt"></i> {{Editer}}</a>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>Jeedom le fait automatiquement toutes les nuits.}}"></i></sup>
 							</label>

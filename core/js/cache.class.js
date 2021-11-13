@@ -87,3 +87,44 @@ jeedom.cache.flushWidget = function(_params) {
   };
   $.ajax(paramsAJAX);
 }
+
+jeedom.cache.set = function(_params) {
+  var paramsRequired = ['key', 'val', 'opt', 'life'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cache.ajax.php';
+  paramsAJAX.data = {
+    action: 'set',
+    key: _params.key,
+    val: _params.val,
+    opt: _params.opt,
+    life: _params.life
+  };
+  $.ajax(paramsAJAX);
+}
+
+jeedom.cache.delete = function(_params) {
+  var paramsRequired = ['key'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/cache.ajax.php';
+  paramsAJAX.data = {
+    action: 'delete',
+    key: _params.key
+  };
+  $.ajax(paramsAJAX);
+}

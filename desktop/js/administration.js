@@ -1061,6 +1061,12 @@ $("#bt_cleanCache").on('click', function(event) {
   cleanCache()
 })
 
+$('#bt_editCache').on('click', function() {
+  $('#md_modal').dialog({
+    title: "{{Gestion du cache}}"
+  }).load('index.php?v=d&modal=cache').dialog('open')
+})
+
 $("#bt_flushCache").on('click', function(event) {
   $.hideAlert()
   bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
