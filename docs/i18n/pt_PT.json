@@ -6457,7 +6457,7 @@
         "OK si tous les critères pour que le démon tourne sont réunis, ou donne la cause du blocage": "OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio",
         "Re)Démarrer": "Reiniciar",
         "Permet de lancer ou relancer le démon": "Permite iniciar ou reiniciar o demônio",
-        "Arrêter": "Pare",
+        "Arrêter": "Parar",
         "Permet d'arrêter le démon (Uniquement dans le cas où la gestion automatique est désactivée": "Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado",
         "Gestion automatique": "Gerenciamento automático",
         "Permet d'activer ou désactiver la gestion automatique (ce qui permet à Jeedom de gérer lui même le démon et le relancer si besoin": "Habilita ou desabilita o gerenciamento automático (que permite que o Jeedom gerencie o próprio daemon e reinicie-o, se necessário",

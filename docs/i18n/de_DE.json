@@ -6457,7 +6457,7 @@
         "OK si tous les critères pour que le démon tourne sont réunis, ou donne la cause du blocage": "OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist",
         "Re)Démarrer": "Neustarten",
         "Permet de lancer ou relancer le démon": "Ermöglicht das Starten oder Neustarten des Dämons",
-        "Arrêter": "Halt",
+        "Arrêter": "Anschlag",
         "Permet d'arrêter le démon (Uniquement dans le cas où la gestion automatique est désactivée": "Wird zum Stoppen des Dämons verwendet (nur in dem Fall, in dem die automatische Verwaltung deaktiviert ist",
         "Gestion automatique": "Automatische Verwaltung",
         "Permet d'activer ou désactiver la gestion automatique (ce qui permet à Jeedom de gérer lui même le démon et le relancer si besoin": "Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann",

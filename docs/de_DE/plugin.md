@@ -125,7 +125,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **Status** : Daemon-Status, OK oder NOK.
 - **Aufbau** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
 - **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.
-- **Halt** : Wird zum Stoppen des Dämons verwendet (nur in dem Fall, in dem die automatische Verwaltung deaktiviert ist).
+- **Anschlag** : Wird zum Stoppen des Dämons verwendet (nur in dem Fall, in dem die automatische Verwaltung deaktiviert ist).
 - **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. Sofern nicht anders angegeben, ist es ratsam, die automatische Verwaltung aktiv zu lassen).
 - **Letzter Start** : Datum des letzten Starts des Daemons.
 
