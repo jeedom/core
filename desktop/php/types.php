@@ -89,7 +89,11 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 			}
 
 			if ($cmdGenericType != '') {
-              	$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . ' -> ' . $GENRICSTYPES[$cmdGenericType]['name'];
+				try {
+              		$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . ' -> ' . $GENRICSTYPES[$cmdGenericType]['name'];
+              	} catch (Exception $e) {
+              		$cmdGeneric = ' -> ';
+              	}
 				if ($cmdGeneric == ' -> ') {
                 	 $cmdGeneric = $cmdGenericType . ' ({{Inconnu}})';
                 }
