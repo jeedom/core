@@ -125,7 +125,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 - **Status** : Status do daemon, OK ou NOK.
 - **Configuração** : OK, se todos os critérios para o demônio funcionar forem atendidos ou fornecer a causa do bloqueio.
 - **(Reiniciar** : Permite iniciar ou reiniciar o demônio.
-- **Parar** : Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado).
+- **Pare** : Usado para parar o daemon (apenas no caso em que o gerenciamento automático está desativado).
 - **Gerenciamento automático** : Habilita ou desabilita o gerenciamento automático (que permite que o Jeedom gerencie o próprio daemon e reinicie-o, se necessário. Salvo indicação em contrário, é recomendável deixar o gerenciamento automático ativo).
 - **último lançamento** : Data do último lançamento do daemon.
 
