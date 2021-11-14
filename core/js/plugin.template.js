@@ -358,7 +358,15 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
           url += i + '=' + vars[i].replace('#', '') + '&'
         }
       }
-      url += 'id=' + data.id + '&saveSuccessFull=1'
+
+      var id
+      if (Array.isArray(data)) {
+        id = data[0].id
+      } else {
+        id = data.id
+      }
+      url += 'id=' + id + '&saveSuccessFull=1'
+
       if (document.location.toString().match('#')) {
         url += '#' + document.location.toString().split('#')[1]
       }
