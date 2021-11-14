@@ -463,7 +463,13 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **variable** (variable) : Création/modification d’une variable ou de la valeur d’une variable.
 - **Supprimer variable** (delete_variable) : Permet de supprimer une variable.
 - **genericType(GENERIC, #[Object]#)** : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
-- **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags permet d’envoyer des tags au scénario, ex : montag=2 (attention il ne faut utiliser que des lettre de a à z. Pas de majuscules, pas d’accents et pas de caractères spéciaux). On récupère le tag dans le scénario cible avec la fonction tag(montag). La commande "Remise à zéro des SI" permet de remettre à zéro le statut des "SI" (ce statut est utilisé pour la non répétition des actions d'un "SI" si on passe pour la 2ème fois consécutive dedans).
+- **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags permet d’envoyer des tags au scénario, ex : montag=2 (attention il ne faut utiliser que des lettre de a à z. Pas de majuscules, pas d’accents et pas de caractères spéciaux). On récupère le tag dans le scénario cible avec la fonction tag(montag).
+    - Démarrer : Démarre le scenario dans un thread diffèrent. Le scenario démarré s’exécute indépendamment du scénario appelant.
+    - Démarrer (Sync) : Démarre le scénario appelé et met en pause le scénario appelant, le temps que le scénario appelé ait fini de s’exécuter.
+    - Arrêter : Arrête le scenario.
+    - Activer : Active un scénario désactivé.
+    - Désactiver : Désactive le scénario. Il ne se lance plus quelque soit les déclencheurs.
+    - Remise à zéro des SI : Permet de remettre à zéro le statut des **SI**. Ce statut est utilisé pour la non répétition des actions d’un **SI**, si l’évaluation de la condition donne le même résultat que la précédente évaluation.
 - **Stop** (stop) : Arrête le scénario.
 - **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s).
 - **Aller au design** (gotodesign) : Change le design affiché sur tous les navigateurs par le design demandé.
