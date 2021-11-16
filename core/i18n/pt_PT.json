@@ -1822,7 +1822,7 @@
         "Durée en secondes.<br> -1 : bannissement infini": "Duração em segundos. <br> -1: banimento infinito",
         "Liste blanche": "Lista de permissões",
         "IPs ou masques séparés par ;<br>ex: 127.0.0.1;192.168.*.*": "IPs ou máscaras separados por; <br> ex: 127.0.0.1; 192.168. *. *",
-        "LDAP": "LDAP",
+        "LDAP": "Ldap",
         "Activer l'authentification LDAP": "Habilitar a autenticação LDAP",
         "Samba4": "Samba4",
         "tls": "TLS",
