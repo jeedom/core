@@ -591,11 +591,8 @@
   }
   #div_displayEquipement .objectSummaryParent,
   span.summaryMenu .objectSummaryParent {
-    font-size: 16px;
-  }
-  #div_displayEquipement .objectSummaryParent > sup {
-    font-size: 12px;
-    margin-top: -5px;
+    font-size: 18px;
+    font-weight: 400;
   }
   #bottompanel_objectList .objectSummaryParent,
   .ui-listview .objectSummaryParent {
