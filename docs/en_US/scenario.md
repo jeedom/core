@@ -423,7 +423,7 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``randText(texte1;texte2;texte…​..)`` : Allows you to return one of the texts randomly (separate the texts by one; ). There is no limit in the number of texts.
 - ``randomColor(min,max)`` : Gives a random color between 2 bounds (0 => red, 50 => green, 100 => blue).
 - ``trigger(commande)`` : Enables you to find out the trigger for the scenario or to know whether it is the command passed as a parameter that triggered the scenario.
-- ``triggerValue(commande)`` : Used to find out the value of the scenario trigger.
+- ``triggerValue()`` : Used to find out the value of the scenario trigger.
 - ``round(valeur,[decimal])`` : Rounds above, [decimal] number of decimal places after the decimal point.
 - ``odd(valeur)`` : Lets you know if a number is odd or not. Returns 1 if odd 0 otherwise.
 - ``median(commande1,commande2…​.commandeN)`` : Returns the median of the values.
@@ -443,7 +443,7 @@ And practical examples :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | the function will return one of these texts randomly at each execution.                           |
 | ``randomColor(40,60)``                 | Returns a random color close to green.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 if it's good ``#[Salle de bain][Hydrometrie][Humidité]#`` who started the scenario otherwise 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 if the hydrometry of ``#[Salle de bain][Hydrometrie][Humidité]#`` is 80% and that is ``#[Salle de bain][Hydrometrie][Humidité]#`` which triggered the scenario if not `false`.                         |
+| ``triggerValue()`` | 80 if the hydrometry of ``#[Salle de bain][Hydrometrie][Humidité]#`` is 80% and that is ``#[Salle de bain][Hydrometrie][Humidité]#`` who triggered the scenario. If the scenario was not triggered by a command, returns `false`.                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Returns 9 if the humidity percentage and 85                     |
 | ``odd(3)``                             | Returns 1                            |
 | ``median(15,25,20)``                   | Returns 20
