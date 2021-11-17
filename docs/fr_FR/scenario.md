@@ -423,7 +423,7 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 - ``randText(texte1;texte2;texte…​..)`` : Permet de retourner un des textes aléatoirement (séparer les texte par un ; ). Il n’y a pas de limite dans le nombre de texte.
 - ``randomColor(min,max)`` : Donne une couleur aléatoire comprise entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu).
 - ``trigger(commande)`` : Permet de connaître le déclencheur du scénario ou de savoir si c’est bien la commande passée en paramètre qui a déclenché le scénario.
-- ``triggerValue(commande)`` : Permet de connaître la valeur du déclencheur du scénario.
+- ``triggerValue()`` : Permet de connaître la valeur du déclencheur du scénario.
 - ``round(valeur,[decimal])`` : Donne un arrondi au-dessus, [decimal] nombre de décimales après la virgule.
 - ``odd(valeur)`` : Permet de savoir si un nombre est impair ou non. Renvoie 1 si impair 0 sinon.
 - ``median(commande1,commande2…​.commandeN)`` : Renvoie la médiane des valeurs.
@@ -443,7 +443,7 @@ Et les exemples pratiques :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
 | ``randomColor(40,60)``                 | Retourne une couleur aléatoire  proche du vert.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 si c’est bien ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario sinon 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 si l’hydrométrie de ``#[Salle de bain][Hydrometrie][Humidité]#`` est de 80 % et que c'est ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario sinon `faux`.                         |
+| ``triggerValue()`` | 80 si l’hydrométrie de ``#[Salle de bain][Hydrometrie][Humidité]#`` est de 80 % et que c'est ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario. Si le scénario n'a pas été déclenché par une commande, retourne `faux`.                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Renvoie 9 si le pourcentage d’humidité et 85                     |
 | ``odd(3)``                             | Renvoie 1                            |
 | ``median(15,25,20)``                   | Renvoie 20
