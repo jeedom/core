@@ -355,6 +355,13 @@ class config {
 		cache::flushWidget();
 	}
 
+	public static function postConfig_theme_start_day_hour($_value) {
+		event::add('checkThemechange', array('theme_start_day_hour' => $_value));
+	}
+	public static function postConfig_theme_end_day_hour($_value) {
+		event::add('checkThemechange', array('theme_end_day_hour' => $_value));
+	}
+
 	public static function postConfig_object_summary($_value) {
 		try {
 			foreach (jeeObject::all() as $object) {

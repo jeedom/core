@@ -393,7 +393,7 @@ jeedomUtils.checkThemechange = function() {
 
   var theme = jeedom.theme.default_bootstrap_theme_night
   var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
-  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+  var currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
 
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime) {
     theme  = jeedom.theme.default_bootstrap_theme

@@ -200,7 +200,21 @@ jeedom.init = function() {
   $body.on('notify', function(_event, _options) {
     jeedom.notify(_options.title, _options.message, _options.theme);
   });
+  $body.on('checkThemechange', function(_event, _options) {
+    setCookie('currentTheme', '', -1)
+    $('#jQMnDColor').attr('data-nochange', 0)
 
+    if (isset(_options.theme_start_day_hour)) {
+      jeedom.theme.theme_start_day_hour = _options.theme_start_day_hour
+    }
+    if (isset(_options.theme_end_day_hour)) {
+      jeedom.theme.theme_end_day_hour = _options.theme_end_day_hour
+    }
+    if (isset(_options.theme_changeAccordingTime)) {
+      jeedom.theme.theme_changeAccordingTime = _options.theme_changeAccordingTime
+    }
+    jeedomUtils.checkThemechange()
+  });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
   }
