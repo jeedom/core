@@ -388,14 +388,14 @@ Allows monitoring and acting on the Jeedom cache :
 
 Here you find the list of the different API keys available in your Jeedom. Core has two API keys :
 
--   a general : as much as possible, avoid using it,
--   and another for professionals : used for fleet management. It can be empty.
--   Then you will find one API key per plugin that needs it.
+- a general : as much as possible, avoid using it,
+- and another for professionals : used for fleet management. It can be empty.
+- Then you will find one API key per plugin that needs it.
 
 For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can define their scope :
 
 - **Disabled** : API key cannot be used,
-- **Whitelist** : only a list of IPs is authorized (see Settings → System → Configuration : Networks),
+- **Whitelist** : only a list of IPs is authorized (see Settings → System → Configuration : Security),
 - **Localhost** : only requests from the system on which Jeedom is installed are allowed,
 - **Enabled** : no restrictions, any system with access to your Jeedom will be able to access this API.
 

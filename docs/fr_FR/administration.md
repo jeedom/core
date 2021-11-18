@@ -388,14 +388,14 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
 
 Vous trouvez ici la liste des différentes clés API disponibles dans votre Jeedom. De base, le core a deux clés API :
 
--   une générale : autant que possible, il faut éviter de l’utiliser,
--   et une autre pour les professionnels : utilisée pour la gestion de parc. Elle peut être vide.
--   Puis, vous trouverez une clé API par plugin en ayant besoin.
+- une générale : autant que possible, il faut éviter de l’utiliser,
+- et une autre pour les professionnels : utilisée pour la gestion de parc. Elle peut être vide.
+- Puis, vous trouverez une clé API par plugin en ayant besoin.
 
 Pour chaque clé API de plugin, ainsi que pour les APIs HTTP, JsonRPC et TTS, vous pouvez définir leur portée :
 
 - **Désactivée** : la clé API ne peut être utilisée,
-- **IP blanche** : seule une liste d’IPs est autorisée (voir Réglages→Système→Configuration : Réseaux),
+- **IP blanche** : seule une liste d’IPs est autorisée (voir Réglages→Système→Configuration : Sécurité),
 - **Localhost** : seules les requêtes venant du système sur lequel est installé Jeedom sont autorisées,
 - **Activé** : aucune restriction, n’importe quel système ayant accès à votre Jeedom pourra accéder à cette API.
 

@@ -703,6 +703,22 @@ function date_fr($date_en) {
 				'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 			);
 			break;
+		case 'es_ES':
+			$texte_long = array(
+				'Lunes', 'Martes', 'Miércoles', 'Jueves',
+				'Viernes', 'Sábado', 'Domingo', 'Enero',
+				'Febrero', 'Marzo', 'Abril', 'Mayo',
+				'Junio', 'Julio', 'Agosto', 'Septiembre',
+				'Octubre', 'Noviembre', 'Diciembre',
+			);
+			$texte_short_day = array(
+				'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'
+			);
+			$texte_short_month = array(
+				'Ener.', 'Febr.', 'Marz.', 'Abr.', 'May.', 'Jun.',
+				'Jul.', 'Ago.', 'Sept.', 'Oct.', 'Nov.', 'Dic.',
+			);
+			break;
 		default:
 			return $date_en;
 			break;
@@ -749,6 +765,22 @@ function convertDayFromEn($_day) {
 			'saturday' => 'samstag', 'sat' => 'samstag',
 			'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
 			'sunday' => 'sonntag', 'sun' => 'sonntag',
+		),
+		'es_ES' => array(
+			'Monday' => 'Lunes', 'Mon' => 'Lunes',
+			'monday' => 'lunes', 'mon' => 'lunes',
+			'Tuesday' => 'Martes', 'Tue' => 'Martes',
+			'tuesday' => 'martes', 'tue' => 'martes',
+			'Wednesday' => 'Miércoles', 'Wed' => 'Miércoles',
+			'wednesday' => 'miércoles', 'wed' => 'miércoles',
+			'Thursday' => 'Jueves', 'Thu' => 'Jueves',
+			'thursday' => 'jueves', 'thu' => 'jueves',
+			'Friday' => 'Viernes', 'Fri' => 'Viernes',
+			'friday' => 'viernes', 'fri' => 'viernes',
+			'Saturday' => 'Sábado', 'Sat' => 'Sábado',
+			'saturday' => 'sábado', 'sat' => 'sábado',
+			'Sunday' => 'Domingo', 'Sun' => 'Domingo',
+			'sunday' => 'domingo', 'sun' => 'domingo',
 		),
 	);
 	$language = config::byKey('language', 'core', 'fr_FR');

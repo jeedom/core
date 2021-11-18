@@ -81,11 +81,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <select class="eqLogicAttr form-control sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
                   <option value="0">{{Aucune}}</option>
                   <?php
+                  $options = '';
                   foreach (($eqLogic->getCmd('info')) as $cmd) {
-                    if(!$cmd->getIsHistorized()){
-                      continue;
+                    if ($cmd->getIsHistorized()) {
+                      $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
                     }
-                    $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
                   }
                   echo $options;
                   ?>

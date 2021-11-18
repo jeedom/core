@@ -215,7 +215,7 @@ function initHistoryTrigger() {
         }
       },
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -240,7 +240,7 @@ function initHistoryTrigger() {
         }
       },
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -270,7 +270,7 @@ function initHistoryTrigger() {
           }
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -309,7 +309,7 @@ function initHistoryTrigger() {
           }
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -547,13 +547,13 @@ function emptyHistory(_cmd_id, _date) {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         })
         return
       }
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Historique supprimé avec succès}}',
         level: 'success'
       })

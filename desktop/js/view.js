@@ -73,7 +73,7 @@ $('#bt_editViewWidgetOrder').off('click').on('click', function() {
     $('.counterReorderJeedom').remove()
     editWidgetMode(0)
   } else {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre.}}",
       level: 'info'
     })
@@ -88,7 +88,7 @@ if (view_id != '') {
     version: 'dashboard',
     useCache: true,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

@@ -538,7 +538,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
     jeedom.eqLogic.setGenericType({
       eqLogics: eqLogics,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -564,7 +564,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
     jeedom.cmd.multiSave({
       cmds: cmds,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -579,7 +579,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
   })
   modifyWithoutSave = false
 
-  $('#div_alert').showAlert({
+  $.fn.showAlert({
     message: '{{Types Génériques sauvegardés}}' + ' (equipment: ' + eqLogics.length + ' | command: ' + cmds.length + ')',
     level: 'success'
   })

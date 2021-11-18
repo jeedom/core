@@ -66,7 +66,7 @@ function displayTimeline() {
   jeedom.timeline.byFolder({
     folder: $('#sel_timelineFolder').value(),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

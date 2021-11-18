@@ -171,7 +171,7 @@ Theme ElFinder File Editor 2021 @Jeedom
   }
 
   #elfinder .ui-dialog.elfinder-maximized {
-    padding-top: 55px !important;
+    margin-top: 55px !important;
     max-height: calc(100% - 60px) !important;
     max-width: 100% !important;
   }

@@ -245,7 +245,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
     version: 'dashboard',
     summary: _summary,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -270,7 +270,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
           id: data[i].id,
           version: 'dashboard',
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })

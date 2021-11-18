@@ -102,7 +102,7 @@ mod_insertCmd.changeObjectCmd = function(_select, _options) {
     orderByName : true,
     onlyHasCmds : _options.cmd,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(eqLogics) {
       _select.closest('tr').find('.mod_insertCmdValue_eqLogic').empty()
@@ -130,7 +130,7 @@ mod_insertCmd.changeEqLogic = function(_select) {
     id: _select.value(),
     filter: mod_insertCmd.options.cmd,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(html) {
       _select.closest('tr').find('.mod_insertCmdValue_cmd').empty()

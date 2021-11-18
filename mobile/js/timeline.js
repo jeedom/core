@@ -7,7 +7,7 @@ $('body').attr('data-page', 'timeline')
 function initTimeline() {
   jeedom.timeline.listFolder({
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       var rightPanel = '<ul data-role="listview" class="ui-icon-alt">'
@@ -40,7 +40,7 @@ function displayTimeline() {
   jeedom.timeline.byFolder({
     folder : $('.changeTimelineFolder.active').attr('data-value'),
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       if (data.length == 0) return

@@ -1034,10 +1034,10 @@ class cmd {
 		$message = '';
 		switch ($_type) {
 			case 'jeedomPreExecCmd':
-				$message = __('. Sur preExec de la commande', __FILE__);
+				$message = '. ' . __('Sur preExec de la commande', __FILE__);
 				break;
 			case 'jeedomPostExecCmd':
-				$message = __('. Sur postExec de la commande', __FILE__);
+				$message = '. ' . __('Sur postExec de la commande', __FILE__);
 				break;
 		}
 
@@ -1058,7 +1058,7 @@ class cmd {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . $message . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . ': ' . $message . '. ' . $this->getHumanName() . __('Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 	}
@@ -1938,7 +1938,7 @@ class cmd {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+							'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
 							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 						));
 					}
@@ -2598,10 +2598,6 @@ class cmd {
 		}
 		$this->unite = $_unite;
 		return $this;
-	}
-
-	public function setEventOnly($eventOnly) {
-		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public function getTemplate($_key = '', $_default = '') {

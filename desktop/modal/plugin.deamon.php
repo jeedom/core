@@ -190,7 +190,7 @@ $('.bt_startDeamon').on('click', function() {
         id : plugin_id,
         forceRestart: 1,
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
           refreshDeamonInfo()
           timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
         },
@@ -208,7 +208,7 @@ $('.bt_stopDeamon').on('click', function() {
   jeedom.plugin.deamonStop({
     id : plugin_id,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
       refreshDeamonInfo()
       timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
     },
@@ -226,7 +226,7 @@ $('.bt_changeAutoMode').on('click', function() {
     id : plugin_id,
     mode : mode,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
       refreshDeamonInfo()
       timeout_refreshDeamonInfo = setTimeout(refreshDeamonInfo, 5000)
     },

@@ -74,7 +74,7 @@ function initHistoryTrigger() {
     jeedom.cmd.save({
       cmd: {id: lastId, display: {graphType: $(this).value()}},
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
         addChart(lastId, 1)
@@ -86,7 +86,7 @@ function initHistoryTrigger() {
     jeedom.cmd.save({
       cmd: {id: lastId, display: {groupingType: $(this).value()}},
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
         addChart(lastId, 1)
@@ -98,7 +98,7 @@ function initHistoryTrigger() {
     jeedom.cmd.save({
       cmd: {id: lastId, display: {graphDerive: $(this).value()}},
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
         addChart(lastId, 1)
@@ -110,7 +110,7 @@ function initHistoryTrigger() {
     jeedom.cmd.save({
       cmd: {id: lastId, display: {graphStep: $(this).value()}},
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function() {
         addChart(lastId, 1)

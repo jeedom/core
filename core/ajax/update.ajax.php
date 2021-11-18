@@ -65,7 +65,7 @@ try {
 		log::clear('update');
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
-			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
+			throw new Exception(__('Aucune correspondance pour l\'ID : ', __FILE__) . init('id'));
 		}
 		try {
 			if ($update->getType() != 'core') {
@@ -101,7 +101,7 @@ try {
 			$update = update::byLogicalId(init('id'));
 		}
 		if (!is_object($update)) {
-			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
+			throw new Exception(__('Aucune correspondance pour l\'ID : ', __FILE__) . init('id'));
 		}
 		$update->deleteObjet();
 		ajax::success();
@@ -114,7 +114,7 @@ try {
 			$update = update::byLogicalId(init('id'));
 		}
 		if (!is_object($update)) {
-			throw new Exception(__('Aucune correspondance pour l\'ID : ' . init('id'), __FILE__));
+			throw new Exception(__('Aucune correspondance pour l\'ID : ', __FILE__) . init('id'));
 		}
 		$update->checkUpdate();
 		ajax::success();

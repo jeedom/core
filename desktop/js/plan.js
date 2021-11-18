@@ -360,13 +360,13 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               jeedom.plan.removeHeader({
                 id: planHeader_id,
                 error: function(error) {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: error.message,
                     level: 'danger'
                   })
                 },
                 success: function() {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: 'Design supprimé',
                     level: 'success'
                   })
@@ -401,7 +401,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 name: result,
                 id: planHeader_id,
                 error: function(error) {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: error.message,
                     level: 'danger'
                   })
@@ -535,7 +535,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           jeedom.plan.remove({
             id: $(this).attr('data-plan_id'),
             error: function(error) {
-              $('#div_alert').showAlert({
+              $.fn.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -559,7 +559,7 @@ if (deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             id: $(this).attr('data-plan_id'),
             version: 'dashboard',
             error: function(error) {
-              $('#div_alert').showAlert({
+              $.fn.showAlert({
                 message: error.message,
                 level: 'danger'
               })
@@ -619,7 +619,7 @@ $pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
     jeedom.plan.execute({
       id: el.attr('data-plan_id'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -720,7 +720,7 @@ function createNewDesign() {
           name: result
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -926,7 +926,7 @@ function addObject(_plan) {
     plan: _plan,
     version: 'dashboard',
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -953,7 +953,7 @@ function displayPlan(_code) {
       if (error.code == -32005) {
         var result = prompt("{{Veuillez indiquer le code ?}}", "")
         if (result == null) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -962,7 +962,7 @@ function displayPlan(_code) {
         displayPlan(result)
       } else {
         planHeader_id = -1
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -1018,7 +1018,7 @@ function displayPlan(_code) {
       jeedom.plan.byPlanHeader({
         id: planHeader_id,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -1143,7 +1143,7 @@ function savePlan(_refreshDisplay, _async) {
     async: _async || true,
     global: false,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

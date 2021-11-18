@@ -75,7 +75,7 @@ jeedom.cmd.execute = function(_params) {
                 id: _params.id
               });
               if ('function' != typeof(_params.error)) {
-                $('#div_alert').showAlert({
+                $.fn.showAlert({
                   message: data.result,
                   level: 'danger'
                 });
@@ -95,7 +95,7 @@ jeedom.cmd.execute = function(_params) {
                   id: _params.id
                 });
                 if ('function' != typeof(_params.error)) {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: data.result,
                     level: 'danger'
                   });
@@ -119,7 +119,7 @@ jeedom.cmd.execute = function(_params) {
                 id: _params.id
               });
               if ('function' != typeof(_params.error)) {
-                $('#div_alert').showAlert({
+                $.fn.showAlert({
                   message: data.result,
                   level: 'danger'
                 });
@@ -139,7 +139,7 @@ jeedom.cmd.execute = function(_params) {
                   id: _params.id
                 });
                 if ('function' != typeof(_params.error)) {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: data.result,
                     level: 'danger'
                   });
@@ -154,7 +154,7 @@ jeedom.cmd.execute = function(_params) {
           }
         } else {
           if ('function' != typeof(_params.error)) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: data.result,
               level: 'danger'
             });
@@ -319,7 +319,7 @@ jeedom.cmd.test = function(_params) {
                 },
                 cache: 0,
                 error: function(error) {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: error.message,
                     level: 'danger'
                   });
@@ -917,7 +917,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         });

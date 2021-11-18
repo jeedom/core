@@ -23,7 +23,7 @@
         id: $(this).closest('.scenario').attr('data-scenario_id'),
         state: $(this).attr('data-state'),
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
           $('.scenario[data-scenario_id=#id#] .state').empty().append('<i class="fa fa-times"></i>')
         }
       })

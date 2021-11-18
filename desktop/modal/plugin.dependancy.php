@@ -121,7 +121,7 @@ $('.launchInstallPluginDependancy').on('click',function() {
   jeedom.plugin.dependancyInstall({
     id : plugin_id,
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
       $("#div_plugin_dependancy").load('index.php?v=d&modal=plugin.dependancy&plugin_id='+plugin_id)

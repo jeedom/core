@@ -15,7 +15,7 @@ function initMessage() {
     jeedom.message.clear({
       plugin: $('#sel_plugin').value(),
       error: function (error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: getAllMessage
     })
@@ -31,7 +31,7 @@ function initMessage() {
       jeedom.message.remove({
         id: tr.attr('data-message_id'),
         error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function () {
           tr.remove()
@@ -46,7 +46,7 @@ function getAllMessage(_plugin) {
   jeedom.message.all({
     plugin: _plugin || '',
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function (messages) {
       var tbody = ''

@@ -817,7 +817,7 @@ $(function() {
         jeedom.cmd.getHumanCmdName({
           id: thisValue,
           error: function(error) {
-            $('#div_alert').showAlert({message: error.message, level: 'danger'})
+            $.fn.showAlert({message: error.message, level: 'danger'})
           },
           success: function(data) {
             var span = '<span class="label label-primary">' + data + '</span><br>'
