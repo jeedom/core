@@ -112,7 +112,7 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic';
 		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL OR object_id = -1';
+			$sql .= ' WHERE (object_id IS NULL OR object_id = -1)';
 		} else {
 			$values['object_id'] = $_object_id;
 			$sql .= ' WHERE object_id=:object_id';
