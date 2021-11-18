@@ -185,7 +185,7 @@ $(function() {
     }
     if (getUrlVars('removeSuccessFull') == 1) {
       $.fn.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
-      PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
+      PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
   })
