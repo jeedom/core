@@ -528,7 +528,7 @@ class system {
 				if ($_package == 'nodejs' || $_package == 'npm') {
 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
 				}
-				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
+				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y -f ' . $_package;
 			case 'pip2':
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
 					return '';
