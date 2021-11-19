@@ -151,6 +151,7 @@ function initPickers() {
   })
 }
 
+var _configReload_
 //load configuration settings
 jeedom.config.load({
   configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
@@ -170,6 +171,8 @@ jeedom.config.load({
     if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') $('a.bt_removeBackgroundImage[data-page=analysis]').addClass('disabled')
     if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') $('a.bt_removeBackgroundImage[data-page=tools]').addClass('disabled')
     modifyWithoutSave = false
+
+    _configReload_ = $('#config').getValues('.configKey[data-reload="1"]')[0]
   }
 })
 
@@ -197,16 +200,38 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
           })
         },
         success: function(data) {
-          $('#config').setValues(data, '.configKey')
-          loadActionOnMessage()
-          modifyWithoutSave = false
-          setTimeout(function() {
+          var reloadPage = false
+          try {
+            for (var key in _configReload_) {
+              if (_configReload_[key] != data[key]) {
+                reloadPage = true
+                break
+              }
+            }
+          } catch (error) {
+            reloadPage = true
+          }
+
+          if (reloadPage) {
+            var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
+            if (window.location.hash != '') {
+              url += window.location.hash
+            }
+            window.history.pushState({}, document.title, url)
+            window.location.reload(true)
+          } else {
+            $('#config').setValues(data, '.configKey')
+            loadActionOnMessage()
             modifyWithoutSave = false
-          }, 1000)
-          $.fn.showAlert({
-            message: '{{Sauvegarde réussie}}',
-            level: 'success'
-          })
+            setTimeout(function() {
+              modifyWithoutSave = false
+            }, 1000)
+            $.fn.showAlert({
+              message: '{{Sauvegarde réussie}}',
+              level: 'success'
+            })
+            _configReload_ = $('#config').getValues('.configKey[data-reload="1"]')[0]
+          }
         }
       })
     }
@@ -326,6 +351,7 @@ $('.bt_uploadImage').each(function() {
         return
       }
       $('a.bt_removeBackgroundImage[data-page=' + $(this).attr('data-page') + ']').removeClass('disabled')
+      _configReload_['imageChanged'] = 1
       $.fn.showAlert({
         message: '{{Image enregistrée et configurée}}',
         level: 'success'
@@ -349,6 +375,7 @@ $divConfig.on({
           },
           success: function() {
             $('a.bt_removeBackgroundImage[data-page=' + dataPage + ']').addClass('disabled')
+            _configReload_['imageChanged'] = 1
             $.fn.showAlert({
               message: '{{Image supprimée}}',
               level: 'success'

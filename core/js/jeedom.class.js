@@ -119,22 +119,22 @@ jeedom.init = function() {
     ]
   });
 
-
-  $('body').on('cmd::update', function(_event, _options) {
+  var $body = $('body')
+  $body.on('cmd::update', function(_event, _options) {
     jeedom.cmd.refreshValue(_options);
   });
 
-  $('body').on('scenario::update', function(_event, _options) {
+  $body.on('scenario::update', function(_event, _options) {
     jeedom.scenario.refreshValue(_options);
   });
-  $('body').on('eqLogic::update', function(_event, _options) {
+  $body.on('eqLogic::update', function(_event, _options) {
     jeedom.eqLogic.refreshValue(_options);
   });
-  $('body').on('jeeObject::summary::update', function(_event, _options) {
+  $body.on('jeeObject::summary::update', function(_event, _options) {
     jeedom.object.summaryUpdate(_options);
   });
 
-  $('body').on('ui::update', function(_event, _options) {
+  $body.on('ui::update', function(_event, _options) {
     if (isset(_options.page) && _options.page != '') {
       if ($.mobile) {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _options.page) {
@@ -150,7 +150,7 @@ jeedom.init = function() {
     $(_options.container).setValues(_options.data, _options.type);
   });
 
-  $('body').on('jeedom::gotoplan', function(_event, _plan_id) {
+  $body.on('jeedom::gotoplan', function(_event, _plan_id) {
     if (getUrlVars('p') == 'plan' && 'function' == typeof(displayPlan)) {
       if (_plan_id != $('#sel_planHeader').attr('data-link_id')) {
         planHeader_id = _plan_id;
@@ -159,7 +159,7 @@ jeedom.init = function() {
     }
   });
 
-  $('body').on('jeedom::alert', function(_event, _options) {
+  $body.on('jeedom::alert', function(_event, _options) {
     if (!isset(_options.message) || $.trim(_options.message) == '') {
       if (isset(_options.page) && _options.page != '') {
         if (getUrlVars('p') == _options.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _options.page)) {
@@ -185,20 +185,35 @@ jeedom.init = function() {
       }
     }
   });
-  $('body').on('jeedom::alertPopup', function(_event, _message) {
+  $body.on('jeedom::alertPopup', function(_event, _message) {
     alert(_message);
   });
-  $('body').on('jeedom::coloredIcons', function(_event, _state) {
-    $('body').attr('data-coloredIcons', _state);
+  $body.on('jeedom::coloredIcons', function(_event, _state) {
+    $body.attr('data-coloredIcons', _state);
   });
-  $('body').on('message::refreshMessageNumber', function(_event, _options) {
+  $body.on('message::refreshMessageNumber', function(_event, _options) {
     jeedom.refreshMessageNumber();
   });
-  $('body').on('update::refreshUpdateNumber', function(_event, _options) {
+  $body.on('update::refreshUpdateNumber', function(_event, _options) {
     jeedom.refreshUpdateNumber();
   });
-  $('body').on('notify', function(_event, _options) {
+  $body.on('notify', function(_event, _options) {
     jeedom.notify(_options.title, _options.message, _options.theme);
+  });
+  $body.on('checkThemechange', function(_event, _options) {
+    setCookie('currentTheme', '', -1)
+    $('#jQMnDColor').attr('data-nochange', 0)
+
+    if (isset(_options.theme_start_day_hour)) {
+      jeedom.theme.theme_start_day_hour = _options.theme_start_day_hour
+    }
+    if (isset(_options.theme_end_day_hour)) {
+      jeedom.theme.theme_end_day_hour = _options.theme_end_day_hour
+    }
+    if (isset(_options.theme_changeAccordingTime)) {
+      jeedom.theme.theme_changeAccordingTime = _options.theme_changeAccordingTime
+    }
+    jeedomUtils.checkThemechange()
   });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
