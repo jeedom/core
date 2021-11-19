@@ -90,7 +90,7 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
 			if ($cmdGenericType != '') {
 				try {
-              		$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . ' -> ' . $GENRICSTYPES[$cmdGenericType]['name'];
+              		array_key_exists($cmdGenericType, $GENRICSTYPES) ? $cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . ' -> ' . $GENRICSTYPES[$cmdGenericType]['name'] : $cmdGeneric = '('.$cmdGenericType.')';
               	} catch (Exception $e) {
               		$cmdGeneric = ' -> ';
               	}
