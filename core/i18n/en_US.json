@@ -1331,7 +1331,7 @@
         "Type": "Type",
         "Sous-type": "Subtype",
         "Nom": "Name",
-        "Créer": "To create"
+        "Créer": "Create"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -4201,9 +4201,9 @@
         "Design 3d :": "3d design:"
     },
     "core\/class\/eqLogic.class.php": {
-        "Attention": "Be careful",
+        "Attention": "Warning",
         " n\\'a pas envoyé de message depuis plus de ": "has not sent a message for more than",
-        " min (vérifiez les piles)": "min (vérifiez les piles)",
+        " min (vérifiez les piles)": "min (check batteries)",
         "Aucun": "None",
         "L\\'équipement n\\'a pas pu être trouvé : ": "The equipment could not be found:",
         "Le": "The",
