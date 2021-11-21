@@ -2906,6 +2906,9 @@ Desktop
   body[data-page="custom"] .tab-content {
     height: calc(100% - 55px) !important;
   }
+  body[data-page="custom"] .tab-content {
+     overflow: hidden;
+  }
 
   .tab-content .tab-content,
   .tab-content pre {
