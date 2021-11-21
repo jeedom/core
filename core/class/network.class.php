@@ -278,9 +278,29 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		try {
-			$plugin = plugin::byId('openvpn');
-			if (!is_object($plugin)) {
+		if (!in_array(config::byKey('dns::mode'), array('openvpn', 'wireguard'))) {
+			config::save('dns::mode', 'openvpn');
+		}
+		if (config::byKey('dns::mode') == 'openvpn') {
+			$wireguard = eqLogic::byLogicalId('dnsjeedom', 'wireguard');
+			if (is_object($wireguard)) {
+				$wireguard->remove();
+			}
+			try {
+				$plugin = plugin::byId('openvpn');
+				if (!is_object($plugin)) {
+					$update = update::byLogicalId('openvpn');
+					if (!is_object($update)) {
+						$update = new update();
+					}
+					$update->setLogicalId('openvpn');
+					$update->setSource('market');
+					$update->setConfiguration('version', 'stable');
+					$update->save();
+					$update->doUpdate();
+					$plugin = plugin::byId('openvpn');
+				}
+			} catch (Exception $e) {
 				$update = update::byLogicalId('openvpn');
 				if (!is_object($update)) {
 					$update = new update();
@@ -292,67 +312,109 @@ class network {
 				$update->doUpdate();
 				$plugin = plugin::byId('openvpn');
 			}
-		} catch (Exception $e) {
-			$update = update::byLogicalId('openvpn');
-			if (!is_object($update)) {
-				$update = new update();
+			if (!is_object($plugin)) {
+				throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
 			}
-			$update->setLogicalId('openvpn');
-			$update->setSource('market');
-			$update->setConfiguration('version', 'stable');
-			$update->save();
-			$update->doUpdate();
-			$plugin = plugin::byId('openvpn');
+			if (!$plugin->isActive()) {
+				$plugin->setIsEnable(1);
+				$plugin->dependancy_install();
+			}
+			if (!$plugin->isActive()) {
+				throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
+			}
+			$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+			$direct = true;
+			if (!is_object($openvpn)) {
+				$direct = false;
+				$openvpn = new openvpn();
+				$openvpn->setName('DNS Jeedom');
+			}
+			$openvpn->setIsEnable(1);
+			$openvpn->setLogicalId('dnsjeedom');
+			$openvpn->setEqType_name('openvpn');
+			$openvpn->setConfiguration('dev', 'tun');
+			$openvpn->setConfiguration('proto', 'udp');
+			if (config::byKey('dns::vpnurl') != '') {
+				$openvpn->setConfiguration('remote_host', config::byKey('dns::vpnurl'));
+			} else {
+				$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
+			}
+			if (config::byKey('dns::remote') != '') {
+				$openvpn->setConfiguration('remote', config::byKey('dns::remote'));
+			}
+			$openvpn->setConfiguration('username', jeedom::getHardwareKey());
+			$openvpn->setConfiguration('password', config::byKey('dns::token'));
+			$openvpn->setConfiguration('compression', 'comp-lzo');
+			$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
+			$openvpn->setConfiguration('auth_mode', 'password');
+			$openvpn->setConfiguration('additionalVpnParameters', 'tun-mtu 1300');
+			$openvpn->save($direct);
+			if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
+				shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
+			}
+			$path_ca = __DIR__ . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
+			if (file_exists($path_ca)) {
+				unlink($path_ca);
+			}
+			copy(__DIR__ . '/../../resources/ca_dns.crt', $path_ca);
+			if (!file_exists($path_ca)) {
+				throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
+			}
+			return $openvpn;
+		} elseif (config::byKey('dns::mode') == 'wireguard') {
+			$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+			if (is_object($openvpn)) {
+				$openvpn->remove();
+			}
+			try {
+				$plugin = plugin::byId('wireguard');
+				if (!is_object($plugin)) {
+					$update = update::byLogicalId('wireguard');
+					if (!is_object($update)) {
+						$update = new update();
+					}
+					$update->setLogicalId('wireguard');
+					$update->setSource('market');
+					$update->setConfiguration('version', 'stable');
+					$update->save();
+					$update->doUpdate();
+					$plugin = plugin::byId('wireguard');
+				}
+			} catch (Exception $e) {
+				$update = update::byLogicalId('wireguard');
+				if (!is_object($update)) {
+					$update = new update();
+				}
+				$update->setLogicalId('wireguard');
+				$update->setSource('market');
+				$update->setConfiguration('version', 'stable');
+				$update->save();
+				$update->doUpdate();
+				$plugin = plugin::byId('wireguard');
+			}
+			if (!is_object($plugin)) {
+				throw new Exception(__('Le plugin Wireguard doit être installé', __FILE__));
+			}
+			if (!$plugin->isActive()) {
+				$plugin->setIsEnable(1);
+				$plugin->dependancy_install();
+			}
+			if (!$plugin->isActive()) {
+				throw new Exception(__('Le plugin Wireguard doit être actif', __FILE__));
+			}
+			$wireguard = eqLogic::byLogicalId('dnsjeedom', 'wireguard');
+			$direct = true;
+			if (!is_object($wireguard)) {
+				$direct = false;
+				$wireguard = new wireguard();
+				$wireguard->setName('DNS Jeedom');
+			}
+			$wireguard->setIsEnable(1);
+			$wireguard->setLogicalId('dnsjeedom');
+			$wireguard->setEqType_name('wireguard');
+			$wireguard->save($direct);
+			return $wireguard;
 		}
-		if (!is_object($plugin)) {
-			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
-		}
-		if (!$plugin->isActive()) {
-			$plugin->setIsEnable(1);
-			$plugin->dependancy_install();
-		}
-		if (!$plugin->isActive()) {
-			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
-		}
-		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
-		$direct = true;
-		if (!is_object($openvpn)) {
-			$direct = false;
-			$openvpn = new openvpn();
-			$openvpn->setName('DNS Jeedom');
-		}
-		$openvpn->setIsEnable(1);
-		$openvpn->setLogicalId('dnsjeedom');
-		$openvpn->setEqType_name('openvpn');
-		$openvpn->setConfiguration('dev', 'tun');
-		$openvpn->setConfiguration('proto', 'udp');
-		if (config::byKey('dns::vpnurl') != '') {
-			$openvpn->setConfiguration('remote_host', config::byKey('dns::vpnurl'));
-		} else {
-			$openvpn->setConfiguration('remote_host', 'vpn.dns' . config::byKey('dns::number', 'core', 1) . '.jeedom.com');
-		}
-		if (config::byKey('dns::remote') != '') {
-			$openvpn->setConfiguration('remote', config::byKey('dns::remote'));
-		}
-		$openvpn->setConfiguration('username', jeedom::getHardwareKey());
-		$openvpn->setConfiguration('password', config::byKey('dns::token'));
-		$openvpn->setConfiguration('compression', 'comp-lzo');
-		$openvpn->setConfiguration('remote_port', config::byKey('vpn::port', 'core', 1194));
-		$openvpn->setConfiguration('auth_mode', 'password');
-		$openvpn->setConfiguration('additionalVpnParameters', 'tun-mtu 1300');
-		$openvpn->save($direct);
-		if (!file_exists(__DIR__ . '/../../plugins/openvpn/data')) {
-			shell_exec('mkdir -p ' . __DIR__ . '/../../plugins/openvpn/data');
-		}
-		$path_ca = __DIR__ . '/../../plugins/openvpn/data/ca_' . $openvpn->getConfiguration('key') . '.crt';
-		if (file_exists($path_ca)) {
-			unlink($path_ca);
-		}
-		copy(__DIR__ . '/../../resources/ca_dns.crt', $path_ca);
-		if (!file_exists($path_ca)) {
-			throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
-		}
-		return $openvpn;
 	}
 
 
@@ -363,8 +425,8 @@ class network {
 		if (config::byKey('market::allowDNS') != 1) {
 			return;
 		}
-		$openvpn = self::dns_create();
-		$cmd = $openvpn->getCmd('action', 'start');
+		$vpn = self::dns_create();
+		$cmd = $vpn->getCmd('action', 'start');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de démarrage du DNS est introuvable', __FILE__));
 		}
@@ -379,11 +441,11 @@ class network {
 			return false;
 		}
 		try {
-			$openvpn = self::dns_create();
+			$vpn = self::dns_create();
 		} catch (Exception $e) {
 			return false;
 		}
-		$cmd = $openvpn->getCmd('info', 'state');
+		$cmd = $vpn->getCmd('info', 'state');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande de statut du DNS est introuvable', __FILE__));
 		}
@@ -394,8 +456,8 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		$openvpn = self::dns_create();
-		$cmd = $openvpn->getCmd('action', 'stop');
+		$vpn = self::dns_create();
+		$cmd = $vpn->getCmd('action', 'stop');
 		if (!is_object($cmd)) {
 			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
 		}

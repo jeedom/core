@@ -390,6 +390,24 @@ jeedom.scenario.remove = function(_params) {
   $.ajax(paramsAJAX);
 }
 
+jeedom.scenario.clearAllLogs = function(_params) {
+  var paramsRequired = [];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/scenario.ajax.php';
+  paramsAJAX.data = {
+    action: 'clearAllLogs'
+  };
+  $.ajax(paramsAJAX);
+}
+
 jeedom.scenario.emptyLog = function(_params) {
   var paramsRequired = ['id'];
   var paramsSpecifics = {};

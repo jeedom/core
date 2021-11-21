@@ -260,7 +260,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>
@@ -277,7 +277,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										}
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>
@@ -295,7 +295,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>
@@ -310,7 +310,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>
@@ -325,7 +325,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>
@@ -340,7 +340,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>
@@ -360,7 +360,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 										$size += 1;
 									}
 									if ($size > $optionMaxSize) $size = $optionMaxSize;
-									$html = '<select multiple="multiple" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
+									$html = '<select multiple="true" size="' . $size . '" class="custom-select" style="width:100%">' . $html;
 									$html .= '</select>';
 									echo $html;
 									?>

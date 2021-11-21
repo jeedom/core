@@ -32,6 +32,9 @@ $(function() {
     $(this).find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
       $(this).detach().appendTo(parent)
     })
+
+    $(this).find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
+
     if ($(this).find('.objectSummaryParent[data-summary="temperature"]').length == 0 && $(this).find('.objectSummaryParent[data-summary^=temp]').length > 0) {
       $(this).find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent)
     }
@@ -83,6 +86,7 @@ function updateSummary(_className) {
   pResume.find('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').each(function() {
     $(this).detach().appendTo(parent.find('.topPreview'))
   })
+  parent.find('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]').last().addClass('last')
   if (pResume.find('.objectSummaryParent[data-summary="temperature"]').length == 0 && pResume.find('.objectSummaryParent[data-summary^=temp]').length > 0) {
     pResume.find('.objectSummaryParent[data-summary^=temp]').first().detach().appendTo(parent.find('.topPreview'))
   }
@@ -241,7 +245,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
     version: 'dashboard',
     summary: _summary,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -266,7 +270,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
           id: data[i].id,
           version: 'dashboard',
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })

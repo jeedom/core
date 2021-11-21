@@ -19,7 +19,7 @@ function initScenariolog(_scenarioId) {
       jeedom.scenario.emptyLog({
         id : _scenarioId,
         error: function(error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          $.fn.showAlert({message: error.message, level: 'danger'})
         },
         success: function(data) {
           if($('#bt_globalLogStopStart').attr('data-state') == 0){

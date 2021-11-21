@@ -25,7 +25,7 @@ var $tabContainer = $('#div_pageContainer .tab-content')
 jeedom.config.load({
   configuration: $('#div_spanAlertMessage').getValues('.configKey:not(.noSet)')[0],
   error: function(error) {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: error.message,
       level: 'danger'
     })
@@ -128,7 +128,7 @@ $('.saveCustom').on('click', function() {
   jeedom.config.save({
     configuration: $('#div_spanAlertMessage').getValues('.configKey')[0],
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -139,13 +139,13 @@ $('.saveCustom').on('click', function() {
         type: type,
         content: content,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: 'Sauvegarde réussie',
             level: 'success'
           })

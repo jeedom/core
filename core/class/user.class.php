@@ -86,12 +86,12 @@ class user {
 			}
 			log::add("connection", "debug", __('LDAP Bind user - OK', __FILE__));
 			if (config::bykey('ldap:filter:admin') == "" && config::bykey('ldap:filter:user') == "" && config::bykey('ldap:filter:restrict') == "") {
-				log::add("connection", "warning", __('LDAP Profile Check - [WARNING] None filter was set, "' . $_login . '"  authenticated as an administrator', __FILE__));
+				log::add("connection", "warning", __('LDAP Profile Check - [WARNING] None filter was set, "', __FILE__) . $_login . __('"  authenticated as an administrator', __FILE__));
 				$profile = 'admin';
 			} else {
 				foreach (array('admin', 'user', 'restrict', 'none') as $profile) {
 					if ($profile == 'none') {
-						log::add("connection", "warning", __('LDAP Profile Check - [WARNING] No profile has been set for the "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
+						log::add("connection", "warning", __('LDAP Profile Check - [WARNING] No profile has been set for "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
 						break;
 					}
 					if (config::bykey('ldap:filter:' . $profile) != "") {
@@ -100,7 +100,7 @@ class user {
 						$result = ldap_search($ad, config::byKey('ldap:basedn'), $filters);
 						$entries = ldap_get_entries($ad, $result);
 						if ($entries['count'] > 0) {
-							log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__) . $profile . __('" profile was FOUND for the "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
+							log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__) . $profile . __('" profile was FOUND for "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
 							break;
 						}
 					}

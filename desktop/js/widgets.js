@@ -92,7 +92,7 @@ $(function() {
     $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.widgets.all({
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -214,7 +214,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
         jeedom.widgets.save({
           widgets: widgets,
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -335,7 +335,7 @@ function loadTemplateConfiguration(_template, _data) {
   jeedom.widgets.getTemplateConfiguration({
     template: _template,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -432,7 +432,7 @@ function printWidget(_id) {
     id: _id,
     cache: false,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -477,7 +477,7 @@ function printWidget(_id) {
         id: data.id,
         cache: false,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -540,7 +540,7 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
           name: result
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -548,7 +548,7 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
         success: function(data) {
           modifyWithoutSave = false
           jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1')
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Sauvegarde effectuée avec succès}}',
             level: 'success'
           })
@@ -596,7 +596,7 @@ $("#bt_saveWidgets").on('click', function(event) {
   jeedom.widgets.save({
     widgets: widgets,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -615,7 +615,7 @@ $('#bt_removeWidgets').on('click', function(event) {
       jeedom.widgets.remove({
         id: $('.widgetsAttr[data-l1key=id]').value(),
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -646,7 +646,7 @@ $("#bt_mainImportWidgets").change(function(event) {
   $('#div_alert').hide()
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}",
       level: 'danger'
     })
@@ -661,7 +661,7 @@ $("#bt_mainImportWidgets").change(function(event) {
             name: result
           },
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             });
@@ -672,7 +672,7 @@ $("#bt_mainImportWidgets").change(function(event) {
             readFile.onload = function(e) {
               var objectData = JSON.parse(e.target.result)
               if (!isset(objectData.jeedomCoreVersion)) {
-                $('#div_alert').showAlert({
+                $.fn.showAlert({
                   message: "{{Fichier json non compatible.}}",
                   level: 'danger'
                 })
@@ -688,7 +688,7 @@ $("#bt_mainImportWidgets").change(function(event) {
               jeedom.widgets.save({
                 widgets: objectData,
                 error: function(error) {
-                  $('#div_alert').showAlert({
+                  $.fn.showAlert({
                     message: error.message,
                     level: 'danger'
                   });
@@ -703,7 +703,7 @@ $("#bt_mainImportWidgets").change(function(event) {
       }
     })
   } else {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{Problème lors de la lecture du fichier.}}",
       level: 'danger'
     })
@@ -715,7 +715,7 @@ $("#bt_importWidgets").change(function(event) {
   $('#div_alert').hide()
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}",
       level: 'danger'
     })
@@ -728,7 +728,7 @@ $("#bt_importWidgets").change(function(event) {
     readFile.onload = function(e) {
       var objectData = JSON.parse(e.target.result)
       if (!isset(objectData.jeedomCoreVersion)) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: "{{Fichier json non compatible.}}",
           level: 'danger'
         })
@@ -744,7 +744,7 @@ $("#bt_importWidgets").change(function(event) {
       loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
     }
   } else {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{Problème lors de la lecture du fichier.}}",
       level: 'danger'
     })

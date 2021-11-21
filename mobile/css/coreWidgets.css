@@ -323,6 +323,7 @@ Mobile WebApp
 /* ____________________Compass */
   .widget-compass-container {
     position: relative;
+    top: 6px;
     width: 80px;
     height: 80px;
     margin-bottom: 18px;
@@ -350,9 +351,9 @@ Mobile WebApp
     right: 0;
     bottom: 0;
     left: 0;
-    border: 7px solid var(--txt-color);
-    border-top: 7px solid var(--al-info-color);
-    border-bottom: 7px solid var(--al-info-color);
+    border: 6px solid var(--txt-color);
+    border-top: 6px solid var(--al-info-color);
+    border-bottom: 6px solid var(--al-info-color);
     border-radius: 50%;
   }
   .widget-compass-needle-placer {

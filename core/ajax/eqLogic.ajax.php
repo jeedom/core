@@ -451,7 +451,10 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 
-		$eqLogicsSave = json_decode(init('eqLogic'), true);
+		$eqLogicSaves = init('eqLogic');
+		$nbrSave = count($eqLogicSaves);
+		$eqLogicsSave = json_decode($eqLogicSaves, true);
+		$return = array();
 
 		foreach ($eqLogicsSave as $eqLogicSave) {
 			try {
@@ -526,8 +529,10 @@ try {
 					throw new Exception($e->getMessage());
 				}
 			}
-			ajax::success(utils::o2a($eqLogic));
+			array_push($return, utils::o2a($eqLogic));
 		}
+		if ($nbrSave > 1) ajax::success($return);
+		ajax::success(utils::o2a($eqLogic));
 	}
 
 	if (init('action') == 'getAlert') {

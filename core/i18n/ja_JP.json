@@ -1324,7 +1324,14 @@
         "Extensions php": "PHP拡張"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401-不正アクセス"
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Version": "Version",
+        "Dashboard": "Dashboard",
+        "Mobile": "Mobile",
+        "Type": "Type",
+        "Sous-type": "Sous-type",
+        "Nom": "Nom",
+        "Créer": "Créer"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -1421,6 +1428,7 @@
         "Etat": "状態",
         "Ouvrir": "Ouvrir",
         "Catégorie": "Catégorie",
+        "Source": "Source",
         "Auteur": "Auteur",
         "Version": "バージョン",
         "Version installée du plugin.": "Version installée du plugin",
@@ -1668,6 +1676,9 @@
         "Gestion DNS": "Gestion DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le ": "注：この機能は、コミュニティサービスパックでは使用できません（サービスパックのプロファイルページで参照してください",
         "Utiliser les DNS": "DNSを使用する",
+        "Mode": "Mode",
+        "Openvpn (standard)": "Openvpn (standard)",
+        "Wireguard (alpha)": "Wireguard (alpha)",
         "Statut DNS": "DNSのステータス",
         "Démarré : ": "開始しました：",
         "Normal si vous n\\'avez pas coché la case : Utiliser les DNS": "ボックスにチェックマークを付けていない場合は通常：DNSを使用",
@@ -1957,6 +1968,7 @@
         "Pause": "休止",
         "Télécharger": "ダウンロード",
         "Vider": "空",
+        "Vider tous": "Vider tous",
         "Supprimer": "取り除きます",
         "Supprimer tous": "すべて削除"
     },
@@ -2110,6 +2122,7 @@
         "Aucun": "何でもありません",
         "Gestion": "管理",
         "Ajouter": "加えます",
+        "Supprimer les logs": "Supprimer les logs",
         "Activer scénarios": "シナリオをアクティブにする",
         "Désactiver scénarios": "シナリオを無効にする",
         "Vue d'ensemble": "概要",
@@ -2588,10 +2601,16 @@
     },
     "desktop\/js\/log.js": {
         "Pause": "休止",
+        "Êtes-vous sûr de vouloir vider tous les logs ?": "Êtes-vous sûr de vouloir vider tous les logs ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "すべてのログを削除してもよろしいですか？"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer"
+        "Editer": "Editer",
+        "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
+        "Le nom ne peut être vide": "Le nom ne peut être vide",
+        "Fichier enregistré avec succès": "Fichier enregistré avec succès",
+        "Créer un Widget": "Créer un Widget",
+        "Options": "Options"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "リフレッシュ",
@@ -3014,6 +3033,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Nom du scénario": "Nom du scénario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?",
+        "Logs des scénarios supprimés.": "Logs des scénarios supprimés",
         "Vue d'ensemble des scénarios": "Vue d'ensemble des scénarios",
         "Scénario": "シナリオ",
         "Graphique de lien(s)": "リンク画像",
@@ -3151,7 +3172,7 @@
         "Préférences": "好み",
         "Logs": "ログ",
         "Mises à jour": "アップデート",
-        "Panel ' . ucfirst($plugin)": "Panel ' . ucfirst($plugin)",
+        "Panel ": "パネル",
         "Panel": "パネル",
         ", ": "、"
     },
@@ -3524,7 +3545,7 @@
     "core\/com\/shell.com.php": {
         "Erreur sur ": "エラーオン",
         " valeur retournée : ": "valeur retournée :",
-        ". Détails : ' ": "Détails : '"
+        "Détails : ' ": "Détails : '"
     },
     "core\/com\/http.com.php": {
         "Erreur cURL : ": "CURLエラー：",
@@ -3581,7 +3602,7 @@
         "L\\'objet n\\'existe pas : ": "L\\'objet n\\'existe pas :",
         "Vue inconnu. Vérifiez l\\'ID ": "不明なビュー。 IDを確認してください",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "ファイルが見つかりません。 PHPの設定を確認します（投稿のサイズ制限）",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extension du fichier non valide (autorisé .jpg .png) :",
+        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extension du fichier non valide (autorisé .jpg .png .gif) :",
         "Le fichier est trop gros (maximum 5Mo)": "ファイルが大きすぎます（最大5MB）",
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Aucune méthode correspondante à : ": "以下に対応するメソッドはありません："
@@ -3660,7 +3681,7 @@
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Aucune correspondance pour l\\'ID : ' . init('id')": "IDに一致しません： '。 init（ 'ID'）",
+        "Aucune correspondance pour l\\'ID : ": "Aucune correspondance pour l\\'ID :",
         "[START UPDATE]": "[更新を開始]",
         "Launch cron dependancy plugins": "Cron依存プラグインを起動します",
         "[END UPDATE SUCCESS]": "[更新の成功を終了]",
@@ -3915,10 +3936,10 @@
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "Vous ne pouvez pas créer une commande sans la rattacher à un équipement",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "La valeur minimum de la commande ne peut etre supérieure à la valeur maximum",
-        ". Sur preExec de la commande": "Sur preExec de la commande",
-        ". Sur postExec de la commande": "Sur postExec de la commande",
+        "Sur preExec de la commande": "Sur preExec de la commande",
+        "Sur postExec de la commande": "Sur postExec de la commande",
         "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de",
-        ". Détails : ": "Détails :",
+        "Détails : ": "Détails :",
         " avec les paramètres ": "設定で",
         "Désactivation de": "Désactivation de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais",
@@ -3931,11 +3952,11 @@
         "La commande n\\'est pas dans la plage de valeur autorisée : ": "La commande n\\'est pas dans la plage de valeur autorisée :",
         "Evènement sur la commande ": "コマンドのイベント",
         " valeur : ": "値：",
+        ". Détails : ": "Détails :",
         "Alerte sur la commande ": "Alerte sur la commande",
         " niveau ": "レベル",
         "pendant plus de ": "より多くのため",
         " minute(s)": "分（S）",
-        "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
         "Appels de l\\'URL de push pour la commande ": "Appels de l\\'URL de push pour la commande",
         "Erreur push sur : ": "Erreur push sur :",
         "Erreur computing influx sur : ": "Erreur computing influx sur :",
@@ -4000,8 +4021,8 @@
         "Erreur sur l\\'arrêt des tâches crons : ": "Erreur sur l\\'arrêt des tâches crons :",
         "Restauration du cache": "食品キャッシュ",
         "Erreur sur la restauration du cache : ": "Erreur sur la restauration du cache :",
-        "Reconcilisation de l\\'historique": "Reconcilisation de l\\'historique",
-        "Erreur sur la reconcilisation de l\\'historique : ": "Erreur sur la reconcilisation de l\\'historique :",
+        "Consolidation de l\\'historique": "Consolidation de l\\'historique",
+        "Erreur sur la consolidation de l\\'historique : ": "Erreur sur la consolidation de l\\'historique :",
         "Nettoyage du cache des péripheriques USB": "キャッシュクリーナーのUSB周辺機器",
         "Erreur sur le nettoyage du cache des péripheriques USB : ": "Erreur sur le nettoyage du cache des péripheriques USB :",
         "Nettoyage du cache des péripheriques Bluetooth": "キャッシュのBluetooth周辺機器のクリーニング",
@@ -4054,7 +4075,7 @@
         "Vous n\\'êtes pas autorisé à exécuter cette action": "Vous n\\'êtes pas autorisé à exécuter cette action",
         "Erreur : impossible de calculer la date de programmation": "Erreur : impossible de calculer la date de programmation",
         "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de",
-        ". Détails : ": "Détails :",
+        "Détails : ": "Détails :",
         "aucune valeur": "価値のありません"
     },
     "core\/class\/history.class.php": {
@@ -4078,12 +4099,13 @@
         "start TLS OK": "start TLS OK",
         "LDAP bind user - login\/password denied": "LDAP bind user - login\/password denied",
         "LDAP Bind user - OK": "LDAP Bind user - OK",
-        "LDAP Profile Check - [WARNING] None filter was set, \"' . $_login . '\"  authenticated as an administrator": "LDAP Profile Check - [WARNING] None filter was set, \"' . $_login . '\"  authenticated as an administrator",
-        "LDAP Profile Check - [WARNING] No profile has been set for the ": "LDAP Profile Check - [WARNING] No profile has been set for the",
+        "LDAP Profile Check - [WARNING] None filter was set, ": "LDAP Profile Check - [WARNING] None filter was set,",
+        "  authenticated as an administrator": "authenticated as an administrator",
+        "LDAP Profile Check - [WARNING] No profile has been set for ": "LDAP Profile Check - [WARNING] No profile has been set for",
         " user in the LDAP": "user in the LDAP",
         "LDAP Profile Check - filter:, \"' . $filters . '": "LDAP Profile Check - filter:, \"' . $filters . '",
         "LDAP Profile Check - The ": "LDAP Profile Check - The",
-        " profile was FOUND for the ": "profile was FOUND for the",
+        " profile was FOUND for ": "profile was FOUND for",
         "User created from the LDAP : ": "User created from the LDAP :",
         "User connection accepted ": "User connection accepted",
         "User not allowed to access to Jeedom according to the LDAP (": "User not allowed to access to Jeedom according to the LDAP (",
@@ -4106,6 +4128,8 @@
         "Le plugin OpenVPN doit être installé": "Le plugin OpenVPN doit être installé",
         "Le plugin OpenVPN doit être actif": "Le plugin OpenVPN doit être actif",
         "Impossible de créer le fichier  : ": "Impossible de créer le fichier  :",
+        "Le plugin Wireguard doit être installé": "Le plugin Wireguard doit être installé",
+        "Le plugin Wireguard doit être actif": "Le plugin Wireguard doit être actif",
         "La commande de démarrage du DNS est introuvable": "La commande de démarrage du DNS est introuvable",
         "La commande de statut du DNS est introuvable": "La commande de statut du DNS est introuvable",
         "La commande d\\'arrêt du DNS est introuvable": "La commande d\\'arrêt du DNS est introuvable",
@@ -4125,8 +4149,8 @@
         "Elément inconnu. Vérifiez l\\'ID : ": "Elément inconnu. Vérifiez l\\'ID :",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Sous-élément inconnu. Vérifiez l\\'ID :",
         "Expression inconnue. Vérifiez l\\'ID : ": "Expression inconnue. Vérifiez l\\'ID :",
-        "Expression non valide  [": "Expression non valide  [",
-        "] trouvée dans le scénario : ": "] trouvée dans le scénario :",
+        "Expression non valide": "Expression non valide",
+        "trouvée dans le scénario : ": "trouvée dans le scénario :",
         ", résultat : ": ", résultat :",
         "Non exécution des actions pour cause de répétition": "繰り返しに起因するいかなる業績株式ません",
         "La condition pour une boucle doit être numérique : ": "La condition pour une boucle doit être numérique :",
@@ -4161,7 +4185,7 @@
         "Le scénario est de type programmé mais la programmation est vide": "Le scénario est de type programmé mais la programmation est vide",
         "Impossible d\\'arrêter la sous tâche : ": "Impossible d\\'arrêter la sous tâche :",
         "Impossible d\\'arrêter le scénario : ": "Impossible d\\'arrêter le scénario :",
-        ". PID : ": ". PID : ",
+        "PID : ": "PID : ",
         "Scénario": "シナリオ"
     },
     "core\/class\/jsonrpcClient.class.php": {
@@ -4180,7 +4204,6 @@
         "Attention": "注意",
         " n\\'a pas envoyé de message depuis plus de ": "n\\'a pas envoyé de message depuis plus de",
         " min (vérifiez les piles)": "min (vérifiez les piles)",
-        "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
         "Aucun": "何でもありません",
         "L\\'équipement n\\'a pas pu être trouvé : ": "L\\'équipement n\\'a pas pu être trouvé :",
         "Le": "インクルード",
@@ -4192,9 +4215,9 @@
         "Pas de date de changement de pile(s) renseignée": "Pas de date de changement de pile(s) renseignée",
         "Piles": "Piles",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
-        "$value['name']": "$value['name']",
         "Le nom de l\\'équipement ne peut pas être vide : ": "Le nom de l\\'équipement ne peut pas être vide :",
         "Lancement du scénario sur création équipement": "Lancement du scénario sur création équipement",
+        "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
         "Equipement": "設備",
         "Action": "Action"
     },
@@ -4209,7 +4232,7 @@
     },
     "core\/class\/plan.class.php": {
         "Erreur lors de l\\'exécution de ": "Erreur lors de l\\'exécution de",
-        ". Détails : ": "Détails :",
+        "Détails : ": "Détails :",
         "Non configuré": "Non configuré"
     },
     "core\/class\/cron.class.php": {
@@ -4266,16 +4289,16 @@
         "Génération d\\'un rapport de type ": "Génération d\\'un rapport de type",
         "Vue introuvable - Vérifiez l\\'id : ": "Vue introuvable - Vérifiez l\\'id :",
         "Génération du rapport ": "レポートの生成",
-        "[' . config::byKey('name') . '] Rapport ": "[' . config::byKey('name') . '] Rapport",
+        " Rapport ": " Rapport ",
         " du ": "の",
         "Veuillez trouver ci-joint le rapport ": "報告書は同封見つけてください",
         " généré le ": "生成されました",
         "Design introuvable - Vérifiez l\\'id : ": "Design introuvable - Vérifiez l\\'id :",
         "Panel introuvable - Vérifiez l\\'id : ": "Panel introuvable - Vérifiez l\\'id :",
-        "[' . config::byKey('name') . '] Rapport équipement du ": "[' . config::byKey('name') . '] Rapport équipement du",
+        " Rapport équipement du ": "Rapport équipement du",
         "Veuillez trouver ci-joint le rapport équipement généré le ": "Veuillez trouver ci-joint le rapport équipement généré le",
         "Génération du rapport timeline ": "Génération du rapport timeline",
-        "[' . config::byKey('name') . '] Rapport url du ": "[' . config::byKey('name') . '] Rapport url du",
+        " Rapport url du ": "Rapport url du",
         "Veuillez trouver ci-joint le rapport url généré le ": "Veuillez trouver ci-joint le rapport url généré le",
         "Erreur : Aucun rapport généré": "エラー：いいえ生成されたレポート",
         "Envoi du rapport généré sur ": "レポートの配信は、上の生成します",
@@ -4356,7 +4379,7 @@
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "Vérification des mises à jour, mise à jour et réinstallation désactivées sur",
         "Impossible de créer le dossier  : ": "Impossible de créer le dossier  :",
-        ". Problème de droits ?": "Problème de droits ?",
+        "Problème de droits ?": "Problème de droits ?",
         "Téléchargement du plugin...": "プラグインをダウンロード",
         "OK\\n": "OK \\ nは",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc",
@@ -4367,7 +4390,6 @@
         "Impossible de décompresser l\\'archive zip : ": "Zipアーカイブを解凍できません：",
         "Vous ne pouvez pas supprimer le core de Jeedom": "Jeedomのコアを削除することはできません",
         "Début de la mise à jour de : ": "アップデートの開始：",
-        "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "フォルダーを作成できません： '。 $ cibDir。 。権利問題？",
         "Action de pré-update...": "Action de pré-update",
         "Post-installation de ": "インストール後",
         "Suppression des fichiers inutiles...": "Suppression des fichiers inutiles",
@@ -4629,7 +4651,6 @@
         "Demande sur l\\'api http venant de : ": "Demande sur l\\'api http venant de :",
         "Appels de ": "通話",
         "Aucune commande correspondant à l\\'ID : ": "Aucune commande correspondant à l\\'ID :",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP :",
         "Exécution de : ": "Exécution de :",
         "Commande inconnue : ": "不明なコマンド：",
         "Token invalide": "Token invalide",

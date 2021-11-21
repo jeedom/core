@@ -1034,10 +1034,10 @@ class cmd {
 		$message = '';
 		switch ($_type) {
 			case 'jeedomPreExecCmd':
-				$message = __('. Sur preExec de la commande', __FILE__);
+				$message = '. ' . __('Sur preExec de la commande', __FILE__);
 				break;
 			case 'jeedomPostExecCmd':
-				$message = __('. Sur postExec de la commande', __FILE__);
+				$message = '. ' . __('Sur postExec de la commande', __FILE__);
 				break;
 		}
 
@@ -1058,7 +1058,7 @@ class cmd {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . $message . $this->getHumanName() . __('. Détails : ', __FILE__) . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . ': ' . $message . '. ' . $this->getHumanName() . __('Détails : ', __FILE__) . $e->getMessage());
 			}
 		}
 	}
@@ -1335,7 +1335,7 @@ class cmd {
 			}
 		}
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
-		if (isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])) {
+		if (isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])) {
 			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
 			if (isset($template_conf['replace']) && is_array($template_conf['replace']) && count($template_conf['replace']) > 0) {
@@ -1486,6 +1486,9 @@ class cmd {
 		$widget = $this->getWidgetTemplateCode($_version);
 		$template = $widget['template'];
 		$isCorewidget = $widget['isCoreWidget'];
+		if ($_version == 'scenario' && $isCorewidget) {
+			$widget['widgetName'] = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.default';
+		}
 
 		if ($_options != '') {
 			$options = jeedom::toHumanReadable($_options);
@@ -1567,12 +1570,6 @@ class cmd {
 					$replace['#' . $key . '#'] = $value;
 				}
 			}
-			$template = template_replace($replace, $template);
-			if ($isCorewidget) {
-				return translate::exec($template, 'core/template/widgets.html');
-			} else {
-				return translate::exec($template, $widget['widgetName']);
-			}
 		}
 
 		if ($this->getType() == 'action') {
@@ -1636,14 +1633,19 @@ class cmd {
 			if (!isset($replace['#color#'])) {
 				$replace['#color#'] = '';
 			}
-
-			$template = template_replace($replace, $template);
-			if ($isCorewidget) {
-				return translate::exec($template, 'core/template/widgets.html');
-			} else {
-				return translate::exec($template, $widget['widgetName']);
-			}
 		}
+
+		$template = template_replace($replace, $template);
+		if ($isCorewidget && $_version == 'scenario') {
+			return translate::exec($template, 'core/template/scenario/'.$widget['widgetName'].'.html');
+		}
+		if ($isCorewidget) {
+			return translate::exec($template, 'core/template/widgets.html');
+		}
+		if (isset($widget['widgetName'])) {
+			return translate::exec($template, $widget['widgetName']);
+		}
+		return $template;
 	}
 
 	public function event($_value, $_datetime = null, $_loop = 1) {
@@ -1936,7 +1938,7 @@ class cmd {
 					$cmd = cmd::byId(str_replace('#', '', $id));
 					if (is_object($cmd)) {
 						$cmd->execCmd(array(
-							'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+							'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
 							'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 						));
 					}
@@ -2596,10 +2598,6 @@ class cmd {
 		}
 		$this->unite = $_unite;
 		return $this;
-	}
-
-	public function setEventOnly($eventOnly) {
-		trigger_error('This method is deprecated', E_USER_DEPRECATED);
 	}
 
 	public function getTemplate($_key = '', $_default = '') {

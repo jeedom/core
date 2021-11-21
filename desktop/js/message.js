@@ -26,7 +26,7 @@ $("#bt_clearMessage").on('click', function(event) {
   jeedom.message.clear({
     plugin: $('#sel_plugin').value(),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -50,7 +50,7 @@ $('#table_message').on({
     jeedom.message.remove({
       id: tr.attr('data-message_id'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })

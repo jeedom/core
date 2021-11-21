@@ -39,459 +39,460 @@ sendVarToJS([
   </span>
 </div>
 
-<ul class="nav nav-tabs" role="tablist" id="eqLogicConfigureTab">
-  <li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
-  <?php if ($eqLogic->widgetPossibility('custom')) {
-  ?>
-    <li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
-    <?php if ($eqLogic->widgetPossibility('custom::layout')) {
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist" id="eqLogicConfigureTab">
+    <li role="presentation" class="active"><a href="#eqLogic_information" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-info-circle"></i> {{Informations}}</a></li>
+    <?php if ($eqLogic->widgetPossibility('custom')) {
     ?>
-      <li role="presentation"><a href="#eqLogic_layout" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Disposition}}</a></li>
-  <?php
+      <li role="presentation"><a href="#eqLogic_display" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-desktop"></i> {{Affichage}}</a></li>
+      <?php if ($eqLogic->widgetPossibility('custom::layout')) {
+      ?>
+        <li role="presentation"><a href="#eqLogic_layout" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-th"></i> {{Disposition}}</a></li>
+    <?php
+      }
     }
-  }
-  ?>
-  <li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
-  <li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fas fa-comment-alt"></i> {{Commentaire}}</a></li>
-</ul>
+    ?>
+    <li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
+    <li role="presentation"><a href="#eqLogic_comment" aria-controls="messages" role="tab" data-toggle="tab" id="bt_EqLogicConfigurationTabComment"><i class="fas fa-comment-alt"></i> {{Commentaire}}</a></li>
+  </ul>
 
-<div class="tab-content" id="div_displayEqLogicConfigure">
-  <div role="tabpanel" class="tab-pane active" id="eqLogic_information">
-    <br />
-    <div class="row">
-      <div class="col-sm-6">
-        <form class="form-horizontal">
-          <fieldset>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{ID}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="id"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Nom}}</label>
-              <div class="col-sm-4">
-                <input type="text" class="eqLogicAttr form-control" data-l1key="name">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{ID logique}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="logicalId"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{ID de l'objet}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="object_id"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Création}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Changement de pile}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Tag(s)}}</label>
-              <div class="col-sm-6">
-                <input class="eqLogicAttr form-control" data-l1key="tags" />
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="col-sm-6">
-        <form class="form-horizontal">
-          <fieldset>
-            <div class="form-group">
-              <label class="col-sm-4 control-label">{{Activer}}</label>
-              <div class="col-sm-1">
-                <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked />
-              </div>
-              <label class="col-sm-2 control-label">{{Visible}}</label>
-              <div class="col-sm-1">
-                <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Type}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="eqType_name"></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Tentative échouée}}</label>
-              <div class="col-sm-4">
-                <span class="label label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Dernière communication}}</label>
-              <div class="col-sm-4">
-                <span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-6 control-label">{{Dernière sauvegarde}}</label>
-              <div class="col-sm-4">
-                <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime"></span>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-      <div class="col-sm-12">
-        <legend>{{Commandes}}</legend>
-        <table class="table table-bordered table-condensed">
-          <thead>
-            <tr>
-              <th>{{Nom}}</th>
-              <th>{{Action}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            $display = '';
-            foreach (($eqLogic->getCmd()) as $cmd) {
-              $display .= '<tr class="advanceCmdConfigurationCmdConfigure" data-id="' . $cmd->getId() . '">';
-              $display .= '<td>' . $cmd->getHumanName() . '</td>';
-              $display .= '<td>';
-              $display .= '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-              $display .= '</td>';
-              $display .= '</tr>';
-            }
-            echo $display;
-            ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <?php if ($eqLogic->widgetPossibility('custom')) {
-  ?>
-    <div role="tabpanel" class="tab-pane" id="eqLogic_display">
+  <div class="tab-content" id="div_displayEqLogicConfigure">
+    <div role="tabpanel" class="tab-pane active" id="eqLogic_information">
       <br />
-      <legend><i class="fas fa-chart-line"></i> {{Graphique de fond}}</legend>
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{Information}}</label>
-          <div class="col-sm-3">
-            <select class="eqLogicAttr form-control sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
-              <option value="0">{{Aucune}}</option>
-              <?php
-              $options = '';
-              foreach (($eqLogic->getCmd('info')) as $cmd) {
-                if (!$cmd->getIsHistorized()) {
-                  continue;
-                }
-                $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
-              }
-              echo $options;
-              ?>
-            </select>
-          </div>
-
-          <label class="col-sm-2 control-label">{{Format}}</label>
-          <div class="col-sm-3">
-            <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::format">
-              <option value="month">{{Mois}}</option>
-              <option value="week">{{Semaine}}</option>
-              <option value="day">{{Jour}}</option>
-              <option value="hour">{{Heure}}</option>
-            </select>
-          </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <form class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{ID}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="id"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Nom}}</label>
+                <div class="col-sm-4">
+                  <input type="text" class="eqLogicAttr form-control" data-l1key="name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{ID logique}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="logicalId"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{ID de l'objet}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="object_id"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Création}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="createtime"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Changement de pile}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="batterytime"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Tag(s)}}</label>
+                <div class="col-sm-6">
+                  <input class="eqLogicAttr form-control" data-l1key="tags" />
+                </div>
+              </div>
+            </fieldset>
+          </form>
         </div>
-
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{Type}}</label>
-          <div class="col-sm-3">
-            <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::type">
-              <option value="areaspline">{{Courbe}}</option>
-              <option value="area">{{Escalier}}</option>
-              <option value="column">{{Barre}}</option>
-            </select>
-          </div>
-
-          <label class="col-sm-2 control-label">{{Couleur}}</label>
-          <div class="col-sm-3">
-            <input type="color" class="eqLogicAttr html form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color" />
-          </div>
+        <div class="col-sm-6">
+          <form class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Activer}}</label>
+                <div class="col-sm-1">
+                  <input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked />
+                </div>
+                <label class="col-sm-2 control-label">{{Visible}}</label>
+                <div class="col-sm-1">
+                  <input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Type}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="eqType_name"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Tentative échouée}}</label>
+                <div class="col-sm-4">
+                  <span class="label label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Dernière communication}}</label>
+                <div class="col-sm-4">
+                  <span class="label label-primary"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">{{Dernière sauvegarde}}</label>
+                <div class="col-sm-4">
+                  <span class="eqLogicAttr label label-primary" data-l1key="configuration" data-l2key="updatetime"></span>
+                </div>
+              </div>
+            </fieldset>
+          </form>
         </div>
-
-        <div class="form-group">
-          <label class="col-sm-7 control-label">{{Hauteur fixe (px)}}</label>
-          <div class="col-sm-3">
-            <input class="eqLogicAttr html form-control input-sm" value="" data-l1key="display" data-l2key="backGraph::height" />
-          </div>
-        </div>
-      </form>
-
-      <?php if (is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
-        <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
-        <table class="table table-bordered table-condensed">
-          <thead>
-            <tr>
-              <th></th>
+        <div class="col-sm-12">
+          <legend>{{Commandes}}</legend>
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>{{Nom}}</th>
+                <th>{{Action}}</th>
+              </tr>
+            </thead>
+            <tbody>
               <?php
               $display = '';
-              foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
-                $display .= '<th style="width:20%">' . $value['name'] . '';
-                $display .= '</th>';
+              foreach (($eqLogic->getCmd()) as $cmd) {
+                $display .= '<tr class="advanceCmdConfigurationCmdConfigure" data-id="' . $cmd->getId() . '">';
+                $display .= '<td>' . $cmd->getHumanName() . '</td>';
+                $display .= '<td>';
+                $display .= '<a class="btn btn-default btn-xs pull-right cursor bt_advanceCmdConfigurationOnEqLogicConfiguration" data-id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+                $display .= '</td>';
+                $display .= '</tr>';
               }
               echo $display;
               ?>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            if (is_array($eqLogic->widgetPossibility('parameters'))) {
-              $echo = '';
-              foreach (($eqLogic->widgetPossibility('parameters')) as $pKey => $parameter) {
-                $echo .= '<tr>';
-                $echo .= '<td>';
-                $echo .= $parameter['name'];
-                $echo .= '</td>';
-                foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
-                  $echo .= '<td>';
-                  if (!isset($parameter['allow_displayType'])) {
-                    continue;
-                  }
-                  if (!isset($parameter['type'])) {
-                    continue;
-                  }
-                  if (is_array($parameter['allow_displayType']) && !in_array($key, $parameter['allow_displayType'])) {
-                    continue;
-                  }
-                  if ($parameter['allow_displayType'] === false) {
-                    continue;
-                  }
-                  $default = '';
-                  $display = '';
-                  if (isset($parameter['default'])) {
-                    $display = 'display:none;';
-                    $default = $parameter['default'];
-                    $echo .= '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterDefault" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-default" checked /></label>';
-                  }
-                  switch ($parameter['type']) {
-                    case 'color':
-                      if ($parameter['allow_transparent']) {
-                        $echo .= '<span class="advanceWidgetParameter" style="' . $display . '">';
-                        $echo .= ' <label>{{Transparent}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterColorTransparent" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-transparent" /></label>';
-                        $echo .= '<input type="color" class="eqLogicAttr pull-right inline-block advanceWidgetParameterColor" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" value="' . $default . '" />';
-                        $echo .= '</span>';
-                      } else {
-                        $echo .= '<input type="color" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
-                      }
-                      break;
-                    case 'input':
-                      $echo .= '<input class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
-                      break;
-                    case 'number':
-                      $echo .= '<input type="number" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
-                      break;
-                  }
-                  $echo .= '</td>';
-                }
-                $echo .= '</tr>';
-              }
-              echo $echo;
-            }
-            ?>
-          </tbody>
-        </table>
-      <?php } ?>
-      <?php
-      if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
-      ?>
-        <legend><i class="fas fa-edit"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
-        <table class="table table-bordered table-condensed" id="table_widgetParameters">
-          <thead>
-            <tr>
-              <th>{{Nom}}</th>
-              <th>{{Valeur}}</th>
-              <th>{{Action}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            if ($eqLogic->getDisplay('parameters') != '') {
-              $echo = '';
-              foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
-                $echo .= '<tr>';
-                $echo .= '<td>';
-                $echo .= '<input class="form-control key" value="' . $key . '" />';
-                $echo .= '</td>';
-                $echo .= '<td>';
-                $echo .= '<input class="form-control value" value="' . $value . '" />';
-                $echo .= '</td>';
-                $echo .= '<td>';
-                $echo .= '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fas fa-times"></i> Supprimer</a>';
-                $echo .= '</td>';
-                $echo .= '</tr>';
-              }
-              echo $echo;
-            }
-            ?>
-          </tbody>
-        </table>
-      <?php }
-      ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-
-  <?php }
-  ?>
-  <div role="tabpanel" class="tab-pane" id="eqLogic_alert">
-    <br />
-    <legend><i class="fas fa-info-circle"></i> {{Informations Batteries}}</legend>
-    <div class="row">
-      <div class="col-sm-4">
+    <?php if ($eqLogic->widgetPossibility('custom')) {
+    ?>
+      <div role="tabpanel" class="tab-pane" id="eqLogic_display">
+        <br />
+        <legend><i class="fas fa-chart-line"></i> {{Graphique de fond}}</legend>
         <form class="form-horizontal">
-          <fieldset>
-            <div class="form-group">
-              <label class="col-sm-3 control-label">{{Type}}</label>
-              <div class="col-sm-6">
-                <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input>
-              </div>
-              <div class="col-sm-3">
-                <a class="btn btn-success" id="bt_resetbattery"><i class="fas fa-refresh"></i> {{Pile(s) changée(s)}}</a>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-    <legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="form-group">
-          <label class="col-xs-3 eqLogicAttr label label-danger">{{Danger}}</label>
-          <div class="col-xs-2">
-            <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
-            </input>
-          </div>
-          <label class="col-xs-3 eqLogicAttr label label-warning">{{Warning}}</label>
-          <div class="col-xs-2">
-            <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
-          </div>
-          <label class="col-xs-2 eqLogicAttr label label-success">{{Ok}}</label>
-        </div>
-      </div>
-    </div>
-    <legend><i class="far fa-clock"></i> {{Alertes Communications}}</legend>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="form-group">
-          <label class="col-xs-3 eqLogicAttr label label-danger">{{Danger (en minutes)}}</label>
-          <div class="col-xs-2">
-            <input class="eqLogicAttr form-control" data-l1key="timeout" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div role="tabpanel" class="tab-pane" id="eqLogic_comment">
-    <br />
-    <textarea data-l1key="comment" class="form-control eqLogicAttr autogrow"></textarea>
-  </div>
-
-  <div role="tabpanel" class="tab-pane" id="eqLogic_layout">
-    <br />
-    <form class="form-horizontal">
-      <fieldset>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">{{Disposition}}</label>
-          <div class="col-sm-2">
-            <select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::dashboard">
-              <option value="default">{{Défaut}}</option>
-              <option value="table">{{Tableau}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="widget_layout table" style="display: none;">
           <div class="form-group">
-            <label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
-            <div class="col-sm-2">
-              <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
-            </div>
-            <label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
-            <div class="col-sm-2">
-              <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
-            </div>
-            <a class="btn btn-success btn-sm" id="bt_eqLogicLayoutApply"><i class="fas fa-hammer"></i></i> {{Appliquer}}</a>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Centrer dans les cases}}</label>
-            <div class="col-sm-2">
-              <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="center" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Style général des cases (CSS)}}</label>
-            <div class="col-sm-10">
-              <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Style du tableau (CSS)}}</label>
-            <div class="col-sm-10">
-              <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-    <div class="widget_layout table" style="display: none;">
-      <legend>{{Configuration détaillée}}</legend>
-      <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
-        <tbody>
-          <?php
-          $table = array();
-          foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
-            $line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
-            $column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
-            if (!isset($table[$line])) {
-              $table[$line] = array();
-            }
-            if (!isset($table[$line][$column])) {
-              $table[$line][$column] = array();
-            }
-            $table[$line][$column][] = $cmd;
-          }
-          $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
-          $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
-          for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
-            $tr = '<tr>';
-            for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
-              $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
-              $string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
-              if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
-                foreach ($table[$i][$j] as $cmd) {
-                  $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
+            <label class="col-sm-2 control-label">{{Information}}</label>
+            <div class="col-sm-3">
+              <select class="eqLogicAttr form-control sel_backGraphInfo" data-l1key="display" data-l2key="backGraph::info">
+                <option value="0">{{Aucune}}</option>
+                <?php
+                $options = '';
+                foreach (($eqLogic->getCmd('info')) as $cmd) {
+                  if (!$cmd->getIsHistorized()) {
+                    continue;
+                  }
+                  $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
                 }
-              }
-              $tr .= $string_cmd . '</center>';
-              $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
-              $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
+                echo $options;
+                ?>
+              </select>
+            </div>
 
-              $tr .= '</td>';
+            <label class="col-sm-2 control-label">{{Format}}</label>
+            <div class="col-sm-3">
+              <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::format">
+                <option value="month">{{Mois}}</option>
+                <option value="week">{{Semaine}}</option>
+                <option value="day">{{Jour}}</option>
+                <option value="hour">{{Heure}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{Type}}</label>
+            <div class="col-sm-3">
+              <select class="eqLogicAttr form-control" data-l1key="display" data-l2key="backGraph::type">
+                <option value="areaspline">{{Courbe}}</option>
+                <option value="area">{{Escalier}}</option>
+                <option value="column">{{Barre}}</option>
+              </select>
+            </div>
+
+            <label class="col-sm-2 control-label">{{Couleur}}</label>
+            <div class="col-sm-3">
+              <input type="color" class="eqLogicAttr html form-control input-sm" value="#4572A7" data-l1key="display" data-l2key="backGraph::color" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-7 control-label">{{Hauteur fixe (px)}}</label>
+            <div class="col-sm-3">
+              <input class="eqLogicAttr html form-control input-sm" value="" data-l1key="display" data-l2key="backGraph::height" />
+            </div>
+          </div>
+        </form>
+
+        <?php if (is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
+          <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
+          <table class="table table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th></th>
+                <?php
+                $display = '';
+                foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
+                  $display .= '<th style="width:20%">' . $value['name'] . '';
+                  $display .= '</th>';
+                }
+                echo $display;
+                ?>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if (is_array($eqLogic->widgetPossibility('parameters'))) {
+                $echo = '';
+                foreach (($eqLogic->widgetPossibility('parameters')) as $pKey => $parameter) {
+                  $echo .= '<tr>';
+                  $echo .= '<td>';
+                  $echo .= $parameter['name'];
+                  $echo .= '</td>';
+                  foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
+                    $echo .= '<td>';
+                    if (!isset($parameter['allow_displayType'])) {
+                      continue;
+                    }
+                    if (!isset($parameter['type'])) {
+                      continue;
+                    }
+                    if (is_array($parameter['allow_displayType']) && !in_array($key, $parameter['allow_displayType'])) {
+                      continue;
+                    }
+                    if ($parameter['allow_displayType'] === false) {
+                      continue;
+                    }
+                    $default = '';
+                    $display = '';
+                    if (isset($parameter['default'])) {
+                      $display = 'display:none;';
+                      $default = $parameter['default'];
+                      $echo .= '<label>{{Defaut}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterDefault" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-default" checked /></label>';
+                    }
+                    switch ($parameter['type']) {
+                      case 'color':
+                        if ($parameter['allow_transparent']) {
+                          $echo .= '<span class="advanceWidgetParameter" style="' . $display . '">';
+                          $echo .= ' <label>{{Transparent}} <input type="checkbox" class="eqLogicAttr advanceWidgetParameterColorTransparent" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '-transparent" /></label>';
+                          $echo .= '<input type="color" class="eqLogicAttr pull-right inline-block advanceWidgetParameterColor" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" value="' . $default . '" />';
+                          $echo .= '</span>';
+                        } else {
+                          $echo .= '<input type="color" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+                        }
+                        break;
+                      case 'input':
+                        $echo .= '<input class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+                        break;
+                      case 'number':
+                        $echo .= '<input type="number" class="eqLogicAttr pull-right advanceWidgetParameter form-control inline-block input-sm" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" style="width:50%;' . $display . '" value="' . $default . '" />';
+                        break;
+                    }
+                    $echo .= '</td>';
+                  }
+                  $echo .= '</tr>';
+                }
+                echo $echo;
+              }
+              ?>
+            </tbody>
+          </table>
+        <?php } ?>
+        <?php
+        if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
+        ?>
+          <legend><i class="fas fa-edit"></i> {{Paramètres optionnels sur la tuile}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> Ajouter</a></legend>
+          <table class="table table-bordered table-condensed" id="table_widgetParameters">
+            <thead>
+              <tr>
+                <th>{{Nom}}</th>
+                <th>{{Valeur}}</th>
+                <th>{{Action}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if ($eqLogic->getDisplay('parameters') != '') {
+                $echo = '';
+                foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
+                  $echo .= '<tr>';
+                  $echo .= '<td>';
+                  $echo .= '<input class="form-control key" value="' . $key . '" />';
+                  $echo .= '</td>';
+                  $echo .= '<td>';
+                  $echo .= '<input class="form-control value" value="' . $value . '" />';
+                  $echo .= '</td>';
+                  $echo .= '<td>';
+                  $echo .= '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="fas fa-times"></i> Supprimer</a>';
+                  $echo .= '</td>';
+                  $echo .= '</tr>';
+                }
+                echo $echo;
+              }
+              ?>
+            </tbody>
+          </table>
+        <?php }
+        ?>
+      </div>
+
+    <?php }
+    ?>
+    <div role="tabpanel" class="tab-pane" id="eqLogic_alert">
+      <br />
+      <legend><i class="fas fa-info-circle"></i> {{Informations Batteries}}</legend>
+      <div class="row">
+        <div class="col-sm-4">
+          <form class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">{{Type}}</label>
+                <div class="col-sm-6">
+                  <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_type"></input>
+                </div>
+                <div class="col-sm-3">
+                  <a class="btn btn-success" id="bt_resetbattery"><i class="fas fa-refresh"></i> {{Pile(s) changée(s)}}</a>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <legend><i class="icon techno-fleches"></i> {{Seuils spécifiques Batteries}}</legend>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="col-xs-3 eqLogicAttr label label-danger">{{Danger}}</label>
+            <div class="col-xs-2">
+              <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_danger_threshold" />
+              </input>
+            </div>
+            <label class="col-xs-3 eqLogicAttr label label-warning">{{Warning}}</label>
+            <div class="col-xs-2">
+              <input class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="battery_warning_threshold" />
+            </div>
+            <label class="col-xs-2 eqLogicAttr label label-success">{{Ok}}</label>
+          </div>
+        </div>
+      </div>
+      <legend><i class="far fa-clock"></i> {{Alertes Communications}}</legend>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-group">
+            <label class="col-xs-3 eqLogicAttr label label-danger">{{Danger (en minutes)}}</label>
+            <div class="col-xs-2">
+              <input class="eqLogicAttr form-control" data-l1key="timeout" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="eqLogic_comment">
+      <br />
+      <textarea data-l1key="comment" class="form-control eqLogicAttr autogrow"></textarea>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="eqLogic_layout">
+      <br />
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{{Disposition}}</label>
+            <div class="col-sm-2">
+              <select class="eqLogicAttr form-control sel_layout" data-l1key="display" data-l2key="layout::dashboard">
+                <option value="default">{{Défaut}}</option>
+                <option value="table">{{Tableau}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="widget_layout table" style="display: none;">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
+              <div class="col-sm-2">
+                <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbLine" />
+              </div>
+              <label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
+              <div class="col-sm-2">
+                <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn" />
+              </div>
+              <a class="btn btn-success btn-sm" id="bt_eqLogicLayoutApply"><i class="fas fa-hammer"></i></i> {{Appliquer}}</a>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Centrer dans les cases}}</label>
+              <div class="col-sm-2">
+                <input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="center" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Style général des cases (CSS)}}</label>
+              <div class="col-sm-10">
+                <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletd" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">{{Style du tableau (CSS)}}</label>
+              <div class="col-sm-10">
+                <input class="eqLogicAttr form-control" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="styletable" />
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div class="widget_layout table" style="display: none;">
+        <legend>{{Configuration détaillée}}</legend>
+        <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
+          <tbody>
+            <?php
+            $table = array();
+            foreach (($eqLogic->getCmd(null, null, true)) as $cmd) {
+              $line = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::line', 1);
+              $column = $eqLogic->getDisplay('layout::dashboard::table::cmd::' . $cmd->getId() . '::column', 1);
+              if (!isset($table[$line])) {
+                $table[$line] = array();
+              }
+              if (!isset($table[$line][$column])) {
+                $table[$line][$column] = array();
+              }
+              $table[$line][$column][] = $cmd;
             }
-            $tr .= '</tr>';
-            echo $tr;
-          }
-          ?>
-        </tbody>
-      </table>
+            $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
+            $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
+            for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
+              $tr = '<tr>';
+              for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
+                $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
+                $string_cmd = '<center class="cmdLayoutContainer" style="min-height:30px;">';
+                if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
+                  foreach ($table[$i][$j] as $cmd) {
+                    $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
+                  }
+                }
+                $tr .= $string_cmd . '</center>';
+                $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la case}}" style="margin-top:3px;"/>';
+                $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style de la case (CSS)}}" style="margin-top:3px;"/>';
+
+                $tr .= '</td>';
+              }
+              $tr .= '</tr>';
+              echo $tr;
+            }
+            ?>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
-
 <script>
   $(function() {
     //check if coming from clicking on battery in eqanalyse:
@@ -715,10 +716,6 @@ sendVarToJS([
             })
           },
           success: function() {
-            $('#md_displayEqLogicConfigure').showAlert({
-              message: '{{Sauvegarde réussie}}',
-              level: 'success'
-            })
             synchModalToEq()
 
             if (event.ctrlKey || event.metaKey) {
@@ -729,6 +726,10 @@ sendVarToJS([
               var tab = $('#md_modal > ul.nav li.active a').attr('href')
               $('#md_modal').load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + eqLogic.id, function() {
                 $('#md_modal > ul.nav a[href="' + tab + '"]').click()
+                $('#md_displayEqLogicConfigure').showAlert({
+                  message: '{{Sauvegarde réussie}}',
+                  level: 'success'
+                })
               })
             }
           }

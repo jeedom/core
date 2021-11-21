@@ -250,7 +250,7 @@ $('body').on({
     jeedom[_filterType_]['byId']({
       id: thisId,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -389,7 +389,7 @@ function dbExecuteCommand(_command, _mode = 0) { // _mode 0: test, 1: exec, 2: g
     async: false,
     command: _command,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -441,7 +441,7 @@ $('#bt_exportFilter').off('click').on('click', function() {
 $("#bt_importFilter").change(function(event) {
   var uploadedFile = event.target.files[0]
   if (uploadedFile.type !== "application/json") {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{L'import d'édition en masse se fait au format json.}}",
       level: 'danger'
     })
@@ -483,7 +483,7 @@ $("#bt_importFilter").change(function(event) {
       }
     }
   } else {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: "{{Problème lors de la lecture du fichier.}}",
       level: 'danger'
     })

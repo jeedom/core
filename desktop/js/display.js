@@ -119,7 +119,7 @@ $('#accordionObject').sortable({
     jeedom.object.setOrder({
       objects: objects,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -165,7 +165,7 @@ $('.eqLogicSortable').sortable({
     jeedom.eqLogic.setOrder({
       eqLogics: eqLogics,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -193,7 +193,7 @@ $('.cmdSortable').sortable({
     jeedom.cmd.setOrder({
       cmds: cmds,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -385,7 +385,7 @@ $('#bt_removeEqlogic').on('click', function() {
       jeedom.eqLogic.removes({
         eqLogics: eqLogics,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
@@ -410,7 +410,7 @@ $('.bt_setIsVisible').on('click', function() {
       eqLogics: eqLogics,
       isVisible: $(this).attr('data-value'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -432,7 +432,7 @@ $('.bt_setIsVisible').on('click', function() {
       cmds: cmds,
       isVisible: $(this).attr('data-value'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -455,7 +455,7 @@ $('.bt_setIsEnable').on('click', function() {
     eqLogics: eqLogics,
     isEnable: $(this).attr('data-value'),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

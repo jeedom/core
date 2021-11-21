@@ -985,12 +985,12 @@ class jeedom {
 			}
 
 			try {
-				log::add('starting', 'debug', __('Reconcilisation de l\'historique', __FILE__));
+				log::add('starting', 'debug', __('Consolidation de l\'historique', __FILE__));
 				history::checkCurrentValueAndHistory();
 			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur la reconcilisation de l\'historique : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur la consolidation de l\'historique : ', __FILE__) . log::exception($e));
 			} catch (Error $e) {
-				log::add('starting', 'error', __('Erreur sur la reconcilisation de l\'historique : ', __FILE__) . log::exception($e));
+				log::add('starting', 'error', __('Erreur sur la consolidation de l\'historique : ', __FILE__) . log::exception($e));
 			}
 
 			try {

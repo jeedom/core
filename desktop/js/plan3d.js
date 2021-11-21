@@ -55,7 +55,7 @@ $('#bt_showAllObject').on('click', function() {
   jeedom.plan3d.byplan3dHeader({
     plan3dHeader_id: plan3dHeader_id,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       });
@@ -85,7 +85,7 @@ $('#bt_plan3dHeaderAdd').on('click', function() {
           name: result
         },
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           });
@@ -171,7 +171,7 @@ function handleClick3d(event) {
       name: intersects[0].object.name,
       plan3dHeader_id: plan3dHeader_id,
       error: function(request, status, error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         });
@@ -193,7 +193,7 @@ function display3d(_id) {
   jeedom.plan3d.getHeader({
     id: _id,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       });
@@ -317,7 +317,7 @@ function add3dObjects(_id) {
   jeedom.plan3d.byplan3dHeader({
     plan3dHeader_id: _id,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       });

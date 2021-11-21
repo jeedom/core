@@ -168,6 +168,12 @@ function displayPlugin(_pluginId) {
         $container.find('#span_plugin_category').html('')
       }
 
+      if (isset(data.source)) {
+        $container.find('#span_plugin_source').html(data.source)
+      } else {
+        $container.find('#span_plugin_source').html('')
+      }
+
       $container.find('#div_state .openPluginPage').attr("href", 'index.php?v=d&m=' + data.index + '&p=' + data.index)
 
       if (data.checkVersion != -1) {

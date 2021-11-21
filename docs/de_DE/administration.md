@@ -388,14 +388,14 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
 
 Hier finden Sie die Liste der verschiedenen API-Schlüssel, die in Ihrem Jeedom verfügbar sind. Core verfügt über zwei API-Schlüssel :
 
--   ein General : Vermeiden Sie es so oft wie möglich,
--   und eine andere für Profis : wird für das Flottenmanagement verwendet. Es kann leer sein.
--   Dann finden Sie einen API-Schlüssel pro Plugin, der ihn benötigt.
+- ein General : Vermeiden Sie es so oft wie möglich,
+- und eine andere für Profis : wird für das Flottenmanagement verwendet. Es kann leer sein.
+- Dann finden Sie einen API-Schlüssel pro Plugin, der ihn benötigt.
 
 Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können Sie deren Umfang definieren :
 
 - **Untauglich** : API-Schlüssel kann nicht verwendet werden,
-- **White IP** : Es ist nur eine Liste von IPs autorisiert (siehe Einstellungen → System → Konfiguration : Netzwerke),
+- **White IP** : Es ist nur eine Liste von IPs autorisiert (siehe Einstellungen → System → Konfiguration : Sicherheit),
 - **Localhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
 - **Aktiviert** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
 

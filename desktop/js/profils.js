@@ -42,7 +42,7 @@ $("#bt_saveProfils").on('click', function(event) {
   var profil = $('#div_userProfils').getValues('.userAttr')[0]
   if (profils_user_id == -1) {
     if (profil.password != $('#in_passwordCheck').value()) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: "{{Les deux mots de passe ne sont pas identiques}}",
         level: 'danger'
       })
@@ -51,19 +51,19 @@ $("#bt_saveProfils").on('click', function(event) {
     jeedom.user.saveProfils({
       profils: profil,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
       success: function() {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: "{{Sauvegarde effectuée}}",
           level: 'success'
         })
         jeedom.user.get({
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -80,7 +80,7 @@ $("#bt_saveProfils").on('click', function(event) {
     jeedom.user.save({
       users: [profil],
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -92,7 +92,7 @@ $("#bt_saveProfils").on('click', function(event) {
         })
         jeedom.user.get({
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -110,7 +110,7 @@ $("#bt_saveProfils").on('click', function(event) {
 jeedom.user.get({
   id: profils_user_id,
   error: function(error) {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: error.message,
       level: 'danger'
     })
@@ -152,19 +152,19 @@ if (profils_user_id == -1) {
     jeedom.user.saveProfils({
       profils: profil,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
       success: function() {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: "{{Opération effectuée}}",
           level: 'success'
         })
         jeedom.user.get({
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -183,7 +183,7 @@ if (profils_user_id == -1) {
     jeedom.user.removeRegisterDevice({
       key: key,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -199,7 +199,7 @@ if (profils_user_id == -1) {
     jeedom.user.removeRegisterDevice({
       key: '',
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -216,7 +216,7 @@ if (profils_user_id == -1) {
     jeedom.user.deleteSession({
       id: id,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })

@@ -73,7 +73,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-								<select class="form-control configKey" data-l1key="language">
+								<select class="form-control configKey" data-l1key="language" data-reload="1">
 									<option value="fr_FR">{{Français}}</option>
 									<option value="en_US">{{Anglais}}</option>
 									<option value="de_DE">{{Allemand}}</option>
@@ -333,7 +333,7 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop principal}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="default_bootstrap_theme">
+								<select class="form-control configKey" data-l1key="default_bootstrap_theme" data-reload="1">
 									<?php
 									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -345,7 +345,7 @@ user::isBan();
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop alternatif}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="default_bootstrap_theme_night">
+								<select class="form-control configKey" data-l1key="default_bootstrap_theme_night" data-reload="1">
 									<?php
 									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
@@ -414,13 +414,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" />
+								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::height" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" />
+								<input type="number" min="1" class="configKey form-control" data-l1key="widget::step::width" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -428,7 +428,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" class="configKey form-control" data-l1key="widget::margin" />
+								<input type="number" min="0" class="configKey form-control" data-l1key="widget::margin" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -436,7 +436,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Centre verticalement le contenu des tuiles}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" />
+								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -444,13 +444,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" />
+								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Catégories colorées}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Colorisation du titre des tuiles en fonction de la catégorie.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" />
+								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" data-reload="1" />
 							</div>
 						</div>
 
@@ -464,7 +464,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" />
+								<input type="number" min="0" max="20" class="configKey form-control" data-l1key="css::objectBackgroundBlur" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -505,13 +505,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitylight" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitylight" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitydark" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control" data-l1key="interface::background::opacitydark" data-reload="1" />
 							</div>
 						</div>
 
@@ -521,13 +521,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" />
+								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Position des notifications}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="interface::toast::position">
+								<select class="form-control configKey" data-l1key="interface::toast::position" data-reload="1">
 									<option value="toast-top-left">{{En haut à gauche}}</option>
 									<option value="toast-top-center">{{En haut au centre}}</option>
 									<option value="toast-top-right">{{En haut à droite}}</option>
@@ -539,7 +539,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" />
+								<input type="number" min="0" max="30" step="1" class="configKey form-control" data-l1key="interface::toast::duration" data-reload="1" />
 							</div>
 						</div>
 
@@ -560,7 +560,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Activer la Personnalisation avancée.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-sm-2 col-xs-3">
-								<input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss" />
+								<input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -568,7 +568,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::background-opacity" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -576,13 +576,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control" data-l1key="css::border-radius" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver les ombres}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" />
+								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" data-reload="1" />
 							</div>
 						</div>
 					</fieldset>
@@ -692,6 +692,15 @@ user::isBan();
 									$div .= '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
 									$div .= '<div class="col-xs-8">';
 									$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
+									$div .= '</div>';
+									$div .= '</div>';
+									$div = '<div class="form-group col-xs-12">';
+									$div .= '<label class="col-xs-4 control-label">{{Mode}}</label>';
+									$div .= '<div class="col-xs-8">';
+									$div .= '<select class="configKey" data-l1key="dns::mode">';
+									$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
+									$div .= '<option value="wireguard">{{Wireguard (alpha)}}</option>';
+									$div .= '</select>';
 									$div .= '</div>';
 									$div .= '</div>';
 									$div .= '<div class="form-group col-xs-12">';

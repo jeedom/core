@@ -423,7 +423,7 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``randText(texte1;texte2;texte…​..)`` : Allows you to return one of the texts randomly (separate the texts by one; ). There is no limit in the number of texts.
 - ``randomColor(min,max)`` : Gives a random color between 2 bounds (0 => red, 50 => green, 100 => blue).
 - ``trigger(commande)`` : Enables you to find out the trigger for the scenario or to know whether it is the command passed as a parameter that triggered the scenario.
-- ``triggerValue(commande)`` : Used to find out the value of the scenario trigger.
+- ``triggerValue()`` : Used to find out the value of the scenario trigger.
 - ``round(valeur,[decimal])`` : Rounds above, [decimal] number of decimal places after the decimal point.
 - ``odd(valeur)`` : Lets you know if a number is odd or not. Returns 1 if odd 0 otherwise.
 - ``median(commande1,commande2…​.commandeN)`` : Returns the median of the values.
@@ -443,7 +443,7 @@ And practical examples :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | the function will return one of these texts randomly at each execution.                           |
 | ``randomColor(40,60)``                 | Returns a random color close to green.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 if it's good ``#[Salle de bain][Hydrometrie][Humidité]#`` who started the scenario otherwise 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 if the hydrometry of ``#[Salle de bain][Hydrometrie][Humidité]#`` is 80% and that is ``#[Salle de bain][Hydrometrie][Humidité]#`` which triggered the scenario if not `false`.                         |
+| ``triggerValue()`` | 80 if the hydrometry of ``#[Salle de bain][Hydrometrie][Humidité]#`` is 80% and that is ``#[Salle de bain][Hydrometrie][Humidité]#`` who triggered the scenario. If the scenario was not triggered by a command, returns `false`.                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Returns 9 if the humidity percentage and 85                     |
 | ``odd(3)``                             | Returns 1                            |
 | ``median(15,25,20)``                   | Returns 20
@@ -463,7 +463,13 @@ In addition to home automation commands, you have access to the following action
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
 - **genericType (GENERIC, #[Object]#)** : Modification of an info (event) or action (execCmd) command by Generic Type, in an object. For example, turn off all the lights in the Living Room.
-- **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag). The command "Reset to SI" allows to reset the status of "SI" (this status is used for the non-repetition of the actions of an "SI" if you pass for the 2nd consecutive time in it).
+- **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag).
+    - To start up : Start the scenario in a different thread. The started scenario runs independently of the calling scenario.
+    - Start (Sync) : Starts the called scenario and pauses the calling scenario, while the called scenario has finished running.
+    - Stop : Stop the scenario.
+    - Activate : Activate a disabled scenario.
+    - Deactivate : Disable scenario. It no longer launches regardless of the triggers.
+    - Resetting the ISs : Used to reset the status of **IF**. This status is used for the non-repetition of the actions of a **IF**, if the evaluation of the condition gives the same result as the previous evaluation.
 - **Stop** (stop) : Stop the scenario.
 - **Wait** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
 - **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.

@@ -1324,7 +1324,14 @@
         "Extensions php": "Extensiones de php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado"
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Version": "Versión",
+        "Dashboard": "Tablero",
+        "Mobile": "Móvil",
+        "Type": "Escribe",
+        "Sous-type": "Subtipo",
+        "Nom": "Apellido",
+        "Créer": "Crear"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1421,6 +1428,7 @@
         "Etat": "Estado",
         "Ouvrir": "Abrir",
         "Catégorie": "Categoría",
+        "Source": "Fuente",
         "Auteur": "Autor",
         "Version": "Versión",
         "Version installée du plugin.": "Versión instalada del complemento",
@@ -1668,6 +1676,9 @@
         "Gestion DNS": "Gestión de DNS",
         "Attention : cette fonctionnalité n\\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le ": "Tenga en cuenta que esta función no está disponible en el paquete de servicio comunitario (consulte su paquete de servicio en la página de su perfil en",
         "Utiliser les DNS": "Usar DNS",
+        "Mode": "Moda",
+        "Openvpn (standard)": "Openvpn (estándar)",
+        "Wireguard (alpha)": "Wireguard (alfa)",
         "Statut DNS": "Estado de DNS",
         "Démarré : ": "Iniciado:",
         "Normal si vous n\\'avez pas coché la case : Utiliser les DNS": "Normal si no ha marcado la casilla: Usar DNS",
@@ -1957,6 +1968,7 @@
         "Pause": "Pausa",
         "Télécharger": "Descargar",
         "Vider": "Vacío",
+        "Vider tous": "Limpiar todo",
         "Supprimer": "Eliminar",
         "Supprimer tous": "Borrar todos"
     },
@@ -2110,6 +2122,7 @@
         "Aucun": "Ninguno",
         "Gestion": "Gestión",
         "Ajouter": "Añadir",
+        "Supprimer les logs": "Eliminar registros",
         "Activer scénarios": "Activar escenarios",
         "Désactiver scénarios": "Desactivar escenarios",
         "Vue d'ensemble": "Resumen",
@@ -2588,10 +2601,16 @@
     },
     "desktop\/js\/log.js": {
         "Pause": "Pausa",
+        "Êtes-vous sûr de vouloir vider tous les logs ?": "¿Está seguro de que desea vaciar todos los registros?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editar"
+        "Editer": "Editar",
+        "Le sous-type ne peut être vide": "El subtipo no puede estar vacío",
+        "Le nom ne peut être vide": "El nombre no puede estar vacío",
+        "Fichier enregistré avec succès": "Archivo guardado exitosamente",
+        "Créer un Widget": "Crear un widget",
+        "Options": "Opciones"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Actualizar",
@@ -3014,6 +3033,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Nom du scénario": "Nombre del escenario",
+        "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
+        "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
         "Scénario": "Escenario",
         "Graphique de lien(s)": "Gráfico de enlace",
@@ -3151,7 +3172,7 @@
         "Préférences": "Preferencias",
         "Logs": "Registros",
         "Mises à jour": "Actualizaciones",
-        "Panel ' . ucfirst($plugin)": "Panel '. ucfirst ($ complemento)",
+        "Panel ": "Panel",
         "Panel": "Panel",
         ", ": ","
     },
@@ -3524,7 +3545,7 @@
     "core\/com\/shell.com.php": {
         "Erreur sur ": "Error en",
         " valeur retournée : ": "valor devuelto:",
-        ". Détails : ' ": "Detalles: '"
+        "Détails : ' ": "Detalles: '"
     },
     "core\/com\/http.com.php": {
         "Erreur cURL : ": "Error de CURL:",
@@ -3581,7 +3602,7 @@
         "L\\'objet n\\'existe pas : ": "El objeto no existe:",
         "Vue inconnu. Vérifiez l\\'ID ": "Vista desconocida. Verifica el ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifica el parámetro de PHP (límite de tamaño de publicación)",
-        "Extension du fichier non valide (autorisé .jpg .png) : ": "Extensión de archivo no válida (.jpg .png autorizado):",
+        "Extension du fichier non valide (autorisé .jpg .png .gif) : ": "Extensión de archivo no válida (permitido .jpg .png .gif):",
         "Le fichier est trop gros (maximum 5Mo)": "El archivo es demasiado grande (máximo 5 MB)",
         "Impossible de sauvegarder l\\'image": "No se puede guardar la imagen",
         "Aucune méthode correspondante à : ": "Ningún método correspondiente a:"
@@ -3660,7 +3681,7 @@
     },
     "core\/ajax\/update.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune correspondance pour l\\'ID : ' . init('id')": "No hay coincidencia para el ID: ' . init('id')",
+        "Aucune correspondance pour l\\'ID : ": "No coincide con la identificación:",
         "[START UPDATE]": "[START UPDATE]",
         "Launch cron dependancy plugins": "Ejecutar cron plugins dependencia",
         "[END UPDATE SUCCESS]": "[END UPDATE SUCCESS]",
@@ -3915,10 +3936,10 @@
         "Le sous-type de la commande ne peut pas être vide :": "El subtipo de comando no puede estar vacío:",
         "Vous ne pouvez pas créer une commande sans la rattacher à un équipement": "No puede crear un pedido sin adjuntarlo a un dispositivo",
         "La valeur minimum de la commande ne peut être supérieure à la valeur maximum": "El valor mínimo del pedido no puede ser mayor que el valor máximo",
-        ". Sur preExec de la commande": "En preExec del pedido",
-        ". Sur postExec de la commande": "En postExec de la orden",
+        "Sur preExec de la commande": "En preExec del pedido",
+        "Sur postExec de la commande": "En postExec de la orden",
         "Erreur lors de l\\'exécution de ": "Error al ejecutar",
-        ". Détails : ": "Detalles:",
+        "Détails : ": "Detalles:",
         " avec les paramètres ": "con los parámetros",
         "Désactivation de": "Desactivación de",
         "car il n\\'a pas répondu ou mal répondu lors des 3 derniers essais": "porque no respondió o respondió incorrectamente durante los últimos 3 intentos",
@@ -3931,11 +3952,11 @@
         "La commande n\\'est pas dans la plage de valeur autorisée : ": "El comando no está dentro del rango de valores autorizado:",
         "Evènement sur la commande ": "Evento del comando",
         " valeur : ": "Valor :",
+        ". Détails : ": "Detalles:",
         "Alerte sur la commande ": "Alerta de pedido",
         " niveau ": "Nivel",
         "pendant plus de ": "Para más de",
         " minute(s)": "minuto(s)",
-        "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('nombre', 'núcleo', 'JEEDOM'). ']",
         "Appels de l\\'URL de push pour la commande ": "Push URL llama para ordenar",
         "Erreur push sur : ": "Push error en:",
         "Erreur computing influx sur : ": "Error al calcular la afluencia en:",
@@ -4000,8 +4021,8 @@
         "Erreur sur l\\'arrêt des tâches crons : ": "Error al detener trabajos cron:",
         "Restauration du cache": "Restauración de la cache",
         "Erreur sur la restauration du cache : ": "Error al restaurar el caché:",
-        "Reconcilisation de l\\'historique": "Conciliar la historia",
-        "Erreur sur la reconcilisation de l\\'historique : ": "Error al conciliar el historial:",
+        "Consolidation de l\\'historique": "Consolidación de la historia",
+        "Erreur sur la consolidation de l\\'historique : ": "Error al consolidar el historial:",
         "Nettoyage du cache des péripheriques USB": "Limpieza de la caché de dispositivos USB",
         "Erreur sur le nettoyage du cache des péripheriques USB : ": "Error al limpiar el caché de dispositivos USB:",
         "Nettoyage du cache des péripheriques Bluetooth": "Limpiar la caché de dispositivos Bluetooth",
@@ -4054,7 +4075,7 @@
         "Vous n\\'êtes pas autorisé à exécuter cette action": "No tiene autorización para realizar esta acción",
         "Erreur : impossible de calculer la date de programmation": "Error: no se puede calcular la fecha de programación",
         "Erreur lors de l\\'exécution de ": "Error al ejecutar",
-        ". Détails : ": "Detalles:",
+        "Détails : ": "Detalles:",
         "aucune valeur": "ningún valor"
     },
     "core\/class\/history.class.php": {
@@ -4078,12 +4099,13 @@
         "start TLS OK": "iniciar TLS OK",
         "LDAP bind user - login\/password denied": "Usuario de enlace LDAP: inicio de sesión \/ contraseña denegados",
         "LDAP Bind user - OK": "Usuario de enlace LDAP - Aceptar",
-        "LDAP Profile Check - [WARNING] None filter was set, \"' . $_login . '\"  authenticated as an administrator": "Verificación de perfil LDAP - [ADVERTENCIA] No se estableció ningún filtro, \"'. $ _Login'\" Autenticado como administrador",
-        "LDAP Profile Check - [WARNING] No profile has been set for the ": "Verificación de perfil LDAP: [ADVERTENCIA] No se ha configurado ningún perfil para",
+        "LDAP Profile Check - [WARNING] None filter was set, ": "Verificación de perfil LDAP: [ADVERTENCIA] No se estableció ningún filtro,",
+        "  authenticated as an administrator": "autenticado como administrador",
+        "LDAP Profile Check - [WARNING] No profile has been set for ": "Verificación de perfil LDAP: [ADVERTENCIA] No se ha configurado ningún perfil para",
         " user in the LDAP": "usuario en el LDAP",
         "LDAP Profile Check - filter:, \"' . $filters . '": "Verificación de perfil LDAP - filtro:, \"'. $ Filtros.'",
         "LDAP Profile Check - The ": "Verificación de perfil LDAP - El",
-        " profile was FOUND for the ": "perfil fue ENCONTRADO para el",
+        " profile was FOUND for ": "el perfil fue ENCONTRADO para",
         "User created from the LDAP : ": "Usuario creado desde el LDAP:",
         "User connection accepted ": "Conexión de usuario aceptada",
         "User not allowed to access to Jeedom according to the LDAP (": "El usuario no puede acceder a Jeedom de acuerdo con LDAP (",
@@ -4106,6 +4128,8 @@
         "Le plugin OpenVPN doit être installé": "El complemento OpenVPN debe estar instalado",
         "Le plugin OpenVPN doit être actif": "El complemento OpenVPN debe estar activo",
         "Impossible de créer le fichier  : ": "No se puede crear el archivo:",
+        "Le plugin Wireguard doit être installé": "Se debe instalar el complemento Wireguard",
+        "Le plugin Wireguard doit être actif": "El complemento Wireguard debe estar activo",
         "La commande de démarrage du DNS est introuvable": "Comando de inicio DNS no encontrado",
         "La commande de statut du DNS est introuvable": "Comando de estado DNS no encontrado",
         "La commande d\\'arrêt du DNS est introuvable": "Comando de detención de DNS no encontrado",
@@ -4125,8 +4149,8 @@
         "Elément inconnu. Vérifiez l\\'ID : ": "Artículo desconocido Verifique la identificación:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Subelemento desconocido. Verifique la identificación:",
         "Expression inconnue. Vérifiez l\\'ID : ": "Expresión desconocida Verifique la identificación:",
-        "Expression non valide  [": "Expresión inválida [",
-        "] trouvée dans le scénario : ": "] encontrado en el escenario:",
+        "Expression non valide": "Expresión inválida",
+        "trouvée dans le scénario : ": "encontrado en el escenario:",
         ", résultat : ": ", resultado:",
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición",
         "La condition pour une boucle doit être numérique : ": "La condición para un bucle debe ser numérica:",
@@ -4161,7 +4185,7 @@
         "Le scénario est de type programmé mais la programmation est vide": "El escenario es del tipo programado pero la programación está vacía",
         "Impossible d\\'arrêter la sous tâche : ": "No se puede detener la subtarea:",
         "Impossible d\\'arrêter le scénario : ": "Incapaz de detener el escenario:",
-        ". PID : ": ". PID:",
+        "PID : ": "PID:",
         "Scénario": "Escenario"
     },
     "core\/class\/jsonrpcClient.class.php": {
@@ -4180,7 +4204,6 @@
         "Attention": "Atención",
         " n\\'a pas envoyé de message depuis plus de ": "no ha enviado un mensaje por más de",
         " min (vérifiez les piles)": "min (revisar baterías)",
-        "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('nombre', 'núcleo', 'JEEDOM'). ']",
         "Aucun": "No",
         "L\\'équipement n\\'a pas pu être trouvé : ": "No se pudo encontrar el equipo:",
         "Le": "El",
@@ -4192,9 +4215,9 @@
         "Pas de date de changement de pile(s) renseignée": "No se ingresaron fechas de cambio de batería",
         "Piles": "Baterías",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La versión solicitada no puede estar vacía (móvil, tablero o escenario)",
-        "$value['name']": "Valor $ [ 'nombre']",
         "Le nom de l\\'équipement ne peut pas être vide : ": "El nombre del dispositivo no puede estar vacío:",
         "Lancement du scénario sur création équipement": "Lanzamiento del escenario sobre creación de equipos",
+        "[' . config::byKey('name', 'core', 'JEEDOM') . '] ": "['. config :: byKey ('nombre', 'núcleo', 'JEEDOM'). ']",
         "Equipement": "Dispositivos",
         "Action": "Acción"
     },
@@ -4209,7 +4232,7 @@
     },
     "core\/class\/plan.class.php": {
         "Erreur lors de l\\'exécution de ": "Error al ejecutar",
-        ". Détails : ": "Detalles:",
+        "Détails : ": "Detalles:",
         "Non configuré": "No configurado"
     },
     "core\/class\/cron.class.php": {
@@ -4266,16 +4289,16 @@
         "Génération d\\'un rapport de type ": "Generando un informe tipo",
         "Vue introuvable - Vérifiez l\\'id : ": "Vista no encontrada - Verifique la identificación:",
         "Génération du rapport ": "Generación de informes",
-        "[' . config::byKey('name') . '] Rapport ": "['. config :: byKey ('nombre'). '] Relación",
+        " Rapport ": "Relación",
         " du ": "del",
         "Veuillez trouver ci-joint le rapport ": "Por favor, adjunta el informe",
         " généré le ": "generado el",
         "Design introuvable - Vérifiez l\\'id : ": "Diseño no encontrado - Verifique la identificación:",
         "Panel introuvable - Vérifiez l\\'id : ": "Panel no encontrado - Verifique la identificación:",
-        "[' . config::byKey('name') . '] Rapport équipement du ": "['. config :: byKey ('nombre'). '' Informe del equipo",
+        " Rapport équipement du ": "Informe de equipo",
         "Veuillez trouver ci-joint le rapport équipement généré le ": "Adjunte el informe del equipo generado en",
         "Génération du rapport timeline ": "Generación de informes de línea de tiempo",
-        "[' . config::byKey('name') . '] Rapport url du ": "['. config :: byKey ('nombre'). '] Informe de URL de",
+        " Rapport url du ": "Informe de URL",
         "Veuillez trouver ci-joint le rapport url généré le ": "Adjunte el informe de URL generado en",
         "Erreur : Aucun rapport généré": "Error ; Ningún informe generado",
         "Envoi du rapport généré sur ": "Envío del informe generado sobre",
@@ -4356,7 +4379,7 @@
     "core\/class\/update.class.php": {
         "Vérification des mises à jour, mise à jour et réinstallation désactivées sur ": "Compruebe si hay actualizaciones, actualícelas y vuelva a instalarlas desactivadas en",
         "Impossible de créer le dossier  : ": "No se puede crear la carpeta:",
-        ". Problème de droits ?": "Problema de permisos?",
+        "Problème de droits ?": "¿Problema de derechos?",
         "Téléchargement du plugin...": "Descargar el plugin",
         "OK\\n": "Aceptar\\n",
         "Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, etc.": "No se pudo descargar el archivo. Vuelva a intentarlo más tarde (tamaño inferior a 100 bytes). Esto puede deberse a una falta de conexión con el mercado (verifique en la configuración de jeedom que funciona una prueba de conexión de mercado) o relacionado con la falta de espacio, se requiere una versión mínima no compatible con su versión de Jeedom, un problema con el plugin en el market, etc",
@@ -4367,7 +4390,6 @@
         "Impossible de décompresser l\\'archive zip : ": "No se puede descomprimir el archivo zip:",
         "Vous ne pouvez pas supprimer le core de Jeedom": "No puedes eliminar el núcleo de Jeedom",
         "Début de la mise à jour de : ": "Comienza la actualización:",
-        "Impossible de créer le dossier  : ' . $cibDir . '. Problème de droits ?": "No se puede crear la carpeta: '. $ cibDir. . Cuestión de derechos?",
         "Action de pré-update...": "Acción previa a la actualización",
         "Post-installation de ": "Post instalación",
         "Suppression des fichiers inutiles...": "Eliminando archivos innecesarios",
@@ -4629,7 +4651,6 @@
         "Demande sur l\\'api http venant de : ": "Solicitud sobre la API http proveniente de:",
         "Appels de ": "Llamadas",
         "Aucune commande correspondant à l\\'ID : ": "Ningún comando correspondiente a la ID:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action 2, IP : ": "No tiene autorización para realizar esta acción 2, IP:",
         "Exécution de : ": "Ejecución de:",
         "Commande inconnue : ": "Comando desconocido:",
         "Token invalide": "Token inválido",

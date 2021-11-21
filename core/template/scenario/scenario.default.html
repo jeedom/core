@@ -22,7 +22,7 @@
   jeedom.scenario.allOrderedByGroupObjectName({
     asGroup: 0,
     error: function (error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'});
+      $.fn.showAlert({message: error.message, level: 'danger'});
     },
     success: function (scenarios) {
       var options = '';

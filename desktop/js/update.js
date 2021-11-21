@@ -68,7 +68,7 @@ $('#bt_doUpdate').off('click').on('click', function() {
   jeedom.update.doAll({
     options: options,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -109,7 +109,7 @@ $('#table_update').on({
         jeedom.update.do({
           id: id,
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -133,7 +133,7 @@ $('#table_update').on({
         jeedom.update.remove({
           id: id,
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -154,7 +154,7 @@ $('#table_update').on({
     jeedom.update.check({
       id: id,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -170,7 +170,7 @@ $('#bt_saveUpdate').on('click', function() {
   jeedom.update.saves({
     updates: $('tbody tr').getValues('.updateAttr'),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -206,7 +206,7 @@ function checkAllUpdate() {
   $('.progressbarContainer').addClass('hidden')
   jeedom.update.checkAll({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -264,7 +264,7 @@ function getJeedomLog(_autoUpdate, _log) {
             if (alertTimeout != null) {
               clearTimeout(alertTimeout)
             }
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: '{{L\'opération a échoué}}',
               level: 'danger'
             })
@@ -288,7 +288,7 @@ function getJeedomLog(_autoUpdate, _log) {
 function printUpdate() {
   jeedom.update.get({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -311,7 +311,7 @@ function printUpdate() {
       "update::lastCheck": 0
     },
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -404,7 +404,7 @@ $('body').off('click', '#bt_changelogCore').on('click', '#bt_changelogCore', fun
     page: 'changelog',
     theme: $('body').attr('data-theme'),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -577,7 +577,7 @@ function cleanUpdateLog() {
 function alertTimeout() {
   progress = -4
   updateProgressBar()
-  $('#div_alert').showAlert({
+  $.fn.showAlert({
     message: '{{La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)}}',
     level: 'warning'
   })

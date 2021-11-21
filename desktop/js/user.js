@@ -69,14 +69,14 @@ $("#bt_newUserSave").on('click', function(event) {
   jeedom.user.save({
     users: user,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
       printUsers()
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Sauvegarde effectuée}}',
         level: 'success'
       })
@@ -94,14 +94,14 @@ $("#bt_saveUser").on('click', function(event) {
   jeedom.user.save({
     users: users,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
     success: function() {
       printUsers()
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{Sauvegarde effectuée}}',
         level: 'success'
       })
@@ -113,14 +113,14 @@ $("#bt_saveUser").on('click', function(event) {
 function checkUsersLogins(_users) {
   _users = _users.map(a => a.login)
   if (_users.includes('')) {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
       message: '{{Le login d\'un utilisateur ne peut être vide !}}',
       level: 'danger'
     })
     return false
   }
   if (new Set(_users).size !== _users.length) {
-    $('#div_alert').showAlert({
+    $.fn.showAlert({
     message: '{{Deux utilisateurs ne peuvent avoir le même login !}}',
       level: 'danger'
     })
@@ -140,14 +140,14 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
       jeedom.user.remove({
         id: user.id,
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           printUsers()
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{L\'utilisateur a bien été supprimé}}',
             level: 'success'
           })
@@ -169,14 +169,14 @@ $("#table_user").on('click', ".bt_change_mdp_user", function(event) {
       jeedom.user.save({
         users: [user],
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           printUsers()
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })
@@ -198,14 +198,14 @@ $("#table_user").on('click', ".bt_changeHash", function(event) {
       jeedom.user.save({
         users: [user],
         error: function(error) {
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           printUsers()
-          $('#div_alert').showAlert({
+          $.fn.showAlert({
             message: '{{Modification effectuée}}',
             level: 'success'
           })
@@ -228,7 +228,7 @@ $('#bt_supportAccess').on('click', function() {
   jeedom.user.supportAccess({
     enable: $(this).attr('data-enable'),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -253,7 +253,7 @@ function printUsers() {
   $.showLoading()
   jeedom.user.all({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -353,7 +353,7 @@ $('#table_user').on('click', '.bt_disableTwoFactorAuthentification', function() 
   jeedom.user.removeTwoFactorCode({
     id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value(),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -369,7 +369,7 @@ $('.bt_deleteSession').on('click', function() {
   jeedom.user.deleteSession({
     id: id,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -387,7 +387,7 @@ $('.bt_removeRegisterDevice').on('click', function() {
     key: key,
     user_id: user_id,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -401,7 +401,7 @@ $('.bt_removeRegisterDevice').on('click', function() {
 $('#bt_removeAllRegisterDevice').on('click', function() {
   jeedom.user.removeRegisterDevice({
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })

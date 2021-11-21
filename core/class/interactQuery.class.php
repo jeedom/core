@@ -375,7 +375,7 @@ class interactQuery {
 		} else {
 			if ($data['cmd']->getSubtype() == 'slider') {
 				preg_match_all('/(\d+)/', strtolower(sanitizeAccent($data['query'])), $matches);
-				if (isset($matches[0]) && isset($matches[0][0])) {
+				if (isset($matches[0][0])) {
 					$data['cmd_parameters']['slider'] = $matches[0][0];
 				}
 			}
@@ -448,7 +448,7 @@ class interactQuery {
 			}
 		}
 		preg_match_all('!\d+!', strtolower(sanitizeAccent($_query)), $matches);
-		if (isset($matches[0]) && isset($matches[0][0])) {
+		if (isset($matches[0][0])) {
 			$operand = $matches[0][0];
 		}
 		if ($operand === null || $operator === null) {
@@ -878,9 +878,9 @@ class interactQuery {
 						$replace['#valeur#'] .= ' ' . $return;
 					}
 				} catch (Exception $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+					log::add('interact', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . '. ' . __('Détails : ', __FILE__) . $e->getMessage());
 				} catch (Error $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+					log::add('interact', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . '. ' . __('Détails : ', __FILE__) . $e->getMessage());
 				}
 			}
 		}

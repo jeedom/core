@@ -51,7 +51,7 @@ $("#bt_save").on('click', function() {
   jeedom.cron.save({
     crons: $('#table_cron tbody tr').getValues('.cronAttr'),
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -69,7 +69,7 @@ $("#bt_changeCronState").on('click', function() {
       enableCron: el.attr('data-state')
     },
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -98,7 +98,7 @@ $tableCron.on({
       state: 'stop',
       id: $(this).closest('tr').attr('id'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -114,7 +114,7 @@ $tableCron.on({
       state: 'start',
       id: $(this).closest('tr').attr('id'),
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -317,7 +317,7 @@ function getDeamonState() {
   jeedom.plugin.all({
     activateOnly: true,
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       })
@@ -330,7 +330,7 @@ function getDeamonState() {
           id: plugins[i].id,
           async: false,
           error: function(error) {
-            $('#div_alert').showAlert({
+            $.fn.showAlert({
               message: error.message,
               level: 'danger'
             })
@@ -376,7 +376,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
       id: plugin,
       forceRestart: 1,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -389,7 +389,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
     jeedom.plugin.deamonStop({
       id: plugin,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -403,7 +403,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
       id: plugin,
       mode: 1,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -417,7 +417,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
       id: plugin,
       mode: 0,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })

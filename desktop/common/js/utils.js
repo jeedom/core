@@ -176,19 +176,16 @@ $(function() {
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
-  $.alertTrigger = function() {
-    jeedomUtils.initRowOverflow()
-  }
   $body.attr('data-page', getUrlVars('p'))
   $body.off('jeedom_page_load').on('jeedom_page_load', function() {
     if (getUrlVars('saveSuccessFull') == 1) {
-      $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
+      $.fn.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash)
     }
     if (getUrlVars('removeSuccessFull') == 1) {
-      $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
-      PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
+      $.fn.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
+      PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
   })
@@ -396,7 +393,7 @@ jeedomUtils.checkThemechange = function() {
 
   var theme = jeedom.theme.default_bootstrap_theme_night
   var themeCss = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/' + jeedom.theme.default_bootstrap_theme_night + '.css'
-  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes());
+  var currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
 
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime) {
     theme  = jeedom.theme.default_bootstrap_theme
@@ -705,7 +702,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       page: $(this).attr('data-page'),
       theme: $('body').attr('data-theme'),
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function(url) {
         window.open(url,'_blank')
@@ -892,9 +889,6 @@ jeedomUtils.initTextArea = function() {
 
 jeedomUtils.initRowOverflow = function() {
   var hWindow = $(window).outerHeight() - $('header').outerHeight() - 5
-  if ($('#div_alert').is(':visible')) {
-    hWindow -= ($('#div_alert').outerHeight() + 20)
-  }
   if ($('.row-overflow').attr('data-offset') != undefined) {
     hWindow -= $('.row-overflow').attr('data-offset')
   }

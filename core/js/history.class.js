@@ -109,13 +109,13 @@ jeedom.history.changePoint = function(_params) {
   var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue'];
   var paramsSpecifics = {
     error: function(error) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: error.message,
         level: 'danger'
       });
     },
     success: function(result) {
-      $('#div_alert').showAlert({
+      $.fn.showAlert({
         message: '{{La valeur a été éditée avec succès}}',
         level: 'success'
       });
@@ -213,7 +213,7 @@ jeedom.history.drawChart = function(_params) {
     success: function(data) {
       //check history exist:
       if (data.state != 'ok') {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: data.result,
           level: 'danger'
         });

@@ -739,7 +739,7 @@ $('#bt_getHelpModal').on('click',function() {
     page: 'search',
     theme: $('body').attr('data-theme'),
     error: function(error) {
-    $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(url) {
     window.open(url,'_blank')

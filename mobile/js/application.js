@@ -98,6 +98,11 @@ $(function() {
     jeedomUtils.switchTheme(jeedom.theme)
     $('#bottompanel_otherActionList').panel('close')
   })
+
+  $('body').on('click', '#span_nbMessage', function() {
+    jeedomUtils.loadPage('message', 'Messages')
+  })
+
 })
 
 var PAGE_HISTORY = []
@@ -267,11 +272,13 @@ jeedomUtils.checkThemechange = function() {
   
   var theme = jeedom.theme.mobile_theme_color_night
   var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
-  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes())
+  var currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
+
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
     theme = jeedom.theme.mobile_theme_color
     themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
   }
+
   if ($jQMnDColor.attr('href') != themeCss) {
     $('body').attr('data-theme',theme)
     $('#jQMnDColor').attr('href', themeCss)
@@ -497,6 +504,7 @@ jeedomUtils.initApplication = function(_reinit) {
             }
           })
         })
+        jeedomUtils.refreshMessageNumber()
       }
     }
   })
@@ -695,6 +703,11 @@ jeedomUtils.refreshMessageNumber = function() {
     success: function (_number) {
       jeedomUtils.MESSAGE_NUMBER = _number
       $('.span_nbMessage').html(_number)
+      if (_number > 0) {
+        $('#span_nbMessage').show()
+      } else {
+        $('#span_nbMessage').hide()
+      }
     }
   })
 }

@@ -263,8 +263,8 @@ $.contextMenu({
           $('li.cmd[data-id="' + cmdId + '"] .genericType').text('None')
           $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', '')
         } else {
-          //var text = options.commands[key].id.split('::')[0] + ' -> ' + options.commands[key].$node[0].innerText
-          var text = options.commands[key].id.split('::')[0] + ' -> ' + options.commands[key].name
+          //var text = options.commands[key].id.split('::')[0] + typeStringSep + options.commands[key].$node[0].innerText
+          var text = options.commands[key].id.split('::')[0] + typeStringSep + options.commands[key].name
           $('li.cmd[data-id="' + cmdId + '"] .genericType').text(text)
           $('li.cmd[data-id="' + cmdId + '"]').attr('data-generic', options.commands[key].id.split('::')[1])
         }
@@ -333,7 +333,7 @@ $('.bt_queryCmdsTypes').off('click').on('click', function() {
       cmd['type'] = $(this).attr('data-type')
       cmd['subtype'] = $(this).attr('data-subtype')
       cmd['generic'] = $(this).attr('data-generic')
-      cmd['genericName'] = $(this).find('.genericType').text().replace(genFamily + ' -> ', '')
+      cmd['genericName'] = $(this).find('.genericType').text().replace(genFamily + typeStringSep, '')
       cmd['queryGeneric'] = ''
       cmd['queryGenericName'] = ''
       cmd['possibilities'] = []
@@ -448,7 +448,7 @@ $('#bt_applyCmdsTypes').off('click').on('click', function() {
     queryEq = $(this)
     if ($(this).find('.cb_selCmd').is(':checked')) {
       genericName = $(this).find('.modalCmdGenericSelect option:selected').text()
-      if (genericName != '{{Aucun}}') genericName = genFamily + ' -> ' + genericName
+      if (genericName != '{{Aucun}}') genericName = genFamily + typeStringSep + genericName
       $('div.eqlogicSortable[data-id="' + genFamily + '"] li.cmd[data-id="' + $(this).attr('data-id') + '"]').attr({
         'data-changed': '1',
         'data-generic': $(this).find('.modalCmdGenericSelect').val()
@@ -538,7 +538,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
     jeedom.eqLogic.setGenericType({
       eqLogics: eqLogics,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -564,7 +564,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
     jeedom.cmd.multiSave({
       cmds: cmds,
       error: function(error) {
-        $('#div_alert').showAlert({
+        $.fn.showAlert({
           message: error.message,
           level: 'danger'
         })
@@ -579,7 +579,7 @@ $("#bt_saveGenericTypes").off('click').on('click', function(event) {
   })
   modifyWithoutSave = false
 
-  $('#div_alert').showAlert({
+  $.fn.showAlert({
     message: '{{Types Génériques sauvegardés}}' + ' (equipment: ' + eqLogics.length + ' | command: ' + cmds.length + ')',
     level: 'success'
   })

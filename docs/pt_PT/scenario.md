@@ -423,7 +423,7 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 - ``randText(texte1;texte2;texte…​..)`` : Permite retornar um dos textos aleatoriamente (separe os textos por um; ). Não há limite no número de textos.
 - ``randomColor(min,max)`` : Dá uma cor aleatória entre 2 limites (0 => vermelho, 50 => verde, 100 => azul).
 - ``trigger(commande)`` : Permite descobrir o gatilho para o cenário ou saber se foi o comando passado como um parâmetro que acionou o cenário.
-- ``triggerValue(commande)`` : Usado para descobrir o valor do gatilho do cenário.
+- ``triggerValue()`` : Usado para descobrir o valor do gatilho do cenário.
 - ``round(valeur,[decimal])`` : Arredonda acima, número [decimal] de casas decimais após o ponto decimal.
 - ``odd(valeur)`` : Permite saber se um número é ímpar ou não. Retorna 1 se ímpar 0, caso contrário.
 - ``median(commande1,commande2…​.commandeN)`` : Retorna a mediana dos valores.
@@ -443,7 +443,7 @@ E exemplos práticos :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | a função retornará um desses textos aleatoriamente a cada execução.                           |
 | ``randomColor(40,60)``                 | Retorna uma cor aleatória próxima ao verde.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 se é bom ``#[Salle de bain][Hydrometrie][Humidité]#`` quem iniciou o cenário caso contrário 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 se a hidrometria de ``#[Salle de bain][Hydrometrie][Humidité]#`` é 80% e isso é ``#[Salle de bain][Hydrometrie][Humidité]#`` que desencadeou o cenário se não for `false`.                         |
+| ``triggerValue()`` | 80 se a hidrometria de ``#[Salle de bain][Hydrometrie][Humidité]#`` é 80% e isso é ``#[Salle de bain][Hydrometrie][Humidité]#`` quem desencadeou o cenário. Se o cenário não foi disparado por um comando, retorna `falso`.                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Retorna 9 se a porcentagem de umidade e 85                     |
 | ``odd(3)``                             | Retorna 1                            |
 | ``median(15,25,20)``                   | Retorna 20
@@ -463,7 +463,13 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **variável** (variable) : Criação / modificação de uma variável ou o valor de uma variável.
 - **Remover variável** (delete_variable) : Permite excluir uma variável.
 - **genericType (GENERIC, #[Object]#)** : Modificação de um comando info (evento) ou ação (execCmd) por tipo genérico, em um objeto. Por exemplo, desligue todas as luzes da sala de estar.
-- **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag). O comando "Redefinir para SI" permite redefinir o status de "SI" (esse status é usado para a não repetição das ações de um "SI" se você passar pela segunda vez consecutiva nele).
+- **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag).
+    - Para iniciar : Comece o cenário em um tópico diferente. O cenário iniciado é executado independentemente do cenário de chamada.
+    - Iniciar (Sincronizar) : Inicia o cenário chamado e pausa o cenário chamado, enquanto o cenário chamado termina de ser executado.
+    - Pare : Pára o script.
+    - Ativar : Ative um cenário desativado.
+    - Desativar : Cenário de desativação. Ele não inicia mais, independentemente dos gatilhos.
+    - Reinicializando os ISs : Usado para redefinir o status de **E SE**. Este status é usado para a não repetição das ações de um **E SE**, se a avaliação da condição der o mesmo resultado da avaliação anterior.
 - **Pare** (stop) : Pára o script.
 - **Esperar** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
 - **Vai o projeto** (gotodesign) : Alterar o design exibido em todos os navegadores pelo design solicitado.

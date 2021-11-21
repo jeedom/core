@@ -6,11 +6,11 @@ echo '<script>REPO_LIST = []</script>';
 ?>
 
 <div id="backup">
-	<br/>
+	<br />
 	<div class="pull-right" style="display:inline-flex;">
 		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 	</div>
-	<br/><br/>
+	<br /><br />
 	<div class="row">
 		<div class="col-lg-6 col-sm-12">
 			<div class="row">
@@ -91,7 +91,7 @@ echo '<script>REPO_LIST = []</script>';
 
 						$div = '<div class="panel panel-primary">';
 						$div .= '<div class="panel-heading">';
-						$div .= '<h3 class="panel-title">'.$icon.' {{Sauvegardes}} ' . $value['name'];
+						$div .= '<h3 class="panel-title">' . $icon . ' {{Sauvegardes}} ' . $value['name'];
 						$div .= '</div>';
 						$div .= '<div class="panel-body">';
 
@@ -107,7 +107,7 @@ echo '<script>REPO_LIST = []</script>';
 							$div .= '<div class="form-group">';
 							$div .= '<label class="col-sm-6 col-xs-6 control-label">{{Rétention temporelle (jours)}}</label>';
 							$div .= '<div class="col-sm-6 col-xs-6">';
-							$div .= '<input type="text" class="configKey form-control" data-l1key="'.$rkey.'::keepDays" />';
+							$div .= '<input type="text" class="configKey form-control" data-l1key="' . $rkey . '::keepDays" />';
 							$div .= '</div>';
 							$div .= '</div>';
 						}
@@ -155,4 +155,4 @@ echo '<script>REPO_LIST = []</script>';
 	</div>
 </div>
 
-<?php include_file("desktop", "backup", "js");?>
+<?php include_file("desktop", "backup", "js"); ?>

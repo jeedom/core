@@ -423,7 +423,7 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 - ``randText(texte1;texte2;texte…​..)`` : Le permite devolver uno de los textos al azar (separe los textos por uno; ). No hay límite en el número de textos.
 - ``randomColor(min,max)`` : Da un color aleatorio entre 2 límites (0 => rojo, 50 => verde, 100 => azul).
 - ``trigger(commande)`` : Le permite descubrir el desencadenante del escenario o saber si es el comando pasado como parámetro el que desencadenó el escenario.
-- ``triggerValue(commande)`` : Se usa para averiguar el valor del desencadenante del escenario.
+- ``triggerValue()`` : Se usa para averiguar el valor del desencadenante del escenario.
 - ``round(valeur,[decimal])`` : Redondea arriba, número [decimal] de lugares decimales después del punto decimal.
 - ``odd(valeur)`` : Le permite saber si un número es impar o no. Devuelve 1 si es impar 0 de lo contrario.
 - ``median(commande1,commande2…​.commandeN)`` : Devuelve la mediana de los valores.
@@ -443,7 +443,7 @@ Y ejemplos prácticos :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | la función devolverá uno de estos textos al azar en cada ejecución.                           |
 | ``randomColor(40,60)``                 | Devuelve un color aleatorio cercano al verde.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 si es bueno ``#[Salle de bain][Hydrometrie][Humidité]#`` quien inició el escenario de lo contrario 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 si la hidrometría de ``#[Salle de bain][Hydrometrie][Humidité]#`` es 80% y eso es ``#[Salle de bain][Hydrometrie][Humidité]#`` que desencadenó el escenario si no es "falso".                         |
+| ``triggerValue()`` | 80 si la hidrometría de ``#[Salle de bain][Hydrometrie][Humidité]#`` es 80% y eso es ``#[Salle de bain][Hydrometrie][Humidité]#`` quien desencadenó el escenario. Si el escenario no fue activado por un comando, devuelve "falso".                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / / 10)`` | Devuelve 9 si el porcentaje de humedad y 85                     |
 | ``odd(3)``                             | Devuelve 1                            |
 | ``median(15,25,20)``                   | Devuelve 20
@@ -463,7 +463,13 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **variable** (variable) : Creación / modificación de una variable o el valor de una variable.
 - **Eliminar variable** (delete_variable) : Le permite eliminar una variable.
 - **genericType (GENÉRICO, #[Object]#)** : Modificación de un comando de información (evento) o acción (execCmd) por tipo genérico, en un objeto. Por ejemplo, apague todas las luces de la sala de estar.
-- **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag). El comando "Restablecer a SI" permite restablecer el estado de "SI" (este estado se utiliza para la no repetición de las acciones de un "SI" si pasa por segunda vez consecutiva en él).
+- **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag).
+    - Comenzar : Inicie el escenario en un hilo diferente. El escenario iniciado se ejecuta independientemente del escenario de llamada.
+    - Iniciar (sincronizar) : Inicia el escenario llamado y pausa el escenario de llamada, mientras que el escenario llamado ha terminado de ejecutarse.
+    - Parar : Detener el escenario.
+    - Activar : Activar un escenario discapacitado.
+    - Desactivar : Desactivar escenario. Ya no se inicia independientemente de los desencadenantes.
+    - Restablecimiento de los IS : Se utiliza para restablecer el estado de **SI**. Este estado se utiliza para la no repetición de las acciones de un **SI**, si la evaluación de la condición da el mismo resultado que la evaluación anterior.
 - **Detener** (stop) : Detener el escenario.
 - **Esperar** (wait) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos (s).
 - **Ir al diseño** (gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.

@@ -43,6 +43,7 @@ if (!isConnect()) {
 
   mod_insertEqLogic.options = {}
   mod_insertEqLogic.options.eqLogic = {}
+  mod_insertEqLogic.options.object = {}
 
   $('#table_mod_insertEqLogicValue_valueEqLogicToMessage').on({
     'change': function(event) {
@@ -54,6 +55,12 @@ if (!isConnect()) {
     mod_insertEqLogic.options = _options
     if (!isset(mod_insertEqLogic.options.eqLogic)) {
       mod_insertEqLogic.options.eqLogic = {}
+    }
+    if (!isset(mod_insertEqLogic.options.object)) {
+      mod_insertEqLogic.options.object = {}
+    }
+    if (isset(mod_insertEqLogic.options.object.id)) {
+      $('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select').value(mod_insertEqLogic.options.object.id)
     }
     mod_insertEqLogic.changeObjectEqLogic($('#table_mod_insertEqLogicValue_valueEqLogicToMessage td.mod_insertEqLogicValue_object select'), mod_insertEqLogic.options)
   }
@@ -76,7 +83,7 @@ if (!isConnect()) {
       id: (_select.value() == '' ? -1 : _select.value()),
       orderByName : true,
       error: function(error) {
-        $('#div_alert').showAlert({message: error.message, level: 'danger'})
+        $.fn.showAlert({message: error.message, level: 'danger'})
       },
       success: function(eqLogics) {
         _select.closest('tr').find('.mod_insertEqLogicValue_eqLogic').empty()

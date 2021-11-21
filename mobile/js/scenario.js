@@ -8,7 +8,7 @@ function initScenario() {
     id: 'all',
     version: 'mobile',
     error: function(error) {
-      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({message: error.message, level: 'danger'})
     },
     success: function(htmls) {
       $.clearDivContent('div_displayScenario')

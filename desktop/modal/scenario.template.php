@@ -134,7 +134,7 @@ $('#bt_scenarioTemplateApply').on('click', function() {
         success: function(data) {
           $('#md_modal').dialog('close')
           printScenario(scenario_template_id)
-          $('#div_alert').showAlert({message: 'Template appliqué avec succès.', level: 'success'})
+          $.fn.showAlert({message: 'Template appliqué avec succès.', level: 'success'})
         }
       })
     }
