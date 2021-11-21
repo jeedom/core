@@ -1324,7 +1324,14 @@
         "Extensions php": "PHP-Erweiterungen"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Version": "Ausführung",
+        "Dashboard": "Armaturenbrett",
+        "Mobile": "Handy, Mobiltelefon",
+        "Type": "Typ",
+        "Sous-type": "Untertyp",
+        "Nom": "Name",
+        "Créer": "Erschaffen"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2598,7 +2605,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Möchten Sie wirklich alle Protokolle löschen?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Bearbeiten"
+        "Editer": "Bearbeiten",
+        "Le sous-type ne peut être vide": "Untertyp darf nicht leer sein",
+        "Le nom ne peut être vide": "Name darf nicht leer sein",
+        "Fichier enregistré avec succès": "Datei erfolgreich gespeichert",
+        "Créer un Widget": "Erstellen Sie ein Widget",
+        "Options": "Optionen"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Aktualisieren",

@@ -1324,7 +1324,14 @@
         "Extensions php": "PHP拡張"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401-不正アクセス"
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Version": "Version",
+        "Dashboard": "Dashboard",
+        "Mobile": "Mobile",
+        "Type": "Type",
+        "Sous-type": "Sous-type",
+        "Nom": "Nom",
+        "Créer": "Créer"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2598,7 +2605,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "すべてのログを削除してもよろしいですか？"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer"
+        "Editer": "Editer",
+        "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
+        "Le nom ne peut être vide": "Le nom ne peut être vide",
+        "Fichier enregistré avec succès": "Fichier enregistré avec succès",
+        "Créer un Widget": "Créer un Widget",
+        "Options": "Options"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "リフレッシュ",

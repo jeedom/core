@@ -1324,7 +1324,14 @@
         "Extensions php": "Php extensions"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Unauthorized access"
+        "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Version": "Version",
+        "Dashboard": "Dashboard",
+        "Mobile": "Mobile",
+        "Type": "Type",
+        "Sous-type": "Subtype",
+        "Nom": "Name",
+        "Créer": "To create"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2598,7 +2605,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Are you sure you want to delete all logs?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Edit"
+        "Editer": "Edit",
+        "Le sous-type ne peut être vide": "Subtype cannot be empty",
+        "Le nom ne peut être vide": "Name cannot be empty",
+        "Fichier enregistré avec succès": "File saved successfully",
+        "Créer un Widget": "Create a Widget",
+        "Options": "Options"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refresh",

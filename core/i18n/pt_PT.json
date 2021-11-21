@@ -1324,7 +1324,14 @@
         "Extensions php": "Extensões php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado"
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Version": "Versão",
+        "Dashboard": "Painel",
+        "Mobile": "Móvel",
+        "Type": "Modelo",
+        "Sous-type": "Subtipo",
+        "Nom": "Nome",
+        "Créer": "Para criar"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2598,7 +2605,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os logs?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editar"
+        "Editer": "Editar",
+        "Le sous-type ne peut être vide": "O subtipo não pode estar vazio",
+        "Le nom ne peut être vide": "O nome não pode estar vazio",
+        "Fichier enregistré avec succès": "Arquivo salvo com sucesso",
+        "Créer un Widget": "Crie um widget",
+        "Options": "Opções"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refrescar",
