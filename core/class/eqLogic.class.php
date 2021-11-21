@@ -1121,7 +1121,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}

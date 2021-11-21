@@ -1540,7 +1540,7 @@ function pageTitle($_page) {
 					$url = $_SERVER['REQUEST_URI'];
 					$plugin = explode('m=', $url)[1];
 					$plugin = explode('&', $plugin)[0];
-					$return = __('Panel ' . ucfirst($plugin), __FILE__);
+					$return = __('Panel ', __FILE__) . ucfirst($plugin);
 				} else {
 					$return = __('Panel', __FILE__);
 				}
