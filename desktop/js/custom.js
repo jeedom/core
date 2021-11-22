@@ -134,7 +134,7 @@ $('.saveCustom').on('click', function() {
       })
     },
     success: function() {
-      jeedom.saveCustum({
+      jeedom.saveCustom({
         version: version,
         type: type,
         content: content,

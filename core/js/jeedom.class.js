@@ -501,7 +501,7 @@ jeedom.health = function(_params) {
   $.ajax(paramsAJAX);
 }
 
-jeedom.saveCustum = function(_params) {
+jeedom.saveCustom = function(_params) {
   var paramsRequired = ['version', 'type', 'content'];
   var paramsSpecifics = {};
   try {
