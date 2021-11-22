@@ -99,6 +99,10 @@ class repo_market {
 				'cloud::backup::password_confirmation' => array(
 					'name' => __('[Backup cloud] Mot de passe (confirmation)', __FILE__),
 					'type' => 'password',
+				),
+				'cloud::monitoring::disable' => array(
+					'name' => __('[Monitoring cloud] Désactiver', __FILE__),
+					'type' => 'checkbox',
 				)
 			),
 			'parameters_for_add' => array(
@@ -398,7 +402,7 @@ class repo_market {
 
 	public static function cron5() {
 		try {
-			if (config::byKey('service::monitoring::enable')) {
+			if (config::byKey('service::monitoring::enable') && config::byKey('cloud::monitoring::disable', 0) == 0) {
 				sleep(rand(1, 60));
 				$data = array(
 					'health' => jeedom::health(),
