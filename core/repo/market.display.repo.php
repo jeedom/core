@@ -32,14 +32,14 @@ sendVarToJS('market_display_info', $market_array);
 			$default_image = 'core/img/no_image.gif';
 			switch ($market->getType()) {
 				case 'widget':
-				$default_image = 'core/img/no-image-widget.png';
-				break;
+					$default_image = 'core/img/no-image-widget.png';
+					break;
 				case 'plugin':
-				$default_image = 'core/img/no-image-plugin.png';
-				break;
+					$default_image = 'core/img/no-image-plugin.png';
+					break;
 				case 'script':
-				$default_image = 'core/img/no-image-script.png';
-				break;
+					$default_image = 'core/img/no-image-script.png';
+					break;
 			}
 			$urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
 			echo '<img src="' . $default_image . '" data-original="' . $urlPath . '"  class="lazy img-responsive" style="height : 200px;"/>';
@@ -49,8 +49,8 @@ sendVarToJS('market_display_info', $market_array);
 	<div class='col-sm-8'>
 		<input class="form-control marketAttr" data-l1key="id" style="display: none;">
 		<span class="marketAttr" data-l1key="name" placeholder="{{Nom}}" style="font-size: 3em;font-weight: bold;"></span>
-		<br/>
-		<span class="span_author cursor" style="font-size: 1.5em;font-weight: bold;color:#707070;" data-author="<?php echo $market->getAuthor(); ?>">{{Développé par}} <?php echo $market->getAuthor(); ?></span><br/>
+		<br />
+		<span class="span_author cursor" style="font-size: 1.5em;font-weight: bold;color:#707070;" data-author="<?php echo $market->getAuthor(); ?>">{{Développé par}} <?php echo $market->getAuthor(); ?></span><br />
 		<?php
 		if ($market->getCertification() == 'Officiel') {
 			echo '<span style="font-size : 1.5em;color:#707070">Officiel</span><br/>';
@@ -79,7 +79,7 @@ sendVarToJS('market_display_info', $market_array);
 			sendVarToJS('market_display_info_category', $market->getCategorie());
 		}
 		?>
-		<br/><br/>
+		<br /><br />
 		<?php
 		if ($market->getPurchase() == 1) {
 			$allowVersion = $market->getAllowVersion();
@@ -94,12 +94,12 @@ sendVarToJS('market_display_info', $market_array);
 			if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
 				$purchase_info = repo_market::getPurchaseInfo();
 				if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
-					?>
+		?>
 					<a class="btn btn-default" href='<?php echo config::byKey('market::address'); ?>/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
-					<?php
+			<?php
 					if ($market->getCertification() !== 'Premium') {
-						echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=purchaseItem&user_id=' . $purchase_info['user_id'] . '&type=plugin&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
-					}else{
+						echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
+					} else {
 						echo '<a class="btn btn-default" target="_blank" href="mailto:supportpro@jeedom.com"><i class="fa fa-envelope"></i> {{Nous Contacter}}</a>';
 					}
 				} else {
@@ -111,14 +111,14 @@ sendVarToJS('market_display_info', $market_array);
 		}
 		if (is_object($update)) {
 			?>
-			<a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>" ><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+			<a class="btn btn-danger" style="color : white;" id="bt_removeFromMarket" data-market_id="<?php echo $market->getId(); ?>"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 		<?php }
 		?>
-		<br/><br/>
+		<br /><br />
 		<?php
 		if ($market->getCertification() == 'Premium') {
 			echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
-		}else{
+		} else {
 			if ($market->getCost() > 0) {
 				if ($market->getCost() != $market->getRealCost()) {
 					echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
@@ -146,7 +146,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 <div style="display: none;width : 100%" id="div_alertMarketDisplay"></div>
 
 <?php if (count($market->getImg('screenshot')) > 0) {
-	?>
+?>
 	<div style='padding:25px;margin: 0 5px;width: calc(100% - 20px);'>
 		<div class="variable-width" style="height : 200px;">
 			<?php
@@ -163,15 +163,15 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 <?php }
 ?>
 
-<br/>
+<br />
 <div class='row'>
 	<div class='col-sm-6'>
 		<legend>{{Description}}
-			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'),$market->getDoc()) ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
-			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'),$market->getChangelog()) ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
-			<br/>
+			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $market->getDoc()) ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
+			<a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $market->getChangelog()) ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
+			<br />
 		</legend>
-		<span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+		<span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;"></span>
 	</div>
 	<div class='col-sm-6'>
 		<legend>{{Compatibilité plateforme}}</legend>
@@ -194,7 +194,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 		?>
 	</div>
 </div>
-<br/>
+<br />
 <div class='row'>
 	<div class='col-sm-6'>
 		<legend>Avis</legend>
@@ -208,10 +208,10 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 	</div>
 	<div class='col-sm-6'>
 		<legend>{{Utilisation}}</legend>
-		<span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;" ></span>
+		<span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;"></span>
 	</div>
 </div>
-<br/>
+<br />
 
 <div class="form-group">
 	<div class='row'>
@@ -219,17 +219,17 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			<legend>{{Informations complementaires}}</legend>
 
 			<div class='col-sm-2'>
-				<label class="control-label">{{Taille}}</label><br/>
+				<label class="control-label">{{Taille}}</label><br />
 				<span><?php echo $market->getParameters('size'); ?></span>
 			</div>
 			<div class='col-sm-2'>
-				<label class="control-label">{{Lien}}</label><br/>
-				<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br/>
+				<label class="control-label">{{Lien}}</label><br />
+				<?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') { ?>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br />
 				<?php }
 				?>
-				<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') {?>
-					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br/>
+				<?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
+					<a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br />
 				<?php }
 				?>
 			</div>
@@ -239,11 +239,11 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 			</div>
 
 			<div class='col-sm-1'>
-				<label class="control-label">{{Type}}</label><br/>
+				<label class="control-label">{{Type}}</label><br />
 				<span class="marketAttr" data-l1key="type"></span>
 			</div>
 			<div class='col-sm-2'>
-				<label class="control-label">{{Langue disponible}}</label><br/>
+				<label class="control-label">{{Langue disponible}}</label><br />
 				<?php
 				echo '<img src="core/img/langFlags/francais.png" width="30" />';
 				if ($market->getLanguage('en_US') == 1) {
@@ -264,7 +264,7 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 				?>
 			</div>
 			<div class='col-sm-3'>
-				<label class="control-label">{{Dernière mise à jour le}}</label><br/>
+				<label class="control-label">{{Dernière mise à jour le}}</label><br />
 				<?php echo $market->getDatetime('stable') ?>
 			</div>
 		</div>
@@ -273,101 +273,115 @@ if (is_array($compatibilityHardware) && count($compatibilityHardware) > 0 && iss
 </div>
 
 <style>
-.slick-prev:before, .slick-next:before {
-	color : #707070;
-}
+	.slick-prev:before,
+	.slick-next:before {
+		color: #707070;
+	}
 </style>
 <script>
+	$("img.lazy").lazyload({
+		event: "sporty"
+	});
+	$("img.lazy").trigger("sporty");
 
-$("img.lazy").lazyload({
-	event: "sporty"
-});
-$("img.lazy").trigger("sporty");
+	$(document).unbind('click.fb-start');
+	$(".fancybox").fancybox({
+		autoHeight: true,
+	});
 
-$(document).unbind('click.fb-start');
-$(".fancybox").fancybox({
-	autoHeight: true,
-});
+	$('.variable-width').slick({
+		dots: true,
+		speed: 300,
+		accessibility: true,
+		infinite: true,
+		lazyLoad: 'ondemand',
+		slidesToShow: 3,
+		slidesToScroll: 1
+	});
 
-$('.variable-width').slick({
-	dots: true,
-	speed: 300,
-	accessibility: true,
-	infinite: true,
-	lazyLoad: 'ondemand',
-	slidesToShow: 3,
-	slidesToScroll: 1
-});
+	$('body').setValues(market_display_info, '.marketAttr');
 
-$('body').setValues(market_display_info, '.marketAttr');
+	$('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - ' + market_display_info_category);
 
-$('#div_alertMarketDisplay').closest('.ui-dialog').find('.ui-dialog-title').text('Market Jeedom - '+market_display_info_category);
+	$('.marketAttr[data-l1key=description]').html(jeedomUtils.linkify(market_display_info.description));
+	$('.marketAttr[data-l1key=utilization]').html(jeedomUtils.linkify(market_display_info.utilization));
 
-$('.marketAttr[data-l1key=description]').html(jeedomUtils.linkify(market_display_info.description));
-$('.marketAttr[data-l1key=utilization]').html(jeedomUtils.linkify(market_display_info.utilization));
-
-$('#bt_paypalClick').on('click', function () {
-	$(this).hide();
-});
+	$('#bt_paypalClick').on('click', function() {
+		$(this).hide();
+	});
 
 
-$('.bt_installFromMarket').on('click', function () {
-	var id = $(this).attr('data-market_id');
-	var logicalId = $(this).attr('data-market_logicalId');
-	jeedom.repo.install({
-		id: id,
-		repo : 'market',
-		version: $(this).attr('data-version'),
-		error: function (error) {
-			$('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
-		},
-		success: function (data) {
-			if(market_display_info.type == 'plugin'){
-				bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function (result) {
-					if (result) {
-						jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId);
-					}
+	$('.bt_installFromMarket').on('click', function() {
+		var id = $(this).attr('data-market_id');
+		var logicalId = $(this).attr('data-market_logicalId');
+		jeedom.repo.install({
+			id: id,
+			repo: 'market',
+			version: $(this).attr('data-version'),
+			error: function(error) {
+				$('#div_alertMarketDisplay').showAlert({
+					message: error.message,
+					level: 'danger'
+				});
+			},
+			success: function(data) {
+				if (market_display_info.type == 'plugin') {
+					bootbox.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
+						if (result) {
+							jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId);
+						}
+					});
+				}
+				if (typeof refreshListAfterMarketObjectInstall == 'function') {
+					refreshListAfterMarketObjectInstall()
+				}
+				$('#div_alertMarketDisplay').showAlert({
+					message: '{{Objet installé avec succès}}',
+					level: 'success'
+				})
+			}
+		});
+
+	});
+
+	$('#bt_removeFromMarket').on('click', function() {
+		var id = $(this).attr('data-market_id');
+		jeedom.repo.remove({
+			id: id,
+			repo: 'market',
+			error: function(error) {
+				$('#div_alertMarketDisplay').showAlert({
+					message: error.message,
+					level: 'danger'
+				});
+			},
+			success: function(data) {
+				$.showLoading();
+				window.location.reload();
+			}
+		});
+	});
+
+	$('#in_myRating').on('change', function() {
+		var id = $('.marketAttr[data-l1key=id]').value();
+		jeedom.repo.setRating({
+			id: id,
+			repo: 'market',
+			rating: $(this).val(),
+			error: function(error) {
+				$('#div_alertMarketDisplay').showAlert({
+					message: error.message,
+					level: 'danger'
 				});
 			}
-			if ( typeof refreshListAfterMarketObjectInstall == 'function'){
-				refreshListAfterMarketObjectInstall()
-			}
-			$('#div_alertMarketDisplay').showAlert({message: '{{Objet installé avec succès}}', level: 'success'})
-		}
+		});
 	});
 
-});
-
-$('#bt_removeFromMarket').on('click', function () {
-	var id = $(this).attr('data-market_id');
-	jeedom.repo.remove({
-		id: id,
-		repo : 'market',
-		error: function (error) {
-			$('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
-		},
-		success: function (data) {
-			$.showLoading();
-			window.location.reload();
-		}
+	$('.span_author').off('click').on('click', function() {
+		$('#md_modal2').dialog('close');
+		$('#md_modal').dialog({
+			title: "{{Market}}"
+		});
+		$('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI($(this).attr('data-author'))).dialog('open');
 	});
-});
-
-$('#in_myRating').on('change', function () {
-	var id = $('.marketAttr[data-l1key=id]').value();
-	jeedom.repo.setRating({
-		id: id,
-		repo : 'market',
-		rating: $(this).val(),
-		error: function (error) {
-			$('#div_alertMarketDisplay').showAlert({message: error.message, level: 'danger'});
-		}
-	});
-});
-
-$('.span_author').off('click').on('click',function(){
-	$('#md_modal2').dialog('close');
-	$('#md_modal').dialog({title: "{{Market}}"});
-	$('#md_modal').load('index.php?v=d&modal=update.list&type=plugin&repo=market&author='+encodeURI($(this).attr('data-author'))).dialog('open');
-});
 </script>
