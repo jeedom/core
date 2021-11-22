@@ -222,10 +222,10 @@ function setCommandCreatewidget(options) {
   })
 
   //new custom command in elfinder:
-  elFinder.prototype._options.commands.push('createWidget')
-  options.uiOptions.toolbar.push(['createWidget'])
+  elFinder.prototype._options.commands.push('jee_createWidget')
+  options.uiOptions.toolbar.push(['jee_createWidget'])
 
-  elFinder.prototype.commands.createWidget = function() {
+  elFinder.prototype.commands.jee_createWidget = function() {
     this.init = function() {
         this.title = this.fm.i18n("{{Créer un Widget}}");
     }
