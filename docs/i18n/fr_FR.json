@@ -848,6 +848,7 @@
         "permet de gerer certain fonction de jeedom en ligne de commande": "permet de gerer certain fonction de jeedom en ligne de commande",
         "Ajout en alpha d'un DNS Jeedom basé sur Wireguard au lieu d'Openvpn (plus rapide et plus stable": "Ajout en alpha d'un DNS Jeedom basé sur Wireguard au lieu d'Openvpn (plus rapide et plus stable",
         "Attention ce n'est pour le moment pas compatible Jeedom Smart": "Attention ce n'est pour le moment pas compatible Jeedom Smart",
+        "Possibilité de desactiver le monitoring cloud": "Possibilité de desactiver le monitoring cloud",
         "Widgets Core": "Widgets Core",
         "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard": "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard",
         "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard": "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard",

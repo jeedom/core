@@ -47,6 +47,7 @@
 - **Principal** : Integración del complemento JeeXplorer en el Core.
 - Añadiendo jeeCli.php en la carpeta de instalación de Jeedom : le permite administrar ciertas funciones de jeedom desde la línea de comando
 - Adición en alfa de un DNS Jeedom basado en Wireguard en lugar de Openvpn (más rápido y más estable). Tenga en cuenta que actualmente esto no es compatible con Jeedom Smart
+- Posibilidad de desactivar el monitoreo en la nube
 
 ### 4.2 : Widgets principales
 
