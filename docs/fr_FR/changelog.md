@@ -45,6 +45,8 @@
 - **Ajout de l'utilisateur exécutant une action** : Ajout dans les options d’exécution de la commande de l'id et du nom d'utilisateur lançant l'action (visible dans le log event par exemple)
 - **Documentation et changelog plugin beta** : Gestion de la documentation et du changelog pour les plugins en beta. Attention, en beta le changelog n'est pas daté.
 - **General** : Intégration du plugin JeeXplorer dans le Core.
+- Ajout de jeeCli.php dans le dossier install de Jeedom : permet de gerer certain fonction de jeedom en ligne de commande
+- Ajout en alpha d'un DNS Jeedom basé sur Wireguard au lieu d'Openvpn (plus rapide et plus stable). Attention ce n'est pour le moment pas compatible Jeedom Smart
 
 ### 4.2 : Widgets Core
 
