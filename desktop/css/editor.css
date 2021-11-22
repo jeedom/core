@@ -46,15 +46,17 @@ Theme ElFinder File Editor 2021 @Jeedom
 
 /* ____________________ELFINDER EDITOR */
   #elfinder .elfinder-toolbar::after {
-    height: unset;
-    line-height: 1;
+    display: none;
+  }
+  #elfinder .elfinder-toolbar {
+    padding-bottom: 10px;
   }
   #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search {
     min-width: 220px;
   }
   #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search > input {
-    padding-left: 24px !important;
     color: rgb(225, 225, 225) !important;
+    padding: 0 0 0 24px !important;
   }
   #elfinder .elfinder-button-icon,
   #elfinder .elfinder-dialog .ui-dialog-titlebar .ui-icon,
