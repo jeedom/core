@@ -13,13 +13,17 @@ $types = config::getGenericTypes();
 $GENRICSTYPES = $types['byType'];
 $families = $types['byFamily'];
 
+global $typeStringSep;
+$typeStringSep = ' -> ';
+
 sendVarToJS([
 	'generics' => $GENRICSTYPES,
-	'gen_families' => $families
+	'gen_families' => $families,
+	'typeStringSep' => $typeStringSep
 ]);
 
 function jeedom_displayGenFamily($_family, $_familyId='') {
-	global $EQLOGICSALL, $GENRICSTYPES;
+	global $EQLOGICSALL, $GENRICSTYPES, $typeStringSep;
 
 	if ($_family == -1) {
 		$_index = '';
@@ -89,14 +93,11 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 			}
 
 			if ($cmdGenericType != '') {
-				try {
-              		$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . ' -> ' . $GENRICSTYPES[$cmdGenericType]['name'];
-              	} catch (Exception $e) {
-              		$cmdGeneric = ' -> ';
-              	}
-				if ($cmdGeneric == ' -> ') {
-                	 $cmdGeneric = $cmdGenericType . ' ({{Inconnu}})';
-                }
+				if (isset($GENRICSTYPES[$cmdGenericType]['family'], $GENRICSTYPES[$cmdGenericType]['name'])) {
+					$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . $typeStringSep . $GENRICSTYPES[$cmdGenericType]['name'];
+				} else {
+					 $cmdGeneric = $cmdGenericType . ' ({{Inconnu}})';
+				}
 			} else {
 				$cmdGeneric = 'None';
 			}

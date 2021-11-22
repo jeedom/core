@@ -1335,7 +1335,7 @@ class cmd {
 			}
 		}
 		$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $widget_name;
-		if (isset($widget_template[$this->getType()]) && isset($widget_template[$this->getType()][$this->getSubType()]) && isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])) {
+		if (isset($widget_template[$this->getType()][$this->getSubType()][$widget_name])) {
 			$template_conf = $widget_template[$this->getType()][$this->getSubType()][$widget_name];
 			$template_name = 'cmd.' . $this->getType() . '.' . $this->getSubType() . '.' . $template_conf['template'];
 			if (isset($template_conf['replace']) && is_array($template_conf['replace']) && count($template_conf['replace']) > 0) {

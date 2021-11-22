@@ -1036,7 +1036,7 @@ class eqLogic {
 	}
 
 	public function getLinkToConfiguration() {
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin')) {
+		if (isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin')) {
 			return '#';
 		}
 		return 'index.php?v=d&p=' . $this->getEqType_name() . '&m=' . $this->getEqType_name() . '&id=' . $this->getId();
@@ -1121,7 +1121,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}
@@ -1255,7 +1255,7 @@ class eqLogic {
 					if (isset($command['value'])) {
 						$link_cmds[$cmd->getId()] = $command['value'];
 					}
-					if (isset($command['configuration']) && isset($command['configuration']['updateCmdId'])) {
+					if (isset($command['configuration']['updateCmdId'])) {
 						$link_actions[$cmd->getId()] = $command['configuration']['updateCmdId'];
 					}
 					$cmd_order++;

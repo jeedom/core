@@ -367,7 +367,6 @@
         "Equipement": "設備",
         "Droits": "権利",
         "Scénario": "シナリオ",
-        "Desing": "Desing",
         "Sauvegarde effectuée": "バックアップ完了"
     },
     "desktop\/modal\/object.display.php": {
@@ -1324,7 +1323,14 @@
         "Extensions php": "PHP拡張"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401-不正アクセス"
+        "401 - Accès non autorisé": "401-不正アクセス",
+        "Version": "Version",
+        "Dashboard": "Dashboard",
+        "Mobile": "Mobile",
+        "Type": "Type",
+        "Sous-type": "Sous-type",
+        "Nom": "Nom",
+        "Créer": "Créer"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2598,7 +2604,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "すべてのログを削除してもよろしいですか？"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editer"
+        "Editer": "Editer",
+        "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
+        "Le nom ne peut être vide": "Le nom ne peut être vide",
+        "Fichier enregistré avec succès": "Fichier enregistré avec succès",
+        "Créer un Widget": "Créer un Widget",
+        "Options": "Options"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "リフレッシュ",
@@ -3160,7 +3171,7 @@
         "Préférences": "好み",
         "Logs": "ログ",
         "Mises à jour": "アップデート",
-        "Panel ' . ucfirst($plugin)": "Panel ' . ucfirst($plugin)",
+        "Panel ": "パネル",
         "Panel": "パネル",
         ", ": "、"
     },
@@ -4137,8 +4148,8 @@
         "Elément inconnu. Vérifiez l\\'ID : ": "Elément inconnu. Vérifiez l\\'ID :",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Sous-élément inconnu. Vérifiez l\\'ID :",
         "Expression inconnue. Vérifiez l\\'ID : ": "Expression inconnue. Vérifiez l\\'ID :",
-        "Expression non valide  [": "Expression non valide  [",
-        "] trouvée dans le scénario : ": "] trouvée dans le scénario :",
+        "Expression non valide": "Expression non valide",
+        "trouvée dans le scénario : ": "trouvée dans le scénario :",
         ", résultat : ": ", résultat :",
         "Non exécution des actions pour cause de répétition": "繰り返しに起因するいかなる業績株式ません",
         "La condition pour une boucle doit être numérique : ": "La condition pour une boucle doit être numérique :",

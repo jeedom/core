@@ -367,7 +367,6 @@
         "Equipement": "Equipamento",
         "Droits": "Direitos",
         "Scénario": "Cenas",
-        "Desing": "Desing",
         "Sauvegarde effectuée": "Backup feito"
     },
     "desktop\/modal\/object.display.php": {
@@ -1324,7 +1323,14 @@
         "Extensions php": "Extensões php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado"
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Version": "Versão",
+        "Dashboard": "Painel",
+        "Mobile": "Móvel",
+        "Type": "Modelo",
+        "Sous-type": "Subtipo",
+        "Nom": "Nome",
+        "Créer": "Para criar"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2598,7 +2604,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os logs?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editar"
+        "Editer": "Editar",
+        "Le sous-type ne peut être vide": "O subtipo não pode estar vazio",
+        "Le nom ne peut être vide": "O nome não pode estar vazio",
+        "Fichier enregistré avec succès": "Arquivo salvo com sucesso",
+        "Créer un Widget": "Crie um widget",
+        "Options": "Opções"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refrescar",
@@ -3160,7 +3171,7 @@
         "Préférences": "Preferências",
         "Logs": "Toras",
         "Mises à jour": "Atualizações",
-        "Panel ' . ucfirst($plugin)": "Painel '. ucfirst ($ plugin)",
+        "Panel ": "Painel",
         "Panel": "Painel",
         ", ": ","
     },
@@ -4137,8 +4148,8 @@
         "Elément inconnu. Vérifiez l\\'ID : ": "Item desconhecido. Verifique o ID:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Subelemento desconhecido. Verifique o ID:",
         "Expression inconnue. Vérifiez l\\'ID : ": "Expressão desconhecida. Verifique o ID:",
-        "Expression non valide  [": "Expressão inválida [",
-        "] trouvée dans le scénario : ": "] encontrado no cenário:",
+        "Expression non valide": "Expressão inválida",
+        "trouvée dans le scénario : ": "encontrado no cenário:",
         ", résultat : ": ", resultado:",
         "Non exécution des actions pour cause de répétition": "Não há ações de desempenho devido à repetição",
         "La condition pour une boucle doit être numérique : ": "A condição para um loop deve ser numérica:",

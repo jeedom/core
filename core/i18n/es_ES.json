@@ -367,7 +367,6 @@
         "Equipement": "Dispositivos",
         "Droits": "Permisos",
         "Scénario": "Escenario",
-        "Desing": "Diseño",
         "Sauvegarde effectuée": "Guardado correctamente"
     },
     "desktop\/modal\/object.display.php": {
@@ -1324,7 +1323,14 @@
         "Extensions php": "Extensiones de php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado"
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Version": "Versión",
+        "Dashboard": "Tablero",
+        "Mobile": "Móvil",
+        "Type": "Escribe",
+        "Sous-type": "Subtipo",
+        "Nom": "Apellido",
+        "Créer": "Crear"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2598,7 +2604,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Editar"
+        "Editer": "Editar",
+        "Le sous-type ne peut être vide": "El subtipo no puede estar vacío",
+        "Le nom ne peut être vide": "El nombre no puede estar vacío",
+        "Fichier enregistré avec succès": "Archivo guardado exitosamente",
+        "Créer un Widget": "Crear un widget",
+        "Options": "Opciones"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Actualizar",
@@ -3160,7 +3171,7 @@
         "Préférences": "Preferencias",
         "Logs": "Registros",
         "Mises à jour": "Actualizaciones",
-        "Panel ' . ucfirst($plugin)": "Panel '. ucfirst ($ complemento)",
+        "Panel ": "Panel",
         "Panel": "Panel",
         ", ": ","
     },
@@ -4137,8 +4148,8 @@
         "Elément inconnu. Vérifiez l\\'ID : ": "Artículo desconocido Verifique la identificación:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Subelemento desconocido. Verifique la identificación:",
         "Expression inconnue. Vérifiez l\\'ID : ": "Expresión desconocida Verifique la identificación:",
-        "Expression non valide  [": "Expresión inválida [",
-        "] trouvée dans le scénario : ": "] encontrado en el escenario:",
+        "Expression non valide": "Expresión inválida",
+        "trouvée dans le scénario : ": "encontrado en el escenario:",
         ", résultat : ": ", resultado:",
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición",
         "La condition pour une boucle doit être numérique : ": "La condición para un bucle debe ser numérica:",

@@ -16,13 +16,14 @@
 
 "use strict"
 
+var _elfInstance
 
 $(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
   var hash = 'l1_'
   if (rootPath != '') {
-    hash += btoa(rootPath).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '.').replace(/\.+$/, '')
+    hash = getHashFromPath(rootPath)
   }
   var lang = jeedom_langage.substring(0, 2)
 
@@ -33,6 +34,7 @@ $(function() {
     startPathHash: hash,
     rememberLastDir: false,
     defaultView: 'list',
+    sound: false,
     sort: 'kindDirsFirst',
     sortDirect: 'kindDirsFirst',
     contextmenu: {
@@ -145,19 +147,106 @@ $(function() {
       },
     }
   }
-  var elfinstance
-  elfinstance = $('#elfinder').elfinder(options).elfinder('instance')
+
+  //custom editor settings:
+  if (editorType != '') {
+    options.ui = ['toolbar', 'tree', 'path', 'stat']
+
+    if (editorType == 'widget') {
+      options = setCommandCreatewidget(options)
+    }
+  }
+
+  _elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
 
   $('#elfinder').css("height", $(window).height() - 50)
   $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
 
-  elfinstance.one('init', function(event) {
+  _elfInstance.one('init', function(event) {
     killTooltips()
   })
-  elfinstance.bind('open', function(event) {
+  _elfInstance.bind('open', function(event) {
     killTooltips()
   })
 })
+
+
+function setCommandCreatewidget(options) {
+  //initiate widget options modal:
+  $("#md_widgetCreate").dialog({
+    closeText: '',
+    autoOpen: false,
+    modal: true,
+    height: 280,
+    width: 300,
+    open: function() {
+      $("body").css({overflow: 'hidden'})
+    },
+    beforeClose: function(event, ui) {
+      $("body").css({overflow: 'inherit'})
+    }
+  })
+
+  //button create inside options modal:
+  $('#bt_widgetCreate').off('click').on('click', function() {
+    if ($('#sel_widgetSubtype').value() == '') {
+      $.fn.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
+      return
+    }
+    if ($('#in_widgetName').value() == '') {
+      $.fn.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
+      return
+    }
+    var name = 'cmd.'+$('#sel_widgetType').value()+'.'+$('#sel_widgetSubtype').value()+'.'+$('#in_widgetName').value()+'.html'
+    var filePath = 'data/customTemplates/' + $('#sel_widgetVersion').value() + '/'
+    jeedom.createFile({
+      path : filePath,
+      name :name,
+      error: function(error) {
+        $.fn.showAlert({message: error.message, level: 'danger'})
+      },
+      success: function() {
+        $("#md_widgetCreate").dialog('close')
+        $.fn.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
+        var hash = getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
+        _elfInstance.exec('open', hash)
+        //_elfInstance.exec('reload')
+
+        var path = filePath.replace('data/customTemplates/', '') + name
+        hash = getHashFromPath(path)
+        setTimeout(function() {
+          _elfInstance.exec('edit', hash)
+        }, 350)
+      }
+    })
+  })
+
+  //new custom command in elfinder:
+  elFinder.prototype._options.commands.push('createWidget')
+  options.uiOptions.toolbar.push(['createWidget'])
+
+  elFinder.prototype.commands.createWidget = function() {
+    this.init = function() {
+        this.title = this.fm.i18n("{{Créer un Widget}}");
+    }
+    this.exec = function(hashes) {
+      $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open')
+      $('#sel_widgetType').trigger('change')
+
+      $("#md_widgetCreate").keydown(function (event) {
+          if (event.keyCode == $.ui.keyCode.ENTER) {
+              $('#bt_widgetCreate').trigger('click')
+          }
+      })
+      return $.Deferred().done()
+    }
+    this.getstate = function() {
+      return 0
+    }
+  }
+
+  return options
+}
 
 function killTooltips() {
   setTimeout(function() {
@@ -170,9 +259,12 @@ function killTooltips() {
   }, 500)
 }
 
-
 //resize explorer in browser window:
 $(window).resize(function() {
   $('#elfinder').css("width", $(window).width())
   $('#elfinder').css("height", $(window).height() - 50)
 })
+
+function getHashFromPath(_path) {
+  return 'l1_' + btoa(_path).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '.').replace(/\.+$/, '')
+}

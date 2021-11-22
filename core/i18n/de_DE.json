@@ -367,7 +367,6 @@
         "Equipement": "Gerät",
         "Droits": "Rechte",
         "Scénario": "Szenario",
-        "Desing": "Design",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
     },
     "desktop\/modal\/object.display.php": {
@@ -1324,7 +1323,14 @@
         "Extensions php": "PHP-Erweiterungen"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff"
+        "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Version": "Ausführung",
+        "Dashboard": "Armaturenbrett",
+        "Mobile": "Handy, Mobiltelefon",
+        "Type": "Typ",
+        "Sous-type": "Untertyp",
+        "Nom": "Name",
+        "Créer": "Erschaffen"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2598,7 +2604,12 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Möchten Sie wirklich alle Protokolle löschen?"
     },
     "desktop\/js\/editor.js": {
-        "Editer": "Bearbeiten"
+        "Editer": "Bearbeiten",
+        "Le sous-type ne peut être vide": "Untertyp darf nicht leer sein",
+        "Le nom ne peut être vide": "Name darf nicht leer sein",
+        "Fichier enregistré avec succès": "Datei erfolgreich gespeichert",
+        "Créer un Widget": "Erstellen Sie ein Widget",
+        "Options": "Optionen"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Aktualisieren",
@@ -3160,7 +3171,7 @@
         "Préférences": "Vorlieben",
         "Logs": "Protokolle",
         "Mises à jour": "Updates",
-        "Panel ' . ucfirst($plugin)": "Tafel'. ucfirst ($-Plugin)",
+        "Panel ": "Platte",
         "Panel": "Platte",
         ", ": "."
     },
@@ -4137,8 +4148,8 @@
         "Elément inconnu. Vérifiez l\\'ID : ": "Unbekannter Gegenstand. Überprüfen Sie die ID:",
         "Sous-élément inconnu. Vérifiez l\\'ID : ": "Unbekanntes Unterelement. Überprüfen Sie die ID:",
         "Expression inconnue. Vérifiez l\\'ID : ": "Unbekannter Ausdruck. Überprüfen Sie die ID:",
-        "Expression non valide  [": "Ungültiger Ausdruck [",
-        "] trouvée dans le scénario : ": "] im Szenario gefunden:",
+        "Expression non valide": "Ungültiger Ausdruck",
+        "trouvée dans le scénario : ": "im Szenario gefunden:",
         ", résultat : ": ", Ergebnis:",
         "Non exécution des actions pour cause de répétition": "Fehler beim Ausführen von Aktionen aufgrund von Wiederholungen",
         "La condition pour une boucle doit être numérique : ": "Die Bedingung für eine Schleife muss numerisch sein:",

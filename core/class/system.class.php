@@ -68,7 +68,7 @@ class system {
 
 	public static function get($_key = '') {
 		$return = '';
-		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
+		if (isset(self::$_command[self::getDistrib()][$_key])) {
 			$return = self::$_command[self::getDistrib()][$_key];
 		}
 		if ($return == '') {

@@ -310,7 +310,7 @@ class cache {
 				}
 			}
 			preg_match_all('/widgetHtml(\d*)(.*?)/', $key, $matches);
-			if (isset($matches[1]) && isset($matches[1][0])) {
+			if (isset($matches[1][0])) {
 				if (!is_numeric($matches[1][0])) {
 					continue;
 				}
@@ -320,7 +320,7 @@ class cache {
 				}
 			}
 			preg_match_all('/camera(\d*)(.*?)/', $key, $matches);
-			if (isset($matches[1]) && isset($matches[1][0])) {
+			if (isset($matches[1][0])) {
 				if (!is_numeric($matches[1][0])) {
 					continue;
 				}
@@ -330,7 +330,7 @@ class cache {
 				}
 			}
 			preg_match_all('/scenarioHtml(.*?)(\d*)/', $key, $matches);
-			if (isset($matches[1]) && isset($matches[1][0])) {
+			if (isset($matches[1][0])) {
 				if (!is_numeric($matches[1][0])) {
 					continue;
 				}
@@ -375,7 +375,7 @@ class cache {
 				continue;
 			}
 			preg_match_all('/dependancy(.*)/', $key, $matches);
-			if (isset($matches[1]) && isset($matches[1][0])) {
+			if (isset($matches[1][0])) {
 				try {
 					$plugin = plugin::byId($matches[1][0]);
 					if (!is_object($plugin)) {

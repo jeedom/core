@@ -45,6 +45,8 @@
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 - **Complemento de documentación y registro de cambios beta** : Gestión de documentación y registro de cambios para complementos en versión beta. Atención, en beta, el registro de cambios no tiene fecha.
 - **Principal** : Integración del complemento JeeXplorer en el Core.
+- Añadiendo jeeCli.php en la carpeta de instalación de Jeedom : le permite administrar ciertas funciones de jeedom desde la línea de comando
+- Adición en alfa de un DNS Jeedom basado en Wireguard en lugar de Openvpn (más rápido y más estable). Tenga en cuenta que actualmente esto no es compatible con Jeedom Smart
 
 ### 4.2 : Widgets principales
 

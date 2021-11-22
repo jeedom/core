@@ -195,7 +195,7 @@ sendVarToJs('user_rights', utils::o2a($user));
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
         <tr>
-          <th>{{Desing}}</th>
+          <th>{{Design}}</th>
           <th data-sorter="select-text">{{Droits}}</th>
         </tr>
       </thead>
@@ -230,7 +230,7 @@ sendVarToJs('user_rights', utils::o2a($user));
     <table class='table table-condensed table-bordered tablesorter'>
       <thead>
         <tr>
-          <th>{{Desing}}</th>
+          <th>{{Design}}</th>
           <th data-sorter="select-text">{{Droits}}</th>
         </tr>
       </thead>

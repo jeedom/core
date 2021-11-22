@@ -45,6 +45,8 @@
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
 - **Dokumentation und Changelog-Plugin Beta** : Dokumentation und Changelog-Management für Plugins in der Beta. Achtung, in der Beta ist das Changelog nicht datiert.
 - **Allgemein** : Integration des JeeXplorer-Plugins in den Core.
+- JeeCli hinzufügen.php im Jeedom-Installationsordner : ermöglicht es Ihnen, bestimmte Jeedom-Funktionen über die Befehlszeile zu verwalten
+- Ergänzung in Alpha eines Jeedom DNS basierend auf Wireguard anstelle von Openvpn (schneller und stabiler .)). Bitte beachten Sie, dass dies derzeit nicht mit Jeedom Smart kompatibel ist
 
 ### 4.2 : Kern-Widgets
 
