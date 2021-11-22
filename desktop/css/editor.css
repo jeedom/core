@@ -92,7 +92,10 @@ Theme ElFinder File Editor 2021 @Jeedom
   }
 
   #elfinder .std42-dialog .ui-dialog-content {
-   font-size: inherit;
+    font-size: inherit;
+  }
+  #elfinder .std42-dialog.elfinder-dialog-error .ui-dialog-content {
+    padding-left: 50px !important;
   }
 
   #elfinder .elfinder-bottomtray {
