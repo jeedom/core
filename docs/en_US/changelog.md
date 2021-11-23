@@ -44,10 +44,10 @@
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
 - **Documentation and changelog plugin beta** : Documentation and changelog management for plugins in beta. Attention, in beta the changelog is not dated.
-- **Main** : Integration of the JeeXplorer plugin in the Core.
-- Adding jeeCli.php in the Jeedom install folder : allows you to manage certain jeedom functions from the command line
-- Addition in alpha of a Jeedom DNS based on Wireguard instead of Openvpn (faster and more stable). Please note that this is currently not Jeedom Smart compatible
-- Possibility to deactivate cloud monitoring
+- **Main** : Integration of the JeeXplorer plugin in the Core. Now used for Widget Code, and advanced customization.
+- **Administration / networks**: Adding Jeedom DNS based on Wireguard instead of Openvpn. Faster, and more stable, but still in testing. Please note that this is currently not Jeedom Smart compatible.
+- **Administration / Updates / Market**: Possibility to deactivate cloud monitoring.
+- **jeeCLI** : Addition of ````jeeCli.php```` in the Jeedom install folder to manage some jeedom functions from the command line.
 
 ### 4.2 : Core Widgets
 

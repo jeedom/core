@@ -1309,7 +1309,7 @@
         "NOK": "NOK",
         "En cours": "Contínuo",
         "Configuration démon": "Configuração do daemon",
-        "Désactivé": "Inválido",
+        "Désactivé": "Desativado",
         "Statut démon": "Estatuto daemon",
         "erreurs": "erros",
         "en cours": "Contínuo",
@@ -1442,15 +1442,6 @@
         "Configuration": "Configuração",
         "Fonctionnalités": "Recursos",
         "Panel": "Painel"
-    },
-    "desktop\/php\/custom.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Observe: tudo o que você escreve aqui é global e está incluído em todas as páginas. O menor erro pode fazer a sua",
-        "non fonctionnel.": "não funcional",
-        "Activer": "Ativar",
-        "Desktop": "Área de Trabalho",
-        "Mobile": "Móvel",
-        "Sauvegarder": "Salvar"
     },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1899,9 +1890,9 @@
         "Clé API": "Chave de API",
         "Clé API globale de": "Chave de API global de",
         "Accès API": "Acesso à API",
-        "Activé": "Ativado",
+        "Activé": "Habilitado",
         "IP blanche": "Branco IP",
-        "Désactivé": "Inválido",
+        "Désactivé": "Desativado",
         "Accès API TTS": "TTS Acesso API",
         "Localhost": "Localhost",
         "Clé API Pro": "Chave API Pro",
@@ -2609,7 +2600,10 @@
         "Le nom ne peut être vide": "O nome não pode estar vazio",
         "Fichier enregistré avec succès": "Arquivo salvo com sucesso",
         "Créer un Widget": "Crie um widget",
-        "Options": "Opções"
+        "Options": "Opções",
+        "Configutation sauvegardée": "Configuração salva",
+        "Activé": "Habilitado",
+        "Désactivé": "Desativado"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refrescar",
@@ -3197,9 +3191,6 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Fichier non trouvé : ": "Arquivo não encontrado:"
     },
-    "core\/php\/editor.connector.widget.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado"
-    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Login do usuário por REMOTE_USER:",
         "Connexion de l\\'utilisateur : ": "Login do usuário:",
@@ -3218,6 +3209,7 @@
         "Scénario non trouvé. Vérifiez ID : ": "Cenário não encontrado. Verifique o ID:"
     },
     "core\/php\/editor.connector.php": {
+        "Invalide type": "Tipo inválido",
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
     },
     "core\/js\/cmd.class.js": {
@@ -3626,8 +3618,6 @@
         "Le fichier est trop gros (maximum 1Go)": "O arquivo é muito grande (máximo 1GB)",
         "Impossible de déplacer le fichier temporaire": "Não é possível mover o arquivo temporário",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Não foi possível fazer o upload do arquivo (limite do servidor web?)",
-        "La version ne peut être que desktop ou mobile": "A versão só pode ser desktop ou dispositivo móvel",
-        "La version ne peut être que js ou css": "A versão pode ser apenas js ou css",
         "Type :": "Type:",
         " avec id : ": "com id:",
         " inconnu": "desconhecido",

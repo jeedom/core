@@ -1443,15 +1443,6 @@
         "Fonctionnalités": "特長",
         "Panel": "パネル"
     },
-    "desktop\/php\/custom.php": {
-        "401 - Accès non autorisé": "401-不正アクセス",
-        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "注：ここに書いたものはすべてグローバルであり、すべてのページに含まれています。わずかな間違いでも",
-        "non fonctionnel.": "non fonctionnel",
-        "Activer": "アクティブ",
-        "Desktop": "デスクトップ",
-        "Mobile": "モバイル",
-        "Sauvegarder": "セーブ"
-    },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Étape 1": "Étape 1",
@@ -2609,7 +2600,10 @@
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
         "Créer un Widget": "Créer un Widget",
-        "Options": "Options"
+        "Options": "Options",
+        "Configutation sauvegardée": "Configutation sauvegardée",
+        "Activé": "Activé",
+        "Désactivé": "Désactivé"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "リフレッシュ",
@@ -3197,9 +3191,6 @@
         "401 - Accès non autorisé": "401-不正アクセス",
         "Fichier non trouvé : ": "ファイルが見つかりません："
     },
-    "core\/php\/editor.connector.widget.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé"
-    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "REMOTE_USERによるユーザーログイン：",
         "Connexion de l\\'utilisateur : ": "ユーザーログイン：",
@@ -3218,6 +3209,7 @@
         "Scénario non trouvé. Vérifiez ID : ": "シナリオが見つかりません。チェックID："
     },
     "core\/php\/editor.connector.php": {
+        "Invalide type": "Invalide type",
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
     "core\/js\/cmd.class.js": {
@@ -3626,8 +3618,6 @@
         "Le fichier est trop gros (maximum 1Go)": "ファイルが大きすぎます（最大1GB）",
         "Impossible de déplacer le fichier temporaire": "一時ファイルを移動できません",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "ファイルをアップロードできません（Webサーバーの制限？）",
-        "La version ne peut être que desktop ou mobile": "バージョンは、デスクトップまたはモバイルのみです",
-        "La version ne peut être que js ou css": "バージョンはjsまたはcssのみです",
         "Type :": "タイプ：",
         " avec id : ": "id：",
         " inconnu": "不明",

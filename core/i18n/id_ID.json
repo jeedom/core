@@ -1443,15 +1443,6 @@
         "Fonctionnalités": "Fitur",
         "Panel": "Panel"
     },
-    "desktop\/php\/custom.php": {
-        "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre",
-        "non fonctionnel.": "non fonctionnel",
-        "Activer": "Mengaktifkan",
-        "Desktop": "Desktop",
-        "Mobile": "Mobil",
-        "Sauvegarder": "Menyimpan"
-    },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Étape 1": "Étape 1",
@@ -2609,7 +2600,10 @@
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
         "Créer un Widget": "Créer un Widget",
-        "Options": "Options"
+        "Options": "Options",
+        "Configutation sauvegardée": "Configutation sauvegardée",
+        "Activé": "Activé",
+        "Désactivé": "Désactivé"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Menyegarkan",
@@ -3197,9 +3191,6 @@
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Fichier non trouvé : ": "File tidak ditemukan:"
     },
-    "core\/php\/editor.connector.widget.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé"
-    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Connexion de l\\'utilisateur par REMOTE_USER :",
         "Connexion de l\\'utilisateur : ": "Connexion de l\\'utilisateur :",
@@ -3218,6 +3209,7 @@
         "Scénario non trouvé. Vérifiez ID : ": "Scénario non trouvé. Vérifiez ID :"
     },
     "core\/php\/editor.connector.php": {
+        "Invalide type": "Invalide type",
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
     "core\/js\/cmd.class.js": {
@@ -3626,8 +3618,6 @@
         "Le fichier est trop gros (maximum 1Go)": "Le fichier est trop gros (maximum 1Go)",
         "Impossible de déplacer le fichier temporaire": "Impossible de déplacer le fichier temporaire",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossible de téléverser le fichier (limite du serveur web ?)",
-        "La version ne peut être que desktop ou mobile": "La version ne peut être que desktop ou mobile",
-        "La version ne peut être que js ou css": "La version ne peut être que js ou css",
         "Type :": "Type :",
         " avec id : ": "avec id :",
         " inconnu": " inconnu",
