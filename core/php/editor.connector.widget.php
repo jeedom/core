@@ -5,7 +5,7 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$rootPaths = [''];
+$rootPaths = ['data/customTemplates'];
 
 // // To Enable(true) handling of PostScript files by ImageMagick
 // // It is disabled by default as a countermeasure

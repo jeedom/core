@@ -4,22 +4,9 @@ if (!isConnect('admin')) {
 }
 
 global $JEEDOM_INTERNAL_CONFIG;
-
-$rootPath = false;
-$editorType = '';
-if (init('type') == 'widget') {
-	$rootPath = 'data/customTemplates';
-	$editorType = 'widget';
-}
-if (init('root') != '') {
-	$rootPath =  init('root');
-}
 sendVarToJS([
-	'rootPath' => $rootPath,
-	'editorType' => $editorType
+	'editorType' => init('type', '')
 ]);
-@session_start();
-$_SESSION["elFinderRoot"] = $rootPath;
 
 //Core CodeMirror:
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');

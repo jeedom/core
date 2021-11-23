@@ -22,9 +22,6 @@ $(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
   var hash = 'l1_'
-  if (rootPath != '') {
-    hash = getHashFromPath(rootPath)
-  }
   var lang = jeedom_langage.substring(0, 2)
 
   var options = {
@@ -150,10 +147,13 @@ $(function() {
 
   //custom editor settings:
   if (editorType != '') {
+    //remove places in toolbar:
     options.ui = ['toolbar', 'tree', 'path', 'stat']
 
     if (editorType == 'widget') {
       options = setCommandCreatewidget(options)
+      options.url = 'core/php/editor.connector.widget.php'
+      options.startPathHash = getHashFromPath('data/customTemplates')
     }
   }
 
