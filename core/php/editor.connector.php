@@ -11,6 +11,8 @@ if (init('type') == '') {
   $rootPaths = ['data/customTemplates'];
 } else if (init('type') == 'custom') {
   $rootPaths = ['desktop/custom', 'mobile/custom'];
+} else {
+  throw new Exception(__('Invalide type', __FILE__));
 }
 
 // // To Enable(true) handling of PostScript files by ImageMagick
