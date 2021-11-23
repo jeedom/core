@@ -4730,6 +4730,15 @@ Desktop
     margin-right: 15px;
   }
 
+  #div_pageContainer ul.nav.nav-tabs li:first-of-type,
+  #div_pageContainer ul.nav.nav-tabs > li:first-of-type > a {
+    border-radius: var(--border-radius) 0 0 0 !important;
+  }
+  #div_pageContainer ul.nav.nav-tabs li:last-of-type,
+  #div_pageContainer ul.nav.nav-tabs > li:last-of-type > a {
+    border-radius: 0 var(--border-radius) 0 0 !important;
+  }
+
   .btn,
   input,
   select,

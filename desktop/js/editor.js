@@ -22,9 +22,6 @@ $(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
   var hash = 'l1_'
-  if (rootPath != '') {
-    hash = getHashFromPath(rootPath)
-  }
   var lang = jeedom_langage.substring(0, 2)
 
   var options = {
@@ -150,10 +147,13 @@ $(function() {
 
   //custom editor settings:
   if (editorType != '') {
+    //remove places in toolbar:
     options.ui = ['toolbar', 'tree', 'path', 'stat']
 
     if (editorType == 'widget') {
       options = setCommandCreatewidget(options)
+      options.url = 'core/php/editor.connector.widget.php'
+      options.startPathHash = getHashFromPath('data/customTemplates')
     }
   }
 
@@ -222,10 +222,10 @@ function setCommandCreatewidget(options) {
   })
 
   //new custom command in elfinder:
-  elFinder.prototype._options.commands.push('createWidget')
-  options.uiOptions.toolbar.push(['createWidget'])
+  elFinder.prototype._options.commands.push('jee_createWidget')
+  options.uiOptions.toolbar.push(['jee_createWidget'])
 
-  elFinder.prototype.commands.createWidget = function() {
+  elFinder.prototype.commands.jee_createWidget = function() {
     this.init = function() {
         this.title = this.fm.i18n("{{Créer un Widget}}");
     }

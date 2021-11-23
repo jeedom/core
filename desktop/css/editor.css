@@ -35,10 +35,10 @@ Theme ElFinder File Editor 2021 @Jeedom
     cursor: pointer !important;
     padding: 3px 8px !important;
   }
-  #elfinder .elfinder-button-icon-createWidget {
+  #elfinder span[class*='elfinder-button-icon-jee_'] {
     display: none;
   }
-  #elfinder .elfinder-button-icon-createWidget + .elfinder-button-text {
+  #elfinder span[class*='elfinder-button-icon-jee_'] + .elfinder-button-text {
     color: rgb(80, 80, 88) !important;
     font-weight: 700;
     display: unset !important;
@@ -46,15 +46,17 @@ Theme ElFinder File Editor 2021 @Jeedom
 
 /* ____________________ELFINDER EDITOR */
   #elfinder .elfinder-toolbar::after {
-    height: unset;
-    line-height: 1;
+    display: none;
+  }
+  #elfinder .elfinder-toolbar {
+    padding-bottom: 10px;
   }
   #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search {
     min-width: 220px;
   }
   #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search > input {
-    padding-left: 24px !important;
     color: rgb(225, 225, 225) !important;
+    padding: 0 0 0 24px !important;
   }
   #elfinder .elfinder-button-icon,
   #elfinder .elfinder-dialog .ui-dialog-titlebar .ui-icon,
@@ -90,7 +92,10 @@ Theme ElFinder File Editor 2021 @Jeedom
   }
 
   #elfinder .std42-dialog .ui-dialog-content {
-   font-size: inherit;
+    font-size: inherit;
+  }
+  #elfinder .std42-dialog.elfinder-dialog-error .ui-dialog-content {
+    padding-left: 50px !important;
   }
 
   #elfinder .elfinder-bottomtray {
