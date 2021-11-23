@@ -31,15 +31,24 @@ Theme ElFinder File Editor 2021 @Jeedom
 
 /* ____________________Custom functions buttons */
   #elfinder .elfinder-button-text {
-    background-color: rgb(221, 221, 221) !important;
     cursor: pointer !important;
     padding: 3px 8px !important;
+    background-color: rgb(221, 221, 221) !important;
+  }
+  #elfinder .elfinder-button-text.btn-success {
+    background-color: var(--al-success-color) !important;
+  }
+  #elfinder .elfinder-button-text.btn-info {
+    background-color: var(--al-info-color) !important;
+  }
+  #elfinder .elfinder-button-text.btn-warning {
+    background-color: var(--al-warning-color) !important;
   }
   #elfinder span[class*='elfinder-button-icon-jee_'] {
     display: none;
   }
   #elfinder span[class*='elfinder-button-icon-jee_'] + .elfinder-button-text {
-    color: rgb(80, 80, 88) !important;
+    color: rgb(50, 50, 58) !important;
     font-weight: 700;
     display: unset !important;
   }

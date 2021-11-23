@@ -4,8 +4,28 @@ if (!isConnect('admin')) {
 }
 
 global $JEEDOM_INTERNAL_CONFIG;
+
+if (init('type', '') == 'custom') {
+	$rootPaths = ['desktop/custom', 'mobile/custom'];
+	foreach ($rootPaths as $rootPath) {
+		$path = __DIR__ . '/../../' . $rootPath;
+		if (!file_exists($path)) {
+			mkdir($path);
+			}
+		$filePath = $path . '/custom.css';
+		if (!is_file($filePath)) {
+			@file_put_contents($filePath, '/* Custom CSS Core ' . jeedom::version() . ' */');
+		}
+		$filePath = $path . '/custom.js';
+		if (!is_file($filePath)) {
+			@file_put_contents($filePath, '/* Custom js Core ' . jeedom::version() . ' */');
+		}
+	}
+}
+
 sendVarToJS([
-	'editorType' => init('type', '')
+	'editorType' => init('type', ''),
+	'customActive' => config::byKey('enableCustomCss')
 ]);
 
 //Core CodeMirror:

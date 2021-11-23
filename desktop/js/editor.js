@@ -58,7 +58,18 @@ $(function() {
       {
         elfinderInstance.exec('edit')
         return false
-      }
+      },
+      init: function(event, elfinderInstance)
+      {
+        if (editorType == 'custom') {
+          elfinderInstance._commands.jee_onoffcustom.getActive()
+        }
+        killTooltips()
+      },
+      open: function(event, elfinderInstance)
+      {
+        killTooltips()
+      },
     },
     commandsOptions: {
       edit: {
@@ -155,23 +166,23 @@ $(function() {
       options.url = 'core/php/editor.connector.widget.php'
       options.startPathHash = getHashFromPath('data/customTemplates')
     }
+
+    if (editorType == 'custom') {
+      options = setCommandCustom(options)
+      options.url = 'core/php/editor.connector.custom.php'
+      options.startPathHash = getHashFromPath('desktop/custom')
+    }
   }
 
   _elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
 
   $('#elfinder').css("height", $(window).height() - 50)
   $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')
-
-  _elfInstance.one('init', function(event) {
-    killTooltips()
-  })
-  _elfInstance.bind('open', function(event) {
-    killTooltips()
-  })
 })
 
 
 function setCommandCreatewidget(options) {
+  $('#bt_getHelpPage').attr('data-page','widgets')
   //initiate widget options modal:
   $("#md_widgetCreate").dialog({
     closeText: '',
@@ -227,7 +238,7 @@ function setCommandCreatewidget(options) {
 
   elFinder.prototype.commands.jee_createWidget = function() {
     this.init = function() {
-        this.title = this.fm.i18n("{{Créer un Widget}}");
+        this.title = this.fm.i18n("{{Créer un Widget}}")
     }
     this.exec = function(hashes) {
       $('#md_widgetCreate').dialog({title: "{{Options}}"}).dialog('open')
@@ -245,6 +256,68 @@ function setCommandCreatewidget(options) {
     }
   }
 
+  return options
+}
+
+function setCommandCustom(options) {
+  $('#bt_getHelpPage').attr('data-page','custom')
+  //new custom command in elfinder:
+  elFinder.prototype._options.commands.push('jee_onoffcustom')
+  options.uiOptions.toolbar.push(['jee_onoffcustom'])
+  elFinder.prototype.commands.jee_onoffcustom = function() {
+    this.init = function() {
+      if (customActive == '1') {
+        this.config = 1
+      } else {
+        this.config = 0
+      }
+    }
+    this.exec = function(hashes) {
+      this.config = 1-this.config
+      //save config:
+      jeedom.config.save({
+        configuration: {
+          'enableCustomCss': this.config.toString()
+        },
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+          this.config = 1-this.config
+        },
+        success: function(data) {
+          $.fn.showAlert({
+            message: '{{Configutation sauvegardée}}',
+            level: 'success'
+          })
+        }
+      })
+      this.getActive()
+      return $.Deferred().done()
+    }
+    this.getstate = function() {
+      return 0
+    }
+    this.getActive = function() {
+      var myClass = ''
+      var myIcon = ''
+      if (this.config == 1) {
+        this.title = this.fm.i18n("{{Activé}}")
+        myClass = 'btn-warning'
+        myIcon = ' <i class="fas fa-toggle-on"></i>'
+      } else {
+        this.title = this.fm.i18n("{{Désactivé}}")
+        myClass = 'btn-success'
+        myIcon = ' <i class="fas fa-toggle-off"></i>'
+      }
+      $('#elfinder .elfinder-button-icon-jee_onoffcustom + .elfinder-button-text')
+        .removeClass('btn-success btn-warning')
+        .addClass(myClass)
+        .text(this.title)
+        .append(myIcon)
+    }
+  }
   return options
 }
 
