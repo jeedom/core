@@ -2436,6 +2436,9 @@ class cmd {
 		$usedBy = $this->getUsedBy();
 		$use = $this->getUse();
 		addGraphLink($this, 'cmd', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
+		foreach ($usedBy['plugin'] as $key => $value) {
+			addGraphLink($this, 'cmd', $value, $key, $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'cmd', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
@@ -2460,6 +2463,12 @@ class cmd {
 		$return['view'] = view::searchByUse('cmd', $this->getId());
 		$return['plan'] = planHeader::searchByUse('cmd', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('cmd', $this->getId());
+		$return['plugin'] = array();
+		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
+			if (method_exists($plugin, 'customUsedBy')) {
+				$return['plugin'][$plugin] = $plugin::customUsedBy('cmd', $this->getId());
+			}
+		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

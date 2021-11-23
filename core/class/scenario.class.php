@@ -1581,6 +1581,9 @@ class scenario {
 		addGraphLink($this, 'scenario', $use['view'], 'view', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['plan'], 'plan', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['plan3d'], 'plan3d', $_data, $_level, $_drill);
+		foreach ($usedBy['plugin'] as $key => $value) {
+			addGraphLink($this, 'eqLogic', $value, $key, $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'scenario', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
@@ -1615,6 +1618,11 @@ class scenario {
 		$return['view'] = view::searchByUse('scenario', $this->getId());
 		$return['plan'] = planHeader::searchByUse('scenario', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('scenario', $this->getId());
+		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
+			if (method_exists($plugin, 'customUsedBy')) {
+				$return['plugin'][$plugin] = $plugin::customUsedBy('scenario', $this->getId());
+			}
+		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

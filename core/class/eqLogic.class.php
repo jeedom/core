@@ -1416,6 +1416,9 @@ class eqLogic {
 		addGraphLink($this, 'eqLogic', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		foreach ($usedBy['plugin'] as $key => $value) {
+			addGraphLink($this, 'eqLogic', $value, $key, $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'eqLogic', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
@@ -1446,6 +1449,12 @@ class eqLogic {
 		$return['view'] = view::searchByUse('eqLogic', $this->getId());
 		$return['plan'] = planHeader::searchByUse('eqLogic', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('eqLogic', $this->getId());
+		$return['plugin'] = array();
+		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
+			if (method_exists($plugin, 'customUsedBy')) {
+				$return['plugin'][$plugin] = $plugin::customUsedBy('eqLogic', $this->getId());
+			}
+		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
