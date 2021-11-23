@@ -1440,8 +1440,8 @@ class eqLogic {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'interactDef' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = self::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
-		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
+		$return['eqLogic'] = self::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId() . '"'));
+		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId() . '"'));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#eqLogic' . $this->getId() . '#'),
