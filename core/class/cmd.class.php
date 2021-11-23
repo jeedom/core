@@ -2446,7 +2446,6 @@ class cmd {
 		addGraphLink($this, 'cmd', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $use['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
-		addGraphLink($this, 'cmd', $use['plugin'], 'plugin', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
@@ -2461,12 +2460,6 @@ class cmd {
 		$return['view'] = view::searchByUse('cmd', $this->getId());
 		$return['plan'] = planHeader::searchByUse('cmd', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('cmd', $this->getId());
-		$return['plugin'] = array();
-		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
-			if (method_exists($plugin, 'customUsedBy')) {
-				$return['plugin'] = array_merge($return['plugin'], $plugin::customUsedBy('cmd', $this->getId()));
-			}
-		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);
