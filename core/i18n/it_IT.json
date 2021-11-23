@@ -1443,15 +1443,6 @@
         "Fonctionnalités": "Lineamenti",
         "Panel": "Pannello"
     },
-    "desktop\/php\/custom.php": {
-        "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Nota: tutto ciò che scrivi qui è globale e incluso in tutte le pagine. Il minimo errore può fare il tuo",
-        "non fonctionnel.": "non fonctionnel",
-        "Activer": "Attivare",
-        "Desktop": "Desktop",
-        "Mobile": "Mobile",
-        "Sauvegarder": "Salva"
-    },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Étape 1": "Étape 1",
@@ -2609,7 +2600,10 @@
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
         "Créer un Widget": "Créer un Widget",
-        "Options": "Options"
+        "Options": "Options",
+        "Configutation sauvegardée": "Configutation sauvegardée",
+        "Activé": "Activé",
+        "Désactivé": "Désactivé"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Ricarica",
@@ -3197,9 +3191,6 @@
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Fichier non trouvé : ": "File non trovato:"
     },
-    "core\/php\/editor.connector.widget.php": {
-        "401 - Accès non autorisé": "401 - Accès non autorisé"
-    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Accesso utente tramite REMOTE_USER:",
         "Connexion de l\\'utilisateur : ": "Login utente:",
@@ -3218,6 +3209,7 @@
         "Scénario non trouvé. Vérifiez ID : ": "Scenario non trovato. Verifica ID:"
     },
     "core\/php\/editor.connector.php": {
+        "Invalide type": "Invalide type",
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
     "core\/js\/cmd.class.js": {
@@ -3626,8 +3618,6 @@
         "Le fichier est trop gros (maximum 1Go)": "Il file è troppo grande (massimo 1 GB)",
         "Impossible de déplacer le fichier temporaire": "Impossibile spostare il file temporaneo",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "Impossibile caricare il file (limite del server Web?)",
-        "La version ne peut être que desktop ou mobile": "La versione può essere solo desktop o mobile",
-        "La version ne peut être que js ou css": "La versione può essere solo js o css",
         "Type :": "Digitare:",
         " avec id : ": "con ID:",
         " inconnu": "sconosciuto",

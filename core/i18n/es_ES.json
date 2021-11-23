@@ -1443,15 +1443,6 @@
         "Fonctionnalités": "Características",
         "Panel": "Panel"
     },
-    "desktop\/php\/custom.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Attention : tout ce que vous écrivez ici est global et inclus sur toutes les pages. La moindre erreur peut rendre votre": "Tenga en cuenta: todo lo que escribe aquí es global e incluido en todas las páginas. El más mínimo error puede hacer que tu",
-        "non fonctionnel.": "no funcional",
-        "Activer": "Activar",
-        "Desktop": "Escritorio",
-        "Mobile": "Móvil",
-        "Sauvegarder": "Guardar"
-    },
     "desktop\/php\/migrate.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Étape 1": "Etapa 1",
@@ -2609,7 +2600,10 @@
         "Le nom ne peut être vide": "El nombre no puede estar vacío",
         "Fichier enregistré avec succès": "Archivo guardado exitosamente",
         "Créer un Widget": "Crear un widget",
-        "Options": "Opciones"
+        "Options": "Opciones",
+        "Configutation sauvegardée": "Configuración guardada",
+        "Activé": "Activado",
+        "Désactivé": "Desactivado"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Actualizar",
@@ -3197,9 +3191,6 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Fichier non trouvé : ": "Archivo no encontrado :"
     },
-    "core\/php\/editor.connector.widget.php": {
-        "401 - Accès non autorisé": "401 - Acceso no autorizado"
-    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Inicio de sesión de usuario por REMOTE_USER:",
         "Connexion de l\\'utilisateur : ": "Inicio de sesión de usuario:",
@@ -3218,6 +3209,7 @@
         "Scénario non trouvé. Vérifiez ID : ": "Escenario no encontrado. ID de verificación:"
     },
     "core\/php\/editor.connector.php": {
+        "Invalide type": "Tipo inválido",
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
     },
     "core\/js\/cmd.class.js": {
@@ -3626,8 +3618,6 @@
         "Le fichier est trop gros (maximum 1Go)": "El archivo es demasiado grande (máximo 1 GB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
         "Impossible de téléverser le fichier (limite du serveur web ?)": "No se puede cargar el archivo (¿límite del servidor web?)",
-        "La version ne peut être que desktop ou mobile": "La versión solo puede ser de escritorio o móvil",
-        "La version ne peut être que js ou css": "La versión solo puede ser js o css",
         "Type :": "Tipo:",
         " avec id : ": "con id:",
         " inconnu": "desconocido",

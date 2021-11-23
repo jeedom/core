@@ -44,10 +44,10 @@
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 - **Complemento de documentación y registro de cambios beta** : Gestión de documentación y registro de cambios para complementos en versión beta. Atención, en beta, el registro de cambios no tiene fecha.
-- **Principal** : Integración del complemento JeeXplorer en el Core.
-- Añadiendo jeeCli.php en la carpeta de instalación de Jeedom : le permite administrar ciertas funciones de jeedom desde la línea de comando
-- Adición en alfa de un DNS Jeedom basado en Wireguard en lugar de Openvpn (más rápido y más estable). Tenga en cuenta que actualmente esto no es compatible con Jeedom Smart
-- Posibilidad de desactivar el monitoreo en la nube
+- **Principal** : Integración del complemento JeeXplorer en el Core. Ahora se usa para código de widget y personalización avanzada.
+- **Administración / redes**: Agregar DNS de Jeedom basado en Wireguard en lugar de Openvpn. Más rápido y más estable, pero aún en prueba. Tenga en cuenta que actualmente esto no es compatible con Jeedom Smart.
+- **Administración / Actualizaciones / Mercado**: Posibilidad de desactivar el monitoreo en la nube.
+- **jeeCLI** : Además de ''''jeeCli.php'''' en la carpeta de instalación de Jeedom para administrar algunas funciones de Jeedom desde la línea de comando.
 
 ### 4.2 : Widgets principales
 
