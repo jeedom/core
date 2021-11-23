@@ -435,27 +435,6 @@ try {
 		ajax::success(jeedom::forceSyncHour());
 	}
 
-	if (init('action') == 'saveCustom') {
-		unautorizedInDemo();
-		$path = __DIR__ . '/../../';
-		if (init('version') != 'desktop' && init('version') != 'mobile') {
-			throw new Exception(__('La version ne peut être que desktop ou mobile', __FILE__));
-		}
-		if (init('type') != 'js' && init('type') != 'css') {
-			throw new Exception(__('La version ne peut être que js ou css', __FILE__));
-		}
-		$path .= init('version') . '/custom/';
-		if (!file_exists($path)) {
-			mkdir($path);
-		}
-		$path .= 'custom.' . init('type');
-		if (file_exists($path)) {
-			unlink($path);
-		}
-		file_put_contents($path, init('content'));
-		ajax::success();
-	}
-
 	if (init('action') == 'getGraphData') {
 		$return = array('node' => array(), 'link' => array());
 		$object = null;

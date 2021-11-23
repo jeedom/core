@@ -2899,17 +2899,6 @@ Desktop
     min-height: 80vh;
   }
 
-  body[data-page="custom"] #div_pageContainer {
-    height: calc(100% - 10px);
-  }
-  body[data-page="custom"] div[role="tabpanel"],
-  body[data-page="custom"] .tab-content {
-    height: calc(100% - 55px) !important;
-  }
-  body[data-page="custom"] .tab-content {
-     overflow: hidden;
-  }
-
   .tab-content .tab-content,
   .tab-content pre {
     background-color: rgba(0,0,0,0)!important;
