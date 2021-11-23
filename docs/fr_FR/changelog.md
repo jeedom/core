@@ -82,6 +82,10 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 # Changelog Jeedom V4.1
 
+## 4.1.27
+
+- Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+
 ## 4.1.26
 
 - Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt.
