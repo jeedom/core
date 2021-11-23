@@ -163,13 +163,13 @@ $(function() {
 
     if (editorType == 'widget') {
       options = setCommandCreatewidget(options)
-      options.url = 'core/php/editor.connector.widget.php'
+      options.url = 'core/php/editor.connector.php?type=widget'
       options.startPathHash = getHashFromPath('data/customTemplates')
     }
 
     if (editorType == 'custom') {
       options = setCommandCustom(options)
-      options.url = 'core/php/editor.connector.custom.php'
+      options.url = 'core/php/editor.connector.php?type=custom'
       options.startPathHash = getHashFromPath('desktop/custom')
     }
   }
