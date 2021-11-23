@@ -82,6 +82,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 # Changelog Jeedom V4.1
 
+## 4.1.27
+
+- Korrektur einer Sicherheitsverletzung danke @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (www.synacktiv.com)
+
 ## 4.1.26
 
 - Es wurde ein Problem bei der Installation von apt-Abhängigkeiten auf Smart aufgrund der Änderung des Zertifikats bei let's encrypt behoben.

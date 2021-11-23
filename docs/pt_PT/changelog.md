@@ -82,6 +82,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 # Registro de alterações Jeedom V4.1
 
+## 4.1.27
+
+- Correção de uma violação de segurança, obrigado @Maxime Rinaudo e @Antoine Cervoise da Synacktiv (www.synacktiv.com)
+
 ## 4.1.26
 
 - Corrigido um problema de instalação de dependência apt no Smart devido à mudança de certificado em vamos criptografar.

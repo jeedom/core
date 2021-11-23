@@ -897,6 +897,8 @@
         "Doc": "Doc",
         "Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers": "Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers",
         "Changelog Jeedom V4.1": "Changelog Jeedom V4.1",
+        "4.1.27": "4.1.27",
+        "Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com": "Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com",
         "4.1.26": "4.1.26",
         "Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt": "Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt",
         "4.1.25": "4.1.25",

@@ -1383,6 +1383,8 @@
         "L'équipe Jeedom a bien conscience que ces changements peuvent avoir un impact et être gênant pour vous mais nous ne pouvons transiger sur la sécurité": "El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad",
         "Les plugins doivent respecter les recommandations sur l'arborescence des dossiers et fichiers": "Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos",
         "Changelog Jeedom V4.1": "Registro de cambios Jeedom V4.1",
+        "4.1.27": "4.1.27",
+        "Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com": "Corrección de una brecha de seguridad gracias @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (www.synacktiv.com",
         "4.1.26": "4.1.26",
         "Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt": "Se corrigió un problema de instalación de dependencia de apt en Smart debido al cambio de certificado en Let's encrypt",
         "4.1.25": "4.1.25",

@@ -82,6 +82,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 # Registro de cambios Jeedom V4.1
 
+## 4.1.27
+
+- Corrección de una brecha de seguridad gracias @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+
 ## 4.1.26
 
 - Se corrigió un problema de instalación de dependencia de apt en Smart debido al cambio de certificado en Let's encrypt.

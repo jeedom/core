@@ -82,6 +82,10 @@ The plugins must respect the recommendations on the tree structure of folders an
 
 # Changelog Jeedom V4.1
 
+## 4.1.27
+
+- Correction of a security breach thank you @Maxime Rinaudo and @Antoine Cervoise from Synacktiv (www.synacktiv.com)
+
 ## 4.1.26
 
 - Fixed an apt dependency installation problem on Smart due to the change of certificate at let's encrypt.
