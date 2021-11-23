@@ -3197,6 +3197,9 @@
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Fichier non trouvé : ": "Dosya bulunamadı:"
     },
+    "core\/php\/editor.connector.widget.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "REMOTE_USER tarafından kullanıcı girişi:",
         "Connexion de l\\'utilisateur : ": "Kullanıcı girişi:",

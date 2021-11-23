@@ -3197,6 +3197,9 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Fichier non trouvé : ": "Archivo no encontrado :"
     },
+    "core\/php\/editor.connector.widget.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado"
+    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "Inicio de sesión de usuario por REMOTE_USER:",
         "Connexion de l\\'utilisateur : ": "Inicio de sesión de usuario:",

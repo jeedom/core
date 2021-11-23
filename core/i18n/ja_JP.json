@@ -3197,6 +3197,9 @@
         "401 - Accès non autorisé": "401-不正アクセス",
         "Fichier non trouvé : ": "ファイルが見つかりません："
     },
+    "core\/php\/editor.connector.widget.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé"
+    },
     "core\/php\/authentification.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER : ": "REMOTE_USERによるユーザーログイン：",
         "Connexion de l\\'utilisateur : ": "ユーザーログイン：",
