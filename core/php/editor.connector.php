@@ -7,7 +7,7 @@ if (!isConnect('admin')) {
 
 if (init('type') == '') {
   $rootPaths = [''];
-} else if (init('widget') == '') {
+} else if (init('type') == 'widget') {
   $rootPaths = ['data/customTemplates'];
 } else if (init('type') == 'custom') {
   $rootPaths = ['desktop/custom', 'mobile/custom'];
