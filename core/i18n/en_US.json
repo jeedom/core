@@ -699,6 +699,7 @@
         "Commandes": "Commands",
         "Scénario": "Scenario",
         "Résumés": "Summaries",
+        "Plugin": "Plugin",
         "Calcul et arrondi": "Calculation and rounding",
         "Formule de calcul": "Algorithm",
         "valeur de la commande": "order value",
@@ -1309,7 +1310,7 @@
         "NOK": "NOK",
         "En cours": "In progress",
         "Configuration démon": "Daemon configuration",
-        "Désactivé": "Deactivated",
+        "Désactivé": "Disabled",
         "Statut démon": "Demon status",
         "erreurs": "errors",
         "en cours": "In progress",
@@ -1892,7 +1893,7 @@
         "Accès API": "API access",
         "Activé": "Enabled",
         "IP blanche": "Whitelist",
-        "Désactivé": "Deactivated",
+        "Désactivé": "Disabled",
         "Accès API TTS": "TTS API access",
         "Localhost": "Localhost",
         "Clé API Pro": "Pro API key",
@@ -2603,7 +2604,7 @@
         "Options": "Options",
         "Configutation sauvegardée": "Saved configuration",
         "Activé": "Enabled",
-        "Désactivé": "Deactivated"
+        "Désactivé": "Disabled"
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refresh",
