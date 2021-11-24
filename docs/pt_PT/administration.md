@@ -220,7 +220,7 @@ Essa guia permite definir parâmetros globais relativos às interações que voc
 
 > **Dica**
 >
-> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Aviso : os logs serão muito detalhados !
+> Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
 
 ### Geral
 
@@ -324,7 +324,7 @@ Depósito usado para conectar o Jeedom ao Github.
 
 #### Market
 
-Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Aviso : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
+Depósito usado para conectar o Jeedom ao mercado, é altamente recomendável usar esse depósito. Atenção : qualquer solicitação de suporte poderá ser recusada se você usar um depósito diferente deste.
 
 - **Endereço** : Endereço du Mercado.(https://www.Jeedom.com/market).
 - **Nome de Usuário** : Seu nome de usuário no mercado.
@@ -397,7 +397,7 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 - **Desativado** : A chave da API não pode ser usada,
 - **Branco IP** : apenas uma lista de IPs é autorizada (consulte Configurações → Sistema → Configuração : Segurança),
 - **Localhost** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
-- **Habilitado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
+- **Ativado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
 
 Para cada chave de API de plugin você pode proibi-los de métodos centrais (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)
 

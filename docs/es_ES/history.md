@@ -38,7 +38,7 @@ Si muestra un gráfico a través de la página del historial, tiene acceso a var
 
 - **Período** : El período de visualización, incluidos los datos históricos entre estas dos fechas. Por defecto, dependiendo de la configuración *Período de visualización de los gráficos por defecto* dentro *Configuración → Sistema → Configuración / Equipo*.
 - **Grupo** : Ofrece varias opciones de agrupación (Suma por hora, etc.).
-- **Tipo de visualización** : Mostrar en *Línea*, *Zona*, Dónde *Cerrada*. Opción guardada en el pedido y utilizada desde el Tablero.
+- **Tipo de visualización** : Mostrar en *Línea*, *Zona*, o *Cerrada*. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Variación** : Muestra la diferencia de valor del punto anterior. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Escalera** : Muestra la curva como una escalera o una pantalla continua. Opción guardada en el pedido y utilizada desde el Tablero.
 - **Seguimiento** : Le permite desactivar el resaltado de la curva cuando se muestra un valor en el cursor del mouse. Por ejemplo, cuando dos curvas no tienen sus valores al mismo tiempo.

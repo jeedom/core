@@ -37,7 +37,7 @@ Depois de clicar em **Adicionar**, você deve escolher o nome do seu cenário. V
 Antes disso, no topo da página, existem algumas funções úteis para gerenciar esse cenário :
 
 - **EU IRIA** : Ao lado da palavra **Geral**, este é o identificador de cenário.
-- **Status** : *Preso* Onde *Contínuo*, indica o estado atual do cenário.
+- **Status** : *Preso* ou *Contínuo*, indica o estado atual do cenário.
 - **Estado anterior / seguinte** : Cancelar / refazer uma ação.
 - **Adicionar bloco** : Permite adicionar um bloco do tipo desejado ao cenário (veja abaixo).
 - **Registro** : Exibe os logs do cenário.
@@ -84,7 +84,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 > **Dica**
 >
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1``
-> Aviso : você pode ter no máximo 28 gatilhos / programação para um cenário.
+> Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
 
 > **Modo de ponta programado**
 >
@@ -136,7 +136,7 @@ Pelas condições, o Jeedom tenta torná-las possíveis o máximo possível em l
 
 Três botões estão disponíveis à direita deste tipo de bloco para selecionar um item para testar :
 
-- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **e** Onde **Onde** em frente de **Então** para encadear testes em diferentes equipamentos.
+- **Ordem de pesquisa** : Permite procurar um pedido em todos os disponíveis no Jeedom. Depois que o pedido é encontrado, o Jeedom abre uma janela para perguntar qual teste você deseja executar nele. Se você escolher **Não ponha nada**, Jeedom adicionará o pedido sem comparação. Você também pode escolher **e** ou **ou** em frente de **Então** para encadear testes em diferentes equipamentos.
 - **Pesquisa cenário** : Permite procurar um cenário para testar.
 - **Procure equipamento** : O mesmo para equipamentos.
 
@@ -186,7 +186,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 - ``$scenario->save();`` : Salvar alterações.
 - ``$scenario->setData($key, $value);`` : Salvar um dado (variável).
     - ``$key`` : chave de valor (int ou string).
-    - ``$value`` : valor para armazenar (``int``, ``string``, ``array`` Onde ``object``).
+    - ``$value`` : valor para armazenar (``int``, ``string``, ``array`` ou ``object``).
 - ``$scenario->getData($key);`` : Obter dados (variável).
     - ``$key => 1`` : chave de valor (int ou string).
 - ``$scenario->removeData($key);`` : Excluir dados.
@@ -301,17 +301,17 @@ Você também tem as seguintes tags adicionais se seu cenário foi acionado por 
 
 Várias funções estão disponíveis para o equipamento :
 
-- ``average(commande,période)`` E ``averageBetween(commande,start,end)`` : Dê a média do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``average(commande,période)`` E ``averageBetween(commande,start,end)`` : Dê a média do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` : Dê a média dos valores do pedido ponderados por sua duração de existência ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` : Dê a média dos valores do pedido ponderados por sua duração de existência ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``min(commande,période)`` E ``minBetween(commande,start,end)`` : Dê o pedido mínimo durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``min(commande,période)`` E ``minBetween(commande,start,end)`` : Dê o pedido mínimo durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``max(commande,période)`` E ``maxBetween(commande,start,end)`` : Forneça o máximo do pedido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``max(commande,période)`` E ``maxBetween(commande,start,end)`` : Forneça o máximo do pedido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` E ``durationbetween(commande,valeur,start,end)`` : Indique a duração em minutos durante os quais o equipamento teve o valor escolhido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` E ``durationbetween(commande,valeur,start,end)`` : Indique a duração em minutos durante os quais o equipamento teve o valor escolhido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` E ``statisticsBetween(commande,calcul,start,end)`` : Forneça o resultado de diferentes cálculos estatísticos (soma, contagem, padrão, variação, média, mín., Máx.) Ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` E ``statisticsBetween(commande,calcul,start,end)`` : Forneça o resultado de diferentes cálculos estatísticos (soma, contagem, padrão, variação, média, mín., Máx.) Ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Dá a tendência do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -330,9 +330,9 @@ Várias funções estão disponíveis para o equipamento :
 - ``age(commande)`` : Dá a idade em segundos do valor do comando (``collecDate``)
     -1 : O comando não existe ou não é do tipo info.
 
-- ``stateChanges(commande,[valeur], période)`` E ``stateChangesBetween(commande, [valeur], start, end)`` : Dá o número de mudanças de estado (em direção a um certo valor se indicado, ou se não indicado em comparação com seu valor atual) durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` E ``stateChangesBetween(commande, [valeur], start, end)`` : Dá o número de mudanças de estado (em direção a um certo valor se indicado, ou se não indicado em comparação com seu valor atual) durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Dá o último valor registrado para o dispositivo entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Dá o último valor registrado para o dispositivo entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` ou [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera o valor de uma variável ou o valor desejado por padrão.
 
@@ -341,7 +341,7 @@ Várias funções estão disponíveis para o equipamento :
 - ``scenario(scenario)`` : Retorna o status do cenário.
     1 : Contínuo,
     0 : Preso,
-    -1 : Desativado,
+    -1 : Inválido,
     -2 : O cenário não existe,
     -3 : Estado não é consistente.
     Para ter o nome "humano" do cenário, você pode usar o botão dedicado à direita da pesquisa de cenário.

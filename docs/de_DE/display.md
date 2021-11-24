@@ -134,7 +134,7 @@ Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispie
 
 > **Trinkgeld**
 >
-> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Protokolle** Woher **Ausrüstung**
+> Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Protokolle** oder **Ausrüstung**
 
 ### Registerkarte &quot;Kommentar&quot;
 
@@ -200,7 +200,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 - **Historisch**
     - **Historisieren** : Aktivieren Sie das Kontrollkästchen, um die Werte dieses Befehls zu protokollieren. (Siehe **Analyse → Geschichte**)
-    - **Glättungsmodus** : Modus von **Glätten** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **durchschnittlich**. Es ist auch möglich, die zu wählen **maximal**, Das **Minimum**, Woher **Nein**. **Nein** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
+    - **Glättungsmodus** : Modus von **Glätten** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **durchschnittlich**. Es ist auch möglich, die zu wählen **maximal**, Das **Minimum**, oder **Nein**. **Nein** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
     - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
 
 - **Werteverwaltung**
@@ -222,7 +222,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 
 ### Registerkarte &quot;Warnungen&quot;
 
-Ermöglicht das Definieren einer Alarmstufe (**Warnung** Woher **Achtung**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **Warnung**.
+Ermöglicht das Definieren einer Alarmstufe (**Warnung** oder **Achtung**) abhängig von bestimmten Bedingungen. Wenn beispielsweise 30 Minuten lang &quot;Wert&gt; 8&quot; angezeigt wird, kann das Gerät in Alarmbereitschaft versetzt werden **Warnung**.
 
 > **Hinweis**
 >
@@ -236,7 +236,7 @@ In diesem Teil können Sie bestimmte Widget-Anzeigeverhalten im Dashboard, in An
 - **Sichtbar** : Überprüfen Sie, ob der Befehl sichtbar ist.
 - **Name anzeigen** : Aktivieren Sie diese Option, um den Namen des Befehls je nach Kontext sichtbar zu machen.
 - **Anzeigename und Symbol** : Aktivieren Sie das Kontrollkästchen, um das Symbol zusätzlich zum Befehlsnamen sichtbar zu machen.
-- **Umbrochene Zeile vor dem Widget** : Tick **vor dem Widget** Woher **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Spaltenanzeige der verschiedenen Befehle des Geräts anstelle von Standardzeilen zu erzwingen)
+- **Umbrochene Zeile vor dem Widget** : Tick **vor dem Widget** oder **nach dem Widget** Hinzufügen eines Zeilenumbruchs vor oder nach dem Widget (um beispielsweise eine Spaltenanzeige der verschiedenen Befehle des Geräts anstelle von Standardzeilen zu erzwingen)
 
 Unten finden Sie optionale Anzeigeparameter, die an das Widget übergeben werden können. Diese Parameter hängen vom jeweiligen Widget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 

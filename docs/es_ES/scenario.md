@@ -37,7 +37,7 @@ Después de hacer clic en **Añadir**, debes elegir el nombre de tu escenario. L
 Antes de eso, en la parte superior de la página, hay algunas funciones útiles para administrar este escenario :
 
 - **CARNÉ DE IDENTIDAD** : Al lado de la palabra **General**, este es el identificador de escenario.
-- **Estado** : *Detenido* Dónde *En curso*, indica el estado actual del escenario.
+- **Estado** : *Detenido* o *En curso*, indica el estado actual del escenario.
 - **Estado anterior / siguiente** : Cancelar / rehacer una acción.
 - **Agregar bloque** : Le permite agregar un bloque del tipo deseado al escenario (ver más abajo).
 - **Iniciar sesión** : Muestra los registros del escenario.
@@ -136,7 +136,7 @@ Para las condiciones, Jeedom trata de hacer posible escribirlas tanto como sea p
 
 Hay tres botones disponibles a la derecha de este tipo de bloque para seleccionar un elemento para probar :
 
-- **Encuentra un pedido** : Le permite buscar un pedido en todos los disponibles en Jeedom. Una vez que se encuentra el pedido, Jeedom abre una ventana para preguntarle qué prueba desea realizar. Si eliges **No poner nada**, Jeedom agregará el pedido sin comparación. También puedes elegir **y** Dónde **Dónde** delante **Luego** para encadenar pruebas en diferentes equipos.
+- **Encuentra un pedido** : Le permite buscar un pedido en todos los disponibles en Jeedom. Una vez que se encuentra el pedido, Jeedom abre una ventana para preguntarle qué prueba desea realizar. Si eliges **No poner nada**, Jeedom agregará el pedido sin comparación. También puedes elegir **y** o **o** delante **Luego** para encadenar pruebas en diferentes equipos.
 - **Buscar un escenario** : Le permite buscar un escenario para probar.
 - **Busca equipo** : Lo mismo para el equipo.
 
@@ -186,7 +186,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 - ``$scenario->save();`` : Guardar cambios.
 - ``$scenario->setData($key, $value);`` : Guardar un dato (variable).
     - ``$key`` : clave de valor (int o string).
-    - ``$value`` : valor para almacenar (``int``, ``string``, ``array`` Dónde ``object``).
+    - ``$value`` : valor para almacenar (``int``, ``string``, ``array`` o ``object``).
 - ``$scenario->getData($key);`` : Obtener datos (variable).
     - ``$key => 1`` : clave de valor (int o string).
 - ``$scenario->removeData($key);`` : Eliminar datos.
@@ -301,17 +301,17 @@ También tiene las siguientes etiquetas adicionales si su escenario fue desencad
 
 Hay varias funciones disponibles para el equipo :
 
-- ``average(commande,période)`` Y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``average(commande,période)`` Y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` : Indique el promedio de los valores del pedido ponderado por su duración de existencia durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` : Indique el promedio de los valores del pedido ponderado por su duración de existencia durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``min(commande,période)`` Y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``min(commande,période)`` Y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``max(commande,période)`` Y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``max(commande,période)`` Y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` Y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` Y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` Y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` Y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
@@ -330,9 +330,9 @@ Hay varias funciones disponibles para el equipo :
 - ``age(commande)`` : Da la edad en segundos del valor del comando (``collecDate``)
     -1 : El comando no existe o no es de tipo información.
 
-- ``stateChanges(commande,[valeur], période)`` Y ``stateChangesBetween(commande, [valeur], start, end)`` : Da el número de cambios de estado (hacia un cierto valor si se indica, o si no se indica en comparación con su valor actual) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` Y ``stateChangesBetween(commande, [valeur], start, end)`` : Da el número de cambios de estado (hacia un cierto valor si se indica, o si no se indica en comparación con su valor actual) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` o [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera el valor de una variable o el valor deseado por defecto.
 
@@ -341,7 +341,7 @@ Hay varias funciones disponibles para el equipo :
 - ``scenario(scenario)`` : Devuelve el estado del escenario.
     1 : En curso,
     0 : Detenido,
-    -1 : Desactivado,
+    -1 : Discapacitado,
     -2 : El escenario no existe,
     -3 : El estado no es consistente.
     Para tener el nombre &quot;humano&quot; del escenario, puede usar el botón dedicado a la derecha de la búsqueda del escenario.

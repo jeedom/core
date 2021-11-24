@@ -134,7 +134,7 @@ También puede administrar el tiempo de espera, en minutos, del equipo. Por ejem
 
 > **Propina**
 >
-> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Registros** Dónde **Equipo**
+> Los parámetros globales están en **→ Configuración → Configuración del Sistema : Registros** o **Equipo**
 
 ### Pestaña de comentarios
 
@@ -200,7 +200,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Histórico**
     - **Historizar** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
-    - **Modo de suavizado** : Modo de **suavizado** o d'**archivar** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, los **mínimo**, Dónde **No**. **No** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Modo de suavizado** : Modo de **suavizado** o d'**archivar** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, los **mínimo**, o **No**. **No** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
     - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom.
 
 - **Gestión de valores**
@@ -222,7 +222,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 ### Pestaña Alertas
 
-Le permite definir un nivel de alerta (**advertencia** Dónde **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **advertencia**.
+Le permite definir un nivel de alerta (**advertencia** o **peligro**) dependiendo de ciertas condiciones. Por ejemplo, si `valor&gt; 8` durante 30 minutos, entonces el equipo puede estar en alerta **advertencia**.
 
 > **Nota**
 >
@@ -236,7 +236,7 @@ En esta parte, podrá configurar ciertos comportamientos de visualización de wi
 - **Visible** : Marque para hacer visible el comando.
 - **Mostrar nombre** : Marque para hacer visible el nombre del comando, dependiendo del contexto.
 - **Mostrar nombre e icono** : Marque para que el icono sea visible además del nombre del comando.
-- **Línea envuelta antes del widget** : Garrapata **antes del widget** Dónde **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
+- **Línea envuelta antes del widget** : Garrapata **antes del widget** o **después del widget** para agregar un salto de línea antes o después del widget (para forzar, por ejemplo, una visualización de columna de los diferentes comandos del equipo en lugar de las líneas predeterminadas)
 
 A continuación, hay parámetros de visualización opcionales que se pueden pasar al widget. Estos parámetros dependen del widget en cuestión, por lo que debe consultar su archivo en Market para conocerlos.
 

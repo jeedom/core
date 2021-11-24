@@ -37,7 +37,7 @@ Nach dem Klicken auf **Hinzufügen**, Sie müssen den Namen Ihres Szenarios ausw
 Davor gibt es oben auf der Seite einige nützliche Funktionen zum Verwalten dieses Szenarios :
 
 - **ICH WÜRDE** : Neben dem Wort **General**, Dies ist die Szenariokennung.
-- **Status** : *Verhaftet* Woher *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
+- **Status** : *Verhaftet* oder *In Bearbeitung*, Es zeigt den aktuellen Status des Szenarios an.
 - **Vorheriger / nächster Zustand** : Aktion abbrechen / wiederholen.
 - **Block hinzufügen** : Ermöglicht das Hinzufügen eines Blocks des gewünschten Typs zum Szenario (siehe unten)).
 - **Log** : Zeigt die Szenarioprotokolle an.
@@ -136,7 +136,7 @@ Für die Bedingungen versucht Jeedom, es möglich zu machen, sie so viel wie mö
 
 Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu testenden Elements zur Verfügung :
 
-- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und** Woher **Woher** vor **Dann** Kettenprüfungen an verschiedenen Geräten.
+- **Finden Sie eine Bestellung** : Ermöglicht die Suche nach einer Bestellung in allen in Jeedom verfügbaren. Sobald die Bestellung gefunden wurde, öffnet Jeedom ein Fenster, in dem Sie gefragt werden, welchen Test Sie daran durchführen möchten. Wenn Sie möchten **Setzen Sie nichts**, Jeedom wird die Bestellung ohne Vergleich hinzufügen. Sie können auch wählen **und** oder **oder** vor **Dann** Kettenprüfungen an verschiedenen Geräten.
 - **Suchen Sie ein Szenario** : Ermöglicht die Suche nach einem zu testenden Szenario.
 - **Suche nach Ausrüstung** : Gleiches gilt für die Ausrüstung.
 
@@ -186,7 +186,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->save();`` : Änderungen speichern.
 - ``$scenario->setData($key, $value);`` : Speichern Sie eine Daten (Variable).
     - ``$key`` : Werteschlüssel (int oder string).
-    - ``$value`` : Wert zu speichern (``int``, ``string``, ``array`` Woher ``object``).
+    - ``$value`` : Wert zu speichern (``int``, ``string``, ``array`` oder ``object``).
 - ``$scenario->getData($key);`` : Daten abrufen (variabel).
     - ``$key => 1`` : Werteschlüssel (int oder string).
 - ``$scenario->removeData($key);`` : Daten löschen.
@@ -301,17 +301,17 @@ Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine In
 
 Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
-- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Bestellung über den Zeitraum an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Werte der Bestellung gewichtet nach ihrer Existenzdauer über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Geben Sie den Durchschnitt der Werte der Bestellung gewichtet nach ihrer Existenzdauer über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Geben Sie die Mindestbestellmenge über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Geben Sie das Maximum der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Geben Sie die Dauer in Minuten an, während der das Gerät über den Zeitraum (Zeitraum) den gewählten Wert hatte=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Geben Sie das Ergebnis verschiedener statistischer Berechnungen (Summe, Anzahl, Standard, Varianz, Durchschnitt, Min, Max) über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gibt den Trend der Bestellung über den Zeitraum (Zeitraum) an=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
@@ -330,9 +330,9 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``age(commande)`` : Gibt das Alter des Befehlswerts in Sekunden an (``collecDate``)
     -1 : Der Befehl existiert nicht oder ist nicht vom Typ info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Gibt die Anzahl der Zustandsänderungen (in Richtung eines bestimmten Wertes, falls angegeben, oder, falls nicht angegeben, im Vergleich zum aktuellen Wert) über den Zeitraum (Periode=[Monat, Tag, Stunde, Minute] oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)) oder zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Gibt den letzten für das Gerät aufgezeichneten Wert zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` Woher [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Gibt den letzten für das Gerät aufgezeichneten Wert zwischen den 2 angeforderten Terminals (in der Form ``Y-m-d H:i:s`` oder [PHP-Expression](http:/./.php.net/.manual/.fr/.datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Ruft standardmäßig den Wert einer Variablen oder den gewünschten Wert ab.
 
@@ -341,7 +341,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 - ``scenario(scenario)`` : Gibt den Status des Szenarios zurück.
     1 : In Bearbeitung,
     0 : Verhaftet,
-    -1 : Deaktiviert,
+    -1 : Untauglich,
     -2 : Das Szenario existiert nicht,
     -3 : Zustand ist nicht konsistent.
     Um den &quot;menschlichen&quot; Namen des Szenarios zu erhalten, können Sie die entsprechende Schaltfläche rechts neben der Szenariosuche verwenden.

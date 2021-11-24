@@ -24,7 +24,7 @@ Auf einer Ansicht finden wir :
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Grafik*, *Widget* Woher *Tafel*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Grafik*, *Widget* oder *Tafel*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
 
 - Auf der linken Seite finden Sie die Liste der Ansichten sowie eine Schaltfläche zum Erstellen.
 - Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht (Konfiguration) bearbeiten).

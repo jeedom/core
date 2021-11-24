@@ -24,7 +24,7 @@ En una vista, encontramos :
 
 ## Agregar / Editar una vista
 
-El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *gráfico*, *widget* Dónde *tablero*. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
+El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *gráfico*, *widget* o *tablero*. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
 
 - A la izquierda de la página encontramos la lista de Vistas, así como un botón de creación.
 - Un botón en la parte superior derecha le permite editar la Vista actual (Configuración).

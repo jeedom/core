@@ -26,7 +26,7 @@ Hier haben Sie drei Tasten :
 
 Gehen Sie in einem Browser zu [Markt](https://market.jeedom.com).
 Melden Sie sich bei Ihrem Konto an.
-Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Woher *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
+Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* oder *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
 
 Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → Updates / Markt → Registerkarte Markt), können Sie auf klicken *Markt synchronisieren* oder warten Sie, bis es sich von selbst niedergelassen hat.
 

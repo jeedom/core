@@ -38,7 +38,7 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 
 - **Período** : O período de exibição, incluindo dados históricos entre essas duas datas. Por padrão, dependendo da configuração *Gráficos padrão de exibição Período* dentro *Configurações → Sistema → Configuração / Equipamento*.
 - **Grupo** : Oferece várias opções de agrupamento (soma por hora etc.).).
-- **Tipo de exibição** : Exibir em *Linha*, *Área*, Onde *Fechado*. Opção salva no pedido e usada no Painel.
+- **Tipo de exibição** : Exibir em *Linha*, *Área*, ou *Fechado*. Opção salva no pedido e usada no Painel.
 - **Variação** : Exibe a diferença de valor do ponto anterior. Opção salva no pedido e usada no Painel.
 - **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
 - **Monitorando** : Permite-lhe desactivar o realce da curva quando é apresentado um valor no cursor do rato. Por exemplo, quando duas curvas não têm seus valores ao mesmo tempo.
