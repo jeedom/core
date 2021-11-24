@@ -5,7 +5,7 @@
 Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de búsqueda. Por lo tanto, puede escribir directamente una búsqueda sin más acciones.
 
 - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
-- Haga clic en el nombre de Jeedom (barra de menú)  : Abierto **Preferencias → Sistema → Configuración**.
+- Haga clic en el nombre de Jeedom (barra de menú)  : Abierto **Configuración → Sistema → Configuración**.
 - Haga clic en ?  (Barra de menú)  : Abrir ayuda en la página actual.
 - Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
 

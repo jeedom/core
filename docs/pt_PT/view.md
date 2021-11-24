@@ -24,7 +24,7 @@ Em uma visualização, encontramos :
 
 ## Adicionando / Editando uma visualização
 
-O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo *gráfico*, *ferramenta* ou *borda*. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
+O princípio é bastante simples : uma vista é composta de áreas. Cada zona é do tipo *gráfico*, *ferramenta* Onde *borda*. Dependendo desse tipo, você pode adicionar gráficos, equipamentos ou comandos a ele.
 
 - À esquerda da página, encontramos a lista de visualizações e um botão de criação.
 - Um botão no canto superior direito permite editar a Visualização Atual (Configuração).

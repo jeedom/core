@@ -134,7 +134,7 @@ Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exe
 
 > **Dica**
 >
-> Os parâmetros globais estão em **Configurações → Sistema → Configuração : Histórico** ou **Equipamento**
+> Os parâmetros globais estão em **Configurações → Sistema → Configuração : Histórico** Onde **Equipamento**
 
 ### Guia de comentários
 
@@ -200,7 +200,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - **Histórico**
     - **Historize** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **alisamento** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **média**. Também é possível escolher o **máximo**, o **mínimo**, ou **Não**. **Não** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Suavização moda** : Modo de **alisamento** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **média**. Também é possível escolher o **máximo**, o **mínimo**, Onde **Não**. **Não** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
 
 - **Gerenciando valores**
@@ -222,7 +222,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 ### Guia Alertas
 
-Permite definir um nível de alerta (**Atenção** ou **perigo**) dependendo de certas condições. Por exemplo, se `valor> 8` por 30 minutos, o equipamento pode ficar em alerta **Atenção**.
+Permite definir um nível de alerta (**Atenção** Onde **perigo**) dependendo de certas condições. Por exemplo, se `valor> 8` por 30 minutos, o equipamento pode ficar em alerta **Atenção**.
 
 > **Nota**
 >
@@ -236,7 +236,7 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 - **Visível** : Marque para tornar o comando visível.
 - **Mostrar nome** : Marque para tornar o nome do comando visível, dependendo do contexto.
 - **Imprimir o nome eo ícone** : Marque para tornar o ícone visível, além do nome do comando.
-- **Envoltório forçado antes Widget** : Carraça **antes do widget** ou **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
+- **Envoltório forçado antes Widget** : Carraça **antes do widget** Onde **após o widget** adicionar uma quebra de linha antes ou depois do widget (para forçar, por exemplo, uma exibição em coluna dos diferentes comandos do equipamento em vez das linhas padrão)
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 

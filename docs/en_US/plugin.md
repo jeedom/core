@@ -26,7 +26,7 @@ Here you have three buttons :
 
 From a browser, go to the [Market](https://market.jeedom.com).
 Sign into your account.
-Click on a plugin, then choose *Install stable* or *Install beta* (if your Market account allows it).
+Click on a plugin, then choose *Install stable* Where *Install beta* (if your Market account allows it).
 
 If your Market account is correctly configured on your Jeedom (Configuration → Updates / Market → Market tab), you can click on *Synchronize Market* or wait for it to settle down on its own.
 

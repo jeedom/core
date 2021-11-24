@@ -1,5 +1,5 @@
 # Configuration
-**Preferencias → Sistema → Configuración**
+**Configuración → Sistema → Configuración**
 
 Aquí es donde se encuentran la mayoría de los parámetros de configuración.
 Aunque muchos, la mayoría de los parámetros están configurados por defecto.
@@ -397,7 +397,7 @@ Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, 
 - **Discapacitado** : La clave API no se puede usar,
 - **IP en blanco** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : Seguridad),
 - **Localhost** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
-- **Habilitado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
+- **Activado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 
 Para cada clave de API de complemento, puede prohibirlos de los métodos principales (general) para limitarlos a su único método integrado (tenga cuidado con algunos complementos como mobile o jeelink absolutamente necesitan métodos principales)
 

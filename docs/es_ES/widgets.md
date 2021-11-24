@@ -97,7 +97,7 @@ Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 `` ''
 
 >**Truco**      
->Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* o *shutter_close*, *paso 2* y *stop_2*, etc.
+>Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* Dónde *shutter_close*, *paso 2* y *stop_2*, etc.
 
 ## Widgets personalizados
 
@@ -146,7 +146,7 @@ Una vez en la página de configuración de un widget, se puede acceder a un men�
 Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "**Añadir**" y dale un nombre a tu nuevo widget.
 
 Luego :
-- Tú eliges si se aplica a una orden de tipo **Acción** o **Información**.
+- Tú eliges si se aplica a una orden de tipo **Acción** Dónde **Información**.
 - Dependiendo de la elección anterior, deberá **elige el subtipo** De la orden.
 - Finalmente **la plantilla** entre los que estarán disponibles según las opciones anteriores.
 - Una vez que se ha elegido la plantilla, Jeedom muestra las opciones de configuración para ella a continuación.

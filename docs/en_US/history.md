@@ -38,7 +38,7 @@ If you display a graph via the history page, you have access to several display 
 
 - **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* in *Settings → System → Configuration / Equipment*.
 - **Group** : Offers several grouping options (Sum per hour, etc.).
-- **Display type** : Display in *Line*, *Area*, or *Closed off*. Option saved on the order and used from the Dashboard.
+- **Display type** : Display in *Line*, *Area*, Where *Closed off*. Option saved on the order and used from the Dashboard.
 - **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
 - **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
 - **Tracking** : Allows you to deactivate the highlighting of the curve when a value is displayed at the mouse cursor. For example when two curves do not have their values at the same times.

@@ -134,7 +134,7 @@ You can also manage the timeout, in minutes, of the equipment. For example, 30 t
 
 > **Tip**
 >
-> The global parameters are in **→ Settings → System Configuration : Logs** or **Equipment**
+> The global parameters are in **→ Settings → System Configuration : Logs** Where **Equipment**
 
 ### Comment tab
 
@@ -200,7 +200,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historical**
     - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, The **minimum**, or **No**. **No** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, The **minimum**, Where **No**. **No** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
 
 - **Values management**
@@ -222,7 +222,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 ### Alerts tab
 
-Allows you to define an alert level (**warning** or **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
+Allows you to define an alert level (**warning** Where **danger**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
 
 > **Note**
 >
@@ -236,7 +236,7 @@ In this part, you will be able to configure certain widget display behaviors on 
 - **Visible** : Check to make the command visible.
 - **Show name** : Check to make the name of the command visible, depending on the context.
 - **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Tick **before the widget** or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
+- **Wrapped line before widget** : Tick **before the widget** Where **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 

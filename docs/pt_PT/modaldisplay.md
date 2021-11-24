@@ -1,6 +1,6 @@
 # ModalDisplay
 
-A página **ModalDisplay** é um contêiner simples para carregar o conteúdo de uma janela (*modal* ou *diálogo*) página inteira.
+A página **ModalDisplay** é um contêiner simples para carregar o conteúdo de uma janela (*modal* Onde *diálogo*) página inteira.
 
 É utilizado em particular nos seguintes casos:
 - Menu Análise : Ctrl Clique / Clique em Central no *Tempo real*

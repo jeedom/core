@@ -1,6 +1,6 @@
 # ModalDisplay
 
-La página **Pantalla modal** es un contenedor simple para cargar el contenido de una ventana (*modal* o *diálogo*) página completa.
+La página **Pantalla modal** es un contenedor simple para cargar el contenido de una ventana (*modal* Dónde *diálogo*) página completa.
 
 Se utiliza en particular en los siguientes casos:
 - Menú de análisis : Ctrl Click / Click Center en *Tiempo real*

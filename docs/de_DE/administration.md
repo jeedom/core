@@ -397,7 +397,7 @@ Für jeden API-Plugin-Schlüssel sowie für HTTP-, JsonRPC- und TTS-APIs können
 - **Untauglich** : API-Schlüssel kann nicht verwendet werden,
 - **White IP** : Es ist nur eine Liste von IPs autorisiert (siehe Einstellungen → System → Konfiguration : Sicherheit),
 - **Localhost** : Es sind nur Anforderungen von dem System zulässig, auf dem Jeedom installiert ist,
-- **Aktiviert** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
+- **Ermöglicht** : Ohne Einschränkungen kann jedes System mit Zugriff auf Ihr Jeedom auf diese API zugreifen.
 
 Für jeden Plugin-API-Schlüssel können Sie Kernmethoden (allgemein) verbieten, um sie auf ihre einzige eingebettete Methode zu beschränken (achten Sie darauf, dass einige Plugins wie Mobile oder Jeelink unbedingt Kernmethoden benötigen)
 

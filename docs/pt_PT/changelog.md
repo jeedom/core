@@ -11,6 +11,7 @@
 
 - **Síntese** : Possibilidade de configurar objetos para ir a um *Projeto* ou um *Visão* desde a síntese.
 - **Painel de controle** : A janela de configuração do dispositivo (modo de edição) agora permite que você configure widgets móveis e tipos genéricos.
+- **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Vejo [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Análise / História** : Possibilidade de comparar uma história ao longo de um determinado período.
 - **Análise / Equipamento** : Pedidos órfãos agora exibem seu nome e data de exclusão se ainda estiverem no histórico de exclusão, bem como um link para o cenário ou equipamento afetado.
 - **Análise / Logs** : Numeração da linha de registro. Possibilidade de exibir o log bruto.
@@ -21,33 +22,32 @@
 - **Resumos** : Agora é possível configurar [ações em resumos](/pt_PT/concept/summary#Actions sur résumés) (ctrl + clique em um resumo) graças aos virtuais.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
-- **Categorias coloridas** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
-- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Plugins podem usar esta nova função principal.
-- **Configuração** : Possibilidade de configurar papéis de parede nas páginas Dashboard, Analysis, Tools e sua opacidade de acordo com o tema.
+- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Configuração do equipamento** : Possibilidade de configurar uma curva de histórico na parte inferior do ladrilho de um dispositivo.
-- **Blocos de Código** : (Editor de arquivos, cenários, personalização avançada) Função de fallback de código (*dobradura de código*). Atalhos Ctrl + Y e Ctrl + I.
+- **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
+- **Cenas** : Função de fallback de código (*dobradura de código*) no *Blocos de Código*. Atalhos Ctrl + Y e Ctrl + I.
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Cenas** : Adicionando funções de cálculo ````averageTemporal(commande,période)```` E ````averageTemporalBetween(commande,start,end)```` permitindo obter a média ponderada pela duração ao longo do período.
 - **Cenas** : Adicionado suporte para tipos genéricos em cenários.
 	- Desencadear : ``#genericType(LIGHT_STATE,#[Salão]#)# > 0`
 	- IF `genericType (LIGHT_STATE,#[Salão]#) > 0`
 	- Ação `GenericType`
-- **Configurações OSDB** : Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
-- **Configurações OSDB** : Adicionar um construtor de consulta SQL dinâmica.
-- **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Consulte o documento do desenvolvedor v4.2.
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Comercial** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Comercial** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
 - **Comercial** : Capacidade de ocultar objetos / visualização / design / design 3D para usuários limitados.
-- **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Centro de Atualizações** : Centro de atualização agora exibe a data da última atualização.
 - **Adicionar o usuário realizando uma ação** : Além das opções de execução do comando de id e nome de usuário para lançar a ação (visível no log de eventos por exemplo)
 - **Documentação e plug-in de changelog beta** : Documentação e gerenciamento de changelog para plug-ins em beta. Atenção, em beta o changelog não é datado.
 - **Geral** : Integração do plugin JeeXplorer no Core. Agora usado para código de widget e personalização avançada.
-- **Administração / redes**: Adicionando Jeedom DNS baseado em Wireguard em vez de Openvpn. Mais rápido e estável, mas ainda em teste. Por favor, note que atualmente não é compatível com Jeedom Smart.
-- **Administração / Atualizações / Mercado**: Possibilidade de desativar o monitoramento em nuvem.
-- **jeeCLI** : Adição de ````jeeCli.php```` na pasta de instalação do Jeedom para gerenciar algumas funções do jeedom a partir da linha de comando.
+- **Configuração** : Nova opção de configuração / interface para não colorir o título do banner do equipamento.
+- **Configuração** : Possibilidade de configurar papéis de parede nas páginas Dashboard, Analysis, Tools e sua opacidade de acordo com o tema.
+- **Configuração**: Adicionando Jeedom DNS baseado em Wireguard em vez de Openvpn (Administração / redes). Mais rápido e estável, mas ainda em teste. Por favor, note que atualmente não é compatível com Jeedom Smart.
+- **Configuração** : Configurações OSDB: Adição de uma ferramenta para edição em massa de equipamentos, comandos, objetos, cenários.
+- **Configuração** : Configurações OSDB: Adicionar um construtor de consulta SQL dinâmica.
+- **Configuração**: Possibilidade de desativar o monitoramento de nuvem (Administração / Atualizações / Mercado).
+- **jeeCLI** : Adição de ````jeeCli.php```` na pasta core / php do Jeedom para gerenciar algumas funções de linha de comando.
 
 ### 4.2 : Widgets principais
 
@@ -69,16 +69,14 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 
 ### 4.2 : Segurança
 
-Jeedom 4.2 contém uma grande parte no aumento da segurança.
-
-- Mudança de política de acesso a arquivos : Antes proibíamos certos arquivos, agora permitimos apenas alguns arquivos.
-- Mudança no nível da API, antes que fosse "tolerante" se você chegasse com a chave Core indicando plugin XXXXX. Este não é mais o caso, você deve chegar com a chave correspondente ao plugin.
-- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin. Por exemplo, para o plugin virtual que você tinha type = virtual no url, você deve agora substituir por plugin = virtual & type = event, idem para o plugin ipx800v4 ou type = ipx800v4 torna-se plugin = ipx800v4 & type = event
-- Fortalecimento das sessões (mudar para sha256 com 64 caracteres em modo estrito).
+- Para aumentar significativamente a segurança da solução Jeedom, o sistema de acesso a arquivos mudou. Antes de certos arquivos serem proibidos em certos locais. De v4.2, os arquivos são explicitamente permitidos por tipo e localização.
+- Mudança no nível da API, anteriormente "tolerante" se você chegou com a chave do núcleo indicando o plugin XXXXX. Este não é mais o caso, você deve chegar com a chave correspondente ao plugin.
+- Na API http, você pode indicar um nome de plugin em tipo, isso não é mais possível. O tipo correspondente ao tipo de solicitação (cenário, eqLogic, cmd, etc.) deve corresponder ao plugin. Por exemplo, para o plugin virtual que você tinha ````type=virtual```` no url, agora é necessário substituir por ````plugin=virtualEtype=event````.
+- Reforço de sessões : Mude para sha256 com 64 caracteres em modo estrito.
 - O cookie "fique conectado" (3 meses no máximo) agora é "one shot", renovado a cada uso.
 
 A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.
-Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doc](https://doc.jeedom.com/pt_PT/dev/plugin_template)
+Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doc](https://doc.jeedom.com/pt_PT/dev/plugin_template).
 
 # Registro de alterações Jeedom V4.1
 

@@ -97,7 +97,7 @@ To do so, it is necessary to take into account 2 prerequisites :
 `` ''
 
 >**Trick**      
->As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* or *shutter_close*, *step_2* and *stop_2*, etc.
+>As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Where *shutter_close*, *step_2* and *stop_2*, etc.
 
 ## Custom widgets
 
@@ -146,7 +146,7 @@ Once on the configuration page of a widget, a context menu is accessible by `` R
 Once on the page **Tools → Widgets** you have to click on the button "**Add**" and give a name to your new widget.
 
 Then :
-- You choose whether it applies to an order of type **Action** or **Info**.
+- You choose whether it applies to an order of type **Action** Where **Info**.
 - Depending on the previous choice, you will have to **choose the subtype** of the order.
 - Finally **the template** among those which will be available according to the previous choices.
 - Once the template has been chosen, Jeedom displays the configuration options for it below.

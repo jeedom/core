@@ -1,11 +1,22 @@
 # A personalização avançada
 **Configurações → Sistema → Personalização avançada**
 
-Esta página, reservada para especialistas, permite adicionar scripts CSS ou JS ao Jeedom, que serão executados em cada página.
+Aqui você pode gerenciar funções **JavaScript** e regras **CSS** aplicado em desktop ou celular.
 
-Você pode adicionar suas próprias funções JS e adicionar ou modificar classes CSS.
+> **Aviso**
+>
+> O uso de regras CSS inadequadas pode interromper a exibição do seu Jeedom. Funções js usadas incorretamente podem causar danos significativos a vários componentes de sua instalação. Lembre-se de gerar e terceirizar um backup antes de usar essas funções.
 
-As duas partes, JS e CSS, são diferenciadas de acordo com a exibição para computador ou celular.
+Esta função usa um modo particular do editor de arquivos Core com dois locais:
+
+- desktop / custom : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Desktop.
+- móvel / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Mobile.
+
+Na barra de menu do editor de arquivos Core, um botão **Habilitado** Onde **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
+
+> **Observação**
+>
+> Quando esta página é lançada, a estrutura em árvore é criada automaticamente, assim como os 4 arquivos com um comentário na 1ª linha incluindo a versão do Core que os criou.
 
 ## Ressources
 
@@ -22,5 +33,5 @@ Injetar JS e / ou CSS pode tornar o Jeedom inoperante.
 Nesse caso, duas soluções:
 
 - Abra um navegador no modo de recuperação : `IP / index.php?rescue=1`
-- Conecte-se no SSH e exclua os arquivos de personalização : `desktop / custopn` e` mobile / custom`
+- Conecte-se no SSH e exclua os arquivos de personalização : `desktop / custom` e` mobile / custom`
 

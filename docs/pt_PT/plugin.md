@@ -26,7 +26,7 @@ Aqui você tem três botões :
 
 Em um navegador, vá para o [Mercado](https://market.jeedom.com).
 Faça login em sua conta.
-Clique em um plug-in e escolha *Instale estável* ou *Instalar beta* (se sua conta do Market permitir).
+Clique em um plug-in e escolha *Instale estável* Onde *Instalar beta* (se sua conta do Market permitir).
 
 Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configuração → Atualizações / Market → guia Market), você pode clicar em *Sincronizar mercado* ou espere que ele se acalme por conta própria.
 
