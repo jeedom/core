@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Log brut": "Log brut",
         "Rechercher": "Arayın",
         "Pause": "Durdur",
@@ -1961,7 +1960,8 @@
         "Vider": "Boşalt",
         "Vider tous": "Vider tous",
         "Supprimer": "Sil",
-        "Supprimer tous": "Hepsini sil"
+        "Supprimer tous": "Hepsini sil",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Sauvegarde Système": "Sauvegarde Système",
         "Exporter": "Exporter",
         "Importer": "Importer",
         "Exécuter": "Exécuter",
+        "Editeur en masse": "Editeur en masse",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Filtre": "Filtre",
         "Equipement": "Equipement",
         "Commande": "Commande",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
-        "Cron": "Cron",
-        "Listener": "Listener",
-        "Démon": "Daemon",
         "Activer le système cron": "Cron sistemini aktifleştirin",
         "Désactiver le système cron": "Cron sistemini dezaktive et",
         "Rafraîchir": "Yenile",
         "Ajouter": "Ekle",
         "Sauvegarder": "Kaydet",
+        "Cron": "Cron",
+        "Listener": "Listener",
+        "Démon": "Daemon",
         "ID": "Kimlik",
         "Actif": "Varlıklar",
         "PID": "PID",

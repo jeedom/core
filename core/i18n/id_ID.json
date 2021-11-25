@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Log brut": "Log brut",
         "Rechercher": "Pencarian",
         "Pause": "Berhenti Sebentar",
@@ -1961,7 +1960,8 @@
         "Vider": "Abisin",
         "Vider tous": "Vider tous",
         "Supprimer": "Menghapus",
-        "Supprimer tous": "Hapus semua"
+        "Supprimer tous": "Hapus semua",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Sauvegarde Système": "Sauvegarde Système",
         "Exporter": "Exporter",
         "Importer": "Importer",
         "Exécuter": "Exécuter",
+        "Editeur en masse": "Editeur en masse",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Filtre": "Filtre",
         "Equipement": "Equipement",
         "Commande": "Commande",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
-        "Cron": "Cron",
-        "Listener": "Listener",
-        "Démon": "Setan",
         "Activer le système cron": "Aktifkan sistem cron",
         "Désactiver le système cron": "Menonaktifkan sistem cron",
         "Rafraîchir": "Dingin",
         "Ajouter": "Tambahan",
         "Sauvegarder": "Menyimpan",
+        "Cron": "Cron",
+        "Listener": "Listener",
+        "Démon": "Setan",
         "ID": "ID",
         "Actif": "Aktiva",
         "PID": "PID",

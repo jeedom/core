@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Rechercher | nom | :not(nom": "Pesquisa | nome | : não (nome",
         "Log brut": "Log bruto",
         "Rechercher": "Pesquisa",
         "Pause": "Pausa",
@@ -1961,7 +1960,8 @@
         "Vider": "Vazio",
         "Vider tous": "Limpar tudo",
         "Supprimer": "Retirar",
-        "Supprimer tous": "Apagar tudo"
+        "Supprimer tous": "Apagar tudo",
+        "Rechercher | nom | :not(nom": "Pesquisa | nome | : não (nome"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Erro 401 não autorizado",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Sauvegarde Système": "Backup do sistema",
         "Exporter": "Exportar",
         "Importer": "Importar",
         "Exécuter": "Executar",
+        "Editeur en masse": "Editor de massa",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: É altamente recomendável fazer um backup do sistema antes de usar esta ferramenta!",
         "Filtre": "Filtrado",
         "Equipement": "Equipamento",
         "Commande": "Ordenado",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Cron": "Cron",
-        "Listener": "Ouvinte",
-        "Démon": "Demônio",
         "Activer le système cron": "Ativar sistema cron",
         "Désactiver le système cron": "Desativar o sistema cron",
         "Rafraîchir": "Legal",
         "Ajouter": "Adicionar",
         "Sauvegarder": "Salvar",
+        "Cron": "Cron",
+        "Listener": "Ouvinte",
+        "Démon": "Demônio",
         "ID": "EU IRIA",
         "Actif": "Ativos",
         "PID": "PID",

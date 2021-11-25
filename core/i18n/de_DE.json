@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name",
         "Log brut": "Rohprotokoll",
         "Rechercher": "Suchen nach",
         "Pause": "Pause",
@@ -1961,7 +1960,8 @@
         "Vider": "Leer",
         "Vider tous": "Alles löschen",
         "Supprimer": "Entfernen",
-        "Supprimer tous": "Alles löschen"
+        "Supprimer tous": "Alles löschen",
+        "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTELLES: Es wird dringend empfohlen, vor der Verwendung dieses Tools eine Systemsicherung durchzuführen!",
         "Sauvegarde Système": "Systemsicherung",
         "Exporter": "Export",
         "Importer": "Importieren",
         "Exécuter": "Ausführen",
+        "Editeur en masse": "Masseneditor",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTELLES: Es wird dringend empfohlen, vor der Verwendung dieses Tools eine Systemsicherung durchzuführen!",
         "Filtre": "Gefiltert",
         "Equipement": "Ausrüstung",
         "Commande": "Bestellt",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Cron": "Cron",
-        "Listener": "Zuhörer",
-        "Démon": "Dämon",
         "Activer le système cron": "Aktivieren Sie das Cron-System",
         "Désactiver le système cron": "Cron-System deaktivieren",
         "Rafraîchir": "Aktualisieren",
         "Ajouter": "Hinzufügen",
         "Sauvegarder": "Speichern",
+        "Cron": "Cron",
+        "Listener": "Zuhörer",
+        "Démon": "Dämon",
         "ID": "Identifikation",
         "Actif": "Aktiviert",
         "PID": "PID",

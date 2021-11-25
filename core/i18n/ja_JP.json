@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Log brut": "Log brut",
         "Rechercher": "検索",
         "Pause": "休止",
@@ -1961,7 +1960,8 @@
         "Vider": "空",
         "Vider tous": "Vider tous",
         "Supprimer": "取り除きます",
-        "Supprimer tous": "すべて削除"
+        "Supprimer tous": "すべて削除",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Sauvegarde Système": "Sauvegarde Système",
         "Exporter": "Exporter",
         "Importer": "Importer",
         "Exécuter": "Exécuter",
+        "Editeur en masse": "Editeur en masse",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Filtre": "Filtre",
         "Equipement": "Equipement",
         "Commande": "Commande",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
-        "Cron": "Cronの",
-        "Listener": "リスナー",
-        "Démon": "悪魔",
         "Activer le système cron": "Cronシステムをアクティブにします",
         "Désactiver le système cron": "Cronシステムを無効にする",
         "Rafraîchir": "クール",
         "Ajouter": "加えます",
         "Sauvegarder": "セーブ",
+        "Cron": "Cronの",
+        "Listener": "リスナー",
+        "Démon": "悪魔",
         "ID": "ID",
         "Actif": "財産",
         "PID": "PID",

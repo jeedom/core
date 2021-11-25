@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Log brut": "Log brut",
         "Rechercher": "Rechercher",
         "Pause": "Pause",
@@ -1961,7 +1960,8 @@
         "Vider": "Vider",
         "Vider tous": "Vider tous",
         "Supprimer": "Supprimer",
-        "Supprimer tous": "Supprimer tous"
+        "Supprimer tous": "Supprimer tous",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Sauvegarde Système": "Sauvegarde Système",
         "Exporter": "Exporter",
         "Importer": "Importer",
         "Exécuter": "Exécuter",
+        "Editeur en masse": "Editeur en masse",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Filtre": "Filtre",
         "Equipement": "Equipement",
         "Commande": "Commande",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "Cron": "Cron",
-        "Listener": "Listener",
-        "Démon": "Démon",
         "Activer le système cron": "Activer le système cron",
         "Désactiver le système cron": "Désactiver le système cron",
         "Rafraîchir": "Rafraîchir",
         "Ajouter": "Ajouter",
         "Sauvegarder": "Sauvegarder",
+        "Cron": "Cron",
+        "Listener": "Listener",
+        "Démon": "Démon",
         "ID": "ID",
         "Actif": "Actif",
         "PID": "PID",

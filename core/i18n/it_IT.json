@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom",
         "Log brut": "Log brut",
         "Rechercher": "Ricercare",
         "Pause": "Pausa",
@@ -1961,7 +1960,8 @@
         "Vider": "Vuota",
         "Vider tous": "Vider tous",
         "Supprimer": "Rimuovere",
-        "Supprimer tous": "Elimina tutto"
+        "Supprimer tous": "Elimina tutto",
+        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Sauvegarde Système": "Sauvegarde Système",
         "Exporter": "Exporter",
         "Importer": "Importer",
         "Exécuter": "Exécuter",
+        "Editeur en masse": "Editeur en masse",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !",
         "Filtre": "Filtre",
         "Equipement": "Equipement",
         "Commande": "Commande",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
-        "Cron": "Cron",
-        "Listener": "Ascoltatore",
-        "Démon": "Demone",
         "Activer le système cron": "Attiva il sistema cron",
         "Désactiver le système cron": "Disabilita il sistema cron",
         "Rafraîchir": "Aggiorna",
         "Ajouter": "Aggiungi",
         "Sauvegarder": "Salva",
+        "Cron": "Cron",
+        "Listener": "Ascoltatore",
+        "Démon": "Demone",
         "ID": "ID",
         "Actif": "Beni",
         "PID": "PID",

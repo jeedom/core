@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre",
         "Log brut": "Registro sin procesar",
         "Rechercher": "Buscar",
         "Pause": "Pausa",
@@ -1961,7 +1960,8 @@
         "Vider": "Vacío",
         "Vider tous": "Limpiar todo",
         "Supprimer": "Eliminar",
-        "Supprimer tous": "Borrar todos"
+        "Supprimer tous": "Borrar todos",
+        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 no autorizado",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: ¡Se recomienda encarecidamente realizar una copia de seguridad del sistema antes de usar esta herramienta!",
         "Sauvegarde Système": "Copia de seguridad del sistema",
         "Exporter": "Exportar",
         "Importer": "Importar",
         "Exécuter": "Ejecutar",
+        "Editeur en masse": "Editor de masas",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: ¡Se recomienda encarecidamente realizar una copia de seguridad del sistema antes de usar esta herramienta!",
         "Filtre": "Filtrado",
         "Equipement": "Equipo",
         "Commande": "Ordenado",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Cron": "Cron",
-        "Listener": "Oyente",
-        "Démon": "Demonio",
         "Activer le système cron": "Activar sistema cron",
         "Désactiver le système cron": "Desactivar el sistema cron",
         "Rafraîchir": "Refrescar",
         "Ajouter": "Añadir",
         "Sauvegarder": "Guardar",
+        "Cron": "Cron",
+        "Listener": "Oyente",
+        "Démon": "Demonio",
         "ID": "CARNÉ DE IDENTIDAD",
         "Actif": "Activo",
         "PID": "PID",

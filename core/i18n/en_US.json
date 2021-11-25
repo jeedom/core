@@ -1953,7 +1953,6 @@
     },
     "desktop\/php\/log.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Rechercher | nom | :not(nom": "Search | name | :not(name",
         "Log brut": "Raw log",
         "Rechercher": "Search",
         "Pause": "Pause",
@@ -1961,7 +1960,8 @@
         "Vider": "Clear",
         "Vider tous": "Clear all",
         "Supprimer": "Delete",
-        "Supprimer tous": "Delete all"
+        "Supprimer tous": "Delete all",
+        "Rechercher | nom | :not(nom": "Search | name | :not(name"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2022,11 +2022,12 @@
     },
     "desktop\/php\/massedit.php": {
         "401 - Accès non autorisé": "401 - Unauthorized Access",
-        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: It is strongly recommended to perform a system backup before using this tool!",
         "Sauvegarde Système": "System Backup",
         "Exporter": "Export",
         "Importer": "Import",
         "Exécuter": "Execute",
+        "Editeur en masse": "Mass editor",
+        "EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !": "EXPERIMENTAL: It is strongly recommended to perform a system backup before using this tool!",
         "Filtre": "Filter",
         "Equipement": "Equipment",
         "Commande": "Command",
@@ -2367,14 +2368,14 @@
     },
     "desktop\/php\/cron.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
-        "Cron": "Cron",
-        "Listener": "Listener",
-        "Démon": "Daemon",
         "Activer le système cron": "Enable cron system",
         "Désactiver le système cron": "Disable cron system",
         "Rafraîchir": "Refresh",
         "Ajouter": "Add",
         "Sauvegarder": "Save",
+        "Cron": "Cron",
+        "Listener": "Listener",
+        "Démon": "Daemon",
         "ID": "ID",
         "Actif": "Active",
         "PID": "PID",
