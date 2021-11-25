@@ -87,89 +87,102 @@ function scanDB($_table) {
 }
 ?>
 
-<br><br>
-<div class="tab-content">
-  <br>
-  <fieldset>
-    <div class="alert alert-warning"><i class="fas fa-radiation"></i> {{EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}
-    </div>
-  </fieldset>
-  <div class="input-group floatingbar" style="display:inline-flex">
-    <span class="input-group-btn">
-      <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
-      </a><a class="btn btn-info btn-sm" id="bt_exportFilter"><i class="fas fa-file-export"></i> {{Exporter}}
-      </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
-      </a><a class="btn btn-danger btn-sm roundedRight" id="bt_execMassEdit"><i class="fas fa-fill-drip"></i> {{Exécuter}}</a>
-    </span>
-  </div>
+<div class="row row-overflow">
+  <div class="hasfloatingbar col-xs-12">
 
-  <!-- Filter part -->
-  <div class="col-xs-12">
-    <legend><i class="fas fa-filter"></i> {{Filtre}}</legend>
-    <div class="form-group">
-      <div class="col-lg-4 col-xs-8">
-        <select id="sel_FilterByType" class="form-control">
-          <option value="eqLogic">{{Equipement}}</option>
-          <option value="cmd">{{Commande}}</option>
-          <option value="object">{{Objet}}</option>
-          <option value="scenario">{{Scénario}}</option>
-        </select>
-      </div>
-      <div class="col-lg-1 col-xs-2">
-        <a id="bt_addFilter" class="btn btn-xs btn-success" title="{{Ajouter un filtre}}"><i class="fas fa-plus"></i> {{Ajouter}}</a>
-      </div>
-      <div class="col-lg-1 col-xs-2">
-        <a id="bt_testFilter" class="btn btn-xs btn-info disabled" title="{{Test}}"><i class="fas fa-vial"></i> {{Test}}</a>
+    <div class="floatingbar">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
+          </a><a class="btn btn-info btn-sm" id="bt_exportFilter"><i class="fas fa-file-export"></i> {{Exporter}}
+          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
+          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_execMassEdit"><i class="fas fa-fill-drip"></i> {{Exécuter}}</a>
+        </span>
       </div>
     </div>
-  </div>
 
-  <div class="col-xs-12">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <div class="col-md-2 col-xs-3"><i class="fas fa-database"></i> {{Colonne}}</div>
-        <div class="col-md-3 col-xs-3"><i class="fas fa-asterisk"></i> {{Valeur}}</div>
-        <div class="col-md-3 col-xs-3"><i class="fas fa-sitemap"></i> {{Valeur json}}</div>
-        <div class="col-md-1 col-xs-2">{{Options}}</div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="generaltab">
+        <br>
+        <fieldset>
+          <div class="alert alert-warning"><i class="fas fa-radiation"></i> {{EXPERIMENTAL : Il est fortement conseillé de réaliser un backup système avant d'utiliser cet outil !}}
+          </div>
+        </fieldset>
+
+        <!-- Filter part -->
+        <div class="col-xs-12">
+          <legend><i class="fas fa-filter"></i> {{Filtre}}</legend>
+          <div class="form-group">
+            <div class="col-lg-4 col-xs-8">
+              <select id="sel_FilterByType" class="form-control">
+                <option value="eqLogic">{{Equipement}}</option>
+                <option value="cmd">{{Commande}}</option>
+                <option value="object">{{Objet}}</option>
+                <option value="scenario">{{Scénario}}</option>
+              </select>
+            </div>
+            <div class="col-lg-1 col-xs-2">
+              <a id="bt_addFilter" class="btn btn-xs btn-success" title="{{Ajouter un filtre}}"><i class="fas fa-plus"></i> {{Ajouter}}</a>
+            </div>
+            <div class="col-lg-1 col-xs-2">
+              <a id="bt_testFilter" class="btn btn-xs btn-info disabled" title="{{Test}}"><i class="fas fa-vial"></i> {{Test}}</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-md-2 col-xs-3"><i class="fas fa-database"></i> {{Colonne}}</div>
+              <div class="col-md-3 col-xs-3"><i class="fas fa-asterisk"></i> {{Valeur}}</div>
+              <div class="col-md-3 col-xs-3"><i class="fas fa-sitemap"></i> {{Valeur json}}</div>
+              <div class="col-md-1 col-xs-2">{{Options}}</div>
+            </div>
+
+            <div id="filter">
+
+            </div>
+
+            <div id="testSQL" class="form-group col-lg-12">
+
+            </div>
+
+            <div id="testResult" class="form-group col-lg-12">
+
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Edition part -->
+        <div class="col-xs-12">
+          <hr class="hrPrimary">
+          <legend><i class="fas fa-edit"></i> {{Edition}}</legend>
+        </div>
+
+        <div class="col-xs-12">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-md-2 col-xs-3"><i class="fas fa-database"></i> {{Colonne}}</div>
+              <div class="col-md-3 col-xs-3"><i class="fas fa-asterisk"></i> {{Valeur}}</div>
+              <div class="col-md-3 col-xs-3"><i class="fas fa-sitemap"></i> {{Valeur json}}</div>
+            </div>
+
+            <div id="edit" class="form-group">
+
+            </div>
+
+            <div id="execSQL" class="form-group col-lg-12">
+
+            </div>
+          </form>
+        </div>
       </div>
-
-      <div id="filter">
-
-      </div>
-
-      <div id="testSQL" class="form-group col-lg-12">
-
-      </div>
-
-      <div id="testResult" class="form-group col-lg-12">
-
-      </div>
-
-    </form>
-  </div>
-
-  <!-- Edition part -->
-  <div class="col-xs-12">
-    <hr class="hrPrimary">
-    <legend><i class="fas fa-edit"></i> {{Edition}}</legend>
-  </div>
-
-  <div class="col-xs-12">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <div class="col-md-2 col-xs-3"><i class="fas fa-database"></i> {{Colonne}}</div>
-        <div class="col-md-3 col-xs-3"><i class="fas fa-asterisk"></i> {{Valeur}}</div>
-        <div class="col-md-3 col-xs-3"><i class="fas fa-sitemap"></i> {{Valeur json}}</div>
-      </div>
-
-      <div id="edit" class="form-group">
-
-      </div>
-
-      <div id="execSQL" class="form-group col-lg-12">
-
-      </div>
-    </form>
+    </div>
 
   </div>
 </div>

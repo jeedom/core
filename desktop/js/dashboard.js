@@ -370,7 +370,7 @@ function editWidgetMode(_mode, _save) {
     divEquipements.find('.cmd.editOptions').remove()
 
     $('#div_displayObject .row').removeAttr('style')
-    $('#dashTopBar').removeAttr('style')
+    $('#dashTopBar').removeClass('editing')
     $('#in_searchDashboard')
       .removeClass('editing')
       .val('')
@@ -441,12 +441,7 @@ function editWidgetMode(_mode, _save) {
     })
 
     $('#div_displayObject .row').css('margin-top', '40px')
-    $('#dashTopBar').css({
-      "position": "fixed",
-      "top": "50px",
-      "z-index": "500",
-      "width": "calc(100% - " + ($('body').width() - $('#dashTopBar').width()) + 'px)'
-    })
+    $('#dashTopBar').addClass('editing')
     $('#in_searchDashboard')
       .addClass('editing')
       .val("{{Vous êtes en mode édition. Vous pouvez déplacer les tuiles, les redimensionner,  et éditer les commandes (ordre, widget) avec le bouton à droite du titre. N'oubliez pas de quitter le mode édition pour sauvegarder}}")
@@ -469,6 +464,7 @@ $('#bt_editDashboardWidgetOrder').on('click', function() {
     $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('disable')
     $(this).attr('data-mode', 1)
     $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').show()
+
     $('div.div_object  .bt_editDashboardTilesAutoResizeUp').off('click').on('click', function() {
       var id_object = $(this).attr('id').replace('expandTiles_object_', '')
       var objectContainer = $('#div_ob' + id_object + '.div_displayEquipement')
@@ -483,6 +479,7 @@ $('#bt_editDashboardWidgetOrder').on('click', function() {
       })
       objectContainer.packery()
     })
+
     $('div.div_object  .bt_editDashboardTilesAutoResizeDown').off('click').on('click', function() {
       var id_object = $(this).attr('id').replace('compressTiles_object_', '')
       var objectContainer = $('#div_ob' + id_object + '.div_displayEquipement')

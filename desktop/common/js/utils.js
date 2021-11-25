@@ -153,6 +153,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     }, 500)
   })
 
+
+
   setTimeout(function() {
     //scenarios uses special tooltips not requiring destroy.
     if ($('body').attr('data-page') != 'scenario') {
@@ -241,10 +243,6 @@ $(function() {
   jeedomUtils.setJeedomMenu()
   jeedomUtils.initJeedomModals()
   jeedomUtils.setJeedomGlobalUI()
-
-  $(window).resize(function() {
-    jeedomUtils.initRowOverflow()
-  })
 
   jeedomUtils.initPage()
   if (jeedomUtils.backgroundIMG != null) {
@@ -780,7 +778,6 @@ jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
   $.initTableFilter()
-  jeedomUtils.initRowOverflow()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
   $('.nav-tabs a').on('click',function() {
@@ -885,17 +882,6 @@ jeedomUtils.initTextArea = function() {
   $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
     $(this).height(0).height(this.scrollHeight)
   });
-}
-
-jeedomUtils.initRowOverflow = function() {
-  var hWindow = $(window).outerHeight() - $('header').outerHeight() - 5
-  if ($('.row-overflow').attr('data-offset') != undefined) {
-    hWindow -= $('.row-overflow').attr('data-offset')
-  }
-  $('.row-overflow > div:not(#div_displayObjectList)').each(function(){
-    let style = $(this).attr('style');
-    $(this).css('cssText','padding-top:0px;overflow-y:auto !important;overflow-x:hidden !important;padding-top:5px;padding-right:5px !important;'+style).height(hWindow)
-  })
 }
 
 jeedomUtils.initReportMode = function() {
@@ -1185,6 +1171,7 @@ jeedomUtils.closeJeedomMenu = function() {
 }
 
 jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
+  var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin']*2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
   if (_id != undefined) {
     var widget = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
     widget.css({'margin': '0px', 'padding': '0px'})
@@ -1203,7 +1190,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     if (!widget.hasClass(widget.attr('data-category'))) {
       widget.addClass(widget.attr('data-category'))
     }
-    widget.css('margin',jeedom.theme['widget::margin']+'px')
+    widget.css('margin', margin)
   } else {
     $('div.eqLogic-widget:not(.jeedomAlreadyPosition), div.scenario-widget:not(.jeedomAlreadyPosition)')
     .css('margin','0px')
@@ -1221,7 +1208,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
         $(this).addClass($(this).attr('data-category'))
       }
     })
-    .css('margin',jeedom.theme['widget::margin']+'px')
+    .css('margin', margin)
     $('div.eqLogic-widget, div.scenario-widget').addClass('jeedomAlreadyPosition')
   }
 }

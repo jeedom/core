@@ -132,7 +132,7 @@ function jeedom_displayObjectGroup($object=-1) {
 ?>
 
 <div class="row row-overflow">
-	<div class="col-xs-12">
+	<div class="hasfloatingbar col-xs-12">
 		<div class="eqActions floatingbar" style="display:none;">
 			<div class="input-group">
 				<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}

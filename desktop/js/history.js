@@ -35,6 +35,7 @@ $(function() {
       })
     }
   }
+  resizeDn()
   jeedomUtils.datePickerInit()
   setChartOptions()
 })
@@ -43,7 +44,7 @@ $(function() {
 var resizeDone
 
 function resizeDn() {
-  var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true) - $('#div_alertHistory').outerHeight(true)
+  var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true)
   if (chart) {
     chart.setSize($('#div_graph').width(), height)
   }

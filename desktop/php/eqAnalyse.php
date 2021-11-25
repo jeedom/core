@@ -24,15 +24,20 @@ sendVarToJs('_remove_history_', $remove_history);
 ?>
 
 <div class="row row-overflow">
-	<div class="col-xs-12">
-		<a class="btn btn-sm floatingbar" id="bt_massConfigureEqLogic"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+	<div class="hasfloatingbar col-xs-12">
+		<div class="floatingbar">
+			<div>
+				<a id="bt_massConfigureEqLogic" class="btn btn-sm"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+			</div>
+		</div>
+
 		<ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
-			<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> {{Batteries}}</a></li>
-			<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Equipements en alerte}}</a></li>
-			<li role="presentation" id="tab_actionCmd"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Actions définies}}</a></li>
-			<li role="presentation" id="tab_alertCmd"><a href="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> {{Alertes définies}}</a></li>
-			<li role="presentation" id="tab_pushCmd"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> {{Push définis}}</a></li>
-			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> {{Commandes orphelines}}</a></li>
+			<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-xs">{{Batteries}}</span></a></li>
+			<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-xs">{{Equipements en alerte}}</span></a></li>
+			<li role="presentation" id="tab_actionCmd"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-xs">{{Actions définies}}</span></a></li>
+			<li role="presentation" id="tab_alertCmd"><a href="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-xs">{{Alertes définies}}</span></a></li>
+			<li role="presentation" id="tab_pushCmd"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-xs">{{Push définis}}</span></a></li>
+			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-xs">{{Commandes orphelines}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">

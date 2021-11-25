@@ -110,15 +110,17 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
     ?>
   </div>
 
-  <div class="col-xs-12 widgets" style="display: none;" id="div_conf">
-    <div class="input-group floatingbar" style="display:inline-flex">
-      <span class="input-group-btn">
-        <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-arrow-alt-circle-down"></i> <span class="hidden-xs">{{Appliquer à}}</span>
-        </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
-        </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-xs">{{Exporter}}</span>
-        </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-        </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-      </span>
+  <div class="hasfloatingbar col-xs-12 widgets" style="display: none;" id="div_conf">
+    <div class="floatingbar">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-arrow-alt-circle-down"></i> <span class="hidden-xs">{{Appliquer à}}</span>
+          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importWidgets" type="file" name="file" style="display:inline-block;">
+          </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-xs">{{Exporter}}</span>
+          </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+        </span>
+      </div>
     </div>
 
     <ul class="nav nav-tabs" role="tablist">
