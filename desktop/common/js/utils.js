@@ -1392,6 +1392,8 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
 $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 
 //Introduced in v4.2 -> deprecated v4.3 -> remove v4.4
+jeedomUtils.initRowOverflow = function() { console.error('initRowOverflow is Deprecated') }
+var initRowOverflow = jeedomUtils.initRowOverflow
 var checkPageModified = jeedomUtils.checkPageModified
 var loadPage = jeedomUtils.loadPage
 var initPage = jeedomUtils.initPage
