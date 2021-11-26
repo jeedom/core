@@ -2947,6 +2947,7 @@ Desktop
   }
 
   .floatingbar {
+    display: grid;
     position: absolute;
     top: 55px;
     right: 15px;
