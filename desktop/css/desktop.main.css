@@ -3994,6 +3994,9 @@ Desktop
   #div_graph {
     height: calc(100vh - 55px);
   }
+  .ui-dialog #div_graph {
+    height: unset;
+  }
   .highcharts-legend-item tspan {
     cursor: pointer;
   }
