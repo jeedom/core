@@ -156,7 +156,6 @@ function sendVarToJS($_varName, $_value = '') {
 }
 
 function resizeImage($contents, $width, $height) {
-	// Cacul des nouvelles dimensions
 	$width_orig = imagesx($contents);
 	$height_orig = imagesy($contents);
 	$ratio_orig = $width_orig / $height_orig;

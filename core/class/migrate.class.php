@@ -32,7 +32,7 @@ class migrate {
 				exec('sudo apt-get install -y rsync');
 			}
 		}
-		$minSize = 7900; //En megaOct.
+		$minSize = 7900; //Mo
 		$mediaLink = '/media/migrate';
 		$iSD = 0;
 		$iSDn = 0;

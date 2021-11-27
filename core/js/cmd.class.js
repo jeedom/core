@@ -1030,7 +1030,6 @@ jeedom.cmd.getDeadCmd = function(_params) {
 
 /* time widgets */
 jeedom.cmd.formatMomentDuration = function(_duration) {
-  //moment.locale(jeedom_langage.substring(0, 2))
   var durationString = ''
   var used = 0
 

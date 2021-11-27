@@ -99,10 +99,9 @@ class log {
 	}
 
 	/**
-	 * Ajoute un message dans les log et fait en sorte qu'il n'y
-	 * ai jamais plus de 1000 lignes
-	 * @param string $_type type du message à mettre dans les log
-	 * @param string $_message message à mettre dans les logs
+	 * Add message and keep it less than 1000 lines
+	 * @param string $_type message type (info, debug, warning, danger)
+	 * @param string $_message message added into log
 	 */
 	public static function add($_log, $_type, $_message, $_logicalId = '') {
 		if (trim($_message) == '') {
@@ -175,7 +174,7 @@ class log {
 	}
 
 	/**
-	 * Autorisation de vide le fichier de log
+	 * Check authorisation to emptying log file
 	 */
 	public static function authorizeClearLog($_log, $_subPath = '') {
 		$path = self::getPathToLog($_subPath . $_log);
@@ -184,7 +183,7 @@ class log {
 	}
 
 	/**
-	 * Vide le fichier de log
+	 * Empty log file
 	 */
 	public static function clear($_log) {
 		if (self::authorizeClearLog($_log)) {
@@ -202,7 +201,7 @@ class log {
 	}
 
 	/**
-	 * Vide le fichier de log
+	 * Delete log file
 	 */
 	public static function remove($_log) {
 		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
@@ -253,7 +252,7 @@ class log {
 						array_unshift($page, $line);
 					}
 				}
-				$log->next(); //go to next line
+				$log->next();
 				$linesRead++;
 			}
 		}
@@ -274,7 +273,7 @@ class log {
 	}
 
 	/**
-	 * Fixe le niveau de rapport d'erreurs PHP
+	 * Set php error level
 	 * @param int $log_level
 	 * @since 2.1.4
 	 * @author KwiZeR <kwizer@kw12er.com>

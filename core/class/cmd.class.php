@@ -1854,24 +1854,24 @@ class cmd {
 									$cron->setSchedule(cron::convertDateToCron($next));
 									$cron->setLastRun(date('Y-m-d H:i:s'));
 									$cron->save();
-								} else { //je suis en condition de warning et le cron n'existe pas mais j'etais en danger, je suppose que le cron a expiré
+								} else { //Warning condition, cron doesn't exit but was danger, cron may expired
 									$returnLevel = $currentLevel;
 								}
 							}
-						} else { // il n'y a pas de cron mais j'etais deja dans ce niveau, j'y reste
+						} else { //No cron but was at this level
 							$returnLevel = $this->getCache('alertLevel');
 						}
 					}
-					if (!($_allowDuring  && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0)) { //je suis en alerte sans delai ou en execution de cron
-						if ($_checkLevel == $currentLevel || $_checkLevel == 'none') { //si c'etait un cron, je ne teste que le niveau demandé
+					if (!($_allowDuring  && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0)) { //Alert without delay or cron executing
+						if ($_checkLevel == $currentLevel || $_checkLevel == 'none') { //If was a cron, only check asked level
 							if (!($_checkLevel == 'warning' && $this->getCache('alertLevel') == 'danger')) {
 								$returnLevel = $currentLevel;
-							} else { // le cron me demande de passer en warning mais je suis deja en danger, je reste en danger
+							} else { //Cron ask warning, but ever in danger
 								$returnLevel = $this->getCache('alertLevel');
 							}
 						}
 					}
-				} else { // je ne suis pas dans la condition, je supprime le cron
+				} else { //Not in condition, delete cron
 					$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId()), 'level' => $level));
 					if (is_object($cron)) {
 						$cron->remove(false);

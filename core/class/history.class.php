@@ -147,7 +147,7 @@ class history {
 	}
 
 	/**
-	 * Archive les données de history dans historyArch
+	 * Archive data from history into historyArch
 	 */
 	public static function archive() {
 		global $JEEDOM_INTERNAL_CONFIG;
@@ -280,11 +280,6 @@ class history {
 		}
 	}
 
-	/**
-	 *
-	 * @param int $_equipement_id id de l'équipement dont on veut l'historique des valeurs
-	 * @return array des valeurs de l'équipement
-	 */
 	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null) {
 		$values = array(
 			'cmd_id' => $_cmd_id,
@@ -712,10 +707,6 @@ class history {
 		return -1;
 	}
 
-	/**
-	 * Fonction renvoie la durée depuis le dernier changement d'état
-	 * à la valeur passée en paramètre
-	 */
 	public static function lastChangeStateDuration($_cmd_id, $_value) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
@@ -780,15 +771,6 @@ class history {
 		return -1;
 	}
 
-	/**
-	 *
-	 * @param int $_cmd_id
-	 * @param string/float $_value
-	 * @param string $_startTime
-	 * @param string $_endTime
-	 * @return array
-	 * @throws Exception
-	 */
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {

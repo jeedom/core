@@ -760,13 +760,13 @@ class scenario {
 		}
 		$state = $this->getState();
 		if ($state == 'starting') {
-			//Scénario bloqué en starting (Exemple de cause : trop de connexions à MySql, la connexion est refusée, le scénario plante)
+			//Scenario stuck into starting state. May be too much sql connections, refused connection, or scenario hangs.
 			if (strtotime('now') - $this->getCache('startingTime') > 5) {
 				log::add('scenario', 'error', __('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario', __FILE__) . " \"" . $this->getName() . "\".");
 				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à ', __FILE__) . date('Y-m-d H:i:s', $this->getCache('startingTime')) . ".");
 				$this->persistLog();
 			}
-			//Retarde le lancement du scénario si une autre instance est déjà en cours de démarrage
+			//Delay scenario start if another instance ever starting.
 			if (($this->getCache('startingTime') + 2) > strtotime('now')) {
 				$i = 0;
 				while ($state == 'starting') {

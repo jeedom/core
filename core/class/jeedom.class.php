@@ -1121,6 +1121,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try {
+			//Check for updates every 24h according to config
 			if (config::byKey('update::autocheck', 'core', 1) == 1 && (config::byKey('update::lastCheck') == '' || (strtotime('now') - strtotime(config::byKey('update::lastCheck'))) > (23 * 3600) || strtotime('now') < strtotime(config::byKey('update::lastCheck')))) {
 				update::checkAllUpdate();
 				$updates = update::byStatus('update');
