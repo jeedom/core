@@ -2963,13 +2963,9 @@ Desktop
   body[data-page="administration"] #div_pageContainer div.tab-content,
   body[data-page="update"] #div_pageContainer div.tab-content {
     height: calc(100vh - 145px) !important;
-
-    max-height: max-content;
-
-
   }
-  body[data-page="update"] div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
-    height: calc(100vh - 200px) !important;
+  body[data-page="update"] #div_pageContainer div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
+    height: calc(100vh - 220px) !important;
   }
   body[data-page="administration"] .tab-content .tab-content {
     height: unset !important;
@@ -4962,6 +4958,10 @@ Desktop
     legend {
       font-size: 16px !important;
     }
+
+    .hidden-1280 {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -5007,6 +5007,10 @@ Desktop
       overflow: auto;
       max-height: 300px !important;
     }
+
+    .hidden-768 {
+      display: none;
+    }
   }
 
   @media screen and (max-width: 992px) {
@@ -5037,6 +5041,10 @@ Desktop
 
     #div_editScenario .tab-content {
       max-height: calc(100% - 80px);
+    }
+
+    .hidden-992 {
+      display: none;
     }
   }
 
