@@ -949,23 +949,23 @@ user::isBan();
 									<th>{{Clé}}</th>
 									<th>{{Nom}}</th>
 									<th>{{Calcul}}</th>
-									<th>{{Icône}}</th>
-									<th>{{Icône si nul}}</th>
-									<th style="width:60px">{{Unité}}</th>
-									<th style="width:90px">{{Masquer le nombre}}
+									<th style="min-width: 100px">{{Icône}}</th>
+									<th style="min-width: 100px">{{Icône si nul}}</th>
+									<th style="min-width:60px">{{Unité}}</th>
+									<th style="min-width:90px">{{Masquer le nombre}}
 										<sup><i class="fas fa-question-circle" tooltip="{{Ne jamais afficher le numéro à coté de l'icône.}}"></i></sup>
 									</th>
-									<th style="width:120px">{{Masquer le nombre si nul}}
+									<th style="min-width:120px">{{Masquer le nombre si nul}}
 										<sup><i class="fas fa-question-circle" tooltip="{{Ne pas afficher le numéro à coté de l'icône seulement si nul.}}"></i></sup>
 									</th>
 									<th>{{Méthode de comptage}}</th>
-									<th style="width:70px">{{Si nul}}
+									<th style="min-width:70px">{{Si nul}}
 										<sup><i class="fas fa-question-circle" tooltip="{{Afficher même si le résumé est nul.}}"></i></sup>
 									</th>
-									<th style="width:90px">{{Ignorer si}}
+									<th style="min-width:70px">{{Ignorer si}}
 										<sup><i class="fas fa-question-circle" tooltip="{{Ignorer commande si pas d'update depuis plus de (min).}}"></i></sup>
 									</th>
-									<th style="width:1px">{{Lier à un virtuel}}</th>
+									<th style="min-width:1px">{{Lier à un virtuel}}</th>
 									<th></th>
 								</tr>
 							</thead>
