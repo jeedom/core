@@ -2206,7 +2206,7 @@
         "Types auto": "Auto types",
         "Inconnu": "Unknown",
         "Rechercher | nom | id": "Search | name | id",
-        "Liste": "Listing",
+        "Liste": "List",
         "Sauvegarder": "Save",
         "Appliquer": "Apply",
         "Types inconnus": "Unknown types"
@@ -3394,7 +3394,7 @@
         "Enregistrement caméra": "Camera recording",
         "Snapshot caméra": "Camera snapshot",
         "Mode Etat": "Status Mode",
-        "Mode": "Fashion",
+        "Mode": "Mode",
         "Changer Mode": "Change Mode",
         "Sirène Etat": "Siren State",
         "Sirène Bouton Off": "Siren Button OFF",
