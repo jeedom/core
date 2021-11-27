@@ -24,12 +24,12 @@ natcasesort($list_logfile);
 							<i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
 							<input class="input-sm roundedLeft" id="in_searchGlobalLog" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
 							<a id="bt_resetGlobalLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
-							<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i><span class="hidden-xs"> {{Pause}}</span>
-							</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i><span class="hidden-xs"> {{Télécharger}}</span>
-							</a><a class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i><span class="hidden-xs"> {{Vider}}</span>
-							</a><a class="btn btn-warning btn-sm" id="bt_clearAllLog"><i class="fas fa-times-circle"></i><span class="hidden-xs"> {{Vider tous}}</span>
-							</a><a class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i><span class="hidden-xs"> {{Supprimer}}</span>
-							</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="fas fa-trash"></i><span class="hidden-xs"> {{Supprimer tous}}</span></a>
+							<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>
+							</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i><span class="hidden-768"> {{Télécharger}}</span>
+							</a><a class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i><span class="hidden-768"> {{Vider}}</span>
+							</a><a class="btn btn-warning btn-sm" id="bt_clearAllLog"><i class="fas fa-times-circle"></i><span class="hidden-768"> {{Vider tous}}</span>
+							</a><a class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i><span class="hidden-768"> {{Supprimer}}</span>
+							</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="fas fa-trash"></i><span class="hidden-768"> {{Supprimer tous}}</span></a>
 						</span>
 					</div>
 				</div>

@@ -795,7 +795,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-sm-2 hidden-xs"></div>
+							<div class="col-sm-2 hidden-768"></div>
 							<div class="col-sm-10 col-xs-12">
 
 							</div>
