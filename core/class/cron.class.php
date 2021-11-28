@@ -204,7 +204,7 @@ class cron {
 			throw new Exception(__('La fonction ne peut pas être vide', __FILE__));
 		}
 		if ($this->getSchedule() == '') {
-			throw new Exception(__('La programmation ne peut pas être vide : ', __FILE__) . print_r($this, true));
+			throw new Exception(__('La programmation ne peut pas être vide :', __FILE__) . ' ' . print_r($this, true));
 		}
 		if ($this->getOption() == '' || count($this->getOption()) == 0) {
 			$cron = cron::byClassAndFunction($this->getClass(), $this->getFunction());
@@ -319,7 +319,7 @@ class cron {
 			$this->setState('stop');
 			$this->setPID();
 		} else {
-			log::add('cron', 'info', __('Arrêt de ', __FILE__) . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
+			log::add('cron', 'info', __('Arrêt de', __FILE__) . ' ' . $this->getClass() . '::' . $this->getFunction() . '(), PID : ' . $this->getPID());
 			if ($this->getPID() > 0) {
 				system::kill($this->getPID());
 				$retry = 0;

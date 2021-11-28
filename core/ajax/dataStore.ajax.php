@@ -29,7 +29,7 @@ try {
 	if (init('action') == 'remove') {
 		$dataStore = dataStore::byId(init('id'));
 		if (!is_object($dataStore)) {
-			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		$dataStore->remove();
 		ajax::success();
@@ -45,7 +45,7 @@ try {
 			$dataStore = dataStore::byId(init('id'));
 		}
 		if (!is_object($dataStore)) {
-			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Dépôt de données inconnu. Vérifiez l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		$dataStore->setValue(init('value'));
 		$dataStore->save();
@@ -99,7 +99,7 @@ try {
 		ajax::success($return);
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

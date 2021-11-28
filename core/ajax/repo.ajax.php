@@ -56,7 +56,7 @@ try {
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
 		if (!is_object($repo)) {
-			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
+			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . init('id'));
 		}
 		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
 		if (!is_object($update)) {
@@ -83,7 +83,7 @@ try {
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
 		if (!is_object($market)) {
-			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
+			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . init('id'));
 		}
 		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
 		try {
@@ -137,7 +137,7 @@ try {
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
 		if (!is_object($repo)) {
-			throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . init('id'));
+			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . init('id'));
 		}
 		$repo->setRating(init('rating'));
 		ajax::success();
@@ -148,7 +148,7 @@ try {
 		ajax::success($class::backup_list());
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

@@ -395,7 +395,7 @@ class scenario {
 		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['startSubTask']['txt']);
 		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
 			$scenario->setTags($_options['tags']);
-			$scenario->setLog(__('Tags : ', __FILE__) . json_encode($scenario->getTags()));
+			$scenario->setLog(__('Tags :', __FILE__) . ' ' . json_encode($scenario->getTags()));
 		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
 			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['toStartUnfound']['txt']);
@@ -479,7 +479,7 @@ class scenario {
 								'who' => '#' . $cmd_id . '#'
 							);
 						} else {
-							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+							log::add('scenario', 'error', __('Un déclencheur du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 						}
 					}
 				}
@@ -500,7 +500,7 @@ class scenario {
 							'who' => '#' . $cmd_id . '#'
 						);
 					} else {
-						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						log::add('scenario', 'error', __('Une commande du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . __(' est introuvable', __FILE__));
 					}
 				}
 			}
@@ -763,7 +763,7 @@ class scenario {
 			//Scenario stuck into starting state. May be too much sql connections, refused connection, or scenario hangs.
 			if (strtotime('now') - $this->getCache('startingTime') > 5) {
 				log::add('scenario', 'error', __('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario', __FILE__) . " \"" . $this->getName() . "\".");
-				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à ', __FILE__) . date('Y-m-d H:i:s', $this->getCache('startingTime')) . ".");
+				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à', __FILE__) . ' ' . date('Y-m-d H:i:s', $this->getCache('startingTime')) . ".");
 				$this->persistLog();
 			}
 			//Delay scenario start if another instance ever starting.
@@ -821,7 +821,7 @@ class scenario {
 			$this->setCache('tags', '');
 		}
 		if ($this->getIsActive() != 1) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . __(' sur :', __FILE__) . ' ' . $_message . __(' car il est désactivé', __FILE__));
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();
@@ -839,7 +839,7 @@ class scenario {
 
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . __(' déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -850,7 +850,7 @@ class scenario {
 				$timeline->save();
 			}
 		} else {
-			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . __(' déclenché par :', __FILE__) . ' ' . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -1259,7 +1259,7 @@ class scenario {
 						$cron->halt();
 						$cron->remove();
 					} catch (Exception $e) {
-						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche : ', __FILE__) . json_encode($cron->getOption()));
+						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche :', __FILE__) . ' ' . json_encode($cron->getOption()));
 					}
 				}
 			}
@@ -1284,7 +1284,7 @@ class scenario {
 				}
 			}
 			if ($this->running()) {
-				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . '. ' . __('PID : ', __FILE__) . $this->getPID());
+				throw new Exception(__('Impossible d\'arrêter le scénario :', __FILE__) . ' ' . $this->getHumanName() . '. ' . __('PID :', __FILE__) . ' ' . $this->getPID());
 			}
 		}
 		$this->setState('stop');

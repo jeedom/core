@@ -20,7 +20,7 @@ if (!isConnect()) {
 }
 $scenario = scenario::byId(init('id'));
 if (!is_object($scenario)) {
-  throw new Exception(__('Aucun scénario ne correspondant à : ', __FILE__) . init('id'));
+  throw new Exception(__('Aucun scénario ne correspondant à :', __FILE__) . ' ' . init('id'));
 }
 sendVarToJs('scenarioJsonEdit_scenario_id', init('id'));
 include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');

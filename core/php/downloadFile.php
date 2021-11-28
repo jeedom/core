@@ -65,7 +65,7 @@ try {
 	}
 	if (strpos($pathfile, '*') === false) {
 		if (!file_exists($pathfile)) {
-			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $pathfile);
+			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $pathfile);
 		}
 	} elseif (is_dir(str_replace('*', '', $pathfile))) {
 		if (!$isAdmin) {

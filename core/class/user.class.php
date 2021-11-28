@@ -121,10 +121,10 @@ class user {
 					->setOptions('lastConnection', date('Y-m-d H:i:s'))
 					->setProfils($profile);
 				$user->save();
-				log::add("connection", "info", __('User created from the LDAP : ', __FILE__) . $_login);
+				log::add("connection", "info", __('User created from the LDAP :', __FILE__) . ' ' . $_login);
 				jeedom::event('user_connect');
 				// TODO : if username == password => change ldap password
-				log::add('event', 'info', __('User connection accepted ', __FILE__) . $_login);
+				log::add('event', 'info', __('User connection accepted', __FILE__) . ' ' . $_login);
 				return $user;
 			} else {
 				$user = self::byLogin($_login);
@@ -139,15 +139,15 @@ class user {
 			$user = user::byLoginAndPassword($_login, sha1($_mdp));
 			if (is_object($user)) {
 				$user->setPassword($sMdp);
-				log::add('event', 'info', __('Local account found for ', __FILE__) . $_login);
+				log::add('event', 'info', __('Local account found for', __FILE__) . ' ' . $_login);
 			}
 		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect');
-			log::add('event', 'info', __('Local account found for ', __FILE__) . $_login);
-			log::add('event', 'info', __('User connection accepted ', __FILE__) . $_login);
+			log::add('event', 'info', __('Local account found for', __FILE__) . ' ' . $_login);
+			log::add('event', 'info', __('User connection accepted', __FILE__) . ' ' . $_login);
 		}
 		return $user;
 	}

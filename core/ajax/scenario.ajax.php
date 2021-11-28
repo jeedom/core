@@ -29,7 +29,7 @@ try {
 	if (init('action') == 'changeState') {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
-			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
+			throw new Exception(__('Scénario ID inconnu :', __FILE__) . ' ' . init('id'));
 		}
 		if (!$scenario->hasRight('x')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
@@ -102,19 +102,19 @@ try {
 	if (init('action') == 'convertToTemplate') {
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
-			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
+			throw new Exception(__('Scénario ID inconnu :', __FILE__) . ' ' . init('id'));
 		}
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path)) {
 			mkdir($path);
 		}
 		if (trim(init('template')) == '' || trim(init('template')) == '.json') {
-			throw new Exception(__('Le nom du template ne peut être vide ', __FILE__));
+			throw new Exception(__('Le nom du template ne peut être vide', __FILE__) . ' ');
 		}
 		$name = init('template');
 		file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		if (!file_exists($path . '/' . $name)) {
-			throw new Exception(__('Impossible de créer le template, vérifiez les droits : ', __FILE__) . $path . '/' . $name);
+			throw new Exception(__('Impossible de créer le template, vérifiez les droits :', __FILE__) . ' ' . $path . '/' . $name);
 		}
 		ajax::success();
 	}
@@ -131,7 +131,7 @@ try {
 	if (init('action') == 'loadTemplateDiff') {
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
-			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $path . '/' . init('template'));
+			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . init('template'));
 		}
 		$return = array();
 		$fileContent = file_get_contents($path . '/' . init('template'));
@@ -180,11 +180,11 @@ try {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
-			throw new Exception(__('Fichier non trouvé : ', __FILE__) . $path . '/' . init('template'));
+			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . init('template'));
 		}
 		foreach (json_decode(init('convert'), true) as $value) {
 			if (trim($value['end']) == '') {
-				throw new Exception(__('La conversion suivante ne peut être vide : ', __FILE__) . $value['begin']);
+				throw new Exception(__('La conversion suivante ne peut être vide :', __FILE__) . ' ' . $value['begin']);
 			}
 			$converts[$value['begin']] = $value['end'];
 		}
@@ -199,7 +199,7 @@ try {
 		}
 		$scenario_db = scenario::byId(init('id'));
 		if (!is_object($scenario_db)) {
-			throw new Exception(__('Scénario ID inconnu : ', __FILE__) . init('id'));
+			throw new Exception(__('Scénario ID inconnu :', __FILE__) . ' ' . init('id'));
 		}
 		if (!$scenario_db->hasRight('w')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
@@ -482,14 +482,14 @@ try {
 			mkdir($uploaddir);
 		}
 		if (!file_exists($uploaddir)) {
-			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
+			throw new Exception(__('Répertoire de téléversement non trouvé :', __FILE__) . ' ' . $uploaddir);
 		}
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.json'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .json) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .json) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 10000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 10Mo)', __FILE__));
@@ -503,7 +503,7 @@ try {
 		ajax::success();
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

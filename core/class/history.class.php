@@ -626,7 +626,7 @@ class history {
 	public static function stateDuration($_cmd_id, $_value = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
 		}
 		if ($cmd->getIsHistorized() != 1) {
 			return -2;
@@ -651,7 +651,7 @@ class history {
 	public static function lastStateDuration($_cmd_id, $_value = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
 		}
 		if ($cmd->getIsHistorized() != 1) {
 			return -2;
@@ -710,7 +710,7 @@ class history {
 	public static function lastChangeStateDuration($_cmd_id, $_value) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
 		}
 		if ($cmd->getIsHistorized() != 1) {
 			return -2;
@@ -774,7 +774,7 @@ class history {
 	public static function stateChanges($_cmd_id, $_value = null, $_startTime = null, $_endTime = null) {
 		$cmd = cmd::byId($_cmd_id);
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande introuvable : ', __FILE__) . $_cmd_id);
+			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . $_cmd_id);
 		}
 		if ($_value === null) {
 			$_value = $cmd->execCmd();

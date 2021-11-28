@@ -40,7 +40,7 @@ try {
 	}
 	$plugin = plugin::byId($plugin_id);
 	if (!is_object($plugin)) {
-		throw new Exception(__('Plugin non trouvé : ', __FILE__) . init('plugin_id'));
+		throw new Exception(__('Plugin non trouvé :', __FILE__) . ' ' . init('plugin_id'));
 	}
 	$function = init('function');
 	if ($function == '') {
@@ -50,7 +50,7 @@ try {
 		$plugin->callInstallFunction($function, true);
 	} else {
 		if (!class_exists($plugin_id) || !method_exists($plugin_id, $function)) {
-			throw new Exception(__('Il n\'existe aucune méthode : ', __FILE__) . $plugin_id . '::' . $function);
+			throw new Exception(__('Il n\'existe aucune méthode :', __FILE__) . ' ' . $plugin_id . '::' . $function);
 		}
 		$plugin_id::$function();
 	}

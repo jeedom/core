@@ -640,7 +640,7 @@ class jeeObject {
 		} else {
 			$object = self::byId($_cmd->getConfiguration('summary::object_id'));
 			if (!is_object($object)) {
-				throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $_cmd->getConfiguration('summary::object_id'));
+				throw new Exception(__('L\'objet n\'existe pas :', __FILE__) . ' ' . $_cmd->getConfiguration('summary::object_id'));
 			}
 			$object->summaryAction($_cmd, $_options);
 		}
