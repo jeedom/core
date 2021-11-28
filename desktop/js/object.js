@@ -420,7 +420,7 @@ $("#bt_saveObject").on('click', function(event) {
 
 $("#bt_removeObject").on('click', function(event) {
   $.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text() + '</span> ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
     if (result) {
       jeedom.object.remove({
         id: $('.objectDisplayCard.active').attr('data-object_id'),
