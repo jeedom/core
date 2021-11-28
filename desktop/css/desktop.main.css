@@ -1782,10 +1782,6 @@ Desktop
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
     border: none;
   }
-  #pre_updateInfo_clean {
-    overflow: visible !important;
-    height: calc(100vh - 260px);
-  }
 
   .row-same-height {
     padding: 1em;
