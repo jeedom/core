@@ -617,7 +617,7 @@ try {
 		unautorizedInDemo();
 		$type = init('type');
 		if (!class_exists($type)) {
-			throw new Exception('{{Type non trouvé : }}' . $type);
+			throw new Exception('{{Type non trouvé :}}' . ' ' . $type);
 		}
 		$datas = is_json(init('objects'), array());
 		if (count($datas) > 0) {

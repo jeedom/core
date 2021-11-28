@@ -20,12 +20,12 @@ $('.bt_systemCommand').off('click').on('click', function() {
   var command = $(this).attr('data-command')
   $('#pre_commandResult').empty()
   if ($(this).parent().hasClass('list-group-item-danger')) {
-    bootbox.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande : }}<strong>' + command + '</strong> ? {{Celle-ci est classé en dangereuse}}', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande :}} <strong>' + command + '</strong> ? {{Celle-ci est classé en dangereuse}}', function(result) {
       if (result) {
         jeedom.ssh({
           command: command,
           success: function(log) {
-            $('#h3_executeCommand').empty().append('{{Commande : }}' + command)
+            $('#h3_executeCommand').empty().append('{{Commande :}}' + ' ' + command)
             $('#pre_commandResult').append(log)
           }
         })
@@ -35,7 +35,7 @@ $('.bt_systemCommand').off('click').on('click', function() {
     jeedom.ssh({
       command: command,
       success: function(log) {
-        $('#h3_executeCommand').empty().append('{{Commande : }}' + command)
+        $('#h3_executeCommand').empty().append('{{Commande :}}' + ' ' + command)
         $('#pre_commandResult').append(log)
       }
     })
@@ -49,7 +49,7 @@ $('#ul_listSystemHistory').off('click', '.bt_systemCommand').on('click', '.bt_sy
   jeedom.ssh({
     command: command,
     success: function(log) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}' + command)
+      $('#h3_executeCommand').empty().append('{{Commande :}}' + ' ' + command)
       $('#in_specificCommand').value(command)
       $('#pre_commandResult').append(log)
     }
@@ -62,7 +62,7 @@ $('#bt_validateSpecifiCommand').off('click').on('click', function() {
   jeedom.ssh({
     command: command,
     success: function(log) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}' + command)
+      $('#h3_executeCommand').empty().append('{{Commande :}}' + ' ' + command)
       $('#pre_commandResult').append(log)
       $('#ul_listSystemHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="' + command + '">' + command + '</a></li>')
       var kids = $('#ul_listSystemHistory').children()
@@ -80,7 +80,7 @@ $('#in_specificCommand').keypress(function(event) {
     jeedom.ssh({
       command: command,
       success: function(log) {
-        $('#h3_executeCommand').empty().append('{{Commande : }}' + command)
+        $('#h3_executeCommand').empty().append('{{Commande :}}' + ' ' + command)
         $('#pre_commandResult').append(log)
         if ($('.bt_systemCommand[data-command="' + command.replace(/"/g, '\\"') + '"]').html() == undefined) {
           $('#ul_listSystemHistory').prepend('<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="' + command.replace(/"/g, '\\"') + '">' + command + '</a></li>')

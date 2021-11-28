@@ -1174,7 +1174,7 @@ function updateCacheStats() {
 $(".bt_regenerate_api").on('click', function(event) {
   $.hideAlert()
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de }}' + el.attr('data-plugin') + ' ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {
       $.ajax({
         type: "POST",

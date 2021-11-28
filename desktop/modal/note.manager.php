@@ -107,7 +107,7 @@ $('#bt_noteManagerSave').on('click',function() {
 
 $('#bt_noteManagerRemove').on('click',function() {
   var note = $('#div_noteManagerDisplay').getValues('.noteAttr')[0]
-  var r = confirm('{{Voulez-vous vraiment supprimer la note : }}'+note.name+' ?')
+  var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
   if (r == true) {
     jeedom.note.remove({
       id : note.id,

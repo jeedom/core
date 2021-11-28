@@ -100,7 +100,7 @@ $('#table_update').on({
     if ($(this).hasClass('disabled')) return
     var id = $(this).closest('tr').attr('data-id')
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour : }}' + logicalId + ' ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         progress = -1;
         $('.progressbarContainer').removeClass('hidden')
@@ -127,7 +127,7 @@ $('#table_update').on({
   'click': function(event) {
     var id = $(this).closest('tr').attr('data-id');
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer : }}' + logicalId + ' ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         $.hideAlert();
         jeedom.update.remove({

@@ -685,7 +685,7 @@ user::isBan();
 									}
 									echo '<legend>{{Gestion DNS}} ' . $value['name'] . '</legend>';
 									if ($configs['dns::token'] == '') {
-										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le }}<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
+										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le}} <a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
 										continue;
 									}
 									$div = '<div class="form-group col-xs-12">';
@@ -707,7 +707,7 @@ user::isBan();
 									$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
 									$div .= '<div class="col-xs-8">';
 									if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-										$div .= '<span class="label label-success">{{Démarré : }} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
+										$div .= '<span class="label label-success">{{Démarré :}} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
 									} else {
 										$div .= '<span class="label label-warning" tooltip="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
 									}
@@ -1089,7 +1089,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Purger l'historique si plus vieux que }}</label>
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Purger l'historique si plus vieux que}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="historyPurge">
 									<option value="">{{Jamais}}</option>

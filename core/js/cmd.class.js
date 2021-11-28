@@ -217,7 +217,7 @@ jeedom.cmd.test = function(_params) {
             notify: false,
             success: function(result) {
               $(_params.alert).showAlert({
-                message: '{{Résultat de la commande : }}' + result,
+                message: '{{Résultat de la commande :}}' + ' ' + result,
                 level: 'success'
               });
             }

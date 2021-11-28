@@ -98,7 +98,7 @@ function testUsb() {
 					alert('{{Il ne doit y avoir qu\'une seule partition sur votre clé USB.}}');
 					break;
 				case 'space':
-					alert('{{L\'espace libre sur votre clé USB est trop petit }}(' + result.result.space + ' Mo) {{L\'espace minimum nécessaire est de}} ' + result.result.minSpace + ' {{Mo}}. {{Merci}}');
+					alert('{{L\'espace libre sur votre clé USB est trop petit}} (' + result.result.space + ' Mo) {{L\'espace minimum nécessaire est de}} ' + result.result.minSpace + ' {{Mo}}. {{Merci}}');
 					break;
 				case 'ok':
 					$('.debut').hide();

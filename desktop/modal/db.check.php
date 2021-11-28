@@ -97,7 +97,7 @@ $('.bt_correctTable').off('click').on('click',function() {
   if (el.data('package') == 'all') {
     var text = '{{Êtes-vous sûr de vouloir corriger toute les tables ?}}'
   } else {
-    var text = '{{Êtes-vous sûr de vouloir corriger la table }}'+el.data('table')+' ?'
+    var text = '{{Êtes-vous sûr de vouloir corriger la table}}' + ' ' + el.data('table') + ' ?'
   }
   bootbox.confirm(text, function(result) {
     if (result) {
