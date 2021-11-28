@@ -610,8 +610,6 @@ $("#bt_saveWidgets").on('click', function(event) {
 })
 
 $('#bt_removeWidgets').on('click', function(event) {
-   $('.objectDisplayCard.active .name').text().trim()
-
   bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
     if (result) {
       jeedom.widgets.remove({
