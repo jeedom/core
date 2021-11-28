@@ -460,8 +460,9 @@ Desktop
       height: auto;
       overflow-x: hidden;
     }
-    [class*="col-"] {
-      right: 3px;
+
+    .form-horizontal {
+      padding-right: 15px;
     }
     .control-label {
       line-height: 26px !important;
