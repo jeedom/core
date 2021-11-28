@@ -1028,7 +1028,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     }, function(result) {
       var target_id = result.cmd.id
       var name = result.human
-      bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{ avant la copie}}', function(result) {
+      bootbox.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
         if (result) {
           jeedom.history.copyHistoryToCmd({
             source_id: cmdInfo.id,

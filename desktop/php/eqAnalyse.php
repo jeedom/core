@@ -141,7 +141,7 @@ sendVarToJs('_remove_history_', $remove_history);
 								if ($cmd->getConfiguration('actionConfirm')) {
 									$code = '';
 									if ($cmd->getConfiguration('actionCodeAccess')) {
-										$code = '{{ avec code}}';
+										$code = ' {{avec code}}';
 									}
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 									$div .= 'Confirmation de l\'action' . $code;
