@@ -1374,7 +1374,7 @@ class scenarioExpression {
 						} catch (Error $e) {
 						}
 						if ((is_float($options['duration']) || is_int($options['duration'])) && $options['duration'] > 0) {
-							$this->setLog($scenario, __('Pause de', __FILE__) . ' ' . $options['duration'] . __(' seconde(s)', __FILE__));
+							$this->setLog($scenario, __('Pause de', __FILE__) . ' ' . $options['duration'] . ' ' . __('seconde(s)', __FILE__));
 							if ($options['duration'] < 1) {
 								usleep($options['duration'] * 1000000);
 								return;
@@ -1403,7 +1403,7 @@ class scenarioExpression {
 						throw new Exception($GLOBALS['JEEDOM_SCLOG_TEXT']['unfoundCmd']['txt'] . $options['cmd']);
 					}
 					$cmd->event(jeedom::evaluateExpression($options['value']));
-					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . __(' à', __FILE__) . ' ' . $options['value']);
+					$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . ' ' . __('à', __FILE__) . ' ' . $options['value']);
 					return;
 				} elseif ($this->getExpression() == 'message') {
 					message::add('scenario', $options['message']);
@@ -1474,7 +1474,7 @@ class scenarioExpression {
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
-							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . __(' options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
+							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
 								return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
 							} else {
@@ -1493,7 +1493,7 @@ class scenarioExpression {
 							if (is_array($this->getOptions('tags'))) {
 								$actionScenario->setTags($this->getOptions('tags'));
 							}
-							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . __(' options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
+							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
 								return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName(), true);
 							} else {
@@ -1546,7 +1546,7 @@ class scenarioExpression {
 						foreach ($cmds as $cmd) {
 							if ($cmd->getType() == 'info') {
 								$cmd->event(jeedom::evaluateExpression($options['value']));
-								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . __(' à', __FILE__) . ' ' . $options['value']);
+								$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['event']['txt'] . $cmd->getHumanName() . ' ' . __('à', __FILE__) . ' ' . $options['value']);
 							} else if ($cmd->getType() == 'action') {
 								if ($cmd->getSubtype() == 'slider') {
 									$options['slider'] = evaluate($options['value']);
@@ -1554,7 +1554,7 @@ class scenarioExpression {
 								$cmd->execCmd($options);
 								$log = $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $cmd->getHumanName();
 								if ($options['value'] != '') {
-									$log .= __(' à', __FILE__) . ' ' . $options['value'];
+									$log .= ' ' . __('à', __FILE__) . ' ' . $options['value'];
 								}
 								$this->setLog($scenario, $log);
 							}
@@ -1661,7 +1661,7 @@ class scenarioExpression {
 
 					$start = date('Y-m-d H:i:s', strtotime($options['start']));
 					$end = date('Y-m-d H:i:s', strtotime($options['end']));
-					$this->setLog($scenario, __('Export de l\'historique du', __FILE__) . ' ' . $start . __(' au', __FILE__) . ' ' . $end);
+					$this->setLog($scenario, __('Export de l\'historique du', __FILE__) . ' ' . $start . ' ' . __('au', __FILE__) . ' ' . $end);
 
 					$histories = array();
 					$cmdExportArray = explode('&&', $this->getOptions('cmd_export'));
@@ -1698,8 +1698,8 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $view->getName());
 							$cmd_parameters['files'] = array($view->report($options['export_type'], $options));
-							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport', __FILE__) . ' ' . $view->getName() . __(' du', __FILE__) . ' ' . date('Y-m-d H:i:s');
-							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $view->getName() . __(' généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .' ' . __('Rapport', __FILE__) . ' ' . $view->getName() . ' ' . __('du', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $view->getName() . ' ' . __('généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 						case 'plan':
 							$plan = planHeader::byId($options['plan_id']);
@@ -1708,8 +1708,8 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $plan->getName());
 							$cmd_parameters['files'] = array($plan->report($options['export_type'], $options));
-							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport', __FILE__) . ' ' . $plan->getName() . __(' du', __FILE__) . ' ' . date('Y-m-d H:i:s');
-							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $plan->getName() . __(' généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .' ' . __('Rapport', __FILE__) . ' ' . $plan->getName() . ' ' . __('du', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $plan->getName() . ' ' . __('généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 						case 'plugin':
 							$plugin = plugin::byId($options['plugin_id']);
@@ -1718,28 +1718,28 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $plugin->getName());
 							$cmd_parameters['files'] = array($plugin->report($options['export_type'], $options));
-							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport', __FILE__) . ' ' . $plugin->getName() . __(' du', __FILE__) . ' ' . date('Y-m-d H:i:s');
-							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $plugin->getName() . __(' généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .' ' . __('Rapport', __FILE__) . ' ' . $plugin->getName() . ' ' . __('du', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $plugin->getName() . ' ' . __('généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 						case 'eqAnalyse':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
-							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport équipement du', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .' ' . __('Rapport équipement du', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport équipement généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 						case 'timeline':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline=' . $options['timeline'];
 							$this->setLog($scenario, __('Génération du rapport timeline', __FILE__) . ' ' . $options['timeline']);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'timeline', $options['export_type'], $options));
-							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport', __FILE__) . ' ' . $options['timeline'] . __(' du', __FILE__) . ' ' . date('Y-m-d H:i:s');
-							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $options['timeline'] . __(' généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .' ' . __('Rapport', __FILE__) . ' ' . $options['timeline'] . ' ' . __('du', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $options['timeline'] . ' ' . __('généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 						case 'url':
 							$url = $options['url'];
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'url', $options['export_type'], $options));
-							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .__(' Rapport url du', __FILE__) . ' ' . date('Y-m-d H:i:s');
+							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' .' ' . __('Rapport url du', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport url généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 					}

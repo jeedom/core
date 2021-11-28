@@ -135,7 +135,7 @@ class repo_market {
 				if (!is_object($repo)) {
 					continue;
 				}
-				log::add('market', 'debug', __('Lancement de l\'installation de', __FILE__) . ' ' . $repo->getLogicalId() . __(' en version', __FILE__) . ' ' . $plugin['version']);
+				log::add('market', 'debug', __('Lancement de l\'installation de', __FILE__) . ' ' . $repo->getLogicalId() . ' ' . __('en version', __FILE__) . ' ' . $plugin['version']);
 				$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
 				if (!is_object($update)) {
 					$update = new update();

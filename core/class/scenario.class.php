@@ -479,7 +479,7 @@ class scenario {
 								'who' => '#' . $cmd_id . '#'
 							);
 						} else {
-							log::add('scenario', 'error', __('Un déclencheur du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+							log::add('scenario', 'error', __('Un déclencheur du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . ' ' . __('est introuvable', __FILE__));
 						}
 					}
 				}
@@ -500,7 +500,7 @@ class scenario {
 							'who' => '#' . $cmd_id . '#'
 						);
 					} else {
-						log::add('scenario', 'error', __('Une commande du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						log::add('scenario', 'error', __('Une commande du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . ' ' . __('est introuvable', __FILE__));
 					}
 				}
 			}
@@ -821,7 +821,7 @@ class scenario {
 			$this->setCache('tags', '');
 		}
 		if ($this->getIsActive() != 1) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . __(' sur :', __FILE__) . ' ' . $_message . __(' car il est désactivé', __FILE__));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $_message . ' ' . __('car il est désactivé', __FILE__));
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();
@@ -829,7 +829,7 @@ class scenario {
 		}
 		if ($this->getConfiguration('timeDependency', 0) == 1) {
 			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4)) {
-				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
+				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . ' ' . __('annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
 				$this->setState('stop');
 				$this->setPID();
 				$this->persistLog();
@@ -839,7 +839,7 @@ class scenario {
 
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . __(' déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -850,7 +850,7 @@ class scenario {
 				$timeline->save();
 			}
 		} else {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . __(' déclenché par :', __FILE__) . ' ' . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');

@@ -1117,7 +1117,7 @@ class cmd {
 				$options['slider'] = jeedom::evaluateExpression(str_replace('#value#', $options['slider'], $this->getConfiguration('calculValueOffset')));
 			}
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . __(' avec les paramètres', __FILE__) . ' ' . json_encode($options, true));
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options, true));
 			} else {
 				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
 			}
@@ -1691,7 +1691,7 @@ class cmd {
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'always') {
 			$repeat = false;
 		}
-		$message = __('Evènement sur la commande', __FILE__) . ' ' . $this->getHumanName() . __(' valeur :', __FILE__) . ' ' . $value;
+		$message = __('Evènement sur la commande', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $value;
 		if ($repeat) {
 			$message .= ' (répétition)';
 		}
@@ -1922,9 +1922,9 @@ class cmd {
 			$_value = $this->execCmd();
 		}
 		if ($_level != 'none') {
-			$message = __('Alerte sur la commande', __FILE__) . ' ' . $this->getHumanName() . __(' niveau', __FILE__) . ' ' . $_level . __(' valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
+			$message = __('Alerte sur la commande', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('niveau', __FILE__) . ' ' . $_level . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
-				$message .= ' ' . __('pendant plus de', __FILE__) . ' ' . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
+				$message .= ' ' . __('pendant plus de', __FILE__) . ' ' . $this->getAlert($_level . 'during') . ' ' . __('minute(s)', __FILE__);
 			}
 			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
 			log::add('event', 'info', $message);

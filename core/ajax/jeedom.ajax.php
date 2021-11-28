@@ -444,7 +444,7 @@ try {
 		}
 		$object = $type::byId(init('filter_id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id :', __FILE__) . ' ' . init('filter_id') . __(' inconnu', __FILE__));
+			throw new Exception(__('Type :', __FILE__) . init('filter_type') . ' ' . __('avec id :', __FILE__) . ' ' . init('filter_id') . ' ' . __('inconnu', __FILE__));
 		}
 		ajax::success($object->getLinkData());
 	}

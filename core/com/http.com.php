@@ -127,7 +127,7 @@ class com_http {
 					return $response;
 				}
 				if ($this->getNoReportError() === false && $this->getLogError()) {
-					log::add('http.com', 'error', __('Erreur cURL :', __FILE__) . ' ' . $curl_error . __(' sur la commande', __FILE__) . ' ' . $this->url . __(' après', __FILE__) . ' ' . $nbRetry . __(' relance(s)', __FILE__));
+					log::add('http.com', 'error', __('Erreur cURL :', __FILE__) . ' ' . $curl_error . ' ' . __('sur la commande', __FILE__) . ' ' . $this->url . ' ' . __('après', __FILE__) . ' ' . $nbRetry . ' ' . __('relance(s)', __FILE__));
 				}
 				if ($this->getNoReportError() === false) {
 					throw new Exception(__('Echec de la requête HTTP :', __FILE__) . ' ' . $this->url . ' cURL error : ' . $curl_error, 404);

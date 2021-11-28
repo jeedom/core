@@ -130,7 +130,7 @@ class interactQuery {
 		if (is_object($query)) {
 			$interactDef = $query->getInteractDef();
 			if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
-				log::add('interact', 'debug', __('Correspondance trouvée :', __FILE__) . ' ' . $query->getQuery() . __(' mais ne contient pas :', __FILE__) . ' ' . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+				log::add('interact', 'debug', __('Correspondance trouvée :', __FILE__) . ' ' . $query->getQuery() . ' ' . __('mais ne contient pas :', __FILE__) . ' ' . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
 				return null;
 			}
 			log::add('interact', 'debug', 'Je prends : ' . $query->getQuery());
@@ -150,7 +150,7 @@ class interactQuery {
 			if (is_object($query)) {
 				$interactDef = $query->getInteractDef();
 				if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
-					log::add('interact', 'debug', __('Correspondance trouvée :', __FILE__) . ' ' . $query->getQuery() . __(' mais ne contient pas :', __FILE__) . ' ' . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+					log::add('interact', 'debug', __('Correspondance trouvée :', __FILE__) . ' ' . $query->getQuery() . ' ' . __('mais ne contient pas :', __FILE__) . ' ' . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
 					return null;
 				}
 				return $queries;
@@ -173,7 +173,7 @@ class interactQuery {
 			$lev = levenshtein($input, $_query);
 			$interactDef = $query->getInteractDef();
 			if ($interactDef->getOptions('mustcontain') != '' && !preg_match($interactDef->getOptions('mustcontain'), $_query)) {
-				log::add('interact', 'debug', __('Correspondance trouvée :', __FILE__) . ' ' . $query->getQuery() . __(' mais ne contient pas :', __FILE__) . ' ' . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
+				log::add('interact', 'debug', __('Correspondance trouvée :', __FILE__) . ' ' . $query->getQuery() . ' ' . __('mais ne contient pas :', __FILE__) . ' ' . interactDef::sanitizeQuery($interactDef->getOptions('mustcontain')));
 				continue;
 			}
 			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' => ' . $lev);
@@ -219,7 +219,7 @@ class interactQuery {
 			log::add('interact', 'debug', __('Aucune phrase trouvée', __FILE__));
 			return null;
 		}
-		log::add('interact', 'debug', __('J\'ai une correspondance  :', __FILE__) . ' ' . $closest->getQuery() . __(' avec', __FILE__) . ' ' . $shortest);
+		log::add('interact', 'debug', __('J\'ai une correspondance  :', __FILE__) . ' ' . $closest->getQuery() . ' ' . __('avec', __FILE__) . ' ' . $shortest);
 		return $closest;
 	}
 
@@ -496,8 +496,8 @@ class interactQuery {
 				return;
 			}
 			$cmd->execCmd(array(
-				'title' => __('Alerte :', __FILE__) . ' ' . str_replace('#value#', $_options['name'], $_options['test']) . __(' valeur :', __FILE__) . ' ' . $_options['value'],
-				'message' => __('Alerte :', __FILE__) . ' ' . str_replace('#value#', $_options['name'], $_options['test']) . __(' valeur :', __FILE__) . ' ' . $_options['value'],
+				'title' => __('Alerte :', __FILE__) . ' ' . str_replace('#value#', $_options['name'], $_options['test']) . ' ' . __('valeur :', __FILE__) . ' ' . $_options['value'],
+				'message' => __('Alerte :', __FILE__) . ' ' . str_replace('#value#', $_options['name'], $_options['test']) . ' ' . __('valeur :', __FILE__) . ' ' . $_options['value'],
 			));
 		}
 	}
@@ -707,8 +707,8 @@ class interactQuery {
 			__('Je ne comprends pas', __FILE__),
 		);
 		if (isset($_parameters['profile'])) {
-			$notUnderstood[] = __('Désolé', __FILE__) . ' ' . $_parameters['profile'] . __(' je n\'ai pas compris', __FILE__);
-			$notUnderstood[] = __('Désolé', __FILE__) . ' ' . $_parameters['profile'] . __(' je n\'ai pas compris ta demande', __FILE__);
+			$notUnderstood[] = __('Désolé', __FILE__) . ' ' . $_parameters['profile'] . ' ' . __('je n\'ai pas compris', __FILE__);
+			$notUnderstood[] = __('Désolé', __FILE__) . ' ' . $_parameters['profile'] . ' ' . __('je n\'ai pas compris ta demande', __FILE__);
 		}
 		$random = rand(0, count($notUnderstood) - 1);
 		return $notUnderstood[$random];
