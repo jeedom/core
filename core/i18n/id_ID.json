@@ -2640,7 +2640,7 @@
         "Market": "Market",
         "Ajouter un plugin": "Menambahkan plugin",
         "Gestion Plugins": "Gestion Plugins",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Apakah Anda yakin ingin menghapus plugin ini?",
+        "Êtes-vous sûr de vouloir supprimer le plugin": "Êtes-vous sûr de vouloir supprimer le plugin",
         "Sauvegarde de la configuration des panneaux effectuée": "Menyimpan konfigurasi panel dilakukan",
         "Sauvegarde des fonctionalités effectuée": "Fungsi backup dilakukan",
         "Sauvegarde de la configuration des logs effectuée": "Menyimpan konfigurasi log dilakukan",
@@ -2913,7 +2913,7 @@
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Cadangan selesai dengan sukses",
         "Configuration de la commande": "Set Kontrol",
-        "Êtes-vous sûr de vouloir supprimer ce widget ?": "Êtes-vous sûr de vouloir supprimer ce widget ?",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
@@ -3240,6 +3240,7 @@
         "Configuration du plugin": "Konfigurasi Plugin",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Apakah Anda yakin ingin menghapus peralatan \\ 's",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Silakan \\ 's pertama memilih",
         "Nom de l'équipement ?": "Nama Perangkat?",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Aktifkan peralatan \\ 's sebelum menguji salah satu pesanan yang"

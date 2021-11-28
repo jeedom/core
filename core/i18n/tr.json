@@ -2640,7 +2640,7 @@
         "Market": "Market",
         "Ajouter un plugin": "Eklenti ekle",
         "Gestion Plugins": "Eklenti yönetimi",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Eğer bu eklentiyi silmek istediğinizden emin misiniz?",
+        "Êtes-vous sûr de vouloir supprimer le plugin": "Êtes-vous sûr de vouloir supprimer le plugin",
         "Sauvegarde de la configuration des panneaux effectuée": "Gerçekleştirilen panellerin yapılandırmasını kaydetme",
         "Sauvegarde des fonctionalités effectuée": "Özelliklerin kaydı oluştu",
         "Sauvegarde de la configuration des logs effectuée": "Log ayarlarının kaydı yapıldı",
@@ -2913,7 +2913,7 @@
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Kayıt başarıyla sonuçlandı",
         "Configuration de la commande": "Komutanın ayarları",
-        "Êtes-vous sûr de vouloir supprimer ce widget ?": "Êtes-vous sûr de vouloir supprimer ce widget ?",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
@@ -3240,6 +3240,7 @@
         "Configuration du plugin": "Eklentinin ayarları",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Once bitane seçin",
         "Nom de l'équipement ?": "Cihazın ismi ?",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Komutasını test etmeden önce cihazı aktif hale getirin"

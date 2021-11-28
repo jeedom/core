@@ -2640,7 +2640,7 @@
         "Market": "Market",
         "Ajouter un plugin": "Aggiungere un plugin",
         "Gestion Plugins": "Gestione dei plugin",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Sei sicuro di voler eliminare questo plugin?",
+        "Êtes-vous sûr de vouloir supprimer le plugin": "Êtes-vous sûr de vouloir supprimer le plugin",
         "Sauvegarde de la configuration des panneaux effectuée": "Salvare la configurazione dei pannelli eseguiti",
         "Sauvegarde des fonctionalités effectuée": "Funzionalità di backup eseguita",
         "Sauvegarde de la configuration des logs effectuée": "Salvare la configurazione dei tronchi trasportati",
@@ -2913,7 +2913,7 @@
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Backup completato con successo",
         "Configuration de la commande": "Impostazione comando",
-        "Êtes-vous sûr de vouloir supprimer ce widget ?": "Sei sicuro di voler eliminare questo widget?",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'importazione di widget viene eseguita in formato json da widget precedentemente esportati",
         "Fichier json non compatible.": "File Json non compatibile",
         "Problème lors de la lecture du fichier.": "Problema durante la lettura del file"
@@ -3240,6 +3240,7 @@
         "Configuration du plugin": "Configurazione del plugin",
         "Nom de la copie de l\\'équipement ?": "Nome della copia dell'attrezzatura?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Si prega di selezionare a",
         "Nom de l'équipement ?": "Nome dell'attrezzatura?",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Si prega di attivare l'apparecchiatura prima di testare uno dei suoi controlli"

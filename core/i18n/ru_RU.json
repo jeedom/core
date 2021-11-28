@@ -2640,7 +2640,7 @@
         "Market": "Market",
         "Ajouter un plugin": "Добавить плагин",
         "Gestion Plugins": "Gestion Plugins",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "Вы уверены, что хотите удалить этот плагин?",
+        "Êtes-vous sûr de vouloir supprimer le plugin": "Êtes-vous sûr de vouloir supprimer le plugin",
         "Sauvegarde de la configuration des panneaux effectuée": "Сохранение конфигурации панелей, выполненных",
         "Sauvegarde des fonctionalités effectuée": "Функциональные возможности, выполняемые резервное копирование",
         "Sauvegarde de la configuration des logs effectuée": "Настройки логов сохранены",
@@ -2913,7 +2913,7 @@
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
         "Configuration de la commande": "управляющий набор",
-        "Êtes-vous sûr de vouloir supprimer ce widget ?": "Êtes-vous sûr de vouloir supprimer ce widget ?",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "L'import de widgets se fait au format json à partir de widgets précedemment exporté",
         "Fichier json non compatible.": "Fichier json non compatible",
         "Problème lors de la lecture du fichier.": "Problème lors de la lecture du fichier"
@@ -3240,6 +3240,7 @@
         "Configuration du plugin": "Конфигурация плагина",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Вы уверены, что хотите удалить оборудование",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "Пожалуйста, выберите сначала",
         "Nom de l'équipement ?": "Название оборудования?",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Пожалуйста, активируйте оборудование до тестирования его первого запроса"

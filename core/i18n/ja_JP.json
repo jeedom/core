@@ -2640,7 +2640,7 @@
         "Market": "Market",
         "Ajouter un plugin": "プラグインを追加する",
         "Gestion Plugins": "プラグイン管理",
-        "Êtes-vous sûr de vouloir supprimer ce plugin ?": "このプラグインを削除してもよろしいですか？",
+        "Êtes-vous sûr de vouloir supprimer le plugin": "Êtes-vous sûr de vouloir supprimer le plugin",
         "Sauvegarde de la configuration des panneaux effectuée": "実行されたパネルの構成の保存",
         "Sauvegarde des fonctionalités effectuée": "実行された機能バックアップ",
         "Sauvegarde de la configuration des logs effectuée": "ログ構成が保存されました",
@@ -2913,7 +2913,7 @@
         "Nom du widget": "Nom du widget",
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
         "Configuration de la commande": "設定された制御",
-        "Êtes-vous sûr de vouloir supprimer ce widget ?": "このウィジェットを削除してもよろしいですか？",
+        "Êtes-vous sûr de vouloir supprimer le widget": "Êtes-vous sûr de vouloir supprimer le widget",
         "L'import de widgets se fait au format json à partir de widgets précedemment exporté.": "ウィジェットのインポートは、以前にエクスポートされたウィジェットからjson形式で行われます。",
         "Fichier json non compatible.": "JSONファイルに互換性がありません。",
         "Problème lors de la lecture du fichier.": "ファイルの読み取りに問題があります。"
@@ -3240,6 +3240,7 @@
         "Configuration du plugin": "プラグイン構成",
         "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
+        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
         "Veuillez d\\'abord sélectionner un": "を選択してください",
         "Nom de l'équipement ?": "機器の名前は？",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "コントロールをテストする前に、機器をアクティブにしてください"
