@@ -25,7 +25,7 @@ $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  width: 480,
+  width: window.innerWidth > 500 ? 480 : window.innerWidth,
   height: 460,
   open: function() {
     $("body").css({
