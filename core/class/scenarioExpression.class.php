@@ -792,11 +792,11 @@ class scenarioExpression {
 		if (count($cmds) > 0) {
 			global $JEEDOM_INTERNAL_CONFIG;
 			$calcul = 'sum';
-			if (isset($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$_genericType]['calcul'])) {
-				$calcul = $JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$_genericType]['calcul'];
-			} elseif (count($JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$_genericType]['subtype']) == 1 && $JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$_genericType]['subtype'][0] == 'string') {
+			$config = $JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$_genericType];
+			if (isset($config['calcul'])) {
+				$calcul = $config['calcul'];
+			} elseif (count($config['subtype']) == 1 && $config['subtype'][0] == 'other') {
 				$calcul = 'text';
-			}
 			$values = array();
 			foreach ($cmds as $cmd) {
 				if (is_numeric($cmd->execCmd())) {
