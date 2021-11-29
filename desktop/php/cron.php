@@ -31,7 +31,7 @@ if (!isConnect('admin')) {
 
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="cron">
-        <table id="table_cron" class="table table-bordered table-condensed tablesorter">
+        <table id="table_cron" class="ui-table-reflow table table-bordered table-condensed tablesorter">
           <thead>
             <tr>
               <th data-filter="false" data-resizable="false">{{ID}}</th>
@@ -54,7 +54,7 @@ if (!isConnect('admin')) {
       </div>
 
       <div role="tabpanel" class="tab-pane" id="listener">
-        <table id="table_listener" class="table table-bordered table-condensed" >
+        <table id="table_listener" class="ui-table-reflow table table-bordered table-condensed" >
           <thead>
             <tr>
               <th style="width: 40px;">#</th>
@@ -71,7 +71,7 @@ if (!isConnect('admin')) {
 
       <div role="tabpanel" class="tab-pane" id="deamon">
         <a id="bt_refreshDeamon" class="btn btn-sm btn-default pull-right" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-        <table id="table_deamon" class="table table-bordered table-condensed" >
+        <table id="table_deamon" class="ui-table-reflow table table-bordered table-condensed" >
           <thead>
             <tr>
               <th>{{Nom}}</th>

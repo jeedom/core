@@ -1,4 +1,4 @@
-/*
+/*/*
 Theme Core 2021 @Jeedom
 Desktop
 */
@@ -5054,5 +5054,47 @@ Desktop
   @media (min-width:1920px) {
     #objectOverviewContainer > div.col-lg-3 {
       width: 14.2%;
+    }
+  }
+
+/* ________________________________________TABLE REFLOW FLEX */
+  @media ( max-width: 768px ) {
+    table.ui-table-reflow thead {
+      position: relative !important;
+    }
+
+    th.tablesorter-header {
+      margin: 0 !important;
+    }
+    .tablesorter-filter-row {
+      display: none;
+    }
+
+    .ui-table-reflow td,
+    .ui-table-reflow th {
+      box-sizing: border-box;
+      float: right;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    table.ui-table-reflow.table-condensed tbody {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+    }
+    table.ui-table-reflow.table-condensed tbody tr {
+      display: table;
+      flex: 0 1 150px;
+      margin: 2px;
+      margin-bottom: 22px !important;
+    }
+    table.ui-table-reflow.table-condensed tbody tr td {
+      display: table;
+      margin-bottom: 2px !important;
+    }
+
+    body[data-page="update"] tbody > tr > td > span {
+      width: 100%
     }
   }

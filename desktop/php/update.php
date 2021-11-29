@@ -76,9 +76,7 @@ if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
 		
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="coreplugin">
-				
-				
-				<table class="table table-condensed table-bordered tablesorter" id="table_update">
+				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_update">
 					<thead>
 						<tr>
 							<th style="width:50px;">{{Etat}}</th>
