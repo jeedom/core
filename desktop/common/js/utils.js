@@ -952,6 +952,10 @@ jeedomUtils.datePickerDestroy = function() {
   $('.in_datepicker').datepicker( "destroy" )
   $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
   $('#ui-datepicker-div').remove()
+
+  //datetime:
+  $('input.isdatepicker').datetimepicker('destroy')
+  $('.xdsoft_datetimepicker').remove()
 }
 
 //General functions__
