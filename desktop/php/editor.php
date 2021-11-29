@@ -5,21 +5,28 @@ if (!isConnect('admin')) {
 
 global $JEEDOM_INTERNAL_CONFIG;
 
-$rootPath = false;
-$editorType = '';
-if (init('type') == 'widget') {
-	$rootPath = 'data/customTemplates';
-	$editorType = 'widget';
+if (init('type', '') == 'custom') {
+	$rootPaths = ['desktop/custom', 'mobile/custom'];
+	foreach ($rootPaths as $rootPath) {
+		$path = __DIR__ . '/../../' . $rootPath;
+		if (!file_exists($path)) {
+			mkdir($path);
+			}
+		$filePath = $path . '/custom.css';
+		if (!is_file($filePath)) {
+			@file_put_contents($filePath, '/* Custom CSS Core ' . jeedom::version() . ' */');
+		}
+		$filePath = $path . '/custom.js';
+		if (!is_file($filePath)) {
+			@file_put_contents($filePath, '/* Custom js Core ' . jeedom::version() . ' */');
+		}
+	}
 }
-if (init('root') != '') {
-	$rootPath =  init('root');
-}
+
 sendVarToJS([
-	'rootPath' => $rootPath,
-	'editorType' => $editorType
+	'editorType' => init('type', ''),
+	'customActive' => config::byKey('enableCustomCss')
 ]);
-@session_start();
-$_SESSION["elFinderRoot"] = $rootPath;
 
 //Core CodeMirror:
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');

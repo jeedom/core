@@ -191,10 +191,10 @@ jeedom.log.autoupdate = function(_params) {
       if ($(this).attr('data-state') == 1) {
         $(this).attr('data-state', 0);
         $(this).removeClass('btn-warning').addClass('btn-success');
-        $(this).html('<i class="fa fa-play"></i> {{Reprendre}}');
+        $(this).html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>');
       } else {
         $(this).removeClass('btn-success').addClass('btn-warning');
-        $(this).html('<i class="fa fa-pause"></i> {{Pause}}');
+        $(this).html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>');
         $(this).attr('data-state', 1);
         _params.display.scrollTop(_params.display.height() + 200000);
         _params['once'] = 0;

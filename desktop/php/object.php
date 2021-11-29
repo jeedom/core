@@ -68,13 +68,15 @@ $synthToActions = array(
 		</div>
 	</div>
 
-	<div id="div_conf" class="col-xs-12 object" style="display: none;">
-		<div class="input-group floatingbar" style="display:inline-flex">
-			<span class="input-group-btn">
-				<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-			</span>
+	<div id="div_conf" class="hasfloatingbar col-xs-12 object" style="display: none;">
+		<div class="floatingbar">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
+					</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				</span>
+			</div>
 		</div>
 
 		<ul class="nav nav-tabs" role="tablist">
@@ -371,7 +373,7 @@ $synthToActions = array(
 								$active = 'active';
 								$echo = '';
 								foreach ($config_objSummary as $key => $value) {
-									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
+									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
 									$active = '';
 								}
 								echo $echo;

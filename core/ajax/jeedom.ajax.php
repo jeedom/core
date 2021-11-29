@@ -119,7 +119,7 @@ try {
 	if (init('action') == 'addWarnme') {
 		$cmd = cmd::byId(init('cmd_id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande non trouvée : ', __FILE__) . init('cmd_id'));
+			throw new Exception(__('Commande non trouvée :', __FILE__) . ' ' . init('cmd_id'));
 		}
 		$options = array(
 			'type' => 'cmd',
@@ -138,7 +138,7 @@ try {
 			$listener->save(true);
 			ajax::success();
 		} else {
-			throw new Exception(__('Aucune Commande de Notification : ', __FILE__) . init('cmd_id'));
+			throw new Exception(__('Aucune Commande de Notification :', __FILE__) . ' ' . init('cmd_id'));
 			ajax::error();
 		}
 	}
@@ -384,14 +384,14 @@ try {
 			mkdir($uploaddir);
 		}
 		if (!file_exists($uploaddir)) {
-			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
+			throw new Exception(__('Répertoire de téléversement non trouvé :', __FILE__) . ' ' . $uploaddir);
 		}
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.gz'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 1000000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 1Go)', __FILE__));
@@ -435,27 +435,6 @@ try {
 		ajax::success(jeedom::forceSyncHour());
 	}
 
-	if (init('action') == 'saveCustom') {
-		unautorizedInDemo();
-		$path = __DIR__ . '/../../';
-		if (init('version') != 'desktop' && init('version') != 'mobile') {
-			throw new Exception(__('La version ne peut être que desktop ou mobile', __FILE__));
-		}
-		if (init('type') != 'js' && init('type') != 'css') {
-			throw new Exception(__('La version ne peut être que js ou css', __FILE__));
-		}
-		$path .= init('version') . '/custom/';
-		if (!file_exists($path)) {
-			mkdir($path);
-		}
-		$path .= 'custom.' . init('type');
-		if (file_exists($path)) {
-			unlink($path);
-		}
-		file_put_contents($path, init('content'));
-		ajax::success();
-	}
-
 	if (init('action') == 'getGraphData') {
 		$return = array('node' => array(), 'link' => array());
 		$object = null;
@@ -465,7 +444,7 @@ try {
 		}
 		$object = $type::byId(init('filter_id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Type :', __FILE__) . init('filter_type') . __(' avec id : ', __FILE__) . init('filter_id') . __(' inconnu', __FILE__));
+			throw new Exception(__('Type :', __FILE__) . init('filter_type') . ' ' . __('avec id :', __FILE__) . ' ' . init('filter_id') . ' ' . __('inconnu', __FILE__));
 		}
 		ajax::success($object->getLinkData());
 	}
@@ -493,7 +472,7 @@ try {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension :', __FILE__) . ' ' . $pathinfo['extension']);
 		}
 		$pathfile = calculPath(urldecode(init('path')));
 		if ($pathfile === false) {
@@ -513,7 +492,7 @@ try {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension :', __FILE__) . ' ' . $pathinfo['extension']);
 		}
 		$pathfile = calculPath(urldecode(init('path')));
 		if ($pathfile === false) {
@@ -533,7 +512,7 @@ try {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('path'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension :', __FILE__) . ' ' . $pathinfo['extension']);
 		}
 		$pathfile = calculPath(urldecode(init('path')));
 		if ($pathfile === false) {
@@ -553,7 +532,7 @@ try {
 		unautorizedInDemo();
 		$pathinfo = pathinfo(init('name'));
 		if (!in_array($pathinfo['extension'], array('php', 'js', 'json', 'sql', 'ini', 'css', 'py', 'css', 'html', 'yaml', 'config', 'conf'))) {
-			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension : ', __FILE__) . $pathinfo['extension']);
+			throw new Exception(__('Vous ne pouvez éditer ce type d\'extension :', __FILE__) . ' ' . $pathinfo['extension']);
 		}
 		$pathfile = calculPath(urldecode(init('path')));
 		if ($pathfile === false) {
@@ -600,7 +579,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png', '.gif'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -638,7 +617,7 @@ try {
 		unautorizedInDemo();
 		$type = init('type');
 		if (!class_exists($type)) {
-			throw new Exception('{{Type non trouvé : }}' . $type);
+			throw new Exception('{{Type non trouvé :}}' . ' ' . $type);
 		}
 		$datas = is_json(init('objects'), array());
 		if (count($datas) > 0) {
@@ -658,7 +637,7 @@ try {
 		ajax::success();
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 $eqLogic = eqLogic::byId(init('eqLogic_id'));
 if (!is_object($eqLogic)) {
-  throw new Exception('{{EqLogic non trouvé : }}' . init('eqLogic_id'));
+  throw new Exception('{{EqLogic non trouvé :}}' . ' ' . init('eqLogic_id'));
 }
 //cmds setters:
 $cmds = $eqLogic->getCmd();

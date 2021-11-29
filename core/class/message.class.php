@@ -213,7 +213,7 @@ class message {
 					scenarioExpression::createAndExec('action', $action['cmd'], $options);
 				}
 			}
-			event::add('notify', array('title' => __('Message de ', __FILE__) . ' ' . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
+			event::add('notify', array('title' => __('Message de', __FILE__) . ' ' . ' ' . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
 			event::add('message::refreshMessageNumber');
 		}
 		return true;

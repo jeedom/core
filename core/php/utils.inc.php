@@ -71,7 +71,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path)) {
-		throw new Exception(__('Fichier introuvable : ', __FILE__) . secureXSS($path), 35486);
+		throw new Exception(__('Fichier introuvable :', __FILE__) . ' ' . secureXSS($path), 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {
@@ -156,7 +156,6 @@ function sendVarToJS($_varName, $_value = '') {
 }
 
 function resizeImage($contents, $width, $height) {
-	// Cacul des nouvelles dimensions
 	$width_orig = imagesx($contents);
 	$height_orig = imagesy($contents);
 	$ratio_orig = $width_orig / $height_orig;
@@ -1382,7 +1381,7 @@ function listSession() {
 	$return = array();
 	$sessions = explode("\n", com_shell::execute(system::getCmdSudo() . ' ls -t ' . session_save_path()));
 	if (count($sessions) > 100) {
-		throw new Exception(__('Trop de sessions, je ne peux pas lister : ', __FILE__) . count($sessions) . __('. Faire, pour les nettoyer : ', __FILE__) . '"sudo rm -rf ' . session_save_path() . ';sudo mkdir ' . session_save_path() . ';sudo chmod 777 ' . session_save_path() . '"');
+		throw new Exception(__('Trop de sessions, je ne peux pas lister :', __FILE__) . ' ' . count($sessions) . __('. Faire, pour les nettoyer :', __FILE__) . ' ' . '"sudo rm -rf ' . session_save_path() . ';sudo mkdir ' . session_save_path() . ';sudo chmod 777 ' . session_save_path() . '"');
 	}
 	foreach ($sessions as $session) {
 		try {
@@ -1540,7 +1539,7 @@ function pageTitle($_page) {
 					$url = $_SERVER['REQUEST_URI'];
 					$plugin = explode('m=', $url)[1];
 					$plugin = explode('&', $plugin)[0];
-					$return = __('Panel ', __FILE__) . ucfirst($plugin);
+					$return = __('Panel', __FILE__) . ' ' . ucfirst($plugin);
 				} else {
 					$return = __('Panel', __FILE__);
 				}

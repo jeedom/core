@@ -294,7 +294,7 @@ try {
 		$eqLogicSave = json_decode(init('eqLogic'), true);
 		$eqLogic = eqLogic::byId($eqLogicSave['id']);
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID ', __FILE__) . $eqLogicsSave['id']);
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__) . ' ' . $eqLogicsSave['id']);
 		}
 
 		if (!$eqLogic->hasRight('w')) {
@@ -360,7 +360,7 @@ try {
 			}
 			$eqLogic = eqLogic::byId(init('id'));
 			if (!is_object($eqLogic)) {
-				throw new Exception(__('Equipement inconnu : ', __FILE__) . init('id'), 9999);
+				throw new Exception(__('Equipement inconnu :', __FILE__) . ' ' . init('id'), 9999);
 			}
 			$result = $eqLogic->getUsedBy();
 			$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array(), 'interactDef' => array(), 'cmd' => array());
@@ -422,7 +422,7 @@ try {
 		}
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		if (!$eqLogic->hasRight('w')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
@@ -434,11 +434,11 @@ try {
 	if (init('action') == 'get') {
 		$typeEqLogic = init('type');
 		if ($typeEqLogic == '' || !class_exists($typeEqLogic)) {
-			throw new Exception(__('Type incorrect (classe équipement inexistante) : ', __FILE__) . $typeEqLogic);
+			throw new Exception(__('Type incorrect (classe équipement inexistante) :', __FILE__) . ' ' . $typeEqLogic);
 		}
 		$eqLogic = $typeEqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		$return = utils::o2a($eqLogic);
 		$return['cmd'] = utils::o2a($eqLogic->getCmd());
@@ -546,7 +546,7 @@ try {
 		ajax::success($alerts);
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

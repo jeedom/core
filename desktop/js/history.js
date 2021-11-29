@@ -35,6 +35,7 @@ $(function() {
       })
     }
   }
+  resizeDn()
   jeedomUtils.datePickerInit()
   setChartOptions()
 })
@@ -43,7 +44,7 @@ $(function() {
 var resizeDone
 
 function resizeDn() {
-  var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true) - $('#div_alertHistory').outerHeight(true)
+  var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true)
   if (chart) {
     chart.setSize($('#div_graph').width(), height)
   }
@@ -146,7 +147,7 @@ $('.displayObject').on('click', function() {
 $(".li_history .remove").on('click', function() {
   var bt_remove = $(this);
   $.hideAlert();
-  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de }} <span style="font-weight: bold ;">' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
+  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
     if (result !== null) {
       emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
     }

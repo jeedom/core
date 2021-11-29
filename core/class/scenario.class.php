@@ -395,7 +395,7 @@ class scenario {
 		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['startSubTask']['txt']);
 		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
 			$scenario->setTags($_options['tags']);
-			$scenario->setLog(__('Tags : ', __FILE__) . json_encode($scenario->getTags()));
+			$scenario->setLog(__('Tags :', __FILE__) . ' ' . json_encode($scenario->getTags()));
 		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
 			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['toStartUnfound']['txt']);
@@ -479,7 +479,7 @@ class scenario {
 								'who' => '#' . $cmd_id . '#'
 							);
 						} else {
-							log::add('scenario', 'error', __('Un déclencheur du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+							log::add('scenario', 'error', __('Un déclencheur du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . ' ' . __('est introuvable', __FILE__));
 						}
 					}
 				}
@@ -500,7 +500,7 @@ class scenario {
 							'who' => '#' . $cmd_id . '#'
 						);
 					} else {
-						log::add('scenario', 'error', __('Une commande du scénario : ', __FILE__) . $scenario->getHumanName() . __(' est introuvable', __FILE__));
+						log::add('scenario', 'error', __('Une commande du scénario :', __FILE__) . ' ' . $scenario->getHumanName() . ' ' . __('est introuvable', __FILE__));
 					}
 				}
 			}
@@ -760,13 +760,13 @@ class scenario {
 		}
 		$state = $this->getState();
 		if ($state == 'starting') {
-			//Scénario bloqué en starting (Exemple de cause : trop de connexions à MySql, la connexion est refusée, le scénario plante)
+			//Scenario stuck into starting state. May be too much sql connections, refused connection, or scenario hangs.
 			if (strtotime('now') - $this->getCache('startingTime') > 5) {
 				log::add('scenario', 'error', __('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario', __FILE__) . " \"" . $this->getName() . "\".");
-				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à ', __FILE__) . date('Y-m-d H:i:s', $this->getCache('startingTime')) . ".");
+				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à', __FILE__) . ' ' . date('Y-m-d H:i:s', $this->getCache('startingTime')) . ".");
 				$this->persistLog();
 			}
-			//Retarde le lancement du scénario si une autre instance est déjà en cours de démarrage
+			//Delay scenario start if another instance ever starting.
 			if (($this->getCache('startingTime') + 2) > strtotime('now')) {
 				$i = 0;
 				while ($state == 'starting') {
@@ -821,7 +821,7 @@ class scenario {
 			$this->setCache('tags', '');
 		}
 		if ($this->getIsActive() != 1) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . __(' sur : ', __FILE__) . $_message . __(' car il est désactivé', __FILE__));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $_message . ' ' . __('car il est désactivé', __FILE__));
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();
@@ -829,7 +829,7 @@ class scenario {
 		}
 		if ($this->getConfiguration('timeDependency', 0) == 1) {
 			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4)) {
-				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . __(' annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
+				$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $this->getHumanName() . ' ' . __('annulé car il utilise une condition de type temporelle et que la date système n\'est pas OK (ou que l\'on est en changement d\'heure négatif)', __FILE__));
 				$this->setState('stop');
 				$this->setPID();
 				$this->persistLog();
@@ -839,7 +839,7 @@ class scenario {
 
 		$cmd = cmd::byId(str_replace('#', '', $_trigger));
 		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $cmd->getHumanName());
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -850,7 +850,7 @@ class scenario {
 				$timeline->save();
 			}
 		} else {
-			log::add('event', 'info', __('Exécution du scénario ', __FILE__) . $this->getHumanName() . __(' déclenché par : ', __FILE__) . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
@@ -1259,7 +1259,7 @@ class scenario {
 						$cron->halt();
 						$cron->remove();
 					} catch (Exception $e) {
-						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche : ', __FILE__) . json_encode($cron->getOption()));
+						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche :', __FILE__) . ' ' . json_encode($cron->getOption()));
 					}
 				}
 			}
@@ -1284,7 +1284,7 @@ class scenario {
 				}
 			}
 			if ($this->running()) {
-				throw new Exception(__('Impossible d\'arrêter le scénario : ', __FILE__) . $this->getHumanName() . '. ' . __('PID : ', __FILE__) . $this->getPID());
+				throw new Exception(__('Impossible d\'arrêter le scénario :', __FILE__) . ' ' . $this->getHumanName() . '. ' . __('PID :', __FILE__) . ' ' . $this->getPID());
 			}
 		}
 		$this->setState('stop');
@@ -1581,6 +1581,9 @@ class scenario {
 		addGraphLink($this, 'scenario', $use['view'], 'view', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['plan'], 'plan', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $use['plan3d'], 'plan3d', $_data, $_level, $_drill);
+		foreach ($usedBy['plugin'] as $key => $value) {
+			addGraphLink($this, 'eqLogic', $value, $key, $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'scenario', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'scenario', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
@@ -1605,9 +1608,9 @@ class scenario {
 	 */
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
-		$return['cmd'] = cmd::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
-		$return['eqLogic'] = eqLogic::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
-		$return['interactDef'] = interactDef::searchByUse(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId()));
+		$return['cmd'] = cmd::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId() . '"'));
+		$return['eqLogic'] = eqLogic::searchConfiguration(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId() . '"'));
+		$return['interactDef'] = interactDef::searchByUse(array('#scenario' . $this->getId() . '#', '"scenario_id":"' . $this->getId() . '"'));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'scenario', 'option' => 'scenario_id":"' . $this->getId() . '"', 'and' => true),
 			array('action' => '#scenario' . $this->getId() . '#'),
@@ -1615,6 +1618,11 @@ class scenario {
 		$return['view'] = view::searchByUse('scenario', $this->getId());
 		$return['plan'] = planHeader::searchByUse('scenario', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('scenario', $this->getId());
+		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
+			if (method_exists($plugin, 'customUsedBy')) {
+				$return['plugin'][$plugin] = $plugin::customUsedBy('scenario', $this->getId());
+			}
+		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

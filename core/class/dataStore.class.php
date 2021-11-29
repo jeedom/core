@@ -84,7 +84,7 @@ class dataStore {
 	public function preSave() {
 		$allowType = array('cmd', 'object', 'eqLogic', 'scenario');
 		if (!in_array($this->getType(), $allowType)) {
-			throw new Exception(__('Le type doit être un des suivants : ', __FILE__) . print_r($allowType, true));
+			throw new Exception(__('Le type doit être un des suivants :', __FILE__) . ' ' . print_r($allowType, true));
 		}
 		if (!is_numeric($this->getLink_id())) {
 			throw new Exception(__('Link_id doit être un chiffre', __FILE__));

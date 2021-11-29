@@ -358,7 +358,7 @@ class network {
 			}
 			copy(__DIR__ . '/../../resources/ca_dns.crt', $path_ca);
 			if (!file_exists($path_ca)) {
-				throw new Exception(__('Impossible de créer le fichier  : ', __FILE__) . $path_ca);
+				throw new Exception(__('Impossible de créer le fichier  :', __FILE__) . ' ' . $path_ca);
 			}
 			return $openvpn;
 		} elseif (config::byKey('dns::mode') == 'wireguard') {
@@ -504,7 +504,7 @@ class network {
 		if ($return_val == 0) {
 			return;
 		}
-		log::add('network', 'error', __('Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping : ', __FILE__) . $gw);
+		log::add('network', 'error', __('Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :', __FILE__) . ' ' . $gw);
 		exec(system::getCmdSudo() . 'service networking restart');
 	}
 }

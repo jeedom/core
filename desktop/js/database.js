@@ -51,7 +51,7 @@ function dbExecuteCommand(_command, _addToList) {
       })
     },
     success: function(result) {
-      $('#h3_executeCommand').empty().append('{{Commande : }}"' + _command + '"<br/>{{Temps d\'éxécution}} : ' + result.time + 's')
+      $('#h3_executeCommand').empty().append('{{Commande :}} "' + _command + '"<br/>{{Temps d\'éxécution}} :' + ' ' + result.time + 's')
       $divCommandResult.append(dbGenerateTableFromResponse(result.sql))
       $('#in_specificCommand').val(_command)
 

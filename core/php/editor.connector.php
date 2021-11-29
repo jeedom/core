@@ -5,13 +5,15 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-@session_start();
-@session_write_close();
-error_reporting(0); // Set E_ALL for debuging
-if (strpos($_SESSION["elFinderRoot"], '..') !== false) {
-  return;
+if (init('type') == '') {
+  $rootPaths = [''];
+} else if (init('type') == 'widget') {
+  $rootPaths = ['data/customTemplates'];
+} else if (init('type') == 'custom') {
+  $rootPaths = ['desktop/custom', 'mobile/custom'];
+} else {
+  throw new Exception(__('Invalide type', __FILE__));
 }
-
 
 // // To Enable(true) handling of PostScript files by ImageMagick
 // // It is disabled by default as a countermeasure
@@ -50,17 +52,22 @@ function access($attr, $path, $data, $volume, $isDir, $relpath) {
 // Documentation for connector options:
 // https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
 $opts = array(
-  'roots' => array(
-    array(
-      'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
-      'path'          => dirname(__FILE__) . '/../../' . $_SESSION["elFinderRoot"],         // path to files (REQUIRED)
-      'URL'           => dirname($_SERVER['PHP_SELF']) . '/../../', // URL to files (REQUIRED)
-      'accessControl' => 'access',             // disable and hide dot starting files (OPTIONAL)
-      'tmpPath'       => dirname(__FILE__) . '/../../data/editorTemp',
-      'utf8fix'       => true
-    )
-  )
+  'roots' => array()
 );
+foreach ($rootPaths as $rootPath) {
+  $root = array(
+    //'id'            => '1',
+    'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
+    'path'          => dirname(__FILE__) . '/../../' . $rootPath . '/',         // path to files (REQUIRED)
+    'URL'           => dirname($_SERVER['PHP_SELF']) . '/../../' . $rootPath . '/', // URL to files (REQUIRED)
+    'accessControl' => 'access',             // disable and hide dot starting files (OPTIONAL)
+    'tmpPath'       => dirname(__FILE__) . '/../../data/editorTemp',
+    'utf8fix'       => true,
+    'alias'         => $rootPath
+  );
+  array_push($opts['roots'], $root);
+}
+
 
 // run elFinder
 $connector = new elFinderConnector(new elFinder($opts));

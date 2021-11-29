@@ -97,8 +97,8 @@ $('#bt_executeExpressionOk').on('click',function() {
       if (data.correct == 'nok') {
         html += '<strong>{{Attention : il doit y avoir un souci, car le résultat est le même que l\'expression}}</strong><br\>'
       }
-      html += '{{Je vais évaluer : }} <strong>'+data.evaluate+'</strong><br/>'
-      html += '{{Résultat : }} <strong>'+data.result+'</strong>'
+      html += '{{Je vais évaluer :}} <strong>' + data.evaluate + '</strong><br/>'
+      html += '{{Résultat :}} <strong>' + data.result + '</strong>'
       html += '</div></ul>'
       $('#div_expressionTestResult').append(html)
     }

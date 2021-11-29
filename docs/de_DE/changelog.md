@@ -11,6 +11,7 @@
 
 - **Synthese** : Möglichkeit zum Konfigurieren von Objekten für a *Design* oder ein *Aussicht* seit der Synthese.
 - **Instrumententafel** : Im Gerätekonfigurationsfenster (Bearbeitungsmodus) können Sie jetzt mobile Widgets und generische Typen konfigurieren.
+- **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
 - **Analyse / Geschichte** : Möglichkeit, eine Historie über einen bestimmten Zeitraum zu vergleichen.
 - **Analyse / Ausrüstung** : Verwaiste Bestellungen zeigen jetzt ihren Namen und das Löschdatum an, falls sie sich noch im Löschverlauf befinden, sowie einen Link zu dem betroffenen Szenario oder der betroffenen Ausrüstung.
 - **Analyse / Protokolle** : Protokollzeilennummerierung. Möglichkeit, das Rohprotokoll anzuzeigen.
@@ -21,30 +22,33 @@
 - **Zusammenfassungen** : Konfiguration ist jetzt möglich [Aktionen zu Zusammenfassungen](/de_DE/concept/summary#Actions sur résumés) (Strg + Klick auf eine Zusammenfassung) dank der virtuellen.
 - **Gerätearten** : [Neue Seite](/de_DE/core/4.2/types) **Werkzeuge → Gerätetypen** Ermöglicht die Zuweisung von generischen Typen zu Geräten und Befehlen mit Unterstützung für Typen, die für installierte Plugins bestimmt sind (siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2)).
 - **Auswahl der Abbildungen** : Neues globales Fenster für die Auswahl der Abbildungen *(Symbole, Bilder, Hintergründe)*.
-- **Farbige Kategorien** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
-- **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Plugins können diese neue Core-Funktion verwenden.
-- **Aufbau** : Möglichkeit, Hintergrundbilder auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft entsprechend dem Thema zu konfigurieren.
+- **Tabellenanzeige** : Hinzufügen einer Schaltfläche rechts von der Suche auf den Seiten *Objekte* *Szenarien* *Interaktionen* *Widgets* und *Plugins* in den Tabellenmodus wechseln. Dies wird durch ein Cookie oder in gespeichert **Einstellungen → System → Konfiguration / Schnittstelle, Optionen**. Die Plugins können diese neue Funktion des Core nutzen. sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.2).
 - **Gerätekonfiguration** : Möglichkeit, eine Verlaufskurve am unteren Rand der Kachel eines Geräts zu konfigurieren.
-- **Codeblöcke** : (Datei-Editor, Szenarien, erweiterte Anpassung) Code-Fallback-Funktion (*Code falten*). Tastenkombinationen Strg + Y und Strg + I.
+- **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Plugins / Management** : Anzeige der Plugin-Kategorie und ein Link zum direkten Öffnen der Seite, ohne das Plugins-Menü aufzurufen.
+- **Szenario** : Code-Fallback-Funktion (*Code falten*) in dem *Codeblöcke*. Tastenkombinationen Strg + Y und Strg + I.
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
 - **Szenario** : Berechnungsfunktionen hinzufügen ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
 - **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
 	- Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
 	- IF `genericType (LIGHT_STATE .),#[Salon]#) > 0`
 	- `GenericType`-Aktion
-- **OSDB-Einstellungen** : Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
-- **OSDB-Einstellungen** : Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
-- **Widgets** : Internationalisierung von Widgets von Drittanbietern (Benutzercode). Siehe Entwicklerdokument v4.2.
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
 - **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
 - **Benutzer** : Möglichkeit zum Ausblenden von Objekten / Ansicht / Design / 3D-Design für eingeschränkte Benutzer.
-- **Bestellt** : Möglichkeit, vor Ausführung des Befehls eine Berechnung für eine Befehlsaktion vom Typ Schieberegler durchzuführen.
 - **Updates Center** : Das Update Center zeigt jetzt das Datum des letzten Updates an.
 - **Hinzufügen des Benutzers, der eine Aktion ausführt** : Hinzufügen in den Befehlsausführungsoptionen der ID und des Benutzernamens, die die Aktion starten (z. B. sichtbar im Protokollereignis)
 - **Dokumentation und Changelog-Plugin Beta** : Dokumentation und Changelog-Management für Plugins in der Beta. Achtung, in der Beta ist das Changelog nicht datiert.
-- **Allgemein** : Integration des JeeXplorer-Plugins in den Core.
+- **Allgemein** : Integration des JeeXplorer-Plugins in den Core. Wird jetzt für Widget-Code und erweiterte Anpassung verwendet.
+- **Aufbau** : Neue Option in Konfiguration / Benutzeroberfläche, um das Titelbanner des Geräts nicht einzufärben.
+- **Aufbau** : Möglichkeit, Hintergrundbilder auf den Seiten Dashboard, Analyse, Tools und deren Deckkraft entsprechend dem Thema zu konfigurieren.
+- **Aufbau**: Jeedom DNS basierend auf Wireguard anstelle von Openvpn hinzufügen (Administration / Netzwerke). Schneller und stabiler, aber noch im Test. Bitte beachten Sie, dass dies derzeit nicht mit Jeedom Smart kompatibel ist.
+- **Aufbau** : OSDB-Einstellungen: Hinzufügen eines Tools zur Massenbearbeitung von Geräten, Befehlen, Objekten, Szenarien.
+- **Aufbau** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
+- **Aufbau**: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
+- **jeeCLI** : Zugabe von ````jeeCli.php```` im core / php-Ordner von Jeedom, um einige Kommandozeilenfunktionen zu verwalten.
+- *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils {}, jeedomUI {}, Hauptmenü in reinem CSS umgeschrieben, Entfernung von initRowWorflow(), Vereinfachung des Codes, CSS-Fixes für kleine Bildschirme usw.*
 
 ### 4.2 : Kern-Widgets
 
@@ -66,18 +70,20 @@ Wir haben eine Bestätigung des Cloud-Backup-Passworts hinzugefügt, um Eingabef
 
 ### 4.2 : Sicherheit
 
-Jeedom 4.2 enthält einen großen Teil zur Erhöhung der Sicherheit.
-
-- Änderung der Dateizugriffsrichtlinie : Bevor wir bestimmte Dateien verboten haben, erlauben wir jetzt nur bestimmte Dateien.
-- Ändern Sie auf der Ebene der API, bevor sie "tolerant" war, wenn Sie mit dem Core-Schlüssel angekommen sind, indem Sie das Plugin angeben XXXXX. Dies ist nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel anreisen.
-- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen. Zum Beispiel für das virtuelle Plugin, das Sie in der URL mit type = virtual hatten, müssen Sie jetzt durch plugin = virtual & type = event ersetzen, dito für das Plugin ipx800v4 oder type = ipx800v4 wird zu plugin = ipx800v4 & type = event
-- Verstärkung der Sitzungen (Änderung zu sha256 mit 64 Zeichen im strikten Modus).
+- Um die Sicherheit der Jeedom-Lösung deutlich zu erhöhen, wurde das Dateizugriffssystem geändert. Bevor bestimmte Dateien an bestimmten Orten verboten wurden. Ab v4.2, Dateien sind explizit nach Typ und Speicherort erlaubt.
+- Änderung auf API-Ebene, zuvor "tolerant", wenn Sie mit dem Core-Key-Anzeige-Plugin angekommen sind XXXXX. Dies ist nicht mehr der Fall, Sie müssen mit dem dem Plugin entsprechenden Schlüssel anreisen.
+- In der http-API könnten Sie einen Plugin-Namen im Typ angeben, dies ist nicht mehr möglich. Der dem Typ der Anfrage entsprechende Typ (szenario, eqLogic, cmd usw.) muss dem Plugin entsprechen. Zum Beispiel für das virtuelle Plugin, das Sie hatten ````type=virtual```` in der URL muss jetzt ersetzt werden durch ````plugin=virtual&type=event````.
+- Verstärkung der Sitzungen : Wechseln Sie zu sha256 mit 64 Zeichen im strikten Modus.
 - Der "Bleib in Verbindung"-Cookie (maximal 3 Monate) ist jetzt "einmalig", bei jeder Verwendung erneuert.
 
 Das Jeedom-Team ist sich bewusst, dass diese Änderungen Auswirkungen haben und für Sie peinlich sein können, aber wir können keine Kompromisse bei der Sicherheit eingehen.
-Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien respektieren : [Dokument](https://doc.jeedom.com/de_DE/dev/plugin_template)
+Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien respektieren : [Dokument](https://doc.jeedom.com/de_DE/dev/plugin_template).
 
 # Changelog Jeedom V4.1
+
+## 4.1.27
+
+- Korrektur einer Sicherheitsverletzung danke @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (www.synacktiv.com)
 
 ## 4.1.26
 

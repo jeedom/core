@@ -125,7 +125,7 @@ class repo_github {
 		try {
 			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
 		} catch (Exception $e) {
-			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
+			throw new Exception(__('Dépot github non trouvé :', __FILE__) . ' ' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
 		}
 		$tmp_dir = jeedom::getTmpFolder('github');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
@@ -136,11 +136,11 @@ class repo_github {
 			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
+			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
 		
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
-		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $_update->getLogicalId() . '...');
+		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $_update->getLogicalId() . '...');
 		if (config::byKey('github::token') == '') {
 			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
 		} else {
@@ -170,10 +170,10 @@ class repo_github {
 		try {
 			$client->api('repo')->branches(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), config::byKey('github::core::branch', 'core', 'stable'));
 		} catch (Exception $e) {
-			throw new Exception(__('Dépot github non trouvé : ', __FILE__) . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/' . config::byKey('github::core::branch', 'core', 'stable'));
+			throw new Exception(__('Dépot github non trouvé :', __FILE__) . ' ' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/' . config::byKey('github::core::branch', 'core', 'stable'));
 		}
 		$url = 'https://api.github.com/repos/' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/zipball/' . config::byKey('github::core::branch', 'core', 'stable');
-		echo __('Téléchargement de ', __FILE__) . $url . '...';
+		echo __('Téléchargement de', __FILE__) . ' ' . $url . '...';
 		if (config::byKey('github::token') == '') {
 			echo shell_exec('curl -s -L ' . $url . ' > ' . $_path);
 		} else {

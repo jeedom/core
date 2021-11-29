@@ -11,6 +11,7 @@
 
 - **Synthesis** : Possibility of configuring objects to go to a *design* or a *view* since the synthesis.
 - **Dashboard** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
+- **Widgets** : Internationalization of third-party Widgets (user code). see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Analysis / History** : Possibility to compare a history over a given period.
 - **Analysis / Equipment** : Orphan orders now display their name and date of deletion if still in the deletion history, as well as a link to the affected scenario or equipment.
 - **Analysis / Logs** : Log line numbering. Possibility to display the raw log.
@@ -21,30 +22,33 @@
 - **Summaries** : It is now possible to configure [actions on summaries](/en_US/concept/summary#Actions sur résumés) (ctrl + click on a summary) thanks to the virtual ones.
 - **Types of equipment** : [New page](/en_US/core/4.2/types) **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
-- **Colored categories** : New option in configuration / interface to not color the title banner of the equipment.
-- **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. Plugins can use this new Core function.
-- **Configuration** : Possibility to configure wallpapers on the Dashboard, Analysis, Tools pages and their opacity according to the theme.
+- **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. The plugins can use this new function of the Core. see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Equipment configuration** : Possibility of configuring a history curve at the bottom of the tile of a device.
-- **Code Blocks** : (File editor, Scenarios, advanced customization) Code fallback function (*code folding*). Ctrl + Y and Ctrl + I shortcuts.
+- **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
+- **Scenario** : Code fallback function (*code folding*) in the *Code Blocks*. Ctrl + Y and Ctrl + I shortcuts.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
 - **Scenario** : Adding calculation functions ````averageTemporal(commande,période)```` & ````averageTemporalBetween(commande,start,end)```` allowing to obtain the average weighted by the duration over the period.
 - **Scenario** : Added support for Generic Types in scenarios.
 	- Trigger : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0`
 	- IF `genericType (LIGHT_STATE,#[Salon]#) > 0`
 	- `GenericType` action
-- **OSDB settings** : Addition of a tool for mass editing of equipment, commands, objects, scenarios.
-- **OSDB settings** : Adding a dynamic SQL query constructor.
-- **Widgets** : Internationalization of third-party Widgets (user code). See developer doc v4.2.
 - **Objects** : Plugins can now request specific parameters specific to objects.
 - **Users** : Plugins can now request specific parameters specific to users.
 - **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
 - **Users** : Ability to hide objects / view / design / 3d design for limited users.
-- **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Updates Center** : Update Center now displays the date of the last update.
 - **Adding the user performing an action** : Addition in the command execution options of the id and user name launching the action (visible in the log event for example)
 - **Documentation and changelog plugin beta** : Documentation and changelog management for plugins in beta. Attention, in beta the changelog is not dated.
-- **Main** : Integration of the JeeXplorer plugin in the Core.
+- **Main** : Integration of the JeeXplorer plugin in the Core. Now used for Widget Code, and advanced customization.
+- **Configuration** : New option in configuration / interface to not color the title banner of the equipment.
+- **Configuration** : Possibility to configure wallpapers on the Dashboard, Analysis, Tools pages and their opacity according to the theme.
+- **Configuration**: Adding Jeedom DNS based on Wireguard instead of Openvpn (Administration / networks). Faster, and more stable, but still in testing. Please note that this is currently not Jeedom Smart compatible.
+- **Configuration** : OSDB settings: Addition of a tool for mass editing of equipment, commands, objects, scenarios.
+- **Configuration** : OSDB settings: Adding a dynamic SQL query constructor.
+- **Configuration**: Possibility to deactivate cloud monitoring (Administration / Updates / Market).
+- **jeeCLI** : Addition of ````jeeCli.php```` in the core / php folder of Jeedom to manage some command line functions.
+- *Big improvements to the interface in terms of performance / responsiveness. jeedomUtils {}, jeedomUI {}, main menu rewritten in pure css, removal of initRowWorflow (), simplification of the code, css fixes for small screens, etc.*
 
 ### 4.2 : Core Widgets
 
@@ -66,18 +70,20 @@ We have added a confirmation of the cloud backup password to prevent entry error
 
 ### 4.2 : Security
 
-Jeedom 4.2 contains a big part on increasing security.
-
-- Change of file access policy : Before we prohibited certain files, now we only allow certain files.
-- Change at the level of the API, before it was "tolerant" if you arrived with the Core key by indicating plugin XXXXX. This is no longer the case, you must arrive with the key corresponding to the plugin.
-- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin. For example for the virtual plugin you had type = virtual in the url you must now replace by plugin = virtual & type = event, ditto for the plugin ipx800v4 or type = ipx800v4 becomes plugin = ipx800v4 & type = event
-- Strengthening of sessions (change to sha256 with 64 characters in strict mode).
+- In order to significantly increase the security of the Jeedom solution, the file access system has changed. Before certain files were prohibited from certain locations. From v4.2, files are explicitly allowed by type and location.
+- Change at the API level, previously "tolerant" if you arrived with the Core key indicating plugin XXXXX. This is no longer the case, you must arrive with the key corresponding to the plugin.
+- In http API you could indicate a plugin name in type, this is no longer possible. The type corresponding to the type of the request (scenario, eqLogic, cmd, etc.) must correspond to the plugin. For example for the virtual plugin you had ````type=virtual```` in the url it is now necessary to replace by ````plugin=virtual&type=event````.
+- Reinforcement of sessions : Change to sha256 with 64 characters in strict mode.
 - The "stay connected" cookie (3 months max) is now "one shot", renewed with each use.
 
 The Jeedom team is well aware that these changes can have an impact and be embarrassing for you, but we cannot compromise on safety.
-The plugins must respect the recommendations on the tree structure of folders and files : [Doc](https://doc.jeedom.com/en_US/dev/plugin_template)
+The plugins must respect the recommendations on the tree structure of folders and files : [Doc](https://doc.jeedom.com/en_US/dev/plugin_template).
 
 # Changelog Jeedom V4.1
+
+## 4.1.27
+
+- Correction of a security breach thank you @Maxime Rinaudo and @Antoine Cervoise from Synacktiv (www.synacktiv.com)
 
 ## 4.1.26
 

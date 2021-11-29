@@ -127,14 +127,16 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 		?>
 	</div>
 
-	<div id="div_conf" class="interact col-xs-12" style="display: none;">
-		<div class="input-group floatingbar" style="display:inline-flex">
-			<span class="input-group-btn">
-				<a class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
-				</a><a class="btn btn-sm" id="bt_duplicate"><i class="fas fa-copy"></i> {{Dupliquer}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveInteract"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
-			</span>
+	<div id="div_conf" class="interact hasfloatingbar col-xs-12" style="display: none;">
+		<div class="floatingbar">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<a class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
+					</a><a class="btn btn-sm" id="bt_duplicate"><i class="fas fa-copy"></i> {{Dupliquer}}
+					</a><a class="btn btn-success btn-sm" id="bt_saveInteract"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+				</span>
+			</div>
 		</div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_interactThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
@@ -394,5 +396,6 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 			</div>
 		</div>
 	</div>
+</div>
 
-	<?php include_file('desktop', 'interact', 'js'); ?>
+<?php include_file('desktop', 'interact', 'js'); ?>

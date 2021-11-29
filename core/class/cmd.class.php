@@ -1058,7 +1058,7 @@ class cmd {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . ': ' . $message . '. ' . $this->getHumanName() . __('Détails : ', __FILE__) . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . ': ' . $message . '. ' . $this->getHumanName() . __('Détails :', __FILE__) . ' ' . $e->getMessage());
 			}
 		}
 	}
@@ -1117,7 +1117,7 @@ class cmd {
 				$options['slider'] = jeedom::evaluateExpression(str_replace('#value#', $options['slider'], $this->getConfiguration('calculValueOffset')));
 			}
 			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . __(' avec les paramètres ', __FILE__) . json_encode($options, true));
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options, true));
 			} else {
 				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
 			}
@@ -1146,7 +1146,7 @@ class cmd {
 					$eqLogic->save();
 				}
 			}
-			log::add($type, 'error', __('Erreur exécution de la commande ', __FILE__) . $this->getHumanName() . ' : ' . $e->getMessage());
+			log::add($type, 'error', __('Erreur exécution de la commande', __FILE__) . ' ' . $this->getHumanName() . ' : ' . $e->getMessage());
 			throw $e;
 		}
 		if ($options !== null && $this->getValue() == '') {
@@ -1637,7 +1637,7 @@ class cmd {
 
 		$template = template_replace($replace, $template);
 		if ($isCorewidget && $_version == 'scenario') {
-			return translate::exec($template, 'core/template/scenario/'.$widget['widgetName'].'.html');
+			return translate::exec($template, 'core/template/scenario/' . $widget['widgetName'] . '.html');
 		}
 		if ($isCorewidget) {
 			return translate::exec($template, 'core/template/widgets.html');
@@ -1659,7 +1659,7 @@ class cmd {
 		}
 		$value = $this->formatValue($_value);
 		if ($this->getSubType() == 'numeric' && ($value > $this->getConfiguration('maxValue', $value) || $value < $this->getConfiguration('minValue', $value)) && strpos($value, 'error') === false) {
-			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée : ', __FILE__) . $this->getHumanName() . ' => ' . $value);
+			log::add('cmd', 'info', __('La commande n\'est pas dans la plage de valeur autorisée :', __FILE__) . ' ' . $this->getHumanName() . ' => ' . $value);
 			return;
 		}
 		if ($this->getConfiguration('denyValues') != '' && in_array($value, explode(';', $this->getConfiguration('denyValues')))) {
@@ -1691,7 +1691,7 @@ class cmd {
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'always') {
 			$repeat = false;
 		}
-		$message = __('Evènement sur la commande ', __FILE__) . $this->getHumanName() . __(' valeur : ', __FILE__) . $value;
+		$message = __('Evènement sur la commande', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $value;
 		if ($repeat) {
 			$message .= ' (répétition)';
 		}
@@ -1823,7 +1823,7 @@ class cmd {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de ', __FILE__) . $action['cmd'] . __('. Détails : ', __FILE__) . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . __('. Détails :', __FILE__) . ' ' . $e->getMessage());
 			}
 		}
 	}
@@ -1854,24 +1854,24 @@ class cmd {
 									$cron->setSchedule(cron::convertDateToCron($next));
 									$cron->setLastRun(date('Y-m-d H:i:s'));
 									$cron->save();
-								} else { //je suis en condition de warning et le cron n'existe pas mais j'etais en danger, je suppose que le cron a expiré
+								} else { //Warning condition, cron doesn't exit but was danger, cron may expired
 									$returnLevel = $currentLevel;
 								}
 							}
-						} else { // il n'y a pas de cron mais j'etais deja dans ce niveau, j'y reste
+						} else { //No cron but was at this level
 							$returnLevel = $this->getCache('alertLevel');
 						}
 					}
-					if (!($_allowDuring  && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0)) { //je suis en alerte sans delai ou en execution de cron
-						if ($_checkLevel == $currentLevel || $_checkLevel == 'none') { //si c'etait un cron, je ne teste que le niveau demandé
+					if (!($_allowDuring  && $this->getAlert($currentLevel . 'during') != '' && $this->getAlert($currentLevel . 'during') > 0)) { //Alert without delay or cron executing
+						if ($_checkLevel == $currentLevel || $_checkLevel == 'none') { //If was a cron, only check asked level
 							if (!($_checkLevel == 'warning' && $this->getCache('alertLevel') == 'danger')) {
 								$returnLevel = $currentLevel;
-							} else { // le cron me demande de passer en warning mais je suis deja en danger, je reste en danger
+							} else { //Cron ask warning, but ever in danger
 								$returnLevel = $this->getCache('alertLevel');
 							}
 						}
 					}
-				} else { // je ne suis pas dans la condition, je supprime le cron
+				} else { //Not in condition, delete cron
 					$cron = cron::byClassAndFunction('cmd', 'duringAlertLevel', array('cmd_id' => intval($this->getId()), 'level' => $level));
 					if (is_object($cron)) {
 						$cron->remove(false);
@@ -1922,9 +1922,9 @@ class cmd {
 			$_value = $this->execCmd();
 		}
 		if ($_level != 'none') {
-			$message = __('Alerte sur la commande ', __FILE__) . $this->getHumanName() . __(' niveau ', __FILE__) . $_level . __(' valeur : ', __FILE__) . $_value . trim(' ' . $this->getUnite());
+			$message = __('Alerte sur la commande', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('niveau', __FILE__) . ' ' . $_level . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			if ($this->getAlert($_level . 'during') != '' && $this->getAlert($_level . 'during') > 0) {
-				$message .= ' ' . __('pendant plus de ', __FILE__) . $this->getAlert($_level . 'during') . __(' minute(s)', __FILE__);
+				$message .= ' ' . __('pendant plus de', __FILE__) . ' ' . $this->getAlert($_level . 'during') . ' ' . __('minute(s)', __FILE__);
 			}
 			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
 			log::add('event', 'info', $message);
@@ -1976,15 +1976,15 @@ class cmd {
 			'"' => ''
 		);
 		$url = str_replace(array_keys($replace), $replace, scenarioExpression::setTags($url));
-		log::add('event', 'info', __('Appels de l\'URL de push pour la commande ', __FILE__) . $this->getHumanName() . ' : ' . $url);
+		log::add('event', 'info', __('Appels de l\'URL de push pour la commande', __FILE__) . ' ' . $this->getHumanName() . ' : ' . $url);
 		$http = new com_http($url);
 		$http->setLogError(false);
 		try {
 			$http->exec();
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
 		} catch (Error $e) {
-			log::add('cmd', 'error', __('Erreur push sur : ', __FILE__) . $url . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
 		}
 	}
 
@@ -2040,7 +2040,7 @@ class cmd {
 			}
 			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName() . ' : ' .  json_encode($tagArray, true));
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur computing influx sur : ', __FILE__) . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur computing influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
 		}
 		return $point;
 	}
@@ -2076,7 +2076,7 @@ class cmd {
 			}
 			return $database;
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur get influx database : ', __FILE__) . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur get influx database :', __FILE__) . ' ' . ' => ' . $e->getMessage());
 		}
 		return '';
 	}
@@ -2093,7 +2093,7 @@ class cmd {
 			$point = $this->computeInfluxData($_value);
 			$result = $database->writePoints(array($point), 's');
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push influx sur : ', __FILE__) . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
 		}
 		return;
 	}
@@ -2106,7 +2106,7 @@ class cmd {
 			}
 			$database->drop();
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur delete influx sur :', __FILE__) . ' ' . ' => ' . $e->getMessage());
 		}
 		return;
 	}
@@ -2121,7 +2121,7 @@ class cmd {
 			$result = $database->query($query);
 			log::add('cmd', 'debug', 'Delete influx for ' . $this->getHumanName());
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur delete influx sur : ', __FILE__) . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur delete influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
 		}
 		return;
 	}
@@ -2143,7 +2143,7 @@ class cmd {
 		}
 		try {
 			foreach ($cmds as $cmd) {
-				log::add('cmd', 'info', __('Envoie de l\'historique à influx : ', __FILE__) . ' commande : ' . $cmd->getHumanName());
+				log::add('cmd', 'info', __('Envoie de l\'historique à influx :', __FILE__) . ' ' . ' commande : ' . $cmd->getHumanName());
 				$database = cmd::getInflux($cmd->getId());
 				if ($database == '') {
 					return;
@@ -2172,7 +2172,7 @@ class cmd {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur history influx sur : ', __FILE__) . ' commande : ' . $cmd->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur history influx sur :', __FILE__) . ' ' . ' commande : ' . $cmd->getHumanName() . ' => ' . $e->getMessage());
 		}
 	}
 
@@ -2436,6 +2436,9 @@ class cmd {
 		$usedBy = $this->getUsedBy();
 		$use = $this->getUse();
 		addGraphLink($this, 'cmd', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
+		foreach ($usedBy['plugin'] as $key => $value) {
+			addGraphLink($this, 'cmd', $value, $key, $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'cmd', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'cmd', $usedBy['interactDef'], 'interactDef', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
@@ -2460,6 +2463,12 @@ class cmd {
 		$return['view'] = view::searchByUse('cmd', $this->getId());
 		$return['plan'] = planHeader::searchByUse('cmd', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('cmd', $this->getId());
+		$return['plugin'] = array();
+		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
+			if (method_exists($plugin, 'customUsedBy')) {
+				$return['plugin'][$plugin] = $plugin::customUsedBy('cmd', $this->getId());
+			}
+		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

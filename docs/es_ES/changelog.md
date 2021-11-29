@@ -11,6 +11,7 @@
 
 - **Síntesis** : Posibilidad de configurar objetos para ir a un *diseño* o un *ver* desde la síntesis.
 - **Tablero** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
+- **Widgets** : Internacionalización de Widgets de terceros (código de usuario). ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Análisis / Historia** : Posibilidad de comparar un historial durante un período determinado.
 - **Análisis / Equipo** : Los pedidos huérfanos ahora muestran su nombre y fecha de eliminación si aún están en el historial de eliminación, así como un enlace al escenario o equipo afectado.
 - **Análisis / Registros** : Numeración de líneas de registro. Posibilidad de mostrar el registro sin procesar.
@@ -21,30 +22,33 @@
 - **Resúmenes** : Ahora es posible configurar [acciones sobre resúmenes](/es_ES/concept/summary#Actions sur résumés) (ctrl + clic en un resumen) gracias a los virtuales.
 - **Tipos de equipo** : [Nueva página](/es_ES/core/4.2/types) **Herramientas → Tipos de equipos** permitiendo la asignación de tipos genéricos a dispositivos y comandos, con soporte para tipos dedicados a complementos instalados (ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2)).
 - **Selección de ilustraciones** : Nueva ventana global para la elección de ilustraciones *(iconos, imágenes, fondos)*.
-- **Categorías coloreadas** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
-- **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función principal.
-- **Configuración** : Posibilidad de configurar fondos de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema.
+- **Pantalla de mesa** : Adición de un botón a la derecha de la búsqueda en las páginas *Objetos* *Escenarios* *Interacciones* *Widgets* y *Complementos* para cambiar al modo de mesa. Esto se almacena mediante una cookie o en **Configuración → Sistema → Configuración / Interfaz, Opciones**. Los complementos pueden usar esta nueva función del Core. ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Configuración del equipo** : Posibilidad de configurar una curva de historial en la parte inferior del mosaico de un dispositivo.
-- **Bloques de código** : (Editor de archivos, escenarios, personalización avanzada) Función de reserva de código (*plegado de código*). Atajos Ctrl + Y y Ctrl + I.
+- **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Complementos / Gestión** : Visualización de la categoría de complementos y un enlace para abrir directamente su página sin pasar por el menú Complementos.
+- **Guión** : Función de respaldo de código (*plegado de código*) en *Bloques de código*. Atajos Ctrl + Y y Ctrl + I.
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
 - **Guión** : Agregar funciones de cálculo ''''averageTemporal(commande,période)'''' Y ''''averageTemporalBetween(commande,start,end)'''' permitiendo obtener la media ponderada por la duración del período.
 - **Guión** : Se agregó soporte para tipos genéricos en escenarios.
 	- Desencadenar : ''#genericType(LIGHT_STATE,#[Salón]#)# > 0`
 	- IF `genericType (LIGHT_STATE,#[Salón]#) > 0`
 	- Acción `GenericType`
-- **Configuración de OSDB** : Adición de una herramienta para la edición masiva de equipos, comandos, objetos, escenarios.
-- **Configuración de OSDB** : Agregar un constructor de consultas SQL dinámico.
-- **Widgets** : Internacionalización de Widgets de terceros (código de usuario). Ver el documento del desarrollador v4.2.
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
 - **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
 - **Usuarios** : Capacidad para ocultar objetos / ver / diseñar / diseño 3d para usuarios limitados.
-- **Ordenado** : Posibilidad de realizar un cálculo sobre una acción de comando de tipo slider antes de la ejecución del comando.
 - **Centro de actualizaciones** : El Centro de actualizaciones ahora muestra la fecha de la última actualización.
 - **Agregar al usuario que realiza una acción** : Además en las opciones de ejecución del comando de la identificación y el nombre de usuario que inician la acción (visible en el evento de registro, por ejemplo)
 - **Complemento de documentación y registro de cambios beta** : Gestión de documentación y registro de cambios para complementos en versión beta. Atención, en beta, el registro de cambios no tiene fecha.
-- **Principal** : Integración del complemento JeeXplorer en el Core.
+- **Principal** : Integración del complemento JeeXplorer en el Core. Ahora se usa para código de widget y personalización avanzada.
+- **Configuración** : Nueva opción en configuración / interfaz para no colorear el banner del título del equipo.
+- **Configuración** : Posibilidad de configurar fondos de pantalla en las páginas Tablero, Análisis, Herramientas y su opacidad según el tema.
+- **Configuración**: Agregar DNS de Jeedom basado en Wireguard en lugar de Openvpn (Administración / redes). Más rápido y más estable, pero aún en prueba. Tenga en cuenta que actualmente esto no es compatible con Jeedom Smart.
+- **Configuración** : Configuración de OSDB: Adición de una herramienta para la edición masiva de equipos, comandos, objetos, escenarios.
+- **Configuración** : Configuración de OSDB: Agregar un constructor de consultas SQL dinámico.
+- **Configuración**: Posibilidad de desactivar el monitoreo en la nube (Administración / Actualizaciones / Mercado).
+- **jeeCLI** : Además de ''''jeeCli.php'''' en la carpeta core / php de Jeedom para administrar algunas funciones de la línea de comandos.
+- *Grandes mejoras en la interfaz en términos de rendimiento / capacidad de respuesta. jeedomUtils {}, jeedomUI {}, menú principal reescrito en CSS puro, eliminación de initRowWorflow (), simplificación del código, correcciones de CSS para pantallas pequeñas, etc.*
 
 ### 4.2 : Widgets principales
 
@@ -66,18 +70,20 @@ Hemos agregado una confirmación de la contraseña de la copia de seguridad en l
 
 ### 4.2 : Seguridad
 
-Jeedom 4.2 contiene una parte importante en el aumento de la seguridad.
-
-- Cambio de política de acceso a archivos : Antes prohibíamos ciertos archivos, ahora solo permitimos ciertos archivos.
-- Cambie en el nivel de la API, antes de que fuera "tolerante" si llegaba con la clave principal indicando complemento XXXXX. Este ya no es el caso, debes llegar con la clave correspondiente al plugin.
-- En la API http, puede indicar un nombre de complemento en el tipo, esto ya no es posible. El tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd, etc.) debe corresponder al complemento. Por ejemplo, para el complemento virtual que tenía type = virtual en la url, ahora debe reemplazarlo por plugin = virtual & type = event, lo mismo para el complemento ipx800v4 o type = ipx800v4 se convierte en plugin = ipx800v4 & type = event
-- Fortalecimiento de sesiones (cambio a sha256 con 64 caracteres en modo estricto).
+- Para aumentar significativamente la seguridad de la solución Jeedom, el sistema de acceso a archivos ha cambiado. Antes de que ciertos archivos estuvieran prohibidos en determinadas ubicaciones. Desde v4.2, los archivos están explícitamente permitidos por tipo y ubicación.
+- Cambie a nivel de API, anteriormente "tolerante" si llegó con la clave principal que indica el complemento XXXXX. Este ya no es el caso, debes llegar con la clave correspondiente al plugin.
+- En la API http, puede indicar un nombre de complemento en el tipo, esto ya no es posible. El tipo correspondiente al tipo de solicitud (escenario, eqLogic, cmd, etc.) debe corresponder al complemento. Por ejemplo, para el complemento virtual que tenía ''''type=virtual'''' en la URL ahora es necesario reemplazar por ''''plugin=virtualYtype=event''''.
+- Refuerzo de sesiones : Cambiar a sha256 con 64 caracteres en modo estricto.
 - La cookie "permanecer conectado" (3 meses como máximo) ahora es "de una sola vez", que se renueva con cada uso.
 
 El equipo de Jeedom es consciente de que estos cambios pueden tener un impacto y ser embarazosos para usted, pero no podemos comprometer la seguridad.
-Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Doc](https://doc.jeedom.com/es_ES/dev/plugin_template)
+Los complementos deben respetar las recomendaciones sobre la estructura de árbol de carpetas y archivos : [Doc](https://doc.jeedom.com/es_ES/dev/plugin_template).
 
 # Registro de cambios Jeedom V4.1
+
+## 4.1.27
+
+- Corrección de una brecha de seguridad gracias @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (www.synacktiv.com)
 
 ## 4.1.26
 

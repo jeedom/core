@@ -65,7 +65,7 @@ try {
 		log::clear('update');
 		$update = update::byId(init('id'));
 		if (!is_object($update)) {
-			throw new Exception(__('Aucune correspondance pour l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Aucune correspondance pour l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		try {
 			if ($update->getType() != 'core') {
@@ -101,7 +101,7 @@ try {
 			$update = update::byLogicalId(init('id'));
 		}
 		if (!is_object($update)) {
-			throw new Exception(__('Aucune correspondance pour l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Aucune correspondance pour l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		$update->deleteObjet();
 		ajax::success();
@@ -114,7 +114,7 @@ try {
 			$update = update::byLogicalId(init('id'));
 		}
 		if (!is_object($update)) {
-			throw new Exception(__('Aucune correspondance pour l\'ID : ', __FILE__) . init('id'));
+			throw new Exception(__('Aucune correspondance pour l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		$update->checkUpdate();
 		ajax::success();
@@ -166,7 +166,7 @@ try {
 		unautorizedInDemo();
 		$uploaddir = '/tmp';
 		if (!file_exists($uploaddir)) {
-			throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . $uploaddir);
+			throw new Exception(__('Répertoire de téléversement non trouvé :', __FILE__) . ' ' . $uploaddir);
 		}
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
@@ -184,7 +184,7 @@ try {
 		ajax::success($uploaddir . '/' . $filename);
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

@@ -42,7 +42,7 @@ try {
 	if (init('action') == 'byId') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
@@ -100,7 +100,7 @@ try {
 			$virtual = eqLogic::byLogicalId('summary' . init('object_id'), 'virtual');
 		}
 		if (!is_object($virtual)) {
-			throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . init('object_id'));
+			throw new Exception(__('L\'objet n\'existe pas :', __FILE__) . ' ' . init('object_id'));
 		}
 		$removeCmd = array();
 		foreach ($virtual->getCmd() as $cmd) {
@@ -118,7 +118,7 @@ try {
 	if (init('action') == 'getEqLogicsFromSummary') {
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		$return = $object->getEqLogicsFromSummary(init('summary'), init('onlyEnable'), init('onlyVisible'));
 		ajax::success($return);
@@ -258,7 +258,7 @@ try {
 		unautorizedInDemo();
 		$object = jeeObject::byId(init('id'));
 		if (!is_object($object)) {
-			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Vue inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		$object->setImage('data', '');
 		$object->setImage('sha512', '');
@@ -289,7 +289,7 @@ try {
 			}
 			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 			if (!in_array($extension, array('.jpg', '.png', '.gif'))) {
-				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) : ', __FILE__) . $extension);
+				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) :', __FILE__) . ' ' . $extension);
 			}
 			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -318,7 +318,7 @@ try {
 		ajax::success(array('filepath' => $filepath));
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
