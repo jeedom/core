@@ -134,7 +134,7 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
 <div class="panel-group" id="genericsContainer">
 
-<div id="md_applyCmdsTypes" class="hidden" style="overflow-x: hidden;">
+<div id="md_applyCmdsTypes" class="cleanableModal hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group maincontainer mediumText"></div>

@@ -109,6 +109,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $.hideAlert()
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
+  jeedomUtils.cleanModals()
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   printEqLogic = undefined
@@ -152,8 +153,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       modifyWithoutSave = false
     }, 500)
   })
-
-
 
   setTimeout(function() {
     //scenarios uses special tooltips not requiring destroy.
@@ -952,6 +951,10 @@ jeedomUtils.datePickerDestroy = function() {
   $('.in_datepicker').datepicker( "destroy" )
   $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
   $('#ui-datepicker-div').remove()
+
+  //datetime:
+  $('input.isdatepicker').datetimepicker('destroy')
+  $('.xdsoft_datetimepicker').remove()
 }
 
 //General functions__
@@ -1355,6 +1358,11 @@ jeedomUtils.closeModal = function(_modals='') {
 
   })
 }
+
+jeedomUtils.cleanModals = function(_modals='') {
+  $('.ui-dialog .cleanableModal').parent('.ui-dialog').remove()
+}
+
 
 //Extensions__
 jQuery.fn.findAtDepth = function(selector, maxDepth) {
