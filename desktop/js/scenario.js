@@ -2262,14 +2262,12 @@ function getAddButton(_caret) {
   return retour
 }
 
-$divScenario.on("shown.bs.dropdown", ".dropdown", function() {
-  var eTop = $(this).offset().top
-  if ( eTop > window.innerHeight - 200) {
+$divScenario.on('shown.bs.dropdown', '.dropdown', function() {
+  if ( $(this).offset().top > window.innerHeight - 220) {
     $(this).addClass('dropup')
   }
-
-  })
-.on("hidden.bs.dropdown", ".dropdown", function() {
+})
+.on('hidden.bs.dropdown', '.dropdown', function() {
   $(this).removeClass("dropup")
 })
 
