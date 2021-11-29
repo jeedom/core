@@ -26,13 +26,13 @@ $("#md_specifyUpdate").dialog({
   autoOpen: false,
   modal: true,
   width: window.innerWidth > 500 ? 480 : window.innerWidth,
-  height: 460,
+  height: window.innerHeight > 500 ? 460 : window.innerHeight - 30,
   open: function() {
     $("body").css({
       overflow: 'hidden'
     })
     $(this).parent().css({
-      'top': 120
+      'top': window.innerHeight > 500 ? 120 : 0
     })
   },
   beforeClose: function(event, ui) {
