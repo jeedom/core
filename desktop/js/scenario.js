@@ -2262,6 +2262,17 @@ function getAddButton(_caret) {
   return retour
 }
 
+$divScenario.on("shown.bs.dropdown", ".dropdown", function() {
+  var eTop = $(this).offset().top
+  if ( eTop > window.innerHeight - 200) {
+    $(this).addClass('dropup')
+  }
+
+  })
+.on("hidden.bs.dropdown", ".dropdown", function() {
+  $(this).removeClass("dropup")
+})
+
 $divScenario.on('click', '.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
