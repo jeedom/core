@@ -850,6 +850,8 @@
         "jeeCLI": "jeeCLI",
         "Ajout de": "Ajout de",
         "dans le dossier core\/php de Jeedom pour gérer certaines fonctions en ligne de commande": "dans le dossier core\/php de Jeedom pour gérer certaines fonctions en ligne de commande",
+        "Grosses améliorations de l'interface en terme de performances \/ réactivité": "Grosses améliorations de l'interface en terme de performances \/ réactivité",
+        "jeedomUtils{}, jeedomUI{}, menu principal réecrit en css pur, suppression d'initRowWorflow(), simplication du code, corrections css pour les petits écrans, etc": "jeedomUtils{}, jeedomUI{}, menu principal réecrit en css pur, suppression d'initRowWorflow(), simplication du code, corrections css pour les petits écrans, etc",
         "Widgets Core": "Widgets Core",
         "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard": "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard",
         "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard": "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard",

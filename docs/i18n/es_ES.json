@@ -1345,6 +1345,8 @@
         "Possibilité de désactiver le monitoring cloud (Administration \/ Mises à jour\/Market": "Posibilidad de desactivar el monitoreo en la nube (Administración \/ Actualizaciones \/ Mercado",
         "Ajout de": "Además de",
         "dans le dossier core\/php de Jeedom pour gérer certaines fonctions en ligne de commande": "en la carpeta core \/ php de Jeedom para administrar algunas funciones de la línea de comandos",
+        "Grosses améliorations de l'interface en terme de performances \/ réactivité": "Grandes mejoras en la interfaz en términos de rendimiento \/ capacidad de respuesta",
+        "jeedomUtils{}, jeedomUI{}, menu principal réecrit en css pur, suppression d'initRowWorflow(), simplication du code, corrections css pour les petits écrans, etc": "jeedomUtils {}, jeedomUI {}, menú principal reescrito en CSS puro, eliminación de initRowWorflow (), simplificación del código, correcciones de CSS para pantallas pequeñas, etc",
         "Widgets Core": "Widgets principales",
         "Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard": "Ahora se puede acceder a la configuración de los widgets para la versión móvil desde la ventana de configuración del equipo en el modo de edición del tablero",
         "Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard": "Los parámetros opcionales disponibles en los widgets ahora se muestran para cada widget, ya sea en la configuración del comando o desde el modo de edición del tablero",
