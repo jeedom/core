@@ -1262,10 +1262,10 @@ class jeedom {
 		switch ($_calcul) {
 			case 'sum':
 				return array_sum($_values);
-				break;
 			case 'avg':
 				return array_sum($_values) / count($_values);
-				break;
+			case 'text':
+				return trim(implode(',', $_values), ',');
 		}
 		return null;
 	}
