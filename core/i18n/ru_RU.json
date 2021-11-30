@@ -334,6 +334,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Ajouter": "Добавить",
+        "Rafraichir": "Rafraichir",
         "Nom": "Имя",
         "Valeur": "значение",
         "Utilisée dans": "Используется в",

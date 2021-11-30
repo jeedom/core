@@ -32,7 +32,7 @@
         "Tous": "Todos"
     },
     "mobile\/js\/cron.js": {
-        "Rafraichir": "Refrescar",
+        "Rafraichir": "Actualizar",
         "Version desktop": "Versión de escritorio",
         "Démons": "Demonios",
         "Santé": "Salud"
@@ -334,6 +334,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Ajouter": "Añadir",
+        "Rafraichir": "Actualizar",
         "Nom": "Nombre",
         "Valeur": "Valor",
         "Utilisée dans": "Usado por",
@@ -1028,7 +1029,7 @@
     "desktop\/modal\/package.check.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "Atención, ya hay una instalación de paquete en progreso. Haga clic en el botón Actualizar hasta que termine",
-        "Rafraichir": "Refrescar",
+        "Rafraichir": "Actualizar",
         "Corriger tout": "Arreglar todo",
         "Package": "Paquete",
         "Type": "Tipo",

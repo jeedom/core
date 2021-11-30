@@ -334,6 +334,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Ajouter": "Add",
+        "Rafraichir": "Refresh",
         "Nom": "Name",
         "Valeur": "Value",
         "Utilisée dans": "Used in",

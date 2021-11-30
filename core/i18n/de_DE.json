@@ -32,7 +32,7 @@
         "Tous": "Alle"
     },
     "mobile\/js\/cron.js": {
-        "Rafraichir": "Auffrischen",
+        "Rafraichir": "Aktualisierung",
         "Version desktop": "Desktop-Version",
         "Démons": "Dämonen",
         "Santé": "Gesundheit"
@@ -41,7 +41,7 @@
         "Vider": "Leer"
     },
     "mobile\/js\/health.js": {
-        "Rafraichir": "Aktualisieren",
+        "Rafraichir": "Aktualisierung",
         "Version desktop": "Desktop Version",
         "Démons": "Daemon",
         "Crons": "Cron"
@@ -52,7 +52,7 @@
         "Timelines": "Zeitleisten"
     },
     "mobile\/js\/deamon.js": {
-        "Rafraichir": "Aktualisieren",
+        "Rafraichir": "Aktualisierung",
         "Version desktop": "Desktop Version",
         "Crons": "Cron",
         "Santé": "Gesundheit"
@@ -334,6 +334,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Ajouter": "Hinzufügen",
+        "Rafraichir": "Aktualisierung",
         "Nom": "Name",
         "Valeur": "Wert",
         "Utilisée dans": "Verwendet in",
@@ -807,7 +808,7 @@
     },
     "desktop\/modal\/js.error.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rafraichir": "Aktualisieren",
+        "Rafraichir": "Aktualisierung",
         "Vider": "Leer",
         "Fichier": "Datei",
         "Ligne": "Linie",
@@ -1028,7 +1029,7 @@
     "desktop\/modal\/package.check.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "Achtung, es wird bereits eine Paketinstallation ausgeführt. Klicken Sie auf die Schaltfläche Aktualisieren, bis die Installation abgeschlossen ist",
-        "Rafraichir": "Aktualisieren",
+        "Rafraichir": "Aktualisierung",
         "Corriger tout": "Alles reparieren",
         "Package": "Paket",
         "Type": "Typ",
@@ -2224,7 +2225,7 @@
     "desktop\/php\/message.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Tout": "Alle",
-        "Rafraichir": "Aktualisieren",
+        "Rafraichir": "Aktualisierung",
         "Vider": "Leer",
         "Date et heure": "Datum und Uhrzeit",
         "Source": "Quelle",
@@ -2609,7 +2610,7 @@
         "Désactivé": "Deaktiviert"
     },
     "desktop\/js\/plugin.js": {
-        "Rafraichir": "Aktualisieren",
+        "Rafraichir": "Aktualisierung",
         "Documentation": "Dokumentation",
         "Changelog": "Änderungsprotokoll",
         "Détails": "Details",
