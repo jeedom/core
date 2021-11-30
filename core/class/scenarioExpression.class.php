@@ -797,6 +797,7 @@ class scenarioExpression {
 				$calcul = $config['calcul'];
 			} elseif (count($config['subtype']) == 1 && $config['subtype'][0] == 'other') {
 				$calcul = 'text';
+			}
 			$values = array();
 			foreach ($cmds as $cmd) {
 				if (is_numeric($cmd->execCmd())) {
