@@ -32,7 +32,7 @@
         "Tous": "Alle"
     },
     "mobile\/js\/cron.js": {
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Auffrischen",
         "Version desktop": "Desktop-Version",
         "Démons": "Dämonen",
         "Santé": "Gesundheit"
@@ -41,7 +41,7 @@
         "Vider": "Leer"
     },
     "mobile\/js\/health.js": {
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
         "Démons": "Daemon",
         "Crons": "Cron"
@@ -52,7 +52,7 @@
         "Timelines": "Zeitleisten"
     },
     "mobile\/js\/deamon.js": {
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Aktualisieren",
         "Version desktop": "Desktop Version",
         "Crons": "Cron",
         "Santé": "Gesundheit"
@@ -808,7 +808,7 @@
     },
     "desktop\/modal\/js.error.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Aktualisieren",
         "Vider": "Leer",
         "Fichier": "Datei",
         "Ligne": "Linie",
@@ -1029,7 +1029,7 @@
     "desktop\/modal\/package.check.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Attention il y a déjà une installation de package en cours.Cliquez sur le bouton rafraichir jusqu\\'a ce que ca soit fini": "Achtung, es wird bereits eine Paketinstallation ausgeführt. Klicken Sie auf die Schaltfläche Aktualisieren, bis die Installation abgeschlossen ist",
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Aktualisieren",
         "Corriger tout": "Alles reparieren",
         "Package": "Paket",
         "Type": "Typ",
@@ -2225,7 +2225,7 @@
     "desktop\/php\/message.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Tout": "Alle",
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Aktualisieren",
         "Vider": "Leer",
         "Date et heure": "Datum und Uhrzeit",
         "Source": "Quelle",
@@ -2610,7 +2610,7 @@
         "Désactivé": "Deaktiviert"
     },
     "desktop\/js\/plugin.js": {
-        "Rafraichir": "Aktualisierung",
+        "Rafraichir": "Aktualisieren",
         "Documentation": "Dokumentation",
         "Changelog": "Änderungsprotokoll",
         "Détails": "Details",
