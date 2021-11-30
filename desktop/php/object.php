@@ -58,7 +58,7 @@ $synthToActions = array(
 						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
 						$echo .= '<span class="hiddenAsCard">'.str_repeat('&nbsp;&nbsp;&nbsp;', $object->getConfiguration('parentNumber')).'</span>';
 						$echo .=  $object->getName() . '</span><br/>';
-						$echo .= $object->getHtmlSummary();
+						$echo .=  '<span class="displayTableRight">' . $object->getHtmlSummary().'</span>';
 						$echo .= '</div>';
 					}
 					echo $echo;

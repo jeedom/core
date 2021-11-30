@@ -1955,6 +1955,14 @@ Desktop
     background-color: rgb(var(--bg-color)) !important;
     color: unset !important;
   }
+  body[data-type="plugin"] div[class*="DisplayCard"].displayAsTable:hover {
+    background-color: rgb(var(--bg-color)) !important;
+    color: unset !important;
+  }
+  body[data-page="object"] div[class*="DisplayCard"].displayAsTable:hover .name,
+  body[data-page="interact"] div[class*="DisplayCard"].displayAsTable:hover .name {
+    width: 100%;
+  }
   div[class*="DisplayCard"].displayAsTable > br {
     display: none;
   }
@@ -1984,7 +1992,6 @@ Desktop
     min-width: calc(100% - 70px) !important;
     min-height: 24px !important;
     max-height: 24px !important;
-    height: 24px !important;
     height: 24px !important;
     line-height: 22px !important;
     margin-left: 10px;
@@ -5004,8 +5011,9 @@ Desktop
       max-height: 300px !important;
     }
 
-    .hidden-768 {
-      display: none;
+    .hidden-768,
+    .displayTableRight {
+      display: none !important;
     }
   }
 

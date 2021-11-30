@@ -791,28 +791,20 @@ class scenarioExpression {
 		$cmds = cmd::byGenericTypeObjectId($_genericType, str_replace(array('#object', '#'), '', $_object), 'info');
 		if (count($cmds) > 0) {
 			global $JEEDOM_INTERNAL_CONFIG;
-			$calcul = null;
-			if (isset($JEEDOM_INTERNAL_CONFIG['generic_type'][$_genericType]['calcul'])) {
-				$calcul = $JEEDOM_INTERNAL_CONFIG['generic_type'][$_genericType]['calcul'];
-			} elseif (count($JEEDOM_INTERNAL_CONFIG['generic_type'][$_genericType]['subtype']) == 1 && $JEEDOM_INTERNAL_CONFIG['generic_type'][$_genericType]['subtype'][0] == 'string') {
+			$calcul = 'sum';
+			$config = $JEEDOM_INTERNAL_CONFIG['cmd']['generic_type'][$_genericType];
+			if (isset($config['calcul'])) {
+				$calcul = $config['calcul'];
+			} elseif (count($config['subtype']) == 1 && $config['subtype'][0] == 'other') {
 				$calcul = 'text';
 			}
-			if ($calcul != null) {
-				$values = array();
-				foreach ($cmds as $cmd) {
-					if (is_numeric($cmd->execCmd())) {
-						$values[] = $cmd->execCmd();
-					}
-				}
-				return round(jeedom::calculStat($calcul, $values), 1);
-			}
-			$result = 0;
+			$values = array();
 			foreach ($cmds as $cmd) {
 				if (is_numeric($cmd->execCmd())) {
-					$result += $cmd->execCmd();
+					$values[] = $cmd->execCmd();
 				}
 			}
-			return $result;
+			return round(jeedom::calculStat($calcul, $values), 1);
 		}
 		return $_default;
 	}
