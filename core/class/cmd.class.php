@@ -1658,8 +1658,8 @@ class cmd {
 			return;
 		}
 		$value = $this->formatValue($_value);
-		
-		if ($this->getSubType() == 'binary' && $this->getConfiguration('invertBinary') == 1){
+
+		if ($this->getSubType() == 'binary' && $this->getConfiguration('invertBinary') == 1) {
 			$value = ($value == 1) ? 0 : 1;
 		}
 

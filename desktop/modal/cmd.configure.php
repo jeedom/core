@@ -583,14 +583,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateTime" />
               </div>
             </div>
+
+            <?php if ($cmd->getSubType() == 'binary') { ?>
             <div class="form-group">
               <label class="col-md-2 col-sm-3 control-label">{{Inverser les valeurs binaires}}
-                <sup><i class="fas fa-question-circle" title="{{Contrairement à l'option inverser sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option va inverser la valeurs binaire reçues et donc enregistrer en base son opposée }}"></i></sup>
+                <sup><i class="fas fa-question-circle" title="{{Contrairement à l'option <b>inverser</b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)}}"></i></sup>
               </label>
               <div class="col-sm-6">
                 <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="invertBinary" />
               </div>
             </div>
+            <?php } ?>
           </fieldset>
         </form>
         <form class="form-horizontal">
