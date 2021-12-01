@@ -61,6 +61,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
   </ul>
 
   <div class="tab-content" id="div_displayCmdConfigure" style="overflow-x:hidden">
+
+    <!--Information Tab -->
     <div role="tabpanel" class="tab-pane active" id="cmd_information">
       <br />
       <div class="row">
@@ -332,6 +334,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       </form>
     </div>
 
+    <!--Configuration Tab -->
     <div role="tabpanel" class="tab-pane" id="cmd_configuration">
       <br />
       <form class="form-horizontal">
@@ -340,7 +343,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           ?>
             <legend><i class="fas fa-table"></i> {{Calcul et arrondi}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Formule de calcul}}
+              <label class="col-md-3 col-sm-3 control-label">{{Formule de calcul}}
                 <sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup>
               </label>
               <div class="col-sm-6">
@@ -349,7 +352,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             </div>
             <?php if ($cmd->getSubType() == 'numeric') { ?>
               <div class="form-group">
-                <label class="col-md-2 col-sm-3 control-label">{{Arrondi}}
+                <label class="col-md-3 col-sm-3 control-label">{{Arrondi}}
                   <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
@@ -366,7 +369,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         <fieldset>
           <legend><i class="fas fa-building"></i> {{Type générique}}</legend>
           <div class="form-group">
-            <label class="col-md-2 col-sm-3 control-label">{{Valeur}}</label>
+            <label class="col-md-3 col-sm-3 control-label">{{Valeur}}</label>
             <div class="col-sm-6">
               <select class="cmdAttr form-control" data-l1key="generic_type">
                 <?php
@@ -382,13 +385,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-exclamation-triangle"></i> {{Restriction de l'action}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Confirmer l'action}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
               <div class="col-sm-6">
                 <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="actionConfirm" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Code d'accès}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Code d'accès}}</label>
               <div class="col-sm-6">
                 <input class="cmdAttr form-control inputPassword" data-l1key="configuration" data-l2key="actionCodeAccess" />
               </div>
@@ -403,7 +406,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-sign-out-alt"></i> {{Action sur valeur}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 col-xs-12 control-label">{{Action sur valeur, si}}</label>
+              <label class="col-md-3 col-sm-3 col-xs-12 control-label">{{Action sur valeur, si}}</label>
               <div class="col-sm-2 col-xs-3">
                 <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="jeedomCheckCmdOperator">
                   <option value="==">{{égal}}</option>
@@ -428,7 +431,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             </div>
 
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Action}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
               <div class="col-sm-6">
                 <a class="btn btn-xs" id="bt_addActionCheckCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
@@ -459,7 +462,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-sign-out-alt"></i> {{Action avant exécution de la commande}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Action}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
               <div class="col-sm-6">
                 <a class="btn btn-xs" id="bt_addActionPreExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
@@ -484,7 +487,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-sign-out-alt"></i> {{Action après exécution de la commande}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Action}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Action}}</label>
               <div class="col-sm-6">
                 <a class="btn btn-xs" id="bt_addActionPostExecCmd"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
               </div>
@@ -514,7 +517,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="far fa-chart-bar"></i> {{Historique}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Historiser}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Historiser}}</label>
               <div class="col-sm-6">
                 <input type="checkbox" class="cmdAttr" data-l1key="isHistorized" />
                 <?php if ($cmd->getIsHistorized() == 1) { ?>
@@ -524,7 +527,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             </div>
             <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
               <div class="form-group">
-                <label class="col-md-2 col-sm-3 control-label">{{Mode de lissage}}</label>
+                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
                 <div class="col-sm-6">
                   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
                     <option value="avg">{{Moyenne}}</option>
@@ -537,7 +540,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <?php }
             ?>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Purger historique}}
+              <label class="col-md-3 col-sm-3 control-label">{{Purger historique}}
                 <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
               </label>
               <div class="col-sm-6">
@@ -562,7 +565,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-thermometer-three-quarters"></i> {{Gestion des valeurs}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Valeurs interdites}}
+              <label class="col-md-3 col-sm-3 control-label">{{Valeurs interdites}}
                 <sup><i class="fas fa-question-circle" title="{{séparées par un point-virgule}}"></i></sup>
               </label>
               <div class="col-sm-6">
@@ -570,13 +573,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Valeur retour d'état}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Valeur retour d'état}}</label>
               <div class="col-sm-6">
                 <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="returnStateValue" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Durée avant retour d'état}}
+              <label class="col-md-3 col-sm-3 control-label">{{Durée avant retour d'état}}
                 <sup><i class="fas fa-question-circle" title="{{en minutes}}"></i></sup>
               </label>
               <div class="col-sm-6">
@@ -586,7 +589,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
             <?php if ($cmd->getSubType() == 'binary') { ?>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Inverser les valeurs binaires}}
+              <label class="col-md-3 col-sm-3 control-label">{{Inverser les valeurs binaires}}
                 <sup><i class="fas fa-question-circle" title="{{Contrairement à l'option <b>inverser</b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)}}"></i></sup>
               </label>
               <div class="col-sm-6">
@@ -600,7 +603,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           <fieldset>
             <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Répéter les valeurs identiques}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Répéter les valeurs identiques}}</label>
               <div class="col-sm-6">
                 <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="repeatEventManagement">
                   <option value="never">{{Non}}</option>
@@ -609,7 +612,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-2 col-sm-3 control-label">{{Push URL}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Push URL}}</label>
               <div class="col-sm-6">
                 <input class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="jeedomPushUrl" title="{{URL à appeler lors d'une mise à jour de la valeur de la commande. Vous pouvez utiliser les tags suivants : #value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}" />
               </div>
@@ -621,205 +624,208 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     </div>
     <?php if ($cmd->getType() == 'info') {
     ?>
-      <div role="tabpanel" class="tab-pane" id="cmd_alert">
-        <br />
-        <?php
-        $form = '';
-        foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
-          if (!$value['check']) {
-            continue;
-          }
-          $form .= '<form class="form-horizontal">';
-          $form .= '<fieldset>';
-          $form .= '<legend>';
-          if ($value['name'] == 'Warning') {
-            $form .= '<i class="fas fa-exclamation"></i>';
-          } else if ($value['name'] == 'Danger') {
-            $form .= '<i class="fas fa-exclamation-triangle"></i>';
-          }
-          $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
-          $form .= '<div class="form-group">';
-          $form .= '<label class="col-md-2 col-sm-3 control-label">{{En}} ' . $value['name'] . ' {{si}} ';
-          $form .= '<sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup></label>';
-          $form .= '<div class="col-sm-6">';
-          $form .= '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
-          $form .= '</div>';
-          $form .= '</div>';
-          $form .= '<div class="form-group">';
-          $form .= '<label class="col-md-2 col-sm-3 control-label">{{Pendant plus de}} ';
-          $form .= '<sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup></label>';
 
-          $form .= '<div class="col-sm-6">';
-          $form .= '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
-          $form .= '</div>';
-          $form .= '</div>';
-          $form .= '</fieldset>';
-          $form .= '</form>';
+    <!--Warning Tab -->
+    <div role="tabpanel" class="tab-pane" id="cmd_alert">
+      <br />
+      <?php
+      $form = '';
+      foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $level => $value) {
+        if (!$value['check']) {
+          continue;
         }
-        echo $form;
-        ?>
-      </div>
+        $form .= '<form class="form-horizontal">';
+        $form .= '<fieldset>';
+        $form .= '<legend>';
+        if ($value['name'] == 'Warning') {
+          $form .= '<i class="fas fa-exclamation"></i>';
+        } else if ($value['name'] == 'Danger') {
+          $form .= '<i class="fas fa-exclamation-triangle"></i>';
+        }
+        $form .= '{{Niveau}} ' . $value['name'] . '</legend>';
+        $form .= '<div class="form-group">';
+        $form .= '<label class="col-md-2 col-sm-3 control-label">{{En}} ' . $value['name'] . ' {{si}} ';
+        $form .= '<sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup></label>';
+        $form .= '<div class="col-sm-6">';
+        $form .= '<input class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'if" />';
+        $form .= '</div>';
+        $form .= '</div>';
+        $form .= '<div class="form-group">';
+        $form .= '<label class="col-md-2 col-sm-3 control-label">{{Pendant plus de}} ';
+        $form .= '<sup><i class="fas fa-question-circle" title="{{durée en minutes (laisser vide pour une action immédiate)}}"></i></sup></label>';
+
+        $form .= '<div class="col-sm-6">';
+        $form .= '<input type="number" class="cmdAttr form-control" data-l1key="alert" data-l2key="' . $level . 'during" />';
+        $form .= '</div>';
+        $form .= '</div>';
+        $form .= '</fieldset>';
+        $form .= '</form>';
+      }
+      echo $form;
+      ?>
+    </div>
     <?php }
     ?>
 
+    <!--Display Tab if supported -->
     <?php if ($cmd->widgetPossibility('custom')) {
     ?>
-      <div role="tabpanel" class="tab-pane" id="cmd_display">
-        <br />
-        <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
-        <table class="table table-bordered table-condensed">
-          <thead>
+    <div role="tabpanel" class="tab-pane" id="cmd_display">
+      <br />
+      <legend><i class="fas fa-tint"></i> {{Widget}}</legend>
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <tr>
+            <th style="width:30%;"></th>
+            <?php
+            $display = '';
+            foreach ($configEqDisplayType as $key => $value) {
+              $display .= '<th>' . $value['name'] . '</th>';
+            }
+            echo $display;
+            ?>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if ($cmd->widgetPossibility('custom::widget')) {
+          ?>
             <tr>
-              <th style="width:30%;"></th>
+              <td>{{Widget}}</td>
+              <td>
+                <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
+                ?>
+                  <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
+                    <?php
+                    echo $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
+                    ?>
+                  </select>
+                <?php }
+                ?>
+              </td>
+              <td>
+                <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
+                ?>
+                  <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
+                    <?php
+                    echo $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
+                    ?>
+                  </select>
+                <?php }
+                ?>
+              </td>
+              <td style="width: 1px;">
+                <a class="btn btn-default btn-xs" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
+              </td>
+            </tr>
+          <?php }
+          ?>
+          <?php if ($cmd->widgetPossibility('custom::displayName')) {
+          ?>
+            <tr>
+              <td>{{Afficher le nom}}</td>
               <?php
               $display = '';
               foreach ($configEqDisplayType as $key => $value) {
-                $display .= '<th>' . $value['name'] . '</th>';
+                $display .= '<td>';
+                if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
+                  $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
+                }
+                $display .= '</td>';
               }
               echo $display;
               ?>
             </tr>
+          <?php }
+          ?>
+          <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
+          ?>
+            <tr>
+              <td>{{Afficher le nom ET l'icône}}</td>
+              <?php
+              $display = '';
+              foreach ($configEqDisplayType as $key => $value) {
+                $display .= '<td>';
+                if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
+                  $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
+                }
+                $display .= '</td>';
+              }
+              echo $display;
+              ?>
+            </tr>
+          <?php }
+          ?>
+          <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
+            <tr>
+              <td>{{Afficher les statistiques}}</td>
+              <?php
+              $display = '';
+              foreach ($configEqDisplayType as $key => $value) {
+                $display .= '<td>';
+                if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
+                  $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
+                }
+                $display .= '</td>';
+              }
+              echo $display;
+              ?>
+            </tr>
+          <?php
+          }
+          ?>
+          <tr>
+            <td>{{Retour à la ligne forcé avant le widget}}</td>
+            <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" /></td>
+          </tr>
+          <tr>
+            <td>{{Retour à la ligne forcé après le widget}}</td>
+            <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
+      ?>
+        <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
+          <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+        </legend>
+
+        <div id="optionalParamHelp"></div>
+
+        <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
+          <thead class="table table-bordered">
+            <tr>
+              <th style="width: 20%">Nom</th>
+              <th style="width: 80%">Valeur</th>
+              <th style="width: 1px">Action</th>
+            </tr>
           </thead>
           <tbody>
-            <?php if ($cmd->widgetPossibility('custom::widget')) {
-            ?>
-              <tr>
-                <td>{{Widget}}</td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::widget::dashboard')) {
-                  ?>
-                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="dashboard">
-                      <?php
-                      echo $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
-                      ?>
-                    </select>
-                  <?php }
-                  ?>
-                </td>
-                <td>
-                  <?php if ($cmd->widgetPossibility('custom::widget::mobile')) {
-                  ?>
-                    <select class="form-control cmdAttr" data-l1key="template" data-l2key="mobile">
-                      <?php
-                      echo $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
-                      ?>
-                    </select>
-                  <?php }
-                  ?>
-                </td>
-                <td style="width: 1px;">
-                  <a class="btn btn-default btn-xs" id="bt_cmdConfigureSaveOn"><i class="fas fa-arrow-alt-circle-down"></i> {{Appliquer à}}</a>
-                </td>
-              </tr>
-            <?php }
-            ?>
-            <?php if ($cmd->widgetPossibility('custom::displayName')) {
-            ?>
-              <tr>
-                <td>{{Afficher le nom}}</td>
-                <?php
-                $display = '';
-                foreach ($configEqDisplayType as $key => $value) {
-                  $display .= '<td>';
-                  if ($cmd->widgetPossibility('custom::displayName::' . $key)) {
-                    $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showNameOn' . $key . '" checked />';
-                  }
-                  $display .= '</td>';
-                }
-                echo $display;
-                ?>
-              </tr>
-            <?php }
-            ?>
-            <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
-            ?>
-              <tr>
-                <td>{{Afficher le nom ET l'icône}}</td>
-                <?php
-                $display = '';
-                foreach ($configEqDisplayType as $key => $value) {
-                  $display .= '<td>';
-                  if ($cmd->widgetPossibility('custom::displayIconAndName::' . $key)) {
-                    $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showIconAndName' . $key . '" />';
-                  }
-                  $display .= '</td>';
-                }
-                echo $display;
-                ?>
-              </tr>
-            <?php }
-            ?>
-            <?php if (config::byKey('displayStatsWidget') == 1 && $cmd->getSubType() != 'string' && $cmd->widgetPossibility('custom::displayStats')) { ?>
-              <tr>
-                <td>{{Afficher les statistiques}}</td>
-                <?php
-                $display = '';
-                foreach ($configEqDisplayType as $key => $value) {
-                  $display .= '<td>';
-                  if ($cmd->widgetPossibility('custom::displayStats::' . $key)) {
-                    $display .= '<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="showStatsOn' . $key . '" checked />';
-                  }
-                  $display .= '</td>';
-                }
-                echo $display;
-                ?>
-              </tr>
             <?php
+            if ($cmd->getDisplay('parameters') != '') {
+              $tr = '';
+              foreach (($cmd->getDisplay('parameters')) as $key => $value) {
+                $tr .= '<tr>';
+                $tr .= '<td>';
+                $tr .= '<input class="form-control key" value="' . $key . '" />';
+                $tr .= '</td>';
+                $tr .= '<td>';
+                $tr .= '<input class="form-control value" value="' . $value . '" />';
+                $tr .= '</td>';
+                $tr .= '<td>';
+                $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
+                $tr .= '</td>';
+                $tr .= '</tr>';
+              }
+              echo $tr;
             }
             ?>
-            <tr>
-              <td>{{Retour à la ligne forcé avant le widget}}</td>
-              <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineBefore" /></td>
-            </tr>
-            <tr>
-              <td>{{Retour à la ligne forcé après le widget}}</td>
-              <td><input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="forceReturnLineAfter" /></td>
-            </tr>
           </tbody>
         </table>
-
-        <?php if ($cmd->widgetPossibility('custom::optionalParameters')) {
-        ?>
-          <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres optionnels widget}}
-            <a class="btn btn-xs pull-right" id="bt_addWidgetParametersCmd" style="position:relative;right:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-          </legend>
-
-          <div id="optionalParamHelp"></div>
-
-          <table class="table table-bordered table-condensed" id="table_widgetParametersCmd">
-            <thead class="table table-bordered">
-              <tr>
-                <th style="width: 20%">Nom</th>
-                <th style="width: 80%">Valeur</th>
-                <th style="width: 1px">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              if ($cmd->getDisplay('parameters') != '') {
-                $tr = '';
-                foreach (($cmd->getDisplay('parameters')) as $key => $value) {
-                  $tr .= '<tr>';
-                  $tr .= '<td>';
-                  $tr .= '<input class="form-control key" value="' . $key . '" />';
-                  $tr .= '</td>';
-                  $tr .= '<td>';
-                  $tr .= '<input class="form-control value" value="' . $value . '" />';
-                  $tr .= '</td>';
-                  $tr .= '<td>';
-                  $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
-                  $tr .= '</td>';
-                  $tr .= '</tr>';
-                }
-                echo $tr;
-              }
-              ?>
-            </tbody>
-          </table>
-        <?php
-        }
-        ?>
-      </div>
+      <?php
+      }
+      ?>
+    </div>
     <?php }
     ?>
   </div>
