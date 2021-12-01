@@ -746,6 +746,8 @@
         "Valeur retour d'état": "Значение состояния обратной связи",
         "Durée avant retour d'état": "Durée avant retour d'état",
         "en minutes": "en minutes",
+        "Inverser les valeurs binaires": "Inverser les valeurs binaires",
+        "Contrairement à l'option <b>inverser<\/b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)": "Contrairement à l'option <b>inverser<\/b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)",
         "Autres": "другой",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
