@@ -132,7 +132,7 @@ $date = array(
 	</div>
 </div>
 
-<div id="md_getCompareRange" class="hidden" style="overflow-x: hidden;">
+<div id="md_getCompareRange" class="cleanableModal hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group">
