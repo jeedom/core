@@ -1751,7 +1751,7 @@
         "6 mois": "6 Monate",
         "3 mois": "3 Monate",
         "1 mois": "1 Monat",
-        "1 semaine": "Woche 1",
+        "1 semaine": "1 Woche",
         "1 jour": "1 Tag",
         "Purger l'historique si plus vieux que": "Die Chronik löschen, die älter ist wie",
         "Jamais": "Noch nie",
@@ -2539,7 +2539,16 @@
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
         "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
         "Comparer la période": "Vergleichen Sie den Zeitraum",
-        "Avec la période": "Mit der Zeit"
+        "1 semaine": "1 Woche",
+        "2 semaines": "2 Wochen",
+        "1 mois": "1 Monat",
+        "3 mois": "3 Monate",
+        "6 mois": "6 Monate",
+        "1 an": "1 Jahr",
+        "Avec la période": "Mit der Zeit",
+        "3 semaines": "Drei Wochen",
+        "4 semaines": "4 Wochen",
+        "2 mois": "2 Monate"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",
@@ -2764,8 +2773,8 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Période de comparaison": "Vergleichszeitraum",
-        "Historique supprimé avec succès": "Chronik erfolgreich gelöscht"
+        "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
+        "Période de comparaison": "Vergleichszeitraum"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",

@@ -2539,7 +2539,16 @@
         "Supprimer tout ou partie de cet historique.": "Exclua todo ou parte desse histórico",
         "Exporter cet historique.": "Exporte esse histórico",
         "Comparer la période": "Período de comparação",
-        "Avec la période": "Com o período"
+        "1 semaine": "1 semana",
+        "2 semaines": "2 semanas",
+        "1 mois": "1 mês",
+        "3 mois": "3 meses",
+        "6 mois": "6 meses",
+        "1 an": "1 ano",
+        "Avec la période": "Com o período",
+        "3 semaines": "Três semanas",
+        "4 semaines": "4 semanas",
+        "2 mois": "2 meses"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ value ['nome']",
@@ -2764,8 +2773,8 @@
         "Configuration des formules de calcul": "Configurando fórmulas",
         "Configuration de l'historique des commandes": "Controles de configuração História",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data (Y-M d H: m: s) antes que ele deve remover história \\ 's",
-        "Période de comparaison": "Período de comparação",
-        "Historique supprimé avec succès": "Histórico excluído com sucesso"
+        "Historique supprimé avec succès": "Histórico excluído com sucesso",
+        "Période de comparaison": "Período de comparação"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",

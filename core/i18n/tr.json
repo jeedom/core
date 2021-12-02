@@ -2539,7 +2539,16 @@
         "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique",
         "Exporter cet historique.": "Exporter cet historique",
         "Comparer la période": "Comparer la période",
-        "Avec la période": "Avec la période"
+        "1 semaine": "1 semaine",
+        "2 semaines": "2 semaines",
+        "1 mois": "1 mois",
+        "3 mois": "3 mois",
+        "6 mois": "6 mois",
+        "1 an": "1 an",
+        "Avec la période": "Avec la période",
+        "3 semaines": "3 semaines",
+        "4 semaines": "4 semaines",
+        "2 mois": "2 mois"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Değer [ 'name']",
@@ -2764,8 +2773,8 @@
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
-        "Période de comparaison": "Période de comparaison",
-        "Historique supprimé avec succès": "Geçmiş başarıyla silindi"
+        "Historique supprimé avec succès": "Geçmiş başarıyla silindi",
+        "Période de comparaison": "Période de comparaison"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
