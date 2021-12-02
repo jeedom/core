@@ -215,10 +215,11 @@ sudo easy_install3 pip
 Starten Sie dann die Abhängigkeiten neu
 
 
-### Ab dem 4.2 Ich kann einen iframe nicht mehr anzeigen
+### Ab dem 4.2, ich kann iframe nicht mehr anzeigen
 
-Es ist normal die 4.2 die Sicherheit von Jeedom stark zu stärken, empfehlen wir Ihnen, so zu bleiben. Wenn Sie wirklich zu einer ungesicherten Version zurückkehren müssen, können Sie zu Einstellungen -> System -> Konfiguration gehen, dann in OS / DB die Systemverwaltungskonsole starten und auf "Unsecured Apache" klicken". Ein Neustart von Jeedom wird nach dieser Änderung empfohlen
+Kern 4.2 erhöht die Sicherheit von Jeedom erheblich. Wenn Sie wirklich (wissentlich) zu einer unsicheren Version Ihres Jeedoms zurückkehren müssen :
+Gehe zu **Einstellungen -> System -> Konfiguration** dann in **Betriebssystem / DB**, Starten Sie die Systemverwaltungskonsole und klicken Sie auf **Apache nicht sicher**. Ein Neustart von Jeedom wird nach dieser Änderung empfohlen.
 
-### Ab dem 4.2 einige Plugins funktionieren nicht und in der Browserkonsole (F12-Taste) habe ich 403
+### Ab dem 4.2, einige Plugins funktionieren nicht mehr und in der Browserkonsole (F12-Taste) habe ich 403 Fehler
 
-Dies liegt an der Sicherheit von Apache, die erfordert, dass der Entwickler von Plugins diese im richtigen Verzeichnis ablegt, um die Angriffsfläche von Jeedom zu begrenzen. Diese Sicherheit erfolgt in der Datei .htaccess (überschrieben jedes Mal, wenn der Kern aktualisiert wird). Sie können eine Datei erstellen .htaccess_custom mit Ihren eigenen Regeln, die, falls vorhanden, anstelle der .htaccess-Datei verwendet werden
+Dies liegt an der Sicherheit von Apache, die erfordert, dass Plugin-Entwickler die richtigen Dateien in den richtigen Verzeichnissen ablegen, um die Angriffsfläche von Jeedom einzuschränken. Diese Sicherheit erfolgt in der Datei .htaccess (überschrieben jedes Mal, wenn der Kern aktualisiert wird). Sie können eine Datei erstellen .htaccess_custom mit Ihren eigenen Regeln, die, falls vorhanden, anstelle der Datei verwendet werden .htaccess von Core.
