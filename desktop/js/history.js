@@ -38,6 +38,8 @@ $(function() {
   resizeDn()
   jeedomUtils.datePickerInit()
   setChartOptions()
+
+  moment.locale(jeedom_langage)
 })
 
 //handle resizing:
@@ -438,18 +440,120 @@ $('#cb_tracking').off('change').on('change', function() {
   }
 })
 
+function emptyHistory(_cmd_id, _date) {
+  $.ajax({
+    type: "POST",
+    url: "core/ajax/cmd.ajax.php",
+    data: {
+      action: "emptyHistory",
+      id: _cmd_id,
+      date: _date
+    },
+    dataType: 'json',
+    error: function(request, status, error) {
+      handleAjaxError(request, status, error)
+    },
+    success: function(data) {
+      if (data.state != 'ok') {
+        $.fn.showAlert({
+          message: data.result,
+          level: 'danger'
+        })
+        return
+      }
+      $.fn.showAlert({
+        message: '{{Historique supprimé avec succès}}',
+        level: 'success'
+      })
+      li = $('li[data-cmd_id=' + _cmd_id + ']')
+      if (li && li.hasClass('active')) {
+        li.find('.history').click()
+      }
+    }
+  })
+}
+
+function setChartYExtremes() {
+  if (!chart) return
+  var max = 0
+  var min = 10000
+  chart.yAxis.forEach((axis, index) => {
+    if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min) min = axis.getExtremes().dataMin
+    if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max) max = axis.getExtremes().dataMax
+  })
+  chart.yAxis.forEach((axis, index) => {
+    axis.setExtremes(min / 1.005, max * 1.005, true, false)
+  })
+}
+
+function setChartXExtremes() {
+  //only used for comparison
+  try {
+    var xExtremes0 = chart.xAxis[0].getExtremes()
+    var xExtremes1 = chart.xAxis[1].getExtremes()
+    chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
+    chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
+    chart.update({
+      navigator: {
+        enabled: false
+      },
+      scrollbar: {
+        enabled: false
+      }
+    })
+  } catch (error) {}
+}
+
+//Comparison functions
+
+//Compare period modal presets:
+$('#sel_setPeriod').off('change').on('change', function() {
+  var startDate = $('#in_compareEnd1').value()
+  var num = $(this).value().split('.')[0]
+  var type = $(this).value().split('.')[1]
+
+  var m_startDate = moment(startDate)
+  var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
+  $('#in_compareStart1').value(endDate)
+
+  //range to compare with:
+  num = $('#sel_comparePeriod').value().split('.')[0]
+  type = $('#sel_comparePeriod').value().split('.')[1]
+
+  startDate = endDate
+  m_startDate = moment(startDate)
+  endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
+  $('#in_compareStart2').value(endDate)
+})
+$('#sel_comparePeriod').off('change').on('change', function() {
+  var startDate = $('#in_compareEnd1').value()
+  var num = $(this).value().split('.')[0]
+  var type = $(this).value().split('.')[1]
+
+  var m_startDate = moment(startDate)
+  var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
+  $('#in_compareEnd2').value(endDate)
+
+  startDate = $('#in_compareStart1').value()
+  m_startDate = moment(startDate)
+  endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
+  $('#in_compareStart2').value(endDate)
+})
+
+//Load date ranges modal:
 $("#md_getCompareRange").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  width: 520,
+  width: 680,
   height: 180,
   open: function() {
     $(this).parent().css({
       'top': 120
     })
     $('#in_compareStart1').value($('#in_startDate').value())
-    $('#in_compareEnd1').value($('#in_endDate').value())
+    $('#sel_setPeriod').trigger('change')
+    $('#sel_comparePeriod').trigger('change')
   },
   beforeClose: function(event, ui) {}
 })
@@ -531,68 +635,4 @@ function compareChart(_cmd_id, _options) {
     }
   })
   $('#md_getCompareRange').dialog('close')
-}
-
-function emptyHistory(_cmd_id, _date) {
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/cmd.ajax.php",
-    data: {
-      action: "emptyHistory",
-      id: _cmd_id,
-      date: _date
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $.fn.showAlert({
-          message: data.result,
-          level: 'danger'
-        })
-        return
-      }
-      $.fn.showAlert({
-        message: '{{Historique supprimé avec succès}}',
-        level: 'success'
-      })
-      li = $('li[data-cmd_id=' + _cmd_id + ']')
-      if (li && li.hasClass('active')) {
-        li.find('.history').click()
-      }
-    }
-  })
-}
-
-function setChartYExtremes() {
-  if (!chart) return
-  var max = 0
-  var min = 10000
-  chart.yAxis.forEach((axis, index) => {
-    if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min) min = axis.getExtremes().dataMin
-    if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max) max = axis.getExtremes().dataMax
-  })
-  chart.yAxis.forEach((axis, index) => {
-    axis.setExtremes(min / 1.005, max * 1.005, true, false)
-  })
-}
-
-function setChartXExtremes() {
-  //only used for comparison
-  try {
-    var xExtremes0 = chart.xAxis[0].getExtremes()
-    var xExtremes1 = chart.xAxis[1].getExtremes()
-    chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
-    chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
-    chart.update({
-      navigator: {
-        enabled: false
-      },
-      scrollbar: {
-        enabled: false
-      }
-    })
-  } catch (error) {}
 }
