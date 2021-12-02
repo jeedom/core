@@ -16,6 +16,14 @@
 
 "use strict"
 
+
+$(function() {
+    $('ul.bs-sidenav li a').each(function() {
+      $(this).prop('title', $(this).attr('data-command'))
+    })
+})
+
+
 $('.bt_systemCommand').off('click').on('click', function() {
   var command = $(this).attr('data-command')
   $('#pre_commandResult').empty()
