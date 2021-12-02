@@ -213,3 +213,12 @@ sudo easy_install3 pip
 `` ''''
 
 Luego relanzar las dependencias
+
+
+### Desde el 4.2 Ya no puedo mostrar un iframe
+
+Es normal el 4.2 fortaleciendo enormemente la seguridad de Jeedom, te recomendamos que te quedes así. Si realmente necesita volver a una versión no segura, puede ir a Configuración -> Sistema -> Configuración y luego en OS / DB, iniciar la consola de administración del sistema y hacer clic en "Apache no seguro". Se recomienda reiniciar Jeedom después de este cambio
+
+### Desde el 4.2 algún complemento no funciona y en la consola del navegador (tecla F12) tengo 403
+
+Esto se debe a la seguridad de Apache, que requiere que el desarrollador de complementos los coloque en el directorio correcto para limitar la superficie de ataque de Jeedom. Esta seguridad se realiza en el archivo .htaccess (se sobrescribe cada vez que se actualiza el núcleo). Puedes hacer un archivo .htaccess_custom con sus propias reglas que, si existen, se utilizarán en lugar del archivo .htaccess
