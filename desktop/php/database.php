@@ -33,7 +33,7 @@ sendVarToJS('_tableList_', $tableList);
       <div id="h3_executeCommand" class="alert alert-info">{{Cliquez sur une commande ci dessus ou éxécutez une commande personnalisée.}}</div>
     </div>
   </div>
-  <div class="col-lg-10 col-md-9 col-sm-8" style="height: calc(100vh - 150px); padding-right: 0 !important; padding-top: 5px;">
+  <div class="col-lg-10 col-md-9 col-sm-8" style="padding-top: 5px;">
     <div id="dbCommands">
       <label style="width: 100%;"><i class="fas fa-database"></i> {{Constructeur SQL}}
         <div class="input-group pull-right" style="display:inline-flex; right: -8px;">
@@ -116,7 +116,7 @@ sendVarToJS('_tableList_', $tableList);
       <div class="input-group content">
         <input id="in_specificCommand" class="form-control input-sm" type="text"/>
         <div class="input-group-btn">
-          <a id="bt_validateSpecificCommand" class="btn btn-warning btn-sm"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
+          <a id="bt_validateSpecificCommand" class="btn btn-warning btn-sm"><i class="fas fa-radiation"></i> {{Exécuter}} </a>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ $google2fa_url = $google2fa->getQRCodeInline(
     <div class="center">
       {{Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.}}<br/>
       <img src="<?php echo $google2fa_url; ?>" /><br/>
-      {{Vous pouvez aussi entrer manuellement le code suivant : }}<strong><?php echo $_SESSION['user']->getOptions('twoFactorAuthentificationSecret'); ?></strong>
+      {{Vous pouvez aussi entrer manuellement le code suivant :}} <strong><?php echo $_SESSION['user']->getOptions('twoFactorAuthentificationSecret'); ?></strong>
     </div>
   </div>
 </div>

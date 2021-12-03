@@ -358,7 +358,15 @@ $('.eqLogicAction[data-action=save]').off('click').on('click', function() {
           url += i + '=' + vars[i].replace('#', '') + '&'
         }
       }
-      url += 'id=' + data.id + '&saveSuccessFull=1'
+
+      var id
+      if (Array.isArray(data)) {
+        id = data[0].id
+      } else {
+        id = data.id
+      }
+      url += 'id=' + id + '&saveSuccessFull=1'
+
       if (document.location.toString().match('#')) {
         url += '#' + document.location.toString().split('#')[1]
       }
@@ -382,7 +390,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
       success: function(data) {
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?'
         if (Object.keys(data).length > 0) {
-          text += ' </br> Il est utilisé par ou utilise : </br>'
+          text += ' </br> {{Il est utilisé par ou utilise :}}</br>'
           var complement = null
           for (var i in data) {
             complement = ''

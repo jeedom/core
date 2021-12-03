@@ -27,7 +27,6 @@ if (getUrlVars('fullscreen') == '1') {
   $('#wrap').css('margin-bottom', '0px');
   $('#div_colPlan3d').height($('html').height());
 }
-jeedomUtils.initRowOverflow();
 var container, scene, camera, renderer, controls;
 var SCREEN_WIDTH = $('#div_display3d').width();
 var SCREEN_HEIGHT = $('#div_display3d').height();
@@ -123,7 +122,7 @@ window.addEventListener('resize', function() {
   if (getUrlVars('fullscreen') == '1') {
     $('#div_colPlan3d').height($('html').height());
   } else {
-    jeedomUtils.initRowOverflow();
+    $('#div_colPlan3d').style('height', '')
   }
   SCREEN_WIDTH = $('#div_display3d').width();
   SCREEN_HEIGHT = $('#div_display3d').height();

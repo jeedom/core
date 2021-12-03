@@ -44,7 +44,7 @@ try {
 					@session_start();
 					$_SESSION['user'] = $user;
 					@session_write_close();
-					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $_SESSION['user']->getLogin());
+					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $_SESSION['user']->getLogin());
 				}
 			}
 			$user = user::connect(init('username'), init('password'));
@@ -223,7 +223,7 @@ try {
 			}
 			$user = user::byId(init('id'));
 			if (!is_object($user)) {
-				throw new Exception(__('Utilisateur non trouvé : ', __FILE__) . init('id'));
+				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . init('id'));
 			}
 			ajax::success(jeedom::toHumanReadable(utils::o2a($user)));
 		}
@@ -256,7 +256,7 @@ try {
 			}
 			$user = user::byId(init('user_id'));
 			if (!is_object($user)) {
-				throw new Exception(__('Utilisateur non trouvé : ', __FILE__) . init('user_id'));
+				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . init('user_id'));
 			}
 			$registerDevice = $user->getOptions('registerDevice', array());
 		} else {
@@ -327,7 +327,7 @@ try {
 		ajax::success(user::supportAccess(init('enable')));
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

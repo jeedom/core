@@ -99,6 +99,10 @@ class repo_market {
 				'cloud::backup::password_confirmation' => array(
 					'name' => __('[Backup cloud] Mot de passe (confirmation)', __FILE__),
 					'type' => 'password',
+				),
+				'cloud::monitoring::disable' => array(
+					'name' => __('[Monitoring cloud] Désactiver', __FILE__),
+					'type' => 'checkbox',
 				)
 			),
 			'parameters_for_add' => array(
@@ -131,7 +135,7 @@ class repo_market {
 				if (!is_object($repo)) {
 					continue;
 				}
-				log::add('market', 'debug', __('Lancement de l\'installation de ', __FILE__) . $repo->getLogicalId() . __(' en version ', __FILE__) . $plugin['version']);
+				log::add('market', 'debug', __('Lancement de l\'installation de', __FILE__) . ' ' . $repo->getLogicalId() . ' ' . __('en version', __FILE__) . ' ' . $plugin['version']);
 				$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
 				if (!is_object($update)) {
 					$update = new update();
@@ -190,7 +194,7 @@ class repo_market {
 		if (is_object($market)) {
 			$file = $market->install($_update->getConfiguration('version', 'stable'));
 		} else {
-			throw new Exception(__('Objet introuvable sur le market : ', __FILE__) . $_update->getLogicalId() . '/' . $_update->getType());
+			throw new Exception(__('Objet introuvable sur le market :', __FILE__) . ' ' . $_update->getLogicalId() . '/' . $_update->getType());
 		}
 		return array('path' => $file, 'localVersion' => $market->getDatetime($_update->getConfiguration('version', 'stable')));
 	}
@@ -328,7 +332,7 @@ class repo_market {
 			$file = array_shift($files);
 			$filename = basename($file['path']);
 			$path = basename(str_replace($filename, '', $file['path'])) . '/' . $filename;
-			echo __('Supression du backup cloud : ', __FILE__) . $path . "\n";
+			echo __('Supression du backup cloud :', __FILE__) . ' ' . $path . "\n";
 			$filesystem->delete('/webdav/' . config::byKey('market::username') . '/' . $path);
 			$total_size -= $file['size'];
 			$nb++;
@@ -375,7 +379,7 @@ class repo_market {
 			mkdir('/tmp/jeedom_gnupg');
 		}
 		com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
-		$cmd = 'cd ' . $backup_dir . ';wget "https://' . config::byKey('market::username') . ':' . config::byKey('market::password') . '@' . str_replace('https://', '', config::byKey('service::backup::url')) . '/webdav/' . config::byKey('market::username') . '/' . config::byKey('market::cloud::backup::name') . '/' . $_backup . '"';
+		$cmd = 'cd ' . $backup_dir . ';wget "https://' . rawurlencode(config::byKey('market::username')) . ':' . rawurlencode(config::byKey('market::password')) . '@' . str_replace('https://', '', config::byKey('service::backup::url')) . '/webdav/' . rawurlencode(config::byKey('market::username')) . '/' . rawurlencode(config::byKey('market::cloud::backup::name')) . '/' . $_backup . '"';
 		com_shell::execute($cmd);
 		$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 --output ' . $backup_dir . '/cloud-' . str_replace('.gpg', '', $_backup) . ' -d ' . $backup_dir . '/' . $_backup;
 		com_shell::execute($cmd);
@@ -398,7 +402,7 @@ class repo_market {
 
 	public static function cron5() {
 		try {
-			if (config::byKey('service::monitoring::enable')) {
+			if (config::byKey('service::monitoring::enable') && config::byKey('cloud::monitoring::disable', 0) == 0) {
 				sleep(rand(1, 60));
 				$data = array(
 					'health' => jeedom::health(),
@@ -484,10 +488,10 @@ class repo_market {
 						$return['status'] = 'ok';
 					}
 				} catch (Exception $e) {
-					log::add('market', 'debug', __('Erreur repo_market::getinfo : ', __FILE__) . $e->getMessage());
+					log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
 					$return['status'] = 'ok';
 				} catch (Error $e) {
-					log::add('market', 'debug', __('Erreur repo_market::getinfo : ', __FILE__) . $e->getMessage());
+					log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
 					$return['status'] = 'ok';
 				}
 				$returns[$logicalId] = $return;
@@ -535,10 +539,10 @@ class repo_market {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('market', 'debug', __('Erreur repo_market::getinfo : ', __FILE__) . $e->getMessage());
+			log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
 			$return['status'] = 'ok';
 		} catch (Error $e) {
-			log::add('market', 'debug', __('Erreur repo_market::getinfo : ', __FILE__) . $e->getMessage());
+			log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
 			$return['status'] = 'ok';
 		}
 		return $return;
@@ -918,12 +922,12 @@ class repo_market {
 			exec(system::getCmdSudo() . 'chmod 777 -R ' . $tmp);
 		}
 		if (!is_writable($tmp_dir)) {
-			throw new Exception(__('Impossible d\'écrire dans le répertoire : ', __FILE__) . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R ', __FILE__) . $tmp_dir);
+			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
 
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
-		log::add('update', 'alert', __('Téléchargement de ', __FILE__) . $this->getLogicalId() . '...');
-		log::add('update', 'alert', __('URL ', __FILE__) . $url);
+		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
+		log::add('update', 'alert', __('URL', __FILE__) . ' ' . $url);
 		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update') . ' 2>&1');
 		switch ($this->getType()) {
 			case 'plugin':
@@ -989,7 +993,7 @@ class repo_market {
 				$tmp = jeedom::getTmpFolder('market') . '/' . $plugin_id . '.zip';
 				if (file_exists($tmp)) {
 					if (!unlink($tmp)) {
-						throw new Exception(__('Impossible de supprimer : ', __FILE__) . $tmp . __('. Vérifiez les droits', __FILE__));
+						throw new Exception(__('Impossible de supprimer :', __FILE__) . ' ' . $tmp . __('. Vérifiez les droits', __FILE__));
 					}
 				}
 				if (!create_zip($cibDir, $tmp)) {
@@ -1000,13 +1004,13 @@ class repo_market {
 			default:
 				$type = $this->getType();
 				if (!class_exists($type) || !method_exists($type, 'shareOnMarket')) {
-					throw new Exception(__('Aucune fonction correspondante à : ', __FILE__) . $type . '::shareOnMarket');
+					throw new Exception(__('Aucune fonction correspondante à :', __FILE__) . ' ' . $type . '::shareOnMarket');
 				}
 				$tmp = $type::shareOnMarket($this);
 				break;
 		}
 		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de trouver le fichier à envoyer : ', __FILE__) . $tmp);
+			throw new Exception(__('Impossible de trouver le fichier à envoyer :', __FILE__) . ' ' . $tmp);
 		}
 		$file = array(
 			'file' => '@' . realpath($tmp),

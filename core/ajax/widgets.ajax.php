@@ -85,7 +85,7 @@ try {
     ajax::success(widgets::replacement(init('version'),init('replace'),init('by')));
   }
   
-  throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+  throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
   
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {

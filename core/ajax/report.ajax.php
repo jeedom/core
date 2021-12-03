@@ -51,7 +51,7 @@ try {
 			unlink($path);
 		}
 		if (file_exists($path)) {
-			throw new Exception(__('Impossible de supprimer : ', __FILE__) . $path);
+			throw new Exception(__('Impossible de supprimer :', __FILE__) . ' ' . $path);
 		}
 		ajax::success();
 	}
@@ -64,7 +64,7 @@ try {
 		ajax::success($return);
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

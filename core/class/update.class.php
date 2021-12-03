@@ -284,7 +284,7 @@ class update {
 	
 	public function doUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1  && $this->getType() != 'core') {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur ', __FILE__) . $this->getLogicalId());
+			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {
@@ -299,7 +299,7 @@ class update {
 				}
 				mkdir($cibDir);
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-					throw new Exception(__('Impossible de créer le dossier  : ', __FILE__) . $cibDir . '. ' . __('Problème de droits ?', __FILE__));
+					throw new Exception(__('Impossible de créer le dossier  :', __FILE__) . ' ' . $cibDir . '. ' . __('Problème de droits ?', __FILE__));
 				}
 				log::add('update', 'alert', __('Téléchargement du plugin...', __FILE__));
 				$info = $class::downloadObject($this);
@@ -319,7 +319,7 @@ class update {
 					}
 					$extension = strtolower(strrchr($tmp, '.'));
 					if (!in_array($extension, array('.zip'))) {
-						throw new Exception(__('Extension du fichier non valide (autorisé .zip) : ', __FILE__) . $extension);
+						throw new Exception(__('Extension du fichier non valide (autorisé .zip) :', __FILE__) . ' ' . $extension);
 					}
 					log::add('update', 'alert', __('Décompression du zip...', __FILE__));
 					$zip = new ZipArchive;
@@ -327,7 +327,7 @@ class update {
 					if ($res === TRUE) {
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
-							throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés : ', __FILE__) . substr($content, 255));
+							throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés :', __FILE__) . ' ' . substr($content, 255));
 						}
 						$zip->close();
 						unlink($tmp);
@@ -355,7 +355,7 @@ class update {
 						}
 						log::add('update', 'alert', __("OK\n", __FILE__));
 					} else {
-						throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $tmp . ' => ' . ZipErrorMessage($res));
+						throw new Exception(__('Impossible de décompresser l\'archive zip :', __FILE__) . ' ' . $tmp . ' => ' . ZipErrorMessage($res));
 					}
 				}
 				$this->postInstallUpdate($info);
@@ -427,11 +427,11 @@ class update {
 			@chmod(__DIR__ . '/../../plugins', 0775);
 		}
 		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
-		log::add('update', 'alert', __('Début de la mise à jour de : ', __FILE__) . $this->getLogicalId() . "\n");
+		log::add('update', 'alert', __('Début de la mise à jour de :', __FILE__) . ' ' . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {
 			case 'plugin':
 			if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-				throw new Exception(__('Impossible de créer le dossier  : ', __FILE__) . $cibDir . __('Problème de droits ?', __FILE__));
+				throw new Exception(__('Impossible de créer le dossier  :', __FILE__) . ' ' . $cibDir . __('Problème de droits ?', __FILE__));
 			}
 			try {
 				$plugin = plugin::byId($this->getLogicalId());
@@ -449,7 +449,7 @@ class update {
 	}
 	
 	public function postInstallUpdate($_infos) {
-		log::add('update', 'alert', __('Post-installation de ', __FILE__) . $this->getLogicalId() . '...');
+		log::add('update', 'alert', __('Post-installation de', __FILE__) . ' ' . $this->getLogicalId() . '...');
 		try {
 			if(function_exists('opcache_reset')){
 				opcache_reset();

@@ -151,6 +151,7 @@ function initPickers() {
   })
 }
 
+var _configReload_
 //load configuration settings
 jeedom.config.load({
   configuration: $('#config').getValues('.configKey:not(.noSet)')[0],
@@ -170,6 +171,8 @@ jeedom.config.load({
     if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') $('a.bt_removeBackgroundImage[data-page=analysis]').addClass('disabled')
     if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') $('a.bt_removeBackgroundImage[data-page=tools]').addClass('disabled')
     modifyWithoutSave = false
+
+    _configReload_ = $('#config').getValues('.configKey[data-reload="1"]')[0]
   }
 })
 
@@ -197,16 +200,38 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
           })
         },
         success: function(data) {
-          $('#config').setValues(data, '.configKey')
-          loadActionOnMessage()
-          modifyWithoutSave = false
-          setTimeout(function() {
+          var reloadPage = false
+          try {
+            for (var key in _configReload_) {
+              if (_configReload_[key] != data[key]) {
+                reloadPage = true
+                break
+              }
+            }
+          } catch (error) {
+            reloadPage = true
+          }
+
+          if (reloadPage) {
+            var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
+            if (window.location.hash != '') {
+              url += window.location.hash
+            }
+            window.history.pushState({}, document.title, url)
+            window.location.reload(true)
+          } else {
+            $('#config').setValues(data, '.configKey')
+            loadActionOnMessage()
             modifyWithoutSave = false
-          }, 1000)
-          $.fn.showAlert({
-            message: '{{Sauvegarde réussie}}',
-            level: 'success'
-          })
+            setTimeout(function() {
+              modifyWithoutSave = false
+            }, 1000)
+            $.fn.showAlert({
+              message: '{{Sauvegarde réussie}}',
+              level: 'success'
+            })
+            _configReload_ = $('#config').getValues('.configKey[data-reload="1"]')[0]
+          }
         }
       })
     }
@@ -326,6 +351,7 @@ $('.bt_uploadImage').each(function() {
         return
       }
       $('a.bt_removeBackgroundImage[data-page=' + $(this).attr('data-page') + ']').removeClass('disabled')
+      _configReload_['imageChanged'] = 1
       $.fn.showAlert({
         message: '{{Image enregistrée et configurée}}',
         level: 'success'
@@ -349,6 +375,7 @@ $divConfig.on({
           },
           success: function() {
             $('a.bt_removeBackgroundImage[data-page=' + dataPage + ']').addClass('disabled')
+            _configReload_['imageChanged'] = 1
             $.fn.showAlert({
               message: '{{Image supprimée}}',
               level: 'success'
@@ -804,10 +831,10 @@ function addObjectSummary(_summary) {
   tr += '<option value="text">{{Texte}}</option>'
   tr += '</select></td>'
 
-  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>'
+  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
   tr += '<span class="objectSummaryAttr" data-l1key="icon"></span></td>'
 
-  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i> {{Icône}}</a>'
+  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
   tr += '<span class="objectSummaryAttr" data-l1key="iconnul"></span></td>'
 
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
@@ -827,7 +854,7 @@ function addObjectSummary(_summary) {
   tr += ''
   tr += '<td>'
   if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
-    tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i> {{Créer virtuel}}</a>'
+    tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i><span class="hidden-1280"> {{Créer virtuel}}</span></a>'
   }
   tr += '</td>'
 
@@ -1147,7 +1174,7 @@ function updateCacheStats() {
 $(".bt_regenerate_api").on('click', function(event) {
   $.hideAlert()
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de }}' + el.attr('data-plugin') + ' ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {
       $.ajax({
         type: "POST",

@@ -22,7 +22,6 @@ define('DEBUG', 0);
 /* * *********************** MySQL & Memcached ******************* */
 global $CONFIG;
 $CONFIG = array(
-	//MySQL parametres
 	'db' => array(
 		'host' => '#HOST#',
 		'port' => '#PORT#',

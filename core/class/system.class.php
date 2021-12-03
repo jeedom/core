@@ -68,7 +68,7 @@ class system {
 
 	public static function get($_key = '') {
 		$return = '';
-		if (isset(self::$_command[self::getDistrib()]) && isset(self::$_command[self::getDistrib()][$_key])) {
+		if (isset(self::$_command[self::getDistrib()][$_key])) {
 			$return = self::$_command[self::getDistrib()][$_key];
 		}
 		if ($return == '') {
@@ -525,7 +525,7 @@ class system {
 	public static function installPackage($_type, $_package) {
 		switch ($_type) {
 			case 'apt':
-				if ($_package == 'nodejs' || $_package == 'npm') {
+				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
 				}
 				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;

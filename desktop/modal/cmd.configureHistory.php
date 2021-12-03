@@ -31,7 +31,7 @@ include_file('3rdparty', 'jquery.tablesorter/_jeedom/pager-custom-constrols', 'j
 <div style="display: none;" id="md_cmdConfigureHistory"></div>
 <a class="btn btn-success btn-xs pull-right" id="bt_cmdConfigureCmdHistoryApply"><i class="fas fa-check"></i> {{Valider}}</a>
 <div class="center">
-  <span class="label label-info">{{Commandes : }} <?php echo count($cmds) ?> | {{Commandes historisées : }}<?php echo $count['history'] ?> | {{Commandes timeline : }}<?php echo $count['timeline'] ?></span>
+  <span class="label label-info">{{Commandes :}} <?php echo ' '.count($cmds) ?> | {{Commandes historisées :}}<?php echo ' ' . $count['history'] ?> | {{Commandes timeline :}}<?php echo ' ' . $count['timeline'] ?></span>
 </div>
 <br/>
 

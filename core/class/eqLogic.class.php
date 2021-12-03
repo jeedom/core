@@ -112,7 +112,7 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic';
 		if ($_object_id === null) {
-			$sql .= ' WHERE object_id IS NULL OR object_id = -1';
+			$sql .= ' WHERE (object_id IS NULL OR object_id = -1)';
 		} else {
 			$values['object_id'] = $_object_id;
 			$sql .= ' WHERE object_id=:object_id';
@@ -337,7 +337,7 @@ class eqLogic {
 				if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
-						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifiez les piles)', __FILE__);
+						$message .= ' ' . __('n\'a pas envoyé de message depuis plus de', __FILE__) . ' ' . $noReponseTimeLimit . ' ' . __('min (vérifiez les piles)', __FILE__);
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
@@ -490,7 +490,7 @@ class eqLogic {
 	public static function byString($_string) {
 		$eqLogic = self::byId(str_replace(array('#', 'eqLogic'), '', self::fromHumanReadable($_string)));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('L\'équipement n\'a pas pu être trouvé : ', __FILE__) . $_string . ' => ' . self::fromHumanReadable($_string));
+			throw new Exception(__('L\'équipement n\'a pas pu être trouvé :', __FILE__) . ' ' . $_string . ' => ' . self::fromHumanReadable($_string));
 		}
 		return $eqLogic;
 	}
@@ -806,8 +806,8 @@ class eqLogic {
 			$height = $this->getDisplay('backGraph::height', '0');
 			if ($height != '0') {
 				$replace['#isVerticalAlign#'] = 0;
-				$replace['#divGraphInfo#'] = str_replace('data-cmdid=', 'style="height:'.$height.'px;" data-cmdid=', $replace['#divGraphInfo#']);
-              	$replace['#divGraphInfo#'] = str_replace('eqlogicbackgraph', 'eqlogicbackgraph fixedbackgraph', $replace['#divGraphInfo#']);
+				$replace['#divGraphInfo#'] = str_replace('data-cmdid=', 'style="height:' . $height . 'px;" data-cmdid=', $replace['#divGraphInfo#']);
+				$replace['#divGraphInfo#'] = str_replace('eqlogicbackgraph', 'eqlogicbackgraph fixedbackgraph', $replace['#divGraphInfo#']);
 			}
 		}
 		return $replace;
@@ -935,7 +935,7 @@ class eqLogic {
 
 	public function save($_direct = false) {
 		if ($this->getName() == '') {
-			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
+			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide :', __FILE__) . ' ' . print_r($this, true));
 		}
 		if ($this->getChanged()) {
 			if ($this->getId() != '') {
@@ -1036,7 +1036,7 @@ class eqLogic {
 	}
 
 	public function getLinkToConfiguration() {
-		if (isset($_SESSION) && isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin')) {
+		if (isset($_SESSION['user']) && is_object($_SESSION['user']) && !isConnect('admin')) {
 			return '#';
 		}
 		return 'index.php?v=d&p=' . $this->getEqType_name() . '&m=' . $this->getEqType_name() . '&id=' . $this->getId();
@@ -1121,7 +1121,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}
@@ -1147,7 +1147,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . ']', __FILE__) . ' ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}
@@ -1255,7 +1255,7 @@ class eqLogic {
 					if (isset($command['value'])) {
 						$link_cmds[$cmd->getId()] = $command['value'];
 					}
-					if (isset($command['configuration']) && isset($command['configuration']['updateCmdId'])) {
+					if (isset($command['configuration']['updateCmdId'])) {
 						$link_actions[$cmd->getId()] = $command['configuration']['updateCmdId'];
 					}
 					$cmd_order++;
@@ -1416,6 +1416,9 @@ class eqLogic {
 		addGraphLink($this, 'eqLogic', $use['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		foreach ($usedBy['plugin'] as $key => $value) {
+			addGraphLink($this, 'eqLogic', $value, $key, $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'eqLogic', $usedBy['cmd'], 'cmd', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 		addGraphLink($this, 'eqLogic', $usedBy['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
@@ -1437,8 +1440,8 @@ class eqLogic {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'interactDef' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$return['cmd'] = cmd::searchConfiguration('#eqLogic' . $this->getId() . '#');
-		$return['eqLogic'] = self::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
-		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId()));
+		$return['eqLogic'] = self::searchConfiguration(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId() . '"'));
+		$return['interactDef'] = interactDef::searchByUse(array('#eqLogic' . $this->getId() . '#', '"eqLogic":"' . $this->getId() . '"'));
 		$return['scenario'] = scenario::searchByUse(array(
 			array('action' => 'equipment', 'option' => $this->getId(), 'and' => true),
 			array('action' => '#eqLogic' . $this->getId() . '#'),
@@ -1446,6 +1449,12 @@ class eqLogic {
 		$return['view'] = view::searchByUse('eqLogic', $this->getId());
 		$return['plan'] = planHeader::searchByUse('eqLogic', $this->getId());
 		$return['plan3d'] = plan3dHeader::searchByUse('eqLogic', $this->getId());
+		$return['plugin'] = array();
+		foreach (plugin::listPlugin(true, false, true, true) as $plugin) {
+			if (method_exists($plugin, 'customUsedBy')) {
+				$return['plugin'][$plugin] = $plugin::customUsedBy('eqLogic', $this->getId());
+			}
+		}
 		if ($_array) {
 			foreach ($return as &$value) {
 				$value = utils::o2a($value);

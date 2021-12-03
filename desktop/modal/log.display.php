@@ -25,7 +25,7 @@ sendVarToJS([
 
 if(init('log','event') == 'event'){
   if(log::getLogLevel('event') > 200){
-    $alert = '<div class="alert alert-danger">{{Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel. }}';
+    $alert = '<div class="alert alert-danger">{{Attention votre niveau de log (event) est inférieur à info, vous ne pouvez donc pas voir de temps réel.}}';
     $alert .= ' <a href="/index.php?v=d&p=administration#logtab" class="success">{{Configuration}}</a>';
     $alert .= '</div>';
     echo $alert;

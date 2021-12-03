@@ -43,7 +43,7 @@ try {
 	$jsonrpc = new jsonrpc($request);
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
-		throw new Exception(__('Requête invalide. Version JSON-RPC invalide : ', __FILE__) . $jsonrpc->getJsonrpc(), -32001);
+		throw new Exception(__('Requête invalide. Version JSON-RPC invalide :', __FILE__) . ' ' . $jsonrpc->getJsonrpc(), -32001);
 	}
 
 	$params = $jsonrpc->getParams();
@@ -56,7 +56,7 @@ try {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32001);
 	}
 
-	log::add('api', 'info', __('connexion valide et verifiée : ', __FILE__) . $jsonrpc->getMethod());
+	log::add('api', 'info', __('connexion valide et verifiée :', __FILE__) . ' ' . $jsonrpc->getMethod());
 
 	/*             * ************************config*************************** */
 	if ($jsonrpc->getMethod() == 'config::byKey') {
@@ -497,7 +497,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::byId') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32701);
+				throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32701);
 			}
 			$jsonrpc->makeSuccess(utils::o2a($cmd));
 		}
@@ -508,14 +508,14 @@ try {
 				foreach ($params['id'] as $id) {
 					$cmd = cmd::byId($id);
 					if (!is_object($cmd)) {
-						throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($id), -32702);
+						throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . secureXSS($id), -32702);
 					}
 					$return[$id] = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 				}
 			} else {
 				$cmd = cmd::byId($params['id']);
 				if (!is_object($cmd)) {
-					throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+					throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
 				}
 				$return = array('value' => $cmd->execCmd($params['options']), 'collectDate' => $cmd->getCollectDate());
 			}
@@ -525,7 +525,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::getStatistique') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+				throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
 			}
 			$jsonrpc->makeSuccess($cmd->getStatistique($params['startTime'], $params['endTime']));
 		}
@@ -533,7 +533,7 @@ try {
 		if ($jsonrpc->getMethod() == 'cmd::getTendance') {
 			$cmd = cmd::byId($params['id']);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande introuvable : ', __FILE__) . secureXSS($params['id']), -32702);
+				throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
 			}
 			$jsonrpc->makeSuccess($cmd->getTendance($params['startTime'], $params['endTime']));
 		}
@@ -655,7 +655,7 @@ try {
 			}
 			$jeeNetwork = jeeNetwork::byId($params['slave_id']);
 			if (!is_object($jeeNetwork)) {
-				throw new Exception(__('Aucun esclave correspondant à l\'ID : ', __FILE__) . secureXSS($params['slave_id']));
+				throw new Exception(__('Aucun esclave correspondant à l\'ID :', __FILE__) . ' ' . secureXSS($params['slave_id']));
 			}
 			if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 				$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
@@ -667,12 +667,12 @@ try {
 				mkdir($uploaddir);
 			}
 			if (!file_exists($uploaddir)) {
-				throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . secureXSS($uploaddir));
+				throw new Exception(__('Répertoire de téléversement non trouvé :', __FILE__) . ' ' . secureXSS($uploaddir));
 			}
 			$_file = $_FILES['file'];
 			$extension = strtolower(strrchr($_file['name'], '.'));
 			if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-				throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ', __FILE__) . secureXSS($extension));
+				throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) :', __FILE__) . ' ' . secureXSS($extension));
 			}
 			if (filesize($_file['tmp_name']) > 50000000) {
 				throw new Exception(__('La taille du fichier est trop importante (maximum 50Mo)', __FILE__));
@@ -698,12 +698,12 @@ try {
 				mkdir($uploaddir);
 			}
 			if (!file_exists($uploaddir)) {
-				throw new Exception(__('Répertoire de téléversement non trouvé : ', __FILE__) . secureXSS($uploaddir));
+				throw new Exception(__('Répertoire de téléversement non trouvé :', __FILE__) . ' ' . secureXSS($uploaddir));
 			}
 			$_file = $_FILES['file'];
 			$extension = strtolower(strrchr($_file['name'], '.'));
 			if (!in_array($extension, array('.tar.gz', '.gz', '.tar'))) {
-				throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) : ', __FILE__) . secureXSS($extension));
+				throw new Exception(__('Extension du fichier non valide (autorisé .tar.gz, .tar et .gz) :', __FILE__) . ' ' . secureXSS($extension));
 			}
 			if (filesize($_file['tmp_name']) > 50000000) {
 				throw new Exception(__('La taille du fichier est trop importante (maximum 50Mo)', __FILE__));
@@ -800,7 +800,7 @@ try {
 				$market = market::byLogicalId($params['plugin_id']);
 			}
 			if (!is_object($market)) {
-				throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . secureXSS($params['plugin_id']));
+				throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['plugin_id']));
 			}
 			if (!isset($params['version'])) {
 				$params['version'] = 'stable';
@@ -812,7 +812,7 @@ try {
 		if ($jsonrpc->getMethod() == 'plugin::remove') {
 			$market = market::byId($params['plugin_id']);
 			if (!is_object($market)) {
-				throw new Exception(__('Impossible de trouver l\'objet associé : ', __FILE__) . secureXSS($params['plugin_id']));
+				throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['plugin_id']));
 			}
 			if (!isset($params['version'])) {
 				$params['version'] = 'stable';
@@ -886,7 +886,7 @@ try {
 
 		/*             * ************************************************************************ */
 	}
-	throw new Exception(__('Aucune méthode correspondante : ', __FILE__) . secureXSS($jsonrpc->getMethod()), -32500);
+	throw new Exception(__('Aucune méthode correspondante :', __FILE__) . ' ' . secureXSS($jsonrpc->getMethod()), -32500);
 	/*         * *********Catch exeption*************** */
 } catch (Exception $e) {
 	$message = $e->getMessage();

@@ -610,7 +610,7 @@ $("#bt_saveWidgets").on('click', function(event) {
 })
 
 $('#bt_removeWidgets').on('click', function(event) {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce widget ?}}', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + $('input[data-l1key="name"]').val() + '</span> ?', function(result) {
     if (result) {
       jeedom.widgets.remove({
         id: $('.widgetsAttr[data-l1key=id]').value(),

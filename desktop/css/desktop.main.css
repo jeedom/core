@@ -1,4 +1,4 @@
-/*
+/*/*
 Theme Core 2021 @Jeedom
 Desktop
 */
@@ -146,6 +146,15 @@ Desktop
 
   #dashTopBar {
     margin-top: 5px;
+    width: calc(100% + 2px) !important;
+    left: -1px;
+  }
+  #dashTopBar.editing {
+    position: fixed;
+    top: 50px;
+    z-index: 500;
+    width: calc(100% - 17px) !important;
+    left: 6px;
   }
   #in_searchDashboard.editing {
     background-color: var(--al-info-color) !important;
@@ -177,6 +186,15 @@ Desktop
     overflow-x: hidden;
     scrollbar-width: thin;
     height: 100% !important;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+
+  #div_pageContainer div.tab-content {
+    height: calc(100vh - 110px) !important;
+  }
+  #div_pageContainer div.tab-content div.tab-content {
+    height: unset !important;
   }
 
   #categoryfilter i {
@@ -442,8 +460,9 @@ Desktop
       height: auto;
       overflow-x: hidden;
     }
-    [class*="col-"] {
-      right: 3px;
+
+    .form-horizontal {
+      padding-right: 15px;
     }
     .control-label {
       line-height: 26px !important;
@@ -904,26 +923,32 @@ Desktop
   }
 
   #div_displayLogList {
-    padding-top: 37px !important;
-    padding-left: 0 !important;
+    overflow: hidden auto;
     padding-right: 0 !important;
     font-size: 13px;
     max-height: calc(100vh - 60px);
   }
-  .li_log i{
+  #div_displayLogList ul > li > a {
+    padding: 2px !important;
+  }
+  #div_displayLogList .li_log i {
     position: relative;
     left: -2px;
     top :1px;
   }
-
-  .li_log i.fa-check {
+  #div_displayLogList .li_log i.fa-check {
     color: var(--logo-primary-color);
   }
-  .li_log i.fa-exclamation-triangle {
+  #div_displayLogList .li_log i.fa-exclamation-triangle {
     color: var(--al-danger-color);
   }
-  .li_log i.fa-exclamation-circle {
+  #div_displayLogList .li_log i.fa-exclamation-circle {
     color: var(--al-warning-color);
+  }
+  #div_displayLogList .nav > li.li_log.active a {
+    width: 100% !important;
+    border: 2px solid transparent;
+    border-right-color: var(--logo-primary-color) !important;
   }
 
   .list-group-item {
@@ -1027,6 +1052,9 @@ Desktop
     padding: 4px 8px;
     margin: 35px 10px 0 15px;
     z-index: 20;
+  }
+  #dashOverviewPrevSummaries .objectSummaryContainer:empty {
+    display: none !important;
   }
 
   /* action summary */
@@ -1174,7 +1202,7 @@ Desktop
     position: relative;
     display: table-cell;
     left: -5px;
-    top: -5px;
+    top: -6px;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
     top: 10px;
@@ -1237,8 +1265,10 @@ Desktop
 
   /* ______Overview preview on dashboard */
   [data-page="dashboard"] #dashOverviewPrev {
+    position: relative;
+    left: -1px;
     padding: 5px;
-    width: calc(100% - 3px);
+    width: calc(100% + 2px);
     overflow: hidden;
     border-radius: var(--border-radius) !important;
     background: rgba(var(--bg-color), var(--opacity));
@@ -1303,6 +1333,10 @@ Desktop
   }
   [data-type="plugin"] .eqLogicThumbnailDisplay {
     overflow: unset !important;
+  }
+  [data-type="plugin"] .col-xs-12 > .input-group {
+    margin-left: unset !important;
+    margin-right: unset !important;
   }
   select.selectCmd {
     border: 0;
@@ -1667,6 +1701,7 @@ Desktop
   }
   #battery,
   #alertEqlogic {
+    padding-top: 10px;
     margin-bottom: 20px !important;
   }
   #battery .eqLogic-widget {
@@ -1746,10 +1781,6 @@ Desktop
     color: var(--link-color);
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
     border: none;
-  }
-  #pre_updateInfo_clean {
-    overflow: visible !important;
-    height: calc(100vh - 260px);
   }
 
   .row-same-height {
@@ -1924,6 +1955,14 @@ Desktop
     background-color: rgb(var(--bg-color)) !important;
     color: unset !important;
   }
+  body[data-type="plugin"] div[class*="DisplayCard"].displayAsTable:hover {
+    background-color: rgb(var(--bg-color)) !important;
+    color: unset !important;
+  }
+  body[data-page="object"] div[class*="DisplayCard"].displayAsTable:hover .name,
+  body[data-page="interact"] div[class*="DisplayCard"].displayAsTable:hover .name {
+    width: 100%;
+  }
   div[class*="DisplayCard"].displayAsTable > br {
     display: none;
   }
@@ -1953,7 +1992,6 @@ Desktop
     min-width: calc(100% - 70px) !important;
     min-height: 24px !important;
     max-height: 24px !important;
-    height: 24px !important;
     height: 24px !important;
     line-height: 22px !important;
     margin-left: 10px;
@@ -2875,6 +2913,11 @@ Desktop
   }
 
 /* ____________________TABS */
+  #div_pageContainer > .row.row-overflow > div:not(#div_displayObjectList) {
+    padding-top: 5px;
+    padding-right: 7px;
+  }
+
   #div_pageContainer > .row.row-overflow > .col-xs-12 {
     margin-bottom: 0;
   }
@@ -2899,14 +2942,6 @@ Desktop
     min-height: 80vh;
   }
 
-  body[data-page="custom"] #div_pageContainer {
-    height: calc(100% - 10px);
-  }
-  body[data-page="custom"] div[role="tabpanel"],
-  body[data-page="custom"] .tab-content {
-    height: calc(100% - 55px) !important;
-  }
-
   .tab-content .tab-content,
   .tab-content pre {
     background-color: rgba(0,0,0,0)!important;
@@ -2916,24 +2951,25 @@ Desktop
   }
 
   .floatingbar {
+    display: grid;
     position: absolute;
     top: 55px;
-    right: 10px;
+    right: 15px;
+    z-index: 100;
   }
   .row-overflow .floatingbar {
     top: 15px;
-    right: 15px;
   }
   .tab-pane .floatingbar {
     top: 10px;
     right: 15px;
   }
-  body[data-page="administration"] .tab-content,
-  body[data-page="update"] .tab-content {
+  body[data-page="administration"] #div_pageContainer div.tab-content,
+  body[data-page="update"] #div_pageContainer div.tab-content {
     height: calc(100vh - 145px) !important;
   }
-  body[data-page="update"] div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
-    height: calc(100vh - 200px) !important;
+  body[data-page="update"] #div_pageContainer div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
+    height: calc(100vh - 220px) !important;
   }
   body[data-page="administration"] .tab-content .tab-content {
     height: unset !important;
@@ -3237,7 +3273,6 @@ Desktop
   }
   #div_scenarioElement  {
     padding-top: 5px;
-    padding-bottom: 20px;
   }
   #div_scenarioElement > .element {
     margin-bottom: 3px;
@@ -3955,6 +3990,12 @@ Desktop
   }
 
 /* ____________________HIGHCHARTS */
+  #div_graph {
+    height: calc(100vh - 55px);
+  }
+  .ui-dialog #div_graph {
+    height: unset;
+  }
   .highcharts-legend-item tspan {
     cursor: pointer;
   }
@@ -4727,6 +4768,15 @@ Desktop
     margin-right: 15px;
   }
 
+  #div_pageContainer ul.nav.nav-tabs li:first-of-type,
+  #div_pageContainer ul.nav.nav-tabs > li:first-of-type > a {
+    border-radius: var(--border-radius) 0 0 0 !important;
+  }
+  #div_pageContainer ul.nav.nav-tabs li:last-of-type,
+  #div_pageContainer ul.nav.nav-tabs > li:last-of-type > a {
+    border-radius: 0 var(--border-radius) 0 0 !important;
+  }
+
   .btn,
   input,
   select,
@@ -4766,6 +4816,12 @@ Desktop
     font-size: 13px;
     line-height: 14px;
   }
+  #pre_globallog {
+    overflow: auto !important;
+    height: calc(100vh - 115px) !important;
+    width: 100%;
+    margin-top: 5px;
+  }
   #pre_globallog span,
   #pre_eventlog span {
     height: 12px;
@@ -4803,6 +4859,8 @@ Desktop
   }
   .input-group .roundedRight {
     border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+  }
+  :not(.in_search-*) .input-group .roundedRight {
     margin-right: 3px !important;
   }
   .roundedLeft::-moz-color-swatch {
@@ -4903,6 +4961,10 @@ Desktop
     legend {
       font-size: 16px !important;
     }
+
+    .hidden-1280 {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -4928,8 +4990,11 @@ Desktop
 
   @media screen and (max-width: 768px) {
     #div_displayLogList {
-      padding-top: 0 !important;
-      max-height: 11.5em;
+      max-height: 250px;
+      margin-right: 15px
+    }
+    #pre_globallog {
+      height: calc(100vh - 350px) !important;
     }
     .navbar .container-fluid .navbar-collapse.collapse.in {
       box-shadow:  0 16px 16px 3px var(--shd-color);
@@ -4937,9 +5002,33 @@ Desktop
     .navbar-nav.navbar-right {
       display: none;
     }
+
+    [data-page="history"] #div_graph {
+      height: calc(100vh - 360px);
+    }
+    [data-page="history"] .bs-sidebar {
+      overflow: auto;
+      max-height: 300px !important;
+    }
+
+    .hidden-768,
+    .displayTableRight {
+      display: none !important;
+    }
   }
 
   @media screen and (max-width: 992px) {
+    #div_pageContainer div.hasfloatingbar div.tab-content {
+      height: calc(100vh - 135px) !important;
+    }
+    div:not(.ui-dialog) > .floatingbar {
+      position: relative;
+      display: grid;
+      top: 0px !important;
+      right: 0;
+      text-align: right;
+    }
+
     #summaryGlobalMain {
       right: 115px;
       max-width: calc(100vw - 490px);
@@ -4957,8 +5046,9 @@ Desktop
     #div_editScenario .tab-content {
       max-height: calc(100% - 80px);
     }
-    #div_editScenario ul.nav.nav-tabs {
-      margin-top: 30px !important;
+
+    .hidden-992 {
+      display: none;
     }
   }
 
@@ -4971,5 +5061,47 @@ Desktop
   @media (min-width:1920px) {
     #objectOverviewContainer > div.col-lg-3 {
       width: 14.2%;
+    }
+  }
+
+/* ________________________________________TABLE REFLOW FLEX */
+  @media ( max-width: 768px ) {
+    table.ui-table-reflow thead {
+      position: relative !important;
+    }
+
+    th.tablesorter-header {
+      margin: 0 !important;
+    }
+    .tablesorter-filter-row {
+      display: none;
+    }
+
+    .ui-table-reflow td,
+    .ui-table-reflow th {
+      box-sizing: border-box;
+      float: right;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    table.ui-table-reflow.table-condensed tbody {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+    }
+    table.ui-table-reflow.table-condensed tbody tr {
+      display: table;
+      flex: 0 1 150px;
+      margin: 2px;
+      margin-bottom: 22px !important;
+    }
+    table.ui-table-reflow.table-condensed tbody tr td {
+      display: table;
+      margin-bottom: 2px !important;
+    }
+
+    body[data-page="update"] tbody > tr > td > span {
+      width: 100%
     }
   }

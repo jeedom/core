@@ -128,30 +128,54 @@ $date = array(
 	</div>
 
 	<div class="col-lg-9 col-md-8 col-sm-7">
-		<div id="div_graph" style="height:100%"></div>
+		<div id="div_graph"></div>
 	</div>
 </div>
 
-<div id="md_getCompareRange" class="hidden" style="overflow-x: hidden;">
+<!--Compare Modal -->
+<div id="md_getCompareRange" class="cleanableModal hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group">
 				<div class="form-group">
-					<label class="col-xs-4 control-label">{{Comparer la période}}</label>
+					<label class="col-xs-3 control-label">{{Comparer la période}}</label>
 					<div class="col-xs-3">
 						<input id="in_compareStart1" class="form-control input-sm in_datepicker" value="<?php echo $date['start'] ?>"/>
 					</div>
 					<div class="col-xs-3">
 						<input id="in_compareEnd1" class="form-control input-sm in_datepicker" value="<?php echo $date['end'] ?>"/>
 					</div>
+					<div class="col-xs-3">
+						<select id="sel_setPeriod" class="form-control">
+							<option value="1.week">{{1 semaine}}</option>
+							<option value="2.week">{{2 semaines}}</option>
+							<option value="1.months">{{1 mois}}</option>
+							<option value="3.months">{{3 mois}}</option>
+							<option value="6.months">{{6 mois}}</option>
+							<option value="1.years">{{1 an}}</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-xs-4 control-label">{{Avec la période}}</label>
+					<label class="col-xs-3 control-label">{{Avec la période}}</label>
 					<div class="col-xs-3">
 						<input id="in_compareStart2" class="form-control input-sm in_datepicker"/>
 					</div>
 					<div class="col-xs-3">
 						<input id="in_compareEnd2" class="form-control input-sm in_datepicker"/>
+					</div>
+					<div class="col-xs-3">
+						<select id="sel_comparePeriod" class="form-control">
+							<option value="1.week">{{1 semaine}}</option>
+							<option value="2.week">{{2 semaines}}</option>
+							<option value="3.week">{{3 semaines}}</option>
+							<option value="4.week">{{4 semaines}}</option>
+							<option value="1.months">{{1 mois}}</option>
+							<option value="2.months">{{2 mois}}</option>
+							<option value="3.months">{{3 mois}}</option>
+							<option value="6.months">{{6 mois}}</option>
+							<option value="1.years">{{1 an}}</option>
+						</select>
 					</div>
 				</div>
 			</div>

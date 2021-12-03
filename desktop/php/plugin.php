@@ -100,13 +100,16 @@ $plugins_list = plugin::listPlugin(false, true);
     </div>
 
   </div>
-  <div class="col-xs-12" id="div_confPlugin" style="display:none;">
+  <div class="hasfloatingbar col-xs-12" id="div_confPlugin" style="display:none;">
+    <div class="floatingbar">
+      <div class="input-group">
+        <span class="input-group-btn" id="span_right_button"></span>
+      </div>
+    </div>
+
     <legend>
       <i class="fas fa-arrow-circle-left cursor" id="bt_returnToThumbnailDisplay"></i>
       <span id="span_plugin_name"></span> (<span id="span_plugin_id"></span>) - <span id="span_plugin_install_version"></span>
-      <div class="input-group pull-right" style="display:inline-flex">
-        <span class="input-group-btn" id="span_right_button"></span>
-      </div>
     </legend>
 
     <div class="row">

@@ -1,5 +1,5 @@
 /**
- * Ensemble des variables et fonctions de configuration / défaut
+ * Set of configuration default, variables and functions
  * @namespace jeedom.private
  */
 var init = function(_param, _default) {
@@ -9,17 +9,17 @@ var init = function(_param, _default) {
 
 jeedom.private = {
   /**
-   * Paramètres par défaut de toutes les fonctions de l'API
-   * Ces valeurs sont merges avec les paramètres appelés à chaque appel de fonction
+   * Default parameters for all API functions
+   * These values are merged with passed values in function call
    * @example default_params = {
-   *      async : true,         // Appel AJAX synchrone (deprecated) ou non
-   *      type : 'POST',        // Transmission des données
-   *      dataTye : 'json',     // Type de données échangées
-   *      error : jeedom.private.fn_error, // Callback en cas d'erreur
-   *      success : function (_data) {      // Callback en cas de succès
+   *      async : true,         // async ajax call (sync ajax deprecated: https://xhr.spec.whatwg.org/)
+   *      type : 'POST',        // data transmission
+   *      dataTye : 'json',     // data type
+   *      error : jeedom.private.fn_error, // on error Callback
+   *      success : function (_data) {      // on success Callback
    *          return _data;
    *      },
-   *      complete : function () {}        // Callback quoi qu'il se passe
+   *      complete : function () {}        // end Callback
    * };
    */
   default_params: {
@@ -33,12 +33,12 @@ jeedom.private = {
     post_success: function(_data) {},
     complete: function() {},
     error: function(_data) {
-      // Erreur dans l'API ou mauvais retour AJAX (appel de ajax::error() côté PHP)
+      //API error or wrong ajax return
       console.log(_data);
     }
   },
   /**
-   * Objet retourné quand tout s'est bien passé
+   * Object returned if no error
    */
   API_end_successful: 'API\'s call went alright, AJAX is running or ended if {async : false} ! Doesn\'t mean it\'s going to work as expected... It depends on your parameters, none traitment has been made.',
   code: 42
@@ -52,7 +52,8 @@ var no_result = '';
 var code = 42;
 
 /**
- * Fonction de conversion du retour AJAX en cas d'erreur en objet pour la fonction d'erreur
+ * Conversion function on error
+ * Convert ajax return into object
  */
 jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
   if (_request.status && _request.status != '0') {
@@ -79,18 +80,16 @@ jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
 
 
 /**
- * Retourne les paramètres AJAX de l'API en fonction des paramètres choisis par l'utilisateur
+ * Return API Ajax parameters according to caller parameters
  */
 jeedom.private.getParamsAJAX = function(_params) {
-  // cas particulier du type dans les paramètres
+  // Special case parameter type
   var typeInData = false;
-
-  // si type est dans les paramètres et est différent de POST ou GET
   if ($.inArray(_params.type, ['POST', 'GET']) === -1) {
     typeInData = true;
     _params.data = _params.data || {};
-    _params._type = _params.type; // on stocke la donnée
-    _params.type = 'POST'; // post par défaut
+    _params._type = _params.type; //Get initial type
+    _params.type = 'POST'; //Use POST
   }
 
   var paramsAJAX = {
@@ -110,8 +109,7 @@ jeedom.private.getParamsAJAX = function(_params) {
           code: data.code || no_error_code || ''
         });
       } else {
-        // On envoie les données à l'utilisateur, tout s'est bien passé
-        // Il récupère l'objet qu'il a demandé directement
+        //Directly send data object to caller
         var result = init(data.result, no_result);
 
         if (data.result === false) {
@@ -130,21 +128,22 @@ jeedom.private.getParamsAJAX = function(_params) {
     paramsAJAX.data.type = _params._type;
   }
 
-  return paramsAJAX; // return
+  return paramsAJAX;
 }
 
 /**
- * Fonction qui va checker si la valeur d'un paramètre vérifie une regexp
- * C'est récursif pour les arrays et les objets pris en value
- * DOIT ETRE ENCADRÉE D'UN TRY { } CATCH (e) {}
+ * Check if parameter value verify regex expression
+ * Recursive for value as array or object
+ * Must be secured in try/catch(e)
+ *
+ * Console example test
+ * try { jeedom.private.checkParamsValue({value : [{test : 'check', test2 :'eeee'},{test : 'oefop', test2 : 'kfefe', test3 : 10}], regexp : /a|e|ch|1|zec/}); } catch(e) { console.log(e); }
+ *
  * @param {Object} _params
- * @param _params.value Valeur du paramètre à tester
- * @param {Object} _params.regexp Regexp à vérifier
- * @param {string} [_params.name] Nom du paramètre à tester [optionnel]
+ * @param _params.value : value of parameter to test
+ * @param {Object} _params.regexp : regex to check
+ * @param {string} [_params.name] : optionnal parameter name to test
  */
-
-// tests en console :
-// try { jeedom.private.checkParamsValue({value : [{test : 'check', test2 :'eeee'},{test : 'oefop', test2 : 'kfefe', test3 : 10}], regexp : /a|e|ch|1|zec/}); } catch(e) { console.log(e); }
 jeedom.private.checkParamValue = function(_params) {
   try {
     checkParamsRequired(_params, ['value', 'regexp']);
@@ -152,7 +151,7 @@ jeedom.private.checkParamValue = function(_params) {
     throw {
       type: 'API',
       code: code,
-      message: 'Une erreur est présente dans l\'API SARA JS. Les paramètres spécifiés dans checkParamValue ne sont pas complets. ' + e.message
+      message: 'Error in SARA JS API. Uncomplete specified parameters in checkParamValue. ' + e.message
     };
   }
 
@@ -161,7 +160,7 @@ jeedom.private.checkParamValue = function(_params) {
   var name = _params.name || 'One parameter';
 
   if (typeof value == 'object') {
-    // appel récursif pour les Array et les Objets
+    //Recursivity for array or object
     for (var i in value) {
       checkParamValue({
         name: name,
@@ -170,9 +169,11 @@ jeedom.private.checkParamValue = function(_params) {
       });
     }
   } else {
-    value += ''; // on convertie la valeur en string
-
-    // pour faire un inArray, utiliser la regexp : /mot1|mot2|mot3|mot4/
+    /*
+      Value to string conversion
+      To check if in array, use regex /word_1|word_2|word_3|word_4/
+    */
+    value += '';
     if (regexp.test(value) === false) {
       throw {
         type: 'API',
@@ -183,15 +184,18 @@ jeedom.private.checkParamValue = function(_params) {
   }
 }
 
-/** Fonction qui permet de vérifier que tous les paramètres obligatoires ont bien été renseignés dans l'objet params
- * Note : chaque fonction doit appeler cette fonction au préalable après avoir créé un string[] composé des paramètres requis.
- * @return {Object} ret Contient les résultats du check
- * @return {boolean} ret.result Nous renseigne si les paramètres requis ont bien été remplis
- * @return {Object[]} ret.missing Ensemble des options qui n'ont pas été renseignées, optionnelles ou non
- * @return {string} ret.missing.name Nom d'un paramètre manquant
- * @return {boolean} ret.missing.optional Caractère optionnel ou non du paramètre manquant
- * @return {number} ret.missing.group Groupe associé au paramètre (0 pour les paramètres obligatoires et n pour les paramètres optionnels, ce numéro est identique pour les membres d'un même groupe, il faut qu'au moins l'un d'entre eux soit précisé pour que la fonction fonctionne)
- * @return {string} ret.missing.toString Renvoie un paramètre manquant sous forme de string pour l'affichage
+/**
+ * Check if all required parameters are in _params object
+ *
+ * Each function must call checkParamsRequired after string[] creation with required params
+ *
+ * @return {Object} ret : check result
+ * @return {boolean} ret.result : are all required parameters present
+ * @return {Object[]} ret.missing : set of missing options
+ * @return {string} ret.missing.name : missing parameter name
+ * @return {boolean} ret.missing.optional : is missing parameter optionnal
+ * @return {number} ret.missing.group : parameter associated group. 0 for required parameters, n for optionnal parameters. same for all same member group, need at least one defined or function fail
+ * @return {string} ret.missing.toString : return missing parameter as string (used for display)
  */
 jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
   var missings = Array();
@@ -202,13 +206,11 @@ jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
   for (var key in _paramsRequired) {
     if (typeof _paramsRequired[key] === 'object') {
       optionalGroupNumber++;
-
-      // il y a plusieurs clés, il faut qu'au moins l'une d'entre elles soit présente
       ok = false;
+      //One is enough, but need all present / missing parameters:
       for (var key2 in _paramsRequired[key]) {
         if (_params.hasOwnProperty(_paramsRequired[key][key2])) {
           ok = true;
-          // pas de break, on veut savoir quels paramètres sont présents et lesquels ne le sont pas.
         } else {
           missings.push({
             name: _paramsRequired[key][key2],
@@ -220,12 +222,12 @@ jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
         }
       }
 
-      // on indique si le groupe a été check ou pas
+      //Is group checked:
       group[optionalGroupNumber] = {
         checked: ok
       };
 
-      // de manière plus globale, on indique s'il manque un paramètre obligatoire ou pas
+      //Does one required parameter is missing
       if (!ok) {
         missingAtLeastOneParam = true;
       }
@@ -249,14 +251,12 @@ jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
       miss = missings[i];
       tostring += miss.name + ' ';
 
-      // dans le cas des paramètres optionnels, on rajoute une information pour savoir si le groupe d'options (optionnels donc) a été rempli (via une autre option non manquante donc) ou non
+      //If optionnal parameter, define if optionnal group is set
       var checkedstring = miss.optional && (group[miss.group.id].checked) ? 'yes' : 'no' || '';
-
       tostring += (miss.optional) ? '[optional, group=' + miss.group.id + ' checked=' + checkedstring + ']' : '[needed]';
       tostring += ', ';
     }
-
-    // on enlève la virgule et l'espace en trop
+    //Ensure no ending comma / space:
     tostring = tostring.substring(0, tostring.length - 2);
     throw {
       type: 'API',
@@ -269,16 +269,15 @@ jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
 
 /**
  * Check global
- * À impérativement encadrer de try {} catch () {}
+ * Must be secured in try/catch(e)
  */
 jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRequired) {
-  // throw une exception en cas d'erreur (à attraper plus haut)
+  //Throw execption if error
   jeedom.private.checkParamsRequired(_params, _paramsRequired || []);
-
-  // tout est ok, on merge avec les paramètres par défaut + les spécifiques à la fonction
+  //Merge default and function specific parameters
   var params = $.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
 
-  // on json_encode tous les objets contenus dans les params
+  //Convert all objects in params to json
   var param = null;
   for (var attr in params) {
     params[attr] = (typeof params[attr] == 'object') ? json_encode(params[attr]) : params[attr];
@@ -293,7 +292,7 @@ jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRe
 }
 
 /**
- * Fonction générique qui permet de checker les valeurs des paramètres
+ * Generic function : check parameters and values
  */
 jeedom.private.checkParamsValue = function(_params) {
   if (Object.prototype.toString.call(_params) == '[object Object]') {

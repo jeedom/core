@@ -388,14 +388,14 @@ Permite monitorar e agir no cache Jeedom :
 
 Aqui você encontra a lista das diferentes chaves de API disponíveis no seu Jeedom. O núcleo possui duas chaves de API :
 
--   um general : tanto quanto possível, evite usá-lo,
--   e outro para profissionais : usado para gerenciamento de frota. Pode estar vazio.
--   Então você encontrará uma chave de API por plug-in que precisa dela.
+- um general : tanto quanto possível, evite usá-lo,
+- e outro para profissionais : usado para gerenciamento de frota. Pode estar vazio.
+- Então você encontrará uma chave de API por plug-in que precisa dela.
 
 Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é possível definir seu escopo :
 
 - **Desativado** : A chave da API não pode ser usada,
-- **Branco IP** : apenas uma lista de IPs é autorizada (consulte Configurações → Sistema → Configuração : Redes),
+- **Branco IP** : apenas uma lista de IPs é autorizada (consulte Configurações → Sistema → Configuração : Segurança),
 - **Localhost** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
 - **Ativado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
 

@@ -32,7 +32,7 @@ foreach ($healths as $health) {
   }
   if ($first) {
     echo '<div class="alert alert-danger">';
-    echo __('Attention nous avons detecté les soucis suivant : ', __FILE__) . '<br/>';
+    echo __('Attention nous avons detecté les soucis suivant :', __FILE__) . ' ' . '<br/>';
   }
   $first = false;
   echo '- ' . $health['name'] . '  : ' . $health['result'];

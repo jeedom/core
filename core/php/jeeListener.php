@@ -40,7 +40,7 @@ if (init('listener_id') == '') {
 		}
 		$listener = listener::byId($listener_id);
 		if (!is_object($listener)) {
-			throw new Exception(__('Listener non trouvé : ', __FILE__) . $listener_id);
+			throw new Exception(__('Listener non trouvé :', __FILE__) . ' ' . $listener_id);
 		}
 	} catch (Exception $e) {
 		log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());

@@ -22,11 +22,17 @@ require_once __DIR__ . '/../php/core.inc.php';
 /*
 //DEBUG ONLY
 require_once  'utils.class.php';
+require_once  'jeeObject.class.php';
+require_once  'eqLogic.class.php';
+require_once  'cmd.class.php';
+require_once  'scenario.class.php';
 require_once  'scenarioExpression.class.php';
 require_once  'log.class.php';
 require_once  'message.class.php';
+require_once  'cache.class.php';
+require_once  'event.class.php';
 
-//log::add('debug_translate', 'error', 'loadTranslation: '.json_encode($test));
+//log::add('debug_translate', 'error', $_content);
 */
 
 class translate {
@@ -80,7 +86,7 @@ class translate {
 			return 'core';
 		}
 		preg_match_all('/plugins\/(.*?)\//m', $_name, $matches, PREG_SET_ORDER, 0);
-		if(isset($matches[0]) && isset($matches[0][1])){
+		if (isset($matches[0][1])) {
 			return $matches[0][1];
 		}
 		if (!isset($matches[1])) {
@@ -129,12 +135,12 @@ class translate {
 			if (trim($text) == '') {
 				$replace['{{' . $text . '}}'] = $text;
 			}
-			if (isset($translate[$_name]) && isset($translate[$_name][$text]) && $translate[$_name][$text] != '') {
-				$replace['{{' . $text . '}}'] = ltrim($translate[$_name][$text],'##');
-			}else if(strpos($text,"'") !== false && isset($translate[$_name]) && isset($translate[$_name][str_replace("'","\'",$text)]) && $translate[$_name][str_replace("'","\'",$text)] != ''){
-				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][str_replace("'","\'",$text)],'##');
+			if (isset($translate[$_name][$text]) && $translate[$_name][$text] != '') {
+				$replace['{{' . $text . '}}'] = ltrim($translate[$_name][$text], '##');
+			} else if (strpos($text, "'") !== false && isset($translate[$_name][str_replace("'", "\'", $text)]) && $translate[$_name][str_replace("'", "\'", $text)] != '') {
+				$replace["{{" . $text . "}}"] = ltrim($translate[$_name][str_replace("'","\'",$text)], '##');
 			}
-			if (!isset($replace['{{' . $text . '}}']) && isset($translate['common']) && isset($translate['common'][$text])) {
+			if (!isset($replace['{{' . $text . '}}']) && isset($translate['common'][$text])) {
 				$replace['{{' . $text . '}}'] = $translate['common'][$text];
 			}
 			if (!isset($replace['{{' . $text . '}}'])) {

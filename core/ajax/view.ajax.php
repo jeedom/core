@@ -178,7 +178,7 @@ try {
 		unautorizedInDemo();
 		$view = view::byId(init('id'));
 		if (!is_object($view)) {
-			throw new Exception(__('Vue inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Vue inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		$view->setImage('sha512', '');
 		$view->save();
@@ -200,7 +200,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -223,7 +223,7 @@ try {
 		ajax::success();
 	}
 	
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

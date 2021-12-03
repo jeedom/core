@@ -38,15 +38,20 @@ $objectOptions = jeeObject::getUISelectList(false);
 ?>
 <div style="display: none;" id="div_alertProfils"></div>
 <div class="row row-overflow" id="div_userProfils">
-	<div class="col-xs-12">
-		<a class="btn btn-sm btn-success floatingbar" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+	<div class="hasfloatingbar col-xs-12">
+		<div class="floatingbar">
+			<div>
+				<a class="btn btn-sm btn-success" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+			</div>
+		</div>
+
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
 			<?php if (init('user_id') == '') { ?>
 				<li role="presentation"><a href="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="icon securite-key1"></i> {{Sécurité}}</a></li>
 			<?php } ?>
 		</ul>
-		
+
 		<div class="tab-content" style="overflow:auto;overflow-x: hidden;">
 			<div role="tabpanel" class="tab-pane active" id="interfacetab">
 				<br>
@@ -197,7 +202,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<input type="checkbox" class="userAttr" data-l1key="options" data-l2key="defaultPlan3dFullScreen" />
 							</div>
 						</div>
-						
+
 						<legend><i class="icon securite-key1"></i> {{Notifications}}</legend>
 						<div class="form-group">
 							<label class="col-lg-2 col-sm-4 col-xs-12 control-label">{{Commande de notification utilisateur}}
@@ -246,7 +251,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								}
 							}
 						} catch (\Exception $e) {
-							
+
 						}
 						?>
 					</fieldset>
@@ -275,7 +280,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 									<?php }
 									?>
 								</div>
-								
+
 								<div class="form-group">
 									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -301,7 +306,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 							</div>
 						</fieldset>
 					</form>
-					
+
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
@@ -337,7 +342,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 							</table>
 						</fieldset>
 					</form>
-					
+
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>

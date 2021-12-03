@@ -25,14 +25,14 @@ $("#md_specifyUpdate").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  width: 480,
-  height: 460,
+  width: window.innerWidth > 500 ? 480 : window.innerWidth,
+  height: window.innerHeight > 500 ? 460 : window.innerHeight - 30,
   open: function() {
     $("body").css({
       overflow: 'hidden'
     })
     $(this).parent().css({
-      'top': 120
+      'top': window.innerHeight > 500 ? 120 : 0
     })
   },
   beforeClose: function(event, ui) {
@@ -100,7 +100,7 @@ $('#table_update').on({
     if ($(this).hasClass('disabled')) return
     var id = $(this).closest('tr').attr('data-id')
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour : }}' + logicalId + ' ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         progress = -1;
         $('.progressbarContainer').removeClass('hidden')
@@ -127,7 +127,7 @@ $('#table_update').on({
   'click': function(event) {
     var id = $(this).closest('tr').attr('data-id');
     var logicalId = $(this).closest('tr').attr('data-logicalid')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer : }}' + logicalId + ' ?', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
       if (result) {
         $.hideAlert();
         jeedom.update.remove({
@@ -360,38 +360,38 @@ function addUpdate(_update) {
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">' + _update.localVersion + '</span></td>'
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">' + _update.remoteVersion + '</span></td>'
   tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
-  tr += '<td style="width:180px;">'
+  tr += '<td>'
   if (_update.type != 'core') {
-    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span>{{Ne pas mettre à jour}}</span>'
+    tr += '<input type="checkbox" class="updateAttr" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modications}}"><span class="hidden-1280">{{Ne pas mettre à jour}}</span>'
   }
   tr += '</td>'
-  tr += '<td style="width:350px;">'
+  tr += '<td>'
   if (_update.type != 'core') {
     if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-      tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a> '
+      tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
     }
   } else {
-    tr += '<a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a> '
+    tr += '<a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
   }
   if (_update.type != 'core') {
     if (_update.status == 'UPDATE') {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
-        tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
+        tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
       } else {
-        tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i> {{Mettre à jour}}</a> '
+        tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
       }
     } else {
       if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
-        tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
+        tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
       } else {
-        tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i> {{Réinstaller}}</a> '
+        tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
       }
     }
   }
   if (_update.type != 'core') {
-    tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i> {{Supprimer}}</a> '
+    tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a> '
   }
-  tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i> {{Vérifier}}</a>'
+  tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
   tr += '</td>'
   tr += '</tr>'
   var html = $(tr)

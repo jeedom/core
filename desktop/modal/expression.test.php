@@ -26,7 +26,11 @@ if (!isConnect('admin')) {
     <span class="input-group-addon roundedLeft" style="width: 100px"><i class="fas fa-random"></i>  {{Test}}</span>
     <input class="form-control input-sm" id="in_testExpression">
     <span class="input-group-btn">
-      <a class="btn btn-default btn-sm cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scénario}}"><i class="fas fa-history"></i></a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></a><a class="btn btn-sm btn-default btn-success roundedRight" id="bt_executeExpressionOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
+      <a class="btn btn-default btn-sm cursor tooltips" id="bt_searchInfoCmd" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i>
+      <a class="btn btn-default btn-sm cursor tooltips" id="bt_selectGenericExpression" title="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i>
+      </a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchScenario" title="{{Rechercher un scénario}}"><i class="fas fa-history"></i>
+      </a><a class="btn btn-default btn-sm cursor tooltips"  id="bt_searchEqLogic" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i>
+      </a><a class="btn btn-sm btn-default btn-success roundedRight" id="bt_executeExpressionOk"><i class="fas fa-bolt"></i> {{Exécuter}}</a>
     </span>
   </div>
 </form>
@@ -72,6 +76,12 @@ $('#bt_searchEqLogic').on('click', function() {
   })
 })
 
+$('#bt_selectGenericExpression').on('click', function(event) {
+  jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
+    $('#in_testExpression').atCaret('insert', result.human)
+  })
+})
+
 $('#ul_expressionHistory').off('click','.bt_expressionHistory').on('click','.bt_expressionHistory',function() {
   $('#in_testExpression').value($(this).attr('data-command'))
   $('#bt_executeExpressionOk').trigger('click')
@@ -97,8 +107,8 @@ $('#bt_executeExpressionOk').on('click',function() {
       if (data.correct == 'nok') {
         html += '<strong>{{Attention : il doit y avoir un souci, car le résultat est le même que l\'expression}}</strong><br\>'
       }
-      html += '{{Je vais évaluer : }} <strong>'+data.evaluate+'</strong><br/>'
-      html += '{{Résultat : }} <strong>'+data.result+'</strong>'
+      html += '{{Je vais évaluer :}} <strong>' + data.evaluate + '</strong><br/>'
+      html += '{{Résultat :}} <strong>' + data.result + '</strong>'
       html += '</div></ul>'
       $('#div_expressionTestResult').append(html)
     }

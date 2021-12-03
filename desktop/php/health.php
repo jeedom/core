@@ -166,7 +166,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 		}
 		$globalhtml .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionHealth" href="#config_' . $plugin->getId() . '">';
 		$globalhtml .= '<img class="img-responsive" style="width : 20px;display:inline-block;" src="' . $plugin->getPathImgIcon() . '" /> ';
-		$globalhtml .= '{{Santé }} ' . $plugin->getName() . '</a> ';
+		$globalhtml .= '{{Santé}}' . ' ' . $plugin->getName() . '</a> ';
 		$globalhtml .= $errorMessage . $pendingMessage;
 		$globalhtml .= '<span><i class="fas fa-cogs bt_configurationPlugin cursor pull-right" title="{{Configuration du plugin}}" data-pluginid="' . $plugin->getId() . '"></i> ' . $hasSpecificHealthIcon . $daemonInfo . $port.'</span>';
 		$globalhtml .= '</h3>';

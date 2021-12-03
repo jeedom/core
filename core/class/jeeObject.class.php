@@ -389,9 +389,6 @@ class jeeObject {
 		if (count($value) == 0) {
 			return null;
 		}
-		if ($def[$_key]['calcul'] == 'text') {
-			return trim(implode(',', $value), ',');
-		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
@@ -640,7 +637,7 @@ class jeeObject {
 		} else {
 			$object = self::byId($_cmd->getConfiguration('summary::object_id'));
 			if (!is_object($object)) {
-				throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . $_cmd->getConfiguration('summary::object_id'));
+				throw new Exception(__('L\'objet n\'existe pas :', __FILE__) . ' ' . $_cmd->getConfiguration('summary::object_id'));
 			}
 			$object->summaryAction($_cmd, $_options);
 		}
@@ -960,9 +957,6 @@ class jeeObject {
 		}
 		if ($_raw) {
 			return $values;
-		}
-		if ($def[$_key]['calcul'] == 'text') {
-			return trim(implode(',', $values), ',');
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}

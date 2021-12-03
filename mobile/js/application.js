@@ -272,11 +272,13 @@ jeedomUtils.checkThemechange = function() {
   
   var theme = jeedom.theme.mobile_theme_color_night
   var themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
-  var currentTime = parseInt((new Date()).getHours()*100+ (new Date()).getMinutes())
+  var currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
+
   if (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
     theme = jeedom.theme.mobile_theme_color
     themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
   }
+
   if ($jQMnDColor.attr('href') != themeCss) {
     $('body').attr('data-theme',theme)
     $('#jQMnDColor').attr('href', themeCss)

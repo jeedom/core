@@ -51,7 +51,7 @@ if (substr(init('text'), -1) == '#' && substr(init('text'), 0, 1) == '#' && clas
 	log::add('tts', 'debug', __('Tag detécté dans le tts et plugin song présent', __FILE__));
 	$song = songs_song::byLogicalId(strtolower(str_replace('#', '', init('text'))));
 	if (is_object($song) && file_exists($song->getPath())) {
-		log::add('tts', 'debug', __('Son trouvé path : ', __FILE__) . $song->getPath());
+		log::add('tts', 'debug', __('Son trouvé path :', __FILE__) . ' ' . $song->getPath());
 		if (init('path') == 1) {
 			echo $song->getPath();
 		} else {
@@ -130,7 +130,7 @@ try {
 			}
 		}
 		if ($older['file'] == null) {
-			log::add('tts', 'error', __('Erreur aucun fichier trouvé à supprimer alors que le répertoire fait : ', __FILE__) . getDirectorySize($tts_dir));
+			log::add('tts', 'error', __('Erreur aucun fichier trouvé à supprimer alors que le répertoire fait :', __FILE__) . ' ' . getDirectorySize($tts_dir));
 		}
 		unlink($older['file']);
 	}

@@ -141,31 +141,33 @@ sendVarToJs('initSearch', init('search', 0));
 		?>
 	</div>
 
-	<div id="div_editScenario" class="col-xs-12" style="display: none;" >
-		<div class="input-group floatingbar" style="display:inline-flex">
-			<span class="input-group-btn">
-				<span id="span_ongoing" class="label label-sm"></span>
+	<div id="div_editScenario" class="hasfloatingbar col-xs-12" style="display: none;" >
+        <div class="floatingbar">
+          <div class="input-group">
+              <span class="input-group-btn">
+                  <span id="span_ongoing" class="label label-sm"></span>
 
-				<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
-				</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
+                  <a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
+                  </a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
 
-				<a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-xs">{{Ajouter bloc}}</span>
-				</a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
-				</a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
-				</a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
-				</a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
-				</a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa-share"></i>
-				</a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+                  <a class="btn btn-sm bt_addScenarioElement"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
+                  </a><a class="btn btn-sm" id="bt_logScenario" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
+                  </a><a class="btn btn-sm" id="bt_copyScenario" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
+                  </a><a class="btn btn-sm" id="bt_graphScenario" title="{{Liens}}"><i class="fas fa-object-group"></i>
+                  </a><a class="btn btn-sm" id="bt_editJsonScenario" title="{{Edition texte}}"> <i class="far fa-edit"></i>
+                  </a><a class="btn btn-sm" id="bt_exportScenario" title="{{Exporter}}"><i class="fas fa-share"></i>
+                  </a><a class="btn btn-sm" id="bt_templateScenario" title="{{Template}}"><i class="fas fa-cubes"></i></a>
 
-				<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
-				<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+                  <input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;"/>
+                  <a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
 
-				<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-xs">{{Exécuter}}</span>
-				</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-xs">{{Sauvegarder}}</span>
-				</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-xs">{{Supprimer}}</span></a>
-			</span>
-		</div>
+                  <a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-768">{{Exécuter}}</span>
+                  </a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
+                  </a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-768">{{Sauvegarder}}</span>
+                  </a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-768">{{Supprimer}}</span></a>
+              </span>
+          </div>
+        </div>
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_scenarioThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a id="bt_generalTab" href="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Général}} (ID : <span class="scenarioAttr" data-l1key="id" ></span>)</a></li>

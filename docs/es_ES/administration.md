@@ -388,14 +388,14 @@ Permite monitorear y actuar en el caché Jeedom :
 
 Aquí encontrará la lista de las diferentes claves API disponibles en su Jeedom. Core tiene dos claves API :
 
--   un general : tanto como sea posible, evite usarlo,
--   y otro para profesionales : utilizado para la gestión de flotas. Puede estar vacio.
--   Luego encontrará una clave API por complemento que la necesita.
+- un general : tanto como sea posible, evite usarlo,
+- y otro para profesionales : utilizado para la gestión de flotas. Puede estar vacio.
+- Luego encontrará una clave API por complemento que la necesita.
 
 Para cada clave de complemento API, así como para las API HTTP, JsonRPC y TTS, puede definir su alcance :
 
 - **Discapacitado** : La clave API no se puede usar,
-- **IP en blanco** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : Redes),
+- **IP en blanco** : solo se autoriza una lista de IP (consulte Configuración → Sistema → Configuración : Seguridad),
 - **Localhost** : solo se permiten solicitudes del sistema en el que está instalado Jeedom,
 - **Habilitado** : sin restricciones, cualquier sistema con acceso a su Jeedom podrá acceder a esta API.
 

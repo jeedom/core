@@ -423,7 +423,7 @@ Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen
 - ``randText(texte1;texte2;texte…​..)`` : Ermöglicht es Ihnen, einen der Texte zufällig zurückzugeben (trennen Sie die Texte durch einen; ). Die Anzahl der Texte ist unbegrenzt.
 - ``randomColor(min,max)`` : Gibt eine zufällige Farbe zwischen 2 Grenzen (0 => Rot, 50 => Grün, 100 => Blau).
 - ``trigger(commande)`` : Ermöglicht es Ihnen, den Auslöser für das Szenario herauszufinden oder festzustellen, ob der als Parameter übergebene Befehl das Szenario ausgelöst hat.
-- ``triggerValue(commande)`` : Wird verwendet, um den Wert des Szenario-Triggers herauszufinden.
+- ``triggerValue()`` : Wird verwendet, um den Wert des Szenario-Triggers herauszufinden.
 - ``round(valeur,[decimal])`` : Runden oben, [Dezimal] Anzahl der Dezimalstellen nach dem Dezimalpunkt.
 - ``odd(valeur)`` : Lässt Sie wissen, ob eine Zahl ungerade ist oder nicht. Gibt 1 zurück, wenn sonst ungerade 0.
 - ``median(commande1,commande2…​.commandeN)`` : Gibt den Median der Werte zurück.
@@ -443,7 +443,7 @@ Und praktische Beispiele :
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | Die Funktion gibt bei jeder Ausführung zufällig einen dieser Texte zurück.                           |
 | ``randomColor(40,60)``                 | Gibt eine zufällige Farbe nahe Grün zurück.
 | ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 wenn es gut ist ``#[Salle de bain][Hydrometrie][Humidité]#`` Wer hat das Szenario sonst gestartet? 0  |
-| ``triggerValue(#[Salle de bain][Hydrometrie][Humidité]#)`` | 80 wenn die Hydrometrie von ``#[Salle de bain][Hydrometrie][Humidité]#`` ist 80% und das ist ``#[Salle de bain][Hydrometrie][Humidité]#`` was das Szenario auslöste, wenn nicht "falsch".                         |
+| ``triggerValue()`` | 80 wenn die Hydrometrie von ``#[Salle de bain][Hydrometrie][Humidité]#`` ist 80% und das ist ``#[Salle de bain][Hydrometrie][Humidité]#`` wer hat das szenario ausgelöst. Wenn das Szenario nicht durch einen Befehl ausgelöst wurde, wird `false` zurückgegeben.                         |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# /. 10)`` | Gibt 9 zurück, wenn der Feuchtigkeitsprozentsatz und 85                     |
 | ``odd(3)``                             | Rückgabe 1                            |
 | ``median(15,25,20)``                   | Rückgabe 20
@@ -463,7 +463,13 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Variable** (variable) : Erstellung / Änderung einer Variablen oder des Werts einer Variablen.
 - **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen.
 - **GenericType (GENERIC, #[Object]#)** : Änderung eines Info- (Ereignis)- oder Aktions- (execCmd) Befehls nach generischem Typ in einem Objekt. Schalten Sie beispielsweise alle Lichter im Wohnzimmer aus.
-- **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her). Mit dem Befehl "Auf SI zurücksetzen" können Sie den Status von "SI" zurücksetzen (dieser Status wird verwendet, um die Aktionen eines "SI" nicht zu wiederholen, wenn Sie ihn zum zweiten Mal in Folge übergeben).
+- **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her).
+    - Zum Starten : Starten Sie das Szenario in einem anderen Thread. Das gestartete Szenario läuft unabhängig vom aufrufenden Szenario.
+    - Starten (Synchronisieren)) : Startet das aufgerufene Szenario und pausiert das aufrufende Szenario, während die Ausführung des aufgerufenen Szenarios beendet ist.
+    - Halt : Stoppen Sie das Szenario.
+    - Aktivieren Sie : Aktivieren Sie ein deaktiviertes Szenario.
+    - Deaktivieren : Szenario deaktivieren. Es wird nicht mehr unabhängig von den Auslösern gestartet.
+    - Zurücksetzen der ISs : Wird verwendet, um den Status von . zurückzusetzen **WENN**. Dieser Status wird verwendet, um die Aktionen von a . nicht zu wiederholen **WENN**, wenn die Bewertung der Bedingung das gleiche Ergebnis wie die vorherige Bewertung ergibt.
 - **Halt** (stop) : Stoppen Sie das Szenario.
 - **Warten** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
 - **Gehe zum Design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.

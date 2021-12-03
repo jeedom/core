@@ -2,44 +2,70 @@
 Theme ElFinder File Editor 2021 @Jeedom
 */
 
-[data-page="editor"] #div_mainContainer {
-  overflow: hidden;
-}
-[data-page="editor"] #div_pageContainer {
-  margin-left: -15px;
-  margin-right: -15px;  
-}
+/* GLOBAL */
+  [data-page="editor"] #div_mainContainer {
+    overflow: hidden;
+  }
+  [data-page="editor"] #div_pageContainer {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
 
-#elfinder > .ui-icon-gripsmall-diagonal-se {
-  display: none !important;
-}
-#elfinder .elfinder-preference-tabs {
-  padding: 10px 24px !important;
-}
+  #elfinder > .ui-icon-gripsmall-diagonal-se {
+    display: none !important;
+  }
+  #elfinder .elfinder-preference-tabs {
+    padding: 10px 24px !important;
+  }
 
-#elfinder select {
-  background-image: initial !important;
-  background-color: var(--form-bg-color) !important;
-}
-#elfinder .ui-tabs-tab .ui-tabs-anchor,
-#elfinder .ui-tabs-active .ui-tabs-anchor,
-#elfinder .ui-tabs-anchor:hover {
-  border: none;
-  background-color: var(--form-bg-color) !important;
-}
+  #elfinder select {
+    background-image: initial !important;
+    background-color: var(--form-bg-color) !important;
+  }
+  #elfinder .ui-tabs-tab .ui-tabs-anchor,
+  #elfinder .ui-tabs-active .ui-tabs-anchor,
+  #elfinder .ui-tabs-anchor:hover {
+    border: none;
+    background-color: var(--form-bg-color) !important;
+  }
 
+/* ____________________Custom functions buttons */
+  #elfinder .elfinder-button-text {
+    cursor: pointer !important;
+    padding: 3px 8px !important;
+    background-color: rgb(221, 221, 221) !important;
+  }
+  #elfinder .elfinder-button-text.btn-success {
+    background-color: var(--al-success-color) !important;
+  }
+  #elfinder .elfinder-button-text.btn-info {
+    background-color: var(--al-info-color) !important;
+  }
+  #elfinder .elfinder-button-text.btn-warning {
+    background-color: var(--al-warning-color) !important;
+  }
+  #elfinder span[class*='elfinder-button-icon-jee_'] {
+    display: none;
+  }
+  #elfinder span[class*='elfinder-button-icon-jee_'] + .elfinder-button-text {
+    color: rgb(50, 50, 58) !important;
+    font-weight: 700;
+    display: unset !important;
+  }
 
 /* ____________________ELFINDER EDITOR */
   #elfinder .elfinder-toolbar::after {
-    height: unset;
-    line-height: 1;
+    display: none;
+  }
+  #elfinder .elfinder-toolbar {
+    padding-bottom: 10px;
   }
   #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search {
     min-width: 220px;
   }
   #elfinder .elfinder-toolbar .ui-widget-content.elfinder-button-search > input {
-    padding-left: 24px !important;
     color: rgb(225, 225, 225) !important;
+    padding: 0 0 0 24px !important;
   }
   #elfinder .elfinder-button-icon,
   #elfinder .elfinder-dialog .ui-dialog-titlebar .ui-icon,
@@ -67,12 +93,18 @@ Theme ElFinder File Editor 2021 @Jeedom
   #elfinder .elfinder-cwd-file {
     color: unset;
   }
+  #elfinder .elfinder-cwd-view-list .elfinder-cwd-filename {
+    font-size: 15px !important;
+  }
   #elfinder .elfinder .elfinder-navbar {
    font-size: 0.78em
   }
 
   #elfinder .std42-dialog .ui-dialog-content {
-   font-size: inherit;
+    font-size: inherit;
+  }
+  #elfinder .std42-dialog.elfinder-dialog-error .ui-dialog-content {
+    padding-left: 50px !important;
   }
 
   #elfinder .elfinder-bottomtray {
@@ -188,6 +220,7 @@ Theme ElFinder File Editor 2021 @Jeedom
 
   #elfinder .elfinder-navbar-wrapper {
     line-height: 10px !important;
+    font-size: 15px;
   }
 
   #elfinder .ui-dialog-titlebar .elfinder-titlebar-button-right {

@@ -49,7 +49,7 @@ try {
 		}
 		$plugin = plugin::byId(init('id'));
 		if (!is_object($plugin)) {
-			throw new Exception(__('Plugin introuvable : ', __FILE__) . init('id'));
+			throw new Exception(__('Plugin introuvable :', __FILE__) . ' ' . init('id'));
 		}
 		$plugin->setIsEnable(init('state'));
 		ajax::success();
@@ -138,7 +138,7 @@ try {
 		ajax::success($plugin->deamon_changeAutoMode(init('mode')));
 	}
 	
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());
