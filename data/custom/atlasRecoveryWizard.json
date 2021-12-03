@@ -9,11 +9,20 @@
       "visible": 1
     }
   ,
+  "language" :
+    {
+      "title": "Choix de la langue",
+      "wizard": "language",
+      "order": 1,
+      "custom": "",
+      "visible": 1
+    }
+  ,
    "atlas" :
    	{
 	  "title": "Options Atlas",
       "wizard": "atlas",
-      "order": 1,
+      "order": 2,
       "custom": {
         "branch" : "stable"
       },
@@ -24,7 +33,7 @@
     {
       "title": "Lancement du recovery",
       "wizard": "recoveryAtlas",
-      "order": 2,
+      "order": 3,
       "custom": "",
       "visible": 1
     }
