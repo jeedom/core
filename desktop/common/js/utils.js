@@ -16,23 +16,23 @@
 
 "use strict"
 
-var jeedomUtils = {}
-jeedomUtils.backgroundIMG = null
-jeedomUtils._elBackground = null
-
 $(function() {
-  jeedomUtils._elBackground = $('#backgroundforJeedom')
   $(document)
-  .ajaxStart(function () {
-    $.showLoading()
-  })
-  .ajaxStop(function () {
-    $.hideLoading()
-  })
+    .ajaxStart(function () {
+        $.showLoading()
+    })
+    .ajaxStop(function () {
+        $.hideLoading()
+    })
 })
+
+//cmd update:
+var utid = 0
 
 //design edit options conservation:
 var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
+
+var isEditing = false
 
 //js error in ! ui:
 var JS_ERROR = []
@@ -53,7 +53,7 @@ setInterval(function() {
 }, 1000)
 
 var modifyWithoutSave = false
-jeedomUtils.checkPageModified = function() {
+function checkPageModified() {
   if (modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       $.hideLoading()
@@ -69,16 +69,16 @@ var PREVIOUS_PAGE = null
 var PREVIOUS_LOCATION = null
 var NO_POPSTAT = false
 var printEqLogic = undefined
-jeedomUtils.loadPage = function(_url, _noPushHistory) {
+var jeedomBackgroundImg = null
+function loadPage(_url, _noPushHistory) {
   PREVIOUS_LOCATION = window.location.href
-  if (jeedomUtils.checkPageModified()) return
+  if (checkPageModified()) return
   if (JS_ERROR.length > 0) {
     document.location.href = _url
     return
   }
 
-  jeedomUtils.closeJeedomMenu()
-  window.toastr.clear()
+  closeJeedomMenu()
 
   if ($('.context-menu-root').length > 0) {
     try {
@@ -107,12 +107,13 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   if (isset(bootbox)) bootbox.hideAll()
   $.hideAlert()
-  jeedomUtils.datePickerDestroy()
-  jeedomUtils.autocompleteDestroy()
+  datePickerDestroy()
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   printEqLogic = undefined
-  if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
+  if (__OBSERVER__ !== null) __OBSERVER__.disconnect()
+
+  $('main').css({'padding-right': '', 'padding-left': '', 'margin-right': '', 'margin-left': ''})
 
   if (_url.indexOf('#') == -1) {
     var url = _url+'&ajax=1'
@@ -121,9 +122,16 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     var url = _url.substring(0,n)+"&ajax=1"+_url.substring(n)
   }
 
-  jeedomUtils.backgroundIMG = null
+  jeedomBackgroundImg = null
+  $('.backgroundforJeedom').css({
+    'background-image':'',
+    'background-position':'center center',
+    'background-repeat':'no-repeat',
+    'background-size':'cover'
+  })
 
   $.clearDivContent('div_pageContainer')
+  isEditing = false
   $('body').off('mouseenter mouseleave')
   $('#div_pageContainer').off()
 
@@ -132,35 +140,30 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
     }
     $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
-    jeedomUtils.initPage()
+    initPage()
     $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
-
-    //dashboard page on object will set its own background:
-    if (!_url.includes('dashboard&object_id')) {
-      if (jeedomUtils.backgroundIMG !== null) {
-        jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
-      } else {
-        jeedomUtils.setBackgroundImage('')
-      }
+    if (jeedomBackgroundImg !== null) {
+      setBackgroundImg(jeedomBackgroundImg)
+    } else {
+      setBackgroundImg('')
     }
-
     if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]').length != 0) {
       $('.nav-tabs a[href="'+window.location.hash+'"]').click()
     }
 
     setTimeout(function() {
       modifyWithoutSave = false
-    }, 500)
+    },500)
   })
 
   setTimeout(function() {
     //scenarios uses special tooltips not requiring destroy.
     if ($('body').attr('data-page') != 'scenario') {
-      if (jeedomUtils.OBSERVER !== null) {
+      if (__OBSERVER__ !== null) {
         var targetNode = document.getElementById('div_mainContainer')
-        if (targetNode) jeedomUtils.OBSERVER.observe(targetNode, jeedomUtils.observerConfig)
+        if (targetNode) __OBSERVER__.observe(targetNode, _observerConfig_)
       } else {
-        jeedomUtils.createObserver()
+        createObserver()
       }
     }
   }, 500)
@@ -170,21 +173,21 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
 $(function() {
   var $body = $('body')
-  if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
-  $body.attr('data-device', jeedomUtils.userDeviceType)
+  if (getDeviceType()['type'] == 'desktop') userDeviceType = 'desktop'
+  $body.attr('data-device', userDeviceType)
 
-  document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
-  document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
-
+  $.alertTrigger = function() {
+    initRowOverflow()
+  }
   $body.attr('data-page', getUrlVars('p'))
-  $body.off('jeedom_page_load').on('jeedom_page_load', function() {
+  $body.off('jeedom_page_load').on('jeedom_page_load',function() {
     if (getUrlVars('saveSuccessFull') == 1) {
-      $.fn.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
+      $('#div_alert').showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
       PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash)
     }
     if (getUrlVars('removeSuccessFull') == 1) {
-      $.fn.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
+      $('#div_alert').showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
       PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
@@ -224,99 +227,65 @@ $(function() {
       if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]:visible').length != 0) {
         $('.nav-tabs a[href="'+window.location.hash+'"]').click()
       } else if (PREVIOUS_PAGE !== null && PREVIOUS_PAGE.includes('#') && PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]) {
-        if (jeedomUtils.checkPageModified()) return
-        jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
+        if (checkPageModified()) return
+        loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
         PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
       }
       return
     }
-    if (jeedomUtils.checkPageModified()) return
-    jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
+    if (checkPageModified()) return
+    loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
     PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
   })
 
-  jeedomUtils.setJeedomTheme()
-  jeedomUtils.changeJeedomThemeAuto()
+  setJeedomTheme()
+  changeJeedomThemeAuto()
 
-  jeedomUtils.setJeedomMenu()
-  jeedomUtils.initJeedomModals()
-  jeedomUtils.setJeedomGlobalUI()
+  setJeedomMenu()
+  initJeedomModals()
+  setJeedomGlobalUI()
 
   $(window).resize(function() {
-    jeedomUtils.initRowOverflow()
+    initRowOverflow()
   })
 
-  jeedomUtils.initPage()
-  if (jeedomUtils.backgroundIMG != null) {
-    jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
+  initPage()
+  if (jeedomBackgroundImg != null) {
+    setBackgroundImg(jeedomBackgroundImg)
   } else {
-    jeedomUtils.setBackgroundImage('')
+    setBackgroundImg('')
   }
 
-  //options for jeedom.notify() toastr
+  //options for notify()
   toastr.options = {
-    "newestOnTop": true,
     "closeButton": true,
     "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-    "extendedTimeOut": "1500",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function() {
-      window.toastr.clear()
-      $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
-    }
-  }
-  jeedomUtils.toastrUIoptions = {
-    "newestOnTop": true,
-    "closeButton": true,
-    "tapToDismiss": false,
-    "debug": false,
-    "positionClass": jeedom.theme['interface::toast::position'],
+    "positionClass": "toast-top-right",
+    "onclick": null,
     "showDuration": "300",
     "hideDuration": "1000",
     "timeOut": "5000",
-    "extendedTimeOut": "1500",
+    "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",
     "showMethod": "fadeIn",
-    "hideMethod": "fadeOut",
-    "progressBar": true,
-    "onclick": function(event) {
-      event.clickToClose = true
-    }
+    "hideMethod": "fadeOut"
   }
 
   setTimeout(function() {
-    jeedomUtils.initTooltips()
-    jeedomUtils.createObserver()
+    initTooltips()
+    createObserver()
     $body.trigger('jeedom_page_load')
   }, 1)
 })
 
-jeedomUtils.toastMsg = function(level, msg, target) {
-  level = isset(level) ? level : 'success'
-  msg = isset(msg) ? msg : ''
-  toastr[level](msg, ' ', jeedomUtils.toastrUIoptions)
-  if (isset(target)) {
-    try {
-      $("#toast-container").appendTo(target).css('position', 'absolute')
-    } catch(error) {}
-  }
-}
-
 //Jeedom theme__
-jeedomUtils.setJeedomTheme = function() {
+var BACKGROUND_IMG = ''
+function setJeedomTheme() {
   var $body = $('body')
 
   if (getCookie('currentTheme') == 'alternate') {
-    var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
+    var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
     $('#bt_switchTheme').html(themeButton)
     $('#bootstrap_theme_css').attr('data-nochange', 1)
   }
@@ -327,15 +296,11 @@ jeedomUtils.setJeedomTheme = function() {
 
   //button event:
   $body.on('click', '#bt_switchTheme', function() {
-    jeedomUtils.closeJeedomMenu()
-    jeedomUtils.switchTheme()
-  })
-
-  jeedomUtils.switchTheme = function() {
+    closeJeedomMenu()
     var theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/'+jeedom.theme.default_bootstrap_theme_night+'.css'
     var themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme_night+'/desktop/shadows.css'
     var themeCook = 'alternate'
-    var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
+    var themeButton = '<i class="fas fa-random"></i> {{Thème principal}}'
     $('#bootstrap_theme_css').attr('data-nochange', 1)
 
     if ($('#bootstrap_theme_css').attr('href').split('?md5')[0] == theme) {
@@ -343,7 +308,7 @@ jeedomUtils.setJeedomTheme = function() {
       theme = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/'+jeedom.theme.default_bootstrap_theme+'.css'
       themeShadows = 'core/themes/'+jeedom.theme.default_bootstrap_theme+'/desktop/shadows.css';
       themeCook = 'default'
-      themeButton = '<i class="fas fa-adjust"></i> {{Thème alternatif}}'
+      themeButton = '<i class="fas fa-random"></i> {{Thème alternatif}}'
     } else {
       $body.attr('data-theme', jeedom.theme.default_bootstrap_theme_night)
     }
@@ -351,12 +316,9 @@ jeedomUtils.setJeedomTheme = function() {
     $('#bootstrap_theme_css').attr('href', theme)
     $('#bt_switchTheme').html(themeButton)
     if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', themeShadows)
-    jeedomUtils.triggerThemechange()
-    let backgroundImgPath = jeedomUtils._elBackground.find('#bottom').css('background-image')
-    if (backgroundImgPath.indexOf('/data/') == -1) {
-      jeedomUtils.setBackgroundImage('')
-    }
-  }
+    setBackgroundImg(BACKGROUND_IMG)
+    triggerThemechange()
+  })
 
   if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
     for (var i in jeedom.theme.css) {
@@ -369,26 +331,21 @@ jeedomUtils.setJeedomTheme = function() {
   } else {
     $body.attr('data-coloredIcons', 0)
   }
-  if (typeof jeedom.theme['interface::advance::coloredcats'] != 'undefined' && jeedom.theme['interface::advance::coloredcats'] == '1') {
-    $body.attr('data-coloredcats', 1)
-  } else {
-    $body.attr('data-coloredcats', 0)
-  }
 }
 
-jeedomUtils.changeJeedomThemeAuto = function() {
+function changeJeedomThemeAuto() {
   if (typeof jeedom.theme == 'undefined') return
   if (typeof jeedom.theme.theme_changeAccordingTime == 'undefined' || jeedom.theme.theme_changeAccordingTime == 0) return
   if (typeof jeedom.theme.default_bootstrap_theme == 'undefined' || typeof jeedom.theme.default_bootstrap_theme_night == 'undefined') return
   if (jeedom.theme.default_bootstrap_theme == jeedom.theme.default_bootstrap_theme_night) return
 
-  jeedomUtils.checkThemechange()
+  checkThemechange()
   setInterval(function() {
-    jeedomUtils.checkThemechange()
+    checkThemechange()
   }, 60000)
 }
 
-jeedomUtils.checkThemechange = function() {
+function checkThemechange() {
   if (getCookie('currentTheme') == 'alternate' || $('#bootstrap_theme_css').attr('data-nochange') == 1) return
 
   var theme = jeedom.theme.default_bootstrap_theme_night
@@ -410,8 +367,8 @@ jeedomUtils.checkThemechange = function() {
       $('#bootstrap_theme_css').attr('href', themeCss)
       $('body').attr('data-theme',theme)
       if ($("#shadows_theme_css").length > 0) $('#shadows_theme_css').attr('href', 'core/themes/'+theme+'/desktop/shadows.css')
-      jeedomUtils.setBackgroundImage('')
-      jeedomUtils.triggerThemechange()
+      setBackgroundImg(BACKGROUND_IMG)
+      triggerThemechange()
     })
     .fail(function() {
       console.error("changeThemeAuto: can't find theme file " + themeCss)
@@ -419,7 +376,7 @@ jeedomUtils.checkThemechange = function() {
   }
 }
 
-jeedomUtils.triggerThemechange = function() {
+function triggerThemechange() {
   //set jeedom logo:
   if ($('body')[0].hasAttribute('data-theme')) {
     var currentTheme = $('body').attr('data-theme')
@@ -440,62 +397,51 @@ jeedomUtils.triggerThemechange = function() {
   }
 }
 
-jeedomUtils.setBackgroundImage = function(_path) {
-  if (getUrlVars('rescue') == 1) return false
-  //Exact same function desktop/mobile, only transitionJeedomBackground() differ
+function setBackgroundImg(_path) {
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
     return
   }
+  BACKGROUND_IMG = _path
   if (_path === null) {
-    jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("")').show()
+    document.body.style.setProperty('--dashBkg-url','url("")')
+    $('.backgroundforJeedom').css('background-image','url("")')
   } else if (_path === '') {
     var mode = 'light'
     if ($('body').attr('data-theme') == 'core2019_Dark') {
       mode = 'dark'
     }
 
-    if (['dashboard', 'overview', 'home', 'equipment'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::dashboard']
-    } else if (['display', 'eqAnalyse', 'log', 'timeline', 'history', 'report', 'health', 'administration', 'profils', 'update', 'backup', 'cron', 'user'].indexOf($('body').attr('data-page')) != -1) {
-      _path = jeedom.theme['interface::background::analysis']
+    if (mode == 'dark') {
+    	_path = jeedom.theme.product_background_image_settings_night;
     } else {
-      _path = jeedom.theme['interface::background::tools']
+    	_path = jeedom.theme.product_background_image_settings;
     }
-
-    if (_path.substring(0, 4) == 'core') {
-      jeedomUtils._elBackground.removeClass('custom')
-      _path += mode + '.jpg'
-    } else {
-      jeedomUtils._elBackground.addClass('custom')
+   
+    if (['administration','profils'].indexOf($('body').attr('data-page')) != -1) {
+      if (mode == 'dark') {
+    	_path = jeedom.theme.product_background_image_administration_night;
+      } else {
+    	_path = jeedom.theme.product_background_image_administration;
+      }
     }
-    jeedomUtils.transitionJeedomBackground(_path)
+    if (['display','eqAnalyse','log','history','report','health'].indexOf($('body').attr('data-page')) != -1) {
+      //_path = 'core/img/background/jeedom_abstract_02_'+mode+'.jpg'
+      if (mode == 'dark') {
+    	_path = jeedom.theme.product_background_image_visualisation_night;
+      } else {
+    	_path = jeedom.theme.product_background_image_visualisation;
+      }
+    }
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'")')
+    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   } else {
-    jeedomUtils.transitionJeedomBackground(_path)
+    $('.backgroundforJeedom').css('background-image','url("'+_path+'")')
+    document.body.style.setProperty('--dashBkg-url','url("../../../../'+_path+'")')
   }
-  jeedomUtils.backgroundIMG = _path
-}
-
-jeedomUtils.transitionJeedomBackground = function(_path) {
-  if ($('body').attr('data-theme') == 'core2019_Dark') {
-    var opacity = $('body').style('--bkg-opacity-dark')
-  } else {
-    var opacity = $('body').style('--bkg-opacity-light')
-  }
-
-  if (jeedomUtils._elBackground.find('#bottom').css('background-image').indexOf(_path) != -1 && jeedomUtils._elBackground.find('#bottom').css('opacity') == opacity) {
-    return
-  }
-
-  _path = 'url("../../../../' + _path + '")'
-  jeedomUtils._elBackground.find('#top').css('background-image', _path).fadeTo(350, opacity)
-  jeedomUtils._elBackground.find('#bottom').fadeOut(300, 'linear', function() {
-    $(this).css('background-image', _path).show()
-    jeedomUtils._elBackground.find('#top').hide()
-  })
 }
 
 //Jeedom UI__
-jeedomUtils.initJeedomModals = function() {
+function initJeedomModals() {
   $.fn.modal.Constructor.prototype.enforceFocus = function() {}
 
   if (isset(jeedom_langage) ) {
@@ -537,7 +483,7 @@ jeedomUtils.initJeedomModals = function() {
         width: ((jQuery(window).width() - 100) < 900) ? (jQuery(window).width() - 100) : 900,
         position: { my: 'center center-10', at: 'center center', of: window }
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_reportBug'))}, 500)
+      setTimeout(function() {initTooltips($('#md_reportBug'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_reportBug')
@@ -550,19 +496,18 @@ jeedomUtils.initJeedomModals = function() {
     closeText: '',
     height: (jQuery(window).height() - 125),
     width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-    position: {my: 'center top+80', at: 'center top', of: window},
+    position: {my: 'center bottom-50', at: 'center bottom', of: window},
     open: function() {
       $('body').css({overflow: 'hidden'})
       $(this).closest('.ui-dialog').find(':button').blur()
       $(this).dialog({
         height: (jQuery(window).height() - 125),
         width: ((jQuery(window).width() - 50) < 1500) ? (jQuery(window).width() - 50) : 1500,
-        position: {my: 'center top+80', at: 'center top', of: window}
+        position: {my: 'center bottom-50', at: 'center bottom', of: window}
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_modal'))}, 500)
+      setTimeout(function() {initTooltips($('#md_modal'))}, 500)
     },
     beforeClose: function(event, ui) {
-      $(this).parent('.ui-dialog').removeClass('summaryActionMain')
       emptyModal('md_modal')
     }
   })
@@ -582,7 +527,7 @@ jeedomUtils.initJeedomModals = function() {
         width: ((jQuery(window).width() - 150) < 1200) ? (jQuery(window).width() - 50) : 1200,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_modal2'))}, 500)
+      setTimeout(function() {initTooltips($('#md_modal2'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal2')
@@ -604,7 +549,7 @@ jeedomUtils.initJeedomModals = function() {
         width : ((jQuery(window).width() - 250) < 1000) ? (jQuery(window).width() - 50) : 1000,
         position: {my: 'center bottom-50', at: 'center bottom',  of: window},
       })
-      setTimeout(function() {jeedomUtils.initTooltips($('#md_modal3'))}, 500)
+      setTimeout(function() {initTooltips($('#md_modal3'))}, 500)
     },
     beforeClose: function(event, ui) {
       emptyModal('md_modal3')
@@ -618,20 +563,17 @@ jeedomUtils.initJeedomModals = function() {
   }
 }
 
-jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_modal', _open=true) {
+function setButtonCtrlHandler(_button, _title, _uri, _modal='#md_modal') {
   $(_button).on('click', function(event) {
-    jeedomUtils.closeJeedomMenu()
-    try {
-      if (jeedomUI.isEditing == true) return false
-    } catch (error) {}
+    closeJeedomMenu()
+    if (isEditing == true) return false
     if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
       var title = encodeURI(_title)
       var url = '/index.php?v=d&p=modaldisplay&loadmodal='+_uri+'&title=' + title
       window.open(url).focus()
     } else {
       $(_modal).dialog('close')
-      $(_modal).dialog({title: _title}).load('index.php?v=d&modal='+_uri)
-      if (_open) $(_modal).dialog('open')
+      $(_modal).dialog({title: _title}).load('index.php?v=d&modal='+_uri).dialog('open')
     }
   })
   $(_button).on('mouseup', function(event) {
@@ -642,7 +584,7 @@ jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_m
   })
 }
 
-jeedomUtils.setJeedomGlobalUI = function() {
+function setJeedomGlobalUI() {
   if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
@@ -653,18 +595,18 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
   })
 
-  jeedomUtils.setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal', false)
-  jeedomUtils.setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
+  setButtonCtrlHandler('#bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
+  setButtonCtrlHandler('#bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
+  setButtonCtrlHandler('#bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
+  setButtonCtrlHandler('#bt_showDatastoreVariable', '{{Variables des scénarios}}', 'dataStore.management&type=scenario', '#md_modal')
+  setButtonCtrlHandler('#bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
 
   $('#bt_gotoDashboard').on('click',function(event) {
     if (!getDeviceType()['type'] == 'desktop' || $(window).width() < 768) {
       event.stopPropagation()
       return
     }
-    jeedomUtils.loadPage('index.php?v=d&p=dashboard')
+    loadPage('index.php?v=d&p=dashboard')
   })
 
   $('#bt_gotoView').on('click',function(event) {
@@ -672,7 +614,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       event.stopPropagation()
       return
     }
-    jeedomUtils.loadPage('index.php?v=d&p=view')
+    loadPage('index.php?v=d&p=view')
   })
 
   $('#bt_gotoPlan').on('click',function(event) {
@@ -680,7 +622,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       event.stopPropagation()
       return
     }
-    jeedomUtils.loadPage('index.php?v=d&p=plan')
+    loadPage('index.php?v=d&p=plan')
   })
 
   $('#bt_gotoPlan3d').on('click',function(event) {
@@ -688,11 +630,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
       event.stopPropagation()
       return
     }
-    jeedomUtils.loadPage('index.php?v=d&p=plan3d')
+    loadPage('index.php?v=d&p=plan3d')
   })
 
   $('#bt_jeedomAbout').on('click', function() {
-    jeedomUtils.closeJeedomMenu()
+    closeJeedomMenu()
     $('#md_modal').dialog({title: "{{A propos}}"}).load('index.php?v=d&modal=about').dialog('open')
   })
 
@@ -702,7 +644,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       page: $(this).attr('data-page'),
       theme: $('body').attr('data-theme'),
       error: function(error) {
-        $.fn.showAlert({message: error.message, level: 'danger'})
+        $('#div_alert').showAlert({message: error.message, level: 'danger'})
       },
       success: function(url) {
         window.open(url,'_blank')
@@ -715,40 +657,25 @@ jeedomUtils.setJeedomGlobalUI = function() {
       event.preventDefault()
       return
     }
-    jeedomUtils.closeJeedomMenu()
+    closeJeedomMenu()
     $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
   })
 
   $('#bt_messageModal').on('click',function() {
-    jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Centre de Messages}}"}).load('index.php?v=d&p=message&ajax=1').dialog('open')
   })
   $('#bt_jsErrorModal').on('click',function() {
-    jeedomUtils.closeModal('md_modal')
     $('#md_modal').dialog({title: "{{Erreur Javascript}}"}).load('index.php?v=d&modal=js.error').dialog('open')
   })
 
   $('body').on('click', '.objectSummaryParent', function() {
-    //action summary:
-    if (event.ctrlKey) return
-
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
 
     var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
-    if (window.location.href.includes('&btover=1') || ($('body').attr('data-page') != "dashboard" && userProfils.homePage == 'core::overview')) {
+    if (window.location.href.includes('&btover=1')) {
       url += '&btover=1'
     }
-    jeedomUtils.loadPage(url)
-  })
-
-  $('body').on('click', '.objectSummaryAction', function(event) {
-    if (!event.ctrlKey) {
-      return
-    }
-    jeedomUtils.mouseX = event.originalEvent.x
-    jeedomUtils.mouseY = event.originalEvent.y
-    jeedomUtils.closeModal()
-    $('#md_modal').dialog({title: "{{Action sur résumé}}"}).load('index.php?v=d&modal=summary.action&summary='+$(this).attr('data-summary')+'&object_id='+$(this).attr('data-object_id'))
+    loadPage(url)
   })
 
   $('body').off('click','.jeeHelper[data-helper=cron]').on('click','.jeeHelper[data-helper=cron]',function() {
@@ -758,12 +685,6 @@ jeedomUtils.setJeedomGlobalUI = function() {
     })
   })
 
-  //close all modales on outside click
-  $('body').on('click', '.ui-widget-overlay', function(event) {
-    $(".ui-dialog-content").dialog("close")
-  })
-
-  //search input escape:
   $('body').on({
     'keydown': function(event) {
       if (event.key == 'Escape') {
@@ -776,95 +697,73 @@ jeedomUtils.setJeedomGlobalUI = function() {
 }
 
 //Initiators__
-jeedomUtils.initPage = function() {
-  jeedomUtils.initTableSorter()
-  jeedomUtils.initReportMode()
+function initPage() {
+  initTableSorter()
+  initReportMode()
   $.initTableFilter()
-  jeedomUtils.initRowOverflow()
-  jeedomUtils.initHelp()
-  jeedomUtils.initTextArea()
+  initRowOverflow()
+  initHelp()
+  initTextArea()
   $('.nav-tabs a').on('click',function() {
+    var scrollHeight = $(document).scrollTop()
     $(this).tab('show')
-    $('#div_mainContainer').scrollTop(0)
+    $(window).scrollTop(scrollHeight)
+    setTimeout(function() {
+      $(window).scrollTop(scrollHeight)
+    }, 0)
   })
 
   setTimeout(function() {
-    jeedomUtils.initTooltips()
+    initTooltips()
   }, 750)
+  
   try {
     if (getDeviceType()['type'] == 'desktop') $("input[id^='in_search']").first().focus()
   } catch (error) {}
-  jeedomUtils.initDisplayAsTable()
 }
 
-jeedomUtils.initDisplayAsTable = function() {
-  var $buttonAsTable = $('#bt_displayAsTable')
-  if ($buttonAsTable.length) {
-
-    if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
-      $('#bt_displayAsTable').data('state', '1').addClass('active')
-      $($buttonAsTable.data('card')).addClass('displayAsTable')
-      $($buttonAsTable.data('container')).first().addClass('containerAsTable')
-    }
-
-    $buttonAsTable.off('click').on('click', function () {
-      if ($(this).data('state') == "0") {
-        $(this).data('state', '1').addClass('active')
-        setCookie('jeedom_displayAsTable', 'true', 7)
-        $($(this).data('card')).addClass('displayAsTable')
-        $($(this).data('container')).first().addClass('containerAsTable')
-      } else {
-        $(this).data('state', '0').removeClass('active')
-        setCookie('jeedom_displayAsTable', 'false', 7)
-        $($(this).data('card')).removeClass('displayAsTable')
-        $($(this).data('container')).first().removeClass('containerAsTable')
-      }
-    })
-  }
-}
-
-jeedomUtils.OBSERVER = null
-jeedomUtils.observerConfig = {
+var __OBSERVER__ = null
+var _observerConfig_ = {
   attributes: true,
   childList: true,
   characterData: true,
   subtree: true
 }
-jeedomUtils.createObserver = function() {
+function createObserver() {
   var mainContent = document.getElementById('div_mainContainer')
   if (mainContent) {
-    jeedomUtils.OBSERVER = new MutationObserver(function(mutations) {
+    __OBSERVER__ = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
         if ( mutation.type == 'childList' ) {
           if (mutation.addedNodes.length >= 1) {
             if (mutation.addedNodes[0].nodeName != '#text') {
-              jeedomUtils.initTooltips($(mutation.target))
+              initTooltips($(mutation.target))
             }
           }
         } else if (mutation.type == 'attributes') {
-          if (mutation.attributeName == 'title') jeedomUtils.initTooltips($(mutation.target))
+          if (mutation.attributeName == 'title') initTooltips($(mutation.target))
         }
       })
     })
-    jeedomUtils.OBSERVER.observe(mainContent, jeedomUtils.observerConfig)
+    __OBSERVER__.observe(mainContent, _observerConfig_)
   }
 }
 
-jeedomUtils.TOOLTIPSOPTIONS = {
+var TOOLTIPSOPTIONS = {
   arrow: false,
   delay: 650,
   interactive: false,
   contentAsHTML: true
 }
-jeedomUtils.initTooltips = function(_el) {
+function initTooltips(_el) {
   if (!_el) {
-    $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(TOOLTIPSOPTIONS)
   } else {
     //cmd update:
     if (_el.parents('.cmd-widget[title]').length) {
       var me = _el.closest('.cmd-widget[title]')
       if (me.hasClass('tooltipstered')) me.tooltipster('destroy')
-      me.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+      me.tooltipster(TOOLTIPSOPTIONS)
       return;
     }
 
@@ -872,33 +771,33 @@ jeedomUtils.initTooltips = function(_el) {
       if (_el.is('[title]') && _el.hasClass('tooltipstered')){
         _el.tooltipster('destroy');
       }
-      _el.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+      _el.tooltipster(TOOLTIPSOPTIONS)
     }
 
     _el.find('.tooltipstered[title]').tooltipster('destroy')
-    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(TOOLTIPSOPTIONS)
 
   }
 }
 
-jeedomUtils.initTextArea = function() {
+function initTextArea() {
   $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
     $(this).height(0).height(this.scrollHeight)
   });
 }
 
-jeedomUtils.initRowOverflow = function() {
+function initRowOverflow() {
   var hWindow = $(window).outerHeight() - $('header').outerHeight() - 5
+  if ($('#div_alert').is(':visible')) {
+    hWindow -= ($('#div_alert').outerHeight() + 20)
+  }
   if ($('.row-overflow').attr('data-offset') != undefined) {
     hWindow -= $('.row-overflow').attr('data-offset')
   }
-  $('.row-overflow > div:not(#div_displayObjectList)').each(function(){
-    let style = $(this).attr('style');
-    $(this).css('cssText','padding-top:0px;overflow-y:auto !important;overflow-x:hidden !important;padding-top:5px;padding-right:5px !important;'+style).height(hWindow)
-  })
+  $('.row-overflow > div:not(#div_displayObjectList)').height(hWindow).css({'padding-top': '0px', 'overflow-y': 'auto', 'overflow-x': 'hidden', 'padding-top': '5px'})
 }
 
-jeedomUtils.initReportMode = function() {
+function initReportMode() {
   if (getUrlVars('report') == 1) {
     $('header').hide()
     $('footer').hide()
@@ -909,8 +808,8 @@ jeedomUtils.initReportMode = function() {
   }
 }
 
-jeedomUtils.initTableSorter = function(filter) {
-  var widgets = ['uitheme', 'resizable']
+function initTableSorter(filter) {
+  var widgets = ['uitheme', 'zebra', 'resizable']
   if (!filter) {
     filter = true
   }
@@ -921,6 +820,7 @@ jeedomUtils.initTableSorter = function(filter) {
     dateFormat : "yyyy-mm-dd",
     theme: "bootstrap",
     widthFixed: false,
+    headerTemplate: '{content} ',
     widgets: widgets,
     ignoreCase: true,
     delayInit: false,
@@ -930,28 +830,32 @@ jeedomUtils.initTableSorter = function(filter) {
     widgetOptions: {
       filter_ignoreCase: true,
       resizable: true,
-      stickyHeaders_offset: $('header.navbar-fixed-top').height()
+      stickyHeaders_offset: $('header.navbar-fixed-top').height(),
+      zebra: ["ui-widget-content even", "ui-state-default odd"],
     },
     cssIcon: 'tablesorter-icon',
-    initialized : function(table) {
+    initialized : function(table){
       $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
     }
-  }).css('width','')
+  })
+  $('table.tablesorter').css('width','')
 }
 
-jeedomUtils.initHelp = function() {
+function initHelp() {
   $('.help').each(function() {
     if ($(this).attr('data-help') != undefined) {
-      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'"></i></sup>')
+      $(this).append(' <sup><i class="fas fa-question-circle tooltips" title="'+$(this).attr('data-help')+'" style="font-size : 1em;color:grey;"></i></sup>')
     }
   })
 }
 
-jeedomUtils.autocompleteDestroy = function() {
-  $('ul.ui-autocomplete, div.ui-helper-hidden-accessible').remove()
+function datePickerDestroy() {
+  $('.in_datepicker').datepicker( "destroy" )
+  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
+  $('#ui-datepicker-div').remove()
 }
 
-jeedomUtils.datePickerInit = function() {
+function datePickerInit() {
   var datePickerRegion = jeedom_langage.substring(0,2)
   if (isset($.datepicker.regional[datePickerRegion])) {
     var datePickerRegional = $.datepicker.regional[datePickerRegion]
@@ -962,14 +866,8 @@ jeedomUtils.datePickerInit = function() {
   $('.in_datepicker').datepicker(datePickerRegional)
 }
 
-jeedomUtils.datePickerDestroy = function() {
-  $('.in_datepicker').datepicker( "destroy" )
-  $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')
-  $('#ui-datepicker-div').remove()
-}
-
 //General functions__
-jeedomUtils.normTextLower = function(_text) {
+function normTextLower(_text) {
   try {
     var result = _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
   } catch(error) {
@@ -978,7 +876,7 @@ jeedomUtils.normTextLower = function(_text) {
   return result
 }
 
-jeedomUtils.linkify = function(inputText) {
+function linkify(inputText) {
   if(!inputText || inputText == '' || inputText === null){
     return '';
   }
@@ -991,7 +889,52 @@ jeedomUtils.linkify = function(inputText) {
   return replacedText
 }
 
-jeedomUtils.sleep = function(milliseconds) {
+var MESSAGE_NUMBER
+function refreshMessageNumber() {
+  jeedom.message.number({
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(_number) {
+      MESSAGE_NUMBER = _number;
+      if (_number == 0 || _number == '0') {
+        $('#span_nbMessage').hide()
+      } else {
+        $('#span_nbMessage').html(_number).show()
+      }
+    }
+  })
+}
+
+var UPDATE_NUMBER
+function refreshUpdateNumber() {
+  jeedom.update.number({
+    error: function(error) {
+      $('#div_alert').showAlert({message: error.message, level: 'danger'})
+    },
+    success : function(_number) {
+      UPDATE_NUMBER = _number;
+      if (_number == 0 || _number == '0') {
+        $('#span_nbUpdate').hide()
+      } else {
+        $('#span_nbUpdate').html(_number).show()
+      }
+    }
+  })
+}
+
+function notify(_title, _text, _class_name) {
+  if (_title == '' && _text == '') {
+    return true
+  }
+  if (isset(_class_name) != '' && isset(toastr[_class_name])) {
+    toastr[_class_name](_text, _title)
+  } else {
+    toastr.info(_text, _title)
+  }
+}
+
+function sleep(milliseconds) {
   var start = new Date().getTime()
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds) {
@@ -1000,25 +943,25 @@ jeedomUtils.sleep = function(milliseconds) {
   }
 }
 
-jeedomUtils.uniqId_count = 0
-jeedomUtils.uniqId = function(_prefix) {
+var uniqId_count = 0
+function uniqId(_prefix) {
   if (typeof _prefix == 'undefined') {
     _prefix = 'jee-uniq'
   }
-  var result = _prefix +'-'+ jeedomUtils.uniqId_count + '-' + Math.random().toString(36).substring(8)
-  jeedomUtils.uniqId_count++
+  var result = _prefix +'-'+ uniqId_count + '-' + Math.random().toString(36).substring(8)
+  uniqId_count++
   if ($('#'+result).length) {
-    return jeedomUtils.uniqId(_prefix)
+    return uniqId(_prefix)
   }
   return result
 }
 
-jeedomUtils.taAutosize = function() {
+function taAutosize() {
   autosize($('.ta_autosize'))
   autosize.update($('.ta_autosize'))
 }
 
-jeedomUtils.hexToRgb = function(hex) {
+function hexToRgb(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result ? {
     r: parseInt(result[1], 16),
@@ -1027,12 +970,12 @@ jeedomUtils.hexToRgb = function(hex) {
   } : null
 }
 
-jeedomUtils.componentToHex = function(c) {
+function componentToHex(c) {
   var hex = c.toString(16)
   return hex.length == 1 ? "0" + hex : hex
 }
 
-jeedomUtils.rgbToHex = function(r, g, b) {
+function rgbToHex(r, g, b) {
   if ($.type(r) === 'string' && !g) {
     r = r.trim()
     if (r.startsWith('rgb')) {
@@ -1049,10 +992,10 @@ jeedomUtils.rgbToHex = function(r, g, b) {
     g = parseInt(strAr[1].trim())
     b = parseInt(strAr[2].trim())
   }
-  return "#" + jeedomUtils.componentToHex(r) + jeedomUtils.componentToHex(g) + jeedomUtils.componentToHex(b)
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b)
 }
 
-jeedomUtils.addOrUpdateUrl = function(_param,_value,_title) {
+function addOrUpdateUrl(_param,_value,_title) {
   var url = new URL(window.location.href)
   var query_string = url.search
   var search_params = new URLSearchParams(query_string)
@@ -1082,15 +1025,20 @@ jeedomUtils.addOrUpdateUrl = function(_param,_value,_title) {
   }
 }
 
-String.prototype.HTMLFormat = function() {
-  return this.replace(/[\u00A0-\u9999<>\&]/g, function (i) {
-    return '&#' + i.charCodeAt(0) + ';';
-  });
+function closeJeedomMenu() {
+  $('#jeedomMenuBar .navbar-nav').addClass('disabled')
+  setTimeout(function() {
+    $('#jeedomMenuBar .navbar-nav').removeClass('disabled')
+  }, 250)
+
+  if ($(window).width() < 768) {
+    $('#jeedomMenuBar .navbar-collapse.in').removeClass('in')
+  }
 }
 
 //Global UI functions__
-jeedomUtils.userDeviceType = 'mobile'
-jeedomUtils.setJeedomMenu = function() {
+var userDeviceType = 'mobile'
+function setJeedomMenu() {
   $('body').on('click', 'a', function(event) {
     if ($(this).hasClass('noOnePageLoad')) {
       return
@@ -1114,11 +1062,11 @@ jeedomUtils.setJeedomMenu = function() {
       return
     }
 
-    if (!$(this).hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
+    if (!$(this).hasClass('navbar-brand')) closeJeedomMenu()
 
     event.preventDefault()
     event.stopPropagation()
-    jeedomUtils.loadPage($(this).attr('href'))
+    loadPage($(this).attr('href'))
   })
 
   //one submenu opened at a time in mobile:
@@ -1132,74 +1080,24 @@ jeedomUtils.setJeedomMenu = function() {
     $('#jeedomMenuBar .navbar-nav > li > ul > li > input').prop("checked", false)
     $(this).prop("checked", checked)
   })
-
-  if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
-    $('li.navTime #configName').on('click', function(event) {
-      //center mouse click event to new tab:
-      if (event.newTab) {
-        var url = 'index.php?v=d&p=administration'
-        window.open(url).focus()
-        return false
-      }
-
-      //shortcuts:
-      if (event.originalEvent.ctrlKey && event.originalEvent.altKey) {
-        jeedomUtils.loadPage('index.php?v=d&p=massedit')
-        return false
-      }
-      if (event.originalEvent.ctrlKey) {
-        jeedomUtils.loadPage('index.php?v=d&p=system')
-        return false
-      }
-      if (event.originalEvent.altKey) {
-        jeedomUtils.loadPage('index.php?v=d&p=database')
-        return false
-      }
-      if (event.originalEvent.shiftKey) {
-        jeedomUtils.loadPage('index.php?v=d&p=editor')
-        return false
-      }
-
-      //open configuration:
-      jeedomUtils.loadPage('index.php?v=d&p=administration')
-    })
-
-    $('li.navTime #configName').on('mouseup', function(event) {
-      if (event.which == 2) {
-        event.preventDefault()
-        $(this).trigger(jQuery.Event('click', { newTab: true }))
-      }
-    })
-  }
 }
 
-jeedomUtils.closeJeedomMenu = function() {
-  $('#jeedomMenuBar .navbar-nav').addClass('disabled')
-  setTimeout(function() {
-    $('#jeedomMenuBar .navbar-nav').removeClass('disabled')
-  }, 250)
-
-  if ($(window).width() < 768) {
-    $('#jeedomMenuBar .navbar-collapse.in').removeClass('in')
-  }
-}
-
-jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
+function positionEqLogic(_id, _preResize, _scenario) {
   if (_id != undefined) {
     var widget = (_scenario) ? $('div.scenario-widget[data-scenario_id='+_id+']') : $('div.eqLogic-widget[data-eqlogic_id='+_id+']')
     widget.css({'margin': '0px', 'padding': '0px'})
-    if (widget.width() == 0) {
-      widget.width('230')
+    if ($(this).width() == 0) {
+      $(this).width('230')
     }
-    if (widget.height() == 0) {
-      widget.height('110')
+    if ($(this).height() == 0) {
+      $(this).height('110')
     }
     if (init(_preResize, true)) {
       widget.width(Math.floor(widget.width() / jeedom.theme['widget::step::width']) * jeedom.theme['widget::step::width'] - (2 * jeedom.theme['widget::margin']))
       widget.height(Math.floor(widget.height() / jeedom.theme['widget::step::height']) * jeedom.theme['widget::step::height'] - (2 * jeedom.theme['widget::margin']))
     }
-    widget.width(jeedomUtils.calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
-    widget.height(jeedomUtils.calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
+    widget.width(calculWidgetSize(widget.width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
+    widget.height(calculWidgetSize(widget.height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
     if (!widget.hasClass(widget.attr('data-category'))) {
       widget.addClass(widget.attr('data-category'))
     }
@@ -1215,8 +1113,8 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
       if ($(this).height() == 0) {
         $(this).height('110')
       }
-      $(this).width(jeedomUtils.calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
-      .height(jeedomUtils.calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
+      $(this).width(calculWidgetSize($(this).width(),jeedom.theme['widget::step::width'],jeedom.theme['widget::margin']))
+      .height(calculWidgetSize($(this).height(),jeedom.theme['widget::step::height'],jeedom.theme['widget::margin']))
       if (!$(this).hasClass($(this).attr('data-category'))) {
         $(this).addClass($(this).attr('data-category'))
       }
@@ -1226,7 +1124,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   }
 }
 
-jeedomUtils.showHelpModal = function(_name, _plugin) {
+function showHelpModal(_name, _plugin) {
   if (init(_plugin) != '' && _plugin != undefined) {
     $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary', function() {
       if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $.trim($('#div_helpWebsite').text()) == '') {
@@ -1250,33 +1148,11 @@ jeedomUtils.showHelpModal = function(_name, _plugin) {
   }
 }
 
-jeedomUtils.reloadPagePrompt = function(_title) {
-  bootbox.confirm({
-    title: '<h4><i class="success fas fa-check-circle"></i> ' + _title + '</h4>',
-    message: '{{Voulez vous recharger la page maintenant ?}}',
-    buttons: {
-      confirm: {
-        label: '{{Recharger}}',
-        className: 'btn-success'
-      },
-      cancel: {
-        label: '{{Rester sur la page}}',
-        className: 'btn-info'
-      }
-    },
-    callback: function(result) {
-      if (result) {
-        window.location.reload(true)
-      }
-    }
-  })
-}
-
-jeedomUtils.chooseIcon = function(_callback, _params) {
+function chooseIcon(_callback, _params) {
   if ($("#mod_selectIcon").length == 0) {
     $('#div_pageContainer').append('<div id="mod_selectIcon"></div>')
     $("#mod_selectIcon").dialog({
-      title: '{{Choisir une illustration}}',
+      title: '{{Choisissez une icône}}',
       closeText: '',
       autoOpen: false,
       modal: true,
@@ -1287,7 +1163,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
           $('#mod_selectIcon').dialog({width: jQuery(window).width() - 50})
         }
         $('body').css({overflow: 'hidden'});
-        setTimeout(function() {jeedomUtils.initTooltips($("#mod_selectIcon"))},500)
+        setTimeout(function() {initTooltips($("#mod_selectIcon"))},500)
       },
       beforeClose: function(event, ui) {
         $('body').css({overflow: 'inherit'})
@@ -1302,19 +1178,14 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
     var icon = _params.icon
     var replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
     replaceAr.forEach(function(element) {
-      if (icon.includes(element)) {
-        icon = icon.replace(element, '')
-        _params.color = (!_params.color) ? element : _params.color;
-      }
+      icon = icon.replace(element, '')
     })
-    icon = icon.trim().split(' ').join('.')
+    icon = icon.trim().replace(new RegExp('  ', 'g'), ' ')
+    icon = icon.trim().replace(new RegExp(' ', 'g'), '.')
     url += '&selectIcon=' + icon
   }
   if (_params && _params.color) {
     url += '&colorIcon=' + _params.color
-  }
-  if (_params && _params.object_id) {
-    url += '&object_id=' + _params.object_id
   }
   $('#mod_selectIcon').empty().load(url,function() {
     $("#mod_selectIcon").dialog('option', 'buttons', {
@@ -1335,7 +1206,7 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   })
 }
 
-jeedomUtils.calculWidgetSize = function(_size,_step,_margin) {
+function calculWidgetSize(_size,_step,_margin) {
   var result = Math.ceil(_size / _step) * _step - (2*_margin)
   if (result < _size) {
     result += Math.ceil((_size - result) / _step)* _step
@@ -1343,7 +1214,7 @@ jeedomUtils.calculWidgetSize = function(_size,_step,_margin) {
   return result
 }
 
-jeedomUtils.getOpenedModal = function() {
+function getOpenedModal() {
   var _return = false
   var modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
   modals.forEach(function(_modal) {
@@ -1352,21 +1223,6 @@ jeedomUtils.getOpenedModal = function() {
     }
   })
   return _return
-}
-
-jeedomUtils.closeModal = function(_modals='') {
-  if (_modals == '') {
-    _modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
-  }
-  if (!Array.isArray(_modals)) {
-    _modals = [_modals]
-  }
-  _modals.forEach(function(_modal) {
-    try {
-      $('#'+_modal).dialog('close')
-    } catch (error) {}
-
-  })
 }
 
 //Extensions__
@@ -1402,24 +1258,7 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
   return this
 }
 
-$.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
+//deprecated
+function initCheckBox() {}
 
-//Introduced in v4.2 -> deprecated v4.3 -> remove v4.4
-var checkPageModified = jeedomUtils.checkPageModified
-var loadPage = jeedomUtils.loadPage
-var initPage = jeedomUtils.initPage
-var initTooltips = jeedomUtils.initTooltips
-var initTableSorter = jeedomUtils.initTableSorter
-var initHelp = jeedomUtils.initHelp
-var datePickerInit = jeedomUtils.datePickerInit
-var normTextLower = jeedomUtils.normTextLower
-var sleep = jeedomUtils.sleep
-var uniqId = jeedomUtils.uniqId
-var taAutosize = jeedomUtils.taAutosize
-var hexToRgb = jeedomUtils.hexToRgb
-var componentToHex = jeedomUtils.componentToHex
-var rgbToHex = jeedomUtils.rgbToHex
-var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
-var positionEqLogic = jeedomUtils.positionEqLogic
-var chooseIcon = jeedomUtils.chooseIcon
-var getOpenedModal = jeedomUtils.getOpenedModal
+function editWidgetCmdMode(_mode) {}
