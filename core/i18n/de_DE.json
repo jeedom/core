@@ -334,6 +334,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Ajouter": "Hinzufügen",
+        "Rafraichir": "Aktualisierung",
         "Nom": "Name",
         "Valeur": "Wert",
         "Utilisée dans": "Verwendet in",
@@ -745,6 +746,8 @@
         "Valeur retour d'état": "Das Wert der Rückkehr",
         "Durée avant retour d'état": "Dauer vor Statusrückgabe",
         "en minutes": "in Minuten",
+        "Inverser les valeurs binaires": "Binäre Werte invertieren",
+        "Contrairement à l'option <b>inverser<\/b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)": "Im Gegensatz zur <b>Option invertieren<\/b> in der Zeile eines Befehls, die nur während der Anzeige invertiert wird, invertiert diese Option den beim Befehl empfangenen Binärwert (in Basis)",
         "Autres": "Andere",
         "Répéter les valeurs identiques": "Identische Werte wiederholen",
         "Non": "Nein",
@@ -1172,6 +1175,7 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Test": "Prüfung",
         "Rechercher une commande": "Befehl suchen",
+        "Rechercher un type générique": "Finden Sie einen generischen Typ",
         "Rechercher un scénario": "Suchen Sie ein Szenario",
         "Rechercher un équipement": "Suche nach Ausrüstung",
         "Exécuter": "Ausführen",
@@ -2535,7 +2539,16 @@
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
         "Exporter cet historique.": "Exportieren Sie diesen Verlauf",
         "Comparer la période": "Vergleichen Sie den Zeitraum",
-        "Avec la période": "Mit der Zeit"
+        "1 semaine": "1 Woche",
+        "2 semaines": "2 Wochen",
+        "1 mois": "1 Monat",
+        "3 mois": "3 Monate",
+        "6 mois": "6 Monate",
+        "1 an": "1 Jahr",
+        "Avec la période": "Mit der Zeit",
+        "3 semaines": "Drei Wochen",
+        "4 semaines": "4 Wochen",
+        "2 mois": "2 Monate"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",
@@ -2571,6 +2584,8 @@
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Rechercher": "Suchen nach",
+        "Apache non securisé": "Apache nicht sicher",
+        "Apache sécurisé": "Sicherer Apache",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Klicken Sie links auf eine Bestellung oder geben Sie unten eine benutzerdefinierte Bestellung ein",
         "OK": "Ok"
     },
@@ -2758,8 +2773,8 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Période de comparaison": "Vergleichszeitraum",
-        "Historique supprimé avec succès": "Chronik erfolgreich gelöscht"
+        "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
+        "Période de comparaison": "Vergleichszeitraum"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",

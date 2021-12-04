@@ -212,4 +212,14 @@ sudo easy_install pip
 sudo easy_install3 pip
 ````
 
-Puis relancer les dependances
+Puis relancer les dépendances
+
+
+### Depuis la 4.2, je ne peux plus afficher d'iframe
+
+Le Core 4.2 renforce énormément la sécurité de Jeedom. Si vraiment (en connaissance de cause) vous avez besoin de revenir à une version non sécurisée de votre Jeedom :
+Allez dans **Réglages -> Système -> Configuration** puis dans **OS/DB**, lancez la console d'administration système et cliquez sur **Apache non sécurisé**. Un redémarrage de Jeedom est recommandé suite à ce changement.
+
+### Depuis la 4.2, certains plugins ne marchent plus et dans la console du navigateur (touche F12) j'ai des erreurs 403
+
+C'est du a la sécurisation d'Apache qui impose aux développeur de plugin de mettre les bons fichiers dans les bons répertoires pour limiter la surface d'attaque de Jeedom. Cette sécurisation ce fait dans le fichier .htaccess (écrasé à chaque mise à jour du Core). Vous pouvez faire un fichier .htaccess_custom avec vos propre règles qui si il existe sera utilisé à la place du fichier .htaccess du Core.

@@ -334,6 +334,7 @@
     "desktop\/modal\/dataStore.management.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Ajouter": "Ekle",
+        "Rafraichir": "Rafraichir",
         "Nom": "İsim",
         "Valeur": "Değer",
         "Utilisée dans": "Kullanılan",
@@ -745,6 +746,8 @@
         "Valeur retour d'état": "İade durumu değeri",
         "Durée avant retour d'état": "Durée avant retour d'état",
         "en minutes": "en minutes",
+        "Inverser les valeurs binaires": "Inverser les valeurs binaires",
+        "Contrairement à l'option <b>inverser<\/b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)": "Contrairement à l'option <b>inverser<\/b> sur la ligne d'une commande qui n'inverse que lors de l'affichage, cette option inverse la valeur binaire reçue sur la commande (en base)",
         "Autres": "Diger",
         "Répéter les valeurs identiques": "Répéter les valeurs identiques",
         "Non": "Non",
@@ -1172,6 +1175,7 @@
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Test": "Test, denetleme",
         "Rechercher une commande": "Komuta arayın",
+        "Rechercher un type générique": "Rechercher un type générique",
         "Rechercher un scénario": "Senaryo arayın",
         "Rechercher un équipement": "Rechercher un équipement",
         "Exécuter": "Uygula",
@@ -2535,7 +2539,16 @@
         "Supprimer tout ou partie de cet historique.": "Supprimer tout ou partie de cet historique",
         "Exporter cet historique.": "Exporter cet historique",
         "Comparer la période": "Comparer la période",
-        "Avec la période": "Avec la période"
+        "1 semaine": "1 semaine",
+        "2 semaines": "2 semaines",
+        "1 mois": "1 mois",
+        "3 mois": "3 mois",
+        "6 mois": "6 mois",
+        "1 an": "1 an",
+        "Avec la période": "Avec la période",
+        "3 semaines": "3 semaines",
+        "4 semaines": "4 semaines",
+        "2 mois": "2 mois"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Değer [ 'name']",
@@ -2571,6 +2584,8 @@
     "desktop\/php\/system.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
         "Rechercher": "Arayın",
+        "Apache non securisé": "Apache non securisé",
+        "Apache sécurisé": "Apache sécurisé",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous",
         "OK": "Tamam"
     },
@@ -2758,8 +2773,8 @@
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
-        "Période de comparaison": "Période de comparaison",
-        "Historique supprimé avec succès": "Geçmiş başarıyla silindi"
+        "Historique supprimé avec succès": "Geçmiş başarıyla silindi",
+        "Période de comparaison": "Période de comparaison"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

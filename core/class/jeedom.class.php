@@ -254,7 +254,7 @@ class jeedom {
 			'state' => ($apaches > 0),
 			'result' => $apaches,
 			'comment' => '',
-			'key' => 'jeedom::version'
+			'key' => 'apache'
 		);
 
 		$state = true;
@@ -1262,10 +1262,10 @@ class jeedom {
 		switch ($_calcul) {
 			case 'sum':
 				return array_sum($_values);
-				break;
 			case 'avg':
 				return array_sum($_values) / count($_values);
-				break;
+			case 'text':
+				return trim(implode(',', $_values), ',');
 		}
 		return null;
 	}

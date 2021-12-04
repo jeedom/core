@@ -389,9 +389,6 @@ class jeeObject {
 		if (count($value) == 0) {
 			return null;
 		}
-		if ($def[$_key]['calcul'] == 'text') {
-			return trim(implode(',', $value), ',');
-		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $value), 1);
 	}
 
@@ -960,9 +957,6 @@ class jeeObject {
 		}
 		if ($_raw) {
 			return $values;
-		}
-		if ($def[$_key]['calcul'] == 'text') {
-			return trim(implode(',', $values), ',');
 		}
 		return round(jeedom::calculStat($def[$_key]['calcul'], $values), 1);
 	}

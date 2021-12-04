@@ -34,10 +34,6 @@ php_flag html_errors on
 php_flag log_errors on
 php_value error_log  log/http.error
 php_value memory_limit 512M
-
-php_value xdebug.profiler_output_name callgrind.%t.%s
-php_value xdebug.profiler_output_dir /tmp
-php_value xdebug.profiler_enable_trigger 1
 </IfModule>
 
 <IfModule mod_mime.c>
