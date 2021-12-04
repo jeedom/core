@@ -320,9 +320,9 @@ jeedom.history.drawChart = function(_params) {
 
       //define legend and reset graph:
       var legend = {
-        borderColor: 'black',
+        borderColor: 'transparent',
         borderWidth: 2,
-        shadow: true
+        shadow: false
       };
       legend.enabled = init(_params.showLegend, true);
       if (isset(_params.newGraph) && _params.newGraph == true) {

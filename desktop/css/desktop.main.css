@@ -4009,6 +4009,27 @@ Desktop
     font-style: italic;
   }
 
+  #div_graph .highcharts-navigator-mask-inside {
+    opacity: 0.6;
+  }
+  #div_graph .highcharts-navigator-outline,
+  #div_graph .highcharts-xaxis > .highcharts-axis-line {
+    display: none;
+  }
+  #div_graph .highcharts-axis-line,
+  #div_graph .highcharts-navigator-xaxis .highcharts-grid-line {
+    stroke: var(--placeholder-color) !important;
+  }
+
+  #div_graph .highcharts-navigator-handle {
+    fill: var(--placeholder-color) !important;
+    color: green !important;
+    background: green !important;
+  }
+  #div_graph .highcharts-scrollbar-track {
+    stroke: transparent;
+  }
+
   .highcharts-minor-tick { stroke: var(--placeholder-color)}
   .highcharts-tick { stroke: var(--txt-color)}
   :not(.gauge) >.highcharts-container .highcharts-axis-line { stroke: var(--txt-color) }
