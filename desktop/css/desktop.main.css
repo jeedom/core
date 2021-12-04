@@ -4053,7 +4053,7 @@ Desktop
   .highcharts-button-box {
     stroke: transparent;
   }
-  .highcharts-axis-labels > text {
+  .highcharts-axis-labels.highcharts-xaxis-labels > text {
     fill: var(--link-color) !important;
   }
   .highcharts-yaxis-grid .highcharts-grid-line {

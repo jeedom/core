@@ -109,7 +109,7 @@ function setModal() {
       jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
 
-    $('.highcharts-legend-item').on('click',function(event) {
+    $('.highcharts-legend-item').off('click').on('click', function(event) {
       if (!event.ctrlKey && !event.metaKey && !event.altKey) return
       event.stopImmediatePropagation()
       var chart = $('#div_graph').highcharts()
@@ -170,13 +170,12 @@ function setModal() {
     if (cmdIds.length == 1) {
       if (chart) {
         //set yAxis zoom:
-      try {
-        var yExtremes = chart.yAxis[0].getExtremes()
-        var min = yExtremes.dataMin / 1.005
-        var max = yExtremes.dataMax * 1.005
-        chart.yAxis[0].setExtremes(min, max, true, false)
-      } catch(error) {}
-
+        try {
+          var yExtremes = chart.yAxis[0].getExtremes()
+          var min = yExtremes.dataMin / 1.005
+          var max = yExtremes.dataMax * 1.005
+          chart.yAxis[0].setExtremes(min, max, true, false)
+        } catch(error) {}
         modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
       }
     }
@@ -186,12 +185,6 @@ function setModal() {
         return
       }
       chart.setSize( modalContent.width(), modalContent.height() - modalContent.find('.md_history .row').height()-10)
-      /*
-      setTimeout(function() {
-        chart.setSize()
-        chart.pointer.chartPosition = void 0
-      }, 500)
-      */
     }
 
     resizeHighChartModal()

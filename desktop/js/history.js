@@ -18,6 +18,7 @@
 
 var lastId = null
 var isComparing = false
+var yVis = true
 var chart = $('#div_graph').highcharts()
 delete jeedom.history.chart['div_graph']
 
@@ -160,8 +161,27 @@ $(".li_history .export").on('click', function() {
 })
 
 
-
 /************Charting***********/
+$('#div_graph').on({
+  'click': function(event) {
+    if (!event.ctrlKey && !event.metaKey && !event.altKey) return
+    event.stopImmediatePropagation()
+    var chart = $('#div_graph').highcharts()
+    if (!chart) return
+    if (event.altKey) {
+      $(chart.series).each(function(idx, item) {
+        item.show()
+      })
+    } else {
+      var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
+      $(chart.series).each(function(idx, item) {
+        item.hide()
+      })
+      chart.series[serieId].show()
+    }
+  }
+}, '.highcharts-legend-item')
+
 function setChartOptions() {
   var _prop = 'disabled'
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
@@ -196,7 +216,6 @@ function setChartOptions() {
     $('#sel_groupingType').val($('#sel_groupingType option:first').val())
     $('#sel_chartType').val($('#sel_chartType option:first').val())
     $('#bt_compare').addClass('disabled')
-    setChartYExtremes()
   }
   $('#sel_groupingType, #sel_chartType').prop('disabled', _prop)
   resizeDn()
@@ -281,13 +300,6 @@ function initHistoryTrigger() {
         success: function(data) {
           nbSeries--
           addChart(data.id, 1)
-          /*
-          if (nbSeries == 0) {
-          setTimeout(function(){
-          setChartYExtremes()
-        }, 1000)
-      }
-      */
         }
       })
     })
@@ -320,35 +332,9 @@ function initHistoryTrigger() {
         success: function(data) {
           nbSeries--
           addChart(data.id, 1)
-          if (nbSeries == 0) {
-            setTimeout(function() {
-              setChartYExtremes()
-            }, 1000)
-          }
         }
       })
     })
-    setChartYExtremes()
-  })
-
-  $('.highcharts-legend-item').off('click').on('click', function(event) {
-    if (event.ctrlKey || event.metaKey || event.altKey) {
-      event.stopImmediatePropagation()
-      var chart = $('#div_graph').highcharts()
-      if (event.altKey) {
-        $(chart.series).each(function(idx, item) {
-          item.show()
-        })
-      } else {
-        var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
-        $(chart.series).each(function(idx, item) {
-          item.hide()
-        })
-        chart.series[serieId].show()
-      }
-    }
-    setChartOptions()
-    setTimeout(setChartYExtremes, 500)
   })
 }
 
@@ -360,15 +346,14 @@ function addChart(_cmd_id, _action, _options) {
       $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
         try {
           if (serie.options.id == _cmd_id) {
-            serie.remove()
+            serie.yAxis.remove()
+            chart.get(serie.options.id)
             setChartOptions()
-            setTimeout(function() {
-              setChartYExtremes()
-            }, 500)
           }
         } catch (error) {}
       })
     }
+    setChartOptions()
     return
   }
 
@@ -390,14 +375,18 @@ function addChart(_cmd_id, _action, _options) {
       }
       $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
-      /*
-      setTimeout(function(){
-      setChartYExtremes()
-    }, 500)
-    */
     }
   })
 }
+
+$('#bt_toggleYaxis').on('click', function() {
+  yVis = !yVis
+  chart.yAxis.forEach((axis, index) => {
+    axis.update({
+      visible: yVis
+    })
+  })
+})
 
 $('#bt_clearGraph').on('click', function() {
   clearGraph()
@@ -406,14 +395,10 @@ $('#bt_clearGraph').on('click', function() {
 function clearGraph(_lastId = null) {
   isComparing = false
   if (jeedom.history.chart['div_graph'] === undefined) return
-  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
-    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
-  }
-  $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
-  chart.xAxis[1].update({
-    visible: false
-  })
+
+  $.clearDivContent('div_graph')
   delete jeedom.history.chart['div_graph']
+  $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
   $('#ul_history').find('.li_history.active').removeClass('active')
   setChartOptions()
   lastId = _lastId
@@ -473,19 +458,6 @@ function emptyHistory(_cmd_id, _date) {
   })
 }
 
-function setChartYExtremes() {
-  if (!chart) return
-  var max = 0
-  var min = 10000
-  chart.yAxis.forEach((axis, index) => {
-    if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min) min = axis.getExtremes().dataMin
-    if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max) max = axis.getExtremes().dataMax
-  })
-  chart.yAxis.forEach((axis, index) => {
-    axis.setExtremes(min / 1.005, max * 1.005, true, false)
-  })
-}
-
 function setChartXExtremes() {
   //only used for comparison
   try {
@@ -504,7 +476,9 @@ function setChartXExtremes() {
   } catch (error) {}
 }
 
-//Comparison functions
+
+
+//__________________Comparison functions
 
 //Compare period modal presets:
 $('#sel_setPeriod').off('change').on('change', function() {
@@ -593,6 +567,20 @@ $('#bt_doCompare').off('click').on('click', function() {
   compareChart(lastId)
 })
 
+function alignAllYaxis() {
+  //set both yAxis same:
+  var min, max
+  min = 10000
+  max = -10000
+  chart.yAxis.forEach((axis, index) => {
+    if (axis.dataMin < min) min = axis.dataMin
+    if (axis.dataMax > max) max = axis.dataMax
+  })
+  chart.yAxis.forEach((axis, index) => {
+    axis.setExtremes(min / 1.005, max * 1.005)
+  })
+}
+
 function compareChart(_cmd_id, _options) {
   //compare:
   var fromStart, fromEnd, toStart, toEnd
@@ -626,9 +614,10 @@ function compareChart(_cmd_id, _options) {
         option: _options,
         compare: 1,
         success: function(data) {
+          alignAllYaxis()
+
           setTimeout(function() {
             setChartXExtremes()
-            setChartYExtremes()
           }, 500)
         }
       })

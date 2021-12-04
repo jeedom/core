@@ -270,13 +270,18 @@ jeedom.history.drawChart = function(_params) {
 
       //series colors, options defined in core/js/jeedom.class.js jeedom.init():
       var colors = Highcharts.getOptions().colors
+      var colorsNbr = colors.length
       var opacityHigh = 0.85
       var opacityLow = 0.1
-      var seriesNumber = 1
-      var colorsNbr = colors.length
+
+      var numSeries = 0
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].chart.series)) {
-        seriesNumber = jeedom.history.chart[_params.el].chart.series.length
+        jeedom.history.chart[_params.el].chart.series.forEach((serie, index) => {
+          if (!serie.userOptions.group) numSeries +=1
+        })
       }
+      var seriesNumber = numSeries + 1
+
       if (seriesNumber > colorsNbr || seriesNumber == 0) {
         seriesNumber = 1
       }
@@ -340,37 +345,56 @@ jeedom.history.drawChart = function(_params) {
         },
         events: {
           load: function() {
+            //first serie, reduce vertical scale to real data:
             var min = this.series[0].dataMin / 1.005
             var max = this.series[0].dataMax * 1.005
             this.yAxis[0].setExtremes(min, max, true, false)
           },
           selection: function(event) {
             //zoom back after reset zoom button. allways play with immutables!
-            //setChartYExtremes() function only defined on history page
             if (event.resetSelection) {
               if (typeof isComparing !== 'undefined' && isComparing == true) {
                 setTimeout(function() {
+                  alignAllYaxis()
                   setChartXExtremes()
-                  setChartYExtremes()
                 }, 500)
                 return
               }
 
-              setTimeout(function() {
-                var max = 0
-                var min = 10000
-                jeedom.history.chart[_params.el].chart.yAxis.forEach((axis, index) => {
-                  if (axis.getExtremes().dataMin != null && axis.getExtremes().dataMin < min) min = axis.getExtremes().dataMin
-                  if (axis.getExtremes().dataMax != null && axis.getExtremes().dataMax > max) max = axis.getExtremes().dataMax
+              //set back yAxis zoom from their respective series data:
+              event.target.yAxis.forEach((axis, index) => {
+                var axisId = axis.userOptions.id
+                if (!axisId) axisId = 0
+                if (axisId != 'navigator-y-axis') {
+                  min = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+                  max = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+                  axis.update({
+                    min: min / 1.005,
+                    max: max * 1.005
+                  })
+                }
+              })
+
+              /*
+              chart.yAxis.forEach((axis, index) => {
+                min = Math.min.apply(Math, chart.series[index].data.map(function (i) {return i.options.y}))
+                max = Math.max.apply(Math, chart.series[index].data.map(function (i) {return i.options.y}))
+                chart.yAxis[index].update({
+                  min: min / 1.005,
+                  max: max * 1.005
                 })
-                jeedom.history.chart[_params.el].chart.yAxis.forEach((axis, index) => {
-                  event.target.yAxis[index].setExtremes(min / 1.005, max * 1.005, true, false)
-                })
-              }, 250)
+                axis.setExtremes(min / 1.005, max * 1.005, true, false)
+              })
+              */
             }
           },
           addSeries: function(event) {
-            this.yAxis[0].setExtremes()
+            var axisId = event.options.id
+            var axis = this.get(axisId)
+            //dataMin and dataMax only there once draw, so we have to calcul them from data:
+            var min = Math.min.apply(Math, event.options.data.map(function (i) {return i[1]}))
+            var max = Math.max.apply(Math, event.options.data.map(function (i) {return i[1]}))
+            axis.setExtremes(min / 1.005, max * 1.005, true, false)
           },
           render: function() {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
@@ -679,22 +703,26 @@ jeedom.history.drawChart = function(_params) {
               valueDecimals: 2,
             },
             yAxis: [{
-              format: '{value}',
-              showEmpty: false,
-              minPadding: 0.001,
-              maxPadding: 0.001,
-              showLastLabel: true
-            }, {
-              opposite: false,
-              format: '{value}',
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
               maxPadding: 0.001,
               labels: {
-                align: 'left',
-                x: 2
-              }
+                format: '{value} ' + series.unite,
+                style: {
+                  color: _params.option.graphColor
+                },
+                x: -4
+              },
+              offset: 10
+              /*
+              title: {
+                text: series.shortName.split('][').reverse()[0].slice(0, -1),
+                style: {
+                  color: _params.option.graphColor
+                }
+              },
+              */
             }],
             xAxis: [{
               type: 'datetime',
@@ -702,6 +730,7 @@ jeedom.history.drawChart = function(_params) {
               maxPadding: 0.02,
               minPadding: 0.02
             }, {
+              //needed for compare mode
               type: 'datetime',
               ordinal: false,
               maxPadding: 0.02,
@@ -743,9 +772,42 @@ jeedom.history.drawChart = function(_params) {
                 [1, Highcharts.Color(series.color).setOpacity(opacityLow).get('rgba')]
               ],
             }
+          } else {
+            //add new yAxis:
+            var yAxis = {
+              id: _params.cmd_id,
+              showEmpty: false,
+              gridLineWidth: 0,
+              minPadding: 0.001,
+              maxPadding: 0.001,
+              labels: {
+                format: '{value} ' + series.unite,
+                style: {
+                  color: _params.option.graphColor
+                }
+              },
+              /*
+              title: {
+                text: series.shortName.split('][').reverse()[0].slice(0, -1),
+                style: {
+                  color: _params.option.graphColor
+                }
+              }
+              */
+            }
+            if (chart.yAxis.length & 1) {
+              yAxis.opposite = true
+            } else {
+              yAxis.opposite = false
+            }
+
+            //add serie and axis:
+            series.yAxis = _params.cmd_id
+            jeedom.history.chart[_params.el].chart.addAxis(yAxis)
           }
-          //add curve to existing graph:
+
           jeedom.history.chart[_params.el].chart.addSeries(series)
+
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
           option: _params.option,
