@@ -20,20 +20,20 @@ if (!isConnect('admin')) {
 }
 $class = init('class');
 if ($class == '' || !class_exists($class)) {
-  throw new Exception(__('La classe demandée n\'existe pas : ', __FILE__) . $class);
+  throw new Exception(__('La classe demandée n\'existe pas :', __FILE__) . ' ' . $class);
 }
 if (!method_exists($class, 'byId')) {
-  throw new Exception(__('La classe demandée n\'a pas de méthode byId : ', __FILE__) . $class);
+  throw new Exception(__('La classe demandée n\'a pas de méthode byId :', __FILE__) . ' ' . $class);
 }
 
 $object = $class::byId(init('id'));
 if (!is_object($object)) {
-  throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . init('id'));
+  throw new Exception(__('L\'objet n\'existe pas :', __FILE__) . ' ' . init('id'));
 }
 
 $array = utils::o2a($object);
 if (count($array) == 0) {
-  throw new Exception(__('L\'objet n\'a aucun élément : ', __FILE__) . print_r($array, true));
+  throw new Exception(__('L\'objet n\'a aucun élément :', __FILE__) . ' ' . print_r($array, true));
 }
 $otherInfo = array();
 
@@ -41,7 +41,7 @@ if ($class == 'cron' && $array['class'] == 'scenario' && $array['function'] == '
   $scenario = scenario::byId($array['option']['scenario_id']);
   $scenarioElement = scenarioElement::byId($array['option']['scenarioElement_id']);
   if (is_object($scenarioElement) && is_object($scenario)) {
-    $otherInfo['doIn'] = __('Scénario : ', __FILE__) . $scenario->getName() . "\n" . str_replace(array('"'), array("'"), $scenarioElement->export());
+    $otherInfo['doIn'] = __('Scénario :', __FILE__) . ' ' . $scenario->getName() . "\n" . str_replace(array('"'), array("'"), $scenarioElement->export());
   }
 }
 ?>

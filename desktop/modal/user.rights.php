@@ -21,7 +21,7 @@ if (!isConnect('admin')) {
 $user = user::byId(init('id'));
 
 if (!is_object($user)) {
-  throw new Exception(__('Impossible de trouver l\'utilisateur : ', __FILE__) . init('id'));
+  throw new Exception(__('Impossible de trouver l\'utilisateur :', __FILE__) . ' ' . init('id'));
 }
 sendVarToJs('user_rights', utils::o2a($user));
 ?>

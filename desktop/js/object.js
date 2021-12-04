@@ -420,7 +420,7 @@ $("#bt_saveObject").on('click', function(event) {
 
 $("#bt_removeObject").on('click', function(event) {
   $.hideAlert()
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text() + '</span> ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + $('.objectDisplayCard.active .name').text().trim() + '</span> ?', function(result) {
     if (result) {
       jeedom.object.remove({
         id: $('.objectDisplayCard.active').attr('data-object_id'),
@@ -632,11 +632,11 @@ function addEqlogicsInfo(_id, _objName, _summay) {
           humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
           panel += '<form class="form-horizontal">'
           panel += '<div class="form-group" data-cmdname="' + humanName + '">'
-          panel += '<label class="col-sm-5 control-label">' + humanName + '</label>'
-          panel += '<div class="col-sm-2">'
+          panel += '<label class="col-sm-5 col-xs-6 control-label">' + humanName + '</label>'
+          panel += '<div class="col-sm-2 col-xs-4">'
           panel += summarySelect
           panel += '</div>'
-          panel += '<div class="col-sm-5 buttontext"></div>'
+          panel += '<div class="col-sm-5 col-xs-2 buttontext"></div>'
           panel += '</div>'
           panel += '</form>'
         }

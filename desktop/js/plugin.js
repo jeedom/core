@@ -539,7 +539,7 @@ $('body').off('click', '.bt_refreshPluginInfo').on('click', '.bt_refreshPluginIn
 $('#span_right_button').on({
   'click': function(event) {
     var _el = $(this)
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce plugin ?}}', function(result) {
+    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} <span style="font-weight: bold ;">' + $('#span_plugin_name').text() + '</span> ?', function(result) {
       if (result) {
         $.hideAlert()
         jeedom.update.remove({

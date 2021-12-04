@@ -135,7 +135,7 @@ $("#table_user").on('click', ".bt_del_user", function(event) {
     id: $(this).closest('tr').find('.userAttr[data-l1key=id]').value()
   }
   var userName = $(this).closest('tr').find('span[data-l1key="login"]').text()
-  bootbox.confirm('{{Vous allez supprimer l\'utilisateur : }}' + userName, function(result) {
+  bootbox.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
     if (result) {
       jeedom.user.remove({
         id: user.id,

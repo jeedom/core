@@ -121,7 +121,7 @@ try {
 	if (init('action') == 'getplan3dHeader') {
 		$plan3dHeader = plan3dHeader::byId(init('id'));
 		if (!is_object($plan3dHeader)) {
-			throw new Exception(__('plan3d header inconnu vérifiez l\'id : ', __FILE__) . init('id'));
+			throw new Exception(__('plan3d header inconnu vérifiez l\'id :', __FILE__) . ' ' . init('id'));
 		}
 		if (trim($plan3dHeader->getConfiguration('accessCode', '')) != '' && $plan3dHeader->getConfiguration('accessCode', '') != sha512(init('code'))) {
 			throw new Exception(__('Code d\'accès invalide', __FILE__), -32005);
@@ -162,7 +162,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.zip'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .zip) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .zip) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 150000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 150Mo)', __FILE__));
@@ -183,12 +183,12 @@ try {
 		$res = $zip->open($file);
 		if ($res === TRUE) {
 			if (!$zip->extractTo($cibDir . '/')) {
-				throw new Exception(__('Impossible de décompresser les fichiers : ', __FILE__));
+				throw new Exception(__('Impossible de décompresser les fichiers :', __FILE__) . ' ');
 			}
 			$zip->close();
 			unlink($tmp);
 		} else {
-			throw new Exception(__('Impossible de décompresser l\'archive zip : ', __FILE__) . $file . ' => ' . ZipErrorMessage($res));
+			throw new Exception(__('Impossible de décompresser l\'archive zip :', __FILE__) . ' ' . $file . ' => ' . ZipErrorMessage($res));
 		}
 		$objfile = ls($cibDir, '*.obj', false, array('files'));
 		if (count($objfile) != 1) {
@@ -203,7 +203,7 @@ try {
 		ajax::success();
 	}
 	
-	throw new Exception(__('Aucune méthode correspondant à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondant à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayExeption($e), $e->getCode());

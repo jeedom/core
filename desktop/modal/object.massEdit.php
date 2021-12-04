@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 $type = init('type');
 if(!class_exists($type)){
-  throw new Exception('{{Type non trouvé : }}'.$type);
+  throw new Exception('{{Type non trouvé :}}' . ' ' . $type);
 }
 $fields = array();
 foreach (explode('|',init('fields')) as &$field) {

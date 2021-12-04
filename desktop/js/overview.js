@@ -174,7 +174,8 @@ $('.objectPreview .name').off('mouseup').on('mouseup', function(event) {
 })
 
 //Dialog summary opening:
-$("#md_overviewSummary").dialog({
+var $modal = $("#md_overviewSummary")
+$modal.dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
@@ -209,7 +210,7 @@ $(function() {
   modalContent.off()
   modalContent.off('click').on('click', function(event) {
     if (!$(event.target).parents('.eqLogic-widget').length) {
-      $("#md_overviewSummary").dialog('close')
+      $modal.dialog('close')
     }
   })
 
@@ -255,8 +256,8 @@ function getSummaryHtml(_object_id, _summary, _title) {
         $summaryContainer.empty().packery('destroy')
       } catch (e) {}
       _title = $.parseHTML('<span>' + _title + '</span>')
-      $('.ui-dialog[aria-describedby="md_overviewSummary"] span.ui-dialog-title').empty().append(_title)
-      $('#md_overviewSummary').dialog('open')
+      $modal.parent('.ui-dialog').find('span.ui-dialog-title').empty().append(_title)
+      $modal.dialog('open')
 
       var nbEqs = data.length
       for (var i = 0; i < nbEqs; i++) {
@@ -292,6 +293,7 @@ function getSummaryHtml(_object_id, _summary, _title) {
               var fullHeight = 0
               var thisWidth = 0
               var thisHeight = 0
+
               $('#md_overviewSummary div.eqLogic-widget').each(function(index) {
                 thisWidth = $(this).outerWidth(true)
                 thisHeight = $(this).outerHeight(true)
@@ -302,23 +304,28 @@ function getSummaryHtml(_object_id, _summary, _title) {
                   fullHeight += thisHeight + 5
                 }
               })
+
               if (fullWidth == 0) {
                 fullWidth = 120
                 fullHeight = 120
               }
-              fullWidth += 6
-              fullHeight += 6
-              modal.width(fullWidth + 26).height(fullHeight + 50)
-              modalContent.width(fullWidth).height(fullHeight)
+
+              fullWidth += 26
+              fullHeight += 51
+              $modal.dialog({
+                width: fullWidth,
+                height: fullHeight
+              })
+
               $summaryContainer.packery({
                 gutter: 10
               })
 
-              //second pass for reliability in certain cases:
-              fullWidth = $("#summaryEqlogics").width()
-              fullHeight = $("#summaryEqlogics").height()
-              modal.width(fullWidth + 26).height(fullHeight + 50)
-              modalContent.width(fullWidth).height(fullHeight)
+              //check is inside screen:
+              var modalLeft = parseInt(modal[0].style['left'])
+              if (modalLeft + fullWidth + 26 > brwSize.width || modalLeft < 5) {
+                modal.css('left', brwSize.width - fullWidth - 50)
+              }
 
               jeedomUtils.initTooltips($('#md_overviewSummary'))
             }

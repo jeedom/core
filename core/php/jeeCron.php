@@ -33,11 +33,11 @@ function jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e) {
 	}
 	echo '[Erreur] ' . $cron->getName() . ' : ' . log::exception($e);
 	if (isset($class) && $class != '') {
-		log::add($class, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
+		log::add($class, 'error', __('Erreur sur', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e), $logicalId);
 	} else if (isset($function) && $function != '') {
-		log::add($function, 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
+		log::add($function, 'error', __('Erreur sur', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e), $logicalId);
 	} else {
-		log::add('cron', 'error', __('Erreur sur ', __FILE__) . $cron->getName() . ' : ' . log::exception($e), $logicalId);
+		log::add('cron', 'error', __('Erreur sur', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e), $logicalId);
 	}
 }
 
@@ -45,8 +45,8 @@ function jeeCronAll_errorHandler($cron, $e) {
 	if ($cron->getOnce() != 1) {
 		$cron->setState('error');
 		$cron->setPID('');
-		echo __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . log::exception($e);
-		log::add('cron', 'error', __('[Erreur master] ', __FILE__) . $cron->getName() . ' : ' . $e->getMessage());
+		echo __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e);
+		log::add('cron', 'error', __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . $e->getMessage());
 	}
 }
 
@@ -105,7 +105,7 @@ if (init('cron_id') != '') {
 				$cron->setState('Not found');
 				$cron->setPID();
 				$cron->setCache('runtime', strtotime('now') - $datetimeStart);
-				log::add('cron', 'error', __('[Erreur] Classe ou fonction non trouvée ', __FILE__) . $cron->getName());
+				log::add('cron', 'error', __('[Erreur] Classe ou fonction non trouvée', __FILE__) . ' ' . $cron->getName());
 				die();
 			}
 		} else {
@@ -145,7 +145,7 @@ if (init('cron_id') != '') {
 				$cron->setState('Not found');
 				$cron->setPID();
 				$cron->setCache('runtime', strtotime('now') - $datetimeStart);
-				log::add('cron', 'error', __('[Erreur] Non trouvée ', __FILE__) . $cron->getName());
+				log::add('cron', 'error', __('[Erreur] Non trouvée', __FILE__) . ' ' . $cron->getName());
 				die();
 			}
 		}

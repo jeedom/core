@@ -1,0 +1,4 @@
+<Directory /var/www/html>
+Options -Indexes -ExecCGI -FollowSymLinks
+AllowOverride All
+</Directory>

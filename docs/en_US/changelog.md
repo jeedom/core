@@ -48,6 +48,7 @@
 - **Configuration** : OSDB settings: Adding a dynamic SQL query constructor.
 - **Configuration**: Possibility to deactivate cloud monitoring (Administration / Updates / Market).
 - **jeeCLI** : Addition of ````jeeCli.php```` in the core / php folder of Jeedom to manage some command line functions.
+- *Big improvements to the interface in terms of performance / responsiveness. jeedomUtils {}, jeedomUI {}, main menu rewritten in pure css, removal of initRowWorflow (), simplification of the code, css fixes for small screens, etc.*
 
 ### 4.2 : Core Widgets
 

@@ -337,7 +337,7 @@ class eqLogic {
 				if (count(message::byPluginLogicalId('core', $logicalId)) == 0) {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
-						$message .= __(' n\'a pas envoyé de message depuis plus de ', __FILE__) . $noReponseTimeLimit . __(' min (vérifiez les piles)', __FILE__);
+						$message .= ' ' . __('n\'a pas envoyé de message depuis plus de', __FILE__) . ' ' . $noReponseTimeLimit . ' ' . __('min (vérifiez les piles)', __FILE__);
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
@@ -490,7 +490,7 @@ class eqLogic {
 	public static function byString($_string) {
 		$eqLogic = self::byId(str_replace(array('#', 'eqLogic'), '', self::fromHumanReadable($_string)));
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('L\'équipement n\'a pas pu être trouvé : ', __FILE__) . $_string . ' => ' . self::fromHumanReadable($_string));
+			throw new Exception(__('L\'équipement n\'a pas pu être trouvé :', __FILE__) . ' ' . $_string . ' => ' . self::fromHumanReadable($_string));
 		}
 		return $eqLogic;
 	}
@@ -935,7 +935,7 @@ class eqLogic {
 
 	public function save($_direct = false) {
 		if ($this->getName() == '') {
-			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide : ', __FILE__) . print_r($this, true));
+			throw new Exception(__('Le nom de l\'équipement ne peut pas être vide :', __FILE__) . ' ' . print_r($this, true));
 		}
 		if ($this->getChanged()) {
 			if ($this->getId() != '') {
@@ -1147,7 +1147,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . '] ', __FILE__) . $message,
+								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . ']', __FILE__) . ' ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}

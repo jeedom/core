@@ -24,7 +24,7 @@ if (init('object_id') == '') {
   $virtual = eqLogic::byLogicalId('summary' . init('object_id'), 'virtual');
 }
 if (!is_object($virtual)) {
-  throw new Exception(__('L\'objet n\'existe pas : ', __FILE__) . init('object_id'));
+  throw new Exception(__('L\'objet n\'existe pas :', __FILE__) . ' ' . init('object_id'));
 }
 $removeCmd = array();
 foreach ($virtual->getCmd() as $cmd) {

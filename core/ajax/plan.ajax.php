@@ -133,7 +133,7 @@ try {
 	if (init('action') == 'getPlanHeader') {
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		if (trim($planHeader->getConfiguration('accessCode', '')) != '' && $planHeader->getConfiguration('accessCode', '') != sha512(init('code'))) {
 			throw new Exception(__('Code d\'accès invalide', __FILE__), -32005);
@@ -168,7 +168,7 @@ try {
 		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		ajax::success(utils::o2a($planHeader->copy(init('name'))));
 	}
@@ -180,7 +180,7 @@ try {
 		unautorizedInDemo();
 		$planHeader = planHeader::byId(init('id'));
 		if (!is_object($planHeader)) {
-			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID ', __FILE__) . init('id'));
+			throw new Exception(__('Plan header inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
 		$filename = 'planHeader'.$planHeader->getId().'-'.$planHeader->getImage('sha512') . '.' . $planHeader->getImage('type');
 		$planHeader->setImage('sha512', '');
@@ -203,7 +203,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png', '.gif'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -242,7 +242,7 @@ try {
 		}
 		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
 		if (!in_array($extension, array('.jpg', '.png'))) {
-			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) : ', __FILE__) . $extension);
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png) :', __FILE__) . ' ' . $extension);
 		}
 		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
@@ -256,7 +256,7 @@ try {
 		$filePath = $uploaddir . '/' . $fileName;
 		$img_size = getimagesize($_FILES['file']['tmp_name']);
 		if (!move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) {
-			throw new Exception(__('Impossible de déplacer le fichier temporaire dans : ', __FILE__) . $uploaddir . '/' . $fileName);
+			throw new Exception(__('Impossible de déplacer le fichier temporaire dans :', __FILE__) . ' ' . $uploaddir . '/' . $fileName);
 		}
 		$plan->setDisplay('width', $img_size[0]);
 		$plan->setDisplay('height', $img_size[1]);
@@ -265,7 +265,7 @@ try {
 		ajax::success(array('filepath' => $filePath));
 	}
 
-	throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {
 	ajax::error(displayException($e), $e->getCode());

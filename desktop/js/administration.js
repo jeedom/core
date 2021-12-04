@@ -831,10 +831,10 @@ function addObjectSummary(_summary) {
   tr += '<option value="text">{{Texte}}</option>'
   tr += '</select></td>'
 
-  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> {{Icône}}</a>'
+  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
   tr += '<span class="objectSummaryAttr" data-l1key="icon"></span></td>'
 
-  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i> {{Icône}}</a>'
+  tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
   tr += '<span class="objectSummaryAttr" data-l1key="iconnul"></span></td>'
 
   tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
@@ -854,7 +854,7 @@ function addObjectSummary(_summary) {
   tr += ''
   tr += '<td>'
   if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
-    tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i> {{Créer virtuel}}</a>'
+    tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i><span class="hidden-1280"> {{Créer virtuel}}</span></a>'
   }
   tr += '</td>'
 
@@ -1174,7 +1174,7 @@ function updateCacheStats() {
 $(".bt_regenerate_api").on('click', function(event) {
   $.hideAlert()
   var el = $(this)
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de }}' + el.attr('data-plugin') + ' ?', function(result) {
+  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
     if (result) {
       $.ajax({
         type: "POST",

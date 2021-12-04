@@ -26,7 +26,7 @@ require_once __DIR__ . "/core.inc.php";
 $cache = cache::byKey(init('key'))->getValue();
 if (!isset($cache['scenarioExpression'])) {
 	if ($cache['scenario'] !== null) {
-		$cache['scenario']->setLog(__('Lancement en arrière-plan non trouvé : ', __FILE__) . init('key'));
+		$cache['scenario']->setLog(__('Lancement en arrière-plan non trouvé :', __FILE__) . ' ' . init('key'));
 		$cache['scenario']->persistLog();
 	}
 	die();
@@ -37,7 +37,7 @@ if (!isset($cache['scenario'])) {
 cache::byKey(init('key'))->remove();
 if ($cache['scenario'] != null) {
 	$cache['scenario']->clearLog();
-	$cache['scenario']->setLog(__('Lancement en arrière-plan de : ', __FILE__) . init('key'));
+	$cache['scenario']->setLog(__('Lancement en arrière-plan de :', __FILE__) . ' ' . init('key'));
 }
 $cache['scenarioExpression']->setOptions('background', 0);
 $cache['scenarioExpression']->execute($cache['scenario']);

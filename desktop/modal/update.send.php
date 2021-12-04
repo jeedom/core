@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 $repo = update::repoById(init('repo', 'market'));
 if ($repo['enable'] == 0) {
-  throw new Exception(__('Le dépôt est inactif : ', __FILE__) . init('repo'));
+  throw new Exception(__('Le dépôt est inactif :', __FILE__) . ' ' . init('repo'));
 }
 include_file('core', init('repo', 'market') . '.send', 'repo');
 ?>

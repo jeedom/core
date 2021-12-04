@@ -39,7 +39,7 @@ $(".li_log").on('click', function() {
   $(this).addClass('active')
   $btGlobalLogStopStart.removeClass('btn-success')
     .addClass('btn-warning')
-    .html('<i class="fas fa-pause"></i> {{Pause}}')
+    .html('<i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
     .attr('data-state', 1)
   jeedom.log.autoupdate({
     log: $(this).attr('data-log'),

@@ -95,7 +95,7 @@ function scanDB($_table) {
         <span class="input-group-btn">
           <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
           </a><a class="btn btn-info btn-sm" id="bt_exportFilter"><i class="fas fa-file-export"></i> {{Exporter}}
-          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-xs">{{Importer}}</span><input  id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
+          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> {{Importer}}<input  id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
           </a><a class="btn btn-danger btn-sm roundedRight" id="bt_execMassEdit"><i class="fas fa-fill-drip"></i> {{Exécuter}}</a>
         </span>
       </div>

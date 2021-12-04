@@ -1,4 +1,4 @@
-/*
+/*/*
 Theme Core 2021 @Jeedom
 Desktop
 */
@@ -460,8 +460,9 @@ Desktop
       height: auto;
       overflow-x: hidden;
     }
-    [class*="col-"] {
-      right: 3px;
+
+    .form-horizontal {
+      padding-right: 15px;
     }
     .control-label {
       line-height: 26px !important;
@@ -1781,10 +1782,6 @@ Desktop
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
     border: none;
   }
-  #pre_updateInfo_clean {
-    overflow: visible !important;
-    height: calc(100vh - 260px);
-  }
 
   .row-same-height {
     padding: 1em;
@@ -1958,6 +1955,14 @@ Desktop
     background-color: rgb(var(--bg-color)) !important;
     color: unset !important;
   }
+  body[data-type="plugin"] div[class*="DisplayCard"].displayAsTable:hover {
+    background-color: rgb(var(--bg-color)) !important;
+    color: unset !important;
+  }
+  body[data-page="object"] div[class*="DisplayCard"].displayAsTable:hover .name,
+  body[data-page="interact"] div[class*="DisplayCard"].displayAsTable:hover .name {
+    width: 100%;
+  }
   div[class*="DisplayCard"].displayAsTable > br {
     display: none;
   }
@@ -1987,7 +1992,6 @@ Desktop
     min-width: calc(100% - 70px) !important;
     min-height: 24px !important;
     max-height: 24px !important;
-    height: 24px !important;
     height: 24px !important;
     line-height: 22px !important;
     margin-left: 10px;
@@ -2963,13 +2967,9 @@ Desktop
   body[data-page="administration"] #div_pageContainer div.tab-content,
   body[data-page="update"] #div_pageContainer div.tab-content {
     height: calc(100vh - 145px) !important;
-
-    max-height: max-content;
-
-
   }
-  body[data-page="update"] div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
-    height: calc(100vh - 200px) !important;
+  body[data-page="update"] #div_pageContainer div.progressbarContainer:not(.hidden) + .nav-tabs + .tab-content {
+    height: calc(100vh - 220px) !important;
   }
   body[data-page="administration"] .tab-content .tab-content {
     height: unset !important;
@@ -3273,7 +3273,6 @@ Desktop
   }
   #div_scenarioElement  {
     padding-top: 5px;
-    padding-bottom: 20px;
   }
   #div_scenarioElement > .element {
     margin-bottom: 3px;
@@ -4962,6 +4961,10 @@ Desktop
     legend {
       font-size: 16px !important;
     }
+
+    .hidden-1280 {
+      display: none;
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -5007,6 +5010,11 @@ Desktop
       overflow: auto;
       max-height: 300px !important;
     }
+
+    .hidden-768,
+    .displayTableRight {
+      display: none !important;
+    }
   }
 
   @media screen and (max-width: 992px) {
@@ -5038,6 +5046,10 @@ Desktop
     #div_editScenario .tab-content {
       max-height: calc(100% - 80px);
     }
+
+    .hidden-992 {
+      display: none;
+    }
   }
 
   @media (min-width:1600px) {
@@ -5049,5 +5061,47 @@ Desktop
   @media (min-width:1920px) {
     #objectOverviewContainer > div.col-lg-3 {
       width: 14.2%;
+    }
+  }
+
+/* ________________________________________TABLE REFLOW FLEX */
+  @media ( max-width: 768px ) {
+    table.ui-table-reflow thead {
+      position: relative !important;
+    }
+
+    th.tablesorter-header {
+      margin: 0 !important;
+    }
+    .tablesorter-filter-row {
+      display: none;
+    }
+
+    .ui-table-reflow td,
+    .ui-table-reflow th {
+      box-sizing: border-box;
+      float: right;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    table.ui-table-reflow.table-condensed tbody {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+    }
+    table.ui-table-reflow.table-condensed tbody tr {
+      display: table;
+      flex: 0 1 150px;
+      margin: 2px;
+      margin-bottom: 22px !important;
+    }
+    table.ui-table-reflow.table-condensed tbody tr td {
+      display: table;
+      margin-bottom: 2px !important;
+    }
+
+    body[data-page="update"] tbody > tr > td > span {
+      width: 100%
     }
   }

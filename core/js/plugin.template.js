@@ -390,7 +390,7 @@ $('.eqLogicAction[data-action=remove]').off('click').on('click', function() {
       success: function(data) {
         var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + eqType + ' <b>' + $('.eqLogicAttr[data-l1key=name]').value() + '</b> ?'
         if (Object.keys(data).length > 0) {
-          text += ' </br> Il est utilisé par ou utilise : </br>'
+          text += ' </br> {{Il est utilisé par ou utilise :}}</br>'
           var complement = null
           for (var i in data) {
             complement = ''

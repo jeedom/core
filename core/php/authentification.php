@@ -65,7 +65,7 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
 		@session_write_close();
-		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER : ', __FILE__) . $user->getLogin());
+		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $user->getLogin());
 	}
 }
 
@@ -106,7 +106,7 @@ function login($_login, $_password, $_twoFactor = null) {
 	$_SESSION['user'] = $user;
 	session_regenerate_id(true);
 	@session_write_close();
-	log::add('connection', 'info', __('Connexion de l\'utilisateur : ', __FILE__) . $_login);
+	log::add('connection', 'info', __('Connexion de l\'utilisateur :', __FILE__) . ' ' . $_login);
 	return true;
 }
 
@@ -145,7 +145,7 @@ function loginByHash($_key) {
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
-	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef : ', __FILE__) . $user->getLogin());
+	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef :', __FILE__) . ' ' . $user->getLogin());
 	return true;
 }
 

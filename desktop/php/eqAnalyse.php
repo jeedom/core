@@ -32,12 +32,12 @@ sendVarToJs('_remove_history_', $remove_history);
 		</div>
 
 		<ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
-			<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-xs">{{Batteries}}</span></a></li>
-			<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-xs">{{Equipements en alerte}}</span></a></li>
-			<li role="presentation" id="tab_actionCmd"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-xs">{{Actions définies}}</span></a></li>
-			<li role="presentation" id="tab_alertCmd"><a href="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-xs">{{Alertes définies}}</span></a></li>
-			<li role="presentation" id="tab_pushCmd"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-xs">{{Push définis}}</span></a></li>
-			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-xs">{{Commandes orphelines}}</span></a></li>
+			<li role="presentation" class="active batteries"><a href="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
+			<li role="presentation" class="alerts"><a href="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
+			<li role="presentation" id="tab_actionCmd"><a href="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
+			<li role="presentation" id="tab_alertCmd"><a href="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
+			<li role="presentation" id="tab_pushCmd"><a href="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
+			<li role="presentation" id="tab_deadCmd"><a href="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -141,7 +141,7 @@ sendVarToJs('_remove_history_', $remove_history);
 								if ($cmd->getConfiguration('actionConfirm')) {
 									$code = '';
 									if ($cmd->getConfiguration('actionCodeAccess')) {
-										$code = '{{ avec code}}';
+										$code = ' {{avec code}}';
 									}
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 									$div .= 'Confirmation de l\'action' . $code;

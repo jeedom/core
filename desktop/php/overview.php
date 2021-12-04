@@ -51,7 +51,7 @@ $allObject = jeeObject::buildTree(null, true);
     ?>
   </div>
 </div>
-<div id="md_overviewSummary" style="overflow-x: hidden;">
+<div id="md_overviewSummary" class="cleanableModal" style="overflow-x: hidden;">
   <div id="summaryEqlogics"></div>
 </div>
 

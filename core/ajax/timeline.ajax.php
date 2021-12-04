@@ -51,7 +51,7 @@ try {
     ajax::success(timeline::listFolder());
   }
   
-  throw new Exception(__('Aucune méthode correspondante à : ', __FILE__) . init('action'));
+  throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
   /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
   ajax::error(displayException($e), $e->getCode());

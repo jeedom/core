@@ -58,7 +58,7 @@ $synthToActions = array(
 						$echo .= '<span class="name" style="background:'.$object->getDisplay('tagColor').';color:'.$object->getDisplay('tagTextColor').'">';
 						$echo .= '<span class="hiddenAsCard">'.str_repeat('&nbsp;&nbsp;&nbsp;', $object->getConfiguration('parentNumber')).'</span>';
 						$echo .=  $object->getName() . '</span><br/>';
-						$echo .= $object->getHtmlSummary();
+						$echo .=  '<span class="displayTableRight">' . $object->getHtmlSummary().'</span>';
 						$echo .= '</div>';
 					}
 					echo $echo;
@@ -373,7 +373,7 @@ $synthToActions = array(
 								$active = 'active';
 								$echo = '';
 								foreach ($config_objSummary as $key => $value) {
-									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"</span></a></li>';
+									$echo .= '<li class="' . $active . '"><a href="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
 									$active = '';
 								}
 								echo $echo;
