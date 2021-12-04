@@ -254,7 +254,7 @@ class jeedom {
 			'state' => ($apaches > 0),
 			'result' => $apaches,
 			'comment' => '',
-			'key' => 'jeedom::version'
+			'key' => 'apache'
 		);
 
 		$state = true;
