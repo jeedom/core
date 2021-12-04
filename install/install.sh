@@ -36,11 +36,16 @@ service_action(){
     service $2 $1
     return $?
   else
-    systemctl $1 $2
+    if [ "$1" == "status" ];then
+      systemctl is-active --quiet $2
+    else
+      systemctl $1 $2
+    fi
     if [ $? -ne 0 ]; then
       service $2 $1
       return $?
     fi
+    return 0
   fi
 }
 
