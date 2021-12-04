@@ -219,6 +219,7 @@ jeedom.history.drawChart = function(_params) {
         });
         return;
       }
+
       if (data.result.data.length < 1) {
         if (_params.option.displayAlert == false) {
           return;
@@ -520,9 +521,7 @@ jeedom.history.drawChart = function(_params) {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
-
           var series = {
-            //stickyTracking: false,
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
             visible: _visible,
@@ -618,10 +617,7 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
             chart: charts,
-            credits: {
-              text: '',
-              href: '',
-            },
+            credits: { enabled: false },
             navigator: {
               enabled: _params.showNavigator,
               series: {
