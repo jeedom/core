@@ -16,7 +16,7 @@ if [ $(id -u) != 0 ] ; then
 fi
 
 apt_install() {
-  apt-get -y install "$@"
+  apt-get -o Dpkg::Options::="--force-confdef" -y install "$@"
   if [ $? -ne 0 ]; then
     echo "${ROUGE}Ne peut installer $@ - Annulation${NORMAL}"
     exit 1
