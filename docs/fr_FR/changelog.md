@@ -13,6 +13,7 @@
 - **Dashboard** : La fenêtre de configuration d'un équipement (mode édition) permet maintenant de configurer les widgets mobile et les types génériques.
 - **Widgets** : Internationalisation des Widgets tiers (code utilisateur). voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2).
 - **Analyse / Historique** : Possibilité de comparer un historique sur une période donnée.
+- **Analyse / Historique** : Affichage des axes multiples en Y avec leur propre échelle.
 - **Analyse / Equipements** : Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné.
 - **Analyse / Logs** : Numérotation des lignes des logs. Possibilité d'afficher le log brut.
 - **Logs** : Coloration des logs en fonction de certains événements. Possibilité d'afficher le log brut.

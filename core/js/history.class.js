@@ -321,7 +321,11 @@ jeedom.history.drawChart = function(_params) {
       //define legend and reset graph:
       var legend = {
         borderColor: 'transparent',
-        borderWidth: 2,
+        borderWidth: 0,
+        symbolHeight: 8,
+        symbolWidth: 16,
+        symbolRadius: 0,
+        align: 'left',
         shadow: false
       };
       legend.enabled = init(_params.showLegend, true);
@@ -374,18 +378,6 @@ jeedom.history.drawChart = function(_params) {
                   })
                 }
               })
-
-              /*
-              chart.yAxis.forEach((axis, index) => {
-                min = Math.min.apply(Math, chart.series[index].data.map(function (i) {return i.options.y}))
-                max = Math.max.apply(Math, chart.series[index].data.map(function (i) {return i.options.y}))
-                chart.yAxis[index].update({
-                  min: min / 1.005,
-                  max: max * 1.005
-                })
-                axis.setExtremes(min / 1.005, max * 1.005, true, false)
-              })
-              */
             }
           },
           addSeries: function(event) {
@@ -644,6 +636,11 @@ jeedom.history.drawChart = function(_params) {
             credits: { enabled: false },
             navigator: {
               enabled: _params.showNavigator,
+              handles: {
+                lineWidth: 0,
+                width: 3,
+                height: 40
+              },
               series: {
                 includeInCSVExport: false
               }
@@ -712,9 +709,9 @@ jeedom.history.drawChart = function(_params) {
                 style: {
                   color: _params.option.graphColor
                 },
-                x: -4
-              },
-              offset: 10
+                align: 'left',
+                x: 0
+              }
               /*
               title: {
                 text: series.shortName.split('][').reverse()[0].slice(0, -1),
@@ -737,16 +734,17 @@ jeedom.history.drawChart = function(_params) {
               minPadding: 0.02
             }],
             scrollbar: {
-              barBackgroundColor: 'gray',
-              barBorderRadius: 7,
+              barBackgroundColor: 'var(--txt-color)',
+              barBorderRadius: 0,
               barBorderWidth: 0,
-              buttonBackgroundColor: 'gray',
+              buttonBackgroundColor: 'var(--txt-color)',
               buttonBorderWidth: 0,
-              buttonBorderRadius: 7,
+              buttonBorderRadius: 0,
               trackBackgroundColor: 'none',
               trackBorderWidth: 1,
-              trackBorderRadius: 8,
+              trackBorderRadius: 0,
               trackBorderColor: '#CCC',
+              height: 0,
               enabled: _params.showScrollbar
             },
             series: [series]

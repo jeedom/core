@@ -4013,7 +4013,9 @@ Desktop
     opacity: 0.6;
   }
   #div_graph .highcharts-navigator-outline,
-  #div_graph .highcharts-xaxis > .highcharts-axis-line {
+  #div_graph .highcharts-xaxis > .highcharts-axis-line,
+  #div_graph .highcharts-scrollbar-button,
+  #div_graph .highcharts-scrollbar-arrow {
     display: none;
   }
   #div_graph .highcharts-axis-line,
