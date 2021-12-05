@@ -37,15 +37,13 @@ $(function() {
     }
   }
   resizeDn()
+  moment.locale(jeedom_langage)
   jeedomUtils.datePickerInit()
   setChartOptions()
-
-  moment.locale(jeedom_langage)
 })
 
 //handle resizing:
 var resizeDone
-
 function resizeDn() {
   var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true)
   if (chart) {
@@ -71,8 +69,6 @@ $('#bt_validChangeDate').on('click', function() {
     }
   })
 })
-
-
 $('#bt_findCmdCalculHistory').on('click', function() {
   jeedom.cmd.getSelectModal({
     cmd: {
@@ -93,14 +89,161 @@ $('#bt_configureCalculHistory').on('click', function() {
     title: "{{Configuration des formules de calcul}}"
   }).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
-
-
 $('#bt_openCmdHistoryConfigure').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration de l'historique des commandes}}"
   }).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
 })
 
+//Right options:
+function initHistoryTrigger() {
+  $('#sel_groupingType').off('change').on('change', function() {
+    if (lastId == null) return
+    var currentId = lastId
+    var groupingType = $(this).value()
+    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+    addChart(currentId, 0)
+    jeedom.cmd.save({
+      cmd: {
+        id: currentId,
+        display: {
+          groupingType: groupingType
+        }
+      },
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
+      }
+    })
+  })
+
+  $('#sel_chartType').off('change').on('change', function() {
+    console.log('sel_chartType')
+    if (lastId == null) return
+    var currentId = lastId
+    var graphType = $(this).value()
+    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
+    addChart(currentId, 0)
+    jeedom.cmd.save({
+      cmd: {
+        id: currentId,
+        display: {
+          graphType: graphType
+        }
+      },
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
+        addChart(currentId)
+      }
+    })
+  })
+
+  $('#cb_derive').off('change').on('change', function() {
+    var graphDerive = $(this).value()
+    $(chart.series).each(function(idx, serie) {
+      if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
+        return
+      }
+      var cmdId = serie.userOptions.id
+      addChart(cmdId, 0)
+      jeedom.cmd.save({
+        cmd: {
+          id: cmdId,
+          display: {
+            graphDerive: graphDerive
+          }
+        },
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          addChart(data.id, 1)
+        }
+      })
+    })
+
+  })
+
+  $('#cb_step').off('change').on('change', function() {
+    var graphStep = $(this).value()
+    $(chart.series).each(function(idx, serie) {
+      if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
+        return
+      }
+      var cmdId = serie.userOptions.id
+      addChart(cmdId, 0)
+      jeedom.cmd.save({
+        cmd: {
+          id: cmdId,
+          display: {
+            graphStep: graphStep
+          }
+        },
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          addChart(data.id, 1)
+        }
+      })
+    })
+  })
+}
+
+
+
+
+//Right buttons:
+$('#cb_tracking').off('change').on('change', function() {
+  if (chart) {
+    if ($(this).is(':checked')) {
+      var opacity = 0.1
+    } else {
+      var opacity = 1
+    }
+    chart.update({
+      plotOptions: {
+        series: {
+          states: {
+            inactive: {
+              opacity: opacity
+            }
+          }
+        }
+      }
+    })
+  }
+})
+
+$('#bt_toggleYaxis').on('click', function() {
+  yVis = !yVis
+  chart.yAxis.forEach((axis, index) => {
+    axis.update({
+      visible: yVis
+    })
+  })
+})
+
+$('#bt_clearGraph').on('click', function() {
+  clearGraph()
+})
 //search filter opening:
 $('body').on({
   'keyup': function(event) {
@@ -161,34 +304,19 @@ $(".li_history .export").on('click', function() {
 })
 
 
-/************Charting***********/
-$('#div_graph').on({
-  'click': function(event) {
-    if (!event.ctrlKey && !event.metaKey && !event.altKey) return
-    event.stopImmediatePropagation()
-    var chart = $('#div_graph').highcharts()
-    if (!chart) return
-    if (event.altKey) {
-      $(chart.series).each(function(idx, item) {
-        item.show()
-      })
-    } else {
-      var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
-      $(chart.series).each(function(idx, item) {
-        item.hide()
-      })
-      chart.series[serieId].show()
-    }
-  }
-}, '.highcharts-legend-item')
 
+
+/************Charting***********/
 function setChartOptions() {
   var _prop = 'disabled'
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
     //only one graph:
-    lastId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr('data-cmd_id')
     _prop = false
     chart = $('#div_graph').highcharts()
+    var serieId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr("class").split('highcharts-series-')[1].split(' ')[0]
+    if (!isset(chart.series[serieId])) return
+    lastId = chart.series[serieId].userOptions.id
+
     var grouping, groupingType, type
     $(chart.series).each(function(idx, serie) {
       if (serie.userOptions.id == lastId) {
@@ -221,123 +349,6 @@ function setChartOptions() {
   resizeDn()
 }
 
-function initHistoryTrigger() {
-  $('#sel_groupingType').off('change').on('change', function() {
-    if (lastId == null) return
-
-    var currentId = lastId
-    var groupingType = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-    addChart(currentId, 0)
-    jeedom.cmd.save({
-      cmd: {
-        id: currentId,
-        display: {
-          groupingType: groupingType
-        }
-      },
-      error: function(error) {
-        $.fn.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        $('.li_history[data-cmd_id=' + currentId + '] .history').click()
-      }
-    })
-  })
-
-  $('#sel_chartType').off('change').on('change', function() {
-    if (lastId == null) return
-    var currentId = lastId
-    var graphType = $(this).value()
-    $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-    addChart(currentId, 0)
-    jeedom.cmd.save({
-      cmd: {
-        id: currentId,
-        display: {
-          graphType: graphType
-        }
-      },
-      error: function(error) {
-        $.fn.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
-        addChart(currentId)
-      }
-    })
-  })
-
-  $('#cb_derive').off('change').on('change', function() {
-    var graphDerive = $(this).value()
-    var nbSeries = chart.series.length
-    $(chart.series).each(function(idx, serie) {
-      var cmdId = $('g.highcharts-legend-item.highcharts-series-' + idx).attr('data-cmd_id')
-      if (cmdId == undefined) {
-        nbSeries--
-        return
-      }
-      addChart(cmdId, 0)
-      jeedom.cmd.save({
-        cmd: {
-          id: cmdId,
-          display: {
-            graphDerive: graphDerive
-          }
-        },
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          nbSeries--
-          addChart(data.id, 1)
-        }
-      })
-    })
-
-  })
-
-  $('#cb_step').off('change').on('change', function() {
-    var graphStep = $(this).value()
-    var nbSeries = chart.series.length
-    $(chart.series).each(function(idx, serie) {
-      var cmdId = $('g.highcharts-legend-item.highcharts-series-' + idx).attr('data-cmd_id')
-      if (cmdId == undefined) {
-        nbSeries--
-        return
-      }
-      addChart(cmdId, 0)
-      jeedom.cmd.save({
-        cmd: {
-          id: cmdId,
-          display: {
-            graphStep: graphStep
-          }
-        },
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          nbSeries--
-          addChart(data.id, 1)
-        }
-      })
-    })
-  })
-}
-
 function addChart(_cmd_id, _action, _options) {
   //_action: 0=remove 1=add
   if (_action == 0) {
@@ -348,7 +359,6 @@ function addChart(_cmd_id, _action, _options) {
           if (serie.options.id == _cmd_id) {
             serie.yAxis.remove()
             chart.get(serie.options.id)
-            setChartOptions()
           }
         } catch (error) {}
       })
@@ -356,7 +366,6 @@ function addChart(_cmd_id, _action, _options) {
     setChartOptions()
     return
   }
-
   var dateStart = $('#in_startDate').value()
   var dateEnd = $('#in_endDate').value()
   jeedom.history.drawChart({
@@ -373,24 +382,10 @@ function addChart(_cmd_id, _action, _options) {
         $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
         return
       }
-      $('.highcharts-legend-item').last().attr('data-cmd_id', _cmd_id)
       setChartOptions()
     }
   })
 }
-
-$('#bt_toggleYaxis').on('click', function() {
-  yVis = !yVis
-  chart.yAxis.forEach((axis, index) => {
-    axis.update({
-      visible: yVis
-    })
-  })
-})
-
-$('#bt_clearGraph').on('click', function() {
-  clearGraph()
-})
 
 function clearGraph(_lastId = null) {
   isComparing = false
@@ -403,27 +398,6 @@ function clearGraph(_lastId = null) {
   setChartOptions()
   lastId = _lastId
 }
-
-$('#cb_tracking').off('change').on('change', function() {
-  if (chart) {
-    if ($(this).is(':checked')) {
-      var opacity = 0.1
-    } else {
-      var opacity = 1
-    }
-    chart.update({
-      plotOptions: {
-        series: {
-          states: {
-            inactive: {
-              opacity: opacity
-            }
-          }
-        }
-      }
-    })
-  }
-})
 
 function emptyHistory(_cmd_id, _date) {
   $.ajax({
@@ -625,3 +599,113 @@ function compareChart(_cmd_id, _options) {
   })
   $('#md_getCompareRange').dialog('close')
 }
+
+//__________________Legend items
+function legendIsolate(_serieId) {
+  var chart = $('#div_graph').highcharts()
+  if (!chart) return
+  $(chart.series).each(function(idx, item) {
+    item.hide()
+  })
+  chart.series[_serieId].show()
+}
+function legendShowAll() {
+  var chart = $('#div_graph').highcharts()
+  if (!chart) return
+  $(chart.series).each(function(idx, item) {
+    item.show()
+  })
+}
+
+$('#div_graph').on({
+  'click': function(event) {
+    if (!event.ctrlKey && !event.metaKey && !event.altKey) return
+    event.stopImmediatePropagation()
+    var chart = $('#div_graph').highcharts()
+    if (!chart) return
+    if (event.altKey) {
+      legendShowAll()
+    } else {
+      var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
+      legendIsolate(serieId)
+    }
+  }
+}, '.highcharts-legend-item')
+
+$.contextMenu({
+  selector: ".highcharts-legend-item",
+  build: function($trigger) {
+    if (isComparing) return
+    var serieId = $trigger.attr("class").split('highcharts-series-')[1].split(' ')[0]
+    var cmdId = chart.series[serieId].userOptions.id
+    var axis = chart.get(cmdId)
+    var contextmenuitems = {}
+    contextmenuitems['isolate'] = {'name': '{{Isoler}}', 'id': 'isolate', 'icon': 'fas fa-chart-line'}
+    contextmenuitems['showall'] = {'name': '{{Afficher tout}}', 'id': 'showall', 'icon': 'fas fa-poll-h'}
+    if (axis.visible) {
+      contextmenuitems['hideaxis'] = {'name': '{{Masquer axe}}', 'id': 'hideaxis', 'icon': 'far fa-eye-slash'}
+    } else {
+      contextmenuitems['showaxis'] = {'name': '{{Afficher axe}}', 'id': 'showaxis', 'icon': 'far fa-eye'}
+    }
+
+    var idx = 0
+    Highcharts.getOptions().colors.forEach(function(color) {
+      contextmenuitems['color_' + idx] = {
+        'name': '<i class="fas fa-square" style="color:' + Highcharts.getOptions().colors[idx] + '!important;"></i>',
+        'id': 'color_' + idx,
+        'isHtmlName': true
+      }
+      idx += 1
+    })
+
+    return {
+      callback: function(key, options) {
+        if (key == 'showall') {
+          legendShowAll()
+          return
+        }
+        if (key == 'isolate') {
+          legendIsolate(serieId)
+          return
+        }
+        if (key == 'hideaxis') {
+          axis.update({
+            visible: false
+          })
+          return
+        }
+        if (key == 'showaxis') {
+          axis.update({
+            visible: true
+          })
+          return
+        }
+        if (key.startsWith('color_')) {
+          var idx = key.split('_')[1]
+          var opacityHigh = 0.85
+          var opacityLow = 0.1
+          var newC = Highcharts.getOptions().colors[idx]
+          chart.series[serieId].update({
+            color: newC,
+            fillColor: {
+              stops: [
+                       [0, Highcharts.Color(newC).setOpacity(opacityHigh).get('rgba')],
+                       [1, Highcharts.Color(newC).setOpacity(opacityLow).get('rgba')]
+              ]
+            }
+          })
+
+          axis.update({
+            labels: {
+              style: {
+                      color: newC
+              }
+            }
+          })
+          return
+        }
+      },
+      items: contextmenuitems
+    }
+  }
+})

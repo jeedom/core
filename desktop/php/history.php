@@ -21,7 +21,7 @@ $date = array(
 		</div>
 	</div>
 
-	<div class="col-lg-7 col-sm-10 col-xs-12 pull-right">
+	<div class="col-lg-8 col-sm-10 col-xs-12 pull-right">
 		<div class="input-group input-group-sm" style="float: right;">
 			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;">
 				<option value="">{{Aucun groupement}}</option>

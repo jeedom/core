@@ -700,6 +700,7 @@ jeedom.history.drawChart = function(_params) {
               valueDecimals: 2,
             },
             yAxis: [{
+              id: _params.cmd_id,
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
@@ -793,7 +794,7 @@ jeedom.history.drawChart = function(_params) {
               }
               */
             }
-            if (chart.yAxis.length & 1) {
+            if (jeedom.history.chart[_params.el].chart.yAxis.length & 1) {
               yAxis.opposite = true
             } else {
               yAxis.opposite = false
