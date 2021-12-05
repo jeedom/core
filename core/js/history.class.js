@@ -435,10 +435,7 @@ jeedom.history.drawChart = function(_params) {
             title: {
               text: ''
             },
-            credits: {
-              text: '',
-              href: '',
-            },
+            credits: { enabled: false },
             exporting: {
               enabled: _params.enableExport || ($.mobile) ? false : true
             },
