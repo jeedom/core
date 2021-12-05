@@ -1272,6 +1272,7 @@
         "Internationalisation des Widgets tiers (code utilisateur). voir": "Internationalization of third-party Widgets (user code). see",
         "Analyse \/ Historique": "Analysis \/ History",
         "Possibilité de comparer un historique sur une période donnée": "Possibility to compare a history over a given period",
+        "Affichage des axes multiples en Y avec leur propre échelle": "Display of multiple Y axes with their own scale",
         "Analyse \/ Equipements": "Analysis \/ Equipment",
         "Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné": "Orphan orders now display their name and date of deletion if still in the deletion history, as well as a link to the affected scenario or equipment",
         "Analyse \/ Logs": "Analysis \/ Logs",

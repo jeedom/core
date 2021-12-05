@@ -13,6 +13,7 @@
 - **Painel de controle** : A janela de configuração do dispositivo (modo de edição) agora permite que você configure widgets móveis e tipos genéricos.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Vejo [Doc dev](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Análise / História** : Possibilidade de comparar uma história ao longo de um determinado período.
+- **Análise / História** : Exibição de vários eixos Y com sua própria escala.
 - **Análise / Equipamento** : Pedidos órfãos agora exibem seu nome e data de exclusão se ainda estiverem no histórico de exclusão, bem como um link para o cenário ou equipamento afetado.
 - **Análise / Logs** : Numeração da linha de registro. Possibilidade de exibir o log bruto.
 - **Histórico** : Coloração de logs de acordo com certos eventos. Possibilidade de exibir o log bruto.

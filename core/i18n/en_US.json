@@ -2526,6 +2526,7 @@
         "Variation": "Variation",
         "Escalier": "Steps",
         "Tracking": "Tracking",
+        "yAxis": "yAxis",
         "Comparer": "Compare",
         "Vide l'affichage des courbes sur la zone.": "Clear the display of curves on the area",
         "Affichage": "Display",

@@ -13,6 +13,7 @@
 - **Tablero** : La ventana de configuración del dispositivo (modo de edición) ahora le permite configurar widgets móviles y tipos genéricos.
 - **Widgets** : Internacionalización de Widgets de terceros (código de usuario). ver [Doc dev](https://doc.jeedom.com/es_ES/dev/core4.2).
 - **Análisis / Historia** : Posibilidad de comparar un historial durante un período determinado.
+- **Análisis / Historia** : Visualización de varios ejes Y con su propia escala.
 - **Análisis / Equipo** : Los pedidos huérfanos ahora muestran su nombre y fecha de eliminación si aún están en el historial de eliminación, así como un enlace al escenario o equipo afectado.
 - **Análisis / Registros** : Numeración de líneas de registro. Posibilidad de mostrar el registro sin procesar.
 - **Registros** : Coloración de troncos según ciertos eventos. Posibilidad de mostrar el registro sin procesar.

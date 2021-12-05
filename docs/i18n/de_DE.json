@@ -1272,6 +1272,7 @@
         "Internationalisation des Widgets tiers (code utilisateur). voir": "Internationalisierung von Widgets von Drittanbietern (Benutzercode). sehen",
         "Analyse \/ Historique": "Analyse \/ Geschichte",
         "Possibilité de comparer un historique sur une période donnée": "Möglichkeit, eine Historie über einen bestimmten Zeitraum zu vergleichen",
+        "Affichage des axes multiples en Y avec leur propre échelle": "Anzeige mehrerer Y-Achsen mit eigenem Maßstab",
         "Analyse \/ Equipements": "Analyse \/ Ausrüstung",
         "Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné": "Verwaiste Bestellungen zeigen jetzt ihren Namen und das Löschdatum an, falls sie sich noch im Löschverlauf befinden, sowie einen Link zu dem betroffenen Szenario oder der betroffenen Ausrüstung",
         "Analyse \/ Logs": "Analyse \/ Protokolle",
