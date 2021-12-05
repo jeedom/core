@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "управления История конфигурации",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Просьба указать дату (Y-м д ч: м: с), перед которым он должен удалить историю \\ «s",
         "Historique supprimé avec succès": "История успешно удалена",
-        "Période de comparaison": "Période de comparaison"
+        "Période de comparaison": "Période de comparaison",
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

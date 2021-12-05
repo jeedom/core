@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
         "Historique supprimé avec succès": "歴史は正常に削除しました",
-        "Période de comparaison": "Période de comparaison"
+        "Période de comparaison": "Période de comparaison",
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

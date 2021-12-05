@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "Configuration de l'historique des commandes",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de",
         "Historique supprimé avec succès": "Historique supprimé avec succès",
-        "Période de comparaison": "Période de comparaison"
+        "Période de comparaison": "Période de comparaison",
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

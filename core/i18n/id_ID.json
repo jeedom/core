@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
         "Historique supprimé avec succès": "Sejarah berhasil dihapus",
-        "Période de comparaison": "Période de comparaison"
+        "Période de comparaison": "Période de comparaison",
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

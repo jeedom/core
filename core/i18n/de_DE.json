@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
-        "Période de comparaison": "Vergleichszeitraum"
+        "Période de comparaison": "Vergleichszeitraum",
+        "Isoler": "Isolieren",
+        "Afficher tout": "Alle anzeigen",
+        "Masquer axe": "Achse ausblenden",
+        "Afficher axe": "Achse anzeigen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",

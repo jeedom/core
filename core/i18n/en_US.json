@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "Commands history setup",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Remove history before provided date (Y-m-d H:m:s)",
         "Historique supprimé avec succès": "History deleted successfully",
-        "Période de comparaison": "Comparison period"
+        "Période de comparaison": "Comparison period",
+        "Isoler": "Isolate",
+        "Afficher tout": "Display all",
+        "Masquer axe": "Hide axis",
+        "Afficher axe": "Show axis"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remove this filter",

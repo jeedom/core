@@ -2775,7 +2775,11 @@
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Historique supprimé avec succès": "Historial eliminado correctamente",
-        "Période de comparaison": "Período de comparación"
+        "Période de comparaison": "Período de comparación",
+        "Isoler": "Aislar",
+        "Afficher tout": "Mostrar todo",
+        "Masquer axe": "Ocultar eje",
+        "Afficher axe": "Mostrar eje"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Quitar este filtro",
