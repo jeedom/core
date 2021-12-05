@@ -794,6 +794,9 @@ jeedom.history.drawChart = function(_params) {
               }
               */
             }
+            if ($('body').attr('data-page') == 'plan') {
+              yAxis.visible = false
+            }
             if (jeedom.history.chart[_params.el].chart.yAxis.length & 1) {
               yAxis.opposite = true
             } else {

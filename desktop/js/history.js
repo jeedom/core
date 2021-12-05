@@ -123,7 +123,6 @@ function initHistoryTrigger() {
   })
 
   $('#sel_chartType').off('change').on('change', function() {
-    console.log('sel_chartType')
     if (lastId == null) return
     var currentId = lastId
     var graphType = $(this).value()
@@ -602,7 +601,6 @@ function compareChart(_cmd_id, _options) {
 
 //__________________Legend items
 function legendIsolate(_serieId) {
-  var chart = $('#div_graph').highcharts()
   if (!chart) return
   $(chart.series).each(function(idx, item) {
     item.hide()
@@ -610,7 +608,6 @@ function legendIsolate(_serieId) {
   chart.series[_serieId].show()
 }
 function legendShowAll() {
-  var chart = $('#div_graph').highcharts()
   if (!chart) return
   $(chart.series).each(function(idx, item) {
     item.show()
@@ -621,7 +618,6 @@ $('#div_graph').on({
   'click': function(event) {
     if (!event.ctrlKey && !event.metaKey && !event.altKey) return
     event.stopImmediatePropagation()
-    var chart = $('#div_graph').highcharts()
     if (!chart) return
     if (event.altKey) {
       legendShowAll()
