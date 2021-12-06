@@ -628,10 +628,10 @@ $('#div_graph').on({
   }
 }, '.highcharts-legend-item')
 
-$.contextMenu({
+$('#div_graph').contextMenu({
   selector: ".highcharts-legend-item",
   build: function($trigger) {
-    if (isComparing) return
+    if (isComparing) return false
     var serieId = $trigger.attr("class").split('highcharts-series-')[1].split(' ')[0]
     var cmdId = chart.series[serieId].userOptions.id
     var axis = chart.get(cmdId)
