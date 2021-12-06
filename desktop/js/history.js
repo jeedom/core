@@ -17,9 +17,9 @@
 "use strict"
 
 var lastId = null
-var isComparing = false
+jeedomUIHistory.isComparing = false
 var yVis = true
-var chart = $('#div_graph').highcharts()
+jeedomUIHistory.chart = $('#div_graph').highcharts()
 delete jeedom.history.chart['div_graph']
 
 $(function() {
@@ -46,8 +46,8 @@ $(function() {
 var resizeDone
 function resizeDn() {
   var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true)
-  if (chart) {
-    chart.setSize($('#div_graph').width(), height)
+  if (jeedomUIHistory.chart) {
+    jeedomUIHistory.chart.setSize($('#div_graph').width(), height)
   }
   $('.bs-sidebar').height(height)
 }
@@ -150,7 +150,7 @@ function initHistoryTrigger() {
 
   $('#cb_derive').off('change').on('change', function() {
     var graphDerive = $(this).value()
-    $(chart.series).each(function(idx, serie) {
+    $(jeedomUIHistory.chart.series).each(function(idx, serie) {
       if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
         return
       }
@@ -179,7 +179,7 @@ function initHistoryTrigger() {
 
   $('#cb_step').off('change').on('change', function() {
     var graphStep = $(this).value()
-    $(chart.series).each(function(idx, serie) {
+    $(jeedomUIHistory.chart.series).each(function(idx, serie) {
       if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
         return
       }
@@ -206,18 +206,15 @@ function initHistoryTrigger() {
   })
 }
 
-
-
-
 //Right buttons:
 $('#cb_tracking').off('change').on('change', function() {
-  if (chart) {
+  if (jeedomUIHistory.chart) {
     if ($(this).is(':checked')) {
       var opacity = 0.1
     } else {
       var opacity = 1
     }
-    chart.update({
+    jeedomUIHistory.chart.update({
       plotOptions: {
         series: {
           states: {
@@ -233,7 +230,7 @@ $('#cb_tracking').off('change').on('change', function() {
 
 $('#bt_toggleYaxis').on('click', function() {
   yVis = !yVis
-  chart.yAxis.forEach((axis, index) => {
+  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
     axis.update({
       visible: yVis
     })
@@ -243,6 +240,7 @@ $('#bt_toggleYaxis').on('click', function() {
 $('#bt_clearGraph').on('click', function() {
   clearGraph()
 })
+
 //search filter opening:
 $('body').on({
   'keyup': function(event) {
@@ -267,7 +265,7 @@ $('body').on({
 
 $(".li_history .history").on('click', function(event) {
   $.hideAlert()
-  if (isComparing) return
+  if (jeedomUIHistory.isComparing) return
   if ($(this).closest('.li_history').hasClass('active')) {
     $(this).closest('.li_history').removeClass('active')
     addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
@@ -311,13 +309,13 @@ function setChartOptions() {
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
     //only one graph:
     _prop = false
-    chart = $('#div_graph').highcharts()
+    jeedomUIHistory.chart = $('#div_graph').highcharts()
     var serieId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr("class").split('highcharts-series-')[1].split(' ')[0]
-    if (!isset(chart.series[serieId])) return
-    lastId = chart.series[serieId].userOptions.id
+    if (!isset(jeedomUIHistory.chart.series[serieId])) return
+    lastId = jeedomUIHistory.chart.series[serieId].userOptions.id
 
     var grouping, groupingType, type
-    $(chart.series).each(function(idx, serie) {
+    $(jeedomUIHistory.chart.series).each(function(idx, serie) {
       if (serie.userOptions.id == lastId) {
         if (isset(serie.userOptions.dataGrouping)) {
           grouping = serie.userOptions.dataGrouping.enabled
@@ -357,7 +355,7 @@ function addChart(_cmd_id, _action, _options) {
         try {
           if (serie.options.id == _cmd_id) {
             serie.yAxis.remove()
-            chart.get(serie.options.id)
+            jeedomUIHistory.chart.get(serie.options.id)
           }
         } catch (error) {}
       })
@@ -387,7 +385,7 @@ function addChart(_cmd_id, _action, _options) {
 }
 
 function clearGraph(_lastId = null) {
-  isComparing = false
+  jeedomUIHistory.isComparing = false
   if (jeedom.history.chart['div_graph'] === undefined) return
 
   $.clearDivContent('div_graph')
@@ -434,11 +432,11 @@ function emptyHistory(_cmd_id, _date) {
 function setChartXExtremes() {
   //only used for comparison
   try {
-    var xExtremes0 = chart.xAxis[0].getExtremes()
-    var xExtremes1 = chart.xAxis[1].getExtremes()
-    chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
-    chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
-    chart.update({
+    var xExtremes0 = jeedomUIHistory.chart.xAxis[0].getExtremes()
+    var xExtremes1 = jeedomUIHistory.chart.xAxis[1].getExtremes()
+    jeedomUIHistory.chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
+    jeedomUIHistory.chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
+    jeedomUIHistory.chart.update({
       navigator: {
         enabled: false
       },
@@ -448,8 +446,6 @@ function setChartXExtremes() {
     })
   } catch (error) {}
 }
-
-
 
 //__________________Comparison functions
 
@@ -506,17 +502,17 @@ $("#md_getCompareRange").dialog({
 })
 
 $('#bt_compare').off().on('click', function() {
-  if (!isComparing) {
+  if (!jeedomUIHistory.isComparing) {
     if (lastId == null) return
     $('#md_getCompareRange').removeClass('hidden').dialog({
       title: "{{Période de comparaison}}"
     }).dialog('open')
   } else {
     clearGraph(lastId)
-    chart.xAxis[1].update({
+    jeedomUIHistory.chart.xAxis[1].update({
       visible: false
     })
-    chart.update({
+    jeedomUIHistory.chart.update({
       navigator: {
         enabled: true
       },
@@ -531,10 +527,10 @@ $('#bt_compare').off().on('click', function() {
 })
 
 $('#bt_doCompare').off('click').on('click', function() {
-  isComparing = true
+  jeedomUIHistory.isComparing = true
   $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
   $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
-  chart.xAxis[1].update({
+  jeedomUIHistory.chart.xAxis[1].update({
     visible: true
   })
   compareChart(lastId)
@@ -545,11 +541,11 @@ function alignAllYaxis() {
   var min, max
   min = 10000
   max = -10000
-  chart.yAxis.forEach((axis, index) => {
+  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
     if (axis.dataMin < min) min = axis.dataMin
     if (axis.dataMax > max) max = axis.dataMax
   })
-  chart.yAxis.forEach((axis, index) => {
+  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
     axis.setExtremes(min / 1.005, max * 1.005)
   })
 }
@@ -600,109 +596,6 @@ function compareChart(_cmd_id, _options) {
 }
 
 //__________________Legend items
-function legendIsolate(_serieId) {
-  if (!chart) return
-  $(chart.series).each(function(idx, item) {
-    item.hide()
-  })
-  chart.series[_serieId].show()
-}
-function legendShowAll() {
-  if (!chart) return
-  $(chart.series).each(function(idx, item) {
-    item.show()
-  })
-}
-
-$('#div_graph').on({
-  'click': function(event) {
-    if (!event.ctrlKey && !event.metaKey && !event.altKey) return
-    event.stopImmediatePropagation()
-    if (!chart) return
-    if (event.altKey) {
-      legendShowAll()
-    } else {
-      var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
-      legendIsolate(serieId)
-    }
-  }
-}, '.highcharts-legend-item')
-
-$('#div_graph').contextMenu({
-  selector: ".highcharts-legend-item",
-  build: function($trigger) {
-    if (isComparing) return false
-    var serieId = $trigger.attr("class").split('highcharts-series-')[1].split(' ')[0]
-    var cmdId = chart.series[serieId].userOptions.id
-    var axis = chart.get(cmdId)
-    var contextmenuitems = {}
-    contextmenuitems['isolate'] = {'name': '{{Isoler}}', 'id': 'isolate', 'icon': 'fas fa-chart-line'}
-    contextmenuitems['showall'] = {'name': '{{Afficher tout}}', 'id': 'showall', 'icon': 'fas fa-poll-h'}
-    if (axis.visible) {
-      contextmenuitems['hideaxis'] = {'name': '{{Masquer axe}}', 'id': 'hideaxis', 'icon': 'far fa-eye-slash'}
-    } else {
-      contextmenuitems['showaxis'] = {'name': '{{Afficher axe}}', 'id': 'showaxis', 'icon': 'far fa-eye'}
-    }
-
-    var idx = 0
-    Highcharts.getOptions().colors.forEach(function(color) {
-      contextmenuitems['color_' + idx] = {
-        'name': '<i class="fas fa-square" style="color:' + Highcharts.getOptions().colors[idx] + '!important;"></i>',
-        'id': 'color_' + idx,
-        'isHtmlName': true,
-        'className': 'inlineItem'
-      }
-      idx += 1
-    })
-
-    return {
-      callback: function(key, options) {
-        if (key == 'showall') {
-          legendShowAll()
-          return
-        }
-        if (key == 'isolate') {
-          legendIsolate(serieId)
-          return
-        }
-        if (key == 'hideaxis') {
-          axis.update({
-            visible: false
-          })
-          return
-        }
-        if (key == 'showaxis') {
-          axis.update({
-            visible: true
-          })
-          return
-        }
-        if (key.startsWith('color_')) {
-          var idx = key.split('_')[1]
-          var opacityHigh = 0.85
-          var opacityLow = 0.1
-          var newC = Highcharts.getOptions().colors[idx]
-          chart.series[serieId].update({
-            color: newC,
-            fillColor: {
-              stops: [
-                       [0, Highcharts.Color(newC).setOpacity(opacityHigh).get('rgba')],
-                       [1, Highcharts.Color(newC).setOpacity(opacityLow).get('rgba')]
-              ]
-            }
-          })
-
-          axis.update({
-            labels: {
-              style: {
-                      color: newC
-              }
-            }
-          })
-          return
-        }
-      },
-      items: contextmenuitems
-    }
-  }
+$(function() {
+  jeedomUIHistory.initLegendContextMenu($('#div_graph').parent())
 })

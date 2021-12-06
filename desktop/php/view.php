@@ -79,6 +79,7 @@ if ($_SESSION['user']->getOptions('displayViewByDefault') == 1 && init('report')
 </div>
 
 <?php
-include_file('desktop', 'view', 'js');
 include_file('desktop/common', 'ui', 'js');
+include_file('desktop/common', 'ui.history', 'js');
+include_file('desktop', 'view', 'js');
 ?>

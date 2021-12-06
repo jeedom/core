@@ -186,5 +186,6 @@ $date = array(
 	<a class="btn btn-success pull-right" id="bt_doCompare"><i class="fas fa-check"></i> {{Comparer}}</a>
 </div>
 <?php
+include_file('desktop/common', 'ui.history', 'js');
 include_file("desktop", "history", "js");
 ?>

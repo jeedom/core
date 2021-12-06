@@ -1403,6 +1403,8 @@ $(function() {
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
 
+  jeedomUIHistory.initLegendContextMenu($('div.div_backgroundPlan'))
+
   //back to mobile home with three fingers on mobile:
   if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {
     $('body').on('touchstart', function(event) {
@@ -1415,3 +1417,4 @@ $(function() {
     })
   }
 })
+

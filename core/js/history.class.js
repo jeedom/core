@@ -642,6 +642,23 @@ jeedom.history.drawChart = function(_params) {
               series: {
                 animation: {
                   duration: (getUrlVars('report') == 1) ? 0 : 1000
+                },
+                events: {
+                  legendItemClick: function(event) {
+                    if (!event.browserEvent.ctrlKey && !event.browserEvent.metaKey && !event.browserEvent.altKey) return true
+                    if (event.browserEvent.altKey) {
+                      this.chart.series.forEach(function(serie) {
+                        serie.show()
+                      })
+                    } else {
+                      this.chart.series.forEach(function(serie) {
+                        serie.hide()
+                      })
+                      this.show()
+                      this.visible = true
+                    }
+                    return false
+                  }
                 }
               }
             },

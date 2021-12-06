@@ -50,5 +50,6 @@ if (!is_object($planHeader)) {
 
 <?php
 include_file('desktop/common', 'ui', 'js');
+include_file('desktop/common', 'ui.history', 'js');
 include_file('desktop', 'plan', 'js');
 ?>

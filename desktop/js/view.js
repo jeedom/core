@@ -288,3 +288,7 @@ function editWidgetMode(_mode, _save) {
     })
   }
 }
+
+$(function() {
+  jeedomUIHistory.initLegendContextMenu($('#div_displayViewContainer'))
+})
