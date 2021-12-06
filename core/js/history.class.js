@@ -261,7 +261,6 @@ jeedom.history.drawChart = function(_params) {
       var comparisonSerie = false
       if (isset(_params.compare) && _params.compare == 1) comparisonSerie = true
 
-
       //set/check some params:
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = null;
@@ -312,7 +311,6 @@ jeedom.history.drawChart = function(_params) {
 
       var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value';
       _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
-      _params.option.graphScale = (_params.option.graphScale == undefined) ? 0 : parseInt(_params.option.graphScale);
       _params.showLegend = (init(_params.showLegend, true) && init(_params.showLegend, true) != "0") ? true : false;
       _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
       _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
@@ -558,7 +556,6 @@ jeedom.history.drawChart = function(_params) {
             stack: _params.option.graphStack,
             derive: _params.option.graphDerive,
             step: _params.option.graphStep,
-            yAxis: _params.option.graphScale,
             stacking: stacking,
             unite: data.result.unite,
             shortName: (isset(_params.option.name)) ? _params.option.name : data.result.history_name,
@@ -709,7 +706,8 @@ jeedom.history.drawChart = function(_params) {
                 },
                 align: 'left',
                 x: 0
-              }
+              },
+              opposite: (_params.option.graphScale == undefined) ? 1 : !parseInt(_params.option.graphScale),
               /*
               title: {
                 text: series.shortName.split('][').reverse()[0].slice(0, -1),
@@ -794,10 +792,16 @@ jeedom.history.drawChart = function(_params) {
             if ($('body').attr('data-page') == 'plan') {
               yAxis.visible = false
             }
-            if (jeedom.history.chart[_params.el].chart.yAxis.length & 1) {
-              yAxis.opposite = true
+
+            //view allow to set left/right on graph axis:
+            if (_params.option.graphScale == undefined) {
+              if (jeedom.history.chart[_params.el].chart.yAxis.length & 1) {
+                yAxis.opposite = true
+              } else {
+                yAxis.opposite = false
+              }
             } else {
-              yAxis.opposite = false
+              yAxis.opposite = !parseInt(_params.option.graphScale)
             }
 
             //add serie and axis:

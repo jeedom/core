@@ -110,14 +110,14 @@ jeedom.view.handleViewAjax = function(_params) {
       }
       result.html += '</div>';
     } else if (viewZone.type == 'graph') {
-      result.html += '<div id="' + div_id + '" class="chartContainer">';
-      result.html += '<script>';
+      result.html += '<div id="' + div_id + '" class="chartContainer"></div>';
+      result.html += '<div class="chartToDraw">';
       for (var j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
         configuration = json_encode(viewData.configuration);
-        result.html += 'jeedom.history.drawChart({noError:true, cmd_id: ' + viewData.link_id + ', el: "' + div_id + '", dateRange: "' + viewZone.configuration.dateRange + '", option: jQuery.parseJSON("' + configuration.replace(/\"/g, "\\\"") + '")});';
+        option = configuration.replaceAll('"', "'");
+        result.html += '<div class="viewZoneData hidden" data-cmdId="'+viewData.link_id+'" data-option="'+option+'" data-el="'+div_id+'" data-dateRange="'+viewZone.configuration.dateRange+'"></div>';
       }
-      result.html += '</script>';
       result.html += '</div>';
     } else if (viewZone.type == 'table') {
       result.html += viewZone.html;
