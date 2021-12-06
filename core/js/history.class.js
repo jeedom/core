@@ -272,7 +272,6 @@ jeedom.history.drawChart = function(_params) {
       var colorsNbr = colors.length
       var opacityHigh = 0.85
       var opacityLow = 0.1
-
       var numSeries = 0
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].chart.series)) {
         jeedom.history.chart[_params.el].chart.series.forEach((serie, index) => {
@@ -280,7 +279,6 @@ jeedom.history.drawChart = function(_params) {
         })
       }
       var seriesNumber = numSeries + 1
-
       if (seriesNumber > colorsNbr || seriesNumber == 0) {
         seriesNumber = 1
       }
@@ -315,6 +313,7 @@ jeedom.history.drawChart = function(_params) {
       _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
       _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
       _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
+      _params.showAxis = (init(_params.option.graphScaleVisible, true) && init(_params.option.graphScaleVisible, true) != "0") ? true : false;
 
       //define legend and reset graph:
       var legend = {
@@ -708,6 +707,7 @@ jeedom.history.drawChart = function(_params) {
                 x: 0
               },
               opposite: (_params.option.graphScale == undefined) ? 1 : !parseInt(_params.option.graphScale),
+              visible: _params.showAxis,
               /*
               title: {
                 text: series.shortName.split('][').reverse()[0].slice(0, -1),
@@ -780,6 +780,7 @@ jeedom.history.drawChart = function(_params) {
                   color: _params.option.graphColor
                 }
               },
+              visible: _params.showAxis,
               /*
               title: {
                 text: series.shortName.split('][').reverse()[0].slice(0, -1),
@@ -789,9 +790,12 @@ jeedom.history.drawChart = function(_params) {
               }
               */
             }
+
+            /*
             if ($('body').attr('data-page') == 'plan') {
               yAxis.visible = false
             }
+            */
 
             //view allow to set left/right on graph axis:
             if (_params.option.graphScale == undefined) {

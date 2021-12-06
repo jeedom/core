@@ -912,7 +912,11 @@
         "Escalier": "Treppe",
         "Empiler": "Stapel",
         "Variation": "Wertänderung",
-        "Echelle": "Maßstab"
+        "Echelle": "Maßstab",
+        "Droite": "Gesetz",
+        "Gauche": "Links",
+        "Invisible": "Unsichtbar",
+        "Visible": "Sichtbar"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
@@ -2701,16 +2705,6 @@
         "Escalier": "Treppe",
         "Empiler": "Stapel",
         "Variation": "Wertänderung",
-        "Bleu": "Blau",
-        "Rouge": "Rot",
-        "Vert": "Grün",
-        "Violet": "Lila",
-        "Bleu ciel": "Himmelblau",
-        "Orange": "Orange",
-        "Jaune": "Gelb",
-        "Rose": "Pink",
-        "Noir": "Schwarz",
-        "Vert\/Bleu": "Grün \/ Blau",
         "Ligne": "Linie",
         "Aire": "Fläche",
         "Colonne": "Spalte",
@@ -2738,6 +2732,8 @@
         "Maximum par année": "Maximum pro Jahr",
         "Droite": "Recht",
         "Gauche": "Links",
+        "Invisible": "Unsichtbar",
+        "Visible": "Sichtbar",
         "Non": "Nicht",
         "Oui": "Ja"
     },

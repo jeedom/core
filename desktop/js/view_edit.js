@@ -297,7 +297,7 @@ function addEditviewZone(_viewZone) {
   }
   if (init(_viewZone.emplacement) == '') {
     var id = $('#div_viewZones .viewZone').length
-    var div = '<div class="viewZone" data-toggle="tab" id="div_viewZone' + id + '">'
+    var div = '<div class="viewZone" id="div_viewZone' + id + '">'
     div += '<legend><span class="viewZoneAttr" data-l1key="name"></span>'
     div += '<div class="input-group pull-right" style="display:inline-flex">'
     div += '<span class="input-group-btn" style="width: 100%;">'
@@ -485,25 +485,17 @@ function addGraphService(_viewData) {
   }
   var tr = '<tr class="viewData" style="cursor : move;">'
   tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>'
+
   tr += '<td>'
-  tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>'
-  tr += '<input class="viewDataAttr" data-l1key="type" style="display  : none;"/>'
+  tr += '<input class="viewDataAttr" data-l1key="link_id" style="display: none;"/>'
+  tr += '<input class="viewDataAttr" data-l1key="type" style="display: none;"/>'
   tr += '<span class="viewDataAttr" data-l1key="name"></span>'
   tr += '</td>'
+
   tr += '<td>'
-  tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphColor" style="background-color:#4572A7;color:white;">'
-  tr += '<option value="#4572A7" style="background-color:#4572A7;color:white;">{{Bleu}}</option>'
-  tr += '<option value="#AA4643" style="background-color:#AA4643;color:white;">{{Rouge}}</option>'
-  tr += '<option value="#89A54E" style="background-color:#89A54E;color:white;">{{Vert}}</option>'
-  tr += '<option value="#80699B" style="background-color:#80699B;color:white;">{{Violet}}</option>'
-  tr += '<option value="#00FFFF" style="background-color:#00FFFF;color:white;">{{Bleu ciel}}</option>'
-  tr += '<option value="#DB843D" style="background-color:#DB843D;color:white;">{{Orange}}</option>'
-  tr += '<option value="#FFFF00" style="background-color:#FFFF00;color:white;">{{Jaune}}</option>'
-  tr += '<option value="#FE2E9A" style="background-color:#FE2E9A;color:white;">{{Rose}}</option>'
-  tr += '<option value="#000000" style="background-color:#000000;color:white;">{{Noir}}</option>'
-  tr += '<option value="#3D96AE" style="background-color:#3D96AE;color:white;">{{Vert/Bleu}}</option>'
-  tr += '</select>'
+  tr += '<input type="color" class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphColor" />'
   tr += '</td>'
+
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphType">'
   tr += '<option value="line">{{Ligne}}</option>'
@@ -512,6 +504,7 @@ function addGraphService(_viewData) {
   tr += '<option value="pie">{{Camembert}}</option>'
   tr += '</select>'
   tr += '</td>'
+
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="groupingType">'
   tr += '<option value="">{{Aucun groupement}}</option>'
@@ -537,34 +530,42 @@ function addGraphService(_viewData) {
   tr += '<option value="high::year">{{Maximum par année}}</option>'
   tr += '</select>'
   tr += '</td>'
+
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 90px;">'
   tr += '<option value="0">{{Droite}}</option>'
   tr += '<option value="1">{{Gauche}}</option>'
   tr += '</select>'
+  tr +=  '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphScaleVisible" style="width : 90px;">'
+  tr +=  '<option value="0">{{Invisible}}</option>'
+  tr +=  '<option value="1">{{Visible}}</option>'
+  tr +=  '</select>'
   tr += '</td>'
+
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphStep" style="width : 90px;">'
   tr += '<option value="0">{{Non}}</option>'
   tr += '<option value="1">{{Oui}}</option>'
   tr += '</select>'
   tr += '</td>'
+
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="graphStack" style="width : 90px;">'
   tr += '<option value="0">{{Non}}</option>'
   tr += '<option value="1">{{Oui}}</option>'
   tr += '</select>'
   tr += '</td>'
+
   tr += '<td>'
   tr += '<select class="viewDataAttr form-control input-sm" data-l1key="configuration" data-l2key="derive" style="width : 90px;">'
   tr += '<option value="0">{{Non}}</option>'
   tr += '<option value="1">{{Oui}}</option>'
   tr += '</select>'
   tr += '</td>'
+
   tr += '</tr>'
   var result = $(tr)
   result.setValues(_viewData, '.viewDataAttr')
-  result.find('.viewDataAttr[data-l1key=configuration][data-l2key=graphColor]').css('background-color', init(_viewData.configuration.graphColor, '#4572A7'))
   return result
 }
 

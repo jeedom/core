@@ -129,7 +129,7 @@ $date = array(
 	</div>
 
 	<div class="col-lg-9 col-md-8 col-sm-7">
-		<div id="div_graph"></div>
+		<div id="div_graph" class="chartContainer"></div>
 	</div>
 </div>
 

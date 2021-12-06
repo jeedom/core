@@ -912,7 +912,11 @@
         "Escalier": "階段",
         "Empiler": "スタック",
         "Variation": "変更",
-        "Echelle": "スケール"
+        "Echelle": "スケール",
+        "Droite": "Droite",
+        "Gauche": "Gauche",
+        "Invisible": "Invisible",
+        "Visible": "Visible"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2701,16 +2705,6 @@
         "Escalier": "階段",
         "Empiler": "スタック",
         "Variation": "変更",
-        "Bleu": "ブルー",
-        "Rouge": "赤",
-        "Vert": "グリーン",
-        "Violet": "パープル",
-        "Bleu ciel": "スカイブルー",
-        "Orange": "オレンジ",
-        "Jaune": "黄色",
-        "Rose": "ピンク",
-        "Noir": "黒",
-        "Vert\/Bleu": "グリーン\/ブルー",
         "Ligne": "ライン",
         "Aire": "エリア",
         "Colonne": "コラム",
@@ -2738,6 +2732,8 @@
         "Maximum par année": "年間最大",
         "Droite": "右",
         "Gauche": "左",
+        "Invisible": "Invisible",
+        "Visible": "Visible",
         "Non": "ではありません",
         "Oui": "はい"
     },

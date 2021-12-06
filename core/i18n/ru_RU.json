@@ -912,7 +912,11 @@
         "Escalier": "лестница",
         "Empiler": "стек",
         "Variation": "изменение",
-        "Echelle": "шкала"
+        "Echelle": "шкала",
+        "Droite": "Droite",
+        "Gauche": "Gauche",
+        "Invisible": "Invisible",
+        "Visible": "Visible"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2701,16 +2705,6 @@
         "Escalier": "лестница",
         "Empiler": "стек",
         "Variation": "изменение",
-        "Bleu": "синий",
-        "Rouge": "красный",
-        "Vert": "зеленый",
-        "Violet": "Фиолетовый",
-        "Bleu ciel": "Голубое небо",
-        "Orange": "оранжевый",
-        "Jaune": "желтый",
-        "Rose": "розовый",
-        "Noir": "черный",
-        "Vert\/Bleu": "Зеленый \/ Синий",
         "Ligne": "Линия",
         "Aire": "Площадь",
         "Colonne": "колонка",
@@ -2738,6 +2732,8 @@
         "Maximum par année": "Максимально за год",
         "Droite": "право",
         "Gauche": "левый",
+        "Invisible": "Invisible",
+        "Visible": "Visible",
         "Non": "не",
         "Oui": "да"
     },

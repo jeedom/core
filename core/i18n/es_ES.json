@@ -912,7 +912,11 @@
         "Escalier": "Escalera",
         "Empiler": "Pila",
         "Variation": "Variación",
-        "Echelle": "Nivel"
+        "Echelle": "Nivel",
+        "Droite": "Derecha",
+        "Gauche": "Izquierda",
+        "Invisible": "Invisible",
+        "Visible": "Visible"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2701,16 +2705,6 @@
         "Escalier": "Escalera",
         "Empiler": "Pila",
         "Variation": "Variación",
-        "Bleu": "Azul",
-        "Rouge": "Rojo",
-        "Vert": "Verde",
-        "Violet": "Púrpura",
-        "Bleu ciel": "Azul cielo",
-        "Orange": "Naranja",
-        "Jaune": "Amarillo",
-        "Rose": "Rosa",
-        "Noir": "Negro",
-        "Vert\/Bleu": "Verde\/Azul",
         "Ligne": "Línea",
         "Aire": "Area",
         "Colonne": "Columna",
@@ -2738,6 +2732,8 @@
         "Maximum par année": "Máximo por año",
         "Droite": "Derecha",
         "Gauche": "Izquierda",
+        "Invisible": "Invisible",
+        "Visible": "Visible",
         "Non": "No",
         "Oui": "Si"
     },

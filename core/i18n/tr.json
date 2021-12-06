@@ -912,7 +912,11 @@
         "Escalier": "Merdiven",
         "Empiler": "Üst üste koyun",
         "Variation": "Varyasyon",
-        "Echelle": "Ölçek"
+        "Echelle": "Ölçek",
+        "Droite": "Droite",
+        "Gauche": "Gauche",
+        "Invisible": "Invisible",
+        "Visible": "Visible"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2701,16 +2705,6 @@
         "Escalier": "Merdiven",
         "Empiler": "Üst üste koyun",
         "Variation": "Varyasyon",
-        "Bleu": "Mavi",
-        "Rouge": "Kırmızı",
-        "Vert": "Yeşil",
-        "Violet": "Eflatun",
-        "Bleu ciel": "Gök mavisi",
-        "Orange": "Turuncu",
-        "Jaune": "Sarı",
-        "Rose": "Pembe",
-        "Noir": "Siyah",
-        "Vert\/Bleu": "Yeşil\/Mavi",
         "Ligne": "Hat",
         "Aire": "Alan",
         "Colonne": "Sütun",
@@ -2738,6 +2732,8 @@
         "Maximum par année": "Yıllık maksimum",
         "Droite": "Sağ",
         "Gauche": "Sol",
+        "Invisible": "Invisible",
+        "Visible": "Visible",
         "Non": "Hayır",
         "Oui": "Evet"
     },
