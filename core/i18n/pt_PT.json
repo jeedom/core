@@ -550,8 +550,8 @@
         "Rotation": "Rotação",
         "Activer": "Ativar",
         "Ouverture": "Abertura",
-        "Gauche": "Esquerda",
-        "Droite": "Direito",
+        "Gauche": "Deixou",
+        "Droite": "Lei",
         "Devant": "Na frente",
         "Derriere": "Atrás",
         "Normal": "Normal",
@@ -912,7 +912,9 @@
         "Escalier": "Escada",
         "Empiler": "Pilha",
         "Variation": "Mudança",
-        "Echelle": "Escala"
+        "Echelle": "Escala",
+        "Droite": "Lei",
+        "Gauche": "Deixou"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -1253,8 +1255,8 @@
         "Taille de la police": "Tamanho da fonte",
         "Alignement du texte": "Alinhamento de texto",
         "Par defaut": "Por padrão",
-        "Gauche": "Esquerda",
-        "Droite": "Direito",
+        "Gauche": "Deixou",
+        "Droite": "Lei",
         "Centré": "Centralizado",
         "Gras": "Gordura",
         "Normal": "Normal",
@@ -2736,8 +2738,8 @@
         "Moyenne par année": "Média por ano",
         "Minimum par année": "Mínimo por ano",
         "Maximum par année": "Máximo por ano",
-        "Droite": "Direito",
-        "Gauche": "Esquerda",
+        "Droite": "Lei",
+        "Gauche": "Deixou",
         "Non": "Não",
         "Oui": "Sim"
     },

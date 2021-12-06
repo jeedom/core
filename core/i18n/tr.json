@@ -912,7 +912,9 @@
         "Escalier": "Merdiven",
         "Empiler": "Üst üste koyun",
         "Variation": "Varyasyon",
-        "Echelle": "Ölçek"
+        "Echelle": "Ölçek",
+        "Droite": "Droite",
+        "Gauche": "Gauche"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",

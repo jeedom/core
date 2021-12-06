@@ -912,7 +912,9 @@
         "Escalier": "лестница",
         "Empiler": "стек",
         "Variation": "изменение",
-        "Echelle": "шкала"
+        "Echelle": "шкала",
+        "Droite": "Droite",
+        "Gauche": "Gauche"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",

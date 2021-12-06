@@ -551,7 +551,7 @@
         "Activer": "Activate",
         "Ouverture": "Opening",
         "Gauche": "Left",
-        "Droite": "Right",
+        "Droite": "Law",
         "Devant": "In front of",
         "Derriere": "Behind",
         "Normal": "Normal",
@@ -912,7 +912,9 @@
         "Escalier": "Steps",
         "Empiler": "Stack",
         "Variation": "Variation",
-        "Echelle": "Scale"
+        "Echelle": "Scale",
+        "Droite": "Law",
+        "Gauche": "Left"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unauthorized Access",
@@ -1254,7 +1256,7 @@
         "Alignement du texte": "Text alignment",
         "Par defaut": "By default",
         "Gauche": "Left",
-        "Droite": "Right",
+        "Droite": "Law",
         "Centré": "Center",
         "Gras": "Bold",
         "Normal": "Normal",
@@ -2736,7 +2738,7 @@
         "Moyenne par année": "Average per year",
         "Minimum par année": "Minimum per year",
         "Maximum par année": "Maximum per year",
-        "Droite": "Right",
+        "Droite": "Law",
         "Gauche": "Left",
         "Non": "No",
         "Oui": "Yes"

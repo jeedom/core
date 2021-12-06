@@ -551,7 +551,7 @@
         "Activer": "Aktivieren",
         "Ouverture": "Öffnung",
         "Gauche": "Links",
-        "Droite": "Recht",
+        "Droite": "Gesetz",
         "Devant": "Front",
         "Derriere": "Hinten",
         "Normal": "Normal",
@@ -912,7 +912,9 @@
         "Escalier": "Treppe",
         "Empiler": "Stapel",
         "Variation": "Wertänderung",
-        "Echelle": "Maßstab"
+        "Echelle": "Maßstab",
+        "Droite": "Gesetz",
+        "Gauche": "Links"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Unbefugter Zugriff",
@@ -1254,7 +1256,7 @@
         "Alignement du texte": "Textausrichtung",
         "Par defaut": "Standard",
         "Gauche": "Links",
-        "Droite": "Recht",
+        "Droite": "Gesetz",
         "Centré": "Zentriert",
         "Gras": "Fett",
         "Normal": "Normal",
@@ -2736,7 +2738,7 @@
         "Moyenne par année": "Durchschnitt pro Jahr",
         "Minimum par année": "Minimum pro Jahr",
         "Maximum par année": "Maximum pro Jahr",
-        "Droite": "Recht",
+        "Droite": "Gesetz",
         "Gauche": "Links",
         "Non": "Nicht",
         "Oui": "Ja"

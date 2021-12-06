@@ -912,7 +912,9 @@
         "Escalier": "Escalier",
         "Empiler": "Empiler",
         "Variation": "Variation",
-        "Echelle": "Echelle"
+        "Echelle": "Echelle",
+        "Droite": "Droite",
+        "Gauche": "Gauche"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
