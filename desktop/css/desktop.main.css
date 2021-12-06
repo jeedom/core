@@ -3919,6 +3919,7 @@ Desktop
   .bs-sidebar {
     background: rgba(var(--bg-color), var(--opacity)) !important;
     border-radius: var(--border-radius) !important;
+    overflow: hidden auto;
   }
   .bs-sidebar .label,
   .bs-sidebar .label > i {
