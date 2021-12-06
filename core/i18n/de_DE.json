@@ -2771,11 +2771,7 @@
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
-        "Période de comparaison": "Vergleichszeitraum",
-        "Isoler": "Isolieren",
-        "Afficher tout": "Alle anzeigen",
-        "Masquer axe": "Achse ausblenden",
-        "Afficher axe": "Achse anzeigen"
+        "Période de comparaison": "Vergleichszeitraum"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
@@ -3131,6 +3127,12 @@
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Chronik"
+    },
+    "desktop\/common\/js\/ui.history.js": {
+        "Isoler": "Isolieren",
+        "Afficher tout": "Alle anzeigen",
+        "Masquer axe": "Achse ausblenden",
+        "Afficher axe": "Achse anzeigen"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",

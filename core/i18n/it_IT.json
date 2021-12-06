@@ -2771,11 +2771,7 @@
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
         "Historique supprimé avec succès": "Storico cancellato con successo",
-        "Période de comparaison": "Période de comparaison",
-        "Isoler": "Isoler",
-        "Afficher tout": "Afficher tout",
-        "Masquer axe": "Masquer axe",
-        "Afficher axe": "Afficher axe"
+        "Période de comparaison": "Période de comparaison"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
@@ -3131,6 +3127,12 @@
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Storico"
+    },
+    "desktop\/common\/js\/ui.history.js": {
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Hai modificato impostazioni che non sono state salvate. Sei sicuro di voler continuare?",

@@ -2771,11 +2771,7 @@
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Historique supprimé avec succès": "Historial eliminado correctamente",
-        "Période de comparaison": "Período de comparación",
-        "Isoler": "Aislar",
-        "Afficher tout": "Mostrar todo",
-        "Masquer axe": "Ocultar eje",
-        "Afficher axe": "Mostrar eje"
+        "Période de comparaison": "Período de comparación"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Quitar este filtro",
@@ -3131,6 +3127,12 @@
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historial"
+    },
+    "desktop\/common\/js\/ui.history.js": {
+        "Isoler": "Aislar",
+        "Afficher tout": "Mostrar todo",
+        "Masquer axe": "Ocultar eje",
+        "Afficher axe": "Mostrar eje"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Advertencia: Usted está dejando una página con datos modificados sin guardar. ¿Quiere continuar?",
