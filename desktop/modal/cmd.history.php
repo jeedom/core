@@ -45,7 +45,7 @@ sendVarToJs('cmd_id',$id);
       </div>
     </div>
   </div>
-  <div id="div_graph"></div>
+  <div id="div_graph" class="chartContainer"></div>
 </div>
 
 <script>

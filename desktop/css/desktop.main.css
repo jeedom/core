@@ -4013,26 +4013,24 @@ Desktop
     font-style: italic;
   }
 
-  #div_graph .highcharts-navigator-mask-inside {
+  div.chartContainer .highcharts-navigator-mask-inside {
     opacity: 0.6;
   }
-  #div_graph .highcharts-navigator-outline,
-  #div_graph .highcharts-xaxis > .highcharts-axis-line,
-  #div_graph .highcharts-scrollbar-button,
-  #div_graph .highcharts-scrollbar-arrow {
+  div.chartContainer .highcharts-navigator-outline,
+  div.chartContainer .highcharts-xaxis > .highcharts-axis-line,
+  div.chartContainer .highcharts-scrollbar-button,
+  div.chartContainer .highcharts-scrollbar-arrow {
     display: none;
   }
-  #div_graph .highcharts-axis-line,
-  #div_graph .highcharts-navigator-xaxis .highcharts-grid-line {
+  div.chartContainer .highcharts-axis-line,
+  div.chartContainer .highcharts-navigator-xaxis .highcharts-grid-line {
     stroke: var(--placeholder-color) !important;
   }
 
-  #div_graph .highcharts-navigator-handle {
+  div.chartContainer .highcharts-navigator-handle {
     fill: var(--placeholder-color) !important;
-    color: green !important;
-    background: green !important;
   }
-  #div_graph .highcharts-scrollbar-track {
+  div.chartContainer .highcharts-scrollbar-track {
     stroke: transparent;
   }
 
@@ -4064,9 +4062,7 @@ Desktop
   .graph-widget:not(.transparent) {
     background-color: rgb(var(--panel-bg-color)) !important;
   }
-  .graph-widget .highcharts-plot-band,
-  .chartContainer .highcharts-plot-band,
-  #div_graph .highcharts-plot-band {
+  div.chartContainer .highcharts-plot-band {
     fill: rgba(var(--bg-color), 0.5) !important;
   }
   .highcharts-button-box {
@@ -4091,9 +4087,7 @@ Desktop
     fill: var(--txt-color) !important;
     font-weight: 700;
   }
-  .div_viewZone .highcharts-button-disabled,
-  .graph-widget .highcharts-button-disabled,
-  #div_graph .highcharts-button-disabled {
+  div.chartContainer .highcharts-button-disabled {
     opacity: 0.3;
   }
   path.highcharts-graph {
