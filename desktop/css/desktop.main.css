@@ -1899,6 +1899,10 @@ Desktop
   .context-menu-disabled::after {
     border-left-color: var(--btnEq-default-color) !important;
   }
+  .context-menu-item.inlineItem {
+    display: inline-flex;
+    padding: 5px;
+  }
 
 /* __________________displayAsTable */
   /* top button container for pages and plugins */

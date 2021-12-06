@@ -649,7 +649,8 @@ $('#div_graph').contextMenu({
       contextmenuitems['color_' + idx] = {
         'name': '<i class="fas fa-square" style="color:' + Highcharts.getOptions().colors[idx] + '!important;"></i>',
         'id': 'color_' + idx,
-        'isHtmlName': true
+        'isHtmlName': true,
+        'className': 'inlineItem'
       }
       idx += 1
     })
