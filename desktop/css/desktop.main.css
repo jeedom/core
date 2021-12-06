@@ -4033,6 +4033,12 @@ Desktop
   div.chartContainer .highcharts-scrollbar-track {
     stroke: transparent;
   }
+  div.chartContainer .highcharts-point {
+    x: -2px;
+    y: 9px;
+    height: 5px;
+    width: 18px;
+  }
 
   .highcharts-minor-tick { stroke: var(--placeholder-color)}
   .highcharts-tick { stroke: var(--txt-color)}
