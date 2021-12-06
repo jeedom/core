@@ -914,7 +914,9 @@
         "Variation": "Perubahan",
         "Echelle": "Skala",
         "Droite": "Droite",
-        "Gauche": "Gauche"
+        "Gauche": "Gauche",
+        "Invisible": "Invisible",
+        "Visible": "Visible"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2703,16 +2705,6 @@
         "Escalier": "Tangga",
         "Empiler": "Tumpukan",
         "Variation": "Perubahan",
-        "Bleu": "Biru",
-        "Rouge": "Merah",
-        "Vert": "Hijau",
-        "Violet": "Ungu",
-        "Bleu ciel": "Warna biru langit",
-        "Orange": "Jeruk",
-        "Jaune": "Kuninh",
-        "Rose": "Berwarna merah muda",
-        "Noir": "Hitam",
-        "Vert\/Bleu": "Hijau \/ Biru",
         "Ligne": "Baris",
         "Aire": "Daerah",
         "Colonne": "Kolom",
@@ -2740,6 +2732,8 @@
         "Maximum par année": "Maksimum per tahun",
         "Droite": "Benar",
         "Gauche": "Kiri",
+        "Invisible": "Invisible",
+        "Visible": "Visible",
         "Non": "Tidak",
         "Oui": "Ya"
     },

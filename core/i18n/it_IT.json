@@ -914,7 +914,9 @@
         "Variation": "Variazione",
         "Echelle": "Scala",
         "Droite": "Droite",
-        "Gauche": "Gauche"
+        "Gauche": "Gauche",
+        "Invisible": "Invisible",
+        "Visible": "Visible"
     },
     "desktop\/modal\/genericType.human.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
@@ -2703,16 +2705,6 @@
         "Escalier": "Passi",
         "Empiler": "Pila",
         "Variation": "Variazione",
-        "Bleu": "Blu",
-        "Rouge": "Rosso",
-        "Vert": "Verde",
-        "Violet": "Porpora",
-        "Bleu ciel": "Blu cielo",
-        "Orange": "Arancione",
-        "Jaune": "Giallo",
-        "Rose": "Rosa",
-        "Noir": "Nero",
-        "Vert\/Bleu": "Verde \/ Blu",
         "Ligne": "Linea",
         "Aire": "Area",
         "Colonne": "Colonna",
@@ -2740,6 +2732,8 @@
         "Maximum par année": "Massimo per anno",
         "Droite": "Destra",
         "Gauche": "Sinistra",
+        "Invisible": "Invisible",
+        "Visible": "Visible",
         "Non": "No",
         "Oui": "Sì"
     },
