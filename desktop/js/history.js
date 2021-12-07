@@ -429,7 +429,7 @@ function emptyHistory(_cmd_id, _date) {
   })
 }
 
-function setChartXExtremes() {
+function resetChartXExtremes() {
   //only used for comparison
   try {
     var xExtremes0 = jeedomUIHistory.chart.xAxis[0].getExtremes()
@@ -536,20 +536,6 @@ $('#bt_doCompare').off('click').on('click', function() {
   compareChart(lastId)
 })
 
-function alignAllYaxis() {
-  //set both yAxis same:
-  var min, max
-  min = 10000
-  max = -10000
-  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
-    if (axis.dataMin < min) min = axis.dataMin
-    if (axis.dataMax > max) max = axis.dataMax
-  })
-  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
-    axis.setExtremes(min / 1.005, max * 1.005)
-  })
-}
-
 function compareChart(_cmd_id, _options) {
   //compare:
   var fromStart, fromEnd, toStart, toEnd
@@ -583,10 +569,10 @@ function compareChart(_cmd_id, _options) {
         option: _options,
         compare: 1,
         success: function(data) {
-          alignAllYaxis()
+          jeedomUIHistory.alignAllYaxis()
 
           setTimeout(function() {
-            setChartXExtremes()
+            resetChartXExtremes()
           }, 500)
         }
       })

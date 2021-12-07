@@ -354,10 +354,12 @@ jeedom.history.drawChart = function(_params) {
           selection: function(event) {
             //zoom back after reset zoom button. allways play with immutables!
             if (event.resetSelection) {
-              if (typeof isComparing !== 'undefined' && isComparing == true) {
+              if (typeof jeedomUIHistory.isComparing !== 'undefined' && jeedomUIHistory.isComparing == true) {
                 setTimeout(function() {
-                  alignAllYaxis()
-                  setChartXExtremes()
+                  try {
+                    jeedomUIHistory.alignAllYaxis()
+                    resetChartXExtremes()
+                  } catch (error) {}
                 }, 500)
                 return
               }
