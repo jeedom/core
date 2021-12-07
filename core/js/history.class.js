@@ -270,8 +270,6 @@ jeedom.history.drawChart = function(_params) {
       //series colors, options defined in core/js/jeedom.class.js jeedom.init():
       var colors = Highcharts.getOptions().colors
       var colorsNbr = colors.length
-      var opacityHigh = 0.85
-      var opacityLow = 0.1
       var numSeries = 0
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].chart.series)) {
         jeedom.history.chart[_params.el].chart.series.forEach((serie, index) => {
@@ -354,10 +352,12 @@ jeedom.history.drawChart = function(_params) {
           selection: function(event) {
             //zoom back after reset zoom button. allways play with immutables!
             if (event.resetSelection) {
-              if (typeof isComparing !== 'undefined' && isComparing == true) {
+              if (typeof jeedomUIHistory.isComparing !== 'undefined' && jeedomUIHistory.isComparing == true) {
                 setTimeout(function() {
-                  alignAllYaxis()
-                  setChartXExtremes()
+                  try {
+                    jeedomUIHistory.alignAllYaxis()
+                    resetChartXExtremes()
+                  } catch (error) {}
                 }, 500)
                 return
               }
@@ -548,8 +548,8 @@ jeedom.history.drawChart = function(_params) {
                 y2: 1
               },
               stops: [
-                [0, Highcharts.Color(_params.option.graphColor).setOpacity(opacityHigh).get('rgba')],
-                [1, Highcharts.Color(_params.option.graphColor).setOpacity(opacityLow).get('rgba')]
+                [0, Highcharts.Color(_params.option.graphColor).setOpacity(Highcharts.getOptions().jeedom.opacityHigh).get('rgba')],
+                [1, Highcharts.Color(_params.option.graphColor).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
               ],
             },
             stack: _params.option.graphStack,
@@ -789,8 +789,8 @@ jeedom.history.drawChart = function(_params) {
                 y2: 1
               },
               stops: [
-                [0, Highcharts.Color(series.color).setOpacity(opacityHigh).get('rgba')],
-                [1, Highcharts.Color(series.color).setOpacity(opacityLow).get('rgba')]
+                [0, Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityHigh).get('rgba')],
+                [1, Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
               ],
             }
           } else {

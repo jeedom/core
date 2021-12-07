@@ -27,6 +27,7 @@ if (trim($id) == '') {
   $id = init('showId');
 }
 sendVarToJs('cmd_id',$id);
+include_file('desktop/common', 'ui.history', 'js');
 ?>
 
 
@@ -49,7 +50,8 @@ sendVarToJs('cmd_id',$id);
 </div>
 
 <script>
-var isComparing = false
+jeedomUIHistory.isComparing = false
+jeedomUIHistory.chart = $('#div_graph').highcharts()
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
@@ -109,24 +111,6 @@ function setModal() {
       jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
     });
 
-    $('.highcharts-legend-item').off('click').on('click', function(event) {
-      if (!event.ctrlKey && !event.metaKey && !event.altKey) return
-      event.stopImmediatePropagation()
-      var chart = $('#div_graph').highcharts()
-      if (!chart) return
-      if (event.altKey) {
-        $(chart.series).each(function(idx, item) {
-          item.show()
-        })
-      } else {
-        var serieId = $(this).attr("class").split('highcharts-series-')[1].split(' ')[0]
-        $(chart.series).each(function(idx, item) {
-          item.hide()
-        })
-        chart.series[serieId].show()
-      }
-    })
-
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
     var divHighChart = $('#div_graph')
@@ -169,13 +153,6 @@ function setModal() {
     //only one history loaded:
     if (cmdIds.length == 1) {
       if (chart) {
-        //set yAxis zoom:
-        try {
-          var yExtremes = chart.yAxis[0].getExtremes()
-          var min = yExtremes.dataMin / 1.005
-          var max = yExtremes.dataMax * 1.005
-          chart.yAxis[0].setExtremes(min, max, true, false)
-        } catch(error) {}
         modal.find('.ui-dialog-title').html(modal.find('.ui-dialog-title').html() + ' : ' + chart.series[0].name)
       }
     }
@@ -190,4 +167,8 @@ function setModal() {
     resizeHighChartModal()
   }
 }
+
+$(function() {
+  jeedomUIHistory.initLegendContextMenu($('#div_graph').parent())
+})
 </script>

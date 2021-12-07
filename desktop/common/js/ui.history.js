@@ -133,5 +133,20 @@ jeedomUIHistory.initLegendContextMenu = function(_container) {
   })
 }
 
-
+/*
+Set all yAxis scale the same based on all axis min/max
+@history.class.js
+*/
+jeedomUIHistory.alignAllYaxis = function(_respectUnites=false) {
+  if (!jeedomUIHistory.chart) return
+  var min = 10000
+  var max = -10000
+  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
+    if (axis.dataMin < min) min = axis.dataMin
+    if (axis.dataMax > max) max = axis.dataMax
+  })
+  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
+    axis.setExtremes(min / 1.005, max * 1.005)
+  })
+}
 
