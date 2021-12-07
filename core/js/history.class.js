@@ -598,7 +598,6 @@ jeedom.history.drawChart = function(_params) {
           series.zIndex = _params.option.graphZindex;
         }
 
-
         //set axis position. View allow to set left/right on graph axis, or odd/even:
         var axisOpposite
         if (_params.option.graphScale == undefined) {
@@ -637,7 +636,6 @@ jeedom.history.drawChart = function(_params) {
           } else {
             var dateRange = 4
           }
-
 
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
@@ -725,6 +723,7 @@ jeedom.history.drawChart = function(_params) {
               xDateFormat: '%a %Y-%m-%d %H:%M:%S',
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
               valueDecimals: 2,
+              crosshairs: [true, true]
             },
             yAxis: [{
               id: _params.cmd_id,
@@ -741,7 +740,7 @@ jeedom.history.drawChart = function(_params) {
               },
               margin: 7,
               opposite: axisOpposite,
-              visible: _params.showAxis,
+              visible: _params.showAxis
             }],
             xAxis: [{
               type: 'datetime',
@@ -813,8 +812,6 @@ jeedom.history.drawChart = function(_params) {
               opposite: axisOpposite,
               visible: _params.showAxis,
             }
-
-
 
             //add serie and axis:
             series.yAxis = _params.cmd_id
