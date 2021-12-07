@@ -210,7 +210,7 @@ function initHistoryTrigger() {
 $('#cb_tracking').off('change').on('change', function() {
   if (jeedomUIHistory.chart) {
     if ($(this).is(':checked')) {
-      var opacity = 0.1
+      var opacity = Highcharts.getOptions().jeedom.opacityLow
     } else {
       var opacity = 1
     }
