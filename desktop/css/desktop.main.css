@@ -4040,6 +4040,10 @@ Desktop
     height: 5px;
     width: 18px;
   }
+  div.chartContainer .highcharts-button.highcharts-button-pressed > rect {
+    stroke-width: 1;
+    stroke: var(--placeholder-color);
+  }
 
   .highcharts-minor-tick { stroke: var(--placeholder-color)}
   .highcharts-tick { stroke: var(--txt-color)}
