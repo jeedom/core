@@ -23,11 +23,30 @@ jeedomUIHistory.chart = null
 /*
 @history
 @view
+@plan
 */
 jeedomUIHistory.initLegendContextMenu = function(_container) {
   if (!isset(_container)) _container = $('body')
   _container.contextMenu({
     selector: "div.chartContainer .highcharts-legend-item",
+    position: function(opt, x, y) {
+      //legend bottom graph, open menu upside if possible:
+      var menuHeight = opt.$menu[0].clientHeight
+      var menuWidth = opt.$menu[0].clientWidth
+      var winHeight = $(window).height()
+      var winWidth = $(window).width()
+
+      var newTop =  y - menuHeight
+      var newLeft = x
+
+      if ((y - menuHeight - 20) < 0) {
+        newTop = y
+      }
+      if ((x + menuWidth + 20) > winWidth) {
+        newLeft = x - (menuWidth + 20)
+      }
+      opt.$menu.css({top: newTop, left: newLeft})
+    },
     build: function($trigger) {
       if (jeedomUIHistory.isComparing) return false
       jeedomUIHistory.chart = $($trigger[0].parentNode).closest('div.chartContainer').highcharts()
