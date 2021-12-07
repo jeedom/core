@@ -598,6 +598,21 @@ jeedom.history.drawChart = function(_params) {
           series.zIndex = _params.option.graphZindex;
         }
 
+
+        //set axis position. View allow to set left/right on graph axis, or odd/even:
+        var axisOpposite
+        if (_params.option.graphScale == undefined) {
+          if (!isset(jeedom.history.chart[_params.el])) {
+            axisOpposite = true
+          } else if (jeedom.history.chart[_params.el].chart.yAxis.length & 1) {
+            axisOpposite = true
+          } else {
+            axisOpposite = false
+          }
+        } else {
+          axisOpposite = !parseInt(_params.option.graphScale)
+        }
+
         //new first curve:
         if (!isset(jeedom.history.chart[_params.el]) || (isset(_params.newGraph) && _params.newGraph == true)) {
           jeedom.history.chart[_params.el] = {}
@@ -623,12 +638,14 @@ jeedom.history.drawChart = function(_params) {
             var dateRange = 4
           }
 
+
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
             chart: charts,
             credits: { enabled: false },
             navigator: {
               enabled: _params.showNavigator,
+              margin: 5,
               handles: {
                 lineWidth: 0,
                 width: 3,
@@ -720,31 +737,25 @@ jeedom.history.drawChart = function(_params) {
                 style: {
                   color: _params.option.graphColor
                 },
-                align: 'left',
-                x: 0
+                align: 'center'
               },
-              opposite: (_params.option.graphScale == undefined) ? 1 : !parseInt(_params.option.graphScale),
+              margin: 7,
+              opposite: axisOpposite,
               visible: _params.showAxis,
-              /*
-              title: {
-                text: series.shortName.split('][').reverse()[0].slice(0, -1),
-                style: {
-                  color: _params.option.graphColor
-                }
-              },
-              */
             }],
             xAxis: [{
               type: 'datetime',
               ordinal: false,
               maxPadding: 0.02,
-              minPadding: 0.02
+              minPadding: 0.02,
+              margin: 0
             }, {
               //needed for compare mode
               type: 'datetime',
               ordinal: false,
               maxPadding: 0.02,
-              minPadding: 0.02
+              minPadding: 0.02,
+              margin: 0
             }],
             scrollbar: {
               barBackgroundColor: 'var(--txt-color)',
@@ -795,35 +806,15 @@ jeedom.history.drawChart = function(_params) {
                 format: '{value} ' + series.unite,
                 style: {
                   color: _params.option.graphColor
-                }
+                },
+                align: 'center'
               },
+              margin: 7,
+              opposite: axisOpposite,
               visible: _params.showAxis,
-              /*
-              title: {
-                text: series.shortName.split('][').reverse()[0].slice(0, -1),
-                style: {
-                  color: _params.option.graphColor
-                }
-              }
-              */
             }
 
-            /*
-            if ($('body').attr('data-page') == 'plan') {
-              yAxis.visible = false
-            }
-            */
 
-            //view allow to set left/right on graph axis:
-            if (_params.option.graphScale == undefined) {
-              if (jeedom.history.chart[_params.el].chart.yAxis.length & 1) {
-                yAxis.opposite = true
-              } else {
-                yAxis.opposite = false
-              }
-            } else {
-              yAxis.opposite = !parseInt(_params.option.graphScale)
-            }
 
             //add serie and axis:
             series.yAxis = _params.cmd_id
