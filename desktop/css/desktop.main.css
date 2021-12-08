@@ -4034,7 +4034,7 @@ Desktop
   div.chartContainer .highcharts-scrollbar-track {
     stroke: transparent;
   }
-  div.chartContainer .highcharts-point {
+  div.chartContainer .highcharts-legend-item > .highcharts-point {
     x: -2px;
     y: 9px;
     height: 5px;
