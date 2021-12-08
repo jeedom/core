@@ -329,6 +329,7 @@ function addChart(_cmd_id, _action, _options) {
         } catch (error) {}
       })
     }
+    if (!jeedom.history.chart[__el__].yAxisScaling) jeedomUIHistory.resetyAxisScaling(__el__)
     setChartOptions()
     return
   }

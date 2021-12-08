@@ -606,6 +606,9 @@ jeedom.history.drawChart = function(_params) {
                   jeedom.history.modalchangePoint(event, this, data.result)
                 }
               }
+            },
+            marker:{
+              symbol: 'circle'
             }
           }
 
