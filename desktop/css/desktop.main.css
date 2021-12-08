@@ -4084,8 +4084,11 @@ Desktop
   .highcharts-button-box > text {
     fill: var(--link-color) !important;
   }
-  .highcharts-button-box {
-    stroke: transparent;
+  div.chartContainer .highcharts-button-box {
+    x:0;
+    y:0;
+    rx: var(--border-radius);
+    ry: var(--border-radius);
   }
   .highcharts-axis-labels.highcharts-xaxis-labels > text {
     fill: var(--link-color) !important;
@@ -4908,6 +4911,10 @@ Desktop
   .roundedRight::-webkit-color-swatch {
     border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
     margin-right: 3px !important;
+  }
+  .input-group .rounded,
+  .rounded {
+    border-radius: var(--border-radius) !important;
   }
 
   .ui-dialog,
