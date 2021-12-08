@@ -1363,8 +1363,10 @@ function displayObject(_plan, _html, _noRender) {
     $pageContainer.append(style_el)
     $('.div_displayObject').append(html)
     if (isset(_plan.display) && isset(_plan.display.graph)) {
+      var done = 0
       for (var i in _plan.display.graph) {
         if (init(_plan.display.graph[i].link_id) != '') {
+          done += 1
           jeedom.history.drawChart({
             cmd_id: _plan.display.graph[i].link_id,
             el: 'graph' + _plan.link_id,
@@ -1379,7 +1381,12 @@ function displayObject(_plan, _html, _noRender) {
             global: false,
             success: function() {
               if (init(_plan.display.transparentBackground, false)) {
-                $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+                done -= 1
+                if (done == 0) {
+                  jeedom.history.chart['graph' + _plan.link_id].yAxisScaling = false
+                  jeedomUIHistory.resetyAxisScaling('graph' + _plan.link_id)
+                  $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+                }
               }
             }
           })
@@ -1403,7 +1410,7 @@ $(function() {
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
 
-  jeedomUIHistory.initLegendContextMenu($('div.div_backgroundPlan'))
+  jeedomUIHistory.initLegendContextMenu('div_backgroundPlan')
 
   //back to mobile home with three fingers on mobile:
   if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {

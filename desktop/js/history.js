@@ -17,10 +17,9 @@
 "use strict"
 
 var lastId = null
-jeedomUIHistory.isComparing = false
-var yVis = true
-jeedomUIHistory.chart = $('#div_graph').highcharts()
-delete jeedom.history.chart['div_graph']
+var $divGraph = $('#div_graph')
+var __el__ = 'div_graph'
+delete jeedom.history.chart[__el__]
 
 $(function() {
   var cmdIds = getUrlVars('cmd_id')
@@ -45,9 +44,10 @@ $(function() {
 //handle resizing:
 var resizeDone
 function resizeDn() {
-  var height = $('#div_graph').height() - $('#div_historyOptions').outerHeight(true)
-  if (jeedomUIHistory.chart) {
-    jeedomUIHistory.chart.setSize($('#div_graph').width(), height)
+  if (jeedom.history.chart[__el__] === undefined) return
+  var height = $divGraph.height() - $('#div_historyOptions').outerHeight(true)
+  if (jeedom.history.chart[__el__].chart) {
+    jeedom.history.chart[__el__].chart.setSize($divGraph.width(), height)
   }
   $('.bs-sidebar').height(height)
 }
@@ -59,9 +59,9 @@ $(window).resize(function() {
 
 /************Left button list UI***********/
 $('#bt_validChangeDate').on('click', function() {
-  if (jeedom.history.chart['div_graph'] === undefined) return
+  if (jeedom.history.chart[__el__] === undefined) return
   $('.highcharts-plot-band').remove()
-  $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
+  $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
     if (serie.options && !isNaN(serie.options.id)) {
       var cmd_id = serie.options.id
       addChart(cmd_id, 0)
@@ -150,7 +150,7 @@ function initHistoryTrigger() {
 
   $('#cb_derive').off('change').on('change', function() {
     var graphDerive = $(this).value()
-    $(jeedomUIHistory.chart.series).each(function(idx, serie) {
+    $(jeedom.history.chart[__el__].chart.series).each(function(idx, serie) {
       if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
         return
       }
@@ -179,7 +179,7 @@ function initHistoryTrigger() {
 
   $('#cb_step').off('change').on('change', function() {
     var graphStep = $(this).value()
-    $(jeedomUIHistory.chart.series).each(function(idx, serie) {
+    $(jeedom.history.chart[__el__].chart.series).each(function(idx, serie) {
       if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
         return
       }
@@ -207,36 +207,6 @@ function initHistoryTrigger() {
 }
 
 //Right buttons:
-$('#cb_tracking').off('change').on('change', function() {
-  if (jeedomUIHistory.chart) {
-    if ($(this).is(':checked')) {
-      var opacity = Highcharts.getOptions().jeedom.opacityLow
-    } else {
-      var opacity = 1
-    }
-    jeedomUIHistory.chart.update({
-      plotOptions: {
-        series: {
-          states: {
-            inactive: {
-              opacity: opacity
-            }
-          }
-        }
-      }
-    })
-  }
-})
-
-$('#bt_toggleYaxis').on('click', function() {
-  yVis = !yVis
-  jeedomUIHistory.chart.yAxis.forEach((axis, index) => {
-    axis.update({
-      visible: yVis
-    })
-  })
-})
-
 $('#bt_clearGraph').on('click', function() {
   clearGraph()
 })
@@ -265,7 +235,7 @@ $('body').on({
 
 $(".li_history .history").on('click', function(event) {
   $.hideAlert()
-  if (jeedomUIHistory.isComparing) return
+  if (isset(jeedom.history.chart[__el__]) && jeedom.history.chart[__el__].comparing) return
   if ($(this).closest('.li_history').hasClass('active')) {
     $(this).closest('.li_history').removeClass('active')
     addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
@@ -309,13 +279,12 @@ function setChartOptions() {
   if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
     //only one graph:
     _prop = false
-    jeedomUIHistory.chart = $('#div_graph').highcharts()
     var serieId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr("class").split('highcharts-series-')[1].split(' ')[0]
-    if (!isset(jeedomUIHistory.chart.series[serieId])) return
-    lastId = jeedomUIHistory.chart.series[serieId].userOptions.id
+    if (!isset(jeedom.history.chart[__el__].chart.series[serieId])) return
+    lastId = jeedom.history.chart[__el__].chart.series[serieId].userOptions.id
 
     var grouping, groupingType, type
-    $(jeedomUIHistory.chart.series).each(function(idx, serie) {
+    $(jeedom.history.chart[__el__].chart.series).each(function(idx, serie) {
       if (serie.userOptions.id == lastId) {
         if (isset(serie.userOptions.dataGrouping)) {
           grouping = serie.userOptions.dataGrouping.enabled
@@ -350,12 +319,12 @@ function addChart(_cmd_id, _action, _options) {
   //_action: 0=remove 1=add
   if (_action == 0) {
     //remove serie:
-    if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
-      $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
+    if (isset(jeedom.history.chart[__el__]) && isset(jeedom.history.chart[__el__].chart) && isset(jeedom.history.chart[__el__].chart.series)) {
+      $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
         try {
           if (serie.options.id == _cmd_id) {
             serie.yAxis.remove()
-            jeedomUIHistory.chart.get(serie.options.id)
+            jeedom.history.chart[__el__].chart.get(serie.options.id).remove(false)
           }
         } catch (error) {}
       })
@@ -367,11 +336,11 @@ function addChart(_cmd_id, _action, _options) {
   var dateEnd = $('#in_endDate').value()
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
-    el: 'div_graph',
+    el: __el__,
     dateRange: 'all',
     dateStart: dateStart,
     dateEnd: dateEnd,
-    height: $('#div_graph').height(),
+    height: $divGraph.height(),
     option: _options,
     compare: 0,
     success: function(data) {
@@ -385,11 +354,11 @@ function addChart(_cmd_id, _action, _options) {
 }
 
 function clearGraph(_lastId = null) {
-  jeedomUIHistory.isComparing = false
-  if (jeedom.history.chart['div_graph'] === undefined) return
+  jeedom.history.chart[__el__].comparing = false
+  if (jeedom.history.chart[__el__] === undefined) return
 
-  $.clearDivContent('div_graph')
-  delete jeedom.history.chart['div_graph']
+  $.clearDivContent(__el__)
+  delete jeedom.history.chart[__el__]
   $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
   $('#ul_history').find('.li_history.active').removeClass('active')
   setChartOptions()
@@ -432,11 +401,11 @@ function emptyHistory(_cmd_id, _date) {
 function resetChartXExtremes() {
   //only used for comparison
   try {
-    var xExtremes0 = jeedomUIHistory.chart.xAxis[0].getExtremes()
-    var xExtremes1 = jeedomUIHistory.chart.xAxis[1].getExtremes()
-    jeedomUIHistory.chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
-    jeedomUIHistory.chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
-    jeedomUIHistory.chart.update({
+    var xExtremes0 = jeedom.history.chart[__el__].chart.xAxis[0].getExtremes()
+    var xExtremes1 = jeedom.history.chart[__el__].chart.xAxis[1].getExtremes()
+    jeedom.history.chart[__el__].chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
+    jeedom.history.chart[__el__].chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
+    jeedom.history.chart[__el__].chart.update({
       navigator: {
         enabled: false
       },
@@ -502,24 +471,15 @@ $("#md_getCompareRange").dialog({
 })
 
 $('#bt_compare').off().on('click', function() {
-  if (!jeedomUIHistory.isComparing) {
+  if (!jeedom.history.chart[__el__].comparing) {
+    //Go comparing:
     if (lastId == null) return
     $('#md_getCompareRange').removeClass('hidden').dialog({
       title: "{{Période de comparaison}}"
     }).dialog('open')
   } else {
+    //Stop comparing:
     clearGraph(lastId)
-    jeedomUIHistory.chart.xAxis[1].update({
-      visible: false
-    })
-    jeedomUIHistory.chart.update({
-      navigator: {
-        enabled: true
-      },
-      scrollbar: {
-        enabled: true
-      }
-    })
     addChart(lastId)
     $('li.li_history[data-cmd_id="' + lastId + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
@@ -527,16 +487,16 @@ $('#bt_compare').off().on('click', function() {
 })
 
 $('#bt_doCompare').off('click').on('click', function() {
-  jeedomUIHistory.isComparing = true
+  jeedom.history.chart[__el__].comparing = true
   $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
   $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
-  jeedomUIHistory.chart.xAxis[1].update({
+  jeedom.history.chart[__el__].chart.xAxis[1].update({
     visible: true
   })
   compareChart(lastId)
 })
 
-function compareChart(_cmd_id, _options) {
+function compareChart(_cmd_id) {
   //compare:
   var fromStart, fromEnd, toStart, toEnd
   fromStart = $('#in_compareStart1').value() + ' 00:00:00'
@@ -544,33 +504,29 @@ function compareChart(_cmd_id, _options) {
   toStart = $('#in_compareStart2').value() + ' 00:00:00'
   toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
 
-  //remove all series from chart:
-  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
-    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
-  }
+  //Existing serie dateRange can vary, remove all series:
+  jeedomUIHistory.emptyChart(__el__)
 
   //add data from both date range:
   jeedom.history.drawChart({
     cmd_id: _cmd_id,
-    el: 'div_graph',
+    el: __el__,
     dateRange: 'all',
     dateStart: fromStart,
     dateEnd: fromEnd,
-    height: $('#div_graph').height(),
-    option: _options,
+    height: $divGraph.height(),
     success: function(data) {
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
-        el: 'div_graph',
+        el: __el__,
         dateRange: 'all',
         dateStart: toStart,
         dateEnd: toEnd,
-        height: $('#div_graph').height(),
-        option: _options,
+        height: $divGraph.height(),
+        option: {graphScaleVisible: false},
         compare: 1,
         success: function(data) {
-          jeedomUIHistory.alignAllYaxis()
-
+          jeedomUIHistory.resetyAxisScaling(__el__)
           setTimeout(function() {
             resetChartXExtremes()
           }, 500)
@@ -583,5 +539,5 @@ function compareChart(_cmd_id, _options) {
 
 //__________________Legend items
 $(function() {
-  jeedomUIHistory.initLegendContextMenu($('#div_graph').parent())
+  jeedomUIHistory.initLegendContextMenu(__el__)
 })

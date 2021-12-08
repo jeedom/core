@@ -331,6 +331,12 @@ jeedom.history.drawChart = function(_params) {
       //jeedom default chart params:
       var charts = {
         zoomType: 'xy',
+        resetZoomButton: {
+          position: {
+            x: 0,
+            y: 0
+          }
+        },
         pinchType: 'xy',
         renderTo: _params.el,
         alignTicks: false,
@@ -350,12 +356,23 @@ jeedom.history.drawChart = function(_params) {
             this.yAxis[0].setExtremes(min, max, true, false)
           },
           selection: function(event) {
+            // zoom or reset zoom event
+            var chartId = event.target._jeeId
             //zoom back after reset zoom button. allways play with immutables!
             if (event.resetSelection) {
-              if (typeof jeedomUIHistory.isComparing !== 'undefined' && jeedomUIHistory.isComparing == true) {
+              jeedom.history.chart[chartId].zoom = false
+
+              //No jeedomUIHistory on mobile:
+              if (jeedom.history.chart[chartId].yAxisScaling) {
+                try { jeedom.history.chart[chartId].btToggleyaxisScaling.setState(2) } catch (error) {}
+              } else {
+                try { jeedom.history.chart[chartId].btToggleyaxisScaling.setState(0) } catch (error) {}
+              }
+
+              if (typeof jeedom.history.chart[chartId].comparing !== 'undefined' && jeedom.history.chart[chartId].comparing == true) {
                 setTimeout(function() {
                   try {
-                    jeedomUIHistory.alignAllYaxis()
+                    jeedomUIHistory.resetyAxisScaling(chartId)
                     resetChartXExtremes()
                   } catch (error) {}
                 }, 500)
@@ -363,27 +380,45 @@ jeedom.history.drawChart = function(_params) {
               }
 
               //set back yAxis zoom from their respective series data:
-              event.target.yAxis.forEach((axis, index) => {
-                var axisId = axis.userOptions.id
-                if (!axisId) axisId = 0
-                if (axisId != 'navigator-y-axis') {
+              if (jeedom.history.chart[chartId].yAxisScaling) {
+                this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+                  axisId = axis.userOptions.id
+                  if (!axisId) axisId = 0
                   min = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
                   max = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
                   axis.update({
                     min: min / 1.005,
                     max: max * 1.005
                   })
-                }
-              })
+                })
+              } else {
+                var min = 100000
+                var max = -100000
+                this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+                  if (axis.dataMin < min) min = axis.dataMin
+                  if (axis.dataMax > max) max = axis.dataMax
+                })
+                this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+                  axis.update({
+                    min: min / 1.005,
+                    max: max * 1.005
+                  })
+                })
+              }
+            } else  {
+              jeedom.history.chart[chartId].zoom = true
+              try { jeedom.history.chart[chartId].btToggleyaxisScaling.setState(3) } catch (error) {}
             }
           },
           addSeries: function(event) {
-            var axisId = event.options.id
-            var axis = this.get(axisId)
-            //dataMin and dataMax only there once draw, so we have to calcul them from data:
-            var min = Math.min.apply(Math, event.options.data.map(function (i) {return i[1]}))
-            var max = Math.max.apply(Math, event.options.data.map(function (i) {return i[1]}))
-            axis.setExtremes(min / 1.005, max * 1.005, true, false)
+            if (jeedom.history.chart[this._jeeId].yAxisScaling) {
+              var axisId = event.options.id
+              var axis = this.get(axisId)
+              //dataMin and dataMax only there once draw, so we have to calcul them from data:
+              var min = Math.min.apply(Math, event.options.data.map(function (i) {return i[1]}))
+              var max = Math.max.apply(Math, event.options.data.map(function (i) {return i[1]}))
+              axis.setExtremes(min / 1.005, max * 1.005, true, false)
+            }
           },
           render: function() {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
@@ -618,6 +653,7 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].cmd = new Array()
           jeedom.history.chart[_params.el].color = seriesNumber - 1
           jeedom.history.chart[_params.el].nbTimeline = 1
+          jeedom.history.chart[_params.el].yAxisScaling = true
 
           if (_params.dateRange == '30 min') {
             var dateRange = 1
@@ -639,6 +675,7 @@ jeedom.history.drawChart = function(_params) {
 
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
+            _jeeId: _params.el,
             chart: charts,
             credits: { enabled: false },
             navigator: {
@@ -772,12 +809,19 @@ jeedom.history.drawChart = function(_params) {
             },
             series: [series]
           })
+          //Store references and init buttons from UI:
+          jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
+          jeedom.history.chart[_params.el].chart._jeeId = _params.el
+          if (jeedom.display.version == 'desktop' && jeedomUIHistory != undefined && typeof jeedomUIHistory.initChart === "function") {
+            jeedomUIHistory.initChart(_params.el)
+          }
         } else {
           //set options for comparison serie:
           if (comparisonSerie == 1) {
             series.zIndex = -1
             series.dashStyle = 'shortdot'
             series.xAxis = 1
+            series.yAxis = 0
             series.name = '{{Comparaison}}'
             series.comparing = '1'
             series.color = colors[1]
@@ -813,11 +857,11 @@ jeedom.history.drawChart = function(_params) {
               visible: _params.showAxis,
             }
 
-            //add serie and axis:
+            //add axis to chart:
             series.yAxis = _params.cmd_id
             jeedom.history.chart[_params.el].chart.addAxis(yAxis)
           }
-
+          //add series to graph:
           jeedom.history.chart[_params.el].chart.addSeries(series)
 
         }

@@ -46,23 +46,22 @@ include_file('desktop/common', 'ui.history', 'js');
       </div>
     </div>
   </div>
-  <div id="div_graph" class="chartContainer"></div>
+  <div id="div_modalGraph" class="chartContainer"></div>
 </div>
 
 <script>
-jeedomUIHistory.isComparing = false
-jeedomUIHistory.chart = $('#div_graph').highcharts()
+delete jeedom.history.chart['div_modalGraph']
 var cmdIds = cmd_id.split('-')
 cmdIds = $.unique(cmdIds)
 cmdIds = cmdIds.filter(Boolean)
 
-$('#div_graph').css('position', 'relative').css('width', '100%')
+$('#div_modalGraph').css('position', 'relative').css('width', '100%')
 //remove any previously loaded history:
-if (jeedom.history.chart['div_graph'] != undefined) {
-  while (jeedom.history.chart['div_graph'].chart.series.length > 0) {
-    jeedom.history.chart['div_graph'].chart.series[0].remove(true)
+if (jeedom.history.chart['div_modalGraph'] != undefined) {
+  while (jeedom.history.chart['div_modalGraph'].chart.series.length > 0) {
+    jeedom.history.chart['div_modalGraph'].chart.series[0].remove(true)
   }
-  delete jeedom.history.chart['div_graph']
+  delete jeedom.history.chart['div_modalGraph']
 }
 
 $.hideAlert()
@@ -76,7 +75,7 @@ $(function() {
   cmdIds.forEach(function(cmd_id) {
     jeedom.history.drawChart({
       cmd_id: cmd_id,
-      el: 'div_graph',
+      el: 'div_modalGraph',
       dateRange : 'all',
       dateStart : $('#in_startDate').value(),
       dateEnd :  $('#in_endDate').value(),
@@ -113,7 +112,7 @@ function setModal() {
 
     var modalContent = $('.md_history').parents('.ui-dialog-content.ui-widget-content')
     var modal = modalContent.parents('.ui-dialog.ui-resizable')
-    var divHighChart = $('#div_graph')
+    var divHighChart = $('#div_modalGraph')
     var chart = divHighChart.highcharts()
 
     //check previous size/pos:
@@ -169,6 +168,6 @@ function setModal() {
 }
 
 $(function() {
-  jeedomUIHistory.initLegendContextMenu($('#div_graph').parent())
+  jeedomUIHistory.initLegendContextMenu('div_modalGraph')
 })
 </script>
