@@ -170,8 +170,9 @@ jeedomUIHistory.emptyChart = function(_chartId) {
 Set all yAxis scale the same based on all axis min/max
 @history.class.js
 */
-jeedomUIHistory.resetyAxisScaling = function(_chartId) {
+jeedomUIHistory.resetyAxisScaling = function(_chartId, _useUnite=false) {
   var chart = jeedom.history.chart[_chartId].chart
+  chart.xAxis[0].setExtremes() //first to get all dateRanges values!
   var min = 100000
   var max = -100000
   chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
@@ -181,6 +182,9 @@ jeedomUIHistory.resetyAxisScaling = function(_chartId) {
   chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
     axis.setExtremes(min / 1.005, max * 1.005)
   })
+
+  //group scales by unite:
+  //console.log(axis.series[0].userOptions.unite)
 }
 
 /*

@@ -350,10 +350,6 @@ jeedom.history.drawChart = function(_params) {
         },
         events: {
           load: function() {
-            //first serie, reduce vertical scale to real data:
-            var min = this.series[0].dataMin / 1.005
-            var max = this.series[0].dataMax * 1.005
-            this.yAxis[0].setExtremes(min, max, true, false)
           },
           selection: function(event) {
             // zoom or reset zoom event
@@ -392,6 +388,7 @@ jeedom.history.drawChart = function(_params) {
                   })
                 })
               } else {
+                this.xAxis[0].setExtremes() //first to get all dateRanges values!
                 var min = 100000
                 var max = -100000
                 this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
@@ -411,16 +408,23 @@ jeedom.history.drawChart = function(_params) {
             }
           },
           addSeries: function(event) {
-            if (jeedom.history.chart[this._jeeId].yAxisScaling) {
-              var axisId = event.options.id
-              var axis = this.get(axisId)
-              //dataMin and dataMax only there once draw, so we have to calcul them from data:
+            if (!jeedom.history.chart[this._jeeId].yAxisScaling) {
+              var thisAxisId = event.options.id
               var min = Math.min.apply(Math, event.options.data.map(function (i) {return i[1]}))
               var max = Math.max.apply(Math, event.options.data.map(function (i) {return i[1]}))
-              axis.setExtremes(min / 1.005, max * 1.005, true, false)
+              var thisMin, thisMax
+              event.target.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis' && v.userOptions.id != thisAxisId).forEach((axis, index) => {
+                thisMin = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+                thisMax = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+                if (thisMin < min) min = thisMin
+                if (thisMax > max) max = thisMax
+              })
+              this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+                axis.setExtremes(min / 1.005, max * 1.005)
+              })
             }
           },
-          render: function() {
+          render: function(event) {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
             $('.highcharts-zone-graph-0.customSolidZone').each(function() {
@@ -655,6 +659,14 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].nbTimeline = 1
           jeedom.history.chart[_params.el].yAxisScaling = true
 
+          //set min max to overide 0->max default HighChart:
+          var yMin = null
+          var yMax = null
+          if (jeedom.history.chart[_params.el].yAxisScaling) {
+            yMin = Math.min.apply(Math, series.data.map(function (i) {return i[1]})) / 1.005
+            yMax = Math.max.apply(Math, series.data.map(function (i) {return i[1]})) * 1.005
+          }
+
           if (_params.dateRange == '30 min') {
             var dateRange = 1
           } else if (_params.dateRange == '1 hour') {
@@ -764,6 +776,8 @@ jeedom.history.drawChart = function(_params) {
             },
             yAxis: [{
               id: _params.cmd_id,
+              min: yMin,
+              max: yMax,
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
@@ -839,8 +853,18 @@ jeedom.history.drawChart = function(_params) {
             }
           } else {
             //add new yAxis:
+            //set min max to overide 0->max default HighChart:
+            var yMin = undefined
+            var yMax = undefined
+            if (jeedom.history.chart[_params.el].yAxisScaling) {
+              yMin = Math.min.apply(Math, series.data.map(function (i) {return i[1]})) / 1.005
+              yMax = Math.max.apply(Math, series.data.map(function (i) {return i[1]})) * 1.005
+            }
+
             var yAxis = {
               id: _params.cmd_id,
+              min: yMin,
+              max: yMax,
               showEmpty: false,
               gridLineWidth: 0,
               minPadding: 0.001,
