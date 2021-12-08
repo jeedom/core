@@ -2246,7 +2246,7 @@ function getAddButton(_type,_caret) {
   retour += '<ul class="dropdown-menu">'
   retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
-  if(_type != 'action'){
+  if(_type != 'action' && _type != 'if'  && _type != 'in'  && _type != 'for'  && _type != 'at'){
       retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
   }
   retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
