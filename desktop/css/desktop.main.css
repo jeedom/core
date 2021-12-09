@@ -951,6 +951,9 @@ Desktop
     border-right-color: var(--logo-primary-color) !important;
   }
 
+  .list-group {
+    margin-bottom: unset;
+  }
   .list-group-item {
     padding: 0 5px;
     background-color: rgb(var(--defaultBkg-color));
