@@ -3130,7 +3130,11 @@
         "Isoler": "Aislar",
         "Afficher tout": "Mostrar todo",
         "Masquer axe": "Ocultar eje",
-        "Afficher axe": "Mostrar eje"
+        "Afficher axe": "Mostrar eje",
+        "Opacité des courbes au suivi de la souris": "Opacidad de curvas al rastrear el mouse",
+        "Groupement des axes Y par unité": "Agrupación de ejes Y por unidad",
+        "Echelle independante des axes Y": "Escala independiente de los ejes Y",
+        "Affichage des axes Y": "Visualización del eje Y"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Advertencia: Usted está dejando una página con datos modificados sin guardar. ¿Quiere continuar?",

@@ -3130,7 +3130,11 @@
         "Isoler": "Isolate",
         "Afficher tout": "Display all",
         "Masquer axe": "Hide axis",
-        "Afficher axe": "Show axis"
+        "Afficher axe": "Show axis",
+        "Opacité des courbes au suivi de la souris": "Opacity of curves when tracking the mouse",
+        "Groupement des axes Y par unité": "Grouping of Y axes by unit",
+        "Echelle independante des axes Y": "Scale independent of Y axes",
+        "Affichage des axes Y": "Y axis display"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",

@@ -3130,7 +3130,11 @@
         "Isoler": "Isolieren",
         "Afficher tout": "Alle anzeigen",
         "Masquer axe": "Achse ausblenden",
-        "Afficher axe": "Achse anzeigen"
+        "Afficher axe": "Achse anzeigen",
+        "Opacité des courbes au suivi de la souris": "Deckkraft von Kurven beim Verfolgen der Maus",
+        "Groupement des axes Y par unité": "Gruppierung der Y-Achsen nach Einheit",
+        "Echelle independante des axes Y": "Skalierung unabhängig von Y-Achsen",
+        "Affichage des axes Y": "Y-Achsen-Anzeige"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
