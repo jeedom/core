@@ -220,6 +220,7 @@ jeedom.history.drawChart = function(_params) {
         return;
       }
 
+      //check is there is some data and manage alerts:
       if (data.result.data.length < 1) {
         if (_params.option.displayAlert == false) {
           return;
@@ -670,23 +671,9 @@ jeedom.history.drawChart = function(_params) {
             yMax = Math.max.apply(Math, series.data.map(function (i) {return i[1]})) * 1.005
           }
 
-          if (_params.dateRange == '30 min') {
-            var dateRange = 1
-          } else if (_params.dateRange == '1 hour') {
-            var dateRange = 2
-          } else if (_params.dateRange == '1 day') {
-            var dateRange = 3
-          } else if (_params.dateRange == '7 days') {
-            var dateRange = 4
-          } else if (_params.dateRange == '1 month') {
-            var dateRange = 5
-          } else if (_params.dateRange == '1 year') {
-            var dateRange = 6
-          } else if (_params.dateRange == 'all') {
-            var dateRange = 0
-          } else {
-            var dateRange = 4
-          }
+          //dateRange buttons config:
+          var dateRange = ['all', '30 min', '1 hour', '1 day', '7 days', '1 month', '1 year'].indexOf(_params.dateRange)
+          if (dateRange == -1) dateRange = 4
 
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
