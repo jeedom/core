@@ -1894,10 +1894,11 @@ Desktop
   }
   .context-menu-disabled,
   .context-menu-disabled::before {
-    color: var(--btnEq-default-color) !important;
+    color: var(--placeholder-color) !important;
+    font-style: italic;
   }
   .context-menu-disabled::after {
-    border-left-color: var(--btnEq-default-color) !important;
+    border-left-color: var(--el-defaultColor) !important;
   }
   .context-menu-item.inlineItem {
     display: inline-flex;

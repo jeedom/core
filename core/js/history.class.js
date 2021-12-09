@@ -492,15 +492,19 @@ jeedom.history.drawChart = function(_params) {
                 dataLabels: {
                   enabled: true,
                   format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  color: 'var(--link-color)',
                   style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                  }
+                    textOutline: false
+                  },
                 },
                 showInLegend: true
               }
             },
             series: [series]
           });
+          //Store references and init buttons from UI:
+          jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
+          jeedom.history.chart[_params.el].chart._jeeId = _params.el
         } else {
           jeedom.history.chart[_params.el].chart.series[0].addPoint({
             y: data.result.data[data.result.data.length - 1][1],
