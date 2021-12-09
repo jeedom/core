@@ -3130,7 +3130,11 @@
         "Isoler": "Isolar",
         "Afficher tout": "Exibir tudo",
         "Masquer axe": "Esconder o eixo",
-        "Afficher axe": "Mostrar eixo"
+        "Afficher axe": "Mostrar eixo",
+        "Opacité des courbes au suivi de la souris": "Opacidade das curvas ao rastrear o mouse",
+        "Groupement des axes Y par unité": "Agrupamento de eixos Y por unidade",
+        "Echelle independante des axes Y": "Escala independente dos eixos Y",
+        "Affichage des axes Y": "Display do eixo Y"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",

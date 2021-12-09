@@ -3130,7 +3130,11 @@
         "Isoler": "Isoler",
         "Afficher tout": "Afficher tout",
         "Masquer axe": "Masquer axe",
-        "Afficher axe": "Afficher axe"
+        "Afficher axe": "Afficher axe",
+        "Opacité des courbes au suivi de la souris": "Opacité des courbes au suivi de la souris",
+        "Groupement des axes Y par unité": "Groupement des axes Y par unité",
+        "Echelle independante des axes Y": "Echelle independante des axes Y",
+        "Affichage des axes Y": "Affichage des axes Y"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?",
