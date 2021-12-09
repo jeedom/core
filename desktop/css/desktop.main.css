@@ -1858,7 +1858,7 @@ Desktop
   .context-menu-root .context-menu-layer {
     z-index: 5000 !important;
   }
-  .context-menu-root.context-menu-list {
+  .context-menu-list {
     z-index: 12000 !important;
     padding: 0 !important;
     border: none !important;
