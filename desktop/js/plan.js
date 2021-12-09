@@ -1380,14 +1380,12 @@ function displayObject(_plan, _html, _noRender) {
             enableExport: false,
             global: false,
             success: function() {
-              if (init(_plan.display.transparentBackground, false)) {
-                done -= 1
-                if (done == 0) {
-                  jeedom.history.chart['graph' + _plan.link_id].yAxisScaling = false
-                  jeedomUIHistory.resetyAxisScaling('graph' + _plan.link_id)
-                  $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+              done -= 1
+              if (done == 0) {
+                  if (init(_plan.display.transparentBackground, false)) {
+                    $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+                  }
                 }
-              }
             }
           })
         }

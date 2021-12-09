@@ -329,7 +329,7 @@ function addChart(_cmd_id, _action, _options) {
         } catch (error) {}
       })
     }
-    if (!jeedom.history.chart[__el__].yAxisScaling) jeedomUIHistory.resetyAxisScaling(__el__)
+    jeedomUIHistory.setAxisScales(__el__)
     setChartOptions()
     return
   }
@@ -397,24 +397,6 @@ function emptyHistory(_cmd_id, _date) {
       }
     }
   })
-}
-
-function resetChartXExtremes() {
-  //only used for comparison
-  try {
-    var xExtremes0 = jeedom.history.chart[__el__].chart.xAxis[0].getExtremes()
-    var xExtremes1 = jeedom.history.chart[__el__].chart.xAxis[1].getExtremes()
-    jeedom.history.chart[__el__].chart.xAxis[0].setExtremes(xExtremes0.dataMin, xExtremes0.dataMin + (xExtremes1.dataMax - xExtremes1.dataMin), true, false)
-    jeedom.history.chart[__el__].chart.xAxis[1].setExtremes(xExtremes1.dataMin, xExtremes1.dataMax, true, false)
-    jeedom.history.chart[__el__].chart.update({
-      navigator: {
-        enabled: false
-      },
-      scrollbar: {
-        enabled: false
-      }
-    })
-  } catch (error) {}
 }
 
 //__________________Comparison functions
@@ -527,10 +509,6 @@ function compareChart(_cmd_id) {
         option: {graphScaleVisible: false},
         compare: 1,
         success: function(data) {
-          jeedomUIHistory.resetyAxisScaling(__el__)
-          setTimeout(function() {
-            resetChartXExtremes()
-          }, 500)
         }
       })
     }

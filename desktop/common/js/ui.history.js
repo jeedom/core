@@ -17,6 +17,13 @@
 "use strict"
 
 var jeedomUIHistory = {}
+jeedomUIHistory.default = {
+  tracking: true,
+  yAxisByUnit: true,
+  yAxisScaling: true,
+  yAxisVisible: true,
+  hideButtons: false
+}
 
 /*
 @history
@@ -46,6 +53,7 @@ jeedomUIHistory.initLegendContextMenu = function(_chartId) {
     },
     build: function($trigger) {
       var chart = $($trigger[0].parentNode).closest('div.chartContainer').highcharts()
+      if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
       if (jeedom.history.chart[chart._jeeId].comparing) return false
       if (!chart) return false
 
@@ -53,7 +61,8 @@ jeedomUIHistory.initLegendContextMenu = function(_chartId) {
       var cmdId = chart.series[serieId].userOptions.id
       var axis = chart.get(cmdId)
       var contextmenuitems = {}
-      contextmenuitems['togglescaling'] = {'name': 'Toggle yAxis Scaling', 'id': 'togglescaling'}
+      contextmenuitems['cmdid'] = {'name': 'id: ' + cmdId, 'id': 'cmdid', 'disabled': true}
+      if (!jeedom.history.chart[chart._jeeId].zoom) contextmenuitems['togglescaling'] = {'name': 'Toggle yAxis Scaling', 'id': 'togglescaling'}
       contextmenuitems['isolate'] = {'name': '{{Isoler}} (Ctrl Clic)', 'id': 'isolate', 'icon': 'fas fa-chart-line'}
       contextmenuitems['showall'] = {'name': '{{Afficher tout}} (Alt Clic)', 'id': 'showall', 'icon': 'fas fa-poll-h'}
       if (axis.visible) {
@@ -167,40 +176,129 @@ jeedomUIHistory.emptyChart = function(_chartId) {
 }
 
 /*
-Set all yAxis scale the same based on all axis min/max
-@history.class.js
+Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
+@history.class.js event resetSelection
 */
-jeedomUIHistory.resetyAxisScaling = function(_chartId, _useUnite=false) {
+jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
+  //All done with render false, redraw at end
   var chart = jeedom.history.chart[_chartId].chart
-  chart.xAxis[0].setExtremes() //first to get all dateRanges values!
-  var min = 100000
-  var max = -100000
-  chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-    if (axis.dataMin < min) min = axis.dataMin
-    if (axis.dataMax > max) max = axis.dataMax
-  })
-  chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-    axis.setExtremes(min / 1.005, max * 1.005)
-  })
 
-  //group scales by unite:
-  //console.log(axis.series[0].userOptions.unite)
-}
+  //first to get all dateRanges values!
+  chart.xAxis[0].setExtremes(null, null)
+  chart.xAxis[1].setExtremes(null, null) //comparing axis
 
-/*
-Adapt each yAxis scale min/max
-@history.class.js
-*/
-jeedomUIHistory.setAxisScaling = function(_chartId) {
-  var chart = jeedom.history.chart[_chartId].chart
-  var min, max, axisId
-  chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-    axisId = axis.userOptions.id
-    if (!axisId) axisId = 0
-    min = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
-    max = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
-    axis.setExtremes(min / 1.005, max * 1.005)
-  })
+  //No scale | unit : All axis with same unit will get same min/max
+  if (!jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
+    var units = {}
+    var unit
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      unit = axis.series[0].userOptions.unite
+      if (unit == '') unit = axis.userOptions.id
+      if (unit != '' && !(unit in units)) {
+        units[unit] = {
+          unit: unit,
+          min: 1000000,
+          max: -1000000
+        }
+      }
+      if (axis.dataMin && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
+      if (axis.dataMax && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
+    })
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      unit = axis.series[0].userOptions.unite
+      if (unit == '') unit = axis.userOptions.id
+      axis.update({
+        softMin: 0,
+        softMax: null,
+        min: null,
+        max: units[unit].max,
+        tickPositions: null
+      }, false)
+      axis.setExtremes(null,  units[unit].max * 1.005, false)
+    })
+  }
+
+  //No scale | No unit : (HighChart default) All axis will get same global min/max
+  if (!jeedom.history.chart[_chartId].yAxisScaling && !jeedom.history.chart[_chartId].yAxisByUnit) {
+    var softMax = 0
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      if (axis.dataMax && axis.dataMax > softMax) softMax = axis.dataMax
+    })
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      axis.update({
+        softMin: 0,
+        softMax: softMax / 1.005,
+        min: null,
+        max: null,
+        tickPositions: null
+      }, false)
+      axis.setExtremes(null, null, false)
+    })
+  }
+
+  //scale | unit : (Jeedom default)  All axis with same unit will get same min/max
+  if (jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
+    var units = {}
+    var unit
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      unit = axis.series[0].userOptions.unite
+      if (unit == '') unit = axis.userOptions.id
+      if (unit != '' && !(unit in units)) {
+        units[unit] = {
+          unit: unit,
+          min: 1000000,
+          max: -1000000
+        }
+      }
+      if (axis.dataMin && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
+      if (axis.dataMax && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
+    })
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      unit = axis.series[0].userOptions.unite
+      if (unit == '') unit = axis.userOptions.id
+      axis.update({
+        softMin: null,
+        softMax: null,
+        min: null,
+        max: null,
+        tickPositions: null
+      }, false)
+      axis.setExtremes(units[unit].min / 1.005,  units[unit].max * 1.005, false)
+    })
+  }
+
+  //scale | No unit : Each axis will get its own min/max
+  if (jeedom.history.chart[_chartId].yAxisScaling && !jeedom.history.chart[_chartId].yAxisByUnit) {
+    var min, max, axisId
+    chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+      axisId = axis.userOptions.id
+      if (!axisId) axisId = 0
+      min = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+      max = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+      axis.update({
+        softMin: null,
+        softMax: null,
+        min: null,
+        max: null,
+        tickPositions: null
+      }, false)
+      axis.setExtremes(min / 1.005, max * 1.005, false)
+    })
+  }
+
+  if (_type == 'addSeries') {
+    setTimeout(function() {
+      try {
+        chart.update({
+          chart: {
+            animation: true,
+          },
+        }, false)
+      } catch (error) {}
+    }, 2500)
+  }
+
+  chart.redraw()
 }
 
 /*
@@ -210,14 +308,14 @@ Toggle all yAxis scaling
 jeedomUIHistory.toggleyAxisScaling = function(_chartId) {
   if (jeedom.history.chart[_chartId].zoom) return
   var chart = jeedom.history.chart[_chartId].chart
-  if (jeedom.history.chart[_chartId].yAxisScaling) {
+
+  jeedom.history.chart[_chartId].yAxisScaling = !jeedom.history.chart[_chartId].yAxisScaling
+  if (!jeedom.history.chart[_chartId].yAxisScaling) {
     jeedom.history.chart[_chartId].btToggleyaxisScaling.setState(0)
-    jeedomUIHistory.resetyAxisScaling(_chartId)
   } else {
     jeedom.history.chart[_chartId].btToggleyaxisScaling.setState(2)
-    jeedomUIHistory.setAxisScaling(_chartId)
   }
-  jeedom.history.chart[_chartId].yAxisScaling = !jeedom.history.chart[_chartId].yAxisScaling
+  jeedomUIHistory.setAxisScales(_chartId)
 }
 
 /*
@@ -276,7 +374,15 @@ jeedomUIHistory.initChart = function(_chartId) {
   var thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
-  var hideButtons = $('body').attr('data-page') == 'plan' ? true : false
+  if (jeedom.history.chart[thisId].type == 'pie') return false
+
+    //default:
+  if ($('body').attr('data-page') == 'plan' || jeedom.display.version == 'mobile') {
+    jeedomUIHistory.default.hideButtons = true
+  }
+  if ($('body').attr('data-page') == 'plan') {
+    jeedomUIHistory.default.yAxisScaling = false
+  }
 
   /*HichChart button states (undocumented):
     0: normal
@@ -289,7 +395,8 @@ jeedomUIHistory.initChart = function(_chartId) {
   jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('Tracking', 0, 6)
   .attr({
     id: 'hc_bt_tracking',
-    height: 10
+    height: 10,
+    title: "{{Opacité des courbes au suivi de la souris}}"
   })
   .on('click', function(event) {
     jeedomUIHistory.toggleTracking(thisId)
@@ -298,41 +405,87 @@ jeedomUIHistory.initChart = function(_chartId) {
     transform: 'translateX(calc(100% - 100px)) translateY(5px)',
   })
   .add()
-  jeedom.history.chart[thisId].tracking = true
-  jeedom.history.chart[thisId].btTracking.setState(2)
-  if (hideButtons) jeedom.history.chart[thisId].btTracking.hide()
+  if (jeedomUIHistory.default.tracking) {
+    jeedom.history.chart[thisId].tracking = true
+    jeedom.history.chart[thisId].btTracking.setState(2)
+  } else {
+    jeedom.history.chart[thisId].tracking = false
+    jeedom.history.chart[thisId].btTracking.setState(0)
+  }
+  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btTracking.hide()
+
+  //yAxis scaling by unit:
+  jeedom.history.chart[thisId].btToggleyaxisbyunit = jeedom.history.chart[thisId].chart.renderer.button('U', 0, 6)
+  .attr({
+    id: 'hc_bt_YaxisByUnit',
+    height: 10,
+    title: "{{Groupement des axes Y par unité}}"
+  })
+  .on('click', function(event) {
+    jeedom.history.chart[thisId].yAxisByUnit = !jeedom.history.chart[thisId].yAxisByUnit
+    if (!jeedom.history.chart[thisId].yAxisByUnit) {
+      jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(0)
+    } else {
+      jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(2)
+    }
+    jeedomUIHistory.setAxisScales(thisId)
+  })
+  .css({
+    transform: 'translateX(calc(100% - 127px)) translateY(5px)',
+  })
+  .add()
+  if (jeedomUIHistory.default.yAxisByUnit) {
+    jeedom.history.chart[thisId].yAxisByUnit = true
+    jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(2)
+  } else {
+    jeedom.history.chart[thisId].yAxisByUnit = false
+    jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(0)
+  }
+  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btToggleyaxisbyunit.hide()
 
   //toggle yAxis scaling:
   jeedom.history.chart[thisId].btToggleyaxisScaling = jeedom.history.chart[thisId].chart.renderer.button('yAxis Scaling', 0, 6)
   .attr({
-    id: 'hc_bt_resetYaxisScale',
-    height: 10
+    id: 'hc_bt_toggleYaxisScale',
+    height: 10,
+    title: "{{Echelle independante des axes Y}}"
   })
   .on('click', function(event) {
     jeedomUIHistory.toggleyAxisScaling(thisId)
   })
   .css({
-    transform: 'translateX(calc(100% - 195px)) translateY(5px)',
+    transform: 'translateX(calc(100% - 219px)) translateY(5px)',
   })
   .add()
-  jeedom.history.chart[thisId].yAxisScaling = true
-  jeedom.history.chart[thisId].btToggleyaxisScaling.setState(2)
-  if (hideButtons) jeedom.history.chart[thisId].btToggleyaxisScaling.hide()
+  if (jeedomUIHistory.default.yAxisScaling) {
+    jeedom.history.chart[thisId].yAxisScaling = true
+    jeedom.history.chart[thisId].btToggleyaxisScaling.setState(2)
+  } else {
+    jeedom.history.chart[thisId].yAxisScaling = false
+    jeedom.history.chart[thisId].btToggleyaxisScaling.setState(0)
+  }
+  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btToggleyaxisScaling.hide()
 
   //toggle yAxis visible button:
   jeedom.history.chart[thisId].btToggleyaxisVisible = jeedom.history.chart[thisId].chart.renderer.button('yAxis Visible', 0, 6)
   .attr({
     id: 'hc_bt_toggleYaxis',
-    height: 10
+    height: 10,
+    title: "{{Affichage des axes Y}}"
   })
   .on('click', function(event) {
     jeedomUIHistory.toggleYaxisVisible(thisId)
   })
   .css({
-    transform: 'translateX(calc(100% - 286px)) translateY(5px)',
+    transform: 'translateX(calc(100% - 307px)) translateY(5px)',
   })
   .add()
-  jeedom.history.chart[thisId].yAxisVisible = true
-  jeedom.history.chart[thisId].btToggleyaxisVisible.setState(2)
-  if (hideButtons) jeedom.history.chart[thisId].btToggleyaxisVisible.hide()
+  if (jeedomUIHistory.default.yAxisVisible) {
+    jeedom.history.chart[thisId].yAxisVisible = true
+    jeedom.history.chart[thisId].btToggleyaxisVisible.setState(2)
+  } else {
+    jeedom.history.chart[thisId].yAxisVisible = false
+    jeedom.history.chart[thisId].btToggleyaxisVisible.setState(0)
+  }
+  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btToggleyaxisVisible.hide()
 }

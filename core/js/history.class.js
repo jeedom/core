@@ -351,79 +351,63 @@ jeedom.history.drawChart = function(_params) {
         },
         events: {
           load: function() {
+            //default min/max set earlier in series
           },
           selection: function(event) {
             // zoom or reset zoom event
             var chartId = event.target._jeeId
             //zoom back after reset zoom button. allways play with immutables!
             if (event.resetSelection) {
+              this.resetZoomButton.hide()
               jeedom.history.chart[chartId].zoom = false
+              //No scale/unit change in zoom, set them back:
+              try {
+                if (jeedom.history.chart[chartId].yAxisScaling) {
+                  jeedom.history.chart[chartId].btToggleyaxisScaling.setState(2)
+                } else {
+                  jeedom.history.chart[chartId].btToggleyaxisScaling.setState(0)
+                }
+                if (jeedom.history.chart[chartId].yAxisByUnit) {
+                  jeedom.history.chart[chartId].btToggleyaxisbyunit.setState(2)
+                } else {
+                  jeedom.history.chart[chartId].btToggleyaxisbyunit.setState(0)
+                }
+              } catch (error) {}
 
-              //No jeedomUIHistory on mobile:
-              if (jeedom.history.chart[chartId].yAxisScaling) {
-                try { jeedom.history.chart[chartId].btToggleyaxisScaling.setState(2) } catch (error) {}
-              } else {
-                try { jeedom.history.chart[chartId].btToggleyaxisScaling.setState(0) } catch (error) {}
-              }
+              setTimeout(function() {
+                try {
+                  jeedomUIHistory.setAxisScales(chartId)
+                } catch (error) {}
+              }, 100)
 
-              if (typeof jeedom.history.chart[chartId].comparing !== 'undefined' && jeedom.history.chart[chartId].comparing == true) {
-                setTimeout(function() {
-                  try {
-                    jeedomUIHistory.resetyAxisScaling(chartId)
-                    resetChartXExtremes()
-                  } catch (error) {}
-                }, 500)
-                return
-              }
-
-              //set back yAxis zoom from their respective series data:
-              if (jeedom.history.chart[chartId].yAxisScaling) {
-                this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-                  axisId = axis.userOptions.id
-                  if (!axisId) axisId = 0
-                  min = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
-                  max = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
-                  axis.update({
-                    min: min / 1.005,
-                    max: max * 1.005
-                  })
-                })
-              } else {
-                this.xAxis[0].setExtremes() //first to get all dateRanges values!
-                var min = 100000
-                var max = -100000
-                this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-                  if (axis.dataMin < min) min = axis.dataMin
-                  if (axis.dataMax > max) max = axis.dataMax
-                })
-                this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-                  axis.update({
-                    min: min / 1.005,
-                    max: max * 1.005
-                  })
-                })
-              }
-            } else  {
+              return false
+            } else {
+              //No scale/unit change in zoom:
+              try { this.resetZoomButton.show() } catch (error) {} //Not created first time
               jeedom.history.chart[chartId].zoom = true
-              try { jeedom.history.chart[chartId].btToggleyaxisScaling.setState(3) } catch (error) {}
+              try {
+                jeedom.history.chart[chartId].btToggleyaxisScaling.setState(3)
+                jeedom.history.chart[chartId].btToggleyaxisbyunit.setState(3)
+              } catch (error) {}
             }
           },
           addSeries: function(event) {
-            if (!jeedom.history.chart[this._jeeId].yAxisScaling) {
-              var thisAxisId = event.options.id
-              var min = Math.min.apply(Math, event.options.data.map(function (i) {return i[1]}))
-              var max = Math.max.apply(Math, event.options.data.map(function (i) {return i[1]}))
-              var thisMin, thisMax
-              event.target.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis' && v.userOptions.id != thisAxisId).forEach((axis, index) => {
-                thisMin = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
-                thisMax = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
-                if (thisMin < min) min = thisMin
-                if (thisMax > max) max = thisMax
-              })
-              this.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-                axis.setExtremes(min / 1.005, max * 1.005)
-              })
-            }
+            /*
+            External function needs series to be added to get datas, axis ...
+            Disable chart animation, through it and set in external function
+            */
+            var thisId = this._jeeId
+            this.update({
+              chart: {
+                animation: false,
+              },
+            }, false)
+
+            setTimeout(function() {
+              try {
+                jeedomUIHistory.setAxisScales(thisId, 'addSeries')
+              } catch (error) {}
+            }, 10)
           },
           render: function(event) {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
@@ -477,7 +461,7 @@ jeedom.history.drawChart = function(_params) {
               enabled: _params.enableExport || ($.mobile) ? false : true
             },
             tooltip: {
-              pointFormat: '{point.y} <br/>{series.name}',
+              pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
               valueDecimals: 2,
             },
             plotOptions: {
@@ -494,7 +478,9 @@ jeedom.history.drawChart = function(_params) {
                   format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                   color: 'var(--link-color)',
                   style: {
-                    textOutline: false
+                    textOutline: false,
+                    fontSize: '12px',
+                    fontWeight: 'normal'
                   },
                 },
                 showInLegend: true
@@ -681,7 +667,6 @@ jeedom.history.drawChart = function(_params) {
 
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
-            _jeeId: _params.el,
             chart: charts,
             credits: { enabled: false },
             navigator: {
@@ -703,18 +688,22 @@ jeedom.history.drawChart = function(_params) {
                 },
                 events: {
                   legendItemClick: function(event) {
-                    if (!event.browserEvent.ctrlKey && !event.browserEvent.metaKey && !event.browserEvent.altKey) return true
-                    if (event.browserEvent.altKey) {
-                      this.chart.series.forEach(function(serie) {
-                        serie.show()
-                      })
+                    if (!event.browserEvent.ctrlKey && !event.browserEvent.metaKey && !event.browserEvent.altKey) {
+                      this.setVisible(!this.visible, true)
                     } else {
-                      this.chart.series.forEach(function(serie) {
-                        serie.hide()
-                      })
-                      this.show()
-                      this.visible = true
+                      if (event.browserEvent.altKey) {
+                        this.chart.series.forEach(function(serie) {
+                          serie.setVisible(true, true)
+                        })
+                      } else {
+                        this.chart.series.forEach(function(serie) {
+                          serie.setVisible(false, true)
+                        })
+                        this.show()
+                        this.visible = true
+                      }
                     }
+                    jeedomUIHistory.setAxisScales(this.chart._jeeId)
                     return false
                   }
                 }
@@ -820,7 +809,8 @@ jeedom.history.drawChart = function(_params) {
           //Store references and init buttons from UI:
           jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
           jeedom.history.chart[_params.el].chart._jeeId = _params.el
-          if (jeedom.display.version == 'desktop' && jeedomUIHistory != undefined && typeof jeedomUIHistory.initChart === "function") {
+          //jeedom.display.version == 'desktop' &&
+          if (jeedomUIHistory != undefined && typeof jeedomUIHistory.initChart === "function") {
             jeedomUIHistory.initChart(_params.el)
           }
         } else {
@@ -880,7 +870,7 @@ jeedom.history.drawChart = function(_params) {
             jeedom.history.chart[_params.el].chart.addAxis(yAxis)
           }
           //add series to graph:
-          jeedom.history.chart[_params.el].chart.addSeries(series)
+          jeedom.history.chart[_params.el].chart.addSeries(series, false)
 
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
