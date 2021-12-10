@@ -286,7 +286,7 @@
         "Gestion automatique": "Automatic management",
         "Dernier lancement": "Last launch",
         "Local": "Local",
-        "OK": "OK",
+        "OK": "Okay",
         "NOK": "NOK",
         "Désactiver": "Deactivate",
         "Activer": "Activate"
@@ -391,7 +391,7 @@
         "Installation": "Installation",
         "Dernière installation": "Last installation",
         "Local": "Local",
-        "OK": "OK",
+        "OK": "Okay",
         "NOK": "NOK",
         "Installation en cours": "Installation in progress",
         "Relancer": "Restart"
@@ -1303,7 +1303,7 @@
         "Etape 3 : vérification": "Step 3: verification",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Please enter the code provided for verification and activation of double authentication",
         "Code de test": "Test code",
-        "OK": "OK",
+        "OK": "Okay",
         "Configuration réussie": "Configuration successful",
         "Code invalide": "Invalid code"
     },
@@ -1314,7 +1314,7 @@
         "Port configuré": "Configured port",
         "Aucune santé spécifique": "No specific health",
         "Dépendances": "Dependencies",
-        "OK": "OK",
+        "OK": "Okay",
         "NOK": "NOK",
         "En cours": "In progress",
         "Configuration démon": "Daemon configuration",
@@ -2539,6 +2539,7 @@
         "Historique": "History",
         "Configuration": "Configuration",
         "Rechercher": "Search",
+        "Vider le champ de recherche": "Clear the search field",
         "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
         "Exporter cet historique.": "Export this history",
         "Comparer la période": "Compare period",
@@ -2590,7 +2591,7 @@
         "Apache non securisé": "Apache not secure",
         "Apache sécurisé": "Secure apache",
         "Cliquez sur une commande à gauche ou tapez une commande personnalisée ci-dessous": "Click on a command on the left or type a custom command below",
-        "OK": "OK"
+        "OK": "Okay"
     },
     "desktop\/js\/update.js": {
         "Options": "Options",
@@ -2801,7 +2802,7 @@
         "Utilisateur limité": "Limited user",
         "Activé": "Enabled",
         "Désactivé": "Deactivated",
-        "OK": "OK",
+        "OK": "Okay",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
         "Supprimer": "Delete",
@@ -3984,7 +3985,7 @@
         "Commande retour interactions": "Interaction return command",
         "Commande sur": "Command on",
         "Système à jour": "System up to date",
-        "OK": "OK",
+        "OK": "Okay",
         "Cron actif": "Active Cron",
         "NOK": "NOK",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Cron error: crons are disabled. Go to Settings -> System -> Task engine to reactivate them",
@@ -4406,7 +4407,7 @@
         "Post-installation de": "Post-installation of",
         "Suppression des fichiers inutiles...": "Deleting useless files",
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Unable to install the plugin. The plugin name is different from the ID or the plugin is not properly formed. Please contact the author",
-        "OK": "OK",
+        "OK": "Okay",
         "END UPDATE SUCCESS": "END UPDATE SUCCESS",
         "Le logical ID ne peut pas être vide": "The logical ID cannot be empty"
     },

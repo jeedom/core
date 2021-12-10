@@ -13,7 +13,8 @@
 - **Dashboard** : The device configuration window (edit mode) now allows you to configure mobile widgets and generic types.
 - **Widgets** : Internationalization of third-party Widgets (user code). see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Analysis / History** : Possibility to compare a history over a given period.
-- **Analysis / History** : Display of multiple Y axes with their own scale.
+- **Analysis / History** : Display of multiple axes in Y. Option for each axis to have its own scale, grouped by unit or not.
+- **Analysis / History** : Possibility to hide the Y axes. Contextual menu on the legends with display only, axis masking, curve color change.
 - **Analysis / Equipment** : Orphan orders now display their name and date of deletion if still in the deletion history, as well as a link to the affected scenario or equipment.
 - **Analysis / Logs** : Log line numbering. Possibility to display the raw log.
 - **Logs** : Coloration of logs according to certain events. Possibility to display the raw log.
