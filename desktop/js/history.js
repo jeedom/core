@@ -22,6 +22,7 @@ var __el__ = 'div_graph'
 delete jeedom.history.chart[__el__]
 
 $(function() {
+  $('#in_searchHistory').val('').keyup()
   var cmdIds = getUrlVars('cmd_id')
   if (typeof cmdIds == 'string') {
     cmdIds = cmdIds.split('-')
@@ -31,6 +32,7 @@ $(function() {
         if (li) {
           li.find('.history').click()
           li.closest('.cmdList').show()
+          li.closest('.cmdList').prev().prev().find('i').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
         }
       })
     }
@@ -233,6 +235,11 @@ $('body').on({
   }
 }, 'ul li input.filter')
 
+$('#bt_resetSearch').on('click', function() {
+  $('#in_searchHistory').val('').keyup()
+})
+
+//List of object / cmds event:
 $(".li_history .history").on('click', function(event) {
   $.hideAlert()
   if (isset(jeedom.history.chart[__el__]) && jeedom.history.chart[__el__].comparing) return

@@ -64,7 +64,7 @@ $date = array(
 </div>
 
 <div class="row row-overflow">
-	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
+	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
 		<ul class="nav nav-list bs-sidenav">
 			<li>
 				<div class="input-group input-group-sm">
@@ -80,10 +80,13 @@ $date = array(
 		<ul id="ul_history" class="nav nav-list bs-sidenav">
 			<li>
 				<i class="icon techno-courbes3"></i> {{Historique}}
-				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top:-5px;padding: 5px 10px;margin-right: 3px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</li>
-			<li class="filter">
-				<input class="filter form-control input-sm" placeholder="{{Rechercher}}" />
+			<li class="filter input-group" style="margin-top: 10px; width: 98%;">
+				<div class="input-group-btn">
+					<input id="in_searchHistory" class="filter form-control" style="width: calc(100% - 16px);" placeholder="{{Rechercher}}" autocomplete="off" />
+					<a id="bt_resetSearch" class="btn roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
+				</div>
 			</li>
 			<?php
 			$object_id = -1;
