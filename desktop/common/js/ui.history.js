@@ -187,9 +187,10 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
   chart.xAxis[0].setExtremes(null, null)
   chart.xAxis[1].setExtremes(null, null) //comparing axis
 
+  var units = {}
+
   //No scale | unit : All axis with same unit will get same min/max
   if (!jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var units = {}
     var unit
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
@@ -198,9 +199,12 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
         units[unit] = {
           unit: unit,
           min: 1000000,
-          max: -1000000
+          max: -1000000,
+          axis: []
         }
       }
+      units[unit].axis.push(axis.userOptions.id)
+
       if (axis.dataMin && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
       if (axis.dataMax && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
     })
@@ -238,7 +242,6 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
 
   //scale | unit : (Jeedom default)  All axis with same unit will get same min/max
   if (jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var units = {}
     var unit
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
@@ -247,9 +250,12 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
         units[unit] = {
           unit: unit,
           min: 1000000,
-          max: -1000000
+          max: -1000000,
+          axis: []
         }
       }
+      units[unit].axis.push(axis.userOptions.id)
+
       if (axis.dataMin && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
       if (axis.dataMax && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
     })
@@ -286,6 +292,51 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
     })
   }
 
+
+  /*
+  Set axis visible / color.
+  No unit: all visible with series color
+  unit: if single, visible with series color, else only first visible, uncolored
+  @view and design : do nothing, user choice!
+  */
+  if (!_chartId.startsWith('div_viewZone') && !_chartId.startsWith('graph')) {
+    if (Object.keys(units).length == 0) { //no unit, show all axis with their series color:
+      chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+        var seriesColor = axis.series[0].color
+        axis.update({
+          visible: true,
+          labels: {
+            style: {
+              color: seriesColor
+            },
+          }
+        }, false)
+      })
+    } else { //unit, one uncolored axis only per unit, or single colored
+      var overUnits = Object.keys(units).filter(key => units[key].axis.length > 1)
+      overUnits.forEach((unit, index) => {
+        units[unit].axis.forEach((id, idx) => {
+          var axis = chart.get(id)
+          if (idx == 0) {
+            axis.update({
+              visible: true,
+              labels: {
+                style: {
+                  color: 'var(--link-color)'
+                },
+              }
+            }, false)
+          } else {
+            axis.update({
+              visible: false,
+            }, false)
+          }
+        })
+      })
+    }
+  }
+
+  //addSeries HighChart event:
   if (_type == 'addSeries') {
     setTimeout(function() {
       try {
@@ -295,7 +346,7 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
           },
         }, false)
       } catch (error) {}
-    }, 2500)
+    }, 2000)
   }
 
   chart.redraw()

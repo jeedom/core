@@ -809,7 +809,6 @@ jeedom.history.drawChart = function(_params) {
           //Store references and init buttons from UI:
           jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
           jeedom.history.chart[_params.el].chart._jeeId = _params.el
-          //jeedom.display.version == 'desktop' &&
           if (jeedomUIHistory != undefined && typeof jeedomUIHistory.initChart === "function") {
             jeedomUIHistory.initChart(_params.el)
           }
