@@ -299,7 +299,7 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
   unit: if single, visible with series color, else only first visible, uncolored
   @view and design : do nothing, user choice!
   */
-  if (!_chartId.startsWith('div_viewZone') && !_chartId.startsWith('graph')) {
+  if (!_chartId.startsWith('div_viewZone') && !_chartId.startsWith('div_designGraph')) {
     if (Object.keys(units).length == 0) { //no unit, show all axis with their series color:
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
         var seriesColor = axis.series[0].color

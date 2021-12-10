@@ -100,7 +100,7 @@ if (!isConnect()) {
       $html .= '<label>{{Empiler}} :</label> <input type="checkbox" class="graphDataOption" data-l1key="configuration" data-l2key="graphStack"> ';
       $html .= '<label>{{Variation}} :</label> <input type="checkbox" class="graphDataOption" data-l1key="configuration" data-l2key="derive"> ';
 
-            $html .= '<label>{{Echelle}} :</label> <select class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 80px;">';
+      $html .= '<label>{{Echelle}} :</label> <select class="graphDataOption form-control input-sm" data-l1key="configuration" data-l2key="graphScale" style="width : 80px;">';
       $html .= '<option value="0">{{Droite}}</option>';
       $html .= '<option value="1">{{Gauche}}</option>';
       $html .= '</select>';

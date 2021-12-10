@@ -265,7 +265,7 @@ class plan {
 			}
 			$html = '<div class="graph-widget" data-graph_id="' . $this->getLink_id() . '" style="width:75px; height:75px;' . $background_color . '">';
 			$html .= '<span class="graphOptions" style="display:none;">' . json_encode($this->getDisplay('graph', array())) . '</span>';
-			$html .= '<div class="graph chartContainer" id="graph' . $this->getLink_id() . '" style="width:100%; height:100%;"></div>';
+			$html .= '<div class="graph chartContainer" id="div_designGraph' . $this->getLink_id() . '" style="width:100%; height:100%;"></div>';
 			$html .= '</div>';
 			return array(
 				'plan' => jeedom::toHumanReadable(utils::o2a($this)),
