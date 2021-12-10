@@ -3131,10 +3131,10 @@
         "Afficher tout": "Display all",
         "Masquer axe": "Hide axis",
         "Afficher axe": "Show axis",
-        "Opacité des courbes au suivi de la souris": "Opacity of curves when tracking the mouse",
+        "Opacité des courbes au suivi de la souris": "Curve opacity mouse tracking",
         "Groupement des axes Y par unité": "Grouping of Y axes by unit",
-        "Echelle independante des axes Y": "Scale independent of Y axes",
-        "Affichage des axes Y": "Y axis display"
+        "Echelle independante des axes Y": "Independent scale of Y axes",
+        "Affichage des axes Y": "Y axes display"
     },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
@@ -4092,7 +4092,7 @@
     },
     "core\/class\/history.class.php": {
         "Commande": "Command",
-        "Date": "Dated",
+        "Date": "Date",
         "Valeur": "Value",
         "La commande source n\\'existe pas :": "The source command does not exist:",
         "La commande source n\\'est pas historisée": "The source command is not historized",
@@ -4600,8 +4600,8 @@
         "Historique à exporter": "History to export",
         "Commandes": "Commands",
         "Sélectionner la commande": "Select command",
-        "De": "Of",
-        "à": "At",
+        "De": "From",
+        "à": "To",
         "Nom": "Name",
         "Exporter en": "Export to",
         "CSV": "CSV"
