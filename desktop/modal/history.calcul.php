@@ -93,7 +93,7 @@ $('#table_calculHisotry tbody').on('click','.bt_displayGraphCalculHistory',funct
 		groupingType : $(this).closest('tr').find('.calculHistoryAttr[data-l1key=groupingType]').value(),
 		graphStep :  ($(this).closest('tr').find('.calculHistoryAttr[data-l1key=graphStep]').value() == 0) ? false : true
 	}
-	addChart($(this).closest('tr').find('.calculHistoryAttr[data-l1key=calcul]').value(), 1,options)
+	addChart($(this).closest('tr').find('.calculHistoryAttr[data-l1key=calcul]').value(), 1, options)
 })
 
 function addCalculHistory(_calculHistory) {
@@ -116,7 +116,7 @@ function addCalculHistory(_calculHistory) {
 	html += '<select class="form-control input-sm calculHistoryAttr" data-l1key="graphType" style="width : 140px;">'
 	html +=  '<option value="line">{{Ligne}}</option>'
 	html +=  '<option value="area">{{Aire}}</option>'
-	html +=  '<option value="column">{{Colonne}}</option>'
+	html +=  '<option value="column">{{Barre}}</option>'
 	html +=  '</select>'
 	html += '</td>'
 	html += '<td>'

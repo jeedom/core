@@ -205,8 +205,8 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
       }
       units[unit].axis.push(axis.userOptions.id)
 
-      if (axis.dataMin && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
-      if (axis.dataMax && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
+      if (!isNaN(axis.dataMin) && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
+      if (!isNaN(axis.dataMax) && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
@@ -255,9 +255,8 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
         }
       }
       units[unit].axis.push(axis.userOptions.id)
-
-      if (axis.dataMin && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
-      if (axis.dataMax && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
+      if (!isNaN(axis.dataMin) && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
+      if (!isNaN(axis.dataMax) && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
