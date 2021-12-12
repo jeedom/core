@@ -15,6 +15,7 @@
 - **Análise / História** : Possibilidade de comparar uma história ao longo de um determinado período.
 - **Análise / História** : Exibição de múltiplos eixos em Y. Opção de cada eixo ter escala própria, agrupada por unidade ou não.
 - **Análise / História** : Possibilidade de ocultar os eixos Y. Menu contextual nas legendas apenas com visualização, ocultação do eixo, mudança de cor da curva.
+- **Análise / História** : Cálculos de histórico salvos agora são exibidos acima da lista de comandos, da mesma forma que estes.
 - **Análise / Equipamento** : Pedidos órfãos agora exibem seu nome e data de exclusão se ainda estiverem no histórico de exclusão, bem como um link para o cenário ou equipamento afetado.
 - **Análise / Logs** : Numeração da linha de registro. Possibilidade de exibir o log bruto.
 - **Histórico** : Coloração de logs de acordo com certos eventos. Possibilidade de exibir o log bruto.

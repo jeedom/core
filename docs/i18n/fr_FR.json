@@ -769,6 +769,7 @@
         "Possibilité de comparer un historique sur une période donnée": "Possibilité de comparer un historique sur une période donnée",
         "Affichage des axes multiples en Y. Option pour que chaque axe ait sa propre échelle, groupés par unité ou pas": "Affichage des axes multiples en Y. Option pour que chaque axe ait sa propre échelle, groupés par unité ou pas",
         "Possibilité de masquer les axes Y. Menu contextuel sur les légendes avec affichage seul, masquage d'axe, changement de couleur de courbe": "Possibilité de masquer les axes Y. Menu contextuel sur les légendes avec affichage seul, masquage d'axe, changement de couleur de courbe",
+        "Les calculs d'historiques enregistrés sont maintenant affichés au dessus de la liste des commandes, de la même façon que celles-ci": "Les calculs d'historiques enregistrés sont maintenant affichés au dessus de la liste des commandes, de la même façon que celles-ci",
         "Analyse \/ Equipements": "Analyse \/ Equipements",
         "Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné": "Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné",
         "Analyse \/ Logs": "Analyse \/ Logs",

@@ -1274,6 +1274,7 @@
         "Possibilité de comparer un historique sur une période donnée": "Posibilidad de comparar un historial durante un período determinado",
         "Affichage des axes multiples en Y. Option pour que chaque axe ait sa propre échelle, groupés par unité ou pas": "Visualización de múltiples ejes en Y. Opción para que cada eje tenga su propia escala, agrupada por unidad o no",
         "Possibilité de masquer les axes Y. Menu contextuel sur les légendes avec affichage seul, masquage d'axe, changement de couleur de courbe": "Posibilidad de ocultar los ejes Y. Menú contextual en las leyendas con solo visualización, ocultación de ejes, cambio de color de la curva",
+        "Les calculs d'historiques enregistrés sont maintenant affichés au dessus de la liste des commandes, de la même façon que celles-ci": "Los cálculos del historial guardado ahora se muestran encima de la lista de comandos, de la misma manera que estos",
         "Analyse \/ Equipements": "Análisis \/ Equipo",
         "Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné": "Los pedidos huérfanos ahora muestran su nombre y fecha de eliminación si aún están en el historial de eliminación, así como un enlace al escenario o equipo afectado",
         "Analyse \/ Logs": "Análisis \/ Registros",
