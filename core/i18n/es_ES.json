@@ -498,7 +498,7 @@
         "Style du tableau (CSS)": "Estilo de tabla (CSS)",
         "Texte de la case": "Cuadro de texto",
         "Style de la case (CSS)": "Cuadro de estilo (CSS)",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Paramètres d'affichage de chaque commande.<br>Pour l'affichage en disposition standard, l'ordre des commandes est modifiable par glisser-déposer.": "Configuración de pantalla para cada comando. <br> Para la visualización en diseño estándar, el orden de los comandos se puede modificar arrastrando y soltando",
         "Type générique": "Tipo genérico",
         "Widget": "Widget",
@@ -697,7 +697,7 @@
         "Cette commande remplace la commande": "Esta orden reemplaza la orden",
         "Remplacer cette commande par la commande": "Reemplazar este comando por el comando",
         "Equipement": "Dispositivo",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Scénario": "Escenario",
         "Résumés": "Resúmenes",
         "Plugin": "Enchufar",
@@ -956,7 +956,7 @@
         "Tentative échouée": "Intento fracasado",
         "Dernière communication": "Última comunicación",
         "Dernière sauvegarde": "Última copia de seguridad",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Action": "Acción",
         "Graphique de fond": "Gráfico de fondo",
         "Information": "Información",
@@ -1251,7 +1251,7 @@
         "CSS personnalisé": "CSS personalizado",
         "Attention : peut être source de problèmes.": "Advertencia: puede causar problemas",
         "Appliquer le css personnalisé sur": "Aplicar CSS personalizado en",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Commande": "Comando",
         "Masquer": "Ocultar",
         "Taille de la police": "Tamaño de fuente",
@@ -2768,7 +2768,7 @@
     },
     "desktop\/js\/history.js": {
         "Configuration des formules de calcul": "Configuración de fórmulas",
-        "Configuration de l'historique des commandes": "Configurar historial de pedidos",
+        "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
         "Historique supprimé avec succès": "Historial eliminado correctamente",
         "Période de comparaison": "Período de comparación"
@@ -2875,7 +2875,7 @@
         "Sélectionner un mot-clé": "Seleccionar una palabra clave"
     },
     "desktop\/js\/timeline.js": {
-        "Configuration de l'historique des commandes": "Configurar historial de pedidos",
+        "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
         "Historique": "Historial",
         "Configuration de la commande": "Configuración del comando"
@@ -4545,7 +4545,7 @@
         "Variable": "Variable",
         "Délai": "Plazo",
         "Délai en s": "Retraso en s",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/event.default.html": {
@@ -4601,7 +4601,7 @@
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historial para exportar",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Sélectionner la commande": "Seleccionar el comando",
         "De": "De",
         "à": "a",
@@ -4621,7 +4621,7 @@
         "Exporter en": "Exportar a",
         "PNG": "PNG",
         "PDF": "PDF",
-        "Commandes": "Pedidos",
+        "Commandes": "Comandos",
         "Sélectionner la commande": "Seleccione el comando",
         "Largeur (px)": "Ancho (px)",
         "Hauteur (px)": "Altura (px)",
