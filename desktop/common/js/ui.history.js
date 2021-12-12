@@ -163,19 +163,6 @@ jeedomUIHistory.initLegendContextMenu = function(_chartId) {
 }
 
 /*
-Remove all series/yAxis from chart:
-@history
-*/
-jeedomUIHistory.emptyChart = function(_chartId) {
-  jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
-    series.remove(true)
-  })
-  jeedom.history.chart[_chartId].chart.yAxis.forEach(function(yAxis) {
-    yAxis.remove(true)
-  })
-}
-
-/*
 Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 @history.class.js event resetSelection
 */
@@ -299,7 +286,7 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
   @view and design : do nothing, user choice!
   */
   if (!_chartId.startsWith('div_viewZone') && !_chartId.startsWith('div_designGraph')) {
-    if (Object.keys(units).length == 0) { //no unit, show all axis with their series color:
+    if (Object.keys(units).length == 0) { //no unit
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
         var seriesColor = axis.series[0].color
         axis.update({
@@ -311,7 +298,7 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
           }
         }, false)
       })
-    } else { //unit, one uncolored axis only per unit, or single colored
+    } else { //unit
       var overUnits = Object.keys(units).filter(key => units[key].axis.length > 1)
       overUnits.forEach((unit, index) => {
         units[unit].axis.forEach((id, idx) => {
@@ -413,6 +400,56 @@ jeedomUIHistory.toggleYaxisVisible = function(_chartId) {
     axis.update({
       visible: jeedom.history.chart[_chartId].yAxisVisible
     })
+  })
+}
+
+/*
+Remove all series/yAxis from chart:
+@history
+*/
+jeedomUIHistory.emptyChart = function(_chartId) {
+  jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
+    series.remove(true)
+  })
+  jeedom.history.chart[_chartId].chart.yAxis.forEach(function(yAxis) {
+    yAxis.remove(true)
+  })
+}
+
+/*
+Set list of calculs on history page, synched back from modal calcul
+@history
+*/
+jeedomUIHistory.setCalculList = function() {
+  var $el = $('#historyCalculs')
+  var isOpened = false
+  if ($el && $el.find('.displayObject i.fas').hasClass('fa-arrow-circle-down')) isOpened = true
+  jeedom.config.load({
+    configuration: 'calculHistory',
+    convertToHumanReadable : true,
+    error: function(error) {
+      $.showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(data) {
+
+      if (!$el) return
+      $el.empty()
+      if (data.length == 0) return
+
+      var html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
+      html += '<br/>'
+      html += '<div class="cmdList" data-object_id="jeedom-config-calculs" style="display:none;margin-left : 20px;">'
+      for (var i in data) {
+        if (isset(data[i].calcul) && data[i].calcul != '') {
+          html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
+          html += '<a class="history historycalcul" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + data[i].name + '</a>';
+          html += '</li>';
+        }
+      }
+      html += '</div><br/>'
+      $el.append(html)
+      if (isOpened) $el.find('.displayObject').trigger('click')
+    }
   })
 }
 

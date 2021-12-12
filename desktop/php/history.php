@@ -63,32 +63,38 @@ $date = array(
 	</div>
 </div>
 
-<div class="row row-overflow">
+<div id="pageContainer" class="row row-overflow">
 	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
 		<ul class="nav nav-list bs-sidenav">
 			<li>
-				<div class="input-group input-group-sm">
-					<textarea class="form-control roundedLeft" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
+				<i class="fas fa-square-root-alt"></i> {{Historique calculé}}
+				<a id="bt_configureCalculHistory" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+			</li>
+			<li>
+				<div class="input-group input-group-sm" style="margin-top: 10px;">
+					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}" ></textarea>
 					<span class="input-group-btn">
-						<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
-						</a><a class="btn btn-success" id="bt_displayCalculHistory" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i>
-						</a><a class="btn btn-default roundedRight" id="bt_configureCalculHistory" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i></a>
+						<a id="bt_findCmdCalculHistory" class="btn btn-default" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
+						</a><a id="bt_displayCalculHistory" class="btn btn-success roundedRight" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i></a>
 					</span>
 				</div>
 			</li>
+			<div id="historyCalculs"></div>
 		</ul>
+
 		<ul id="ul_history" class="nav nav-list bs-sidenav">
 			<li>
-				<i class="icon techno-courbes3"></i> {{Historique}}
-				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<i class="icon techno-courbes3"></i> {{Commandes}}
+				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration de l'historique des commandes}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</li>
-			<li class="filter input-group" style="margin-top: 10px; width: 98%;">
-				<div class="input-group-btn">
-					<input id="in_searchHistory" class="filter form-control" style="width: calc(100% - 16px);" placeholder="{{Rechercher}}" autocomplete="off" />
-					<a id="bt_resetSearch" class="btn roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
-				</div>
+			<li class="filter input-group input-group-sm" style="margin-top: 10px; //width: 98%;">
+				<input id="in_searchHistory" class="filter form-control input-sm roundedLeft" style="width: calc(100% - 28px);" placeholder="{{Rechercher}}" autocomplete="off" />
+				<span class="input-group-btn ">
+					<a id="bt_resetSearch" class="btn btn-default roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
+				</span>
 			</li>
 			<?php
+			//cmds by objects:
 			$object_id = -1;
 			$historyAll = cmd::allHistoryCmd();
 			foreach ($historyAll as $cmd) {
@@ -124,6 +130,10 @@ $date = array(
 				echo $_echo;
 				$object_id = $eqLogic->getObject_id();
 			}
+
+
+
+
 			?>
 		</ul>
 	</div>

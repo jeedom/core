@@ -32,11 +32,12 @@ $(function() {
         if (li) {
           li.find('.history').click()
           li.closest('.cmdList').show()
-          li.closest('.cmdList').prev().prev().find('i').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+          li.closest('.cmdList').prev().prev().find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
         }
       })
     }
   }
+  jeedomUIHistory.setCalculList()
   resizeDn()
   moment.locale(jeedom_langage)
   jeedomUtils.datePickerInit()
@@ -88,7 +89,10 @@ $('#bt_displayCalculHistory').on('click', function() {
 })
 $('#bt_configureCalculHistory').on('click', function() {
   $('#md_modal').dialog({
-    title: "{{Configuration des formules de calcul}}"
+    title: "{{Configuration des formules de calcul}}",
+    beforeClose: function(event, ui) {
+      jeedomUIHistory.setCalculList()
+    }
   }).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
 $('#bt_openCmdHistoryConfigure').on('click', function() {
@@ -214,16 +218,16 @@ $('#bt_clearGraph').on('click', function() {
 })
 
 //search filter opening:
-$('body').on({
+$('#pageContainer').on({
   'keyup': function(event) {
     if ($(this).value() == '') {
-      $('.cmdList').hide()
+      $('#ul_history .cmdList').hide()
       $('.displayObject').find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
     } else {
-      $('.cmdList').show()
+      $('#ul_history .cmdList').show()
       //let filtering job gone:
       setTimeout(function() {
-        $('.cmdList').each(function() {
+        $('#ul_history .cmdList').each(function() {
           if ($(this).find('.li_history:visible').length > 0) {
             $('.displayObject[data-object_id=' + $(this).attr('data-object_id') + ']').find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
           } else {
@@ -240,45 +244,59 @@ $('#bt_resetSearch').on('click', function() {
 })
 
 //List of object / cmds event:
-$(".li_history .history").on('click', function(event) {
-  $.hideAlert()
-  if (isset(jeedom.history.chart[__el__]) && jeedom.history.chart[__el__].comparing) return
-  if ($(this).closest('.li_history').hasClass('active')) {
-    $(this).closest('.li_history').removeClass('active')
-    addChart($(this).closest('.li_history').attr('data-cmd_id'), 0)
-  } else {
-    $(this).closest('.li_history').addClass('active')
-    addChart($(this).closest('.li_history').attr('data-cmd_id'), 1)
-  }
-  return false
-})
+$('#pageContainer').on({
+  'click': function(event) {
+    $.hideAlert()
+    if (isset(jeedom.history.chart[__el__]) && jeedom.history.chart[__el__].comparing) return
 
-$('.displayObject').on('click', function() {
-  var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
-  if (list.is(':visible')) {
-    $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
-    list.hide()
-  } else {
-    $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
-    list.show()
-  }
-})
-
-$(".li_history .remove").on('click', function() {
-  var bt_remove = $(this);
-  $.hideAlert();
-  bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
-    if (result !== null) {
-      emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
+    var options = null
+    if ($(this).hasClass('historycalcul')) {
+      var options = {
+        graphType: $(this).attr('data-graphtype'),
+        groupingType: $(this).attr('data-groupingtype'),
+        graphStep: ($(this).attr('data-graphstep') == 0) ? false : true,
+        name: $(this).text()
+      }
     }
-  })
-})
+    if ($(this).closest('.li_history').hasClass('active')) {
+      $(this).closest('.li_history').removeClass('active')
+      addChart($(this).closest('.li_history').attr('data-cmd_id'), 0, options)
+    } else {
+      $(this).closest('.li_history').addClass('active')
+      addChart($(this).closest('.li_history').attr('data-cmd_id'), 1, options)
+    }
+    return false
+  }
+}, '.li_history .history')
+
+$('#pageContainer').on({
+  'click': function(event) {
+    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
+    if (list.is(':visible')) {
+      $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+      list.hide()
+    } else {
+      $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+      list.show()
+    }
+  }
+}, '.displayObject')
+
+$('#pageContainer').on({
+  'click': function(event) {
+    $.hideAlert()
+    var bt_remove = $(this)
+    bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
+      if (result !== null) {
+        emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
+      }
+    })
+  }
+}, '.li_history .remove')
+
 $(".li_history .export").on('click', function() {
   window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
 })
-
-
-
 
 /************Charting***********/
 function setChartOptions() {
@@ -368,7 +386,7 @@ function clearGraph(_lastId = null) {
   $.clearDivContent(__el__)
   delete jeedom.history.chart[__el__]
   $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
-  $('#ul_history').find('.li_history.active').removeClass('active')
+  $('#ul_history, #historyCalculs').find('.li_history.active').removeClass('active')
   setChartOptions()
   lastId = _lastId
 }
