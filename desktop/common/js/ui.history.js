@@ -21,8 +21,7 @@ jeedomUIHistory.default = {
   tracking: true,
   yAxisByUnit: true,
   yAxisScaling: true,
-  yAxisVisible: true,
-  hideButtons: false
+  yAxisVisible: true
 }
 
 /*
@@ -463,10 +462,7 @@ jeedomUIHistory.initChart = function(_chartId) {
   jeedom.history.chart[thisId].zoom = false
   if (jeedom.history.chart[thisId].type == 'pie') return false
 
-    //default:
-  if ($('body').attr('data-page') == 'plan' || jeedom.display.version == 'mobile') {
-    jeedomUIHistory.default.hideButtons = true
-  }
+  //default:
   if ($('body').attr('data-page') == 'plan') {
     jeedomUIHistory.default.yAxisScaling = false
   }
@@ -499,7 +495,6 @@ jeedomUIHistory.initChart = function(_chartId) {
     jeedom.history.chart[thisId].tracking = false
     jeedom.history.chart[thisId].btTracking.setState(0)
   }
-  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btTracking.hide()
 
   //yAxis scaling by unit:
   jeedom.history.chart[thisId].btToggleyaxisbyunit = jeedom.history.chart[thisId].chart.renderer.button('U', 0, 6)
@@ -529,7 +524,6 @@ jeedomUIHistory.initChart = function(_chartId) {
     jeedom.history.chart[thisId].yAxisByUnit = false
     jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(0)
   }
-  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btToggleyaxisbyunit.hide()
 
   //toggle yAxis scaling:
   jeedom.history.chart[thisId].btToggleyaxisScaling = jeedom.history.chart[thisId].chart.renderer.button('yAxis Scaling', 0, 6)
@@ -552,7 +546,6 @@ jeedomUIHistory.initChart = function(_chartId) {
     jeedom.history.chart[thisId].yAxisScaling = false
     jeedom.history.chart[thisId].btToggleyaxisScaling.setState(0)
   }
-  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btToggleyaxisScaling.hide()
 
   //toggle yAxis visible button:
   jeedom.history.chart[thisId].btToggleyaxisVisible = jeedom.history.chart[thisId].chart.renderer.button('yAxis Visible', 0, 6)
@@ -575,5 +568,12 @@ jeedomUIHistory.initChart = function(_chartId) {
     jeedom.history.chart[thisId].yAxisVisible = false
     jeedom.history.chart[thisId].btToggleyaxisVisible.setState(0)
   }
-  if (jeedomUIHistory.default.hideButtons) jeedom.history.chart[thisId].btToggleyaxisVisible.hide()
+
+  //store all that in chart:
+  jeedom.history.chart[thisId].chart._jeeButtons = [
+    jeedom.history.chart[thisId].btTracking,
+    jeedom.history.chart[thisId].btToggleyaxisbyunit,
+    jeedom.history.chart[thisId].btToggleyaxisScaling,
+    jeedom.history.chart[thisId].btToggleyaxisVisible
+    ]
 }

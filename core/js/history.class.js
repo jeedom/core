@@ -409,6 +409,17 @@ jeedom.history.drawChart = function(_params) {
               } catch (error) {}
             }, 10)
           },
+          redraw: function(event) {
+            if (this.chartWidth < 670) {
+              this._jeeButtons.forEach(function(button, i) {
+                button.hide()
+              })
+            } else {
+              this._jeeButtons.forEach(function(button, i) {
+                button.show()
+              })
+            }
+          },
           render: function(event) {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
             var solidClip = null;
