@@ -509,6 +509,7 @@ jeedomUIHistory.initChart = function(_chartId) {
     title: "{{Groupement des axes Y par unité}}"
   })
   .on('click', function(event) {
+    if (jeedom.history.chart[thisId].zoom) return false
     jeedom.history.chart[thisId].yAxisByUnit = !jeedom.history.chart[thisId].yAxisByUnit
     if (!jeedom.history.chart[thisId].yAxisByUnit) {
       jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(0)
