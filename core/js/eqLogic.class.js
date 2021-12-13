@@ -503,6 +503,7 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
     dateEnd: dateEnd,
     success: function(result) {
       if (result.data.length == 0) return false
+      if (result.timelineOnly) return false
       var now = (moment().unix() + (serverTZoffsetMin * 60)) * 1000
       var values = result.data.map(function(elt) {
         return elt[1]
@@ -568,7 +569,6 @@ jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
         }
       })
       drawEqEl.prepend('<span class="eqLogicGraphPeriod">' + decay.charAt(0) + '</span>')
-
     }
   })
 }
