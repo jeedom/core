@@ -156,58 +156,50 @@ function initHistoryTrigger() {
   })
 
   $('#cb_derive').off('change').on('change', function() {
+    if (__lastId__ == null) return
+    var currentId = __lastId__
     var graphDerive = $(this).value()
-    $(jeedom.history.chart[__el__].chart.series).each(function(idx, serie) {
-      if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
-        return
-      }
-      var cmdId = serie.userOptions.id
-      addChart(cmdId, 0)
-      jeedom.cmd.save({
-        cmd: {
-          id: cmdId,
-          display: {
-            graphDerive: graphDerive
-          }
-        },
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          addChart(data.id, 1)
+    addChart(currentId, 0)
+    jeedom.cmd.save({
+      cmd: {
+        id: currentId,
+        display: {
+          graphDerive: graphDerive
         }
-      })
+      },
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        addChart(data.id, 1)
+      }
     })
   })
 
-  $('#cb_step').off('change').on('change', function() {
+  $('#cb_step').off('change').on('change', function(event) {
+    if (__lastId__ == null) return
+    var currentId = __lastId__
     var graphStep = $(this).value()
-    $(jeedom.history.chart[__el__].chart.series).each(function(idx, serie) {
-      if (!isset(serie.userOptions) || !isset(serie.userOptions.id)) {
-        return
-      }
-      var cmdId = serie.userOptions.id
-      addChart(cmdId, 0)
-      jeedom.cmd.save({
-        cmd: {
-          id: cmdId,
-          display: {
-            graphStep: graphStep
-          }
-        },
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          addChart(data.id, 1)
+    addChart(currentId, 0)
+    jeedom.cmd.save({
+      cmd: {
+        id: currentId,
+        display: {
+          graphStep: graphStep
         }
-      })
+      },
+      error: function(error) {
+        $.fn.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        addChart(data.id, 1)
+      }
     })
   })
 }
@@ -309,39 +301,50 @@ function setChartOptions() {
   if (!isset(jeedom.history.chart[__el__])) return
   var _prop = 'disabled'
   var currentSeries = jeedom.history.chart[__el__].chart.series.filter(key => !key.name.includes('Navigator '))
+
   if (currentSeries.length == 1) { //only one series in chart:
-    _prop = false
     var serieId = currentSeries[0].userOptions.id
-    if (isset(currentSeries[0].userOptions.dataGrouping)) {
+    var isCalcul = $('li.li_history[data-cmd_id="' + serieId + '"]').find('a.history').attr('data-calcul') === undefined ? false : true
+    if (isCalcul) {
+      __lastId__ = null
+      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
+      $('#bt_compare').addClass('disabled')
+    } else {
+      __lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
+      _prop = false
       var grouping = currentSeries[0].userOptions.dataGrouping.enabled
       if (grouping) {
         var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
         $('#sel_groupingType').off().value(groupingType)
+      } else {
+        $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
       }
-    } else {
-      $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
+
+      if (isset(currentSeries[0].userOptions.dataGrouping)) {
+        var grouping = currentSeries[0].userOptions.dataGrouping.enabled
+        if (grouping) {
+          var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
+          $('#sel_groupingType').off().value(groupingType)
+        } else {
+          $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
+        }
+      }
+
+      var type = currentSeries[0].userOptions.type
+      if (type == 'areaspline') type = 'area'
+      $('#sel_chartType').off().value(type)
+
+      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
+      $('#bt_compare').removeClass('disabled')
     }
-
-    var type = currentSeries[0].userOptions.type
-    if (type == 'areaspline') type = 'area'
-
-    $('#sel_chartType').off().value(type)
-    $('#cb_derive').prop('checked', currentSeries[0].userOptions.derive)
-    $('#cb_step').prop('checked', currentSeries[0].userOptions.step)
-    $('#bt_compare').removeClass('disabled')
     initHistoryTrigger()
   } else {
+    __lastId__ = null
     $('#sel_groupingType').val($('#sel_groupingType option:first').val())
     $('#sel_chartType').val($('#sel_chartType option:first').val())
+    $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
     $('#bt_compare').addClass('disabled')
   }
-
-  if (currentSeries.length > 0) {
-    __lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
-  } else {
-    __lastId__ = null
-  }
-  $('#sel_groupingType, #sel_chartType').prop('disabled', _prop)
 }
 
 function addChart(_cmd_id, _action, _options) {
