@@ -2646,6 +2646,9 @@ Desktop
   input.knob {
     color: var(--txt-color) !important;
   }
+  textarea.input-sm {
+    font-size: 12px !important;
+  }
   :not(textarea).input-sm {
     font-size: 12px !important;
     line-height: 16px !important;
