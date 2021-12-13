@@ -430,7 +430,6 @@ jeedomUIHistory.setCalculList = function() {
       $.showAlert({message: error.message, level: 'danger'})
     },
     success: function(data) {
-
       if (!$el) return
       $el.empty()
       if (data.length == 0) return
@@ -440,8 +439,9 @@ jeedomUIHistory.setCalculList = function() {
       html += '<div class="cmdList" data-object_id="jeedom-config-calculs" style="display:none;margin-left : 20px;">'
       for (var i in data) {
         if (isset(data[i].calcul) && data[i].calcul != '') {
+          var dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
           html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
-          html += '<a class="history historycalcul" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + data[i].name + '</a>';
+          html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>';
           html += '</li>';
         }
       }
