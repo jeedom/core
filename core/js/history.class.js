@@ -350,8 +350,61 @@ jeedom.history.drawChart = function(_params) {
           fontFamily: 'Roboto'
         },
         events: {
-          load: function() {
+          load: function(event) {
             //default min/max set earlier in series
+            setTimeout(function() {
+              try {
+                if (typeof setChartOptions === "function") {
+                  if (!jeedom.history.chart[event.target._jeeId].comparing) setChartOptions()
+                }
+              } catch (error) {}
+            }, 100)
+          },
+          redraw: function(event) {
+            if (this._jeeButtons) {
+              if (this.chartWidth < 670) {
+                this._jeeButtons.forEach(function(button, i) {
+                  button.hide()
+                })
+              } else {
+                this._jeeButtons.forEach(function(button, i) {
+                  button.show()
+                })
+              }
+            }
+          },
+          render: function(event) {
+            //shift dotted zones clipPaths to ensure no overlapping step mode:
+            var solidClip = null;
+            $('.highcharts-zone-graph-0.customSolidZone').each(function() {
+              solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
+              $(solidClip).css('transform', 'translate(5px)')
+            })
+            var customClip = null;
+            $('.highcharts-zone-graph-1.customDotZone').each(function() {
+              customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
+              $(customClip).css('transform', 'translate(5px)')
+            })
+          },
+          addSeries: function(event) {
+            /*
+            External function needs series to be added to get datas, axis ...
+            Disable chart animation, through it and set in external function
+            */
+            var thisId = this._jeeId
+            if (!jeedom.history.chart[thisId].zoom) {
+              this.update({
+                chart: {
+                  animation: false,
+                },
+              }, false)
+
+              setTimeout(function() {
+                try {
+                  jeedomUIHistory.setAxisScales(thisId, 'addSeries')
+                } catch (error) {}
+              }, 10)
+            }
           },
           selection: function(event) {
             // zoom or reset zoom event
@@ -390,48 +443,6 @@ jeedom.history.drawChart = function(_params) {
                 jeedom.history.chart[chartId].btToggleyaxisbyunit.setState(3)
               } catch (error) {}
             }
-          },
-          addSeries: function(event) {
-            /*
-            External function needs series to be added to get datas, axis ...
-            Disable chart animation, through it and set in external function
-            */
-            var thisId = this._jeeId
-            this.update({
-              chart: {
-                animation: false,
-              },
-            }, false)
-
-            setTimeout(function() {
-              try {
-                jeedomUIHistory.setAxisScales(thisId, 'addSeries')
-              } catch (error) {}
-            }, 10)
-          },
-          redraw: function(event) {
-            if (this.chartWidth < 670) {
-              this._jeeButtons.forEach(function(button, i) {
-                button.hide()
-              })
-            } else {
-              this._jeeButtons.forEach(function(button, i) {
-                button.show()
-              })
-            }
-          },
-          render: function(event) {
-            //shift dotted zones clipPaths to ensure no overlapping step mode:
-            var solidClip = null;
-            $('.highcharts-zone-graph-0.customSolidZone').each(function() {
-              solidClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
-              $(solidClip).css('transform', 'translate(5px)')
-            })
-            var customClip = null;
-            $('.highcharts-zone-graph-1.customDotZone').each(function() {
-              customClip = $(this).attr('clip-path').replace('url(#', '#').replace(')', '')
-              $(customClip).css('transform', 'translate(5px)')
-            })
           }
         }
       }
@@ -714,7 +725,7 @@ jeedom.history.drawChart = function(_params) {
                         this.visible = true
                       }
                     }
-                    jeedomUIHistory.setAxisScales(this.chart._jeeId)
+                    if (!jeedom.history.chart[this.chart._jeeId].zoom) jeedomUIHistory.setAxisScales(this.chart._jeeId)
                     return false
                   }
                 }

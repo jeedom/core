@@ -16,9 +16,10 @@
 
 "use strict"
 
-var lastId = null
 var $divGraph = $('#div_graph')
 var __el__ = 'div_graph'
+var __chartHeight__ = null
+var __lastId__ = null //last cmd_id added to chart
 delete jeedom.history.chart[__el__]
 
 $(function() {
@@ -38,21 +39,21 @@ $(function() {
     }
   }
   jeedomUIHistory.setCalculList()
-  resizeDn()
   moment.locale(jeedom_langage)
   jeedomUtils.datePickerInit()
   setChartOptions()
+  resizeDn()
 })
 
 //handle resizing:
 var resizeDone
 function resizeDn() {
   if (jeedom.history.chart[__el__] === undefined) return
-  var height = $divGraph.height() - $('#div_historyOptions').outerHeight(true)
+  var __chartHeight__ = $divGraph.height() - $('#div_historyOptions').outerHeight(true)
   if (jeedom.history.chart[__el__].chart) {
-    jeedom.history.chart[__el__].chart.setSize($divGraph.width(), height)
+    jeedom.history.chart[__el__].chart.setSize($divGraph.width(), __chartHeight__)
   }
-  $('.bs-sidebar').height(height)
+  $('.bs-sidebar').height(__chartHeight__)
 }
 $(window).resize(function() {
   clearTimeout(resizeDone)
@@ -104,8 +105,8 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
 //Right options:
 function initHistoryTrigger() {
   $('#sel_groupingType').off('change').on('change', function() {
-    if (lastId == null) return
-    var currentId = lastId
+    if (__lastId__ == null) return
+    var currentId = __lastId__
     var groupingType = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
     addChart(currentId, 0)
@@ -129,8 +130,8 @@ function initHistoryTrigger() {
   })
 
   $('#sel_chartType').off('change').on('change', function() {
-    if (lastId == null) return
-    var currentId = lastId
+    if (__lastId__ == null) return
+    var currentId = __lastId__
     var graphType = $(this).value()
     $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
     addChart(currentId, 0)
@@ -180,7 +181,6 @@ function initHistoryTrigger() {
         }
       })
     })
-
   })
 
   $('#cb_step').off('change').on('change', function() {
@@ -299,51 +299,53 @@ $(".li_history .export").on('click', function() {
 })
 
 /************Charting***********/
-function setChartOptions() {
-  var _prop = 'disabled'
-  if ($('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').length == 1) {
-    //only one graph:
-    _prop = false
-    var serieId = $('.highcharts-legend-item:not(.highcharts-legend-item-hidden)').attr("class").split('highcharts-series-')[1].split(' ')[0]
-    if (!isset(jeedom.history.chart[__el__].chart.series[serieId])) return
-    lastId = jeedom.history.chart[__el__].chart.series[serieId].userOptions.id
 
-    var grouping, groupingType, type
-    $(jeedom.history.chart[__el__].chart.series).each(function(idx, serie) {
-      if (serie.userOptions.id == lastId) {
-        if (isset(serie.userOptions.dataGrouping)) {
-          grouping = serie.userOptions.dataGrouping.enabled
-          if (grouping) {
-            groupingType = serie.userOptions.dataGrouping.approximation + '::' + serie.userOptions.dataGrouping.units[0][0]
-            $('#sel_groupingType').off().value(groupingType)
-          }
-        } else {
-          $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
-        }
-        type = serie.userOptions.type
-        if (type == 'areaspline') type = 'area'
-        $('#sel_chartType').off().value(type)
-        $('#cb_derive').prop('checked', serie.userOptions.derive)
-        $('#cb_step').prop('checked', serie.userOptions.step)
-        $('#bt_compare').removeClass('disabled')
-        initHistoryTrigger()
-        return false
+/*
+Compare mode available only if one curve in chart
+grouping/type/variation/step only for last added series
+@page loaded, jeedomUIHistory.setAxisScales(), clearGraph()
+*/
+function setChartOptions() {
+  if (!isset(jeedom.history.chart[__el__])) return
+  var _prop = 'disabled'
+  var currentSeries = jeedom.history.chart[__el__].chart.series.filter(key => !key.name.includes('Navigator '))
+  if (currentSeries.length == 1) { //only one series in chart:
+    _prop = false
+    var serieId = currentSeries[0].userOptions.id
+    if (isset(currentSeries[0].userOptions.dataGrouping)) {
+      var grouping = currentSeries[0].userOptions.dataGrouping.enabled
+      if (grouping) {
+        var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
+        $('#sel_groupingType').off().value(groupingType)
       }
-    })
+    } else {
+      $('#sel_groupingType').off().val($('#sel_groupingType option:first').val())
+    }
+
+    var type = currentSeries[0].userOptions.type
+    if (type == 'areaspline') type = 'area'
+
+    $('#sel_chartType').off().value(type)
+    $('#cb_derive').prop('checked', currentSeries[0].userOptions.derive)
+    $('#cb_step').prop('checked', currentSeries[0].userOptions.step)
+    $('#bt_compare').removeClass('disabled')
+    initHistoryTrigger()
   } else {
-    lastId = null
     $('#sel_groupingType').val($('#sel_groupingType option:first').val())
     $('#sel_chartType').val($('#sel_chartType option:first').val())
     $('#bt_compare').addClass('disabled')
   }
+
+  if (currentSeries.length > 0) {
+    __lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
+  } else {
+    __lastId__ = null
+  }
   $('#sel_groupingType, #sel_chartType').prop('disabled', _prop)
-  resizeDn()
 }
 
 function addChart(_cmd_id, _action, _options) {
-  //_action: 0=remove 1=add
-  if (_action == 0) {
-    //remove serie:
+  if (_action == 0) { //Remove series
     if (isset(jeedom.history.chart[__el__]) && isset(jeedom.history.chart[__el__].chart) && isset(jeedom.history.chart[__el__].chart.series)) {
       $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
         try {
@@ -355,9 +357,10 @@ function addChart(_cmd_id, _action, _options) {
       })
     }
     jeedomUIHistory.setAxisScales(__el__)
-    setChartOptions()
     return
   }
+
+  //Add series:
   var dateStart = $('#in_startDate').value()
   var dateEnd = $('#in_endDate').value()
   jeedom.history.drawChart({
@@ -366,7 +369,7 @@ function addChart(_cmd_id, _action, _options) {
     dateRange: 'all',
     dateStart: dateStart,
     dateEnd: dateEnd,
-    height: $divGraph.height(),
+    height: __chartHeight__,
     option: _options,
     compare: 0,
     success: function(data) {
@@ -374,12 +377,13 @@ function addChart(_cmd_id, _action, _options) {
         $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
         return
       }
-      setChartOptions()
+      __lastId__ = _cmd_id
+      resizeDn()
     }
   })
 }
 
-function clearGraph(_lastId = null) {
+function clearGraph() {
   jeedom.history.chart[__el__].comparing = false
   if (jeedom.history.chart[__el__] === undefined) return
 
@@ -388,7 +392,6 @@ function clearGraph(_lastId = null) {
   $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
   $('#ul_history, #historyCalculs').find('.li_history.active').removeClass('active')
   setChartOptions()
-  lastId = _lastId
 }
 
 function emptyHistory(_cmd_id, _date) {
@@ -481,15 +484,15 @@ $("#md_getCompareRange").dialog({
 $('#bt_compare').off().on('click', function() {
   if (!jeedom.history.chart[__el__].comparing) {
     //Go comparing:
-    if (lastId == null) return
+    if (__lastId__ == null) return
     $('#md_getCompareRange').removeClass('hidden').dialog({
       title: "{{Période de comparaison}}"
     }).dialog('open')
   } else {
     //Stop comparing:
-    clearGraph(lastId)
-    addChart(lastId)
-    $('li.li_history[data-cmd_id="' + lastId + '"]').addClass('active')
+    clearGraph()
+    addChart(__lastId__)
+    $('li.li_history[data-cmd_id="' + __lastId__ + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
   }
 })
@@ -501,7 +504,7 @@ $('#bt_doCompare').off('click').on('click', function() {
   jeedom.history.chart[__el__].chart.xAxis[1].update({
     visible: true
   })
-  compareChart(lastId)
+  compareChart(__lastId__)
 })
 
 function compareChart(_cmd_id) {
@@ -522,7 +525,8 @@ function compareChart(_cmd_id) {
     dateRange: 'all',
     dateStart: fromStart,
     dateEnd: fromEnd,
-    height: $divGraph.height(),
+    height: __chartHeight__,
+    option: null,
     success: function(data) {
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
@@ -530,10 +534,11 @@ function compareChart(_cmd_id) {
         dateRange: 'all',
         dateStart: toStart,
         dateEnd: toEnd,
-        height: $divGraph.height(),
+        height: __chartHeight__,
         option: {graphScaleVisible: false},
         compare: 1,
         success: function(data) {
+
         }
       })
     }

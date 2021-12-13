@@ -51,12 +51,14 @@ jeedomUIHistory.initLegendContextMenu = function(_chartId) {
       opt.$menu.css({top: newTop, left: newLeft})
     },
     build: function($trigger) {
-      var chart = $($trigger[0].parentNode).closest('div.chartContainer').highcharts()
+      var __ctxel__ = $($trigger[0].parentNode).closest('div.chartContainer').attr('id')
+      var chart = jeedom.history.chart[__ctxel__].chart
+      if (!chart) return false
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
       if (jeedom.history.chart[chart._jeeId].comparing) return false
-      if (!chart) return false
 
-      var serieId = $trigger.attr("class").split('highcharts-series-')[1].split(' ')[0]
+      var seriesName = $($trigger[0]).find('text').text()
+      var serieId = chart.series.filter(key => key.name == seriesName)[0].index
       var cmdId = chart.series[serieId].userOptions.id
       var axis = chart.get(cmdId)
       var contextmenuitems = {}
@@ -166,6 +168,7 @@ Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 @history.class.js event resetSelection
 */
 jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
+  if (_chartId === undefined) return false
   //All done with render false, redraw at end
   var chart = jeedom.history.chart[_chartId].chart
 
@@ -335,6 +338,10 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
   }
 
   chart.redraw()
+
+  if (typeof setChartOptions === "function") {
+    if (!jeedom.history.chart[_chartId].comparing) setChartOptions()
+  }
 }
 
 /*
@@ -408,11 +415,14 @@ Remove all series/yAxis from chart:
 */
 jeedomUIHistory.emptyChart = function(_chartId) {
   jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
-    series.remove(true)
+    series.remove(false)
   })
+  /*
   jeedom.history.chart[_chartId].chart.yAxis.forEach(function(yAxis) {
-    yAxis.remove(true)
+    yAxis.remove(false)
   })
+  */
+  jeedom.history.chart[_chartId].chart.redraw()
 }
 
 /*
