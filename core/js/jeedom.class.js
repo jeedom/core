@@ -100,6 +100,10 @@ jeedom.init = function() {
   }
   var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
+    jeedom: {
+      opacityHigh: 0.85,
+      opacityLow: 0.1
+    },
     lang: {
       months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
       shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
@@ -217,6 +221,15 @@ jeedom.init = function() {
   });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
+  }
+}
+
+jeedom.getPageType = function() {
+  var dataPage = $('body').attr('data-page')
+  if (dataPage == '') {
+    return 'unknown'
+  } else {
+    return dataPage
   }
 }
 

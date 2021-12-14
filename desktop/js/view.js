@@ -147,6 +147,28 @@ if (view_id != '') {
           fullScreen(true)
         }
       }, 10)
+
+      //draw graphs:
+      $('.chartToDraw').each(function() {
+        $(this).find('.viewZoneData').each(function() {
+          var cmdId = $(this).attr('data-cmdid')
+          var el = $(this).attr('data-el')
+          var daterange = $(this).attr('data-daterange')
+
+          var _params = {
+            cmd_id: cmdId,
+            el: el,
+            dateRange: daterange,
+            success: function() {
+              $('.chartToDraw >.viewZoneData[data-cmdid="'+cmdId+'"]').remove()
+            }
+          }
+          var option = $(this).attr('data-option')
+          option = json_decode(option.replace(/'/g, '"'))
+          _params.option = option
+          jeedom.history.drawChart(_params)
+        })
+      })
     }
   })
 }
@@ -266,3 +288,7 @@ function editWidgetMode(_mode, _save) {
     })
   }
 }
+
+$(function() {
+  jeedomUIHistory.initLegendContextMenu('div_displayViewContainer')
+})

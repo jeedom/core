@@ -21,9 +21,9 @@ $date = array(
 		</div>
 	</div>
 
-	<div class="col-lg-7 col-sm-10 col-xs-12 pull-right">
+	<div class="col-lg-8 col-sm-10 col-xs-12 pull-right">
 		<div class="input-group input-group-sm" style="float: right;">
-			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;">
+			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;" disabled="">
 				<option value="">{{Aucun groupement}}</option>
 				<option value="sum::hour">{{Somme par heure}}</option>
 				<option value="average::hour">{{Moyenne par heure}}</option>
@@ -47,47 +47,54 @@ $date = array(
 				<option value="high::year">{{Maximum par année}}</option>
 			</select>
 
-			<select class="fullCorner input-sm" id="sel_chartType" style="width: 100px;">
+			<select class="fullCorner input-sm" id="sel_chartType" style="width: 100px;" disabled="">
 				<option value="line">{{Ligne}}</option>
 				<option value="area">{{Aire}}</option>
 				<option value="column">{{Barre}}</option>
 			</select>
 
-			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
-			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
-			<span><i class="fas fa-bullseye"></i> {{Tracking}} <input type="checkbox" id="cb_tracking" checked/></span>
-
-			<a class="btn btn-sm btn-success" id="bt_compare"><i class="fas fa-greater-than-equal"></i> {{Comparer}}</a>
-			<a class="btn btn-sm btn-warning" id='bt_clearGraph' title="{{Vide l'affichage des courbes sur la zone.}}" >
+			<span>{{Variation}} <input type="checkbox" id="cb_derive" disabled="" /></span>
+			<span>{{Escalier}} <input type="checkbox" id="cb_step" disabled="" /></span>
+			<a id="bt_compare" class="btn btn-sm btn-success disabled roundedLeft"><i class="fas fa-greater-than-equal"></i> {{Comparer}}
+			</a><a id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}" >
 				<i class="fas fa-times"></i> {{Affichage}}
 			</a>
 		</div>
 	</div>
 </div>
 
-<div class="row row-overflow">
-	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar">
+<div id="pageContainer" class="row row-overflow">
+	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
 		<ul class="nav nav-list bs-sidenav">
 			<li>
-				<div class="input-group input-group-sm">
-					<textarea class="form-control roundedLeft" id='in_calculHistory' placeholder="{{Historique calculé}}" ></textarea>
+				<i class="fas fa-square-root-alt"></i> {{Historique calculé}}
+				<a id="bt_configureCalculHistory" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+			</li>
+			<li>
+				<div class="input-group input-group-sm" style="margin-top: 10px;">
+					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}" ></textarea>
 					<span class="input-group-btn">
-						<a class="btn btn-default" id="bt_findCmdCalculHistory" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
-						</a><a class="btn btn-success" id="bt_displayCalculHistory" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i>
-						</a><a class="btn btn-default roundedRight" id="bt_configureCalculHistory" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i></a>
+						<a id="bt_findCmdCalculHistory" class="btn btn-default" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
+						</a><a id="bt_displayCalculHistory" class="btn btn-success roundedRight" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i></a>
 					</span>
 				</div>
 			</li>
+			<div id="historyCalculs"></div>
 		</ul>
+
 		<ul id="ul_history" class="nav nav-list bs-sidenav">
 			<li>
-				<i class="icon techno-courbes3"></i> {{Historique}}
-				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top:-5px;padding: 5px 10px;margin-right: 3px;"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<i class="icon techno-courbes3"></i> {{Commandes}}
+				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration de l'historique des commandes}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</li>
-			<li class="filter">
-				<input class="filter form-control input-sm" placeholder="{{Rechercher}}" />
+			<li class="filter input-group input-group-sm" style="margin-top: 10px; //width: 98%;">
+				<input id="in_searchHistory" class="filter form-control input-sm roundedLeft" style="width: calc(100% - 28px);" placeholder="{{Rechercher}}" autocomplete="off" />
+				<span class="input-group-btn ">
+					<a id="bt_resetSearch" class="btn btn-default roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
+				</span>
 			</li>
 			<?php
+			//cmds by objects:
 			$object_id = -1;
 			$historyAll = cmd::allHistoryCmd();
 			foreach ($historyAll as $cmd) {
@@ -123,12 +130,16 @@ $date = array(
 				echo $_echo;
 				$object_id = $eqLogic->getObject_id();
 			}
+
+
+
+
 			?>
 		</ul>
 	</div>
 
 	<div class="col-lg-9 col-md-8 col-sm-7">
-		<div id="div_graph"></div>
+		<div id="div_graph" class="chartContainer"></div>
 	</div>
 </div>
 
@@ -185,5 +196,6 @@ $date = array(
 	<a class="btn btn-success pull-right" id="bt_doCompare"><i class="fas fa-check"></i> {{Comparer}}</a>
 </div>
 <?php
+include_file('desktop/common', 'ui.history', 'js');
 include_file("desktop", "history", "js");
 ?>

@@ -1794,7 +1794,7 @@ function addSubElement(_subElement) {
       retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
       retour += '<div class="subElementFields">'
       retour += '<legend >{{ALORS}}</legend>'
-      retour += getAddButton(true)
+      retour += getAddButton(_subElement.type,true)
       retour += '</div>'
       retour += '<div class="expressions">'
       retour += '<div class="sortable empty" ></div>'
@@ -1810,7 +1810,7 @@ function addSubElement(_subElement) {
       retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>'
       retour += '<div class="subElementFields">'
       retour += '<legend >{{SINON}}</legend>'
-      retour += getAddButton()
+      retour += getAddButton(_subElement.type)
       retour += '</div>'
       retour += '<div class="expressions">'
       retour += '<div class="sortable empty" ></div>'
@@ -1916,7 +1916,7 @@ function addSubElement(_subElement) {
       retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
       retour += '<div class="subElementFields">'
       retour += '<legend >{{FAIRE}}</legend>'
-      retour += getAddButton()
+      retour += getAddButton(_subElement.type)
       retour += '</div>'
       retour += '<div class="expressions">'
       retour += '<div class="sortable empty" ></div>'
@@ -2022,7 +2022,7 @@ function addSubElement(_subElement) {
       retour += '</div>'
       retour += '<div class="subElementFields">'
       retour += '<legend >{{ACTION}}</legend><br/>'
-      retour += getAddButton()
+      retour += getAddButton(_subElement.type)
       retour += '</div>'
       retour += '<div class="expressions">'
       retour += '<div class="sortable empty" ></div>'
@@ -2223,7 +2223,7 @@ function updateTooltips() {
   $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
 }
 
-function getAddButton(_caret) {
+function getAddButton(_type,_caret) {
   if (!isset(_caret)) _caret = false
   var retour = ''
   if (_caret) {
@@ -2246,7 +2246,9 @@ function getAddButton(_caret) {
   retour += '<ul class="dropdown-menu">'
   retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
-  retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+  if(_type != 'action' && _type != 'if'  && _type != 'in'  && _type != 'for'  && _type != 'at'){
+      retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+  }
   retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
   retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'

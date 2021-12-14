@@ -705,8 +705,8 @@ $('.view-link-widget').off('click').on('click', function() {
 })
 
 $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widget', function() {
-  if (isset(jeedom.history.chart['graph' + $(this).attr('data-graph_id')])) {
-    jeedom.history.chart['graph' + $(this).attr('data-graph_id')].chart.reflow()
+  if (isset(jeedom.history.chart['div_designGraph' + $(this).attr('data-graph_id')])) {
+    jeedom.history.chart['div_designGraph' + $(this).attr('data-graph_id')].chart.reflow()
   }
 })
 
@@ -1175,8 +1175,8 @@ function displayObject(_plan, _html, _noRender) {
     css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]'
     $(css_selector).remove()
   } else if (_plan.link_type == 'graph') {
-    if (jeedom.history.chart['graph' + _plan.link_id]) {
-      delete jeedom.history.chart['graph' + _plan.link_id]
+    if (jeedom.history.chart['div_designGraph' + _plan.link_id]) {
+      delete jeedom.history.chart['div_designGraph' + _plan.link_id]
     }
     css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]'
     $(css_selector).remove()
@@ -1363,11 +1363,13 @@ function displayObject(_plan, _html, _noRender) {
     $pageContainer.append(style_el)
     $('.div_displayObject').append(html)
     if (isset(_plan.display) && isset(_plan.display.graph)) {
+      var done = 0
       for (var i in _plan.display.graph) {
         if (init(_plan.display.graph[i].link_id) != '') {
+          done += 1
           jeedom.history.drawChart({
             cmd_id: _plan.display.graph[i].link_id,
-            el: 'graph' + _plan.link_id,
+            el: 'div_designGraph' + _plan.link_id,
             showLegend: init(_plan.display.showLegend, true),
             showTimeSelector: init(_plan.display.showTimeSelector, false),
             showScrollbar: init(_plan.display.showScrollbar, true),
@@ -1378,9 +1380,12 @@ function displayObject(_plan, _html, _noRender) {
             enableExport: false,
             global: false,
             success: function() {
-              if (init(_plan.display.transparentBackground, false)) {
-                $('#graph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
-              }
+              done -= 1
+              if (done == 0) {
+                  if (init(_plan.display.transparentBackground, false)) {
+                    $('#div_designGraph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
+                  }
+                }
             }
           })
         }
@@ -1403,6 +1408,8 @@ $(function() {
   jeedomUI.setEqSignals()
   jeedomUI.setHistoryModalHandler()
 
+  jeedomUIHistory.initLegendContextMenu('div_backgroundPlan')
+
   //back to mobile home with three fingers on mobile:
   if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {
     $('body').on('touchstart', function(event) {
@@ -1415,3 +1422,4 @@ $(function() {
     })
   }
 })
+

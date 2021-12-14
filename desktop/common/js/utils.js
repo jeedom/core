@@ -80,13 +80,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedomUtils.closeJeedomMenu()
   window.toastr.clear()
 
-  if ($('.context-menu-root').length > 0) {
-    try {
-      $.contextMenu('destroy')
-    } catch(e) {
-      $('.context-menu-root').remove()
-    }
-  }
+  $.contextMenu('destroy')
+  $('.context-menu-root').remove()
 
   try {
     $(".ui-dialog-content").dialog("close")

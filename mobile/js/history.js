@@ -6,27 +6,29 @@ var page_title = $('body').attr('data-objectName')
 var object_id = $('body').attr('data-object')
 var lastId = null
 var cmd_id = null
+var __el__ = 'div_graph'
 
 function initHistory(_cmd_id) {
   cmd_id = _cmd_id
   jeedom.history.getInitDates({
-	cmd_id: cmd_id,
-	success: function(data) {
-		$('#in_startDate').value(data['start']);
-		$('#in_endDate').value(data['end']);
-		addChart(_cmd_id,1)
-		delete jeedom.history.chart['div_graph']
-	}
+  cmd_id: cmd_id,
+  success: function(data) {
+    $('#in_startDate').value(data['start']);
+    $('#in_endDate').value(data['end']);
+    addChart(_cmd_id, 1)
+    delete jeedom.history.chart[__el__]
+  }
   });
 }
 
 function addChart(_cmd_id, _action) {
   if (_action == 0) {
-    if (isset(jeedom.history.chart['div_graph']) && isset(jeedom.history.chart['div_graph'].chart) && isset(jeedom.history.chart['div_graph'].chart.series)) {
-      $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
+    if (isset(jeedom.history.chart[__el__]) && isset(jeedom.history.chart[__el__].chart) && isset(jeedom.history.chart[__el__].chart.series)) {
+      $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
         try {
           if (serie.options.id == _cmd_id) {
-            serie.remove()
+            serie.yAxis.remove()
+            jeedom.history.chart[__el__].chart.get(serie.options.id).remove(false)
           }
         } catch(error) {}
       })
@@ -35,7 +37,7 @@ function addChart(_cmd_id, _action) {
     lastId = _cmd_id
     jeedom.history.drawChart({
       cmd_id: _cmd_id,
-      el: 'div_graph',
+      el: __el__,
       dateRange : 'all',
       dateStart : $('#in_startDate').value(),
       dateEnd :  $('#in_endDate').value(),
@@ -70,7 +72,7 @@ function addChart(_cmd_id, _action) {
 
 function initHistoryTrigger() {
   $('#sel_chartType').off('change').on('change', function() {
-    addChart(lastId,0)
+    addChart(lastId, 0)
     jeedom.cmd.save({
       cmd: {id: lastId, display: {graphType: $(this).value()}},
       error: function(error) {
@@ -82,7 +84,7 @@ function initHistoryTrigger() {
     })
   })
   $('#sel_groupingType').off('change').on('change', function() {
-    addChart(lastId,0)
+    addChart(lastId, 0)
     jeedom.cmd.save({
       cmd: {id: lastId, display: {groupingType: $(this).value()}},
       error: function(error) {
@@ -94,7 +96,7 @@ function initHistoryTrigger() {
     })
   })
   $('#cb_derive').off('change').on('change', function() {
-    addChart(lastId,0)
+    addChart(lastId, 0)
     jeedom.cmd.save({
       cmd: {id: lastId, display: {graphDerive: $(this).value()}},
       error: function(error) {
@@ -106,7 +108,7 @@ function initHistoryTrigger() {
     })
   })
   $('#cb_step').off('change').on('change', function() {
-    addChart(lastId,0)
+    addChart(lastId, 0)
     jeedom.cmd.save({
       cmd: {id: lastId, display: {graphStep: $(this).value()}},
       error: function(error) {
@@ -120,7 +122,7 @@ function initHistoryTrigger() {
 }
 
 $('#bt_validChangeDate').on('click',function() {
-  $(jeedom.history.chart['div_graph'].chart.series).each(function(i, serie) {
+  $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
     if (isset(serie.options) && !isNaN(serie.options.id)) {
       var cmd_id = serie.options.id
       addChart(cmd_id, 0)
