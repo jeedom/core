@@ -26,11 +26,6 @@ if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;
 }
 
-jeedom.getPageType = functon() {
-  var dataPage = $('body').attr('data-page')
-  dataPage == '' ? return 'unknown' : return dataPage
-}
-
 jeedom.changes = function() {
   var paramsRequired = [];
   var paramsSpecifics = {
@@ -226,6 +221,15 @@ jeedom.init = function() {
   });
   if (typeof user_id !== 'undefined') {
     jeedom.changes();
+  }
+}
+
+jeedom.getPageType = function() {
+  var dataPage = $('body').attr('data-page')
+  if (dataPage == '') {
+    return 'unknown'
+  } else {
+    return dataPage
   }
 }
 
