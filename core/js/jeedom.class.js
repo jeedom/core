@@ -26,6 +26,11 @@ if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null;
 }
 
+jeedom.getPageType = functon() {
+  var dataPage = $('body').attr('data-page')
+  dataPage == '' ? return 'unknown' : return dataPage
+}
+
 jeedom.changes = function() {
   var paramsRequired = [];
   var paramsSpecifics = {

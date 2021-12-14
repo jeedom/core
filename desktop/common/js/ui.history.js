@@ -287,9 +287,9 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
   Set axis visible / color.
   No unit: all visible with series color
   unit: if single, visible with series color, else only first visible, uncolored
-  @view and design : do nothing, user choice!
+  @design : do nothing, user choice!
   */
-  if (!_chartId.startsWith('div_viewZone') && !_chartId.startsWith('div_designGraph')) {
+  if (jeedom.history.chart[_chartId].mode != 'view' && jeedom.history.chart[_chartId].mode != 'plan') {
     if (Object.keys(units).length == 0) { //no unit
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
         var seriesColor = axis.series[0].color
@@ -322,6 +322,37 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
             }, false)
           }
         })
+      })
+    }
+  }
+
+  /*
+  no unit: all axis colored, unit: all axis uncolored
+  @view
+  */
+  if (jeedom.history.chart[_chartId].mode == 'view') {
+    if (Object.keys(units).length == 0) { //no unit
+      chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+        var seriesColor = axis.series[0].color
+        axis.update({
+          visible: true,
+          labels: {
+            style: {
+              color: seriesColor
+            },
+          }
+        }, false)
+      })
+    } else {
+      chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
+        axis.update({
+          visible: true,
+          labels: {
+            style: {
+              color: 'var(--link-color)'
+            },
+          }
+        }, false)
       })
     }
   }
@@ -472,10 +503,11 @@ jeedomUIHistory.initChart = function(_chartId) {
   var thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
+  jeedom.history.chart[thisId].mode = jeedom.getPageType()
   if (jeedom.history.chart[thisId].type == 'pie') return false
 
   //default:
-  if ($('body').attr('data-page') == 'plan') {
+  if (jeedom.getPageType == 'plan') {
     jeedomUIHistory.default.yAxisScaling = false
   }
 
