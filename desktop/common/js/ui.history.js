@@ -335,7 +335,6 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
         var seriesColor = axis.series[0].color
         axis.update({
-          visible: true,
           labels: {
             style: {
               color: seriesColor
@@ -346,7 +345,6 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
     } else {
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
         axis.update({
-          visible: true,
           labels: {
             style: {
               color: 'var(--link-color)'
