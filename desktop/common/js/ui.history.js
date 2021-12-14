@@ -505,7 +505,7 @@ jeedomUIHistory.initChart = function(_chartId) {
   if (jeedom.history.chart[thisId].type == 'pie') return false
 
   //default:
-  if (jeedom.getPageType == 'plan') {
+  if (jeedom.history.chart[thisId].mode == 'plan') {
     jeedomUIHistory.default.yAxisScaling = false
   }
 
