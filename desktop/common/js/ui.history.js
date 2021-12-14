@@ -487,19 +487,22 @@ jeedomUIHistory.initChart = function(_chartId) {
   */
 
   //Tracking button:
-  jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('Tracking', 0, 6)
+  jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('Tracking', null, null)
   .attr({
     id: 'hc_bt_tracking',
     height: 10,
+    align: 'right',
     title: "{{Opacité des courbes au suivi de la souris}}"
   })
   .on('click', function(event) {
     jeedomUIHistory.toggleTracking(thisId)
   })
-  .css({
-    transform: 'translateX(calc(100% - 100px)) translateY(5px)',
-  })
   .add()
+  .align({
+    align: 'right',
+    x: -35,
+    y: 5
+  }, false, null)
   if (jeedomUIHistory.default.tracking) {
     jeedom.history.chart[thisId].tracking = true
     jeedom.history.chart[thisId].btTracking.setState(2)
@@ -513,6 +516,7 @@ jeedomUIHistory.initChart = function(_chartId) {
   .attr({
     id: 'hc_bt_YaxisByUnit',
     height: 10,
+    align: 'right',
     title: "{{Groupement des axes Y par unité}}"
   })
   .on('click', function(event) {
@@ -525,10 +529,12 @@ jeedomUIHistory.initChart = function(_chartId) {
     }
     jeedomUIHistory.setAxisScales(thisId)
   })
-  .css({
-    transform: 'translateX(calc(100% - 127px)) translateY(5px)',
-  })
   .add()
+  .align({
+    align: 'right',
+    x: -102,
+    y: 5
+  }, false, null)
   if (jeedomUIHistory.default.yAxisByUnit) {
     jeedom.history.chart[thisId].yAxisByUnit = true
     jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(2)
@@ -542,15 +548,18 @@ jeedomUIHistory.initChart = function(_chartId) {
   .attr({
     id: 'hc_bt_toggleYaxisScale',
     height: 10,
+    align: 'right',
     title: "{{Echelle independante des axes Y}}"
   })
   .on('click', function(event) {
     jeedomUIHistory.toggleyAxisScaling(thisId)
   })
-  .css({
-    transform: 'translateX(calc(100% - 219px)) translateY(5px)',
-  })
   .add()
+  .align({
+    align: 'right',
+    x: -130,
+    y: 5
+  }, false, null)
   if (jeedomUIHistory.default.yAxisScaling) {
     jeedom.history.chart[thisId].yAxisScaling = true
     jeedom.history.chart[thisId].btToggleyaxisScaling.setState(2)
@@ -564,15 +573,18 @@ jeedomUIHistory.initChart = function(_chartId) {
   .attr({
     id: 'hc_bt_toggleYaxis',
     height: 10,
+    align: 'right',
     title: "{{Affichage des axes Y}}"
   })
   .on('click', function(event) {
     jeedomUIHistory.toggleYaxisVisible(thisId)
   })
-  .css({
-    transform: 'translateX(calc(100% - 307px)) translateY(5px)',
-  })
   .add()
+  .align({
+    align: 'right',
+    x: -223,
+    y: 5
+  }, false, null)
   if (jeedomUIHistory.default.yAxisVisible) {
     jeedom.history.chart[thisId].yAxisVisible = true
     jeedom.history.chart[thisId].btToggleyaxisVisible.setState(2)

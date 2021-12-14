@@ -115,7 +115,7 @@ jeedom.view.handleViewAjax = function(_params) {
       for (var j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
         configuration = json_encode(viewData.configuration);
-        option = configuration.replaceAll('"', "'");
+        option = configuration.replace(/"/g, "'");
         result.html += '<div class="viewZoneData hidden" data-cmdId="'+viewData.link_id+'" data-option="'+option+'" data-el="'+div_id+'" data-dateRange="'+viewZone.configuration.dateRange+'"></div>';
       }
       result.html += '</div>';

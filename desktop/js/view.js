@@ -164,7 +164,7 @@ if (view_id != '') {
             }
           }
           var option = $(this).attr('data-option')
-          option = json_decode(option.replaceAll("'", '"'))
+          option = json_decode(option.replace(/'/g, '"'))
           _params.option = option
           jeedom.history.drawChart(_params)
         })
