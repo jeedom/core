@@ -28,6 +28,8 @@ jeedomUIHistory.default = {
 @history
 @view
 @plan
+@modal history
+@mobile history
 */
 jeedomUIHistory.initLegendContextMenu = function(_chartId) {
   $.contextMenu({

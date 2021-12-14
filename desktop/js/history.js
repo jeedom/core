@@ -22,6 +22,7 @@ var __chartHeight__ = null
 var __lastId__ = null //last cmd_id added to chart
 delete jeedom.history.chart[__el__]
 
+var $pageContainer = $('#pageContainer')
 $(function() {
   $('#in_searchHistory').val('').keyup()
   var cmdIds = getUrlVars('cmd_id')
@@ -214,7 +215,7 @@ $('#bt_clearGraph').on('click', function() {
 })
 
 //search filter opening:
-$('#pageContainer').on({
+$pageContainer.on({
   'keyup': function(event) {
     if ($(this).value() == '') {
       $('#ul_history .cmdList').hide()
@@ -240,7 +241,20 @@ $('#bt_resetSearch').on('click', function() {
 })
 
 //List of object / cmds event:
-$('#pageContainer').on({
+$pageContainer.on({
+  'click': function(event) {
+    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
+    if (list.is(':visible')) {
+      $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
+      list.hide()
+    } else {
+      $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+      list.show()
+    }
+  }
+}, '.displayObject')
+
+$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
     if (isset(jeedom.history.chart[__el__]) && jeedom.history.chart[__el__].comparing) return
@@ -265,20 +279,7 @@ $('#pageContainer').on({
   }
 }, '.li_history .history')
 
-$('#pageContainer').on({
-  'click': function(event) {
-    var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
-    if (list.is(':visible')) {
-      $(this).find('i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
-      list.hide()
-    } else {
-      $(this).find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
-      list.show()
-    }
-  }
-}, '.displayObject')
-
-$('#pageContainer').on({
+$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
     var bt_remove = $(this)
@@ -290,15 +291,17 @@ $('#pageContainer').on({
   }
 }, '.li_history .remove')
 
-$(".li_history .export").on('click', function() {
-  window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
-})
+$pageContainer.on({
+  'click': function(event) {
+    window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
+  }
+}, '.li_history .export')
+
 
 /************Charting***********/
 
 /*
-Compare mode available only if one curve in chart
-grouping/type/variation/step only for last added series
+grouping/type/variation/step Compare mode available only if one curve in chart
 @page loaded, jeedomUIHistory.setAxisScales(), clearGraph()
 */
 function setChartOptions() {
