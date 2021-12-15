@@ -6202,7 +6202,7 @@
         "Le nom de votre objet": "Der Name Ihres Objekts",
         "Objet parent": "Übergeordnetes Objekt",
         "Indique le parent de l'objet courant, cela permet de définir une hiérarchie entre les objets": "Gibt das übergeordnete Objekt des aktuellen Objekts an. Dadurch kann eine Hierarchie zwischen den Objekten definiert werden",
-        "Par exemple": "Beispielsweise",
+        "Par exemple": "Zum Beispiel",
         "Le salon a pour parent l'appartement": "Das Wohnzimmer ist mit der Wohnung verbunden",
         "Un objet ne peut avoir qu'un seul parent mais plusieurs objets peuvent avoir le même parent": "Ein Objekt kann nur ein übergeordnetes Objekt haben, aber mehrere Objekte können dasselbe übergeordnete Objekt haben",
         "Cochez cette case pour rendre visible cet objet": "Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen",
