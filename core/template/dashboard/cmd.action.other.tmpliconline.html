@@ -7,23 +7,22 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
 
-      if (['1', 1, '99', 99, 'on'].includes(_options.display_value)) {
+      if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
         if (jeedom.cmd.normalizeName('#name#') == 'on') {
           cmd.hide()
-        } else {
-          cmd.show()
-          cmd.find('.iconCmdLine').empty().append("#_icon_on_#")
+        }
+        else {
+          cmd.show().find('.iconCmdLine').empty().append("#_icon_on_#")
         }
       } else {
         if (jeedom.cmd.normalizeName('#name#') == 'off') {
           cmd.hide()
-        }else{
-          cmd.show()
-          cmd.find('.iconCmdLine').empty().append("#_icon_off_#")
+        }
+        else {
+          cmd.show().find('.iconCmdLine').empty().append("#_icon_off_#")
         }
       }
     }
-
     jeedom.cmd.update['#id#']({display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'})
 
     $('.cmd[data-cmd_uid=#uid#] .iconCmdLine').off().on('click', function() {
