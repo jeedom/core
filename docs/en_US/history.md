@@ -1,17 +1,15 @@
 # Historique
 **Analysis → History**
 
-Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you for example to log a temperature curve, consumption, door openings, etc
+Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature curve, consumption, the openings of a door, etc.
 
 ![Historical](./images/history.gif)
 
-### Principe
-
-Here is described the principle of historicization of Jeedom. You only need to understand this if you are having historization issues or want to change the historization settings. Default settings are fine in most cases.
+### Principle of historization
 
 ### Archivage
 
-Data archiving allows Jeedom to reduce the amount of data stored in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
+Data archiving allows Jeedom to reduce the amount of data kept in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
 
 Archiving is a task that starts at night and compacts the data recovered during the day. By default Jeedom retrieves all older data of 2 hours and makes 1 hour packets of it (either an average, a minimum or a maximum depending on the settings). So here we have two parameters, one for packet size and another to know when to do it (by default, these are 1 hour packets with data that are more than 2 hours old).
 
@@ -21,16 +19,19 @@ Archiving is a task that starts at night and compacts the data recovered during 
 
 > **Important**
 >
-> Of course, this archiving principle only applies to digital type commands; on binary type commands, Jeedom keeps only the dates of change of state.
+> Of course, this archiving principle only applies to digital orders. On binary type orders, Jeedom only keeps the dates of change of state.
 
 ### Viewing a graph
 
 There are several ways to access the history :
 
 - By clicking on the desired command in a widget,
-- By going to the history page which allows to superimpose different curves and to combine styles (area, curve, bar),
+- By going to the history page which allows you to superimpose different curves and combine styles (area, curve, bar),
 - On mobile while remaining pressed on the widget in question,
-- By putting a graph area in a view (see below).
+- By putting a graph area in a view (see below),
+- By inserting a graph on a Design.
+
+From Core v4.2 it is also possible to display a curve at the bottom of the tile of a device.
 
 ## Historique
 
@@ -41,17 +42,21 @@ If you display a graph via the history page, you have access to several display 
 - **Display type** : Display in *Line*, *Area*, or *Closed off*. Option saved on the order and used from the Dashboard.
 - **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
 - **Staircase** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
-- **Tracking** : Allows you to deactivate the highlighting of the curve when a value is displayed at the mouse cursor. For example when two curves do not have their values at the same times.
 - **Compare** : Compare the curve between different periods.
-
 
 > **Tip**
 >
-> If you display several curves at the same time:
-> - Click on a legend below the graph to display / hide this curve.
-> - Ctrl Click on a legend allows you to display only this one.
-> - Alt Click on a legend allows you to display them all.
+> To avoid any handling error, these options saved in the commands are only active when a single curve is displayed.
 
+In the space where the curves are displayed, there are also several options :
+
+- **Zoom** : A shortcut area allowing you to adjust the horizontal zoom to the desired duration, if the data is loaded.
+- **yAxis Visible** : Allows you to hide or display all vertical axes.
+- **yAxis Scaling** : Allows you to activate or not the scaling of each vertical axis independently of the others.
+- **U** : Allows to group the scale of curves and vertical axes according to their unit. All curves with the same unit will have the same scale.
+- **Tracking** : Allows you to deactivate the highlighting of the curve when a value is displayed at the mouse cursor. For example when two curves do not have their values at the same times.
+
+Under the curves, you can also use the contextual menu on each legend to isolate a curve, display / hide its axis, change its color, ...
 
 ### Graphic on views and designs
 
@@ -71,15 +76,15 @@ The history page gives access to some additional options
 
 #### Calculated history
 
-Allows to display a curve according to a calculation on several commands (you can pretty much do anything, + - / \* absolute value ... see PHP documentation for some functions).
-Ex :
-abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)
+Allows to display a curve according to a calculation on several commands (you can pretty much do anything, + - / \* absolute value ... see PHP documentation for some functions). For example :
 
-You also have access to a management of calculation formulas which allows you to save them for easier re-display.
+``abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)``
+
+You also have access to a management of calculation formulas which allows you to save them to re-display them more easily.
 
 > **Tip**
 >
-> Just click on the name of the object to unfold it, and bring up the historical commands that can be displayed.
+> When you have saved calculations, these are available on the left in **My Calculations**.
 
 #### Command history
 
