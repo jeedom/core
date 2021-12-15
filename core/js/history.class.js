@@ -773,6 +773,18 @@ jeedom.history.drawChart = function(_params) {
               inputEnabled: false,
               enabled: _params.showTimeSelector
             },
+            responsive: {
+              rules: [{
+                condition: {
+                  maxWidth: 710
+                },
+                chartOptions: {
+                  rangeSelector: {
+                    dropdown: 'always'
+                  }
+                }
+              }]
+            },
             legend: legend,
             tooltip: {
               xDateFormat: '%a %Y-%m-%d %H:%M:%S',
