@@ -362,7 +362,8 @@ jeedom.history.drawChart = function(_params) {
           },
           redraw: function(event) {
             if (this._jeeButtons) {
-              if (this.chartWidth < 670) {
+              var xTheshold = (this.chartWidth - this.rangeSelector.buttons[6].translateX) + this.rangeSelector.buttons[6].width
+              if (xTheshold < 380) {
                 this._jeeButtons.forEach(function(button, i) {
                   button.hide()
                 })
