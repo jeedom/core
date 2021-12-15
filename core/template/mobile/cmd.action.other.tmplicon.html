@@ -8,7 +8,7 @@
     jeedom.cmd.update['#id#'] = function(_options) {
       var cmd = $('.cmd[data-cmd_id=#id#]')
       if ('#_time_widget_#' != '1') {
-        cmd.find('.timeCmd').parent().remove()
+        cmd.find('.timeCmd').remove()
       }
 
       if (_options.display_value == '1' || _options.display_value >= 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
