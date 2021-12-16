@@ -180,16 +180,17 @@ jeedomUIHistory.chartDone = function(_chartId) {
         animation: true,
       },
     }, false)
-    chart.setSize()
-    jeedomUIHistory.setAxisScales(_chartId, {redraw: true})
 
     setTimeout(function() {
-      try {
-        if (!jeedom.history.chart[_chartId].comparing && typeof setChartOptions === "function") {
-          setChartOptions()
-        }
-      } catch (error) {}
+      if (!jeedom.history.chart[_chartId].comparing) {
+        if (typeof setChartOptions === "function") setChartOptions()
+      } else {
+
+      }
     }, 100)
+
+    chart.setSize()
+    jeedomUIHistory.setAxisScales(_chartId, {redraw: true})
 
   } catch (error) { console.error(error)}
 }

@@ -245,8 +245,13 @@ jeedom.history.drawChart = function(_params) {
         return;
       }
 
+      //if this serie a comparison one:
+      var comparisonSerie = false
+      if (isset(_params.compare) && _params.compare == 1) comparisonSerie = true
+
+
       //If is comparing, add midnight start and end points to both series for range adjusting:
-      if (typeof isComparing !== 'undefined' && isComparing == true) {
+      if (comparisonSerie) {
         var tsFirst = data.result.data[0][0]
         var tsStart = Date.parse(data.result.dateStart)
         if (tsStart < tsFirst) {
@@ -258,9 +263,6 @@ jeedom.history.drawChart = function(_params) {
           data.result.data.push([tsEnd, data.result.data.slice(-1)[0][1]])
         }
       }
-      //if this serie a comparison one:
-      var comparisonSerie = false
-      if (isset(_params.compare) && _params.compare == 1) comparisonSerie = true
 
       //set/check some params:
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].cmd[_params.cmd_id])) {
@@ -384,10 +386,6 @@ jeedom.history.drawChart = function(_params) {
             })
           },
           addSeries: function(event) {
-            /*
-            External function needs series to be added to get datas, axis ...
-            Disable chart animation, through it and set in external function
-            */
             var thisId = this._jeeId
             if (!jeedom.history.chart[thisId].zoom) {
               this.update({
@@ -428,12 +426,21 @@ jeedom.history.drawChart = function(_params) {
 
               setTimeout(function() {
                 try {
-                  var options = {
-                    redraw: true,
-                    extremeXmin: jeedom.history.chart[chartId].zoomPrevXmin,
-                    extremeXmax: jeedom.history.chart[chartId].zoomPrevXmax,
+                  if (jeedom.history.chart[chartId].comparing) {
+                    var options = {
+                      redraw: true,
+                      resetDateRange: true,
+                    }
+                    jeedomUIHistory.setAxisScales(chartId, options)
+                  } else {
+                    var options = {
+                      redraw: true,
+                      extremeXmin: jeedom.history.chart[chartId].zoomPrevXmin,
+                      extremeXmax: jeedom.history.chart[chartId].zoomPrevXmax,
+                    }
+                    jeedomUIHistory.setAxisScales(chartId, options)
                   }
-                  jeedomUIHistory.setAxisScales(chartId, options)
+
                 } catch (error) {}
               }, 100)
 
@@ -767,6 +774,7 @@ jeedom.history.drawChart = function(_params) {
               }],
               selected: dateRange,
               inputEnabled: false,
+              x: 0,
               enabled: _params.showTimeSelector
             },
             responsive: {
@@ -880,6 +888,9 @@ jeedom.history.drawChart = function(_params) {
 
             //navigator only on xAxis[0], disable it:
             jeedom.history.chart[_params.el].chart.update({
+              rangeSelector: {
+                x: -5000
+              },
               navigator: {
                 enabled: false
               }
@@ -915,6 +926,9 @@ jeedom.history.drawChart = function(_params) {
             }
 
             jeedom.history.chart[_params.el].chart.update({
+              rangeSelector: {
+                x: 0
+              },
               navigator: {
                 enabled: true
               }

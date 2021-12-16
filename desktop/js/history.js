@@ -370,7 +370,7 @@ function addChart(_cmd_id, _action, _options) {
         } catch (error) {}
       })
     }
-    jeedomUIHistory.setAxisScales(__el__)
+    jeedomUIHistory.setAxisScales(__el__, {redraw: true})
     return
   }
 
@@ -553,7 +553,6 @@ function compareChart(_cmd_id) {
         option: {graphScaleVisible: false},
         compare: 1,
         success: function(data) {
-
         }
       })
     }
