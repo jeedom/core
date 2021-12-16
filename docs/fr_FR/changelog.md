@@ -1,21 +1,24 @@
 # Changelog Jeedom V4.1
 
+## 4.1.28
+
+- Harmonisation des templates de widgets pour commandes action/défaut
+
 ## 4.1.27
 
-- Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+- Correction d'une faille de sécurité merci @Maxime Rinaudo et @Antoine Cervoise de **Synacktiv** ([www.synacktiv.com](https://www.synacktiv.com/))
 
 >**IMPORTANT**
 >
->La mise à jour est plus que recommande nous vous invitons à la faire au plus vite
-
+>Cette mise à jour est plus que recommandée, nous vous invitons à la faire au plus vite
 
 ## 4.1.26
 
-- Correction d'un soucis d'installation de dépendance apt sur smart du au changement de certificat chez let's encrypt
+- Correction d'un souci d'installation de dépendance apt sur Smart du au changement de certificat chez let's encrypt
 
 ## 4.1.25
 
-- Correction d'un soucis d'installation de dépendance apt
+- Correction d'un souci d'installation de dépendances apt
 
 ## 4.1.24
 
