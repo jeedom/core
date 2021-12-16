@@ -16,12 +16,14 @@
 
 "use strict"
 
-var jeedomUIHistory = {}
-jeedomUIHistory.default = {
-  tracking: true,
-  yAxisByUnit: true,
-  yAxisScaling: true,
-  yAxisVisible: true
+var jeedomUIHistory = {
+  done: false,
+  default: {
+    tracking: true,
+    yAxisByUnit: true,
+    yAxisScaling: true,
+    yAxisVisible: true
+  }
 }
 
 /*
@@ -163,6 +165,32 @@ jeedomUIHistory.initLegendContextMenu = function(_chartId) {
       }
     }
   })
+}
+
+/*
+timeout interval for chart done stuff
+@history.class.js
+*/
+jeedomUIHistory.chartDone = function(_chartId) {
+  try {
+    if (_chartId === undefined) return false
+    var chart = jeedom.history.chart[_chartId].chart
+    chart.update({
+      chart: {
+        animation: true,
+      },
+    }, false)
+    chart.setSize()
+
+    setTimeout(function() {
+      try {
+        if (!jeedom.history.chart[_chartId].comparing && typeof setChartOptions === "function") {
+          setChartOptions()
+        }
+      } catch (error) {}
+    }, 100)
+
+  } catch (error) { console.error(error)}
 }
 
 /*
@@ -355,19 +383,6 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
     }
   }
 
-  //addSeries HighChart event:
-  if (_type == 'addSeries') {
-    setTimeout(function() {
-      try {
-        chart.update({
-          chart: {
-            animation: true,
-          },
-        }, false)
-      } catch (error) {}
-    }, 2000)
-  }
-
   chart.redraw()
 
   if (typeof setChartOptions === "function") {
@@ -389,7 +404,7 @@ jeedomUIHistory.toggleyAxisScaling = function(_chartId) {
   } else {
     jeedom.history.chart[_chartId].btToggleyaxisScaling.setState(2)
   }
-  jeedomUIHistory.setAxisScales(_chartId)
+  this.setAxisScales(_chartId)
 }
 
 /*

@@ -310,7 +310,7 @@ jeedom.history.drawChart = function(_params) {
       _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1;
       _params.showLegend = (init(_params.showLegend, true) && init(_params.showLegend, true) != "0") ? true : false;
       _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false;
-      _params.showScrollbar = (init(_params.showScrollbar, true) && init(_params.showScrollbar, true) != "0") ? true : false;
+      _params.showScrollbar = (init(_params.showScrollbar, false) && init(_params.showScrollbar, false) != "0") ? true : false;
       _params.showNavigator = (init(_params.showNavigator, true) && init(_params.showNavigator, true) != "0") ? true : false;
       _params.showAxis = (init(_params.option.graphScaleVisible, true) && init(_params.option.graphScaleVisible, true) != "0") ? true : false;
 
@@ -352,13 +352,9 @@ jeedom.history.drawChart = function(_params) {
         events: {
           load: function(event) {
             //default min/max set earlier in series
-            setTimeout(function() {
-              try {
-                if (typeof setChartOptions === "function") {
-                  if (!jeedom.history.chart[event.target._jeeId].comparing) setChartOptions()
-                }
-              } catch (error) {}
-            }, 100)
+            var thisId = event.target.userOptions._jeeId
+            clearTimeout(jeedomUIHistory.done)
+            jeedomUIHistory.done = setTimeout(jeedomUIHistory.chartDone.bind(null, thisId), 250)
           },
           redraw: function(event) {
             if (this._jeeButtons) {
@@ -400,9 +396,12 @@ jeedom.history.drawChart = function(_params) {
                 },
               }, false)
 
+              clearTimeout(jeedomUIHistory.done)
+              jeedomUIHistory.done = setTimeout(jeedomUIHistory.chartDone.bind(null, thisId), 1000)
+
               setTimeout(function() {
                 try {
-                  jeedomUIHistory.setAxisScales(thisId, 'addSeries')
+                  jeedomUIHistory.setAxisScales(thisId)
                 } catch (error) {}
               }, 10)
             }
@@ -691,19 +690,8 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].type = _params.option.graphType;
           jeedom.history.chart[_params.el].chart = new Highcharts.StockChart({
             chart: charts,
+            _jeeId: _params.el,
             credits: { enabled: false },
-            navigator: {
-              enabled: _params.showNavigator,
-              margin: 5,
-              handles: {
-                lineWidth: 0,
-                width: 3,
-                height: 40
-              },
-              series: {
-                includeInCSVExport: false
-              }
-            },
             plotOptions: {
               series: {
                 animation: {
@@ -825,6 +813,18 @@ jeedom.history.drawChart = function(_params) {
               minPadding: 0.02,
               margin: 0
             }],
+            navigator: {
+              enabled: _params.showNavigator,
+              margin: 5,
+              handles: {
+                lineWidth: 0,
+                width: 5,
+                height: 40
+              },
+              series: {
+                includeInCSVExport: false
+              }
+            },
             scrollbar: {
               barBackgroundColor: 'var(--txt-color)',
               barBorderRadius: 0,
@@ -835,15 +835,15 @@ jeedom.history.drawChart = function(_params) {
               trackBackgroundColor: 'none',
               trackBorderWidth: 1,
               trackBorderRadius: 0,
-              trackBorderColor: '#CCC',
-              height: 0,
-              enabled: _params.showScrollbar
+              trackBorderColor: 'var(--txt-color)',
+              height: _params.showScrollbar ? 16 : 0,
+              enabled: true
             },
             series: [series]
           })
           //Store references and init buttons from UI:
           jeedom.history.chart[_params.el].containerId = jeedom.history.chart[_params.el].chart.container.id
-          jeedom.history.chart[_params.el].chart._jeeId = _params.el
+          jeedom.history.chart[_params.el].chart._jeeId = _params.el //else only in useroptions
           if (jeedomUIHistory != undefined && typeof jeedomUIHistory.initChart === "function") {
             jeedomUIHistory.initChart(_params.el)
           }
