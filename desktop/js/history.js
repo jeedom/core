@@ -529,7 +529,8 @@ function compareChart(_cmd_id) {
   toStart = $('#in_compareStart2').value() + ' 00:00:00'
   toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
 
-  //Existing serie dateRange can vary, remove all series:
+  //Existing serie dateRange can vary:
+  jeedomUIHistory.setAxisScales(__el__, {resetDateRange: true})
   jeedomUIHistory.emptyChart(__el__)
 
   //add data from both date range:

@@ -181,6 +181,7 @@ jeedomUIHistory.chartDone = function(_chartId) {
       },
     }, false)
     chart.setSize()
+    jeedomUIHistory.setAxisScales(_chartId, {redraw: true})
 
     setTimeout(function() {
       try {
@@ -197,20 +198,31 @@ jeedomUIHistory.chartDone = function(_chartId) {
 Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 @history.class.js event resetSelection
 */
-jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
+jeedomUIHistory.setAxisScales = function(_chartId, _options) {
   if (_chartId === undefined) return false
   //All done with render false, redraw at end
   var chart = jeedom.history.chart[_chartId].chart
 
-  //first to get all dateRanges values!
-  chart.xAxis[0].setExtremes(null, null)
-  chart.xAxis[1].setExtremes(null, null) //comparing axis
+  if (isset(_options)) {
+    /*
+    xAxis[0] min/max : zoomed dateRange in navigator
+    xAxis[0] dataMin/dataMan : full dateRange
+    */
+    if (isset(_options.extremeXmin) && isset(_options.extremeXmax)) {
+      chart.xAxis[0].setExtremes(_options.extremeXmin, _options.extremeXmax, false)
+    }
+
+    if (isset(_options.resetDateRange) && _options.resetDateRange == true) {
+      chart.xAxis[0].setExtremes(null, null, false)
+      chart.xAxis[1].setExtremes(null, null, false) //comparing axis
+    }
+  }
 
   var units = {}
 
   //No scale | unit : All axis with same unit will get same min/max
   if (!jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var unit
+    var unit, mathMin, mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
@@ -224,8 +236,10 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
       }
       units[unit].axis.push(axis.userOptions.id)
 
-      if (!isNaN(axis.dataMin) && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
-      if (!isNaN(axis.dataMax) && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
+      mathMin = Math.min.apply(Math, axis.series[0].data.map(function(x) { return x.y }))
+      mathMax = Math.max.apply(Math, axis.series[0].data.map(function(x) { return x.y }))
+      if (mathMin < units[unit].min) units[unit].min = mathMin
+      if (mathMax > units[unit].max) units[unit].max = mathMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
@@ -244,8 +258,10 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
   //No scale | No unit : (HighChart default) All axis will get same global min/max
   if (!jeedom.history.chart[_chartId].yAxisScaling && !jeedom.history.chart[_chartId].yAxisByUnit) {
     var softMax = 0
+    var mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-      if (axis.dataMax && axis.dataMax > softMax) softMax = axis.dataMax
+      mathMax = Math.max.apply(Math, axis.series[0].data.map(function(x) { return x.y }))
+      if (mathMax > softMax) softMax = mathMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       axis.update({
@@ -261,7 +277,7 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
 
   //scale | unit : (Jeedom default)  All axis with same unit will get same min/max
   if (jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var unit
+    var unit, mathMin, mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
@@ -274,8 +290,11 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
         }
       }
       units[unit].axis.push(axis.userOptions.id)
-      if (!isNaN(axis.dataMin) && axis.dataMin < units[unit].min) units[unit].min = axis.dataMin
-      if (!isNaN(axis.dataMax) && axis.dataMax > units[unit].max) units[unit].max = axis.dataMax
+
+      mathMin = Math.min.apply(Math, axis.series[0].data.map(function(x) { return x.y }))
+      mathMax = Math.max.apply(Math, axis.series[0].data.map(function(x) { return x.y }))
+      if (mathMin < units[unit].min) units[unit].min = mathMin
+      if (mathMax > units[unit].max) units[unit].max = mathMax
     })
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
@@ -383,7 +402,11 @@ jeedomUIHistory.setAxisScales = function(_chartId, _type=null) {
     }
   }
 
-  chart.redraw()
+  if (isset(_options)) {
+    if (isset(_options.redraw) && _options.redraw == true) {
+      chart.redraw()
+    }
+  }
 
   if (typeof setChartOptions === "function") {
     if (!jeedom.history.chart[_chartId].comparing) setChartOptions()
@@ -404,7 +427,7 @@ jeedomUIHistory.toggleyAxisScaling = function(_chartId) {
   } else {
     jeedom.history.chart[_chartId].btToggleyaxisScaling.setState(2)
   }
-  this.setAxisScales(_chartId)
+  this.setAxisScales(_chartId, {redraw: true})
 }
 
 /*
@@ -572,7 +595,7 @@ jeedomUIHistory.initChart = function(_chartId) {
     } else {
       jeedom.history.chart[thisId].btToggleyaxisbyunit.setState(2)
     }
-    jeedomUIHistory.setAxisScales(thisId)
+    jeedomUIHistory.setAxisScales(thisId, {redraw: true})
   })
   .add()
   .align({

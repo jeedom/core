@@ -397,7 +397,7 @@ jeedom.history.drawChart = function(_params) {
               }, false)
 
               clearTimeout(jeedomUIHistory.done)
-              jeedomUIHistory.done = setTimeout(jeedomUIHistory.chartDone.bind(null, thisId), 1000)
+              jeedomUIHistory.done = setTimeout(jeedomUIHistory.chartDone.bind(null, thisId), 500)
 
               setTimeout(function() {
                 try {
@@ -407,10 +407,9 @@ jeedom.history.drawChart = function(_params) {
             }
           },
           selection: function(event) {
-            // zoom or reset zoom event
             var chartId = event.target._jeeId
-            //zoom back after reset zoom button. allways play with immutables!
-            if (event.resetSelection) {
+
+            if (event.resetSelection) { //Zoom back after reset zoom button
               this.resetZoomButton.hide()
               jeedom.history.chart[chartId].zoom = false
               //No scale/unit change in zoom, set them back:
@@ -429,15 +428,24 @@ jeedom.history.drawChart = function(_params) {
 
               setTimeout(function() {
                 try {
-                  jeedomUIHistory.setAxisScales(chartId)
+                  var options = {
+                    redraw: true,
+                    extremeXmin: jeedom.history.chart[chartId].zoomPrevXmin,
+                    extremeXmax: jeedom.history.chart[chartId].zoomPrevXmax,
+                  }
+                  jeedomUIHistory.setAxisScales(chartId, options)
                 } catch (error) {}
               }, 100)
 
               return false
-            } else {
+            } else { //Enter zoom
               //No scale/unit change in zoom:
               try { this.resetZoomButton.show() } catch (error) {} //Not created first time
               jeedom.history.chart[chartId].zoom = true
+
+              jeedom.history.chart[chartId].zoomPrevXmin = this.xAxis[0].min
+              jeedom.history.chart[chartId].zoomPrevXmax = this.xAxis[0].max
+
               try {
                 jeedom.history.chart[chartId].btToggleyaxisScaling.setState(3)
                 jeedom.history.chart[chartId].btToggleyaxisbyunit.setState(3)
@@ -714,7 +722,7 @@ jeedom.history.drawChart = function(_params) {
                         this.visible = true
                       }
                     }
-                    if (!jeedom.history.chart[this.chart._jeeId].zoom) jeedomUIHistory.setAxisScales(this.chart._jeeId)
+                    if (!jeedom.history.chart[this.chart._jeeId].zoom) jeedomUIHistory.setAxisScales(this.chart._jeeId, {redraw: true})
                     return false
                   }
                 }
@@ -869,6 +877,13 @@ jeedom.history.drawChart = function(_params) {
                 [1, Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
               ],
             }
+
+            //navigator only on xAxis[0], disable it:
+            jeedom.history.chart[_params.el].chart.update({
+              navigator: {
+                enabled: false
+              }
+            }, false)
           } else {
             //add new yAxis:
             //set min max to overide 0->max default HighChart:
@@ -899,9 +914,14 @@ jeedom.history.drawChart = function(_params) {
               visible: _params.showAxis,
             }
 
+            jeedom.history.chart[_params.el].chart.update({
+              navigator: {
+                enabled: true
+              }
+            }, false)
             //add axis to chart:
             series.yAxis = _params.cmd_id
-            jeedom.history.chart[_params.el].chart.addAxis(yAxis)
+            jeedom.history.chart[_params.el].chart.addAxis(yAxis, false, false)
           }
           //add series to graph:
           jeedom.history.chart[_params.el].chart.addSeries(series, false)
