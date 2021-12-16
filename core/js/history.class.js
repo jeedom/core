@@ -161,7 +161,7 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
   if ($.mobile || deviceInfo.type == 'tablet' || deviceInfo.type == 'phone') return
   if ($('#md_modal2').is(':visible')) return
   if ($('#md_modal1').is(':visible')) return
-  if (typeof isComparing !== 'undefined' && isComparing == true) return
+  if (jeedom.history.chart[_this.series.chart._jeeId].comparing) return
 
   var id = _this.series.userOptions.id
   var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
