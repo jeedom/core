@@ -40,7 +40,7 @@ $(function() {
     }
   }
   jeedomUIHistory.setCalculList()
-  moment.locale(jeedom_langage.replace('_', '-'))
+  moment.locale(jeedom_langage.substring(0, 2))
   jeedomUtils.datePickerInit()
   setChartOptions()
   resizeDn()
@@ -449,7 +449,7 @@ $('#sel_setPeriod').off('change').on('change', function() {
   var num = $(this).value().split('.')[0]
   var type = $(this).value().split('.')[1]
 
-  var m_startDate = moment(startDate)
+  var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
   $('#in_compareStart1').value(endDate)
 
@@ -458,7 +458,7 @@ $('#sel_setPeriod').off('change').on('change', function() {
   type = $('#sel_comparePeriod').value().split('.')[1]
 
   startDate = endDate
-  m_startDate = moment(startDate)
+  m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
   $('#in_compareStart2').value(endDate)
 })
@@ -467,12 +467,12 @@ $('#sel_comparePeriod').off('change').on('change', function() {
   var num = $(this).value().split('.')[0]
   var type = $(this).value().split('.')[1]
 
-  var m_startDate = moment(startDate)
+  var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
   $('#in_compareEnd2').value(endDate)
 
   startDate = $('#in_compareStart1').value()
-  m_startDate = moment(startDate)
+  m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
   endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
   $('#in_compareStart2').value(endDate)
 })
@@ -497,10 +497,10 @@ $("#md_getCompareRange").dialog({
 
 $('#md_getCompareRange').on({
   'change': function(event) {
-    var fromStart = moment($('#in_compareStart1').value() + ' 00:00:00')
-    var fromEnd = moment($('#in_compareEnd1').value() + ' 23:59:59')
-    var toStart = moment($('#in_compareStart2').value() + ' 00:00:00')
-    var toEnd = moment($('#in_compareEnd2').value() + ' 23:59:59')
+    var fromStart = moment($('#in_compareStart1').value() + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
+    var fromEnd = moment($('#in_compareEnd1').value() + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
+    var toStart = moment($('#in_compareStart2').value() + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
+    var toEnd = moment($('#in_compareEnd2').value() + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
 
     var diffPeriod = fromEnd.diff(fromStart, 'days')
     var cdiffPeriod = toEnd.diff(toStart, 'days')
