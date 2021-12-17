@@ -193,8 +193,8 @@ $date = array(
 
 				<div class="form-group">
 					<div class="col-xs-12">
+						<span class="spanCompareDiffResult"></span><br/>
 						<span class="spanCompareDiff warning" style="display: none;">{{Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)}}</span>
-						<span class="spanCompareDiffResult"></span>
 					</div>
 				</div>
 			</div>
