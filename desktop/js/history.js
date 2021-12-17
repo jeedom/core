@@ -40,7 +40,7 @@ $(function() {
     }
   }
   jeedomUIHistory.setCalculList()
-  moment.locale(jeedom_langage)
+  moment.locale(jeedom_langage.replace('_', '-'))
   jeedomUtils.datePickerInit()
   setChartOptions()
   resizeDn()
