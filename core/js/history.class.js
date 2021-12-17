@@ -245,20 +245,37 @@ jeedom.history.drawChart = function(_params) {
         return;
       }
 
-      //if this serie a comparison one:
+      /*
+      comparing true
+      Chart exist (empty, not reset), first addSeries is reference, second addSeries is comparison
+      Both xAxis must start and end with exact same dateRange and hours so everything is comparable
+      Both series start from 00:00:00 but reference can end to current time
+      @tsFirst: first timestamp existing in data
+      @tsStart: dateStart timestamp, data must start there
+      @tsLast: last timestamp existing in data
+      @tsEnd: dateEnd timestamp, data must end there and difference between end and start must be the same on both series
+      */
       var comparisonSerie = false
       if (isset(_params.compare) && _params.compare == 1) comparisonSerie = true
 
-
-      //If is comparing, add midnight start and end points to both series for range adjusting:
-      if (comparisonSerie) {
-        var tsFirst = data.result.data[0][0]
-        var tsStart = Date.parse(data.result.dateStart)
+      if (isset(jeedom.history.chart[_params.el]) && (jeedom.history.chart[_params.el].comparing)) {
+        var tsFirst, tsStart, tsLast, tsEnd
+        tsFirst = data.result.data[0][0]
+        tsStart = Date.parse(data.result.dateStart.replaceAll('-', '/') + ' GMT')
         if (tsStart < tsFirst) {
           data.result.data.unshift([tsStart, data.result.data[0][1]])
         }
-        var tsLast = data.result.data.slice(-1)[0][0]
-        var tsEnd = Date.parse(data.result.dateEnd)
+
+        if (!comparisonSerie) { //reference series, may ends at current time:
+          tsEnd = Date.parse(data.result.dateEnd.replaceAll('-', '/') + ' GMT')
+          jeedom.history.chart[_params.el].comparingToEnd = data.result.dateEnd
+          jeedom.history.chart[_params.el].comparingTsDiff = tsEnd - tsStart
+        } else { //comparison series, must ends at same timestamp diff than reference one:
+          tsEnd = tsStart + jeedom.history.chart[_params.el].comparingTsDiff
+          //remove leading and trailing over data:
+          data.result.data = data.result.data.filter(v => v[0] <= tsEnd)
+        }
+        tsLast = data.result.data.slice(-1)[0][0]
         if (tsEnd > tsLast) {
           data.result.data.push([tsEnd, data.result.data.slice(-1)[0][1]])
         }

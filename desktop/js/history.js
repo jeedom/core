@@ -482,8 +482,8 @@ $("#md_getCompareRange").dialog({
   closeText: '',
   autoOpen: false,
   modal: true,
-  width: 680,
-  height: 180,
+  width: 720,
+  height: 260,
   open: function() {
     $(this).parent().css({
       'top': 120
@@ -494,6 +494,25 @@ $("#md_getCompareRange").dialog({
   },
   beforeClose: function(event, ui) {}
 })
+
+$('#md_getCompareRange').on({
+  'change': function(event) {
+    var fromStart = moment($('#in_compareStart1').value() + ' 00:00:00')
+    var fromEnd = moment($('#in_compareEnd1').value() + ' 23:59:59')
+    var toStart = moment($('#in_compareStart2').value() + ' 00:00:00')
+    var toEnd = moment($('#in_compareEnd2').value() + ' 23:59:59')
+
+    var diffPeriod = fromEnd.diff(fromStart, 'days')
+    var cdiffPeriod = toEnd.diff(toStart, 'days')
+    var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + $('#sel_comparePeriod option:selected').text()
+    $('#md_getCompareRange .spanCompareDiffResult').text(text)
+    if (diffPeriod != cdiffPeriod) {
+      $('#md_getCompareRange .spanCompareDiff').show()
+    } else {
+      $('#md_getCompareRange .spanCompareDiff').hide()
+    }
+  }
+}, 'input.in_datepicker')
 
 $('#bt_compare').off().on('click', function() {
   if (!jeedom.history.chart[__el__].comparing) {
@@ -530,7 +549,7 @@ function compareChart(_cmd_id) {
   toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
 
   //Existing serie dateRange can vary:
-  jeedomUIHistory.setAxisScales(__el__, {resetDateRange: true})
+  jeedomUIHistory.setAxisScales(__el__, {redraw: true, resetDateRange: true})
   jeedomUIHistory.emptyChart(__el__)
 
   //add data from both date range:
@@ -541,7 +560,7 @@ function compareChart(_cmd_id) {
     dateStart: fromStart,
     dateEnd: fromEnd,
     height: __chartHeight__,
-    option: null,
+    option: {lastPointToEnd: 1, allowZero: 1},
     success: function(data) {
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
@@ -550,7 +569,7 @@ function compareChart(_cmd_id) {
         dateStart: toStart,
         dateEnd: toEnd,
         height: __chartHeight__,
-        option: {graphScaleVisible: false},
+        option: {lastPointToEnd: 1, allowZero: 1, graphScaleVisible: false},
         compare: 1,
         success: function(data) {
         }

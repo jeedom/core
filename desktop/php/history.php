@@ -167,6 +167,7 @@ $date = array(
 						</select>
 					</div>
 				</div>
+
 				<div class="form-group">
 					<label class="col-xs-3 control-label">{{Avec la période}}</label>
 					<div class="col-xs-3">
@@ -187,6 +188,13 @@ $date = array(
 							<option value="6.months">{{6 mois}}</option>
 							<option value="1.years">{{1 an}}</option>
 						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-xs-12">
+						<span class="spanCompareDiff warning" style="display: none;">{{Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)}}</span>
+						<span class="spanCompareDiffResult"></span>
 					</div>
 				</div>
 			</div>

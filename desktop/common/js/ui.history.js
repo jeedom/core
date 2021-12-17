@@ -278,7 +278,7 @@ jeedomUIHistory.setAxisScales = function(_chartId, _options) {
 
   //scale | unit : (Jeedom default)  All axis with same unit will get same min/max
   if (jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var unit, mathMin, mathMax
+    var unit, mathMin, mathMax, cmin, cmax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
@@ -296,7 +296,15 @@ jeedomUIHistory.setAxisScales = function(_chartId, _options) {
       mathMax = Math.max.apply(Math, axis.series[0].data.map(function(x) { return x.y }))
       if (mathMin < units[unit].min) units[unit].min = mathMin
       if (mathMax > units[unit].max) units[unit].max = mathMax
+
+      if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
+        cmin = Math.min.apply(Math, axis.series[1].data.map(function(x) { return x.y }))
+        cmax = Math.max.apply(Math, axis.series[1].data.map(function(x) { return x.y }))
+        if (cmin < units[unit].min) units[unit].min = cmin
+        if (cmax > units[unit].max) units[unit].max = cmax
+      }
     })
+
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       unit = axis.series[0].userOptions.unite
       if (unit == '') unit = axis.userOptions.id
@@ -319,6 +327,14 @@ jeedomUIHistory.setAxisScales = function(_chartId, _options) {
       if (!axisId) axisId = 0
       min = Math.min.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
       max = Math.max.apply(Math, axis.series[0].data.map(function (i) {return i.options.y}))
+
+      if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
+        var cmin = Math.min.apply(Math, axis.series[1].data.map(function(x) { return x.y }))
+        var cmax = Math.max.apply(Math, axis.series[1].data.map(function(x) { return x.y }))
+        if (cmin < min) min = cmin
+        if (cmax > max) max = cmax
+      }
+
       axis.update({
         softMin: null,
         softMax: null,
