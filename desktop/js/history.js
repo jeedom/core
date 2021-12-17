@@ -572,6 +572,8 @@ function compareChart(_cmd_id) {
         option: {lastPointToEnd: 1, allowZero: 1, graphScaleVisible: false},
         compare: 1,
         success: function(data) {
+          jeedom.history.chart[__el__].chart.xAxis[0].setExtremes(null, null, false)
+          jeedom.history.chart[__el__].chart.redraw()
         }
       })
     }
