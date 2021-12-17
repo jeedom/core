@@ -261,13 +261,13 @@ jeedom.history.drawChart = function(_params) {
       if (isset(jeedom.history.chart[_params.el]) && (jeedom.history.chart[_params.el].comparing)) {
         var tsFirst, tsStart, tsLast, tsEnd
         tsFirst = data.result.data[0][0]
-        tsStart = Date.parse(data.result.dateStart.replaceAll('-', '/') + ' GMT')
+        tsStart = Date.parse(data.result.dateStart.replace(/-/g, '/') + ' GMT')
         if (tsStart < tsFirst) {
           data.result.data.unshift([tsStart, data.result.data[0][1]])
         }
 
         if (!comparisonSerie) { //reference series, may ends at current time:
-          tsEnd = Date.parse(data.result.dateEnd.replaceAll('-', '/') + ' GMT')
+          tsEnd = Date.parse(data.result.dateEnd.replace(/-/g, '/') + ' GMT')
           jeedom.history.chart[_params.el].comparingToEnd = data.result.dateEnd
           jeedom.history.chart[_params.el].comparingTsDiff = tsEnd - tsStart
         } else { //comparison series, must ends at same timestamp diff than reference one:
