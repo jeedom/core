@@ -2529,7 +2529,7 @@
         "Barre": "Balken",
         "Variation": "Wertänderung",
         "Escalier": "Treppe",
-        "Comparer": "Vergleichen Sie",
+        "Comparer": "Vergleichen",
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
         "Affichage": "Anzeige",
         "Historique calculé": "Berechnete Historie",
@@ -2553,7 +2553,8 @@
         "Avec la période": "Mit der Zeit",
         "3 semaines": "Drei Wochen",
         "4 semaines": "4 Wochen",
-        "2 mois": "2 Monate"
+        "2 mois": "2 Monate",
+        "Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)": "Achtung: die beiden Zeiträume sind nicht identisch (nicht alle Monate haben die gleiche Anzahl von Tagen)"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ Wert [ 'name']",
@@ -2771,6 +2772,9 @@
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
+        "Comparer": "Vergleichen",
+        "jours avec": "Tage mit",
+        "jours il y a": "Vor Tagen",
         "Période de comparaison": "Vergleichszeitraum"
     },
     "desktop\/js\/massedit.js": {
