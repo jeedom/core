@@ -2785,6 +2785,10 @@ Desktop
     color: var(--txt-color) !important;
     background-color: rgb(var(--defaultBkg-color)) !important;
   }
+  select option:disabled {
+    color: var(--placeholder-color) !important;
+    font-style: italic;
+  }
   select optgroup {
     color: var(--txt-color) !important;
     background-color: var(--bg-modal-color) !important;

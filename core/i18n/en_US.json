@@ -2538,7 +2538,7 @@
         "Sélectionner la commande": "Select command",
         "Afficher le graphique calculé": "Show calculated graph",
         "Commandes": "Commands",
-        "Configuration de l'historique des commandes": "Configure order history",
+        "Configuration de l'historique des commandes": "Configure command history",
         "Rechercher": "Search",
         "Vider le champ de recherche": "Clear search field",
         "Supprimer tout ou partie de cet historique.": "Delete all or part of this history",
@@ -2553,7 +2553,8 @@
         "Avec la période": "With the period",
         "3 semaines": "Three weeks",
         "4 semaines": "4 weeks",
-        "2 mois": "2 months"
+        "2 mois": "2 months",
+        "Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)": "Warning: the two periods are not identical (all months do not have same number of days)"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ value ['name']",
@@ -2771,6 +2772,9 @@
         "Configuration de l'historique des commandes": "Commands history setup",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Remove history before provided date (Y-m-d H:m:s)",
         "Historique supprimé avec succès": "History deleted successfully",
+        "Comparer": "Compare",
+        "jours avec": "days with",
+        "jours il y a": "days there is",
         "Période de comparaison": "Comparison period"
     },
     "desktop\/js\/massedit.js": {

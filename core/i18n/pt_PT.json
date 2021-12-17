@@ -2553,7 +2553,8 @@
         "Avec la période": "Com o período",
         "3 semaines": "Três semanas",
         "4 semaines": "4 semanas",
-        "2 mois": "2 meses"
+        "2 mois": "2 meses",
+        "Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)": "Atenção: os dois períodos não são idênticos (todos os meses não têm o mesmo número de dias)"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$ value ['nome']",
@@ -2771,6 +2772,9 @@
         "Configuration de l'historique des commandes": "Controles de configuração História",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data (Y-M d H: m: s) antes que ele deve remover história \\ 's",
         "Historique supprimé avec succès": "Histórico excluído com sucesso",
+        "Comparer": "Comparar",
+        "jours avec": "dias com",
+        "jours il y a": "dias atrás",
         "Période de comparaison": "Período de comparação"
     },
     "desktop\/js\/massedit.js": {

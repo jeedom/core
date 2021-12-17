@@ -2553,7 +2553,8 @@
         "Avec la période": "Avec la période",
         "3 semaines": "3 semaines",
         "4 semaines": "4 semaines",
-        "2 mois": "2 mois"
+        "2 mois": "2 mois",
+        "Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)": "Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)"
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$value['name']",
@@ -2771,6 +2772,9 @@
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
         "Historique supprimé avec succès": "Sejarah berhasil dihapus",
+        "Comparer": "Comparer",
+        "jours avec": "jours avec",
+        "jours il y a": "jours il y a",
         "Période de comparaison": "Période de comparaison"
     },
     "desktop\/js\/massedit.js": {
