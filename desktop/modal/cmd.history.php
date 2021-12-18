@@ -27,11 +27,10 @@ if (trim($id) == '') {
   $id = init('showId');
 }
 sendVarToJs('cmd_id',$id);
-include_file('desktop/common', 'ui.history', 'js');
 ?>
 
 
-<div class="md_history">
+<div id="md_history" class="md_history" data-modalType="md_history">
   <div class="row">
     <div id="div_alertHistory" style="margin: 0 14px; display: none;"></div>
     <div class="col-lg-12">
