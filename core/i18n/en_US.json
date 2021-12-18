@@ -2771,6 +2771,7 @@
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Configuration de l'historique des commandes": "Commands history setup",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Remove history before provided date (Y-m-d H:m:s)",
+        "Mes Calculs": "My Calculations",
         "Historique supprimé avec succès": "History deleted successfully",
         "Comparer": "Compare",
         "jours avec": "days with",
@@ -3132,17 +3133,6 @@
     "desktop\/common\/js\/ui.js": {
         "Historique": "History"
     },
-    "desktop\/common\/js\/ui.history.js": {
-        "Isoler": "Isolate",
-        "Afficher tout": "Display all",
-        "Masquer axe": "Hide axis",
-        "Afficher axe": "Show axis",
-        "Mes Calculs": "My Calculations",
-        "Opacité des courbes au suivi de la souris": "Curve opacity mouse tracking",
-        "Groupement des axes Y par unité": "Grouping of Y axes by unit",
-        "Echelle independante des axes Y": "Independent scale of Y axes",
-        "Affichage des axes Y": "Y axes display"
-    },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "You have modified settings that haven\\'t been saved. Are you sure you want to continue?",
         "Sauvegarde effectuée avec succès": "Successfully saved",
@@ -3331,7 +3321,15 @@
         "Semaine": "Week",
         "Mois": "Month",
         "Année": "Year",
-        "Comparaison": "Comparison"
+        "Comparaison": "Comparison",
+        "Opacité des courbes au suivi de la souris": "Opacity of curves when tracking the mouse",
+        "Groupement des axes Y par unité": "Grouping of Y axes by unit",
+        "Echelle independante des axes Y": "Scale independent of Y axes",
+        "Affichage des axes Y": "Y axis display",
+        "Isoler": "Isolate",
+        "Afficher tout": "Display all",
+        "Masquer axe": "Hide axis",
+        "Afficher axe": "Show axis"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Heating",

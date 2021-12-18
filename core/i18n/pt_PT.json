@@ -2771,6 +2771,7 @@
         "Configuration des formules de calcul": "Configurando fórmulas",
         "Configuration de l'historique des commandes": "Controles de configuração História",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data (Y-M d H: m: s) antes que ele deve remover história \\ 's",
+        "Mes Calculs": "Meus cálculos",
         "Historique supprimé avec succès": "Histórico excluído com sucesso",
         "Comparer": "Comparar",
         "jours avec": "dias com",
@@ -3132,17 +3133,6 @@
     "desktop\/common\/js\/ui.js": {
         "Historique": "Histórico"
     },
-    "desktop\/common\/js\/ui.history.js": {
-        "Isoler": "Isolar",
-        "Afficher tout": "Exibir tudo",
-        "Masquer axe": "Esconder o eixo",
-        "Afficher axe": "Mostrar eixo",
-        "Mes Calculs": "Meus cálculos",
-        "Opacité des courbes au suivi de la souris": "Opacidade das curvas ao rastrear o mouse",
-        "Groupement des axes Y par unité": "Agrupamento de eixos Y por unidade",
-        "Echelle independante des axes Y": "Escala independente dos eixos Y",
-        "Affichage des axes Y": "Display do eixo Y"
-    },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Aviso deixando uma página com dados modificados que não foram salvas. Você deseja continuar?",
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
@@ -3331,7 +3321,15 @@
         "Semaine": "Semana",
         "Mois": "Mês",
         "Année": "Ano",
-        "Comparaison": "Comparação"
+        "Comparaison": "Comparação",
+        "Opacité des courbes au suivi de la souris": "Opacidade das curvas ao rastrear o mouse",
+        "Groupement des axes Y par unité": "Agrupamento de eixos Y por unidade",
+        "Echelle independante des axes Y": "Escala independente dos eixos Y",
+        "Affichage des axes Y": "Display do eixo Y",
+        "Isoler": "Isolar",
+        "Afficher tout": "Exibir tudo",
+        "Masquer axe": "Esconder o eixo",
+        "Afficher axe": "Mostrar eixo"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Aquecimento",
