@@ -224,7 +224,14 @@ jeedom.init = function() {
   }
 }
 
-jeedom.getPageType = function() {
+jeedom.getPageType = function(_modal) {
+  if (isset(_modal) && _modal == true) {
+    var modal = $('.ui-dialog:visible').first()
+    if (modal.length) {
+      var modalType = $(this).find('div[data-modalType]').first().attr('data-modalType')
+      if (modalType != '') return modalType
+    }
+  }
   var dataPage = $('body').attr('data-page')
   if (dataPage == '') {
     return 'unknown'

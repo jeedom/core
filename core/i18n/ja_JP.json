@@ -2771,6 +2771,7 @@
         "Configuration des formules de calcul": "式の設定",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
+        "Mes Calculs": "Mes Calculs",
         "Historique supprimé avec succès": "歴史は正常に削除しました",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
@@ -3132,17 +3133,6 @@
     "desktop\/common\/js\/ui.js": {
         "Historique": "歴史的"
     },
-    "desktop\/common\/js\/ui.history.js": {
-        "Isoler": "Isoler",
-        "Afficher tout": "Afficher tout",
-        "Masquer axe": "Masquer axe",
-        "Afficher axe": "Afficher axe",
-        "Mes Calculs": "Mes Calculs",
-        "Opacité des courbes au suivi de la souris": "Opacité des courbes au suivi de la souris",
-        "Groupement des axes Y par unité": "Groupement des axes Y par unité",
-        "Echelle independante des axes Y": "Echelle independante des axes Y",
-        "Affichage des axes Y": "Affichage des axes Y"
-    },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "保存されていない変更されたデータを含むページを離れていることに注意してください。続行しますか？",
         "Sauvegarde effectuée avec succès": "バックアップが正常に完了",
@@ -3331,7 +3321,15 @@
         "Semaine": "週",
         "Mois": "月",
         "Année": "年",
-        "Comparaison": "Comparaison"
+        "Comparaison": "Comparaison",
+        "Opacité des courbes au suivi de la souris": "Opacité des courbes au suivi de la souris",
+        "Groupement des axes Y par unité": "Groupement des axes Y par unité",
+        "Echelle independante des axes Y": "Echelle independante des axes Y",
+        "Affichage des axes Y": "Affichage des axes Y",
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "加熱",

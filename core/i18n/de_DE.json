@@ -2771,6 +2771,7 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
+        "Mes Calculs": "Meine Berechnungen",
         "Historique supprimé avec succès": "Chronik erfolgreich gelöscht",
         "Comparer": "Vergleichen",
         "jours avec": "Tage mit",
@@ -3132,17 +3133,6 @@
     "desktop\/common\/js\/ui.js": {
         "Historique": "Chronik"
     },
-    "desktop\/common\/js\/ui.history.js": {
-        "Isoler": "Isolieren",
-        "Afficher tout": "Alle anzeigen",
-        "Masquer axe": "Achse ausblenden",
-        "Afficher axe": "Achse anzeigen",
-        "Mes Calculs": "Meine Berechnungen",
-        "Opacité des courbes au suivi de la souris": "Deckkraft von Kurven beim Verfolgen der Maus",
-        "Groupement des axes Y par unité": "Gruppierung der Y-Achsen nach Einheit",
-        "Echelle independante des axes Y": "Skalierung unabhängig von Y-Achsen",
-        "Affichage des axes Y": "Y-Achsen-Anzeige"
-    },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Vorsicht! Sie verlassen einer Seite mit modifizierten und nicht gespeicherten Daten. Wollen Sie weitermachen?",
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
@@ -3331,7 +3321,15 @@
         "Semaine": "Woche",
         "Mois": "Monat",
         "Année": "Jahr",
-        "Comparaison": "Vergleich"
+        "Comparaison": "Vergleich",
+        "Opacité des courbes au suivi de la souris": "Deckkraft von Kurven beim Verfolgen der Maus",
+        "Groupement des axes Y par unité": "Gruppierung der Y-Achsen nach Einheit",
+        "Echelle independante des axes Y": "Skalierung unabhängig von Y-Achsen",
+        "Affichage des axes Y": "Y-Achsen-Anzeige",
+        "Isoler": "Isolieren",
+        "Afficher tout": "Alle anzeigen",
+        "Masquer axe": "Achse ausblenden",
+        "Afficher axe": "Achse anzeigen"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Heizung",

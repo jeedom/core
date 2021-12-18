@@ -2771,6 +2771,7 @@
         "Configuration des formules de calcul": "Настройка формул",
         "Configuration de l'historique des commandes": "управления История конфигурации",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Просьба указать дату (Y-м д ч: м: с), перед которым он должен удалить историю \\ «s",
+        "Mes Calculs": "Mes Calculs",
         "Historique supprimé avec succès": "История успешно удалена",
         "Comparer": "Comparer",
         "jours avec": "jours avec",
@@ -3132,17 +3133,6 @@
     "desktop\/common\/js\/ui.js": {
         "Historique": "История"
     },
-    "desktop\/common\/js\/ui.history.js": {
-        "Isoler": "Isoler",
-        "Afficher tout": "Afficher tout",
-        "Masquer axe": "Masquer axe",
-        "Afficher axe": "Afficher axe",
-        "Mes Calculs": "Mes Calculs",
-        "Opacité des courbes au suivi de la souris": "Opacité des courbes au suivi de la souris",
-        "Groupement des axes Y par unité": "Groupement des axes Y par unité",
-        "Echelle independante des axes Y": "Echelle independante des axes Y",
-        "Affichage des axes Y": "Affichage des axes Y"
-    },
     "desktop\/common\/js\/utils.js": {
         "Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?": "Предупреждение об оставлении страницы с несохраненными измененными данными. Вы хотите продолжить?",
         "Sauvegarde effectuée avec succès": "Резервное копирование завершено успешно",
@@ -3331,7 +3321,15 @@
         "Semaine": "неделя",
         "Mois": "месяц",
         "Année": "год",
-        "Comparaison": "Comparaison"
+        "Comparaison": "Comparaison",
+        "Opacité des courbes au suivi de la souris": "Opacité des courbes au suivi de la souris",
+        "Groupement des axes Y par unité": "Groupement des axes Y par unité",
+        "Echelle independante des axes Y": "Echelle independante des axes Y",
+        "Affichage des axes Y": "Affichage des axes Y",
+        "Isoler": "Isoler",
+        "Afficher tout": "Afficher tout",
+        "Masquer axe": "Masquer axe",
+        "Afficher axe": "Afficher axe"
     },
     "core\/config\/jeedom.config.php": {
         "Chauffage": "Отопление",

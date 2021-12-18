@@ -105,6 +105,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
   jeedomUtils.cleanModals()
+  jeedom.history.chart = []
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   printEqLogic = undefined
