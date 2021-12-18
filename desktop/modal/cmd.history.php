@@ -166,7 +166,4 @@ function setModal() {
   }
 }
 
-$(function() {
-  jeedomUIHistory.initLegendContextMenu('div_modalGraph')
-})
 </script>

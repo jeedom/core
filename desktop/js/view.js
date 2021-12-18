@@ -289,6 +289,7 @@ function editWidgetMode(_mode, _save) {
   }
 }
 
-$(function() {
-  jeedomUIHistory.initLegendContextMenu('div_displayViewContainer')
-})
+function setChartOptions(_chartId) {
+  jeedom.history.chart[_chartId].chart.redraw()
+}
+

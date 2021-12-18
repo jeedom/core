@@ -39,7 +39,7 @@ $(function() {
       })
     }
   }
-  jeedomUIHistory.setCalculList()
+  setCalculList()
   moment.locale(jeedom_langage.substring(0, 2))
   jeedomUtils.datePickerInit()
   setChartOptions()
@@ -93,7 +93,7 @@ $('#bt_configureCalculHistory').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration des formules de calcul}}",
     beforeClose: function(event, ui) {
-      jeedomUIHistory.setCalculList()
+      setCalculList()
     }
   }).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
@@ -297,14 +297,49 @@ $pageContainer.on({
   }
 }, '.li_history .export')
 
+/*
+Set list of calculs on history page, synched back from modal calcul
+*/
+function  setCalculList() {
+  var $el = $('#historyCalculs')
+  var isOpened = false
+  if ($el && $el.find('.displayObject i.fas').hasClass('fa-arrow-circle-down')) isOpened = true
+  jeedom.config.load({
+    configuration: 'calculHistory',
+    convertToHumanReadable : true,
+    error: function(error) {
+      $.showAlert({message: error.message, level: 'danger'})
+    },
+    success: function(data) {
+      if (!$el) return
+      $el.empty()
+      if (data.length == 0) return
+
+      var html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
+      html += '<br/>'
+      html += '<div class="cmdList" data-object_id="jeedom-config-calculs" style="display:none;margin-left : 20px;">'
+      for (var i in data) {
+        if (isset(data[i].calcul) && data[i].calcul != '') {
+          var dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
+          html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
+          html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>';
+          html += '</li>';
+        }
+      }
+      html += '</div><br/>'
+      $el.append(html)
+      if (isOpened) $el.find('.displayObject').trigger('click')
+    }
+  })
+}
 
 /************Charting***********/
 
 /*
 grouping/type/variation/step Compare mode available only if one curve in chart
-@page loaded, jeedomUIHistory.setAxisScales(), clearGraph()
+@page loaded, jeedom.history.setAxisScales(), clearGraph()
 */
-function setChartOptions() {
+function setChartOptions(_chartId) {
   if (!isset(jeedom.history.chart[__el__])) return
   var _prop = 'disabled'
   var currentSeries = jeedom.history.chart[__el__].chart.series.filter(key => !key.name.includes('Navigator '))
@@ -354,7 +389,7 @@ function setChartOptions() {
     $('#sel_chartType').val($('#sel_chartType option:first').val())
     $("#cb_derive, #cb_step").prop("checked", false)
     $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-    $('#bt_compare').addClass('disabled')
+    jeedom.history.chart[__el__].comparing ? $('#bt_compare').removeClass('disabled') : $('#bt_compare').addClass('disabled')
   }
 }
 
@@ -370,7 +405,7 @@ function addChart(_cmd_id, _action, _options) {
         } catch (error) {}
       })
     }
-    jeedomUIHistory.setAxisScales(__el__, {redraw: true})
+    jeedom.history.setAxisScales(__el__, {redraw: true})
     return
   }
 
@@ -515,17 +550,16 @@ $('#md_getCompareRange').on({
 }, 'input.in_datepicker')
 
 $('#bt_compare').off().on('click', function() {
-  if (!jeedom.history.chart[__el__].comparing) {
-    //Go comparing:
+  if (!jeedom.history.chart[__el__].comparing) { //Go comparing:
     if (__lastId__ == null) return
+    $(this).attr('data-cmdId', __lastId__)
     $('#md_getCompareRange').removeClass('hidden').dialog({
       title: "{{Période de comparaison}}"
     }).dialog('open')
-  } else {
-    //Stop comparing:
+  } else { //Stop comparing:
     clearGraph()
-    addChart(__lastId__)
-    $('li.li_history[data-cmd_id="' + __lastId__ + '"]').addClass('active')
+    addChart($(this).attr('data-cmdId'))
+    $('li.li_history[data-cmd_id="' + $(this).attr('data-cmdId') + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
   }
 })
@@ -549,8 +583,8 @@ function compareChart(_cmd_id) {
   toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
 
   //Existing serie dateRange can vary:
-  jeedomUIHistory.setAxisScales(__el__, {redraw: true, resetDateRange: true})
-  jeedomUIHistory.emptyChart(__el__)
+  jeedom.history.setAxisScales(__el__, {redraw: true, resetDateRange: true})
+  jeedom.history.emptyChart(__el__)
 
   //add data from both date range:
   jeedom.history.drawChart({
@@ -581,7 +615,3 @@ function compareChart(_cmd_id) {
   $('#md_getCompareRange').dialog('close')
 }
 
-//__________________Legend items
-$(function() {
-  jeedomUIHistory.initLegendContextMenu(__el__)
-})
