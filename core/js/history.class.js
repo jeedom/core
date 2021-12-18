@@ -290,16 +290,29 @@ jeedom.history.drawChart = function(_params) {
       //series colors, options defined in core/js/jeedom.class.js jeedom.init():
       var colors = Highcharts.getOptions().colors
       var colorsNbr = colors.length
+      var colorUsed = []
       var numSeries = 0
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].chart.series)) {
-        jeedom.history.chart[_params.el].chart.series.forEach((serie, index) => {
-          if (!serie.userOptions.group) numSeries +=1
-        })
+        if (jeedom.history.chart[_params.el].chart.series.length > colorsNbr) { //More series than colors, rotate colors:
+          numSeries = Math.abs(jeedom.history.chart[_params.el].chart.series.length % colorsNbr) - 1
+        } else { //Ensure no two series with same color:
+          jeedom.history.chart[_params.el].chart.series.forEach((serie, index) => {
+            if (!serie.userOptions.group) {
+              var sColorHindex = Highcharts.getOptions().colors.indexOf(serie.color)
+              if (!colorUsed.includes(sColorHindex)) colorUsed.push(sColorHindex)
+            }
+
+            for (var i = 0; i < colorsNbr; i++) {
+              if (!colorUsed.includes(i)) {
+                numSeries = i
+                break
+              }
+            }
+          })
+        }
       }
       var seriesNumber = numSeries + 1
-      if (seriesNumber > colorsNbr || seriesNumber == 0) {
-        seriesNumber = 1
-      }
+      if (seriesNumber <= 0 || seriesNumber > colorsNbr) seriesNumber = 1
       if (!isset(_params.option.graphColor) || _params.option.graphColor === undefined) {
         _params.option.graphColor = colors[seriesNumber - 1];
       }
