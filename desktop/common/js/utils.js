@@ -51,12 +51,13 @@ setInterval(function() {
 
 var modifyWithoutSave = false
 jeedomUtils.checkPageModified = function() {
-  if (modifyWithoutSave) {
+  if (jeeFrontEnd.modifyWithoutSave || modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       $.hideLoading()
       return true
     }
     modifyWithoutSave = false
+    jeeFrontEnd.modifyWithoutSave = false
     return false
   }
 }
