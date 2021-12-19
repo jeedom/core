@@ -2,7 +2,7 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-echo '<script>REPO_LIST = []</script>';
+$repoList = [];
 ?>
 
 <div id="backup">
@@ -117,9 +117,6 @@ echo '<script>REPO_LIST = []</script>';
 						$div .= '<select class="form-control sel_restoreCloudBackup" data-repo="' . $rkey . '">';
 						$div .= '<option>{{Chargement...}}</option>';
 						$div .= '</select>';
-						$div .= '<script>';
-						$div .= 'REPO_LIST.push("' . $rkey . '");';
-						$div .= '</script>';
 						$div .= '</div>';
 						$div .= '</div>';
 						$div .= '<div class="form-group">';
@@ -132,6 +129,7 @@ echo '<script>REPO_LIST = []</script>';
 						$div .= '</form>';
 						$div .= '</div>';
 						$div .= '</div>';
+						array_push($repoList,$rkey);
 						echo $div;
 					}
 					?>
@@ -155,4 +153,7 @@ echo '<script>REPO_LIST = []</script>';
 	</div>
 </div>
 
-<?php include_file("desktop", "backup", "js"); ?>
+<?php
+sendVarToJs('jeeFrontEnd.repoList', $repoList);
+include_file("desktop", "backup", "js");
+?>

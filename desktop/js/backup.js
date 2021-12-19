@@ -15,15 +15,145 @@
  */
 
 "use strict"
+if (!jeeFrontEnd.backup) {
+  jeeFrontEnd.backup = {
+    init: function() {
+      this.updateListBackup()
+      for (var i in jeeFrontEnd.repoList) {
+        this.updateRepoListBackup(jeeFrontEnd.repoList[i])
+      }
+
+      $.showLoading()
+      jeedom.config.load({
+        configuration: $('#backup').getValues('.configKey')[0],
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('#backup').setValues(data, '.configKey')
+          jeeFrontEnd.modifyWithoutSave = false
+        }
+      })
+    },
+    getJeedomLog: function(_autoUpdate, _log) {
+      $.ajax({
+        type: 'POST',
+        url: 'core/ajax/log.ajax.php',
+        data: {
+          action: 'get',
+          log: _log,
+        },
+        dataType: 'json',
+        global: false,
+        error: function(request, status, error) {
+          setTimeout(function() {
+            jeeFrontEnd.backup.getJeedomLog(_autoUpdate, _log)
+          }, 1000)
+        },
+        success: function(data) {
+          if (data.state != 'ok') {
+            setTimeout(function() {
+              jeeFrontEnd.backup.getJeedomLog(_autoUpdate, _log)
+            }, 1000)
+            return
+          }
+          var log = ''
+          if ($.isArray(data.result)) {
+            for (var i in data.result.reverse()) {
+              log += data.result[i] + "\n"
+              if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
+                $.fn.showAlert({
+                  message: '{{L\'opération est réussie}}',
+                  level: 'success'
+                })
+                if (_log == 'restore') {
+                  jeedom.user.refresh()
+                }
+                $('.bt_restoreRepoBackup .fa-sync').hide()
+                _autoUpdate = 0
+              }
+              if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
+                $.fn.showAlert({
+                  message: '{{L\'opération a échoué}}',
+                  level: 'danger'
+                })
+                if (_log == 'restore') {
+                  jeedom.user.refresh()
+                }
+                $('.bt_restoreRepoBackup .fa-sync').hide()
+                _autoUpdate = 0
+              }
+            }
+          }
+          $('#pre_backupInfo').text(log)
+          if (init(_autoUpdate, 0) == 1) {
+            setTimeout(function() {
+              jeeFrontEnd.backup.getJeedomLog(_autoUpdate, _log)
+            }, 1000);
+          } else {
+            $('#bt_' + _log + 'Jeedom .fa-sync').hide()
+            $('.bt_' + _log + 'Jeedom .fa-sync').hide()
+            jeeFrontEnd.backup.updateListBackup();
+            for (var i in jeeFrontEnd.repoList) {
+              jeeFrontEnd.backup.updateRepoListBackup(jeeFrontEnd.repoList[i])
+            }
+          }
+        }
+      })
+    },
+    updateListBackup: function() {
+      jeedom.backup.list({
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          var options = ''
+          for (var i in data) {
+            options += '<option value="' + i + '">' + data[i] + '</option>'
+          }
+          $('#sel_restoreBackup').html(options)
+        }
+      })
+    },
+    updateRepoListBackup: function(_repo) {
+      jeedom.repo.backupList({
+        repo: _repo,
+        global: false,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          var options = ''
+          for (var i in data) {
+            options += '<option value="' + data[i] + '">' + data[i] + '</option>'
+          }
+          $('.sel_restoreCloudBackup[data-repo=' + _repo + ']').empty().html(options)
+        }
+      })
+    },
+  }
+}
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
-
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     $("#bt_saveBackup").click()
   }
 }
+
+$(function() {
+  jeeFrontEnd.backup.init()
+})
 
 $("#bt_saveBackup").on('click', function(event) {
   $.hideAlert()
@@ -47,7 +177,7 @@ $("#bt_saveBackup").on('click', function(event) {
         },
         success: function(data) {
           $('#backup').setValues(data, '.configKey')
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           $.fn.showAlert({
             message: '{{Sauvegarde réussie}}',
             level: 'success'
@@ -72,7 +202,7 @@ $(".bt_backupJeedom").on('click', function(event) {
           })
         },
         success: function() {
-          getJeedomLog(1, 'backup')
+          jeeFrontEnd.backup.getJeedomLog(1, 'backup')
         }
       })
     }
@@ -94,7 +224,7 @@ $("#bt_restoreJeedom").on('click', function(event) {
           })
         },
         success: function() {
-          getJeedomLog(1, 'restore')
+          jeeFrontEnd.backup.getJeedomLog(1, 'restore')
         }
       })
     }
@@ -115,7 +245,7 @@ $("#bt_removeBackup").on('click', function(event) {
           })
         },
         success: function() {
-          updateListBackup()
+          jeeFrontEnd.backup.updateListBackup()
           $.fn.showAlert({
             message: '{{Sauvegarde supprimée avec succès}}',
             level: 'success'
@@ -141,7 +271,7 @@ $('#bt_uploadBackup').fileupload({
       })
       return
     }
-    updateListBackup()
+    jeeFrontEnd.backup.updateListBackup()
     $.fn.showAlert({
       message: '{{Fichier(s) ajouté(s) avec succès}}',
       level: 'success'
@@ -163,7 +293,7 @@ $(".bt_uploadCloudBackup").on('click', function(event) {
           })
         },
         success: function() {
-          getJeedomLog(1, 'backupCloud')
+          jeeFrontEnd.backup.getJeedomLog(1, 'backupCloud')
         }
       })
     }
@@ -185,7 +315,7 @@ $(".bt_restoreRepoBackup").on('click', function(event) {
           })
         },
         success: function() {
-          updateListBackup()
+          jeeFrontEnd.backup.updateListBackup()
           $.fn.showAlert({
             message: '{{Sauvegarde rapatrier avec succès}}',
             level: 'success'
@@ -196,24 +326,8 @@ $(".bt_restoreRepoBackup").on('click', function(event) {
   })
 })
 
-$.showLoading()
-jeedom.config.load({
-  configuration: $('#backup').getValues('.configKey')[0],
-  error: function(error) {
-    $.fn.showAlert({
-      message: error.message,
-      level: 'danger'
-    })
-  },
-  success: function(data) {
-    $('#backup').setValues(data, '.configKey')
-    modifyWithoutSave = false
-  }
-})
-updateListBackup()
-
 $('#div_pageContainer').off('change', '.configKey').on('change', '.configKey:visible', function() {
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $(".btn_closeInfo").on('click', function() {
@@ -221,113 +335,3 @@ $(".btn_closeInfo").on('click', function() {
   $('#pre_backupInfo').text('')
 })
 
-
-/********************Log************************/
-function getJeedomLog(_autoUpdate, _log) {
-  $.ajax({
-    type: 'POST',
-    url: 'core/ajax/log.ajax.php',
-    data: {
-      action: 'get',
-      log: _log,
-    },
-    dataType: 'json',
-    global: false,
-    error: function(request, status, error) {
-      setTimeout(function() {
-        getJeedomLog(_autoUpdate, _log)
-      }, 1000)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        setTimeout(function() {
-          getJeedomLog(_autoUpdate, _log)
-        }, 1000)
-        return
-      }
-      var log = ''
-      if ($.isArray(data.result)) {
-        for (var i in data.result.reverse()) {
-          log += data.result[i] + "\n"
-          if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
-            $.fn.showAlert({
-              message: '{{L\'opération est réussie}}',
-              level: 'success'
-            })
-            if (_log == 'restore') {
-              jeedom.user.refresh()
-            }
-            $('.bt_restoreRepoBackup .fa-sync').hide()
-            _autoUpdate = 0
-          }
-          if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
-            $.fn.showAlert({
-              message: '{{L\'opération a échoué}}',
-              level: 'danger'
-            })
-            if (_log == 'restore') {
-              jeedom.user.refresh()
-            }
-            $('.bt_restoreRepoBackup .fa-sync').hide()
-            _autoUpdate = 0
-          }
-        }
-      }
-      $('#pre_backupInfo').text(log)
-      if (init(_autoUpdate, 0) == 1) {
-        setTimeout(function() {
-          getJeedomLog(_autoUpdate, _log)
-        }, 1000);
-      } else {
-        $('#bt_' + _log + 'Jeedom .fa-sync').hide()
-        $('.bt_' + _log + 'Jeedom .fa-sync').hide()
-        updateListBackup();
-        for (var i in REPO_LIST) {
-          updateRepoListBackup(REPO_LIST[i])
-        }
-      }
-    }
-  })
-}
-
-function updateListBackup() {
-  jeedom.backup.list({
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      var options = ''
-      for (var i in data) {
-        options += '<option value="' + i + '">' + data[i] + '</option>'
-      }
-      $('#sel_restoreBackup').html(options)
-    }
-  })
-}
-
-for (var i in REPO_LIST) {
-  updateRepoListBackup(REPO_LIST[i])
-}
-
-function updateRepoListBackup(_repo) {
-  jeedom.repo.backupList({
-    repo: _repo,
-    global: false,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      var options = ''
-      for (var i in data) {
-        options += '<option value="' + data[i] + '">' + data[i] + '</option>'
-      }
-      $('.sel_restoreCloudBackup[data-repo=' + _repo + ']').empty().html(options)
-    }
-  })
-}
