@@ -24,8 +24,8 @@ if (init('type', '') == 'custom') {
 }
 
 sendVarToJS([
-	'editorType' => init('type', ''),
-	'customActive' => config::byKey('enableCustomCss')
+	'jeeFrontEnd.editorType' => init('type', ''),
+	'jeeFrontEnd.customActive' => config::byKey('enableCustomCss')
 ]);
 
 //Core CodeMirror:
