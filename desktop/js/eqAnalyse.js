@@ -1,4 +1,4 @@
-/* This file is part of Jeedom.
+ /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,94 @@
 
 "use strict"
 
-jeedomUtils.positionEqLogic()
+if (!jeeFrontEnd.eqAnalyse) {
+  jeeFrontEnd.eqAnalyse = {
+    init: function() {
+      jeedomUtils.positionEqLogic()
+      this.$batteryContainer = $('div.batteryListContainer')
+      this.$alertListContainer = $('div.alertListContainer')
+      this.$tableDeadCmd = $('#table_deadCmd')
+    },
+    getRemoveCmd: function(_id) {
+      for (var i in _remove_history_) {
+        if (_remove_history_[i].type == 'cmd' && _remove_history_[i].id == _id) return _remove_history_[i]
+      }
+      return false
+    },
+    displayDeadCmd: function() {
+      jeedom.cmd.getDeadCmd({
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          var tr = ''
+          var removed
+          for (var i in data) {
+            for (var j in data[i].cmd) {
+              tr += '<tr>'
+              tr += '<td>'
+              tr += data[i].name
+              tr += '</td>'
+
+              tr += '<td>'
+              tr += data[i].cmd[j].detail
+              tr += '</td>'
+
+              tr += '<td>'
+              tr += data[i].cmd[j].who
+
+              removed = jeeFrontEnd.eqAnalyse.getRemoveCmd(data[i].cmd[j].who.replaceAll('#', ''))
+              if (removed) {
+                tr += ' <span class="lebel label-sm label-info">' + removed.name + '</span>'
+                tr += ' {{Supprimée le}} ' + removed.date
+              }
+
+              tr += '</td>'
+
+              tr += '<td>'
+              tr += data[i].cmd[j].help
+              tr += '</td>'
+              tr += '</tr>'
+            }
+          }
+          jeeFrontEnd.eqAnalyse.$tableDeadCmd.find('tbody').empty().append(tr)
+          jeeFrontEnd.eqAnalyse.$tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
+          jeeFrontEnd.eqAnalyse.$tableDeadCmd.trigger('update')
+            .trigger('applyWidgets')
+            .trigger('resizableReset')
+            .trigger('sorton', [
+              [
+                [0, 0]
+              ]
+            ])
+        }
+      })
+    },
+  }
+}
+
+jeeFrontEnd.eqAnalyse.init()
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
+
+$(function() {
+  //tabs icons colors:
+  if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
+    $('a[href="#battery"] > i').addClass('danger')
+  } else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
+    $('a[href="#battery"] > i').addClass('warning')
+  } else {
+    $('a[href="#battery"] > i').addClass('success')
+  }
+
+  if ($('div.alertListContainer div.eqLogic-widget').length) {
+    $('a[href="#alertEqlogic"] > i').addClass('warning')
+  }
+
+  jeedomUtils.initTableSorter()
+})
 
 //update tablesorter on tab click:
 $("#tab_actionCmd").off("click").on("click", function() {
@@ -30,14 +116,10 @@ $("#tab_pushCmd").off("click").on("click", function() {
   $('#table_Push').trigger('update')
 })
 $("#tab_deadCmd").off("click").on("click", function() {
-  displayDeadCmd()
+  jeeFrontEnd.eqAnalyse.displayDeadCmd()
 })
 
-var $batteryListContainer = $('div.batteryListContainer')
-var $alertListContainer = $('div.alertListContainer')
-var $tableDeadCmd = $('#table_deadCmd')
-
-$('.alertListContainer').packery({
+jeeFrontEnd.eqAnalyse.$alertListContainer.packery({
   itemSelector: ".eqLogic-widget",
   gutter: 2
 })
@@ -45,7 +127,7 @@ $('.alertListContainer').packery({
 $('.alerts, .batteries').on('click', function() {
   setTimeout(function() {
     jeedomUtils.positionEqLogic()
-    $('.alertListContainer').packery({
+    jeeFrontEnd.eqAnalyse.$alertListContainer.packery({
       itemSelector: ".eqLogic-widget",
       gutter: 2
     })
@@ -59,14 +141,14 @@ $('.cmdAction[data-action=configure]').on('click', function() {
 })
 
 //searching
-var $eqlogics = $batteryListContainer.find('.eqLogic-widget')
+jeeFrontEnd.eqAnalyse.$eqlogics = jeeFrontEnd.eqAnalyse.$batteryContainer.find('.eqLogic-widget')
 $('#in_search').off('keyup').on('keyup', function() {
-  if ($eqlogics.length == 0) {
+  if (jeeFrontEnd.eqAnalyse.$eqlogics.length == 0) {
     return
   }
   var search = $(this).value()
   if (search == '') {
-    $eqlogics.show()
+    jeeFrontEnd.eqAnalyse.$eqlogics.show()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -76,7 +158,7 @@ $('#in_search').off('keyup').on('keyup', function() {
   }
 
   var match, text
-  $eqlogics.each(function() {
+  jeeFrontEnd.eqAnalyse.$eqlogics.each(function() {
     match = false
     text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
     if (text.includes(search)) match = true
@@ -104,80 +186,3 @@ $('#bt_massConfigureEqLogic').off('click').on('click', function() {
     title: "{{Configuration en masse}}"
   }).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
 })
-
-$(function() {
-  //tabs icons colors:
-  if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
-    $('a[href="#battery"] > i').addClass('danger')
-  } else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
-    $('a[href="#battery"] > i').addClass('warning')
-  } else {
-    $('a[href="#battery"] > i').addClass('success')
-  }
-
-  if ($('div.alertListContainer div.eqLogic-widget').length) {
-    $('a[href="#alertEqlogic"] > i').addClass('warning')
-  }
-
-  jeedomUtils.initTableSorter()
-})
-
-function getRemoveCmd(_id) {
-  for (var i in _remove_history_) {
-    if (_remove_history_[i].type == 'cmd' && _remove_history_[i].id == _id) return _remove_history_[i]
-  }
-  return false
-}
-
-function displayDeadCmd() {
-  jeedom.cmd.getDeadCmd({
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      var tr = ''
-      var removed
-      for (var i in data) {
-        for (var j in data[i].cmd) {
-          tr += '<tr>'
-          tr += '<td>'
-          tr += data[i].name
-          tr += '</td>'
-
-          tr += '<td>'
-          tr += data[i].cmd[j].detail
-          tr += '</td>'
-
-          tr += '<td>'
-          tr += data[i].cmd[j].who
-
-          removed = getRemoveCmd(data[i].cmd[j].who.replaceAll('#', ''))
-          if (removed) {
-            tr += ' <span class="lebel label-sm label-info">' + removed.name + '</span>'
-            tr += ' {{Supprimée le}} ' + removed.date
-          }
-
-          tr += '</td>'
-
-          tr += '<td>'
-          tr += data[i].cmd[j].help
-          tr += '</td>'
-          tr += '</tr>'
-        }
-      }
-      $tableDeadCmd.find('tbody').empty().append(tr)
-      $tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
-      $tableDeadCmd.trigger('update')
-        .trigger('applyWidgets')
-        .trigger('resizableReset')
-        .trigger('sorton', [
-          [
-            [0, 0]
-          ]
-        ])
-    }
-  })
-}
