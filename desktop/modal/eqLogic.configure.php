@@ -513,17 +513,8 @@ sendVarToJS([
     if (nbLine == '') $('input[data-l2key="layout::dashboard::table::nbLine"]').val(1)
 
     setTableLayoutSortable()
-    initPickers()
+    jeedomUtils.initSpinners()
   })
-
-  function initPickers() {
-    $('input[type="number"]').spinner({
-      icons: {
-        down: "ui-icon-triangle-1-s",
-        up: "ui-icon-triangle-1-n"
-      }
-    })
-  }
 
   function setTableLayoutSortable() {
     $('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
