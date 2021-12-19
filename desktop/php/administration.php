@@ -10,7 +10,6 @@ foreach ($repos as $key => $value) {
 }
 global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
-sendVarToJS('ldapEnable', $configs['ldap::enable']);
 user::isBan();
 ?>
 

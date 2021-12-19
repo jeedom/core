@@ -310,7 +310,7 @@ function printUsers() {
           userTR += '<div class="input-group pull-right">'
           userTR += '<span class="input-group-btn">'
 
-          if (ldapEnable != '1') {
+          if (jeeFrontEnd.ldapEnable != '1') {
             userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user roundedRight"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
             userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i> {{Mot de passe}}</a>'
           }
