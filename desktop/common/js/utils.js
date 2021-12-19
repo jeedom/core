@@ -140,6 +140,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
     setTimeout(function() {
       modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
     }, 500)
   })
 
@@ -633,8 +634,8 @@ jeedomUtils.setJeedomGlobalUI = function() {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
 
-  $(window).bind('beforeunload', function() {
-    if (modifyWithoutSave) {
+  $(window).bind('beforeunload', function() { //keep old root for plugins
+    if (jeeFrontEnd.modifyWithoutSave || modifyWithoutSave) {
       return '{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}';
     }
   })

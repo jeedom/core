@@ -143,7 +143,7 @@ if (!jeeFrontEnd.dashboard) {
           disabled: false,
           distance: 10,
           start: function(event, ui) {
-            modifyWithoutSave = true
+            jeeFrontEnd.modifyWithoutSave = true
             jeedomUI.draggingId = $(this).attr('data-editId')
             jeedomUI.orders = {}
             $(this).parent().find('.ui-draggable').each(function(i, itemElem) {
@@ -154,7 +154,7 @@ if (!jeeFrontEnd.dashboard) {
         //set resizables:
         divEquipements.find('div.eqLogic-widget.allowResize').resizable({
           start: function(event, ui) {
-            modifyWithoutSave = true
+            jeeFrontEnd.modifyWithoutSave = true
           },
           resize: function(event, ui) {
             jeedomUtils.positionEqLogic(ui.element.attr('data-eqlogic_id'), false)
@@ -167,7 +167,7 @@ if (!jeeFrontEnd.dashboard) {
         })
         divEquipements.find('div.scenario-widget.allowResize').resizable({
           start: function(event, ui) {
-            modifyWithoutSave = true
+            jeeFrontEnd.modifyWithoutSave = true
           },
           resize: function(event, ui) {
             jeedomUtils.positionEqLogic(ui.element.attr('data-scenario_id'), false, true)
@@ -375,9 +375,6 @@ $(function() {
 
   jeeFrontEnd.dashboard.init()
 })
-
-var modifyWithoutSave = false
-jeeFrontEnd.modifyWithoutSave = false
 
 //searching
 $('#in_searchDashboard').off('keyup').on('keyup', function() {
@@ -603,7 +600,7 @@ $('.li_object').on('click', function() {
 //Edit mode:
 $('#bt_editDashboardWidgetOrder').on('click', function() {
   if ($(this).attr('data-mode') == 1) {
-    modifyWithoutSave = false
+    jeeFrontEnd.modifyWithoutSave = false
     $('#md_modal').dialog('close')
     $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
     $.hideAlert()
