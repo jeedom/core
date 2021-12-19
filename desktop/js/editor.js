@@ -22,7 +22,7 @@ $(function() {
   CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
   var hash = 'l1_'
-  var lang = jeedom_langage.substring(0, 2)
+  var lang = jeeFrontEnd.language.substring(0, 2)
 
   var options = {
     url: 'core/php/editor.connector.php',

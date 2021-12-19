@@ -31,9 +31,6 @@ $(function() {
   })
 })
 
-//design edit options conservation:
-var planEditOption = {state:false, snap:false, grid:false, gridSize:false, highlight:true}
-
 //js error in ! ui:
 var JS_ERROR = []
 window.addEventListener('error', function(event) {
@@ -48,7 +45,7 @@ window.addEventListener('error', function(event) {
 //UI Time display:
 setInterval(function() {
   var dateJeed = new Date
-  dateJeed.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + serverTZoffsetMin)*60000 + clientServerDiffDatetime)
+  dateJeed.setTime((new Date).getTime() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin)*60000 + jeeFrontEnd.clientServerDiffDatetime)
   $('#horloge').text(dateJeed.toLocaleTimeString())
 }, 1000)
 
@@ -64,13 +61,10 @@ jeedomUtils.checkPageModified = function() {
   }
 }
 
-//OnePage design PageLoader -------------------------------------
-var PREVIOUS_PAGE = null
-var PREVIOUS_LOCATION = null
-var NO_POPSTAT = false
 var printEqLogic = undefined
+//OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
-  PREVIOUS_LOCATION = window.location.href
+  jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
   if (jeedomUtils.checkPageModified()) return
   if (JS_ERROR.length > 0) {
     document.location.href = _url
@@ -89,13 +83,13 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   if (!isset(_noPushHistory) || _noPushHistory == false) {
     try {
-      if (PREVIOUS_PAGE == null) {
+      if (jeeFrontEnd.PREVIOUS_PAGE == null) {
         window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1])
-        PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
       }
-      if (PREVIOUS_PAGE == null || PREVIOUS_PAGE != _url) {
+      if (jeeFrontEnd.PREVIOUS_PAGE == null || jeeFrontEnd.PREVIOUS_PAGE != _url) {
         window.history.pushState('','', _url)
-        PREVIOUS_PAGE = _url
+        jeeFrontEnd.PREVIOUS_PAGE = _url
       }
     } catch(e) {}
   }
@@ -105,7 +99,6 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
   jeedomUtils.cleanModals()
-  jeedom.history.chart = []
   jeedom.cmd.update = []
   jeedom.scenario.update = []
   printEqLogic = undefined
@@ -177,12 +170,12 @@ $(function() {
   $body.off('jeedom_page_load').on('jeedom_page_load', function() {
     if (getUrlVars('saveSuccessFull') == 1) {
       $.fn.showAlert({message: '{{Sauvegarde effectuée avec succès}}', level: 'success'})
-      PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
+      jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&saveSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&saveSuccessFull')[0]+window.location.hash)
     }
     if (getUrlVars('removeSuccessFull') == 1) {
       $.fn.showAlert({message: '{{Suppression effectuée avec succès}}', level: 'success'})
-      PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
+      jeeFrontEnd.PREVIOUS_PAGE=window.location.href.split('&removeSuccessFull')[0]+window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0]+window.location.hash)
     }
   })
@@ -200,36 +193,36 @@ $(function() {
     if ($(this).closest('.ui-dialog-content').html() !== undefined) {
       return
     }
-    if (PREVIOUS_PAGE == null) {
+    if (jeeFrontEnd.PREVIOUS_PAGE == null) {
       window.history.replaceState('','', 'index.php?'+window.location.href.split("index.php?")[1])
-      PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+      jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
     }
     window.location.hash = event.target.hash
   })
   window.addEventListener('hashchange', function(event) {
-    NO_POPSTAT = true
+    jeeFrontEnd.NO_POPSTAT = true
     setTimeout(function() {
-      NO_POPSTAT = false
+      jeeFrontEnd.NO_POPSTAT = false
     },200)
   })
   window.addEventListener('popstate', function(event) {
     if (event.state === null) {
-      if (NO_POPSTAT) {
-        NO_POPSTAT = false
+      if (jeeFrontEnd.NO_POPSTAT) {
+        jeeFrontEnd.NO_POPSTAT = false
         return
       }
       if (window.location.hash != '' && $('.nav-tabs a[href="'+window.location.hash+'"]:visible').length != 0) {
         $('.nav-tabs a[href="'+window.location.hash+'"]').click()
-      } else if (PREVIOUS_PAGE !== null && PREVIOUS_PAGE.includes('#') && PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]) {
+      } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?'+window.location.href.split("index.php?")[1].split('#')[0]) {
         if (jeedomUtils.checkPageModified()) return
         jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
-        PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
       }
       return
     }
     if (jeedomUtils.checkPageModified()) return
     jeedomUtils.loadPage('index.php?'+window.location.href.split("index.php?")[1],true)
-    PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
+    jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+window.location.href.split("index.php?")[1]
   })
 
   jeedomUtils.setJeedomTheme()
@@ -491,8 +484,8 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 jeedomUtils.initJeedomModals = function() {
   $.fn.modal.Constructor.prototype.enforceFocus = function() {}
 
-  if (isset(jeedom_langage) ) {
-    var lang = jeedom_langage.substr(0, 2)
+  if (isset(jeeFrontEnd.language) ) {
+    var lang = jeeFrontEnd.language.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
     if ( lang != 'en' && supportedLangs.includes(lang) ) {
       bootbox.addLocale('fr', {OK: '<i class="fas fa-check"></i> Ok', CONFIRM: '<i class="fas fa-check"></i> Ok', CANCEL: '<i class="fas fa-times"></i> Annuler'})
@@ -636,7 +629,7 @@ jeedomUtils.setButtonCtrlHandler = function(_button, _title, _uri, _modal='#md_m
 }
 
 jeedomUtils.setJeedomGlobalUI = function() {
-  if (typeof jeedom_firstUse != 'undefined' && isset(jeedom_firstUse) && jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
+  if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
   }
 
@@ -728,7 +721,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
     if ($('body').attr('data-page') == "overview" && $(this).parents('.objectSummaryglobal').length == 0) return false
 
     var url = 'index.php?v=d&p=dashboard&summary=' + $(this).data('summary') + '&object_id=' + $(this).data('object_id')
-    if (window.location.href.includes('&btover=1') || ($('body').attr('data-page') != "dashboard" && userProfils.homePage == 'core::overview')) {
+    if (window.location.href.includes('&btover=1') || ($('body').attr('data-page') != "dashboard" && jeeFrontEnd.userProfils.homePage == 'core::overview')) {
       url += '&btover=1'
     }
     jeedomUtils.loadPage(url)
@@ -933,7 +926,7 @@ jeedomUtils.autocompleteDestroy = function() {
 }
 
 jeedomUtils.datePickerInit = function() {
-  var datePickerRegion = jeedom_langage.substring(0,2)
+  var datePickerRegion = jeeFrontEnd.language.substring(0,2)
   if (isset($.datepicker.regional[datePickerRegion])) {
     var datePickerRegional = $.datepicker.regional[datePickerRegion]
   } else {
@@ -1052,14 +1045,14 @@ jeedomUtils.addOrUpdateUrl = function(_param,_value,_title) {
     if (url.indexOf('#') != -1) {
       url = url.substring(0, url.indexOf('#'))
     }
-    if (PREVIOUS_PAGE != 'index.php?'+window.location.href.split("index.php?")[1]) {
+    if (jeeFrontEnd.PREVIOUS_PAGE != 'index.php?'+window.location.href.split("index.php?")[1]) {
       window.history.pushState('','', window.location.href)
     }
     if (_title && _title != '') {
       document.title = _title
     }
     window.history.pushState('','', url.toString())
-    PREVIOUS_PAGE = 'index.php?'+url.split("index.php?")[1]
+    jeeFrontEnd.PREVIOUS_PAGE = 'index.php?'+url.split("index.php?")[1]
   } else {
     if (_title && _title != '') {
       document.title = _title
@@ -1395,7 +1388,31 @@ jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
 
 $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 
-//Introduced in v4.2 -> deprecated v4.3 -> remove v4.4
+/*
+return new fonction with deprecated message
+example: function initTooltips(_el) { return jeedomUtils.deprecatedFunc('4.3', initTooltips, 'initTooltips', 'jeedomUtils')(); }
+@_oldFunc {function}
+@_newFunc {function}
+OR
+@_newFunc {string}
+@_namespace {string}
+*/
+jeedomUtils.deprecatedFunc = function(_version='4.3', _oldFunc, _newFunc, _namespace) {
+  if (isset(_namespace)) {
+    var newName = _namespace + '.' + _newFunc
+    _newFunc = window[_namespace][_newFunc]
+  } else {
+    var newName = _newFunc.name
+  }
+  const wrapper = function() {
+    console.error(`JEEDOM WARNING! Deprecated function since Core v${_version} called: Please use the new ${newName}() function instead!`)
+    _newFunc.apply(this, arguments)
+  }
+  wrapper.prototype = _newFunc.prototype
+  return wrapper
+}
+
+//Introduced in v4.2 -> deprecated v4.4 -> remove v4.6
 var checkPageModified = jeedomUtils.checkPageModified
 var loadPage = jeedomUtils.loadPage
 var initPage = jeedomUtils.initPage
@@ -1414,3 +1431,7 @@ var addOrUpdateUrl = jeedomUtils.addOrUpdateUrl
 var positionEqLogic = jeedomUtils.positionEqLogic
 var chooseIcon = jeedomUtils.chooseIcon
 var getOpenedModal = jeedomUtils.getOpenedModal
+
+
+//Introduced in v4.3 -> deprecated v4.5 -> remove v4.6
+var jeedom_langage = jeeFrontEnd.language

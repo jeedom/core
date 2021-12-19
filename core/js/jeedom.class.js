@@ -19,6 +19,21 @@ jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
+jeeFrontEnd = {
+  jeedom_firstUse: '',
+  language: '',
+  PREVIOUS_PAGE: null,
+  PREVIOUS_LOCATION: null,
+  NO_POPSTAT: false,
+  modifyWithoutSave: false,
+  userProfils: {},
+  planEditOption: {state: false, snap: false, grid: false, gridSize: false, highlight: true},
+  //@index.php
+  serverDatetime: null,
+  clientServerDiffDatetime: null,
+  serverDatetime: null,
+  serverTZoffsetMin: null,
+}
 jeedom.changes_timeout = null;
 var Highcharts
 
@@ -93,7 +108,7 @@ jeedom.changes = function() {
 }
 
 jeedom.init = function() {
-  jeedom.datetime = serverDatetime;
+  jeedom.datetime = jeeFrontEnd.serverDatetime;
   jeedom.display.version = 'desktop';
   if ($.mobile) {
     jeedom.display.version = 'mobile';
