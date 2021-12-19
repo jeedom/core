@@ -3,12 +3,6 @@ if (!isConnect()) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
 
-sendVarToJS([
-	'SEL_CATEGORY' => init('category', 'all'),
-	'SEL_TAG' => init('tag', 'all'),
-	'SEL_SUMMARY' => init('summary')
-]);
-
 //DisplayByObject or display by summaries:
 $DisplayByObject = true;
 if (init('summary') != '') {
@@ -23,7 +17,6 @@ if (init('object_id') == '') {
 		$object = jeeObject::byId($_SESSION['user']->getOptions('defaultDashboardObject'));
 	}
 } else {
-	sendVarToJs('SHOW_BY_SUMMARY', '');
 	$object = jeeObject::byId(init('object_id'));
 }
 
@@ -51,7 +44,6 @@ if ($DisplayByObject) {
 		$allObject = array();
 	}
 } else {
-	sendVarToJs('SHOW_BY_SUMMARY', init('summary'));
 	if (init('object_id') == '') {
 		$allObject = jeeObject::all(true);
 		sendVarToJs('rootObjectId', 'undefined');
@@ -175,9 +167,9 @@ foreach ($objectTree as $_object) {
 		$div .= '<div class="div_displayEquipement" id="div_ob' . $objectId . '">';
 
 		if ($toSummary) {
-			$div .= '<script>getObjectHtmlFromSummary(' . $objectId . ')</script>';
+			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtmlFromSummary(' . $objectId . ')</script>';
 		} else {
-			$div .= '<script>getObjectHtml(' . $objectId . ')</script>';
+			$div .= '<script>jeeFrontEnd.dashboard.getObjectHtml(' . $objectId . ')</script>';
 		}
 		$div .= '</div></div></div>';
 		echo $div;
