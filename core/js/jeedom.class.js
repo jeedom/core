@@ -20,6 +20,7 @@ jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
 jeeFrontEnd = {
+  __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
   jeedom_firstUse: '',
   language: '',
   PREVIOUS_PAGE: null,

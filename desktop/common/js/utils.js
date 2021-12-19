@@ -16,7 +16,9 @@
 
 "use strict"
 
-var jeedomUtils = {}
+var jeedomUtils = {
+  __description: 'Loaded once for every desktop/mobile page. Global UI functions and variables.'
+}
 jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
 
