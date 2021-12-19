@@ -16,6 +16,17 @@
 
 "use strict"
 
+if (!jeeFrontEnd.view) {
+  jeeFrontEnd.view = {
+    highcharts_load_callback: function(_chartId) {
+      jeedom.history.chart[_chartId].chart.redraw()
+    },
+    setAxisScales_Callback: function(_chartId) {
+      jeedom.history.chart[_chartId].chart.redraw()
+    },
+  }
+}
+
 $(function() {
   setTimeout(function() {
     $('input', 'textarea', 'select').click(function() {
@@ -153,20 +164,15 @@ if (view_id != '') {
         $(this).find('.viewZoneData').each(function() {
           var cmdId = $(this).attr('data-cmdid')
           var el = $(this).attr('data-el')
-          var daterange = $(this).attr('data-daterange')
-
-          var _params = {
+          jeedom.history.drawChart({
             cmd_id: cmdId,
-            el: el,
-            dateRange: daterange,
-            success: function() {
-              $('.chartToDraw >.viewZoneData[data-cmdid="'+cmdId+'"]').remove()
+            el: $(this).attr('data-el'),
+            dateRange: $(this).attr('data-daterange'),
+            option: json_decode($(this).attr('data-option').replace(/'/g, '"')),
+            success: function(data) {
+              $('.chartToDraw > .viewZoneData[data-cmdid="' + cmdId + '"]').remove()
             }
-          }
-          var option = $(this).attr('data-option')
-          option = json_decode(option.replace(/'/g, '"'))
-          _params.option = option
-          jeedom.history.drawChart(_params)
+          })
         })
       })
     }
@@ -288,8 +294,3 @@ function editWidgetMode(_mode, _save) {
     })
   }
 }
-
-function setChartOptions(_chartId) {
-  jeedom.history.chart[_chartId].chart.redraw()
-}
-

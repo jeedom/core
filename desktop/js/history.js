@@ -16,61 +16,283 @@
 
 "use strict"
 
-var $divGraph = $('#div_graph')
-var __el__ = 'div_graph'
-var __chartHeight__ = null
-var __lastId__ = null //last cmd_id added to chart
-delete jeedom.history.chart[__el__]
+if (!jeeFrontEnd.history) {
+  jeeFrontEnd.history = {
+    __el__: 'div_graph',
+    __chartHeight__: null,
+    __lastId__: null,
+    resizeDone: null,
+    loadIds: null,
+    init: function() {
+      this.$divGraph = $('#' + this.__el__)
+      this.setCalculList()
+      delete jeedom.history.chart[this.__el__]
+      this.setChartOptions()
+      this.resizeDn()
+      this.loadIds = getUrlVars('cmd_id')
+      if (typeof this.loadIds == 'string') {
+        this.loadIds = this.loadIds.split('-')
+        if (is_numeric(this.loadIds[0])) {
+          this.loadIds.forEach(function(cmd_id) {
+            var li = $('.li_history[data-cmd_id=' + cmd_id + ']')
+            if (li) {
+              li.find('.history').click()
+              li.closest('.cmdList').show()
+              li.closest('.cmdList').prev().prev().find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+            }
+          })
+        }
+      }
+    },
+    resizeDn: function() {
+      if (jeedom.history.chart[this.__el__] === undefined) return
+      this.__chartHeight__ = this.$divGraph.height() - $('#div_historyOptions').outerHeight(true)
+      if (jeedom.history.chart[this.__el__].chart) {
+        jeedom.history.chart[this.__el__].chart.setSize(this.$divGraph.width(), this.__chartHeight__)
+      }
+    },
+    highcharts_load_callback: function(_chartId) {
+      this.setChartOptions()
+    },
+    setAxisScales_Callback: function(_chartId) {
+      this.setChartOptions()
+    },
+    /*
+    grouping/type/variation/step Compare mode available only if one curve in chart
+    */
+    setChartOptions: function() {
+      if (!isset(jeedom.history.chart[this.__el__])) return
+      var _prop = 'disabled'
+      var currentSeries = jeedom.history.chart[this.__el__].chart.series.filter(key => !key.name.includes('Navigator '))
 
-var $pageContainer = $('#pageContainer')
-$(function() {
-  $('#in_searchHistory').val('').keyup()
-  var cmdIds = getUrlVars('cmd_id')
-  if (typeof cmdIds == 'string') {
-    cmdIds = cmdIds.split('-')
-    if (is_numeric(cmdIds[0])) {
-      cmdIds.forEach(function(cmd_id) {
-        var li = $('.li_history[data-cmd_id=' + cmd_id + ']')
-        if (li) {
-          li.find('.history').click()
-          li.closest('.cmdList').show()
-          li.closest('.cmdList').prev().prev().find('i.fas').removeClass('fa-arrow-circle-right').addClass('fa-arrow-circle-down')
+      if (currentSeries.length == 1) { //only one series in chart:
+        var serieId = currentSeries[0].userOptions.id
+        var isCalcul = $('li.li_history[data-cmd_id="' + serieId + '"]').find('a.history').attr('data-calcul') === undefined ? false : true
+        if (isCalcul) {
+          this.__lastId__ = null
+          $("#cb_derive, #cb_step").prop("checked", false)
+          $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
+          $('#bt_compare').addClass('disabled')
+        } else {
+          this.__lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
+          _prop = false
+          var grouping = currentSeries[0].userOptions.dataGrouping.enabled
+          if (grouping) {
+            var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
+            $('#sel_groupingType').value(groupingType)
+          } else {
+            $('#sel_groupingType').val($('#sel_groupingType option:first').val())
+          }
+
+          if (isset(currentSeries[0].userOptions.dataGrouping)) {
+            var grouping = currentSeries[0].userOptions.dataGrouping.enabled
+            if (grouping) {
+              var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
+              $('#sel_groupingType').value(groupingType)
+            } else {
+              $('#sel_groupingType').val($('#sel_groupingType option:first').val())
+            }
+          }
+
+          var type = currentSeries[0].userOptions.type
+          if (type == 'areaspline') type = 'area'
+          $('#sel_chartType').value(type)
+
+          $("#cb_derive").prop("checked", currentSeries[0].userOptions.derive)
+          $("#cb_step").prop("checked", currentSeries[0].userOptions.step)
+
+          $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
+          $('#bt_compare').removeClass('disabled')
+        }
+      } else {
+        this.__lastId__ = null
+        $('#sel_groupingType').val($('#sel_groupingType option:first').val())
+        $('#sel_chartType').val($('#sel_chartType option:first').val())
+        $("#cb_derive, #cb_step").prop("checked", false)
+        $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
+        jeedom.history.chart[this.__el__].comparing ? $('#bt_compare').removeClass('disabled') : $('#bt_compare').addClass('disabled')
+      }
+    },
+    addChart: function(_cmd_id, _action, _options) {
+      if (_action == 0) { //Remove series
+        if (isset(jeedom.history.chart[this.__el__]) && isset(jeedom.history.chart[this.__el__].chart) && isset(jeedom.history.chart[this.__el__].chart.series)) {
+          $(jeedom.history.chart[this.__el__].chart.series).each(function(i, serie) {
+            try {
+              if (serie.options.id == _cmd_id) {
+                serie.yAxis.remove()
+                jeedom.history.chart[this.__el__].chart.get(serie.options.id).remove(false)
+              }
+            } catch (error) {}
+          })
+        }
+        jeedom.history.setAxisScales(this.__el__, {redraw: true})
+        return
+      }
+
+      //Add series:
+      var dateStart = $('#in_startDate').value()
+      var dateEnd = $('#in_endDate').value()
+      jeedom.history.drawChart({
+        cmd_id: _cmd_id,
+        el: this.__el__,
+        dateRange: 'all',
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        height: this.__chartHeight__,
+        option: _options,
+        compare: 0,
+        success: function(data) {
+          if (isset(data.error)) {
+            $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
+            return
+          }
+          jeeFrontEnd.history.__lastId__ = _cmd_id
+          jeeFrontEnd.history.resizeDn()
+        }
+      })
+    },
+    clearGraph: function() {
+      if (!isset(jeedom.history.chart[this.__el__])) return
+      jeedom.history.chart[this.__el__].comparing = false
+      $.clearDivContent(this.__el__)
+      delete jeedom.history.chart[this.__el__]
+      $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
+      $('#ul_history, #historyCalculs').find('.li_history.active').removeClass('active')
+      this.setChartOptions()
+    },
+    emptyHistory: function(_cmd_id, _date) {
+      $.ajax({
+        type: "POST",
+        url: "core/ajax/cmd.ajax.php",
+        data: {
+          action: "emptyHistory",
+          id: _cmd_id,
+          date: _date
+        },
+        dataType: 'json',
+        error: function(request, status, error) {
+          handleAjaxError(request, status, error)
+        },
+        success: function(data) {
+          if (data.state != 'ok') {
+            $.fn.showAlert({
+              message: data.result,
+              level: 'danger'
+            })
+            return
+          }
+          $.fn.showAlert({
+            message: '{{Historique supprimé avec succès}}',
+            level: 'success'
+          })
+          li = $('li[data-cmd_id=' + _cmd_id + ']')
+          if (li && li.hasClass('active')) {
+            li.find('.history').click()
+          }
+        }
+      })
+    },
+    compareChart: function(_cmd_id) {
+      //compare:
+      var fromStart, fromEnd, toStart, toEnd
+      fromStart = $('#in_compareStart1').value() + ' 00:00:00'
+      fromEnd = $('#in_compareEnd1').value() + ' 23:59:59'
+      toStart = $('#in_compareStart2').value() + ' 00:00:00'
+      toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
+
+      //Existing serie dateRange can vary, remove all series:
+      jeedom.history.setAxisScales(this.__el__, {redraw: true, resetDateRange: true})
+      jeedom.history.emptyChart(this.__el__)
+
+      //add data from both date range:
+      self = this
+      jeedom.history.drawChart({
+        cmd_id: _cmd_id,
+        el: self.__el__,
+        dateRange: 'all',
+        dateStart: fromStart,
+        dateEnd: fromEnd,
+        height: self.__chartHeight__,
+        option: {lastPointToEnd: 1, allowZero: 1},
+        success: function(data) {
+          jeedom.history.drawChart({
+            cmd_id: _cmd_id,
+            el: self.__el__,
+            dateRange: 'all',
+            dateStart: toStart,
+            dateEnd: toEnd,
+            height: self.__chartHeight__,
+            option: {lastPointToEnd: 1, allowZero: 1, graphScaleVisible: false},
+            compare: 1,
+            success: function(data) {
+              jeedom.history.chart[self.__el__].chart.xAxis[0].setExtremes(null, null, false)
+              jeedom.history.chart[self.__el__].chart.redraw()
+            }
+          })
+        }
+      })
+      $('#md_getCompareRange').dialog('close')
+    },
+    setCalculList: function() {
+      var $el = $('#historyCalculs')
+      var isOpened = false
+      if ($el && $el.find('.displayObject i.fas').hasClass('fa-arrow-circle-down')) isOpened = true
+      jeedom.config.load({
+        configuration: 'calculHistory',
+        convertToHumanReadable : true,
+        error: function(error) {
+          $.showAlert({message: error.message, level: 'danger'})
+        },
+        success: function(data) {
+          if (!$el) return
+          $el.empty()
+          if (data.length == 0) return
+
+          var html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
+          html += '<br/>'
+          html += '<div class="cmdList" data-object_id="jeedom-config-calculs" style="display:none;margin-left : 20px;">'
+          for (var i in data) {
+            if (isset(data[i].calcul) && data[i].calcul != '') {
+              var dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
+              html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
+              html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>';
+              html += '</li>';
+            }
+          }
+          html += '</div><br/>'
+          $el.append(html)
+          if (isOpened) $el.find('.displayObject').trigger('click')
         }
       })
     }
   }
-  setCalculList()
-  moment.locale(jeedom_langage.substring(0, 2))
+}
+
+jeeFrontEnd.history.$pageContainer = $('#pageContainer')
+
+$(function() {
+  $('#in_searchHistory').val('').keyup()
+  moment.locale(jeeFrontEnd.language.substring(0, 2))
   jeedomUtils.datePickerInit()
-  setChartOptions()
-  resizeDn()
+  jeeFrontEnd.history.init()
 })
 
 //handle resizing:
-var resizeDone
-function resizeDn() {
-  if (jeedom.history.chart[__el__] === undefined) return
-  var __chartHeight__ = $divGraph.height() - $('#div_historyOptions').outerHeight(true)
-  if (jeedom.history.chart[__el__].chart) {
-    jeedom.history.chart[__el__].chart.setSize($divGraph.width(), __chartHeight__)
-  }
-  $('.bs-sidebar').height(__chartHeight__)
-}
 $(window).resize(function() {
-  clearTimeout(resizeDone)
-  resizeDone = setTimeout(resizeDn, 100)
+  clearTimeout(jeeFrontEnd.history.resizeDone)
+  jeeFrontEnd.history.resizeDone = setTimeout(function() { jeeFrontEnd.history.resizeDn() }, 100)
 })
 
 
 /************Left button list UI***********/
 $('#bt_validChangeDate').on('click', function() {
-  if (jeedom.history.chart[__el__] === undefined) return
+  if (jeedom.history.chart[jeeFrontEnd.history.__el__] === undefined) return
   $('.highcharts-plot-band').remove()
-  $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
+  $(jeedom.history.chart[jeeFrontEnd.history.__el__].chart.series).each(function(i, serie) {
     if (serie.options && !isNaN(serie.options.id)) {
       var cmd_id = serie.options.id
-      addChart(cmd_id, 0)
-      addChart(cmd_id, 1)
+      jeeFrontEnd.history.addChart(cmd_id, 0)
+      jeeFrontEnd.history.addChart(cmd_id, 1)
     }
   })
 })
@@ -87,13 +309,13 @@ $('#bt_findCmdCalculHistory').on('click', function() {
 })
 $('#bt_displayCalculHistory').on('click', function() {
   var calcul = $('#in_calculHistory').value()
-  if (calcul != '') addChart(calcul, 1)
+  if (calcul != '') jeeFrontEnd.history.addChart(calcul, 1)
 })
 $('#bt_configureCalculHistory').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration des formules de calcul}}",
     beforeClose: function(event, ui) {
-      setCalculList()
+      jeeFrontEnd.history.setCalculList()
     }
   }).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
@@ -107,11 +329,11 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
 
 $('#sel_groupingType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (__lastId__ == null) return
-  var currentId = __lastId__
+  if (jeeFrontEnd.history.__lastId__ == null) return
+  var currentId = jeeFrontEnd.history.__lastId__
   var groupingType = $(this).value()
   $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-  addChart(currentId, 0)
+  jeeFrontEnd.history.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -133,11 +355,11 @@ $('#sel_groupingType').off('change').on('change', function(event) {
 
 $('#sel_chartType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (__lastId__ == null) return
-  var currentId = __lastId__
+  if (jeeFrontEnd.history.__lastId__ == null) return
+  var currentId = jeeFrontEnd.history.__lastId__
   var graphType = $(this).value()
   $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-  addChart(currentId, 0)
+  jeeFrontEnd.history.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -153,17 +375,17 @@ $('#sel_chartType').off('change').on('change', function(event) {
     },
     success: function() {
       $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
-      addChart(currentId)
+      jeeFrontEnd.history.addChart(currentId)
     }
   })
 })
 
 $('#cb_derive').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (__lastId__ == null) return
-  var currentId = __lastId__
+  if (jeeFrontEnd.history.__lastId__ == null) return
+  var currentId = jeeFrontEnd.history.__lastId__
   var graphDerive = $(this).value()
-  addChart(currentId, 0)
+  jeeFrontEnd.history.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -178,17 +400,17 @@ $('#cb_derive').off('change').on('change', function(event) {
       })
     },
     success: function(data) {
-      addChart(data.id, 1)
+      jeeFrontEnd.history.addChart(data.id, 1)
     }
   })
 })
 
 $('#cb_step').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (__lastId__ == null) return
-  var currentId = __lastId__
+  if (jeeFrontEnd.history.__lastId__ == null) return
+  var currentId = jeeFrontEnd.history.__lastId__
   var graphStep = $(this).value()
-  addChart(currentId, 0)
+  jeeFrontEnd.history.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -203,7 +425,7 @@ $('#cb_step').off('change').on('change', function(event) {
       })
     },
     success: function(data) {
-      addChart(data.id, 1)
+      jeeFrontEnd.history.addChart(data.id, 1)
     }
   })
 })
@@ -211,11 +433,11 @@ $('#cb_step').off('change').on('change', function(event) {
 
 //Right buttons:
 $('#bt_clearGraph').on('click', function() {
-  clearGraph()
+  jeeFrontEnd.history.clearGraph()
 })
 
 //search filter opening:
-$pageContainer.on({
+jeeFrontEnd.history.$pageContainer.on({
   'keyup': function(event) {
     if ($(this).value() == '') {
       $('#ul_history .cmdList').hide()
@@ -241,7 +463,7 @@ $('#bt_resetSearch').on('click', function() {
 })
 
 //List of object / cmds event:
-$pageContainer.on({
+jeeFrontEnd.history.$pageContainer.on({
   'click': function(event) {
     var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
     if (list.is(':visible')) {
@@ -254,10 +476,10 @@ $pageContainer.on({
   }
 }, '.displayObject')
 
-$pageContainer.on({
+jeeFrontEnd.history.$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
-    if (isset(jeedom.history.chart[__el__]) && jeedom.history.chart[__el__].comparing) return
+    if (isset(jeedom.history.chart[jeeFrontEnd.history.__el__]) && jeedom.history.chart[jeeFrontEnd.history.__el__].comparing) return
 
     var options = null
     if ($(this).hasClass('historycalcul')) {
@@ -270,211 +492,33 @@ $pageContainer.on({
     }
     if ($(this).closest('.li_history').hasClass('active')) {
       $(this).closest('.li_history').removeClass('active')
-      addChart($(this).closest('.li_history').attr('data-cmd_id'), 0, options)
+      jeeFrontEnd.history.addChart($(this).closest('.li_history').attr('data-cmd_id'), 0, options)
     } else {
       $(this).closest('.li_history').addClass('active')
-      addChart($(this).closest('.li_history').attr('data-cmd_id'), 1, options)
+      jeeFrontEnd.history.addChart($(this).closest('.li_history').attr('data-cmd_id'), 1, options)
     }
     return false
   }
 }, '.li_history .history')
 
-$pageContainer.on({
+jeeFrontEnd.history.$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
     var bt_remove = $(this)
     bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
       if (result !== null) {
-        emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
+        jeeFrontEnd.history.emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
       }
     })
   }
 }, '.li_history .remove')
 
-$pageContainer.on({
+jeeFrontEnd.history.$pageContainer.on({
   'click': function(event) {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
   }
 }, '.li_history .export')
 
-/*
-Set list of calculs on history page, synched back from modal calcul
-*/
-function  setCalculList() {
-  var $el = $('#historyCalculs')
-  var isOpened = false
-  if ($el && $el.find('.displayObject i.fas').hasClass('fa-arrow-circle-down')) isOpened = true
-  jeedom.config.load({
-    configuration: 'calculHistory',
-    convertToHumanReadable : true,
-    error: function(error) {
-      $.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      if (!$el) return
-      $el.empty()
-      if (data.length == 0) return
-
-      var html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
-      html += '<br/>'
-      html += '<div class="cmdList" data-object_id="jeedom-config-calculs" style="display:none;margin-left : 20px;">'
-      for (var i in data) {
-        if (isset(data[i].calcul) && data[i].calcul != '') {
-          var dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
-          html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
-          html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>';
-          html += '</li>';
-        }
-      }
-      html += '</div><br/>'
-      $el.append(html)
-      if (isOpened) $el.find('.displayObject').trigger('click')
-    }
-  })
-}
-
-/************Charting***********/
-
-/*
-grouping/type/variation/step Compare mode available only if one curve in chart
-@page loaded, jeedom.history.setAxisScales(), clearGraph()
-*/
-function setChartOptions(_chartId) {
-  if (!isset(jeedom.history.chart[__el__])) return
-  var _prop = 'disabled'
-  var currentSeries = jeedom.history.chart[__el__].chart.series.filter(key => !key.name.includes('Navigator '))
-
-  if (currentSeries.length == 1) { //only one series in chart:
-    var serieId = currentSeries[0].userOptions.id
-    var isCalcul = $('li.li_history[data-cmd_id="' + serieId + '"]').find('a.history').attr('data-calcul') === undefined ? false : true
-    if (isCalcul) {
-      __lastId__ = null
-      $("#cb_derive, #cb_step").prop("checked", false)
-      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-      $('#bt_compare').addClass('disabled')
-    } else {
-      __lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
-      _prop = false
-      var grouping = currentSeries[0].userOptions.dataGrouping.enabled
-      if (grouping) {
-        var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
-        $('#sel_groupingType').value(groupingType)
-      } else {
-        $('#sel_groupingType').val($('#sel_groupingType option:first').val())
-      }
-
-      if (isset(currentSeries[0].userOptions.dataGrouping)) {
-        var grouping = currentSeries[0].userOptions.dataGrouping.enabled
-        if (grouping) {
-          var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
-          $('#sel_groupingType').value(groupingType)
-        } else {
-          $('#sel_groupingType').val($('#sel_groupingType option:first').val())
-        }
-      }
-
-      var type = currentSeries[0].userOptions.type
-      if (type == 'areaspline') type = 'area'
-      $('#sel_chartType').value(type)
-
-      $("#cb_derive").prop("checked", currentSeries[0].userOptions.derive)
-      $("#cb_step").prop("checked", currentSeries[0].userOptions.step)
-
-      $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-      $('#bt_compare').removeClass('disabled')
-    }
-  } else {
-    __lastId__ = null
-    $('#sel_groupingType').val($('#sel_groupingType option:first').val())
-    $('#sel_chartType').val($('#sel_chartType option:first').val())
-    $("#cb_derive, #cb_step").prop("checked", false)
-    $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', _prop)
-    jeedom.history.chart[__el__].comparing ? $('#bt_compare').removeClass('disabled') : $('#bt_compare').addClass('disabled')
-  }
-}
-
-function addChart(_cmd_id, _action, _options) {
-  if (_action == 0) { //Remove series
-    if (isset(jeedom.history.chart[__el__]) && isset(jeedom.history.chart[__el__].chart) && isset(jeedom.history.chart[__el__].chart.series)) {
-      $(jeedom.history.chart[__el__].chart.series).each(function(i, serie) {
-        try {
-          if (serie.options.id == _cmd_id) {
-            serie.yAxis.remove()
-            jeedom.history.chart[__el__].chart.get(serie.options.id).remove(false)
-          }
-        } catch (error) {}
-      })
-    }
-    jeedom.history.setAxisScales(__el__, {redraw: true})
-    return
-  }
-
-  //Add series:
-  var dateStart = $('#in_startDate').value()
-  var dateEnd = $('#in_endDate').value()
-  jeedom.history.drawChart({
-    cmd_id: _cmd_id,
-    el: __el__,
-    dateRange: 'all',
-    dateStart: dateStart,
-    dateEnd: dateEnd,
-    height: __chartHeight__,
-    option: _options,
-    compare: 0,
-    success: function(data) {
-      if (isset(data.error)) {
-        $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
-        return
-      }
-      __lastId__ = _cmd_id
-      resizeDn()
-    }
-  })
-}
-
-function clearGraph() {
-  jeedom.history.chart[__el__].comparing = false
-  if (jeedom.history.chart[__el__] === undefined) return
-
-  $.clearDivContent(__el__)
-  delete jeedom.history.chart[__el__]
-  $('#bt_compare').removeClass('btn-danger').addClass('btn-success').addClass('disabled')
-  $('#ul_history, #historyCalculs').find('.li_history.active').removeClass('active')
-  setChartOptions()
-}
-
-function emptyHistory(_cmd_id, _date) {
-  $.ajax({
-    type: "POST",
-    url: "core/ajax/cmd.ajax.php",
-    data: {
-      action: "emptyHistory",
-      id: _cmd_id,
-      date: _date
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        $.fn.showAlert({
-          message: data.result,
-          level: 'danger'
-        })
-        return
-      }
-      $.fn.showAlert({
-        message: '{{Historique supprimé avec succès}}',
-        level: 'success'
-      })
-      li = $('li[data-cmd_id=' + _cmd_id + ']')
-      if (li && li.hasClass('active')) {
-        li.find('.history').click()
-      }
-    }
-  })
-}
 
 //__________________Comparison functions
 
@@ -550,68 +594,26 @@ $('#md_getCompareRange').on({
 }, 'input.in_datepicker')
 
 $('#bt_compare').off().on('click', function() {
-  if (!jeedom.history.chart[__el__].comparing) { //Go comparing:
-    if (__lastId__ == null) return
-    $(this).attr('data-cmdId', __lastId__)
+  if (!jeedom.history.chart[jeeFrontEnd.history.__el__].comparing) { //Go comparing:
+    if (jeeFrontEnd.history.__lastId__ == null) return
+    $(this).attr('data-cmdId', jeeFrontEnd.history.__lastId__)
     $('#md_getCompareRange').removeClass('hidden').dialog({
       title: "{{Période de comparaison}}"
     }).dialog('open')
   } else { //Stop comparing:
-    clearGraph()
-    addChart($(this).attr('data-cmdId'))
+    jeeFrontEnd.history.clearGraph()
+    jeeFrontEnd.history.addChart($(this).attr('data-cmdId'))
     $('li.li_history[data-cmd_id="' + $(this).attr('data-cmdId') + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
   }
 })
 
 $('#bt_doCompare').off('click').on('click', function() {
-  jeedom.history.chart[__el__].comparing = true
+  jeedom.history.chart[jeeFrontEnd.history.__el__].comparing = true
   $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
   $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
-  jeedom.history.chart[__el__].chart.xAxis[1].update({
+  jeedom.history.chart[jeeFrontEnd.history.__el__].chart.xAxis[1].update({
     visible: true
   })
-  compareChart(__lastId__)
+  jeeFrontEnd.history.compareChart(jeeFrontEnd.history.__lastId__)
 })
-
-function compareChart(_cmd_id) {
-  //compare:
-  var fromStart, fromEnd, toStart, toEnd
-  fromStart = $('#in_compareStart1').value() + ' 00:00:00'
-  fromEnd = $('#in_compareEnd1').value() + ' 23:59:59'
-  toStart = $('#in_compareStart2').value() + ' 00:00:00'
-  toEnd = $('#in_compareEnd2').value() + ' 23:59:59'
-
-  //Existing serie dateRange can vary:
-  jeedom.history.setAxisScales(__el__, {redraw: true, resetDateRange: true})
-  jeedom.history.emptyChart(__el__)
-
-  //add data from both date range:
-  jeedom.history.drawChart({
-    cmd_id: _cmd_id,
-    el: __el__,
-    dateRange: 'all',
-    dateStart: fromStart,
-    dateEnd: fromEnd,
-    height: __chartHeight__,
-    option: {lastPointToEnd: 1, allowZero: 1},
-    success: function(data) {
-      jeedom.history.drawChart({
-        cmd_id: _cmd_id,
-        el: __el__,
-        dateRange: 'all',
-        dateStart: toStart,
-        dateEnd: toEnd,
-        height: __chartHeight__,
-        option: {lastPointToEnd: 1, allowZero: 1, graphScaleVisible: false},
-        compare: 1,
-        success: function(data) {
-          jeedom.history.chart[__el__].chart.xAxis[0].setExtremes(null, null, false)
-          jeedom.history.chart[__el__].chart.redraw()
-        }
-      })
-    }
-  })
-  $('#md_getCompareRange').dialog('close')
-}
-

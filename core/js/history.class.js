@@ -1296,8 +1296,8 @@ jeedom.history.chartDone = function(_chartId) {
     }, false)
 
     setTimeout(function() {
-    if (!jeedom.history.chart[_chartId].comparing) {
-        if (typeof setChartOptions === "function") setChartOptions(_chartId)
+    if (typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_load_callback === "function") {
+        jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_load_callback(_chartId)
       } else {
 
       }
@@ -1535,7 +1535,9 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     }
   }
 
-  if (typeof setChartOptions === "function") setChartOptions(_chartId)
+  if (typeof jeeFrontEnd[jeedom.history.chart[_chartId].mode].setAxisScales_Callback === "function") {
+    jeeFrontEnd[jeedom.history.chart[_chartId].mode].setAxisScales_Callback(_chartId)
+  }
 }
 
 /*
