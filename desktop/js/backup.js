@@ -15,6 +15,7 @@
  */
 
 "use strict"
+
 if (!jeeFrontEnd.backup) {
   jeeFrontEnd.backup = {
     init: function() {

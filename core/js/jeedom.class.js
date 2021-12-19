@@ -15,6 +15,7 @@
  */
 
 function jeedom() {}
+jeedom.__description = 'All js methods per Jeedom class. Handles front-end <-> ajax <-> php classes.'
 jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
