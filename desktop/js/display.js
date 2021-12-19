@@ -16,7 +16,54 @@
 
 "use strict"
 
-var GLOBAL_ACTION_MODE = null
+if (!jeeFrontEnd.display) {
+  jeeFrontEnd.display = {
+    actionMode: null,
+    $tableRemoveHistory: null,
+    init: function() {
+      this.actionMode = null
+      this.$tableRemoveHistory = $('#table_removeHistory')
+    },
+    setRemoveHistoryTable: function() {
+      jeedomUtils.initTableSorter()
+      this.$tableRemoveHistory[0].config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
+      this.$tableRemoveHistory.trigger('applyWidgets')
+        .trigger('resizableReset')
+        .trigger('sorton', [
+          [
+            [0, 1]
+          ]
+        ])
+      this.$tableRemoveHistory.trigger("update")
+    },
+    setEqActions: function() {
+      var found = false
+      $('.cb_selEqLogic').each(function() {
+        if ($(this).value() == 1) {
+          found = true
+          return
+        }
+      })
+      if (found) {
+        this.actionMode = 'eqLogic'
+        $('.eqActions').show()
+        $('.cb_selCmd').hide()
+        $('#bt_removeEqlogic').show()
+        $('.bt_setIsVisible').show()
+        $('.bt_setIsEnable').show()
+      } else {
+        this.actionMode = null
+        $('.eqActions').hide()
+        $('.cb_selCmd').show()
+        $('#bt_removeEqlogic').hide()
+        $('.bt_setIsVisible').hide()
+        $('.bt_setIsEnable').hide()
+      }
+    }
+  }
+}
+
+jeeFrontEnd.display.init()
 
 //searching
 $('#in_search').on('keyup', function() {
@@ -246,7 +293,6 @@ $('.bt_exportcsv').on('click', function() {
   $('.bt_exportcsv').attr('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile))
 })
 
-
 $('.objectSelectEqlogics').on('click', function() {
   var object = $(this).closest('.objectSortable')
   if (object.find('.accordion-toggle').attr('aria-expanded') == 'false') object.find('.accordion-toggle').click()
@@ -259,14 +305,14 @@ $('.objectSelectEqlogics').on('click', function() {
   elements.each(function() {
     $(this).prop('checked', true)
   })
-  setEqActions()
+  jeeFrontEnd.display.setEqActions()
 })
 $('.objectUnselectEqlogics').on('click', function() {
   var object = $(this).closest('.objectSortable')
   $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
     $(this).prop('checked', false)
   })
-  setEqActions()
+  jeeFrontEnd.display.setEqActions()
 })
 
 $('.eqLogicSortable > li.eqLogic').on('click', function(event) {
@@ -301,56 +347,17 @@ $('#cb_actifDisplay').on('change', function() {
 
 $('[aria-controls="historytab"]').on('click', function() {
   $('.eqActions').hide()
-  setRemoveHistoryTable()
+  jeeFrontEnd.display.setRemoveHistoryTable()
 })
-
-function setRemoveHistoryTable() {
-  var $tableRemoveHistory = $('#table_removeHistory')
-  jeedomUtils.initTableSorter()
-  $tableRemoveHistory[0].config.widgetOptions.resizable_widths = ['180px', '160px', '80px', '']
-  $tableRemoveHistory.trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('sorton', [
-      [
-        [0, 1]
-      ]
-    ])
-  $tableRemoveHistory.trigger("update")
-}
 
 $('[aria-controls="displaytab"]').on('click', function() {
   $('#display').show()
-  if (GLOBAL_ACTION_MODE) $('.eqActions').show()
+  if (jeeFrontEnd.display.actionMode) $('.eqActions').show()
 })
 
 $('.cb_selEqLogic').on('change', function() {
-  setEqActions()
+  jeeFrontEnd.display.setEqActions()
 })
-
-function setEqActions() {
-  var found = false
-  $('.cb_selEqLogic').each(function() {
-    if ($(this).value() == 1) {
-      found = true
-      return
-    }
-  })
-  if (found) {
-    GLOBAL_ACTION_MODE = 'eqLogic'
-    $('.eqActions').show()
-    $('.cb_selCmd').hide()
-    $('#bt_removeEqlogic').show()
-    $('.bt_setIsVisible').show()
-    $('.bt_setIsEnable').show()
-  } else {
-    GLOBAL_ACTION_MODE = null
-    $('.eqActions').hide()
-    $('.cb_selCmd').show()
-    $('#bt_removeEqlogic').hide()
-    $('.bt_setIsVisible').hide()
-    $('.bt_setIsEnable').hide()
-  }
-}
 
 $('.cb_selCmd').on('change', function() {
   var found = false
@@ -361,12 +368,12 @@ $('.cb_selCmd').on('change', function() {
     }
   })
   if (found) {
-    GLOBAL_ACTION_MODE = 'cmd'
+    jeeFrontEnd.display.actionMode = 'cmd'
     $('.eqActions').show()
     $('.cb_selEqLogic').hide()
     $('.bt_setIsVisible').show()
   } else {
-    GLOBAL_ACTION_MODE = null
+    jeeFrontEnd.display.actionMode = null
     $('.cb_selEqLogic').show()
     $('.eqActions').hide()
     $('.bt_setIsVisible').hide()
@@ -399,7 +406,7 @@ $('#bt_removeEqlogic').on('click', function() {
 })
 
 $('.bt_setIsVisible').on('click', function() {
-  if (GLOBAL_ACTION_MODE == 'eqLogic') {
+  if (jeeFrontEnd.display.actionMode == 'eqLogic') {
     var eqLogics = []
     $('.cb_selEqLogic').each(function() {
       if ($(this).value() == 1) {
@@ -421,7 +428,7 @@ $('.bt_setIsVisible').on('click', function() {
     })
   }
 
-  if (GLOBAL_ACTION_MODE == 'cmd') {
+  if (jeeFrontEnd.display.actionMode == 'cmd') {
     var cmds = []
     $('.cb_selCmd').each(function() {
       if ($(this).value() == 1) {
