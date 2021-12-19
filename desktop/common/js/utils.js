@@ -32,12 +32,12 @@ $(function() {
 })
 
 //js error in ! ui:
-var JS_ERROR = []
+jeedomUtils.JS_ERROR = []
 window.addEventListener('error', function(event) {
   if (event.filename.indexOf('3rdparty/') != -1) {
     return
   }
-  JS_ERROR.push(event)
+  jeedomUtils.JS_ERROR.push(event)
   $('#bt_jsErrorModal').show()
   $.hideLoading()
 })
@@ -67,7 +67,7 @@ var printEqLogic = undefined
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
   if (jeedomUtils.checkPageModified()) return
-  if (JS_ERROR.length > 0) {
+  if (jeedomUtils.JS_ERROR.length > 0) {
     document.location.href = _url
     return
   }

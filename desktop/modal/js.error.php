@@ -40,21 +40,21 @@ if (!isConnect()) {
 <script>
 function refreshJsError() {
   var tr = ''
-  for (var i in JS_ERROR) {
+  for (var i in jeedomUtils.JS_ERROR) {
     tr += '<tr>';
     tr += '<td>';
-    if (JS_ERROR[i].filename) {
-      tr += JS_ERROR[i].filename
+    if (jeedomUtils.JS_ERROR[i].filename) {
+      tr += jeedomUtils.JS_ERROR[i].filename
     }
     tr += '</td>'
     tr += '<td>'
-    if (JS_ERROR[i].lineno) {
-      tr += JS_ERROR[i].lineno
+    if (jeedomUtils.JS_ERROR[i].lineno) {
+      tr += jeedomUtils.JS_ERROR[i].lineno
     }
     tr += '</td>'
     tr += '<td>'
-    if (JS_ERROR[i].message) {
-      tr += JS_ERROR[i].message
+    if (jeedomUtils.JS_ERROR[i].message) {
+      tr += jeedomUtils.JS_ERROR[i].message
     }
     tr += '</td>'
     tr += '</tr>'
@@ -69,7 +69,7 @@ $('#bt_refreshJSError').on('click',function() {
 })
 
 $('#bt_clearJSError').on('click',function() {
-  JS_ERROR = []
+  jeedomUtils.JS_ERROR = []
   $('#bt_jsErrorModal').hide()
   refreshJsError()
 })
