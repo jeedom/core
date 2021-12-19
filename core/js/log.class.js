@@ -245,19 +245,19 @@ jeedom.log.autoupdate = function(_params) {
       }
 
       var colorMe = false
-      var isAuto = ($rawLogCheck.attr('autoswitch') == 1) ? true : false
+      var isAuto = (jeeFrontEnd.log.$rawLogCheck.attr('autoswitch') == 1) ? true : false
       var isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
 
-      if (!$rawLogCheck.is(':checked') && !isLong) {
+      if (!jeeFrontEnd.log.$rawLogCheck.is(':checked') && !isLong) {
         colorMe = true
-      } else if (isLong && !isAuto && !$rawLogCheck.is(':checked')) {
+      } else if (isLong && !isAuto && !jeeFrontEnd.log.$rawLogCheck.is(':checked')) {
         colorMe = true
       } else if (isLong && isAuto && _params.callNumber == 1) {
         colorMe = false
-        $rawLogCheck.prop('checked', true)
+        jeeFrontEnd.log.$rawLogCheck.prop('checked', true)
       } else if (!isLong && isAuto && _params.callNumber == 1) {
         colorMe = true
-        $rawLogCheck.prop('checked', false)
+        jeeFrontEnd.log.$rawLogCheck.prop('checked', false)
       }
 
       if (colorMe) {
