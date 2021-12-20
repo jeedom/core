@@ -16,71 +16,242 @@
 
 "use strict"
 
-var _filterType_
-var _editIds_ = []
+if (!jeeFrontEnd.massedit) {
+  jeeFrontEnd.massedit = {
+    _filterType_: null,
+    _editIds_: [],
+    init: function() {
+      this._filterType_ = $('#sel_FilterByType').value()
+      this._editIds_ = []
+      this.setEdit()
+      $('.selectEditKey').change()
+    },
+    resetUI: function() {
+      $('#filter').empty()
+      $('#bt_testFilter').addClass('disabled')
+      $('#testSQL').empty()
+      $('#testResult').empty().hide()
+      $('#edit').empty()
+      $('#execSQL').empty()
+    },
+    addFilter: function() {
+      $('#bt_testFilter').removeClass('disabled')
+      var newFilterHtml = ''
+      newFilterHtml += '<div class="form-group filter">'
+
+      newFilterHtml += '<div class="col-md-2 col-xs-3">'
+      newFilterHtml += '<select class="selectFilterKey form-control input-sm">'
+      var keys = Object.keys(typePossibilities[this._filterType_])
+      keys.forEach((key, index) => {
+        newFilterHtml += '<option value="' + key + '">' + key + '</option>'
+      })
+      newFilterHtml += '</select>'
+      newFilterHtml += '</div>'
+
+      newFilterHtml += '<div class="col-md-3 col-xs-3">'
+      newFilterHtml += '<select class="selectFilterValue form-control input-sm"></select>'
+      newFilterHtml += '</div>'
+
+      newFilterHtml += '<div class="col-md-3 col-xs-3">'
+      newFilterHtml += '<select class="selectFilterJValue form-control input-sm" disabled></select>'
+      newFilterHtml += '</div>'
+
+      newFilterHtml += '<div class="col-md-1 col-xs-2">'
+      newFilterHtml += '<a class="btn btn-xs btn-warning bt_removeFilter" title="{{Supprimer ce filtre}}"><i class="fas fa-minus"></i></a>'
+      newFilterHtml += '</div>'
+
+      newFilterHtml += '</div>'
+
+      var newFilter = $(newFilterHtml)
+      $('#filter').append(newFilter)
+      newFilter.find('.selectFilterKey').change()
+      return newFilter
+    },
+    setEdit: function() {
+      var newEditHtml = ''
+      newEditHtml += '<div class="edit">'
+
+      newEditHtml += '<div class="col-md-2 col-xs-3">'
+      newEditHtml += '<select class="selectEditKey form-control input-sm">'
+      var keys = Object.keys(typePossibilities[this._filterType_])
+      keys.forEach((key, index) => {
+        newEditHtml += '<option value="' + key + '">' + key + '</option>'
+      })
+      newEditHtml += '</select>'
+      newEditHtml += '</div>'
+
+      var editId = Math.random().toString(36).substr(2, 9)
+      newEditHtml += '<div class="col-md-3 col-xs-3">'
+      newEditHtml += '<input class="selectEditValue form-control input-sm" type="text" value="" list="' + editId + '_EditvaluesList" />'
+      newEditHtml += '<datalist id="' + editId + '_EditvaluesList">'
+      newEditHtml += '<option></option>'
+      newEditHtml += '</datalist>'
+      newEditHtml += '</div>'
+
+      newEditHtml += '<div class="col-md-3 col-xs-3">'
+      newEditHtml += '<input class="inputEditJValue form-control input-sm" type="text" value="" list="' + editId + '_EditJValuesList" disabled />'
+      newEditHtml += '<datalist id="' + editId + '_EditJValuesList">'
+      newEditHtml += '<option></option>'
+      newEditHtml += '</datalist>'
+      newEditHtml += '</div>'
+
+      newEditHtml += '</div>'
+
+      $('#edit').append($(newEditHtml))
+    },
+    getFilters: function() {
+      var filters = []
+      $('.form-group.filter').each(function(index) {
+        var key = $(this).find('.selectFilterKey').value()
+        var value = $("option:selected", $(this).find('.selectFilterValue')).text()
+        var jValue = false
+        if (!$(this).find('.selectFilterJValue').is(':disabled')) {
+          var jValue = $("option:selected", $(this).find('.selectFilterJValue')).text()
+        }
+        filters.push({
+          'key': key,
+          'value': value,
+          'jValue': jValue
+        })
+      })
+      return filters
+    },
+    getEdits: function() {
+      var edits = []
+      $('#edit > .edit').each(function(index) {
+        var key = $(this).find('.selectEditKey').value()
+        var value = $(this).find('.selectEditValue').val()
+        var jValue = false
+        if (!$(this).find('.inputEditJValue').is(':disabled')) {
+          var jValue = $(this).find('.inputEditJValue').val()
+        }
+        edits.push({
+          'key': key,
+          'value': value,
+          'jValue': jValue
+        })
+      })
+      return edits
+    },
+    getTestSQLstring: function(_filters) {
+      var sqlTable = this._filterType_
+      var sqlCmd = ''
+      sqlCmd = 'SELECT id, name FROM `' + sqlTable + '`'
+      for (var i = 0; i < _filters.length; i++) {
+        if (i == 0) {
+          sqlCmd += ' WHERE '
+        } else {
+          sqlCmd += ' AND '
+        }
+        if (_filters[i].jValue) {
+          sqlCmd += 'JSON_CONTAINS(`' + _filters[i].key + '`, \'{"' + _filters[i].value + '" : "' + _filters[i].jValue + '"}\')'
+        } else {
+          sqlCmd += '`' + _filters[i].key + '` = "' + _filters[i].value + '"'
+        }
+      }
+      return sqlCmd
+    },
+    getExecSQLstring: function(_filters, _edits) {
+      var sqlTable = this._filterType_
+      var sqlCmd = ''
+
+      var condition = 'WHERE' + this.getTestSQLstring(_filters).split('WHERE')[1]
+
+      //only support one edit at that time:
+      var edit = _edits[0]
+      if (edit.jValue) {
+        sqlCmd = 'UPDATE `' + sqlTable + '`'
+        sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "' + "$." + edit.value + '", "' + edit.jValue + '")'
+      } else {
+        sqlCmd = 'UPDATE `' + sqlTable + '`'
+        sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
+      }
+
+      sqlCmd += ' ' + condition
+      //sqlCmd += ' ' + condition + ' RETURNING `' + sqlTable + '.id`'
+
+      return sqlCmd
+    },
+    getCleaningSpaceSQLstring: function(_edits) {
+      var sqlTable = this._filterType_
+      var sqlCmd = ''
+
+      var condition = 'WHERE id in (' + this._editIds_.join(', ') + ')'
+
+      var edit = _edits[0]
+      if (edit.jValue) {
+        sqlCmd = 'UPDATE `' + sqlTable + '`'
+        sqlCmd += ' SET `' + edit.key + '` = REPLACE(`' + edit.key + '`, ": ", ":")'
+      } else {
+        sqlCmd = 'UPDATE `' + sqlTable + '`'
+        sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
+      }
+
+      sqlCmd += ' ' + condition
+
+      return sqlCmd
+    },
+    dbExecuteCommand: function(_command, _mode = 0) { // _mode 0: test, 1: exec, 2: get modified ids
+      //console.log('___dbExecuteCommand: ' + _mode + ' -> ' + _command)
+      jeedom.db({
+        async: false,
+        command: _command,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(result) {
+          $('#testResult').empty().show()
+          if (_mode == 0) {
+            for (var i in result.sql) {
+              $('#testResult').append('<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
+            }
+          }
+
+          if (_mode == 1) {
+
+          }
+
+          if (_mode == 2) {
+            jeeFrontEnd.massedit._editIds_ = result.sql.map(function(d) {
+              return d['id']
+            })
+          }
+        }
+      })
+    },
+    downloadObjectAsJson: function(exportObj, exportName) {
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
+      var downloadAnchorNode = document.createElement('a')
+      downloadAnchorNode.setAttribute("href", dataStr)
+      downloadAnchorNode.setAttribute("target", "_blank")
+      downloadAnchorNode.setAttribute("download", exportName + ".json")
+      document.body.appendChild(downloadAnchorNode) // required for firefox
+      downloadAnchorNode.click()
+      downloadAnchorNode.remove()
+    },
+  }
+}
 
 $(function() {
-  _filterType_ = $('#sel_FilterByType').value()
-  setEdit()
-  $('.selectEditKey').change()
+  jeeFrontEnd.massedit.init()
 })
 
 //change filter type:
 $('#sel_FilterByType').off('change').on('change', function() {
-  resetUI()
-  _filterType_ = $(this).value()
-  setEdit()
+  jeeFrontEnd.massedit.resetUI()
+  jeeFrontEnd.massedit._filterType_ = $(this).value()
+  jeeFrontEnd.massedit.setEdit()
 })
-
-function resetUI() {
-  $('#filter').empty()
-  $('#bt_testFilter').addClass('disabled')
-  $('#testSQL').empty()
-  $('#testResult').empty().hide()
-  $('#edit').empty()
-  $('#execSQL').empty()
-}
 
 //add filter:
 $('#bt_addFilter').off('click').on('click', function() {
-  addFilter()
+  jeeFrontEnd.massedit.addFilter()
   $('#testResult').empty().hide()
   $('#testSQL').empty()
 })
-
-function addFilter() {
-  $('#bt_testFilter').removeClass('disabled')
-  var newFilterHtml = ''
-  newFilterHtml += '<div class="form-group filter">'
-
-  newFilterHtml += '<div class="col-md-2 col-xs-3">'
-  newFilterHtml += '<select class="selectFilterKey form-control input-sm">'
-  var keys = Object.keys(typePossibilities[_filterType_])
-  keys.forEach((key, index) => {
-    newFilterHtml += '<option value="' + key + '">' + key + '</option>'
-  })
-  newFilterHtml += '</select>'
-  newFilterHtml += '</div>'
-
-  newFilterHtml += '<div class="col-md-3 col-xs-3">'
-  newFilterHtml += '<select class="selectFilterValue form-control input-sm"></select>'
-  newFilterHtml += '</div>'
-
-  newFilterHtml += '<div class="col-md-3 col-xs-3">'
-  newFilterHtml += '<select class="selectFilterJValue form-control input-sm" disabled></select>'
-  newFilterHtml += '</div>'
-
-  newFilterHtml += '<div class="col-md-1 col-xs-2">'
-  newFilterHtml += '<a class="btn btn-xs btn-warning bt_removeFilter" title="{{Supprimer ce filtre}}"><i class="fas fa-minus"></i></a>'
-  newFilterHtml += '</div>'
-
-  newFilterHtml += '</div>'
-
-  var newFilter = $(newFilterHtml)
-  $('#filter').append(newFilter)
-  newFilter.find('.selectFilterKey').change()
-  return newFilter
-}
 
 //remove filter:
 $('body').on({
@@ -104,15 +275,15 @@ $('body').on({
 
     //set possible values for key
     var option
-    if (typeof typePossibilities[_filterType_][key][0] != 'undefined') {
+    if (typeof typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
       selectJValues.prop('disabled', 'disabled')
-      typePossibilities[_filterType_][key].forEach(function(item, index) {
+      typePossibilities[jeeFrontEnd.massedit._filterType_][key].forEach(function(item, index) {
         option = $("<option></option>").attr("value", index).text(item)
         selectValues.append(option)
       })
     } else {
       selectJValues.prop('disabled', false)
-      var values = Object.keys(typePossibilities[_filterType_][key])
+      var values = Object.keys(typePossibilities[jeeFrontEnd.massedit._filterType_][key])
       values.forEach((value, index) => {
         option = $("<option></option>").attr("value", index).text(value)
         selectValues.append(option)
@@ -140,48 +311,13 @@ $('body').on({
 
     //set json values for filter:
     var option
-    var jValues = Object.keys(typePossibilities[_filterType_][key][value])
+    var jValues = Object.keys(typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])
     jValues.forEach((jValue, index) => {
-      option = $("<option></option>").attr("value", index).text(typePossibilities[_filterType_][key][value][index])
+      option = $("<option></option>").attr("value", index).text(typePossibilities[jeeFrontEnd.massedit._filterType_][key][value][index])
       selectJValues.append(option)
     })
   }
 }, 'select.selectFilterValue')
-
-
-//change edit key:
-function setEdit() {
-  var newEditHtml = ''
-  newEditHtml += '<div class="edit">'
-
-  newEditHtml += '<div class="col-md-2 col-xs-3">'
-  newEditHtml += '<select class="selectEditKey form-control input-sm">'
-  var keys = Object.keys(typePossibilities[_filterType_])
-  keys.forEach((key, index) => {
-    newEditHtml += '<option value="' + key + '">' + key + '</option>'
-  })
-  newEditHtml += '</select>'
-  newEditHtml += '</div>'
-
-  var editId = Math.random().toString(36).substr(2, 9)
-  newEditHtml += '<div class="col-md-3 col-xs-3">'
-  newEditHtml += '<input class="selectEditValue form-control input-sm" type="text" value="" list="' + editId + '_EditvaluesList" />'
-  newEditHtml += '<datalist id="' + editId + '_EditvaluesList">'
-  newEditHtml += '<option></option>'
-  newEditHtml += '</datalist>'
-  newEditHtml += '</div>'
-
-  newEditHtml += '<div class="col-md-3 col-xs-3">'
-  newEditHtml += '<input class="inputEditJValue form-control input-sm" type="text" value="" list="' + editId + '_EditJValuesList" disabled />'
-  newEditHtml += '<datalist id="' + editId + '_EditJValuesList">'
-  newEditHtml += '<option></option>'
-  newEditHtml += '</datalist>'
-  newEditHtml += '</div>'
-
-  newEditHtml += '</div>'
-
-  $('#edit').append($(newEditHtml))
-}
 
 //change edit key:
 $('body').on({
@@ -197,11 +333,11 @@ $('body').on({
     inputValues.empty()
     var key = $(this).value()
     var option
-    if (typeof typePossibilities[_filterType_][key][0] != 'undefined') {
+    if (typeof typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
       inputJValue.prop('disabled', 'disabled')
     } else {
       inputJValue.prop('disabled', false)
-      var values = Object.keys(typePossibilities[_filterType_][key])
+      var values = Object.keys(typePossibilities[jeeFrontEnd.massedit._filterType_][key])
       values.forEach((value, index) => {
         option = $("<option></option>").attr("value", value).text(value)
         inputValues.append(option)
@@ -217,7 +353,7 @@ $('body').on({
     var key = $(this).closest('div.form-group').find('select.selectEditKey').val()
     var value = $(this).closest('div.form-group').find('input.selectEditValue').val()
 
-    if (!isset(typePossibilities[_filterType_][key][value])) {
+    if (!isset(typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])) {
       return false
     }
 
@@ -228,7 +364,7 @@ $('body').on({
     var inputJValues = $(this).closest('div.form-group').find('#' + editJValueId)
     inputJValues.empty()
 
-    var jValues = typePossibilities[_filterType_][key][value]
+    var jValues = typePossibilities[jeeFrontEnd.massedit._filterType_][key][value]
     if (!jValues || typeof jValues == 'string') return false
     var option
     jValues.forEach((jValue, index) => {
@@ -238,8 +374,6 @@ $('body').on({
   }
 }, 'input.selectEditValue')
 
-
-
 //open test items:
 $('body').on({
   'click': function(event) {
@@ -247,7 +381,7 @@ $('body').on({
     event.stopPropagation()
     event.stopImmediatePropagation()
     var thisId = $(this).attr('data-id')
-    jeedom[_filterType_]['byId']({
+    jeedom[jeeFrontEnd.massedit._filterType_]['byId']({
       id: thisId,
       error: function(error) {
         $.fn.showAlert({
@@ -258,23 +392,23 @@ $('body').on({
       success: function(_item) {
         if (isset(_item.result)) _item = _item.result
 
-        if (_filterType_ == 'eqLogic') {
+        if (jeeFrontEnd.massedit._filterType_ == 'eqLogic') {
           var url = 'index.php?v=d&p=' + _item.eqType_name + '&m=' + _item.eqType_name + '&id=' + _item.id
           window.open(url)
           return true
         }
-        if (_filterType_ == 'cmd') {
+        if (jeeFrontEnd.massedit._filterType_ == 'cmd') {
           $('#md_modal').dialog({
             title: "{{Configuration de la commande}}"
           }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + _item.id).dialog('open')
           return true
         }
-        if (_filterType_ == 'object') {
+        if (jeeFrontEnd.massedit._filterType_ == 'object') {
           var url = 'index.php?v=d&p=object&id=' + _item.id
           window.open(url)
           return true
         }
-        if (_filterType_ == 'scenario') {
+        if (jeeFrontEnd.massedit._filterType_ == 'scenario') {
           var url = 'index.php?v=d&p=scenario&id=' + _item.id
           window.open(url)
           return true
@@ -285,153 +419,12 @@ $('body').on({
 }, '.testSqlDiv')
 
 
-//_____Getters
-function getFilters() {
-  var filters = []
-  $('.form-group.filter').each(function(index) {
-    var key = $(this).find('.selectFilterKey').value()
-    var value = $("option:selected", $(this).find('.selectFilterValue')).text()
-    var jValue = false
-    if (!$(this).find('.selectFilterJValue').is(':disabled')) {
-      var jValue = $("option:selected", $(this).find('.selectFilterJValue')).text()
-    }
-    filters.push({
-      'key': key,
-      'value': value,
-      'jValue': jValue
-    })
-  })
-  return filters
-}
-
-function getEdits() {
-  var edits = []
-  $('#edit > .edit').each(function(index) {
-    var key = $(this).find('.selectEditKey').value()
-    var value = $(this).find('.selectEditValue').val()
-    var jValue = false
-    if (!$(this).find('.inputEditJValue').is(':disabled')) {
-      var jValue = $(this).find('.inputEditJValue').val()
-    }
-    edits.push({
-      'key': key,
-      'value': value,
-      'jValue': jValue
-    })
-  })
-  return edits
-}
-
-function getTestSQLstring(_filters) {
-  var sqlTable = _filterType_
-  var sqlCmd = ''
-  sqlCmd = 'SELECT id, name FROM `' + sqlTable + '`'
-  for (var i = 0; i < _filters.length; i++) {
-    if (i == 0) {
-      sqlCmd += ' WHERE '
-    } else {
-      sqlCmd += ' AND '
-    }
-    if (_filters[i].jValue) {
-      sqlCmd += 'JSON_CONTAINS(`' + _filters[i].key + '`, \'{"' + _filters[i].value + '" : "' + _filters[i].jValue + '"}\')'
-    } else {
-      sqlCmd += '`' + _filters[i].key + '` = "' + _filters[i].value + '"'
-    }
-  }
-  return sqlCmd
-}
-
-function getExecSQLstring(_filters, _edits) {
-  var sqlTable = _filterType_
-  var sqlCmd = ''
-
-  var condition = 'WHERE' + getTestSQLstring(_filters).split('WHERE')[1]
-
-  //only support one edit at that time:
-  var edit = _edits[0]
-  if (edit.jValue) {
-    sqlCmd = 'UPDATE `' + sqlTable + '`'
-    sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "' + "$." + edit.value + '", "' + edit.jValue + '")'
-  } else {
-    sqlCmd = 'UPDATE `' + sqlTable + '`'
-    sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
-  }
-
-  sqlCmd += ' ' + condition
-  //sqlCmd += ' ' + condition + ' RETURNING `' + sqlTable + '.id`'
-
-  return sqlCmd
-}
-
-function getCleaningSpaceSQLstring(_edits) {
-  var sqlTable = _filterType_
-  var sqlCmd = ''
-
-  var condition = 'WHERE id in (' + _editIds_.join(', ') + ')'
-
-  var edit = _edits[0]
-  if (edit.jValue) {
-    sqlCmd = 'UPDATE `' + sqlTable + '`'
-    sqlCmd += ' SET `' + edit.key + '` = REPLACE(`' + edit.key + '`, ": ", ":")'
-  } else {
-    sqlCmd = 'UPDATE `' + sqlTable + '`'
-    sqlCmd += ' SET `' + edit.key + '` = "' + edit.value + '"'
-  }
-
-  sqlCmd += ' ' + condition
-
-  return sqlCmd
-}
-
-function dbExecuteCommand(_command, _mode = 0) { // _mode 0: test, 1: exec, 2: get modified ids
-  //console.log('___dbExecuteCommand: ' + _mode + ' -> ' + _command)
-  jeedom.db({
-    async: false,
-    command: _command,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(result) {
-      $('#testResult').empty().show()
-      if (_mode == 0) {
-        for (var i in result.sql) {
-          $('#testResult').append('<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
-        }
-      }
-
-      if (_mode == 1) {
-
-      }
-
-      if (_mode == 2) {
-        _editIds_ = result.sql.map(function(d) {
-          return d['id']
-        })
-      }
-    }
-  })
-}
-
-function downloadObjectAsJson(exportObj, exportName) {
-  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
-  var downloadAnchorNode = document.createElement('a')
-  downloadAnchorNode.setAttribute("href", dataStr)
-  downloadAnchorNode.setAttribute("target", "_blank")
-  downloadAnchorNode.setAttribute("download", exportName + ".json")
-  document.body.appendChild(downloadAnchorNode) // required for firefox
-  downloadAnchorNode.click()
-  downloadAnchorNode.remove()
-}
-
 //page buttons:
 $('#bt_exportFilter').off('click').on('click', function() {
-  var filters = getFilters()
-  var edits = getEdits()
+  var filters = jeeFrontEnd.massedit.getFilters()
+  var edits = jeeFrontEnd.massedit.getEdits()
   var jsonData = {
-    'type': _filterType_,
+    'type': jeeFrontEnd.massedit._filterType_,
     'filters': filters,
     'edits': edits
   }
@@ -459,7 +452,7 @@ $("#bt_importFilter").change(function(event) {
 
         //filters:
         for (var idx in massEditData.filters) {
-          newFilter = addFilter()
+          newFilter = jeeFrontEnd.massedit.addFilter()
           newFilter.find('.selectFilterKey').val(massEditData.filters[idx].key).change()
           newFilter.find('.selectFilterValue option:contains(' + massEditData.filters[idx].value + ')').attr('selected', 'selected')
           newFilter.find('.selectFilterValue').change()
@@ -492,32 +485,31 @@ $("#bt_importFilter").change(function(event) {
 })
 
 $('#bt_testFilter').off('click').on('click', function() {
-  var filters = getFilters()
-  var sqlCmd = getTestSQLstring(filters)
+  var filters = jeeFrontEnd.massedit.getFilters()
+  var sqlCmd = jeeFrontEnd.massedit.getTestSQLstring(filters)
   $('#testSQL').empty().append(sqlCmd)
-  dbExecuteCommand(sqlCmd, 0)
+  jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 0)
 })
 
 $('#bt_execMassEdit').off('click').on('click', function() {
-  var filters = getFilters()
-  var edits = getEdits()
+  var filters = jeeFrontEnd.massedit.getFilters()
+  var edits = jeeFrontEnd.massedit.getEdits()
 
   //get ids of modifying items to clean spaces in json string later.
-  var sqlCmd = getTestSQLstring(filters)
-  dbExecuteCommand(sqlCmd, 2)
+  var sqlCmd = jeeFrontEnd.massedit.getTestSQLstring(filters)
+  jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 2)
 
   //exec user edition:
-  sqlCmd = getExecSQLstring(filters, edits)
-  $('#execSQL').empty().append(sqlCmd + '<br>' + 'Editing items: ' + _editIds_.length)
-  dbExecuteCommand(sqlCmd, 1)
+  sqlCmd = jeeFrontEnd.massedit.getExecSQLstring(filters, edits)
+  $('#execSQL').empty().append(sqlCmd + '<br>' + 'Editing items: ' + jeeFrontEnd.massedit._editIds_.length)
+  jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 1)
 
   //clean spaces:
   //may integrate later json_search in searchconfiguration functions
-  if (sqlCmd.includes('JSON_REPLACE') && _editIds_.length > 0) {
-    sqlCmd = getCleaningSpaceSQLstring(edits)
-    dbExecuteCommand(sqlCmd, 1)
+  if (sqlCmd.includes('JSON_REPLACE') && jeeFrontEnd.massedit._editIds_.length > 0) {
+    sqlCmd = jeeFrontEnd.massedit.getCleaningSpaceSQLstring(edits)
+    jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 1)
   }
 
-  _editIds_ = []
-
+  jeeFrontEnd.massedit._editIds_ = []
 })

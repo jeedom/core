@@ -26,6 +26,7 @@ $id = init('id');
 if (trim($id) == '') {
   $id = init('showId');
 }
+sendVarToJs('jeephp2js.cmd_id', $id);
 ?>
 
 
@@ -153,7 +154,7 @@ if (!jeeFrontEnd.md_history) {
 }
 
 $.hideAlert()
-jeeFrontEnd.md_history.init('<?php echo $id ?>')
+jeeFrontEnd.md_history.init(jeephp2js.cmd_id)
 
 $(function() {
   jeedomUtils.datePickerInit()
@@ -182,7 +183,7 @@ jeeFrontEnd.md_history.$pageContainer.on({
 
 jeeFrontEnd.md_history.$pageContainer.on({
   'click': function(event) {
-    jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + cmd_id)
+    jeedomUtils.loadPage('index.php?v=d&p=history&cmd_id=' + jeephp2js.cmd_id)
   }
 }, '#bt_openInHistory')
 

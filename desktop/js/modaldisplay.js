@@ -16,25 +16,36 @@
 
 "use strict"
 
-var params = getUrlVars()
-var title = params['title']
-var modal = params['loadmodal']
-var url = false
+if (!jeeFrontEnd.modaldisplay) {
+  jeeFrontEnd.modaldisplay = {
+    params: null,
+    title: null,
+    modal: null,
+    url: false,
+    init: function() {
+      this.params = getUrlVars()
+      this.title = this.params['title']
+      this.modal = this.params['loadmodal']
+      this.url = 'index.php?v=d&modal=' + this.modal
 
-delete params['p']
-delete params['v']
-delete params['loadmodal']
-delete params['title']
+      delete this.params['p']
+      delete this.params['v']
+      delete this.params['loadmodal']
+      delete this.params['title']
 
-var url = 'index.php?v=d&modal=' + modal
-for (var [key, value] of Object.entries(params)) {
-  url += '&' + key + '=' + value
+      for (var [key, value] of Object.entries(this.params)) {
+        this.url += '&' + key + '=' + value
+      }
+    },
+  }
 }
 
+jeeFrontEnd.modaldisplay.init()
+
 $(function() {
-  document.title = decodeURI(title)
-  $('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(title))
-  $('#modalDisplay').empty().load(url, function(data) {
+  document.title = decodeURI(jeeFrontEnd.modaldisplay.title)
+  $('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(jeeFrontEnd.modaldisplay.title))
+  $('#modalDisplay').empty().load(jeeFrontEnd.modaldisplay.url, function(data) {
     $('body').attr('data-page', getUrlVars('p'))
     $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
     jeedomUtils.initPage()

@@ -24,8 +24,8 @@ if (!is_object($planHeader)) {
   throw new Exception('Impossible de trouver le plan');
 }
 sendVarToJS([
-  'id' => $planHeader->getId(),
-  'planHeader' => utils::o2a($planHeader)
+  'jeeFrontEnd.planHeader_id' => $planHeader->getId(),
+  'jeeFrontEnd.planHeader' => utils::o2a($planHeader)
 ]);
 ?>
 
@@ -195,20 +195,20 @@ $('#bt_chooseIcon').on('click', function() {
 
 $('#bt_uploadImage').fileupload({
   replaceFileInput: false,
-  url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + planHeader_id,
+  url: 'core/ajax/plan.ajax.php?action=uploadImage&id=' + jeeFrontEnd.planHeader_id,
   dataType: 'json',
   done: function(e, data) {
     if (data.result.state != 'ok') {
       $('#div_alertPlanHeaderConfigure').showAlert({message: data.result.result, level: 'danger'})
       return
     }
-    jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id)
+    jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.planHeader_id)
   }
 })
 
 $('#bt_removeBackgroundImage').on('click', function() {
   jeedom.plan.removeImageHeader({
-    planHeader_id: planHeader_id,
+    planHeader_id: jeeFrontEnd.planHeader_id,
     error: function(error) {
       $('#div_alertPlanHeaderConfigure').showAlert({message: error.message, level: 'danger'});
     },
@@ -227,12 +227,12 @@ $('#bt_saveConfigurePlanHeader').on('click', function() {
     success: function() {
       $('#div_alertPlanHeaderConfigure').showAlert({message: '{{Design sauvegardé}}', level: 'success'})
       $('#div_pageContainer').data('editOption.state', false)
-      jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id='+planHeader_id)
+      jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.planHeader_id)
     }
   })
 })
 
-if (isset(id) && id != '') {
-  $('#div_planHeaderConfigure').setValues(planHeader, '.planHeaderAttr')
+if (isset(jeeFrontEnd.planHeader_id) && jeeFrontEnd.planHeader_id != '') {
+  $('#div_planHeaderConfigure').setValues(jeeFrontEnd.planHeader, '.planHeaderAttr')
 }
 </script>

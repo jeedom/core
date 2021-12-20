@@ -20,6 +20,8 @@ jeedom.cache = [];
 jeedom.display = {};
 jeedom.connect = 0;
 jeedom.theme = {};
+jeedom.changes_timeout = null;
+
 jeeFrontEnd = {
   __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
   jeedom_firstUse: '',
@@ -36,7 +38,11 @@ jeeFrontEnd = {
   serverDatetime: null,
   serverTZoffsetMin: null,
 }
-jeedom.changes_timeout = null;
+
+jeephp2js = {
+  __description: 'Jeedom namespace for data transfer php -> js through sendVarToJS(). Could be emptied on loadPage()',
+}
+
 var Highcharts
 
 if (!isset(jeedom.cache.getConfiguration)) {
