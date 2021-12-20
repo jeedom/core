@@ -1020,10 +1020,6 @@ jeedom.history.initChart = function(_chartId) {
     jeedom.history.default.yAxisScaling = false
   }
 
-  if (getUrlVars('report')) {
-    return false
-  }
-
   jeedom.history.initLegendContextMenu(_chartId)
 
   /*HichChart button states (undocumented):
