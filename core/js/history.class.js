@@ -1406,7 +1406,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       if (axis.series[0].data.length > 0) {
         var mathMin = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
         var mathMax = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
-      } else {
+      } else if (axis.series[0].points) {
         var mathMin = Math.min.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
         var mathMax = Math.max.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
       }
@@ -1444,7 +1444,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       if (axis.series[0].data.length > 0) {
         var min = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
         var max = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
-      } else {
+      } else if (axis.series[0].points) {
         var min = Math.min.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
         var max = Math.max.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
       }
