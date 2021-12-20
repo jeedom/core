@@ -1346,8 +1346,8 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       units[unit].axis.push(axis.userOptions.id)
 
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.options.y}))
+        var mathMin = Math.min.apply(Math, axis.series[0].data.map(function (key) {return key.y}))
+        var mathMax = Math.max.apply(Math, axis.series[0].data.map(function (key) {return key.y}))
       } else if (axis.series[0].points) {
         var mathMin = Math.min.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
         var mathMax = Math.max.apply(Math, axis.series[0].points.map(function (key) {return key.y}))
