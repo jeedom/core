@@ -77,7 +77,7 @@ $('#in_search').on('keyup', function() {
     $('.eqLogic').show()
     $('.cmdSortable').hide()
     if (!search.startsWith('*') && searchID == false) {
-      if ((search == '' || _nbCmd_ <= 1500 && search.length < 3) || (_nbCmd_ > 1500 && search.length < 4)) {
+      if ((search == '' || jeephp2js._nbCmd_ <= 1500 && search.length < 3) || (jeephp2js._nbCmd_ > 1500 && search.length < 4)) {
         $('.panel-collapse.in').closest('.panel').find('.accordion-toggle').click()
         return
       }

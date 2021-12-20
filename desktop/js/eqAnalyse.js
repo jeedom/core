@@ -25,8 +25,8 @@ if (!jeeFrontEnd.eqAnalyse) {
       this.$tableDeadCmd = $('#table_deadCmd')
     },
     getRemoveCmd: function(_id) {
-      for (var i in _remove_history_) {
-        if (_remove_history_[i].type == 'cmd' && _remove_history_[i].id == _id) return _remove_history_[i]
+      for (var i in jeephp2js.removeHistory) {
+        if (jeephp2js.removeHistory[i].type == 'cmd' && jeephp2js.removeHistory[i].id == _id) return jeephp2js.removeHistory[i]
       }
       return false
     },

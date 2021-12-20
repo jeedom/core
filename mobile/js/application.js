@@ -345,6 +345,7 @@ jeedomUtils.initApplication = function(_reinit) {
     success: function (data) {
       jeedom.theme = data.result
       jeedom_langage = data.result.langage
+      jeeFrontEnd.language = data.result.langage
       
       jeedomUtils.insertHeader("apple-touch-icon",jeedom.theme.product_icon, "128x128")
       jeedomUtils.insertHeader("apple-touch-startup-image",jeedom.theme.product_icon, "256x256")

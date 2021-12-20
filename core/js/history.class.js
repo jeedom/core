@@ -1154,6 +1154,7 @@ register legend context menu
 @jeedom.history.initChart
 */
 jeedom.history.initLegendContextMenu = function(_chartId) {
+  if (getUrlVars('v') == 'm') return false
   $.contextMenu({
     selector: "div.chartContainer .highcharts-legend-item",
     position: function(opt, x, y) {

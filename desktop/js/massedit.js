@@ -41,7 +41,7 @@ if (!jeeFrontEnd.massedit) {
 
       newFilterHtml += '<div class="col-md-2 col-xs-3">'
       newFilterHtml += '<select class="selectFilterKey form-control input-sm">'
-      var keys = Object.keys(typePossibilities[this._filterType_])
+      var keys = Object.keys(jeephp2js.typePossibilities[this._filterType_])
       keys.forEach((key, index) => {
         newFilterHtml += '<option value="' + key + '">' + key + '</option>'
       })
@@ -73,7 +73,7 @@ if (!jeeFrontEnd.massedit) {
 
       newEditHtml += '<div class="col-md-2 col-xs-3">'
       newEditHtml += '<select class="selectEditKey form-control input-sm">'
-      var keys = Object.keys(typePossibilities[this._filterType_])
+      var keys = Object.keys(jeephp2js.typePossibilities[this._filterType_])
       keys.forEach((key, index) => {
         newEditHtml += '<option value="' + key + '">' + key + '</option>'
       })
@@ -275,15 +275,15 @@ $('body').on({
 
     //set possible values for key
     var option
-    if (typeof typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
+    if (typeof jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
       selectJValues.prop('disabled', 'disabled')
-      typePossibilities[jeeFrontEnd.massedit._filterType_][key].forEach(function(item, index) {
+      jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key].forEach(function(item, index) {
         option = $("<option></option>").attr("value", index).text(item)
         selectValues.append(option)
       })
     } else {
       selectJValues.prop('disabled', false)
-      var values = Object.keys(typePossibilities[jeeFrontEnd.massedit._filterType_][key])
+      var values = Object.keys(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key])
       values.forEach((value, index) => {
         option = $("<option></option>").attr("value", index).text(value)
         selectValues.append(option)
@@ -311,9 +311,9 @@ $('body').on({
 
     //set json values for filter:
     var option
-    var jValues = Object.keys(typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])
+    var jValues = Object.keys(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])
     jValues.forEach((jValue, index) => {
-      option = $("<option></option>").attr("value", index).text(typePossibilities[jeeFrontEnd.massedit._filterType_][key][value][index])
+      option = $("<option></option>").attr("value", index).text(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value][index])
       selectJValues.append(option)
     })
   }
@@ -333,11 +333,11 @@ $('body').on({
     inputValues.empty()
     var key = $(this).value()
     var option
-    if (typeof typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
+    if (typeof jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
       inputJValue.prop('disabled', 'disabled')
     } else {
       inputJValue.prop('disabled', false)
-      var values = Object.keys(typePossibilities[jeeFrontEnd.massedit._filterType_][key])
+      var values = Object.keys(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key])
       values.forEach((value, index) => {
         option = $("<option></option>").attr("value", value).text(value)
         inputValues.append(option)
@@ -353,7 +353,7 @@ $('body').on({
     var key = $(this).closest('div.form-group').find('select.selectEditKey').val()
     var value = $(this).closest('div.form-group').find('input.selectEditValue').val()
 
-    if (!isset(typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])) {
+    if (!isset(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])) {
       return false
     }
 
@@ -364,7 +364,7 @@ $('body').on({
     var inputJValues = $(this).closest('div.form-group').find('#' + editJValueId)
     inputJValues.empty()
 
-    var jValues = typePossibilities[jeeFrontEnd.massedit._filterType_][key][value]
+    var jValues = jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value]
     if (!jValues || typeof jValues == 'string') return false
     var option
     jValues.forEach((jValue, index) => {

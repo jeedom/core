@@ -154,6 +154,6 @@ $repoList = [];
 </div>
 
 <?php
-sendVarToJs('jeeFrontEnd.repoList', $repoList);
+sendVarToJs('jeephp2js.repoList', $repoList);
 include_file("desktop", "backup", "js");
 ?>

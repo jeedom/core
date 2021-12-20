@@ -16,6 +16,11 @@
 
 "use strict"
 
+if (!jeeFrontEnd.health) {
+  jeeFrontEnd.health = {
+  }
+}
+
 $('.bt_configurationPlugin').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration du plugin}}"

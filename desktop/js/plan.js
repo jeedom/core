@@ -73,7 +73,7 @@ if (!jeeFrontEnd.plan) {
       }
     },
     addObject: function(_plan) {
-      _plan.planHeader_id = jeeFrontEnd.planHeader_id
+      _plan.planHeader_id = jeephp2js.planHeader_id
       jeedom.plan.create({
         plan: _plan,
         version: 'dashboard',
@@ -89,7 +89,7 @@ if (!jeeFrontEnd.plan) {
       })
     },
     displayPlan: function(_code) {
-      if (jeeFrontEnd.planHeader_id == -1) return
+      if (jeephp2js.planHeader_id == -1) return
 
       if (typeof _code == "undefined") {
         _code = null
@@ -98,7 +98,7 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.plan.fullScreen(true)
       }
       jeedom.plan.getHeader({
-        id: jeeFrontEnd.planHeader_id,
+        id: jeephp2js.planHeader_id,
         code: _code,
         error: function(error) {
           if (error.code == -32005) {
@@ -112,7 +112,7 @@ if (!jeeFrontEnd.plan) {
             }
             jeeFrontEnd.plan.displayPlan(result)
           } else {
-            jeeFrontEnd.planHeader_id = -1
+            jeephp2js.planHeader_id = -1
             $.fn.showAlert({
               message: error.message,
               level: 'danger'
@@ -167,7 +167,7 @@ if (!jeeFrontEnd.plan) {
           //display design components:
           $divDisplayObject.find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove()
           jeedom.plan.byPlanHeader({
-            id: jeeFrontEnd.planHeader_id,
+            id: jeephp2js.planHeader_id,
             error: function(error) {
               $.fn.showAlert({
                 message: error.message,
@@ -186,7 +186,7 @@ if (!jeeFrontEnd.plan) {
                 jeeFrontEnd.plan.$pageContainer.append(style_css)
                 style_css = ''
               } catch (e) {}
-              jeedomUtils.addOrUpdateUrl('plan_id', jeeFrontEnd.planHeader_id, data.name + ' - Jeedom')
+              jeedomUtils.addOrUpdateUrl('plan_id', jeephp2js.planHeader_id, data.name + ' - Jeedom')
               jeeFrontEnd.plan.initEditOption(jeeFrontEnd.planEditOption.state)
               jeedomUtils.initReportMode()
               $(window).scrollTop(0)
@@ -258,7 +258,7 @@ if (!jeeFrontEnd.plan) {
       }
     },
     savePlan: function(_refreshDisplay, _async) {
-      if (jeeFrontEnd.planHeader_id == -1) return
+      if (jeephp2js.planHeader_id == -1) return
 
       $.showLoading()
       var plans = []
@@ -726,11 +726,11 @@ jeeFrontEnd.plan.init()
 
 var clickedOpen = false
 var style_css = ''
-for (var i in jeeFrontEnd.planHeader) {
-  jeeFrontEnd.plan.planHeaderContextMenu[jeeFrontEnd.planHeader[i].id] = {
-    name: jeeFrontEnd.planHeader[i].name,
+for (var i in jeephp2js.planHeader) {
+  jeeFrontEnd.plan.planHeaderContextMenu[jeephp2js.planHeader[i].id] = {
+    name: jeephp2js.planHeader[i].name,
     callback: function(key, opt) {
-      jeeFrontEnd.planHeader_id = key
+      jeephp2js.planHeader_id = key
       jeeFrontEnd.plan.displayPlan()
     }
   }
@@ -1051,7 +1051,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
             if (result) {
               jeedom.plan.removeHeader({
-                id: jeeFrontEnd.planHeader_id,
+                id: jeephp2js.planHeader_id,
                 error: function(error) {
                   $.fn.showAlert({
                     message: error.message,
@@ -1092,7 +1092,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               jeeFrontEnd.plan.savePlan(false, false)
               jeedom.plan.copyHeader({
                 name: result,
-                id: jeeFrontEnd.planHeader_id,
+                id: jeephp2js.planHeader_id,
                 error: function(error) {
                   $.fn.showAlert({
                     message: error.message,
@@ -1100,7 +1100,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   })
                 },
                 success: function(data) {
-                  jeeFrontEnd.planHeader_id = data.id
+                  jeephp2js.planHeader_id = data.id
                   jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + data.id)
                 },
               })
@@ -1118,7 +1118,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           jeeFrontEnd.plan.savePlan(false, false)
           $('#md_modal').dialog({
             title: "{{Configuration du design}}"
-          }).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeeFrontEnd.planHeader_id).dialog('open')
+          }).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id).dialog('open')
         }
       },
       sep3: "---------",
@@ -1293,7 +1293,7 @@ jeeFrontEnd.plan.$pageContainer.off('click', '.plan-link-widget').on('click', '.
     if ($(this).attr('data-link_id') == undefined) {
       return
     }
-    jeeFrontEnd.planHeader_id = $(this).attr('data-link_id')
+    jeephp2js.planHeader_id = $(this).attr('data-link_id')
     jeeFrontEnd.planEditOption = {
       state: false,
       snap: false,

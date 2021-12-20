@@ -337,9 +337,9 @@ $('.cmd.cmd-widget.tooltipstered').tooltipster('destroy')
 
 $(function() {
   setTimeout(function() {
-    if (typeof rootObjectId != 'undefined') {
+    if (typeof jeephp2js.rootObjectId != 'undefined') {
       jeedom.object.getImgPath({
-        id: rootObjectId,
+        id: jeephp2js.rootObjectId,
         success: function(_path) {
           jeedomUtils.setBackgroundImage(_path)
         }

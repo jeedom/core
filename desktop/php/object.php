@@ -5,8 +5,8 @@ if (!isConnect('admin')) {
 $allObject = jeeObject::buildTree(null, false);
 $config_objSummary = config::byKey('object:summary');
 sendVarToJS([
-	'select_id' => init('id', '-1'),
-	'config_objSummary' => $config_objSummary
+	'jeephp2js.selectId' => init('id', '-1'),
+	'jeephp2js.configObjSummary' => $config_objSummary
 ]);
 
 $synthToActions = array(

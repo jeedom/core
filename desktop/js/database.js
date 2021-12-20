@@ -133,10 +133,10 @@ if (!jeeFrontEnd.database) {
       var operation = $('#sqlOperation').value()
       var options = '<div id="sqlSetOptions">'
       var name, type, extra
-      for (var col in _tableList_[selectedTable]) {
-        name = _tableList_[selectedTable][col]['colName']
-        type = _tableList_[selectedTable][col]['colType']
-        extra = _tableList_[selectedTable][col]['colExtra']
+      for (var col in jeephp2js.tableList[selectedTable]) {
+        name = jeephp2js.tableList[selectedTable][col]['colName']
+        type = jeephp2js.tableList[selectedTable][col]['colType']
+        extra = jeephp2js.tableList[selectedTable][col]['colExtra']
         options += '<div class="form-group">'
         if (extra == 'auto_increment') {
           options += '<label class="col-xs-2 control-label warning">' + name + '</label>'
@@ -232,8 +232,8 @@ $('#sqlOperation').off('change').on('change', function() {
 $('#sqlTable').off('change').on('change', function() {
   var selectedTable = $(this).value()
   var options = ''
-  for (var col in _tableList_[selectedTable]) {
-    options += '<option value="' + _tableList_[selectedTable][col]['colName'] + '">' + _tableList_[selectedTable][col]['colName'] + '</option>'
+  for (var col in jeephp2js.tableList[selectedTable]) {
+    options += '<option value="' + jeephp2js.tableList[selectedTable][col]['colName'] + '">' + jeephp2js.tableList[selectedTable][col]['colName'] + '</option>'
   }
   $('#sqlWhere').empty().append(options)
 

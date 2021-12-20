@@ -1032,35 +1032,36 @@ jeedom.cmd.getDeadCmd = function(_params) {
 jeedom.cmd.formatMomentDuration = function(_duration) {
   var durationString = ''
   var used = 0
+  var lang = jeeFrontEnd.language
 
   if (_duration._data.years > 0) {
-    durationString += _duration._data.years + jeedom.config.locales[jeeFrontEnd.language].duration.year
+    durationString += _duration._data.years + jeedom.config.locales[lang].duration.year
     used++
   }
   if (_duration._data.months > 0) {
-    durationString += _duration._data.months + jeedom.config.locales[jeeFrontEnd.language].duration.month
+    durationString += _duration._data.months + jeedom.config.locales[lang].duration.month
     used++
   }
   if (_duration._data.days > 0) {
-    durationString += _duration._data.days + jeedom.config.locales[jeeFrontEnd.language].duration.day
+    durationString += _duration._data.days + jeedom.config.locales[lang].duration.day
     used++
   }
 
   if (used == 3) return durationString
   if (_duration._data.hours > 0) {
-    durationString += _duration._data.hours + jeedom.config.locales[jeeFrontEnd.language].duration.hour
+    durationString += _duration._data.hours + jeedom.config.locales[lang].duration.hour
     used++
   }
 
   if (used == 3) return durationString
   if (_duration._data.minutes > 0) {
-    durationString += _duration._data.minutes + jeedom.config.locales[jeeFrontEnd.language].duration.minute
+    durationString += _duration._data.minutes + jeedom.config.locales[lang].duration.minute
     used++
   }
 
   if (used == 3) return durationString
   if (_duration._data.seconds > 0) {
-    durationString += _duration._data.seconds + jeedom.config.locales[jeeFrontEnd.language].duration.second
+    durationString += _duration._data.seconds + jeedom.config.locales[lang].duration.second
     used++
   }
 

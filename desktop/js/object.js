@@ -207,8 +207,8 @@ if (!jeeFrontEnd.object) {
           summarySelect += '<i class="fas fa-tags"></i>&nbsp;&nbsp;{{Résumé(s)}}&nbsp;&nbsp;<span class="caret"></span>'
           summarySelect += '</button>'
           summarySelect += '<ul class="dropdown-menu" role="menu" style="top:unset;left:unset;height: 190px;overflow: auto;">'
-          Object.keys(config_objSummary).forEach(function(key) {
-            summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + config_objSummary[key].key + '" data-name="' + config_objSummary[key].name + '" />&nbsp' + config_objSummary[key].name + '</a></li>'
+          Object.keys(jeephp2js.configObjSummary).forEach(function(key) {
+            summarySelect += '<li><a tabIndex="-1"><input type="checkbox" data-value="' + jeephp2js.configObjSummary[key].key + '" data-name="' + jeephp2js.configObjSummary[key].name + '" />&nbsp' + jeephp2js.configObjSummary[key].name + '</a></li>'
           })
           summarySelect += '</ul>'
 
@@ -266,7 +266,7 @@ if (!jeeFrontEnd.object) {
       var cmdDiv = $('#eqlogicsTab div[data-cmdname="' + _cmd + '"]')
       cmdDiv.find('ul input[data-value="' + _key + '"]').prop("checked", _state)
       var txtDiv = cmdDiv.find('.buttontext')
-      var summaryName = config_objSummary[_key].name
+      var summaryName = jeephp2js.configObjSummary[_key].name
       if (_state) {
         //add new summary:
         cmdDiv.find('i').addClass('warning')
@@ -319,12 +319,13 @@ document.onkeydown = function(event) {
   }
 }
 
+console.log(jeephp2js)
 $(function() {
   $('sub.itemsNumber').html('(' + $('.objectDisplayCard').length + ')')
 
-  if (is_numeric(getUrlVars('id'))) {
-    if ($('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').length != 0) {
-      $('.objectDisplayCard[data-object_id=' + getUrlVars('id') + ']').click()
+  if (is_numeric(jeephp2js.selectId)) {
+    if ($('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').length != 0) {
+      $('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').click()
     } else {
       $('.objectDisplayCard').first().click()
     }

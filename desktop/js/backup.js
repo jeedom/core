@@ -20,8 +20,8 @@ if (!jeeFrontEnd.backup) {
   jeeFrontEnd.backup = {
     init: function() {
       this.updateListBackup()
-      for (var i in jeeFrontEnd.repoList) {
-        this.updateRepoListBackup(jeeFrontEnd.repoList[i])
+      for (var i in jeephp2js.repoList) {
+        this.updateRepoListBackup(jeephp2js.repoList[i])
       }
 
       $.showLoading()
@@ -98,8 +98,8 @@ if (!jeeFrontEnd.backup) {
             $('#bt_' + _log + 'Jeedom .fa-sync').hide()
             $('.bt_' + _log + 'Jeedom .fa-sync').hide()
             jeeFrontEnd.backup.updateListBackup();
-            for (var i in jeeFrontEnd.repoList) {
-              jeeFrontEnd.backup.updateRepoListBackup(jeeFrontEnd.repoList[i])
+            for (var i in jeephp2js.repoList) {
+              jeeFrontEnd.backup.updateRepoListBackup(jeephp2js.repoList[i])
             }
           }
         }

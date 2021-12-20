@@ -107,7 +107,7 @@ if (!jeeFrontEnd.editor) {
       options.uiOptions.toolbar.push(['jee_onoffcustom'])
       elFinder.prototype.commands.jee_onoffcustom = function() {
         this.init = function() {
-          if (jeeFrontEnd.customActive == '1') {
+          if (jeephp2js.customActive == '1') {
             this.config = 1
           } else {
             this.config = 0
@@ -219,7 +219,7 @@ $(function() {
       },
       init: function(event, elfinderInstance)
       {
-        if (jeeFrontEnd.editorType == 'custom') {
+        if (jeephp2js.editorType == 'custom') {
           elfinderInstance._commands.jee_onoffcustom.getActive()
         }
         jeeFrontEnd.editor.killTooltips()
@@ -315,17 +315,17 @@ $(function() {
   }
 
   //custom editor settings:
-  if (jeeFrontEnd.editorType != '') {
+  if (jeephp2js.editorType != '') {
     //remove places in toolbar:
     options.ui = ['toolbar', 'tree', 'path', 'stat']
 
-    if (jeeFrontEnd.editorType == 'widget') {
+    if (jeephp2js.editorType == 'widget') {
       options = jeeFrontEnd.editor.setCommandCreatewidget(options)
       options.url = 'core/php/editor.connector.php?type=widget'
       options.startPathHash = jeeFrontEnd.editor.getHashFromPath('data/customTemplates')
     }
 
-    if (jeeFrontEnd.editorType == 'custom') {
+    if (jeephp2js.editorType == 'custom') {
       options = jeeFrontEnd.editor.setCommandCustom(options)
       options.url = 'core/php/editor.connector.php?type=custom'
       options.startPathHash = jeeFrontEnd.editor.getHashFromPath('desktop/custom')
