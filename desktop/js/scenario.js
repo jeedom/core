@@ -1197,7 +1197,7 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
 
   setScenarioActionsOptions()
   updateSortable()
-  updateTooltips()
+  setTimeout(function() { updateTooltips() }, 500)
   jeedom.scenario.setAutoComplete()
   setEditors()
   modifyWithoutSave = true
@@ -2376,7 +2376,7 @@ function undo() {
   } catch (error) {
     console.log('undo ERROR:', error)
   }
-  updateTooltips()
+  setTimeout(function() { updateTooltips() }, 500)
   jeedom.scenario.setAutoComplete()
   resetEditors()
 }
@@ -2396,7 +2396,7 @@ function redo() {
   } catch (error) {
     console.log('redo ERROR:', error)
   }
-  updateTooltips()
+  setTimeout(function() { updateTooltips() }, 500)
   jeedom.scenario.setAutoComplete()
   resetEditors()
 }
