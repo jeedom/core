@@ -204,7 +204,7 @@ sendVarToJS([
         for (var i in data) {
           tr += getDatastoreTr(data[i])
         }
-        if (refreshCount == 0) {
+        if (refreshCount == 0 && jeedom.getPageType() != 'modaldisplay') {
           var varHeight = data.length * 31 + 170
           $modal.dialog('open')
           if (varHeight < $modal.height()) {
