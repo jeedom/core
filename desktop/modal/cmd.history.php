@@ -176,7 +176,7 @@ jeeFrontEnd.md_history.$pageContainer.on({
       jeeFrontEnd.md_history.modal = $('#md_modal2')
     }
     if (jeeFrontEnd.md_history.modal !== false) {
-      jeeFrontEnd.md_history.modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id='+cmd_id+'&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
+      jeeFrontEnd.md_history.modal.dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + jeephp2js.cmd_id + '&startDate='+$('#in_startDate').val()+'&endDate='+$('#in_endDate').val()).dialog('open')
     }
   }
 }, '#bt_validChangeDate')

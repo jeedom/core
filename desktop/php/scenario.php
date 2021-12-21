@@ -71,7 +71,7 @@ function jeedom_displayScenarioGroup($_group='', $_index=-1) {
 	return $thisDiv;
 }
 
-sendVarToJs('initSearch', init('search', 0));
+sendVarToJs('jeephp2js.initSearch', init('search', 0));
 ?>
 
 <div class="row row-overflow">

@@ -16,6 +16,12 @@
 
 "use strict"
 
+if (!jeeFrontEnd.system) {
+  jeeFrontEnd.system = {
+    init: function() {
+    },
+  }
+}
 
 $(function() {
     $('ul.bs-sidenav li a').each(function() {

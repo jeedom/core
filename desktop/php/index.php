@@ -159,6 +159,7 @@ function setTheme() {
 	include_file('core', 'jeedom', 'class.js');
 	?>
 	<script>
+		jeeFrontEnd.jeedomVersion = '<?php echo jeedom::version() ?>';
 		jeeFrontEnd.clientDatetime = new Date();
 		jeeFrontEnd.clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - jeeFrontEnd.clientDatetime.getTime();
 		jeeFrontEnd.serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;

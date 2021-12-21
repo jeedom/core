@@ -104,6 +104,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeedomUtils.cleanModals()
   jeedom.cmd.update = []
   jeedom.scenario.update = []
+  jeephp2js = {}
+  delete window.jeeP
   printEqLogic = undefined
   if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
 
@@ -124,7 +126,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').html() != undefined) {
       $('.nav-tabs a[href="#' + _url.split('#')[1] + '"]').trigger('click')
     }
-    $('#bt_getHelpPage').attr('data-page',getUrlVars('p')).attr('data-plugin',getUrlVars('m'))
+    $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
     jeedomUtils.initPage()
     $('body').attr('data-page', getUrlVars('p')).trigger('jeedom_page_load')
 
@@ -1415,9 +1417,11 @@ $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs 
 /*
 return new fonction with deprecated message
 example: function initTooltips(_el) { return jeedomUtils.deprecatedFunc('4.3', initTooltips, 'initTooltips', 'jeedomUtils')(); }
+@_version {string}
 @_oldFunc {function}
 @_newFunc {function}
 OR
+@_oldFunc {function}
 @_newFunc {string}
 @_namespace {string}
 */
@@ -1458,4 +1462,4 @@ var getOpenedModal = jeedomUtils.getOpenedModal
 
 
 //Introduced in v4.3 -> deprecated v4.5 -> remove v4.6
-var jeedom_langage = jeeFrontEnd.language
+//var jeedom_langage = jeeFrontEnd.language

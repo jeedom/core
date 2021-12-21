@@ -319,7 +319,6 @@ document.onkeydown = function(event) {
   }
 }
 
-console.log(jeephp2js)
 $(function() {
   $('sub.itemsNumber').html('(' + $('.objectDisplayCard').length + ')')
 

@@ -16,7 +16,35 @@
 
 "use strict"
 
-var $divScenario = $('#div_editScenario')
+if (!jeeFrontEnd.scenario) {
+  jeeFrontEnd.scenario = {
+    $divScenario: null,
+    tab: null,
+    PREV_FOCUS: null,
+    actionOptions: [],
+    editors: [],
+    clipboard: null,
+    undoStack: [],
+    undoState: -1,
+    firstState: 0,
+    undoLimit: 12,
+    reDo: 0,
+    bt_undo: null,
+    bt_redo: null,
+    init: function() {
+      this.tab = null
+      this.PREV_FOCUS = null
+      this.editors = []
+      this.undoStack = []
+      this.bt_undo = $('#bt_undo')
+      this.bt_redo = $('#bt_redo')
+      this.$divScenario = $('#div_editScenario')
+      window.jeeP = this
+    },
+  }
+}
+
+jeeFrontEnd.scenario.init()
 
 //searching
 $('#in_searchScenario').keyup(function() {
@@ -239,7 +267,7 @@ $("#bt_addScenario").off('click').on('click', function(event) {
           if (tab !== null) {
             url += tab
           }
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           resetUndo()
           jeedomUtils.loadPage(url)
         }
@@ -371,32 +399,31 @@ document.onkeydown = function(event) {
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 90) { //z
     event.preventDefault()
     undo()
-    PREV_FOCUS = null
+    jeeFrontEnd.scenario.PREV_FOCUS = null
     return
   }
 
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 89) { //y
     event.preventDefault()
     redo()
-    PREV_FOCUS = null
+    jeeFrontEnd.scenario.PREV_FOCUS = null
     return
   }
 }
 
-var PREV_FOCUS = null
 $('#div_scenarioElement').on('focus', ':input', function() {
-  PREV_FOCUS = $(this)
+  jeeFrontEnd.scenario.PREV_FOCUS = $(this)
 })
 
 $(function() {
   jeedom.timeline.autocompleteFolder()
   $('sub.itemsNumber').html('(' + $('.scenarioDisplayCard').length + ')')
-  if (initSearch != 0) {
+  if (jeephp2js.initSearch != 0) {
     setTimeout(function() {
       $('#bt_scenarioTab').trigger('click')
       $('#bt_resetInsideScenarioSearch').trigger('click')
       setTimeout(function() {
-        $('#in_searchInsideScenario').val(initSearch).keyup().blur().focus()
+        $('#in_searchInsideScenario').val(jeephp2js.initSearch).keyup().blur().focus()
       }, 500)
     }, 200)
   }
@@ -446,7 +473,7 @@ $('#bt_chooseIcon').on('click', function() {
   }, {
     icon: _icon
   })
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('.scenarioAttr[data-l1key=display][data-l2key=icon]').on('dblclick', function() {
@@ -516,17 +543,17 @@ $('#bt_addSchedule').off('click').on('click', function() {
   checkNoMode()
 })
 
-$divScenario.on('click', '.bt_removeTrigger', function(event) {
+jeeP.$divScenario.on('click', '.bt_removeTrigger', function(event) {
   $(this).closest('.trigger').remove()
   checkNoMode()
 })
 
-$divScenario.on('click', '.bt_removeSchedule', function(event) {
+jeeP.$divScenario.on('click', '.bt_removeSchedule', function(event) {
   $(this).closest('.schedule').remove()
   checkNoMode()
 })
 
-$divScenario.on('click', '.bt_selectTrigger', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectTrigger', function(event) {
   var el = $(this)
   jeedom.cmd.getSelectModal({
     cmd: {
@@ -537,7 +564,7 @@ $divScenario.on('click', '.bt_selectTrigger', function(event) {
   })
 })
 
-$divScenario.on('click', '.bt_selectDataStoreTrigger', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectDataStoreTrigger', function(event) {
   var el = $(this);
   jeedom.dataStore.getSelectModal({
     cmd: {
@@ -548,7 +575,7 @@ $divScenario.on('click', '.bt_selectDataStoreTrigger', function(event) {
   })
 })
 
-$divScenario.on('click', '.bt_selectGenericTrigger', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectGenericTrigger', function(event) {
   var el = $(this);
   jeedom.config.getGenericTypeModal({
     type: 'info',
@@ -560,9 +587,7 @@ $divScenario.on('click', '.bt_selectGenericTrigger', function(event) {
 
 
 //Scenario bar:
-var SC_CLIPBOARD = null
-
-$divScenario.on('click', '.bt_addScenarioElement', function(event) {
+jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
   if (!window.location.href.includes('#scenariotab')) $('#bt_scenarioTab').trigger('click')
   var expression = false
   var insertAfter = false
@@ -574,9 +599,9 @@ $divScenario.on('click', '.bt_addScenarioElement', function(event) {
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
     //had focus ?
-    if (PREV_FOCUS != null && $(PREV_FOCUS).closest('div.element').html() != undefined) {
+    if (jeeFrontEnd.scenario.PREV_FOCUS != null && $(jeeFrontEnd.scenario.PREV_FOCUS).closest('div.element').html() != undefined) {
       insertAfter = true
-      elementDiv = $(PREV_FOCUS).closest('div.element')
+      elementDiv = $(jeeFrontEnd.scenario.PREV_FOCUS).closest('div.element')
       if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
         elementDiv = elementDiv.parents('.expression').eq(0)
         expression = true
@@ -611,7 +636,7 @@ $divScenario.on('click', '.bt_addScenarioElement', function(event) {
     updateSortable()
     updateElseToggle()
     $('#md_addElement').modal('hide')
-    modifyWithoutSave = true
+    jeeFrontEnd.modifyWithoutSave = true
     updateTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
@@ -745,7 +770,7 @@ $("#bt_stopScenario").off('click').on('click', function() {
 
 $("#bt_saveScenario").off('click').on('click', function(event) {
   saveScenario()
-  SC_CLIPBOARD = null
+  jeeFrontEnd.scenario.clipboard = null
 })
 
 $("#bt_delScenario").off('click').on('click', function(event) {
@@ -761,7 +786,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
           })
         },
         success: function() {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           resetUndo()
           jeedomUtils.loadPage('index.php?v=d&p=scenario')
         }
@@ -772,7 +797,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
 
 
 /*******************Element***********************/
-$divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=enable]', function() {
+jeeP.$divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=enable]', function() {
   var checkbox = $(this)
   var element = checkbox.closest('.element')
   if (checkbox.value() == 1) {
@@ -788,7 +813,7 @@ $divScenario.on('change', '.subElementAttr[data-l1key=options][data-l2key=enable
   }
 })
 
-$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable]', function() {
+jeeP.$divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable]', function() {
   var checkbox = $(this)
   var element = checkbox.closest('.expression')
   if (checkbox.value() == 1) {
@@ -798,7 +823,7 @@ $divScenario.on('change', '.expressionAttr[data-l1key=options][data-l2key=enable
   }
 })
 
-$divScenario.on('click', '.bt_removeElement', function(event) {
+jeeP.$divScenario.on('click', '.bt_removeElement', function(event) {
   var button = $(this)
   if (event.ctrlKey || event.metaKey) {
     if (button.closest('.expression').length != 0) {
@@ -821,11 +846,11 @@ $divScenario.on('click', '.bt_removeElement', function(event) {
       }
     })
   }
-  modifyWithoutSave = true
-  PREV_FOCUS = null
+  jeeFrontEnd.modifyWithoutSave = true
+  jeeFrontEnd.scenario.PREV_FOCUS = null
 })
 
-$divScenario.on('click', '.bt_addAction', function(event) {
+jeeP.$divScenario.on('click', '.bt_addAction', function(event) {
   setUndoStack()
   $(this).closest('.subElement').children('.expressions').append(addExpression({
     type: 'action'
@@ -835,7 +860,7 @@ $divScenario.on('click', '.bt_addAction', function(event) {
   updateTooltips()
 })
 
-$divScenario.on('click', '.bt_showElse', function(event) {
+jeeP.$divScenario.on('click', '.bt_showElse', function(event) {
   if ($(this).children('i').hasClass('fa-sort-down')) {
     $(this).children('i').removeClass('fa-sort-down').addClass('fa-sort-up')
     $(this).closest('.element').children('.subElementELSE').show()
@@ -852,7 +877,7 @@ $divScenario.on('click', '.bt_showElse', function(event) {
   }
 })
 
-$divScenario.on('click', '.bt_collapse', function(event) {
+jeeP.$divScenario.on('click', '.bt_collapse', function(event) {
   var changeThis = $(this)
   if (event.ctrlKey || event.metaKey) changeThis = $('.element').find('.bt_collapse')
   if ($(this).children('i').hasClass('fa-eye')) {
@@ -871,7 +896,7 @@ $divScenario.on('click', '.bt_collapse', function(event) {
         if (!txt) txt = _el.find('.expression textarea').val()
       } else if (_el.hasClass('elementCODE')) {
         id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (isset(_EDITORS[id])) txt = _EDITORS[id].getValue()
+        if (isset(jeeFrontEnd.scenario.editors[id])) txt = jeeFrontEnd.scenario.editors[id].getValue()
       } else {
         //comment
         txt = _el.find('.expression textarea').val().HTMLFormat()
@@ -895,7 +920,7 @@ $divScenario.on('click', '.bt_collapse', function(event) {
   }
 })
 
-$divScenario.on('click', '.bt_removeExpression', function(event) {
+jeeP.$divScenario.on('click', '.bt_removeExpression', function(event) {
   setUndoStack()
   $(this).closest('.expression').remove()
   updateSortable()
@@ -985,7 +1010,7 @@ function getSelectCmdExpressionMessage(subType, cmdHumanName) {
   return message
 }
 
-$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
   var type = 'info'
@@ -1032,7 +1057,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
             className: "btn-primary",
             callback: function() {
               setUndoStack()
-              modifyWithoutSave = true
+              jeeFrontEnd.modifyWithoutSave = true
               var condition = result.human
               condition += ' ' + $('.conditionAttr[data-l1key=operator]').value()
               if (result.cmd.subType == 'string') {
@@ -1057,7 +1082,7 @@ $divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   })
 })
 
-$divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.getSelectActionModal({
     scenario: true
@@ -1071,7 +1096,7 @@ $divScenario.on('click', '.bt_selectOtherActionExpression', function(event) {
   })
 })
 
-$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.scenario.getSelectModal({}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -1083,14 +1108,14 @@ $divScenario.on('click', '.bt_selectScenarioExpression', function(event) {
   })
 })
 
-$divScenario.on('click', '.bt_selectGenericExpression', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectGenericExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
     expression.find('.expressionAttr[data-l1key=expression]').atCaret('insert', result.human)
   })
 })
 
-$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
+jeeP.$divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
   var expression = $(this).closest('.expression')
   jeedom.eqLogic.getSelectModal({}, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
@@ -1102,7 +1127,7 @@ $divScenario.on('click', '.bt_selectEqLogicExpression', function(event) {
   })
 })
 
-$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]', function(event) {
+jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=expression]', function(event) {
   var el = $(this)
   if (el.closest('.expression').find('.expressionAttr[data-l1key=type]').value() == 'action') {
     var expression = el.closest('.expression').getValues('.expressionAttr')
@@ -1128,36 +1153,36 @@ function removeObjectProp(obj, propToDelete) {
     }
   }
 }
-$divScenario.on('click', '.bt_copyElement', function(event) {
+jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (!clickedBloc.parent('#div_scenarioElement').length) {
-    SC_CLIPBOARD = clickedBloc.parent().parent()
+    jeeFrontEnd.scenario.clipboard = clickedBloc.parent().parent()
   } else {
-    SC_CLIPBOARD = clickedBloc
+    jeeFrontEnd.scenario.clipboard = clickedBloc
   }
-  SC_CLIPBOARD = getElement(clickedBloc)
+  jeeFrontEnd.scenario.clipboard = getElement(clickedBloc)
   //delete all id in properties to make it unique:
-  removeObjectProp(SC_CLIPBOARD, 'id')
+  removeObjectProp(jeeFrontEnd.scenario.clipboard, 'id')
   localStorage.removeItem('jeedomScCopy')
-  localStorage.setItem('jeedomScCopy', JSON.stringify(SC_CLIPBOARD))
+  localStorage.setItem('jeedomScCopy', JSON.stringify(jeeFrontEnd.scenario.clipboard))
 
   if (event.ctrlKey || event.metaKey) {
     setUndoStack()
     clickedBloc.remove()
   }
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
-$divScenario.on('click', '.bt_pasteElement', function(event) {
+jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (localStorage.getItem('jeedomScCopy')) {
-    SC_CLIPBOARD = JSON.parse(localStorage.getItem('jeedomScCopy'))
+    jeeFrontEnd.scenario.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
   }
 
   setUndoStack()
 
-  actionOptions = []
-  var pastedElement = addElement(SC_CLIPBOARD)
+  jeeFrontEnd.scenario.actionOptions = []
+  var pastedElement = addElement(jeeFrontEnd.scenario.clipboard)
   pastedElement = $(pastedElement)
 
   //Are we pasting inside an expresion:
@@ -1197,13 +1222,16 @@ $divScenario.on('click', '.bt_pasteElement', function(event) {
 
   setScenarioActionsOptions()
   updateSortable()
-  updateTooltips()
   jeedom.scenario.setAutoComplete()
   setEditors()
-  modifyWithoutSave = true
+  updateTooltips()
+
+  setTimeout(function() { updateTooltips() }, 500)
+
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
-$divScenario.on('mouseenter', '.bt_sortable', function() {
+jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
   var expressions = $(this).closest('.expressions')
   $("#div_scenarioElement").sortable({
     cursor: "move",
@@ -1290,21 +1318,21 @@ $divScenario.on('mouseenter', '.bt_sortable', function() {
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable")
       ui.item.attr('style', '')
-      modifyWithoutSave = true
+      jeeFrontEnd.modifyWithoutSave = true
     }
   })
   $("#div_scenarioElement").sortable("enable")
 })
 
-$divScenario.on('mousedown', '.bt_sortable', function() {
+jeeP.$divScenario.on('mousedown', '.bt_sortable', function() {
   setUndoStack()
 })
 
-$divScenario.on('mouseout', '.bt_sortable', function() {
+jeeP.$divScenario.on('mouseout', '.bt_sortable', function() {
   $("#div_scenarioElement").sortable("disable")
 })
 
-$divScenario.on('click', '.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function() {
+jeeP.$divScenario.on('click', '.subElementAttr[data-l1key=options][data-l2key=allowRepeatCondition]', function() {
   if ($(this).attr('value') == 0) {
     $(this).attr('value', 1).html('<span><i class="fas fa-ban text-danger"></i></span>')
   } else {
@@ -1313,20 +1341,20 @@ $divScenario.on('click', '.subElementAttr[data-l1key=options][data-l2key=allowRe
 })
 
 /**************** Initialisation **********************/
-$divScenario.on('change', '.scenarioAttr:visible', function() {
-  modifyWithoutSave = true
+jeeP.$divScenario.on('change', '.scenarioAttr:visible', function() {
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
-$divScenario.on('change', '.expressionAttr:visible', function() {
-  modifyWithoutSave = true
+jeeP.$divScenario.on('change', '.expressionAttr:visible', function() {
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
-$divScenario.on('change', '.elementAttr:visible', function() {
-  modifyWithoutSave = true
+jeeP.$divScenario.on('change', '.elementAttr:visible', function() {
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
-$divScenario.on('change', '.subElementAttr:visible', function() {
-  modifyWithoutSave = true
+jeeP.$divScenario.on('change', '.subElementAttr:visible', function() {
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 if (is_numeric(getUrlVars('id'))) {
@@ -1368,11 +1396,9 @@ function updateElementCollpase() {
 }
 
 
-var actionOptions = []
-
 function setScenarioActionsOptions() {
   jeedom.cmd.displayActionsOption({
-    params: actionOptions,
+    params: jeeFrontEnd.scenario.actionOptions,
     async: false,
     error: function(error) {
       $.fn.showAlert({
@@ -1396,7 +1422,7 @@ function printScenario(_id) {
   $.showLoading()
   $('#emptyModeWarning').hide()
   jeedom.scenario.update[_id] = function(_options) {
-    if (_options.scenario_id = !$divScenario.getValues('.scenarioAttr')[0]['id']) {
+    if (_options.scenario_id = !jeeFrontEnd.scenario.$divScenario.getValues('.scenarioAttr')[0]['id']) {
       return
     }
     switch (_options.state) {
@@ -1439,7 +1465,7 @@ function printScenario(_id) {
       $('.scenarioAttr').value('')
       $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected', true)
       $('.scenarioAttr[data-l1key=object_id]').val('')
-      $divScenario.setValues(data, '.scenarioAttr')
+      jeeFrontEnd.scenario.$divScenario.setValues(data, '.scenarioAttr')
       data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
       $('#span_lastLaunch').text(data.lastLaunch)
 
@@ -1494,7 +1520,7 @@ function printScenario(_id) {
       if (data.elements.length == 0) {
         $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
       }
-      actionOptions = []
+      jeeFrontEnd.scenario.actionOptions = []
       var elements = ''
       for (var i in data.elements) {
         elements += addElement(data.elements[i])
@@ -1521,10 +1547,10 @@ function printScenario(_id) {
       setTimeout(function() {
         setEditors()
       }, 100)
-      modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
       resetUndo()
       setTimeout(function() {
-        modifyWithoutSave = false
+        jeeFrontEnd.modifyWithoutSave = false
       }, 1000)
       setTimeout(function() {
         checkNoMode()
@@ -1539,7 +1565,7 @@ function printScenario(_id) {
 
 function saveScenario(_callback) {
   $.hideAlert()
-  var scenario = $divScenario.getValues('.scenarioAttr')[0]
+  var scenario = jeeFrontEnd.scenario.$divScenario.getValues('.scenarioAttr')[0]
   if (typeof scenario.trigger == 'undefined') {
     scenario.trigger = ''
   }
@@ -1560,7 +1586,7 @@ function saveScenario(_callback) {
       })
     },
     success: function(data) {
-      modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
       resetUndo()
       var url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1'
       if (window.location.hash != '') {
@@ -1683,7 +1709,7 @@ function addExpression(_expression) {
       var actionOption_id = jeedomUtils.uniqId()
       retour += '<div class="col-xs-7 expressionOptions"  id="' + actionOption_id + '">'
       retour += '</div>'
-      actionOptions.push({
+      jeeFrontEnd.scenario.actionOptions.push({
         expression: init(_expression.expression, ''),
         options: _expression.options,
         id: actionOption_id
@@ -2203,8 +2229,8 @@ function getElement(_element) {
       }
       if (subElement.type == 'code') {
         id = $(this).find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (id != undefined && isset(_EDITORS[id])) {
-          expression.expression = _EDITORS[id].getValue()
+        if (id != undefined && isset(jeeFrontEnd.scenario.editors[id])) {
+          expression.expression = jeeFrontEnd.scenario.editors[id].getValue()
         }
       }
       subElement.expressions.push(expression)
@@ -2264,7 +2290,7 @@ function getAddButton(_type,_caret) {
   return retour
 }
 
-$divScenario.on('shown.bs.dropdown', '.dropdown', function() {
+jeeP.$divScenario.on('shown.bs.dropdown', '.dropdown', function() {
   if ( $(this).offset().top > window.innerHeight - 220) {
     $(this).addClass('dropup')
   }
@@ -2273,7 +2299,7 @@ $divScenario.on('shown.bs.dropdown', '.dropdown', function() {
   $(this).removeClass("dropup")
 })
 
-$divScenario.on('click', '.fromSubElement', function(event) {
+jeeP.$divScenario.on('click', '.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
   setUndoStack()
 
@@ -2289,7 +2315,7 @@ $divScenario.on('click', '.fromSubElement', function(event) {
   setEditors()
   updateSortable()
   updateElseToggle()
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
   updateTooltips()
   jeedom.scenario.setAutoComplete()
   setTimeout(function() {
@@ -2299,30 +2325,22 @@ $divScenario.on('click', '.fromSubElement', function(event) {
 
 
 //UNDO Management
-var _undoStack_ = []
-var _undoState_ = -1
-var _firstState_ = 0
-var _undoLimit_ = 12
-var _redo_ = 0
-var bt_undo = $('#bt_undo')
-var bt_redo = $('#bt_redo')
-
-bt_undo.off('click').on('click', function() {
+jeeP.bt_undo.off('click').on('click', function() {
   if (!jeedomUtils.getOpenedModal()) {
     undo()
-    PREV_FOCUS = null
+    jeeFrontEnd.scenario.PREV_FOCUS = null
   }
 })
-bt_redo.off('click').on('click', function() {
+jeeP.bt_redo.off('click').on('click', function() {
   if (!jeedomUtils.getOpenedModal()) {
     redo()
-    PREV_FOCUS = null
+    jeeFrontEnd.scenario.PREV_FOCUS = null
   }
 })
 
 function reloadStack(loadStack) {
   $('#div_scenarioElement').empty()
-  actionOptions = []
+  jeeFrontEnd.scenario.actionOptions = []
   var elements = ''
   for (var i in loadStack) {
     elements += addElement(loadStack[i])
@@ -2341,78 +2359,76 @@ function reloadStack(loadStack) {
 
 function setUndoStack(state = 0) {
   syncEditors()
-  bt_undo.removeClass('disabled')
-  bt_redo.addClass('disabled')
+  jeeFrontEnd.scenario.bt_undo.removeClass('disabled')
+  jeeFrontEnd.scenario.bt_redo.addClass('disabled')
   var newStack = []
   $('#div_scenarioElement').children('.element').each(function() {
     newStack.push(getElement($(this)))
   })
 
-  if (newStack == $(_undoStack_[state - 1])) return
+  if (newStack == $(jeeFrontEnd.scenario.undoStack[state - 1])) return
   if (state == 0) {
-    state = _undoState_ = _undoStack_.length
-    _redo_ = 0
+    state = jeeFrontEnd.scenario.undoState = jeeFrontEnd.scenario.undoStack.length
+    jeeFrontEnd.scenario.reDo = 0
   }
-  _undoStack_[state] = newStack
+  jeeFrontEnd.scenario.undoStack[state] = newStack
   //limit stack:
-  if (state >= _firstState_ + _undoLimit_) {
-    _firstState_ += 1
-    _undoStack_[_firstState_ - 1] = 0
+  if (state >= jeeFrontEnd.scenario.firstState + jeeFrontEnd.scenario.undoLimit) {
+    jeeFrontEnd.scenario.firstState += 1
+    jeeFrontEnd.scenario.undoStack[jeeFrontEnd.scenario.firstState - 1] = 0
   }
 }
 
 function undo() {
-  if (_undoState_ < _firstState_) {
+  if (jeeP.undoState < jeeP.firstState) {
     return
   }
   try {
-    var loadState = _undoState_
-    if (_redo_ == 0) setUndoStack(_undoState_ + 1)
-    reloadStack(_undoStack_[loadState])
-    _undoState_ -= 1
+    var loadState = jeeP.undoState
+    if (jeeP.reDo == 0) setUndoStack(jeeP.undoState + 1)
+    reloadStack(jeeP.undoStack[loadState])
+    jeeP.undoState -= 1
 
-    if (_undoState_ < _firstState_) bt_undo.addClass('disabled')
-    bt_redo.removeClass('disabled')
+    if (jeeP.undoState < jeeP.firstState) jeeP.bt_undo.addClass('disabled')
+    jeeP.bt_redo.removeClass('disabled')
   } catch (error) {
     console.log('undo ERROR:', error)
   }
-  updateTooltips()
+  setTimeout(function() { updateTooltips() }, 500)
   jeedom.scenario.setAutoComplete()
   resetEditors()
 }
 
 function redo() {
-  _redo_ = 1
-  if (_undoState_ < _firstState_ - 1 || _undoState_ + 2 >= _undoStack_.length) {
+  jeeP.reDo = 1
+  if (jeeP.undoState < jeeP.firstState - 1 || jeeP.undoState + 2 >= jeeP.undoStack.length) {
     return
   }
-  bt_undo.removeClass('disabled')
+  jeeP.bt_undo.removeClass('disabled')
   try {
-    var loadState = _undoState_ + 2
-    reloadStack(_undoStack_[loadState])
-    _undoState_ += 1
+    var loadState = jeeP.undoState + 2
+    reloadStack(jeeP.undoStack[loadState])
+    jeeP.undoState += 1
 
-    if (_undoState_ < _firstState_ - 1 || _undoState_ + 2 >= _undoStack_.length) bt_redo.addClass('disabled')
+    if (jeeP.undoState < jeeP.firstState - 1 || jeeP.undoState + 2 >= jeeP.undoStack.length) jeeP.bt_redo.addClass('disabled')
   } catch (error) {
     console.log('redo ERROR:', error)
   }
-  updateTooltips()
+  setTimeout(function() { updateTooltips() }, 500)
   jeedom.scenario.setAutoComplete()
   resetEditors()
 }
 
 function resetUndo() {
-  _undoStack_ = []
-  _undoState_ = -1
-  _firstState_ = 0
-  _undoLimit_ = 10
-  bt_undo.addClass('disabled')
-  bt_redo.addClass('disabled')
+  jeeFrontEnd.scenario.undoStack = []
+  jeeFrontEnd.scenario.undoState = -1
+  jeeFrontEnd.scenario.firstState = 0
+  jeeFrontEnd.scenario.undoLimit = 10
+  jeeFrontEnd.scenario.bt_undo.addClass('disabled')
+  jeeFrontEnd.scenario.bt_redo.addClass('disabled')
 }
 
 //Code Editors:
-var _EDITORS = []
-
 function setEditors() {
   var expression, code
   $('.expressionAttr[data-l1key=type][value=code]').each(function() {
@@ -2423,7 +2439,7 @@ function setEditors() {
       code.uniqueId()
       var id = code.attr('id')
       setTimeout(function() {
-        _EDITORS[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+        jeeFrontEnd.scenario.editors[id] = CodeMirror.fromTextArea(document.getElementById(id), {
           lineNumbers: true,
           lineWrapping: true,
           mode: 'text/x-php',
@@ -2432,7 +2448,7 @@ function setEditors() {
           foldGutter: true,
           gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
         })
-        _EDITORS[id].setOption("extraKeys", {
+        jeeFrontEnd.scenario.editors[id].setOption("extraKeys", {
           "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
           "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
         })
@@ -2442,7 +2458,7 @@ function setEditors() {
 }
 
 function resetEditors() {
-  _EDITORS = []
+  jeeFrontEnd.scenario.editors = []
   var expression, code
   $('.expressionAttr[data-l1key=type][value=code]').each(function() {
     expression = $(this).closest('.expression')
@@ -2459,6 +2475,6 @@ function syncEditors() {
     expression = $(this).closest('.expression')
     code = expression.find('.expressionAttr[data-l1key=expression]')
     id = code.attr('id')
-    if (isset(_EDITORS[id])) code.html(_EDITORS[id].getValue())
+    if (isset(jeeFrontEnd.scenario.editors[id])) code.html(jeeFrontEnd.scenario.editors[id].getValue())
   })
 }

@@ -6,10 +6,10 @@ if (init('user_id') == '') {
 	@session_start();
 	$_SESSION['user']->refresh();
 	@session_write_close();
-	sendVarToJs('profils_user_id', -1);
+	sendVarToJs('jeephp2js.profils_user_id', -1);
 	$user = $_SESSION['user'];
 } else {
-	sendVarToJs('profils_user_id', init('user_id'));
+	sendVarToJs('jeephp2js.profils_user_id', init('user_id'));
 	$user = user::byId(init('user_id'));
 }
 $homePageDesktop = array(
