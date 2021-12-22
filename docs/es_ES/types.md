@@ -24,7 +24,7 @@ Esta página ofrece almacenamiento por tipo de equipo : Enchufe, luz, obturador,
 
 ## Tipo de comando
 
-Una vez que un elemento de equipo se coloca en la posición correcta *Escribe*, al hacer clic en él se accede a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Acción* (Orange).
+Una vez que un elemento de equipo se coloca en la posición correcta *Escribe*, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Acción* (Orange).
 
 Al hacer clic con el botón derecho en un pedido, puede asignarle un Tipo genérico correspondiente a las especificaciones de este pedido (Tipo de información / acción, Numérico, Subtipo binario, etc).
 
