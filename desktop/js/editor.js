@@ -196,6 +196,9 @@ $(function() {
       cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
       files: ['cmdedit', 'edit', '|', 'rename' ,'|', 'getfile' , 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|','rm', '|', 'archive', 'extract', '|', 'info', 'places']
     },
+    fancyDateFormat: 'Y-m-d H:i',
+    dateFormat: 'Y-m-d H:i',
+    timeFormat: 'H:i',
     uiOptions: {
       toolbar: [
         ['back', 'forward'],
