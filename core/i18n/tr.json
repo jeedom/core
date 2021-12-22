@@ -4413,6 +4413,7 @@
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "Eklenti yüklenemedi. Eklenti adı kimlik numarasından farklı veya eklenti düzgün oluşturulmamış. Lütfen yazara başvurun",
         "OK": "OK",
         "END UPDATE SUCCESS": "END UPDATE SUCCESS",
+        "Erreur lors de la récuperation de la derniere version de Jeedom, url :": "Erreur lors de la récuperation de la derniere version de Jeedom, url :",
         "Le logical ID ne peut pas être vide": "Mantıksal kimlik boş olamaz"
     },
     "core\/class\/listener.class.php": {
