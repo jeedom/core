@@ -41,6 +41,1142 @@ if (!jeeFrontEnd.scenario) {
       this.$divScenario = $('#div_editScenario')
       window.jeeP = this
     },
+    checkNoMode: function() {
+      if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length) {
+        $('#emptyModeWarning').hide()
+      } else {
+        $('#emptyModeWarning').show()
+      }
+    },
+    getSelectCmdExpressionMessage: function(subType, cmdHumanName) {
+      if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
+
+      var message = '<div class="row">'
+      message += '<div class="col-md-12">'
+      message += '<form class="form-horizontal" onsubmit="return false;">'
+      message += '<div class="form-group">'
+      message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
+
+      if (subType == 'numeric') {
+        message += '<div class="col-xs-3">'
+        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+        message += '    <option value="==">{{égal}}</option>'
+        message += '    <option value=">">{{supérieur}}</option>'
+        message += '    <option value="<">{{inférieur}}</option>'
+        message += '    <option value="!=">{{différent}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '<div class="col-xs-4">'
+        message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+        message += '  <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      if (subType == 'string') {
+        message += '<div class="col-xs-2">'
+        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+        message += '    <option value="==">{{égale}}</option>'
+        message += '    <option value="matches">{{contient}}</option>'
+        message += '    <option value="!=">{{différent}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '<div class="col-xs-4">'
+        message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+        message += '  <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      if (subType == 'binary') {
+        message += '<div class="col-xs-7">'
+        message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
+        message += '  <select class="conditionAttr form-control" data-l1key="operande">'
+        message += '    <option value="1">{{Ouvert}}</option>'
+        message += '    <option value="0">{{Fermé}}</option>'
+        message += '    <option value="1">{{Allumé}}</option>'
+        message += '    <option value="0">{{Eteint}}</option>'
+        message += '    <option value="1">{{Déclenché}}</option>'
+        message += '    <option value="0">{{Au repos}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      message += '<div class="form-group">'
+      message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
+      message += '<div class="col-xs-3">'
+      message += '  <select class="conditionAttr form-control" data-l1key="next">'
+      message += '    <option value="">{{rien}}</option>'
+      message += '    <option value="ET">{{et}}</option>'
+      message += '    <option value="OU">{{ou}}</option>'
+      message += '  </select>'
+      message += '</div>'
+      message += '</div>'
+      message += '</div></div>'
+      message += '</form></div></div>'
+      return message
+    },
+    //Copy / Paste
+    removeObjectProp: function(obj, propToDelete) {
+      for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+          if (typeof obj[property] == 'object') {
+            this.removeObjectProp(obj[property], propToDelete)
+          } else {
+            if (property === propToDelete) {
+              delete obj[property]
+            }
+          }
+        }
+      }
+    },
+    //Scenario loading
+    updateSortable: function() {
+      $('.element').removeClass('sortable');
+      $('#div_scenarioElement > .element').addClass('sortable')
+      $('.subElement .expressions').each(function() {
+        if ($(this).children('.sortable:not(.empty)').length > 0) {
+          $(this).children('.sortable.empty').hide()
+        } else {
+          $(this).children('.sortable.empty').show()
+        }
+      })
+    },
+    updateElseToggle: function() {
+      $('.subElementELSE').each(function() {
+        if (!$(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first i').hasClass('fa-sort-down')) {
+          if ($(this).children('.expressions').children('.expression').length == 0) {
+            $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse').first().trigger('click')
+          }
+        }
+      })
+    },
+    updateElementCollpase: function() {
+      $('.bt_collapse').each(function() {
+        if ($(this).value() == 0) {
+          $(this).closest('.element').removeClass('elementCollapse')
+        } else {
+          $(this).closest('.element').addClass('elementCollapse')
+        }
+      })
+    },
+    setScenarioActionsOptions: function() {
+      jeedom.cmd.displayActionsOption({
+        params: this.actionOptions,
+        async: false,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $.showLoading()
+          for (var i in data) {
+            $('#' + data[i].id).append(data[i].html.html)
+          }
+          $.hideLoading()
+          jeedomUtils.taAutosize()
+        }
+      })
+    },
+    printScenario: function(_id) {
+      $.hideAlert()
+      $.showLoading()
+      $('#emptyModeWarning').hide()
+      jeedom.scenario.update[_id] = function(_options) {
+        if (_options.scenario_id = !jeeP.$divScenario.getValues('.scenarioAttr')[0]['id']) {
+          return
+        }
+        switch (_options.state) {
+          case 'error':
+            $('#bt_stopScenario').hide()
+            $('#span_ongoing').text('{{Erreur}}')
+            $('#span_ongoing').removeClass('label-info label-danger label-success label-info').addClass('label-warning')
+            break
+          case 'on':
+            $('#bt_stopScenario').show()
+            $('#span_ongoing').text('{{Actif}}')
+            $('#span_ongoing').removeClass('label-info label-danger label-warning label-info').addClass('label-success')
+            break
+          case 'starting':
+            $('#bt_stopScenario').show()
+            $('#span_ongoing').text('{{Démarrage}}')
+            $('#span_ongoing').removeClass('label-success label-danger label-warning label-info').addClass('label-warning')
+            break
+          case 'in progress':
+            $('#bt_stopScenario').show()
+            $('#span_ongoing').text('{{En cours}}')
+            $('#span_ongoing').removeClass('label-success label-danger label-warning label-info').addClass('label-info')
+            break
+          case 'stop':
+            $('#bt_stopScenario').hide()
+            $('#span_ongoing').text('{{Arrêté}}')
+            $('#span_ongoing').removeClass('label-info label-success label-warning label-info').addClass('label-danger')
+            break
+        }
+      }
+      jeedom.scenario.get({
+        id: _id,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          });
+        },
+        success: function(data) {
+          $('.scenarioAttr').value('')
+          $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected', true)
+          $('.scenarioAttr[data-l1key=object_id]').val('')
+          jeeP.$divScenario.setValues(data, '.scenarioAttr')
+          data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
+          $('#span_lastLaunch').text(data.lastLaunch)
+
+          $.clearDivContent('div_scenarioElement')
+          $('.provokeMode').empty()
+          $('.scheduleMode').empty()
+          $('.scenarioAttr[data-l1key=mode]').trigger('change')
+          for (var i in data.schedules) {
+            $('#div_schedules').schedule.display(data.schedules[i])
+          }
+
+          jeedom.scenario.update[_id](data)
+          if (data.isActive != 1) {
+            $('#in_ongoing').removeClass('label-danger').removeClass('label-success').text('{{Inactif}}')
+          }
+
+          if ($.isArray(data.trigger)) {
+            for (var i in data.trigger) {
+              if (data.trigger[i] != '' && data.trigger[i] != null) {
+                jeeP.addTrigger(data.trigger[i])
+              }
+            }
+          } else {
+            if (data.trigger != '' && data.trigger != null) {
+              jeeP.addTrigger(data.trigger)
+            }
+          }
+
+          if ($.isArray(data.schedule)) {
+            for (var i in data.schedule) {
+              if (data.schedule[i] != '' && data.schedule[i] != null) {
+                jeeP.addSchedule(data.schedule[i])
+              }
+            }
+          } else {
+            if (data.schedule != '' && data.schedule != null) {
+              jeeP.addSchedule(data.schedule)
+            }
+          }
+          $('.scenario_link').empty()
+          var html = ''
+          if (data.scenario_link.scenario) {
+            for (var i in data.scenario_link.scenario) {
+              if (data.scenario_link.scenario[i].isActive == 1) {
+                html += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+              } else {
+                html += '<span class="label label-danger cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
+              }
+            }
+          }
+          $('.scenario_link').append(html)
+          if (data.elements.length == 0) {
+            $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
+          }
+          jeeP.actionOptions = []
+          var elements = ''
+          for (var i in data.elements) {
+            elements += jeeP.addElement(data.elements[i])
+          }
+          $('#div_scenarioElement').append(elements)
+          $('.subElementAttr[data-l1key=options][data-l2key=enable]').trigger('change')
+          $('.expressionAttr[data-l1key=options][data-l2key=enable]').trigger('change')
+          jeeP.setScenarioActionsOptions()
+          $('#div_editScenario').show()
+          jeeP.updateSortable()
+          jeedom.scenario.setAutoComplete()
+          jeeP.updateElementCollpase()
+          jeeP.updateElseToggle()
+          jeedomUtils.taAutosize()
+          var title = ''
+          if (data.name) title = data.name + ' - Jeedom'
+          var hash = window.location.hash
+          jeedomUtils.addOrUpdateUrl('id', data.id, title)
+          if (hash == '') {
+            $('.nav-tabs a[href="#generaltab"]').click()
+          } else {
+            window.location.hash = hash
+          }
+          setTimeout(function() {
+            jeeP.setEditors()
+          }, 100)
+          jeeFrontEnd.modifyWithoutSave = false
+          jeeP.resetUndo()
+          setTimeout(function() {
+            jeeFrontEnd.modifyWithoutSave = false
+          }, 1000)
+          setTimeout(function() {
+            jeeP.checkNoMode()
+            jeeP.updateTooltips()
+          }, 500)
+
+          jeedom.scenario.setAutoComplete()
+          $('#humanNameTag').html(data.humanNameTag)
+        }
+      })
+    },
+    saveScenario: function(_callback) {
+      $.hideAlert()
+      var scenario = this.$divScenario.getValues('.scenarioAttr')[0]
+      if (typeof scenario.trigger == 'undefined') {
+        scenario.trigger = ''
+      }
+      if (typeof scenario.schedule == 'undefined') {
+        scenario.schedule = ''
+      }
+      var elements = []
+      $('#div_scenarioElement').children('.element').each(function() {
+        elements.push(this.getElement($(this)))
+      })
+      scenario.elements = elements
+      jeedom.scenario.save({
+        scenario: scenario,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false
+          resetUndo()
+          var url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1'
+          if (window.location.hash != '') {
+            url += window.location.hash
+          }
+          jeedomUtils.loadPage(url)
+          if (typeof _callback == 'function') {
+            _callback()
+          }
+        }
+      })
+    },
+    addTrigger: function(_trigger) {
+      var div = '<div class="form-group trigger">'
+      div += '<label class="col-xs-3 control-label">{{Evénement}}</label>'
+      div += '<div class="col-xs-9">'
+      div += '<div class="input-group">'
+      div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="trigger" value="' + _trigger.replace(/"/g, '&quot;') + '" >'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" tooltip="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" tooltip="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" tooltip="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger roundedRight"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      div += '</div>'
+      $('.provokeMode').append(div)
+    },
+    addSchedule: function(_schedule) {
+      var div = '<div class="form-group schedule">'
+      div += '<label class="col-xs-3 control-label">{{Programmation}}</label>'
+      div += '<div class="col-xs-9">'
+      div += '<div class="input-group">'
+      div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="schedule" value="' + _schedule.replace(/"/g, '&quot;') + '">'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-default btn-sm cursor jeeHelper" data-helper="cron"><i class="fas fa-question-circle"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_removeSchedule roundedRight"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      div += '</div>'
+      $('.scheduleMode').append(div)
+    },
+    addExpression: function(_expression) {
+      if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') {
+        return ''
+      }
+      var sortable = 'sortable'
+      if (_expression.type == 'condition' || _expression.type == 'code') {
+        sortable = 'noSortable'
+      }
+
+      var retour = '<div class="expression ' + sortable + ' col-xs-12" >'
+      if (_expression.type == 'action') {
+        retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >'
+      }
+      retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>'
+      retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>'
+      retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>'
+      switch (_expression.type) {
+        case 'condition':
+          if (isset(_expression.expression)) {
+            _expression.expression = _expression.expression.replace(/"/g, '&quot;')
+          }
+          retour += '<div class="input-group input-group-sm" >'
+          retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />'
+          retour += '<span class="input-group-btn">'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" tooltip="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
+          retour += '</span>'
+          retour += '</div>'
+          break
+        case 'element':
+          retour += '<div class="col-xs-12" >';
+          if (isset(_expression.element) && isset(_expression.element.html)) {
+            retour += _expression.element.html
+          } else {
+            var element = jeeP.addElement(_expression.element, true)
+            if ($.trim(element) == '') {
+              return ''
+            }
+            retour += element
+          }
+          retour += '</div>'
+          break
+        case 'action':
+          retour += '<div class="col-xs-1" >'
+          retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>'
+          if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  tooltip="{{Décocher pour désactiver l\'action}}"/>'
+          } else {
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  tooltip="{{Décocher pour désactiver l\'action}}"/>'
+          }
+          if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
+          } else {
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
+          }
+          var expression_txt = init(_expression.expression)
+          if (typeof expression_txt != 'string') {
+            expression_txt = json_encode(expression_txt)
+          }
+          retour += '</div>'
+          retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">'
+          retour += '<span class="input-group-btn">'
+          retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" tooltip="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
+          retour += '</span>'
+          retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + expression_txt.replace(/"/g, '&quot;') + '"/>'
+          retour += '<span class="input-group-btn">'
+          retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" tooltip="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
+          retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" tooltip="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
+          retour += '</span>'
+          retour += '</div></div>'
+          var actionOption_id = jeedomUtils.uniqId()
+          retour += '<div class="col-xs-7 expressionOptions"  id="' + actionOption_id + '">'
+          retour += '</div>'
+          this.actionOptions.push({
+            expression: init(_expression.expression, ''),
+            options: _expression.options,
+            id: actionOption_id
+          })
+          break
+        case 'code':
+          retour += '<div>'
+          retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>'
+          retour += '</div>';
+          break;
+        case 'comment':
+          retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>'
+          break
+      }
+      retour += '</div>'
+      return retour
+    },
+    addSubElement: function(_subElement) {
+      if (!isset(_subElement.type) || _subElement.type == '') {
+        return ''
+      }
+      if (!isset(_subElement.options)) {
+        _subElement.options = {}
+      }
+      var noSortable = ''
+      if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
+        noSortable = 'noSortable'
+      }
+
+      var blocClass = ''
+      switch (_subElement.type) {
+        case 'if':
+          blocClass = 'subElementIF'
+          break
+        case 'then':
+          blocClass = 'subElementTHEN'
+          break
+        case 'else':
+          blocClass = 'subElementELSE'
+          break
+        case 'for':
+          blocClass = 'subElementFOR'
+          break
+        case 'in':
+          blocClass = 'subElementIN'
+          break
+        case 'at':
+          blocClass = 'subElementAT'
+          break
+        case 'do':
+          blocClass = 'subElementDO'
+          break
+        case 'code':
+          blocClass = 'subElementCODE'
+          break
+        case 'comment':
+          blocClass = 'subElementCOMMENT'
+          break
+        case 'action':
+          blocClass = 'subElementACTION'
+          break
+      }
+      var retour = '<div class="subElement ' + blocClass + ' ' + noSortable + '">'
+      retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>'
+      retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>'
+      retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>'
+
+      switch (_subElement.type) {
+        case 'if':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '</div>'
+          retour += '<div><legend >{{SI}}</legend></div>'
+
+          retour += '<div >'
+          if (!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
+            retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
+          } else {
+            retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
+          }
+          retour += '</div>'
+
+          retour += '<div class="expressions" >'
+          var expression = {
+            type: 'condition'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+          }
+          retour += this.addExpression(expression);
+          retour += '  </div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'then':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
+          retour += '<div class="subElementFields">'
+          retour += '<legend >{{ALORS}}</legend>'
+          retour += this.getAddButton(_subElement.type,true)
+          retour += '</div>'
+          retour += '<div class="expressions">'
+          retour += '<div class="sortable empty" ></div>'
+          if (isset(_subElement.expressions)) {
+            for (var k in _subElement.expressions) {
+              retour += this.addExpression(_subElement.expressions[k])
+            }
+          }
+          retour += '</div>'
+          break
+
+        case 'else':
+          retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>'
+          retour += '<div class="subElementFields">'
+          retour += '<legend >{{SINON}}</legend>'
+          retour += this.getAddButton(_subElement.type)
+          retour += '</div>'
+          retour += '<div class="expressions">'
+          retour += '<div class="sortable empty" ></div>'
+          if (isset(_subElement.expressions)) {
+            for (var k in _subElement.expressions) {
+              retour += this.addExpression(_subElement.expressions[k])
+            }
+          }
+          retour += '</div>'
+          break
+
+        case 'for':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '</div>'
+          retour += '<div>'
+          retour += '<legend >{{DE 1 A}}</legend>'
+          retour += '</div>'
+          retour += '<div class="expressions" >'
+          var expression = {
+            type: 'condition'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+          }
+          retour += this.addExpression(expression)
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'in':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '</div>'
+          retour += '<div>'
+          retour += '<legend tooltip="{{Action DANS x minutes}}">{{DANS}}</legend>'
+          retour += '</div>'
+          retour += '<div class="expressions" >'
+          var expression = {
+            type: 'condition'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+          }
+          retour += this.addExpression(expression)
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'at':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '</div>'
+          retour += '<div>'
+          retour += '<legend >{{A}}</legend><span>(Hmm)</span>'
+          retour += '</div>'
+          retour += '<div class="expressions" >'
+          var expression = {
+            type: 'condition'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+          }
+          retour += this.addExpression(expression)
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'do':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
+          retour += '<div class="subElementFields">'
+          retour += '<legend >{{FAIRE}}</legend>'
+          retour += this.getAddButton(_subElement.type)
+          retour += '</div>'
+          retour += '<div class="expressions">'
+          retour += '<div class="sortable empty" ></div>'
+          if (isset(_subElement.expressions)) {
+            for (var k in _subElement.expressions) {
+              retour += this.addExpression(_subElement.expressions[k])
+            }
+          }
+          retour += '</div>'
+          break
+
+        case 'code':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '</div>'
+          retour += '<div>'
+          retour += '<legend >{{CODE}}</legend>'
+          var expression = {
+            type: 'code'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression == "string") {
+            expression = _subElement.expressions[0]
+            retour += '<div class="blocPreview">' + expression.expression.substring(0, 200).HTMLFormat() + '</div>'
+          } else {
+            retour += '<div class="blocPreview"></div>'
+          }
+          retour += '</div>'
+          retour += '<div class="expressions">'
+          retour += this.addExpression(expression)
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'comment':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          retour += '</div>'
+          retour += '<div>'
+          retour += '<legend >{{COMMENTAIRE}}</legend>'
+          var expression = {
+            type: 'comment'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+            if (typeof expression.expression === 'object') {
+              expression.expression = JSON.stringify(expression.expression, null, 2)
+            }
+            var txt = expression.expression.substring(0, 200).HTMLFormat()
+            txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
+            retour += '<div class="blocPreview">' + txt + '</div>'
+          } else {
+            retour += '<div class="blocPreview"></div>'
+          }
+          retour += '</div>'
+          retour += '<div class="expressions">'
+          retour += this.addExpression(expression)
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'action':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '<legend class="legendHidden">{{ACTION}}</legend>'
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+            if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
+              retour += '<div class="blocPreview">' + expression.element.subElements[0].expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
+            } else {
+              retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
+            }
+          } else {
+            retour += '<div class="blocPreview"></div>'
+          }
+          retour += '</div>'
+          retour += '<div class="subElementFields">'
+          retour += '<legend >{{ACTION}}</legend><br/>'
+          retour += this.getAddButton(_subElement.type)
+          retour += '</div>'
+          retour += '<div class="expressions">'
+          retour += '<div class="sortable empty" ></div>'
+          if (isset(_subElement.expressions)) {
+            for (var k in _subElement.expressions) {
+              retour += this.addExpression(_subElement.expressions[k])
+            }
+          }
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+      }
+      retour += '</div>'
+      return retour
+    },
+    addElButtons: function(_retour) {
+      _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" tooltip="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" tooltip="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" tooltip="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
+      return _retour
+    },
+    addElement: function(_element) {
+      if (!isset(_element)) {
+        return
+      }
+      if (!isset(_element.type) || _element.type == '') {
+        return ''
+      }
+
+      var elementClass = ''
+      switch (_element.type) {
+        case 'if':
+          elementClass = 'elementIF'
+          break
+        case 'for':
+          elementClass = 'elementFOR'
+          break
+        case 'in':
+          elementClass = 'elementIN'
+          break
+        case 'at':
+          elementClass = 'elementAT'
+          break
+        case 'code':
+          elementClass = 'elementCODE'
+          break
+        case 'comment':
+          elementClass = 'elementCOM'
+          break
+        case 'action':
+          elementClass = 'elementACTION'
+      }
+
+      var div = '<div class="element ' + elementClass + '">'
+
+      div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>'
+      div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>'
+      switch (_element.type) {
+        case 'if':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'if'
+            })
+            div += this.addSubElement({
+              type: 'then'
+            })
+            div += this.addSubElement({
+              type: 'else'
+            })
+          }
+          break
+        case 'for':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'for'
+            })
+            div += this.addSubElement({
+              type: 'do'
+            })
+          }
+          break;
+        case 'in':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'in'
+            })
+            div += this.addSubElement({
+              type: 'do'
+            })
+          }
+          break
+        case 'at':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'at'
+            })
+            div += this.addSubElement({
+              type: 'do'
+            })
+          }
+          break
+        case 'code':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'code'
+            })
+          }
+          break
+        case 'comment':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'comment'
+            })
+          }
+          break
+        case 'action':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'action'
+            })
+          }
+          break
+      }
+      div += '</div>'
+      return div
+    },
+    getElement: function(_element) {
+      var element = _element.getValues('.elementAttr', 1)
+      if (element.length == 0) {
+        return
+      }
+      element = element[0]
+      element.subElements = []
+
+      var subElement, expression_dom, expression, id
+      _element.findAtDepth('.subElement', 2).each(function() {
+        subElement = $(this).getValues('.subElementAttr', 2)[0]
+        subElement.expressions = []
+        expression_dom = $(this).children('.expressions')
+        if (expression_dom.length == 0) {
+          expression_dom = $(this).children('legend').findAtDepth('.expressions', 2)
+        }
+        expression_dom.children('.expression').each(function() {
+          expression = $(this).getValues('.expressionAttr', 3)[0]
+          if (expression.type == 'element') {
+            expression.element = jeeP.getElement($(this).findAtDepth('.element', 2))
+          }
+          if (subElement.type == 'code') {
+            id = $(this).find('.expressionAttr[data-l1key=expression]').attr('id')
+            if (id != undefined && isset(jeeFrontEnd.scenario.editors[id])) {
+              expression.expression = jeeFrontEnd.scenario.editors[id].getValue()
+            }
+          }
+          subElement.expressions.push(expression)
+
+        });
+        element.subElements.push(subElement)
+      });
+      return element
+    },
+    updateTooltips: function() {
+      //in scenarios, for faster undo/redo, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
+      $('[tooltip]:not(.tooltipstered)').each(function() {
+        $(this).attr('title', $(this).attr('tooltip'))
+      })
+      $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    },
+    getAddButton: function(_type,_caret) {
+      if (!isset(_caret)) _caret = false
+      var retour = ''
+      if (_caret) {
+        retour += '<div class="input-group">'
+        retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
+        retour += '<i class="fas fa-sort-up"></i>'
+        retour += '</button>'
+        retour += '<span class="input-group-btn">'
+      }
+      retour += '<div class="dropdown">'
+      if (_caret) {
+        retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+      } else {
+        retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
+      }
+      retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}'
+      retour += '<span class="caret"></span>'
+      retour += '</button>'
+
+      retour += '<ul class="dropdown-menu">'
+      retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
+      if(_type != 'action' && _type != 'if'  && _type != 'in'  && _type != 'for'  && _type != 'at'){
+          retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+      }
+      retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
+      retour += '</ul>'
+
+      retour += '</div>'
+      if (_caret) {
+        retour += '</span>'
+        retour += '</div>'
+      }
+      return retour
+    },
+    //Undo management
+    reloadStack: function(loadStack) {
+      $('#div_scenarioElement').empty()
+      this.actionOptions = []
+      var elements = ''
+      for (var i in loadStack) {
+        elements += this.addElement(loadStack[i])
+      }
+
+      $('#div_scenarioElement').append(elements)
+
+      //Synch collapsed elements:
+      $('i.fa-eye-slash').each(function() {
+        $(this).parents('.element').first().addClass('elementCollapse')
+      })
+
+      this.updateElseToggle()
+      this.setScenarioActionsOptions()
+    },
+    setUndoStack: function(state = 0) {
+      this.syncEditors()
+      this.bt_undo.removeClass('disabled')
+      this.bt_redo.addClass('disabled')
+      var newStack = []
+      $('#div_scenarioElement').children('.element').each(function() {
+        newStack.push(jeeP.getElement($(this)))
+      })
+
+      if (newStack == $(this.undoStack[state - 1])) return
+      if (state == 0) {
+        state = this.undoState = this.undoStack.length
+        this.reDo = 0
+      }
+      this.undoStack[state] = newStack
+      //limit stack:
+      if (state >= this.firstState + this.undoLimit) {
+        this.firstState += 1
+        this.undoStack[this.firstState - 1] = 0
+      }
+    },
+    undo: function() {
+      if (this.undoState < this.firstState) {
+        return
+      }
+      try {
+        var loadState = this.undoState
+        if (this.reDo == 0) this.setUndoStack(this.undoState + 1)
+        this.reloadStack(this.undoStack[loadState])
+        this.undoState -= 1
+
+        if (this.undoState < this.firstState) this.bt_undo.addClass('disabled')
+        this.bt_redo.removeClass('disabled')
+      } catch (error) {
+        console.log('undo ERROR:', error)
+      }
+      setTimeout(function() { jeeP.updateTooltips() }, 500)
+      jeedom.scenario.setAutoComplete()
+      this.resetEditors()
+    },
+    redo: function() {
+      this.reDo = 1
+      if (this.undoState < this.firstState - 1 || this.undoState + 2 >= this.undoStack.length) {
+        return
+      }
+      this.bt_undo.removeClass('disabled')
+      try {
+        var loadState = this.undoState + 2
+        this.reloadStack(this.undoStack[loadState])
+        this.undoState += 1
+
+        if (this.undoState < this.firstState - 1 || this.undoState + 2 >= this.undoStack.length) this.bt_redo.addClass('disabled')
+      } catch (error) {
+        console.log('redo ERROR:', error)
+      }
+      setTimeout(function() { jeeP.updateTooltips() }, 500)
+      jeedom.scenario.setAutoComplete()
+      this.resetEditors()
+    },
+    resetUndo: function() {
+      this.undoStack = []
+      this.undoState = -1
+      this.firstState = 0
+      this.undoLimit = 10
+      this.bt_undo.addClass('disabled')
+      this.bt_redo.addClass('disabled')
+    },
+    //Code Editors:
+    setEditors: function() {
+      var expression, code
+      $('.expressionAttr[data-l1key=type][value=code]').each(function() {
+        expression = $(this).closest('.expression')
+        code = expression.find('.expressionAttr[data-l1key=expression]')
+        $(this).find('.blocPreview').html(code.val())
+        if (code.attr('id') == undefined && code.is(':visible')) {
+          code.uniqueId()
+          var id = code.attr('id')
+          setTimeout(function() {
+            jeeP.editors[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+              lineNumbers: true,
+              lineWrapping: true,
+              mode: 'text/x-php',
+              matchBrackets: true,
+              viewportMargin: Infinity,
+              foldGutter: true,
+              gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+            })
+            jeeP.editors[id].setOption("extraKeys", {
+              "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+              "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+            })
+          }, 1)
+        }
+      })
+    },
+    resetEditors: function() {
+      this.editors = []
+      var expression, code
+      $('.expressionAttr[data-l1key=type][value=code]').each(function() {
+        expression = $(this).closest('.expression')
+        code = expression.find('.expressionAttr[data-l1key=expression]')
+        code.removeAttr('id').show()
+        expression.find('.CodeMirror.CodeMirror-wrap').remove()
+      })
+      this.setEditors()
+    },
+    syncEditors: function() {
+      var expression, code, id
+      $('.expressionAttr[data-l1key=type][value=code]').each(function() {
+        expression = $(this).closest('.expression')
+        code = expression.find('.expressionAttr[data-l1key=expression]')
+        id = code.attr('id')
+        if (isset(jeeP.editors[id])) code.html(jeeP.editors[id].getValue())
+      })
+    },
   }
 }
 
@@ -162,7 +1298,7 @@ $('#bt_resetInsideScenarioSearch').on('click', function() {
       $(this).removeClass('elementCollapse')
       $(this).find('textarea[data-l1key="expression"]').show()
     })
-    setEditors()
+    jeeP.setEditors()
     $('textarea[data-l1key="expression"]').hide()
     searchField.focus()
   } else {
@@ -222,14 +1358,16 @@ $(function() {
             zIndex: 9999,
             className: 'scenario-context-menu',
             callback: function(key, options, event) {
-              if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
-                var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-                if (window.location.hash != '') {
-                  url += window.location.hash
+              if (!jeedomUtils.checkPageModified()) {
+                if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                  var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
+                  if (window.location.hash != '') {
+                    url += window.location.hash
+                  }
+                  window.open(url).focus()
+                } else {
+                  jeeP.printScenario(options.commands[key].id)
                 }
-                window.open(url).focus()
-              } else {
-                printScenario(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -268,7 +1406,7 @@ $("#bt_addScenario").off('click').on('click', function(event) {
             url += tab
           }
           jeeFrontEnd.modifyWithoutSave = false
-          resetUndo()
+          jeeP.resetUndo()
           jeedomUtils.loadPage(url)
         }
       })
@@ -330,9 +1468,9 @@ $('#bt_scenarioTab').on('click', function() {
   $('#bt_resetInsideScenarioSearch').removeClass('disabled')
   $('#in_searchInsideScenario').prop("disabled", false)
   setTimeout(function() {
-    setEditors()
+    jeeP.setEditors()
     jeedomUtils.taAutosize()
-    updateElseToggle()
+    jeeP.updateElseToggle()
   }, 50)
 })
 
@@ -350,7 +1488,7 @@ $('.scenarioDisplayCard').off('click').on('click', function(event) {
     window.open(url).focus()
   } else {
     $('#scenarioThumbnailDisplay').hide()
-    printScenario($(this).attr('data-scenario_id'))
+    jeeP.printScenario($(this).attr('data-scenario_id'))
   }
 })
 $('.scenarioDisplayCard').off('mouseup').on('mouseup', function(event) {
@@ -383,7 +1521,7 @@ document.onkeydown = function(event) {
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     if ($('#bt_saveScenario').is(':visible')) {
-      saveScenario()
+      jeeP.saveScenario()
       return
     }
   }
@@ -398,21 +1536,21 @@ document.onkeydown = function(event) {
 
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 90) { //z
     event.preventDefault()
-    undo()
-    jeeFrontEnd.scenario.PREV_FOCUS = null
+    jeeP.undo()
+    jeeP.PREV_FOCUS = null
     return
   }
 
   if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 89) { //y
     event.preventDefault()
-    redo()
-    jeeFrontEnd.scenario.PREV_FOCUS = null
+    jeeP.redo()
+    jeeP.PREV_FOCUS = null
     return
   }
 }
 
 $('#div_scenarioElement').on('focus', ':input', function() {
-  jeeFrontEnd.scenario.PREV_FOCUS = $(this)
+  jeeP.PREV_FOCUS = $(this)
 })
 
 $(function() {
@@ -430,17 +1568,9 @@ $(function() {
 
   //trigger:
   setTimeout(function() {
-    checkNoMode()
+    jeeP.checkNoMode()
   }, 250)
 })
-
-function checkNoMode() {
-  if ($('div.scheduleDisplay .schedule').length || $('div.provokeDisplay .trigger').length) {
-    $('#emptyModeWarning').hide()
-  } else {
-    $('#emptyModeWarning').show()
-  }
-}
 
 $('.scenario_link').off('click', '.scenario_link').on('click', '.scenario_link', function(event) {
   $.hideAlert()
@@ -449,7 +1579,7 @@ $('.scenario_link').off('click', '.scenario_link').on('click', '.scenario_link',
     window.open(url).focus()
   } else {
     $('#scenarioThumbnailDisplay').hide()
-    printScenario($(this).attr('data-scenario_id'))
+    jeeP.printScenario($(this).attr('data-scenario_id'))
   }
 })
 $('.scenario_link').off('mouseup', '.scenario_link').on('mouseup', '.scenario_link', function(event) {
@@ -534,23 +1664,23 @@ $('.scenarioAttr[data-l1key=mode]').off('change').on('change', function() {
 })
 
 $('#bt_addTrigger').off('click').on('click', function() {
-  addTrigger('')
-  checkNoMode()
+  jeeP.addTrigger('')
+  jeeP.checkNoMode()
 })
 
 $('#bt_addSchedule').off('click').on('click', function() {
-  addSchedule('')
-  checkNoMode()
+  jeeP.addSchedule('')
+  jeeP.checkNoMode()
 })
 
 jeeP.$divScenario.on('click', '.bt_removeTrigger', function(event) {
   $(this).closest('.trigger').remove()
-  checkNoMode()
+  jeeP.checkNoMode()
 })
 
 jeeP.$divScenario.on('click', '.bt_removeSchedule', function(event) {
   $(this).closest('.schedule').remove()
-  checkNoMode()
+  jeeP.checkNoMode()
 })
 
 jeeP.$divScenario.on('click', '.bt_selectTrigger', function(event) {
@@ -599,9 +1729,9 @@ jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
     $('#div_scenarioElement .span_noScenarioElement').remove()
   } else {
     //had focus ?
-    if (jeeFrontEnd.scenario.PREV_FOCUS != null && $(jeeFrontEnd.scenario.PREV_FOCUS).closest('div.element').html() != undefined) {
+    if (jeeP.PREV_FOCUS != null && $(jeeP.PREV_FOCUS).closest('div.element').html() != undefined) {
       insertAfter = true
-      elementDiv = $(jeeFrontEnd.scenario.PREV_FOCUS).closest('div.element')
+      elementDiv = $(jeeP.PREV_FOCUS).closest('div.element')
       if (elementDiv.parent().attr('id') != 'div_scenarioElement') {
         elementDiv = elementDiv.parents('.expression').eq(0)
         expression = true
@@ -613,16 +1743,16 @@ jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
 
   $('#md_addElement').modal('show')
   $("#bt_addElementSave").off('click').on('click', function(event) {
-    setUndoStack()
+    jeeP.setUndoStack()
     if (expression) {
-      var newEL = $(addExpression({
+      var newEL = $(jeeP.addExpression({
         type: 'element',
         element: {
           type: $("#in_addElementType").value()
         }
       }))
     } else {
-      var newEL = $(addElement({
+      var newEL = $(jeeP.addElement({
         type: $("#in_addElementType").value()
       }))
     }
@@ -632,12 +1762,12 @@ jeeP.$divScenario.on('click', '.bt_addScenarioElement', function(event) {
       elementDiv.append(newEL.addClass('disableElement'))
     }
 
-    setEditors()
-    updateSortable()
-    updateElseToggle()
+    jeeP.setEditors()
+    jeeP.updateSortable()
+    jeeP.updateElseToggle()
     $('#md_addElement').modal('hide')
     jeeFrontEnd.modifyWithoutSave = true
-    updateTooltips()
+    jeeP.updateTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
       newEL.removeClass('disableElement')
@@ -704,7 +1834,7 @@ $("#bt_runScenario").off('click').on('click', function(event) {
   var scenario_id = $('.scenarioAttr[data-l1key=id]').value()
   var logmode = $('button[data-l2key="logmode"]').attr('value')
   if (event.ctrlKey || event.metaKey) {
-    saveScenario(function() {
+    jeeP.saveScenario(function() {
       jeedom.scenario.changeState({
         id: scenario_id,
         state: 'start',
@@ -769,8 +1899,8 @@ $("#bt_stopScenario").off('click').on('click', function() {
 })
 
 $("#bt_saveScenario").off('click').on('click', function(event) {
-  saveScenario()
-  jeeFrontEnd.scenario.clipboard = null
+  jeeP.saveScenario()
+  jeeP.clipboard = null
 })
 
 $("#bt_delScenario").off('click').on('click', function(event) {
@@ -787,7 +1917,7 @@ $("#bt_delScenario").off('click').on('click', function(event) {
         },
         success: function() {
           jeeFrontEnd.modifyWithoutSave = false
-          resetUndo()
+          jeeP.resetUndo()
           jeedomUtils.loadPage('index.php?v=d&p=scenario')
         }
       })
@@ -827,37 +1957,37 @@ jeeP.$divScenario.on('click', '.bt_removeElement', function(event) {
   var button = $(this)
   if (event.ctrlKey || event.metaKey) {
     if (button.closest('.expression').length != 0) {
-      setUndoStack()
+      jeeP.setUndoStack()
       button.closest('.expression').remove()
     } else {
-      setUndoStack()
+      jeeP.setUndoStack()
       button.closest('.element').remove()
     }
   } else {
     bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
       if (result) {
         if (button.closest('.expression').length != 0) {
-          setUndoStack()
+          jeeP.setUndoStack()
           button.closest('.expression').remove()
         } else {
-          setUndoStack()
+          jeeP.setUndoStack()
           button.closest('.element').remove()
         }
       }
     })
   }
   jeeFrontEnd.modifyWithoutSave = true
-  jeeFrontEnd.scenario.PREV_FOCUS = null
+  jeeP.PREV_FOCUS = null
 })
 
 jeeP.$divScenario.on('click', '.bt_addAction', function(event) {
-  setUndoStack()
-  $(this).closest('.subElement').children('.expressions').append(addExpression({
+  jeeP.setUndoStack()
+  $(this).closest('.subElement').children('.expressions').append(jeeP.addExpression({
     type: 'action'
   }))
   jeedom.scenario.setAutoComplete()
-  updateSortable()
-  updateTooltips()
+  jeeP.updateSortable()
+  jeeP.updateTooltips()
 })
 
 jeeP.$divScenario.on('click', '.bt_showElse', function(event) {
@@ -896,7 +2026,7 @@ jeeP.$divScenario.on('click', '.bt_collapse', function(event) {
         if (!txt) txt = _el.find('.expression textarea').val()
       } else if (_el.hasClass('elementCODE')) {
         id = _el.find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (isset(jeeFrontEnd.scenario.editors[id])) txt = jeeFrontEnd.scenario.editors[id].getValue()
+        if (isset(jeeP.editors[id])) txt = jeeP.editors[id].getValue()
       } else {
         //comment
         txt = _el.find('.expression textarea').val().HTMLFormat()
@@ -908,22 +2038,22 @@ jeeP.$divScenario.on('click', '.bt_collapse', function(event) {
       }
       if (txt) $(this).html(txt.substring(0, 200))
     })
-    updateTooltips()
+    jeeP.updateTooltips()
   } else {
     // -> Uncollapse!
     changeThis.children('i').addClass('fa-eye').removeClass('fa-eye-slash')
     changeThis.closest('.element').removeClass('elementCollapse')
     changeThis.attr('value', 0)
     changeThis.attr('title', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
-    setEditors()
-    updateTooltips()
+    jeeP.setEditors()
+    jeeP.updateTooltips()
   }
 })
 
 jeeP.$divScenario.on('click', '.bt_removeExpression', function(event) {
-  setUndoStack()
+  jeeP.setUndoStack()
   $(this).closest('.expression').remove()
-  updateSortable()
+  jeeP.updateSortable()
 })
 
 $('body').on('click', '.modal-body .bt_selectCmdFromModal', function(event) {
@@ -940,76 +2070,6 @@ $('body').on('click', '.modal-body .bt_selectCmdFromModal', function(event) {
   })
 })
 
-function getSelectCmdExpressionMessage(subType, cmdHumanName) {
-  if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
-
-  var message = '<div class="row">'
-  message += '<div class="col-md-12">'
-  message += '<form class="form-horizontal" onsubmit="return false;">'
-  message += '<div class="form-group">'
-  message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
-
-  if (subType == 'numeric') {
-    message += '<div class="col-xs-3">'
-    message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-    message += '    <option value="==">{{égal}}</option>'
-    message += '    <option value=">">{{supérieur}}</option>'
-    message += '    <option value="<">{{inférieur}}</option>'
-    message += '    <option value="!=">{{différent}}</option>'
-    message += '  </select>'
-    message += '</div>'
-    message += '<div class="col-xs-4">'
-    message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
-    message += '  <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
-    message += '</div>'
-    message += '</div>'
-  }
-
-  if (subType == 'string') {
-    message += '<div class="col-xs-2">'
-    message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-    message += '    <option value="==">{{égale}}</option>'
-    message += '    <option value="matches">{{contient}}</option>'
-    message += '    <option value="!=">{{différent}}</option>'
-    message += '  </select>'
-    message += '</div>'
-    message += '<div class="col-xs-4">'
-    message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
-    message += '  <button type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
-    message += '</div>'
-    message += '</div>'
-  }
-
-  if (subType == 'binary') {
-    message += '<div class="col-xs-7">'
-    message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
-    message += '  <select class="conditionAttr form-control" data-l1key="operande">'
-    message += '    <option value="1">{{Ouvert}}</option>'
-    message += '    <option value="0">{{Fermé}}</option>'
-    message += '    <option value="1">{{Allumé}}</option>'
-    message += '    <option value="0">{{Eteint}}</option>'
-    message += '    <option value="1">{{Déclenché}}</option>'
-    message += '    <option value="0">{{Au repos}}</option>'
-    message += '  </select>'
-    message += '</div>'
-    message += '</div>'
-  }
-
-  message += '<div class="form-group">'
-  message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
-  message += '<div class="col-xs-3">'
-  message += '  <select class="conditionAttr form-control" data-l1key="next">'
-  message += '    <option value="">{{rien}}</option>'
-  message += '    <option value="ET">{{et}}</option>'
-  message += '    <option value="OU">{{ou}}</option>'
-  message += '  </select>'
-  message += '</div>'
-  message += '</div>'
-  message += '</div></div>'
-  message += '</form></div></div>'
-  return message
-}
-
 jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
   var el = $(this)
   var expression = $(this).closest('.expression')
@@ -1024,12 +2084,12 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
     }
   }, function(result) {
     if (expression.find('.expressionAttr[data-l1key=type]').value() == 'action') {
-      setUndoStack()
+      jeeP.setUndoStack()
       expression.find('.expressionAttr[data-l1key=expression]').value(result.human)
       jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
         expression.find('.expressionOptions').html(html)
         jeedomUtils.taAutosize()
-        updateTooltips()
+        jeeP.updateTooltips()
       })
     }
 
@@ -1040,7 +2100,7 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
         return
       }
 
-      var message = getSelectCmdExpressionMessage(result.cmd.subType, result.human)
+      var message = jeeP.getSelectCmdExpressionMessage(result.cmd.subType, result.human)
       bootbox.dialog({
         title: "{{Ajout d'une nouvelle condition}}",
         message: message,
@@ -1056,7 +2116,7 @@ jeeP.$divScenario.on('click', '.bt_selectCmdExpression', function(event) {
             label: "{{Valider}}",
             className: "btn-primary",
             callback: function() {
-              setUndoStack()
+              jeeP.setUndoStack()
               jeeFrontEnd.modifyWithoutSave = true
               var condition = result.human
               condition += ' ' + $('.conditionAttr[data-l1key=operator]').value()
@@ -1087,7 +2147,7 @@ jeeP.$divScenario.on('click', '.bt_selectOtherActionExpression', function(event)
   jeedom.getSelectActionModal({
     scenario: true
   }, function(result) {
-    setUndoStack()
+    jeeP.setUndoStack()
     expression.find('.expressionAttr[data-l1key=expression]').value(result.human);
     jeedom.cmd.displayActionOption(expression.find('.expressionAttr[data-l1key=expression]').value(), '', function(html) {
       expression.find('.expressionOptions').html(html)
@@ -1134,40 +2194,27 @@ jeeP.$divScenario.on('focusout', '.expression .expressionAttr[data-l1key=express
     jeedom.cmd.displayActionOption(el.value(), init(expression[0].options), function(html) {
       el.closest('.expression').find('.expressionOptions').html(html)
       jeedomUtils.taAutosize()
-      updateTooltips()
+      jeeP.updateTooltips()
     })
   }
 })
 
 //COPY - PASTE
-function removeObjectProp(obj, propToDelete) {
-  for (var property in obj) {
-    if (obj.hasOwnProperty(property)) {
-      if (typeof obj[property] == 'object') {
-        removeObjectProp(obj[property], propToDelete)
-      } else {
-        if (property === propToDelete) {
-          delete obj[property]
-        }
-      }
-    }
-  }
-}
 jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (!clickedBloc.parent('#div_scenarioElement').length) {
-    jeeFrontEnd.scenario.clipboard = clickedBloc.parent().parent()
+    jeeP.clipboard = clickedBloc.parent().parent()
   } else {
-    jeeFrontEnd.scenario.clipboard = clickedBloc
+    jeeP.clipboard = clickedBloc
   }
-  jeeFrontEnd.scenario.clipboard = getElement(clickedBloc)
+  jeeP.clipboard = jeeP.getElement(clickedBloc)
   //delete all id in properties to make it unique:
-  removeObjectProp(jeeFrontEnd.scenario.clipboard, 'id')
+  jeeP.removeObjectProp(jeeP.clipboard, 'id')
   localStorage.removeItem('jeedomScCopy')
-  localStorage.setItem('jeedomScCopy', JSON.stringify(jeeFrontEnd.scenario.clipboard))
+  localStorage.setItem('jeedomScCopy', JSON.stringify(jeeP.clipboard))
 
   if (event.ctrlKey || event.metaKey) {
-    setUndoStack()
+    jeeP.setUndoStack()
     clickedBloc.remove()
   }
   jeeFrontEnd.modifyWithoutSave = true
@@ -1176,13 +2223,13 @@ jeeP.$divScenario.on('click', '.bt_copyElement', function(event) {
 jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
   var clickedBloc = $(this).closest('.element')
   if (localStorage.getItem('jeedomScCopy')) {
-    jeeFrontEnd.scenario.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
+    jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
   }
 
-  setUndoStack()
+  jeeP.setUndoStack()
 
-  jeeFrontEnd.scenario.actionOptions = []
-  var pastedElement = addElement(jeeFrontEnd.scenario.clipboard)
+  jeeP.actionOptions = []
+  var pastedElement = jeeP.addElement(jeeP.clipboard)
   pastedElement = $(pastedElement)
 
   //Are we pasting inside an expresion:
@@ -1214,19 +2261,19 @@ jeeP.$divScenario.on('click', '.bt_pasteElement', function(event) {
     $(this).trigger('change')
   })
 
-  updateElseToggle()
+  jeeP.updateElseToggle()
 
   if (event.ctrlKey || event.metaKey) {
     clickedBloc.remove()
   }
 
-  setScenarioActionsOptions()
-  updateSortable()
+  jeeP.setScenarioActionsOptions()
+  jeeP.updateSortable()
   jeedom.scenario.setAutoComplete()
-  setEditors()
-  updateTooltips()
+  jeeP.setEditors()
+  jeeP.updateTooltips()
 
-  setTimeout(function() { updateTooltips() }, 500)
+  setTimeout(function() { jeeP.updateTooltips() }, 500)
 
   jeeFrontEnd.modifyWithoutSave = true
 })
@@ -1288,7 +2335,7 @@ jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
             $(this).attr('data-tmp-value', value)
           }
         })
-        var el = $(addExpression({
+        var el = $(jeeP.addExpression({
           type: 'element',
           element: {
             html: ui.item.wrapAll("<div/>").parent().html()
@@ -1312,8 +2359,8 @@ jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
         $("#div_scenarioElement").sortable("cancel")
       }
 
-      updateTooltips()
-      updateSortable()
+      jeeP.updateTooltips()
+      jeeP.updateSortable()
     },
     stop: function(event, ui) {
       $("#div_scenarioElement").sortable("disable")
@@ -1325,7 +2372,7 @@ jeeP.$divScenario.on('mouseenter', '.bt_sortable', function() {
 })
 
 jeeP.$divScenario.on('mousedown', '.bt_sortable', function() {
-  setUndoStack()
+  jeeP.setUndoStack()
 })
 
 jeeP.$divScenario.on('mouseout', '.bt_sortable', function() {
@@ -1363,933 +2410,6 @@ if (is_numeric(getUrlVars('id'))) {
   }
 }
 
-function updateSortable() {
-  $('.element').removeClass('sortable');
-  $('#div_scenarioElement > .element').addClass('sortable')
-  $('.subElement .expressions').each(function() {
-    if ($(this).children('.sortable:not(.empty)').length > 0) {
-      $(this).children('.sortable.empty').hide()
-    } else {
-      $(this).children('.sortable.empty').show()
-    }
-  })
-}
-
-function updateElseToggle() {
-  $('.subElementELSE').each(function() {
-    if (!$(this).closest('.element').children('.subElementTHEN').find('.bt_showElse:first i').hasClass('fa-sort-down')) {
-      if ($(this).children('.expressions').children('.expression').length == 0) {
-        $(this).closest('.element').children('.subElementTHEN').find('.bt_showElse').first().trigger('click')
-      }
-    }
-  })
-}
-
-function updateElementCollpase() {
-  $('.bt_collapse').each(function() {
-    if ($(this).value() == 0) {
-      $(this).closest('.element').removeClass('elementCollapse')
-    } else {
-      $(this).closest('.element').addClass('elementCollapse')
-    }
-  })
-}
-
-
-function setScenarioActionsOptions() {
-  jeedom.cmd.displayActionsOption({
-    params: jeeFrontEnd.scenario.actionOptions,
-    async: false,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $.showLoading()
-      for (var i in data) {
-        $('#' + data[i].id).append(data[i].html.html)
-      }
-      $.hideLoading()
-      jeedomUtils.taAutosize()
-    }
-  })
-}
-
-function printScenario(_id) {
-  $.hideAlert()
-  $.showLoading()
-  $('#emptyModeWarning').hide()
-  jeedom.scenario.update[_id] = function(_options) {
-    if (_options.scenario_id = !jeeFrontEnd.scenario.$divScenario.getValues('.scenarioAttr')[0]['id']) {
-      return
-    }
-    switch (_options.state) {
-      case 'error':
-        $('#bt_stopScenario').hide()
-        $('#span_ongoing').text('{{Erreur}}')
-        $('#span_ongoing').removeClass('label-info label-danger label-success label-info').addClass('label-warning')
-        break
-      case 'on':
-        $('#bt_stopScenario').show()
-        $('#span_ongoing').text('{{Actif}}')
-        $('#span_ongoing').removeClass('label-info label-danger label-warning label-info').addClass('label-success')
-        break
-      case 'starting':
-        $('#bt_stopScenario').show()
-        $('#span_ongoing').text('{{Démarrage}}')
-        $('#span_ongoing').removeClass('label-success label-danger label-warning label-info').addClass('label-warning')
-        break
-      case 'in progress':
-        $('#bt_stopScenario').show()
-        $('#span_ongoing').text('{{En cours}}')
-        $('#span_ongoing').removeClass('label-success label-danger label-warning label-info').addClass('label-info')
-        break
-      case 'stop':
-        $('#bt_stopScenario').hide()
-        $('#span_ongoing').text('{{Arrêté}}')
-        $('#span_ongoing').removeClass('label-info label-success label-warning label-info').addClass('label-danger')
-        break
-    }
-  }
-  jeedom.scenario.get({
-    id: _id,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      });
-    },
-    success: function(data) {
-      $('.scenarioAttr').value('')
-      $('.scenarioAttr[data-l1key=object_id] option').first().attr('selected', true)
-      $('.scenarioAttr[data-l1key=object_id]').val('')
-      jeeFrontEnd.scenario.$divScenario.setValues(data, '.scenarioAttr')
-      data.lastLaunch = (data.lastLaunch == null) ? '{{Jamais}}' : data.lastLaunch
-      $('#span_lastLaunch').text(data.lastLaunch)
-
-      $.clearDivContent('div_scenarioElement')
-      $('.provokeMode').empty()
-      $('.scheduleMode').empty()
-      $('.scenarioAttr[data-l1key=mode]').trigger('change')
-      for (var i in data.schedules) {
-        $('#div_schedules').schedule.display(data.schedules[i])
-      }
-
-      jeedom.scenario.update[_id](data)
-      if (data.isActive != 1) {
-        $('#in_ongoing').removeClass('label-danger').removeClass('label-success').text('{{Inactif}}')
-      }
-
-      if ($.isArray(data.trigger)) {
-        for (var i in data.trigger) {
-          if (data.trigger[i] != '' && data.trigger[i] != null) {
-            addTrigger(data.trigger[i])
-          }
-        }
-      } else {
-        if (data.trigger != '' && data.trigger != null) {
-          addTrigger(data.trigger)
-        }
-      }
-
-      if ($.isArray(data.schedule)) {
-        for (var i in data.schedule) {
-          if (data.schedule[i] != '' && data.schedule[i] != null) {
-            addSchedule(data.schedule[i])
-          }
-        }
-      } else {
-        if (data.schedule != '' && data.schedule != null) {
-          addSchedule(data.schedule)
-        }
-      }
-      $('.scenario_link').empty()
-      var html = ''
-      if (data.scenario_link.scenario) {
-        for (var i in data.scenario_link.scenario) {
-          if (data.scenario_link.scenario[i].isActive == 1) {
-            html += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
-          } else {
-            html += '<span class="label label-danger cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
-          }
-        }
-      }
-      $('.scenario_link').append(html)
-      if (data.elements.length == 0) {
-        $('#div_scenarioElement').append('<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
-      }
-      jeeFrontEnd.scenario.actionOptions = []
-      var elements = ''
-      for (var i in data.elements) {
-        elements += addElement(data.elements[i])
-      }
-      $('#div_scenarioElement').append(elements)
-      $('.subElementAttr[data-l1key=options][data-l2key=enable]').trigger('change')
-      $('.expressionAttr[data-l1key=options][data-l2key=enable]').trigger('change')
-      setScenarioActionsOptions()
-      $('#div_editScenario').show()
-      updateSortable()
-      jeedom.scenario.setAutoComplete()
-      updateElementCollpase()
-      updateElseToggle()
-      jeedomUtils.taAutosize()
-      var title = ''
-      if (data.name) title = data.name + ' - Jeedom'
-      var hash = window.location.hash
-      jeedomUtils.addOrUpdateUrl('id', data.id, title)
-      if (hash == '') {
-        $('.nav-tabs a[href="#generaltab"]').click()
-      } else {
-        window.location.hash = hash
-      }
-      setTimeout(function() {
-        setEditors()
-      }, 100)
-      jeeFrontEnd.modifyWithoutSave = false
-      resetUndo()
-      setTimeout(function() {
-        jeeFrontEnd.modifyWithoutSave = false
-      }, 1000)
-      setTimeout(function() {
-        checkNoMode()
-        updateTooltips()
-      }, 500)
-
-      jeedom.scenario.setAutoComplete()
-      $('#humanNameTag').html(data.humanNameTag)
-    }
-  })
-}
-
-function saveScenario(_callback) {
-  $.hideAlert()
-  var scenario = jeeFrontEnd.scenario.$divScenario.getValues('.scenarioAttr')[0]
-  if (typeof scenario.trigger == 'undefined') {
-    scenario.trigger = ''
-  }
-  if (typeof scenario.schedule == 'undefined') {
-    scenario.schedule = ''
-  }
-  var elements = []
-  $('#div_scenarioElement').children('.element').each(function() {
-    elements.push(getElement($(this)))
-  })
-  scenario.elements = elements
-  jeedom.scenario.save({
-    scenario: scenario,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeeFrontEnd.modifyWithoutSave = false
-      resetUndo()
-      var url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1'
-      if (window.location.hash != '') {
-        url += window.location.hash
-      }
-      jeedomUtils.loadPage(url)
-      if (typeof _callback == 'function') {
-        _callback()
-      }
-    }
-  })
-}
-
-function addTrigger(_trigger) {
-  var div = '<div class="form-group trigger">'
-  div += '<label class="col-xs-3 control-label">{{Evénement}}</label>'
-  div += '<div class="col-xs-9">'
-  div += '<div class="input-group">'
-  div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="trigger" value="' + _trigger.replace(/"/g, '&quot;') + '" >'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" tooltip="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
-  div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" tooltip="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
-  div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" tooltip="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
-  div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger roundedRight"><i class="fas fa-minus-circle"></i></a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-  div += '</div>'
-  $('.provokeMode').append(div)
-}
-
-function addSchedule(_schedule) {
-  var div = '<div class="form-group schedule">'
-  div += '<label class="col-xs-3 control-label">{{Programmation}}</label>'
-  div += '<div class="col-xs-9">'
-  div += '<div class="input-group">'
-  div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="schedule" value="' + _schedule.replace(/"/g, '&quot;') + '">'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-default btn-sm cursor jeeHelper" data-helper="cron"><i class="fas fa-question-circle"></i></a>'
-  div += '<a class="btn btn-default btn-sm cursor bt_removeSchedule roundedRight"><i class="fas fa-minus-circle"></i></a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-  div += '</div>'
-  $('.scheduleMode').append(div)
-}
-
-function addExpression(_expression) {
-  if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') {
-    return ''
-  }
-  var sortable = 'sortable'
-  if (_expression.type == 'condition' || _expression.type == 'code') {
-    sortable = 'noSortable'
-  }
-
-  var retour = '<div class="expression ' + sortable + ' col-xs-12" >'
-  if (_expression.type == 'action') {
-    retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >'
-  }
-  retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>'
-  retour += '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value="' + init(_expression.scenarioSubElement_id) + '"/>'
-  retour += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="' + init(_expression.type) + '"/>'
-  switch (_expression.type) {
-    case 'condition':
-      if (isset(_expression.expression)) {
-        _expression.expression = _expression.expression.replace(/"/g, '&quot;')
-      }
-      retour += '<div class="input-group input-group-sm" >'
-      retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />'
-      retour += '<span class="input-group-btn">'
-      retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
-      retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" tooltip="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
-      retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
-      retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
-      retour += '</span>'
-      retour += '</div>'
-      break
-    case 'element':
-      retour += '<div class="col-xs-12" >';
-      if (isset(_expression.element) && isset(_expression.element.html)) {
-        retour += _expression.element.html
-      } else {
-        var element = addElement(_expression.element, true)
-        if ($.trim(element) == '') {
-          return ''
-        }
-        retour += element
-      }
-      retour += '</div>'
-      break
-    case 'action':
-      retour += '<div class="col-xs-1" >'
-      retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>'
-      if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
-        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  tooltip="{{Décocher pour désactiver l\'action}}"/>'
-      } else {
-        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  tooltip="{{Décocher pour désactiver l\'action}}"/>'
-      }
-      if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
-        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
-      } else {
-        retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
-      }
-      var expression_txt = init(_expression.expression)
-      if (typeof expression_txt != 'string') {
-        expression_txt = json_encode(expression_txt)
-      }
-      retour += '</div>'
-      retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">'
-      retour += '<span class="input-group-btn">'
-      retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" tooltip="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
-      retour += '</span>'
-      retour += '<input class="expressionAttr form-control" data-l1key="expression" value="' + expression_txt.replace(/"/g, '&quot;') + '"/>'
-      retour += '<span class="input-group-btn">'
-      retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" tooltip="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
-      retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" tooltip="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
-      retour += '</span>'
-      retour += '</div></div>'
-      var actionOption_id = jeedomUtils.uniqId()
-      retour += '<div class="col-xs-7 expressionOptions"  id="' + actionOption_id + '">'
-      retour += '</div>'
-      jeeFrontEnd.scenario.actionOptions.push({
-        expression: init(_expression.expression, ''),
-        options: _expression.options,
-        id: actionOption_id
-      })
-      break
-    case 'code':
-      retour += '<div>'
-      retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>'
-      retour += '</div>';
-      break;
-    case 'comment':
-      retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>'
-      break
-  }
-  retour += '</div>'
-  return retour
-}
-
-function addSubElement(_subElement) {
-  if (!isset(_subElement.type) || _subElement.type == '') {
-    return ''
-  }
-  if (!isset(_subElement.options)) {
-    _subElement.options = {}
-  }
-  var noSortable = ''
-  if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
-    noSortable = 'noSortable'
-  }
-
-  var blocClass = ''
-  switch (_subElement.type) {
-    case 'if':
-      blocClass = 'subElementIF'
-      break
-    case 'then':
-      blocClass = 'subElementTHEN'
-      break
-    case 'else':
-      blocClass = 'subElementELSE'
-      break
-    case 'for':
-      blocClass = 'subElementFOR'
-      break
-    case 'in':
-      blocClass = 'subElementIN'
-      break
-    case 'at':
-      blocClass = 'subElementAT'
-      break
-    case 'do':
-      blocClass = 'subElementDO'
-      break
-    case 'code':
-      blocClass = 'subElementCODE'
-      break
-    case 'comment':
-      blocClass = 'subElementCOMMENT'
-      break
-    case 'action':
-      blocClass = 'subElementACTION'
-      break
-  }
-  var retour = '<div class="subElement ' + blocClass + ' ' + noSortable + '">'
-  retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>'
-  retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>'
-  retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>'
-
-  switch (_subElement.type) {
-    case 'if':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      } else {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      }
-      retour += '</div>'
-      retour += '<div><legend >{{SI}}</legend></div>'
-
-      retour += '<div >'
-      if (!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
-        retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
-      } else {
-        retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
-      }
-      retour += '</div>'
-
-      retour += '<div class="expressions" >'
-      var expression = {
-        type: 'condition'
-      }
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-        expression = _subElement.expressions[0]
-      }
-      retour += addExpression(expression);
-      retour += '  </div>'
-      retour = addElButtons(retour)
-      break
-
-    case 'then':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
-      retour += '<div class="subElementFields">'
-      retour += '<legend >{{ALORS}}</legend>'
-      retour += getAddButton(_subElement.type,true)
-      retour += '</div>'
-      retour += '<div class="expressions">'
-      retour += '<div class="sortable empty" ></div>'
-      if (isset(_subElement.expressions)) {
-        for (var k in _subElement.expressions) {
-          retour += addExpression(_subElement.expressions[k])
-        }
-      }
-      retour += '</div>'
-      break
-
-    case 'else':
-      retour += '<input class="subElementAttr subElementElse" data-l1key="subtype" style="display : none;" value="action"/>'
-      retour += '<div class="subElementFields">'
-      retour += '<legend >{{SINON}}</legend>'
-      retour += getAddButton(_subElement.type)
-      retour += '</div>'
-      retour += '<div class="expressions">'
-      retour += '<div class="sortable empty" ></div>'
-      if (isset(_subElement.expressions)) {
-        for (var k in _subElement.expressions) {
-          retour += addExpression(_subElement.expressions[k])
-        }
-      }
-      retour += '</div>'
-      break
-
-    case 'for':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      } else {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      }
-      retour += '</div>'
-      retour += '<div>'
-      retour += '<legend >{{DE 1 A}}</legend>'
-      retour += '</div>'
-      retour += '<div class="expressions" >'
-      var expression = {
-        type: 'condition'
-      }
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-        expression = _subElement.expressions[0]
-      }
-      retour += addExpression(expression)
-      retour += '</div>'
-      retour = addElButtons(retour)
-      break
-
-    case 'in':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      } else {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      }
-      retour += '</div>'
-      retour += '<div>'
-      retour += '<legend tooltip="{{Action DANS x minutes}}">{{DANS}}</legend>'
-      retour += '</div>'
-      retour += '<div class="expressions" >'
-      var expression = {
-        type: 'condition'
-      }
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-        expression = _subElement.expressions[0]
-      }
-      retour += addExpression(expression)
-      retour += '</div>'
-      retour = addElButtons(retour)
-      break
-
-    case 'at':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      } else {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      }
-      retour += '</div>'
-      retour += '<div>'
-      retour += '<legend >{{A}}</legend><span>(Hmm)</span>'
-      retour += '</div>'
-      retour += '<div class="expressions" >'
-      var expression = {
-        type: 'condition'
-      }
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-        expression = _subElement.expressions[0]
-      }
-      retour += addExpression(expression)
-      retour += '</div>'
-      retour = addElButtons(retour)
-      break
-
-    case 'do':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
-      retour += '<div class="subElementFields">'
-      retour += '<legend >{{FAIRE}}</legend>'
-      retour += getAddButton(_subElement.type)
-      retour += '</div>'
-      retour += '<div class="expressions">'
-      retour += '<div class="sortable empty" ></div>'
-      if (isset(_subElement.expressions)) {
-        for (var k in _subElement.expressions) {
-          retour += addExpression(_subElement.expressions[k])
-        }
-      }
-      retour += '</div>'
-      break
-
-    case 'code':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      } else {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      }
-      retour += '</div>'
-      retour += '<div>'
-      retour += '<legend >{{CODE}}</legend>'
-      var expression = {
-        type: 'code'
-      }
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression == "string") {
-        expression = _subElement.expressions[0]
-        retour += '<div class="blocPreview">' + expression.expression.substring(0, 200).HTMLFormat() + '</div>'
-      } else {
-        retour += '<div class="blocPreview"></div>'
-      }
-      retour += '</div>'
-      retour += '<div class="expressions">'
-      retour += addExpression(expression)
-      retour += '</div>'
-      retour = addElButtons(retour)
-      break
-
-    case 'comment':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="comment"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      retour += '</div>'
-      retour += '<div>'
-      retour += '<legend >{{COMMENTAIRE}}</legend>'
-      var expression = {
-        type: 'comment'
-      }
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-        expression = _subElement.expressions[0]
-        if (typeof expression.expression === 'object') {
-          expression.expression = JSON.stringify(expression.expression, null, 2)
-        }
-        var txt = expression.expression.substring(0, 200).HTMLFormat()
-        txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
-        retour += '<div class="blocPreview">' + txt + '</div>'
-      } else {
-        retour += '<div class="blocPreview"></div>'
-      }
-      retour += '</div>'
-      retour += '<div class="expressions">'
-      retour += addExpression(expression)
-      retour += '</div>'
-      retour = addElButtons(retour)
-      break
-
-    case 'action':
-      retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
-      retour += '<div>'
-      retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
-      if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
-      } else {
-        retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
-      }
-      if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      } else {
-        retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
-      }
-      retour += '<legend class="legendHidden">{{ACTION}}</legend>'
-      if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-        expression = _subElement.expressions[0]
-        if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
-          retour += '<div class="blocPreview">' + expression.element.subElements[0].expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
-        } else {
-          retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
-        }
-      } else {
-        retour += '<div class="blocPreview"></div>'
-      }
-      retour += '</div>'
-      retour += '<div class="subElementFields">'
-      retour += '<legend >{{ACTION}}</legend><br/>'
-      retour += getAddButton(_subElement.type)
-      retour += '</div>'
-      retour += '<div class="expressions">'
-      retour += '<div class="sortable empty" ></div>'
-      if (isset(_subElement.expressions)) {
-        for (var k in _subElement.expressions) {
-          retour += addExpression(_subElement.expressions[k])
-        }
-      }
-      retour += '</div>'
-      retour = addElButtons(retour)
-      break
-  }
-  retour += '</div>'
-  return retour
-}
-
-function addElButtons(_retour) {
-  _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" tooltip="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
-  _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" tooltip="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
-  _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" tooltip="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
-  return _retour
-}
-
-function addElement(_element) {
-  if (!isset(_element)) {
-    return
-  }
-  if (!isset(_element.type) || _element.type == '') {
-    return ''
-  }
-
-  var elementClass = ''
-  switch (_element.type) {
-    case 'if':
-      elementClass = 'elementIF'
-      break
-    case 'for':
-      elementClass = 'elementFOR'
-      break
-    case 'in':
-      elementClass = 'elementIN'
-      break
-    case 'at':
-      elementClass = 'elementAT'
-      break
-    case 'code':
-      elementClass = 'elementCODE'
-      break
-    case 'comment':
-      elementClass = 'elementCOM'
-      break
-    case 'action':
-      elementClass = 'elementACTION'
-  }
-
-  var div = '<div class="element ' + elementClass + '">'
-
-  div += '<input class="elementAttr" data-l1key="id" style="display : none;" value="' + init(_element.id) + '"/>'
-  div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>'
-  switch (_element.type) {
-    case 'if':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'if'
-        })
-        div += addSubElement({
-          type: 'then'
-        })
-        div += addSubElement({
-          type: 'else'
-        })
-      }
-      break
-    case 'for':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'for'
-        })
-        div += addSubElement({
-          type: 'do'
-        })
-      }
-      break;
-    case 'in':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'in'
-        })
-        div += addSubElement({
-          type: 'do'
-        })
-      }
-      break
-    case 'at':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'at'
-        })
-        div += addSubElement({
-          type: 'do'
-        })
-      }
-      break
-    case 'code':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'code'
-        })
-      }
-      break
-    case 'comment':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'comment'
-        })
-      }
-      break
-    case 'action':
-      if (isset(_element.subElements) && isset(_element.subElements)) {
-        for (var j in _element.subElements) {
-          div += addSubElement(_element.subElements[j])
-        }
-      } else {
-        div += addSubElement({
-          type: 'action'
-        })
-      }
-      break
-  }
-  div += '</div>'
-  return div
-}
-
-function getElement(_element) {
-  var element = _element.getValues('.elementAttr', 1)
-  if (element.length == 0) {
-    return
-  }
-  element = element[0]
-  element.subElements = []
-
-  var subElement, expression_dom, expression, id
-  _element.findAtDepth('.subElement', 2).each(function() {
-    subElement = $(this).getValues('.subElementAttr', 2)[0]
-    subElement.expressions = []
-    expression_dom = $(this).children('.expressions')
-    if (expression_dom.length == 0) {
-      expression_dom = $(this).children('legend').findAtDepth('.expressions', 2)
-    }
-    expression_dom.children('.expression').each(function() {
-      expression = $(this).getValues('.expressionAttr', 3)[0]
-      if (expression.type == 'element') {
-        expression.element = getElement($(this).findAtDepth('.element', 2))
-      }
-      if (subElement.type == 'code') {
-        id = $(this).find('.expressionAttr[data-l1key=expression]').attr('id')
-        if (id != undefined && isset(jeeFrontEnd.scenario.editors[id])) {
-          expression.expression = jeeFrontEnd.scenario.editors[id].getValue()
-        }
-      }
-      subElement.expressions.push(expression)
-
-    });
-    element.subElements.push(subElement)
-  });
-  return element
-}
-
-function updateTooltips() {
-  //in scenarios, for faster undo/redo, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
-  $('[tooltip]:not(.tooltipstered)').each(function() {
-    $(this).attr('title', $(this).attr('tooltip'))
-  })
-  $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-}
-
-function getAddButton(_type,_caret) {
-  if (!isset(_caret)) _caret = false
-  var retour = ''
-  if (_caret) {
-    retour += '<div class="input-group">'
-    retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
-    retour += '<i class="fas fa-sort-up"></i>'
-    retour += '</button>'
-    retour += '<span class="input-group-btn">'
-  }
-  retour += '<div class="dropdown">'
-  if (_caret) {
-    retour += '<button class="btn btn-default dropdown-toggle roundedRight" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
-  } else {
-    retour += '<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">'
-  }
-  retour += '<i class="fas fa-plus-circle"></i> {{Ajouter}}'
-  retour += '<span class="caret"></span>'
-  retour += '</button>'
-
-  retour += '<ul class="dropdown-menu">'
-  retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
-  retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
-  if(_type != 'action' && _type != 'if'  && _type != 'in'  && _type != 'for'  && _type != 'at'){
-      retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
-  }
-  retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
-  retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
-  retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
-  retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
-  retour += '<li><a class="fromSubElement" data-type="comment">{{Bloc Commentaire}}</a></li>'
-  retour += '</ul>'
-
-  retour += '</div>'
-  if (_caret) {
-    retour += '</span>'
-    retour += '</div>'
-  }
-  return retour
-}
-
 jeeP.$divScenario.on('shown.bs.dropdown', '.dropdown', function() {
   if ( $(this).offset().top > window.innerHeight - 220) {
     $(this).addClass('dropup')
@@ -2301,10 +2421,10 @@ jeeP.$divScenario.on('shown.bs.dropdown', '.dropdown', function() {
 
 jeeP.$divScenario.on('click', '.fromSubElement', function(event) {
   var elementType = $(this).attr('data-type')
-  setUndoStack()
+  jeeP.setUndoStack()
 
   var elementDiv = $(this).closest('.subElement').find('.expressions').eq(0)
-  var newEL = $(addExpression({
+  var newEL = $(jeeP.addExpression({
     type: 'element',
     element: {
       type: elementType
@@ -2312,169 +2432,28 @@ jeeP.$divScenario.on('click', '.fromSubElement', function(event) {
   }))
   elementDiv.append(newEL.addClass('disableElement'))
 
-  setEditors()
-  updateSortable()
-  updateElseToggle()
+  jeeP.setEditors()
+  jeeP.updateSortable()
+  jeeP.updateElseToggle()
   jeeFrontEnd.modifyWithoutSave = true
-  updateTooltips()
+  jeeP.updateTooltips()
   jeedom.scenario.setAutoComplete()
   setTimeout(function() {
     newEL.removeClass('disableElement')
   }, 600)
 })
 
-
 //UNDO Management
 jeeP.bt_undo.off('click').on('click', function() {
   if (!jeedomUtils.getOpenedModal()) {
-    undo()
-    jeeFrontEnd.scenario.PREV_FOCUS = null
+    jeeP.undo()
+    jeeP.PREV_FOCUS = null
   }
 })
 jeeP.bt_redo.off('click').on('click', function() {
   if (!jeedomUtils.getOpenedModal()) {
-    redo()
-    jeeFrontEnd.scenario.PREV_FOCUS = null
+    jeeP.redo()
+    jeeP.PREV_FOCUS = null
   }
 })
 
-function reloadStack(loadStack) {
-  $('#div_scenarioElement').empty()
-  jeeFrontEnd.scenario.actionOptions = []
-  var elements = ''
-  for (var i in loadStack) {
-    elements += addElement(loadStack[i])
-  }
-
-  $('#div_scenarioElement').append(elements)
-
-  //Synch collapsed elements:
-  $('i.fa-eye-slash').each(function() {
-    $(this).parents('.element').first().addClass('elementCollapse')
-  })
-
-  updateElseToggle()
-  setScenarioActionsOptions()
-}
-
-function setUndoStack(state = 0) {
-  syncEditors()
-  jeeFrontEnd.scenario.bt_undo.removeClass('disabled')
-  jeeFrontEnd.scenario.bt_redo.addClass('disabled')
-  var newStack = []
-  $('#div_scenarioElement').children('.element').each(function() {
-    newStack.push(getElement($(this)))
-  })
-
-  if (newStack == $(jeeFrontEnd.scenario.undoStack[state - 1])) return
-  if (state == 0) {
-    state = jeeFrontEnd.scenario.undoState = jeeFrontEnd.scenario.undoStack.length
-    jeeFrontEnd.scenario.reDo = 0
-  }
-  jeeFrontEnd.scenario.undoStack[state] = newStack
-  //limit stack:
-  if (state >= jeeFrontEnd.scenario.firstState + jeeFrontEnd.scenario.undoLimit) {
-    jeeFrontEnd.scenario.firstState += 1
-    jeeFrontEnd.scenario.undoStack[jeeFrontEnd.scenario.firstState - 1] = 0
-  }
-}
-
-function undo() {
-  if (jeeP.undoState < jeeP.firstState) {
-    return
-  }
-  try {
-    var loadState = jeeP.undoState
-    if (jeeP.reDo == 0) setUndoStack(jeeP.undoState + 1)
-    reloadStack(jeeP.undoStack[loadState])
-    jeeP.undoState -= 1
-
-    if (jeeP.undoState < jeeP.firstState) jeeP.bt_undo.addClass('disabled')
-    jeeP.bt_redo.removeClass('disabled')
-  } catch (error) {
-    console.log('undo ERROR:', error)
-  }
-  setTimeout(function() { updateTooltips() }, 500)
-  jeedom.scenario.setAutoComplete()
-  resetEditors()
-}
-
-function redo() {
-  jeeP.reDo = 1
-  if (jeeP.undoState < jeeP.firstState - 1 || jeeP.undoState + 2 >= jeeP.undoStack.length) {
-    return
-  }
-  jeeP.bt_undo.removeClass('disabled')
-  try {
-    var loadState = jeeP.undoState + 2
-    reloadStack(jeeP.undoStack[loadState])
-    jeeP.undoState += 1
-
-    if (jeeP.undoState < jeeP.firstState - 1 || jeeP.undoState + 2 >= jeeP.undoStack.length) jeeP.bt_redo.addClass('disabled')
-  } catch (error) {
-    console.log('redo ERROR:', error)
-  }
-  setTimeout(function() { updateTooltips() }, 500)
-  jeedom.scenario.setAutoComplete()
-  resetEditors()
-}
-
-function resetUndo() {
-  jeeFrontEnd.scenario.undoStack = []
-  jeeFrontEnd.scenario.undoState = -1
-  jeeFrontEnd.scenario.firstState = 0
-  jeeFrontEnd.scenario.undoLimit = 10
-  jeeFrontEnd.scenario.bt_undo.addClass('disabled')
-  jeeFrontEnd.scenario.bt_redo.addClass('disabled')
-}
-
-//Code Editors:
-function setEditors() {
-  var expression, code
-  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
-    expression = $(this).closest('.expression')
-    code = expression.find('.expressionAttr[data-l1key=expression]')
-    $(this).find('.blocPreview').html(code.val())
-    if (code.attr('id') == undefined && code.is(':visible')) {
-      code.uniqueId()
-      var id = code.attr('id')
-      setTimeout(function() {
-        jeeFrontEnd.scenario.editors[id] = CodeMirror.fromTextArea(document.getElementById(id), {
-          lineNumbers: true,
-          lineWrapping: true,
-          mode: 'text/x-php',
-          matchBrackets: true,
-          viewportMargin: Infinity,
-          foldGutter: true,
-          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
-        })
-        jeeFrontEnd.scenario.editors[id].setOption("extraKeys", {
-          "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
-          "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
-        })
-      }, 1)
-    }
-  })
-}
-
-function resetEditors() {
-  jeeFrontEnd.scenario.editors = []
-  var expression, code
-  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
-    expression = $(this).closest('.expression')
-    code = expression.find('.expressionAttr[data-l1key=expression]')
-    code.removeAttr('id').show()
-    expression.find('.CodeMirror.CodeMirror-wrap').remove()
-  })
-  setEditors()
-}
-
-function syncEditors() {
-  var expression, code, id
-  $('.expressionAttr[data-l1key=type][value=code]').each(function() {
-    expression = $(this).closest('.expression')
-    code = expression.find('.expressionAttr[data-l1key=expression]')
-    id = code.attr('id')
-    if (isset(jeeFrontEnd.scenario.editors[id])) code.html(jeeFrontEnd.scenario.editors[id].getValue())
-  })
-}
