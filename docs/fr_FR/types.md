@@ -19,12 +19,12 @@ Cette page propose un rangement par type d'équipement : Prise, Lumière, Volet,
 
 > **Tip**
 >
-> - Quand vous déplacer un équipement dans la partie **Equipements sans type**, Jeedom vous propose de supprimer les Types Génériques sur ses commandes.
-> - Vous pouvez déplacer plusieurs équipements d'un coup en cochant les cases à cocher à gauche de ceux-ci.
+> - Quand vous déplacez un équipement dans la partie **Equipements sans type**, Jeedom vous propose de supprimer les Types Génériques sur ses commandes.
+> - Vous pouvez déplacer plusieurs équipements d'un coup en cochant les cases à cocher à gauche de celles-ci.
 
 ## Type de commande
 
-Une fois un équipement positionné dans le bon *Type*, en cliquant dessus vous accédez à la liste de ses commandes, colorées différemment si c'est une *Info* (Bleue) ou une *Action* (Orange).
+Une fois un équipement positionné dans le bon *Type*, en cliquant dessus vous accédez à la liste de ses commandes, colorées différemments si c'est une *Info* (Bleue) ou une *Action* (Orange).
 
 Au clic droit sur une commande, vous pouvez alors lui attribuer un Type Générique correspond aux spécifiées de cette commande (type Info/Action, sous-type Numérique, Binaire, etc).
 
