@@ -329,8 +329,6 @@ $(function() {
   if (is_numeric(jeephp2js.selectId)) {
     if ($('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').length != 0) {
       $('.objectDisplayCard[data-object_id=' + jeephp2js.selectId + ']').click()
-    } else {
-      $('.objectDisplayCard').first().click()
     }
   }
 })

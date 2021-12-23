@@ -19,8 +19,6 @@
 if (!jeeFrontEnd.overview) {
   jeeFrontEnd.overview = {
     $summaryContainer: null,
-    modal: null,
-    modalContent: null,
     summaryObjEqs: [],
     _SummaryObserver_: null,
     observerConfig: {
