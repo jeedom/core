@@ -316,6 +316,9 @@ function addEditviewZone(_viewZone) {
     div += '<option value="1">{{Largeur}} 1</option>'
     div += '</select>'
     if (init(_viewZone.type, 'widget') == 'graph') {
+      div += '<span class="viewZoneAttr form-control" style="width: auto; background: transparent !important;">{{Hauteur}} (px)</span>'
+      div += '<input class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="height" style="width : 150px;">'
+
       div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">'
       div += '<option value="30 min">{{30 min}}</option>'
       div += '<option value="1 hour">{{1 heure}}</option>'

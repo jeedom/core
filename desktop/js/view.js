@@ -164,11 +164,14 @@ if (view_id != '') {
         $(this).find('.viewZoneData').each(function() {
           var cmdId = $(this).attr('data-cmdid')
           var el = $(this).attr('data-el')
+          var options = json_decode($(this).attr('data-option').replace(/'/g, '"'))
+          var height = $(this).attr('data-height')
           jeedom.history.drawChart({
             cmd_id: cmdId,
             el: el,
+            height: height != '' ? height : null,
             dateRange: $(this).attr('data-daterange'),
-            option: json_decode($(this).attr('data-option').replace(/'/g, '"')),
+            option: options,
             success: function(data) {
               $('.chartToDraw > .viewZoneData[data-cmdid="' + cmdId + '"]').remove()
             }
