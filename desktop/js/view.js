@@ -166,7 +166,7 @@ if (view_id != '') {
           var el = $(this).attr('data-el')
           jeedom.history.drawChart({
             cmd_id: cmdId,
-            el: $(this).attr('data-el'),
+            el: el,
             dateRange: $(this).attr('data-daterange'),
             option: json_decode($(this).attr('data-option').replace(/'/g, '"')),
             success: function(data) {
