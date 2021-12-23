@@ -21,6 +21,7 @@ if (!jeeFrontEnd.connection) {
     init: function() {
       this.deepUrl = window.location.href
       if (this.deepUrl.includes('logout')) this.deepUrl = ''
+      window.jeeP = this
     },
   }
 }
@@ -56,8 +57,8 @@ $('#bt_login_validate').on('click', function() {
       } else {
         $('.veen').animateCss('bounceOut', function() {
           $('.veen').hide()
-          if (isset(jeeFrontEnd.connection.deepUrl) && jeeFrontEnd.connection.deepUrl.includes('index.php?v=d')) {
-            window.location.href = jeeFrontEnd.connection.deepUrl
+          if (isset(jeeP.deepUrl) && jeeP.deepUrl.includes('index.php?v=d')) {
+            window.location.href = jeeP.deepUrl
           } else {
             window.location.href = 'index.php?v=d'
           }

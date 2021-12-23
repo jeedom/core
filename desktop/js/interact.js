@@ -19,6 +19,7 @@
 if (!jeeFrontEnd.interact) {
   jeeFrontEnd.interact = {
     init: function() {
+      window.jeeP = this
       this.actionOptions = []
     },
     printInteract: function(_id) {
@@ -30,7 +31,7 @@ if (!jeeFrontEnd.interact) {
       jeedom.interact.get({
         id: _id,
         success: function(data) {
-          jeeFrontEnd.interact.actionOptions = []
+          jeeP.actionOptions = []
           $('#div_action').empty()
           $('.interactAttr').value('')
           $('.interact').setValues(data, '.interactAttr')
@@ -72,7 +73,7 @@ if (!jeeFrontEnd.interact) {
           }
           if (isset(data.actions.cmd) && $.isArray(data.actions.cmd) && data.actions.cmd.length != null) {
             for (var i in data.actions.cmd) {
-              jeeFrontEnd.interact.addAction(data.actions.cmd[i], 'action', '{{Action}}');
+              jeeP.addAction(data.actions.cmd[i], 'action', '{{Action}}');
             }
           }
           jeedomUtils.taAutosize()
@@ -86,7 +87,7 @@ if (!jeeFrontEnd.interact) {
           }
 
           jeedom.cmd.displayActionsOption({
-            params: jeeFrontEnd.interact.actionOptions,
+            params: jeeP.actionOptions,
             async: false,
             error: function(error) {
               $.fn.showAlert({
@@ -139,7 +140,7 @@ if (!jeeFrontEnd.interact) {
       div += '<div class="col-sm-7 actionOptions" id="' + actionOption_id + '"></div>'
       $('#div_' + _type).append(div)
       $('#div_' + _type + ' .' + _type + '').last().setValues(_action, '.expressionAttr')
-      jeeFrontEnd.interact.actionOptions.push({
+      jeeP.actionOptions.push({
         expression: init(_action.cmd, ''),
         options: _action.options,
         id: actionOption_id
@@ -147,6 +148,8 @@ if (!jeeFrontEnd.interact) {
     },
   }
 }
+
+jeeFrontEnd.interact.init()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -292,7 +295,7 @@ $(function() {
                 }
                 window.open(url).focus()
               } else {
-                jeeFrontEnd.interact.printInteract(options.commands[key].id)
+                jeeP.printInteract(options.commands[key].id)
               }
             },
             items: contextmenuitems
@@ -377,7 +380,7 @@ $('.interactDisplayCard').off('click').on('click', function(event) {
     var url = '/index.php?v=d&p=interact&id=' + $(this).attr('data-interact_id')
     window.open(url).focus()
   } else {
-    jeeFrontEnd.interact.printInteract($(this).attr('data-interact_id'))
+    jeeP.printInteract($(this).attr('data-interact_id'))
   }
 })
 $('.interactDisplayCard').off('mouseup').on('mouseup', function(event) {
@@ -553,7 +556,7 @@ $("#bt_removeInteract").on('click', function() {
 })
 
 $('#bt_addAction').off('click').on('click', function() {
-  jeeFrontEnd.interact.addAction({}, 'action', '{{Action}}')
+  jeeP.addAction({}, 'action', '{{Action}}')
   jeeFrontEnd.modifyWithoutSave = true
 })
 

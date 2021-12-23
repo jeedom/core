@@ -21,6 +21,9 @@ if (!jeeFrontEnd.massedit) {
     _filterType_: null,
     _editIds_: [],
     init: function() {
+      window.jeeP = this
+    },
+    postInit: function() {
       this._filterType_ = $('#sel_FilterByType').value()
       this._editIds_ = []
       this.setEdit()
@@ -215,7 +218,7 @@ if (!jeeFrontEnd.massedit) {
           }
 
           if (_mode == 2) {
-            jeeFrontEnd.massedit._editIds_ = result.sql.map(function(d) {
+            jeeP._editIds_ = result.sql.map(function(d) {
               return d['id']
             })
           }
@@ -235,20 +238,22 @@ if (!jeeFrontEnd.massedit) {
   }
 }
 
+jeeFrontEnd.massedit.init()
+
 $(function() {
-  jeeFrontEnd.massedit.init()
+  jeeFrontEnd.massedit.postInit()
 })
 
 //change filter type:
 $('#sel_FilterByType').off('change').on('change', function() {
-  jeeFrontEnd.massedit.resetUI()
-  jeeFrontEnd.massedit._filterType_ = $(this).value()
-  jeeFrontEnd.massedit.setEdit()
+  jeeP.resetUI()
+  jeeP._filterType_ = $(this).value()
+  jeeP.setEdit()
 })
 
 //add filter:
 $('#bt_addFilter').off('click').on('click', function() {
-  jeeFrontEnd.massedit.addFilter()
+  jeeP.addFilter()
   $('#testResult').empty().hide()
   $('#testSQL').empty()
 })
@@ -275,15 +280,15 @@ $('body').on({
 
     //set possible values for key
     var option
-    if (typeof jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
+    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
       selectJValues.prop('disabled', 'disabled')
-      jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key].forEach(function(item, index) {
+      jeephp2js.typePossibilities[jeeP._filterType_][key].forEach(function(item, index) {
         option = $("<option></option>").attr("value", index).text(item)
         selectValues.append(option)
       })
     } else {
       selectJValues.prop('disabled', false)
-      var values = Object.keys(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key])
+      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
       values.forEach((value, index) => {
         option = $("<option></option>").attr("value", index).text(value)
         selectValues.append(option)
@@ -311,9 +316,9 @@ $('body').on({
 
     //set json values for filter:
     var option
-    var jValues = Object.keys(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])
+    var jValues = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key][value])
     jValues.forEach((jValue, index) => {
-      option = $("<option></option>").attr("value", index).text(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value][index])
+      option = $("<option></option>").attr("value", index).text(jeephp2js.typePossibilities[jeeP._filterType_][key][value][index])
       selectJValues.append(option)
     })
   }
@@ -333,11 +338,11 @@ $('body').on({
     inputValues.empty()
     var key = $(this).value()
     var option
-    if (typeof jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][0] != 'undefined') {
+    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
       inputJValue.prop('disabled', 'disabled')
     } else {
       inputJValue.prop('disabled', false)
-      var values = Object.keys(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key])
+      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
       values.forEach((value, index) => {
         option = $("<option></option>").attr("value", value).text(value)
         inputValues.append(option)
@@ -353,7 +358,7 @@ $('body').on({
     var key = $(this).closest('div.form-group').find('select.selectEditKey').val()
     var value = $(this).closest('div.form-group').find('input.selectEditValue').val()
 
-    if (!isset(jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value])) {
+    if (!isset(jeephp2js.typePossibilities[jeeP._filterType_][key][value])) {
       return false
     }
 
@@ -364,7 +369,7 @@ $('body').on({
     var inputJValues = $(this).closest('div.form-group').find('#' + editJValueId)
     inputJValues.empty()
 
-    var jValues = jeephp2js.typePossibilities[jeeFrontEnd.massedit._filterType_][key][value]
+    var jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
     if (!jValues || typeof jValues == 'string') return false
     var option
     jValues.forEach((jValue, index) => {
@@ -381,7 +386,7 @@ $('body').on({
     event.stopPropagation()
     event.stopImmediatePropagation()
     var thisId = $(this).attr('data-id')
-    jeedom[jeeFrontEnd.massedit._filterType_]['byId']({
+    jeedom[jeeP._filterType_]['byId']({
       id: thisId,
       error: function(error) {
         $.fn.showAlert({
@@ -392,23 +397,23 @@ $('body').on({
       success: function(_item) {
         if (isset(_item.result)) _item = _item.result
 
-        if (jeeFrontEnd.massedit._filterType_ == 'eqLogic') {
+        if (jeeP._filterType_ == 'eqLogic') {
           var url = 'index.php?v=d&p=' + _item.eqType_name + '&m=' + _item.eqType_name + '&id=' + _item.id
           window.open(url)
           return true
         }
-        if (jeeFrontEnd.massedit._filterType_ == 'cmd') {
+        if (jeeP._filterType_ == 'cmd') {
           $('#md_modal').dialog({
             title: "{{Configuration de la commande}}"
           }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + _item.id).dialog('open')
           return true
         }
-        if (jeeFrontEnd.massedit._filterType_ == 'object') {
+        if (jeeP._filterType_ == 'object') {
           var url = 'index.php?v=d&p=object&id=' + _item.id
           window.open(url)
           return true
         }
-        if (jeeFrontEnd.massedit._filterType_ == 'scenario') {
+        if (jeeP._filterType_ == 'scenario') {
           var url = 'index.php?v=d&p=scenario&id=' + _item.id
           window.open(url)
           return true
@@ -421,10 +426,10 @@ $('body').on({
 
 //page buttons:
 $('#bt_exportFilter').off('click').on('click', function() {
-  var filters = jeeFrontEnd.massedit.getFilters()
-  var edits = jeeFrontEnd.massedit.getEdits()
+  var filters = jeeP.getFilters()
+  var edits = jeeP.getEdits()
   var jsonData = {
-    'type': jeeFrontEnd.massedit._filterType_,
+    'type': jeeP._filterType_,
     'filters': filters,
     'edits': edits
   }
@@ -452,7 +457,7 @@ $("#bt_importFilter").change(function(event) {
 
         //filters:
         for (var idx in massEditData.filters) {
-          newFilter = jeeFrontEnd.massedit.addFilter()
+          newFilter = jeeP.addFilter()
           newFilter.find('.selectFilterKey').val(massEditData.filters[idx].key).change()
           newFilter.find('.selectFilterValue option:contains(' + massEditData.filters[idx].value + ')').attr('selected', 'selected')
           newFilter.find('.selectFilterValue').change()
@@ -485,31 +490,31 @@ $("#bt_importFilter").change(function(event) {
 })
 
 $('#bt_testFilter').off('click').on('click', function() {
-  var filters = jeeFrontEnd.massedit.getFilters()
-  var sqlCmd = jeeFrontEnd.massedit.getTestSQLstring(filters)
+  var filters = jeeP.getFilters()
+  var sqlCmd = jeeP.getTestSQLstring(filters)
   $('#testSQL').empty().append(sqlCmd)
-  jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 0)
+  jeeP.dbExecuteCommand(sqlCmd, 0)
 })
 
 $('#bt_execMassEdit').off('click').on('click', function() {
-  var filters = jeeFrontEnd.massedit.getFilters()
-  var edits = jeeFrontEnd.massedit.getEdits()
+  var filters = jeeP.getFilters()
+  var edits = jeeP.getEdits()
 
   //get ids of modifying items to clean spaces in json string later.
-  var sqlCmd = jeeFrontEnd.massedit.getTestSQLstring(filters)
-  jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 2)
+  var sqlCmd = jeeP.getTestSQLstring(filters)
+  jeeP.dbExecuteCommand(sqlCmd, 2)
 
   //exec user edition:
-  sqlCmd = jeeFrontEnd.massedit.getExecSQLstring(filters, edits)
-  $('#execSQL').empty().append(sqlCmd + '<br>' + 'Editing items: ' + jeeFrontEnd.massedit._editIds_.length)
-  jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 1)
+  sqlCmd = jeeP.getExecSQLstring(filters, edits)
+  $('#execSQL').empty().append(sqlCmd + '<br>' + 'Editing items: ' + jeeP._editIds_.length)
+  jeeP.dbExecuteCommand(sqlCmd, 1)
 
   //clean spaces:
   //may integrate later json_search in searchconfiguration functions
-  if (sqlCmd.includes('JSON_REPLACE') && jeeFrontEnd.massedit._editIds_.length > 0) {
-    sqlCmd = jeeFrontEnd.massedit.getCleaningSpaceSQLstring(edits)
-    jeeFrontEnd.massedit.dbExecuteCommand(sqlCmd, 1)
+  if (sqlCmd.includes('JSON_REPLACE') && jeeP._editIds_.length > 0) {
+    sqlCmd = jeeP.getCleaningSpaceSQLstring(edits)
+    jeeP.dbExecuteCommand(sqlCmd, 1)
   }
 
-  jeeFrontEnd.massedit._editIds_ = []
+  jeeP._editIds_ = []
 })

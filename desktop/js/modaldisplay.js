@@ -23,6 +23,7 @@ if (!jeeFrontEnd.modaldisplay) {
     modal: null,
     url: false,
     init: function() {
+      window.jeeP = this
       this.params = getUrlVars()
       this.title = this.params['title']
       this.modal = this.params['loadmodal']
@@ -43,9 +44,9 @@ if (!jeeFrontEnd.modaldisplay) {
 jeeFrontEnd.modaldisplay.init()
 
 $(function() {
-  document.title = decodeURI(jeeFrontEnd.modaldisplay.title)
-  $('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(jeeFrontEnd.modaldisplay.title))
-  $('#modalDisplay').empty().load(jeeFrontEnd.modaldisplay.url, function(data) {
+  document.title = decodeURI(jeeP.title)
+  $('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(jeeP.title))
+  $('#modalDisplay').empty().load(jeeP.url, function(data) {
     $('body').attr('data-page', getUrlVars('p'))
     $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
     jeedomUtils.initPage()

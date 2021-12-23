@@ -18,6 +18,9 @@
 
 if (!jeeFrontEnd.dashboardit) {
   jeeFrontEnd.dashboardit = {
+    init: function() {
+      window.jeeP = this
+    },
     getObjectHtml: function(_object_id) {
       jeedom.object.toHtml({
         id: _object_id,
@@ -53,11 +56,13 @@ if (!jeeFrontEnd.dashboardit) {
   }
 }
 
+jeeFrontEnd.dashboardit.init()
+
 $('#div_treeObject').off('click').on('select_node.jstree', function(node, selected) {
   if (selected.node.a_attr['data-object_id'] != undefined) {
     var object_id = selected.node.a_attr['data-object_id']
     $('.div_displayEquipement').parent().empty().append('<legend>' + selected.node.a_attr['data-name'] + '</legend><div class="div_displayEquipement"></div>')
-    jeeFrontEnd.dashboardit.getObjectHtml(object_id)
+    jeeP.getObjectHtml(object_id)
   }
 })
 

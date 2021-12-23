@@ -19,6 +19,7 @@
 if (!jeeFrontEnd.log) {
   jeeFrontEnd.log = {
     init: function() {
+      window.jeeP = this
       this.$rawLogCheck = $('#brutlogcheck')
       this.$btGlobalLogStopStart = $('#bt_globalLogStopStart')
     },
@@ -37,15 +38,15 @@ $(function() {
   }
 })
 
-jeeFrontEnd.log.$rawLogCheck.on('click').on('click', function() {
-  jeeFrontEnd.log.$rawLogCheck.attr('autoswitch', 0)
+jeeP.$rawLogCheck.on('click').on('click', function() {
+  jeeP.$rawLogCheck.attr('autoswitch', 0)
 
   var scroll = $('#pre_globallog').scrollTop()
   jeedom.log.autoupdate({
     log: $('li.li_log.active').attr('data-log'),
     display: $('#pre_globallog'),
     search: $('#in_searchGlobalLog'),
-    control: jeeFrontEnd.log.$btGlobalLogStopStart,
+    control: jeeP.$btGlobalLogStopStart,
     once: 1
   })
   $('#pre_globallog').scrollTop(scroll)
@@ -55,7 +56,7 @@ $(".li_log").on('click', function() {
   $.clearDivContent('pre_globallog')
   $(".li_log").removeClass('active')
   $(this).addClass('active')
-  jeeFrontEnd.log.$btGlobalLogStopStart.removeClass('btn-success')
+  jeeP.$btGlobalLogStopStart.removeClass('btn-success')
     .addClass('btn-warning')
     .html('<i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
     .attr('data-state', 1)
@@ -63,7 +64,7 @@ $(".li_log").on('click', function() {
     log: $(this).attr('data-log'),
     display: $('#pre_globallog'),
     search: $('#in_searchGlobalLog'),
-    control: jeeFrontEnd.log.$btGlobalLogStopStart,
+    control: jeeP.$btGlobalLogStopStart,
   })
 })
 
@@ -114,8 +115,8 @@ $("#bt_clearLog").on('click', function(event) {
     success: function(data) {
       $('.li_log.active a').html('<i class="fa fa-check"></i> ' + $('.li_log.active').attr('data-log'))
       $('.li_log.active i').removeClass().addClass('fas fa-check')
-      if (jeeFrontEnd.log.$btGlobalLogStopStart.attr('data-state') == 0) {
-        jeeFrontEnd.log.$btGlobalLogStopStart.click()
+      if (jeeP.$btGlobalLogStopStart.attr('data-state') == 0) {
+        jeeP.$btGlobalLogStopStart.click()
       }
     }
   })

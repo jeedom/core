@@ -21,6 +21,7 @@ if (!jeeFrontEnd.display) {
     actionMode: null,
     $tableRemoveHistory: null,
     init: function() {
+      window.jeeP = this
       this.actionMode = null
       this.$tableRemoveHistory = $('#table_removeHistory')
     },
@@ -305,14 +306,14 @@ $('.objectSelectEqlogics').on('click', function() {
   elements.each(function() {
     $(this).prop('checked', true)
   })
-  jeeFrontEnd.display.setEqActions()
+  jeeP.setEqActions()
 })
 $('.objectUnselectEqlogics').on('click', function() {
   var object = $(this).closest('.objectSortable')
   $(this).closest('.objectSortable').find('li.eqLogic .cb_selEqLogic').each(function() {
     $(this).prop('checked', false)
   })
-  jeeFrontEnd.display.setEqActions()
+  jeeP.setEqActions()
 })
 
 $('.eqLogicSortable > li.eqLogic').on('click', function(event) {
@@ -347,16 +348,16 @@ $('#cb_actifDisplay').on('change', function() {
 
 $('[aria-controls="historytab"]').on('click', function() {
   $('.eqActions').hide()
-  jeeFrontEnd.display.setRemoveHistoryTable()
+  jeeP.setRemoveHistoryTable()
 })
 
 $('[aria-controls="displaytab"]').on('click', function() {
   $('#display').show()
-  if (jeeFrontEnd.display.actionMode) $('.eqActions').show()
+  if (jeeP.actionMode) $('.eqActions').show()
 })
 
 $('.cb_selEqLogic').on('change', function() {
-  jeeFrontEnd.display.setEqActions()
+  jeeP.setEqActions()
 })
 
 $('.cb_selCmd').on('change', function() {
@@ -368,12 +369,12 @@ $('.cb_selCmd').on('change', function() {
     }
   })
   if (found) {
-    jeeFrontEnd.display.actionMode = 'cmd'
+    jeeP.actionMode = 'cmd'
     $('.eqActions').show()
     $('.cb_selEqLogic').hide()
     $('.bt_setIsVisible').show()
   } else {
-    jeeFrontEnd.display.actionMode = null
+    jeeP.actionMode = null
     $('.cb_selEqLogic').show()
     $('.eqActions').hide()
     $('.bt_setIsVisible').hide()
@@ -406,7 +407,7 @@ $('#bt_removeEqlogic').on('click', function() {
 })
 
 $('.bt_setIsVisible').on('click', function() {
-  if (jeeFrontEnd.display.actionMode == 'eqLogic') {
+  if (jeeP.actionMode == 'eqLogic') {
     var eqLogics = []
     $('.cb_selEqLogic').each(function() {
       if ($(this).value() == 1) {
@@ -428,7 +429,7 @@ $('.bt_setIsVisible').on('click', function() {
     })
   }
 
-  if (jeeFrontEnd.display.actionMode == 'cmd') {
+  if (jeeP.actionMode == 'cmd') {
     var cmds = []
     $('.cb_selCmd').each(function() {
       if ($(this).value() == 1) {

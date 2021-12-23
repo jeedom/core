@@ -20,6 +20,7 @@ if (!jeeFrontEnd.database) {
   jeeFrontEnd.database = {
     $divCommandResult: null,
     init: function() {
+      window.jeeP = this
       this.$divCommandResult = $('#div_commandResult')
     },
     dbExecuteCommand: function(_command, _addToList) {
@@ -167,17 +168,17 @@ $(function() {
 
 $('.bt_dbCommand').off('click').on('click', function() {
   var command = $(this).attr('data-command')
-  jeeFrontEnd.database.dbExecuteCommand(command, false)
+  jeeP.dbExecuteCommand(command, false)
 })
 
 $('#ul_listSqlHistory').off('click', '.bt_dbCommand').on('click', '.bt_dbCommand', function() {
   var command = $(this).attr('data-command')
-  jeeFrontEnd.database.dbExecuteCommand(command, false)
+  jeeP.dbExecuteCommand(command, false)
 })
 
 $('#bt_validateSpecificCommand').off('click').on('click', function() {
   var command = $('#in_specificCommand').val()
-  jeeFrontEnd.database.dbExecuteCommand(command, true)
+  jeeP.dbExecuteCommand(command, true)
 })
 $('#in_specificCommand').keypress(function(event) {
   if (event.which == 13) {
@@ -204,7 +205,7 @@ $('#sqlOperation').off('change').on('change', function() {
 
       $('#sqlSetGroup').show()
       $('#sqlWhereGroup').hide()
-      jeeFrontEnd.database.defineSQLsetGroup()
+      jeeP.defineSQLsetGroup()
       break
     case 'UPDATE':
       $(this).removeClass('info warning').addClass('danger')
@@ -214,7 +215,7 @@ $('#sqlOperation').off('change').on('change', function() {
       $('#sqlSetGroup').show()
       $('#sqlWhereGroup').show()
       $('#checksqlwhere').prop('checked', true).trigger('change')
-      jeeFrontEnd.database.defineSQLsetGroup()
+      jeeP.defineSQLsetGroup()
       break
     case 'DELETE':
       $(this).removeClass('info warning').addClass('danger')
@@ -238,7 +239,7 @@ $('#sqlTable').off('change').on('change', function() {
   $('#sqlWhere').empty().append(options)
 
   if (['INSERT', 'UPDATE'].includes($('#sqlOperation').value())) {
-    jeeFrontEnd.database.defineSQLsetGroup()
+    jeeP.defineSQLsetGroup()
   }
   $(window).trigger('resize')
 })
@@ -252,13 +253,13 @@ $('#checksqlwhere').off('change').on('change', function() {
 })
 
 $('#bt_writeDynamicCommand').off('click').on('click', function() {
-  var sqlString = jeeFrontEnd.database.constructSQLstring()
+  var sqlString = jeeP.constructSQLstring()
   $('#in_specificCommand').val(sqlString)
 })
 
 $('#bt_execDynamicCommand').off('click').on('click', function() {
-  var sqlString = jeeFrontEnd.database.constructSQLstring()
+  var sqlString = jeeP.constructSQLstring()
   $('#in_specificCommand').val(sqlString)
-  jeeFrontEnd.database.dbExecuteCommand(sqlString, true)
+  jeeP.dbExecuteCommand(sqlString, true)
 })
 

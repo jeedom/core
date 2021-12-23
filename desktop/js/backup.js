@@ -19,6 +19,9 @@
 if (!jeeFrontEnd.backup) {
   jeeFrontEnd.backup = {
     init: function() {
+      window.jeeP = this
+    },
+    postInit: function() {
       this.updateListBackup()
       for (var i in jeephp2js.repoList) {
         this.updateRepoListBackup(jeephp2js.repoList[i])
@@ -144,6 +147,8 @@ if (!jeeFrontEnd.backup) {
   }
 }
 
+jeeFrontEnd.backup.init()
+
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
@@ -153,7 +158,7 @@ document.onkeydown = function(event) {
 }
 
 $(function() {
-  jeeFrontEnd.backup.init()
+  jeeFrontEnd.backup.postInit()
 })
 
 $("#bt_saveBackup").on('click', function(event) {

@@ -25,6 +25,7 @@ Can also be called in modale, triggering plugin button click for direct access t
 if (!jeeFrontEnd.plugin) {
   jeeFrontEnd.plugin = {
     init: function() {
+      window.jeeP = this
     },
     displayPlugin: function(_pluginId) {
       $.hideAlert()
@@ -410,6 +411,8 @@ if (!jeeFrontEnd.plugin) {
   }
 }
 
+jeeFrontEnd.plugin.init()
+
 $(function() {
   $('sub.itemsNumber').html('(' + $('.pluginDisplayCard').length + ')')
 
@@ -529,7 +532,7 @@ $('.pluginDisplayCard').off('click').on('click', function(event) {
     var url = '/index.php?v=d&p=plugin&id=' + pluginId
     window.open(url).focus()
   } else {
-    jeeFrontEnd.plugin.displayPlugin(pluginId)
+    jeeP.displayPlugin(pluginId)
   }
   return false
 })
@@ -609,7 +612,7 @@ $('#div_plugin_toggleState').on({
 }, '.togglePlugin')
 
 $("#bt_savePluginConfig").on('click', function(event) {
-  jeeFrontEnd.plugin.savePluginConfig()
+  jeeP.savePluginConfig()
   return false
 })
 

@@ -18,11 +18,13 @@
 
 if (!jeeFrontEnd.profils) {
   jeeFrontEnd.profils = {
-    $modal: null,
-    $tableDevices: null,
-    init: function() {},
+    init: function() {
+      window.jeeP = this
+    },
   }
 }
+
+jeeFrontEnd.profils.init()
 
 document.onkeydown = function(event) {
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s

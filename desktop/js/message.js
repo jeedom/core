@@ -16,6 +16,10 @@
 
 "use strict"
 
+/*
+Modale message: no jeeP
+
+*/
 $("#sel_plugin").on('change', function(event) {
   $('#md_modal').dialog({
     title: "{{Centre de Messages}}"

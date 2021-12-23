@@ -19,6 +19,7 @@
 if (!jeeFrontEnd.cron) {
   jeeFrontEnd.cron = {
     init: function() {
+      window.jeeP = this
       this.$tableCron = $('#table_cron')
       this.printCron()
       this.printListener()
@@ -40,14 +41,14 @@ if (!jeeFrontEnd.cron) {
       jeedom.cron.all({
         success: function(data) {
           $.showLoading()
-          jeeFrontEnd.cron.$tableCron.find('tbody').empty()
+          jeeP.$tableCron.find('tbody').empty()
           var tr = []
           for (var i in data) {
-            tr.push(jeeFrontEnd.cron.addCron(data[i]))
+            tr.push(jeeP.addCron(data[i]))
           }
           $('#table_cron tbody').append(tr)
 
-          jeeFrontEnd.cron.$tableCron.trigger("update")
+          jeeP.$tableCron.trigger("update")
 
           jeeFrontEnd.modifyWithoutSave = false
           setTimeout(function() {
@@ -144,7 +145,7 @@ if (!jeeFrontEnd.cron) {
           $('#table_listener tbody').empty()
           var tr = []
           for (var i in data) {
-            tr.push(jeeFrontEnd.cron.addListener(data[i]))
+            tr.push(jeeP.addListener(data[i]))
           }
           $('#table_listener tbody').append(tr)
           jeeFrontEnd.modifyWithoutSave = false
@@ -242,12 +243,12 @@ document.onkeydown = function(event) {
 }
 
 $("#bt_refreshCron").on('click', function() {
-  jeeFrontEnd.cron.printCron()
-  jeeFrontEnd.cron.printListener()
+  jeeP.printCron()
+  jeeP.printListener()
 })
 
 $("#bt_addCron").on('click', function() {
-  $('#table_cron tbody').prepend(jeeFrontEnd.cron.addCron({}))
+  $('#table_cron tbody').prepend(jeeP.addCron({}))
 })
 
 $("#bt_save").on('click', function() {
@@ -260,7 +261,7 @@ $("#bt_save").on('click', function() {
       })
     },
     success: function() {
-      jeeFrontEnd.cron.printCron()
+      jeeP.printCron()
     }
   })
 })
@@ -289,13 +290,13 @@ $("#bt_changeCronState").on('click', function() {
   })
 })
 
-jeeFrontEnd.cron.$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     $(this).closest('tr').remove()
   }
 }, '.remove')
 
-jeeFrontEnd.cron.$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     jeedom.cron.setState({
       state: 'stop',
@@ -307,13 +308,13 @@ jeeFrontEnd.cron.$tableCron.on({
         })
       },
       success: function() {
-        jeeFrontEnd.cron.printCron()
+        jeeP.printCron()
       }
     })
   }
 }, '.stop')
 
-jeeFrontEnd.cron.$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     jeedom.cron.setState({
       state: 'start',
@@ -325,13 +326,13 @@ jeeFrontEnd.cron.$tableCron.on({
         })
       },
       success: function() {
-        jeeFrontEnd.cron.printCron()
+        jeeP.printCron()
       }
     })
   }
 }, '.start')
 
-jeeFrontEnd.cron.$tableCron.on({
+jeeP.$tableCron.on({
   'click': function(event) {
     $('#md_modal').dialog({
       title: "{{Détails du cron}}"
@@ -339,7 +340,7 @@ jeeFrontEnd.cron.$tableCron.on({
   }
 }, '.display')
 
-jeeFrontEnd.cron.$tableCron.on({
+jeeP.$tableCron.on({
   'change': function(event) {
     if ($(this).value() == 1) {
       $(this).closest('tr').find('.cronAttr[data-l1key=deamonSleepTime]').show()
@@ -372,7 +373,7 @@ $('#table_listener').off('click', '.removeListener').on('click', '.removeListene
 })
 
 $('#bt_refreshDeamon').on('click', function() {
-  jeeFrontEnd.cron.getDeamonState()
+  jeeP.getDeamonState()
 })
 
 $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
@@ -389,7 +390,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        jeeFrontEnd.cron.getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   } else if (action == 'stop') {
@@ -402,7 +403,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        jeeFrontEnd.cron.getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   } else if (action == 'enableAuto') {
@@ -416,7 +417,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        jeeFrontEnd.cron.getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   } else if (action == 'disableAuto') {
@@ -430,7 +431,7 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        jeeFrontEnd.cron.getDeamonState()
+        jeeP.getDeamonState()
       }
     })
   }

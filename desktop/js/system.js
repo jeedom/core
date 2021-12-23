@@ -19,9 +19,12 @@
 if (!jeeFrontEnd.system) {
   jeeFrontEnd.system = {
     init: function() {
+      window.jeeP = this
     },
   }
 }
+
+jeeFrontEnd.system.init()
 
 $(function() {
     $('ul.bs-sidenav li a').each(function() {

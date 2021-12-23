@@ -30,6 +30,9 @@ if (!jeeFrontEnd.overview) {
       subtree: true
     },
     init: function() {
+      window.jeeP = this
+    },
+    postInit: function() {
       this.$summaryContainer = $('#summaryEqlogics')
       this.modal = this.$summaryContainer.parents('.ui-dialog.ui-resizable')
       this.modalContent = this.modal.find('.ui-dialog-content.ui-widget-content')
@@ -41,7 +44,7 @@ if (!jeeFrontEnd.overview) {
         mutations.forEach(function(mutation) {
           if (mutation.type == 'childList' && mutation.target.className == 'resume') {
             try {
-              jeeFrontEnd.overview.updateSummary(mutation.addedNodes[0].className)
+              jeeP.updateSummary(mutation.addedNodes[0].className)
             } catch {}
           }
         })
@@ -94,8 +97,8 @@ if (!jeeFrontEnd.overview) {
             self.$summaryContainer.empty().packery('destroy')
           } catch (e) {}
           _title = $.parseHTML('<span>' + _title + '</span>')
-          jeeFrontEnd.overview.$modal.parent('.ui-dialog').find('span.ui-dialog-title').empty().append(_title)
-          jeeFrontEnd.overview.$modal.dialog('open')
+          jeeP.$modal.parent('.ui-dialog').find('span.ui-dialog-title').empty().append(_title)
+          jeeP.$modal.dialog('open')
 
           var nbEqs = data.length
           for (var i = 0; i < nbEqs; i++) {
@@ -150,7 +153,7 @@ if (!jeeFrontEnd.overview) {
 
                   fullWidth += 26
                   fullHeight += 51
-                  jeeFrontEnd.overview.$modal.dialog({
+                  jeeP.$modal.dialog({
                     width: fullWidth,
                     height: fullHeight
                   })
@@ -176,6 +179,8 @@ if (!jeeFrontEnd.overview) {
   }
 }
 
+jeeFrontEnd.overview.init()
+
 $(function() {
   //infos/actions tile signals:
   jeedomUI.isEditing = false
@@ -195,21 +200,21 @@ $(function() {
     }
   })
 
-  jeeFrontEnd.overview.init()
+  jeeFrontEnd.overview.postInit()
   $('.resume').show()
 
   //summary modal events:
-  jeeFrontEnd.overview.$summaryContainer.packery()
-  jeeFrontEnd.overview.modal.resize(function() {
-    jeeFrontEnd.overview.$summaryContainer.packery()
+  jeeP.$summaryContainer.packery()
+  jeeP.modal.resize(function() {
+    jeeP.$summaryContainer.packery()
   })
-  jeeFrontEnd.overview.modalContent.off().on('click', function(event) {
+  jeeP.modalContent.off().on('click', function(event) {
     if (!$(event.target).parents('.eqLogic-widget').length) {
-      jeeFrontEnd.overview.$modal.dialog('close')
+      jeeP.$modal.dialog('close')
     }
   })
   //history in summary modal:
-  jeeFrontEnd.overview.modalContent.on({
+  jeeP.modalContent.on({
     'click': function(event) {
       event.stopImmediatePropagation()
       event.stopPropagation()
@@ -253,7 +258,7 @@ $('#objectOverviewContainer').on({
     } else {
       var title = $(this).closest('.objectPreview').find('.topPreview .name').text()
     }
-    jeeFrontEnd.overview.getSummaryHtml(objectId, summaryType, title)
+    jeeP.getSummaryHtml(objectId, summaryType, title)
   }
 }, '.objectSummaryParent')
 
@@ -308,8 +313,8 @@ $('.objectPreview .name').off('mouseup').on('mouseup', function(event) {
 })
 
 //Dialog summary opening:
-jeeFrontEnd.overview.$modal = $("#md_overviewSummary")
-jeeFrontEnd.overview.$modal.dialog({
+jeeP.$modal = $("#md_overviewSummary")
+jeeP.$modal.dialog({
   closeText: '',
   autoOpen: false,
   modal: true,

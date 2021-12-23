@@ -23,6 +23,7 @@ if (!jeeFrontEnd.plan) {
     contextMenu: null,
     planHeaderContextMenu: {},
     init: function() {
+      window.jeeP = this
       this.deviceInfo = getDeviceType()
       this.$pageContainer = $('#div_pageContainer')
       this.planHeaderContextMenu = {}
@@ -84,7 +85,7 @@ if (!jeeFrontEnd.plan) {
           })
         },
         success: function(data) {
-          jeeFrontEnd.plan.displayObject(data.plan, data.html)
+          jeeP.displayObject(data.plan, data.html)
         }
       })
     },
@@ -95,7 +96,7 @@ if (!jeeFrontEnd.plan) {
         _code = null
       }
       if (getUrlVars('fullscreen') == 1) {
-        jeeFrontEnd.plan.fullScreen(true)
+        jeeP.fullScreen(true)
       }
       jeedom.plan.getHeader({
         id: jeephp2js.planHeader_id,
@@ -110,7 +111,7 @@ if (!jeeFrontEnd.plan) {
               })
               return
             }
-            jeeFrontEnd.plan.displayPlan(result)
+            jeeP.displayPlan(result)
           } else {
             jeephp2js.planHeader_id = -1
             $.fn.showAlert({
@@ -153,9 +154,9 @@ if (!jeeFrontEnd.plan) {
           }
 
           $('#div_grid').width($divDisplayObject.width()).height($divDisplayObject.height())
-          if (jeeFrontEnd.plan.deviceInfo.type != 'desktop') {
+          if (jeeP.deviceInfo.type != 'desktop') {
             $('meta[name="viewport"]').prop('content', 'width=' + $divDisplayObject.width() + ',height=' + $divDisplayObject.height())
-            jeeFrontEnd.plan.fullScreen(true)
+            jeeP.fullScreen(true)
             $(window).on("navigate", function(event, data) {
               var direction = data.state.direction
               if (direction == 'back') {
@@ -177,17 +178,17 @@ if (!jeeFrontEnd.plan) {
             success: function(plans) {
               var objects = []
               for (var i in plans) {
-                objects.push(jeeFrontEnd.plan.displayObject(plans[i].plan, plans[i].html, true))
+                objects.push(jeeP.displayObject(plans[i].plan, plans[i].html, true))
               }
               try {
                 $divDisplayObject.append(objects)
               } catch (e) {}
               try {
-                jeeFrontEnd.plan.$pageContainer.append(style_css)
+                jeeP.$pageContainer.append(style_css)
                 style_css = ''
               } catch (e) {}
               jeedomUtils.addOrUpdateUrl('plan_id', jeephp2js.planHeader_id, data.name + ' - Jeedom')
-              jeeFrontEnd.plan.initEditOption(jeeFrontEnd.planEditOption.state)
+              jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
               jeedomUtils.initReportMode()
               $(window).scrollTop(0)
             }
@@ -264,14 +265,14 @@ if (!jeeFrontEnd.plan) {
       var plans = []
       var info, plan, position
       $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function() {
-        info = jeeFrontEnd.plan.getObjectInfo($(this))
+        info = jeeP.getObjectInfo($(this))
         plan = {}
         plan.position = {}
         plan.display = {}
         plan.id = $(this).attr('data-plan_id')
         plan.link_type = info.type
         plan.link_id = info.id
-        plan.planHeader_id = jeeFrontEnd.plan.planHeader_id
+        plan.planHeader_id = jeeP.planHeader_id
         plan.display.height = $(this).outerHeight()
         plan.display.width = $(this).outerWidth()
         if (info.type == 'graph') {
@@ -299,7 +300,7 @@ if (!jeeFrontEnd.plan) {
         },
         success: function() {
           if (init(_refreshDisplay, false)) {
-            jeeFrontEnd.plan.displayPlan()
+            jeeP.displayPlan()
           }
           $.hideLoading()
         },
@@ -567,22 +568,22 @@ if (!jeeFrontEnd.plan) {
     isDragLocked: false,
     zoomScale: 1,
     draggableStartFix: function(event, ui) {
-      jeeFrontEnd.plan.isDragLocked = false
+      jeeP.isDragLocked = false
       if ($(event.target).hasClass('locked')) {
-        jeeFrontEnd.plan.isDragLocked = true
+        jeeP.isDragLocked = true
         document.body.style.cursor = "default"
         return false
       }
-      jeeFrontEnd.plan.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+      jeeP.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
       if (jeeFrontEnd.planEditOption.grid == 1) {
-        jeeFrontEnd.plan.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
+        jeeP.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
       } else {
-        jeeFrontEnd.plan.dragStep = false
+        jeeP.dragStep = false
       }
 
-      jeeFrontEnd.plan.dragClick.x = event.clientX
-      jeeFrontEnd.plan.dragClick.y = event.clientY
-      jeeFrontEnd.plan.dragStartPos = ui.originalPosition
+      jeeP.dragClick.x = event.clientX
+      jeeP.dragClick.y = event.clientY
+      jeeP.dragStartPos = ui.originalPosition
 
       var $container = $('.div_displayObject')
       var containerWidth = $container.width()
@@ -594,25 +595,25 @@ if (!jeeFrontEnd.plan) {
       var marginLeft = $(ui.helper[0]).css('margin-left')
       var marginLeft = parseFloat(marginLeft.replace('px', ''))
 
-      jeeFrontEnd.plan.minLeft = 0 - marginLeft
+      jeeP.minLeft = 0 - marginLeft
 
-      jeeFrontEnd.plan.maxLeft = containerWidth + jeeFrontEnd.plan.minLeft - (clientWidth * jeeFrontEnd.plan.zoomScale)
-      jeeFrontEnd.plan.maxTop = containerHeight - (clientHeight * jeeFrontEnd.plan.zoomScale)
+      jeeP.maxLeft = containerWidth + jeeP.minLeft - (clientWidth * jeeP.zoomScale)
+      jeeP.maxTop = containerHeight - (clientHeight * jeeP.zoomScale)
     },
     draggableDragFix: function(event, ui) {
-      if (jeeFrontEnd.plan.isDragLocked == true) return false
-      var newLeft = event.clientX - jeeFrontEnd.plan.dragClick.x + jeeFrontEnd.plan.dragStartPos.left
-      var newTop = event.clientY - jeeFrontEnd.plan.dragClick.y + jeeFrontEnd.plan.dragStartPos.top
+      if (jeeP.isDragLocked == true) return false
+      var newLeft = event.clientX - jeeP.dragClick.x + jeeP.dragStartPos.left
+      var newTop = event.clientY - jeeP.dragClick.y + jeeP.dragStartPos.top
 
-      if (newLeft < jeeFrontEnd.plan.minLeft) newLeft = jeeFrontEnd.plan.minLeft
-      if (newLeft > jeeFrontEnd.plan.maxLeft) newLeft = jeeFrontEnd.plan.maxLeft
+      if (newLeft < jeeP.minLeft) newLeft = jeeP.minLeft
+      if (newLeft > jeeP.maxLeft) newLeft = jeeP.maxLeft
 
       if (newTop < 0) newTop = 0
-      if (newTop > jeeFrontEnd.plan.maxTop) newTop = jeeFrontEnd.plan.maxTop
+      if (newTop > jeeP.maxTop) newTop = jeeP.maxTop
 
-      if (jeeFrontEnd.plan.dragStep) {
-        newLeft = (Math.round(newLeft / jeeFrontEnd.plan.dragStep) * jeeFrontEnd.plan.dragStep)
-        newTop = (Math.round(newTop / jeeFrontEnd.plan.dragStep) * jeeFrontEnd.plan.dragStep)
+      if (jeeP.dragStep) {
+        newLeft = (Math.round(newLeft / jeeP.dragStep) * jeeP.dragStep)
+        newTop = (Math.round(newTop / jeeP.dragStep) * jeeP.dragStep)
       }
 
       ui.position = {
@@ -641,7 +642,7 @@ if (!jeeFrontEnd.plan) {
           start: this.draggableStartFix,
           drag: this.draggableDragFix,
           stop: function(event, ui) {
-            jeeFrontEnd.plan.savePlan(false, false)
+            jeeP.savePlan(false, false)
           }
         })
 
@@ -684,7 +685,7 @@ if (!jeeFrontEnd.plan) {
             ui.element.find('.camera').trigger('resize')
           },
           stop: function(event, ui) {
-            jeeFrontEnd.plan.savePlan(false, false)
+            jeeP.savePlan(false, false)
           },
         })
 
@@ -721,36 +722,35 @@ if (!jeeFrontEnd.plan) {
   }
 }
 
-
 jeeFrontEnd.plan.init()
 
 var clickedOpen = false
 var style_css = ''
 for (var i in jeephp2js.planHeader) {
-  jeeFrontEnd.plan.planHeaderContextMenu[jeephp2js.planHeader[i].id] = {
+  jeeP.planHeaderContextMenu[jeephp2js.planHeader[i].id] = {
     name: jeephp2js.planHeader[i].name,
     callback: function(key, opt) {
       jeephp2js.planHeader_id = key
-      jeeFrontEnd.plan.displayPlan()
+      jeeP.displayPlan()
     }
   }
 }
 
-if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
   document.onkeydown = function(event) {
     if (jeedomUtils.getOpenedModal()) return
 
     if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
       event.preventDefault()
-      jeeFrontEnd.plan.savePlan()
+      jeeP.savePlan()
       return
     }
 
     if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 69) { //e
       event.preventDefault()
       jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
-      jeeFrontEnd.plan.$pageContainer.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
-      jeeFrontEnd.plan.initEditOption(jeeFrontEnd.planEditOption.state)
+      jeeP.$pageContainer.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
+      jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
     }
   }
 } else {
@@ -759,13 +759,13 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
 
     if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
       event.preventDefault()
-      jeeFrontEnd.plan.savePlan()
+      jeeP.savePlan()
     }
   }
 }
 
-if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
-  jeeFrontEnd.plan.contextMenu = $.contextMenu({
+if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+  jeeP.contextMenu = $.contextMenu({
     selector: '#div_pageContainer',
     zIndex: 9999,
     events: {
@@ -780,7 +780,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
       fold1: {
         name: "{{Designs}}",
         icon: 'far fa-image',
-        items: jeeFrontEnd.plan.planHeaderContextMenu
+        items: jeeP.planHeaderContextMenu
       },
       edit: {
         name: "{{Edition}}",
@@ -788,7 +788,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         callback: function(key, opt) {
           jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
           this.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
-          jeeFrontEnd.plan.initEditOption(jeeFrontEnd.planEditOption.state)
+          jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
         }
       },
       fullscreen: {
@@ -798,7 +798,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           if (this.data('fullscreen') == undefined) {
             this.data('fullscreen', 1)
           }
-          jeeFrontEnd.plan.fullScreen(this.data('fullscreen'))
+          jeeP.fullScreen(this.data('fullscreen'))
           this.data('fullscreen', !this.data('fullscreen'))
         }
       },
@@ -810,7 +810,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.addObject({
+          jeeP.addObject({
             link_type: 'graph',
             link_id: Math.round(Math.random() * 99999999) + 9999
           })
@@ -823,7 +823,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.addObject({
+          jeeP.addObject({
             link_type: 'text',
             link_id: Math.round(Math.random() * 99999999) + 9999,
             display: {
@@ -840,7 +840,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeedom.scenario.getSelectModal({}, function(data) {
-            jeeFrontEnd.plan.addObject({
+            jeeP.addObject({
               link_type: 'scenario',
               link_id: data.id
             })
@@ -861,7 +861,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               return !this.data('jeeFrontEnd.planEditOption.state')
             },
             callback: function(key, opt) {
-              jeeFrontEnd.plan.addObject({
+              jeeP.addObject({
                 link_type: 'view',
                 link_id: -(Math.round(Math.random() * 99999999) + 9999),
                 display: {
@@ -877,7 +877,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               return !this.data('jeeFrontEnd.planEditOption.state')
             },
             callback: function(key, opt) {
-              jeeFrontEnd.plan.addObject({
+              jeeP.addObject({
                 link_type: 'plan',
                 link_id: -(Math.round(Math.random() * 99999999) + 9999),
                 display: {
@@ -896,7 +896,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeedom.eqLogic.getSelectModal({}, function(data) {
-            jeeFrontEnd.plan.addObject({
+            jeeP.addObject({
               link_type: 'eqLogic',
               link_id: data.id
             })
@@ -911,7 +911,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         },
         callback: function(key, opt) {
           jeedom.cmd.getSelectModal({}, function(data) {
-            jeeFrontEnd.plan.addObject({
+            jeeP.addObject({
               link_type: 'cmd',
               link_id: data.cmd.id
             })
@@ -925,7 +925,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.addObject({
+          jeeP.addObject({
             link_type: 'image',
             link_id: Math.round(Math.random() * 99999999) + 9999
           })
@@ -938,7 +938,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.addObject({
+          jeeP.addObject({
             link_type: 'zone',
             link_id: Math.round(Math.random() * 99999999) + 9999
           })
@@ -951,7 +951,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.addObject({
+          jeeP.addObject({
             link_type: 'summary',
             link_id: -1
           })
@@ -974,7 +974,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = false
-                jeeFrontEnd.plan.initEditOption(1)
+                jeeP.initEditOption(1)
               }
             }
           },
@@ -986,7 +986,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [10, 10]
-                jeeFrontEnd.plan.initEditOption(1)
+                jeeP.initEditOption(1)
               }
             }
           },
@@ -998,7 +998,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [15, 15]
-                jeeFrontEnd.plan.initEditOption(1)
+                jeeP.initEditOption(1)
               }
             }
           },
@@ -1010,7 +1010,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [20, 20]
-                jeeFrontEnd.plan.initEditOption(1)
+                jeeP.initEditOption(1)
               }
             }
           },
@@ -1023,7 +1023,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.grid = $(this).value()
-                jeeFrontEnd.plan.initEditOption(1)
+                jeeP.initEditOption(1)
               }
             }
           },
@@ -1035,7 +1035,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.highlight = ($(this).value() == 1) ? false : true
-                jeeFrontEnd.plan.initEditOption(1)
+                jeeP.initEditOption(1)
               }
             }
           },
@@ -1077,7 +1077,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.createNewDesign()
+          jeeP.createNewDesign()
         }
       },
       duplicatePlan: {
@@ -1089,7 +1089,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         callback: function(key, opt) {
           bootbox.prompt("{{Nom la copie du design ?}}", function(result) {
             if (result !== null) {
-              jeeFrontEnd.plan.savePlan(false, false)
+              jeeP.savePlan(false, false)
               jeedom.plan.copyHeader({
                 name: result,
                 id: jeephp2js.planHeader_id,
@@ -1115,7 +1115,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !this.data('jeeFrontEnd.planEditOption.state')
         },
         callback: function(key, opt) {
-          jeeFrontEnd.plan.savePlan(false, false)
+          jeeP.savePlan(false, false)
           $('#md_modal').dialog({
             title: "{{Configuration du design}}"
           }).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id).dialog('open')
@@ -1126,7 +1126,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Sauvegarder}}",
         icon: 'fas fa-save',
         callback: function(key, opt) {
-          jeeFrontEnd.plan.savePlan()
+          jeeP.savePlan()
         }
       },
     }
@@ -1154,7 +1154,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Paramètres d\'affichage}}',
         icon: 'fas fa-cogs',
         callback: function(key, opt) {
-          jeeFrontEnd.plan.savePlan(false, false)
+          jeeP.savePlan(false, false)
           $('#md_modal').dialog({
             title: "{{Configuration du composant}}"
           }).load('index.php?v=d&modal=plan.configure&id=' + $(this).attr('data-plan_id')).dialog('open')
@@ -1164,11 +1164,11 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Configuration avancée}}',
         icon: 'fas fa-cog',
         disabled: function(key, opt) {
-          var info = jeeFrontEnd.plan.getObjectInfo($(this))
+          var info = jeeP.getObjectInfo($(this))
           return !(info.type == 'eqLogic' || info.type == 'cmd' || info.type == 'graph')
         },
         callback: function(key, opt) {
-          var info = jeeFrontEnd.plan.getObjectInfo($(this))
+          var info = jeeP.getObjectInfo($(this))
           if (info.type == 'graph') {
             var el = $(this)
             $('#md_modal').load('index.php?v=d&modal=cmd.graph.select', function() {
@@ -1178,7 +1178,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                 var tr = $('#table_addViewData tbody tr[data-link_id=' + options[i].link_id + ']')
                 tr.find('.enable').value(1)
                 tr.setValues(options[i], '.graphDataOption')
-                jeeFrontEnd.plan.setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'))
+                jeeP.setColorSelect(tr.find('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]'))
               }
 
               //set modal options:
@@ -1203,7 +1203,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   tr = tr.next()
                 }
                 el.find('.graphOptions').empty().append(json_encode(options))
-                jeeFrontEnd.plan.savePlan(true)
+                jeeP.savePlan(true)
                 $(this).dialog('close')
               }
               $('#md_modal').dialog({
@@ -1224,7 +1224,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Supprimer}}',
         icon: 'fas fa-trash',
         callback: function(key, opt) {
-          jeeFrontEnd.plan.savePlan(false, false)
+          jeeP.savePlan(false, false)
           jeedom.plan.remove({
             id: $(this).attr('data-plan_id'),
             error: function(error) {
@@ -1234,7 +1234,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               })
             },
             success: function() {
-              jeeFrontEnd.plan.displayPlan()
+              jeeP.displayPlan()
             },
           })
         }
@@ -1243,11 +1243,11 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: '{{Dupliquer}}',
         icon: 'far fa-copy',
         disabled: function(key, opt) {
-          var info = jeeFrontEnd.plan.getObjectInfo($(this))
+          var info = jeeP.getObjectInfo($(this))
           return !(info.type == 'text' || info.type == 'graph' || info.type == 'zone')
         },
         callback: function(key, opt) {
-          var info = jeeFrontEnd.plan.getObjectInfo($(this))
+          var info = jeeP.getObjectInfo($(this))
           jeedom.plan.copy({
             id: $(this).attr('data-plan_id'),
             version: 'dashboard',
@@ -1258,7 +1258,7 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               })
             },
             success: function(data) {
-              jeeFrontEnd.plan.displayObject(data.plan, data.html)
+              jeeP.displayObject(data.plan, data.html)
             }
           })
         }
@@ -1282,13 +1282,13 @@ if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
 }
 
 /**************************************init*********************************************/
-jeeFrontEnd.plan.displayPlan()
+jeeP.displayPlan()
 
 $('#bt_createNewDesign').on('click', function() {
-  jeeFrontEnd.plan.createNewDesign()
+  jeeP.createNewDesign()
 })
 
-jeeFrontEnd.plan.$pageContainer.off('click', '.plan-link-widget').on('click', '.plan-link-widget', function() {
+jeeP.$pageContainer.off('click', '.plan-link-widget').on('click', '.plan-link-widget', function() {
   if (!jeeFrontEnd.planEditOption.state) {
     if ($(this).attr('data-link_id') == undefined) {
       return
@@ -1305,7 +1305,7 @@ jeeFrontEnd.plan.$pageContainer.off('click', '.plan-link-widget').on('click', '.
   }
 })
 
-jeeFrontEnd.plan.$pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
+jeeP.$pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
   var el = $(this)
   if (!jeeFrontEnd.planEditOption.state) {
     el.append('<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
@@ -1330,7 +1330,7 @@ jeeFrontEnd.plan.$pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', fu
   }
 })
 
-jeeFrontEnd.plan.$pageContainer.on('mouseenter', '.zone-widget.zoneEqLogic.zoneEqLogicOnFly', function() {
+jeeP.$pageContainer.on('mouseenter', '.zone-widget.zoneEqLogic.zoneEqLogicOnFly', function() {
   if (!jeeFrontEnd.planEditOption.state) {
     clickedOpen = true
     var el = $(this)
@@ -1343,7 +1343,7 @@ jeeFrontEnd.plan.$pageContainer.on('mouseenter', '.zone-widget.zoneEqLogic.zoneE
         html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
         el.empty().append(html)
         jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'), false)
-        if (jeeFrontEnd.plan.deviceInfo.type == 'desktop') {
+        if (jeeP.deviceInfo.type == 'desktop') {
           el.off('mouseleave').on('mouseleave', function() {
             el.empty()
             clickedOpen = false
@@ -1354,7 +1354,7 @@ jeeFrontEnd.plan.$pageContainer.on('mouseenter', '.zone-widget.zoneEqLogic.zoneE
   }
 })
 
-jeeFrontEnd.plan.$pageContainer.on('click', '.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function() {
+jeeP.$pageContainer.on('click', '.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function() {
   if (!jeeFrontEnd.planEditOption.state && !clickedOpen) {
     clickedOpen = true
     var el = $(this)
@@ -1367,7 +1367,7 @@ jeeFrontEnd.plan.$pageContainer.on('click', '.zone-widget.zoneEqLogic.zoneEqLogi
         html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
         el.empty().append(html)
         jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'), false)
-        if (jeeFrontEnd.plan.deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')) {
+        if (jeeP.deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')) {
           el.off('mouseleave').on('mouseleave', function() {
             el.empty()
             clickedOpen = false
@@ -1404,7 +1404,7 @@ $('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widg
 })
 
 $('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('change').on('change', function() {
-  jeeFrontEnd.plan.setColorSelect($(this).closest('select'))
+  jeeP.setColorSelect($(this).closest('select'))
 })
 
 $(function() {

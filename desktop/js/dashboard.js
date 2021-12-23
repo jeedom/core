@@ -1,4 +1,4 @@
-/* This file is part of Jeedom.
+ /* This file is part of Jeedom.
  *
  * Jeedom is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,8 @@ if (!jeeFrontEnd.dashboard) {
   jeeFrontEnd.dashboard = {
     btOverviewTimer: null,
     $divPreview: null,
-    preInit: function() {
+    init: function() {
+      window.jeeP = this
       this.url_category = getUrlVars('category')
       if (!this.url_category) this.url_category = 'all'
       this.url_tag = getUrlVars('tag')
@@ -28,7 +29,7 @@ if (!jeeFrontEnd.dashboard) {
       this.url_summary = getUrlVars('summary')
       this.$divPreview = $('#dashOverviewPrev')
     },
-    init: function() {
+    postInit: function() {
       jeedomUI.isEditing = false
       jeedomUI.setEqSignals()
       jeedomUI.setHistoryModalHandler()
@@ -198,7 +199,7 @@ if (!jeeFrontEnd.dashboard) {
         onlyEnable: '1',
         onlyVisible: '0',
         version: 'dashboard',
-        summary: jeeFrontEnd.dashboard.url_summary,
+        summary: jeeP.url_summary,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -255,8 +256,8 @@ if (!jeeFrontEnd.dashboard) {
         id: _object_id,
         version: 'dashboard',
         category: 'all',
-        summary: jeeFrontEnd.dashboard.url_summary,
-        tag: jeeFrontEnd.dashboard.url_tag,
+        summary: jeeP.url_summary,
+        tag: jeeP.url_tag,
         error: function(error) {
           $.fn.showAlert({
             message: error.message,
@@ -271,7 +272,7 @@ if (!jeeFrontEnd.dashboard) {
           } catch (err) {
             console.log(err)
           }
-          if (jeeFrontEnd.dashboard.url_summary != '') {
+          if (jeeP.url_summary != '') {
             if ($divDisplayEq.find('div.eqLogic-widget:visible, div.scenario-widget:visible').length == 0) {
               $divDisplayEq.closest('.div_object').remove()
               return
@@ -286,8 +287,8 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           //synch category filter:
-          if (jeeFrontEnd.dashboard.url_category != 'all') {
-            var cat = jeeFrontEnd.dashboard.url_category.charAt(0).toUpperCase() + jeeFrontEnd.dashboard.url_category.slice(1)
+          if (jeeP.url_category != 'all') {
+            var cat = jeeP.url_category.charAt(0).toUpperCase() + jeeP.url_category.slice(1)
             $('#dashTopBar button.dropdown-toggle').addClass('warning')
             $('#categoryfilter .catFilterKey').each(function() {
               $(this).prop('checked', false)
@@ -327,9 +328,9 @@ if (!jeeFrontEnd.dashboard) {
   }
 }
 
-jeeFrontEnd.dashboard.preInit()
+jeeFrontEnd.dashboard.init()
 
-if (jeeFrontEnd.dashboard.url_summary != '') {
+if (jeeP.url_summary != '') {
   $('#bt_displayObject, #bt_editDashboardWidgetOrder').parent().remove()
 }
 
@@ -373,7 +374,7 @@ $(function() {
     })
   }, 750)
 
-  jeeFrontEnd.dashboard.init()
+  jeeP.postInit()
 })
 
 //searching
@@ -457,10 +458,10 @@ $('#catFilterNone').on('click', function() {
   $('#categoryfilter .catFilterKey').each(function() {
     $(this).prop('checked', false)
   })
-  jeeFrontEnd.dashboard.filterByCategory()
+  jeeP.filterByCategory()
 })
 $('#catFilterAll').on('click', function() {
-  jeeFrontEnd.dashboard.resetCategoryFilter()
+  jeeP.resetCategoryFilter()
 })
 $('#categoryfilter .catFilterKey').off('mouseup').on('mouseup', function(event) {
   event.preventDefault()
@@ -470,7 +471,7 @@ $('#categoryfilter .catFilterKey').off('mouseup').on('mouseup', function(event) 
     $('#categoryfilter li .catFilterKey').prop("checked", false)
     $(this).prop("checked", true)
   }
-  jeeFrontEnd.dashboard.filterByCategory()
+  jeeP.filterByCategory()
   if (event.which != 2) {
     $(this).prop("checked", !$(this).prop("checked"))
   }
@@ -489,7 +490,7 @@ $('#categoryfilter li a').on('mousedown', function(event) {
   } else {
     checkbox.prop("checked", !checkbox.prop("checked"))
   }
-  jeeFrontEnd.dashboard.filterByCategory()
+  jeeP.filterByCategory()
 })
 
 //Preview in Synthesis context:
@@ -540,8 +541,8 @@ $('.objectPreview, .objectPreview .name').off('mouseup').on('mouseup', function(
 $('#div_pageContainer').on({
   'mouseenter': function(event) {
     if (!jeedomUI.isEditing) {
-      jeeFrontEnd.dashboard.btOverviewTimer = setTimeout(function() {
-        jeeFrontEnd.dashboard.$divPreview.show(350)
+      jeeP.btOverviewTimer = setTimeout(function() {
+        jeeP.$divPreview.show(350)
       }, 300)
     }
   }
@@ -549,7 +550,7 @@ $('#div_pageContainer').on({
 
 $('#div_pageContainer').on({
   'mouseleave': function(event) {
-    clearTimeout(jeeFrontEnd.dashboard.btOverviewTimer)
+    clearTimeout(jeeP.btOverviewTimer)
   }
 }, '#bt_overview')
 
@@ -557,7 +558,7 @@ $('#div_pageContainer').on({
   'mouseleave': function(event) {
     $('#dashOverviewPrevSummaries > .objectSummaryContainer').hide()
     if ($('#bt_overview').attr('data-state') == 0) {
-      jeeFrontEnd.dashboard.$divPreview.hide(350)
+      jeeP.$divPreview.hide(350)
     }
   }
 }, '#dashOverviewPrev')
@@ -567,13 +568,13 @@ $('#div_pageContainer').on({
     if ($(this).hasClass('clickable')) {
       if ($(this).attr('data-state') == 0) {
         $(this).attr('data-state', 1)
-        jeeFrontEnd.dashboard.$divPreview.show(350)
+        jeeP.$divPreview.show(350)
       } else {
         $(this).attr('data-state', 0)
-        jeeFrontEnd.dashboard.$divPreview.hide(350)
+        jeeP.$divPreview.hide(350)
       }
     }
-    clearTimeout(jeeFrontEnd.dashboard.btOverviewTimer)
+    clearTimeout(jeeP.btOverviewTimer)
   }
 }, '#bt_overview')
 
@@ -590,7 +591,7 @@ $('.li_object').on('click', function() {
     })
     $('#dashOverviewPrev .li_object').removeClass('active')
     $(this).addClass('active')
-    jeeFrontEnd.dashboard.displayChildObject(object_id, false)
+    jeeP.displayChildObject(object_id, false)
     jeedomUtils.addOrUpdateUrl('object_id', object_id)
   } else {
     jeedomUtils.loadPage($(this).find('a').attr('data-href'))
@@ -605,7 +606,7 @@ $('#bt_editDashboardWidgetOrder').on('click', function() {
     $('div.eqLogic-widget .tooltipstered, div.scenario-widget .tooltipstered').tooltipster('enable')
     $.hideAlert()
     $(this).attr('data-mode', 0)
-    jeeFrontEnd.dashboard.editWidgetMode(0)
+    jeeP.editWidgetMode(0)
     $(this).css('color', 'black')
     $('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').hide()
     $('.counterReorderJeedom').remove()
@@ -644,7 +645,7 @@ $('#bt_editDashboardWidgetOrder').on('click', function() {
       })
       objectContainer.packery()
     })
-    jeeFrontEnd.dashboard.editWidgetMode(1)
+    jeeP.editWidgetMode(1)
   }
 })
 

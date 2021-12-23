@@ -18,7 +18,9 @@
 
 if (!jeeFrontEnd.object) {
   jeeFrontEnd.object = {
-    init: function() {},
+    init: function() {
+      window.jeeP = this
+    },
     printObject: function(_id) {
       $.hideAlert()
       var objName = $('.objectListContainer .objectDisplayCard[data-object_id="' + _id + '"]').attr('data-object_name')
@@ -133,7 +135,7 @@ if (!jeeFrontEnd.object) {
               el = $('.type' + i)
               if (el != undefined) {
                 for (var j in summary[i]) {
-                  jeeFrontEnd.object.addSummaryInfo(el, summary[i][j])
+                  jeeP.addSummaryInfo(el, summary[i][j])
                 }
                 if (summary[i].length != 0) {
                   $('.summarytabnumber' + i).append('(' + summary[i].length + ')')
@@ -145,7 +147,7 @@ if (!jeeFrontEnd.object) {
           }
 
           //set eqlogics tab:
-          jeeFrontEnd.object.addEqlogicsInfo(_id, data.name, summary)
+          jeeP.addEqlogicsInfo(_id, data.name, summary)
 
           var hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id)
@@ -256,7 +258,7 @@ if (!jeeFrontEnd.object) {
           //set select values:
           for (var i in _summay) {
             for (var j in _summay[i]) {
-              jeeFrontEnd.object.updateSummaryButton(_summay[i][j].cmd, i, true)
+              jeeP.updateSummaryButton(_summay[i][j].cmd, i, true)
             }
           }
         }
@@ -307,6 +309,8 @@ if (!jeeFrontEnd.object) {
     },
   }
 }
+
+jeeFrontEnd.object.init()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -403,7 +407,7 @@ $(function() {
               }
               window.open(url).focus()
             } else {
-              jeeFrontEnd.object.printObject(options.commands[key].id)
+              jeeP.printObject(options.commands[key].id)
             }
           },
           items: contextmenuitems
@@ -484,7 +488,7 @@ $(".objectDisplayCard").off('click').on('click', function(event) {
     var url = '/index.php?v=d&p=object&id=' + $(this).attr('data-object_id')
     window.open(url).focus()
   } else {
-    jeeFrontEnd.object.printObject($(this).attr('data-object_id'))
+    jeeP.printObject($(this).attr('data-object_id'))
   }
   return false
 })
@@ -616,7 +620,7 @@ $('#div_pageContainer').off('change', '.objectAttr').on('change', '.objectAttr:v
 
 $('.addSummary').on('click', function() {
   var type = $(this).attr('data-type')
-  jeeFrontEnd.object.addSummaryInfo($('.type' + type))
+  jeeP.addSummaryInfo($('.type' + type))
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -646,8 +650,8 @@ $('#div_pageContainer').on({
       }
     }, function(result) {
       el.value(result.human)
-      jeeFrontEnd.object.updateSummaryTabNbr(type)
-      jeeFrontEnd.object.updateSummaryButton(result.human, type, true)
+      jeeP.updateSummaryTabNbr(type)
+      jeeP.updateSummaryButton(result.human, type, true)
     })
     $('body').trigger('mod_insertCmdValue_Visible')
   }
@@ -658,8 +662,8 @@ $('#div_pageContainer').on({
     var cmd = $(this).closest('.summary').find('input[data-l1key="cmd"]').val()
     var type = $(this).closest('.div_summary').data('type')
     $(this).closest('.summary').remove()
-    jeeFrontEnd.object.updateSummaryTabNbr(type)
-    jeeFrontEnd.object.updateSummaryButton(cmd, type, false)
+    jeeP.updateSummaryTabNbr(type)
+    jeeP.updateSummaryButton(cmd, type, false)
   }
 }, '.bt_removeSummary')
 
@@ -709,7 +713,7 @@ $('#eqlogicsTab').on({
     var type = $(this).data('value')
     var cmd = $(this).closest('.form-group').data('cmdname')
     var state = $(this).is(':checked')
-    jeeFrontEnd.object.updateSummaryButton(cmd, type, state)
+    jeeP.updateSummaryButton(cmd, type, state)
     jeeFrontEnd.modifyWithoutSave = true
 
     var el = $('.type' + type)
@@ -720,7 +724,7 @@ $('#eqlogicsTab').on({
     }
     if (el != undefined) {
       if (state) {
-        jeeFrontEnd.object.addSummaryInfo(el, summary)
+        jeeP.addSummaryInfo(el, summary)
       } else {
         el.find('input[data-l1key="cmd"]').each(function() {
           if ($(this).val() == cmd) {
@@ -728,7 +732,7 @@ $('#eqlogicsTab').on({
           }
         })
       }
-      jeeFrontEnd.object.updateSummaryTabNbr(type)
+      jeeP.updateSummaryTabNbr(type)
     }
   }
 }, 'input[type="checkbox"]')

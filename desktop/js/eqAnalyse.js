@@ -19,6 +19,7 @@
 if (!jeeFrontEnd.eqAnalyse) {
   jeeFrontEnd.eqAnalyse = {
     init: function() {
+      window.jeeP = this
       jeedomUtils.positionEqLogic()
       this.$batteryContainer = $('div.batteryListContainer')
       this.$alertListContainer = $('div.alertListContainer')
@@ -86,6 +87,7 @@ if (!jeeFrontEnd.eqAnalyse) {
 }
 
 jeeFrontEnd.eqAnalyse.init()
+
 $('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
 
 $(function() {
@@ -116,10 +118,10 @@ $("#tab_pushCmd").off("click").on("click", function() {
   $('#table_Push').trigger('update')
 })
 $("#tab_deadCmd").off("click").on("click", function() {
-  jeeFrontEnd.eqAnalyse.displayDeadCmd()
+  jeeP.displayDeadCmd()
 })
 
-jeeFrontEnd.eqAnalyse.$alertListContainer.packery({
+jeeP.$alertListContainer.packery({
   itemSelector: ".eqLogic-widget",
   gutter: 2
 })
@@ -127,7 +129,7 @@ jeeFrontEnd.eqAnalyse.$alertListContainer.packery({
 $('.alerts, .batteries').on('click', function() {
   setTimeout(function() {
     jeedomUtils.positionEqLogic()
-    jeeFrontEnd.eqAnalyse.$alertListContainer.packery({
+    jeeP.$alertListContainer.packery({
       itemSelector: ".eqLogic-widget",
       gutter: 2
     })
@@ -141,14 +143,14 @@ $('.cmdAction[data-action=configure]').on('click', function() {
 })
 
 //searching
-jeeFrontEnd.eqAnalyse.$eqlogics = jeeFrontEnd.eqAnalyse.$batteryContainer.find('.eqLogic-widget')
+jeeP.$eqlogics = jeeP.$batteryContainer.find('.eqLogic-widget')
 $('#in_search').off('keyup').on('keyup', function() {
-  if (jeeFrontEnd.eqAnalyse.$eqlogics.length == 0) {
+  if (jeeP.$eqlogics.length == 0) {
     return
   }
   var search = $(this).value()
   if (search == '') {
-    jeeFrontEnd.eqAnalyse.$eqlogics.show()
+    jeeP.$eqlogics.show()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -158,7 +160,7 @@ $('#in_search').off('keyup').on('keyup', function() {
   }
 
   var match, text
-  jeeFrontEnd.eqAnalyse.$eqlogics.each(function() {
+  jeeP.$eqlogics.each(function() {
     match = false
     text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
     if (text.includes(search)) match = true

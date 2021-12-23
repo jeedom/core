@@ -19,7 +19,7 @@
 if (!jeeFrontEnd.timeline) {
   jeeFrontEnd.timeline = {
     init: function() {
-      this.displayTimeline()
+      window.jeeP = this
     },
     displayTimeline: function() {
       jeedom.timeline.byFolder({
@@ -33,7 +33,7 @@ if (!jeeFrontEnd.timeline) {
         success: function(data) {
           $('#timelineContainer ul').empty()
           if (data.length == 0) return
-          data.sort(jeeFrontEnd.timeline.sortByDateConsistentASC)
+          data.sort(jeeP.sortByDateConsistentASC)
           data = data.reverse()
           var dataLength = data.length
           var decayFactor = 130
@@ -155,8 +155,10 @@ if (!jeeFrontEnd.timeline) {
   }
 }
 
+jeeFrontEnd.timeline.init()
+
 $(function() {
-  jeeFrontEnd.timeline.init()
+  jeeP.displayTimeline()
 })
 
 $('#bt_openCmdHistoryConfigure').on('click', function() {
@@ -197,6 +199,6 @@ $('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
 })
 
 $('#bt_refreshTimeline').on('click', function() {
-  jeeFrontEnd.timeline.displayTimeline()
+  jeeP.displayTimeline()
 })
 

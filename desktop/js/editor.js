@@ -21,6 +21,7 @@ if (!jeeFrontEnd.editor) {
     hashRoot: 'l1_',
     _elfInstance: null,
     init: function() {
+      window.jeeP = this
       this._elfInstance = null
     },
     setCommandCreatewidget: function(options) {
@@ -186,7 +187,7 @@ $(function() {
     url: 'core/php/editor.connector.php',
     cssAutoLoad: false,
     lang: jeeFrontEnd.language.substring(0, 2),
-    startPathHash: jeeFrontEnd.editor.hashRoot,
+    startPathHash: jeeP.hashRoot,
     rememberLastDir: false,
     defaultView: 'list',
     sound: false,
@@ -225,11 +226,11 @@ $(function() {
         if (jeephp2js.editorType == 'custom') {
           elfinderInstance._commands.jee_onoffcustom.getActive()
         }
-        jeeFrontEnd.editor.killTooltips()
+        jeeP.killTooltips()
       },
       open: function(event, elfinderInstance)
       {
-        jeeFrontEnd.editor.killTooltips()
+        jeeP.killTooltips()
       },
     },
     commandsOptions: {
@@ -323,19 +324,19 @@ $(function() {
     options.ui = ['toolbar', 'tree', 'path', 'stat']
 
     if (jeephp2js.editorType == 'widget') {
-      options = jeeFrontEnd.editor.setCommandCreatewidget(options)
+      options = jeeP.setCommandCreatewidget(options)
       options.url = 'core/php/editor.connector.php?type=widget'
-      options.startPathHash = jeeFrontEnd.editor.getHashFromPath('data/customTemplates')
+      options.startPathHash = jeeP.getHashFromPath('data/customTemplates')
     }
 
     if (jeephp2js.editorType == 'custom') {
-      options = jeeFrontEnd.editor.setCommandCustom(options)
+      options = jeeP.setCommandCustom(options)
       options.url = 'core/php/editor.connector.php?type=custom'
-      options.startPathHash = jeeFrontEnd.editor.getHashFromPath('desktop/custom')
+      options.startPathHash = jeeP.getHashFromPath('desktop/custom')
     }
   }
 
-  jeeFrontEnd.editor._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
+  jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
 
   $('#elfinder').css("height", $(window).height() - 50)
   $('.ui-state-default.elfinder-navbar.ui-resizable').css('height', '100%')

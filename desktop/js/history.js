@@ -24,6 +24,10 @@ if (!jeeFrontEnd.history) {
     resizeDone: null,
     loadIds: null,
     init: function() {
+      window.jeeP = this
+      this.$pageContainer = $('#pageContainer')
+    },
+    postInit: function() {
       this.$divGraph = $('#' + this.__el__)
       this.setCalculList()
       delete jeedom.history.chart[this.__el__]
@@ -146,8 +150,8 @@ if (!jeeFrontEnd.history) {
             $('.li_history[data-cmd_id=' + _cmd_id + ']').removeClass('active')
             return
           }
-          jeeFrontEnd.history.__lastId__ = _cmd_id
-          jeeFrontEnd.history.resizeDn()
+          jeeP.__lastId__ = _cmd_id
+          jeeP.resizeDn()
         }
       })
     },
@@ -268,31 +272,31 @@ if (!jeeFrontEnd.history) {
   }
 }
 
-jeeFrontEnd.history.$pageContainer = $('#pageContainer')
+jeeFrontEnd.history.init()
 
 $(function() {
   $('#in_searchHistory').val('').keyup()
   moment.locale(jeeFrontEnd.language.substring(0, 2))
   jeedomUtils.datePickerInit()
-  jeeFrontEnd.history.init()
+  jeeFrontEnd.history.postInit()
 })
 
 //handle resizing:
 $(window).resize(function() {
   clearTimeout(jeeFrontEnd.history.resizeDone)
-  jeeFrontEnd.history.resizeDone = setTimeout(function() { jeeFrontEnd.history.resizeDn() }, 100)
+  jeeP.resizeDone = setTimeout(function() { jeeP.resizeDn() }, 100)
 })
 
 
 /************Left button list UI***********/
 $('#bt_validChangeDate').on('click', function() {
-  if (jeedom.history.chart[jeeFrontEnd.history.__el__] === undefined) return
+  if (jeedom.history.chart[jeeP.__el__] === undefined) return
   $('.highcharts-plot-band').remove()
-  $(jeedom.history.chart[jeeFrontEnd.history.__el__].chart.series).each(function(i, serie) {
+  $(jeedom.history.chart[jeeP.__el__].chart.series).each(function(i, serie) {
     if (serie.options && !isNaN(serie.options.id)) {
       var cmd_id = serie.options.id
-      jeeFrontEnd.history.addChart(cmd_id, 0)
-      jeeFrontEnd.history.addChart(cmd_id, 1)
+      jeeP.addChart(cmd_id, 0)
+      jeeP.addChart(cmd_id, 1)
     }
   })
 })
@@ -309,13 +313,13 @@ $('#bt_findCmdCalculHistory').on('click', function() {
 })
 $('#bt_displayCalculHistory').on('click', function() {
   var calcul = $('#in_calculHistory').value()
-  if (calcul != '') jeeFrontEnd.history.addChart(calcul, 1)
+  if (calcul != '') jeeP.addChart(calcul, 1)
 })
 $('#bt_configureCalculHistory').on('click', function() {
   $('#md_modal').dialog({
     title: "{{Configuration des formules de calcul}}",
     beforeClose: function(event, ui) {
-      jeeFrontEnd.history.setCalculList()
+      jeeP.setCalculList()
     }
   }).load('index.php?v=d&modal=history.calcul').dialog('open')
 })
@@ -329,11 +333,11 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
 
 $('#sel_groupingType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (jeeFrontEnd.history.__lastId__ == null) return
-  var currentId = jeeFrontEnd.history.__lastId__
+  if (jeeP.__lastId__ == null) return
+  var currentId = jeeP.__lastId__
   var groupingType = $(this).value()
   $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-  jeeFrontEnd.history.addChart(currentId, 0)
+  jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -355,11 +359,11 @@ $('#sel_groupingType').off('change').on('change', function(event) {
 
 $('#sel_chartType').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (jeeFrontEnd.history.__lastId__ == null) return
-  var currentId = jeeFrontEnd.history.__lastId__
+  if (jeeP.__lastId__ == null) return
+  var currentId = jeeP.__lastId__
   var graphType = $(this).value()
   $('.li_history[data-cmd_id=' + currentId + ']').removeClass('active')
-  jeeFrontEnd.history.addChart(currentId, 0)
+  jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -375,17 +379,17 @@ $('#sel_chartType').off('change').on('change', function(event) {
     },
     success: function() {
       $('.li_history[data-cmd_id=' + currentId + ']').addClass('active')
-      jeeFrontEnd.history.addChart(currentId)
+      jeeP.addChart(currentId)
     }
   })
 })
 
 $('#cb_derive').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (jeeFrontEnd.history.__lastId__ == null) return
-  var currentId = jeeFrontEnd.history.__lastId__
+  if (jeeP.__lastId__ == null) return
+  var currentId = jeeP.__lastId__
   var graphDerive = $(this).value()
-  jeeFrontEnd.history.addChart(currentId, 0)
+  jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -400,17 +404,17 @@ $('#cb_derive').off('change').on('change', function(event) {
       })
     },
     success: function(data) {
-      jeeFrontEnd.history.addChart(data.id, 1)
+      jeeP.addChart(data.id, 1)
     }
   })
 })
 
 $('#cb_step').off('change').on('change', function(event) {
   if (event.isTrigger == 3) return
-  if (jeeFrontEnd.history.__lastId__ == null) return
-  var currentId = jeeFrontEnd.history.__lastId__
+  if (jeeP.__lastId__ == null) return
+  var currentId = jeeP.__lastId__
   var graphStep = $(this).value()
-  jeeFrontEnd.history.addChart(currentId, 0)
+  jeeP.addChart(currentId, 0)
   jeedom.cmd.save({
     cmd: {
       id: currentId,
@@ -425,7 +429,7 @@ $('#cb_step').off('change').on('change', function(event) {
       })
     },
     success: function(data) {
-      jeeFrontEnd.history.addChart(data.id, 1)
+      jeeP.addChart(data.id, 1)
     }
   })
 })
@@ -433,11 +437,11 @@ $('#cb_step').off('change').on('change', function(event) {
 
 //Right buttons:
 $('#bt_clearGraph').on('click', function() {
-  jeeFrontEnd.history.clearGraph()
+  jeeP.clearGraph()
 })
 
 //search filter opening:
-jeeFrontEnd.history.$pageContainer.on({
+jeeP.$pageContainer.on({
   'keyup': function(event) {
     if ($(this).value() == '') {
       $('#ul_history .cmdList').hide()
@@ -463,7 +467,7 @@ $('#bt_resetSearch').on('click', function() {
 })
 
 //List of object / cmds event:
-jeeFrontEnd.history.$pageContainer.on({
+jeeP.$pageContainer.on({
   'click': function(event) {
     var list = $('.cmdList[data-object_id=' + $(this).attr('data-object_id') + ']')
     if (list.is(':visible')) {
@@ -476,10 +480,10 @@ jeeFrontEnd.history.$pageContainer.on({
   }
 }, '.displayObject')
 
-jeeFrontEnd.history.$pageContainer.on({
+jeeP.$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
-    if (isset(jeedom.history.chart[jeeFrontEnd.history.__el__]) && jeedom.history.chart[jeeFrontEnd.history.__el__].comparing) return
+    if (isset(jeedom.history.chart[jeeP.__el__]) && jeedom.history.chart[jeeP.__el__].comparing) return
 
     var options = null
     if ($(this).hasClass('historycalcul')) {
@@ -492,28 +496,28 @@ jeeFrontEnd.history.$pageContainer.on({
     }
     if ($(this).closest('.li_history').hasClass('active')) {
       $(this).closest('.li_history').removeClass('active')
-      jeeFrontEnd.history.addChart($(this).closest('.li_history').attr('data-cmd_id'), 0, options)
+      jeeP.addChart($(this).closest('.li_history').attr('data-cmd_id'), 0, options)
     } else {
       $(this).closest('.li_history').addClass('active')
-      jeeFrontEnd.history.addChart($(this).closest('.li_history').attr('data-cmd_id'), 1, options)
+      jeeP.addChart($(this).closest('.li_history').attr('data-cmd_id'), 1, options)
     }
     return false
   }
 }, '.li_history .history')
 
-jeeFrontEnd.history.$pageContainer.on({
+jeeP.$pageContainer.on({
   'click': function(event) {
     $.hideAlert()
     var bt_remove = $(this)
     bootbox.prompt('{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + bt_remove.closest('.li_history').find('.history').text() + '</span> (laissez vide pour tout supprimer) ?', function(result) {
       if (result !== null) {
-        jeeFrontEnd.history.emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
+        jeeP.emptyHistory(bt_remove.closest('.li_history').attr('data-cmd_id'), result)
       }
     })
   }
 }, '.li_history .remove')
 
-jeeFrontEnd.history.$pageContainer.on({
+jeeP.$pageContainer.on({
   'click': function(event) {
     window.open('core/php/export.php?type=cmdHistory&id=' + $(this).closest('.li_history').attr('data-cmd_id'), "_blank", null)
   }
@@ -594,26 +598,26 @@ $('#md_getCompareRange').on({
 }, 'input.in_datepicker')
 
 $('#bt_compare').off().on('click', function() {
-  if (!jeedom.history.chart[jeeFrontEnd.history.__el__].comparing) { //Go comparing:
-    if (jeeFrontEnd.history.__lastId__ == null) return
-    $(this).attr('data-cmdId', jeeFrontEnd.history.__lastId__)
+  if (!jeedom.history.chart[jeeP.__el__].comparing) { //Go comparing:
+    if (jeeP.__lastId__ == null) return
+    $(this).attr('data-cmdId', jeeP.__lastId__)
     $('#md_getCompareRange').removeClass('hidden').dialog({
       title: "{{Période de comparaison}}"
     }).dialog('open')
   } else { //Stop comparing:
-    jeeFrontEnd.history.clearGraph()
-    jeeFrontEnd.history.addChart($(this).attr('data-cmdId'))
+    jeeP.clearGraph()
+    jeeP.addChart($(this).attr('data-cmdId'))
     $('li.li_history[data-cmd_id="' + $(this).attr('data-cmdId') + '"]').addClass('active')
     $(this).removeClass('btn-danger').addClass('btn-success')
   }
 })
 
 $('#bt_doCompare').off('click').on('click', function() {
-  jeedom.history.chart[jeeFrontEnd.history.__el__].comparing = true
+  jeedom.history.chart[jeeP.__el__].comparing = true
   $('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').prop('disabled', true)
   $('#bt_compare').removeClass('btn-success').addClass('btn-danger')
-  jeedom.history.chart[jeeFrontEnd.history.__el__].chart.xAxis[1].update({
+  jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({
     visible: true
   })
-  jeeFrontEnd.history.compareChart(jeeFrontEnd.history.__lastId__)
+  jeeP.compareChart(jeeP.__lastId__)
 })

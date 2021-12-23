@@ -22,6 +22,7 @@ if (!jeeFrontEnd.administration) {
     init: function() {
       this.actionOptions = []
       this.$divConfig = $('#config')
+      window.jeeP = this
 
       //Back to tab:
       var _url = window.location.href
@@ -75,7 +76,7 @@ if (!jeeFrontEnd.administration) {
             if (!isset(data.result[i].key)) {
               data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
             }
-            jeeFrontEnd.administration.addObjectSummary(data.result[i])
+            jeeP.addObjectSummary(data.result[i])
           }
           jeeFrontEnd.modifyWithoutSave = false
         }
@@ -164,7 +165,7 @@ if (!jeeFrontEnd.administration) {
             })
             return
           }
-          jeeFrontEnd.administration.printObjectSummary()
+          jeeP.printObjectSummary()
           jeeFrontEnd.modifyWithoutSave = false
         }
       })
@@ -182,12 +183,12 @@ if (!jeeFrontEnd.administration) {
         },
         success: function(data) {
           if (data == '' || typeof data != 'object') return
-          jeeFrontEnd.administration.actionOptions = []
+          jeeP.actionOptions = []
           for (var i in data) {
-            jeeFrontEnd.administration.addActionOnMessage(data[i])
+            jeeP.addActionOnMessage(data[i])
           }
           jeedom.cmd.displayActionsOption({
-            params: jeeFrontEnd.administration.actionOptions,
+            params: jeeP.actionOptions,
             async: false,
             error: function(error) {
               $.fn.showAlert({
@@ -237,7 +238,7 @@ if (!jeeFrontEnd.administration) {
       div += '</div>'
       $('#div_actionOnMessage').append(div)
       $('#div_actionOnMessage .actionOnMessage').last().setValues(_action, '.expressionAttr')
-      jeeFrontEnd.administration.actionOptions.push({
+      jeeP.actionOptions.push({
         expression: init(_action.cmd, ''),
         options: _action.options,
         id: actionOption_id
@@ -258,7 +259,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          jeeFrontEnd.administration.updateCacheStats()
+          jeeP.updateCacheStats()
           $.fn.showAlert({
             message: '{{Cache vidé}}',
             level: 'success'
@@ -275,7 +276,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          jeeFrontEnd.administration.updateCacheStats()
+          jeeP.updateCacheStats()
           $.fn.showAlert({
             message: '{{Cache vidé}}',
             level: 'success'
@@ -292,7 +293,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          jeeFrontEnd.administration.updateCacheStats()
+          jeeP.updateCacheStats()
           $.fn.showAlert({
             message: '{{Cache nettoyé}}',
             level: 'success'
@@ -336,7 +337,7 @@ if (!jeeFrontEnd.administration) {
           }
           $('#table_convertColor tbody').empty()
           for (var color in data.result) {
-            jeeFrontEnd.administration.addConvertColor(color, data.result[color])
+            jeeP.addConvertColor(color, data.result[color])
           }
           jeeFrontEnd.modifyWithoutSave = false
         }
@@ -410,9 +411,9 @@ $(function() {
 
   jeedomUtils.dateTimePickerInit()
   jeedomUtils.initSpinners()
-  jeeFrontEnd.administration.printConvertColor()
+  jeeP.printConvertColor()
   setTimeout(function() {
-    jeeFrontEnd.administration.updateTooltips()
+    jeeP.updateTooltips()
     jeeFrontEnd.modifyWithoutSave = false
   }, 500)
 })
@@ -432,7 +433,7 @@ $('#in_searchConfig').keyup(function() {
   if (search == '') {
     $('.nav-tabs.nav-primary, .tab-content').show()
     jeedomUtils.dateTimePickerInit()
-    jeeFrontEnd.administration.updateTooltips()
+    jeeP.updateTooltips()
     return
   }
   if (search.length < 3) return
@@ -477,8 +478,8 @@ $('#in_searchConfig').keyup(function() {
     }
   })
   jeedomUtils.dateTimePickerInit()
-  jeeFrontEnd.administration.initSearchLinks()
-  jeeFrontEnd.administration.updateTooltips()
+  jeeP.initSearchLinks()
+  jeeP.updateTooltips()
 })
 
 $('#bt_resetConfigSearch').on('click', function() {
@@ -499,21 +500,21 @@ jeedom.config.load({
     $('#config').setValues(data, '.configKey')
     $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
     $('.configKey[data-l1key="ldap:enable"]').trigger('change')
-    jeeFrontEnd.administration.loadActionOnMessage()
+    jeeP.loadActionOnMessage()
 
     if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') $('a.bt_removeBackgroundImage[data-page=dashboard]').addClass('disabled')
     if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') $('a.bt_removeBackgroundImage[data-page=analysis]').addClass('disabled')
     if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') $('a.bt_removeBackgroundImage[data-page=tools]').addClass('disabled')
     jeeFrontEnd.modifyWithoutSave = false
 
-    jeeFrontEnd.administration.configReload = $('#config').getValues('.configKey[data-reload="1"]')[0]
+    jeeP.configReload = $('#config').getValues('.configKey[data-reload="1"]')[0]
   }
 })
 
 $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   $.hideAlert()
-  jeeFrontEnd.administration.saveConvertColor()
-  jeeFrontEnd.administration.saveObjectSummary()
+  jeeP.saveConvertColor()
+  jeeP.saveObjectSummary()
   var config = $('#config').getValues('.configKey')[0]
   config.actionOnMessage = json_encode($('#div_actionOnMessage .actionOnMessage').getValues('.expressionAttr'))
   jeedom.config.save({
@@ -536,8 +537,8 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
         success: function(data) {
           var reloadPage = false
           try {
-            for (var key in jeeFrontEnd.administration.configReload) {
-              if (jeeFrontEnd.administration.configReload[key] != data[key]) {
+            for (var key in jeeP.configReload) {
+              if (jeeP.configReload[key] != data[key]) {
                 reloadPage = true
                 break
               }
@@ -555,7 +556,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
             window.location.reload(true)
           } else {
             $('#config').setValues(data, '.configKey')
-            jeeFrontEnd.administration.loadActionOnMessage()
+            jeeP.loadActionOnMessage()
             jeeFrontEnd.modifyWithoutSave = false
             setTimeout(function() {
               jeeFrontEnd.modifyWithoutSave = false
@@ -564,7 +565,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
               message: '{{Sauvegarde réussie}}',
               level: 'success'
             })
-            jeeFrontEnd.administration.configReload = $('#config').getValues('.configKey[data-reload="1"]')[0]
+            jeeP.configReload = $('#config').getValues('.configKey[data-reload="1"]')[0]
           }
         }
       })
@@ -572,7 +573,7 @@ $("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
   })
 })
 
-jeeFrontEnd.administration.$divConfig.off('change', '.configKey').on('change', '.configKey:visible', function() {
+jeeP.$divConfig.off('change', '.configKey').on('change', '.configKey:visible', function() {
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -683,7 +684,7 @@ $('.bt_uploadImage').each(function() {
         return
       }
       $('a.bt_removeBackgroundImage[data-page=' + $(this).attr('data-page') + ']').removeClass('disabled')
-      jeeFrontEnd.administration.configReload['imageChanged'] = 1
+      jeeP.configReload['imageChanged'] = 1
       $.fn.showAlert({
         message: '{{Image enregistrée et configurée}}',
         level: 'success'
@@ -692,7 +693,7 @@ $('.bt_uploadImage').each(function() {
   })
 })
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var dataPage = $(this).attr('data-page')
     bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
@@ -707,7 +708,7 @@ jeeFrontEnd.administration.$divConfig.on({
           },
           success: function() {
             $('a.bt_removeBackgroundImage[data-page=' + dataPage + ']').addClass('disabled')
-            jeeFrontEnd.administration.configReload['imageChanged'] = 1
+            jeeP.configReload['imageChanged'] = 1
             $.fn.showAlert({
               message: '{{Image supprimée}}',
               level: 'success'
@@ -720,7 +721,7 @@ jeeFrontEnd.administration.$divConfig.on({
 }, '.bt_removeBackgroundImage')
 
 /**************************NETWORK***********************************/
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     setTimeout(function() {
       if ($('.configKey[data-l1key="market::allowDNS"]').value() == 1 && $('.configKey[data-l1key="network::disableMangement"]').value() == 0) {
@@ -833,7 +834,7 @@ $('#bt_removeTimelineEvent').on('click', function() {
   })
 })
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     $('.logEngine').hide()
     if ($(this).value() == '') return
@@ -842,16 +843,16 @@ jeeFrontEnd.administration.$divConfig.on({
 }, '.configKey[data-l1key="log::engine"]')
 
 $('#bt_addActionOnMessage').on('click', function() {
-  jeeFrontEnd.administration.addActionOnMessage()
+  jeeP.addActionOnMessage()
 })
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     $(this).closest('.actionOnMessage').remove()
   }
 }, '.bt_removeAction')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'focusout': function(event) {
     var expression = $(this).closest('.actionOnMessage').getValues('.expressionAttr')
     var el = $(this)
@@ -864,7 +865,7 @@ jeeFrontEnd.administration.$divConfig.on({
   }
 }, '.cmdAction.expressionAttr[data-l1key=cmd]')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
     jeedom.cmd.getSelectModal({
@@ -881,7 +882,7 @@ jeeFrontEnd.administration.$divConfig.on({
   }
 }, '.listCmdAction')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var el = $(this).closest('.actionOnMessage').find('.expressionAttr[data-l1key=cmd]')
     jeedom.getSelectActionModal({}, function(result) {
@@ -919,10 +920,10 @@ $('.bt_selectWarnMeCmd').on('click', function() {
 
 /**************************SUMMARIES***********************************/
 $('#bt_addObjectSummary').on('click', function() {
-  jeeFrontEnd.administration.addObjectSummary()
+  jeeP.addObjectSummary()
 })
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = $(this).closest('.objectSummary')
     var _icon = false
@@ -947,7 +948,7 @@ jeeFrontEnd.administration.$divConfig.on({
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=chooseIcon]')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = $(this).closest('.objectSummary')
     var _icon = false
@@ -972,14 +973,14 @@ jeeFrontEnd.administration.$divConfig.on({
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=chooseIconNul]')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     $(this).closest('.objectSummary').remove()
     jeeFrontEnd.modifyWithoutSave = true
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=remove]')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'click': function(event) {
     var objectSummary = $(this).closest('.objectSummary')
     $.ajax({
@@ -1010,7 +1011,7 @@ jeeFrontEnd.administration.$divConfig.on({
   }
 }, '.objectSummary .objectSummaryAction[data-l1key=createVirtual]')
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'dblclick': function(event) {
     $(this).value('')
   }
@@ -1025,9 +1026,9 @@ $("#table_objectSummary").sortable({
   forcePlaceholderSize: true
 })
 
-jeeFrontEnd.administration.printObjectSummary()
+jeeP.printObjectSummary()
 
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     jeeFrontEnd.modifyWithoutSave = true
   }
@@ -1078,11 +1079,11 @@ $('#bt_influxHistory').off('click').on('click', function() {
 
 /**************************INTERACT***********************************/
 $('#bt_addColorConvert').on('click', function() {
-  jeeFrontEnd.administration.addConvertColor()
+  jeeP.addConvertColor()
 })
 
 /**************************SECURITY***********************************/
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     if ($(this).value() == 1) {
       $('#div_config_ldap').show()
@@ -1147,7 +1148,7 @@ $('#bt_removeBanIp').on('click', function() {
 })
 
 /**************************UPDATES / MARKET***********************************/
-jeeFrontEnd.administration.$divConfig.off('change', '.enableRepository').on('change', '.enableRepository', function() {
+jeeP.$divConfig.off('change', '.enableRepository').on('change', '.enableRepository', function() {
   if ($(this).value() == 1) {
     $('.repositoryConfiguration' + $(this).attr('data-repo')).show()
   } else {
@@ -1199,7 +1200,7 @@ $('.testRepoConnection').on('click', function() {
 })
 
 /**************************CACHE***********************************/
-jeeFrontEnd.administration.$divConfig.on({
+jeeP.$divConfig.on({
   'change': function(event) {
     $('.cacheEngine').hide()
     if ($(this).value() == '') return
@@ -1209,21 +1210,21 @@ jeeFrontEnd.administration.$divConfig.on({
 
 $("#bt_cleanCache").on('click', function(event) {
   $.hideAlert()
-  jeeFrontEnd.administration.cleanCache()
+  jeeP.cleanCache()
 })
 
 $("#bt_flushCache").on('click', function(event) {
   $.hideAlert()
   bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
     if (result) {
-      jeeFrontEnd.administration.flushCache()
+      jeeP.flushCache()
     }
   })
 })
 
 $("#bt_flushWidgetCache").on('click', function(event) {
   $.hideAlert()
-  jeeFrontEnd.administration.flushWidgetCache()
+  jeeP.flushWidgetCache()
 })
 
 /**************************API***********************************/
