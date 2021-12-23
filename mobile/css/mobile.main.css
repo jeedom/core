@@ -1689,6 +1689,11 @@
     background-color: transparent !important;
   }
 
+  .div_rowZones,
+  .div_rowZones .chartContainer{
+    width: 100% !important;
+  }
+
 /* __________________________________________________________________________________________________________MEDIA QUERIES */
   @media screen and (min-width: 1600px) and (max-width: 2000px) {
     .objectPreview {
