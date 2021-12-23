@@ -41,15 +41,10 @@ jeedom.private = {
    * Object returned if no error
    */
   API_end_successful: 'API\'s call went alright, AJAX is running or ended if {async : false} ! Doesn\'t mean it\'s going to work as expected... It depends on your parameters, none traitment has been made.',
-  code: 42
+  code: 42,
+  no_result: '',
+  no_error_code: 'No error code has been sent.'
 };
-
-/**
- * String to help user know what's going on
- */
-var no_error_code = 'No error code has been sent.';
-var no_result = '';
-var code = 42;
 
 /**
  * Conversion function on error
@@ -60,20 +55,20 @@ jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
     if (_request.responseText) {
       return {
         type: 'AJAX',
-        code: code,
+        code: jeedom.private.code,
         message: _request.responseText
       };
     } else {
       return {
         type: 'AJAX',
-        code: code,
+        code: jeedom.private.code,
         message: _request.status + ' : ' + _error
       };
     }
   }
   return {
     type: 'AJAX',
-    code: code,
+    code: jeedom.private.code,
     message: 'Unknown error'
   };
 }
@@ -105,12 +100,12 @@ jeedom.private.getParamsAJAX = function(_params) {
       if (data.state != 'ok') {
         _params.error({
           type: 'PHP',
-          message: data.result || 'Error - ' + no_result || '',
-          code: data.code || no_error_code || ''
+          message: data.result || 'Error - ' + jeedom.private.no_result || '',
+          code: data.code || jeedom.private.no_error_code || ''
         });
       } else {
         //Directly send data object to caller
-        var result = init(data.result, no_result);
+        var result = init(data.result, jeedom.private.no_result);
 
         if (data.result === false) {
           result = false;
@@ -150,7 +145,7 @@ jeedom.private.checkParamValue = function(_params) {
   } catch (e) {
     throw {
       type: 'API',
-      code: code,
+      code: jeedom.private.code,
       message: 'Error in SARA JS API. Uncomplete specified parameters in checkParamValue. ' + e.message
     };
   }
@@ -177,7 +172,7 @@ jeedom.private.checkParamValue = function(_params) {
     if (regexp.test(value) === false) {
       throw {
         type: 'API',
-        code: code,
+        code: jeedom.private.code,
         message: name + ' isn\'t correct (doesn\'t match : ' + regexp.toString() + '). `' + value + '` received.'
       };
     }
@@ -260,7 +255,7 @@ jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
     tostring = tostring.substring(0, tostring.length - 2);
     throw {
       type: 'API',
-      code: code,
+      code: jeedom.private.code,
       message: tostring
     };
   }
