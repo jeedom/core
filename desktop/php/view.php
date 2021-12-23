@@ -20,7 +20,7 @@ if (init('view_id') == '') {
 if (!is_object($view)) {
 	throw new Exception('{{Aucune vue n\'existe, cliquez <a href="index.php?v=d&p=view_edit">ici</a> pour en créer une.}}');
 }
-sendVarToJS('view_id', $view->getId());
+sendVarToJS('jeephp2js.view_id', $view->getId());
 ?>
 
 <div class="row row-overflow">

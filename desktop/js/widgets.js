@@ -16,20 +16,217 @@
 
 "use strict"
 
-var widget_parameters_opt = {
-  'desktop_width': {
-    'type': 'input',
-    'name': '{{Largeur desktop}} <sub>px</sub>'
-  },
-  'mobile_width': {
-    'type': 'input',
-    'name': '{{Largeur mobile}} <sub>px</sub>'
-  },
-  'time_widget': {
-    'type': 'checkbox',
-    'name': '{{Time widget}}'
+if (!jeeFrontEnd.widgets) {
+  jeeFrontEnd.widgets = {
+    init: function() {
+      window.jeeP = this
+      this.widget_parameters_opt = {
+        'desktop_width': {
+          'type': 'input',
+          'name': '{{Largeur desktop}} <sub>px</sub>'
+        },
+        'mobile_width': {
+          'type': 'input',
+          'name': '{{Largeur mobile}} <sub>px</sub>'
+        },
+        'time_widget': {
+          'type': 'checkbox',
+          'name': '{{Time widget}}'
+        }
+      }
+    },
+    capitalizeFirstLetter: function(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    },
+    loadTemplateConfiguration: function(_template, _data) {
+      $('.selectWidgetTemplate').off('change')
+      jeedom.widgets.getTemplateConfiguration({
+        template: _template,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('#div_templateReplace').empty()
+          if (typeof data.replace != 'undefined' && data.replace.length > 0) {
+            $('.type_replace').show()
+            var replace = ''
+            for (var i in data.replace) {
+              replace += '<div class="form-group">'
+              if (jeeP.widget_parameters_opt[data.replace[i]]) {
+                replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + jeeP.widget_parameters_opt[data.replace[i]].name + '</label>'
+              } else {
+                replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + jeeP.capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " ")) + '</label>'
+              }
+              replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">'
+              replace += '<div class="input-group">'
+              if (jeeP.widget_parameters_opt[data.replace[i]]) {
+                if (jeeP.widget_parameters_opt[data.replace[i]].type == 'checkbox') {
+                  replace += '<input type="checkbox" class="widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
+                } else if (jeeP.widget_parameters_opt[data.replace[i]].type == 'number') {
+                  replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
+                } else if (jeeP.widget_parameters_opt[data.replace[i]].type == 'input') {
+                  replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
+                }
+              } else {
+                replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
+              }
+              if (data.replace[i].indexOf('icon_') != -1 || data.replace[i].indexOf('img_') != -1) {
+                replace += '<span class="input-group-btn">'
+                replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
+                replace += '</span>'
+              }
+              replace += '</div>'
+              replace += '</div>'
+              replace += '</div>'
+            }
+            $('#div_templateReplace').append(replace)
+          } else {
+            $('.type_replace').hide()
+          }
+
+          if (typeof _data != 'undefined') {
+            $('.widgets').setValues({
+              replace: _data.replace
+            }, '.widgetsAttr')
+          }
+          if (data.test) {
+            $('.type_test').show()
+          } else {
+            $('.type_test').hide()
+          }
+          $('.selectWidgetTemplate').on('change', function() {
+            if ($(this).value() == '' || !$(this).hasClass('widgetsAttr')) return
+            jeeP.loadTemplateConfiguration('cmd.' + $('.widgetsAttr[data-l1key=type]').value() + '.' + $('.widgetsAttr[data-l1key=subtype]').value() + '.' + $(this).value())
+          })
+          jeeFrontEnd.modifyWithoutSave = true
+        }
+      })
+    },
+    printWidget: function(_id) {
+      $.hideAlert()
+      $('#div_conf').show()
+      $('#div_widgetsList').hide()
+      $('#div_templateTest').empty()
+
+      jeedom.widgets.byId({
+        id: _id,
+        cache: false,
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          $('a[href="#widgetstab"]').click()
+          $('.selectWidgetTemplate').off('change')
+          $('.widgetsAttr').value('')
+          $('.widgetsAttr[data-l1key=type]').value('info')
+          $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'))
+          $('.widgets').setValues(data, '.widgetsAttr')
+          if (isset(data.test)) {
+            for (var i in data.test) {
+              jeeP.addTest(data.test[i])
+            }
+          }
+          var usedBy = ''
+          for (var i in data.usedBy) {
+            usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + i + '">' + data.usedBy[i] + '</span> '
+          }
+          $('#div_usedBy').empty().append(usedBy)
+          var template = 'cmd.'
+          if (data.type && data.type !== null) {
+            template += data.type + '.'
+          } else {
+            template += 'action.'
+          }
+          if (data.subtype && data.subtype !== null) {
+            template += data.subtype + '.'
+          } else {
+            template += 'other.'
+          }
+          if (data.template && data.template !== null) {
+            template += data.template
+          } else {
+            template += 'tmplicon'
+          }
+          jeeP.loadTemplateConfiguration(template, data)
+          jeedomUtils.addOrUpdateUrl('id', data.id)
+          jeeFrontEnd.modifyWithoutSave = false
+          jeedom.widgets.getPreview({
+            id: data.id,
+            cache: false,
+            error: function(error) {
+              $.fn.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              $('#div_widgetPreview').empty().html(data.html)
+              $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
+            }
+          })
+          setTimeout(function() {
+            jeeFrontEnd.modifyWithoutSave = false
+          }, 1000)
+        }
+      })
+    },
+    addTest: function(_test) {
+      if (!isset(_test)) {
+        _trigger = {}
+      }
+      var div = '<div class="test">'
+      div += '<div class="form-group">'
+      div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>'
+      div += '<div class="col-sm-3">'
+      div += '<div class="input-group">'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>'
+      div += '</span>'
+      div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>'
+      div += '</div>'
+      div += '</div>'
+      div += '<div class="col-sm-3">'
+      div += '<div class="input-group">'
+      div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="{{Résultat si test ok}} (light)"/>'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+      div += '<div class="col-sm-3">'
+      div += '<div class="input-group">'
+      div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="{{Résultat si test ok}} (dark)"/>'
+      div += '<span class="input-group-btn">'
+      div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
+      div += '</span>'
+      div += '</div>'
+      div += '</div>'
+
+      div += '</div>'
+      div += '</div>'
+      $('#div_templateTest').append(div)
+      $('#div_templateTest').find('.test').last().setValues(_test, '.testAttr')
+    },
+    downloadObjectAsJson: function(exportObj, exportName) {
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
+      var downloadAnchorNode = document.createElement('a')
+      downloadAnchorNode.setAttribute("href", dataStr)
+      downloadAnchorNode.setAttribute("target", "_blank")
+      downloadAnchorNode.setAttribute("download", exportName + ".json")
+      document.body.appendChild(downloadAnchorNode) // required for firefox
+      downloadAnchorNode.click()
+      downloadAnchorNode.remove()
+    }
   }
 }
+
+jeeFrontEnd.widgets.init()
 
 document.onkeydown = function(event) {
   if (jeedomUtils.getOpenedModal()) return
@@ -141,7 +338,7 @@ $(function() {
             if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
               window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
             } else {
-              printWidget(options.commands[key].id)
+              jeeP.printWidget(options.commands[key].id)
             }
           },
           items: contextmenuitems
@@ -162,7 +359,7 @@ $('#bt_chooseIcon').on('click', function() {
   }, {
     icon: _icon
   })
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('#bt_editCode').off('click').on('click', function() {
@@ -220,7 +417,7 @@ $('#bt_applyToCmd').off('click').on('click', function() {
             })
           },
           success: function(data) {
-            modifyWithoutSave = false
+            jeeFrontEnd.modifyWithoutSave = false
             var cmd = {
               template: {
                 dashboard: 'custom::' + $('.widgetsAttr[data-l1key=name]').value(),
@@ -313,7 +510,7 @@ $('#div_templateReplace').off('click', '.chooseIcon').on('click', '.chooseIcon',
   }, {
     img: true
   })
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', function() {
@@ -323,83 +520,11 @@ $('#div_templateTest').off('click', '.chooseIcon').on('click', '.chooseIcon', fu
   }, {
     img: true
   })
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-function loadTemplateConfiguration(_template, _data) {
-  $('.selectWidgetTemplate').off('change')
-  jeedom.widgets.getTemplateConfiguration({
-    template: _template,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $('#div_templateReplace').empty()
-      if (typeof data.replace != 'undefined' && data.replace.length > 0) {
-        $('.type_replace').show()
-        var replace = ''
-        for (var i in data.replace) {
-          replace += '<div class="form-group">'
-          if (widget_parameters_opt[data.replace[i]]) {
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + widget_parameters_opt[data.replace[i]].name + '</label>'
-          } else {
-            replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + capitalizeFirstLetter(data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " ")) + '</label>'
-          }
-          replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">'
-          replace += '<div class="input-group">'
-          if (widget_parameters_opt[data.replace[i]]) {
-            if (widget_parameters_opt[data.replace[i]].type == 'checkbox') {
-              replace += '<input type="checkbox" class="widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-            } else if (widget_parameters_opt[data.replace[i]].type == 'number') {
-              replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-            } else if (widget_parameters_opt[data.replace[i]].type == 'input') {
-              replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-            }
-          } else {
-            replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-          }
-          if (data.replace[i].indexOf('icon_') != -1 || data.replace[i].indexOf('img_') != -1) {
-            replace += '<span class="input-group-btn">'
-            replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
-            replace += '</span>'
-          }
-          replace += '</div>'
-          replace += '</div>'
-          replace += '</div>'
-        }
-        $('#div_templateReplace').append(replace)
-      } else {
-        $('.type_replace').hide()
-      }
-
-      if (typeof _data != 'undefined') {
-        $('.widgets').setValues({
-          replace: _data.replace
-        }, '.widgetsAttr')
-      }
-      if (data.test) {
-        $('.type_test').show()
-      } else {
-        $('.type_test').hide()
-      }
-      $('.selectWidgetTemplate').on('change', function() {
-        if ($(this).value() == '' || !$(this).hasClass('widgetsAttr')) return
-        loadTemplateConfiguration('cmd.' + $('.widgetsAttr[data-l1key=type]').value() + '.' + $('.widgetsAttr[data-l1key=subtype]').value() + '.' + $(this).value())
-      })
-      modifyWithoutSave = true
-    }
-  })
-}
-
 $('#div_pageContainer').off('change', '.widgetsAttr').on('change', '.widgetsAttr:visible', function() {
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
 
 $('#bt_returnToThumbnailDisplay').on('click', function() {
@@ -414,123 +539,13 @@ $('#bt_returnToThumbnailDisplay').on('click', function() {
 })
 
 $('#bt_widgetsAddTest').off('click').on('click', function(event) {
-  addTest({})
+  jeeP.addTest({})
 })
 
 $('#div_templateTest').off('click', '.bt_removeTest').on('click', '.bt_removeTest', function() {
   $(this).closest('.test').remove()
-  modifyWithoutSave = true
+  jeeFrontEnd.modifyWithoutSave = true
 })
-
-function printWidget(_id) {
-  $.hideAlert()
-  $('#div_conf').show()
-  $('#div_widgetsList').hide()
-  $('#div_templateTest').empty()
-
-  jeedom.widgets.byId({
-    id: _id,
-    cache: false,
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $('a[href="#widgetstab"]').click()
-      $('.selectWidgetTemplate').off('change')
-      $('.widgetsAttr').value('')
-      $('.widgetsAttr[data-l1key=type]').value('info')
-      $('.widgetsAttr[data-l1key=subtype]').value($('.widgetsAttr[data-l1key=subtype]').find('option:first').attr('value'))
-      $('.widgets').setValues(data, '.widgetsAttr')
-      if (isset(data.test)) {
-        for (var i in data.test) {
-          addTest(data.test[i])
-        }
-      }
-      var usedBy = ''
-      for (var i in data.usedBy) {
-        usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + i + '">' + data.usedBy[i] + '</span> '
-      }
-      $('#div_usedBy').empty().append(usedBy)
-      var template = 'cmd.'
-      if (data.type && data.type !== null) {
-        template += data.type + '.'
-      } else {
-        template += 'action.'
-      }
-      if (data.subtype && data.subtype !== null) {
-        template += data.subtype + '.'
-      } else {
-        template += 'other.'
-      }
-      if (data.template && data.template !== null) {
-        template += data.template
-      } else {
-        template += 'tmplicon'
-      }
-      loadTemplateConfiguration(template, data)
-      jeedomUtils.addOrUpdateUrl('id', data.id)
-      modifyWithoutSave = false
-      jeedom.widgets.getPreview({
-        id: data.id,
-        cache: false,
-        error: function(error) {
-          $.fn.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          $('#div_widgetPreview').empty().html(data.html)
-          $('#div_widgetPreview .eqLogic-widget').css('position', 'relative')
-        }
-      })
-      setTimeout(function() {
-        modifyWithoutSave = false
-      }, 1000)
-    }
-  })
-}
-
-function addTest(_test) {
-  if (!isset(_test)) {
-    _trigger = {}
-  }
-  var div = '<div class="test">'
-  div += '<div class="form-group">'
-  div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>'
-  div += '<div class="col-sm-3">'
-  div += '<div class="input-group">'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>'
-  div += '</span>'
-  div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>'
-  div += '</div>'
-  div += '</div>'
-  div += '<div class="col-sm-3">'
-  div += '<div class="input-group">'
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="{{Résultat si test ok}} (light)"/>'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-  div += '<div class="col-sm-3">'
-  div += '<div class="input-group">'
-  div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="{{Résultat si test ok}} (dark)"/>'
-  div += '<span class="input-group-btn">'
-  div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
-  div += '</span>'
-  div += '</div>'
-  div += '</div>'
-
-  div += '</div>'
-  div += '</div>'
-  $('#div_templateTest').append(div)
-  $('#div_templateTest').find('.test').last().setValues(_test, '.testAttr')
-}
 
 $("#bt_addWidgets").off('click').on('click', function(event) {
   bootbox.prompt("{{Nom du widget}} ?", function(result) {
@@ -546,7 +561,7 @@ $("#bt_addWidgets").off('click').on('click', function(event) {
           })
         },
         success: function(data) {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1')
           $.fn.showAlert({
             message: '{{Sauvegarde effectuée avec succès}}',
@@ -569,7 +584,7 @@ $(".widgetsDisplayCard").off('click').on('click', function(event) {
     var url = '/index.php?v=d&p=widgets&id=' + $(this).attr('data-widgets_id')
     window.open(url).focus()
   } else {
-    printWidget($(this).attr('data-widgets_id'))
+    jeeP.printWidget($(this).attr('data-widgets_id'))
   }
 })
 $('.widgetsDisplayCard').off('mouseup').on('mouseup', function(event) {
@@ -602,7 +617,7 @@ $("#bt_saveWidgets").on('click', function(event) {
       })
     },
     success: function(data) {
-      modifyWithoutSave = false
+      jeeFrontEnd.modifyWithoutSave = false
       window.location = 'index.php?v=d&p=widgets&id=' + data.id + '&saveSuccessFull=1'
     }
   })
@@ -621,7 +636,7 @@ $('#bt_removeWidgets').on('click', function(event) {
           })
         },
         success: function(data) {
-          modifyWithoutSave = false
+          jeeFrontEnd.modifyWithoutSave = false
           window.location = 'index.php?v=d&p=widgets&removeSuccessFull=1'
         }
       })
@@ -636,7 +651,7 @@ $("#bt_exportWidgets").on('click', function(event) {
   jeedom.version({
     success: function(version) {
       widgets.jeedomCoreVersion = version
-      downloadObjectAsJson(widgets, widgets.name)
+      jeeP.downloadObjectAsJson(widgets, widgets.name)
     }
   })
   return false
@@ -682,7 +697,7 @@ $("#bt_mainImportWidgets").change(function(event) {
               objectData.name = data.name
               if (isset(objectData.test)) {
                 for (var i in objectData.test) {
-                  addTest(objectData.test[i])
+                  jeeP.addTest(objectData.test[i])
                 }
               }
               jeedom.widgets.save({
@@ -738,10 +753,10 @@ $("#bt_importWidgets").change(function(event) {
       objectData.name = $('.widgetsAttr[data-l1key=name]').value();
       if (isset(objectData.test)) {
         for (var i in objectData.test) {
-          addTest(objectData.test[i])
+          jeeP.addTest(objectData.test[i])
         }
       }
-      loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
+      jeeP.loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
     }
   } else {
     $.fn.showAlert({
@@ -751,14 +766,3 @@ $("#bt_importWidgets").change(function(event) {
     return false
   }
 })
-
-function downloadObjectAsJson(exportObj, exportName) {
-  var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
-  var downloadAnchorNode = document.createElement('a')
-  downloadAnchorNode.setAttribute("href", dataStr)
-  downloadAnchorNode.setAttribute("target", "_blank")
-  downloadAnchorNode.setAttribute("download", exportName + ".json")
-  document.body.appendChild(downloadAnchorNode) // required for firefox
-  downloadAnchorNode.click()
-  downloadAnchorNode.remove()
-}

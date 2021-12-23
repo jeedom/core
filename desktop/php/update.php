@@ -41,9 +41,9 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 
 $logUpdate = log::get('update', 0, -1);
 if ( (!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE SUCCESS') ) {
-	sendVarToJS('isUpdating', '0');
+	sendVarToJS('jeephp2js.isUpdating', '0');
 } else {
-	sendVarToJS('isUpdating', '1');
+	sendVarToJS('jeephp2js.isUpdating', '1');
 }
 ?>
 

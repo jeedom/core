@@ -182,7 +182,6 @@ $('#bt_closeAll').off('click').on('click', function(event) {
 })
 
 //Sorting:
-var sortFromGenericId
 $('.eqLogicSortable').sortable({
   cursor: "move",
   connectWith: ".eqLogicSortable",
@@ -196,7 +195,7 @@ $('.eqLogicSortable').sortable({
         $(this).appendTo(ui.item)
       }
     })
-    sortFromGenericId = ui.item.closest('.eqlogicSortable').attr('data-id')
+    jeeP.sortFromGenericId = ui.item.closest('.eqlogicSortable').attr('data-id')
   },
   stop: function(event, ui) {
     var genericId = ui.item.closest('.eqlogicSortable').attr('data-id')
@@ -217,7 +216,7 @@ $('.eqLogicSortable').sortable({
     })
 
     //reset types on commands ?
-    if (sortFromGenericId != genericId && genericId == '') {
+    if (jeeP.sortFromGenericId != genericId && genericId == '') {
       bootbox.confirm({
         message: "{{Supprimer les types generiques sur les commandes ?}}",
         buttons: {
