@@ -168,12 +168,12 @@ $('#bt_openCmdHistoryConfigure').on('click', function() {
 })
 
 $('#sel_timelineFolder').off('change').on('change', function() {
-  displayTimeline()
+  jeeP.displayTimeline()
 })
 
 $('#bt_tabTimeline').on('click', function() {
   $.hideAlert()
-  displayTimeline()
+  jeeP.displayTimeline()
 })
 
 $('#timelineContainer ul').on('click', '.bt_scenarioLog', function() {

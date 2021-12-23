@@ -454,6 +454,8 @@ jeedomUtils.setBackgroundImage = function(_path) {
       _path = jeedom.theme['interface::background::tools']
     }
 
+    if (!jeedomUtils._elBackground) jeedomUtils._elBackground = $('#backgroundforJeedom')
+
     if (_path.substring(0, 4) == 'core') {
       jeedomUtils._elBackground.removeClass('custom')
       _path += mode + '.jpg'

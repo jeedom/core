@@ -17,9 +17,9 @@ global $typeStringSep;
 $typeStringSep = ' -> ';
 
 sendVarToJS([
-	'generics' => $GENRICSTYPES,
-	'gen_families' => $families,
-	'typeStringSep' => $typeStringSep
+	'jeephp2js.generics' => $GENRICSTYPES,
+	'jeephp2js.gen_families' => $families,
+	'jeephp2js.typeStringSep' => $typeStringSep
 ]);
 
 function jeedom_displayGenFamily($_family, $_familyId='') {
