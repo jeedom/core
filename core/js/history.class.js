@@ -16,7 +16,6 @@
 
 jeedom.history = function() {};
 jeedom.history.chart = [];
-jeedom.history.done = false
 
 jeedom.history.get = function(_params) {
   var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd'];
@@ -386,8 +385,8 @@ jeedom.history.drawChart = function(_params) {
           load: function(event) {
             //default min/max set earlier in series
             var thisId = event.target.userOptions._jeeId
-            clearTimeout(jeedom.history.done)
-            jeedom.history.done = setTimeout(jeedom.history.chartDone.bind(null, thisId), 1000)
+            clearTimeout(jeedom.history.chart[thisId].done)
+            jeedom.history.chart[thisId].done = setTimeout(jeedom.history.chartDone.bind(null, thisId), 1000)
           },
           redraw: function(event) {
             if (this._jeeButtons) {
@@ -425,8 +424,8 @@ jeedom.history.drawChart = function(_params) {
                 },
               }, false)
 
-              clearTimeout(jeedom.history.done)
-              jeedom.history.done = setTimeout(jeedom.history.chartDone.bind(null, thisId), 750)
+              clearTimeout(jeedom.history.chart[thisId].done)
+              jeedom.history.chart[thisId].done = setTimeout(jeedom.history.chartDone.bind(null, thisId), 750)
 
               setTimeout(function() {
                 try {
@@ -1002,6 +1001,7 @@ yAxis scaling
 
 jeedom.history.initChart = function(_chartId) {
   var thisId = _chartId
+  jeedom.history.chart[thisId].done = false
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
   jeedom.history.chart[thisId].mode = jeedom.getPageType(true)
