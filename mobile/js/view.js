@@ -44,7 +44,6 @@ function initView(_view_id) {
               option: json_decode($(this).attr('data-option').replace(/'/g, '"')),
               success: function(data) {
                 $('.chartToDraw > .viewZoneData[data-cmdid="' + cmdId + '"]').remove()
-                jeedom.history.chart[el].chart.redraw()
               }
             })
           })
@@ -111,4 +110,8 @@ function displayView(html) {
       $(this).css({'overflow':'auto', 'max-width':screenWidth+'px'})
     }
   })
+}
+
+function setChartOptions(_chartId) {
+  jeedom.history.chart[_chartId].chart.redraw()
 }
