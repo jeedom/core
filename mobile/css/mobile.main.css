@@ -1344,9 +1344,6 @@
     fill: transparent !important;
   }
 
-  .highcharts-axis-labels > text {
-    fill: var(--link-color) !important;
-  }
   .highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
     font-weight: bold;
   }
@@ -1365,6 +1362,52 @@
   }
   .highcharts-label.highcharts-point text {
     fill: var(--txt-color);
+  }
+
+  div.chartContainer .highcharts-button-disabled {
+    opacity: 0.3;
+  }
+  div.chartContainer .highcharts-button-box {
+    x:0;
+    y:0;
+    rx: var(--border-radius);
+    ry: var(--border-radius);
+    stroke: transparent;
+  }
+  div.chartContainer .highcharts-button.highcharts-button-pressed > rect {
+    stroke: transparent;
+    fill: var(--objectBkgd-color) !important;
+  }
+  div.chartContainer .highcharts-button.highcharts-button-pressed > text {
+    stroke: transparent;
+    fill: var(--objectTxt-color) !important;
+  }
+  path.highcharts-graph {
+    stroke-width: 1.2;
+  }
+  .highcharts-selection-marker {
+    fill: rgb(var(--eq-bg-color));
+    fill-opacity: 0.5;
+    stroke: rgb(var(--contrast-color));
+    stroke-width: 1px !important;
+  }
+
+  div.chartContainer .highcharts-navigator-mask-inside {
+    opacity: 0.6;
+  }
+  div.chartContainer .highcharts-navigator-outline,
+  div.chartContainer .highcharts-xaxis > .highcharts-axis-line,
+  div.chartContainer .highcharts-scrollbar-button,
+  div.chartContainer .highcharts-scrollbar-arrow {
+    display: none;
+  }
+  div.chartContainer .highcharts-axis-line,
+  div.chartContainer .highcharts-navigator-xaxis .highcharts-grid-line {
+    stroke: var(--placeholder-color) !important;
+  }
+
+  div.chartContainer .highcharts-navigator-handle {
+    fill: var(--placeholder-color) !important;
   }
 
 /* ___________________________________________________________POPUP */
@@ -1687,6 +1730,11 @@
 
   .div_viewZoneTable table{
     background-color: transparent !important;
+  }
+
+  .div_rowZones,
+  .div_rowZones .chartContainer{
+    width: 100% !important;
   }
 
 /* __________________________________________________________________________________________________________MEDIA QUERIES */

@@ -19,7 +19,7 @@ Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obtur
 
 > **Gorjeta**
 >
-> - Quando você move equipamentos no jogo **Equipamento sem tipo**, Jeedom sugere que você remova os tipos genéricos de seus pedidos.
+> - Quando você move o equipamento no jogo **Equipamento sem tipo**, Jeedom sugere que você remova os tipos genéricos de seus pedidos.
 > - Você pode mover vários equipamentos de uma vez marcando as caixas de seleção à esquerda deles.
 
 ## Tipo de comando

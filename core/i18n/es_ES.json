@@ -4413,6 +4413,7 @@
         "Impossible d\\'installer le plugin. Le nom du plugin est différent de l\\'ID ou le plugin n\\'est pas correctement formé. Veuillez contacter l\\'auteur.": "No se puede instalar el plugin. El nombre del plugin es diferente de la ID o el plugin no está formado correctamente. Por favor contacte al autor",
         "OK": "Bueno",
         "END UPDATE SUCCESS": "FINALIZAR EL ÉXITO",
+        "Erreur lors de la récuperation de la derniere version de Jeedom, url :": "Error al recuperar la última versión de Jeedom, url:",
         "Le logical ID ne peut pas être vide": "El ID lógico no puede estar vacío"
     },
     "core\/class\/listener.class.php": {

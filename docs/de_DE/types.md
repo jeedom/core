@@ -24,7 +24,7 @@ Diese Seite bietet Lagerung nach Gerätetyp : Steckdose, Licht, Shutter, Thermos
 
 ## Befehlstyp
 
-Sobald ein Ausrüstungsgegenstand richtig positioniert ist *Typ*, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es sich um a . handelt *Die Info* (Blau) oder a *Handlung* (Orange).
+Sobald ein Ausrüstungsgegenstand richtig positioniert ist *Typ*, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist *Die Info* (Blau) oder a *Handlung* (Orange).
 
 Durch Rechtsklick auf einen Auftrag können Sie ihm dann einen generischen Typ entsprechend den Spezifikationen dieses Auftrags zuweisen (Info-/Aktionstyp, Numerisch, Binärer Untertyp usw).
 

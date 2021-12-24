@@ -32,6 +32,22 @@ function initView(_view_id) {
       },
       success: function(html) {
         displayView(html)
+        //draw graphs:
+        $('.chartToDraw').each(function() {
+          $(this).find('.viewZoneData').each(function() {
+            var cmdId = $(this).attr('data-cmdid')
+            var el = $(this).attr('data-el')
+            jeedom.history.drawChart({
+              cmd_id: cmdId,
+              el: el,
+              dateRange: $(this).attr('data-daterange'),
+              option: json_decode($(this).attr('data-option').replace(/'/g, '"')),
+              success: function(data) {
+                $('.chartToDraw > .viewZoneData[data-cmdid="' + cmdId + '"]').remove()
+              }
+            })
+          })
+        })
       }
     })
   } else {
@@ -94,4 +110,10 @@ function displayView(html) {
       $(this).css({'overflow':'auto', 'max-width':screenWidth+'px'})
     }
   })
+}
+
+function setChartOptions(_chartId) {
+  setTimeout(function() {
+    jeedom.history.chart[_chartId].chart.redraw()
+  }, 500)
 }
