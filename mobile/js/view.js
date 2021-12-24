@@ -2,6 +2,20 @@
 
 $('body').attr('data-page', 'view')
 
+if (!jeeFrontEnd.view) {
+  jeeFrontEnd.view = {
+    init: function() {
+      window.jeeP = this
+    },
+    highcharts_load_callback: function(_chartId) {
+      jeedom.history.chart[_chartId].chart.redraw()
+    },
+    setAxisScales_Callback: function(_chartId) {
+      jeedom.history.chart[_chartId].chart.redraw()
+    },
+  }
+}
+
 function initView(_view_id) {
   jeedom.view.all({
     error: function(error) {
