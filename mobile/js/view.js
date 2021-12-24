@@ -113,5 +113,7 @@ function displayView(html) {
 }
 
 function setChartOptions(_chartId) {
-  jeedom.history.chart[_chartId].chart.redraw()
+  setTimeout(function() {
+    jeedom.history.chart[_chartId].chart.redraw()
+  }, 500)
 }

@@ -1392,6 +1392,24 @@
     stroke-width: 1px !important;
   }
 
+  div.chartContainer .highcharts-navigator-mask-inside {
+    opacity: 0.6;
+  }
+  div.chartContainer .highcharts-navigator-outline,
+  div.chartContainer .highcharts-xaxis > .highcharts-axis-line,
+  div.chartContainer .highcharts-scrollbar-button,
+  div.chartContainer .highcharts-scrollbar-arrow {
+    display: none;
+  }
+  div.chartContainer .highcharts-axis-line,
+  div.chartContainer .highcharts-navigator-xaxis .highcharts-grid-line {
+    stroke: var(--placeholder-color) !important;
+  }
+
+  div.chartContainer .highcharts-navigator-handle {
+    fill: var(--placeholder-color) !important;
+  }
+
 /* ___________________________________________________________POPUP */
   .ui-popup-screen.in {
     background-image: none;
