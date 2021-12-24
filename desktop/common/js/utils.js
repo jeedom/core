@@ -80,6 +80,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   $.contextMenu('destroy')
   $('.context-menu-root').remove()
 
+  $(window).off('resize')
+
   try {
     $(".ui-dialog-content").dialog("close")
   } catch(e) {}
