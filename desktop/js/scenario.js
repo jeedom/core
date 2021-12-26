@@ -337,7 +337,7 @@ if (!jeeFrontEnd.scenario) {
       }
       var elements = []
       $('#div_scenarioElement').children('.element').each(function() {
-        elements.push(this.getElement($(this)))
+        elements.push(jeeP.getElement($(this)))
       })
       scenario.elements = elements
       jeedom.scenario.save({
@@ -350,7 +350,7 @@ if (!jeeFrontEnd.scenario) {
         },
         success: function(data) {
           jeeFrontEnd.modifyWithoutSave = false
-          resetUndo()
+          jeeP.resetUndo()
           var url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1'
           if (window.location.hash != '') {
             url += window.location.hash
