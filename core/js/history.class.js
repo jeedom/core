@@ -1014,15 +1014,16 @@ jeedom.history.initChart = function(_chartId) {
   }
 
   if (jeedom.history.chart[thisId].type == 'pie') return false
+  if (getUrlVars('v') != 'm') jeedom.history.initLegendContextMenu(_chartId)
 
   //default:
   if (jeedom.history.chart[thisId].mode == 'plan') {
     jeedom.history.default.yAxisScaling = false
+    jeedom.history.default.yAxisByUnit = false
   }
 
-  jeedom.history.initLegendContextMenu(_chartId)
-
-  /*HichChart button states (undocumented):
+  /*
+  HichChart button states (undocumented):
     0: normal
     1: hover
     2: selected
