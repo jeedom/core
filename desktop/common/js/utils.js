@@ -945,6 +945,26 @@ jeedomUtils.datePickerInit = function() {
   $('.in_datepicker').datepicker(datePickerRegional)
 }
 
+jeedomUtils.dateTimePickerInit = function(_step) {
+  $('input.isdatepicker').datetimepicker('destroy')
+  $('.xdsoft_datetimepicker').remove()
+  if (!isset(_step)) _step = 10
+  $('input.isdatepicker').datetimepicker({
+    datepicker: false,
+    format: 'H:i',
+    step: _step
+  })
+}
+
+jeedomUtils.initSpinners = function() {
+  $('input[type="number"]').spinner({
+    icons: {
+      down: "ui-icon-triangle-1-s",
+      up: "ui-icon-triangle-1-n"
+    }
+  })
+}
+
 jeedomUtils.datePickerDestroy = function() {
   $('.in_datepicker').datepicker( "destroy" )
   $('.in_datepicker').removeClass("hasDatepicker").removeAttr('id')

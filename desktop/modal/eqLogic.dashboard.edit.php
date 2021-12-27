@@ -418,7 +418,7 @@ $(function() {
 
   setTableLayoutSortable()
   jeedomUtils.initTooltips()
-  initPickers()
+  jeedomUtils.initSpinners()
 
   //layout default or table for cmd order:
   if ($('.sel_layout').val() == 'default') {
@@ -451,12 +451,6 @@ function setModal() {
 }
 
 /* Equipement */
-function initPickers() {
-  $('input[type="number"]').spinner({
-    icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" }
-  })
-}
-
 function setTableLayoutSortable() {
   $('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
     connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
