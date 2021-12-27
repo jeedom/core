@@ -34,6 +34,9 @@ $(function() {
     sound: false,
     sort: 'kindDirsFirst',
     sortDirect: 'kindDirsFirst',
+    fancyDateFormat: 'Y-m-d H:i',
+    dateFormat: 'Y-m-d H:i',
+    timeFormat: 'H:i',
     contextmenu: {
       cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'info'],
       files: ['cmdedit', 'edit', '|', 'rename' ,'|', 'getfile' , 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|','rm', '|', 'archive', 'extract', '|', 'info', 'places']
