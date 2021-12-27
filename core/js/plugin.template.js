@@ -101,23 +101,25 @@ $(function() {
             zIndex: 9999,
             className: 'eq-context-menu',
             callback: function(key, options, event) {
-              tab = null
-              tabObj = null
-              if (document.location.toString().match('#')) {
-                tab = '#' + document.location.toString().split('#')[1]
-                if (tab != '#') {
-                  tabObj = $('a[href="' + tab + '"]')
+              if (!jeedomUtils.checkPageModified()) {
+                tab = null
+                tabObj = null
+                if (document.location.toString().match('#')) {
+                  tab = '#' + document.location.toString().split('#')[1]
+                  if (tab != '#') {
+                    tabObj = $('a[href="' + tab + '"]')
+                  }
                 }
-              }
-              $.hideAlert()
-              if (event.ctrlKey || event.originalEvent.which == 2) {
-                var type = $('body').attr('data-page')
-                var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
-                if (tabObj) url += tab
-                window.open(url).focus()
-              } else {
-                $('.eqLogicDisplayCard[data-eqLogic_id="' + options.commands[key].id + '"]').click()
-                if (tabObj) tabObj.click()
+                $.hideAlert()
+                if (event.ctrlKey || event.originalEvent.which == 2) {
+                  var type = $('body').attr('data-page')
+                  var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
+                  if (tabObj) url += tab
+                  window.open(url).focus()
+                } else {
+                  $('.eqLogicDisplayCard[data-eqLogic_id="' + options.commands[key].id + '"]').click()
+                  if (tabObj) tabObj.click()
+                }
               }
             },
             items: contextmenuitems
