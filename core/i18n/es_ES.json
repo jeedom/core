@@ -3046,6 +3046,8 @@
     "desktop\/js\/scenario.js": {
         "Log d'exécution du scénario": "Log de ejecución del escenario",
         "Nom du scénario": "Nombre del escenario",
+        "Êtes-vous sûr de vouloir désactiver les scénarios ?": "¿Estás seguro de que quieres desactivar los escenarios?",
+        "Êtes-vous sûr de vouloir activer les scénarios ?": "¿Está seguro de que desea habilitar escenarios?",
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
         "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
