@@ -19,8 +19,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
-import MultipleLinesMixin from '../../../Mixins/MultipleLines.js';
+import MultipleLinesComposition from '../MultipleLinesComposition.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var _a = SeriesRegistry.seriesTypes, SMAIndicator = _a.sma, EMAIndicator = _a.ema;
 import U from '../../../Core/Utilities.js';
@@ -37,6 +36,11 @@ var correctFloat = U.correctFloat, error = U.error, extend = U.extend, isArray =
 var KlingerIndicator = /** @class */ (function (_super) {
     __extends(KlingerIndicator, _super);
     function KlingerIndicator() {
+        /* *
+         *
+         *  Static Properties
+         *
+         * */
         var _this = _super !== null && _super.apply(this, arguments) || this;
         /* *
          *
@@ -54,14 +58,6 @@ var KlingerIndicator = /** @class */ (function (_super) {
      *  Functions
      *
      * */
-    KlingerIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        // Check if the EMA module is added.
-        RequiredIndicatorMixin.isParentLoaded(EMAIndicator, 'ema', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     KlingerIndicator.prototype.calculateTrend = function (yVal, i) {
         var isUpward = yVal[i][1] + yVal[i][2] + yVal[i][3] >
             yVal[i - 1][1] + yVal[i - 1][2] + yVal[i - 1][3];
@@ -231,26 +227,28 @@ var KlingerIndicator = /** @class */ (function (_super) {
             approximation: 'averages'
         },
         tooltip: {
-            pointFormat: '<span style="color: {point.color}">\u25CF</span><b> {series.name}</b><br/>' +
-                '<span style="color: {point.color}">Klinger</span>: {point.y}<br/>' +
-                '<span style="color: {point.series.options.signalLine.styles.lineColor}">Signal</span>' +
+            pointFormat: '<span style="color: {point.color}">\u25CF</span>' +
+                '<b> {series.name}</b><br/>' +
+                '<span style="color: {point.color}">Klinger</span>: ' +
+                '{point.y}<br/>' +
+                '<span style="color: ' +
+                '{point.series.options.signalLine.styles.lineColor}">' +
+                'Signal</span>' +
                 ': {point.signal}<br/>'
         }
     });
     return KlingerIndicator;
 }(SMAIndicator));
 extend(KlingerIndicator.prototype, {
+    areaLinesNames: [],
     linesApiNames: ['signalLine'],
     nameBase: 'Klinger',
     nameComponents: ['fastAvgPeriod', 'slowAvgPeriod'],
     pointArrayMap: ['y', 'signal'],
     parallelArrays: ['x', 'y', 'signal'],
-    pointValKey: 'y',
-    drawGraph: MultipleLinesMixin.drawGraph,
-    getTranslatedLinesNames: MultipleLinesMixin.getTranslatedLinesNames,
-    translate: MultipleLinesMixin.translate,
-    toYData: MultipleLinesMixin.toYData
+    pointValKey: 'y'
 });
+MultipleLinesComposition.compose(KlingerIndicator);
 SeriesRegistry.registerSeriesType('klinger', KlingerIndicator);
 /* *
  *
@@ -266,7 +264,6 @@ export default KlingerIndicator;
  * @since 9.1.0
  * @product   highstock
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/ema
  * @requires  stock/indicators/klinger
  * @apioption series.klinger
  */

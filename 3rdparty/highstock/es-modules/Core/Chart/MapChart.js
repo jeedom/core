@@ -24,9 +24,10 @@ var __extends = (this && this.__extends) || (function () {
 import Chart from './Chart.js';
 import D from '../DefaultOptions.js';
 var getOptions = D.getOptions;
+import MapView from '../../Maps/MapView.js';
 import SVGRenderer from '../Renderer/SVG/SVGRenderer.js';
 import U from '../Utilities.js';
-var merge = U.merge, pick = U.pick;
+var addEvent = U.addEvent, clamp = U.clamp, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
 import '../../Maps/MapSymbols.js';
 /**
  * Map-optimized chart. Use {@link Highcharts.Chart|Chart} for common charts.
@@ -55,24 +56,16 @@ var MapChart = /** @class */ (function (_super) {
      *        Function to run when the chart has loaded and and all external
      *        images are loaded.
      *
-     * @return {void}
      *
-     * @fires Highcharts.MapChart#event:init
-     * @fires Highcharts.MapChart#event:afterInit
+     * @emits Highcharts.MapChart#event:init
+     * @emits Highcharts.MapChart#event:afterInit
      */
     MapChart.prototype.init = function (userOptions, callback) {
-        var hiddenAxis = {
-            endOnTick: false,
-            visible: false,
-            minPadding: 0,
-            maxPadding: 0,
-            startOnTick: false
-        }, defaultCreditsOptions = getOptions().credits;
-        /* For visual testing
-        hiddenAxis.gridLineWidth = 1;
-        hiddenAxis.gridZIndex = 10;
-        hiddenAxis.tickPositions = undefined;
-        // */
+        // Initialize the MapView after initialization, but before firstRender
+        addEvent(this, 'afterInit', function () {
+            this.mapView = new MapView(this, this.options.mapView);
+        });
+        var defaultCreditsOptions = getOptions().credits;
         var options = merge({
             chart: {
                 panning: {
@@ -86,18 +79,12 @@ var MapChart = /** @class */ (function (_super) {
                     '{geojson.copyrightShort}</a>'),
                 mapTextFull: pick(defaultCreditsOptions.mapTextFull, '{geojson.copyright}')
             },
+            mapView: {},
             tooltip: {
                 followTouchMove: false
-            },
-            xAxis: hiddenAxis,
-            yAxis: merge(hiddenAxis, { reversed: true })
-        }, userOptions, // user's options
-        {
-            chart: {
-                inverted: false,
-                alignTicks: false
             }
-        });
+        }, userOptions // user's options
+        );
         _super.prototype.init.call(this, options, callback);
     };
     return MapChart;
@@ -156,6 +143,7 @@ var MapChart = /** @class */ (function (_super) {
      * @param {string|Array<string|number>} path
      *
      * @return {Highcharts.SVGPathArray}
+     * Splitted SVG path
      */
     function splitPath(path) {
         var arr;

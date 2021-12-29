@@ -43,11 +43,6 @@ var NavigatorAxisAdditions = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Axis#toFixedRange
-     * @param {number} [pxMin]
-     * @param {number} [pxMax]
-     * @param {number} [fixedMin]
-     * @param {number} [fixedMax]
-     * @return {*}
      */
     NavigatorAxisAdditions.prototype.toFixedRange = function (pxMin, pxMax, fixedMin, fixedMax) {
         var navigator = this;

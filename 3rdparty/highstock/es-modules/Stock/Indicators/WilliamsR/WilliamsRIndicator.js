@@ -19,8 +19,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import ReduceArrayMixin from '../../../Mixins/ReduceArray.js';
-var getArrayExtremes = ReduceArrayMixin.getArrayExtremes;
+import AU from '../ArrayUtilities.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
@@ -60,7 +59,7 @@ var WilliamsRIndicator = /** @class */ (function (_super) {
         // with (+1)
         for (i = period - 1; i < yValLen; i++) {
             slicedY = yVal.slice(i - period + 1, i + 1);
-            extremes = getArrayExtremes(slicedY, low, high);
+            extremes = AU.getArrayExtremes(slicedY, low, high);
             LL = extremes[0];
             HH = extremes[1];
             CC = yVal[i][close];

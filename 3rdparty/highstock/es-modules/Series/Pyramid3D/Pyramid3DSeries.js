@@ -36,7 +36,8 @@ var merge = U.merge;
 /**
  * The pyramid3d series type.
  *
- * @constructor seriesTypes.pyramid3d
+ * @class
+ * @name Highcharts.seriesTypes.pyramid3d
  * @augments seriesTypes.funnel3d
  * @requires highcharts-3d
  * @requires modules/cylinder

@@ -24,7 +24,6 @@ var __extends = (this && this.__extends) || (function () {
 import GaugePoint from './GaugePoint.js';
 import H from '../../Core/Globals.js';
 var noop = H.noop;
-import palette from '../../Core/Color/Palette.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, ColumnSeries = SeriesRegistry.seriesTypes.column;
 import U from '../../Core/Utilities.js';
@@ -82,7 +81,8 @@ var GaugeSeries = /** @class */ (function (_super) {
             var dialOptions = merge(options.dial, point.dial), radius = ((pInt(pick(dialOptions.radius, '80%')) * center[2]) /
                 200), baseLength = ((pInt(pick(dialOptions.baseLength, '70%')) * radius) /
                 100), rearLength = ((pInt(pick(dialOptions.rearLength, '10%')) * radius) /
-                100), baseWidth = dialOptions.baseWidth || 3, topWidth = dialOptions.topWidth || 1, overshoot = options.overshoot, rotation = yAxis.startAngleRad + yAxis.translate(point.y, null, null, null, true);
+                100), baseWidth = dialOptions.baseWidth || 3, topWidth = dialOptions.topWidth || 1;
+            var overshoot = options.overshoot, rotation = yAxis.startAngleRad + yAxis.translate(point.y, null, null, null, true);
             // Handle the wrap and overshoot options
             if (isNumber(overshoot) || options.wrap === false) {
                 overshoot = isNumber(overshoot) ?
@@ -140,7 +140,7 @@ var GaugeSeries = /** @class */ (function (_super) {
                     stroke: dialOptions.borderColor || 'none',
                     'stroke-width': dialOptions.borderWidth || 0,
                     fill: dialOptions.backgroundColor ||
-                        palette.neutralColor100
+                        "#000000" /* neutralColor100 */
                 });
             }
         });
@@ -165,9 +165,9 @@ var GaugeSeries = /** @class */ (function (_super) {
                 series.pivot.attr({
                     'stroke-width': pivotOptions.borderWidth || 0,
                     stroke: pivotOptions.borderColor ||
-                        palette.neutralColor20,
+                        "#cccccc" /* neutralColor20 */,
                     fill: pivotOptions.backgroundColor ||
-                        palette.neutralColor100
+                        "#000000" /* neutralColor100 */
                 });
             }
         }
@@ -264,7 +264,7 @@ var GaugeSeries = /** @class */ (function (_super) {
          * @product highcharts
          */
         dataLabels: {
-            borderColor: palette.neutralColor20,
+            borderColor: "#cccccc" /* neutralColor20 */,
             borderRadius: 3,
             borderWidth: 1,
             crop: false,
@@ -502,7 +502,7 @@ extend(GaugeSeries.prototype, {
 SeriesRegistry.registerSeriesType('gauge', GaugeSeries);
 /* *
  *
- *  Default export
+ *  Default Export
  *
  * */
 export default GaugeSeries;

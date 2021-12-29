@@ -19,7 +19,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var EMAIndicator = SeriesRegistry.seriesTypes.ema;
 import U from '../../../Core/Utilities.js';
@@ -57,13 +56,6 @@ var PPOIndicator = /** @class */ (function (_super) {
      *  Functions
      *
      * */
-    PPOIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        RequiredIndicatorMixin.isParentLoaded(EMAIndicator, 'ema', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     PPOIndicator.prototype.getValues = function (series, params) {
         var periods = params.periods, index = params.index, 
         // 0- date, 1- Percentage Price Oscillator
@@ -109,7 +101,7 @@ var PPOIndicator = /** @class */ (function (_super) {
     /**
      * Percentage Price Oscillator. This series requires the
      * `linkedTo` option to be set and should be loaded after the
-     * `stock/indicators/indicators.js` and `stock/indicators/ema.js`.
+     * `stock/indicators/indicators.js`.
      *
      * @sample {highstock} stock/indicators/ppo
      *         Percentage Price Oscillator
@@ -121,7 +113,6 @@ var PPOIndicator = /** @class */ (function (_super) {
      *               pointInterval, pointIntervalUnit, pointPlacement,
      *               pointRange, pointStart, showInNavigator, stacking
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/ema
      * @requires     stock/indicators/ppo
      * @optionparent plotOptions.ppo
      */
@@ -167,7 +158,6 @@ export default PPOIndicator;
  *            navigatorOptions, pointInterval, pointIntervalUnit,
  *            pointPlacement, pointRange, pointStart, showInNavigator, stacking
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/ema
  * @requires  stock/indicators/ppo
  * @apioption series.ppo
  */

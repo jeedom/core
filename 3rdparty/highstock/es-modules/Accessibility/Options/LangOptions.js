@@ -68,7 +68,7 @@ var langOptions = {
          * @since 8.0.0
          */
         screenReaderSection: {
-            beforeRegionLabel: 'Chart screen reader information.',
+            beforeRegionLabel: 'Chart screen reader information, {chartTitle}.',
             afterRegionLabel: '',
             /**
              * Language options for annotation descriptions.
@@ -77,9 +77,9 @@ var langOptions = {
              */
             annotations: {
                 heading: 'Chart annotations summary',
-                descriptionSinglePoint: '{annotationText}. Related to {annotationPoint}',
-                descriptionMultiplePoints: '{annotationText}. Related to {annotationPoint}' +
-                    '{ Also related to, #each(additionalAnnotationPoints)}',
+                descriptionSinglePoint: ('{annotationText}. Related to {annotationPoint}'),
+                descriptionMultiplePoints: ('{annotationText}. Related to {annotationPoint}' +
+                    '{ Also related to, #each(additionalAnnotationPoints)}'),
                 descriptionNoPoints: '{annotationText}'
             },
             /**
@@ -104,7 +104,7 @@ var langOptions = {
          * @since 8.0.0
          */
         legend: {
-            legendLabelNoTitle: 'Toggle series visibility',
+            legendLabelNoTitle: 'Toggle series visibility, {chartTitle}',
             legendLabel: 'Chart legend: {legendTitle}',
             legendItem: 'Show {itemName}'
         },
@@ -248,8 +248,7 @@ var langOptions = {
          */
         exporting: {
             chartMenuLabel: 'Chart menu',
-            menuButtonLabel: 'View chart menu',
-            exportRegionLabel: 'Chart menu'
+            menuButtonLabel: 'View chart menu, {chartTitle}'
         },
         /**
          * Lang configuration for different series types. For more dynamic

@@ -57,14 +57,14 @@ var XRangePoint = /** @class */ (function (_super) {
      * @private
      * @function getColorByCategory
      *
-     * @param {object} series
-     *        The series which the point belongs to.
+     * @param {Object} series
+     * The series which the point belongs to.
      *
-     * @param {object} point
-     *        The point to calculate its color for.
+     * @param {Object} point
+     * The point to calculate its color for.
      *
-     * @return {object}
-     *         Returns an object containing the properties color and colorIndex.
+     * @return {Object}
+     * Returns an object containing the properties color and colorIndex.
      */
     XRangePoint.getColorByCategory = function (series, point) {
         var colors = series.options.colors || series.chart.options.colors, colorCount = colors ?
@@ -119,8 +119,6 @@ var XRangePoint = /** @class */ (function (_super) {
      *
      * @private
      * @function Highcharts.Point#init
-     *
-     * @return {Highcharts.Point}
      */
     XRangePoint.prototype.init = function () {
         Point.prototype.init.apply(this, arguments);
@@ -140,8 +138,6 @@ var XRangePoint = /** @class */ (function (_super) {
     /**
      * @private
      * @function Highcharts.Point#getLabelConfig
-     *
-     * @return {Highcharts.PointLabelObject}
      */
     // Add x2 and yCategory to the available properties for tooltip formats
     XRangePoint.prototype.getLabelConfig = function () {
@@ -153,8 +149,6 @@ var XRangePoint = /** @class */ (function (_super) {
     /**
      * @private
      * @function Highcharts.Point#isValid
-     *
-     * @return {boolean}
      */
     XRangePoint.prototype.isValid = function () {
         return typeof this.x === 'number' &&
@@ -163,6 +157,7 @@ var XRangePoint = /** @class */ (function (_super) {
     return XRangePoint;
 }(ColumnSeries.prototype.pointClass));
 extend(XRangePoint.prototype, {
+    ttBelow: false,
     tooltipDateKeys: ['x', 'x2']
 });
 /* *

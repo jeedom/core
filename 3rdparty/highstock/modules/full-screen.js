@@ -1,5 +1,5 @@
 /*
- Highstock JS v9.1.2 (2021-06-16)
+ Highstock JS v9.3.2 (2021-11-29)
 
  Advanced Highcharts Stock tools
 
@@ -13,5 +13,5 @@ function(a,c,h,e){var f=e.addEvent;e=function(){function a(b){this.chart=b;this.
 requestFullscreen:"webkitRequestFullScreen",exitFullscreen:"webkitExitFullscreen"}:b.msRequestFullscreen&&(this.browserProps={fullscreenChange:"MSFullscreenChange",requestFullscreen:"msRequestFullscreen",exitFullscreen:"msExitFullscreen"}))}a.prototype.close=function(){var b=this.chart,a=b.options.chart;if(this.isOpen&&this.browserProps&&b.container.ownerDocument instanceof Document)b.container.ownerDocument[this.browserProps.exitFullscreen]();this.unbindFullscreenEvent&&(this.unbindFullscreenEvent=
 this.unbindFullscreenEvent());b.setSize(this.origWidth,this.origHeight,!1);this.origHeight=this.origWidth=void 0;a.width=this.origWidthOption;a.height=this.origHeightOption;this.origHeightOption=this.origWidthOption=void 0;this.isOpen=!1;this.setButtonText()};a.prototype.open=function(){var b=this,a=b.chart,d=a.options.chart;d&&(b.origWidthOption=d.width,b.origHeightOption=d.height);b.origWidth=a.chartWidth;b.origHeight=a.chartHeight;if(b.browserProps){var c=f(a.container.ownerDocument,b.browserProps.fullscreenChange,
 function(){b.isOpen?(b.isOpen=!1,b.close()):(a.setSize(null,null,!1),b.isOpen=!0,b.setButtonText())}),e=f(a,"destroy",c);b.unbindFullscreenEvent=function(){c();e()};if(d=a.renderTo[b.browserProps.requestFullscreen]())d["catch"](function(){alert("Full screen is not supported inside a frame.")})}};a.prototype.setButtonText=function(){var a=this.chart,c=a.exportDivElements,d=a.options.exporting,e=d&&d.buttons&&d.buttons.contextButton.menuItems;a=a.options.lang;d&&d.menuItemDefinitions&&a&&a.exitFullscreen&&
-a.viewFullscreen&&e&&c&&c.length&&h.setElementHTML(c[e.indexOf("viewFullscreen")],this.isOpen?a.exitFullscreen:d.menuItemDefinitions.viewFullscreen.text||a.viewFullscreen)};a.prototype.toggle=function(){this.isOpen?this.close():this.open()};return a}();c.Fullscreen=e;f(a,"beforeRender",function(){this.fullscreen=new c.Fullscreen(this)});return c.Fullscreen});c(a,"masters/modules/full-screen.src.js",[],function(){})});
+a.viewFullscreen&&e&&c&&(c=c[e.indexOf("viewFullscreen")])&&h.setElementHTML(c,this.isOpen?a.exitFullscreen:d.menuItemDefinitions.viewFullscreen.text||a.viewFullscreen)};a.prototype.toggle=function(){this.isOpen?this.close():this.open()};return a}();c.Fullscreen=e;f(a,"beforeRender",function(){this.fullscreen=new c.Fullscreen(this)});return c.Fullscreen});c(a,"masters/modules/full-screen.src.js",[],function(){})});
 //# sourceMappingURL=full-screen.js.map

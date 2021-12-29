@@ -124,8 +124,16 @@ var Scrollbar = /** @class */ (function () {
         var buttonsOrder = this.options.inverted ? [1, 0] : [0, 1], buttons = this.scrollbarButtons, bar = this.scrollbarGroup.element, track = this.track.element, mouseDownHandler = this.mouseDownHandler.bind(this), mouseMoveHandler = this.mouseMoveHandler.bind(this), mouseUpHandler = this.mouseUpHandler.bind(this);
         // Mouse events
         var _events = [
-            [buttons[buttonsOrder[0]].element, 'click', this.buttonToMinClick.bind(this)],
-            [buttons[buttonsOrder[1]].element, 'click', this.buttonToMaxClick.bind(this)],
+            [
+                buttons[buttonsOrder[0]].element,
+                'click',
+                this.buttonToMinClick.bind(this)
+            ],
+            [
+                buttons[buttonsOrder[1]].element,
+                'click',
+                this.buttonToMaxClick.bind(this)
+            ],
             [track, 'click', this.trackClick.bind(this)],
             [bar, 'mousedown', mouseDownHandler],
             [bar.ownerDocument, 'mousemove', mouseMoveHandler],
@@ -143,7 +151,8 @@ var Scrollbar = /** @class */ (function () {
     };
     Scrollbar.prototype.buttonToMaxClick = function (e) {
         var scroller = this;
-        var range = (scroller.to - scroller.from) * pick(scroller.options.step, 0.2);
+        var range = ((scroller.to - scroller.from) *
+            pick(scroller.options.step, 0.2));
         scroller.updatePosition(scroller.from + range, scroller.to + range);
         fireEvent(scroller, 'changed', {
             from: scroller.from,
@@ -194,7 +203,6 @@ var Scrollbar = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Scrollbar#destroy
-     * @return {void}
      */
     Scrollbar.prototype.destroy = function () {
         var scroller = this, navigator = scroller.chart.scroller;
@@ -226,7 +234,6 @@ var Scrollbar = /** @class */ (function () {
      * @function Highcharts.Scrollbar#drawScrollbarButton
      * @param {number} index
      *        0 is left, 1 is right
-     * @return {void}
      */
     Scrollbar.prototype.drawScrollbarButton = function (index) {
         var scroller = this, renderer = scroller.renderer, scrollbarButtons = scroller.scrollbarButtons, options = scroller.options, size = scroller.size, group = renderer.g().add(scroller.group);
@@ -309,7 +316,8 @@ var Scrollbar = /** @class */ (function () {
      * @private
      */
     Scrollbar.prototype.mouseMoveHandler = function (e) {
-        var scroller = this, normalizedEvent = scroller.chart.pointer.normalize(e), options = scroller.options, direction = options.vertical ? 'chartY' : 'chartX', initPositions = scroller.initPositions || [];
+        var scroller = this, normalizedEvent = scroller.chart.pointer.normalize(e), options = scroller.options, direction = options.vertical ?
+            'chartY' : 'chartX', initPositions = scroller.initPositions || [];
         var scrollPosition, chartPosition, change;
         // In iOS, a mousemove event with e.pageX === 0 is fired when
         // holding the finger down in the center of the scrollbar. This
@@ -367,7 +375,6 @@ var Scrollbar = /** @class */ (function () {
      *        width of the scrollbar
      * @param {number} height
      *        height of the scorllbar
-     * @return {void}
      */
     Scrollbar.prototype.position = function (x, y, width, height) {
         var scroller = this, options = scroller.options, vertical = options.vertical, method = scroller.rendered ? 'animate' : 'attr';
@@ -412,7 +419,6 @@ var Scrollbar = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Scrollbar#removeEvents
-     * @return {void}
      */
     Scrollbar.prototype.removeEvents = function () {
         this._events.forEach(function (args) {
@@ -499,7 +505,6 @@ var Scrollbar = /** @class */ (function () {
      *        scale (0-1) where bar should start
      * @param {number} to
      *        scale (0-1) where bar should end
-     * @return {void}
      */
     Scrollbar.prototype.setRange = function (from, to) {
         var scroller = this, options = scroller.options, vertical = options.vertical, minWidth = options.minWidth, fullWidth = scroller.barWidth, method = (this.rendered &&
@@ -572,8 +577,6 @@ var Scrollbar = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Scrollbar#shouldUpdateExtremes
-     * @param {string} [eventType]
-     * @return {boolean}
      */
     Scrollbar.prototype.shouldUpdateExtremes = function (eventType) {
         return (pick(this.options.liveRedraw, H.svg && !H.isTouchDevice && !this.chart.isBoosting) ||
@@ -620,7 +623,6 @@ var Scrollbar = /** @class */ (function () {
      * @function Highcharts.Scrollbar#updatePosition
      * @param  {number} from
      * @param  {number} to
-     * @return {void}
      */
     Scrollbar.prototype.updatePosition = function (from, to) {
         if (to > 1) {

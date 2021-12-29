@@ -20,7 +20,7 @@ var __extends = (this && this.__extends) || (function () {
 import Annotation from '../Annotations.js';
 import ControlPoint from '../ControlPoint.js';
 import U from '../../../Core/Utilities.js';
-var extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
+var defined = U.defined, extend = U.extend, isNumber = U.isNumber, merge = U.merge, pick = U.pick;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 var Measure = /** @class */ (function (_super) {
     __extends(Measure, _super);
@@ -62,7 +62,6 @@ var Measure = /** @class */ (function (_super) {
     /**
      * Get measure points configuration objects.
      * @private
-     * @return {Array<Highcharts.AnnotationMockPointOptionsObject>}
      */
     Measure.prototype.pointsOptions = function () {
         return this.options.points;
@@ -70,7 +69,6 @@ var Measure = /** @class */ (function (_super) {
     /**
      * Get points configuration objects for shapes.
      * @private
-     * @return {Array<Highcharts.AnnotationMockPointOptionsObject>}
      */
     Measure.prototype.shapePointsOptions = function () {
         var options = this.options.typeOptions, xAxis = options.xAxis, yAxis = options.yAxis;
@@ -102,7 +100,17 @@ var Measure = /** @class */ (function (_super) {
         ];
     };
     Measure.prototype.addControlPoints = function () {
+        var inverted = this.chart.inverted, options = this.options.controlPointOptions;
         var selectType = this.options.typeOptions.selectType, controlPoint;
+        if (!defined(this.userOptions.controlPointOptions &&
+            this.userOptions.controlPointOptions.style.cursor)) {
+            if (selectType === 'x') {
+                options.style.cursor = inverted ? 'ns-resize' : 'ew-resize';
+            }
+            else if (selectType === 'y') {
+                options.style.cursor = inverted ? 'ew-resize' : 'ns-resize';
+            }
+        }
         controlPoint = new ControlPoint(this.chart, this, this.options.controlPointOptions, 0);
         this.controlPoints.push(controlPoint);
         // add extra controlPoint for horizontal and vertical range
@@ -125,8 +133,8 @@ var Measure = /** @class */ (function (_super) {
             return;
         }
         if (this.labels.length > 0) {
-            this.labels[0].text = (formatter && formatter.call(this)) ||
-                Measure.calculations.defaultFormatter.call(this);
+            this.labels[0].text = ((formatter && formatter.call(this)) ||
+                Measure.calculations.defaultFormatter.call(this));
         }
         else {
             this.initLabel(extend({
@@ -177,7 +185,7 @@ var Measure = /** @class */ (function (_super) {
         this.initShape(extend({
             type: 'path',
             points: this.shapePointsOptions()
-        }, this.options.typeOptions.background), false);
+        }, this.options.typeOptions.background), 2);
     };
     /**
      * Add internal crosshair shapes (on top and bottom).
@@ -229,12 +237,8 @@ var Measure = /** @class */ (function (_super) {
             // Add new crosshairs
             crosshairOptionsX = merge(defaultOptions, options.crosshairX);
             crosshairOptionsY = merge(defaultOptions, options.crosshairY);
-            this.initShape(extend({
-                d: pathH
-            }, crosshairOptionsX), false);
-            this.initShape(extend({
-                d: pathV
-            }, crosshairOptionsY), false);
+            this.initShape(extend({ d: pathH }, crosshairOptionsX), 0);
+            this.initShape(extend({ d: pathV }, crosshairOptionsY), 1);
         }
     };
     Measure.prototype.onDrag = function (e) {
@@ -249,10 +253,14 @@ var Measure = /** @class */ (function (_super) {
      * Translate start or end ("left" or "right") side of the measure.
      * Update start points (startXMin, startXMax, startYMin, startYMax)
      * @private
-     * @param {number} dx - the amount of x translation
-     * @param {number} dy - the amount of y translation
-     * @param {number} cpIndex - index of control point
-     * @param {Highcharts.AnnotationDraggableValue} selectType - x / y / xy
+     * @param {number} dx
+     * the amount of x translation
+     * @param {number} dy
+     * the amount of y translation
+     * @param {number} cpIndex
+     * index of control point
+     * @param {Highcharts.AnnotationDraggableValue} selectType
+     * x / y / xy
      */
     Measure.prototype.resize = function (dx, dy, cpIndex, selectType) {
         // background shape
@@ -291,8 +299,10 @@ var Measure = /** @class */ (function (_super) {
      * Redraw event which render elements and update start points if needed.
      * @private
      * @param {boolean} animation
-     * @param {boolean} [resize] - flag if resized
-     * @param {boolean} [setStartPoints] - update position of start points
+     * @param {boolean} [resize]
+     * flag if resized
+     * @param {boolean} [setStartPoints]
+     * update position of start points
      */
     Measure.prototype.redraw = function (animation, resize, setStartPoints) {
         this.linkPoints();
@@ -719,7 +729,7 @@ Measure.prototype.defaultOptions = merge(Annotation.prototype.defaultOptions,
              *
              * </table>
              *
-             * @type      {function}
+             * @type {Function}
              *
              */
             formatter: void 0

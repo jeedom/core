@@ -12,7 +12,7 @@
  * @return {Highcharts.PositionObject}
  */
 import U from '../../Core/Utilities.js';
-var extend = U.extend, merge = U.merge, pick = U.pick;
+var merge = U.merge, pick = U.pick;
 import eventEmitterMixin from './Mixins/EventEmitterMixin.js';
 /* eslint-disable no-invalid-this, valid-jsdoc */
 /**
@@ -80,7 +80,6 @@ var ControlPoint = /** @class */ (function () {
      * @param {boolean} visible
      * Visibility of the control point.
      *
-     * @return {void}
      */
     ControlPoint.prototype.setVisibility = function (visible) {
         this.graphic.attr('visibility', visible ? 'visible' : 'hidden');
@@ -129,7 +128,6 @@ var ControlPoint = /** @class */ (function () {
      * @param {Partial<Highcharts.AnnotationControlPointOptionsObject>} userOptions
      * New options for the control point.
      *
-     * @return {void}
      */
     ControlPoint.prototype.update = function (userOptions) {
         var chart = this.chart, target = this.target, index = this.index, options = merge(true, this.options, userOptions);

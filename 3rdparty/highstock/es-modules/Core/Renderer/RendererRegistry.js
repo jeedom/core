@@ -18,14 +18,19 @@ var RendererRegistry;
 (function (RendererRegistry) {
     /* *
      *
-     *  Static Properties
+     *  Constants
      *
      * */
-    var defaultRenderer;
     RendererRegistry.rendererTypes = {};
     /* *
      *
-     *  Static Functions
+     *  Variables
+     *
+     * */
+    var defaultRenderer;
+    /* *
+     *
+     *  Functions
      *
      * */
     /**
@@ -66,7 +71,7 @@ var RendererRegistry;
 })(RendererRegistry || (RendererRegistry = {}));
 /* *
  *
- *  Export
+ *  Default Export
  *
  * */
 export default RendererRegistry;

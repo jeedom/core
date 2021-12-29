@@ -73,7 +73,8 @@ var RSIIndicator = /** @class */ (function (_super) {
             // longer then 4 (HLC, range), this ensures that we are not trying
             // to reach the index out of bounds
             index = Math.min(index, yVal[0].length - 1);
-            values = yVal.map(function (value) { return value[index]; });
+            values = yVal
+                .map(function (value) { return value[index]; });
         }
         // Calculate changes for first N points
         while (range < period) {

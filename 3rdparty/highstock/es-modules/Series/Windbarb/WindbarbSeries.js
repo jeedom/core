@@ -27,7 +27,7 @@ import A from '../../Core/Animation/AnimationUtilities.js';
 var animObject = A.animObject;
 import H from '../../Core/Globals.js';
 var noop = H.noop;
-import OnSeriesMixin from '../../Mixins/OnSeries.js';
+import OnSeriesComposition from '../OnSeriesComposition.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var Series = SeriesRegistry.series, ColumnSeries = SeriesRegistry.seriesTypes.column;
 import U from '../../Core/Utilities.js';
@@ -162,21 +162,6 @@ var WindbarbSeries = /** @class */ (function (_super) {
             }
         }
         return path;
-    };
-    WindbarbSeries.prototype.translate = function () {
-        var beaufortFloor = this.beaufortFloor, beaufortName = this.beaufortName;
-        OnSeriesMixin.translate.call(this);
-        this.points.forEach(function (point) {
-            var level = 0;
-            // Find the beaufort level (zero based)
-            for (; level < beaufortFloor.length; level++) {
-                if (beaufortFloor[level] > point.value) {
-                    break;
-                }
-            }
-            point.beaufortLevel = level - 1;
-            point.beaufort = beaufortName[level - 1];
-        });
     };
     WindbarbSeries.prototype.drawPoints = function () {
         var chart = this.chart, yAxis = this.yAxis, inverted = chart.inverted, shapeOffset = this.options.vectorLength / 2;
@@ -355,21 +340,35 @@ var WindbarbSeries = /** @class */ (function (_super) {
     });
     return WindbarbSeries;
 }(ColumnSeries));
+OnSeriesComposition.compose(WindbarbSeries);
 extend(WindbarbSeries.prototype, {
-    pointArrayMap: ['value', 'direction'],
-    parallelArrays: ['x', 'value', 'direction'],
+    beaufortFloor: [0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8,
+        24.5, 28.5, 32.7],
     beaufortName: ['Calm', 'Light air', 'Light breeze',
         'Gentle breeze', 'Moderate breeze', 'Fresh breeze',
         'Strong breeze', 'Near gale', 'Gale', 'Strong gale', 'Storm',
         'Violent storm', 'Hurricane'],
-    beaufortFloor: [0, 0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8,
-        24.5, 28.5, 32.7],
+    parallelArrays: ['x', 'value', 'direction'],
+    pointArrayMap: ['value', 'direction'],
+    pointClass: WindbarbPoint,
     trackerGroups: ['markerGroup'],
-    getPlotBox: OnSeriesMixin.getPlotBox,
-    // Don't invert the marker group (#4960)
-    invertGroups: noop
+    invertGroups: noop,
+    translate: function () {
+        var beaufortFloor = this.beaufortFloor, beaufortName = this.beaufortName;
+        OnSeriesComposition.translate.call(this);
+        this.points.forEach(function (point) {
+            var level = 0;
+            // Find the beaufort level (zero based)
+            for (; level < beaufortFloor.length; level++) {
+                if (beaufortFloor[level] > point.value) {
+                    break;
+                }
+            }
+            point.beaufortLevel = level - 1;
+            point.beaufort = beaufortName[level - 1];
+        });
+    }
 });
-WindbarbSeries.prototype.pointClass = WindbarbPoint;
 /* *
  *
  * Registry

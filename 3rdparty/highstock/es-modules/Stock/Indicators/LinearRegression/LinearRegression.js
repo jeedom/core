@@ -60,13 +60,18 @@ var LinearRegressionIndicator = /** @class */ (function (_super) {
      * */
     /**
      * Return the slope and intercept of a straight line function.
+     *
      * @private
-     * @param {Highcharts.LinearRegressionIndicator} this indicator to use
-     * @param {Array<number>} xData -  list of all x coordinates in a period
-     * @param {Array<number>} yData - list of all y coordinates in a period
+     *
+     * @param {Array<number>} xData
+     * List of all x coordinates in a period.
+     *
+     * @param {Array<number>} yData
+     * List of all y coordinates in a period.
+     *
      * @return {Highcharts.RegressionLineParametersObject}
-     *          object that contains the slope and the intercept
-     *          of a straight line function
+     * Object that contains the slope and the intercept of a straight line
+     * function.
      */
     LinearRegressionIndicator.prototype.getRegressionLineParameters = function (xData, yData) {
         // least squares method
@@ -92,12 +97,18 @@ var LinearRegressionIndicator = /** @class */ (function (_super) {
     };
     /**
      * Return the y value on a straight line.
+     *
      * @private
+     *
      * @param {Highcharts.RegressionLineParametersObject} lineParameters
-     *          object that contains the slope and the intercept
-     *          of a straight line function
-     * @param {number} endPointX - x coordinate of the point
-     * @return {number} - y value of the point that lies on the line
+     * Object that contains the slope and the intercept of a straight line
+     * function.
+     *
+     * @param {number} endPointX
+     * X coordinate of the point.
+     *
+     * @return {number}
+     * Y value of the point that lies on the line.
      */
     LinearRegressionIndicator.prototype.getEndPointY = function (lineParameters, endPointX) {
         return lineParameters.slope * endPointX + lineParameters.intercept;
@@ -105,10 +116,17 @@ var LinearRegressionIndicator = /** @class */ (function (_super) {
     /**
      * Transform the coordinate system so that x values start at 0 and
      * apply xAxisUnit.
+     *
      * @private
-     * @param {Array<number>} xData - list of all x coordinates in a period
-     * @param {number} xAxisUnit - option (see the API)
-     * @return {Array<number>} - array of transformed x data
+     *
+     * @param {Array<number>} xData
+     * List of all x coordinates in a period
+     *
+     * @param {number} xAxisUnit
+     * Option (see the API)
+     *
+     * @return {Array<number>}
+     * Array of transformed x data
      */
     LinearRegressionIndicator.prototype.transformXData = function (xData, xAxisUnit) {
         var xOffset = xData[0];
@@ -178,7 +196,7 @@ var LinearRegressionIndicator = /** @class */ (function (_super) {
      * @since        7.0.0
      * @product      highstock
      * @requires     stock/indicators/indicators
-     * @requires     stock/indicators/linearregression
+     * @requires     stock/indicators/regressions
      * @optionparent plotOptions.linearregression
      */
     LinearRegressionIndicator.defaultOptions = merge(SMAIndicator.defaultOptions, {
@@ -258,7 +276,7 @@ export default LinearRegressionIndicator;
  * @product   highstock
  * @excluding dataParser,dataURL
  * @requires  stock/indicators/indicators
- * @requires  stock/indicators/linearregression
+ * @requires  stock/indicators/regressions
  * @apioption series.linearregression
  */
 ''; // to include the above in the js output

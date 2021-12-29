@@ -18,7 +18,6 @@ import Color from '../Core/Color/Color.js';
 var color = Color.parse;
 import H from '../Core/Globals.js';
 var doc = H.doc, noop = H.noop;
-import palette from '../Core/Color/Palette.js';
 import Series from '../Core/Series/Series.js';
 import SeriesRegistry from '../Core/Series/SeriesRegistry.js';
 var seriesTypes = SeriesRegistry.seriesTypes;
@@ -166,7 +165,7 @@ var initCanvasBoost = function () {
                 series.pointArrayMap.join(',') === 'low,high'), isStacked = !!options.stacking, cropStart = series.cropStart || 0, loadingOptions = chart.options.loading, requireSorting = series.requireSorting, wasNull, connectNulls = options.connectNulls, useRaw = !xData, minVal, maxVal, minI, maxI, index, sdata = (isStacked ?
                 series.data :
                 (xData || rawData)), fillColor = (series.fillOpacity ?
-                new Color(series.color).setOpacity(pick(options.fillOpacity, 0.75)).get() :
+                Color.parse(series.color).setOpacity(pick(options.fillOpacity, 0.75)).get() :
                 series.color), 
             //
             stroke = function () {
@@ -295,7 +294,7 @@ var initCanvasBoost = function () {
             if (rawData.length > 99999) {
                 chart.options.loading = merge(loadingOptions, {
                     labelStyle: {
-                        backgroundColor: color(palette.backgroundColor).setOpacity(0.75).get(),
+                        backgroundColor: color("#ffffff" /* backgroundColor */).setOpacity(0.75).get(),
                         padding: '1em',
                         borderRadius: '0.5em'
                     },

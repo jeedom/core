@@ -56,7 +56,6 @@ var DumbbellPoint = /** @class */ (function (_super) {
      * @private
      * @param {Highcharts.Point} this The point to inspect.
      *
-     * @return {void}
      */
     DumbbellPoint.prototype.setState = function () {
         var point = this, series = point.series, chart = series.chart, seriesLowColor = series.options.lowColor, seriesMarker = series.options.marker, pointOptions = point.options, pointLowColor = pointOptions.lowColor, zoneColor = point.zone && point.zone.color, lowerGraphicColor = pick(pointLowColor, seriesLowColor, pointOptions.color, zoneColor, point.color, series.color), verb = 'attr', upperGraphicColor, origProps;

@@ -69,7 +69,7 @@ var PackedBubblePoint = /** @class */ (function (_super) {
         var point = this, series = this.series, seriesOptions = series.options;
         if (this.isParentNode && seriesOptions.parentNode) {
             var temp = seriesOptions.allowPointSelect;
-            seriesOptions.allowPointSelect = seriesOptions.parentNode.allowPointSelect;
+            seriesOptions.allowPointSelect = (seriesOptions.parentNode.allowPointSelect);
             Point.prototype.firePointEvent.apply(this, arguments);
             seriesOptions.allowPointSelect = temp;
         }

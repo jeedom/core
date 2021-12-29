@@ -107,7 +107,8 @@ var ColumnRangeSeries = /** @class */ (function (_super) {
      *
      * */
     ColumnRangeSeries.prototype.setOptions = function () {
-        merge(true, arguments[0], { stacking: void 0 }); // #14359 Prevent side-effect from stacking.
+        // #14359 Prevent side-effect from stacking.
+        merge(true, arguments[0], { stacking: void 0 });
         return arearangeProto.setOptions.apply(this, arguments);
     };
     // eslint-disable-next-line valid-jsdoc

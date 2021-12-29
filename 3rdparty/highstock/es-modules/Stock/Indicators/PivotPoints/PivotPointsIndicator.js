@@ -145,7 +145,8 @@ var PivotPointsIndicator = /** @class */ (function (_super) {
                                     null;
                     }
                 }
-                SeriesRegistry.seriesTypes.sma.prototype.drawDataLabels.apply(indicator, arguments);
+                SeriesRegistry.seriesTypes.sma.prototype.drawDataLabels
+                    .apply(indicator, arguments);
             });
         }
     };

@@ -29,10 +29,6 @@ var isNumber = U.isNumber, isObject = U.isObject, merge = U.merge, objectEach = 
  *
  * @private
  * @function GLRenderer
- *
- * @param {Function} postRenderCallback
- *
- * @return {*}
  */
 function GLRenderer(postRenderCallback) {
     //  // Shader
@@ -149,8 +145,10 @@ function GLRenderer(postRenderCallback) {
     /**
      * Returns an orthographic perspective matrix
      * @private
-     * @param {number} width - the width of the viewport in pixels
-     * @param {number} height - the height of the viewport in pixels
+     * @param {number} width
+     * the width of the viewport in pixels
+     * @param {number} height
+     * the height of the viewport in pixels
      */
     function orthoMatrix(width, height) {
         var near = 0, far = 1;
@@ -171,7 +169,8 @@ function GLRenderer(postRenderCallback) {
     /**
      * Get the WebGL context
      * @private
-     * @returns {WebGLContext} - the context
+     * @return {WebGLContext}
+     * the context
      */
     function getGL() {
         return gl;
@@ -530,8 +529,10 @@ function GLRenderer(postRenderCallback) {
                 zone, i) {
                     var last = zones[i - 1];
                     if (zoneAxis === 'x') {
-                        if (typeof zone.value !== 'undefined' && x <= zone.value) {
-                            if (zoneColors[i] && (!last || x >= last.value)) {
+                        if (typeof zone.value !== 'undefined' &&
+                            x <= zone.value) {
+                            if (zoneColors[i] &&
+                                (!last || x >= last.value)) {
                                 zoneColor_1 = zoneColors[i];
                             }
                             return true;
@@ -539,7 +540,8 @@ function GLRenderer(postRenderCallback) {
                         return false;
                     }
                     if (typeof zone.value !== 'undefined' && y <= zone.value) {
-                        if (zoneColors[i] && (!last || y >= last.value)) {
+                        if (zoneColors[i] &&
+                            (!last || y >= last.value)) {
                             zoneColor_1 = zoneColors[i];
                         }
                         return true;
@@ -938,9 +940,7 @@ function GLRenderer(postRenderCallback) {
             // If the line width is < 0, skip rendering of the lines. See #7833.
             if (lineWidth > 0 || s.drawMode !== 'line_strip') {
                 for (sindex = 0; sindex < s.segments.length; sindex++) {
-                    // if (s.segments[sindex].from < s.segments[sindex].to) {
                     vbuffer.render(s.segments[sindex].from, s.segments[sindex].to, s.drawMode);
-                    // }
                 }
             }
             if (s.hasMarkers && showMarkers) {
@@ -952,9 +952,7 @@ function GLRenderer(postRenderCallback) {
                 }
                 shader.setDrawAsCircle(true);
                 for (sindex = 0; sindex < s.segments.length; sindex++) {
-                    // if (s.segments[sindex].from < s.segments[sindex].to) {
                     vbuffer.render(s.segments[sindex].from, s.segments[sindex].to, 'POINTS');
-                    // }
                 }
             }
         });
@@ -1132,7 +1130,8 @@ function GLRenderer(postRenderCallback) {
     /**
      * Check if we have a valid OGL context
      * @private
-     * @returns {Boolean} - true if the context is valid
+     * @return {boolean}
+     * true if the context is valid
      */
     function valid() {
         return gl !== false;
@@ -1140,7 +1139,8 @@ function GLRenderer(postRenderCallback) {
     /**
      * Check if the renderer has been initialized
      * @private
-     * @returns {Boolean} - true if it has, false if not
+     * @return {boolean}
+     * true if it has, false if not
      */
     function inited() {
         return isInited;

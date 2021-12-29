@@ -19,7 +19,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import MultipleLinesMixin from '../../../Mixins/MultipleLines.js';
+import MultipleLinesComposition from '../MultipleLinesComposition.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
@@ -160,6 +160,17 @@ var ABandsIndicator = /** @class */ (function (_super) {
      * @optionparent plotOptions.abands
      */
     ABandsIndicator.defaultOptions = merge(SMAIndicator.defaultOptions, {
+        /**
+         * Option for fill color between lines in Accelleration bands Indicator.
+         *
+         * @sample {highstock} stock/indicators/indicator-area-fill
+         *      Background fill between lines.
+         *
+         * @type {Highcharts.Color}
+         * @since 9.3.2
+         * @apioption plotOptions.abands.fillColor
+         *
+         */
         params: {
             period: 20,
             /**
@@ -194,16 +205,14 @@ var ABandsIndicator = /** @class */ (function (_super) {
     return ABandsIndicator;
 }(SMAIndicator));
 extend(ABandsIndicator.prototype, {
-    drawGraph: MultipleLinesMixin.drawGraph,
-    getTranslatedLinesNames: MultipleLinesMixin.getTranslatedLinesNames,
+    areaLinesNames: ['top', 'bottom'],
     linesApiNames: ['topLine', 'bottomLine'],
     nameBase: 'Acceleration Bands',
     nameComponents: ['period', 'factor'],
     pointArrayMap: ['top', 'middle', 'bottom'],
-    pointValKey: 'middle',
-    toYData: MultipleLinesMixin.toYData,
-    translate: MultipleLinesMixin.translate
+    pointValKey: 'middle'
 });
+MultipleLinesComposition.compose(ABandsIndicator);
 SeriesRegistry.registerSeriesType('abands', ABandsIndicator);
 /* *
  *

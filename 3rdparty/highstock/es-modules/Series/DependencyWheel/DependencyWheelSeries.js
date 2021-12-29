@@ -205,7 +205,7 @@ var DependencyWheelSeries = /** @class */ (function (_super) {
                     if (point.linkBase) {
                         var distance_1;
                         var corners = point.linkBase.map(function (top, i) {
-                            var angle = factor * top, x = Math.cos(startAngle + angle) * (innerR_1 + 1), y = Math.sin(startAngle + angle) * (innerR_1 + 1), curveFactor = options.curveFactor;
+                            var angle = factor * top, x = Math.cos(startAngle + angle) * (innerR_1 + 1), y = Math.sin(startAngle + angle) * (innerR_1 + 1), curveFactor = options.curveFactor || 0;
                             // The distance between the from and to node
                             // along the perimeter. This affect how curved
                             // the link is, so that links between neighbours

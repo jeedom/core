@@ -25,15 +25,19 @@ var __extends = (this && this.__extends) || (function () {
 })();
 import H from '../../Core/Globals.js';
 var noop = H.noop;
-import PolygonMixin from '../../Mixins/Polygon.js';
-var getBoundingBoxFromPolygon = PolygonMixin.getBoundingBoxFromPolygon, getPolygon = PolygonMixin.getPolygon, isPolygonsColliding = PolygonMixin.isPolygonsColliding, rotate2DToOrigin = PolygonMixin.rotate2DToOrigin, rotate2DToPoint = PolygonMixin.rotate2DToPoint;
 import Series from '../../Core/Series/Series.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ColumnSeries = SeriesRegistry.seriesTypes.column;
 import U from '../../Core/Utilities.js';
-var extend = U.extend, find = U.find, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, merge = U.merge;
+var extend = U.extend, isArray = U.isArray, isNumber = U.isNumber, isObject = U.isObject, merge = U.merge;
 import WordcloudPoint from './WordcloudPoint.js';
 import WordcloudUtils from './WordcloudUtils.js';
+var archimedeanSpiral = WordcloudUtils.archimedeanSpiral, extendPlayingField = WordcloudUtils.extendPlayingField, getBoundingBoxFromPolygon = WordcloudUtils.getBoundingBoxFromPolygon, getPlayingField = WordcloudUtils.getPlayingField, getPolygon = WordcloudUtils.getPolygon, getRandomPosition = WordcloudUtils.getRandomPosition, getRotation = WordcloudUtils.getRotation, getScale = WordcloudUtils.getScale, getSpiral = WordcloudUtils.getSpiral, intersectionTesting = WordcloudUtils.intersectionTesting, isPolygonsColliding = WordcloudUtils.isPolygonsColliding, rectangularSpiral = WordcloudUtils.rectangularSpiral, rotate2DToOrigin = WordcloudUtils.rotate2DToOrigin, rotate2DToPoint = WordcloudUtils.rotate2DToPoint, squareSpiral = WordcloudUtils.squareSpiral, updateFieldBoundaries = WordcloudUtils.updateFieldBoundaries;
+/* *
+ *
+ *  Class
+ *
+ * */
 /**
  * @private
  * @class
@@ -144,8 +148,8 @@ var WordcloudSeries = /** @class */ (function (_super) {
             };
         });
         // Calculate the playing field.
-        field = WordcloudUtils.getPlayingField(xAxis.len, yAxis.len, data);
-        spiral = WordcloudUtils.getSpiral(series.spirals[options.spiral], {
+        field = getPlayingField(xAxis.len, yAxis.len, data);
+        spiral = getSpiral(series.spirals[options.spiral], {
             field: field
         });
         // Draw all the points.
@@ -160,13 +164,14 @@ var WordcloudSeries = /** @class */ (function (_super) {
             }), attr = extend(series.pointAttribs(point, (point.selected && 'select')), {
                 align: 'center',
                 'alignment-baseline': 'middle',
+                'dominant-baseline': 'middle',
                 x: placement.x,
                 y: placement.y,
                 text: point.name,
                 rotation: isNumber(placement.rotation) ?
                     placement.rotation :
                     void 0
-            }), polygon = getPolygon(placement.x, placement.y, point.dimensions.width, point.dimensions.height, placement.rotation), rectangle = getBoundingBoxFromPolygon(polygon), delta = WordcloudUtils.intersectionTesting(point, {
+            }), polygon = getPolygon(placement.x, placement.y, point.dimensions.width, point.dimensions.height, placement.rotation), rectangle = getBoundingBoxFromPolygon(polygon), delta = intersectionTesting(point, {
                 rectangle: rectangle,
                 polygon: polygon,
                 field: field,
@@ -177,9 +182,9 @@ var WordcloudSeries = /** @class */ (function (_super) {
             // If there is no space for the word, extend the playing field.
             if (!delta && allowExtendPlayingField) {
                 // Extend the playing field to fit the word.
-                field = WordcloudUtils.extendPlayingField(field, rectangle);
+                field = extendPlayingField(field, rectangle);
                 // Run intersection testing one more time to place the word.
-                delta = WordcloudUtils.intersectionTesting(point, {
+                delta = intersectionTesting(point, {
                     rectangle: rectangle,
                     polygon: polygon,
                     field: field,
@@ -197,7 +202,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
                 rectangle.right += delta.x;
                 rectangle.top += delta.y;
                 rectangle.bottom += delta.y;
-                field = WordcloudUtils.updateFieldBoundaries(field, rectangle);
+                field = updateFieldBoundaries(field, rectangle);
                 placed.push(point);
                 point.isNull = false;
                 point.isInside = true; // #15447
@@ -235,7 +240,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
         // Destroy the element after use.
         testElement = testElement.destroy();
         // Scale the series group to fit within the plotArea.
-        scale = WordcloudUtils.getScale(xAxis.len, yAxis.len, field);
+        scale = getScale(xAxis.len, yAxis.len, field);
         series.group.attr({
             scaleX: scale,
             scaleY: scale
@@ -321,7 +326,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
          * cloud. Read more about it in our
          * [documentation](https://www.highcharts.com/docs/chart-and-series-types/word-cloud-series#custom-placement-strategies)
          *
-         * @validvalue: ["center", "random"]
+         * @validvalue ["center", "random"]
          */
         placementStrategy: 'center',
         /**
@@ -354,7 +359,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
          * algorithms for use in word cloud. Read more about it in our
          * [documentation](https://www.highcharts.com/docs/chart-and-series-types/word-cloud-series#custom-spiralling-algorithm)
          *
-         * @validvalue: ["archimedean", "rectangular", "square"]
+         * @validvalue ["archimedean", "rectangular", "square"]
          */
         spiral: 'rectangular',
         /**
@@ -379,7 +384,7 @@ var WordcloudSeries = /** @class */ (function (_super) {
     return WordcloudSeries;
 }(ColumnSeries));
 extend(WordcloudSeries.prototype, {
-    animate: Series.prototype.animate,
+    animate: noop,
     animateDrilldown: noop,
     animateDrillupFrom: noop,
     pointClass: WordcloudPoint,
@@ -391,9 +396,9 @@ extend(WordcloudSeries.prototype, {
         random: function (point, options) {
             var field = options.field, r = options.rotation;
             return {
-                x: WordcloudUtils.getRandomPosition(field.width) - (field.width / 2),
-                y: WordcloudUtils.getRandomPosition(field.height) - (field.height / 2),
-                rotation: WordcloudUtils.getRotation(r.orientations, point.index, r.from, r.to)
+                x: getRandomPosition(field.width) - (field.width / 2),
+                y: getRandomPosition(field.height) - (field.height / 2),
+                rotation: getRotation(r.orientations, point.index, r.from, r.to)
             };
         },
         center: function (point, options) {
@@ -401,7 +406,7 @@ extend(WordcloudSeries.prototype, {
             return {
                 x: 0,
                 y: 0,
-                rotation: WordcloudUtils.getRotation(r.orientations, point.index, r.from, r.to)
+                rotation: getRotation(r.orientations, point.index, r.from, r.to)
             };
         }
     },
@@ -410,13 +415,13 @@ extend(WordcloudSeries.prototype, {
     // collision with either another word or the borders. To implement a custom
     // spiral, look at the function archimedeanSpiral for example.
     spirals: {
-        'archimedean': WordcloudUtils.archimedeanSpiral,
-        'rectangular': WordcloudUtils.rectangularSpiral,
-        'square': WordcloudUtils.squareSpiral
+        'archimedean': archimedeanSpiral,
+        'rectangular': rectangularSpiral,
+        'square': squareSpiral
     },
     utils: {
-        extendPlayingField: WordcloudUtils.extendPlayingField,
-        getRotation: WordcloudUtils.getRotation,
+        extendPlayingField: extendPlayingField,
+        getRotation: getRotation,
         isPolygonsColliding: isPolygonsColliding,
         rotate2DToOrigin: rotate2DToOrigin,
         rotate2DToPoint: rotate2DToPoint

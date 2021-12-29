@@ -22,5 +22,6 @@ import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
  *  Composition
  *
  * */
-SeriesRegistry.seriesTypes.pie.prototype.pointClass.prototype.haloPath = Pie3DPoint.prototype.haloPath;
+SeriesRegistry.seriesTypes.pie.prototype.pointClass.prototype
+    .haloPath = Pie3DPoint.prototype.haloPath;
 SeriesRegistry.seriesTypes.pie = Pie3DSeries;

@@ -63,7 +63,7 @@ ElliottWave.prototype.defaultOptions = merge(CrookedLine.prototype.defaultOption
          * @apioption annotations.elliottWave.typeOptions.points.label
          */
         /**
-         * @ignore-options
+         * @ignore-option
          */
         labels: ['(0)', '(A)', '(B)', '(C)', '(D)', '(E)'],
         line: {

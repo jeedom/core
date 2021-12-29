@@ -21,7 +21,6 @@ import Annotation from '../Annotations.js';
 import MockPoint from '../MockPoint.js';
 import Tunnel from './Tunnel.js';
 import U from '../../../Core/Utilities.js';
-import palette from '../../../Core/Color/Palette.js';
 var merge = U.merge;
 /* eslint-disable no-invalid-this, valid-jsdoc */
 var createPathDGenerator = function (retracementIndex, isBackground) {
@@ -95,7 +94,7 @@ var Fibonacci = /** @class */ (function (_super) {
                 type: 'path',
                 d: createPathDGenerator(i),
                 stroke: lineColors[i] || lineColor
-            }, false);
+            }, i);
             if (i > 0) {
                 this.initShape({
                     type: 'path',
@@ -168,7 +167,7 @@ Fibonacci.prototype.defaultOptions = merge(Tunnel.prototype.defaultOptions,
         /**
          * The color of line.
          */
-        lineColor: palette.neutralColor40,
+        lineColor: "#999999" /* neutralColor40 */,
         /**
          * An array of colors for the lines.
          */

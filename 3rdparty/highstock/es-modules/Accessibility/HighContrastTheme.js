@@ -10,6 +10,11 @@
  *
  * */
 'use strict';
+/* *
+ *
+ *  Theme
+ *
+ * */
 var theme = {
     chart: {
         backgroundColor: 'window'
@@ -208,4 +213,9 @@ var theme = {
         trackBorderColor: 'windowText'
     }
 };
+/* *
+ *
+ *  Default Export
+ *
+ * */
 export default theme;

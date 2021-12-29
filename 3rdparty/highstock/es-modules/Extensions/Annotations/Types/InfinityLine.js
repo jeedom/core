@@ -118,7 +118,7 @@ var InfinityLine = /** @class */ (function (_super) {
         var line = this.initShape(merge(typeOptions.line, {
             type: 'path',
             points: points
-        }), false);
+        }), 0);
         typeOptions.line = line.options;
     };
     /**

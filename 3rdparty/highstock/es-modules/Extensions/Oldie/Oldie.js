@@ -17,7 +17,6 @@ import H from '../../Core/Globals.js';
 var deg2rad = H.deg2rad, doc = H.doc, noop = H.noop, svg = H.svg, win = H.win;
 import D from '../../Core/DefaultOptions.js';
 var getOptions = D.getOptions;
-import palette from '../../Core/Color/Palette.js';
 import Pointer from '../../Core/Pointer.js';
 import RendererRegistry from '../../Core/Renderer/RendererRegistry.js';
 import SVGElement from '../../Core/Renderer/SVG/SVGElement.js';
@@ -37,7 +36,7 @@ var VMLRenderer, VMLElement;
  * @apioption global.VMLRadialGradientURL
  */
 getOptions().global.VMLRadialGradientURL =
-    'http://code.highcharts.com/9.1.2/gfx/vml-radial-gradient.png';
+    'http://code.highcharts.com/9.3.2/gfx/vml-radial-gradient.png';
 // Utilites
 if (doc && !doc.defaultView) {
     H.getStyle = U.getStyle = function getStyle(el, prop) {
@@ -86,9 +85,6 @@ if (!svg) {
      *
      * @ignore
      * @function Highcharts.Pointer#normalize
-     * @param {global.PointerEvent} e
-     * @param {boolean} [chartPosition=false]
-     * @return {Highcharts.PointerEventObject}
      */
     Pointer.prototype.normalize = function (e, chartPosition) {
         e = e || win.event;
@@ -165,9 +161,6 @@ if (!svg) {
      *
      * @private
      * @function Highcharts.addEventListenerPolyfill<T>
-     * @param {string} type
-     * @param {Highcharts.EventCallbackFunction<T>} fn
-     * @return {void}
      */
     H.addEventListenerPolyfill = function (type, fn) {
         var el = this;
@@ -195,9 +188,6 @@ if (!svg) {
     /**
      * @private
      * @function Highcharts.removeEventListenerPolyfill<T>
-     * @param {string} type
-     * @param {Highcharts.EventCallbackFunction<T>} fn
-     * @return {void}
      */
     H.removeEventListenerPolyfill = function (type, fn) {
         if (this.detachEvent) {
@@ -221,8 +211,6 @@ if (!svg) {
          * string to minimize DOM traffic.
          *
          * @function Highcharts.VMLElement#init
-         * @param {Highcharts.VMLRenderer} renderer
-         * @param {string} nodeName
          */
         init: function (renderer, nodeName) {
             var wrapper = this, markup = ['<', nodeName, ' filled="f" stroked="f"'], style = ['position: ', 'absolute', ';'], isDiv = nodeName === 'div';
@@ -245,8 +233,6 @@ if (!svg) {
          * Add the node to the given parent
          *
          * @function Highcharts.VMLElement
-         * @param {Highcharts.VMLElement} parent
-         * @return {Highcharts.VMLElement}
          */
         add: function (parent) {
             var wrapper = this, renderer = wrapper.renderer, element = wrapper.element, box = renderer.box, inverted = parent && parent.inverted, 
@@ -284,13 +270,13 @@ if (!svg) {
          *
          * @function Highcharts.VMLElement#updateTransform
          */
-        updateTransform: SVGElement.prototype.htmlUpdateTransform,
+        updateTransform: SVGElement.prototype
+            .htmlUpdateTransform,
         /**
          * Set the rotation of a span with oldIE's filter
          *
          * @function Highcharts.VMLElement#setSpanRotation
-         * @return {void}
-         */
+             */
         setSpanRotation: function () {
             // Adjust for alignment and rotation. Rotation of useHTML content is
             // not yet implemented but it can probably be implemented for
@@ -385,8 +371,6 @@ if (!svg) {
          * Set the element's clipping to a predefined rectangle
          *
          * @function Highcharts.VMLElement#clip
-         * @param {Highcharts.VMLClipRectObject} clipRect
-         * @return {Highcharts.VMLElement}
          */
         clip: function (clipRect) {
             var wrapper = this, clipMembers, cssRet;
@@ -414,8 +398,6 @@ if (!svg) {
          * Set styles for the element
          *
          * @function Highcharts.VMLElement#css
-         * @param {Highcharts.CSSObject} styles
-         * @return {Highcharts.VMLElement}
          */
         css: SVGElement.prototype.htmlCss,
         /**
@@ -424,8 +406,6 @@ if (!svg) {
          * sIEve, discardElement does not.
          *
          * @function Highcharts.VMLElement#safeRemoveChild
-         * @param {Highcharts.HTMLDOMElement} element
-         * @return {void}
          */
         safeRemoveChild: function (element) {
             // discardElement will detach the node from its parent before
@@ -450,9 +430,6 @@ if (!svg) {
          * Add an event listener. VML override for normalizing event parameters.
          *
          * @function Highcharts.VMLElement#on
-         * @param {string} eventType
-         * @param {Function} handler
-         * @return {Highcharts.VMLElement}
          */
         on: function (eventType, handler) {
             // simplest possible event model for internal use
@@ -467,9 +444,6 @@ if (!svg) {
          * In stacked columns, cut off the shadows so that they don't overlap
          *
          * @function Highcharts.VMLElement#cutOffPath
-         * @param {string} path
-         * @param {number} length
-         * @return {string}
          */
         cutOffPath: function (path, length) {
             var len;
@@ -488,10 +462,6 @@ if (!svg) {
          * strokes.
          *
          * @function Highcharts.VMLElement#shadow
-         * @param {Highcharts.ShadowOptionsObject} shadowOptions
-         * @param {Highcharts.VMLElement} group
-         * @param {boolean} cutOff
-         * @return {Highcharts.VMLElement}
          */
         shadow: function (shadowOptions, group, cutOff) {
             var shadows = [], i, element = this.element, renderer = this.renderer, shadow, elemStyle = element.style, markup, path = element.path, strokeWidth, modifiedPath, shadowWidth, shadowElementOpacity;
@@ -528,7 +498,7 @@ if (!svg) {
                     // apply the opacity
                     markup = [
                         '<stroke color="',
-                        shadowOptions.color || palette.neutralColor100,
+                        shadowOptions.color || "#000000" /* neutralColor100 */,
                         '" opacity="', shadowElementOpacity * i, '"/>'
                     ];
                     createElement(renderer.prepVML(markup), null, null, shadow);
@@ -719,8 +689,7 @@ if (!svg) {
          * @param {Highcharts.HTMLDOMElement} container
          * @param {number} width
          * @param {number} height
-         * @return {void}
-         */
+             */
         init: function (container, width, height) {
             var renderer = this, boxWrapper, box, css;
             // Extended SVGRenderer member
@@ -770,11 +739,6 @@ if (!svg) {
          * values for setting the CSS style to all associated members.
          *
          * @function Highcharts.VMLRenderer#clipRect
-         * @param {number|Highcharts.SizeObject} x
-         * @param {number} y
-         * @param {number} width
-         * @param {number} height
-         * @return {Highcharts.VMLElement}
          */
         clipRect: function (x, y, width, height) {
             // create a dummy element
@@ -826,9 +790,10 @@ if (!svg) {
          * @function Highcharts.VMLRenderer#color<T>
          *
          * @param {T} color
-         *        The color or config object
+         * The color or config object
          *
          * @return {T}
+         * Processed color
          */
         color: function (colorOption, elem, prop, wrapper) {
             var renderer = this, colorObject, regexRgba = /^rgba/, markup, fillType, ret = 'none';
@@ -945,10 +910,11 @@ if (!svg) {
                 else {
                     ret = stopColor_1;
                 }
-                // If the color is an rgba color, split it and add a fill node
-                // to hold the opacity component
+                // If the color is an rgba color, split it and add a fill node to
+                // hold the opacity component
             }
-            else if (regexRgba.test(colorOption) && elem.tagName !== 'IMG') {
+            else if (regexRgba.test(colorOption) &&
+                elem.tagName !== 'IMG') {
                 colorObject = color(colorOption);
                 wrapper[prop + '-opacitySetter'](colorObject.get('a'), prop, elem);
                 ret = colorObject.get('rgb');
@@ -970,9 +936,7 @@ if (!svg) {
          * @function Highcharts.VMLRenderer#prepVML
          *
          * @param {Array<(number|string)>} markup
-         *        A string array of the VML markup to prepare
-         *
-         * @return {string}
+         * A string array of the VML markup to prepare
          */
         prepVML: function (markup) {
             var vmlStyle = 'display:inline-block;behavior:url(#default#VML);', isIE8 = this.isIE8;
@@ -995,12 +959,6 @@ if (!svg) {
          * Create rotated and aligned text
          *
          * @function Highcharts.VMLRenderer#text
-         *
-         * @param {string} str
-         *
-         * @param {number} x
-         *
-         * @param {number} y
          */
         text: SVGRenderer.prototype.html,
         /**
@@ -1029,10 +987,6 @@ if (!svg) {
          * shapes, which is faster than v:oval
          *
          * @function Highcharts.VMLRenderer#circle
-         * @param {number|Highcharts.Dictionary<number>} x
-         * @param {number} [y]
-         * @param {number} [r]
-         * @return {Highcharts.VMLElement}
          */
         circle: function (x, y, r) {
             var circle = this.symbol('circle');
@@ -1053,9 +1007,7 @@ if (!svg) {
          * @function Highcharts.VMLRenderer#g
          *
          * @param {string} name
-         *        The name of the group
-         *
-         * @return {Highcharts.VMLElement}
+         * The name of the group
          */
         g: function (name) {
             var wrapper, attribs;
@@ -1074,17 +1026,6 @@ if (!svg) {
          * VML override to create a regular HTML image.
          *
          * @function Highcharts.VMLRenderer#image
-         *
-         * @param {string} src
-         *
-         * @param {number} x
-         *
-         * @param {number} y
-         *
-         * @param {number} width
-         *
-         * @param {number} height
-         * @return {Highcharts.VMLElement}
          */
         image: function (src, x, y, width, height) {
             var obj = this.createElement('img').attr({ src: src });
@@ -1103,8 +1044,6 @@ if (!svg) {
          * rotation problems
          *
          * @function Highcharts.VMLRenderer#createElement
-         * @param {string} nodeName
-         * @return {Highcharts.VMLElement}
          */
         createElement: function (nodeName) {
             return nodeName === 'rect' ?
@@ -1116,10 +1055,6 @@ if (!svg) {
          * inverted
          *
          * @function Highcharts.VMLRenderer#invertChild
-         *
-         * @param {Highcharts.HTMLDOMElement} element
-         *
-         * @param {Highcharts.HTMLDOMElement} parentNode
          */
         invertChild: function (element, parentNode) {
             var ren = this, parentStyle = parentNode.style, imgStyle = element.tagName === 'IMG' && element.style; // #1111

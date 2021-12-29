@@ -23,6 +23,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import VBPPoint from './VBPPoint.js';
 import A from '../../../Core/Animation/AnimationUtilities.js';
 var animObject = A.animObject;
 import H from '../../../Core/Globals.js';
@@ -30,7 +31,8 @@ var noop = H.noop;
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var SMAIndicator = SeriesRegistry.seriesTypes.sma;
 import U from '../../../Core/Utilities.js';
-var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, error = U.error, extend = U.extend, isArray = U.isArray, merge = U.merge;
+import StockChart from '../../../Core/Chart/StockChart.js';
+var addEvent = U.addEvent, arrayMax = U.arrayMax, arrayMin = U.arrayMin, correctFloat = U.correctFloat, defined = U.defined, error = U.error, extend = U.extend, isArray = U.isArray, merge = U.merge;
 /* eslint-disable require-jsdoc */
 // Utils
 function arrayExtremesOHLC(data) {
@@ -79,10 +81,20 @@ var VBPIndicator = /** @class */ (function (_super) {
     VBPIndicator.prototype.init = function (chart) {
         var indicator = this, params, baseSeries, volumeSeries;
         H.seriesTypes.sma.prototype.init.apply(indicator, arguments);
-        params = indicator.options.params;
-        baseSeries = indicator.linkedParent;
-        volumeSeries = chart.get(params.volumeSeriesID);
-        indicator.addCustomEvents(baseSeries, volumeSeries);
+        // Only after series are linked add some additional logic/properties.
+        var unbinder = addEvent(StockChart, 'afterLinkSeries', function () {
+            // Protection for a case where the indicator is being updated,
+            // for a brief moment the indicator is deleted.
+            if (indicator.options) {
+                params = indicator.options.params;
+                baseSeries = indicator.linkedParent;
+                volumeSeries = chart.get(params.volumeSeriesID);
+                indicator.addCustomEvents(baseSeries, volumeSeries);
+            }
+            unbinder();
+        }, {
+            order: 1
+        });
         return indicator;
     };
     // Adds events related with removing series
@@ -272,7 +284,15 @@ var VBPIndicator = /** @class */ (function (_super) {
             arrayMin(yValues), highRange = rangeExtremes ?
             rangeExtremes.max :
             arrayMax(yValues), zoneStarts = indicator.zoneStarts = [], priceZones = [], i = 0, j = 1, rangeStep, zoneStartsLength;
-        if (!lowRange || !highRange) {
+        // If the compare mode is set on the main series, change the VBP
+        // zones to fit new extremes, #16277.
+        var mainSeries = indicator.linkedParent;
+        if (!indicator.options.compareToMain &&
+            mainSeries.dataModify) {
+            lowRange = mainSeries.dataModify.modifyValue(lowRange);
+            highRange = mainSeries.dataModify.modifyValue(highRange);
+        }
+        if (!defined(lowRange) || !defined(highRange)) {
             if (this.points.length) {
                 this.setData([]);
                 this.zoneStarts = [];
@@ -332,6 +352,15 @@ var VBPIndicator = /** @class */ (function (_super) {
                         yValues[i - 1][3] :
                         yValues[i - 1]) :
                     value;
+                // If the compare mode is set on the main series,
+                // change the VBP zones to fit new extremes, #16277.
+                var mainSeries = indicator.linkedParent;
+                if (!indicator.options.compareToMain &&
+                    mainSeries.dataModify) {
+                    value = mainSeries.dataModify.modifyValue(value);
+                    previousValue = mainSeries.dataModify
+                        .modifyValue(previousValue);
+                }
                 // Checks if this is the point with the
                 // lowest close value and if so, adds it calculations
                 if (value <= zone.start && zone.index === 0) {
@@ -438,11 +467,11 @@ var VBPIndicator = /** @class */ (function (_super) {
              * @default {"color": "#0A9AC9", "dashStyle": "LongDash", "lineWidth": 1}
              */
             styles: {
-                /** @ignore-options */
+                /** @ignore-option */
                 color: '#0A9AC9',
-                /** @ignore-options */
+                /** @ignore-option */
                 dashStyle: 'LongDash',
-                /** @ignore-options */
+                /** @ignore-option */
                 lineWidth: 1
             }
         },
@@ -495,11 +524,11 @@ var VBPIndicator = /** @class */ (function (_super) {
 extend(VBPIndicator.prototype, {
     nameBase: 'Volume by Price',
     nameComponents: ['ranges'],
-    bindTo: {
-        series: false,
-        eventName: 'afterSetExtremes'
+    calculateOn: {
+        chart: 'render',
+        xAxis: 'afterSetExtremes'
     },
-    calculateOn: 'render',
+    pointClass: VBPPoint,
     markerAttribs: noop,
     drawGraph: noop,
     getColumnMetrics: columnPrototype.getColumnMetrics,
@@ -519,7 +548,7 @@ export default VBPIndicator;
  * @extends   series,plotOptions.vbp
  * @since     6.0.0
  * @product   highstock
- * @excluding dataParser, dataURL
+ * @excluding dataParser, dataURL, compare, compareBase, compareStart
  * @requires  stock/indicators/indicators
  * @requires  stock/indicators/volume-by-price
  * @apioption series.vbp

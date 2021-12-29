@@ -9,7 +9,6 @@
  *
  * */
 'use strict';
-import palette from '../../Core/Color/Palette.js';
 import U from '../Utilities.js';
 var addEvent = U.addEvent, isObject = U.isObject, isNumber = U.isNumber, pick = U.pick, wrap = U.wrap;
 /* eslint-disable no-invalid-this, valid-jsdoc */
@@ -108,7 +107,7 @@ var TreeGridTick;
             icon
                 .attr({
                 cursor: 'pointer',
-                'fill': pick(params.color, palette.neutralColor60),
+                'fill': pick(params.color, "#666666" /* neutralColor60 */),
                 'stroke-width': 1,
                 stroke: options.lineColor,
                 strokeWidth: options.lineWidth || 0
@@ -170,7 +169,10 @@ var TreeGridTick;
             node.descendants > 0) {
             collapsed = axis.treeGrid.isCollapsed(node);
             renderLabelIcon(tick, {
-                color: !styledMode && label.styles && label.styles.color || '',
+                color: (!styledMode &&
+                    label.styles &&
+                    label.styles.color ||
+                    ''),
                 collapsed: collapsed,
                 group: label.parentGroup,
                 options: symbolOptions,

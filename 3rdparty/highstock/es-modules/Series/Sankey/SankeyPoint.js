@@ -23,7 +23,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import NodesMixin from '../../Mixins/Nodes.js';
 import Point from '../../Core/Series/Point.js';
 import SeriesRegistry from '../../Core/Series/SeriesRegistry.js';
 var ColumnSeries = SeriesRegistry.seriesTypes.column;
@@ -90,9 +89,6 @@ var SankeyPoint = /** @class */ (function (_super) {
     };
     return SankeyPoint;
 }(ColumnSeries.prototype.pointClass));
-extend(SankeyPoint.prototype, {
-    setState: NodesMixin.setNodeState
-});
 /* *
  *
  *  Default Export

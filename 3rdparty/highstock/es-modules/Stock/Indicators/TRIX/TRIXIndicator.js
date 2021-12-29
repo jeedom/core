@@ -19,7 +19,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import RequiredIndicatorMixin from '../../../Mixins/IndicatorRequired.js';
 import SeriesRegistry from '../../../Core/Series/SeriesRegistry.js';
 var TEMAIndicator = SeriesRegistry.seriesTypes.tema;
 import U from '../../../Core/Utilities.js';
@@ -42,13 +41,6 @@ var TRIXIndicator = /** @class */ (function (_super) {
         _this.points = void 0;
         return _this;
     }
-    TRIXIndicator.prototype.init = function () {
-        var args = arguments, ctx = this;
-        RequiredIndicatorMixin.isParentLoaded(SeriesRegistry.seriesTypes.tema, 'tema', ctx.type, function (indicator) {
-            indicator.prototype.init.apply(ctx, args);
-            return;
-        });
-    };
     // TRIX is calculated using TEMA so we just extend getTemaPoint method.
     TRIXIndicator.prototype.getTemaPoint = function (xVal, tripledPeriod, EMAlevels, i) {
         if (i > tripledPeriod) {
@@ -64,11 +56,8 @@ var TRIXIndicator = /** @class */ (function (_super) {
      * Triple exponential average (TRIX) oscillator. This series requires
      * `linkedTo` option to be set.
      *
-     * Requires https://code.highcharts.com/stock/indicators/ema.js
-     * and https://code.highcharts.com/stock/indicators/tema.js.
-     *
      * @sample {highstock} stock/indicators/trix
-     *         TRIX indicator
+     * TRIX indicator
      *
      * @extends      plotOptions.tema
      * @since        7.0.0
@@ -77,6 +66,9 @@ var TRIXIndicator = /** @class */ (function (_super) {
      *               navigatorOptions, pointInterval, pointIntervalUnit,
      *               pointPlacement, pointRange, pointStart, showInNavigator,
      *               stacking
+     * @requires     stock/indicators/indicators
+     * @requires     stock/indicators/tema
+     * @requires     stock/indicators/trix
      * @optionparent plotOptions.trix
      */
     TRIXIndicator.defaultOptions = merge(TEMAIndicator.defaultOptions);
@@ -99,6 +91,8 @@ export default TRIXIndicator;
  * @excluding allAreas, colorAxis, compare, compareBase, dataParser, dataURL,
  *            joinBy, keys, navigatorOptions, pointInterval, pointIntervalUnit,
  *            pointPlacement, pointRange, pointStart, showInNavigator, stacking
+ * @requires  stock/indicators/indicators
+ * @requires  stock/indicators/tema
  * @apioption series.trix
  */
 ''; // to include the above in the js output

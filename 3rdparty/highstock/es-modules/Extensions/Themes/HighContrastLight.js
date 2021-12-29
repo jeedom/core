@@ -14,28 +14,56 @@
  *
  * */
 'use strict';
-import Highcharts from '../../Core/Globals.js';
 import D from '../../Core/DefaultOptions.js';
 var setOptions = D.setOptions;
-Highcharts.theme = {
-    colors: [
-        '#5f98cf',
-        '#434348',
-        '#49a65e',
-        '#f45b5b',
-        '#708090',
-        '#b68c51',
-        '#397550',
-        '#c0493d',
-        '#4f4a7a',
-        '#b381b3'
-    ],
-    navigator: {
-        series: {
-            color: '#5f98cf',
-            lineColor: '#5f98cf'
+/* *
+ *
+ *  Theme
+ *
+ * */
+var HighContrastLightTheme;
+(function (HighContrastLightTheme) {
+    /* *
+     *
+     *  Constants
+     *
+     * */
+    HighContrastLightTheme.options = {
+        colors: [
+            '#5f98cf',
+            '#434348',
+            '#49a65e',
+            '#f45b5b',
+            '#708090',
+            '#b68c51',
+            '#397550',
+            '#c0493d',
+            '#4f4a7a',
+            '#b381b3'
+        ],
+        navigator: {
+            series: {
+                color: '#5f98cf',
+                lineColor: '#5f98cf'
+            }
         }
+    };
+    /* *
+     *
+     *  Functions
+     *
+     * */
+    /**
+     * Apply the theme.
+     */
+    function apply() {
+        setOptions(HighContrastLightTheme.options);
     }
-};
-// Apply the theme
-setOptions(Highcharts.theme);
+    HighContrastLightTheme.apply = apply;
+})(HighContrastLightTheme || (HighContrastLightTheme = {}));
+/* *
+ *
+ *  Default Export
+ *
+ * */
+export default HighContrastLightTheme;

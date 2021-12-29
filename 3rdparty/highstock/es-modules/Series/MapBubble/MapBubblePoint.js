@@ -65,9 +65,6 @@ var MapBubblePoint = /** @class */ (function (_super) {
     };
     return MapBubblePoint;
 }(BubbleSeries.prototype.pointClass));
-extend(MapBubblePoint.prototype, {
-    ttBelow: false
-});
 /* *
  *
  *  Default Export

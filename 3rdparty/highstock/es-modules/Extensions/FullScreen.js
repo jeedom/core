@@ -109,7 +109,8 @@ var Fullscreen = /** @class */ (function () {
         }
         // Unbind event as it's necessary only before exiting from fullscreen.
         if (fullscreen.unbindFullscreenEvent) {
-            fullscreen.unbindFullscreenEvent = fullscreen.unbindFullscreenEvent();
+            fullscreen.unbindFullscreenEvent = fullscreen
+                .unbindFullscreenEvent();
         }
         chart.setSize(fullscreen.origWidth, fullscreen.origHeight, false);
         fullscreen.origWidth = void 0;
@@ -180,7 +181,6 @@ var Fullscreen = /** @class */ (function () {
      * @since 8.0.1
      *
      * @requires modules/full-screen
-     * @return {void}
      */
     Fullscreen.prototype.setButtonText = function () {
         var chart = this.chart, exportDivElements = chart.exportDivElements, exportingOptions = chart.options.exporting, menuItems = (exportingOptions &&
@@ -192,11 +192,14 @@ var Fullscreen = /** @class */ (function () {
             lang.exitFullscreen &&
             lang.viewFullscreen &&
             menuItems &&
-            exportDivElements &&
-            exportDivElements.length) {
-            AST.setElementHTML(exportDivElements[menuItems.indexOf('viewFullscreen')], !this.isOpen ?
-                (exportingOptions.menuItemDefinitions.viewFullscreen.text ||
-                    lang.viewFullscreen) : lang.exitFullscreen);
+            exportDivElements) {
+            var exportDivElement = exportDivElements[menuItems.indexOf('viewFullscreen')];
+            if (exportDivElement) {
+                AST.setElementHTML(exportDivElement, !this.isOpen ?
+                    (exportingOptions.menuItemDefinitions.viewFullscreen
+                        .text ||
+                        lang.viewFullscreen) : lang.exitFullscreen);
+            }
         }
     };
     /**

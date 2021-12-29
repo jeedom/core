@@ -200,9 +200,6 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
     /**
      * Check if two bubbles overlaps.
      * @private
-     * @param {Array} first bubble
-     * @param {Array} second bubble
-     * @return {Boolean} overlap or not
      */
     PackedBubbleSeries.prototype.checkOverlap = function (bubble1, bubble2) {
         var diffX = bubble1[0] - bubble2[0], // diff of X center values
@@ -217,7 +214,14 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
      * @private
      */
     PackedBubbleSeries.prototype.createParentNodes = function () {
-        var series = this, chart = series.chart, parentNodeLayout = series.parentNodeLayout, nodeAdded, parentNode = series.parentNode, PackedBubblePoint = series.pointClass;
+        var series = this, chart = series.chart, parentNodeLayout = series.parentNodeLayout, nodeAdded, parentNode = series.parentNode, PackedBubblePoint = series.pointClass, layoutOptions = series.layout.options, parentMarkerOptions = {
+            radius: series.parentNodeRadius,
+            lineColor: series.color,
+            fillColor: color(series.color).brighten(0.4).get()
+        };
+        if (layoutOptions.parentNodeOptions) {
+            parentMarkerOptions = merge(layoutOptions.parentNodeOptions.marker || {}, parentMarkerOptions);
+        }
         series.parentNodeMass = 0;
         series.points.forEach(function (p) {
             series.parentNodeMass +=
@@ -234,11 +238,17 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
             if (!parentNode) {
                 parentNode = (new PackedBubblePoint()).init(this, {
                     mass: series.parentNodeRadius / 2,
-                    marker: {
-                        radius: series.parentNodeRadius
-                    },
+                    marker: parentMarkerOptions,
                     dataLabels: {
                         inside: false
+                    },
+                    states: {
+                        normal: {
+                            marker: parentMarkerOptions
+                        },
+                        hover: {
+                            marker: parentMarkerOptions
+                        }
                     },
                     dataLabelOnNull: true,
                     degree: series.parentNodeRadius,
@@ -319,10 +329,11 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
             return;
         }
         var series = this, chart = series.chart, parentAttribs = {}, nodeMarker = this.layout.options.parentNodeOptions.marker, parentOptions = {
-            fill: nodeMarker.fillColor || color(series.color).brighten(0.4).get(),
+            fill: (nodeMarker.fillColor ||
+                color(series.color).brighten(0.4).get()),
             opacity: nodeMarker.fillOpacity,
             stroke: nodeMarker.lineColor || series.color,
-            'stroke-width': nodeMarker.lineWidth
+            'stroke-width': pick(nodeMarker.lineWidth, series.options.lineWidth)
         };
         // create the group for parent Nodes if doesn't exist
         if (!this.parentNodesGroup) {
@@ -546,6 +557,33 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
             arr = series.chart.rawPositions;
         }
         return arr;
+    };
+    /**
+     * Function that checks for a parentMarker and sets the correct opacity.
+     * @private
+     * @param {Highcharts.Pack} point
+     * Candidate point for opacity correction.
+     * @param {string} [state]
+     * The point state, can be either `hover`, `select` or 'normal'. If
+     * undefined, normal state is assumed.
+     *
+     * @return {Highcharts.SVGAttributes}
+     * The presentational attributes to be set on the point.
+     */
+    PackedBubbleSeries.prototype.pointAttribs = function (point, state) {
+        var options = this.options, hasParentMarker = point && point.isParentNode;
+        var attr, fillOpacity, markerOptions = options.marker;
+        if (hasParentMarker &&
+            options.layoutAlgorithm &&
+            options.layoutAlgorithm.parentNodeOptions) {
+            markerOptions = options.layoutAlgorithm.parentNodeOptions.marker;
+        }
+        fillOpacity = markerOptions.fillOpacity;
+        attr = Series.prototype.pointAttribs.call(this, point, state);
+        if (fillOpacity !== 1) {
+            attr['fill-opacity'] = fillOpacity;
+        }
+        return attr;
     };
     /**
      * Function that is adding one bubble based on positions and sizes of
@@ -901,7 +939,9 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
              * @since 7.0.0
              */
             formatter: function () {
-                return this.point.value;
+                var numberFormatter = this.series.chart.numberFormatter;
+                var value = this.point.value;
+                return isNumber(value) ? numberFormatter(value, -1) : '';
             },
             /**
              * @type      {string}
@@ -1036,7 +1076,7 @@ var PackedBubbleSeries = /** @class */ (function (_super) {
                 marker: {
                     fillColor: null,
                     fillOpacity: 1,
-                    lineWidth: 1,
+                    lineWidth: null,
                     lineColor: null,
                     symbol: 'circle'
                 }

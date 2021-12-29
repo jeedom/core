@@ -61,10 +61,9 @@ var GanttChart = /** @class */ (function (_super) {
      *        Function to run when the chart has loaded and and all external
      *        images are loaded.
      *
-     * @return {void}
      *
-     * @fires Highcharts.GanttChart#event:init
-     * @fires Highcharts.GanttChart#event:afterInit
+     * @emits Highcharts.GanttChart#event:init
+     * @emits Highcharts.GanttChart#event:afterInit
      */
     GanttChart.prototype.init = function (userOptions, callback) {
         var defaultOptions = getOptions(), xAxisOptions = userOptions.xAxis, yAxisOptions = userOptions.yAxis;
@@ -126,7 +125,8 @@ var GanttChart = /** @class */ (function (_super) {
                 reversed: true,
                 // Set default type treegrid, but only if 'categories' is
                 // undefined
-                type: yAxisOptions.categories ? yAxisOptions.type : 'treegrid'
+                type: yAxisOptions.categories ?
+                    yAxisOptions.type : 'treegrid'
             }, yAxisOptions // user options
             );
         });

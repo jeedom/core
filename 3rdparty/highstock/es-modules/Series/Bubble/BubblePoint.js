@@ -61,6 +61,11 @@ var BubblePoint = /** @class */ (function (_super) {
     };
     return BubblePoint;
 }(ScatterPoint));
+/* *
+ *
+ *  Class Prototype
+ *
+ * */
 extend(BubblePoint.prototype, {
     ttBelow: false
 });

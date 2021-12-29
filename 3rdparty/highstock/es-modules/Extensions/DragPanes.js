@@ -16,7 +16,6 @@ import H from '../Core/Globals.js';
 var hasTouch = H.hasTouch;
 import Axis from '../Core/Axis/Axis.js';
 import AxisDefaults from '../Core/Axis/AxisDefaults.js';
-import palette from '../Core/Color/Palette.js';
 import Pointer from '../Core/Pointer.js';
 import U from '../Core/Utilities.js';
 var addEvent = U.addEvent, clamp = U.clamp, isNumber = U.isNumber, merge = U.merge, objectEach = U.objectEach, relativeLength = U.relativeLength, wrap = U.wrap;
@@ -412,7 +411,7 @@ var AxisResizer = /** @class */ (function () {
              * @type     {Highcharts.ColorString}
              * @requires modules/drag-panes
              */
-            lineColor: palette.neutralColor20,
+            lineColor: "#cccccc" /* neutralColor20 */,
             /**
              * Dash style of the control line.
              *

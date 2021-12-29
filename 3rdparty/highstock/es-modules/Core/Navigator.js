@@ -17,7 +17,6 @@ var hasTouch = H.hasTouch, isTouchDevice = H.isTouchDevice;
 import NavigatorAxis from './Axis/NavigatorAxis.js';
 import D from './DefaultOptions.js';
 var defaultOptions = D.defaultOptions;
-import Palette from './Color/Palette.js';
 import RendererRegistry from './Renderer/RendererRegistry.js';
 import Scrollbar from './Scrollbar.js';
 import Series from './Series/Series.js';
@@ -203,13 +202,13 @@ extend(defaultOptions, {
              *
              * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
              */
-            backgroundColor: Palette.neutralColor5,
+            backgroundColor: "#f2f2f2" /* neutralColor5 */,
             /**
              * The stroke for the handle border and the stripes inside.
              *
              * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
              */
-            borderColor: Palette.neutralColor40
+            borderColor: "#999999" /* neutralColor40 */
         },
         /**
          * The color of the mask covering the areas of the navigator series
@@ -226,7 +225,7 @@ extend(defaultOptions, {
          * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @default rgba(102,133,194,0.3)
          */
-        maskFill: color(Palette.highlightColor60).setOpacity(0.3).get(),
+        maskFill: color("#6685c2" /* highlightColor60 */).setOpacity(0.3).get(),
         /**
          * The color of the line marking the currently zoomed area in the
          * navigator.
@@ -237,7 +236,7 @@ extend(defaultOptions, {
          * @type    {Highcharts.ColorString|Highcharts.GradientColorObject|Highcharts.PatternObject}
          * @default #cccccc
          */
-        outlineColor: Palette.neutralColor20,
+        outlineColor: "#cccccc" /* neutralColor20 */,
         /**
          * The width of the line marking the currently zoomed area in the
          * navigator.
@@ -428,7 +427,7 @@ extend(defaultOptions, {
             className: 'highcharts-navigator-xaxis',
             tickLength: 0,
             lineWidth: 0,
-            gridLineColor: Palette.neutralColor10,
+            gridLineColor: "#e6e6e6" /* neutralColor10 */,
             gridLineWidth: 1,
             tickPixelInterval: 200,
             labels: {
@@ -438,7 +437,7 @@ extend(defaultOptions, {
                  */
                 style: {
                     /** @ignore */
-                    color: Palette.neutralColor40
+                    color: "#999999" /* neutralColor40 */
                 },
                 x: 3,
                 y: -4
@@ -608,17 +607,32 @@ var Navigator = /** @class */ (function () {
             verticalMin = navigatorTop + zoomedMax + outlineCorrection;
             zoomedMax = navigatorTop + zoomedMin + outlineCorrection;
             path = [
-                ['M', left + outlineHeight, navigatorTop - scrollbarHeight - outlineCorrection],
+                [
+                    'M',
+                    left + outlineHeight,
+                    navigatorTop - scrollbarHeight - outlineCorrection
+                ],
+                // top right of zoomed range
                 ['L', left + outlineHeight, verticalMin],
                 ['L', left, verticalMin],
                 ['L', left, zoomedMax],
                 ['L', left + outlineHeight, zoomedMax],
-                ['L', left + outlineHeight, navigatorTop + navigatorSize + scrollbarHeight]
+                [
+                    'L',
+                    left + outlineHeight,
+                    navigatorTop + navigatorSize + scrollbarHeight
+                ]
             ];
             if (maskInside) {
-                path.push(['M', left + outlineHeight, verticalMin - halfOutline], // upper left of zoomed range
-                ['L', left + outlineHeight, zoomedMax + halfOutline] // upper right of z.r.
-                );
+                path.push(
+                // upper left of zoomed range
+                ['M', left + outlineHeight, verticalMin - halfOutline], 
+                // upper right of z.r.
+                [
+                    'L',
+                    left + outlineHeight,
+                    zoomedMax + halfOutline
+                ]);
             }
         }
         else {
@@ -626,17 +640,25 @@ var Navigator = /** @class */ (function () {
             zoomedMax += left + scrollbarHeight - outlineCorrection;
             navigatorTop += halfOutline;
             path = [
+                // left
                 ['M', left, navigatorTop],
+                // upper left of zoomed range
                 ['L', zoomedMin, navigatorTop],
+                // lower left of z.r.
                 ['L', zoomedMin, navigatorTop + outlineHeight],
+                // lower right of z.r.
                 ['L', zoomedMax, navigatorTop + outlineHeight],
+                // upper right of z.r.
                 ['L', zoomedMax, navigatorTop],
-                ['L', left + navigatorSize + scrollbarHeight * 2, navigatorTop] // right
+                // right
+                ['L', left + navigatorSize + scrollbarHeight * 2, navigatorTop]
             ];
             if (maskInside) {
-                path.push(['M', zoomedMin - halfOutline, navigatorTop], // upper left of zoomed range
-                ['L', zoomedMax + halfOutline, navigatorTop] // upper right of z.r.
-                );
+                path.push(
+                // upper left of zoomed range
+                ['M', zoomedMin - halfOutline, navigatorTop], 
+                // upper right of z.r.
+                ['L', zoomedMax + halfOutline, navigatorTop]);
             }
         }
         navigator.outline[verb]({
@@ -808,7 +830,6 @@ var Navigator = /** @class */ (function () {
      *        Pixel value minimum
      * @param {number} [pxMax]
      *        Pixel value maximum
-     * @return {void}
      */
     Navigator.prototype.render = function (min, max, pxMin, pxMax) {
         var navigator = this, chart = navigator.chart, navigatorWidth, scrollbarLeft, scrollbarTop, scrollbarHeight = navigator.scrollbarHeight, navigatorSize, xAxis = navigator.xAxis, pointRange = xAxis.pointRange || 0, scrollbarXAxis = xAxis.navigatorAxis.fake ? chart.xAxis[0] : xAxis, navigatorEnabled = navigator.navigatorEnabled, zoomedMin, zoomedMax, rendered = navigator.rendered, inverted = chart.inverted, verb, newMin, newMax, currentRange, minRange = chart.xAxis[0].minRange, maxRange = chart.xAxis[0].options.maxRange;
@@ -1048,7 +1069,6 @@ var Navigator = /** @class */ (function () {
      *        Mouse event
      * @param {number} index
      *        Index of a handle in Navigator.handles array
-     * @return {void}
      */
     Navigator.prototype.handlesMousedown = function (e, index) {
         e = this.chart.pointer.normalize(e);
@@ -1135,7 +1155,6 @@ var Navigator = /** @class */ (function () {
      * @function Highcharts.Navigator#onMouseUp
      * @param {Highcharts.PointerEventObject} e
      *        Mouse event
-     * @return {void}
      */
     Navigator.prototype.onMouseUp = function (e) {
         var navigator = this, chart = navigator.chart, xAxis = navigator.xAxis, scrollbar = navigator.scrollbar, DOMEvent = e.DOMEvent || e, inverted = chart.inverted, verb = navigator.rendered && !navigator.hasDragged ?
@@ -1210,7 +1229,6 @@ var Navigator = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Navigator#removeEvents
-     * @return {void}
      */
     Navigator.prototype.removeEvents = function () {
         if (this.eventsToUnbind) {
@@ -1226,7 +1244,6 @@ var Navigator = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Navigator#removeBaseSeriesEvents
-     * @return {void}
      */
     Navigator.prototype.removeBaseSeriesEvents = function () {
         var baseSeries = this.baseSeries || [];
@@ -1302,7 +1319,8 @@ var Navigator = /** @class */ (function () {
                 offset: 0,
                 index: yAxisIndex,
                 isInternal: true,
-                reversed: pick((navigatorOptions.yAxis && navigatorOptions.yAxis.reversed), (chart.yAxis[0] && chart.yAxis[0].reversed), false),
+                reversed: pick((navigatorOptions.yAxis &&
+                    navigatorOptions.yAxis.reversed), (chart.yAxis[0] && chart.yAxis[0].reversed), false),
                 zoomEnabled: false
             }, chart.inverted ? {
                 width: height
@@ -1382,9 +1400,6 @@ var Navigator = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Navigator#getUnionExtremes
-     * @param {boolean} [returnFalseOnNoBaseSeries]
-     *        as the param says.
-     * @return {Highcharts.Dictionary<(number|undefined)>|undefined}
      */
     Navigator.prototype.getUnionExtremes = function (returnFalseOnNoBaseSeries) {
         var baseAxis = this.chart.xAxis[0], navAxis = this.xAxis, navAxisOptions = navAxis.options, baseAxisOptions = baseAxis.options, ret;
@@ -1408,7 +1423,6 @@ var Navigator = /** @class */ (function () {
      *        Additional series options for a navigator
      * @param {boolean} [redraw]
      *        Whether to redraw after update.
-     * @return {void}
      */
     Navigator.prototype.setBaseSeries = function (baseSeriesOptions, redraw) {
         var chart = this.chart, baseSeries = this.baseSeries = [];
@@ -1446,7 +1460,6 @@ var Navigator = /** @class */ (function () {
      * @function Highcharts.Navigator.updateNavigatorSeries
      * @param {boolean} addEvents
      * @param {boolean} [redraw]
-     * @return {void}
      */
     Navigator.prototype.updateNavigatorSeries = function (addEvents, redraw) {
         var navigator = this, chart = navigator.chart, baseSeries = navigator.baseSeries, baseOptions, mergedNavSeriesOptions, chartNavigatorSeriesOptions = navigator.navigatorOptions.series, baseNavigatorOptions, navSeriesMixin = {
@@ -1579,7 +1592,6 @@ var Navigator = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Navigator#addBaseSeriesEvent
-     * @return {void}
      */
     Navigator.prototype.addBaseSeriesEvents = function () {
         var navigator = this, baseSeries = navigator.baseSeries || [];
@@ -1733,13 +1745,16 @@ var Navigator = /** @class */ (function () {
             // If range declared, stick to the minimum only if the range
             // is smaller than the data set range.
             if (range && max - xDataMin > 0) {
-                stickToMin = max - xDataMin < range && (!this.chart.fixedRange);
+                stickToMin = max - xDataMin < range;
             }
             else {
                 // If the current axis minimum falls outside the new
                 // updated dataset, we must adjust.
                 stickToMin = min <= xDataMin;
             }
+        }
+        else {
+            stickToMin = false; // #15864
         }
         return stickToMin;
     };
@@ -1748,7 +1763,6 @@ var Navigator = /** @class */ (function () {
      *
      * @private
      * @function Highcharts.Navigator#addChartEvents
-     * @return {void}
      */
     Navigator.prototype.addChartEvents = function () {
         if (!this.eventsToUnbind) {

@@ -123,7 +123,8 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
             if (alignValue) {
                 xOffset = +alignValue * boxWidth;
             }
-            else if (isNumber(label.x) && Math.round(label.x) !== label.translateX) {
+            else if (isNumber(label.x) &&
+                Math.round(label.x) !== label.translateX) {
                 xOffset = label.x - label.translateX;
             }
             return {
@@ -185,23 +186,26 @@ Chart.prototype.hideOverlappingLabels = function (labels) {
  * @private
  * @function hideOrShow
  * @param {Highcharts.SVGElement} label
- *        The label.
+ * The label.
  * @param {Highcharts.Chart} chart
- *        The chart that contains the label.
+ * The chart that contains the label.
  * @return {boolean}
+ * Whether label is affected
  */
 function hideOrShow(label, chart) {
     var complete, newOpacity, isLabelAffected = false;
     if (label) {
         newOpacity = label.newOpacity;
         if (label.oldOpacity !== newOpacity) {
-            // Make sure the label is completely hidden to avoid catching
-            // clicks (#4362)
+            // Make sure the label is completely hidden to avoid catching clicks
+            // (#4362)
             if (label.alignAttr && label.placed) { // data labels
                 label[newOpacity ? 'removeClass' : 'addClass']('highcharts-data-label-hidden');
                 complete = function () {
                     if (!chart.styledMode) {
-                        label.css({ pointerEvents: newOpacity ? 'auto' : 'none' });
+                        label.css({
+                            pointerEvents: newOpacity ? 'auto' : 'none'
+                        });
                     }
                 };
                 isLabelAffected = true;

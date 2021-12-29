@@ -49,10 +49,6 @@ Chart.prototype.isChartSeriesBoosting = function () {
  *
  * @private
  * @function Highcharts.Chart#getBoostClipRect
- *
- * @param {Highcharts.Chart} target
- *
- * @return {Highcharts.BBoxObject}
  */
 Chart.prototype.getBoostClipRect = function (target) {
     var clipBox = {
@@ -65,7 +61,9 @@ Chart.prototype.getBoostClipRect = function (target) {
         var verticalAxes = this.inverted ? this.xAxis : this.yAxis; // #14444
         if (verticalAxes.length <= 1) {
             clipBox.y = Math.min(verticalAxes[0].pos, clipBox.y);
-            clipBox.height = verticalAxes[0].pos - this.plotTop + verticalAxes[0].len;
+            clipBox.height = (verticalAxes[0].pos -
+                this.plotTop +
+                verticalAxes[0].len);
         }
         else {
             clipBox.height = this.plotHeight;
@@ -220,14 +218,19 @@ wrap(Series.prototype, 'getExtremes', function (proceed) {
 // If the series is a heatmap or treemap, or if the series is not boosting
 // do the default behaviour. Otherwise, process if the series has no extremes.
 wrap(Series.prototype, 'processData', function (proceed) {
-    var series = this, dataToMeasure = this.options.data, firstPoint;
+    var series = this;
+    var dataToMeasure = this.options.data;
     /**
      * Used twice in this function, first on this.options.data, the second
      * time it runs the check again after processedXData is built.
+     * If the data is going to be grouped, the series shouldn't be boosted.
      * @private
-     * @todo Check what happens with data grouping
      */
     function getSeriesBoosting(data) {
+        // Check if will be grouped.
+        if (series.forceCrop) {
+            return false;
+        }
         return series.chart.isChartSeriesBoosting() || ((data ? data.length : 0) >=
             (series.options.boostThreshold || Number.MAX_VALUE));
     }
@@ -250,6 +253,7 @@ wrap(Series.prototype, 'processData', function (proceed) {
         // Enter or exit boost mode
         if (this.isSeriesBoosting) {
             // Force turbo-mode:
+            var firstPoint = void 0;
             if (this.options.data && this.options.data.length) {
                 firstPoint = this.getFirstValidPoint(this.options.data);
                 if (!isNumber(firstPoint) && !isArray(firstPoint)) {
@@ -326,10 +330,6 @@ Series.prototype.exitBoost = function () {
 /**
  * @private
  * @function Highcharts.Series#hasExtremes
- *
- * @param {boolean} checkX
- *
- * @return {boolean}
  */
 Series.prototype.hasExtremes = function (checkX) {
     var options = this.options, data = options.data, xAxis = this.xAxis && this.xAxis.options, yAxis = this.yAxis && this.yAxis.options, colorAxis = this.colorAxis && this.colorAxis.options;
