@@ -386,18 +386,18 @@ jeedom.history.drawChart = function(_params) {
         events: {
           load: function(event) {
             //default min/max set earlier in series
-            //doing initialized at 1 when chart created with first curve
+            //.doing initialized at 1 when chart created with first curve
             var thisId = event.target.userOptions._jeeId
             if (_debug) console.log('__event__ load: ' + thisId)
 
             setTimeout(function() {
               try {
-                jeedom.history.setAxisScales(thisId, {type: 'load'})
+                jeedom.history.chartCallback(thisId, {type: 'load'})
               } catch (error) {}
             }, 0)
           },
           redraw: function(event) {
-            if (_debug) console.log('__event__ redraw: ' + this.chartWidth)
+            if (_debug) console.log('__event__ redraw')
             if (this.chartWidth > 710) {
               this.update({
                 rangeSelector: {
@@ -445,7 +445,7 @@ jeedom.history.drawChart = function(_params) {
 
             if (jeedom.history.chart[thisId].doing > 0) { //chart not done, loading several series at once:
               jeedom.history.chart[thisId].doing += 1
-            } else {                                      //chart done, loading one series later:
+            } else {                                      //chart done (-1), loading another series later:
               jeedom.history.chart[thisId].doing = 1
             }
 
@@ -458,7 +458,7 @@ jeedom.history.drawChart = function(_params) {
 
               setTimeout(function() {
                 try {
-                  jeedom.history.setAxisScales(thisId, {type: 'addSeries'})
+                  jeedom.history.chartCallback(thisId, {type: 'addSeries'})
                 } catch (error) {}
               }, 0)
             }
@@ -487,21 +487,23 @@ jeedom.history.drawChart = function(_params) {
                 try {
                   if (jeedom.history.chart[chartId].comparing) {
                     var options = {
+                      type: 'selection',
                       redraw: true,
                       resetDateRange: true,
                     }
-                    jeedom.history.setAxisScales(chartId, options)
+                    jeedom.history.chartCallback(chartId, options)
                   } else {
                     var options = {
+                      type: 'selection',
                       redraw: true,
                       extremeXmin: jeedom.history.chart[chartId].zoomPrevXmin,
                       extremeXmax: jeedom.history.chart[chartId].zoomPrevXmax,
                     }
-                    jeedom.history.setAxisScales(chartId, options)
+                    jeedom.history.chartCallback(chartId, options)
                   }
 
                 } catch (error) {}
-              }, 100)
+              }, 0)
 
               return false
             } else { //Enter zoom
@@ -1300,7 +1302,37 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
 }
 
 /*
-timeout interval for chart done stuff
+HighCharts events callbacks on load / addSeries / selection
+Decrement .doing and call chartDone when .doing == 0
+*/
+jeedom.history.chartCallback  = function(_chartId, _options) {
+  if (_debug) console.log('____ chartCallback: ' + _chartId + ' doing: ' + jeedom.history.chart[_chartId].doing)
+  if (isset(_options) && isset(_options.type) && _debug) console.log('option type: ' + _options.type)
+
+  if (_chartId === undefined || !isset(_options)) return false
+  if (jeedom.history.chart[_chartId].type == 'pie') return false
+
+  //Reset zoom:
+  if (isset(_options.type) && _options.type == 'selection') {
+    jeedom.history.setAxisScales(_chartId, _options)
+    return true
+  }
+
+  //Series added, decrement:
+  if (isset(_options.type) && _options.type == 'addSeries' || _options.type == 'load') {
+    jeedom.history.chart[_chartId].doing -= 1
+  }
+
+  //Is done ?
+  if (jeedom.history.chart[_chartId].doing == 0) {
+    if (_debug) console.log('____ chartCallback: doing 0, call chartDone!')
+    jeedom.history.chartDone(_chartId)
+    return true
+  }
+}
+
+/*
+Once chart is done
 */
 jeedom.history.chartDone = function(_chartId) {
   if (_debug) console.log('____ chartDone: ' + jeedom.history.chart[_chartId].doing)
@@ -1325,7 +1357,7 @@ jeedom.history.chartDone = function(_chartId) {
         })
 
         if (typeof setChartOptions === "function") {
-          if (_debug) console.log('setChartOptions')
+          if (_debug) console.log('----> setChartOptions')
           setChartOptions(_chartId)
         }
       }
@@ -1346,27 +1378,13 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
   if (jeedom.history.chart[_chartId].type == 'pie') return false
   var chart = jeedom.history.chart[_chartId].chart
 
-  //All done with render false, redraw at end
+  //All done with render false, redraw at end if in _options
 
   /*
-  Coming from HighChart event, stop if not last one
-  Once done, doing is -1 for buttons calls
+  Coming from HighChart event
   */
   if (isset(_options)) {
-    if (isset(_options.type) && _options.type == 'addSeries' || _options.type == 'load') {
-      jeedom.history.chart[_chartId].doing -= 1
-    }
-    if (jeedom.history.chart[_chartId].doing > 0) {
-      if (_debug) console.log('____ setAxisScales: not done, stop!')
-      return false
-    } else if (jeedom.history.chart[_chartId].doing == 0) {
-      if (_debug) console.log('____ setAxisScales: doing 0, done n stop!')
-      jeedom.history.chartDone(_chartId)
-      return false
-    }
-
     /*
-    HighCharts selection event, get/set back xAxis zoom scale
     xAxis[0] min/max : zoomed dateRange in navigator
     xAxis[0] dataMin/dataMan : full dateRange
     */
