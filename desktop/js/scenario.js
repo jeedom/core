@@ -251,18 +251,28 @@ $("#bt_addScenario").off('click').on('click', function(event) {
 })
 $("#bt_changeAllScenarioState").off('click').on('click', function() {
   var el = $(this)
-  jeedom.config.save({
-    configuration: {
-      enableScenario: el.attr('data-state')
-    },
-    error: function(error) {
-      $.fn.showAlert({
-        message: error.message,
-        level: 'danger'
+  if (el.attr('data-state') == 0) {
+    var msg = '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
+  } else {
+    var msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
+  }
+
+  bootbox.confirm(msg, function(result) {
+    if (result) {
+      jeedom.config.save({
+        configuration: {
+          enableScenario: el.attr('data-state')
+        },
+        error: function(error) {
+          $.fn.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeedomUtils.loadPage('index.php?v=d&p=scenario')
+        }
       })
-    },
-    success: function() {
-      jeedomUtils.loadPage('index.php?v=d&p=scenario')
     }
   })
 })
