@@ -405,6 +405,7 @@ function addChart(_cmd_id, _action, _options) {
         } catch (error) {}
       })
     }
+    jeedom.history.chart[__el__].doing = 0
     jeedom.history.setAxisScales(__el__, {redraw: true})
     return
   }
